@@ -21,7 +21,7 @@ minifyhtml: html
 doxyg:
 	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
 
-deploy: doxyg cleanhtml html minifyhtml
+deploy: cleanhtml doxyg html minifyhtml
 	touch "$(BUILDDIR)/html/.nojekyll"
 	echo "esphomelib.com" >"$(BUILDDIR)/html/CNAME"
 	cd "$(BUILDDIR)/html" && git add --all && git commit -m "Deploy to gh-pages"
