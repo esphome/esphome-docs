@@ -3,9 +3,12 @@ esphomeyaml
 
 Hi there! This is the documentation for esphomeyaml, a project that aims to make using ESP8266/ESP32 boards with Home Assistant very easy with no programming experience required.
 
-To get started, please see the `Getting Started Guide </esphomeyaml/getting-started.html>`__.
+To get started, please see the `Getting Started Guide </esphomeyaml/getting-started.html>`__. Also be sure
+to check out `Frequently Asked Questions`_.
 
 You can find the source for this project `on Github <https://github.com/OttoWinter/esphomeyaml>`__, and the core of this project, `esphomelib is also hosted on Github <https://github.com/OttoWinter/esphomelib>`__.
+
+.. _Frequently Asked Questions: /esphomeyaml/faq.html
 
 About esphomeyaml
 ~~~~~~~~~~~~~~~~~
@@ -413,6 +416,7 @@ Full Index
 
     getting-started.rst
     configuration-types.rst
+    faq.rst
     components/esphomeyaml.rst
     components/dallas.rst
     components/sensor/dallas.rst
