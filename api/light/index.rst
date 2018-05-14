@@ -59,6 +59,13 @@ LightEffect
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: light::FastLEDRainbowLightEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenvariable:: light::light_effect_entries
+
 LightOutput
 ***********
 
@@ -67,10 +74,28 @@ LightOutput
     :protected-members:
     :undoc-members:
 
-.. doxygenclass:: light::LinearLightOutputComponent
+
+.. doxygenclass:: light::BinaryLightOutput
     :members:
     :protected-members:
     :undoc-members:
+
+.. doxygenclass:: light::MonochromaticLightOutput
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::RGBLightOutput
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::RGBWLightOutput
+    :members:
+    :protected-members:
+    :undoc-members:
+
+
 
 LightState
 **********

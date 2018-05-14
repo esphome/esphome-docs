@@ -1,7 +1,7 @@
 FastLED Light Output
 ====================
 
-Since version 1.4.0 esphomelib supports many types of addressable LEDs using the FastLED
+Since version 1.5.0 esphomelib supports many types of addressable LEDs using the FastLED
 library.
 
 Example Usage
