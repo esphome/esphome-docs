@@ -43,6 +43,7 @@ Possible log levels are (sorted by severity):
 -  ``INFO``
 -  ``DEBUG``
 -  ``VERBOSE``
+-  ``VERY_VERBOSE``
 
 Manual Tag-Specific Log Levels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -22,7 +22,7 @@ Example Usage
     // default resolution is 0.5 LX
     bh1750.bh1750->set_resolution(sensor::BH1750_RESOLUTION_1P0_LX);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_bh1750_sensor`.
 

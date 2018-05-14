@@ -17,7 +17,7 @@ Example Usage
     auto *out = App.make_gpio_output(pcf8574->make_output_pin(2));
     App.make_binary_light("PCF pin 2 light", out);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_pcf8574_component`.
 

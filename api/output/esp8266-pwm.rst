@@ -17,7 +17,7 @@ Example Usage
     // Advanced: Setting a custom frequency globally
     analogWriteFreq(500);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_esp8266_pwm_output`.
 

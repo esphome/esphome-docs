@@ -10,7 +10,7 @@ Example Usage
 
     App.make_restart_switch("Livingroom Restart");
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_restart_switch`.
 

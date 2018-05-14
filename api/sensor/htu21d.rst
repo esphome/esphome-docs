@@ -17,7 +17,7 @@ Example Usage
     // create sensors
     App.make_htu21d_sensor("Outside Temperature", "Outside Humidity");
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_htu21d_sensor`.
 

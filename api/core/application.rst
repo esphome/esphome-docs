@@ -1,7 +1,7 @@
 Application
 ===========
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 The :cpp:class:`Application` class has two objectives: 1. handle all of
 your :cpp:class:`Component`\  s and 2. provide helper methods to simplify creating a component.

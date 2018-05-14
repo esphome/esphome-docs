@@ -22,7 +22,7 @@ Example Usage
     // default accuracy is high
     sht3xd.sht3xd->set_accuracy(sensor::SHT3XD_ACCURACY_LOW);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_sht3xd_sensor`.
 

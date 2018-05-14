@@ -1,8 +1,6 @@
 Controller
 ==========
 
-.. cpp:namespace:: Controller
-
 API Reference
 -------------
 
@@ -11,7 +9,7 @@ API Reference
 Controller
 **********
 
-.. doxygenclass:: Component
+.. doxygenclass:: Controller
     :members:
     :protected-members:
     :undoc-members:

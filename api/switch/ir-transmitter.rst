@@ -16,7 +16,7 @@ Example Usage
     App.register_switch(panasonic_on);
     App.register_switch(ir->create_transmitter("Panasonic TV Volume Up", SendData::from_panasonic(0x4004, 0x1000405)));
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_ir_transmitter` and :cpp:func:`Application::register_switch`.
 

@@ -12,6 +12,14 @@ for several other components:
 |HDC1080|_               |HTU21D|_                |MPU6050|_
 -----------------------  -----------------------  -----------------------
 `HDC1080`_               `HTU21D`_                `MPU6050`_
+-----------------------  -----------------------  -----------------------
+|BH1750|_                |BME280|_                |BME680|_
+-----------------------  -----------------------  -----------------------
+`BH1750`_                `BME280`_                `BME680`_
+-----------------------  -----------------------  -----------------------
+|TSL2561|_               |SHT3X-D|_
+-----------------------  -----------------------  -----------------------
+`TSL2561`_               `SHT3X-D`_
 =======================  =======================  =======================
 
 .. |PCA9685 PWM| image:: /esphomeyaml/pca9685.jpg
@@ -38,6 +46,27 @@ for several other components:
     :class: component-image
 .. _MPU6050: /esphomeyaml/components/sensor/mpu6050.html
 
+.. |BH1750| image:: /esphomeyaml/bh1750.jpg
+    :class: component-image
+.. _BH1750: /esphomeyaml/components/sensor/bh1750.html
+
+.. |BME280| image:: /esphomeyaml/bme280.jpg
+    :class: component-image
+.. _BME280: /esphomeyaml/components/sensor/bme280.html
+
+.. |BME680| image:: /esphomeyaml/bme680.jpg
+    :class: component-image
+.. _BME680: /esphomeyaml/components/sensor/bme680.html
+
+.. |TSL2561| image:: /esphomeyaml/tsl2561.jpg
+    :class: component-image
+.. _TSL2561: /esphomeyaml/components/sensor/tsl2561.html
+
+.. |SHT3X-D| image:: /esphomeyaml/sht3xd.jpg
+    :class: component-image
+.. _SHT3X-D: /esphomeyaml/components/sensor/sht3xd.html
+
+
 In order for those components to work correctly, you need to define the
 i²c bus in your configuration.
 
@@ -61,6 +90,14 @@ Configuration variables:
 -  **scan** (*Optional*, boolean): If esphomelib should do a search of the i2c address space on startup.
    Note that this can slow down startup and is only recommended for when setting up new sensors. Defaults to
    ``False``.
--  **frequency** (*Optional*, float): Only on ESP32. Set the frequency
-   the i²c bus should operate on. Defaults to “100kHz”. Accepts most
-   metric suffixes.
+-  **frequency** (*Optional*, float): Set the frequency
+   the i²c bus should operate on. Defaults to “100kHz”.
+-  **receive_timeout** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): Advanced: Set a timeout
+   for operations on the i2c bus. Defaults to 100ms.
+
+.. note::
+
+    If you're using the ESP32 and i2c frequently is showing errors in the logs, try with the latest
+    version of the Arduino framework. See
+    `using the latest arduino framework version </esphomeyaml/components/esphomeyaml.html#using-the-latest-arduino-framework-version>`__
+    for information on how to do this.

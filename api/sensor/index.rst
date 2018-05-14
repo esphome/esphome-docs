@@ -3,7 +3,7 @@ Sensor
 
 The `sensor` namespace contains all sensors.
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::register_sensor`.
 
@@ -25,6 +25,7 @@ See :cpp:func:`Application::register_sensor`.
     bme280.rst
     bme680.rst
     sht3xd.rst
+    bh1750.rst
 
 
 API Reference

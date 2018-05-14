@@ -28,7 +28,7 @@ Example Usage
     App.register_sensor(mpu6050->make_gyro_z_sensor("MPU6050 Gyro Z"));
     App.register_sensor(mpu6050->make_temperature_sensor("MPU6050 Temperature"));
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_mpu6050_sensor`.
 

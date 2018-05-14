@@ -26,7 +26,7 @@ Example Usage
     // set heater to 200°C for 100ms, default is off
     bme680.bme680->set_heater(200, 100);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_bme680_sensor`.
 

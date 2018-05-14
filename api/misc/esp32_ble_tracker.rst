@@ -12,7 +12,7 @@ Example Usage
 	    0xAC, 0x37, 0x43, 0x77, 0x5F, 0x4C
     }));
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_esp32_ble_tracker`.
 

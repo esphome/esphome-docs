@@ -19,7 +19,7 @@ Example Usage
     strom_warme.mqtt->clear_filters();
     strom_warme.mqtt->add_multiply_filter(0.06f); // convert from Wh pulse to kW
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_pulse_counter_sensor`.
 

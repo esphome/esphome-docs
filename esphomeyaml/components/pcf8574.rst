@@ -20,7 +20,7 @@ not work.
    :target: `Sparkfun`_
    :width: 50.0%
 
-   PCF8574 16-Bit ADC. Image by `Sparkfun`_.
+   PCF8574 I/O Expander. Image by `Sparkfun`_.
 
 .. _Sparkfun: https://www.sparkfun.com/products/retired/8130
 
@@ -37,7 +37,9 @@ not work.
       - platform: gpio
         name: "PCF8574 Pin #0"
         pin:
-          number: pcf8574_hub.0
+          pcf8574: pcf8574_hub
+          # Use pin number 0
+          number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
           mode: INPUT
           inverted: False

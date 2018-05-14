@@ -14,7 +14,7 @@ Example Usage
 
     App.make_shutdown_switch("Livingroom Shutdown");
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_shutdown_switch`.
 

@@ -42,3 +42,16 @@ Configuration variables:
 .. |image0| image:: /esphomeyaml/components/sensor/adc.png
    :class: align-center
    :width: 80.0%
+
+ESP32 Attenuation
+~~~~~~~~~~~~~~~~~
+
+On the ESP32, the voltage measured with the ADC caps out at 1.1V by default as the sensing range
+or the attenuation of the ADC is set to ``0db`` by default.
+
+To measure voltages higher than 1.1V, set ``attenuation`` to one of the following values:
+
+-  ``0db`` for a full-scale voltage of 1.1V (default)
+-  ``2.5db`` for a full-scale voltage of 1.5V
+-  ``6db`` for a full-scale voltage of 2.2V
+-  ``11db`` for a full-scale voltage of 3.9V

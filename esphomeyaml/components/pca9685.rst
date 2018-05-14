@@ -35,6 +35,3 @@ Configuration variables:
    1526Hz.
 -  **address** (*Optional*, int): The I²C address of the driver.
    Defaults to ``0x00``.
--  **phase_balancer** (*Optional*): The phase balancer to balance the
-   phases of several channels. One of ``None``, ``Linear`` or
-   ``Weaved``. Defaults to ``None``.

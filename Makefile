@@ -9,9 +9,7 @@ SOURCEDIR     = .
 BUILDDIR      = _build
 ESPHOMELIB_PATH = ../esphomelib
 
-
 html:
-	# ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
 	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 cleanhtml:
@@ -20,7 +18,10 @@ cleanhtml:
 minifyhtml: html
 	./minify.sh
 
-deploy: cleanhtml html minifyhtml
+doxyg:
+	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
+
+deploy: doxyg cleanhtml html minifyhtml
 	touch "$(BUILDDIR)/html/.nojekyll"
 	echo "esphomelib.com" >"$(BUILDDIR)/html/CNAME"
 	cd "$(BUILDDIR)/html" && git add --all && git commit -m "Deploy to gh-pages"

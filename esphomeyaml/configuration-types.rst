@@ -80,16 +80,16 @@ Available Pin Modes:
 
 -  ``INPUT``
 -  ``OUTPUT``
--  ``INPUT_PULLDOWN`` (only on ESP32)
--  ``INPUT_PULLUP``
 -  ``OUTPUT_OPEN_DRAIN``
+-  ``ANALOG`` (only on ESP32)
+-  ``INPUT_PULLUP``
+-  ``INPUT_PULLDOWN`` (only on ESP32)
+-  ``INPUT_PULLDOWN_16`` (only on ESP8266 and only on GPIO16)
+
+More exotic Pin Modes are also supported, but rarely used:
+
 -  ``WAKEUP_PULLUP`` (only on ESP8266)
 -  ``WAKEUP_PULLDOWN`` (only on ESP8266)
--  ``INPUT_PULLDOWN_16`` (only on ESP8266 and only on GPIO16)
--  ``OPEN_DRAIN`` (only on ESP32)
--  ``PULLUP`` (only on ESP32)
--  ``PULLDOWN`` (only on ESP32)
--  ``ANALOG`` (only on ESP32)
 -  ``SPECIAL``
 -  ``FUNCTION_0`` (only on ESP8266)
 -  ``FUNCTION_1``
@@ -102,20 +102,21 @@ Available Pin Modes:
 Time
 ~~~~
 
-In lots of places in esphomeyaml you need to define time lengths, most
-notably of these is an ``update_interval`` in milliseconds. Internally,
-epshomelib always tries to work with millisecond values. But as
-esphomeyaml is trying to make your lifes as easy as possible, there are
-lots of helpers for defining times.
+In lots of places in esphomeyaml you need to define time periods.
+There are several ways of doing this. See below examples to see how you can specify time periods:
 
 .. code:: yaml
 
     some_config_option:
+      some_time_option: 1000us  # 1000 microseconds = 1ms
       some_time_option: 1000ms  # 1000 milliseconds
       some_time_option: 1.5s  # 1.5 seconds
       some_time_option: 0.5min  # half a minute
       some_time_option: 2h  # 2 hours
-      some_time_option:  # 10ms + 30s + 25min + 3h
+      some_time_option: 2:01  # 2 hours 1 minute
+      some_time_option: 2:01:30  # 2 hours 1 minute 30 seconds
+      # 10ms + 30s + 25min + 3h
+      some_time_option:
         milliseconds: 10
         seconds: 30
         minutes: 25

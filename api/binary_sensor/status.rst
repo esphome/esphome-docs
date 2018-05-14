@@ -11,7 +11,7 @@ Example Usage
 
     App.make_status_binary_sensor("Livingroom Node Status");
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_status_binary_sensor`.
 

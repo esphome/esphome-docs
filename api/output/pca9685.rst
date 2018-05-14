@@ -11,7 +11,7 @@ Example Usage
     // Create the PCA9685 Output hub with frequency 500Hz.
     auto *pca9685 = App.make_pca9685_component(500.0f);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_pca9685_component`.
 

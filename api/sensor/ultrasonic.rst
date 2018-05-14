@@ -16,7 +16,7 @@ Example Usage
     // Set timeout, 4 meters
     ultrasonic.sensor->set_timeout_m(4.0f);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_ultrasonic_sensor`.
 

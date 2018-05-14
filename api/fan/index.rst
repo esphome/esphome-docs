@@ -23,7 +23,7 @@ Example Usage
     oscillating_fan.output->set_binary(App.make_gpio_output(34));
     oscillating_fan.output->set_oscillation(App.make_gpio_output(35));
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_fan`.
 

@@ -25,7 +25,7 @@ Example Usage
     // By index
     App.register_sensor(dallas->get_sensor_by_index("Ambient Temperature", 0));
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_dallas_component` and :cpp:func:`Application::register_sensor`.
 

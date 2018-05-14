@@ -39,7 +39,7 @@ Doing so requires some steps:
         auto *sensor = ads1115->get_sensor("ADS1115 Voltage #1", ADS1115_MUX_P0_N1, ADS1115_PGA_6P144);
         App.register_sensor(sensor);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_ads1115_component`.
 

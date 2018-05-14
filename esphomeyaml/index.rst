@@ -103,9 +103,17 @@ Sensor Components
 ----------------------  ----------------------  ----------------------
 `HDC1080`_              `HTU21D`_               `MPU6050`_
 ----------------------  ----------------------  ----------------------
-|Pulse Counter|_        |Ultrasonic Sensor|_
+|Pulse Counter|_        |Ultrasonic Sensor|_    |BH1750|_
 ----------------------  ----------------------  ----------------------
-`Pulse Counter`_        `Ultrasonic Sensor`_
+`Pulse Counter`_        `Ultrasonic Sensor`_    `BH1750`_
+----------------------  ----------------------  ----------------------
+|BME280|_               |BME680|_               |TSL2561|_
+----------------------  ----------------------  ----------------------
+`BME280`_               `BME680`_               `TSL2561`_
+----------------------  ----------------------  ----------------------
+|SHT3X-D|_
+----------------------  ----------------------  ----------------------
+`SHT3X-D`_
 ======================  ======================  ======================
 
 .. |Sensor Core| image:: /esphomeyaml/folder-open.svg
@@ -152,6 +160,26 @@ Sensor Components
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
 
+.. |BH1750| image:: /esphomeyaml/bh1750.jpg
+    :class: component-image
+.. _BH1750: /esphomeyaml/components/sensor/bh1750.html
+
+.. |BME280| image:: /esphomeyaml/bme280.jpg
+    :class: component-image
+.. _BME280: /esphomeyaml/components/sensor/bme280.html
+
+.. |BME680| image:: /esphomeyaml/bme680.jpg
+    :class: component-image
+.. _BME680: /esphomeyaml/components/sensor/bme680.html
+
+.. |TSL2561| image:: /esphomeyaml/tsl2561.jpg
+    :class: component-image
+.. _TSL2561: /esphomeyaml/components/sensor/tsl2561.html
+
+.. |SHT3X-D| image:: /esphomeyaml/sht3xd.jpg
+    :class: component-image
+.. _SHT3X-D: /esphomeyaml/components/sensor/sht3xd.html
+
 
 Binary Sensor Components
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -160,6 +188,10 @@ Binary Sensor Components
 |Binary Sensor Core|_   |GPIO|_                 |Status|_
 ----------------------  ----------------------  ----------------------
 `Binary Sensor Core`_   `GPIO`_                 `Status`_
+----------------------  ----------------------  ----------------------
+|ESP32 BLE Device|_     |ESP32 Touch Pad|_
+----------------------  ----------------------  ----------------------
+`ESP32 BLE Device`_     `ESP32 Touch Pad`_
 ======================  ======================  ======================
 
 .. |Binary Sensor Core| image:: /esphomeyaml/folder-open.svg
@@ -173,6 +205,14 @@ Binary Sensor Components
 .. |Status| image:: /esphomeyaml/server-network.svg
     :class: component-image
 .. _Status: /esphomeyaml/components/binary_sensor/status.html
+
+.. |ESP32 BLE Device| image:: /esphomeyaml/bluetooth.svg
+    :class: component-image
+.. _ESP32 BLE Device: /esphomeyaml/components/binary_sensor/esp32_ble.html
+
+.. |ESP32 Touch Pad| image:: /esphomeyaml/touch.svg
+    :class: component-image
+.. _ESP32 Touch Pad: /esphomeyaml/components/binary_sensor/esp32_touch.html
 
 Output Components
 ~~~~~~~~~~~~~~~~~
@@ -211,15 +251,19 @@ Output Components
 Light Components
 ~~~~~~~~~~~~~~~~
 
-========================  ========================  ========================
-|Light Core|_             |Binary Light|_           |Monochromatic Light|_
-------------------------  ------------------------  ------------------------
-`Light Core`_             `Binary Light`_           `Monochromatic Light`_
-------------------------  ------------------------  ------------------------
-|RGB Light|_              |RGBW Light|_
-------------------------  ------------------------  ------------------------
-`RGB Light`_              `RGBW Light`_
-========================  ========================  ========================
+============================  ============================  ============================
+|Light Core|_                 |Binary Light|_               |Monochromatic Light|_
+----------------------------  ----------------------------  ----------------------------
+`Light Core`_                 `Binary Light`_               `Monochromatic Light`_
+----------------------------  ----------------------------  ----------------------------
+|RGB Light|_                  |RGBW Light|_                 |FastLED Clockless Light|_
+----------------------------  ----------------------------  ----------------------------
+`RGB Light`_                  `RGBW Light`_                 `FastLED Clockless Light`_
+----------------------------  ----------------------------  ----------------------------
+|FastLED SPI Light|_
+----------------------------  ----------------------------  ----------------------------
+`FastLED SPI Light`_
+============================  ============================  ============================
 
 
 .. |Light Core| image:: /esphomeyaml/folder-open.svg
@@ -241,6 +285,14 @@ Light Components
 .. |RGBW Light| image:: /esphomeyaml/rgbw.png
     :class: component-image
 .. _RGBW Light: /esphomeyaml/components/light/rgbw.html
+
+.. |FastLED Clockless Light| image:: /esphomeyaml/color_lens.svg
+    :class: component-image
+.. _FastLED Clockless Light: /esphomeyaml/components/light/fastled_clockless.html
+
+.. |FastLED SPI Light| image:: /esphomeyaml/color_lens.svg
+    :class: component-image
+.. _FastLED SPI Light: /esphomeyaml/components/light/fastled_spi.html
 
 
 Switch Components
@@ -272,7 +324,7 @@ Switch Components
     :class: component-image
 .. _Restart Switch: /esphomeyaml/components/switch/restart.html
 
-.. |Shutdown Switch| image:: /esphomeyaml/power.svg
+.. |Shutdown Switch| image:: /esphomeyaml/power_settings.svg
     :class: component-image
 .. _Shutdown Switch: /esphomeyaml/components/switch/shutdown.html
 
@@ -314,6 +366,10 @@ Misc Components
 |ADS1115 Hub|_            |Debug Component|_        |PCF8574 I/O Expander|_
 ------------------------  ------------------------  ------------------------
 `ADS1115 Hub`_            `Debug Component`_        `PCF8574 I/O Expander`_
+------------------------  ------------------------  ------------------------
+|ESP32 BLE Hub|_          |ESP32 Touch Hub|_
+------------------------  ------------------------  ------------------------
+`ESP32 BLE Hub`_          `ESP32 Touch Hub`_
 ========================  ========================  ========================
 
 .. |Dallas Hub| image:: /esphomeyaml/ds18b20.jpg
@@ -339,6 +395,14 @@ Misc Components
 .. |PCF8574 I/O Expander| image:: /esphomeyaml/pcf8574.jpg
     :class: component-image
 .. _PCF8574 I/O Expander: /esphomeyaml/components/pcf8574.html
+
+.. |ESP32 BLE Hub| image:: /esphomeyaml/bluetooth.svg
+    :class: component-image
+.. _ESP32 BLE Hub: /esphomeyaml/components/esp32_ble.html
+
+.. |ESP32 Touch Hub| image:: /esphomeyaml/touch.svg
+    :class: component-image
+.. _ESP32 Touch Hub: /esphomeyaml/components/esp32_touch.html
 
 
 Full Index
@@ -397,3 +461,14 @@ Full Index
     components/fan/binary.rst
     components/fan/speed.rst
     components/pcf8574.rst
+    components/esp32_ble.rst
+    components/binary_sensor/esp32_ble.rst
+    components/esp32_touch.rst
+    components/binary_sensor/esp32_touch.rst
+    components/light/fastled_clockless.rst
+    components/light/fastled_spi.rst
+    components/sensor/bh1750.rst
+    components/sensor/bme280.rst
+    components/sensor/bme680.rst
+    components/sensor/tsl2561.rst
+    components/sensor/sht3xd.rst

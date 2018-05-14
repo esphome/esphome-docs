@@ -42,7 +42,7 @@ a light is a combination of output components.
     api/binary_sensor/esp32_touch.rst
     api/misc/esp32_ble_tracker.rst
     api/sensor/tsl2561.rst
-    api/sensor/bht1750.rst
+    api/sensor/bh1750.rst
     api/sensor/bme280.rst
     api/sensor/bme680.rst
     api/sensor/sht3xd.rst

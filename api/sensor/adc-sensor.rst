@@ -16,7 +16,7 @@ Example Usage
     auto adc = App.make_adc_sensor("Analog Voltage", 13);
     adc.adc.set_attenuation(ADC_11db);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_adc_sensor`.
 

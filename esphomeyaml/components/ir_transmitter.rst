@@ -1,13 +1,16 @@
-ESP32 IR Transmitter Component
-==============================
+IR Transmitter Component
+========================
 
-The IR transmitter component lets you use the `remote
-peripheral <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/rmt.html>`__
-on your ESP32 to send infrared messages to control devices in your home.
+The IR transmitter component lets you send infrared messages to control devices in your home.
 First, you need to setup a global hub that specifies which pin your IR
 led is connected to. Afterwards you can create `individual
 switches </esphomeyaml/components/switch/ir_transmitter.html>`__ that
 each send a pre-defined IR code to a device.
+
+.. note::
+
+    This component is *much* more accurate on the ESP32, since that chipset has a dedicated
+    peripheral for sending exact signal sequences.
 
 .. code:: yaml
 
@@ -33,7 +36,7 @@ Configuration variables:
    IR LED.
 -  **carrier_duty_percent** (*Optional*, int): The duty percentage of
    the carrier. 50 for example means that the LED will be on 50% of the
-   time. Must be in range from 0 to 100. Defaults to 50.
+   time. Must be in range from 1 to 100. Defaults to 50.
 -  **id** (*Optional*,
    `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
    the ID used for code generation. Use this if you have multiple IR

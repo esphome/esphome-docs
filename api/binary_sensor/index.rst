@@ -30,7 +30,7 @@ Example Usage
     App.make_gpio_binary_sensor("Window Open", 36);
 
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::register_binary_sensor` and :cpp:func:`Application::make_gpio_binary_sensor`.
 

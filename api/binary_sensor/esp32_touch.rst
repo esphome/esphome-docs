@@ -11,7 +11,7 @@ Example Usage
     touch->set_iir_filter(1000);
     App.register_binary_sensor(touch_hub->make_touch_pad("ESP32 Touch Pad 9", TOUCH_PAD_NUM9, 1000));
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_esp32_touch_component`.
 

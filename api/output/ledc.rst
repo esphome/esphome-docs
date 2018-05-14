@@ -11,7 +11,7 @@ Example Usage
     // Custom Frequency
     App.make_ledc_output(33, 2000.0);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_ledc_output`.
 

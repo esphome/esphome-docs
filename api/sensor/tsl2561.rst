@@ -24,7 +24,7 @@ Example Usage
     // set a higher gain for low light conditions, default: 1x
     tsl2561.tsl2561->set_gain(sensor::TSL2561_GAIN_16X);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_tsl2561_sensor`.
 

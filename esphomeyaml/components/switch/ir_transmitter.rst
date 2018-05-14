@@ -1,5 +1,5 @@
-ESP32 IR Transmitter Switch
-===========================
+IR Transmitter Switch
+=====================
 
 The ``ir_transmitter`` switch platform allows you to create switches
 that send an IR code using the `IR Transmitter
@@ -32,17 +32,17 @@ signals on any pin by using the ``raw:`` option.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **ir_transmitter_id** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the `IR
-   Transmitter
-   Component </esphomeyaml/components/ir_transmitter.html>`__.
 -  **name** (**Required**, string): The name for the switch.
 -  The IR code, see `Defining IR Codes <#defining-ir-codes>`__. Only one
    of them can be specified per switch.
 -  **repeat** (*Optional*, int): How often the command should be
-   repeated. Additionally, an ``wait_time_us`` option can be specified
+   repeated. Additionally, an ``wait_time`` option can be specified in the ``repeat`` section
    to set how long to wait in between repeats. Defaults to 1 (code is
-   sent once).
+   sent once). Example: ``repeat: {times: 10, wait_time: 20us} ``
+-  **ir_transmitter_id** (*Optional*,
+   `id </esphomeyaml/configuration-types.html#id>`__): The id of the `IR
+   Transmitter
+   Component </esphomeyaml/components/ir_transmitter.html>`__. Defaults to the first hub specified.
 -  **id** (*Optional*,
    `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
    the ID used for code generation.
@@ -112,5 +112,5 @@ Configuration variables:
       mean OFF.
 
 .. |image0| image:: /esphomeyaml/components/switch/ir-transmitter.png
-   :class: align-center
-   :width: 80.0%
+    :class: align-center
+    :width: 80.0%

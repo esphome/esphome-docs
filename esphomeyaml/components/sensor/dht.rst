@@ -13,19 +13,19 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 sensors with esphomelib.
 
 .. figure:: /esphomeyaml/components/sensor/dht22-full.jpg
-   :align: center
-   :target: `Adafruit`_
-   :width: 50.0%
+    :align: center
+    :target: `Adafruit`_
+    :width: 50.0%
 
-   DHT22 Temperature & Humidity Sensor. Image by `Adafruit`_.
+    DHT22 Temperature & Humidity Sensor. Image by `Adafruit`_.
 
 .. _Adafruit: https://www.adafruit.com/product/385
 
 |image0|
 
 .. |image0| image:: /esphomeyaml/components/sensor/temperature-humidity.png
-   :class: align-center
-   :width: 80.0%
+    :class: align-center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -68,3 +68,9 @@ Configuration variables:
    sensor. Defaults to ``15s``.
 -  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
    generation.
+
+.. note::
+
+   If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
+   DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
+   on the DATA pin or too long cables.

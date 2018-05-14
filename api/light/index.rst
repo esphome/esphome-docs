@@ -7,6 +7,9 @@ Lights in esphomelib are implemented like fans. Both the hardware and the MQTT f
 access a combined :cpp:class:`LightState` object and use only that to set state and receive
 state updates.
 
+.. toctree::
+    fastled.rst
+
 Example Usage
 -------------
 
@@ -20,7 +23,7 @@ Example Usage
     App.make_rgb_light("RGB Lights", red, green, blue);
     App.make_rgbw_light("RGBW Lights", red, green, blue, white);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_binary_light`, :cpp:func:`Application::make_monochromatic_light`,
 :cpp:func:`Application::make_rgb_light`, :cpp:func:`Application::make_rgbw_light`.

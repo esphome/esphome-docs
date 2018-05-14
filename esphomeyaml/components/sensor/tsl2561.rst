@@ -1,0 +1,54 @@
+TSL2561 Ambient Light Sensor
+============================
+
+.. warning::
+
+    This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
+    can verify it works (or if it doesn't), please notify me on discord.
+
+The ``tsl2561`` sensor platform allows you to use your BH1750
+(`datasheet <https://cdn-shop.adafruit.com/datasheets/TSL2561.pdf>`__,
+`Adafruit`_)
+ambient light sensor with esphomelib. The `I²C
+bus </esphomeyaml/components/i2c.html>`__ is required to be set up in
+your configuration for this sensor to work.
+
+.. figure:: /esphomeyaml/components/sensor/tsl2561-full.jpg
+   :align: center
+   :target: `Adafruit`_
+   :width: 50.0%
+
+   TSL2561 Ambient Light Sensor. Image by `Adafruit`_.
+
+.. _Adafruit: https://www.adafruit.com/product/439
+
+.. code:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: tsl2561
+        name: "TSL2561 Ambient Light"
+        address: 0x39
+        update_interval: 15s
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  **name** (**Required**, string): The name for the sensor.
+-  **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
+   Defaults to ``0x39``.
+-  **integration_time** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__):
+   The time the sensor will take for each measurement. Longer means more accurate values. One of
+   ``14ms``, ``101ms``, ``402ms``. Defaults to ``402ms``.
+-  **gain** (*Optional*, string): The gain of the sensor. Higher values are better in low-light conditions.
+   One of ``1x`` and ``16x``. Defaults to ``1x``.
+-  **is_cs_package** (*Optional*, boolean): The "CS" package of this sensor has a slightly different
+   formula for calculating the illuminance in lx. Set this to ``true`` if you're working with a CS
+   package. Defaults to ``false``.
+-  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
+   sensor. Defaults to ``15s``.
+-  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
+   generation.
+-  All other options from
+   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
+   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.

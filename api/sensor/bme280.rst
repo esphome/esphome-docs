@@ -26,7 +26,7 @@ Example Usage
     bme280.bme280->set_humidity_oversampling(sensor::BME280_OVERSAMPLING_4X);
     bme280.bme280->set_pressure_oversampling(sensor::BME280_OVERSAMPLING_16X);
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_bme280_sensor`.
 

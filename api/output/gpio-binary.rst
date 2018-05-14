@@ -11,7 +11,7 @@ Example Usage
     // Custom pinMode
     App.make_gpio_output(GPIOOutputPin(33, OUTPUT_OPEN_DRAIN));
 
-.. cpp:namespace:: esphomelib
+.. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_gpio_output` (and :cpp:func:`Application::make_gpio_switch`).
 
