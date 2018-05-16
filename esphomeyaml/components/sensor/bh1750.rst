@@ -4,7 +4,7 @@ BH1750 Ambient Light Sensor
 .. warning::
 
     This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on discord.
+    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The ``bh1750`` sensor platform allows you to use your BH1750
 (`datasheet <http://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf>`__, `Aliexpress`_, `mklec`_)

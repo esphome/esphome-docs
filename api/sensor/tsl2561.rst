@@ -4,7 +4,7 @@ TSL2561 Ambient Light Sensor
 .. warning::
 
     This sensor is experimental has not been tested yet. If you can verify it works (or if it doesn't),
-    notify me on discord.
+    notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The TSL2561 sensor allows you to use your TSL2561 i2c-enabled ambient light sensor with
 esphomelib (`datasheet <https://cdn-shop.adafruit.com/datasheets/TSL2561.pdf>`__,

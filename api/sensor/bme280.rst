@@ -4,7 +4,7 @@ BME280 Temperature/Pressure/Humidity Sensor
 .. warning::
 
     This sensor is experimental has not been tested yet. If you can verify it works (or if it doesn't),
-    notify me on discord.
+    notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The BME280 sensor allows you to use your BME280 i2c-enabled temperature+pressure+humidity sensor with
 esphomelib (`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf>`__,

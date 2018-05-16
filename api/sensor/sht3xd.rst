@@ -4,7 +4,7 @@ SHT3XD Temperature/Humidity Sensor
 .. warning::
 
     This sensor is experimental has not been tested yet. If you can verify it works (or if it doesn't),
-    notify me on discord.
+    notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The SHT3XD component allows you to use your SHT3x-DIS i2c-enabled temperature+humidity+gas
 sensor with esphomelib (`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,

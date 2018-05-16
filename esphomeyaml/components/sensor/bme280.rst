@@ -4,7 +4,7 @@ BME280 Temperature+Pressure+Humidity Sensor
 .. warning::
 
     This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on discord.
+    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The ``bme280`` sensor platform allows you to use your BME280
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf>`__,

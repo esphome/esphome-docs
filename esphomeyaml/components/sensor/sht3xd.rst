@@ -1,10 +1,10 @@
 SHT3X-D Temperature+Humidity Sensor
-==================================
+===================================
 
 .. warning::
 
     This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on discord.
+    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensiron SHT31-D
 (`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,

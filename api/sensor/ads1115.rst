@@ -1,7 +1,10 @@
 ADS1115 ADC Component
 =====================
 
-.. warning:: This sensor is experimental has not been tested yet. If you can verify it works, notify me on discord.
+.. warning::
+
+    This sensor is experimental has not been tested yet. If you can verify it works, notify me on
+    `discord <https://discord.gg/KhAMKrd>`__.
 
 .. cpp:namespace:: input
 

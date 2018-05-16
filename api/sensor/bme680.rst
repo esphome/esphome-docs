@@ -4,7 +4,7 @@ BME680 Temperature/Pressure/Humidity/Gas Sensor
 .. warning::
 
     This sensor is experimental has not been tested yet. If you can verify it works (or if it doesn't),
-    notify me on discord.
+    notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The BME680 sensor allows you to use your BME680 i2c-enabled temperature+pressure+humidity+gas
 sensor with esphomelib (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,

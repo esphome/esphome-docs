@@ -4,7 +4,7 @@ BH1750 Ambient Light Sensor
 .. warning::
 
     This sensor is experimental has not been tested yet. If you can verify it works (or if it doesn't),
-    notify me on discord.
+    notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The BH1750 sensor allows you to use your BH1750 i2c-enabled ambient light sensor with
 esphomelib (`datasheet <http://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf>`__).

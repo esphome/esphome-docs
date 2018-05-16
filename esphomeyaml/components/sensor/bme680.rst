@@ -4,7 +4,7 @@ BME680 Temperature+Pressure+Humidity+Gas Sensor
 .. warning::
 
     This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on discord.
+    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The ``bme680`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
