@@ -39,6 +39,25 @@ That's no good. Here are some steps that resolve some problems:
 -  **Still an error?** Please file a bug report over in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
+How to submit an issue report
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+First of all, thank you very much to everybody submitting issue reports! While I try to test esphomelib/yaml as much as
+I can using my own hardware, I don't own every single device type and mostly only do tests with my own home automation
+system. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
+great way for me to track and (hopefully) fix issues, so thank you!
+
+For me to fix the issue the quickest, there are some things that would be really helpful:
+
+1.  How do you use esphomelib? Through esphomeyaml or directly through C++ code?
+2.  If it's a build/upload issue: What system are you compiling/uploading things from? Windows, POSIX, from docker?
+3.  A snippet of the code/configuration file used is always great for a better understanding of the issue.
+4.  If it's an i2c or hardware communication issue please also try setting the
+    `log level </esphomeyaml/components/logger.html#log-levels>`__ to ``VERY_VERBOSE`` as it provides helpful information
+    about what is going on.
+
+You can find the issue tracker here https://github.com/OttoWinter/esphomelib/issues
+
 How do I update to the latest version?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
