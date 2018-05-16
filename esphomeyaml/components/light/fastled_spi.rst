@@ -5,7 +5,7 @@ The ``fastled_spi`` light platform allows you to create RGB lights
 in esphomelib for a `number of supported chipsets <#supported-chipsets>`__.
 
 SPI FastLED lights differ from the
-`FastLED Clockless lights </esphomeyaml/components/fastled_clockless.html>`__ in that they require
+`FastLED Clockless lights </esphomeyaml/components/light/fastled_clockless.html>`__ in that they require
 two pins to be connected, one for a data and one for a clock signal whereas the clockless lights
 only need a single pin.
 
