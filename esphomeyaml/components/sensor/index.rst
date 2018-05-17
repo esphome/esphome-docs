@@ -134,6 +134,12 @@ sensor <https://www.home-assistant.io/components/sensor.filter/>`__.
       - exponential_moving_average:
           alpha: 0.1
           send_every: 15
+      - throttle: 1s
+      - delta: 5.0
+      - unique:
+      - or:
+        - throttle: 1s
+        - delta: 5.0
       - lambda: x * (9.0/5.0) + 32.0
 
 Above example configuration entry is probably a bit useless, but shows
@@ -160,6 +166,25 @@ every filter there is currently:
 
    -  **alpha**: The forget factor/alpha value of the filter.
    -  **send_every**: How often a sensor value should be pushed out.
+
+-  **throttle**: Throttle the incoming values. When this filter gets an incoming value,
+   it checks if the last value passed out of this filter is at least the value of this filter
+   old. If it is not older than the configured value, the value is not passed forward.
+
+-  **delta**: This filter stores the last value passed through this filter and only
+   passes incoming values through if the absolute difference is greater than the configured
+   value. For example if a value of 1.0 first comes in, it's passed on. If the delta filter
+   is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values
+   that are at least 6.0 big or -4.0.
+
+-  **unique**: This filter has no parameter and does one very simple thing: It only passes
+   forward values if they are different from the last one that got through the pipeline.
+
+-  **or**: Pass forward a value with the first child filter that returns. Above example
+   will only pass forward values that are *either* at least 1s old or are if the absolute
+   difference is at least 5.0.
+
+-  **and**: Similar to or. Only pass on a value if all child filters pass.
 
 -  **lambda**: Perform a simple mathematical operation over the sensor
    values. The input value is ``x`` and the result of the lambda is used

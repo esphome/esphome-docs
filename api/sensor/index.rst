@@ -119,6 +119,31 @@ Filter
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: sensor::ThrottleFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: sensor::DeltaFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: sensor::OrFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: sensor::AndFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: sensor::UniqueFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
 MQTTSensorComponent
 *******************
 
