@@ -20,19 +20,19 @@ Currently supported light platforms:
 ========================  ========================  ========================
 
 
-.. |Binary Light| image:: /esphomeyaml/lightbulb.svg
+.. |Binary Light| image:: /esphomeyaml/images/lightbulb.svg
     :class: component-image
 .. _Binary Light: /esphomeyaml/components/light/binary.html
 
-.. |Monochromatic Light| image:: /esphomeyaml/brightness-medium.svg
+.. |Monochromatic Light| image:: /esphomeyaml/images/brightness-medium.svg
     :class: component-image
 .. _Monochromatic Light: /esphomeyaml/components/light/monochromatic.html
 
-.. |RGB Light| image:: /esphomeyaml/rgb.png
+.. |RGB Light| image:: /esphomeyaml/images/rgb.png
     :class: component-image
 .. _RGB Light: /esphomeyaml/components/light/rgb.html
 
-.. |RGBW Light| image:: /esphomeyaml/rgbw.png
+.. |RGBW Light| image:: /esphomeyaml/images/rgbw.png
     :class: component-image
 .. _RGBW Light: /esphomeyaml/components/light/rgbw.html
 

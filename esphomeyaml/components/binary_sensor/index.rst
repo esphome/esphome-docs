@@ -13,11 +13,11 @@ Currently supported binary sensor platforms:
 `GPIO`_                 `Status`_
 ======================  ======================  ======================
 
-.. |GPIO| image:: /esphomeyaml/pin.svg
+.. |GPIO| image:: /esphomeyaml/images/pin.svg
     :class: component-image
 .. _GPIO: /esphomeyaml/components/binary_sensor/gpio.html
 
-.. |Status| image:: /esphomeyaml/server-network.svg
+.. |Status| image:: /esphomeyaml/images/server-network.svg
     :class: component-image
 .. _Status: /esphomeyaml/components/binary_sensor/status.html
 

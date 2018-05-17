@@ -22,47 +22,47 @@ for several other components:
 `TSL2561`_               `SHT3X-D`_
 =======================  =======================  =======================
 
-.. |PCA9685 PWM| image:: /esphomeyaml/pca9685.jpg
+.. |PCA9685 PWM| image:: /esphomeyaml/images/pca9685.jpg
     :class: component-image
 .. _PCA9685 PWM: /esphomeyaml/components/output/pca9685.html
 
-.. |ADS1115| image:: /esphomeyaml/ads1115.jpg
+.. |ADS1115| image:: /esphomeyaml/images/ads1115.jpg
     :class: component-image
 .. _ADS1115: /esphomeyaml/components/sensor/ads1115.html
 
-.. |BMP085| image:: /esphomeyaml/bmp180.jpg
+.. |BMP085| image:: /esphomeyaml/images/bmp180.jpg
     :class: component-image
 .. _BMP085: /esphomeyaml/components/sensor/bmp085.html
 
-.. |HDC1080| image:: /esphomeyaml/HDC1080.jpg
+.. |HDC1080| image:: /esphomeyaml/images/HDC1080.jpg
     :class: component-image
 .. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
 
-.. |HTU21D| image:: /esphomeyaml/htu21d.jpg
+.. |HTU21D| image:: /esphomeyaml/images/htu21d.jpg
     :class: component-image
 .. _HTU21D: /esphomeyaml/components/sensor/htu21d.html
 
-.. |MPU6050| image:: /esphomeyaml/mpu6050.jpg
+.. |MPU6050| image:: /esphomeyaml/images/mpu6050.jpg
     :class: component-image
 .. _MPU6050: /esphomeyaml/components/sensor/mpu6050.html
 
-.. |BH1750| image:: /esphomeyaml/bh1750.jpg
+.. |BH1750| image:: /esphomeyaml/images/bh1750.jpg
     :class: component-image
 .. _BH1750: /esphomeyaml/components/sensor/bh1750.html
 
-.. |BME280| image:: /esphomeyaml/bme280.jpg
+.. |BME280| image:: /esphomeyaml/images/bme280.jpg
     :class: component-image
 .. _BME280: /esphomeyaml/components/sensor/bme280.html
 
-.. |BME680| image:: /esphomeyaml/bme680.jpg
+.. |BME680| image:: /esphomeyaml/images/bme680.jpg
     :class: component-image
 .. _BME680: /esphomeyaml/components/sensor/bme680.html
 
-.. |TSL2561| image:: /esphomeyaml/tsl2561.jpg
+.. |TSL2561| image:: /esphomeyaml/images/tsl2561.jpg
     :class: component-image
 .. _TSL2561: /esphomeyaml/components/sensor/tsl2561.html
 
-.. |SHT3X-D| image:: /esphomeyaml/sht3xd.jpg
+.. |SHT3X-D| image:: /esphomeyaml/images/sht3xd.jpg
     :class: component-image
 .. _SHT3X-D: /esphomeyaml/components/sensor/sht3xd.html
 

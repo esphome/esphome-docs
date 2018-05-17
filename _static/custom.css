@@ -1,7 +1,7 @@
 .row-odd {
   background-color: #f3f6f6;
 }
-tr.row-even > td {
+table:not(.no-center) tr.row-even > td {
   text-align: center;
 }
 

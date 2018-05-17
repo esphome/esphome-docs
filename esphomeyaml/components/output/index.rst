@@ -16,19 +16,19 @@ any rational value between 0 and 1).
 `PCA9685`_
 ========================  ========================  ========================
 
-.. |ESP8266 Software PWM| image:: /esphomeyaml/pwm.png
+.. |ESP8266 Software PWM| image:: /esphomeyaml/images/pwm.png
     :class: component-image
 .. _ESP8266 Software PWM: /esphomeyaml/components/output/esp8266_pwm.html
 
-.. |GPIO Output| image:: /esphomeyaml/pin.svg
+.. |GPIO Output| image:: /esphomeyaml/images/pin.svg
     :class: component-image
 .. _GPIO Output: /esphomeyaml/components/output/gpio.html
 
-.. |ESP32 LEDC| image:: /esphomeyaml/pwm.png
+.. |ESP32 LEDC| image:: /esphomeyaml/images/pwm.png
     :class: component-image
 .. _ESP32 LEDC: /esphomeyaml/components/output/ledc.html
 
-.. |PCA9685| image:: /esphomeyaml/pca9685.jpg
+.. |PCA9685| image:: /esphomeyaml/images/pca9685.jpg
     :class: component-image
 .. _PCA9685: /esphomeyaml/components/output/pca9685.html
 

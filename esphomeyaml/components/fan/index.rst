@@ -16,11 +16,11 @@ Currently supported fan platforms:
 `Binary Fan`_             `Speed Fan`_
 ========================  ========================  ========================
 
-.. |Binary Fan| image:: /esphomeyaml/fan.svg
+.. |Binary Fan| image:: /esphomeyaml/images/fan.svg
     :class: component-image
 .. _Binary Fan: /esphomeyaml/components/fan/binary.html
 
-.. |Speed Fan| image:: /esphomeyaml/fan.svg
+.. |Speed Fan| image:: /esphomeyaml/images/fan.svg
     :class: component-image
 .. _Speed Fan: /esphomeyaml/components/fan/speed.html
 

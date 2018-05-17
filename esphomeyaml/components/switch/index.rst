@@ -16,23 +16,23 @@ Currently supported switch platforms:
 `Shutdown Switch`_        `Output Switch`_
 ========================  ========================  ========================
 
-.. |GPIO Switch| image:: /esphomeyaml/pin.svg
+.. |GPIO Switch| image:: /esphomeyaml/images/pin.svg
     :class: component-image
 .. _GPIO Switch: /esphomeyaml/components/switch/gpio.html
 
-.. |IR Transmitter| image:: /esphomeyaml/remote.svg
+.. |IR Transmitter| image:: /esphomeyaml/images/remote.svg
     :class: component-image
 .. _IR Transmitter: /esphomeyaml/components/switch/ir_transmitter.html
 
-.. |Restart Switch| image:: /esphomeyaml/restart.svg
+.. |Restart Switch| image:: /esphomeyaml/images/restart.svg
     :class: component-image
 .. _Restart Switch: /esphomeyaml/components/switch/restart.html
 
-.. |Shutdown Switch| image:: /esphomeyaml/power.svg
+.. |Shutdown Switch| image:: /esphomeyaml/images/power.svg
     :class: component-image
 .. _Shutdown Switch: /esphomeyaml/components/switch/shutdown.html
 
-.. |Output Switch| image:: /esphomeyaml/upload.svg
+.. |Output Switch| image:: /esphomeyaml/images/upload.svg
     :class: component-image
 .. _Output Switch: /esphomeyaml/components/switch/output.html
 

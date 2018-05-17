@@ -25,43 +25,43 @@ Currently supported sensor platforms:
 `Ultrasonic Sensor`_
 ======================  ======================  ======================
 
-.. |ADC| image:: /esphomeyaml/flash.svg
+.. |ADC| image:: /esphomeyaml/images/flash.svg
     :class: component-image
 .. _ADC: /esphomeyaml/components/sensor/adc.html
 
-.. |ADS1115| image:: /esphomeyaml/ads1115.jpg
+.. |ADS1115| image:: /esphomeyaml/images/ads1115.jpg
     :class: component-image
 .. _ADS1115: /esphomeyaml/components/sensor/ads1115.html
 
-.. |BMP085| image:: /esphomeyaml/bmp180.jpg
+.. |BMP085| image:: /esphomeyaml/images/bmp180.jpg
     :class: component-image
 .. _BMP085: /esphomeyaml/components/sensor/bmp085.html
 
-.. |Dallas| image:: /esphomeyaml/ds18b20.jpg
+.. |Dallas| image:: /esphomeyaml/images/ds18b20.jpg
     :class: component-image
 .. _Dallas: /esphomeyaml/components/sensor/dallas.html
 
-.. |DHT| image:: /esphomeyaml/dht22.jpg
+.. |DHT| image:: /esphomeyaml/images/dht22.jpg
     :class: component-image
 .. _DHT: /esphomeyaml/components/sensor/dht.html
 
-.. |HDC1080| image:: /esphomeyaml/HDC1080.jpg
+.. |HDC1080| image:: /esphomeyaml/images/HDC1080.jpg
     :class: component-image
 .. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
 
-.. |HTU21D| image:: /esphomeyaml/htu21d.jpg
+.. |HTU21D| image:: /esphomeyaml/images/htu21d.jpg
     :class: component-image
 .. _HTU21D: /esphomeyaml/components/sensor/htu21d.html
 
-.. |MPU6050| image:: /esphomeyaml/mpu6050.jpg
+.. |MPU6050| image:: /esphomeyaml/images/mpu6050.jpg
     :class: component-image
 .. _MPU6050: /esphomeyaml/components/sensor/mpu6050.html
 
-.. |Pulse Counter| image:: /esphomeyaml/pulse.svg
+.. |Pulse Counter| image:: /esphomeyaml/images/pulse.svg
     :class: component-image
 .. _Pulse Counter: /esphomeyaml/components/sensor/pulse_counter.html
 
-.. |Ultrasonic Sensor| image:: /esphomeyaml/hc-sr04.png
+.. |Ultrasonic Sensor| image:: /esphomeyaml/images/hc-sr04.png
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
 

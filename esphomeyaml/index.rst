@@ -36,6 +36,20 @@ Features
  * **It's Open Source 😺**
 
 
+Using With
+~~~~~~~~~~
+
+==================  ==================  ==================
+|Sonoff S20|_
+------------------  ------------------  ------------------
+`Sonoff S20`_
+==================  ==================  ==================
+
+.. |Sonoff S20| image:: /esphomeyaml/images/sonoff-s20.jpg
+    :class: component-image
+.. _Sonoff S20: /esphomeyaml/using-with/sonoff-s20.html
+
+
 Core Components
 ~~~~~~~~~~~~~~~
 
@@ -53,39 +67,39 @@ Core Components
 `Web Server`_       `Power Supply`_     `Deep Sleep`_
 ==================  ==================  ==================
 
-.. |Core| image:: /esphomeyaml/cloud-circle.svg
+.. |Core| image:: /esphomeyaml/images/cloud-circle.svg
     :class: component-image
 .. _Core: /esphomeyaml/components/esphomeyaml.html
 
-.. |WiFi| image:: /esphomeyaml/network-wifi.svg
+.. |WiFi| image:: /esphomeyaml/images/network-wifi.svg
     :class: component-image
 .. _WiFi: /esphomeyaml/components/wifi.html
 
-.. |MQTT| image:: /esphomeyaml/mqtt.png
+.. |MQTT| image:: /esphomeyaml/images/mqtt.png
     :class: component-image
 .. _MQTT: /esphomeyaml/components/mqtt.html
 
-.. |I²C Bus| image:: /esphomeyaml/i2c.svg
+.. |I²C Bus| image:: /esphomeyaml/images/i2c.svg
     :class: component-image
 .. _I²C Bus: /esphomeyaml/components/i2c.html
 
-.. |OTA Updates| image:: /esphomeyaml/system-update.svg
+.. |OTA Updates| image:: /esphomeyaml/images/system-update.svg
     :class: component-image
 .. _OTA Updates: /esphomeyaml/components/ota.html
 
-.. |Logger| image:: /esphomeyaml/file-document-box.svg
+.. |Logger| image:: /esphomeyaml/images/file-document-box.svg
     :class: component-image
 .. _Logger: /esphomeyaml/components/logger.html
 
-.. |Web Server| image:: /esphomeyaml/http.svg
+.. |Web Server| image:: /esphomeyaml/images/http.svg
     :class: component-image
 .. _Web Server: /esphomeyaml/components/web_server.html
 
-.. |Deep Sleep| image:: /esphomeyaml/hotel.svg
+.. |Deep Sleep| image:: /esphomeyaml/images/hotel.svg
     :class: component-image
 .. _Deep Sleep: /esphomeyaml/components/deep_sleep.html
 
-.. |Power Supply| image:: /esphomeyaml/power.svg
+.. |Power Supply| image:: /esphomeyaml/images/power.svg
     :class: component-image
 .. _Power Supply: /esphomeyaml/components/power_supply.html
 
@@ -119,67 +133,67 @@ Sensor Components
 `SHT3X-D`_
 ======================  ======================  ======================
 
-.. |Sensor Core| image:: /esphomeyaml/folder-open.svg
+.. |Sensor Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
 .. _Sensor Core: /esphomeyaml/components/sensor/index.html
 
-.. |ADC| image:: /esphomeyaml/flash.svg
+.. |ADC| image:: /esphomeyaml/images/flash.svg
     :class: component-image
 .. _ADC: /esphomeyaml/components/sensor/adc.html
 
-.. |ADS1115| image:: /esphomeyaml/ads1115.jpg
+.. |ADS1115| image:: /esphomeyaml/images/ads1115.jpg
     :class: component-image
 .. _ADS1115: /esphomeyaml/components/sensor/ads1115.html
 
-.. |BMP085| image:: /esphomeyaml/bmp180.jpg
+.. |BMP085| image:: /esphomeyaml/images/bmp180.jpg
     :class: component-image
 .. _BMP085: /esphomeyaml/components/sensor/bmp085.html
 
-.. |Dallas| image:: /esphomeyaml/ds18b20.jpg
+.. |Dallas| image:: /esphomeyaml/images/ds18b20.jpg
     :class: component-image
 .. _Dallas: /esphomeyaml/components/sensor/dallas.html
 
-.. |DHT| image:: /esphomeyaml/dht22.jpg
+.. |DHT| image:: /esphomeyaml/images/dht22.jpg
     :class: component-image
 .. _DHT: /esphomeyaml/components/sensor/dht.html
 
-.. |HDC1080| image:: /esphomeyaml/HDC1080.jpg
+.. |HDC1080| image:: /esphomeyaml/images/HDC1080.jpg
     :class: component-image
 .. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
 
-.. |HTU21D| image:: /esphomeyaml/htu21d.jpg
+.. |HTU21D| image:: /esphomeyaml/images/htu21d.jpg
     :class: component-image
 .. _HTU21D: /esphomeyaml/components/sensor/htu21d.html
 
-.. |MPU6050| image:: /esphomeyaml/mpu6050.jpg
+.. |MPU6050| image:: /esphomeyaml/images/mpu6050.jpg
     :class: component-image
 .. _MPU6050: /esphomeyaml/components/sensor/mpu6050.html
 
-.. |Pulse Counter| image:: /esphomeyaml/pulse.svg
+.. |Pulse Counter| image:: /esphomeyaml/images/pulse.svg
     :class: component-image
 .. _Pulse Counter: /esphomeyaml/components/sensor/pulse_counter.html
 
-.. |Ultrasonic Sensor| image:: /esphomeyaml/hc-sr04.png
+.. |Ultrasonic Sensor| image:: /esphomeyaml/images/hc-sr04.png
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
 
-.. |BH1750| image:: /esphomeyaml/bh1750.jpg
+.. |BH1750| image:: /esphomeyaml/images/bh1750.jpg
     :class: component-image
 .. _BH1750: /esphomeyaml/components/sensor/bh1750.html
 
-.. |BME280| image:: /esphomeyaml/bme280.jpg
+.. |BME280| image:: /esphomeyaml/images/bme280.jpg
     :class: component-image
 .. _BME280: /esphomeyaml/components/sensor/bme280.html
 
-.. |BME680| image:: /esphomeyaml/bme680.jpg
+.. |BME680| image:: /esphomeyaml/images/bme680.jpg
     :class: component-image
 .. _BME680: /esphomeyaml/components/sensor/bme680.html
 
-.. |TSL2561| image:: /esphomeyaml/tsl2561.jpg
+.. |TSL2561| image:: /esphomeyaml/images/tsl2561.jpg
     :class: component-image
 .. _TSL2561: /esphomeyaml/components/sensor/tsl2561.html
 
-.. |SHT3X-D| image:: /esphomeyaml/sht3xd.jpg
+.. |SHT3X-D| image:: /esphomeyaml/images/sht3xd.jpg
     :class: component-image
 .. _SHT3X-D: /esphomeyaml/components/sensor/sht3xd.html
 
@@ -197,23 +211,23 @@ Binary Sensor Components
 `ESP32 BLE Device`_     `ESP32 Touch Pad`_
 ======================  ======================  ======================
 
-.. |Binary Sensor Core| image:: /esphomeyaml/folder-open.svg
+.. |Binary Sensor Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
 .. _Binary Sensor Core: /esphomeyaml/components/binary_sensor/index.html
 
-.. |GPIO| image:: /esphomeyaml/pin.svg
+.. |GPIO| image:: /esphomeyaml/images/pin.svg
     :class: component-image
 .. _GPIO: /esphomeyaml/components/binary_sensor/gpio.html
 
-.. |Status| image:: /esphomeyaml/server-network.svg
+.. |Status| image:: /esphomeyaml/images/server-network.svg
     :class: component-image
 .. _Status: /esphomeyaml/components/binary_sensor/status.html
 
-.. |ESP32 BLE Device| image:: /esphomeyaml/bluetooth.svg
+.. |ESP32 BLE Device| image:: /esphomeyaml/images/bluetooth.svg
     :class: component-image
 .. _ESP32 BLE Device: /esphomeyaml/components/binary_sensor/esp32_ble.html
 
-.. |ESP32 Touch Pad| image:: /esphomeyaml/touch.svg
+.. |ESP32 Touch Pad| image:: /esphomeyaml/images/touch.svg
     :class: component-image
 .. _ESP32 Touch Pad: /esphomeyaml/components/binary_sensor/esp32_touch.html
 
@@ -230,23 +244,23 @@ Output Components
 `ESP32 LEDC`_             `PCA9685`_
 ========================  ========================  ========================
 
-.. |Output Core| image:: /esphomeyaml/folder-open.svg
+.. |Output Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
 .. _Output Core: /esphomeyaml/components/output/index.html
 
-.. |ESP8266 Software PWM| image:: /esphomeyaml/pwm.png
+.. |ESP8266 Software PWM| image:: /esphomeyaml/images/pwm.png
     :class: component-image
 .. _ESP8266 Software PWM: /esphomeyaml/components/output/esp8266_pwm.html
 
-.. |GPIO Output| image:: /esphomeyaml/pin.svg
+.. |GPIO Output| image:: /esphomeyaml/images/pin.svg
     :class: component-image
 .. _GPIO Output: /esphomeyaml/components/output/gpio.html
 
-.. |ESP32 LEDC| image:: /esphomeyaml/pwm.png
+.. |ESP32 LEDC| image:: /esphomeyaml/images/pwm.png
     :class: component-image
 .. _ESP32 LEDC: /esphomeyaml/components/output/ledc.html
 
-.. |PCA9685| image:: /esphomeyaml/pca9685.jpg
+.. |PCA9685| image:: /esphomeyaml/images/pca9685.jpg
     :class: component-image
 .. _PCA9685: /esphomeyaml/components/output/pca9685.html
 
@@ -269,31 +283,31 @@ Light Components
 ============================  ============================  ============================
 
 
-.. |Light Core| image:: /esphomeyaml/folder-open.svg
+.. |Light Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
 .. _Light Core: /esphomeyaml/components/light/index.html
 
-.. |Binary Light| image:: /esphomeyaml/lightbulb.svg
+.. |Binary Light| image:: /esphomeyaml/images/lightbulb.svg
     :class: component-image
 .. _Binary Light: /esphomeyaml/components/light/binary.html
 
-.. |Monochromatic Light| image:: /esphomeyaml/brightness-medium.svg
+.. |Monochromatic Light| image:: /esphomeyaml/images/brightness-medium.svg
     :class: component-image
 .. _Monochromatic Light: /esphomeyaml/components/light/monochromatic.html
 
-.. |RGB Light| image:: /esphomeyaml/rgb.png
+.. |RGB Light| image:: /esphomeyaml/images/rgb.png
     :class: component-image
 .. _RGB Light: /esphomeyaml/components/light/rgb.html
 
-.. |RGBW Light| image:: /esphomeyaml/rgbw.png
+.. |RGBW Light| image:: /esphomeyaml/images/rgbw.png
     :class: component-image
 .. _RGBW Light: /esphomeyaml/components/light/rgbw.html
 
-.. |FastLED Clockless Light| image:: /esphomeyaml/color_lens.svg
+.. |FastLED Clockless Light| image:: /esphomeyaml/images/color_lens.svg
     :class: component-image
 .. _FastLED Clockless Light: /esphomeyaml/components/light/fastled_clockless.html
 
-.. |FastLED SPI Light| image:: /esphomeyaml/color_lens.svg
+.. |FastLED SPI Light| image:: /esphomeyaml/images/color_lens.svg
     :class: component-image
 .. _FastLED SPI Light: /esphomeyaml/components/light/fastled_spi.html
 
@@ -311,27 +325,27 @@ Switch Components
 `Restart Switch`_         `Shutdown Switch`_        `Output Switch`_
 ========================  ========================  ========================
 
-.. |Switch Core| image:: /esphomeyaml/folder-open.svg
+.. |Switch Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
 .. _Switch Core: /esphomeyaml/components/switch/index.html
 
-.. |GPIO Switch| image:: /esphomeyaml/pin.svg
+.. |GPIO Switch| image:: /esphomeyaml/images/pin.svg
     :class: component-image
 .. _GPIO Switch: /esphomeyaml/components/switch/gpio.html
 
-.. |IR Transmitter| image:: /esphomeyaml/remote.svg
+.. |IR Transmitter| image:: /esphomeyaml/images/remote.svg
     :class: component-image
 .. _IR Transmitter: /esphomeyaml/components/switch/ir_transmitter.html
 
-.. |Restart Switch| image:: /esphomeyaml/restart.svg
+.. |Restart Switch| image:: /esphomeyaml/images/restart.svg
     :class: component-image
 .. _Restart Switch: /esphomeyaml/components/switch/restart.html
 
-.. |Shutdown Switch| image:: /esphomeyaml/power_settings.svg
+.. |Shutdown Switch| image:: /esphomeyaml/images/power_settings.svg
     :class: component-image
 .. _Shutdown Switch: /esphomeyaml/components/switch/shutdown.html
 
-.. |Output Switch| image:: /esphomeyaml/upload.svg
+.. |Output Switch| image:: /esphomeyaml/images/upload.svg
     :class: component-image
 .. _Output Switch: /esphomeyaml/components/switch/output.html
 
@@ -345,15 +359,15 @@ Fan Components
 `Fan Core`_               `Binary Fan`_             `Speed Fan`_
 ========================  ========================  ========================
 
-.. |Fan Core| image:: /esphomeyaml/folder-open.svg
+.. |Fan Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
 .. _Fan Core: /esphomeyaml/components/fan/index.html
 
-.. |Binary Fan| image:: /esphomeyaml/fan.svg
+.. |Binary Fan| image:: /esphomeyaml/images/fan.svg
     :class: component-image
 .. _Binary Fan: /esphomeyaml/components/fan/binary.html
 
-.. |Speed Fan| image:: /esphomeyaml/fan.svg
+.. |Speed Fan| image:: /esphomeyaml/images/fan.svg
     :class: component-image
 .. _Speed Fan: /esphomeyaml/components/fan/speed.html
 
@@ -375,35 +389,35 @@ Misc Components
 `ESP32 BLE Hub`_          `ESP32 Touch Hub`_
 ========================  ========================  ========================
 
-.. |Dallas Hub| image:: /esphomeyaml/ds18b20.jpg
+.. |Dallas Hub| image:: /esphomeyaml/images/ds18b20.jpg
     :class: component-image
 .. _Dallas Hub: /esphomeyaml/components/dallas.html
 
-.. |IR Transmitter Hub| image:: /esphomeyaml/remote.svg
+.. |IR Transmitter Hub| image:: /esphomeyaml/images/remote.svg
     :class: component-image
 .. _IR Transmitter Hub: /esphomeyaml/components/ir_transmitter.html
 
-.. |PCA9685 Hub| image:: /esphomeyaml/pca9685.jpg
+.. |PCA9685 Hub| image:: /esphomeyaml/images/pca9685.jpg
     :class: component-image
 .. _PCA9685 Hub: /esphomeyaml/components/pca9685.html
 
-.. |ADS1115 Hub| image:: /esphomeyaml/ads1115.jpg
+.. |ADS1115 Hub| image:: /esphomeyaml/images/ads1115.jpg
     :class: component-image
 .. _ADS1115 Hub: /esphomeyaml/components/ads1115.html
 
-.. |Debug Component| image:: /esphomeyaml/bug-report.svg
+.. |Debug Component| image:: /esphomeyaml/images/bug-report.svg
     :class: component-image
 .. _Debug Component: /esphomeyaml/components/debug.html
 
-.. |PCF8574 I/O Expander| image:: /esphomeyaml/pcf8574.jpg
+.. |PCF8574 I/O Expander| image:: /esphomeyaml/images/pcf8574.jpg
     :class: component-image
 .. _PCF8574 I/O Expander: /esphomeyaml/components/pcf8574.html
 
-.. |ESP32 BLE Hub| image:: /esphomeyaml/bluetooth.svg
+.. |ESP32 BLE Hub| image:: /esphomeyaml/images/bluetooth.svg
     :class: component-image
 .. _ESP32 BLE Hub: /esphomeyaml/components/esp32_ble.html
 
-.. |ESP32 Touch Hub| image:: /esphomeyaml/touch.svg
+.. |ESP32 Touch Hub| image:: /esphomeyaml/images/touch.svg
     :class: component-image
 .. _ESP32 Touch Hub: /esphomeyaml/components/esp32_touch.html
 
@@ -476,3 +490,4 @@ Full Index
     components/sensor/bme680.rst
     components/sensor/tsl2561.rst
     components/sensor/sht3xd.rst
+    components/using-with/sonoff-s20.rst
