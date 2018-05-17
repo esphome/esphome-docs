@@ -32,6 +32,7 @@ a light is a combination of output components.
     api/sensor/bmp085.rst
     api/sensor/dallas.rst
     api/sensor/dht.rst
+    api/sensor/dht12.rst
     api/sensor/htu21d.rst
     api/sensor/hdc1080.rst
     api/sensor/pulse-counter.rst

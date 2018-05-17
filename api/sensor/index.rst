@@ -13,6 +13,7 @@ See :cpp:func:`Application::register_sensor`.
     adc-sensor.rst
     dallas.rst
     dht.rst
+    dht12.rst
     pulse-counter.rst
     ultrasonic.rst
     ads1115.rst
