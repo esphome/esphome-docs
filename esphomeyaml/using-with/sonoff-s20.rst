@@ -15,6 +15,13 @@ This guide will step you through setting up your Sonoff S20 and flashing the fir
 with the serial interface. After that, you will be able to upload all future firmwares with the remote
 Over-The-Air update process.
 
+.. note::
+
+    If you've previously installed Sonoff-Tasmota on your Sonoff S20, you're in luck 😀
+    esphomeyaml can generate a firmware binary which you can then upload via the
+    Tasmota web interface. To see how to create this binary, skip to `Step 3: Creating Firmware
+    <#step-3-creating-firmware>`__.
+
 Since firmware version 1.6.0, iTead (the creator of this device) has removed the ability to upload
 a custom firmware through their own upload process. Unfortunately, that means that the only way to
 flash the initial esphomeyaml firmware is by physically opening the device up and using the UART
@@ -99,7 +106,7 @@ It's best to just use a multimeter and double check if it's unclear.
 .. note::
 
     On some older S20s, the ``RX`` and ``TX`` pins are swapped (sometimes even the written silkscreen is
-    wrong). If your upload fails with a ``error: espcomm_upload_mem failed`` messsage it's most likely due
+    wrong). If your upload fails with a ``error: espcomm_upload_mem failed`` message it's most likely due
     to the pins being swapped. In that case, just swap ``RX`` and ``TX`` and try again - you won't break
     anything if they're swapped.
 
@@ -107,7 +114,7 @@ Step 3: Creating Firmware
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Sonoff S20 is based on the ``ESP8266`` platform and is a subtype of the ``esp01_1m`` board.
-With this information, you can step through the esphomeyaml wiard (``esphomeyaml sonoff_s20.yaml wizard``),
+With this information, you can step through the esphomeyaml wizard (``esphomeyaml sonoff_s20.yaml wizard``),
 or alternatively, you can just take the below configuration file and modify it to your needs.
 
 If you go through the wizard, please make sure you manually set ``board_flash_mode`` to ``dout``
@@ -119,7 +126,7 @@ said that other flash modes can brick the device, it's always good to specify it
 .. code:: yaml
 
     esphomeyaml:
-      name: <YOUR_NAME>
+      name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
       board_flash_mode: dout
@@ -139,6 +146,12 @@ said that other flash modes can brick the device, it's always good to specify it
 
 Now run ``esphomeyaml sonoff_s20.yaml compile`` to validate the configuration and
 pre-compile the firmware.
+
+.. note::
+
+    After this step, you will be able to find the compiled binary under
+    ``<NAME_OF_NODE>/.pioenvs/<NAME_OF_NODE>/firmware.bin``. If you're having trouble with
+    uploading, you can also try uploading this file directly with other tools.
 
 Step 4: Uploading Firmware
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -198,7 +211,7 @@ of the basic functions.
 .. code:: yaml
 
     esphomeyaml:
-      name: <YOUR_NAME>
+      name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
       board_flash_mode: dout
@@ -226,17 +239,63 @@ of the basic functions.
       - platform: status
         name: "Sonoff S20 Status"
 
+
     switch:
+      - platform: restart
+        name: "Sonoff S20 Restart"
       - platform: gpio
         name: "Sonoff S20 Relay"
         pin: GPIO12
-      - platform: gpio
-        name: "Sonoff S20 Green LED"
+
+    output:
+      # Register the green LED as a dimmable output ....
+      - platform: esp8266_pwm
+        id: s20_green_led
         pin:
           number: GPIO13
-          inverted: True
+        inverted: True
+
+    light:
+      # ... and then make a light out of it.
+      - platform: monochromatic
+        name: "Sonoff S20 Green LED"
+        output: s20_green_led
+
+
+Above example also showcases an important concept of esphomeyaml: IDs and linking. In order
+to make all components in esphomeyaml as much "plug and play" as possible, you can use IDs to define
+them in one area, and simply pass that ID later on. For example, above you can see an PWM (dimmer)
+output being created with the ID ``s20_green_led`` for the green LED. Later on it is then transformed
+into a `monochromatic light </esphomeyaml/components/light/monochromatic.html>`__.
+
+And if you want the thing that's connected through the output of the S20 to appear as a light
+in Home Assistant, replace the last part with this:
+
+.. code:: yaml
+
+    switch:
       - platform: restart
         name: "Sonoff S20 Restart"
+
+    output:
+      - platform: esp8266_pwm
+        id: s20_green_led
+        pin:
+          number: GPIO13
+        inverted: True
+      # Note: do *not* make the relay a dimmable (PWM) signal, relays cannot handle that
+      - platform: binary
+        id: s20_relay
+        pin: GPIO12
+
+    light:
+      - platform: monochromatic
+        name: "Sonoff S20 Green LED"
+        output: s20_green_led
+      - platform: binary
+        name: "Sonoff S20 Relay"
+        output: s20_relay
+
 
 Upload the firmware again (through OTA or Serial) and you should immediately see
 something like this in Home Assistant because of esphomeyaml's automatic MQTT discovery. (You'll
