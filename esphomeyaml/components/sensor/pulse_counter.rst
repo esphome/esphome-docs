@@ -73,6 +73,6 @@ count the light pulses on a power meter, you can do the following:
         filters:
           - multiply: 0.06
 
-.. |image0| image:: /esphomeyaml/components/sensor/pulse-counter.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/pulse-counter.png
    :class: align-center
    :width: 80.0%

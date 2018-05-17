@@ -498,4 +498,4 @@ Full Index
     components/sensor/tsl2561.rst
     components/sensor/sht3xd.rst
     components/sensor/dht12.rst
-    components/using-with/sonoff-s20.rst
+    using-with/sonoff-s20.rst

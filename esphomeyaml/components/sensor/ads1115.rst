@@ -8,7 +8,7 @@ First, setup a `ADS1115 Hub </esphomeyaml/components/ads1115.html>`__ for your A
 sensor platform to create individual sensors that will report the
 voltage to Home Assistant.
 
-.. figure:: /esphomeyaml/components/sensor/ads1115-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/ads1115-full.jpg
    :align: center
    :target: `Adafruit`_
    :width: 50.0%
@@ -19,7 +19,7 @@ voltage to Home Assistant.
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/adc.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/adc.png
    :class: align-center
    :width: 80.0%
 

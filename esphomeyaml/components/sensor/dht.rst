@@ -12,7 +12,7 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 `sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__)
 sensors with esphomelib.
 
-.. figure:: /esphomeyaml/components/sensor/dht22-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/dht22-full.jpg
     :align: center
     :target: `Adafruit`_
     :width: 50.0%
@@ -23,7 +23,7 @@ sensors with esphomelib.
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/temperature-humidity.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/temperature-humidity.png
     :class: align-center
     :width: 80.0%
 

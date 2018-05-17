@@ -39,7 +39,7 @@ Configuration variables:
    and `MQTT
    Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
 
-.. |image0| image:: /esphomeyaml/components/sensor/adc.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/adc.png
    :class: align-center
    :width: 80.0%
 

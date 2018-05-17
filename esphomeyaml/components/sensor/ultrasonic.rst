@@ -17,7 +17,7 @@ timeout option which specifies how long to wait for values. During this
 timeout period the whole core will be blocked and therefore shouldn’t be
 set too high.
 
-.. figure:: /esphomeyaml/components/sensor/hc-sr04-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/hc-sr04-full.jpg
    :align: center
    :target: `www.dx.com`_
    :width: 50.0%
@@ -28,7 +28,7 @@ set too high.
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/ultrasonic.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/ultrasonic.png
    :class: align-center
    :width: 80.0%
 

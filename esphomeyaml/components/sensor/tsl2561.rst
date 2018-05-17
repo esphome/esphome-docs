@@ -13,7 +13,7 @@ ambient light sensor with esphomelib. The `I²C
 bus </esphomeyaml/components/i2c.html>`__ is required to be set up in
 your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/tsl2561-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/tsl2561-full.jpg
    :align: center
    :target: `Adafruit`_
    :width: 50.0%

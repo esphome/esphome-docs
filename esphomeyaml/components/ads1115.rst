@@ -7,7 +7,7 @@ Platform </esphomeyaml/components/sensor/ads1115.html>`__. To use this
 hub, first setup the `I²C Bus </esphomeyaml/components/i2c.html>`__ and
 connect the sensor to the pins specified there.
 
-.. figure:: /esphomeyaml/components/sensor/ads1115-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/ads1115-full.jpg
    :align: center
    :target: `Adafruit`_
    :width: 50.0%

@@ -10,7 +10,7 @@ The DHT12 Temperature+Humidity sensor allows you to use your DHT12
 (`datasheet <http://www.robototehnika.ru/file/DHT12.pdf>`__,
 `electrodragon`_) i2c-based sensor with esphomelib.
 
-.. figure:: /esphomeyaml/components/sensor/dht12-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/dht12-full.jpg
     :align: center
     :target: `electrodragon`_
     :width: 50.0%
@@ -21,7 +21,7 @@ The DHT12 Temperature+Humidity sensor allows you to use your DHT12
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/temperature-humidity.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/temperature-humidity.png
     :class: align-center
     :width: 80.0%
 

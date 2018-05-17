@@ -8,7 +8,7 @@ To initialize a sensor, first supply the ``dallas_id`` attribute
 pointing to the dallas hub. Then supply either ``address`` **or**
 ``index`` to identify the sensor.
 
-.. figure:: /esphomeyaml/components/sensor/ds18b20-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/ds18b20-full.jpg
    :align: center
    :target: `Adafruit`_
    :width: 50.0%
@@ -19,7 +19,7 @@ pointing to the dallas hub. Then supply either ``address`` **or**
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/temperature.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/temperature.png
    :class: align-center
    :width: 80.0%
 
@@ -71,5 +71,5 @@ level </esphomeyaml/components/logger>`__ must be set to at least
 Next, individually warm up or cool down the sensors and observe the log
 output to determine which address points to which sensor.
 
-.. |image1| image:: /esphomeyaml/components/sensor/dallas-log.png
+.. |image1| image:: /esphomeyaml/components/sensor/images/dallas-log.png
 

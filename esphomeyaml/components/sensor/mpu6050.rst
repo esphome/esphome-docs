@@ -13,7 +13,7 @@ create a custom component by copying and modifying the existing code if you want
 new feature. Supporting all possible use-cases would be quite hard.
 
 
-.. figure:: /esphomeyaml/components/sensor/mpu6050-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/mpu6050-full.jpg
    :align: center
    :target: `Sparkfun`_
    :width: 50.0%
@@ -24,7 +24,7 @@ new feature. Supporting all possible use-cases would be quite hard.
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/mpu6050-ui.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/mpu6050-ui.png
    :class: align-center
    :width: 80.0%
 

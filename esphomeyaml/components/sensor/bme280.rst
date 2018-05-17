@@ -12,7 +12,7 @@ The ``bme280`` sensor platform allows you to use your BME280
 bus </esphomeyaml/components/i2c.html>`__ is required to be set up in
 your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/bme280-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/bme280-full.jpg
    :align: center
    :target: `Adafruit`_
    :width: 50.0%

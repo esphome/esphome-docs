@@ -12,7 +12,7 @@ ambient light sensor with esphomelib. The `I²C
 bus </esphomeyaml/components/i2c.html>`__ is required to be set up in
 your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/bh1750-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/bh1750-full.jpg
    :align: center
    :target: `Aliexpress`_
    :width: 50.0%

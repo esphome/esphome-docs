@@ -12,7 +12,7 @@ The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use you
 esphomelib. The `I²C bus </esphomeyaml/components/i2c.html>`__ is
 required to be set up in your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/sht3xd-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/sht3xd-full.jpg
    :align: center
    :target: `Adafruit`_
    :width: 50.0%
@@ -23,7 +23,7 @@ required to be set up in your configuration for this sensor to work.
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/temperature-humidity.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/temperature-humidity.png
    :class: align-center
    :width: 80.0%
 

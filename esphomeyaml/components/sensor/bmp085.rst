@@ -12,7 +12,7 @@ pressure sensors with esphomelib. The `I²C
 bus </esphomeyaml/components/i2c.html>`__ is required to be set up in
 your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/bmp180-full.jpg
+.. figure:: /esphomeyaml/components/sensor/images/bmp180-full.jpg
    :align: center
    :target: `Adafruit`_
    :width: 50.0%
@@ -23,7 +23,7 @@ your configuration for this sensor to work.
 
 |image0|
 
-.. |image0| image:: /esphomeyaml/components/sensor/temperature-pressure.png
+.. |image0| image:: /esphomeyaml/components/sensor/images/temperature-pressure.png
    :class: align-center
    :width: 80.0%
 
