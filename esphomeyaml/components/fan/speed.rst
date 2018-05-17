@@ -20,7 +20,7 @@ Configuration variables:
 
 -  **output** (**Required**,
    `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   binary output component to use for this fan.
+   `float output component </esphomeyaml/components/output/index.html>`_ to use for this fan.
 -  **name** (**Required**, string): The name for this fan.
 -  **oscillation_output** (*Optional*,
    `id </esphomeyaml/configuration-types.html#id>`__): The output to use
