@@ -131,9 +131,9 @@ Sensor Components
 ----------------------  ----------------------  ----------------------
 `BME280`_               `BME680`_               `TSL2561`_
 ----------------------  ----------------------  ----------------------
-|SHT3X-D|_              |DHT12|_
+|SHT3X-D|_              |DHT12|_                |Rotary Encoder|_
 ----------------------  ----------------------  ----------------------
-`SHT3X-D`_              `DHT12`_
+`SHT3X-D`_              `DHT12`_                `Rotary Encoder`_
 ======================  ======================  ======================
 
 .. |Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -203,6 +203,10 @@ Sensor Components
 .. |DHT12| image:: /esphomeyaml/images/dht12.jpg
     :class: component-image
 .. _DHT12: /esphomeyaml/components/sensor/dht12.html
+
+.. |Rotary Encoder| image:: /esphomeyaml/images/rotary_encoder.jpg
+    :class: component-image
+.. _Rotary Encoder: /esphomeyaml/components/sensor/rotary_encoder.html
 
 
 Binary Sensor Components
@@ -498,4 +502,5 @@ Full Index
     components/sensor/tsl2561.rst
     components/sensor/sht3xd.rst
     components/sensor/dht12.rst
+    components/sensor/rotary_encoder.rst
     using-with/sonoff-s20.rst
