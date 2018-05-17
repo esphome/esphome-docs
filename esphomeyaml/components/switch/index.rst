@@ -51,5 +51,8 @@ Configuration variables:
 -  **name** (**Required**, string): The name of the switch.
 -  **icon** (*Optional*, icon): Manually set the icon to use for the
    sensor in the frontend.
+-  **inverted** (*Optional*, boolean): Whether to invert the binary
+   state, i.e. report ON states as OFF and vice versa. Defaults
+   to ``False``.
 -  All other options from `MQTT
    Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
