@@ -124,17 +124,22 @@ Filter
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: sensor::HeartbeatFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: sensor::DebounceFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
 .. doxygenclass:: sensor::DeltaFilter
     :members:
     :protected-members:
     :undoc-members:
 
 .. doxygenclass:: sensor::OrFilter
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: sensor::AndFilter
     :members:
     :protected-members:
     :undoc-members:

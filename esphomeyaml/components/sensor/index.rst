@@ -135,6 +135,8 @@ sensor <https://www.home-assistant.io/components/sensor.filter/>`__.
           alpha: 0.1
           send_every: 15
       - throttle: 1s
+      - heartbeat: 5s
+      - debounce: 0.1s
       - delta: 5.0
       - unique:
       - or:
@@ -168,8 +170,17 @@ every filter there is currently:
    -  **send_every**: How often a sensor value should be pushed out.
 
 -  **throttle**: Throttle the incoming values. When this filter gets an incoming value,
-   it checks if the last value passed out of this filter is at least the value of this filter
-   old. If it is not older than the configured value, the value is not passed forward.
+   it checks if the last incoming value is at least ``specified time period`` old.
+   If it is not older than the configured value, the value is not passed forward.
+
+-  **heartbeat**: Send the last value that this sensor in the specified time interval.
+   So a value of ``10s`` will cause the filter to output values every 10s regardless
+   of the input values.
+
+-  **debounce**: Only send values if the last incoming value is at least ``specified time period``
+   old. For example if two values come in at almost the same time, this filter will only output
+   the last value and only after the specified time period has passed without any new incoming
+   values.
 
 -  **delta**: This filter stores the last value passed through this filter and only
    passes incoming values through if the absolute difference is greater than the configured
@@ -183,8 +194,6 @@ every filter there is currently:
 -  **or**: Pass forward a value with the first child filter that returns. Above example
    will only pass forward values that are *either* at least 1s old or are if the absolute
    difference is at least 5.0.
-
--  **and**: Similar to or. Only pass on a value if all child filters pass.
 
 -  **lambda**: Perform a simple mathematical operation over the sensor
    values. The input value is ``x`` and the result of the lambda is used

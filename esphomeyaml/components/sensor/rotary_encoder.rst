@@ -51,12 +51,13 @@ Configuration variables:
    and `MQTT
    Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
 
-Throttling Output
+Debouncing Output
 ~~~~~~~~~~~~~~~~~
 
 This sensor can output a lot of values in a short period of time when turning the knob.
 In order to not put too much stress on your network connection, you can leverage esphomelib's
-sensor filters. The following will only send out values once every half second max:
+sensor filters. The following will only send out values if the last input value is at least
+0.1s seconds old *or* if the new rotary encoder value has changed by 10 from the previous value.
 
 .. code:: yaml
 
@@ -67,4 +68,6 @@ sensor filters. The following will only send out values once every half second m
         pin_a: D1
         pin_b: D2
         filters:
-          - throttle: 0.5s
+          - or:
+            - debounce: 0.1s
+            - delta: 10

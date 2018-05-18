@@ -41,7 +41,7 @@ not work.
           # Use pin number 0
           number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
-          mode: INPUT
+          mode: OUTPUT
           inverted: False
 
 Configuration variables:
