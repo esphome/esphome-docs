@@ -58,7 +58,7 @@ Configuration variables:
 - **accuracy** (*Optional*, string): The accuracy of the sensor. One of ``low``, ``medium`` and ``high``.
   Defaults to ``high``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``15s``.
+  sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 
 See Also
 ^^^^^^^^

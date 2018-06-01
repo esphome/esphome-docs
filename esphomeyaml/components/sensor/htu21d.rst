@@ -47,6 +47,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
+  See :ref:`sensor-default_filter`.
 
 See Also
 ^^^^^^^^

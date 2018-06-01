@@ -43,6 +43,7 @@ Configuration variables:
   Pulses <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html#filtering-pulses>`__
   for more information. Defaults to the max value 1023 or about 13 µs.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
+  See :ref:`sensor-default_filter`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 

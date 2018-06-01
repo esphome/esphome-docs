@@ -75,7 +75,7 @@ Configuration variables:
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
   ``OFF``, ``2x``, ``4x``, ``16x``. Defaults to ``OFF``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``15s``.
+  sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 
 .. _bme680-oversampling:
 

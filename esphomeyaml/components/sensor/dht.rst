@@ -57,7 +57,7 @@ Configuration variables:
   one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2303``, ``RHT03``
   and helps with some connection issues. Defaults to ``AUTO_DETECT``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``15s``.
+  sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 
 .. note::
 

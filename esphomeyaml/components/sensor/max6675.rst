@@ -39,6 +39,7 @@ Configuration variables:
 - **pin_clock** (**Required**): The Clock pin of the SPI interface.
 - **pin_miso** (**Required**): The Master-In/Slave-Out pin of the SPI interface.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
+  See :ref:`sensor-default_filter`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for codegeneration.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 

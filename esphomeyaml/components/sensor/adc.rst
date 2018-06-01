@@ -27,7 +27,7 @@ Configuration variables:
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
   attenuation to use. See :ref:`adc-esp32_attenuation`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
-  to check the sensor. Defaults to ``15s``.
+  to check the sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
