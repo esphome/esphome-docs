@@ -4,7 +4,7 @@ Debug Component
 The ``debug`` component can be used to debug problems with esphomelib. At startup, it prints
 a bunch of useful information like reset reason, free heap size, esphomelib version and so on.
 
-.. figure:: /esphomeyaml/components/debug.png
+.. figure:: images/debug.png
     :align: center
 
     Example debug component output.
@@ -19,3 +19,9 @@ a bunch of useful information like reset reason, free heap size, esphomelib vers
       level: debug
 
 There are no configuration variables for this component.
+
+See Also
+^^^^^^^^
+
+- :doc:`logger`
+- :doc:`API Reference </api/misc/debug>`

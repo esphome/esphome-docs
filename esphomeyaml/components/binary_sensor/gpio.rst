@@ -4,7 +4,9 @@ GPIO Binary Sensor
 The GPIO Binary Sensor platform allows you to use any input pin on your
 device as a binary sensor.
 
-|image0|
+.. figure:: images/gpio-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -18,18 +20,15 @@ device as a binary sensor.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **pin** (**Required**, `Pin
-   Schema </esphomeyaml/configuration-types.html#pin-schema>`__): The
-   pin to periodically check.
--  **name** (**Required**, string): The name of the binary sensor.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from `Binary
-   Sensor </esphomeyaml/components/binary_sensor/index.html#base-binary-sensor-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to periodically check.
+- **name** (**Required**, string): The name of the binary sensor.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`
+  and :ref:`MQTT Component <config-mqtt-component>`.
 
-.. |image0| image:: /esphomeyaml/components/binary_sensor/gpio.png
-   :class: align-center
-   :width: 80.0%
+See Also
+^^^^^^^^
+
+- :doc:`/esphomeyaml/components/binary_sensor/index`
+- :ref:`config-pin_schema`
+- :doc:`API Reference </api/binary_sensor/gpio>`

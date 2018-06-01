@@ -5,25 +5,11 @@ With esphomelib you can use different types of binary sensors. They will
 automatically appear in the Home Assistant front-end and have several
 configuration options.
 
-Currently supported binary sensor platforms:
 
-======================  ======================  ======================
-|GPIO|_                 |Status|_
-----------------------  ----------------------  ----------------------
-`GPIO`_                 `Status`_
-======================  ======================  ======================
-
-.. |GPIO| image:: /esphomeyaml/images/pin.svg
-    :class: component-image
-.. _GPIO: /esphomeyaml/components/binary_sensor/gpio.html
-
-.. |Status| image:: /esphomeyaml/images/server-network.svg
-    :class: component-image
-.. _Status: /esphomeyaml/components/binary_sensor/status.html
-
+.. _config-binary_sensor:
 
 Base Binary Sensor Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 All binary sensors have a platform and an optional device class. By
 default, the binary will chose the appropriate device class itself, but
@@ -33,15 +19,148 @@ you can always override it.
 
     binary_sensor:
       - platform: ...
-        device_class: Device Class
+        device_class: motion
 
 Configuration variables:
 
--  **device_class** (*Optional*, string): The device class for the
-   sensor. See https://www.home-assistant.io/components/binary_sensor/
-   for a list of available options.
--  **inverted** (*Optional*, boolean): Whether to invert the binary
-   sensor output, i.e. report ON states as OFF and vice versa. Defaults
-   to ``False``.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **device_class** (*Optional*, string): The device class for the
+  sensor. See https://www.home-assistant.io/components/binary_sensor/
+  for a list of available options.
+- **inverted** (*Optional*, boolean): Whether to invert the binary
+  sensor output, i.e. report ON states as OFF and vice versa. Defaults
+  to ``False``.
+- **on_press** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the button is pressed. See :ref:`binary_sensor-on_press`.
+- **on_release** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the button is released. See :ref:`binary_sensor-on_release`.
+- **on_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the button is held down for a specified period of time.
+  See :ref:`binary_sensor-on_click`.
+- **on_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the button is pressed twice for specified periods of time.
+  See :ref:`binary_sensor-on_double_click`.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+Binary Sensor Automation
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The triggers for binary sensors in esphomeyaml use the lingo from computer mouses. This naming might not
+perfectly fit every use case, but at least makes the naming consistent. For example, a ``press`` is triggered
+in the first moment when the button on your mouse is pushed down.
+
+You can access the current state of the binary sensor in :ref:`lambdas <config-lambda>` using
+``id(binary_sensor_id).value``.
+
+.. _binary_sensor-on_press:
+
+``on_press``
+""""""""""""
+
+This automation will be triggered when the button is first pressed down, or in other words on the leading
+edge of the signal.
+
+.. code:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        # ...
+        on_press:
+          then:
+            - switch.turn_on:
+                id: relay_1
+
+Configuration variables: See :ref:`Automation <automation>`.
+
+.. _binary_sensor-on_release:
+
+``on_release``
+""""""""""""""
+
+This automation will be triggered when a button press ends, or in other words on the falling
+edge of the signal.
+
+.. code:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        # ...
+        on_release:
+          then:
+            - switch.turn_off:
+                id: relay_1
+
+Configuration variables: See :ref:`Automation <automation>`.
+
+.. _binary_sensor-on_click:
+
+``on_click``
+""""""""""""
+
+This automation will be triggered when a button is pressed down for a time period of length
+``min_length`` to ``max_length``. Any click longer or shorter than this will not trigger the automation.
+The automation is therefore also triggered on the falling edge of the signal.
+
+.. code:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        # ...
+        on_click:
+          min_length: 50ms
+          max_length: 350ms
+          then:
+            - switch.turn_off:
+                id: relay_1
+
+Configuration variables:
+
+- **min_length** (*Optional*, :ref:`config-time`): The minimum duration the click should last. Defaults to ``50ms``.
+- **max_length** (*Optional*, :ref:`config-time`): The maximum duration the click should last. Defaults to ``350ms``.
+- See :ref:`Automation <automation>`.
+
+.. _binary_sensor-on_double_click:
+
+``on_double_click``
+"""""""""""""""""""
+
+.. warning::
+
+    This trigger is not final and could be replaced by a ``on_multi_click`` option which would
+    allow triggering for any number of clicks.
+
+This automation will be triggered when a button is pressed down twice, with the first click lasting between
+``min_length`` and ``max_length``. When a second leading edge then happens within ``min_length`` and
+``max_length``, the automation is triggered.
+
+.. code:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        # ...
+        on_double_click:
+          min_length: 50ms
+          max_length: 350ms
+          then:
+            - switch.turn_off:
+                id: relay_1
+
+Configuration variables:
+
+- **min_length** (*Optional*, :ref:`config-time`): The minimum duration the click should last. Defaults to ``50ms``.
+- **max_length** (*Optional*, :ref:`config-time`): The maximum duration the click should last. Defaults to ``350ms``.
+- See :ref:`Automation <automation>`.
+
+
+See Also
+--------
+
+- :doc:`API Reference </api/binary_sensor/index>`
+
+.. toctree::
+    :maxdepth: 1
+
+    gpio.rst
+    status.rst
+    esp32_ble.rst
+    esp32_touch.rst
+    template.rst

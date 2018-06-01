@@ -4,7 +4,7 @@ Dallas Temperature Component
 The ``dallas`` component allows you to use your
 `DS18b20 <https://www.adafruit.com/product/374>`__
 (`datasheet <https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf>`__)
-and similar temperature sensors.
+and similar One-Wire temperature sensors.
 
 To use your dallas sensor, first define a dallas “hub” with a pin and
 id, which you will later use to create the sensors. The 1-Wire bus the
@@ -15,24 +15,24 @@ about 4.7KΩ.
 
     # Example configuration entry
     dallas:
-      - id: dallas_hub1
-        pin: 23
+      - pin: 23
 
     # Individual sensors
     sensor:
       - platform: dallas
-        dallas_id: "dallas_hub1"
         address: 0x1c0000031edd2a28
         name: "Livingroom Temperature"
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **pin** (**Required**, number): The pin the sensor bus is connected
-   to.
--  **update_interval** (*Optional*,
-   `time </esphomeyaml/configuration-types.html#time>`__): The interval
-   that the sensors should be checked. Defaults to 15 seconds.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
+- **pin** (**Required**, number): The pin the sensor bus is connected to.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
+  Defaults to 15 seconds.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+See Also
+^^^^^^^^
+
+- :doc:`sensor/dallas`
+- :doc:`API Reference </api/sensor/dallas>`

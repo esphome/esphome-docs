@@ -11,4 +11,5 @@ API Reference
     Fan <fan/index>
     Light <light/index>
     Switch <switch/index>
+    Cover <cover/index>
     Miscellaneous <misc/index>

@@ -2,15 +2,16 @@ IR Transmitter Switch
 =====================
 
 The ``ir_transmitter`` switch platform allows you to create switches
-that send an IR code using the `IR Transmitter
-Component </esphomeyaml/components/ir_transmitter.html>`__. Every time
+that send an IR code using the :doc:`/esphomeyaml/components/ir_transmitter`. Every time
 the switch is turned on, the IR signal with the provided IR code is sent
 out.
 
 Theoretically this platform can also be used to create arbitrary output
 signals on any pin by using the ``raw:`` option.
 
-|image0|
+.. figure:: images/ir_transmitter-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -32,24 +33,19 @@ signals on any pin by using the ``raw:`` option.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **name** (**Required**, string): The name for the switch.
--  The IR code, see `Defining IR Codes <#defining-ir-codes>`__. Only one
-   of them can be specified per switch.
--  **repeat** (*Optional*, int): How often the command should be
-   repeated. Additionally, an ``wait_time`` option can be specified in the ``repeat`` section
-   to set how long to wait in between repeats. Defaults to 1 (code is
-   sent once). Example: ``repeat: {times: 10, wait_time: 20us} ``
--  **ir_transmitter_id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the `IR
-   Transmitter
-   Component </esphomeyaml/components/ir_transmitter.html>`__. Defaults to the first hub specified.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from
-   `Switch </esphomeyaml/components/switch/index.html#base-switch-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **name** (**Required**, string): The name for the switch.
+- The IR code, see :ref:`ir_transmitter-ir_codes`. Only one
+  of them can be specified per switch.
+- **repeat** (*Optional*, int): How often the command should be
+  repeated. Additionally, an ``wait_time`` option can be specified in the ``repeat`` section
+  to set how long to wait in between repeats. Defaults to 1 (code is
+  sent once). Example: ``repeat\: \{times\: 10, wait_time\: 20us\}``
+- **ir_transmitter_id** (*Optional*, :ref:`config-id`): The id of the :doc:`/esphomeyaml/components/ir_transmitter`.
+  Defaults to the first hub specified.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+.. _ir_transmitter-ir_codes:
 
 Defining IR Codes
 ~~~~~~~~~~~~~~~~~
@@ -82,35 +78,38 @@ should include all the information needed to setup these IR codes.
 
 Configuration variables:
 
--  **nec**: Send a NEC IR code.
+- **nec**: Send a NEC IR code.
 
-   -  **address**: The address of the device.
-   -  **command**: The command to send.
+  - **address**: The address of the device.
+  - **command**: The command to send.
 
--  **lg**: Send an LG IR code.
+- **lg**: Send an LG IR code.
 
-   -  **data**: The data bytes to send.
-   -  **nbits**: The number of bits to send, defaults to 28.
+  - **data**: The data bytes to send.
+  - **nbits**: The number of bits to send, defaults to 28.
 
--  **sony**: Send an Sony IR code.
+- **sony**: Send an Sony IR code.
 
-   -  **data**: The data bytes to send.
-   -  **nbits**: The number of bits to send, defaults to 12.
+  - **data**: The data bytes to send.
+  - **nbits**: The number of bits to send, defaults to 12.
 
--  **panasonic**: Send a Panasonic IR code.
+- **panasonic**: Send a Panasonic IR code.
 
-   -  **address**: The address of the device.
-   -  **command**: The command to send.
+  - **address**: The address of the device.
+  - **command**: The command to send.
 
--  **raw**: Send an arbitrary signal.
+- **raw**: Send an arbitrary signal.
 
-   -  **carrier_frequency**: The frequency to use for the carrier. A lot
-      of IR sensors only respond to a very specific frequency.
-   -  **data**: List containing integers describing the signal to send.
-      Each value is a time in µs declaring how long the carrier should
-      be switched on or off. Positive values mean ON, negative values
-      mean OFF.
+  - **carrier_frequency**: The frequency to use for the carrier. A lot
+    of IR sensors only respond to a very specific frequency.
+  - **data**: List containing integers describing the signal to send.
+    Each value is a time in µs declaring how long the carrier should
+    be switched on or off. Positive values mean ON, negative values
+    mean OFF.
 
-.. |image0| image:: /esphomeyaml/components/switch/ir-transmitter.png
-    :class: align-center
-    :width: 80.0%
+See Also
+^^^^^^^^
+
+- :doc:`index`
+- :doc:`/esphomeyaml/components/ir_transmitter`
+- :doc:`API Reference </api/switch/ir-transmitter>`

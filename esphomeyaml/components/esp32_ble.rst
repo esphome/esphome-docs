@@ -34,10 +34,13 @@ for information on how you can find out the MAC address of a device and track it
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **scan_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The length of each scan.
-   If a device is not found within this time window, it will be marked as not present. Defaults to 300s.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID for this ADS1115 Hub. Use this if you
-   want to use multiple ADS1115 hubs at once.
+- **scan_interval** (*Optional*, :ref:`config-time`): The length of each scan.
+  If a device is not found within this time window, it will be marked as not present. Defaults to 300s.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ADS1115 Hub. Use this if you
+  want to use multiple ADS1115 hubs at once.
 
+See Also
+^^^^^^^^
 
+- :doc:`binary_sensor/esp32_ble`
+- :doc:`API Reference </api/misc/esp32_ble_tracker>`

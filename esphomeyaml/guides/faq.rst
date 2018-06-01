@@ -1,0 +1,170 @@
+Frequently Asked Questions
+==========================
+
+What's the difference between esphomelib and esphomeyaml?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`esphomelib <https://github.com/OttoWinter/esphomelib>`__ is a C++ framework
+around Arduino for creating custom firmwares for ESP8266/ESP32 devices. So with
+esphomelib, you need to write C++ code.
+
+`esphomeyaml <https://github.com/OttoWinter/esphomeyaml>`__ is a tool, written in python,
+that creates source code that uses the esphomelib framework. It does this by parsing in
+a YAML file and generating a C++ source file, compiling it and uploading the binary to the
+device. It is meant to be a powerful yet user-friendly engine for creating custom
+firmwares for ESP8266/ESP32 devices. Ideally, it should enable users to use a single command
+to do everything they want to do with their device without messing around with build systems and so on.
+
+The nice part of the esphomelib/esphomeyaml combo is that you can easily edit the source code
+esphomeyaml generates and insert your own custom components such as sensors in it. So, if for example
+a sensor you really want to use, is not supported, you can easily `create a custom component
+<https://github.com/OttoWinter/esphomelib/wiki/Custom-Sensor-Component>`__ for it.
+
+Because esphomeyaml runs on a host with lots of resources (as opposed to the ESP node itself),
+esphomeyaml will in the future also be able to do some really powerful stuff. I have some ideas
+like having an automatic schematic creator or a simple `blockly-like <https://developers.google.com/blockly/>`__
+in mind that will hopefully make the user-experience of using ESP32/ESP8266 nodes a lot easier.
+
+Help! Something's not working!1!
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+That's no good. Here are some steps that resolve some problems:
+
+-  **Update platformio** Some errors are caused by platformio not having the latest version. Try running
+   ``platformio update`` in your terminal.
+-  **Clean the platformio cache**: Sometimes the build cache leaves behind some weird artifacts. Try running
+   ``platformio run -d <NAME_OF_NODE> -t clean``.
+-  **Try with the latest Arduino framework version**:
+   See :ref:`this <using_latest_arduino_framework>`.
+-  **Still an error?** Please file a bug report over in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__.
+   I will take a look at it as soon as I can. Thanks!
+
+How to submit an issue report
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+First of all, thank you very much to everybody submitting issue reports! While I try to test esphomelib/yaml as much as
+I can using my own hardware, I don't own every single device type and mostly only do tests with my own home automation
+system. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
+great way for me to track and (hopefully) fix issues, so thank you!
+
+For me to fix the issue the quickest, there are some things that would be really helpful:
+
+1.  How do you use esphomelib? Through esphomeyaml or directly through C++ code?
+2.  If it's a build/upload issue: What system are you compiling/uploading things from? Windows, POSIX, from docker?
+3.  A snippet of the code/configuration file used is always great for a better understanding of the issue.
+4.  If it's an i2c or hardware communication issue please also try setting the
+    :ref:`log level <logger-log_levels>` to ``VERY_VERBOSE`` as it provides helpful information
+    about what is going on.
+
+You can find the issue tracker here https://github.com/OttoWinter/esphomelib/issues
+
+How do I update to the latest version?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It's simple. Run:
+
+.. code:: bash
+
+    pip2 install -U esphomeyaml
+
+
+Does esphomelib support [this device/feature]?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If it's not in :doc:`the docs </esphomeyaml/index>`, it's probably sadly not
+supported. However, I'm always trying to add support for new features, so feel free to create a feature
+request in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__. Thanks!
+
+I have a question... How can I contact you?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sure! I'd be happy to help :) You can contact me here:
+
+-  `Discord <https://discord.gg/KhAMKrd>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/t/esphomelib-library-to-greatly-simplify-home-assistant-integration-with-esp32>`__
+-  `esphomelib <https://github.com/OttoWinter/esphomelib/issues>`__ and
+   `esphomeyaml <https://github.com/OttoWinter/esphomeyaml/issues>`__ issue trackers. Preferably only for issues and
+   feature requests.
+-  Alternatively, also under my e-mail address contact (at) otto-winter.com
+
+My node keeps reconnecting randomly
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jep, that's a known issue. However, it seems to be very low-level and I don't really know
+how to solve it. I'm working on possible work-arounds for the issue but currently I do
+not have a real solution.
+
+Some steps that can help with the issue:
+
+-  Use the most recent version of th arduino framework. The platformio arduino package
+   always takes some time to update and the most recent version often includes some awesome
+   patches. See :ref:`using_latest_arduino_framework`.
+-  The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
+   boards from eBay sometimes have quite bad antennas.
+-  Play around with the ``keepalive`` option of the :doc:`MQTT client </esphomeyaml/components/mqtt>`, sometimes
+   increasing this value helps (because it's causing more pings in the background), some other times a higher
+   keepalive works better.
+
+Devices that will (hopefully) be supported soon:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Devices/Sensors that I've bought and will be supported at some point (ordered by priority):
+
+-  433MHz Transmitter Component
+-  PN532 NFC Board
+-  INA219/INA3221 Current Sensor
+-  GP2Y10 Dust Sensor
+-  TCS34725 RGB Light Sensor
+-  APDS-9960 RGB Gesture Sensor
+-  MCP2301 16-Channel I/O Expander
+-  MH-Z19 CO^2 Sensor
+-  HMC5883L Compass Sensor
+-  SPI E-Ink Display Module
+-  8-Segment Display
+-  I^2C LCD Display (4 rows, 20 characters)
+-  I^2C/SPI SSD1306 OLED Display
+-  Nextion TFT LCD Display
+-  MLX90614 Infrared Thermometer
+-  MS5611 Pressure Sensor
+-  PCF8591 ADC
+-  OV2640 Camera
+-  L298N H-Bridge Motor Driver
+-  A4988 Stepper Motor Driver
+-  MQ-2 Gas Sensor
+
+Other features that I'm working on:
+
+-  ESP32 IR/433MHz Receiver
+-  Pulse Counter for the ESP8266 (using interrupts)
+-  Multiple WiFi Networks to connect to
+-  Improve "Restart due to WiFi/MQTT disconnect" logic and make the timeouts more configurable
+-  Color Temperature for Lights
+-  Status LED
+-  More FastLED effects
+-  Support for displays (like LCD/OLED/E-Ink displays)
+-  Cameras (probably through ArduCAM)
+
+
+Devices which are supported, but not tested yet. I'm still waiting for these to arrive from China:
+
+-  ADS1115 Voltage Sensor
+-  TSL2561 Brightness Sensor
+-  HDC1080 Temperature+Humidity Sensor
+-  SHT31-D Temperature+Humidity Sensor
+-  BME280
+-  BME680
+
+Devices that are technically already supported, but for which guides will be created soon-ish:
+
+-  Sonoff Basic
+-  Sonoff Basic RF
+-  Soil Moisture Sensor
+
+Anything missing? I'd be happy to chat about more integrations over on the `discord channel
+<https://discord.gg/KhAMKrd>`__ - no guarantees that everything will be supported though!
+
+See Also
+~~~~~~~~
+
+- :doc:`esphomeyaml index </esphomeyaml/index>`
+- :doc:`contributing`

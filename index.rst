@@ -12,42 +12,6 @@ Eventually, guides will also be setup here on how to create your own custom comp
 
 .. _esphomeyaml docs: /esphomeyaml/index.html
 
-Supported First Order Integrations
-----------------------------------
-
-esphomelib is using many layers of abstraction so that you can use all of these 1st
-order integrations with all 2nd order integrations (like lights or fans). For example,
-a light is a combination of output components.
-
-.. toctree::
-    :maxdepth: 1
-
-    api/binary_sensor/gpio.rst
-    api/output/esp8266-pwm.rst
-    api/output/gpio-binary.rst
-    api/output/ledc.rst
-    api/output/pca9685.rst
-    api/sensor/adc-sensor.rst
-    api/sensor/ads1115.rst
-    api/sensor/bmp085.rst
-    api/sensor/dallas.rst
-    api/sensor/dht.rst
-    api/sensor/dht12.rst
-    api/sensor/htu21d.rst
-    api/sensor/hdc1080.rst
-    api/sensor/pulse-counter.rst
-    api/sensor/ultrasonic.rst
-    api/sensor/mpu6050.rst
-    api/switch/ir-transmitter.rst
-    api/misc/pcf8574.rst
-    api/binary_sensor/esp32_touch.rst
-    api/misc/esp32_ble_tracker.rst
-    api/sensor/tsl2561.rst
-    api/sensor/bh1750.rst
-    api/sensor/bme280.rst
-    api/sensor/bme680.rst
-    api/sensor/sht3xd.rst
-
 Web Server API
 --------------
 
@@ -63,9 +27,15 @@ API Reference
 
    	API Reference <api/index>
 
-
 Indices and tables
 ==================
+
+.. toctree::
+    :hidden:
+
+    api/index
+    web-api/index
+    esphomeyaml/index
 
 * :ref:`genindex`
 * :ref:`search`

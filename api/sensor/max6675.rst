@@ -1,0 +1,16 @@
+MAX6675 K-Type Thermocouple Temperature Sensor
+==============================================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_max6675_sensor`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::MAX6675Sensor
+    :members:
+    :protected-members:
+    :undoc-members:

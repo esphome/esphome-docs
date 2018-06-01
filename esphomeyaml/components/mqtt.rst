@@ -18,42 +18,42 @@ Assistant configuration.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **broker** (**Required**, string): The host of your MQTT broker.
--  **port** (*Optional*, int): The port to connect to. Defaults to 1883.
--  **username** (*Optional*, string): The username to use for
-   authentication. Empty (the default) means no authentication.
--  **password** (*Optional*, string): The password to use for
-   authentication. Empty (the default) means no authentication.
--  **client_id** (*Optional*, string): The client id to use for opening
-   connections. See `Defaults <#defaults>`__ for more information.
--  **discovery** (*Optional*, boolean): If Home Assistant automatic
-   discovery should be enabled. Defaults to ``True``.
--  **discovery_retain** (*Optional*, boolean): Whether to retain MQTT
-   discovery messages so that entities are added automatically on Home
-   Assistant restart. Defaults to ``True``.
--  **discovery_prefix** (*Optional*, string): The prefix to use for Home
-   Assistant’s MQTT discovery. Should not contain trailing slash.
-   Defaults to ``homeassistant``.
--  **topic_prefix** (*Optional*, string): The prefix used for all MQTT
-   messages. Should not contain trailing slash. Defaults to
-   ``<APP_NAME>``.
--  **log_topic** (*Optional*, `MQTTMessage <#mqttmessage>`__) The topic to send MQTT log
-   messages to.
--  **birth_message** (*Optional*, `MQTTMessage <#mqttmessage>`__): The message to send when
-   a connection to the broker is established. See `Last Will And Birth
-   Messages <#last-will-and-birth-messages>`__ for more information.
--  **will_message** (*Optional*, `MQTTMessage <#mqttmessage>`__): The message to send when
-   the MQTT connection is dropped. See `Last Will And Birth
-   Messages <#last-will-and-birth-messages>`__ for more information.
--  **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
-   for verifying SSL connections. See `SSL Fingerprints <#ssl-fingerprints>`__
-   for more information.
--  **keepalive** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The time
-   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
-   WiFi traffic with more pings. Defaults to 15 seconds.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
+- **broker** (**Required**, string): The host of your MQTT broker.
+- **port** (*Optional*, int): The port to connect to. Defaults to 1883.
+- **username** (*Optional*, string): The username to use for
+  authentication. Empty (the default) means no authentication.
+- **password** (*Optional*, string): The password to use for
+  authentication. Empty (the default) means no authentication.
+- **client_id** (*Optional*, string): The client id to use for opening
+  connections. See :ref:`mqtt-defaults` for more information.
+- **discovery** (*Optional*, boolean): If Home Assistant automatic
+  discovery should be enabled. Defaults to ``True``.
+- **discovery_retain** (*Optional*, boolean): Whether to retain MQTT
+  discovery messages so that entities are added automatically on Home
+  Assistant restart. Defaults to ``True``.
+- **discovery_prefix** (*Optional*, string): The prefix to use for Home
+  Assistant’s MQTT discovery. Should not contain trailing slash.
+  Defaults to ``homeassistant``.
+- **topic_prefix** (*Optional*, string): The prefix used for all MQTT
+  messages. Should not contain trailing slash. Defaults to
+  ``<APP_NAME>``.
+- **log_topic** (*Optional*, :ref:`mqtt-message`) The topic to send MQTT log
+  messages to.
+- **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
+  a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
+- **will_message** (*Optional*, :ref:`mqtt-message`): The message to send when
+  the MQTT connection is dropped. See :ref:`mqtt-last_will_birth` for more information.
+- **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
+  for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
+  for more information.
+- **keepalive** (*Optional*, :ref:`config-time`): The time
+  to keep the MQTT socket alive, decreasing this can help with overall stability due to more
+  WiFi traffic with more pings. Defaults to 15 seconds.
+- **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
+  performed when a message on a specific MQTT topic is received. See :ref:`mqtt-on_message`.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+.. _mqtt-message:
 
 MQTTMessage
 ~~~~~~~~~~~
@@ -126,6 +126,8 @@ This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
 topic, simply add ``--topic <your_topic>`` to the command.
 
+.. _mqtt-defaults:
+
 Defaults
 ~~~~~~~~
 
@@ -141,6 +143,8 @@ configuration. That way, you can use your existing wildcards like
 ``home/+/#`` together with esphomelib. All other features of esphomelib
 (like availabilty) should still work correctly.
 
+.. _mqtt-last_will_birth:
+
 Last Will And Birth Messages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -150,7 +154,9 @@ and birth message feature of MQTT to achieve availabilty reporting for
 Home Assistant. If the node is not connected to MQTT, Home Assistant
 will show all its entities as unavailable (a feature 😉).
 
-|image0|
+.. figure:: /esphomeyaml/components/images/mqtt-availability.png
+    :align: center
+    :width: 50.0%
 
 By default, esphomelib will send a retained MQTT message to
 ``<TOPIC_PREFIX>/status`` with payload ``online``, and will tell the
@@ -171,12 +177,14 @@ You can change these messages by overriding the ``birth_message`` and
         topic: myavailability/topic
         payload: offline
 
--  **birth_message** (*Optional*, `MQTTMessage <#mqttmessage>`__)
--  **will_message** (*Optional*, `MQTTMessage <#mqttmessage>`__)
+- **birth_message** (*Optional*, :ref:`mqtt-message`)
+- **will_message** (*Optional*, :ref:`mqtt-message`)
 
 If the birth message and last will message have empty topics or topics
 that are different from each other, availabilty reporting will be
 disabled.
+
+.. _mqtt-ssl_fingerprints:
 
 SSL Fingerprints
 ~~~~~~~~~~~~~~~~
@@ -203,6 +211,8 @@ then run the ``mqtt-fingerprint`` script of esphomeyaml to get the certificate:
       # ...
       ssl_fingerprints:
         - a502ff13999f8b398ef1834f1123650b3236fc07
+
+.. _config-mqtt-component:
 
 MQTT Component Base Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -233,7 +243,7 @@ Configuration variables:
    discovery for a component. Defaults to the global default.
 -  **availabilty** (*Optional*): Manually set what should be sent to
    Home Assistant for showing entity availabilty. Default derived from
-   `global birth/last will message <#last-will-and-birth-messages>`__.
+   :ref:`global birth/last will message <mqtt-last_will_birth>`.
 -  **state_topic** (*Optional*, string): The topic to publish state
    updates to. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state``
@@ -243,6 +253,88 @@ Configuration variables:
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``
    (non-alphanumeric characters from the name are removed).
 
-.. |image0| image:: /esphomeyaml/components/mqtt-availability.png
-   :class: align-center
-   :width: 50.0%
+.. _mqtt-on_message:
+
+on_message
+^^^^^^^^^^
+
+With this configuration option you can write complex automations whenever an MQTT
+message on a specific topic is received.
+
+.. code:: yaml
+
+    mqtt:
+      # ...
+      on_message:
+        topic: my/custom/topic
+        qos: 0
+        then:
+          - switch.turn_on:
+              id: some_switch
+
+Configuration variables:
+
+- **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
+  messages on. Every time a message with **this exact topic** is received, the automation will trigger.
+
+
+  .. note::
+
+     Currently the topic does not support MQTT wildcards like ``+`` or ``#``.
+
+- **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+  to 0.
+
+.. note::
+
+    You can even specify multiple ``on_message`` triggers by using a YAML list:
+
+    .. code:: yaml
+
+        mqtt:
+          on_message:
+             - topic: some/topic
+               then:
+                 - # ...
+             - topic: some/other/topic
+               then:
+                 - # ...
+
+.. _mqtt-publish_action:
+
+``mqtt.publish`` Action
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Publish an MQTT message on a topic using this action in automations.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - mqtt.publish:
+            topic: some/topic
+            payload: "Something happened!"
+
+        # Templated:
+        - mqtt.publish:
+            topic: !lambda >-
+              if (id(reed_switch).value) return "topic1";
+              else return "topic2";
+            payload: !lambda >-
+              return id(reed_switch).value ? "YES" : "NO";
+
+Configuration options:
+
+-  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+   The MQTT topic to publish the message.
+-  **payload** (*Required*, string, :ref:`templatable <config-templatable>`): The message content.
+-  **qos** (*Optional*, int, :ref:`templatable <config-templatable>`): The `Quality of
+   Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
+   level of the topic. Defaults to 0.
+-  **retain** (*Optional*, boolean, :ref:`templatable <config-templatable>`): If the published message should
+   have a retain flag on or not. Defaults to ``False``.
+
+See Also
+^^^^^^^^
+
+- :doc:`API Reference </api/core/mqtt>`

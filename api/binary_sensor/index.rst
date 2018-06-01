@@ -15,9 +15,10 @@ Supported Binary Sensors
 
 .. toctree::
 
-    GPIO Binary Sensor <gpio>
-    Node Status Binary Sensor <status>
-    ESP32 Touch Binary Sensor <esp32_touch>
+    gpio
+    status
+    esp32_touch
+    template
 
 Example Usage
 -------------

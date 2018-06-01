@@ -16,3 +16,4 @@ Core
     Web Server <web-server>
     Deep Sleep <deep-sleep>
     I2C <i2c>
+    Automation <automation>

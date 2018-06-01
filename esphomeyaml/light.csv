@@ -1,0 +1,7 @@
+Light Core, components/light/index, folder-open.svg
+Binary Light, components/light/binary, lightbulb.svg
+Monochromatic Light, components/light/monochromatic, brightness-medium.svg
+RGB Light, components/light/rgb, rgb.png
+RGBW Light, components/light/rgbw, rgbw.png
+FastLED Clockless Light, components/light/fastled_clockless, color_lens.svg
+FastLED SPI Light, components/light/fastled_spi, color_lens.svg

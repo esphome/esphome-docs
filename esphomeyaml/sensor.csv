@@ -1,0 +1,20 @@
+Sensor Core, components/sensor/index, folder-open.svg
+ADC, components/sensor/adc, flash.svg
+ADS1115, components/sensor/ads1115, ads1115.jpg
+BH1750, components/sensor/bh1750, bh1750.jpg
+BME280, components/sensor/bme280, bme280.jpg
+BME680, components/sensor/bme680, bme680.jpg
+BMP085, components/sensor/bmp085, bmp180.jpg
+Dallas, components/sensor/dallas, ds18b20.jpg
+DHT, components/sensor/dht, dht22.jpg
+DHT12, components/sensor/dht12, dht12.jpg
+HDC1080, components/sensor/hdc1080, HDC1080.jpg
+HTU21D, components/sensor/htu21d, htu21d.jpg
+MAX6675, components/sensor/max6675, max6675.jpg
+MPU6050, components/sensor/mpu6050, mpu6050.jpg
+Pulse Counter, components/sensor/pulse_counter, pulse.svg
+Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+Template Sensor, components/sensor/template, description.svg
+TSL2561, components/sensor/tsl2561, tsl2561.jpg
+Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg

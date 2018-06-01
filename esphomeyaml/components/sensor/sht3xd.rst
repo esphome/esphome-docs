@@ -9,23 +9,21 @@ SHT3X-D Temperature+Humidity Sensor
 The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensiron SHT31-D
 (`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,
 `Adafruit`_ ) sensors with
-esphomelib. The `I²C bus </esphomeyaml/components/i2c.html>`__ is
+esphomelib. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/images/sht3xd-full.jpg
-   :align: center
-   :target: `Adafruit`_
-   :width: 50.0%
+.. figure:: images/sht3xd-full.jpg
+    :align: center
+    :target: `Adafruit`_
+    :width: 50.0%
 
-   SHT3X-D Temperature & Humidity Sensor. Image by `Adafruit`_.
+    SHT3X-D Temperature & Humidity Sensor. Image by `Adafruit`_.
 
 .. _Adafruit: https://www.adafruit.com/product/2857
 
-|image0|
-
-.. |image0| image:: /esphomeyaml/components/sensor/images/temperature-humidity.png
-   :class: align-center
-   :width: 80.0%
+.. figure:: images/temperature-humidity.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -43,29 +41,31 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **temperature** (**Required**): The information for the temperature
-   sensor
+- **temperature** (**Required**): The information for the temperature sensor.
 
-   -  **name** (**Required**, string): The name for the temperature
-      sensor.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **humidity** (**Required**): The information for the humidity sensor
+- **humidity** (**Required**): The information for the humidity sensor.
 
-   -  **name** (**Required**, string): The name for the humidity sensor.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the humidity sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
-   Defaults to ``0xff``.
--  **accuracy** (*Optional*, string): The accuracy of the sensor. One of ``low``, ``medium`` and ``high``.
-   Defaults to ``high``.
--  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
-   sensor. Defaults to ``15s``.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
-   generation.
+- **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
+  Defaults to ``0xff``.
+- **accuracy** (*Optional*, string): The accuracy of the sensor. One of ``low``, ``medium`` and ``high``.
+  Defaults to ``high``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``15s``.
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`dht`
+- :doc:`dht12`
+- :doc:`hdc1080`
+- :doc:`htu21d`
+- :doc:`API Reference </api/sensor/sht3xd>`

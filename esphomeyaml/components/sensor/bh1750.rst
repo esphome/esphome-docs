@@ -1,23 +1,17 @@
 BH1750 Ambient Light Sensor
 ===========================
 
-.. warning::
-
-    This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 The ``bh1750`` sensor platform allows you to use your BH1750
 (`datasheet <http://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf>`__, `Aliexpress`_, `mklec`_)
-ambient light sensor with esphomelib. The `I²C
-bus </esphomeyaml/components/i2c.html>`__ is required to be set up in
+ambient light sensor with esphomelib. The :ref:`I²C bus <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/images/bh1750-full.jpg
-   :align: center
-   :target: `Aliexpress`_
-   :width: 50.0%
+.. figure:: images/bh1750-full.jpg
+    :align: center
+    :target: `Aliexpress`_
+    :width: 50.0%
 
-   BH1750 Ambient Light Sensor. Images from `Aliexpress`_ and `mklec`_.
+    BH1750 Ambient Light Sensor. Images from `Aliexpress`_ and `mklec`_.
 
 .. _Aliexpress: https://www.adafruit.com/product/1603
 .. _mklec: http://mklec.com/modules/micro-controller-modules/bh1750-bh1750fvi-digital-light-sensor-module
@@ -33,16 +27,21 @@ your configuration for this sensor to work.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **name** (**Required**, string): The name for the sensor.
--  **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
-   Defaults to ``0x23`` (address if address pin is pulled low). If the address pin is pulled high,
-   the address is ``0x5C``.
--  **resolution** (*Optional*, string): The resolution of the sensor in lx. One of ``4.0``,
-   ``1.0``, ``0.5``. Defaults to ``0.5`` (the maximum resolution).
--  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
-   sensor. Defaults to ``15s``.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
-   generation.
--  All other options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **name** (**Required**, string): The name for the sensor.
+- **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
+  Defaults to ``0x23`` (address if address pin is pulled low). If the address pin is pulled high,
+  the address is ``0x5C``.
+- **resolution** (*Optional*, string): The resolution of the sensor in lx. One of ``4.0``,
+  ``1.0``, ``0.5``. Defaults to ``0.5`` (the maximum resolution).
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``15s``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code
+  generation.
+- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`tsl2561`
+- :doc:`API Reference </api/sensor/bh1750>`

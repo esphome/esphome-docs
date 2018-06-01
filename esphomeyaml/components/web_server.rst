@@ -14,7 +14,7 @@ interface are hosted by esphomelib.com. If you want to use your own service, use
 
 .. _REST API: /web-api/index.html
 
-.. figure:: /esphomeyaml/components/web_server.png
+.. figure:: /esphomeyaml/components/images/web_server.png
     :align: center
 
     Example web server frontend.
@@ -28,11 +28,14 @@ interface are hosted by esphomelib.com. If you want to use your own service, use
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **port** (*Optional*, int): The port the web server should open its socket on.
--  **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults
-   to https://esphomelib.com/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
--  **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
-   to https://esphomelib.com/_static/webserver-v1.min.js.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
+- **port** (*Optional*, int): The port the web server should open its socket on.
+- **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults
+  to https://esphomelib.com/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
+- **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
+  to https://esphomelib.com/_static/webserver-v1.min.js.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+See Also
+--------
+
+- :doc:`API Reference </api/core/web-server>`

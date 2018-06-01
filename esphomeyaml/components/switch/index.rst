@@ -4,37 +4,7 @@ Switch Component
 The ``switch`` domain includes all platforms that should show up like a
 switch and can only be turned ON or OFF.
 
-Currently supported switch platforms:
-
-========================  ========================  ========================
-|GPIO Switch|_            |IR Transmitter|_         |Restart Switch|_
-------------------------  ------------------------  ------------------------
-`GPIO Switch`_            `IR Transmitter`_         `Restart Switch`_
-------------------------  ------------------------  ------------------------
-|Shutdown Switch|_        |Output Switch|_
-------------------------  ------------------------  ------------------------
-`Shutdown Switch`_        `Output Switch`_
-========================  ========================  ========================
-
-.. |GPIO Switch| image:: /esphomeyaml/images/pin.svg
-    :class: component-image
-.. _GPIO Switch: /esphomeyaml/components/switch/gpio.html
-
-.. |IR Transmitter| image:: /esphomeyaml/images/remote.svg
-    :class: component-image
-.. _IR Transmitter: /esphomeyaml/components/switch/ir_transmitter.html
-
-.. |Restart Switch| image:: /esphomeyaml/images/restart.svg
-    :class: component-image
-.. _Restart Switch: /esphomeyaml/components/switch/restart.html
-
-.. |Shutdown Switch| image:: /esphomeyaml/images/power.svg
-    :class: component-image
-.. _Shutdown Switch: /esphomeyaml/components/switch/shutdown.html
-
-.. |Output Switch| image:: /esphomeyaml/images/upload.svg
-    :class: component-image
-.. _Output Switch: /esphomeyaml/components/switch/output.html
+.. _config-switch:
 
 Base Switch Configuration
 -------------------------
@@ -54,5 +24,61 @@ Configuration variables:
 -  **inverted** (*Optional*, boolean): Whether to invert the binary
    state, i.e. report ON states as OFF and vice versa. Defaults
    to ``False``.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+-  All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+.. _switch-toggle_action:
+
+``switch.toggle`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action toggles a switch with the given ID when executed.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - switch.toggle:
+            id: relay_1
+
+.. _switch-turn_on_action:
+
+``switch.turn_on`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action turns a switch with the given ID on when executed.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - switch.turn_on:
+            id: relay_1
+
+.. _switch-turn_off_action:
+
+``switch.turn_off`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action turns a switch with the given ID off when executed.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - switch.turn_off:
+            id: relay_1
+
+See Also
+^^^^^^^^
+
+- :doc:`API Reference </api/switch/index>`
+
+.. toctree::
+    :maxdepth: 1
+
+    gpio.rst
+    shutdown.rst
+    output.rst
+    ir_transmitter.rst
+    restart.rst
+    template.rst

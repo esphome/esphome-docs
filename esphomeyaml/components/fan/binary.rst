@@ -1,10 +1,11 @@
 Binary Fan
 ==========
 
-The ``binary`` fan platform lets you represent any binary `ouput
-component </esphomeyaml/components/output/index.html>`__ as a fan.
+The ``binary`` fan platform lets you represent any binary :ref:`output` as a fan.
 
-|image0|
+.. figure:: images/fan-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -17,21 +18,20 @@ component </esphomeyaml/components/output/index.html>`__ as a fan.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **output** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   binary output component to use for this fan.
--  **name** (**Required**, string): The name for this fan.
--  **oscillation_output** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): The output to use
-   for the oscillation state of this fan. Default is empty.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__
-   and `Fan
-   Component </esphomeyaml/components/fan/index.html#base-fan-configuration>`__.
+- **output** (**Required**, :ref:`config-id`): The id of the
+  binary output component to use for this fan.
+- **name** (**Required**, string): The name for this fan.
+- **oscillation_output** (*Optional*, :ref:`config-id`): The id of the
+  :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
+- **id** (*Optional*, :ref:`config-id`): Manually specify
+  the ID used for code generation.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`
+  and :ref:`Fan Component <config-fan>`.
 
-.. |image0| image:: /esphomeyaml/components/fan/fan.png
-   :class: align-center
-   :width: 80.0%
+See Also
+^^^^^^^^
+
+- :doc:`/esphomeyaml/components/output/index`
+- :doc:`/esphomeyaml/components/output/gpio`
+- :doc:`/esphomeyaml/components/fan/index`
+- :doc:`API Reference </api/fan/index>`

@@ -1,11 +1,18 @@
 Monochromatic Light
 ===================
 
-The ``monochromatic`` light platform creates a simple light
-brightness-only from an `output
-component </esphomeyaml/components/output/index.html>`__.
+The ``monochromatic`` light platform creates a simple brightness-only light from an
+:ref:`float output component <output>`.
 
-|image0|
+.. figure:: images/monochromatic-strip.jpg
+    :align: center
+    :width: 75.0%
+
+    Example of a brightness-only LED strip that can be used with this component.
+
+.. figure:: images/kitchen-lights.png
+    :align: center
+    :width: 40.0%
 
 .. code:: yaml
 
@@ -18,24 +25,36 @@ component </esphomeyaml/components/output/index.html>`__.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **name** (**Required**, string): The name of the light.
--  **output** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   float `output component </esphomeyaml/components/output/index.html>`__
-   to use for this light.
--  **gamma_correct** (*Optional*, float): The `gamma correction
-   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the
-   light. Defaults to ``2.8``.
--  **default_transition_length** (*Optional*,
-   `time </esphomeyaml/configuration-types.html#time>`__): The length of
-   the transition if no transition parameter is provided by Home
-   Assistant. Defaults to ``1s``.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **name** (**Required**, string): The name of the light.
+- **output** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for this light.
+- **gamma_correct** (*Optional*, float): The `gamma correction
+  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the light. Defaults to ``2.8``.
+- **default_transition_length** (*Optional*, :ref:`config-time`): The length of
+  the transition if no transition parameter is provided by Home
+  Assistant. Defaults to ``1s``.
+-  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
-.. |image0| image:: /esphomeyaml/components/light/kitchen-lights.png
-   :class: align-center
-   :width: 80.0%
+.. note::
+
+    The ``monochromatic`` light platform only works with ``float``
+    :ref:`outputs <output>` that can output any light intensity percentage like the
+    :doc:`ESP32 LEDC </esphomeyaml/components/output/ledc>` or
+    :doc:`ESP8266 PWM </esphomeyaml/components/output/esp8266_pwm>` components and does **not** work with output
+    platforms like the :doc:`/esphomeyaml/components/output/gpio`.
+
+See Also
+^^^^^^^^
+
+.. figure:: images/monochromatic_detail.jpg
+    :align: center
+    :width: 75.0%
+
+- :doc:`/esphomeyaml/components/output/index`
+- :doc:`/esphomeyaml/components/light/index`
+- :doc:`/esphomeyaml/components/light/binary`
+- :doc:`/esphomeyaml/components/power_supply`
+- :doc:`/esphomeyaml/components/output/ledc`
+- :doc:`/esphomeyaml/components/output/esp8266_pwm`
+- :doc:`/esphomeyaml/components/output/pca9685`
+- :doc:`API Reference </api/light/index>`

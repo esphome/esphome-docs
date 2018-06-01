@@ -1,27 +1,30 @@
 ADS1115 Sensor
 ==============
 
+.. warning::
+
+    This integration currently doesn't seem to work with certain chips and I'm waiting for my own ADS1115 to arrive
+    to diagnose the issue. If you're experiencing issues too and want to help out, please set the
+    :ref:`log level <logger-log_levels>` to ``VERY_VERBOSE`` and send me some logs. Thanks!
+
 The ``ads1115`` sensor allows you to use your ADS1115 sigma-delta ADC
-sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__,
-`adafruit <https://www.adafruit.com/product/1085>`__) with esphomelib.
-First, setup a `ADS1115 Hub </esphomeyaml/components/ads1115.html>`__ for your ADS1115 sensor and then use this
+sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) with esphomelib.
+First, setup a :doc:`ADS1115 Hub </esphomeyaml/components/ads1115>` for your ADS1115 sensor and then use this
 sensor platform to create individual sensors that will report the
 voltage to Home Assistant.
 
-.. figure:: /esphomeyaml/components/sensor/images/ads1115-full.jpg
-   :align: center
-   :target: `Adafruit`_
-   :width: 50.0%
+.. figure:: images/ads1115-full.jpg
+    :align: center
+    :target: `Adafruit`_
+    :width: 50.0%
 
-   ADS1115 16-Bit ADC. Image by `Adafruit`_.
+    ADS1115 16-Bit ADC. Image by `Adafruit`_.
 
 .. _Adafruit: https://www.adafruit.com/product/1085
 
-|image0|
-
-.. |image0| image:: /esphomeyaml/components/sensor/images/adc.png
-   :class: align-center
-   :width: 80.0%
+.. figure:: images/adc-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -40,10 +43,9 @@ Configuration variables:
    want to measure voltage.
 -  **gain** (**Required**, float): The gain of this sensor.
 -  **name** (**Required**, string): The name for this sensor.
--  **ads1115_id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID of the
-   `ADS1115 Hub </esphomeyaml/components/ads1115.html>`__ you want to use this sensor.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
+-  **ads1115_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
+   :doc:`ADS1115 Hub </esphomeyaml/components/ads1115>` you want to use this sensor.
+-  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Multiplexer And Gain
 ~~~~~~~~~~~~~~~~~~~~
@@ -68,3 +70,10 @@ Additionally, the ADS1115 has a Programmable Gain Amplifier (PGA) that can help 
  - ``0.512`` (measures up to 0.512V)
  - ``0.256`` (measures up to 0.256V)
 
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`adc`
+- :doc:`max6675`
+- :doc:`API Reference </api/sensor/ads1115>`

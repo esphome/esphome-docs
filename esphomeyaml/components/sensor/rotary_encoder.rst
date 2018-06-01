@@ -8,7 +8,7 @@ signals of the two pins go HIGH and LOW in turn. See
 `this Arduino article <https://playground.arduino.cc/Main/RotaryEncoders>`__ to gain
 a better understanding of these sensors.
 
-.. figure:: /esphomeyaml/components/sensor/images/rotary_encoder-full.jpg
+.. figure:: images/rotary_encoder.jpg
     :align: center
     :width: 75.0%
 
@@ -35,21 +35,16 @@ outputs go in the wrong direction, you can just swap these two pins.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **pin_a** (**Required**, `Pin Schema </esphomeyaml/configuration-types.html#pin-schema>`__):
-   The first pin for determining the step value. Must not be a pin from an external I/O expander.
--  **pin_b** (**Required**, `Pin Schema </esphomeyaml/configuration-types.html#pin-schema>`__):
-   The second pin for determining the step value. Must not be a pin from an external I/O expander.
--  **name** (**Required**, string): The name of the rotary encoder sensor.
--  **pin_reset** (*Optional*, `Pin Schema </esphomeyaml/configuration-types.html#pin-schema>`__):
-   An optional pin that resets the step value. This is useful with rotary encoders that have have a
-   third pin. Defaults to no reset pin.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **pin_a** (**Required**, :ref:`Pin Schema <config-pin_schema>`):
+  The first pin for determining the step value. Must not be a pin from an external I/O expander.
+- **pin_b** (**Required**, :ref:`Pin Schema <config-pin_schema>`):
+  The second pin for determining the step value. Must not be a pin from an external I/O expander.
+- **name** (**Required**, string): The name of the rotary encoder sensor.
+- **pin_reset** (*Optional*, :ref:`Pin Schema <config-pin_schema>`):
+  An optional pin that resets the step value. This is useful with rotary encoders that have have a
+  third pin. Defaults to no reset pin.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 Debouncing Output
 ~~~~~~~~~~~~~~~~~
@@ -71,3 +66,11 @@ sensor filters. The following will only send out values if the last input value 
           - or:
             - debounce: 0.1s
             - delta: 10
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`pulse_counter`
+- :doc:`template`
+- :doc:`API Reference </api/sensor/rotary_encoder>`

@@ -1,0 +1,8 @@
+Dallas Hub, components/dallas, ds18b20.jpg
+IR Transmitter Hub, components/ir_transmitter, remote.svg
+PCA9685 Hub, components/pca9685, pca9685.jpg
+ADS1115 Hub, components/ads1115, ads1115.jpg
+Debug Component, components/debug, bug-report.svg
+PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
+ESP32 BLE Hub, components/esp32_ble, bluetooth.svg
+ESP32 Touch Hub, components/esp32_touch, touch.svg

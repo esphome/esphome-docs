@@ -2,11 +2,12 @@ Status Binary Sensor
 ====================
 
 The Status Binary Sensor exposes the node state (if it’s connected to
-MQTT or not) for Home Assistant. It uses the `MQTT birth and last will
-messages </esphomeyaml/components/mqtt.html#last-will-and-birth-messages>`__
+MQTT or not) for Home Assistant. It uses the :ref:`MQTT birth and last will messages <mqtt-last_will_birth>`
 to do this.
 
-|image0|
+.. figure:: images/status-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -18,16 +19,14 @@ to do this.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **name** (**Required**, string): The name of the binary sensor.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from `Binary
-   Sensor </esphomeyaml/components/binary_sensor/index.html#base-binary-sensor-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
-   Inverted is not supported.
+- **name** (**Required**, string): The name of the binary sensor.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`
+  and :ref:`MQTT Component <config-mqtt-component>`. (Inverted mode is not supported)
 
-.. |image0| image:: /esphomeyaml/components/binary_sensor/status.png
-   :class: align-center
-   :width: 80.0%
+See Also
+^^^^^^^^
+
+- :doc:`/esphomeyaml/components/binary_sensor/index`
+- :doc:`/esphomeyaml/components/mqtt`
+- :doc:`API Reference </api/binary_sensor/status>`

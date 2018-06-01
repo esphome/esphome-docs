@@ -26,11 +26,11 @@ Configuration variables:
 -  **level** (*Optional*, string): The global log level. Any log message
    with a lower severity will not be shown. Defaults to DEBUG.
 -  **logs** (*Optional*, mapping): Manually set the log level for a
-   specific component or tag. See `Manual Log Levels for more
-   information <#manual-tag-specific-log-levels>`__.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
+   specific component or tag. See :ref:`Manual Log Levels for more
+   information <logger-manual_tag_specific_levels>`.
+-  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+.. _logger-log_levels:
 
 Log Levels
 ~~~~~~~~~~
@@ -45,6 +45,8 @@ Possible log levels are (sorted by severity):
 -  ``VERBOSE``
 -  ``VERY_VERBOSE``
 
+.. _logger-manual_tag_specific_levels:
+
 Manual Tag-Specific Log Levels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -57,7 +59,7 @@ client spams too much. In the following example, we’d first see that the
 tag of the MQTT client is ``mqtt.client`` (before the first colon) and
 the tag for MQTT components is ``mqtt.component``.
 
-|image0|
+.. figure:: images/logger-manual_log_level.png
 
 Next, we can manually set the log levels in the configuration like this:
 
@@ -75,5 +77,7 @@ purge all ``DEBUG`` log statements from the binary in order to conserve
 space. This however means that you cannot set tag-specific log levels
 that have a lower severity than the global log level.
 
-.. |image0| image:: /esphomeyaml/components/logger-manual-log-level.png
+See Also
+--------
 
+- :doc:`API Reference </api/core/log>`

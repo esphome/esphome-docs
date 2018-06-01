@@ -17,20 +17,15 @@ timeout option which specifies how long to wait for values. During this
 timeout period the whole core will be blocked and therefore shouldn’t be
 set too high.
 
-.. figure:: /esphomeyaml/components/sensor/images/hc-sr04-full.jpg
-   :align: center
-   :target: `www.dx.com`_
-   :width: 50.0%
+.. figure:: images/hc-sr04-full.jpg
+    :align: center
+    :width: 50.0%
 
-   HC-SR04 Ultrasonic Distance Sensor. Image by `www.dx.com`_.
+    HC-SR04 Ultrasonic Distance Sensor.
 
-.. _www.dx.com: http://www.dx.com/p/new-hc-sr04-ultrasonic-sensor-distance-measuring-module-3-3v-5v-compatible-for-arduino-416860
-
-|image0|
-
-.. |image0| image:: /esphomeyaml/components/sensor/images/ultrasonic.png
-   :class: align-center
-   :width: 80.0%
+.. figure:: images/ultrasonic-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -44,23 +39,24 @@ set too high.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **trigger_pin** (**Required**, `Pin
-   Schema </esphomeyaml/configuration-types.html#pin-schema>`__): The output pin to
-   periodically send the trigger pulse to.
--  **echo_pin** (**Required**, `Pin
-   Schema </esphomeyaml/configuration-types.html#pin-schema>`__): The input pin on which to
-   wait for the echo.
--  **name** (**Required**, string): The name of the sensor.
--  **timeout_meter** (*Optional*, float): The number of meters for the
-   timeout. Use either this or ``timeout_time``. Defaults to 2 meters.
--  **timeout_time** (*Optional*, int): The number of microseconds for
-   the timeout. Use either this or ``timeout_meter``. Defaults to
-   11662µs.
--  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
-   sensor. Defaults to ``15s``.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
-   generation.
--  All other options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **trigger_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The output pin to
+  periodically send the trigger pulse to.
+- **echo_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The input pin on which to
+  wait for the echo.
+- **name** (**Required**, string): The name of the sensor.
+- **timeout_meter** (*Optional*, float): The number of meters for the
+  timeout. Use either this or ``timeout_time``. Defaults to 2 meters.
+- **timeout_time** (*Optional*, int): The number of microseconds for
+  the timeout. Use either this or ``timeout_meter``. Defaults to
+  11662µs.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``15s``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`template`
+- :doc:`API Reference </api/sensor/ultrasonic>`

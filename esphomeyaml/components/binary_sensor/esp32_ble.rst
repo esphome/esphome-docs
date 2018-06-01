@@ -6,10 +6,12 @@ bluetooth low energy device.
 
 .. note::
 
-    See the `ESP32 BLE Hub Page </esphomeyaml/components/esp32_ble.html>`__ for
+    See the :doc:`ESP32 BLE Hub Page </esphomeyaml/components/esp32_ble>` for
     current limitations of this platform
 
-|image0|
+.. figure:: images/esp32_ble-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -28,13 +30,10 @@ Configuration variables:
 -  **mac_address** (**Required**, MAC Address): The MAC address to track for this
    binary sensor.
 -  **name** (**Required**, string): The name of the binary sensor.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
+-  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
--  All other options from `Binary
-   Sensor </esphomeyaml/components/binary_sensor/index.html#base-binary-sensor-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+-  All other options from :ref:`Binary Sensor <config-binary_sensor>`
+   and :ref:`MQTT Component <config-mqtt-component>`.
 
 Setting Up Devices
 ~~~~~~~~~~~~~~~~~~
@@ -58,7 +57,10 @@ currently not supported.
 Please note that devices that show a ``RANDOM`` address type in the logs cannot be used for
 tracking, since their MAC-address periodically changes.
 
+See Also
+^^^^^^^^
 
-.. |image0| image:: /esphomeyaml/components/binary_sensor/esp32_ble.png
-    :class: align-center
-    :width: 80.0%
+- :doc:`/esphomeyaml/components/esp32_ble`
+- :doc:`/esphomeyaml/components/binary_sensor/index`
+- :doc:`API Reference </api/misc/esp32_ble_tracker>`
+

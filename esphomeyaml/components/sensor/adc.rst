@@ -6,7 +6,9 @@ ADC in your device to measure a voltage on certain pins. On the ESP8266
 only pin A0 (GPIO17) supports this. On the ESP32 pins GPIO32 through
 GPIO39 can be used.
 
-|image0|
+.. figure:: images/adc-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -20,28 +22,21 @@ GPIO39 can be used.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **pin** (**Required**,
-   `pin </esphomeyaml/configuration-types.html#pin>`__): The pin to
-   measure the voltage on.
--  **name** (**Required**, string): The name of the voltage sensor.
--  **attenuation** (*Optional*): Only on ESP32. Specify the `ADC
-   attenuation <http://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__
-   to use. One of ``0db``, ``2.5db``, ``6db``, ``11db``. Defaults to
-   ``0db``.
--  **update_interval** (*Optional*,
-   `time </esphomeyaml/configuration-types.html#time>`__): The interval
-   to check the sensor. Defaults to ``15s``.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **pin** (**Required**, :ref:`config-pin`): The pin to measure the voltage on.
+- **name** (**Required**, string): The name of the voltage sensor.
+- **attenuation** (*Optional*): Only on ESP32. Specify the ADC
+  attenuation to use. See :ref:`adc-esp32_attenuation`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval
+  to check the sensor. Defaults to ``15s``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
-.. |image0| image:: /esphomeyaml/components/sensor/images/adc.png
-   :class: align-center
-   :width: 80.0%
+.. note::
+
+    On the ESP8266, the voltage range is 0 to 1.0V - so to measure any higher voltage you need to scale the voltage
+    down using, for example, a voltage divider circuit.
+
+.. _adc-esp32_attenuation:
 
 ESP32 Attenuation
 ~~~~~~~~~~~~~~~~~
@@ -49,9 +44,18 @@ ESP32 Attenuation
 On the ESP32, the voltage measured with the ADC caps out at 1.1V by default as the sensing range
 or the attenuation of the ADC is set to ``0db`` by default.
 
-To measure voltages higher than 1.1V, set ``attenuation`` to one of the following values:
+To measure voltages higher than 1.1V, set ``attenuation`` to one of the `following values
+<http://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__:
 
--  ``0db`` for a full-scale voltage of 1.1V (default)
--  ``2.5db`` for a full-scale voltage of 1.5V
--  ``6db`` for a full-scale voltage of 2.2V
--  ``11db`` for a full-scale voltage of 3.9V
+- ``0db`` for a full-scale voltage of 1.1V (default)
+- ``2.5db`` for a full-scale voltage of 1.5V
+- ``6db`` for a full-scale voltage of 2.2V
+- ``11db`` for a full-scale voltage of 3.9V
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`ads1115`
+- :doc:`max6675`
+- :doc:`API Reference </api/sensor/adc-sensor>`

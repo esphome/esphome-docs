@@ -41,10 +41,10 @@ API Reference
 .. doxygenenum:: sensor::BME680Oversampling
 .. doxygenenum:: sensor::BME680IIRFilter
 
-.. doxygentypdef:: sensor::BME680TemperatureSensor
-.. doxygentypdef:: sensor::BME680PressureSensor
-.. doxygentypdef:: sensor::BME680HumiditySensor
-.. doxygentypdef:: sensor::BME2680GasResistanceSensor
+.. doxygentypedef:: sensor::BME680TemperatureSensor
+.. doxygentypedef:: sensor::BME680PressureSensor
+.. doxygentypedef:: sensor::BME680HumiditySensor
+.. doxygentypedef:: sensor::BME2680GasResistanceSensor
 
 .. doxygenstruct:: sensor::BME680CalibrationData
     :members:

@@ -1,11 +1,12 @@
 Speed Fan
 =========
 
-The ``speed`` fan platform lets you represent any float `ouput
-component </esphomeyaml/components/output/index.html>`__ as a fan that
+The ``speed`` fan platform lets you represent any float :ref:`output` as a fan that
 supports speed settings.
 
-|image0|
+.. figure:: images/fan-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -18,30 +19,30 @@ supports speed settings.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **output** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   `float output component </esphomeyaml/components/output/index.html>`_ to use for this fan.
--  **name** (**Required**, string): The name for this fan.
--  **oscillation_output** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): The output to use
-   for the oscillation state of this fan. Default is empty.
--  **speed** (*Optional*): Set the float values for each speed setting:
+- **output** (**Required**, :ref:`config-id`): The id of the
+  :ref:`float output <output>` to use for this fan.
+- **name** (**Required**, string): The name for this fan.
+- **oscillation_output** (*Optional*, :ref:`config-id`): The id of the
+  :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
+- **speed** (*Optional*): Set the float values for each speed setting:
 
-   -  **low** (*Required*, float): Set the value for the low speed
-      setting. Must be in range 0 to 1. Defaults to 0.33.
-   -  **medium** (*Required*, float): Set the value for the medium speed
-      setting. Must be in range 0 to 1. Defaults to 0.66.
-   -  **high** (*Required*, float): Set the value for the high speed
-      setting. Must be in range 0 to 1. Defaults to 1.
+  - **low** (*Required*, float): Set the value for the low speed
+    setting. Must be in range 0 to 1. Defaults to 0.33.
+  - **medium** (*Required*, float): Set the value for the medium speed
+    setting. Must be in range 0 to 1. Defaults to 0.66.
+  - **high** (*Required*, float): Set the value for the high speed
+    setting. Must be in range 0 to 1. Defaults to 1.
 
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__
-   and `Fan
-   Component </esphomeyaml/components/fan/index.html#base-fan-configuration>`__.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`
+  and :ref:`Fan Component <config-fan>`.
 
-.. |image0| image:: /esphomeyaml/components/fan/fan.png
-   :class: align-center
-   :width: 80.0%
+See Also
+^^^^^^^^
+
+- :doc:`/esphomeyaml/components/output/index`
+- :doc:`/esphomeyaml/components/fan/index`
+- :doc:`/esphomeyaml/components/output/ledc`
+- :doc:`/esphomeyaml/components/output/esp8266_pwm`
+- :doc:`/esphomeyaml/components/output/pca9685`
+- :doc:`API Reference </api/fan/index>`

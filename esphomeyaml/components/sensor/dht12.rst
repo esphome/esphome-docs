@@ -1,16 +1,11 @@
 DHT12 Temperature+Humidity Sensor
 =================================
 
-.. warning::
-
-    This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
-The DHT12 Temperature+Humidity sensor allows you to use your DHT12
+The ``dht12`` Temperature+Humidity sensor allows you to use your DHT12
 (`datasheet <http://www.robototehnika.ru/file/DHT12.pdf>`__,
 `electrodragon`_) i2c-based sensor with esphomelib.
 
-.. figure:: /esphomeyaml/components/sensor/images/dht12-full.jpg
+.. figure:: images/dht12-full.jpg
     :align: center
     :target: `electrodragon`_
     :width: 50.0%
@@ -19,10 +14,8 @@ The DHT12 Temperature+Humidity sensor allows you to use your DHT12
 
 .. _electrodragon: http://www.electrodragon.com/product/dht12/
 
-|image0|
-
-.. |image0| image:: /esphomeyaml/components/sensor/images/temperature-humidity.png
-    :class: align-center
+.. figure:: images/temperature-humidity.png
+    :align: center
     :width: 80.0%
 
 .. code:: yaml
@@ -39,25 +32,26 @@ The DHT12 Temperature+Humidity sensor allows you to use your DHT12
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **temperature** (**Required**): The information for the temperature
-   sensor
+- **temperature** (**Required**): The information for the temperature sensor.
 
-   -  **name** (**Required**, string): The name for the temperature
-      sensor.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **humidity** (**Required**): The information for the humidity sensor
+- **humidity** (**Required**): The information for the humidity sensor
 
-   -  **name** (**Required**, string): The name for the humidity sensor.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the humidity sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
-   sensor. Defaults to ``15s``.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
-   generation.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`dht`
+- :doc:`hdc1080`
+- :doc:`htu21d`
+- :doc:`sht3xd`
+- :doc:`API Reference </api/sensor/dht12>`

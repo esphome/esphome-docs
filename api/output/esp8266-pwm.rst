@@ -4,6 +4,8 @@ ESP8266 Software PWM
 Software PWM for the ESP8266. Warning: This is a *software* PWM and therefore can have noticeable flickering.
 Additionally, this software PWM can't output values higher than 80%. That's a known limitation.
 
+.. _esp8266_pwm-example_usage:
+
 Example Usage
 -------------
 

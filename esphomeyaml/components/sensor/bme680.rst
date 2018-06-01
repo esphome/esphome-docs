@@ -8,16 +8,15 @@ BME680 Temperature+Pressure+Humidity+Gas Sensor
 
 The ``bme680`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
-`Adafruit`_) temperature, pressure and humidity sensors with esphomelib. The `I²C
-bus </esphomeyaml/components/i2c.html>`__ is required to be set up in
+`Adafruit`_) temperature, pressure and humidity sensors with esphomelib. The :ref:`I²C <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
-.. figure:: /esphomeyaml/components/sensor/images/bme680-full.jpg
-   :align: center
-   :target: `Adafruit`_
-   :width: 50.0%
+.. figure:: images/bme680-full.jpg
+    :align: center
+    :target: `Adafruit`_
+    :width: 50.0%
 
-   BME680 Temperature, Pressure & Humidity Sensor. Image by `Adafruit`_.
+    BME680 Temperature, Pressure & Humidity Sensor. Image by `Adafruit`_.
 
 .. _Adafruit: https://www.adafruit.com/product/3660
 
@@ -41,54 +40,44 @@ your configuration for this sensor to work.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **temperature** (**Required**): The information for the temperature.
-   sensor
+- **temperature** (**Required**): The information for the temperature sensor.
 
-   -  **name** (**Required**, string): The name for the temperature
-      sensor.
-   -  **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
-      See `Oversampling Options <#oversampling-options>`__.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
+    See :ref:`bme680-oversampling`.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **pressure** (**Required**): The information for the pressure sensor.
+- **pressure** (**Required**): The information for the pressure sensor.
 
-   -  **name** (**Required**, string): The name for the pressure sensor.
-   -  **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
-      See `Oversampling Options <#oversampling-options>`__.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the pressure sensor.
+  - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
+    See :ref:`bme680-oversampling`.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **humidity** (**Required**): The information for the pressure sensor.
+- **humidity** (**Required**): The information for the pressure sensor.
 
-   -  **name** (**Required**, string): The name for the humidity sensor.
-   -  **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
-      See `Oversampling Options <#oversampling-options>`__.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the humidity sensor.
+  - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
+    See :ref:`bme680-oversampling`.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **gas_resistance** (**Required**): The information for the gas sensor.
+- **gas_resistance** (**Required**): The information for the gas sensor.
 
-   -  **name** (**Required**, string): The name for the gas resistance sensor.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the gas resistance sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **address** (*Optional*, int): Manually specify the i^2c address of
-   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
--  **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
-   ``OFF``, ``2x``, ``4x``, ``16x``. Defaults to ``OFF``.
--  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
-   sensor. Defaults to ``15s``.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
-   generation.
+- **address** (*Optional*, int): Manually specify the i^2c address of
+  the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
+- **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
+  ``OFF``, ``2x``, ``4x``, ``16x``. Defaults to ``OFF``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``15s``.
+
+.. _bme680-oversampling:
 
 Oversampling Options
 ~~~~~~~~~~~~~~~~~~~~
@@ -102,3 +91,11 @@ configure this amount. Possible oversampling values:
 -  ``4x``
 -  ``8x``
 -  ``16x`` (default)
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`bme280`
+- :doc:`bmp085`
+- :doc:`API Reference </api/sensor/bme680>`

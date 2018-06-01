@@ -6,32 +6,7 @@ esphomelib. These are grouped into two categories: ``binary`` outputs
 (that can only be ON/OFF) and ``float`` outputs (like PWM, can output
 any rational value between 0 and 1).
 
-========================  ========================  ========================
-|ESP8266 Software PWM|_   |GPIO Output|_            |ESP32 LEDC|_
-------------------------  ------------------------  ------------------------
-`ESP8266 Software PWM`_   `GPIO Output`_            `ESP32 LEDC`_
-------------------------  ------------------------  ------------------------
-|PCA9685|_
-------------------------  ------------------------  ------------------------
-`PCA9685`_
-========================  ========================  ========================
-
-.. |ESP8266 Software PWM| image:: /esphomeyaml/images/pwm.png
-    :class: component-image
-.. _ESP8266 Software PWM: /esphomeyaml/components/output/esp8266_pwm.html
-
-.. |GPIO Output| image:: /esphomeyaml/images/pin.svg
-    :class: component-image
-.. _GPIO Output: /esphomeyaml/components/output/gpio.html
-
-.. |ESP32 LEDC| image:: /esphomeyaml/images/pwm.png
-    :class: component-image
-.. _ESP32 LEDC: /esphomeyaml/components/output/ledc.html
-
-.. |PCA9685| image:: /esphomeyaml/images/pca9685.jpg
-    :class: component-image
-.. _PCA9685: /esphomeyaml/components/output/pca9685.html
-
+.. _config-output:
 
 Base Output Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,13 +25,33 @@ Each output platform extends this configuration schema.
 
 Configuration variables:
 
--  **id** (**Required**, `id </esphomeyaml/configuration-types.html#id>`__): The id to use for this output component.
--  **power_supply** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): The `power
-   supply </esphomeyaml/components/power_supply.html>`__ to connect to
-   this output. When the output is enabled, the power supply will
-   automatically be switched on too.
--  **inverted** (*Optional*, boolean): If the output should be treated
-   as inverted. Defaults to ``False``.
--  **max_power** (*Optional*, float): Only for float outputs. Sets the
-   maximum output value of this output platform. Each value will be
-   multiplied by this. Must be in range from 0 to 1. Defaults to 1.
+- **id** (**Required**, :ref:`config-id`): The id to use for this output component.
+- **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power
+  supply </esphomeyaml/components/power_supply>` to connect to
+  this output. When the output is enabled, the power supply will
+  automatically be switched on too.
+- **inverted** (*Optional*, boolean): If the output should be treated
+  as inverted. Defaults to ``False``.
+- **max_power** (*Optional*, float): Only for float outputs. Sets the
+  maximum output value of this output platform. Each value will be
+  multiplied by this. Must be in range from 0 to 1. Defaults to 1.
+
+Full Output Index
+^^^^^^^^^^^^^^^^^
+
+- :doc:`API Reference </api/output/index>`
+- :doc:`/esphomeyaml/components/switch/output`
+- :doc:`/esphomeyaml/components/power_supply`
+- :doc:`/esphomeyaml/components/light/binary`
+- :doc:`/esphomeyaml/components/light/monochromatic`
+- :doc:`/esphomeyaml/components/light/rgb`
+- :doc:`/esphomeyaml/components/fan/binary`
+- :doc:`/esphomeyaml/components/fan/speed`
+
+.. toctree::
+    :maxdepth: 1
+
+    esp8266_pwm.rst
+    gpio.rst
+    ledc.rst
+    pca9685.rst

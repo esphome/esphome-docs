@@ -1,11 +1,18 @@
 RGB Light
 =========
 
-The ``rgb`` light platform creates an RGB light from 3 `output
-components </esphomeyaml/components/output/index.html>`__ (one for each
-color channel).
+The ``rgb`` light platform creates an RGB light from 3 :ref:`float output components <output>`
+(one for each color channel).
 
-|image0|
+.. figure:: images/rgb-strip.jpg
+    :align: center
+    :width: 75.0%
+
+    Example of an RGB LED strip that can be used with this component.
+
+.. figure:: images/rgb-ui.png
+    :align: center
+    :width: 40.0%
 
 .. code:: yaml
 
@@ -20,32 +27,36 @@ color channel).
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **name** (**Required**, string): The name of the light.
--  **red** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   float `output component </esphomeyaml/components/output/index.html>`__
-   to use for the red channel.
--  **green** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   float `output component </esphomeyaml/components/output/index.html>`__
-   to use for the green channel.
--  **blue** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   float `output component </esphomeyaml/components/output/index.html>`__
-   to use for the blue channel.
--  **gamma_correct** (*Optional*, float): The `gamma correction
-   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the
-   light. Defaults to ``2.8``.
--  **default_transition_length** (*Optional*,
-   `time </esphomeyaml/configuration-types.html#time>`__): The length of
-   the transition if no transition parameter is provided by Home
-   Assistant. Defaults to ``1s``.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **name** (**Required**, string): The name of the light.
+- **red** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the red channel.
+- **green** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the green channel.
+- **blue** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the blue channel.
+- **gamma_correct** (*Optional*, float): The `gamma correction
+  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the light. Defaults to ``2.8``.
+- **default_transition_length** (*Optional*, :ref:`config-time`): The length of
+  the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
-.. |image0| image:: /esphomeyaml/components/light/rgb-light.png
-   :class: align-center
-   :width: 40.0%
+.. note::
+
+    The RGB light platform only works with ``float`` :ref:`outputs <output>` that
+    can output any light intensity percentage like the :doc:`ESP32 LEDC </esphomeyaml/components/output/ledc>` or
+    :doc:`ESP8266 PWM </esphomeyaml/components/output/esp8266_pwm>` components and does **not** work with output
+    platforms like the :doc:`/esphomeyaml/components/output/gpio`.
+
+See Also
+^^^^^^^^
+
+.. figure:: images/rgb-detail.jpg
+    :align: center
+    :width: 75.0%
+
+- :doc:`/esphomeyaml/components/output/index`
+- :doc:`/esphomeyaml/components/light/index`
+- :doc:`/esphomeyaml/components/light/rgbw`
+- :doc:`/esphomeyaml/components/power_supply`
+- :doc:`/esphomeyaml/components/output/ledc`
+- :doc:`/esphomeyaml/components/output/esp8266_pwm`
+- :doc:`/esphomeyaml/components/output/pca9685`
+- :doc:`API Reference </api/light/index>`

@@ -1,0 +1,48 @@
+Generic ESP8266
+===============
+
+All ESP8266-based devices are supported by esphomeyaml. Simply select ``ESP8266`` when
+the esphomeyaml wizard asks you for your platform and choose a board type
+from `this link <http://docs.platformio.org/en/latest/platforms/espressif8266.html>`__ when the wizard
+asks you for the board type.
+
+
+.. code:: yaml
+
+    # Example configuration entry
+    esphomeyaml:
+      name: livingroom
+      platform: ESP8266
+      board: <BOARD_TYPE>
+
+Many boards have a pin numbering for the exposed pins that is different from the internally used
+ones. esphomeyaml tries to map the silk-screen pin numbers into the internal pin numbers with a few
+boards, but for generic ESP8266 boards it is often required to just use the internal pin numbers.
+To do this, just prefix all pins with ``GPIO``, for example ``GPIO0`` for the pin with the internal pin
+number 0.
+
+Some notes on the pins:
+
+- ``GPIO6`` - ``GPIO11``, ``GPIO0``, ``GPIO2`` and ``GPIO15`` are often already used by the internal
+  flash interface and boot mode detection. So it's best to avoid using these pins.
+- ``GPIO17`` additionally has an ADC connected to it. See the :doc:`/esphomeyaml/components/sensor/adc`
+  to read out voltages (in the range from 0 to 1.0V) on this pin.
+
+
+.. code:: yaml
+
+    # Example configuration entry
+    esphomeyaml:
+      name: livingroom
+      platform: ESP8266
+      board: nodemcuv2
+
+    binary_sensor:
+      - platform: gpio
+        name: "Pin GPIO17"
+        pin: GPIO17
+
+See Also
+^^^^^^^^
+
+- :doc:`nodemcu_esp8266`

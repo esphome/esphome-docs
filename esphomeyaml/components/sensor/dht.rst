@@ -12,7 +12,7 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 `sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__)
 sensors with esphomelib.
 
-.. figure:: /esphomeyaml/components/sensor/images/dht22-full.jpg
+.. figure:: images/dht22-full.jpg
     :align: center
     :target: `Adafruit`_
     :width: 50.0%
@@ -21,10 +21,8 @@ sensors with esphomelib.
 
 .. _Adafruit: https://www.adafruit.com/product/385
 
-|image0|
-
-.. |image0| image:: /esphomeyaml/components/sensor/images/temperature-humidity.png
-    :class: align-center
+.. figure:: images/temperature-humidity.png
+    :align: center
     :width: 80.0%
 
 .. code:: yaml
@@ -42,35 +40,37 @@ sensors with esphomelib.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **pin** (**Required**, `pin </esphomeyaml/configuration-types.html#pin>`__): The pin where the DHT bus is connected.
--  **temperature** (**Required**): The information for the temperature
-   sensor
+- **pin** (**Required**, :ref:`config-pin`): The pin where the DHT bus is connected.
+- **temperature** (**Required**): The information for the temperature sensor.
 
-   -  **name** (**Required**, string): The name for the temperature
-      sensor.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **humidity** (**Required**): The information for the humidity sensor
+- **humidity** (**Required**): The information for the humidity sensor
 
-   -  **name** (**Required**, string): The name for the humidity sensor.
-   -  All other options from
-      `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-      and `MQTT
-      Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+  - **name** (**Required**, string): The name for the humidity sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
--  **model** (*Optional*, int): Manually specify the DHT model, can be
-   one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2303``, ``RHT03``
-   and helps with some connection issues. Defaults to ``AUTO_DETECT``.
--  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
-   sensor. Defaults to ``15s``.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
-   generation.
+- **model** (*Optional*, int): Manually specify the DHT model, can be
+  one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2303``, ``RHT03``
+  and helps with some connection issues. Defaults to ``AUTO_DETECT``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``15s``.
 
 .. note::
 
    If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
    DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
    on the DATA pin or too long cables.
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`dht12`
+- :doc:`hdc1080`
+- :doc:`htu21d`
+- :doc:`sht3xd`
+- :doc:`API Reference </api/sensor/dht>`

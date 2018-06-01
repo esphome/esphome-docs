@@ -1,11 +1,12 @@
 Binary Light
 ============
 
-The ``binary`` light platform creates a simple light from an `output
-component </esphomeyaml/components/output/index.html>`__ and can only be
-turned ON or OFF.
+The ``binary`` light platform creates a simple ON/OFF-only light from a
+:ref:`binary output component <output>`.
 
-|image0|
+.. figure:: images/binary-ui.png
+    :align: center
+    :width: 40.0%
 
 .. code:: yaml
 
@@ -18,18 +19,17 @@ turned ON or OFF.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **name** (**Required**, string): The name of the light.
--  **output** (**Required**,
-   `id </esphomeyaml/configuration-types.html#id>`__): The id of the
-   binary `output
-   component </esphomeyaml/components/output/index.html>`__ to use for
-   this light.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **name** (**Required**, string): The name of the light.
+- **output** (**Required**, :ref:`config-id`): The id of the
+  binary :ref:`output` to use for this light.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
-.. |image0| image:: /esphomeyaml/components/light/binary-light.png
-   :class: align-center
-   :width: 80.0%
+See Also
+^^^^^^^^
+
+- :doc:`/esphomeyaml/components/output/index`
+- :doc:`/esphomeyaml/components/light/index`
+- :doc:`/esphomeyaml/components/output/gpio`
+- :doc:`/esphomeyaml/components/power_supply`
+- :doc:`API Reference </api/light/index>`

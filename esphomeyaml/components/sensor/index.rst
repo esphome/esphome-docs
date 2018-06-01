@@ -5,66 +5,7 @@ esphomelib has support for many different sensors. Each of them is a
 platform of the ``sensor`` domain and each sensor has several base
 configuration options.
 
-Currently supported sensor platforms:
-
-======================  ======================  ======================
-|ADC|_                  |ADS1115|_              |BMP085|_
-----------------------  ----------------------  ----------------------
-`ADC`_                  `ADS1115`_              `BMP085`_
-----------------------  ----------------------  ----------------------
-|Dallas|_               |DHT|_                  |HDC1080|_
-----------------------  ----------------------  ----------------------
-`Dallas`_               `DHT`_                  `HDC1080`_
-----------------------  ----------------------  ----------------------
-|HTU21D|_               |MPU6050|_              |Pulse Counter|_
-----------------------  ----------------------  ----------------------
-`HTU21D`_               `MPU6050`_              `Pulse Counter`_
-----------------------  ----------------------  ----------------------
-|Ultrasonic Sensor|_
-----------------------  ----------------------  ----------------------
-`Ultrasonic Sensor`_
-======================  ======================  ======================
-
-.. |ADC| image:: /esphomeyaml/images/flash.svg
-    :class: component-image
-.. _ADC: /esphomeyaml/components/sensor/adc.html
-
-.. |ADS1115| image:: /esphomeyaml/images/ads1115.jpg
-    :class: component-image
-.. _ADS1115: /esphomeyaml/components/sensor/ads1115.html
-
-.. |BMP085| image:: /esphomeyaml/images/bmp180.jpg
-    :class: component-image
-.. _BMP085: /esphomeyaml/components/sensor/bmp085.html
-
-.. |Dallas| image:: /esphomeyaml/images/ds18b20.jpg
-    :class: component-image
-.. _Dallas: /esphomeyaml/components/sensor/dallas.html
-
-.. |DHT| image:: /esphomeyaml/images/dht22.jpg
-    :class: component-image
-.. _DHT: /esphomeyaml/components/sensor/dht.html
-
-.. |HDC1080| image:: /esphomeyaml/images/HDC1080.jpg
-    :class: component-image
-.. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
-
-.. |HTU21D| image:: /esphomeyaml/images/htu21d.jpg
-    :class: component-image
-.. _HTU21D: /esphomeyaml/components/sensor/htu21d.html
-
-.. |MPU6050| image:: /esphomeyaml/images/mpu6050.jpg
-    :class: component-image
-.. _MPU6050: /esphomeyaml/components/sensor/mpu6050.html
-
-.. |Pulse Counter| image:: /esphomeyaml/images/pulse.svg
-    :class: component-image
-.. _Pulse Counter: /esphomeyaml/components/sensor/pulse_counter.html
-
-.. |Ultrasonic Sensor| image:: /esphomeyaml/images/hc-sr04.png
-    :class: component-image
-.. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
-
+.. _config-sensor:
 
 Base Sensor Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,23 +32,27 @@ override them if you want to.
 
 Configuration variables:
 
--  **name** (**Required**, string): The name for the sensor.
--  **unit_of_measurement** (*Optional*, string): Manually set the unit
-   of measurement the sensor should advertise its values with. This does
-   not actually do any maths (conversion between units).
--  **icon** (*Optional*, icon): Manually set the icon to use for the
-   sensor in the frontend.
--  **accuracy_decimals** (*Optional*, int): Manually set the accuracy of
-   decimals to use when reporting values.
--  **expire_after** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): Manually set the time in which
-   the sensor values should be marked as “expired”/“unknown”. Not
-   providing any value means no expiry.
--  **filters** (*Optional*): Specify filters to use for some basic
-   transforming of values. Defaults to a basic sliding window moving
-   average over the last few values. See `Sensor
-   Filters <#sensor-filters>`__ for more information.
--  All other options from `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **name** (**Required**, string): The name for the sensor.
+- **unit_of_measurement** (*Optional*, string): Manually set the unit
+  of measurement the sensor should advertise its values with. This does
+  not actually do any maths (conversion between units).
+- **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
+- **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
+- **expire_after** (*Optional*, :ref:`config-time`): Manually set the time in which
+  the sensor values should be marked as “expired”/“unknown”. Not providing any value means no expiry.
+- **filters** (*Optional*): Specify filters to use for some basic
+  transforming of values. Defaults to a basic sliding window moving
+  average over the last few values. See :ref:`Sensor Filters <sensor-filters>` for more information.
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a new value is published. See :ref:`sensor-on_value`.
+- **on_value_range** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a published value transition from outside to a range to inside. See :ref:`sensor-on_value_range`.
+- **on_raw_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a raw value is received that hasn't passed through any filters. See :ref:`sensor-on_raw_value`.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+
+.. _sensor-filters:
 
 Sensor Filters
 ~~~~~~~~~~~~~~
@@ -216,3 +161,113 @@ fahrenheit.
     filters:
       - lambda: x * (9.0/5.0) + 32.0
     unit_of_measurement: "°F"
+
+Sensor Automation
+^^^^^^^^^^^^^^^^^
+
+You can access the most recent state of the sensor in :ref:`lambdas <config-lambda>` using
+``id(sensor_id).value`` and the most recent raw state using ``id(sensor_id).raw_value``.
+
+.. _sensor-on_value:
+
+``on_value``
+""""""""""""
+
+This automation will be triggered when a new value that has passed through all filters
+is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
+with ``x``.
+
+.. code:: yaml
+
+    sensor:
+      - platform: dallas
+        # ...
+        on_value:
+          then:
+            - light.turn_on:
+                id: light_1
+                red: !lambda "return x/255;"
+
+Configuration variables: See :ref:`Automation <automation>`.
+
+.. _sensor-on_value_range:
+
+``on_value_range``
+""""""""""""""""""
+
+With this automation you can observe if a sensor value passes from outside
+a defined range of values to inside a range. For example you can have an
+automation that triggers when a humidity crosses a threshold, and then turns on a dehumidifier.
+This trigger will only trigger when the new value is inside the range and the previous value
+was outside the range. It will also trigger on startup if the first value received is inside the range.
+
+Define the range with ``above`` and ``below``. If only one of them is defined, the interval is half-open.
+So for example ``above: 5`` with no below would mean the range from 5 to positive infinity.
+
+.. code:: yaml
+
+    sensor:
+      - platform: dallas
+        # ...
+        on_value_range:
+          above: 5
+          below: 10
+          then:
+            - switch.turn_on:
+                id: relay_1
+
+Configuration variables:
+
+- **above** (*Optional*, float): The minimum for the trigger.
+- **below** (*Optional*, float): The maximum for the trigger.
+- See :ref:`Automation <automation>`.
+
+.. _sensor-on_raw_value:
+
+``on_raw_value``
+""""""""""""""""
+
+This automation will be triggered when a new value that has passed through all filters
+is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
+with ``x``.
+
+.. code:: yaml
+
+    sensor:
+      - platform: dallas
+        # ...
+        on_value:
+          then:
+            - light.turn_on:
+                id: light_1
+                red: !lambda "return x/255;"
+
+Configuration variables: See :ref:`Automation <automation>`.
+
+See Also
+^^^^^^^^
+
+- :doc:`API Reference </api/sensor/index>`
+
+.. toctree::
+    :maxdepth: 1
+
+    dallas.rst
+    adc.rst
+    ads1115.rst
+    bmp085.rst
+    dht.rst
+    hdc1080.rst
+    htu21d.rst
+    pulse_counter.rst
+    ultrasonic.rst
+    mpu6050.rst
+    bh1750.rst
+    bme280.rst
+    bme680.rst
+    tsl2561.rst
+    sht3xd.rst
+    dht12.rst
+    rotary_encoder.rst
+    template.rst
+    max6675.rst

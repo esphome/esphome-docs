@@ -33,6 +33,9 @@ Configuration variables:
 -  **password** (*Optional*, string): The password to use for updates.
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
+-  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+See Also
+--------
+
+- :doc:`API Reference </api/core/ota>`

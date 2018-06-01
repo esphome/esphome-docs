@@ -4,7 +4,7 @@ MPU6050 Accelerometer/Gyroscope Sensor
 The MPU6050 Accelerometer/Gyroscope sensor allows you to use your MPU6050
 (`datasheet <https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf>`__,
 `Sparkfun`_) sensors with
-esphomelib. The `I²C bus </esphomeyaml/components/i2c.html>`__ is
+esphomelib. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 This component only does some basic filtering and no calibration. Due to the complexity of
@@ -13,20 +13,17 @@ create a custom component by copying and modifying the existing code if you want
 new feature. Supporting all possible use-cases would be quite hard.
 
 
-.. figure:: /esphomeyaml/components/sensor/images/mpu6050-full.jpg
-   :align: center
-   :target: `Sparkfun`_
-   :width: 50.0%
+.. figure:: images/mpu6050-full.jpg
+    :align: center
+    :width: 50.0%
 
-   MPU6050 Accelerometer/Gyroscope Sensor. Image by `Sparkfun`_.
+    MPU6050 Accelerometer/Gyroscope Sensor.
 
 .. _Sparkfun: https://www.sparkfun.com/products/11028
 
-|image0|
-
-.. |image0| image:: /esphomeyaml/components/sensor/images/mpu6050-ui.png
-   :class: align-center
-   :width: 80.0%
+.. figure:: images/mpu6050-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -52,30 +49,28 @@ new feature. Supporting all possible use-cases would be quite hard.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **address** (*Optional*, int): Manually specify the i^2c address of
-   the sensor. Defaults to ``0x68``.
--  **accel_x** (*Optional*): Use the X-Axis of the Accelerometer. All options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
--  **accel_y** (*Optional*): Use the Y-Axis of the Accelerometer. All options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
--  **accel_z** (*Optional*): Use the Z-Axis of the Accelerometer. All options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
--  **gyro_x** (*Optional*): Use the X-Axis of the Gyroscope. All options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
--  **gyro_y** (*Optional*): Use the Y-Axis of the Gyroscope. All options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
--  **gyro_z** (*Optional*): Use the Z-Axis of the Gyroscope. All options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
--  **temperature** (*Optional*): Use the internal temperature of the sensor. All options from
-   `Sensor </esphomeyaml/components/sensor/index.html#base-sensor-configuration>`__
-   and `MQTT Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
--  **update_interval** (*Optional*, `time </esphomeyaml/configuration-types.html#time>`__): The interval to check the
-   sensor. Defaults to ``15s``.
--  **id** (*Optional*, `id </esphomeyaml/configuration-types.html#id>`__): Manually specify the ID used for code
-   generation.
+- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x68``.
+- **accel_x** (*Optional*): Use the X-Axis of the Accelerometer. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **accel_y** (*Optional*): Use the Y-Axis of the Accelerometer. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **accel_z** (*Optional*): Use the Z-Axis of the Accelerometer. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **gyro_x** (*Optional*): Use the X-Axis of the Gyroscope. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **gyro_y** (*Optional*): Use the Y-Axis of the Gyroscope. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **gyro_z** (*Optional*): Use the Z-Axis of the Gyroscope. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **temperature** (*Optional*): Use the internal temperature of the sensor. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`template`
+- :doc:`ultrasonic`
+- :doc:`API Reference </api/sensor/mpu6050>`

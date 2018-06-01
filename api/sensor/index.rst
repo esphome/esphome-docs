@@ -22,11 +22,13 @@ See :cpp:func:`Application::register_sensor`.
     hdc1080.rst
     mpu6050.rst
     tsl2561.rst
-    bht1750.rst
     bme280.rst
     bme680.rst
     sht3xd.rst
     bh1750.rst
+    max6675.rst
+    rotary_encoder.rst
+    template.rst
 
 
 API Reference

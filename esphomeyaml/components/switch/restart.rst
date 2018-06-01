@@ -4,7 +4,9 @@ Restart Switch
 The ``restart`` switch platform allows you to restart your node remotely
 through Home Assistant.
 
-|image0|
+.. figure:: images/restart-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
@@ -16,15 +18,13 @@ through Home Assistant.
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **name** (**Required**, string): The name for the switch.
--  **id** (*Optional*,
-   `id </esphomeyaml/configuration-types.html#id>`__): Manually specify
-   the ID used for code generation.
--  All other options from
-   `Switch </esphomeyaml/components/switch/index.html#base-switch-configuration>`__
-   and `MQTT
-   Component </esphomeyaml/components/mqtt.html#mqtt-component-base-configuration>`__.
+- **name** (**Required**, string): The name for the switch.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
 
-.. |image0| image:: /esphomeyaml/components/switch/restart.png
-   :class: align-center
-   :width: 80.0%
+See Also
+^^^^^^^^
+
+- :doc:`shutdown`
+- :doc:`template`
+- :doc:`API Reference </api/switch/restart>`
