@@ -288,3 +288,4 @@ See Also
     rotary_encoder.rst
     template.rst
     max6675.rst
+    esp32_hall.rst

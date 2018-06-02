@@ -8,6 +8,7 @@ BMP085, components/sensor/bmp085, bmp180.jpg
 Dallas, components/sensor/dallas, ds18b20.jpg
 DHT, components/sensor/dht, dht22.jpg
 DHT12, components/sensor/dht12, dht12.jpg
+ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
 HDC1080, components/sensor/hdc1080, HDC1080.jpg
 HTU21D, components/sensor/htu21d, htu21d.jpg
 MAX6675, components/sensor/max6675, max6675.jpg
