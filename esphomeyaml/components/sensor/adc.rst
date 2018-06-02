@@ -23,6 +23,7 @@ Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to measure the voltage on.
+  Or on the ESP8266 alternatively also ``VCC``, see :ref:`adc-esp8266_vcc`.
 - **name** (**Required**, string): The name of the voltage sensor.
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
   attenuation to use. See :ref:`adc-esp32_attenuation`.
@@ -51,6 +52,37 @@ To measure voltages higher than 1.1V, set ``attenuation`` to one of the `followi
 - ``2.5db`` for a full-scale voltage of 1.5V
 - ``6db`` for a full-scale voltage of 2.2V
 - ``11db`` for a full-scale voltage of 3.9V
+
+.. _adc-esp8266_vcc:
+
+ESP8266 Measuring VCC
+~~~~~~~~~~~~~~~~~~~~~
+
+On the ESP8266 you can even measure the voltage the chip is getting. This can be useful in situations
+where you want to shut down the chip if the voltage is low when using a battery.
+
+To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is connected to the ``A0`` pin.
+
+.. code:: yaml
+
+    sensor:
+      - platform: adc
+        pin: VCC
+        name: "VCC Voltage"
+
+Next, you need to add a line at the top of your C++ project source code. Unfortunately, esphomelib can't do this
+automatically for you because of how the compiler is linking the esphomelib library. Open up the
+``<NODE_NAME>/src/main.cpp`` file and insert the ``ADC_MODE`` line like this:
+
+.. code:: cpp
+
+    using namespace esphomelib;
+
+    // Enable measuring VCC
+    ADC_MODE(ADC_VCC);
+
+    void setup() {
+      // ...
 
 See Also
 ^^^^^^^^
