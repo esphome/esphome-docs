@@ -1,7 +1,7 @@
 Generic ESP32
 =============
 
-All ESP8266-based devices are supported by esphomeyaml. Simply select ``ESP32`` when
+All ESP32-based devices are supported by esphomeyaml. Simply select ``ESP32`` when
 the esphomeyaml wizard asks you for your platform and choose a board type
 from `this link <http://docs.platformio.org/en/latest/platforms/espressif32.html>`__ when the wizard
 asks you for the board type.
