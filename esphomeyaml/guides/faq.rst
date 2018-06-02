@@ -1,6 +1,40 @@
 Frequently Asked Questions
 ==========================
 
+Tips for using esphomeyaml
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. esphomeyaml supports (most of) Home Assistant's YAML configuration directives like
+   ``!include``, ``!secret``. So you can store all your secret WiFi passwords and so on
+   in a file called ``secrets.yaml`` within the directory where the configuration file is.
+
+2. If you want to see how esphomeyaml interprets your configuration, run
+
+   .. code:: bash
+
+       esphomeyaml livingroom.yaml config
+
+3. To view the logs from your node without uploading, run
+
+   .. code:: bash
+
+       esphomeyaml livingroom.yaml logs
+
+4. If you have changed the name of the node and want to update over-the-air, just specify
+   ``--upload-port`` when running esphomeyaml. For example:
+
+   .. code:: bash
+
+       esphomeyaml livingroom.yaml run --upload-port 192.168.178.52
+
+
+
+
+.. |secret| replace:: ``!secret``
+.. _secret: https://www.home-assistant.io/docs/configuration/secrets/
+.. |include| replace:: ``!include``
+.. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
+
 What's the difference between esphomelib and esphomeyaml?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

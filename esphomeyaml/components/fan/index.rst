@@ -74,11 +74,11 @@ Turns the fan with the given ID off when executed.
     on_...:
       then:
         - fan.turn_on:
-            id: cover_1
+            id: fan_1
 
 Configuration options:
 
-- **id** (**Required**, :ref:`config-id`): The ID of the light.
+- **id** (**Required**, :ref:`config-id`): The ID of the fan.
 - **oscillating** (*Optional*, boolean, :ref:`templatable <config-templatable>`):
   Set the oscillation state of the fan. Defaults to not affecting oscillation.
 - **speed** (*Optional*, string, :ref:`templatable <config-templatable>`):

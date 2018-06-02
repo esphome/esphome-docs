@@ -40,9 +40,9 @@ Guides
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Migrating from Sonoff-Tasmota`_                   `Migrating from ESPurna`_                          `Migrating from ESPEasy`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Automations|_                                     |FAQ|_                                             |Contributing|_
+|Automations|_                                     |FAQ and Tips|_                                    |Contributing|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Automations`_                                     `FAQ`_                                             `Contributing`_
+`Automations`_                                     `FAQ and Tips`_                                    `Contributing`_
 ================================================== ================================================== ==================================================
 
 .. |Getting Started through Command Line| image:: /esphomeyaml/images/console.svg
@@ -66,9 +66,9 @@ Guides
 .. |Automations| image:: /esphomeyaml/images/auto-fix.svg
     :class: component-image
 .. _Automations: /esphomeyaml/guides/automations.html
-.. |FAQ| image:: /esphomeyaml/images/question_answer.svg
+.. |FAQ and Tips| image:: /esphomeyaml/images/question_answer.svg
     :class: component-image
-.. _FAQ: /esphomeyaml/guides/faq.html
+.. _FAQ and Tips: /esphomeyaml/guides/faq.html
 .. |Contributing| image:: /esphomeyaml/images/github-circle.svg
     :class: component-image
 .. _Contributing: /esphomeyaml/guides/contributing.html
@@ -517,6 +517,9 @@ This list contains items that are technically already supported by other compone
 .. |TEMT6000| image:: /esphomeyaml/images/temt6000.jpg
     :class: component-image
 .. _TEMT6000: /esphomeyaml/cookbook/temt6000.html
+
+Do you have other awesome automations or 2nd order components? Please feel free to add them to the
+documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
 
 .. toctree::
     :hidden:
