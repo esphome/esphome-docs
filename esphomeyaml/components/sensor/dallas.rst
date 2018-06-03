@@ -1,7 +1,11 @@
 Dallas Temperature Sensor
 =========================
 
-The ``dallas`` sensor allows you to define sensors for you :doc:`dallas sensor hub </esphomeyaml/components/dallas>`.
+The ``dallas`` sensor allows you to use ds18b20 and similar sensors.
+First, you need to define a :doc:`dallas sensor component </esphomeyaml/components/dallas>`.
+The dallas sensor component (or "hub") is an internal model that defines which pins the ds18b20
+sensors are connected to. This is because with these sensors you can actually connect multiple
+sensors to a single pin and use them all at once.
 
 To initialize a sensor, first supply either ``address`` **or** ``index`` to identify the sensor.
 
@@ -22,13 +26,11 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
 
     # Example configuration entry
     dallas:
-      - id: dallas_hub1
-        pin: 23
+      - pin: GPIO23
 
     # Individual sensors
     sensor:
       - platform: dallas
-        dallas_id: "dallas_hub1"
         address: 0x1C0000031EDD2A28
         index: 0
         name: "Living Room Temperature"
@@ -59,12 +61,41 @@ automatic sensor discovery fails, all sensors indices will be shifted by
 one. In order to get the address, simply start the firmware on your
 device with a configured dallas hub and observe the log output (the :ref:`log
 level <logger-log_levels>` must be set to at least
-``debug``!). You will find something like this:
+``debug``!). Note that you don't need to define the individual sensors just yet, as
+the scanning will happen even with no sensors connected. For example with this configuration:
+
+.. code:: yaml
+
+    # Example configuration entry
+    dallas:
+      - pin: GPIO23
+
+You will find something like this:
 
 .. figure:: images/dallas-log.png
 
-Next, individually warm up or cool down the sensors and observe the log
-output to determine which address points to which sensor.
+Now we can add the individual sensors to our configuration:
+
+.. code:: yaml
+
+    # Example configuration entry
+    dallas:
+      - pin: GPIO23
+
+    sensor:
+      - platform: dallas
+        address: 0xA40000031F055028
+        name: "Temperature #1"
+      - platform: dallas
+        address: 0xDD0000031EFB0428
+        name: "Temperature #2"
+      - platform: dallas
+        # ...
+
+Next, individually warm up or cool down the sensors and observe the log again.
+You will see the outputted sensor values changing when they're being warmed.
+When you're finished mapping each address to a name, just change the ``Temperature #1``
+to your assigned names and you should be ready.
 
 See Also
 ^^^^^^^^
