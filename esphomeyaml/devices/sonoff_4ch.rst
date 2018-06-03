@@ -162,6 +162,11 @@ bridge is not connected to your USB port, start pressing the bottom-left push bu
 and continue to do so while plugging in the UART bridge into your computer. Keep holding the button for
 another 2-4 seconds. The 4CH should now be in a flash mode and should not blink with any LED.
 
+.. figure:: images/sonoff_4ch_buttons.jpg
+    :align: center
+
+    You need to press the button labeled ``FW/IO0`` during startup.
+
 Now you can finally run the upload command:
 
 .. code:: bash
