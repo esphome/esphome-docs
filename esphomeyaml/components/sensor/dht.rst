@@ -21,6 +21,10 @@ sensors with esphomelib.
 
 .. _Adafruit: https://www.adafruit.com/product/385
 
+The DHT22 and DHT11 require external pull up resistors on the data line. To do this, solder
+a resistor with *about* 4.7kΩ (anything in the range from 1kΩ to 10kΩ probably works fine, but
+if you're having issues try the 4.7kΩ recommended by the manufacturer) between ``DATA`` and ``3.3V``.
+
 .. figure:: images/temperature-humidity.png
     :align: center
     :width: 80.0%
