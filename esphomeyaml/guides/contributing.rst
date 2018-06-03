@@ -187,6 +187,33 @@ Then, use the provided Makefile to build the changes and start a simple web serv
     # Start web server on port 8000
     make webserver
 
+If you also want to work on the API docs, you need to install `doxygen <http://www.stack.nl/~dimitri/doxygen/>`__
+and you need to have a special folder structure:
+
+.. code::
+
+    ├── esphomedocs/
+    │   ├── api/
+    │   ├── esphomeyaml/
+    │   ├── Doxygen
+    │   ├── Makefile
+    │   ├── index.rst
+    │   └── ...
+    └── esphomelib/
+        ├── src/
+        ├── examples/
+        ├── library.json
+        ├── platformio.ini
+        └── ...
+
+To update the internal doxygen API documentation, run:
+
+.. code:: bash
+
+    make doxyg
+    # Then:
+    make html
+
 Some notes about the docs:
 
 * Use the english language (duh...)
