@@ -112,7 +112,7 @@ These are only the devices for which I've had the time to set up dedicated guide
 .. |Sonoff S20| image:: /esphomeyaml/images/sonoff_s20.jpg
     :class: component-image
 .. _Sonoff S20: /esphomeyaml/devices/sonoff_s20.html
-.. |Sonoff Basic| image:: /esphomeyaml/images/sonoff_basic.jpg
+.. |Sonoff Basic| image:: /esphomeyaml/devices/images/sonoff_basic.jpg
     :class: component-image
 .. _Sonoff Basic: /esphomeyaml/devices/sonoff_basic.html
 .. |Sonoff 4CH| image:: /esphomeyaml/images/sonoff_4ch.jpg
