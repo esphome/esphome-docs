@@ -176,7 +176,7 @@ To check your documentation changes locally, you first need install sphinx (**wi
 
 .. code:: bash
 
-    pip3 install sphinx
+    pip3 install sphinx breathe
 
 Then, use the provided Makefile to build the changes and start a simple web server:
 
