@@ -15,7 +15,7 @@ a magnetic field that closes a contact.
 On the output side you have three pins: common (``COM``), normally open (``NO``) and
 normally closed (``NC``). Connect ``COM`` and one of ``NO`` and ``NC`` in series
 with your load. When the input turns on, ``NO`` is connected to ``COM`` and
-when the input turns off, ``NO`` is connected to ``COM``.
+when the input turns off, ``NC`` is connected to ``COM``.
 
 .. warning::
 
@@ -40,3 +40,4 @@ See Also
 - :doc:`/esphomeyaml/components/switch/gpio`
 - :doc:`/esphomeyaml/components/output/gpio`
 - `How do relays work <https://www.explainthatstuff.com/howrelayswork.html>`__.
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/cookbook/relay.rst>`__

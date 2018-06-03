@@ -79,3 +79,4 @@ See Also
 - :doc:`adc`
 - :doc:`max6675`
 - :doc:`API Reference </api/sensor/ads1115>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/ads1115.rst>`__

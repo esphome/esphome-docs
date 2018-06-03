@@ -75,3 +75,4 @@ See Also
 - :doc:`template`
 - :doc:`ultrasonic`
 - :doc:`API Reference </api/sensor/mpu6050>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/mpu6050.rst>`__

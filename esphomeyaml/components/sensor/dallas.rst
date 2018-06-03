@@ -73,3 +73,4 @@ See Also
 - :doc:`/esphomeyaml/components/dallas`
 - :doc:`max6675`
 - :doc:`API Reference </api/sensor/dallas>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/dallas.rst>`__

@@ -46,3 +46,4 @@ See Also
 ^^^^^^^^
 
 - :doc:`nodemcu_esp32`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/devices/esp32.rst>`__

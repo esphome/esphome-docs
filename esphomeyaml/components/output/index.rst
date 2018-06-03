@@ -39,7 +39,6 @@ Configuration variables:
 Full Output Index
 ^^^^^^^^^^^^^^^^^
 
-- :doc:`API Reference </api/output/index>`
 - :doc:`/esphomeyaml/components/switch/output`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`/esphomeyaml/components/light/binary`
@@ -47,6 +46,8 @@ Full Output Index
 - :doc:`/esphomeyaml/components/light/rgb`
 - :doc:`/esphomeyaml/components/fan/binary`
 - :doc:`/esphomeyaml/components/fan/speed`
+- :doc:`API Reference </api/output/index>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/output/index.rst>`__
 
 .. toctree::
     :maxdepth: 1

@@ -37,3 +37,4 @@ See Also
 - :doc:`/esphomeyaml/components/fan/binary`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/gpio-binary>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/output/gpio.rst>`__

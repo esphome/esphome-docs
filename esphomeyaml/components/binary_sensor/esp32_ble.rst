@@ -63,4 +63,5 @@ See Also
 - :doc:`/esphomeyaml/components/esp32_ble`
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/binary_sensor/esp32_ble.rst>`__
 

@@ -202,3 +202,4 @@ See Also
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`contributing`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/faq.rst>`__

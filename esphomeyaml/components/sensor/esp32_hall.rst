@@ -47,3 +47,4 @@ See Also
 - :doc:`adc`
 - :doc:`/esphomeyaml/devices/esp32`
 - :doc:`API Reference </api/sensor/adc-sensor>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/esp32_hall.rst>`__

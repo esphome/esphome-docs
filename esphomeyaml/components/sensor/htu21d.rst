@@ -58,3 +58,4 @@ See Also
 - :doc:`hdc1080`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/htu21d>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/htu21d.rst>`__

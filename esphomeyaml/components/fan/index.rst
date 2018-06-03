@@ -89,6 +89,7 @@ Full Fan Index
 ^^^^^^^^^^^^^^
 
 - :doc:`API Reference </api/fan/index>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/fan/index.rst>`__
 
 .. toctree::
     :maxdepth: 1

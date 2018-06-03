@@ -46,3 +46,4 @@ See Also
 
 - :doc:`sensor/ads1115`
 - :doc:`API Reference </api/sensor/ads1115>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/ads1115.rst>`__

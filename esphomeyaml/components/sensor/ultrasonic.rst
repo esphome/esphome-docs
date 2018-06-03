@@ -60,3 +60,4 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`template`
 - :doc:`API Reference </api/sensor/ultrasonic>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/ultrasonic.rst>`__

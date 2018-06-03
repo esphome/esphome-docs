@@ -57,3 +57,4 @@ See Also
 - :doc:`/esphomeyaml/devices/esp32`
 - :doc:`migrate_espurna`
 - :doc:`migrate_espeasy`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/migrate_sonoff_tasmota.rst>`__

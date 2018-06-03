@@ -35,3 +35,4 @@ See Also
 - :doc:`/esphomeyaml/components/output/gpio`
 - :doc:`/esphomeyaml/components/fan/index`
 - :doc:`API Reference </api/fan/index>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/fan/binary.rst>`__

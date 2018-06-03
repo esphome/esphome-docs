@@ -63,3 +63,8 @@ And for the ESP8266, the URL is https://github.com/platformio/platform-espressif
         name: livingroom
         platform: 'https://github.com/platformio/platform-espressif32.git#feature/stage'
         board: nodemcu-32s
+
+See Also
+~~~~~~~~
+
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/esphomeyaml.rst>`__

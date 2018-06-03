@@ -47,10 +47,11 @@ This action stops the cover with the given ID when executed.
         - cover.stop:
             id: cover_1
 
-Full Cover Index
-^^^^^^^^^^^^^^^^
+See Also
+^^^^^^^^
 
 - :doc:`API Reference </api/cover/index>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/cover/index.rst>`__
 
 .. toctree::
     :maxdepth: 1

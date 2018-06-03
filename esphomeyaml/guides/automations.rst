@@ -322,3 +322,4 @@ See Also
 
 - :doc:`configuration-types`
 - :doc:`faq`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/automations.rst>`__

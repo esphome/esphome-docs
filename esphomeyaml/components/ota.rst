@@ -39,3 +39,4 @@ See Also
 --------
 
 - :doc:`API Reference </api/core/ota>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/ota.rst>`__

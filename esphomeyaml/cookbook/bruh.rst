@@ -84,3 +84,4 @@ See Also
 - :doc:`/esphomeyaml/components/sensor/dht`
 - :doc:`/esphomeyaml/components/sensor/adc`
 - :doc:`/esphomeyaml/components/binary_sensor/gpio`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/cookbook/bruh.rst>`__

@@ -313,3 +313,4 @@ See Also
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_basic`
 - :doc:`esp8266`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/devices/sonoff.rst>`__

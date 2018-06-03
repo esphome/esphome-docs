@@ -25,3 +25,4 @@ See Also
 
 - :doc:`logger`
 - :doc:`API Reference </api/misc/debug>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/debug.rst>`__

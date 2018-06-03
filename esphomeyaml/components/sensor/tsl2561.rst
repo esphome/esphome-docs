@@ -55,3 +55,4 @@ See Also
 - :doc:`bh1750`
 - :doc:`adc`
 - :doc:`API Reference </api/sensor/tsl2561>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/tsl2561.rst>`__

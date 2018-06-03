@@ -34,3 +34,4 @@ See Also
 
 - :doc:`/esphomeyaml/components/output/index`
 - :doc:`API Reference </api/switch/index>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/switch/output.rst>`__

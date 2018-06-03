@@ -73,3 +73,4 @@ See Also
 - :doc:`rotary_encoder`
 - `esp-idf Pulse Counter API <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html>`__.
 - :doc:`API Reference </api/sensor/pulse-counter>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/pulse_counter.rst>`__

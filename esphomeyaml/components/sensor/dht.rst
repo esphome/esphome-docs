@@ -74,3 +74,4 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/dht>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/dht.rst>`__

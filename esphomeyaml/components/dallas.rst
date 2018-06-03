@@ -36,3 +36,4 @@ See Also
 
 - :doc:`sensor/dallas`
 - :doc:`API Reference </api/sensor/dallas>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/dallas.rst>`__

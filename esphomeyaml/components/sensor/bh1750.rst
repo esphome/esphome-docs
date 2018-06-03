@@ -45,3 +45,4 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`tsl2561`
 - :doc:`API Reference </api/sensor/bh1750>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/bh1750.rst>`__

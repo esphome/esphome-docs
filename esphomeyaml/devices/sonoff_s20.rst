@@ -330,3 +330,4 @@ See Also
 
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/devices/sonoff_s20.rst>`__

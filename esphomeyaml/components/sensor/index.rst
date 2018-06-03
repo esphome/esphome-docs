@@ -265,6 +265,7 @@ See Also
 ^^^^^^^^
 
 - :doc:`API Reference </api/sensor/index>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/index.rst>`__
 
 .. toctree::
     :maxdepth: 1

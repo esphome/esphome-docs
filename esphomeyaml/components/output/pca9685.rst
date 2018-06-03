@@ -45,3 +45,4 @@ See Also
 - :doc:`/esphomeyaml/components/fan/speed`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/pca9685>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/output/pca9685.rst>`__

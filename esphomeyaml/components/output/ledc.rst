@@ -36,3 +36,4 @@ See Also
 - :doc:`/esphomeyaml/components/fan/speed`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/ledc>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/output/ledc.rst>`__

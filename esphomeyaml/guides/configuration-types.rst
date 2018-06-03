@@ -136,3 +136,4 @@ See Also
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`getting_started_command_line`
 - :doc:`faq`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/configuration-types.rst>`__

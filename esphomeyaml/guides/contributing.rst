@@ -172,23 +172,15 @@ RST primer:
 reStructured text can do a lot more than this, so if you're looking for a more complete guide
 please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
-To check your documentation changes locally, you first need install sphinx (**with Python 3**):
+To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
+`doxygen <http://www.stack.nl/~dimitri/doxygen/>`__.
 
 .. code:: bash
 
     pip3 install sphinx breathe
 
-Then, use the provided Makefile to build the changes and start a simple web server:
-
-.. code:: bash
-
-    # Build sources
-    make html
-    # Start web server on port 8000
-    make webserver
-
-If you also want to work on the API docs, you need to install `doxygen <http://www.stack.nl/~dimitri/doxygen/>`__
-and you need to have a special folder structure:
+Next, you will also need to clone the `esphomelib repository <https://github.com/OttoWinter/esphomelib>`__ into
+the folder where ``esphomedocs`` sits like this:
 
 .. code::
 
@@ -206,20 +198,26 @@ and you need to have a special folder structure:
         ├── platformio.ini
         └── ...
 
-To update the internal doxygen API documentation, run:
+Then, use the provided Makefile to build the changes and start a simple web server:
 
 .. code:: bash
 
+    # Update doxygen API docs
     make doxyg
-    # Then:
+    # Start web server on port 8000
+    make webserver
+
+    # Updates then happen via:
     make html
 
 Some notes about the docs:
 
 * Use the english language (duh...)
-* An image tells a thousand words, please use them wherever possible.
+* An image tells a thousand words, please use them wherever possible. But also don't forget to shrink them, for example
+  I often use https://tinypng.com/
 * Try to use examples as often as possible (also while it's great to use highly accurate,
   and domain-specific lingo, it should not interfere with new users understanding the content)
+* When adding new files, please also add them to the ``index.rst`` file in the directory you're editing.
 
 Contributing to esphomelib
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -369,3 +367,4 @@ See Also
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`faq`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/contributing.rst>`__

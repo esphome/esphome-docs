@@ -61,3 +61,4 @@ See Also
 - :doc:`/esphomeyaml/components/switch/index`
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`API Reference </api/switch/template>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/switch/template.rst>`__
