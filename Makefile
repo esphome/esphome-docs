@@ -27,6 +27,11 @@ deploy: cleanhtml doxyg html minifyhtml
 	cd "$(BUILDDIR)/html" && git add --all && git commit -m "Deploy to gh-pages"
 	@printf "Run \033[0;36mcd $(BUILDDIR)/html && git push origin gh-pages\033[0m to deploy\n"
 
+deploypdf: html
+	-yes '' | make latexpdf
+	cp $(BUILDDIR)/latex/$(SPHINXPROJ).pdf $(BUILDDIR)/html/_static/esphomelib.pdf
+	make deploy
+
 help:
 	$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 

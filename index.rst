@@ -19,23 +19,14 @@ See `Web Server API`_ for documentation of the web server REST API.
 
 .. _Web Server API: /web-api/index.html
 
-API Reference
--------------
-
-.. toctree::
-    :maxdepth: 2
-
-   	API Reference <api/index>
-
 Indices and tables
 ==================
 
 .. toctree::
-    :hidden:
 
-    api/index
-    web-api/index
     esphomeyaml/index
+    web-api/index
+    api/index
 
 * :ref:`genindex`
 * :ref:`search`
