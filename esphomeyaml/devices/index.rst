@@ -10,3 +10,4 @@ Cookbook
     sonoff
     sonoff_4ch
     sonoff_s20
+    sonoff_basic
