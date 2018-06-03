@@ -92,9 +92,9 @@ These are only the devices for which I've had the time to set up dedicated guide
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `NodeMCU ESP32`_                                   `Sonoff S20`_                                      `Sonoff 4CH`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Generic Sonoff|_
+|Generic Sonoff|_                                  |Sonoff Basic|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Generic Sonoff`_
+`Generic Sonoff`_                                  `Sonoff Basic`_
 ================================================== ================================================== ==================================================
 
 .. |Generic ESP8266| image:: /esphomeyaml/images/esp8266.svg
@@ -112,6 +112,9 @@ These are only the devices for which I've had the time to set up dedicated guide
 .. |Sonoff S20| image:: /esphomeyaml/images/sonoff_s20.jpg
     :class: component-image
 .. _Sonoff S20: /esphomeyaml/devices/sonoff_s20.html
+.. |Sonoff Basic| image:: /esphomeyaml/images/sonoff_basic.jpg
+    :class: component-image
+.. _Sonoff Basic: /esphomeyaml/devices/sonoff_basic.html
 .. |Sonoff 4CH| image:: /esphomeyaml/images/sonoff_4ch.jpg
     :class: component-image
 .. _Sonoff 4CH: /esphomeyaml/devices/sonoff_4ch.html
