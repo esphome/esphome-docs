@@ -290,3 +290,4 @@ See Also
     template.rst
     max6675.rst
     esp32_hall.rst
+    custom.rst

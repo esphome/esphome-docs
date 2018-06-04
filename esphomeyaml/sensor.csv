@@ -19,3 +19,4 @@ SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
 Template Sensor, components/sensor/template, description.svg
 TSL2561, components/sensor/tsl2561, tsl2561.jpg
 Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
+Custom Sensor, components/sensor/custom, build.svg
