@@ -98,4 +98,4 @@ See Also
 - :doc:`/esphomeyaml/components/esp32_touch`
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`API Reference </api/binary_sensor/esp32_touch>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/binary_sensor/esp32_touch.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/esp32_touch.rst>`__

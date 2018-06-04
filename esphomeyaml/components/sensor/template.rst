@@ -42,4 +42,4 @@ See Also
 - :ref:`sensor-filters`
 - :ref:`automation`
 - :doc:`API Reference </api/sensor/template>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/template.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/template.rst>`__

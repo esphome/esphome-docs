@@ -74,4 +74,4 @@ See Also
 - :doc:`pulse_counter`
 - :doc:`template`
 - :doc:`API Reference </api/sensor/rotary_encoder>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/rotary_encoder.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/rotary_encoder.rst>`__

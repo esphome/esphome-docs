@@ -338,4 +338,4 @@ See Also
 ^^^^^^^^
 
 - :doc:`API Reference </api/core/mqtt>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/mqtt.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/mqtt.rst>`__

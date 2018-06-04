@@ -335,4 +335,4 @@ See Also
 
 - :doc:`sonoff`
 - :doc:`sonoff_s20`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/devices/sonoff_4ch.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_4ch.rst>`__

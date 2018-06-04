@@ -38,4 +38,4 @@ See Also
 - :doc:`/esphomeyaml/components/fan/speed`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/esp8266-pwm>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/output/esp8266_pwm.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/esp8266_pwm.rst>`__

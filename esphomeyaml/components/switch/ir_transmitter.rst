@@ -113,4 +113,4 @@ See Also
 - :doc:`index`
 - :doc:`/esphomeyaml/components/ir_transmitter`
 - :doc:`API Reference </api/switch/ir-transmitter>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/switch/ir_transmitter.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/ir_transmitter.rst>`__

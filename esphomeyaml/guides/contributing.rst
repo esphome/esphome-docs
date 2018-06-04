@@ -218,6 +218,8 @@ Some notes about the docs:
 * Try to use examples as often as possible (also while it's great to use highly accurate,
   and domain-specific lingo, it should not interfere with new users understanding the content)
 * When adding new files, please also add them to the ``index.rst`` file in the directory you're editing.
+* Fixes/improvements for the docs themselves should go to the ``current`` branch of the
+  esphomedocs repository. New features should be added against the ``next`` branch.
 
 Contributing to esphomelib
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -367,4 +369,4 @@ See Also
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`faq`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/contributing.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/contributing.rst>`__

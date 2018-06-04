@@ -32,4 +32,4 @@ See Also
 - :doc:`index`
 - :doc:`/esphomeyaml/components/output/gpio`
 - :doc:`API Reference </api/switch/index>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/switch/gpio.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/gpio.rst>`__

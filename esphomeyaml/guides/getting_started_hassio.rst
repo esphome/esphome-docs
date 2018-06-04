@@ -198,4 +198,4 @@ See Also
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`getting_started_command_line`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/getting_started_hassio.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/getting_started_hassio.rst>`__

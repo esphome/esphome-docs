@@ -58,4 +58,4 @@ See Also
 - `Awesome article explaining how PIR Sensors work <https://learn.adafruit.com/pir-passive-infrared-proximity-motion-sensor/how-pirs-work>`__.
 - :doc:`/esphomeyaml/components/binary_sensor/gpio`
 - :doc:`bruh`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/cookbook/pir.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/pir.rst>`__

@@ -47,7 +47,7 @@ Full Output Index
 - :doc:`/esphomeyaml/components/fan/binary`
 - :doc:`/esphomeyaml/components/fan/speed`
 - :doc:`API Reference </api/output/index>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/output/index.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/index.rst>`__
 
 .. toctree::
     :maxdepth: 1

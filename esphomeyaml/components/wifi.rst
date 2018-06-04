@@ -68,4 +68,4 @@ See Also
 --------
 
 - :doc:`API Reference </api/core/wifi>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/wifi.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/wifi.rst>`__

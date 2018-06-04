@@ -44,4 +44,4 @@ See Also
 - :doc:`switch/shutdown`
 - :ref:`automation`
 - :doc:`API Reference </api/core/deep-sleep>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/deep_sleep.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/deep_sleep.rst>`__

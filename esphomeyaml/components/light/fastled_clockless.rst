@@ -97,4 +97,4 @@ See Also
 - :doc:`/esphomeyaml/components/light/fastled_spi`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/light/fastled>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/light/fastled_clockless.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/fastled_clockless.rst>`__

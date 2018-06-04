@@ -51,4 +51,4 @@ See Also
 
 - :doc:`/esphomeyaml/guides/automations`
 - :doc:`/esphomeyaml/components/cover/template`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/cookbook/garage-door.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/garage-door.rst>`__

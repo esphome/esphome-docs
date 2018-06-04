@@ -21,17 +21,6 @@ pretty similar.
     esphomeyaml can generate a firmware binary which you can then upload via the
     web interface.
 
-.. warning::
-
-    Opening up this device can be very dangerous if not done correctly. While the device is open,
-    you will be a single touch away from being electrocuted if the device is plugged in.
-
-    So, during this *entire* guide **never ever** plug the device in. Also, you should only do this
-    if you know what you're doing. If you, at any step, feel something is wrong or are uncomfortable
-    with continuing, it's best to just stop for your own safety.
-
-    It's your own responsibility to make sure everything you do during this setup process is safe.
-
 Sample configuration
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -136,3 +125,4 @@ See Also
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_s20`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__

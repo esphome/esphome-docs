@@ -88,4 +88,4 @@ See Also
 - :doc:`bme680`
 - :doc:`bmp085`
 - :doc:`API Reference </api/sensor/bme280>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/bme280.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bme280.rst>`__

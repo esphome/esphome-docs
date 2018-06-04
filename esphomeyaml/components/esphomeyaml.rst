@@ -67,4 +67,4 @@ And for the ESP8266, the URL is https://github.com/platformio/platform-espressif
 See Also
 ~~~~~~~~
 
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/esphomeyaml.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esphomeyaml.rst>`__

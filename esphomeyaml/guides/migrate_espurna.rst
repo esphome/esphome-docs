@@ -55,4 +55,4 @@ See Also
 - :doc:`/esphomeyaml/devices/sonoff_4ch`
 - :doc:`migrate_espeasy`
 - :doc:`migrate_sonoff_tasmota`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/guides/migrate_espurna.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/migrate_espurna.rst>`__

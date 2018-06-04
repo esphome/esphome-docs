@@ -81,4 +81,4 @@ See Also
 --------
 
 - :doc:`API Reference </api/core/log>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/logger.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/logger.rst>`__

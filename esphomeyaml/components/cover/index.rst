@@ -51,7 +51,7 @@ See Also
 ^^^^^^^^
 
 - :doc:`API Reference </api/cover/index>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/cover/index.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/cover/index.rst>`__
 
 .. toctree::
     :maxdepth: 1

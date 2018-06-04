@@ -30,4 +30,4 @@ See Also
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`/esphomeyaml/components/mqtt`
 - :doc:`API Reference </api/binary_sensor/status>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/binary_sensor/status.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/status.rst>`__

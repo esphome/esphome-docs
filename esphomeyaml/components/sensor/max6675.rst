@@ -52,4 +52,4 @@ See Also
 - :doc:`adc`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/max6675>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/sensor/max6675.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/max6675.rst>`__

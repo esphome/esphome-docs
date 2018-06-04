@@ -43,4 +43,4 @@ See Also
 --------
 
 - :doc:`API Reference </api/switch/ir-transmitter>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/ir_transmitter.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/ir_transmitter.rst>`__

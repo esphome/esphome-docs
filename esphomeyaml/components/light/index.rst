@@ -96,7 +96,7 @@ See Also
 ^^^^^^^^
 
 - :doc:`API Reference </api/light/index>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/light/index.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/index.rst>`__
 
 .. toctree::
     :maxdepth: 1

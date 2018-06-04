@@ -32,4 +32,4 @@ See Also
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :ref:`config-pin_schema`
 - :doc:`API Reference </api/binary_sensor/gpio>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/master/esphomeyaml/components/binary_sensor/gpio.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/gpio.rst>`__
