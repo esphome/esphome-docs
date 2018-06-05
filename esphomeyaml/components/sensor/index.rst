@@ -87,7 +87,7 @@ sensor <https://www.home-assistant.io/components/sensor.filter/>`__.
       - or:
         - throttle: 1s
         - delta: 5.0
-      - lambda: x * (9.0/5.0) + 32.0
+      - lambda: return x * (9.0/5.0) + 32.0;
 
 Above example configuration entry is probably a bit useless, but shows
 every filter there is currently:
@@ -159,7 +159,7 @@ fahrenheit.
 .. code:: yaml
 
     filters:
-      - lambda: x * (9.0/5.0) + 32.0
+      - lambda: return x * (9.0/5.0) + 32.0;
     unit_of_measurement: "°F"
 
 .. _sensor-default_filter:
