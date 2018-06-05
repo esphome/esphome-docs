@@ -67,7 +67,7 @@ Light Effects
 
 Currently, only a rainbow effect is supported. In the future, more light effects will be added
 and supported out-of-the box. Creating custom effects is, however, quite easy with esphomelib.
-See the `fastled example <https://github.com/OttoWinter/esphomelib/blob/master/examples/fastled.cpp>`__
+See the `fastled example <https://github.com/OttoWinter/esphomelib/blob/master/examples/fastled/fastled.cpp>`__
 in the esphomelib repository for a simple example.
 
 .. figure:: images/fastled_effect.png
