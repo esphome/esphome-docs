@@ -43,6 +43,10 @@ Guides
 |Automations|_                                     |FAQ and Tips|_                                    |Contributing|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Automations`_                                     `FAQ and Tips`_                                    `Contributing`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Changelog|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Changelog`_
 ================================================== ================================================== ==================================================
 
 .. |Getting Started through Command Line| image:: /esphomeyaml/images/console.svg
@@ -72,6 +76,9 @@ Guides
 .. |Contributing| image:: /esphomeyaml/images/github-circle.svg
     :class: component-image
 .. _Contributing: /esphomeyaml/guides/contributing.html
+.. |Changelog| image:: /esphomeyaml/images/new-box.svg
+    :class: component-image
+.. _Changelog: /esphomeyaml/guides/changelog.html
 
 
 .. _devices:
