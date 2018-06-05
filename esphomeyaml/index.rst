@@ -269,7 +269,7 @@ Sensor Components
 .. |Ultrasonic Sensor| image:: /esphomeyaml/images/ultrasonic.jpg
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
-.. |Custom Sensor| image:: /esphomeyaml/images/build.svg
+.. |Custom Sensor| image:: /esphomeyaml/images/language-cpp.svg
     :class: component-image
 .. _Custom Sensor: /esphomeyaml/components/sensor/custom.html
 
