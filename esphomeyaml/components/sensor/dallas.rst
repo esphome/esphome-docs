@@ -70,6 +70,8 @@ the scanning will happen even with no sensors connected. For example with this c
     dallas:
       - pin: GPIO23
 
+    # Note you don't have to add any sensors at this point
+
 You will find something like this:
 
 .. figure:: images/dallas-log.png
