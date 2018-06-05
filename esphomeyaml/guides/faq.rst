@@ -100,7 +100,39 @@ It's simple. Run:
 .. code:: bash
 
     pip2 install -U esphomeyaml
+    # From docker:
+    docker pull ottowinter/esphomeyaml:latest
 
+And in HassIO, there's a simple UPDATE button when there's an update available as with all add-ons
+
+How do I use the latest bleeding edge version?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+First, a fair warning that the latest bleeding edge version is not always stable and might have issues.
+If you find some, please do however report them if you have time :)
+
+Installing the latest bleeding edge version of esphomelib is also quite easy. It's most often required
+if there was a bug somewhere and I didn't feel like building & pushing a whole new release out (this often
+takes up to 2 hours!). To install the dev version of esphomeyaml:
+
+- In HassIO: In the esphomeyaml add-on repository there's also a second add-on called ``esphomeyaml-edge``.
+  Install that and stop the stable version (both can't run at the same time without port collisions).
+- From ``pip``: Run ``pip install git+git://github.com/OttoWinter/esphomeyaml.git``
+- From docker: Run ``docker pull ottowinter/esphomeyaml:dev`` and use ``ottowinter/esphomeyaml:dev`` in all
+  commands.
+
+Next, if you want to use the latest version of esphomelib too:
+
+.. code::
+
+    # Sample configuration entry
+    esphomeyaml:
+      name: ...
+      library_uri: 'https://github.com/OttoWinter/esphomelib.git'
+      # ...
+
+In some cases it's also a good idea to use the latest Arduino framework version. See
+:ref:`this <using_latest_arduino_framework>`.
 
 Does esphomelib support [this device/feature]?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
