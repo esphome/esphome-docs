@@ -141,7 +141,7 @@ If you want to prefix all MQTT messages with a different prefix, like
 ``home/living_room``, you can specify a custom ``topic_prefix`` in the
 configuration. That way, you can use your existing wildcards like
 ``home/+/#`` together with esphomelib. All other features of esphomelib
-(like availabilty) should still work correctly.
+(like availability) should still work correctly.
 
 .. _mqtt-last_will_birth:
 
