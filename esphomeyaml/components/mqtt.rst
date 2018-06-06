@@ -259,7 +259,8 @@ on_message
 ^^^^^^^^^^
 
 With this configuration option you can write complex automations whenever an MQTT
-message on a specific topic is received.
+message on a specific topic is received. To use the message content, use a :ref:`lambda <config-lambda>`
+template, the message payload is available under the name ``x`` inside that lambda.
 
 .. code:: yaml
 
