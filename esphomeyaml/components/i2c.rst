@@ -19,7 +19,7 @@ Configuration variables:
 
 - **sda** (*Optional*, :ref:`config-pin`): The pin for the data line of the i²c bus.
   Defaults to the default of your board (usually GPIO21 for ESP32 and GPIO4 for ESP8266).
-- **sdc** (*Optional*, :ref:`config-pin`): The pin for the clock line of the i²c bus.
+- **scl** (*Optional*, :ref:`config-pin`): The pin for the clock line of the i²c bus.
   Defaults to the default of your board (usually GPIO22 for ESP32 and
   GPIO5 for ESP8266).
 - **scan** (*Optional*, boolean): If esphomelib should do a search of the i2c address space on startup.
