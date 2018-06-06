@@ -32,7 +32,6 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
     sensor:
       - platform: dallas
         address: 0x1C0000031EDD2A28
-        index: 0
         name: "Living Room Temperature"
 
 Configuration variables:
