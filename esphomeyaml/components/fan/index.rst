@@ -31,7 +31,7 @@ Configuration variables:
 - **speed_state_topic** (*Optional*, string): The topic to publish fan
   speed state changes to.
 - **speed_command_topic** (*Optional*, string): The topic to receive
-  speedcommands on.
+  speed commands on.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _fan-toggle_action:
