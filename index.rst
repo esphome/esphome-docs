@@ -23,6 +23,7 @@ Indices and tables
 ==================
 
 .. toctree::
+    :maxdepth: 2
 
     esphomeyaml/index
     web-api/index
