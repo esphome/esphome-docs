@@ -91,7 +91,7 @@ Configuration variables:
   - **data**: The data bytes to send.
   - **nbits**: The number of bits to send, defaults to 12.
 
-- **panasonic**: Send a Panasonic IR code.
+- **panasonic**: Send an Panasonic IR code.
 
   - **address**: The address of the device.
   - **command**: The command to send.
