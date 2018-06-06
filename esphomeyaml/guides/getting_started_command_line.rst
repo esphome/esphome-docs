@@ -18,7 +18,8 @@ Installing epshomeyaml is very easy. All you need to do is have `Python
     pip install esphomeyaml
 
 Alternatively, there’s also a docker image available for easy
-installation:
+installation (the docker hub image is only available for amd64 right now, if you have
+an RPi, please install esphomelib through ``pip`` or use :doc:`the HassIO add-on <getting_started_hassio>`:
 
 .. code:: bash
 
