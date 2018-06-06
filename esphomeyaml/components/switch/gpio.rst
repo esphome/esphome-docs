@@ -26,6 +26,21 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
 
+.. note::
+
+    If you want the pin to default to HIGH on startup, you can use the inverted property
+    of the :ref:`Pin Schema <config-pin_schema>`:
+
+    .. code:: yaml
+
+        # Example configuration entry
+        switch:
+          - platform: gpio
+            pin:
+              number: 25
+              inverted: True
+            name: "Living Room Dehumidifier"
+
 See Also
 ^^^^^^^^
 
