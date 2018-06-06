@@ -17,9 +17,6 @@ Configuration variables:
 
 -  **baud_rate** (*Optional*, int): The baud rate to use for the serial
    UART port. Defaults to 115200.
--  **log_topic** (*Optional*, string): The MQTT topic to write log
-   messages to. Defaults to ``<MQTT_TOPIC_PREFIX>/debug``. Empty string
-   disables MQTT logging.
 -  **tx_buffer_size** (*Optional*, string): The size of the buffer used
    for log messages. Decrease this if you’re having memory problems.
    Defaults to 512.
