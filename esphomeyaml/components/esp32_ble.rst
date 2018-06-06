@@ -36,8 +36,7 @@ Configuration variables:
 
 - **scan_interval** (*Optional*, :ref:`config-time`): The length of each scan.
   If a device is not found within this time window, it will be marked as not present. Defaults to 300s.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ADS1115 Hub. Use this if you
-  want to use multiple ADS1115 hubs at once.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
 
 See Also
 ^^^^^^^^

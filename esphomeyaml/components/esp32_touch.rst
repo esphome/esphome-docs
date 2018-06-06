@@ -23,9 +23,7 @@ Configuration variables:
    be displayed in the logs. Useful for finding out suitable thresholds for the binary sensors, but
    spam the logs. See :doc:`setting up touch pads </esphomeyaml/components/binary_sensor/esp32_touch>`
    for more information. Defaults to false.
--  **id** (*Optional*,
-   :ref:`config-id`): Manually specify the ID for this ADS1115 Hub. Use this if you
-   want to use multiple ADS1115 hubs at once.
+-  **id** (*Optional*, :ref:`config-id`): Manually specify the ID for code generation.
 
 Advanced options (the defaults are usually quite good, but if you're having accuracy issues, use these):
 
