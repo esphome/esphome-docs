@@ -56,7 +56,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
   Defaults to ``0xff``.
 - **accuracy** (*Optional*, string): The accuracy of the sensor. One of ``low``, ``medium`` and ``high``.
-  Defaults to ``high``.
+  Lower accuracies allow for faster update intervals. Defaults to ``high``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 
