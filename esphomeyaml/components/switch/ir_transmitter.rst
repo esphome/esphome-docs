@@ -17,13 +17,11 @@ signals on any pin by using the ``raw:`` option.
 
     # Example configuration entry
     ir_transmitter:
-      - id: 'ir_hub1'
-        pin: 32
+      pin: 32
 
     # Individual switches
     switch:
       - platform: ir_transmitter
-        ir_transmitter_id: 'ir_hub1'
         name: "Panasonic TV Off"
         panasonic:
           address: 0x4004

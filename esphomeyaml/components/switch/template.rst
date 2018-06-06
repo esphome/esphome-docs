@@ -19,10 +19,10 @@ as a switch and can be controlled through the frontend.
           }
         turn_on_action:
           - switch.turn_on:
-              id: tur
+              id: switch2
         turn_off_action:
           - switch.turn_on:
-              id: open_cover_switch
+              id: switch1
         optimistic: true
 
 
