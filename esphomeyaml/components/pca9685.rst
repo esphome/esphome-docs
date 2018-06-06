@@ -14,27 +14,24 @@ global ``pca9685`` hub and give it an id, and then define the
 
     # Example configuration entry
     pca9685:
-      - id: 'pca9685_hub1'
-        frequency: 500
+      frequency: 500
 
     # Individual outputs
     output:
       - platform: pca9685
-        id: 'pca9685_output1'
         pca9685_id: 'pca9685_hub1'
         channel: 0
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  **id** (**Required**,
-   :ref:`config-id`): The id to use for
-   this pca9685 component.
 -  **frequency** (**Required**, float): The frequency to let the
    component drive all PWM outputs at. Must be in range from 24Hz to
    1526Hz.
 -  **address** (*Optional*, int): The I²C address of the driver.
    Defaults to ``0x00``.
+-  **id** (*Optional*, :ref:`config-id`): The id to use for
+   this pca9685 component. Use this if you have multiple PCA9685s connected at the same time
 
 See Also
 --------
