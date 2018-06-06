@@ -14,7 +14,7 @@ a binary sensor.
       - platform: template
         name: "Garage Door Open"
         lambda: >-
-          if (isnan(id(ultrasonic_sensor1).value))) {
+          if (isnan(id(ultrasonic_sensor1).value)) {
             // isnan checks if the ultrasonic sensor echo
             // has timed out, resulting in a NaN (not a number) state
             // in that case, return {} to indicate that we don't know.
