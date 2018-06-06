@@ -246,12 +246,10 @@ Configuration variables:
    :ref:`global birth/last will message <mqtt-last_will_birth>`.
 -  **state_topic** (*Optional*, string): The topic to publish state
    updates to. Defaults to
-   ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state``
-   (non-alphanumeric characters from the name are removed).
+   ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state``.
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
-   ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``
-   (non-alphanumeric characters from the name are removed).
+   ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
 
 .. _mqtt-on_message:
 
