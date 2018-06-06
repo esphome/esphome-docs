@@ -9,16 +9,23 @@ SOURCEDIR     = .
 BUILDDIR      = _build
 ESPHOMELIB_PATH = ../esphomelib
 
-html:
+.PHONY: html cleanhtml minifyhtml doxyg cleandoxyg copypdf fixdeploy releasedeploy help webserver Makefile
+
+html: _doxyxml
 	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-cleanhtml:
-	rm -rf "$(BUILDDIR)/html/*" _doxyxml/
+cleanhtml: cleandoxy
+	rm -rf "$(BUILDDIR)/html/*"
 
 minifyhtml: html
 	./minify.sh
 
-doxyg:
+doxyg: cleandoxyg _doxyxml
+
+cleandoxyg:
+	rm -rf _doxyxml
+
+_doxyxml:
 	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
 
 copypdf:
@@ -44,8 +51,6 @@ help:
 
 webserver: html
 	cd "$(BUILDDIR)/html" && python3 -m http.server
-
-.PHONY: help Makefile
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

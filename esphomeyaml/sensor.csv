@@ -9,7 +9,7 @@ Dallas, components/sensor/dallas, ds18b20.jpg
 DHT, components/sensor/dht, dht22.jpg
 DHT12, components/sensor/dht12, dht12.jpg
 ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
-HDC1080, components/sensor/hdc1080, HDC1080.jpg
+HDC1080, components/sensor/hdc1080, hdc1080.jpg
 HTU21D, components/sensor/htu21d, htu21d.jpg
 MAX6675, components/sensor/max6675, max6675.jpg
 MPU6050, components/sensor/mpu6050, mpu6050.jpg
@@ -19,4 +19,5 @@ SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
 Template Sensor, components/sensor/template, description.svg
 TSL2561, components/sensor/tsl2561, tsl2561.jpg
 Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
+WiFi Signal Sensor, components/sensor/wifi_signal, network-wifi.svg
 Custom Sensor, components/sensor/custom, build.svg

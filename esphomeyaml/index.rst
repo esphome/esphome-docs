@@ -201,9 +201,9 @@ Sensor Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Template Sensor`_                                 `TSL2561`_                                         `Ultrasonic Sensor`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Custom Sensor|_
+|WiFi Signal Sensor|_                              |Custom Sensor|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Custom Sensor`_
+`WiFi Signal Sensor`_                              `Custom Sensor`_
 ================================================== ================================================== ==================================================
 
 .. |Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -239,7 +239,7 @@ Sensor Components
 .. |ESP32 Hall Sensor| image:: /esphomeyaml/images/magnet.svg
     :class: component-image
 .. _ESP32 Hall Sensor: /esphomeyaml/components/sensor/esp32_hall.html
-.. |HDC1080| image:: /esphomeyaml/images/HDC1080.jpg
+.. |HDC1080| image:: /esphomeyaml/images/hdc1080.jpg
     :class: component-image
 .. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
 .. |HTU21D| image:: /esphomeyaml/images/htu21d.jpg
@@ -269,6 +269,9 @@ Sensor Components
 .. |Ultrasonic Sensor| image:: /esphomeyaml/images/ultrasonic.jpg
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
+.. |WiFi Signal Sensor| image:: /esphomeyaml/images/network-wifi.svg
+    :class: component-image
+.. _WiFi Signal Sensor: /esphomeyaml/components/sensor/wifi_signal.html
 .. |Custom Sensor| image:: /esphomeyaml/images/language-cpp.svg
     :class: component-image
 .. _Custom Sensor: /esphomeyaml/components/sensor/custom.html
