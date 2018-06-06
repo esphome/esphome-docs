@@ -27,7 +27,9 @@ Tips for using esphomeyaml
 
        esphomeyaml livingroom.yaml run --upload-port 192.168.178.52
 
-
+5. You can always find the source esphomeyaml generates under ``<NODE_NAME>/src/main.cpp``. It's even
+   possible to edit anything outside of the ``AUTO GENERATED CODE BEGIN/END`` lines for creating
+   :doc:`custom sensors </esphomeyaml/components/sensor/custom>`.
 
 
 .. |secret| replace:: ``!secret``
