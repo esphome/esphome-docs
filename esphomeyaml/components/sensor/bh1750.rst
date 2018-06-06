@@ -21,6 +21,7 @@ your configuration for this sensor to work.
     # Example configuration entry
     sensor:
       - platform: bh1750
+        name: "Living Room Brightness"
         address: 0x23
         update_interval: 15s
 
