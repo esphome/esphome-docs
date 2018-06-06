@@ -58,7 +58,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 - **model** (*Optional*, int): Manually specify the DHT model, can be
-  one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2303``, ``RHT03``
+  one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2302``, ``RHT03``
   and helps with some connection issues. Defaults to ``AUTO_DETECT``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
