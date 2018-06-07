@@ -41,6 +41,10 @@ Configuration variables:
   build flags that specifically set what should be included in the binary. Most of
   this is already done automatically by the linker but this option can help with
   shrinking the firmware size while slowing down compilation. Defaults to ``true``.
+- **on_boot** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the node starts. See :ref:`esphomeyaml-on_boot`.
+- **on_shutdown** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  right before the node shuts down. See :ref:`esphomeyaml-on_shutdown`.
 
 .. _using_latest_arduino_framework:
 
@@ -63,6 +67,66 @@ And for the ESP8266, the URL is https://github.com/platformio/platform-espressif
         name: livingroom
         platform: 'https://github.com/platformio/platform-espressif32.git#feature/stage'
         board: nodemcu-32s
+
+.. _esphomeyaml-on_boot:
+
+``on_boot``
+"""""""""""
+
+This automation will be triggered when the ESP boots up. By default, it is executed after everything else
+is already set up. You can however change this using the ``priority`` parameter.
+
+.. code:: yaml
+
+    esphomeyaml:
+      # ...
+      on_boot:
+        priority: -10
+        # ...
+        then:
+          - switch.turn_off:
+              id: switch_1
+
+Configuration variables:
+
+- **priority** (*Optional*, float): The priority to execute your custom initialization code. A higher value (for example
+  positive values) mean a high priority and thus also your code being executed earlier. So for example negative priorities
+  are executed very late. Defaults to ``-10``. Priorities (you can use any value between them too):
+
+  - ``100``: This is where all hardware initialization of vital components is executed. For example setting switches
+    to their initial state.
+  - ``10``: At this priority, WiFi is initialized.
+  - ``7.5``: MQTT initialization takes place at this priority.
+  - ``0.0``: This is where most sensors are set up. They are usually set up this late so that they can dump their
+    configuration in the MQTT logs.
+  - ``-5.0``: The inidividual frontend counterparts for the backend components are configured at this priority
+  - ``-10.0``: At this priority, pretty much everything should already be initialized.
+
+- See :ref:`Automation <automation>`.
+
+.. _esphomeyaml-on_shutdown:
+
+``on_shutdown``
+"""""""""""""""
+
+This automation will be triggered when the ESP is about to shut down. Shutting down is usually caused by
+too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or through the :doc:`deep_sleep`.
+
+.. note::
+
+    It's not guaranteed that all components are in a connected state when this automation is triggered. For
+    example, the MQTT client may have already disconnected.
+
+.. code:: yaml
+
+    esphomeyaml:
+      # ...
+      on_shutdown:
+        then:
+          - switch.turn_off:
+              id: switch_1
+
+Configuration variables: See :ref:`Automation <automation>`.
 
 See Also
 ~~~~~~~~
