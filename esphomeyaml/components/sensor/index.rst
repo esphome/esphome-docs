@@ -261,6 +261,37 @@ with ``x``.
 
 Configuration variables: See :ref:`Automation <automation>`.
 
+lambda calls
+""""""""""""
+
+From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors to do some
+advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more info).
+
+- ``push_new_value()``: Manually cause the sensor to push out a value. It will then
+  be processed by the sensor filters, and once done be published to MQTT.
+
+  .. code:: yaml
+
+      // Within lambda, push a value of 42.0
+      id(my_binary_sensor).push_new_value(42.0);
+
+- ``value``: Retrieve the current value of the sensor that has passed through all sensor filters.
+  Is ``NAN`` if no value has gotten through all filters yet.
+
+  .. code:: yaml
+
+      // For example, create a custom log message when a value is received:
+      ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).value);
+
+- ``raw_value``: Retrieve the current value of the sensor that has not passed through any filters
+  Is ``NAN`` if no value if no value has been pushed by the sensor itself yet.
+
+  .. code:: yaml
+
+      // For example, create a custom log message when a value is received:
+      ESP_LOGI("main", "Raw Value of my sensor: %f", id(my_sensor).value);
+
+
 See Also
 ^^^^^^^^
 

@@ -150,6 +150,34 @@ Configuration variables:
 - **max_length** (*Optional*, :ref:`config-time`): The maximum duration the click should last. Defaults to ``350ms``.
 - See :ref:`Automation <automation>`.
 
+lambda calls
+""""""""""""
+
+From :ref:`lambdas <config-lambda>`, you can call several methods on all binary sensors to do some
+advanced stuff (see the full :doc:`API Reference </api/binary_sensor/index>` for more info).
+
+- ``publish_state()``: Manually cause the binary sensor to publish and store a state from anywhere
+  in the program.
+
+  .. code:: yaml
+
+      // Within lambda, publish an OFF state.
+      id(my_binary_sensor).publish_state(false);
+
+      // Within lambda, publish an ON state.
+      id(my_binary_sensor).publish_state(true);
+
+- ``value``: Retrieve the current value of the binary sensor.
+
+  .. code:: yaml
+
+      // Within lambda, get the binary sensor state and conditionally do something
+      if (id(my_binary_sensor).value) {
+        // Binary sensor is ON, do something here
+      } else {
+        // Binary sensor is OFF, do something else here
+      }
+
 
 See Also
 --------

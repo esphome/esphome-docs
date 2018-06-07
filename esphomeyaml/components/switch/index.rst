@@ -68,6 +68,43 @@ This action turns a switch with the given ID off when executed.
         - switch.turn_off:
             id: relay_1
 
+lambda calls
+""""""""""""
+
+From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
+advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more info).
+
+- ``publish_state()``: Manually cause the switch to publish a new state and store it internally.
+  If it's different from the last internal state, it's additionally published to the frontend.
+
+  .. code:: yaml
+
+      // Within lambda, make the switch report a specific state
+      id(my_switch).publish_state(false);
+      id(my_switch).publish_state(true);
+
+- ``state``: Retrieve the current state of the switch.
+
+  .. code:: yaml
+
+      // Within lambda, get the switch state and conditionally do something
+      if (id(my_switch).value) {
+        // Switch is ON, do something here
+      } else {
+        // Switch is OFF, do something else here
+      }
+
+- ``write_state()``: Manually cause the cover to go into an OFF/ON state from code.
+  Similar to the ``switch.turn_on`` and ``switch.turn_off`` actions,
+  but can be used in complex lambda expressions.
+
+  .. code:: yaml
+
+      id(my_switch).write_state(false);
+      id(my_switch).write_state(true);
+      // Toggle the switch
+      id(my_switch).write_state(!id(my_switch).state);
+
 See Also
 ^^^^^^^^
 
