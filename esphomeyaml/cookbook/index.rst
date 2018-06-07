@@ -8,3 +8,4 @@ Cookbook
     bruh
     temt6000
     relay
+    power_meter

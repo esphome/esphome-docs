@@ -227,7 +227,7 @@ Sensor Components
 .. |BMP085| image:: /esphomeyaml/images/bmp180.jpg
     :class: component-image
 .. _BMP085: /esphomeyaml/components/sensor/bmp085.html
-.. |Dallas| image:: /esphomeyaml/images/ds18b20.jpg
+.. |Dallas| image:: /esphomeyaml/images/dallas.jpg
     :class: component-image
 .. _Dallas: /esphomeyaml/components/sensor/dallas.html
 .. |DHT| image:: /esphomeyaml/images/dht22.jpg
@@ -474,7 +474,7 @@ Misc Components
 `ESP32 BLE Hub`_               `ESP32 Touch Hub`_
 ============================== ============================== ==============================
 
-.. |Dallas Hub| image:: /esphomeyaml/images/ds18b20.jpg
+.. |Dallas Hub| image:: /esphomeyaml/images/dallas.jpg
     :class: component-image
 .. _Dallas Hub: /esphomeyaml/components/dallas.html
 .. |IR Transmitter Hub| image:: /esphomeyaml/images/remote.svg
@@ -510,9 +510,9 @@ This list contains items that are technically already supported by other compone
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Garage Door`_                                     `PIR Sensor`_                                      `Relay`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|BRUH Multisensor|_                                |TEMT6000|_
+|BRUH Multisensor|_                                |TEMT6000|_                                        |Non-Invasive Power Meter|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`BRUH Multisensor`_                                `TEMT6000`_
+`BRUH Multisensor`_                                `TEMT6000`_                                        `Non-Invasive Power Meter`_
 ================================================== ================================================== ==================================================
 
 .. |Garage Door| image:: /esphomeyaml/images/window-open.svg
@@ -530,6 +530,9 @@ This list contains items that are technically already supported by other compone
 .. |TEMT6000| image:: /esphomeyaml/images/temt6000.jpg
     :class: component-image
 .. _TEMT6000: /esphomeyaml/cookbook/temt6000.html
+.. |Non-Invasive Power Meter| image:: /esphomeyaml/images/power_meter.jpg
+    :class: component-image
+.. _Non-Invasive Power Meter: /esphomeyaml/cookbook/power_meter.html
 
 Do you have other awesome automations or 2nd order components? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.

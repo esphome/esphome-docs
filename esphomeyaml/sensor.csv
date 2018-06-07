@@ -5,7 +5,7 @@ BH1750, components/sensor/bh1750, bh1750.jpg
 BME280, components/sensor/bme280, bme280.jpg
 BME680, components/sensor/bme680, bme680.jpg
 BMP085, components/sensor/bmp085, bmp180.jpg
-Dallas, components/sensor/dallas, ds18b20.jpg
+Dallas, components/sensor/dallas, dallas.jpg
 DHT, components/sensor/dht, dht22.jpg
 DHT12, components/sensor/dht12, dht12.jpg
 ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg

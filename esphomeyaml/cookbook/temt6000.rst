@@ -8,9 +8,13 @@ often have a small constant value resistor and three pins: ``GND``, ``VCC`` and
 ``SIG``. Connect ``VCC`` to ``3.3V``, ``GND`` to ``GND`` and ``SIG`` to any
 available :doc:`analog pin </esphomeyaml/components/sensor/adc>`.
 
+.. figure:: images/temt6000-header.jpg
+    :align: center
+    :width: 75.0%
+
 To get the brightness the sensor measures, we then simply have to measure the voltage
-on the ``SIG`` pin using the :doc:`/esphomeyaml/components/sensor/adc` and convert those
-voltage measurements to illuminance values in lux using a forumla:
+on the ``SIG`` (also called ``OUT``) pin using the :doc:`/esphomeyaml/components/sensor/adc`
+and convert those voltage measurements to illuminance values in lux using a formula:
 
 .. code:: yaml
 
@@ -22,6 +26,13 @@ voltage measurements to illuminance values in lux using a forumla:
         filters:
           - lambda: >-
               return (x / 10000.0) * 2000000.0;
+
+.. figure:: images/temt6000-pins.jpg
+    :align: center
+    :width: 75.0%
+
+    Pins on the TEMT6000. Connect ``OUT`` to an ADC pin, ``GND`` to ``GND``, and ``VCC``
+    to ``3.3V``
 
 Formula Explanation:
 ^^^^^^^^^^^^^^^^^^^^

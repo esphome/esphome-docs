@@ -17,7 +17,7 @@ timeout option which specifies how long to wait for values. During this
 timeout period the whole core will be blocked and therefore shouldn’t be
 set too high.
 
-.. figure:: images/hc-sr04-full.jpg
+.. figure:: images/ultrasonic-full.jpg
     :align: center
     :width: 50.0%
 

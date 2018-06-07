@@ -9,12 +9,12 @@ sensors to a single pin and use them all at once.
 
 To initialize a sensor, first supply either ``address`` **or** ``index`` to identify the sensor.
 
-.. figure:: images/ds18b20-full.jpg
+.. figure:: images/dallas-wired.jpg
     :align: center
     :target: `Adafruit`_
     :width: 50.0%
 
-    DS18b20 One-Wire Temperature Sensor. Image by `Adafruit`_.
+    Wired Version of the DS18b20 One-Wire Temperature Sensor.
 
 .. _Adafruit: https://www.adafruit.com/product/374
 
