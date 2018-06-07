@@ -120,8 +120,11 @@ There are several ways of doing this. See below examples to see how you can spec
       some_time_option: 1.5s  # 1.5 seconds
       some_time_option: 0.5min  # half a minute
       some_time_option: 2h  # 2 hours
-      some_time_option: 2:01  # 2 hours 1 minute
-      some_time_option: 2:01:30  # 2 hours 1 minute 30 seconds
+
+      # Make sure you wrap these in quotes
+      some_time_option: '2:01'  # 2 hours 1 minute
+      some_time_option: '2:01:30'  # 2 hours 1 minute 30 seconds
+
       # 10ms + 30s + 25min + 3h
       some_time_option:
         milliseconds: 10
