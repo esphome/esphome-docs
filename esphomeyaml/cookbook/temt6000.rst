@@ -14,10 +14,11 @@ voltage measurements to illuminance values in lux using a forumla:
 
 .. code:: yaml
 
-    - platform: adc
+    sensor:
+      - platform: adc
         pin: A0
         name: "TEMT6000 Illuminance"
-        unit_of_measurement: lux
+        unit_of_measurement: lx
         filters:
           - lambda: >-
               return (x / 10000.0) * 2000000.0;
