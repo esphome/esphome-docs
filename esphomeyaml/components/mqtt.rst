@@ -150,7 +150,7 @@ Last Will And Birth Messages
 
 esphomelib (and esphomeyaml) uses the `last will
 testament <https://www.hivemq.com/blog/mqtt-essentials-part-9-last-will-and-testament>`__
-and birth message feature of MQTT to achieve availabilty reporting for
+and birth message feature of MQTT to achieve availability reporting for
 Home Assistant. If the node is not connected to MQTT, Home Assistant
 will show all its entities as unavailable (a feature 😉).
 
@@ -181,7 +181,7 @@ You can change these messages by overriding the ``birth_message`` and
 - **will_message** (*Optional*, :ref:`mqtt-message`)
 
 If the birth message and last will message have empty topics or topics
-that are different from each other, availabilty reporting will be
+that are different from each other, availability reporting will be
 disabled.
 
 .. _mqtt-ssl_fingerprints:
@@ -226,7 +226,7 @@ MQTT can have some overrides for specific options.
     # Optional variables:
     retain: True
     discovery: True
-    availabilty:
+    availability:
       topic: livingroom/status
       payload_available: online
       payload_not_available: offline
@@ -241,8 +241,8 @@ Configuration variables:
    be retained. Defaults to ``True``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable
    discovery for a component. Defaults to the global default.
--  **availabilty** (*Optional*): Manually set what should be sent to
-   Home Assistant for showing entity availabilty. Default derived from
+-  **availability** (*Optional*): Manually set what should be sent to
+   Home Assistant for showing entity availability. Default derived from
    :ref:`global birth/last will message <mqtt-last_will_birth>`.
 -  **state_topic** (*Optional*, string): The topic to publish state
    updates to. Defaults to
@@ -250,6 +250,11 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+
+.. warning::
+
+    When changing these options and you're using MQTT discovery, you will need to restart Home Assistant.
+    This is because Home Assistant only discovers a device once in every Home Assistant start.
 
 .. _mqtt-on_message:
 
