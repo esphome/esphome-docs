@@ -46,7 +46,7 @@ Configuration variables:
 See Also
 ^^^^^^^^
 
-.. figure:: images/monochromatic_detail.jpg
+.. figure:: images/monochromatic-detail.jpg
     :align: center
     :width: 75.0%
 
