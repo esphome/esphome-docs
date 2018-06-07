@@ -18,10 +18,6 @@ Example Usage
     // Basic
     auto sht3xd = App.make_sht3xd_sensor("SHT31D Temperature", "SHT31D Humidity");
 
-    // Advanced
-    // default accuracy is high
-    sht3xd.sht3xd->set_accuracy(sensor::SHT3XD_ACCURACY_LOW);
-
 .. cpp:namespace:: nullptr
 
 See :cpp:func:`Application::make_sht3xd_sensor`.
@@ -33,8 +29,6 @@ API Reference
     :members:
     :protected-members:
     :undoc-members:
-
-.. doxygenenum:: sensor::SHT3XDAccuracy
 
 .. doxygenclass:: sensor::SHT3XDTemperatureSensor
     :members:

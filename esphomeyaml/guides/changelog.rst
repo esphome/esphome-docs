@@ -11,5 +11,6 @@ Version 1.7.0
 Breaking Changes
 ~~~~~~~~~~~~~~~~
 
-
+- Fixed the :doc:`SHT3x-D </esphomeyaml/component/sensor/sht3xd>` component and removed the ``accuracy``
+  parameter. The accuracy now defaults to ``HIGH``.
 
