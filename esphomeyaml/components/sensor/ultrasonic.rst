@@ -54,6 +54,28 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
+Ultrasonic Timeouts
+~~~~~~~~~~~~~~~~~~~
+
+The ultrasonic sensor works by sending a small ultrasonic pulse out and then waiting until
+the pulse arrives back. However, there are cases where no such signal arrives back. This is most commonly caused
+by either having the sensor pointed at a soft surface that muffles the incoming signal. The other case where this
+can happen is when the the object is too far away and the timeout set by the ``timeout_meter`` or ``timeout_time``
+option kicks in.
+
+To remove ``NAN`` values from the sensor stream, use the ``filter_nan`` :ref:`sensor filter <sensor-filters>`:
+
+.. code:: yaml
+
+    sensor:
+      - platform: ultrasonic
+        trigger_pin: D1
+        echo_pin: D2
+        name: "Ultrasonic Sensor"
+        filters:
+          -
+
+
 See Also
 ^^^^^^^^
 
