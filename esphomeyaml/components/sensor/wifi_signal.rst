@@ -2,7 +2,7 @@ WiFi Signal Sensor
 ==================
 
 The ``wifi_signal`` sensor platform allows you to read the signal
-strength of the currently connected WiFi Access Point.
+strength of the currently connected :doc:`WiFi Access Point </esphomeyaml/components/wifi>`.
 
 The sensor value is the `"Received signal strength indication" <https://en.wikipedia.org/wiki/Received_signal_strength_indication>`__
 measured in decibels. These values are always negative and the closer they are to zero, the better the signal is.
@@ -37,6 +37,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`adc`
-- :doc:`API Reference </api/sensor/adc-sensor>`
+- :doc:`/esphomeyaml/components/wifi`
+- :doc:`API Reference </api/sensor/wifi_signal>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/wifi_signal.rst>`__
