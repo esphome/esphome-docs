@@ -96,8 +96,9 @@ exposes all of the basic functions.
     output:
       - platform: esp8266_pwm
         id: basic_green_led
-        pin: GPIO13
-        inverted: True
+        pin: 
+          number: GPIO13
+          inverted: True
 
     light:
       - platform: monochromatic
