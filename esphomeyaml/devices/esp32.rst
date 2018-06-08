@@ -10,9 +10,9 @@ asks you for the board type.
 
     # Example configuration entry
     esphomeyaml:
-        name: livingroom
-        platform: ESP32
-        board: <BOARD_TYPE>
+      name: livingroom
+      platform: ESP32
+      board: <BOARD_TYPE>
 
 The ESP32 boards often use the internal GPIO pin numbering on the board, this means that
 you don't have to worry about other kinds of pin numberings, yay!
