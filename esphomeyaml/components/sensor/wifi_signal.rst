@@ -4,6 +4,13 @@ WiFi Signal Sensor
 The ``wifi_signal`` sensor platform allows you to read the signal
 strength of the currently connected WiFi Access Point.
 
+The sensor value is the `"Received signal strength indication" <https://en.wikipedia.org/wiki/Received_signal_strength_indication>`__
+measured in decibels. These values are always negative and the closer they are to zero, the better the signal is.
+
+.. figure:: images/wifi_signal-ui.png
+    :align: center
+    :width: 80.0%
+
 .. code:: yaml
 
     # Example configuration entry
@@ -13,7 +20,7 @@ strength of the currently connected WiFi Access Point.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the hall effect sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
@@ -27,7 +34,7 @@ Configuration variables:
     if the device is acting as an access point without any station mode connection.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`adc`
