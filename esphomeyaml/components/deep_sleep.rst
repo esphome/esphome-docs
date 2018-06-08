@@ -31,7 +31,7 @@ Configuration variables:
 -  **run_duration** (*Optional*, :ref:`config-time`):
    The time duration the node should be active, i.e. run code.
 -  **run_cycles** (*Optional*, int): The number of ``loop()`` cycles to go through before
-   entering deep sleep mode.
+   entering deep sleep mode. Note: for advanced use-cases with custom code only.
 -  **sleep_duration** (*Optional*, :ref:`config-time`): The time duration to stay in deep sleep mode.
 -  **wakeup_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`):
    Only on ESP32. A pin to wake up to once in deep sleep mode. Use the inverted property to wake up
