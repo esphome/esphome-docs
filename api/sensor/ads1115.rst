@@ -39,7 +39,7 @@ Doing so requires some steps:
 
     .. code-block:: cpp
 
-        auto *sensor = ads1115->get_sensor("ADS1115 Voltage #1", ADS1115_MUX_P0_N1, ADS1115_PGA_6P144);
+        auto *sensor = ads1115->get_sensor("ADS1115 Voltage #1", sensor::ADS1115_MULTIPLEXER_P0_N1, sensor::ADS1115_GAIN_6P144);
         App.register_sensor(sensor);
 
 .. cpp:namespace:: nullptr
@@ -50,6 +50,9 @@ API Reference
 -------------
 
 .. cpp:namespace:: nullptr
+
+.. doxygenenum:: sensor::ADS1115Multiplexer
+.. doxygenenum:: sensor::ADS1115Gain
 
 .. doxygenclass:: sensor::ADS1115Component
     :members:
