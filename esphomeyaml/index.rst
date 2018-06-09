@@ -540,8 +540,6 @@ This list contains items that are technically already supported by other compone
 Do you have other awesome automations or 2nd order components? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
 
-`Download the documentation as a PDF </_static/esphomelib.pdf>`__
-
 .. toctree::
     :hidden:
 

@@ -1,0 +1,5 @@
+_doxyxml
+_build
+
+.python-version
+.git

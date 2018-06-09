@@ -9,12 +9,12 @@ SOURCEDIR     = .
 BUILDDIR      = _build
 ESPHOMELIB_PATH = ../esphomelib
 
-.PHONY: html cleanhtml minifyhtml doxyg cleandoxyg copypdf fixdeploy releasedeploy help webserver Makefile
+.PHONY: html cleanhtml minifyhtml doxyg cleandoxyg deploy help webserver Makefile
 
 html: _doxyxml
 	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-cleanhtml: cleandoxy
+cleanhtml: cleandoxyg
 	rm -rf "$(BUILDDIR)/html/*"
 
 minifyhtml: html
@@ -28,21 +28,9 @@ cleandoxyg:
 _doxyxml:
 	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
 
-copypdf:
-	cp $(BUILDDIR)/latex/$(SPHINXPROJ).pdf $(BUILDDIR)/esphomelib.pdf
-
-fixdeploy: copypdf cleanhtml doxyg html minifyhtml
+deploy: cleanhtml doxyg html minifyhtml
 	touch "$(BUILDDIR)/html/.nojekyll"
 	echo "esphomelib.com" >"$(BUILDDIR)/html/CNAME"
-	cp $(BUILDDIR)/esphomelib.pdf $(BUILDDIR)/latex/$(SPHINXPROJ).pdf
-	cd "$(BUILDDIR)/html" && git add --all && git commit -m "Deploy to gh-pages"
-	@printf "Run \033[0;36mcd $(BUILDDIR)/html && git push origin gh-pages\033[0m to deploy\n"
-
-releasedeploy: cleanhtml doxyg html minifyhtml
-	touch "$(BUILDDIR)/html/.nojekyll"
-	echo "esphomelib.com" >"$(BUILDDIR)/html/CNAME"
-	-yes '' | make latexpdf
-	cp $(BUILDDIR)/latex/$(SPHINXPROJ).pdf $(BUILDDIR)/html/_static/esphomelib.pdf
 	cd "$(BUILDDIR)/html" && git add --all && git commit -m "Deploy to gh-pages"
 	@printf "Run \033[0;36mcd $(BUILDDIR)/html && git push origin gh-pages\033[0m to deploy\n"
 
