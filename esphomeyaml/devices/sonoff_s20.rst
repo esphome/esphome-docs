@@ -250,8 +250,9 @@ of the basic functions.
       # Register the green LED as a dimmable output ....
       - platform: esp8266_pwm
         id: s20_green_led
-        pin: GPIO13
-        inverted: True
+        pin:
+          number: GPIO13
+          inverted: True
 
     light:
       # ... and then make a light out of it.
@@ -280,7 +281,7 @@ in Home Assistant, replace the last part with this:
         id: s20_green_led
         pin:
           number: GPIO13
-        inverted: True
+          inverted: True
       # Note: do *not* make the relay a dimmable (PWM) signal, relays cannot handle that
       - platform: binary
         id: s20_relay
