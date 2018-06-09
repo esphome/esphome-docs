@@ -201,9 +201,9 @@ Sensor Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Template Sensor`_                                 `TSL2561`_                                         `Ultrasonic Sensor`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|WiFi Signal Sensor|_                              |Custom Sensor|_
+|Custom Sensor|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`WiFi Signal Sensor`_                              `Custom Sensor`_
+`Custom Sensor`_
 ================================================== ================================================== ==================================================
 
 .. |Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -269,9 +269,6 @@ Sensor Components
 .. |Ultrasonic Sensor| image:: /esphomeyaml/images/ultrasonic.jpg
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
-.. |WiFi Signal Sensor| image:: /esphomeyaml/images/network-wifi.svg
-    :class: component-image
-.. _WiFi Signal Sensor: /esphomeyaml/components/sensor/wifi_signal.html
 .. |Custom Sensor| image:: /esphomeyaml/images/language-cpp.svg
     :class: component-image
 .. _Custom Sensor: /esphomeyaml/components/sensor/custom.html

@@ -310,7 +310,6 @@ See Also
     htu21d.rst
     pulse_counter.rst
     ultrasonic.rst
-    wifi_signal.rst
     mpu6050.rst
     bh1750.rst
     bme280.rst
