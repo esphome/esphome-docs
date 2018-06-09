@@ -513,6 +513,10 @@ This list contains items that are technically already supported by other compone
 |BRUH Multisensor|_                                |TEMT6000|_                                        |Non-Invasive Power Meter|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `BRUH Multisensor`_                                `TEMT6000`_                                        `Non-Invasive Power Meter`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Dual relay cover motor control|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Dual relay cover motor control`_
 ================================================== ================================================== ==================================================
 
 .. |Garage Door| image:: /esphomeyaml/images/window-open.svg
@@ -533,6 +537,9 @@ This list contains items that are technically already supported by other compone
 .. |Non-Invasive Power Meter| image:: /esphomeyaml/images/power_meter.jpg
     :class: component-image
 .. _Non-Invasive Power Meter: /esphomeyaml/cookbook/power_meter.html
+.. |Dual relay cover motor control| image:: /esphomeyaml/images/sonoff_dual_r2.jpg
+    :class: component-image
+.. _Dual relay cover motor control: /esphomeyaml/cookbook/dual-r2-cover.html
 
 Do you have other awesome automations or 2nd order components? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
