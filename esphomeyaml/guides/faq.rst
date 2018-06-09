@@ -231,6 +231,52 @@ Devices that are technically already supported, but for which guides will be cre
 Anything missing? I'd be happy to chat about more integrations over on the `discord channel
 <https://discord.gg/KhAMKrd>`__ - no guarantees that everything will be supported though!
 
+I can't update using OTA because of to little space, now what?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are using ESP8266/Sonoff devices and you have many components enabled you will probably encounter this error during OTA update:
+
+.. code::
+
+  ERROR [esphomeyaml.espota] Bad Answer: ERR: ERROR[4]: Not Enough Space
+
+This is because of the limited amount of flash memory available on these devices (often just 1M). The size of the firmware data that is created by esphomeyaml depends on the number of components enabled (eg: webserver, sensors, etc). Especially the webserver component is very large.
+
+During an OTA update the new firmware data needs to be stored on the flash chip so it can be used to replace the old firmware. However it is possible the old firmware is taking up to much space so the new firmware won't fit next to it. This makes a normal OTA update impossible. Forcing you to choose between easy updates or components.
+
+A possible solution is to disable (large) components like webserver so the size of the firmware data stays below a certain size.
+
+If even this doesn't work or you like to have a lot of components enabled there is a workaround that might help you out so you can have your cake and eat it too. Using a two stage OTA update.
+
+First we temporary 'remove' (comment out) all components from the ``yaml`` file, leaving only: ``esphomeyaml``, ``ota`` and ``wifi``, example:
+
+.. code:: yaml
+
+    esphomeyaml:
+      name: sonoff_basic
+      platform: espressif8266
+      board: esp01_1m
+      board_flash_mode: dout
+
+    wifi:
+      ssid: '***'
+      password: '***'
+
+    ota:
+
+    # mqtt:
+    #   broker: 'mqtt'
+    #   username: ''
+    #   password: ''
+    #
+    #
+    # logger:
+    #
+    # switch:
+    # ...
+
+This will result in really small firmware data which has a high chance of fitting the remaining space on your device. After this OTA update has succeeded you are left with a device with no functionality except OTA. Now you can re-enable all components previously commented out and perform a 'normal' OTA update again.
+
 See Also
 ~~~~~~~~
 
