@@ -1,0 +1,28 @@
+Duty Cycle Sensor
+=================
+
+The duty cycle sensor allows you to measure for what percentage of time a signal
+on a GPIO pin is HIGH or LOW.
+
+For example, you can measure if a status LED of a pool controller is permanently active
+(indicating that the pump is on) or blinking.
+
+.. figure:: images/duty_cycle-ui.png
+    :align: center
+    :width: 80.0%
+
+.. code:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: duty_cycle
+        pin: D0
+        name: Duty Cycle Sensor
+
+Configuration variables:
+------------------------
+
+- **pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin to observe for the duty
+  cycle.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
+  See :ref:`sensor-default_filter`.

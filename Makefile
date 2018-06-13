@@ -9,16 +9,13 @@ SOURCEDIR     = .
 BUILDDIR      = _build
 ESPHOMELIB_PATH = ../esphomelib
 
-.PHONY: html cleanhtml minifyhtml doxyg cleandoxyg deploy help webserver Makefile
+.PHONY: html cleanhtml doxyg cleandoxyg deploy help webserver Makefile
 
 html: _doxyxml
 	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 cleanhtml: cleandoxyg
 	rm -rf "$(BUILDDIR)/html/*"
-
-minifyhtml: html
-	./minify.sh
 
 doxyg: cleandoxyg _doxyxml
 
@@ -28,7 +25,7 @@ cleandoxyg:
 _doxyxml:
 	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
 
-deploy: cleanhtml doxyg html minifyhtml
+deploy: cleanhtml doxyg html
 	touch "$(BUILDDIR)/html/.nojekyll"
 	echo "esphomelib.com" >"$(BUILDDIR)/html/CNAME"
 	cd "$(BUILDDIR)/html" && git add --all && git commit -m "Deploy to gh-pages"

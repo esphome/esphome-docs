@@ -319,6 +319,20 @@ This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-la
             id(some_binary_sensor).publish_state(false);
 
 
+Automation Conditions
+~~~~~~~~~~~~~~~~~~~~~
+
+Additionally, you can have a condition ``if:`` block in the automation. This will cause esphomelib
+to only execute the ``then`` block if the ``if:`` block succeeds:
+
+.. code:: yaml
+
+    on_...:
+      if:
+        lambda: 'return id(some_binary_sensor).value;'
+      then:
+        # do something
+
 See Also
 ~~~~~~~~
 

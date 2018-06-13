@@ -1,8 +1,10 @@
-ESP32 Pulse Counter Sensor
-==========================
+Pulse Counter Sensor
+====================
 
-The pulse counter sensor allows you to count the number of pulses on a
-specific pin using the `pulse counter
+The pulse counter sensor allows you to count the number of pulses and the frequency of a signal
+on any pin.
+
+On the ESP32, this sensor is even highly accurate because it's using the hardware `pulse counter
 peripheral <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html>`__
 on the ESP32.
 
@@ -23,10 +25,6 @@ Configuration variables:
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to count pulses on.
 - **name** (**Required**, string): The name of the sensor.
-- **pull_mode** (*Optional*): The `pull
-  mode <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/gpio.html#_CPPv218gpio_set_pull_mode10gpio_num_t16gpio_pull_mode_t>`__
-  of the pin. One of ``PULLUP``, ``PULLDOWN``, ``PULLUP_PULLDOWN``,
-  ``FLOATING``. Defaults to ``FLOATING``.
 - **count_mode** (*Optional*): Configure how the counter should behave
   on a detected rising edge/falling edge.
 

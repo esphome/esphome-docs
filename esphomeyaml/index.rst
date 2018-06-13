@@ -192,25 +192,25 @@ Sensor Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `BMP085`_                                          `Dallas`_                                          `DHT`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|DHT12|_                                           |ESP32 Hall Sensor|_                               |HDC1080|_
+|DHT12|_                                           |Duty Cycle|_                                      |ESP32 Hall Sensor|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`DHT12`_                                           `ESP32 Hall Sensor`_                               `HDC1080`_
+`DHT12`_                                           `Duty Cycle`_                                      `ESP32 Hall Sensor`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|HTU21D|_                                          |MAX6675|_                                         |MPU6050|_
+|HDC1080|_                                         |HTU21D|_                                          |MAX6675|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`HTU21D`_                                          `MAX6675`_                                         `MPU6050`_
+`HDC1080`_                                         `HTU21D`_                                          `MAX6675`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Pulse Counter|_                                   |Rotary Encoder|_                                  |SHT3X-D|_
+|MPU6050|_                                         |Pulse Counter|_                                   |Rotary Encoder|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Pulse Counter`_                                   `Rotary Encoder`_                                  `SHT3X-D`_
+`MPU6050`_                                         `Pulse Counter`_                                   `Rotary Encoder`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Template Sensor|_                                 |TSL2561|_                                         |Ultrasonic Sensor|_
+|SHT3X-D|_                                         |Template Sensor|_                                 |TSL2561|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Template Sensor`_                                 `TSL2561`_                                         `Ultrasonic Sensor`_
+`SHT3X-D`_                                         `Template Sensor`_                                 `TSL2561`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Custom Sensor|_
+|Ultrasonic Sensor|_                               |WiFi Signal Strength|_                            |Custom Sensor|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Custom Sensor`_
+`Ultrasonic Sensor`_                               `WiFi Signal Strength`_                            `Custom Sensor`_
 ================================================== ================================================== ==================================================
 
 .. |Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -243,6 +243,9 @@ Sensor Components
 .. |DHT12| image:: /esphomeyaml/images/dht12.jpg
     :class: component-image
 .. _DHT12: /esphomeyaml/components/sensor/dht12.html
+.. |Duty Cycle| image:: /esphomeyaml/images/percent.svg
+    :class: component-image
+.. _Duty Cycle: /esphomeyaml/components/sensor/duty_cycle.html
 .. |ESP32 Hall Sensor| image:: /esphomeyaml/images/magnet.svg
     :class: component-image
 .. _ESP32 Hall Sensor: /esphomeyaml/components/sensor/esp32_hall.html
@@ -276,23 +279,34 @@ Sensor Components
 .. |Ultrasonic Sensor| image:: /esphomeyaml/images/ultrasonic.jpg
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
+.. |WiFi Signal Strength| image:: /esphomeyaml/images/network-wifi.svg
+    :class: component-image
+.. _WiFi Signal Strength: /esphomeyaml/components/sensor/wifi_signal.html
 .. |Custom Sensor| image:: /esphomeyaml/images/language-cpp.svg
     :class: component-image
 .. _Custom Sensor: /esphomeyaml/components/sensor/custom.html
+
+Looking for a sensor that outputs its values as an analog voltage? Have a look at the
+:doc:`ADC Sensor <components/sensor/adc>` together with a formula like in the :doc:`TEMT6000
+example </esphomeyaml/cookbook/temt6000>`.
 
 
 Binary Sensor Components
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-============================== ============================== ==============================
-|Binary Sensor Core|_          |GPIO|_                        |Status|_
------------------------------- ------------------------------ ------------------------------
-`Binary Sensor Core`_          `GPIO`_                        `Status`_
------------------------------- ------------------------------ ------------------------------
-|ESP32 BLE Device|_            |ESP32 Touch Pad|_             |Template Binary Sensor|_
------------------------------- ------------------------------ ------------------------------
-`ESP32 BLE Device`_            `ESP32 Touch Pad`_             `Template Binary Sensor`_
-============================== ============================== ==============================
+================================================== ================================================== ==================================================
+|Binary Sensor Core|_                              |GPIO|_                                            |Status|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Binary Sensor Core`_                              `GPIO`_                                            `Status`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|ESP32 BLE Device|_                                |ESP32 Touch Pad|_                                 |Template Binary Sensor|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`ESP32 BLE Device`_                                `ESP32 Touch Pad`_                                 `Template Binary Sensor`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Remote Receiver|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Remote Receiver`_
+================================================== ================================================== ==================================================
 
 .. |Binary Sensor Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
@@ -305,13 +319,16 @@ Binary Sensor Components
 .. _Status: /esphomeyaml/components/binary_sensor/status.html
 .. |ESP32 BLE Device| image:: /esphomeyaml/images/bluetooth.svg
     :class: component-image
-.. _ESP32 BLE Device: /esphomeyaml/components/binary_sensor/esp32_ble.html
+.. _ESP32 BLE Device: /esphomeyaml/components/binary_sensor/esp32_ble_tracker.html
 .. |ESP32 Touch Pad| image:: /esphomeyaml/images/touch.svg
     :class: component-image
 .. _ESP32 Touch Pad: /esphomeyaml/components/binary_sensor/esp32_touch.html
 .. |Template Binary Sensor| image:: /esphomeyaml/images/description.svg
     :class: component-image
 .. _Template Binary Sensor: /esphomeyaml/components/binary_sensor/template.html
+.. |Remote Receiver| image:: /esphomeyaml/images/remote.svg
+    :class: component-image
+.. _Remote Receiver: /esphomeyaml/components/binary_sensor/remote_receiver.html
 
 
 
@@ -385,22 +402,25 @@ Light Components
 .. _FastLED SPI Light: /esphomeyaml/components/light/fastled_spi.html
 
 
+Looking for WS2811 and similar individually addressable lights? Have a look at the
+:doc:`FastLED Clockless Light <components/light/fastled_clockless>`.
+
 Switch Components
 ~~~~~~~~~~~~~~~~~
 
-============================== ============================== ==============================
-|Switch Core|_                 |GPIO Switch|_                 |IR Transmitter|_
------------------------------- ------------------------------ ------------------------------
-`Switch Core`_                 `GPIO Switch`_                 `IR Transmitter`_
------------------------------- ------------------------------ ------------------------------
-|Restart Switch|_              |Shutdown Switch|_             |Generic Output Switch|_
------------------------------- ------------------------------ ------------------------------
-`Restart Switch`_              `Shutdown Switch`_             `Generic Output Switch`_
------------------------------- ------------------------------ ------------------------------
+================================================== ================================================== ==================================================
+|Switch Core|_                                     |GPIO Switch|_                                     |Remote Transmitter|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Switch Core`_                                     `GPIO Switch`_                                     `Remote Transmitter`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Restart Switch|_                                  |Shutdown Switch|_                                 |Generic Output Switch|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Restart Switch`_                                  `Shutdown Switch`_                                 `Generic Output Switch`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 |Template Switch|_
------------------------------- ------------------------------ ------------------------------
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Template Switch`_
-============================== ============================== ==============================
+================================================== ================================================== ==================================================
 
 .. |Switch Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
@@ -408,9 +428,9 @@ Switch Components
 .. |GPIO Switch| image:: /esphomeyaml/images/pin.svg
     :class: component-image
 .. _GPIO Switch: /esphomeyaml/components/switch/gpio.html
-.. |IR Transmitter| image:: /esphomeyaml/images/remote.svg
+.. |Remote Transmitter| image:: /esphomeyaml/images/remote.svg
     :class: component-image
-.. _IR Transmitter: /esphomeyaml/components/switch/ir_transmitter.html
+.. _Remote Transmitter: /esphomeyaml/components/switch/remote_transmitter.html
 .. |Restart Switch| image:: /esphomeyaml/images/restart.svg
     :class: component-image
 .. _Restart Switch: /esphomeyaml/components/switch/restart.html
@@ -423,7 +443,6 @@ Switch Components
 .. |Template Switch| image:: /esphomeyaml/images/description.svg
     :class: component-image
 .. _Template Switch: /esphomeyaml/components/switch/template.html
-
 
 
 
@@ -467,26 +486,33 @@ Cover Components
 Misc Components
 ~~~~~~~~~~~~~~~
 
-============================== ============================== ==============================
-|Dallas Hub|_                  |IR Transmitter Hub|_          |PCA9685 Hub|_
------------------------------- ------------------------------ ------------------------------
-`Dallas Hub`_                  `IR Transmitter Hub`_          `PCA9685 Hub`_
------------------------------- ------------------------------ ------------------------------
-|ADS1115 Hub|_                 |Debug Component|_             |PCF8574 I/O Expander|_
------------------------------- ------------------------------ ------------------------------
-`ADS1115 Hub`_                 `Debug Component`_             `PCF8574 I/O Expander`_
------------------------------- ------------------------------ ------------------------------
-|ESP32 BLE Hub|_               |ESP32 Touch Hub|_
------------------------------- ------------------------------ ------------------------------
-`ESP32 BLE Hub`_               `ESP32 Touch Hub`_
-============================== ============================== ==============================
+================================================== ================================================== ==================================================
+|Dallas Hub|_                                      |Remote Transmitter Hub|_                          |Remote Receiver Hub|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Dallas Hub`_                                      `Remote Transmitter Hub`_                          `Remote Receiver Hub`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|PCA9685 Hub|_                                     |ADS1115 Hub|_                                     |Debug Component|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`PCA9685 Hub`_                                     `ADS1115 Hub`_                                     `Debug Component`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|PCF8574 I/O Expander|_                            |ESP32 BLE Tracker|_                               |ESP32 BLE Beacon|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`PCF8574 I/O Expander`_                            `ESP32 BLE Tracker`_                               `ESP32 BLE Beacon`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|ESP32 Touch Hub|_                                 |Status LED|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`ESP32 Touch Hub`_                                 `Status LED`_
+================================================== ================================================== ==================================================
 
 .. |Dallas Hub| image:: /esphomeyaml/images/dallas.jpg
     :class: component-image
 .. _Dallas Hub: /esphomeyaml/components/dallas.html
-.. |IR Transmitter Hub| image:: /esphomeyaml/images/remote.svg
+.. |Remote Transmitter Hub| image:: /esphomeyaml/images/remote.svg
     :class: component-image
-.. _IR Transmitter Hub: /esphomeyaml/components/ir_transmitter.html
+.. _Remote Transmitter Hub: /esphomeyaml/components/remote_transmitter.html
+.. |Remote Receiver Hub| image:: /esphomeyaml/images/remote.svg
+    :class: component-image
+.. _Remote Receiver Hub: /esphomeyaml/components/remote_receiver.html
 .. |PCA9685 Hub| image:: /esphomeyaml/images/pca9685.jpg
     :class: component-image
 .. _PCA9685 Hub: /esphomeyaml/components/pca9685.html
@@ -499,12 +525,18 @@ Misc Components
 .. |PCF8574 I/O Expander| image:: /esphomeyaml/images/pcf8574.jpg
     :class: component-image
 .. _PCF8574 I/O Expander: /esphomeyaml/components/pcf8574.html
-.. |ESP32 BLE Hub| image:: /esphomeyaml/images/bluetooth.svg
+.. |ESP32 BLE Tracker| image:: /esphomeyaml/images/bluetooth.svg
     :class: component-image
-.. _ESP32 BLE Hub: /esphomeyaml/components/esp32_ble.html
+.. _ESP32 BLE Tracker: /esphomeyaml/components/esp32_ble_tracker.html
+.. |ESP32 BLE Beacon| image:: /esphomeyaml/images/bluetooth.svg
+    :class: component-image
+.. _ESP32 BLE Beacon: /esphomeyaml/components/esp32_ble_beacon.html
 .. |ESP32 Touch Hub| image:: /esphomeyaml/images/touch.svg
     :class: component-image
 .. _ESP32 Touch Hub: /esphomeyaml/components/esp32_touch.html
+.. |Status LED| image:: /esphomeyaml/images/led-on.svg
+    :class: component-image
+.. _Status LED: /esphomeyaml/components/status_led.html
 
 
 Cookbook

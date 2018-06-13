@@ -117,6 +117,6 @@ See Also
     gpio.rst
     shutdown.rst
     output.rst
-    ir_transmitter.rst
+    remote_transmitter.rst
     restart.rst
     template.rst

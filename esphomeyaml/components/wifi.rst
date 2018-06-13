@@ -53,6 +53,9 @@ Configuration variables:
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
+- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+  WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
+  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode

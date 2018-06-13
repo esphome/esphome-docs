@@ -26,9 +26,11 @@ Configuration variables:
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/binary_sensor/
   for a list of available options.
-- **inverted** (*Optional*, boolean): Whether to invert the binary
-  sensor output, i.e. report ON states as OFF and vice versa. Defaults
-  to ``False``.
+- **filters** (*Optional*, list): A list of filters to apply on the binary sensor values such as
+  inverting signals. See :ref:`binary_sensor-filters`.
+
+Automations:
+
 - **on_press** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is pressed. See :ref:`binary_sensor-on_press`.
 - **on_release** (*Optional*, :ref:`Automation <automation>`): An automation to perform
@@ -36,13 +38,52 @@ Configuration variables:
 - **on_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is held down for a specified period of time.
   See :ref:`binary_sensor-on_click`.
-- **on_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_double_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is pressed twice for specified periods of time.
   See :ref:`binary_sensor-on_double_click`.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
+.. _binary_sensor-filters:
+
+Binary Sensor Filters
+---------------------
+
+With binary sensor filters you can customize how esphomelib handles your binary sensor values even more.
+They are similar to :ref:`Sensor Filters <sensor-filters>`.
+
+.. code:: yaml
+
+    binary_sensor:
+      - platform: ...
+        # ...
+        filters:
+          - invert:
+          - delayed_on: 100ms
+          - delay_off: 100ms
+          - lambda: >-
+              if (id(other_binary_sensor).value) {
+                return x;
+              } else {
+                return {};
+              }
+
+Supported filters:
+
+- **invert**: Simple filter that just inverts every value from the binary sensor.
+- **delayed_on**: When a signal ON is received, wait for the specified time period until publishing
+  an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words:
+  Only send an ON value if the binary sensor has stayed ON for at least the specified time period.
+  **Useful for debouncing push buttons**.
+- **delayed_on**: When a signal OFF is received, wait for the specified time period until publishing
+  an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
+  Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
+  **Useful for debouncing push buttons**.
+- **lambda**: Specify any :ref:`lambda <config-lambda>` for more complex filters. The input value from
+  the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
+  the filter chain.
+
 Binary Sensor Automation
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 
 The triggers for binary sensors in esphomeyaml use the lingo from computer mouses. This naming might not
 perfectly fit every use case, but at least makes the naming consistent. For example, a ``press`` is triggered
@@ -190,6 +231,7 @@ See Also
 
     gpio.rst
     status.rst
-    esp32_ble.rst
+    esp32_ble_tracker.rst
     esp32_touch.rst
     template.rst
+    remote_receiver.rst

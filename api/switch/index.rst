@@ -5,7 +5,7 @@ The `switch_` namespace contains all switch helpers.
 
 .. toctree::
 
-    ir-transmitter
+    remote_transmitter
     restart
     shutdown
     template

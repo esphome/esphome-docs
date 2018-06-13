@@ -26,8 +26,6 @@ Configuration variables:
   Note that this can slow down startup and is only recommended for when setting up new sensors. Defaults to
   ``False``.
 - **frequency** (*Optional*, float): Set the frequency the i²c bus should operate on. Defaults to “100kHz”.
-- **receive_timeout** (*Optional*, :ref:`config-time`): Advanced: Set a timeout
-  for operations on the i2c bus. Defaults to 100ms.
 
 .. note::
 

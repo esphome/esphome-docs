@@ -46,6 +46,8 @@ Configuration variables:
 - **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
   for more information.
+- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+  MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``60s``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
   WiFi traffic with more pings. Defaults to 15 seconds.
@@ -250,6 +252,9 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+-  **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+   not send any MQTT messages and can be used for :ref:`on-device automations <automation>`. Only
+   specifying an ``id`` without a ``name`` will implicitly set this to true.
 
 .. warning::
 

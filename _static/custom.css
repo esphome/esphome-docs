@@ -19,3 +19,30 @@ img.component-image {
 table.docutils {
   width: 100%;
 }
+
+.blink-tag {
+  -webkit-animation: 2s linear infinite blink_effect;
+  animation: 2s linear infinite blink_effect;
+}
+@-webkit-keyframes blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+}
+}
+@keyframes blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}

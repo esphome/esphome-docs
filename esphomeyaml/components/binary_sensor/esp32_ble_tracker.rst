@@ -1,12 +1,12 @@
 ESP32 Bluetooth Low Energy Device
 =================================
 
-The ``esp32_ble`` binary sensor platform lets you track the presence of a
+The ``esp32_ble_tracker`` binary sensor platform lets you track the presence of a
 bluetooth low energy device.
 
 .. note::
 
-    See the :doc:`ESP32 BLE Hub Page </esphomeyaml/components/esp32_ble>` for
+    See the :doc:`ESP32 BLE Hub Page </esphomeyaml/components/esp32_ble_tracker>` for
     current limitations of this platform
 
 .. figure:: images/esp32_ble-ui.png
@@ -16,11 +16,11 @@ bluetooth low energy device.
 .. code:: yaml
 
     # Example configuration entry
-    esp32_ble:
+    esp32_ble_tracker:
       scan_interval: 300s
 
     binary_sensor:
-      - platform: esp32_ble
+      - platform: esp32_ble_tracker
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
 
@@ -40,7 +40,7 @@ Setting Up Devices
 
 To set up binary sensors for specific BLE beacons you first have to know which MAC address
 to track. Most devices show this screen in some setting menu. If you don't know the MAC address,
-however, you can use the ``esp32_ble`` hub without any binary sensors attached and read through
+however, you can use the ``esp32_ble_tracker`` hub without any binary sensors attached and read through
 the logs to see discovered Bluetooth Low Energy devices.
 
 .. code:: yaml
@@ -60,8 +60,8 @@ tracking, since their MAC-address periodically changes.
 See Also
 ^^^^^^^^
 
-- :doc:`/esphomeyaml/components/esp32_ble`
+- :doc:`/esphomeyaml/components/esp32_ble_tracker`
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/esp32_ble.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/esp32_ble_tracker.rst>`__
 

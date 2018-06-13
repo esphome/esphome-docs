@@ -43,7 +43,7 @@ Configuration variables:
 
 .. note::
 
-    The :ref:`availability feature <mqtt-last_will_birth>`__ of the MQTT client will cause all values
+    The :ref:`availability feature <mqtt-last_will_birth>` of the MQTT client will cause all values
     from the node to be displayed as "unavailable" while the node is in deep sleep mode. To disable availability
     reporting and not have any "unavailable" values, set ``availability`` to an empty value:
 

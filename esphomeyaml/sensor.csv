@@ -8,6 +8,7 @@ BMP085, components/sensor/bmp085, bmp180.jpg
 Dallas, components/sensor/dallas, dallas.jpg
 DHT, components/sensor/dht, dht22.jpg
 DHT12, components/sensor/dht12, dht12.jpg
+Duty Cycle, components/sensor/duty_cycle, percent.svg
 ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
 HDC1080, components/sensor/hdc1080, hdc1080.jpg
 HTU21D, components/sensor/htu21d, htu21d.jpg
@@ -19,4 +20,5 @@ SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
 Template Sensor, components/sensor/template, description.svg
 TSL2561, components/sensor/tsl2561, tsl2561.jpg
 Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
-Custom Sensor, components/sensor/custom, build.svg
+WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
+Custom Sensor, components/sensor/custom, language-cpp.svg

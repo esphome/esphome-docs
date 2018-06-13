@@ -14,11 +14,12 @@ Components
     dallas
     debug
     deep_sleep
-    esp32_ble
+    esp32_ble_tracker
     esp32_touch
     esphomeyaml
     i2c
-    ir_transmitter
+    remote_transmitter
+    remote_receiver
     logger
     mqtt
     ota
@@ -27,3 +28,5 @@ Components
     power_supply
     web_server
     wifi
+    esp32_ble_beacon
+    status_led

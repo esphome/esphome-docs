@@ -12,3 +12,4 @@ Guides
     migrate_espurna
     migrate_sonoff_tasmota
     contributing
+    changelog

@@ -2,6 +2,9 @@ Miscellaneous Components
 ========================
 
 .. toctree::
-    PCF8574 <pcf8574>
-    ESP32 Bluetooth Low Energy Tracker <esp32_ble_tracker>
-    Debug Component <debug>
+
+    pcf8574
+    esp32_ble_tracker
+    debug
+    status_led
+    esp32_ble_beacon

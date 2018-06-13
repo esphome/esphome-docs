@@ -43,6 +43,9 @@ Configuration variables:
 - **filters** (*Optional*): Specify filters to use for some basic
   transforming of values. Defaults to a basic sliding window moving
   average over the last few values. See :ref:`Sensor Filters <sensor-filters>` for more information.
+
+Automations:
+
 - **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a new value is published. See :ref:`sensor-on_value`.
 - **on_value_range** (*Optional*, :ref:`Automation <automation>`): An automation to perform
@@ -322,3 +325,5 @@ See Also
     max6675.rst
     esp32_hall.rst
     custom.rst
+    duty_cycle.rst
+    wifi_signal.rst

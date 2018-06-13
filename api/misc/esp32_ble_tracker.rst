@@ -21,8 +21,6 @@ API Reference
 
 .. cpp:namespace:: nullptr
 
-.. doxygenenum:: PCF8574GPIOMode
-
 .. doxygenclass:: ESP32BLETracker
     :members:
     :protected-members:

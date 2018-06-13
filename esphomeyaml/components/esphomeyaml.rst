@@ -28,6 +28,9 @@ Configuration variables:
   from `this list <http://docs.platformio.org/en/latest/platforms/espressif32.html#boards>`__
   and use `this list <http://docs.platformio.org/en/latest/platforms/espressif8266.html#boards>`__
   for ESP8266-based boards.
+
+Advanced options:
+
 - **library_uri** (*Optional*, string): You can manually specify the
   `version of esphomelib <https://github.com/OttoWinter/esphomelib/releases>`__ to
   use here. Accepts all parameters of `platformio lib
@@ -41,6 +44,12 @@ Configuration variables:
   build flags that specifically set what should be included in the binary. Most of
   this is already done automatically by the linker but this option can help with
   shrinking the firmware size while slowing down compilation. Defaults to ``true``.
+- **build_path** (*Optional*, string): Customize where esphomeyaml will store the build files
+  for your node. By default, esphomeyaml puts all platformio project files under a folder ``<NODE_NAME>/``,
+  but you can customize this behavior using this option.
+
+Automations:
+
 - **on_boot** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the node starts. See :ref:`esphomeyaml-on_boot`.
 - **on_shutdown** (*Optional*, :ref:`Automation <automation>`): An automation to perform

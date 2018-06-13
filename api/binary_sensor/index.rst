@@ -19,6 +19,7 @@ Supported Binary Sensors
     status
     esp32_touch
     template
+    remote_receiver
 
 Example Usage
 -------------

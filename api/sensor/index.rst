@@ -29,6 +29,8 @@ See :cpp:func:`Application::register_sensor`.
     max6675.rst
     rotary_encoder.rst
     template.rst
+    duty_cycle.rst
+    wifi_signal.rst
 
 
 API Reference

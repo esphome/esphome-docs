@@ -1,7 +1,7 @@
-ESP32 Bluetooth Low Energy Hub
-==============================
+ESP32 Bluetooth Low Energy Tracker Hub
+======================================
 
-The ``esp32_ble`` component creates a global hub so that you can track bluetooth low
+The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low
 energy devices using your ESP32 node.
 
 Currently this component only works with few supported bluetooth devices (most of them
@@ -23,11 +23,11 @@ for information on how you can find out the MAC address of a device and track it
 .. code:: yaml
 
     # Example configuration entry
-    esp32_ble:
+    esp32_ble_tracker:
       scan_interval: 300s
 
     binary_sensor:
-      - platform: esp32_ble
+      - platform: esp32_ble_tracker
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
 
@@ -41,6 +41,6 @@ Configuration variables:
 See Also
 ^^^^^^^^
 
-- :doc:`binary_sensor/esp32_ble`
+- :doc:`binary_sensor/esp32_ble_tracker`
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esp32_ble.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esp32_ble_tracker.rst>`__

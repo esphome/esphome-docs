@@ -85,6 +85,14 @@ upload button.
     Currently the build toolchain for the ESP32 does not work on RPis. If you need to compile
     software for ESP32 (**not** ESP8266) boards, please install esphomeyaml on your computer.
 
+HassIO add-on options
+~~~~~~~~~~~~~~~~~~~~~
+
+Since version 1.7.0, you can optionally specify a password to use for all traffic to esphomeyaml
+using the ``password`` option in the HassIO add-on page. By default, this is an empty string
+(which means no password), but you can enter any string in there to set your password.
+
+
 Adding some (basic) features
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
