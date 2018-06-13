@@ -4,6 +4,17 @@ Changelog
 Version 1.7.0
 -------------
 
+Wow, what a week! As you may know, I wrote a blog post on the `Home Assistant web site <https://www.home-assistant.io/blog/2018/06/05/esphomelib/>`__
+and since then, the amount of esphomelib users has grown sixfold according to the number of GitHub clones!
+
+Version 1.7.0 of esphomelib brings with it (again) a lot of awesome features. One I'm particularly excited about is
+the new ESP32 BLE Beacon, with it I can finally track reliably whether my devices are home or not without wasting too much
+battery. But also the new remote receivers and remote transmitters have allowed me to add about ~15 433MHz lights into
+Home Assistant.
+
+In the next couple of weeks I unfortunately won't be able to "innovate" as quickly as in the previous weeks, as I will
+be travelling a lot (and enjoying my vacation 😎), so don't expect too many awesome features 😸
+
 ================================================== ================================================== ==================================================
 |ESP32 BLE Beacon|_                                |Status LED|_                                      |WiFi Signal Strength|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
@@ -70,6 +81,10 @@ New Components
 
 New Features
 ~~~~~~~~~~~~
+
+- While all :ref:`automations <automation>` were previously already performed on the ESP itself, they only
+  triggered when an active WiFi and MQTT connection existed. Large parts of the WiFi and MQTT clients has now
+  been rewritten to allow for automations to be executed asynchronously, while the device is still connecting to WiFi.
 
 - The HassIO add-on now has a new ``password`` option with which you can secure your installation. See
   :doc:`/esphomeyaml/guides/getting_started_hassio`. 🔒
@@ -160,7 +175,6 @@ Other Contributions
 - Add missing module (`esphomedocs/#2`_) by `@fabaff`_
 - Fix unit name (`esphomedocs/#1`_) by `@fabaff`_
 
-
 .. _esphomeyaml/#36: https://github.com/OttoWinter/esphomeyaml/pull/36
 .. _esphomeyaml/#42: https://github.com/OttoWinter/esphomeyaml/pull/42
 .. _esphomeyaml/#41: https://github.com/OttoWinter/esphomeyaml/pull/41
@@ -192,3 +206,10 @@ Other Contributions
 .. _@brandond: https://github.com/brandond
 .. _@r-jordan: https://github.com/r-jordan
 .. _@Landradsh: https://github.com/Landradsh
+
+And last but not least, check out this awesome video by `The Hook Up <https://www.youtube.com/channel/UC2gyzKcHbYfqoXA5xbyGXtQ>`__
+for using esphomeyaml to create a simple wireless doorbell:
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xCQoOZNdaGY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
