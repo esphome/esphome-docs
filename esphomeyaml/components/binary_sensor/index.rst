@@ -59,7 +59,7 @@ They are similar to :ref:`Sensor Filters <sensor-filters>`.
         filters:
           - invert:
           - delayed_on: 100ms
-          - delay_off: 100ms
+          - delayed_off: 100ms
           - lambda: >-
               if (id(other_binary_sensor).value) {
                 return x;
@@ -74,7 +74,7 @@ Supported filters:
   an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words:
   Only send an ON value if the binary sensor has stayed ON for at least the specified time period.
   **Useful for debouncing push buttons**.
-- **delayed_on**: When a signal OFF is received, wait for the specified time period until publishing
+- **delayed_off**: When a signal OFF is received, wait for the specified time period until publishing
   an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
   Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
   **Useful for debouncing push buttons**.
