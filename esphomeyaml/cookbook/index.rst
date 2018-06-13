@@ -9,3 +9,4 @@ Cookbook
     temt6000
     relay
     power_meter
+    dual-r2-cover
