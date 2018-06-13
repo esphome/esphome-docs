@@ -1,11 +1,6 @@
 TSL2561 Ambient Light Sensor
 ============================
 
-.. warning::
-
-    This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 The ``tsl2561`` sensor platform allows you to use your BH1750
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/TSL2561.pdf>`__,
 `Adafruit`_)
