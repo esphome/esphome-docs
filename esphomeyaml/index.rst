@@ -235,7 +235,7 @@ Sensor Components
 .. |ESP32 Hall Sensor| image:: /esphomeyaml/images/magnet.svg
     :class: component-image
 .. _ESP32 Hall Sensor: /esphomeyaml/components/sensor/esp32_hall.html
-.. |HDC1080| image:: /esphomeyaml/images/HDC1080.jpg
+.. |HDC1080| image:: /esphomeyaml/images/hdc1080.jpg
     :class: component-image
 .. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
 .. |HTU21D| image:: /esphomeyaml/images/htu21d.jpg
