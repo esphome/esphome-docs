@@ -6,6 +6,15 @@ firmware binaries to your node without having to use an USB cable for
 uploads. esphomeyaml natively supports this through its ``run`` and
 ``upload`` helper scripts.
 
+.. note::
+  Please be aware that ESP8266 modules must be reset after a serial 
+  upload before OTA can work.
+  When you are trying to conduct an OTA update and receive an error message
+  ``Bad Answer: ERR: ERROR[11]: Invalid bootstrapping`` the reason is
+  very likely that power-cycling the ESP module is required once after
+  the serial upload.
+  
+
 Optionally, you can also define a password to use for OTA updates so
 that an intruder isn’t able to upload any firmware to the ESP without
 having hardware access to it. This password is also hashed
