@@ -221,6 +221,34 @@ we're retrieving the current state of the end stop using ``.value`` and using it
     them into the generated C++ code. If compilation fails or something else is not working as expected
     with lambdas, it's always best to look at the generated C++ source file under ``<NODE_NAME>/src/main.cpp``.
 
+.. tip::
+
+    An easy way to debug lambdas is to use esphomelib's logging engine:
+
+    .. code:: yaml
+
+        lambda: |-
+          ESP_LOGE("main", "This is a red error message");
+          ESP_LOGW("main", "This is a yellow warning message");
+          ESP_LOGD("main", "This is a blue debug message");
+          ESP_LOGV("main", "This is a gray verbose message"); // doesn't show up with the default log level.
+
+          // Use printf-style syntax (http://www.cplusplus.com/reference/cstdio/printf/)
+          ESP_LOGD("main", "The temperature inside is %.1f", id(outside_temperature_sensor).value);
+
+.. tip::
+
+    To store local variables inside lambdas that retain their value across executions, you can create ``static``
+    variables like so. In this example the variable ``num_executions`` is incremented by one each time the
+    lambda is executed and the current value is logged.
+
+    .. code:: yaml
+
+        lambda: |-
+          static int num_executions = 0;
+          ESP_LOGD("main", "I am at execution number %d", num_executions);
+          num_executions += 1;
+
 .. _config-templatable:
 
 Bonus: Templating Actions
@@ -265,6 +293,7 @@ All Actions
 
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
+- :ref:`if <if_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>`
 - :ref:`switch.toggle <switch-toggle_action>`
 - :ref:`switch.turn_off <switch-turn_off_action>`
@@ -278,6 +307,11 @@ All Actions
 - :ref:`fan.toggle <fan-toggle_action>`
 - :ref:`fan.turn_off <fan-turn_off_action>`
 - :ref:`fan.turn_on <fan-turn_on_action>`
+- :ref:`output.turn_off <output-turn_off_action>`
+- :ref:`output.turn_on <output-turn_on_action>`
+- :ref:`output.set_level <output-set_level_action>`
+- :ref:`deep_sleep.enter <deep_sleep-enter_action>`
+- :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
 
 .. _delay_action:
 
@@ -318,20 +352,42 @@ This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-la
         - lambda: >-
             id(some_binary_sensor).publish_state(false);
 
+.. _if_action:
 
-Automation Conditions
-~~~~~~~~~~~~~~~~~~~~~
+If Action
+~~~~~~~~~
 
-Additionally, you can have a condition ``if:`` block in the automation. This will cause esphomelib
-to only execute the ``then`` block if the ``if:`` block succeeds:
+This action first evaluated a certain condition (``if:``) and then either
+executes the ``then:`` branch or the ``else:`` branch depending on the output of the condition.
+
+After the chosen branch (``then`` or ``else``) is done with execution, the next action is performed.
+
+For example below you can see an automation that checks if a sensor value is below 30 and if so
+turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 
 .. code:: yaml
 
     on_...:
-      if:
-        lambda: 'return id(some_binary_sensor).value;'
       then:
-        # do something
+        - if:
+            lambda: 'return id(some_sensor).value < 30;'
+          then:
+            - lambda: 'ESP_LOGD("main", "The sensor value is below 30!");
+            - light.turn_on: my_light
+            - delay: 5s
+          else:
+            - lambda: 'ESP_LOGD("main", "The sensor value is above 30!");
+        - light.turn_off: my_light
+
+
+Configuration options:
+
+- **if** (**Required**): The condition to check which branch to take.
+- **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
+  Defaults to doing nothing.
+- **else** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to false.
+  Defaults to doing nothing.
+
 
 See Also
 ~~~~~~~~

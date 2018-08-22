@@ -17,3 +17,6 @@ Core
     Deep Sleep <deep-sleep>
     I2C <i2c>
     Automation <automation>
+    Time <time>
+    SPI Bus <spi>
+    UART Bus <uart>

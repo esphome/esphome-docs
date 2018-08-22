@@ -114,9 +114,10 @@ See Also
 .. toctree::
     :maxdepth: 1
 
-    gpio.rst
-    shutdown.rst
-    output.rst
-    remote_transmitter.rst
-    restart.rst
-    template.rst
+    gpio
+    output
+    remote_transmitter
+    restart
+    shutdown
+    template
+    uart

@@ -9,14 +9,13 @@ voltage to Home Assistant.
 
 .. figure:: images/ads1115-full.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
-    ADS1115 16-Bit ADC. Image by `Adafruit`_.
+    ADS1115 16-Bit ADC.
 
 .. _Adafruit: https://www.adafruit.com/product/1085
 
-.. figure:: images/adc-ui.png
+.. figure:: images/ads1115-ui.png
     :align: center
     :width: 80.0%
 
@@ -26,9 +25,9 @@ voltage to Home Assistant.
       - address: 0x48
     sensor:
       - platform: ads1115
-        multiplexer: 'A0_A1'
-        gain: 1.024
-        name: "Living Room Brightness"
+        multiplexer: 'A0_GND'
+        gain: 6.144
+        name: "ADS1115 Channel A0-GND"
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~

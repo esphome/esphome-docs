@@ -4,19 +4,6 @@ ESP32 Bluetooth Low Energy Tracker Hub
 The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low
 energy devices using your ESP32 node.
 
-Currently this component only works with few supported bluetooth devices (most of them
-being BLE "beacons") and currently only is capable of creating binary sensors indicating
-whether a specific BLE MAC Address can be found or not.
-
-In the future, this integration will be expanded to support reading RSSI values and hopefully
-support lots more devices like tracking smartphones and reading temperature values from BLE sensors.
-
-.. note::
-
-    Be warned: This integration is currently not very stable and sometimes causes sporadic
-    restarts of the node. Additionally, using this integration will increase the required
-    flash memory size by up to 500kB.
-
 See `Setting up devices </esphomeyaml/components/binary_sensor/esp32_ble.html#setting-up-devices>`__
 for information on how you can find out the MAC address of a device and track it using esphomelib.
 
@@ -30,6 +17,31 @@ for information on how you can find out the MAC address of a device and track it
       - platform: esp32_ble_tracker
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
+
+    sensor:
+      - platform: ble_rssi
+        mac_address: AC:37:43:77:5F:4C
+        name: "BLE Google Home Mini RSSI value"
+      - platform: xiaomi_miflora
+        mac_address: 94:2B:FF:5C:91:61
+        temperature:
+          name: "Xiaomi MiFlora Temperature"
+        moisture:
+          name: "Xiaomi MiFlora Moisture"
+        illuminance:
+          name: "Xiaomi MiFlora Illuminance"
+        conductivity:
+          name: "Xiaomi MiFlora Soil Conductivity"
+        battery_level:
+          name: "Xiaomi MiFlora Battery Level"
+      - platform: xiaomi_mijia
+        mac_address: 7A:80:8E:19:36:BA
+        temperature:
+          name: "Xiaomi MiJia Temperature"
+        humidity:
+          name: "Xiaomi MiJia Humidity"
+        battery_level:
+          name: "Xiaomi MiJia Battery Level"
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~

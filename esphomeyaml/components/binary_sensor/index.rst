@@ -229,9 +229,11 @@ See Also
 .. toctree::
     :maxdepth: 1
 
-    gpio.rst
-    status.rst
-    esp32_ble_tracker.rst
-    esp32_touch.rst
-    template.rst
-    remote_receiver.rst
+    gpio
+    status
+    esp32_ble_tracker
+    esp32_touch
+    template
+    remote_receiver
+    pn532
+    rdm6300

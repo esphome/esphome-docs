@@ -1,11 +1,6 @@
 BME680 Temperature+Pressure+Humidity+Gas Sensor
 ===============================================
 
-.. warning::
-
-    This sensor is experimental has not been fully tested yet as I do not own all sensors. If you
-    can verify it works (or if it doesn't), please notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 The ``bme680`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity sensors with esphomelib. The :ref:`I²C <i2c>` is required to be set up in
@@ -13,10 +8,9 @@ your configuration for this sensor to work.
 
 .. figure:: images/bme680-full.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
-    BME680 Temperature, Pressure & Humidity Sensor. Image by `Adafruit`_.
+    BME680 Temperature, Pressure & Humidity Sensor.
 
 .. _Adafruit: https://www.adafruit.com/product/3660
 
@@ -26,19 +20,19 @@ your configuration for this sensor to work.
     sensor:
       - platform: bme680
         temperature:
-          name: "Outside Temperature"
+          name: "BME680 Temperature"
           oversampling: 16x
         pressure:
-          name: "Outside Pressure"
+          name: "BME680 Pressure"
         humidity:
-          name: "Outside Humidity"
+          name: "BME680 Humidity"
         gas_resistance:
-          name: "Outside Gas Sensor"
+          name: "BME680 Gas Resistance"
         address: 0x77
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **temperature** (**Required**): The information for the temperature sensor.
 
@@ -74,13 +68,25 @@ Configuration variables:
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
   ``OFF``, ``2x``, ``4x``, ``16x``. Defaults to ``OFF``.
+- **heater** (*Optional*): The settings for the internal heater for the gas sensor. Set this
+  to disable the internal heater.
+
+  - **temperature** (*Optional*, int): The target temperature of the heater between 200 and 400 °C.
+    Defaults to ``320``.
+  - **duration** (*Optional*, :ref:`config-time`): The duration the heater should be active. Maximum value is ``4032ms``.
+    Defaults to ``150ms``.
+
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
+
+.. figure:: images/bme680-ui.png
+    :align: center
+    :width: 80.0%
 
 .. _bme680-oversampling:
 
 Oversampling Options
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 By default, the BME680 sensor measures each value 16 times when requesting a new value. You can, however,
 configure this amount. Possible oversampling values:
@@ -93,7 +99,7 @@ configure this amount. Possible oversampling values:
 -  ``16x`` (default)
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`bme280`

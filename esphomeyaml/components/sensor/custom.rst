@@ -69,6 +69,17 @@ To create your own custom sensor, you just have define a C++ class that extends 
     void setup() {
       // ...
 
+Additionally, you need to turn off an internal flag that makes esphomelib only compile what it sees in
+the configuration, which can cause build issues with custom components. But don't worry, this should only
+slow down build times a bit:
+
+.. code:: yaml
+
+    esphomeyaml:
+      # ...
+      use_build_flags: False
+      simplify: False
+
 You've just created your first esphomelib sensor 🎉. It doesn't do very much right now and is never registered,
 but it's a first step.
 

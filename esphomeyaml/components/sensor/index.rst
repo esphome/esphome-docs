@@ -55,6 +55,23 @@ Automations:
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 
+.. note::
+
+    If you're trying to setup filters for a sensor that has multiple outputs - for example a DHT22 which
+    reports temperature *and* humidity - put the ``filters`` option into each sensor output like this:
+
+    .. code:: yaml
+
+        sensor:
+          - platform: dht
+            # ...
+            temperature:
+              filters:
+                # ...
+            humidity:
+              filters:
+                # ...
+
 .. _sensor-filters:
 
 Sensor Filters
@@ -304,26 +321,38 @@ See Also
 .. toctree::
     :maxdepth: 1
 
-    dallas.rst
-    adc.rst
-    ads1115.rst
-    bmp085.rst
-    dht.rst
-    hdc1080.rst
-    htu21d.rst
-    pulse_counter.rst
-    ultrasonic.rst
-    mpu6050.rst
-    bh1750.rst
-    bme280.rst
-    bme680.rst
-    tsl2561.rst
-    sht3xd.rst
-    dht12.rst
-    rotary_encoder.rst
-    template.rst
-    max6675.rst
-    esp32_hall.rst
-    custom.rst
-    duty_cycle.rst
-    wifi_signal.rst
+    adc
+    ads1115
+    bh1750
+    ble_rssi
+    bme280
+    bme680
+    bmp085
+    bmp280
+    custom
+    dallas
+    dht
+    dht12
+    duty_cycle
+    esp32_hall
+    hdc1080
+    hmc5883l
+    htu21d
+    hx711
+    ina219
+    ina3221
+    max6675
+    mhz19
+    mpu6050
+    ms5611
+    pulse_counter
+    rotary_encoder
+    sht3xd
+    tcs34725
+    template
+    tsl2561
+    ultrasonic
+    uptime
+    wifi_signal
+    xiaomi_miflora
+    xiaomi_mijia

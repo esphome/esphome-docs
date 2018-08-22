@@ -7,10 +7,9 @@ The ``dht12`` Temperature+Humidity sensor allows you to use your DHT12
 
 .. figure:: images/dht12-full.jpg
     :align: center
-    :target: `electrodragon`_
     :width: 50.0%
 
-    DHT12 Temperature & Humidity Sensor. Image by `electrodragon`_.
+    DHT12 Temperature & Humidity Sensor.
 
 .. _electrodragon: http://www.electrodragon.com/product/dht12/
 

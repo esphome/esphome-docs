@@ -28,6 +28,7 @@ Configuration variables:
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
+  - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
 
 - **tolerance** (*Optional*, int): The percentage that the remote signal lengths can devicate in the

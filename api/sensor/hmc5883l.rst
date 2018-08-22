@@ -1,0 +1,20 @@
+HMC5883L Magnetometer
+=====================
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_hmc5883l`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::HMC5883LComponent
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenenum:: sensor::HMC5883LRange
+
+.. doxygentypedef:: sensor::HMC5883LFieldStrengthSensor
+.. doxygentypedef:: sensor::HMC5883LHeadingSensor

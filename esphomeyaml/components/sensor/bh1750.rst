@@ -8,20 +8,23 @@ your configuration for this sensor to work.
 
 .. figure:: images/bh1750-full.jpg
     :align: center
-    :target: `Aliexpress`_
     :width: 50.0%
 
-    BH1750 Ambient Light Sensor. Images from `Aliexpress`_ and `mklec`_.
+    BH1750 Ambient Light Sensor.
 
 .. _Aliexpress: https://www.adafruit.com/product/1603
 .. _mklec: http://mklec.com/modules/micro-controller-modules/bh1750-bh1750fvi-digital-light-sensor-module
+
+.. figure:: images/bh1750-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code:: yaml
 
     # Example configuration entry
     sensor:
       - platform: bh1750
-        name: "Living Room Brightness"
+        name: "BH1750 Illuminance"
         address: 0x23
         update_interval: 15s
 

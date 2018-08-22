@@ -30,7 +30,7 @@ Configuration variables:
 
 .. warning::
 
-    Signal strength readings are only available when WiFi in in station mode. Readings are not valid
+    Signal strength readings are only available when WiFi is in station mode. Readings are not valid
     if the device is acting as an access point without any station mode connection.
 
 See Also

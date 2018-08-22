@@ -36,6 +36,50 @@ Configuration variables:
   maximum output value of this output platform. Each value will be
   multiplied by this. Must be in range from 0 to 1. Defaults to 1.
 
+
+
+.. _output-turn_on_action:
+
+``output.turn_on`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action turns the output with the given ID on when executed.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - output.turn_on: relay_1
+
+.. _output-turn_off_action:
+
+``output.turn_off`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action turns the output with the given ID off when executed.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - output.turn_off: relay_1
+
+.. _output-set_level_action:
+
+``output.set_level`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action sets the float output to the given level when executed. Note: This only
+works with floating point outputs like ESP8266 PWM or LEDC.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - output.set_level:
+            id: output_1
+            level: 50%
+
 Full Output Index
 ^^^^^^^^^^^^^^^^^
 

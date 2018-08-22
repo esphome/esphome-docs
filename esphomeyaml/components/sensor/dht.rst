@@ -12,12 +12,11 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 `sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__)
 sensors with esphomelib.
 
-.. figure:: images/dht22-full.jpg
+.. figure:: images/dht-full.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
-    DHT22 Temperature & Humidity Sensor. Image by `Adafruit`_.
+    DHT22 Temperature & Humidity Sensor.
 
 .. _Adafruit: https://www.adafruit.com/product/385
 

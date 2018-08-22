@@ -5,7 +5,7 @@ esphomeyaml can be used with Sonoff Basic. These devices are basically just
 an ESP8266 chip with a relay to control the connection, a small button on the
 front and a green LED light. 
 
-.. figure:: images/sonoff_basic.jpg
+.. figure:: images/sonoff_basic-full.jpg
     :align: center
     :width: 75.0%
 

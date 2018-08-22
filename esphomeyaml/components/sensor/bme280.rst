@@ -21,12 +21,12 @@ required to be set up in your configuration for this sensor to work.
     sensor:
       - platform: bme280
         temperature:
-          name: "Outside Temperature"
+          name: "BME280 Temperature"
           oversampling: 16x
         pressure:
-          name: "Outside Pressure"
+          name: "BME280 Pressure"
         humidity:
-          name: "Outside Humidity"
+          name: "BME280 Humidity"
         address: 0x77
         update_interval: 15s
 

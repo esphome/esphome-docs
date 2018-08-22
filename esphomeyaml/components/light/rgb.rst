@@ -35,6 +35,7 @@ Configuration variables:
   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the light. Defaults to ``2.8``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The length of
   the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
+- **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 

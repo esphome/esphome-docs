@@ -5,3 +5,5 @@ ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
 ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
 Template Binary Sensor, components/binary_sensor/template, description.svg
 Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
+PN532 Tag, components/binary_sensor/pn532, pn532.jpg
+RDM6300 Tag, components/binary_sensor/rdm6300, rdm6300.jpg

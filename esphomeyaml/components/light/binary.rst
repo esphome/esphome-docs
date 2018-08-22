@@ -23,6 +23,8 @@ Configuration variables:
 - **output** (**Required**, :ref:`config-id`): The id of the
   binary :ref:`output` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light, though binary lights
+  only support very few of them.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also

@@ -45,6 +45,7 @@ Configuration variables:
   the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`/esphomeyaml/components/power_supply` to connect to
   this light. When the light is turned on, the power supply will automatically be switched on too.
+- **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -61,18 +62,6 @@ Supported Chipsets
 - ``SM16716``
 - ``WS2801``
 - ``WS2803``
-
-Light Effects
-~~~~~~~~~~~~~
-
-Currently, only a rainbow effect is supported. In the future, more light effects will be added
-and supported out-of-the box. Creating custom effects is, however, quite easy with esphomelib.
-See the `fastled example <https://github.com/OttoWinter/esphomelib/blob/master/examples/fastled/fastled.cpp>`__
-in the esphomelib repository for a simple example.
-
-.. figure:: images/fastled_effect.png
-    :align: center
-    :width: 30.0%
 
 See Also
 ^^^^^^^^

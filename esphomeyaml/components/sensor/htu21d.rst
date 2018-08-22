@@ -9,10 +9,9 @@ required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/htu21d-full.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
-    HTU21D Temperature & Humidity Sensor. Image by `Adafruit`_.
+    HTU21D Temperature & Humidity Sensor.
 
 .. _Adafruit: https://learn.adafruit.com/adafruit-htu21d-f-temperature-humidity-sensor/overview
 

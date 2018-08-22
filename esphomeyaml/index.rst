@@ -14,7 +14,7 @@ esphomeyaml will:
 
 
 Features
-~~~~~~~~
+--------
 
  * **No programming experience required:** just edit YAML configuration
    files like you're used to with Home Assistant.
@@ -29,7 +29,7 @@ Features
 
 
 Guides
-~~~~~~
+------
 
 ================================================== ================================================== ==================================================
 |Getting Started through Command Line|_            |Getting Started through HassIO Add-On|_           |Configuration Types|_
@@ -84,7 +84,7 @@ Guides
 .. _devices:
 
 Devices
-^^^^^^^
+-------
 
 This list contains a bunch of getting started and more advanced guides for using esphomeyaml.
 Technically, all ESP8266/ESP32 devices (and therefore all Sonoff devices) are supported by esphomeyaml/lib.
@@ -119,33 +119,37 @@ These are only the devices for which I've had the time to set up dedicated guide
 .. |Sonoff S20| image:: /esphomeyaml/images/sonoff_s20.jpg
     :class: component-image
 .. _Sonoff S20: /esphomeyaml/devices/sonoff_s20.html
-.. |Sonoff Basic| image:: /esphomeyaml/devices/images/sonoff_basic.jpg
-    :class: component-image
-.. _Sonoff Basic: /esphomeyaml/devices/sonoff_basic.html
 .. |Sonoff 4CH| image:: /esphomeyaml/images/sonoff_4ch.jpg
     :class: component-image
 .. _Sonoff 4CH: /esphomeyaml/devices/sonoff_4ch.html
 .. |Generic Sonoff| image:: /esphomeyaml/images/sonoff.svg
     :class: component-image
 .. _Generic Sonoff: /esphomeyaml/devices/sonoff.html
+.. |Sonoff Basic| image:: /esphomeyaml/images/sonoff_basic.jpg
+    :class: component-image
+.. _Sonoff Basic: /esphomeyaml/devices/sonoff_basic.html
 
 
 Core Components
-~~~~~~~~~~~~~~~
+---------------
 
-============================== ============================== ==============================
-|Core|_                        |WiFi|_                        |MQTT|_
------------------------------- ------------------------------ ------------------------------
-`Core`_                        `WiFi`_                        `MQTT`_
------------------------------- ------------------------------ ------------------------------
-|I²C Bus|_                     |OTA Updates|_                 |Logger|_
------------------------------- ------------------------------ ------------------------------
-`I²C Bus`_                     `OTA Updates`_                 `Logger`_
------------------------------- ------------------------------ ------------------------------
-|Web Server|_                  |Power Supply|_                |Deep Sleep|_
------------------------------- ------------------------------ ------------------------------
-`Web Server`_                  `Power Supply`_                `Deep Sleep`_
-============================== ============================== ==============================
+================================================== ================================================== ==================================================
+|Core|_                                            |WiFi|_                                            |MQTT|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Core`_                                            `WiFi`_                                            `MQTT`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|I²C Bus|_                                         |SPI Bus|_                                         |UART Bus|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`I²C Bus`_                                         `SPI Bus`_                                         `UART Bus`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|OTA Updates|_                                     |Logger|_                                          |Web Server|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`OTA Updates`_                                     `Logger`_                                          `Web Server`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Power Supply|_                                    |Deep Sleep|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Power Supply`_                                    `Deep Sleep`_
+================================================== ================================================== ==================================================
 
 .. |Core| image:: /esphomeyaml/images/cloud-circle.svg
     :class: component-image
@@ -159,6 +163,12 @@ Core Components
 .. |I²C Bus| image:: /esphomeyaml/images/i2c.svg
     :class: component-image
 .. _I²C Bus: /esphomeyaml/components/i2c.html
+.. |SPI Bus| image:: /esphomeyaml/images/spi.svg
+    :class: component-image
+.. _SPI Bus: /esphomeyaml/components/spi.html
+.. |UART Bus| image:: /esphomeyaml/images/uart.svg
+    :class: component-image
+.. _UART Bus: /esphomeyaml/components/uart.html
 .. |OTA Updates| image:: /esphomeyaml/images/system-update.svg
     :class: component-image
 .. _OTA Updates: /esphomeyaml/components/ota.html
@@ -176,41 +186,59 @@ Core Components
 .. _Deep Sleep: /esphomeyaml/components/deep_sleep.html
 
 
+
+
 Sensor Components
-~~~~~~~~~~~~~~~~~
+-----------------
 
 ================================================== ================================================== ==================================================
 |Sensor Core|_                                     |ADC|_                                             |ADS1115|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Sensor Core`_                                     `ADC`_                                             `ADS1115`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|BH1750|_                                          |BME280|_                                          |BME680|_
+|BH1750|_                                          |BLE RSSI|_                                        |BME280|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`BH1750`_                                          `BME280`_                                          `BME680`_
+`BH1750`_                                          `BLE RSSI`_                                        `BME280`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|BMP085|_                                          |Dallas|_                                          |DHT|_
+|BME680|_                                          |BMP085|_                                          |BMP280|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`BMP085`_                                          `Dallas`_                                          `DHT`_
+`BME680`_                                          `BMP085`_                                          `BMP280`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|DHT12|_                                           |Duty Cycle|_                                      |ESP32 Hall Sensor|_
+|Dallas|_                                          |DHT|_                                             |DHT12|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`DHT12`_                                           `Duty Cycle`_                                      `ESP32 Hall Sensor`_
+`Dallas`_                                          `DHT`_                                             `DHT12`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|HDC1080|_                                         |HTU21D|_                                          |MAX6675|_
+|Duty Cycle|_                                      |ESP32 Hall Sensor|_                               |HDC1080|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`HDC1080`_                                         `HTU21D`_                                          `MAX6675`_
+`Duty Cycle`_                                      `ESP32 Hall Sensor`_                               `HDC1080`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|MPU6050|_                                         |Pulse Counter|_                                   |Rotary Encoder|_
+|HX711|_                                           |INA219|_                                          |INA3221|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`MPU6050`_                                         `Pulse Counter`_                                   `Rotary Encoder`_
+`HX711`_                                           `INA219`_                                          `INA3221`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|SHT3X-D|_                                         |Template Sensor|_                                 |TSL2561|_
+|HTU21D|_                                          |MAX6675|_                                         |MH-Z19|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`SHT3X-D`_                                         `Template Sensor`_                                 `TSL2561`_
+`HTU21D`_                                          `MAX6675`_                                         `MH-Z19`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Ultrasonic Sensor|_                               |WiFi Signal Strength|_                            |Custom Sensor|_
+|MPU6050|_                                         |MS5611|_                                          |Pulse Counter|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Ultrasonic Sensor`_                               `WiFi Signal Strength`_                            `Custom Sensor`_
+`MPU6050`_                                         `MS5611`_                                          `Pulse Counter`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Rotary Encoder|_                                  |SHT3X-D|_                                         |TCS34725|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Rotary Encoder`_                                  `SHT3X-D`_                                         `TCS34725`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Template Sensor|_                                 |TSL2561|_                                         |Ultrasonic Sensor|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Template Sensor`_                                 `TSL2561`_                                         `Ultrasonic Sensor`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Uptime Sensor|_                                   |WiFi Signal Strength|_                            |Xiaomi MiFlora|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Uptime Sensor`_                                   `WiFi Signal Strength`_                            `Xiaomi MiFlora`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Xiaomi MiJia|_                                    |Custom Sensor|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Xiaomi MiJia`_                                    `Custom Sensor`_
 ================================================== ================================================== ==================================================
 
 .. |Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -225,6 +253,9 @@ Sensor Components
 .. |BH1750| image:: /esphomeyaml/images/bh1750.jpg
     :class: component-image
 .. _BH1750: /esphomeyaml/components/sensor/bh1750.html
+.. |BLE RSSI| image:: /esphomeyaml/images/bluetooth.svg
+    :class: component-image
+.. _BLE RSSI: /esphomeyaml/components/sensor/ble_rssi.html
 .. |BME280| image:: /esphomeyaml/images/bme280.jpg
     :class: component-image
 .. _BME280: /esphomeyaml/components/sensor/bme280.html
@@ -234,10 +265,13 @@ Sensor Components
 .. |BMP085| image:: /esphomeyaml/images/bmp180.jpg
     :class: component-image
 .. _BMP085: /esphomeyaml/components/sensor/bmp085.html
+.. |BMP280| image:: /esphomeyaml/images/bmp280.jpg
+    :class: component-image
+.. _BMP280: /esphomeyaml/components/sensor/bmp280.html
 .. |Dallas| image:: /esphomeyaml/images/dallas.jpg
     :class: component-image
 .. _Dallas: /esphomeyaml/components/sensor/dallas.html
-.. |DHT| image:: /esphomeyaml/images/dht22.jpg
+.. |DHT| image:: /esphomeyaml/images/dht.jpg
     :class: component-image
 .. _DHT: /esphomeyaml/components/sensor/dht.html
 .. |DHT12| image:: /esphomeyaml/images/dht12.jpg
@@ -252,15 +286,30 @@ Sensor Components
 .. |HDC1080| image:: /esphomeyaml/images/hdc1080.jpg
     :class: component-image
 .. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
+.. |HX711| image:: /esphomeyaml/images/hx711.jpg
+    :class: component-image
+.. _HX711: /esphomeyaml/components/sensor/hx711.html
+.. |INA219| image:: /esphomeyaml/images/ina219.jpg
+    :class: component-image
+.. _INA219: /esphomeyaml/components/sensor/ina219.html
+.. |INA3221| image:: /esphomeyaml/images/ina3221.jpg
+    :class: component-image
+.. _INA3221: /esphomeyaml/components/sensor/ina3221.html
 .. |HTU21D| image:: /esphomeyaml/images/htu21d.jpg
     :class: component-image
 .. _HTU21D: /esphomeyaml/components/sensor/htu21d.html
 .. |MAX6675| image:: /esphomeyaml/images/max6675.jpg
     :class: component-image
 .. _MAX6675: /esphomeyaml/components/sensor/max6675.html
+.. |MH-Z19| image:: /esphomeyaml/images/mhz19.jpg
+    :class: component-image
+.. _MH-Z19: /esphomeyaml/components/sensor/mhz19.html
 .. |MPU6050| image:: /esphomeyaml/images/mpu6050.jpg
     :class: component-image
 .. _MPU6050: /esphomeyaml/components/sensor/mpu6050.html
+.. |MS5611| image:: /esphomeyaml/images/ms5611.jpg
+    :class: component-image
+.. _MS5611: /esphomeyaml/components/sensor/ms5611.html
 .. |Pulse Counter| image:: /esphomeyaml/images/pulse.svg
     :class: component-image
 .. _Pulse Counter: /esphomeyaml/components/sensor/pulse_counter.html
@@ -270,6 +319,9 @@ Sensor Components
 .. |SHT3X-D| image:: /esphomeyaml/images/sht3xd.jpg
     :class: component-image
 .. _SHT3X-D: /esphomeyaml/components/sensor/sht3xd.html
+.. |TCS34725| image:: /esphomeyaml/images/tcs34725.jpg
+    :class: component-image
+.. _TCS34725: /esphomeyaml/components/sensor/tcs34725.html
 .. |Template Sensor| image:: /esphomeyaml/images/description.svg
     :class: component-image
 .. _Template Sensor: /esphomeyaml/components/sensor/template.html
@@ -279,9 +331,18 @@ Sensor Components
 .. |Ultrasonic Sensor| image:: /esphomeyaml/images/ultrasonic.jpg
     :class: component-image
 .. _Ultrasonic Sensor: /esphomeyaml/components/sensor/ultrasonic.html
+.. |Uptime Sensor| image:: /esphomeyaml/images/timer.svg
+    :class: component-image
+.. _Uptime Sensor: /esphomeyaml/components/sensor/uptime.html
 .. |WiFi Signal Strength| image:: /esphomeyaml/images/network-wifi.svg
     :class: component-image
 .. _WiFi Signal Strength: /esphomeyaml/components/sensor/wifi_signal.html
+.. |Xiaomi MiFlora| image:: /esphomeyaml/images/xiaomi_miflora.jpg
+    :class: component-image
+.. _Xiaomi MiFlora: /esphomeyaml/components/sensor/xiaomi_miflora.html
+.. |Xiaomi MiJia| image:: /esphomeyaml/images/xiaomi_mijia.jpg
+    :class: component-image
+.. _Xiaomi MiJia: /esphomeyaml/components/sensor/xiaomi_mijia.html
 .. |Custom Sensor| image:: /esphomeyaml/images/language-cpp.svg
     :class: component-image
 .. _Custom Sensor: /esphomeyaml/components/sensor/custom.html
@@ -292,7 +353,7 @@ example </esphomeyaml/cookbook/temt6000>`.
 
 
 Binary Sensor Components
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 ================================================== ================================================== ==================================================
 |Binary Sensor Core|_                              |GPIO|_                                            |Status|_
@@ -303,9 +364,9 @@ Binary Sensor Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `ESP32 BLE Device`_                                `ESP32 Touch Pad`_                                 `Template Binary Sensor`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Remote Receiver|_
+|Remote Receiver|_                                 |PN532 Tag|_                                       |RDM6300 Tag|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Remote Receiver`_
+`Remote Receiver`_                                 `PN532 Tag`_                                       `RDM6300 Tag`_
 ================================================== ================================================== ==================================================
 
 .. |Binary Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -329,11 +390,16 @@ Binary Sensor Components
 .. |Remote Receiver| image:: /esphomeyaml/images/remote.svg
     :class: component-image
 .. _Remote Receiver: /esphomeyaml/components/binary_sensor/remote_receiver.html
-
+.. |PN532 Tag| image:: /esphomeyaml/images/pn532.jpg
+    :class: component-image
+.. _PN532 Tag: /esphomeyaml/components/binary_sensor/pn532.html
+.. |RDM6300 Tag| image:: /esphomeyaml/images/rdm6300.jpg
+    :class: component-image
+.. _RDM6300 Tag: /esphomeyaml/components/binary_sensor/rdm6300.html
 
 
 Output Components
-~~~~~~~~~~~~~~~~~
+-----------------
 
 ============================== ============================== ==============================
 |Output Core|_                 |ESP8266 Software PWM|_        |GPIO Output|_
@@ -363,7 +429,7 @@ Output Components
 
 
 Light Components
-~~~~~~~~~~~~~~~~
+----------------
 
 ============================== ============================== ==============================
 |Light Core|_                  |Binary Light|_                |Monochromatic Light|_
@@ -406,7 +472,7 @@ Looking for WS2811 and similar individually addressable lights? Have a look at t
 :doc:`FastLED Clockless Light <components/light/fastled_clockless>`.
 
 Switch Components
-~~~~~~~~~~~~~~~~~
+-----------------
 
 ================================================== ================================================== ==================================================
 |Switch Core|_                                     |GPIO Switch|_                                     |Remote Transmitter|_
@@ -417,9 +483,9 @@ Switch Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Restart Switch`_                                  `Shutdown Switch`_                                 `Generic Output Switch`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Template Switch|_
+|Template Switch|_                                 |UART Switch|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Template Switch`_
+`Template Switch`_                                 `UART Switch`_
 ================================================== ================================================== ==================================================
 
 .. |Switch Core| image:: /esphomeyaml/images/folder-open.svg
@@ -443,11 +509,13 @@ Switch Components
 .. |Template Switch| image:: /esphomeyaml/images/description.svg
     :class: component-image
 .. _Template Switch: /esphomeyaml/components/switch/template.html
-
+.. |UART Switch| image:: /esphomeyaml/images/uart.svg
+    :class: component-image
+.. _UART Switch: /esphomeyaml/components/switch/uart.html
 
 
 Fan Components
-~~~~~~~~~~~~~~
+--------------
 
 ============================== ============================== ==============================
 |Fan Core|_                    |Binary Fan|_                  |Speed Fan|_
@@ -466,8 +534,47 @@ Fan Components
 .. _Speed Fan: /esphomeyaml/components/fan/speed.html
 
 
+Display Components
+------------------
+
+================================================== ================================================== ==================================================
+|Display Core|_                                    |GPIO LCD|_                                        |PCF8574 LCD|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Display Core`_                                    `GPIO LCD`_                                        `PCF8574 LCD`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|MAX7219|_                                         |SSD1306 I2C|_                                     |SSD1306 SPI|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`MAX7219`_                                         `SSD1306 I2C`_                                     `SSD1306 SPI`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Waveshare E-Paper|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Waveshare E-Paper`_
+================================================== ================================================== ==================================================
+
+.. |Display Core| image:: /esphomeyaml/images/folder-open.svg
+    :class: component-image
+.. _Display Core: /esphomeyaml/components/display/index.html
+.. |GPIO LCD| image:: /esphomeyaml/images/lcd.jpg
+    :class: component-image
+.. _GPIO LCD: /esphomeyaml/components/display/lcd_gpio.html
+.. |PCF8574 LCD| image:: /esphomeyaml/images/lcd.jpg
+    :class: component-image
+.. _PCF8574 LCD: /esphomeyaml/components/display/lcd_pcf8574.html
+.. |MAX7219| image:: /esphomeyaml/images/max7219.jpg
+    :class: component-image
+.. _MAX7219: /esphomeyaml/components/display/max7219.html
+.. |SSD1306 I2C| image:: /esphomeyaml/images/ssd1306.jpg
+    :class: component-image
+.. _SSD1306 I2C: /esphomeyaml/components/display/ssd1306_i2c.html
+.. |SSD1306 SPI| image:: /esphomeyaml/images/ssd1306.jpg
+    :class: component-image
+.. _SSD1306 SPI: /esphomeyaml/components/display/ssd1306_spi.html
+.. |Waveshare E-Paper| image:: /esphomeyaml/images/waveshare_epaper.jpg
+    :class: component-image
+.. _Waveshare E-Paper: /esphomeyaml/components/display/waveshare_epaper.html
+
 Cover Components
-^^^^^^^^^^^^^^^^
+----------------
 
 ============================== ============================== ==============================
 |Cover Core|_                  |Template Cover|_
@@ -484,7 +591,7 @@ Cover Components
 
 
 Misc Components
-~~~~~~~~~~~~~~~
+---------------
 
 ================================================== ================================================== ==================================================
 |Dallas Hub|_                                      |Remote Transmitter Hub|_                          |Remote Receiver Hub|_
@@ -499,9 +606,13 @@ Misc Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `PCF8574 I/O Expander`_                            `ESP32 BLE Tracker`_                               `ESP32 BLE Beacon`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|ESP32 Touch Hub|_                                 |Status LED|_
+|ESP32 Touch Hub|_                                 |Status LED|_                                      |PN532|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`ESP32 Touch Hub`_                                 `Status LED`_
+`ESP32 Touch Hub`_                                 `Status LED`_                                      `PN532`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|RDM6300|_                                         |Time|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`RDM6300`_                                         `Time`_
 ================================================== ================================================== ==================================================
 
 .. |Dallas Hub| image:: /esphomeyaml/images/dallas.jpg
@@ -537,10 +648,18 @@ Misc Components
 .. |Status LED| image:: /esphomeyaml/images/led-on.svg
     :class: component-image
 .. _Status LED: /esphomeyaml/components/status_led.html
-
+.. |PN532| image:: /esphomeyaml/images/pn532.jpg
+    :class: component-image
+.. _PN532: /esphomeyaml/components/pn532.html
+.. |RDM6300| image:: /esphomeyaml/images/rdm6300.jpg
+    :class: component-image
+.. _RDM6300: /esphomeyaml/components/rdm6300.html
+.. |Time| image:: /esphomeyaml/images/clock-outline.svg
+    :class: component-image
+.. _Time: /esphomeyaml/components/time.html
 
 Cookbook
-^^^^^^^^
+--------
 
 This list contains items that are technically already supported by other components.
 

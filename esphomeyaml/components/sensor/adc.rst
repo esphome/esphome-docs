@@ -90,5 +90,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`ads1115`
 - :doc:`max6675`
-- :doc:`API Reference </api/sensor/adc-sensor>`
+- :doc:`API Reference </api/sensor/adc>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/adc.rst>`__
