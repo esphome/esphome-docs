@@ -29,7 +29,7 @@ your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name for the sensor.
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
@@ -44,9 +44,10 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`tsl2561`
 - :doc:`API Reference </api/sensor/bh1750>`
+- `BH1750 Library <https://github.com/claws/BH1750>`__ by `@claws <https://github.com/claws>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bh1750.rst>`__

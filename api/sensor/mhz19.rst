@@ -17,4 +17,3 @@ API Reference
 
 .. doxygentypedef:: MHZ19CO2Sensor
 .. doxygentypedef:: MHZ19TemperatureSensor
-.. doxygendefine:: USE_MHZ19

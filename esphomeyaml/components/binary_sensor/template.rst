@@ -34,7 +34,7 @@ Possible return values of the lambda:
  - ``return {};`` if the last state should be repeated.
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  **name** (**Required**, string): The name of the binary sensor.
 -  **lambda** (**Required**, :ref:`lambda <config-lambda>`):
@@ -47,7 +47,7 @@ Configuration variables:
    and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`/esphomeyaml/components/sensor/template`

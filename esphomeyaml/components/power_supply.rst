@@ -19,7 +19,7 @@ after the last ouput has been disabled.
         pin: 13
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **id** (**Required**, :ref:`config-id`): The id of the
   power supply so that it can be used by the outputs.
@@ -37,7 +37,7 @@ See the :ref:`output component base configuration <config-output>`
 for information on how to apply the power supply for a specific output.
 
 ATX Power Supplies
-~~~~~~~~~~~~~~~~~~
+------------------
 
 .. figure:: images/power_supply-atx.jpg
     :align: center

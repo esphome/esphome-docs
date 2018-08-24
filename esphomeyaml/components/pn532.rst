@@ -57,5 +57,6 @@ See Also
 
 - :doc:`binary_sensor/pn532`
 - :doc:`rdm6300`
+- `PN532 Library <https://github.com/adafruit/Adafruit-PN532/blob/master/Adafruit_PN532.cpp>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :doc:`API Reference </api/binary_sensor/pn532>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/pn532.rst>`__

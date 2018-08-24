@@ -18,7 +18,7 @@ through this platform.
         name: "Living Room Dehumidifier"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The
   GPIO pin to use for the switch.
@@ -42,7 +42,7 @@ Configuration variables:
             name: "Living Room Dehumidifier"
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`index`
 - :doc:`/esphomeyaml/components/output/gpio`

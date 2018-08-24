@@ -2,14 +2,15 @@ Display Component
 =================
 
 The ``display`` component houses esphomelib's powerful rendering and display
-engine. Fundamentally, there are two types of displays:
+engine. Fundamentally, there are these types of displays:
 
-- Text based displays like :doc:`8-Segment displays <max7219>` or
+- Text based displays like :doc:`7-Segment displays <max7219>` or
   :doc:`some LCD displays <lcd_gpio>`.
+- Displays like the :doc:`nextion` that have their own processors for rendering.
 - Binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper displays <waveshare_epaper>` or
   :doc:`OLED displays <ssd1306_spi>`.
 
-For the latter type, esphomelib and esphomeyaml has a powerful rendering engine that can do
+For the last type, esphomelib and esphomeyaml have a powerful rendering engine that can do
 many things like draw some basic shapes, print text with any font you want, or even show images.
 
 To achieve all this flexibility displays tie in directly into esphomeyaml's :ref:`lambda system <config-lambda>`.
@@ -60,7 +61,7 @@ x always represents the horizontal axis (width) and y the vertical axis (height)
 the rendering engine is always first specify the ``x`` coordinate and then the ``y`` coordinate.
 
 Basic Shapes
-^^^^^^^^^^^^
+************
 
 Now that you know a bit more about esphomelib's coordinate system, let's draw some basic shapes like lines, rectangles
 and circles:
@@ -121,7 +122,7 @@ You can view the full API documentation for the rendering engine over at :ref:`d
 .. _display-static_text:
 
 Drawing Static Text
-^^^^^^^^^^^^^^^^^^^
+*******************
 
 The rendering engine also has a powerful font drawer which integrates seamlessly into esphomeyaml.
 Whereas in most arduino display projects you have to use one of a few pre-defined fonts in very
@@ -210,7 +211,7 @@ As with basic shapes, you can also specify a color for the text:
 .. _display-printf:
 
 Formatted Text
-^^^^^^^^^^^^^^
+**************
 
 Static text by itself is not too impressive. What we really want is to display *dynamic* content like sensor values
 on the display!. That's where ``printf`` comes in. ``printf`` is a formatting engine from the C era and esphomelib
@@ -299,7 +300,7 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 .. _display-strftime:
 
 Displaying Time
-^^^^^^^^^^^^^^^
+***************
 
 With esphomelib you can also display the current time using the NTP protocol. Please see the example :ref:`here <strftime>`.
 
@@ -350,6 +351,7 @@ See Also
     lcd_gpio
     lcd_pcf8574
     max7219
+    nextion
     ssd1306_i2c
     ssd1306_spi
     waveshare_epaper

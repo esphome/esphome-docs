@@ -28,7 +28,7 @@ Use cases include, but are not limited to, infrared remotes, 433MHz signals and 
         repeat: 25
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name for the switch.
 - The remote code, see :ref:`remote_transmitter-codes`. Only one
@@ -43,10 +43,27 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
 
+.. note::
+
+    For the Sonoff RF Bridge you can use `this hack <https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack>`__
+    created by the Github user wildwiz. Then use this configuration for the remote receiver/transmitter hubs:
+
+    .. code:: yaml
+
+        remote_receiver:
+          pin: 4
+          dump: all
+
+        remote_transmitter:
+          pin: 5
+          carrier_duty_percent: 100%
+
+    Supporting the RF Bridge chip directly is currently only a long-term goal for esphomelib.
+
 .. _remote_transmitter-codes:
 
 Remote Codes
-~~~~~~~~~~~~
+------------
 
 Supported remote codes:
 
@@ -164,7 +181,7 @@ Configuration variables:
 .. _finding_remote_codes:
 
 Finding Remote Codes
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Each remote transmitter uses a different protocol to send its information. So to replicate an infrared or 433MHz
 remote you will first need to "learn" these codes. You will first need to hook up a receiver and sniff the codes
@@ -185,7 +202,7 @@ And then activate the remote control you want to have in esphomelib. you will se
     Example log output for a 433MHz proprietary remote control.
 
 Raw Remote Codes
-----------------
+****************
 
 If esphomelib has a decoder set up for the code, it will spit out the decoded code in the logs. In this case,
 it's a proprietary protocol which would be difficult to reverse engineer. Fortunately, we can just
@@ -221,7 +238,7 @@ Note that you don't need to include the leading ``32519`` here, as it denotes a 
 a transmission.
 
 RCSwitch Remote Codes
----------------------
+*********************
 
 Starting with version 1.8.0 esphomelib can also recognize a bunch of 433MHz RF codes directly using `RCSwitch's <https://github.com/sui77/rc-switch>`__
 remote protocol. If you have RF code dumping enabled for the receiver, you will then see log outputs like this one:
@@ -324,10 +341,12 @@ Configuration options for the custom variant:
 
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`index`
 - :doc:`/esphomeyaml/components/remote_transmitter`
 - :doc:`/esphomeyaml/components/remote_receiver`
+- `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
+- `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :doc:`API Reference </api/switch/remote_transmitter>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/remote_transmitter.rst>`__

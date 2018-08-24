@@ -3,6 +3,7 @@ GPIO, components/binary_sensor/gpio, pin.svg
 Status, components/binary_sensor/status, server-network.svg
 ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
 ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+Nextion Touch, components/binary_sensor/nextion, nextion.jpg
 Template Binary Sensor, components/binary_sensor/template, description.svg
 Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
 PN532 Tag, components/binary_sensor/pn532, pn532.jpg

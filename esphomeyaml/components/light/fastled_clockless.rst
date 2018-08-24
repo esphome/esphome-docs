@@ -23,7 +23,7 @@ Clockless FastLED lights differ from the
         name: "FastLED WS2811 Light"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **chipset** (**Required**, string): Set a chipset to use.
@@ -52,7 +52,7 @@ Configuration variables:
 .. _fastled_clockless-chipsets:
 
 Supported Chipsets
-~~~~~~~~~~~~~~~~~~
+------------------
 
 - ``NEOPIXEL``
 - ``WS2811``
@@ -80,10 +80,11 @@ Supported Chipsets
 - ``UCS2903``
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/light/index`
 - :doc:`/esphomeyaml/components/light/fastled_spi`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/light/fastled>`
+- `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/fastled_clockless.rst>`__

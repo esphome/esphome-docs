@@ -59,5 +59,6 @@ See Also
 - :doc:`bmp280`
 - :doc:`bme280`
 - :doc:`bmp085`
+- `Arduino MS5611 Library <https://github.com/jarzebski/Arduino-MS5611>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
 - :doc:`API Reference </api/sensor/ms5611>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ms5611.rst>`__

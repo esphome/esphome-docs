@@ -64,7 +64,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
         pin: D0
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`esp8266`
 - :doc:`nodemcu_esp32`

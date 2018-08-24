@@ -113,7 +113,7 @@ Of the four main components (button sensor, 2 relays switches and the cover), on
       optimistic: true
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`/esphomeyaml/guides/automations`
 - :doc:`/esphomeyaml/components/cover/template`

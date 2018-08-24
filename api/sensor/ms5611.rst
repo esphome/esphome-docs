@@ -15,6 +15,5 @@ API Reference
     :protected-members:
     :undoc-members:
 
-.. doxygenenum:: MS5611TemperatureSensor
-.. doxygenenum:: MS5611PressureSensor
-.. doxygendefine:: USE_MS5611
+.. doxygentypedef:: MS5611TemperatureSensor
+.. doxygentypedef:: MS5611PressureSensor

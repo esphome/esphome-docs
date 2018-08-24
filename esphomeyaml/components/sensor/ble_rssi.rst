@@ -17,7 +17,7 @@ instructions for setting up this platform.
         name: "BLE Google Home Mini RSSI value"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  **mac_address** (**Required**, MAC Address): The MAC address to track for this
    sensor.
@@ -26,7 +26,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/esp32_ble_tracker`
 - :doc:`/esphomeyaml/components/sensor/index`

@@ -50,7 +50,7 @@ Have everything? Great! Then you can start.
 
 
 Step 1: Opening up the Sonoff S20
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 The first step is to open up the Sonoff S20. Note that you do not have to run the original firmware
 supplied with the Sonoff S20 before doing this step.
@@ -76,7 +76,7 @@ After that, you should be able to remove the front cover and should be greeted b
     :width: 75.0%
 
 Step 2: Connecting UART
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 We're interested in the main part of the S20 with the green PCB. On the bottom of the PCB, you will
 find four unpopulated holes. These pins have the UART interface used to flash firmwares onto the device
@@ -112,7 +112,7 @@ It's best to just use a multimeter and double check if it's unclear.
 .. _sonoff_s20-creating-firmware:
 
 Step 3: Creating Firmware
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 The Sonoff S20 is based on the ``ESP8266`` platform and is a subtype of the ``esp01_1m`` board.
 With this information, you can step through the esphomeyaml wizard (``esphomeyaml sonoff_s20.yaml wizard``),
@@ -155,7 +155,7 @@ pre-compile the firmware.
     uploading, you can also try uploading this file directly with other tools.
 
 Step 4: Uploading Firmware
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 In order to upload the firmware, you're first going to need to get the chip into a flash mode, otherwise
 the device will start up without accepting any firmware flash attempts. To do this, while the device is UART
@@ -187,7 +187,7 @@ If above step does, however, not work, here are some steps that can help:
    the two pins and put it into flash mode again.
 
 Step 5: Adding the Button, Relay and LEDs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
 Now we would like the S20 to actually do something, not just connect to WiFi and pretty much sit idle.
 
@@ -308,7 +308,7 @@ of course have to add them to groups if you have a ``default_view`` set):
     :width: 75.0%
 
 Step 6: Finishing Up
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Now you're pretty much done with setting up the Sonoff S20. The only steps left are to
 remove any cables within the housing and make sure everyhing in there is clean. If, for
@@ -329,7 +329,7 @@ plug it into the socket.
 Happy hacking!
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`

@@ -70,7 +70,38 @@ API Reference
     :members:
     :protected-members:
     :undoc-members:
+
 .. doxygenclass:: remote::RawDumper
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchRawReceiver
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeAReceiver
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeBReceiver
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeCReceiver
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeDReceiver
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchDumper
     :members:
     :protected-members:
     :undoc-members:

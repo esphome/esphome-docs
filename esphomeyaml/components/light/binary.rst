@@ -17,7 +17,7 @@ The ``binary`` light platform creates a simple ON/OFF-only light from a
         output: output_component1
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **output** (**Required**, :ref:`config-id`): The id of the
@@ -28,7 +28,7 @@ Configuration variables:
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/output/index`
 - :doc:`/esphomeyaml/components/light/index`

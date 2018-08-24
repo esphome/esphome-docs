@@ -45,4 +45,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`adc`
 - :doc:`API Reference </api/sensor/hx711>`
+- `HX711 Library <https://github.com/bogde/HX711>`__ by `@bogde <https://github.com/bogde>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hx711.rst>`__

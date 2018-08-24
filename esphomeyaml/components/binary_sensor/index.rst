@@ -237,3 +237,4 @@ See Also
     remote_receiver
     pn532
     rdm6300
+    nextion

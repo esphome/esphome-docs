@@ -57,4 +57,5 @@ See Also
 - :doc:`hdc1080`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/htu21d>`
+- `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/htu21d.rst>`__

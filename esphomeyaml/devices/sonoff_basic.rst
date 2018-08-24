@@ -22,7 +22,7 @@ pretty similar.
     web interface.
 
 Sample configuration
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The Sonoff Basic is based on the ``ESP8266`` platform and is a subtype of the ``esp01_1m`` board.
 With this information, you can also step through the esphomeyaml wizard (``esphomeyaml sonoff_basic.yaml wizard``)
@@ -121,7 +121,7 @@ Or run the upload command if your device is connected to the serial interface:
     esphomeyaml sonoff_basic.yaml run
 
 See Also
-~~~~~~~~
+----------
 
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`

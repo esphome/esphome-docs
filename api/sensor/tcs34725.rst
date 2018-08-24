@@ -20,4 +20,3 @@ API Reference
 .. doxygentypedef:: TCS35725IlluminanceSensor
 .. doxygentypedef:: TCS35725ColorTemperatureSensor
 .. doxygentypedef:: TCS35725ColorChannelSensor
-.. doxygendefine:: USE_TCS34725

@@ -15,7 +15,7 @@ to work correctly, you need to define the i²c bus in your configuration.
       scan: False
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **sda** (*Optional*, :ref:`config-pin`): The pin for the data line of the i²c bus.
   Defaults to the default of your board (usually GPIO21 for ESP32 and GPIO4 for ESP8266).

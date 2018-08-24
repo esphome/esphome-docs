@@ -32,7 +32,7 @@ sends out a BLE broadcast.
           name: "Xiaomi MiJia Battery Level"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi MiJia device.
 - **temperature** (**Required**): The information for the temperature sensor.
@@ -55,7 +55,7 @@ Configuration variables:
 
 
 Setting Up Devices
-~~~~~~~~~~~~~~~~~~
+------------------
 
 To set up Xiaomi MiJia devices you first need to find their MAC Address so that esphomelib can
 identify them. So first, create a simple configuration without any ``xiaomi_mijia`` entries like so:
@@ -79,10 +79,12 @@ in the configuration example at the top.
 
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/esp32_ble_tracker`
 - :doc:`/esphomeyaml/components/sensor/xiaomi_miflora`
 - :doc:`/esphomeyaml/components/sensor/index`
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
+- `Xiaomi Mijia BLE protocl <https://github.com/mspider65/Xiaomi-Mijia-Bluetooth-Temperature-and-Humidity-Sensor>`__ by `@mspider65 <https://github.com/mspider65>`__
+- `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/xiaomi_mijia.rst>`__

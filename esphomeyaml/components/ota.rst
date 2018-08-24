@@ -26,7 +26,7 @@ Logging+WiFi+OTA are initialized, so that you can upload a new binary.
       password: VERYSECURE
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  **safe_mode** (*Optional*, boolean): Whether to enable safe mode.
    Defaults to ``True``.

@@ -33,7 +33,7 @@ outputs go in the wrong direction, you can just swap these two pins.
         pin_b: D2
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin_a** (**Required**, :ref:`Pin Schema <config-pin_schema>`):
   The first pin for determining the step value. Must not be a pin from an external I/O expander.
@@ -47,7 +47,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 Debouncing Output
-~~~~~~~~~~~~~~~~~
+-----------------
 
 This sensor can output a lot of values in a short period of time when turning the knob.
 In order to not put too much stress on your network connection, you can leverage esphomelib's
@@ -68,10 +68,11 @@ sensor filters. The following will only send out values if the last input value 
             - delta: 10
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`pulse_counter`
 - :doc:`template`
+- `Mechanical Input Library <https://github.com/jkDesignDE/MechInputs>`__ by `Jochen Krapf <https://github.com/JK-de>`__
 - :doc:`API Reference </api/sensor/rotary_encoder>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/rotary_encoder.rst>`__

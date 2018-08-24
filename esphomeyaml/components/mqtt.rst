@@ -16,7 +16,7 @@ Assistant configuration.
       password: MyMQTTPassword
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **broker** (**Required**, string): The host of your MQTT broker.
 - **port** (*Optional*, int): The port to connect to. Defaults to 1883.
@@ -58,7 +58,7 @@ Configuration variables:
 .. _mqtt-message:
 
 MQTTMessage
-~~~~~~~~~~~
+-----------
 
 With the MQTT Message schema you can tell esphomeyaml how a specific MQTT message should be sent.
 It is used in several places like last will and birth messages or MQTT log options.
@@ -92,7 +92,7 @@ Configuration options:
 
 
 Using with Home Assistant
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 Using esphomelib with Home Assistant is easy, simply setup an MQTT
 broker (like `mosquitto <https://mosquitto.org/>`__) and point both your
@@ -131,7 +131,7 @@ topic, simply add ``--topic <your_topic>`` to the command.
 .. _mqtt-defaults:
 
 Defaults
-~~~~~~~~
+--------
 
 By default, esphomelib will prefix all messages with your node name or
 ``topic_prefix`` if you have specified it manually. The client id will
@@ -148,7 +148,7 @@ configuration. That way, you can use your existing wildcards like
 .. _mqtt-last_will_birth:
 
 Last Will And Birth Messages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 esphomelib (and esphomeyaml) uses the `last will
 testament <https://www.hivemq.com/blog/mqtt-essentials-part-9-last-will-and-testament>`__
@@ -189,7 +189,7 @@ disabled.
 .. _mqtt-ssl_fingerprints:
 
 SSL Fingerprints
-~~~~~~~~~~~~~~~~
+----------------
 
 On the ESP8266 you have the option to use SSL connections for MQTT. This feature
 will get expanded to the ESP32 once the base library, AsyncTCP, supports it. Please
@@ -217,7 +217,7 @@ then run the ``mqtt-fingerprint`` script of esphomeyaml to get the certificate:
 .. _config-mqtt-component:
 
 MQTT Component Base Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 All components in esphomelib that do some sort of communication through
 MQTT can have some overrides for specific options.
@@ -264,7 +264,7 @@ Configuration variables:
 .. _mqtt-on_message:
 
 on_message
-^^^^^^^^^^
+----------
 
 With this configuration option you can write complex automations whenever an MQTT
 message on a specific topic is received. To use the message content, use a :ref:`lambda <config-lambda>`
@@ -312,7 +312,7 @@ Configuration variables:
 .. _mqtt-publish_action:
 
 ``mqtt.publish`` Action
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Publish an MQTT message on a topic using this action in automations.
 
@@ -344,7 +344,7 @@ Configuration options:
    have a retain flag on or not. Defaults to ``False``.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`API Reference </api/core/mqtt>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/mqtt.rst>`__

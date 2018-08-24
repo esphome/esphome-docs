@@ -1,4 +1,4 @@
-MAX7219 8-Segment Display
+MAX7219 7-Segment Display
 =========================
 
 API Reference

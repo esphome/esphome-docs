@@ -53,7 +53,7 @@ set a ``device_class`` so that Home Assistant uses a nice icon for the binary se
     :width: 60.0%
 
 See Also
-^^^^^^^^
+--------
 
 - `Awesome article explaining how PIR Sensors work <https://learn.adafruit.com/pir-passive-infrared-proximity-motion-sensor/how-pirs-work>`__.
 - :doc:`/esphomeyaml/components/binary_sensor/gpio`

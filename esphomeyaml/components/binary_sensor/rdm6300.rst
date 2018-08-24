@@ -25,7 +25,7 @@ See :doc:`/esphomeyaml/components/rdm6300` for instructions for setting up the c
         name: "RDM6300 NFC Tag"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **uid** (**Required**, integer): The unique ID of the NFC/RFID tag.
 - **name** (**Required**, string): The name of the binary sensor.
@@ -35,7 +35,7 @@ Configuration variables:
 .. _rdm6300-setting_up_tags:
 
 Setting Up Tags
-~~~~~~~~~~~~~~~
+---------------
 
 To set up binary sensors for specific NFC tags you first have to know their unique IDs. To obtain this
 id, first set up a simple RDM6300 configuration without any binary sensors like above.
@@ -54,7 +54,7 @@ each tag.
     :width: 80.0%
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/rdm6300`
 - :doc:`/esphomeyaml/components/binary_sensor/index`

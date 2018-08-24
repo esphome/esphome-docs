@@ -29,7 +29,7 @@ Configuration variables:
 .. _switch-toggle_action:
 
 ``switch.toggle`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^
+************************
 
 This action toggles a switch with the given ID when executed.
 
@@ -43,7 +43,7 @@ This action toggles a switch with the given ID when executed.
 .. _switch-turn_on_action:
 
 ``switch.turn_on`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^
+*************************
 
 This action turns a switch with the given ID on when executed.
 
@@ -57,7 +57,7 @@ This action turns a switch with the given ID on when executed.
 .. _switch-turn_off_action:
 
 ``switch.turn_off`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**************************
 
 This action turns a switch with the given ID off when executed.
 
@@ -69,7 +69,7 @@ This action turns a switch with the given ID off when executed.
             id: relay_1
 
 lambda calls
-""""""""""""
+************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
 advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more info).
@@ -106,7 +106,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
       id(my_switch).write_state(!id(my_switch).state);
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`API Reference </api/switch/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/index.rst>`__

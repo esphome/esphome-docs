@@ -27,7 +27,7 @@ even Over The Air updates.
       sleep_duration: 10min
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **run_duration** (*Optional*, :ref:`config-time`): The time duration the node should be active, i.e. run code.
 - **run_cycles** (*Optional*, int): The number of ``loop()`` cycles to go through before
@@ -57,7 +57,7 @@ Configuration variables:
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
 ESP32 Wakeup Pin Mode
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 On the ESP32, you have the option of waking up on any RTC pin. However, there's one scenario that you need
 to tell esphomelib how to handle: What if the wakeup pin is already in the state with which it would wake up
@@ -75,7 +75,7 @@ when the deep sleep should start? There are three ways of handling this using th
 .. _deep_sleep-enter_action:
 
 ``deep_sleep.enter`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 This action makes the given deep sleep component enter deep sleep immediately.
 
@@ -89,7 +89,7 @@ This action makes the given deep sleep component enter deep sleep immediately.
 .. _deep_sleep-prevent_action:
 
 ``deep_sleep.prevent`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 
 This action prevents the given deep sleep component from entering deep sleep.
 Useful for
@@ -128,7 +128,7 @@ Useful for
                   id: deep_sleep_1
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`switch/shutdown`
 - :ref:`automation`

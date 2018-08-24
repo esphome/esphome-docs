@@ -8,6 +8,7 @@ Supported Displays
 
     lcd_display
     max7219
+    nextion
     ssd1306
     waveshare_epaper
 
@@ -32,10 +33,7 @@ DisplayBuffer
 TextAlign
 *********
 
-.. doxygenclass:: TextAlign
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenenum:: TextAlign
 
 Font
 ****

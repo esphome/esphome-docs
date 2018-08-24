@@ -17,7 +17,7 @@ the eight touch pads of the ESP32 as :doc:`binary senors </esphomeyaml/component
         threshold: 1000
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  **setup_mode** (*Optional*, boolean): Whether debug messages with the touch pad value should
    be displayed in the logs. Useful for finding out suitable thresholds for the binary sensors, but
@@ -48,7 +48,7 @@ Advanced options (the defaults are usually quite good, but if you're having accu
   for a nice explanation of this. One of ``1.5V``, ``1V``, ``0.5V``, ``0V``. Default is ``0V``.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`binary_sensor/esp32_touch`
 - :doc:`API Reference </api/binary_sensor/esp32_touch>`

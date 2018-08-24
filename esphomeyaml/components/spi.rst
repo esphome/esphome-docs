@@ -30,7 +30,7 @@ rarely be necessary, as the SPI bus can be shared by the devices).
       miso_pin: GPIO23
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **clk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for the clock line of the SPI bus.
 - **mosi_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the mosi line of the SPI bus.

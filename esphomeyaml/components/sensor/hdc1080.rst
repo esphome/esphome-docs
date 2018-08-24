@@ -32,7 +32,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **temperature** (**Required**): The information for the temperature sensor.
 
@@ -54,7 +54,7 @@ as it seems to only be rarely of use. If you need it, please open an
 issue.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`dht`
@@ -62,4 +62,5 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/hdc1080>`
+- `HDC1080 Library <https://github.com/closedcube/ClosedCube_HDC1080_Arduino>`__ by `ClosedCube <https://www.tindie.com/stores/closedcube/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hdc1080.rst>`__

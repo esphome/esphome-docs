@@ -178,55 +178,20 @@ Devices that will (hopefully) be supported soon:
 
 Devices/Sensors that I've bought and will be supported at some point (ordered by priority):
 
--  433MHz Transmitter Component
--  PN532 NFC Board
--  INA219/INA3221 Current Sensor
 -  GP2Y10 Dust Sensor
--  TCS34725 RGB Light Sensor
 -  APDS-9960 RGB Gesture Sensor
 -  MCP2301 16-Channel I/O Expander
--  MH-Z19 CO^2 Sensor
--  HMC5883L Compass Sensor
--  SPI E-Ink Display Module
--  8-Segment Display
--  I^2C LCD Display (4 rows, 20 characters)
--  I^2C/SPI SSD1306 OLED Display
--  Nextion TFT LCD Display
 -  MLX90614 Infrared Thermometer
--  MS5611 Pressure Sensor
 -  PCF8591 ADC
 -  OV2640 Camera
 -  L298N H-Bridge Motor Driver
 -  A4988 Stepper Motor Driver
--  MQ-2 Gas Sensor
 
 Other features that I'm working on:
 
--  ESP32 IR/433MHz Receiver
--  Pulse Counter for the ESP8266 (using interrupts)
 -  Multiple WiFi Networks to connect to
--  Improve "Restart due to WiFi/MQTT disconnect" logic and make the timeouts more configurable
 -  Color Temperature for Lights
--  Status LED
--  More FastLED effects
--  Support for displays (like LCD/OLED/E-Ink displays)
 -  Cameras (probably through ArduCAM)
-
-
-Devices which are supported, but not tested yet. I'm still waiting for these to arrive from China:
-
--  ADS1115 Voltage Sensor
--  TSL2561 Brightness Sensor
--  HDC1080 Temperature+Humidity Sensor
--  SHT31-D Temperature+Humidity Sensor
--  BME280
--  BME680
-
-Devices that are technically already supported, but for which guides will be created soon-ish:
-
--  Sonoff Basic
--  Sonoff Basic RF
--  Soil Moisture Sensor
 
 Anything missing? I'd be happy to chat about more integrations over on the `discord channel
 <https://discord.gg/KhAMKrd>`__ - no guarantees that everything will be supported though!

@@ -39,7 +39,7 @@ API Reference
 .. doxygentypedef:: sensor::BME680TemperatureSensor
 .. doxygentypedef:: sensor::BME680PressureSensor
 .. doxygentypedef:: sensor::BME680HumiditySensor
-.. doxygentypedef:: sensor::BME2680GasResistanceSensor
+.. doxygentypedef:: sensor::BME680GasResistanceSensor
 
 .. doxygenstruct:: sensor::BME680CalibrationData
     :members:

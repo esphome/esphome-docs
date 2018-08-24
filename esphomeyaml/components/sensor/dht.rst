@@ -41,7 +41,7 @@ if you're having issues try the 4.7kΩ recommended by the manufacturer) between
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin where the DHT bus is connected.
 - **temperature** (**Required**): The information for the temperature sensor.
@@ -69,7 +69,7 @@ Configuration variables:
    on the DATA pin or too long cables.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`dht12`
@@ -77,4 +77,5 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/dht>`
+- `Arduino DHTLib <https://playground.arduino.cc/Main/DHTLib>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/dht.rst>`__

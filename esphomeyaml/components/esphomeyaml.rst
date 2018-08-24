@@ -15,7 +15,7 @@ where you specify the **name** of the node, the **platform** and
         board: nodemcu-32s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique to the node and no other node in your system
@@ -58,7 +58,7 @@ Automations:
 .. _using_latest_arduino_framework:
 
 Using the latest Arduino framework version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------
 
 The default version of the arduino framework distributed through platformio is usually quite old
 and the latest staging versions of the framework can in some cases increase stability a lot.
@@ -80,7 +80,7 @@ And for the ESP8266, the URL is https://github.com/platformio/platform-espressif
 .. _esphomeyaml-on_boot:
 
 ``on_boot``
-"""""""""""
+-----------
 
 This automation will be triggered when the ESP boots up. By default, it is executed after everything else
 is already set up. You can however change this using the ``priority`` parameter.
@@ -116,7 +116,7 @@ Configuration variables:
 .. _esphomeyaml-on_shutdown:
 
 ``on_shutdown``
-"""""""""""""""
+---------------
 
 This automation will be triggered when the ESP is about to shut down. Shutting down is usually caused by
 too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or through the :doc:`deep_sleep`.
@@ -138,6 +138,6 @@ too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or th
 Configuration variables: See :ref:`Automation <automation>`.
 
 See Also
-~~~~~~~~
+--------
 
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esphomeyaml.rst>`__

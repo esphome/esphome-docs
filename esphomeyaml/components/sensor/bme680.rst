@@ -105,4 +105,5 @@ See Also
 - :doc:`bme280`
 - :doc:`bmp085`
 - :doc:`API Reference </api/sensor/bme680>`
+- `BME680 Sensor API <https://github.com/BoschSensortec/BME680_driver>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bme680.rst>`__

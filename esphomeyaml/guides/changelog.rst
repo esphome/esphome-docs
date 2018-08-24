@@ -1,6 +1,129 @@
 Changelog
 =========
 
+Version 1.8.0
+-------------
+
+================================================== ================================================== ==================================================
+|SPI Bus|_                                         |UART Bus|_                                        |Time|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`SPI Bus`_                                         `UART Bus`_                                        `Time`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Waveshare E-Paper|_                               |Nextion|_                                         |SSD1306|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Waveshare E-Paper`_                               `Nextion`_                                         `SSD1306`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|MAX7219|_                                         |LCD Display|_                                     |Uptime Sensor|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`MAX7219`_                                         `LCD Display`_                                     `Uptime Sensor`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|RCSwitch Integration|_                            |PN532|_                                           |RDM6300|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`RCSwitch Integration`_                            `PN532`_                                           `RDM6300`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|BLE RSSI|_                                        |Xiaomi MiFlora|_                                  |Xiaomi MiJia|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`BLE RSSI`_                                        `Xiaomi MiFlora`_                                  `Xiaomi MiJia`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|HMC5883L|_                                        |HX711|_                                           |HLW8012|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`HMC5883L`_                                        `HX711`_                                           `HLW8012`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|BMP280|_                                          |INA219|_                                          |INA3221|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`BMP280`_                                          `INA219`_                                          `INA3221`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|MH-Z19|_                                          |MS5611|_                                          |TCS34725|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`MH-Z19`_                                          `MS5611`_                                          `TCS34725`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|RGBWW Light|_                                     |Cold+Warm White Light|_                           |Light Effect|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`RGBWW Light`_                                     `Cold+Warm White Light`_                           `Light Effect`_
+================================================== ================================================== ==================================================
+
+.. |SPI Bus| image:: /esphomeyaml/images/spi.svg
+    :class: component-image
+.. _SPI Bus: /esphomeyaml/components/spi.html
+.. |UART Bus| image:: /esphomeyaml/images/uart.svg
+    :class: component-image
+.. _UART Bus: /esphomeyaml/components/uart.html
+.. |Time| image:: /esphomeyaml/images/clock-outline.svg
+    :class: component-image
+.. _Time: /esphomeyaml/components/time.html
+.. |Waveshare E-Paper| image:: /esphomeyaml/images/waveshare_epaper.jpg
+    :class: component-image
+.. _Waveshare E-Paper: /esphomeyaml/components/display/waveshare_epaper.html
+.. |Nextion| image:: /esphomeyaml/images/nextion.jpg
+    :class: component-image
+.. _Nextion: /esphomeyaml/components/display/nextion.html
+.. |SSD1306| image:: /esphomeyaml/images/ssd1306.jpg
+    :class: component-image
+.. _SSD1306: /esphomeyaml/components/display/ssd1306_i2c.html
+.. |MAX7219| image:: /esphomeyaml/images/max7219.jpg
+    :class: component-image
+.. _MAX7219: /esphomeyaml/components/display/max7219.html
+.. |LCD Display| image:: /esphomeyaml/images/lcd.jpg
+    :class: component-image
+.. _LCD Display: /esphomeyaml/components/display/lcd_gpio.html
+.. |Uptime Sensor| image:: /esphomeyaml/images/timer.svg
+    :class: component-image
+.. _Uptime Sensor: /esphomeyaml/components/sensor/uptime.html
+.. |RCSwitch Integration| image:: /esphomeyaml/images/remote.svg
+    :class: component-image
+.. _RCSwitch Integration: /esphomeyaml/components/remote_transmitter.html
+.. |PN532| image:: /esphomeyaml/images/pn532.jpg
+    :class: component-image
+.. _PN532: /esphomeyaml/components/pn532.html
+.. |RDM6300| image:: /esphomeyaml/images/rdm6300.jpg
+    :class: component-image
+.. _RDM6300: /esphomeyaml/components/rdm6300.html
+.. |BLE RSSI| image:: /esphomeyaml/images/bluetooth.svg
+    :class: component-image
+.. _BLE RSSI: /esphomeyaml/components/sensor/ble_rssi.html
+.. |Xiaomi MiFlora| image:: /esphomeyaml/images/xiaomi_miflora.jpg
+    :class: component-image
+.. _Xiaomi MiFlora: /esphomeyaml/components/sensor/xiaomi_miflora.html
+.. |Xiaomi MiJia| image:: /esphomeyaml/images/xiaomi_mijia.jpg
+    :class: component-image
+.. _Xiaomi MiJia: /esphomeyaml/components/sensor/xiaomi_mijia.html
+.. |HMC5883L| image:: /esphomeyaml/images/hmc5883l.jpg
+    :class: component-image
+.. _HMC5883L: /esphomeyaml/components/sensor/hmc5883l.html
+.. |HX711| image:: /esphomeyaml/images/hx711.jpg
+    :class: component-image
+.. _HX711: /esphomeyaml/components/sensor/hx711.html
+.. |HLW8012| image:: /esphomeyaml/images/hlw8012.svg
+    :class: component-image
+.. _HLW8012: /esphomeyaml/components/sensor/hlw8012.html
+.. |BMP280| image:: /esphomeyaml/images/bmp280.jpg
+    :class: component-image
+.. _BMP280: /esphomeyaml/components/sensor/bmp280.html
+.. |INA219| image:: /esphomeyaml/images/ina219.jpg
+    :class: component-image
+.. _INA219: /esphomeyaml/components/sensor/ina219.html
+.. |INA3221| image:: /esphomeyaml/images/ina3221.jpg
+    :class: component-image
+.. _INA3221: /esphomeyaml/components/sensor/ina3221.html
+.. |MH-Z19| image:: /esphomeyaml/images/mhz19.jpg
+    :class: component-image
+.. _MH-Z19: /esphomeyaml/components/sensor/mhz19.html
+.. |MS5611| image:: /esphomeyaml/images/ms5611.jpg
+    :class: component-image
+.. _MS5611: /esphomeyaml/components/sensor/ms5611.html
+.. |TCS34725| image:: /esphomeyaml/images/tcs34725.jpg
+    :class: component-image
+.. _TCS34725: /esphomeyaml/components/sensor/tcs34725.html
+.. |RGBWW Light| image:: /esphomeyaml/images/rgbw.png
+    :class: component-image
+.. _RGBWW Light: /esphomeyaml/components/light/rgbww.html
+.. |Cold+Warm White Light| image:: /esphomeyaml/images/brightness-medium.svg
+    :class: component-image
+.. _Cold+Warm White Light: /esphomeyaml/components/light/cwww.html
+.. |Light Effect| image:: /esphomeyaml/images/creation.svg
+    :class: component-image
+.. _Light Effect: /esphomeyaml/components/light/index.html
+
 Version 1.7.0
 -------------
 

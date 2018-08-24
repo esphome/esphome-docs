@@ -212,33 +212,37 @@ Sensor Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Duty Cycle`_                                      `ESP32 Hall Sensor`_                               `HDC1080`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|HX711|_                                           |INA219|_                                          |INA3221|_
+|HLW8012|_                                         |HMC5883L|_                                        |HX711|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`HX711`_                                           `INA219`_                                          `INA3221`_
+`HLW8012`_                                         `HMC5883L`_                                        `HX711`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|HTU21D|_                                          |MAX6675|_                                         |MH-Z19|_
+|INA219|_                                          |INA3221|_                                         |HTU21D|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`HTU21D`_                                          `MAX6675`_                                         `MH-Z19`_
+`INA219`_                                          `INA3221`_                                         `HTU21D`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|MPU6050|_                                         |MS5611|_                                          |Pulse Counter|_
+|MAX6675|_                                         |MH-Z19|_                                          |MPU6050|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`MPU6050`_                                         `MS5611`_                                          `Pulse Counter`_
+`MAX6675`_                                         `MH-Z19`_                                          `MPU6050`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Rotary Encoder|_                                  |SHT3X-D|_                                         |TCS34725|_
+|MS5611|_                                          |Pulse Counter|_                                   |Rotary Encoder|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Rotary Encoder`_                                  `SHT3X-D`_                                         `TCS34725`_
+`MS5611`_                                          `Pulse Counter`_                                   `Rotary Encoder`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Template Sensor|_                                 |TSL2561|_                                         |Ultrasonic Sensor|_
+|SHT3X-D|_                                         |TCS34725|_                                        |Template Sensor|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Template Sensor`_                                 `TSL2561`_                                         `Ultrasonic Sensor`_
+`SHT3X-D`_                                         `TCS34725`_                                        `Template Sensor`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Uptime Sensor|_                                   |WiFi Signal Strength|_                            |Xiaomi MiFlora|_
+|TSL2561|_                                         |Ultrasonic Sensor|_                               |Uptime Sensor|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Uptime Sensor`_                                   `WiFi Signal Strength`_                            `Xiaomi MiFlora`_
+`TSL2561`_                                         `Ultrasonic Sensor`_                               `Uptime Sensor`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Xiaomi MiJia|_                                    |Custom Sensor|_
+|WiFi Signal Strength|_                            |Xiaomi MiFlora|_                                  |Xiaomi MiJia|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Xiaomi MiJia`_                                    `Custom Sensor`_
+`WiFi Signal Strength`_                            `Xiaomi MiFlora`_                                  `Xiaomi MiJia`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Custom Sensor|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Custom Sensor`_
 ================================================== ================================================== ==================================================
 
 .. |Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -286,6 +290,12 @@ Sensor Components
 .. |HDC1080| image:: /esphomeyaml/images/hdc1080.jpg
     :class: component-image
 .. _HDC1080: /esphomeyaml/components/sensor/hdc1080.html
+.. |HLW8012| image:: /esphomeyaml/images/hlw8012.svg
+    :class: component-image
+.. _HLW8012: /esphomeyaml/components/sensor/hlw8012.html
+.. |HMC5883L| image:: /esphomeyaml/images/hmc5883l.jpg
+    :class: component-image
+.. _HMC5883L: /esphomeyaml/components/sensor/hmc5883l.html
 .. |HX711| image:: /esphomeyaml/images/hx711.jpg
     :class: component-image
 .. _HX711: /esphomeyaml/components/sensor/hx711.html
@@ -360,13 +370,17 @@ Binary Sensor Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Binary Sensor Core`_                              `GPIO`_                                            `Status`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|ESP32 BLE Device|_                                |ESP32 Touch Pad|_                                 |Template Binary Sensor|_
+|ESP32 BLE Device|_                                |ESP32 Touch Pad|_                                 |Nextion Touch|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`ESP32 BLE Device`_                                `ESP32 Touch Pad`_                                 `Template Binary Sensor`_
+`ESP32 BLE Device`_                                `ESP32 Touch Pad`_                                 `Nextion Touch`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Remote Receiver|_                                 |PN532 Tag|_                                       |RDM6300 Tag|_
+|Template Binary Sensor|_                          |Remote Receiver|_                                 |PN532 Tag|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Remote Receiver`_                                 `PN532 Tag`_                                       `RDM6300 Tag`_
+`Template Binary Sensor`_                          `Remote Receiver`_                                 `PN532 Tag`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|RDM6300 Tag|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`RDM6300 Tag`_
 ================================================== ================================================== ==================================================
 
 .. |Binary Sensor Core| image:: /esphomeyaml/images/folder-open.svg
@@ -384,6 +398,9 @@ Binary Sensor Components
 .. |ESP32 Touch Pad| image:: /esphomeyaml/images/touch.svg
     :class: component-image
 .. _ESP32 Touch Pad: /esphomeyaml/components/binary_sensor/esp32_touch.html
+.. |Nextion Touch| image:: /esphomeyaml/images/nextion.jpg
+    :class: component-image
+.. _Nextion Touch: /esphomeyaml/components/binary_sensor/nextion.html
 .. |Template Binary Sensor| image:: /esphomeyaml/images/description.svg
     :class: component-image
 .. _Template Binary Sensor: /esphomeyaml/components/binary_sensor/template.html
@@ -431,19 +448,19 @@ Output Components
 Light Components
 ----------------
 
-============================== ============================== ==============================
-|Light Core|_                  |Binary Light|_                |Monochromatic Light|_
------------------------------- ------------------------------ ------------------------------
-`Light Core`_                  `Binary Light`_                `Monochromatic Light`_
------------------------------- ------------------------------ ------------------------------
-|RGB Light|_                   |RGBW Light|_                  |FastLED Clockless Light|_
------------------------------- ------------------------------ ------------------------------
-`RGB Light`_                   `RGBW Light`_                  `FastLED Clockless Light`_
------------------------------- ------------------------------ ------------------------------
-|FastLED SPI Light|_
------------------------------- ------------------------------ ------------------------------
-`FastLED SPI Light`_
-============================== ============================== ==============================
+================================================== ================================================== ==================================================
+|Light Core|_                                      |Binary Light|_                                    |Monochromatic Light|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Light Core`_                                      `Binary Light`_                                    `Monochromatic Light`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Cold+Warm White Light|_                           |RGB Light|_                                       |RGBW Light|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Cold+Warm White Light`_                           `RGB Light`_                                       `RGBW Light`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|RGBWW Light|_                                     |FastLED Clockless Light|_                         |FastLED SPI Light|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`RGBWW Light`_                                     `FastLED Clockless Light`_                         `FastLED SPI Light`_
+================================================== ================================================== ==================================================
 
 .. |Light Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
@@ -454,12 +471,18 @@ Light Components
 .. |Monochromatic Light| image:: /esphomeyaml/images/brightness-medium.svg
     :class: component-image
 .. _Monochromatic Light: /esphomeyaml/components/light/monochromatic.html
+.. |Cold+Warm White Light| image:: /esphomeyaml/images/brightness-medium.svg
+    :class: component-image
+.. _Cold+Warm White Light: /esphomeyaml/components/light/cwww.html
 .. |RGB Light| image:: /esphomeyaml/images/rgb.png
     :class: component-image
 .. _RGB Light: /esphomeyaml/components/light/rgb.html
 .. |RGBW Light| image:: /esphomeyaml/images/rgbw.png
     :class: component-image
 .. _RGBW Light: /esphomeyaml/components/light/rgbw.html
+.. |RGBWW Light| image:: /esphomeyaml/images/rgbw.png
+    :class: component-image
+.. _RGBWW Light: /esphomeyaml/components/light/rgbww.html
 .. |FastLED Clockless Light| image:: /esphomeyaml/images/color_lens.svg
     :class: component-image
 .. _FastLED Clockless Light: /esphomeyaml/components/light/fastled_clockless.html
@@ -542,13 +565,13 @@ Display Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Display Core`_                                    `GPIO LCD`_                                        `PCF8574 LCD`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|MAX7219|_                                         |SSD1306 I2C|_                                     |SSD1306 SPI|_
+|MAX7219|_                                         |Nextion|_                                         |SSD1306 I2C|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`MAX7219`_                                         `SSD1306 I2C`_                                     `SSD1306 SPI`_
+`MAX7219`_                                         `Nextion`_                                         `SSD1306 I2C`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Waveshare E-Paper|_
+|SSD1306 SPI|_                                     |Waveshare E-Paper|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Waveshare E-Paper`_
+`SSD1306 SPI`_                                     `Waveshare E-Paper`_
 ================================================== ================================================== ==================================================
 
 .. |Display Core| image:: /esphomeyaml/images/folder-open.svg
@@ -563,6 +586,9 @@ Display Components
 .. |MAX7219| image:: /esphomeyaml/images/max7219.jpg
     :class: component-image
 .. _MAX7219: /esphomeyaml/components/display/max7219.html
+.. |Nextion| image:: /esphomeyaml/images/nextion.jpg
+    :class: component-image
+.. _Nextion: /esphomeyaml/components/display/nextion.html
 .. |SSD1306 I2C| image:: /esphomeyaml/images/ssd1306.jpg
     :class: component-image
 .. _SSD1306 I2C: /esphomeyaml/components/display/ssd1306_i2c.html

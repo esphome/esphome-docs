@@ -17,7 +17,7 @@ to do this.
         name: "Living Room Status"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -25,7 +25,7 @@ Configuration variables:
   and :ref:`MQTT Component <config-mqtt-component>`. (Inverted mode is not supported)
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`/esphomeyaml/components/mqtt`

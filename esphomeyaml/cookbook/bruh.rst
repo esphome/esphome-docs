@@ -74,7 +74,7 @@ configuration file 😀
 
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/devices/nodemcu_esp8266`
 - :doc:`pir`

@@ -143,12 +143,22 @@ LightOutput
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: light::CWWWLightOutput
+    :members:
+    :protected-members:
+    :undoc-members:
+
 .. doxygenclass:: light::RGBLightOutput
     :members:
     :protected-members:
     :undoc-members:
 
 .. doxygenclass:: light::RGBWLightOutput
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::RGBWWLightOutput
     :members:
     :protected-members:
     :undoc-members:

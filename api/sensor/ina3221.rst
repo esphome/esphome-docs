@@ -15,7 +15,6 @@ API Reference
     :protected-members:
     :undoc-members:
 
-.. doxygenenum:: INA3221VoltageSensor
-.. doxygenenum:: INA3221CurrentSensor
-.. doxygenenum:: INA3221PowerSensor
-.. doxygendefine:: USE_INA3221
+.. doxygentypedef:: INA3221VoltageSensor
+.. doxygentypedef:: INA3221CurrentSensor
+.. doxygentypedef:: INA3221PowerSensor

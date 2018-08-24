@@ -37,7 +37,7 @@ set too high.
         name: "Ultrasonic Sensor"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **trigger_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The output pin to
   periodically send the trigger pulse to.
@@ -55,7 +55,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 Ultrasonic Timeouts
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 The ultrasonic sensor works by sending a small ultrasonic pulse out and then waiting until
 the pulse arrives back. However, there are cases where no such signal arrives back. This is most commonly caused
@@ -77,7 +77,7 @@ To remove ``NAN`` values from the sensor stream, use the ``filter_nan`` :ref:`se
 
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`template`

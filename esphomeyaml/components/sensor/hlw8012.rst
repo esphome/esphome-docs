@@ -1,0 +1,62 @@
+HLW8012 Power Sensor
+====================
+
+The ``hlw8012`` sensor platform allows you to use your HLW8012 voltage/current and power sensors
+(`datasheet <https://github.com/xoseperez/hlw8012/blob/master/docs/HLW8012.pdf>`__) sensors with
+esphomelib. This sensor is commonly found in Sonoff POWs.
+
+This sensor has two data outputs which both encode values using the frequency of a modulated signal: CF and CF1.
+CF's frequency is proportional to the (active) power measured and CF1 is proportional to the current/voltage. Using
+the SEL pin, one can choose between which mode to use.
+
+esphomelib will continuously cycle the state of the SEL pin to measure current *and* voltage, though both cannot
+be measured at the same exact points in time.
+
+.. code:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: hlw8012
+        sel_pin: 5
+        cf_pin: 14
+        cf1_pin: 13
+        current:
+          name: "HLW8012 Current"
+        voltage:
+          name: "HLW8012 Voltage"
+        power:
+          name: "HLW8012 Power"
+        update_interval: 15s
+
+.. note::
+
+    The configuration above should work for Sonoff POWs (R1).
+
+Configuration variables:
+------------------------
+
+- **sel_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin SEL is connected to.
+- **cf_pin** (**Required**, :ref:`config-pin`): The pin CF is connected to.
+- **cf1_pin** (**Required**, :ref:`config-pin`): The pin CF1 is connected to.
+- **current** (*Optional*): Use the current value of the sensor in amperes. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
+  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **current_resistor** (*Optional*, float): The value of the shunt resistor for current measurement.
+  Defaults to the Sonoff POW's value ``0.001 ohm``.
+- **voltage_divider** (*Optional*, float): The value of the voltage divider on the board as ``(R_upstream + R_downstream) / R_downstream``.
+  Defaults to the Sonoff POW's value ``2351``.
+- **change_mode_every** (*Optional*, int): After how many updates to cycle between the current/voltage measurement mode.
+  Note that the first value after switching is discarded because it is often inaccurate. Defaults to ``8``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
+  See :ref:`sensor-default_filter`.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :doc:`API Reference </api/sensor/hlw8012>`
+- `HLW8012 Library <https://github.com/xoseperez/hlw8012>`__ by `Xose Pérez <https://github.com/xoseperez>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hlw8012.rst>`__

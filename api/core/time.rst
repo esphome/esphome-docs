@@ -17,7 +17,7 @@ API Reference
     :undoc-members:
 
 
-.. doxygenstruct:: time::SNTPComponent
+.. doxygenclass:: time::SNTPComponent
     :members:
     :protected-members:
     :undoc-members:

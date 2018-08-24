@@ -13,7 +13,6 @@ See :cpp:func:`Application::register_sensor`.
     adc
     ads1115
     bh1750
-    ble_rssi
     bme280
     bme680
     bmp085
@@ -24,6 +23,7 @@ See :cpp:func:`Application::register_sensor`.
     duty_cycle
     esp32_hall
     hdc1080
+    hlw8012
     hmc5883l
     htu21d
     hx711

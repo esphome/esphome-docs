@@ -25,7 +25,7 @@ whereas the clockless lights only need a single pin.
         name: "FastLED SPI Light"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **chipset** (**Required**, string): Set a chipset to use. See :ref:`fastled_spi-chipsets` for options.
@@ -52,7 +52,7 @@ Configuration variables:
 .. _fastled_spi-chipsets:
 
 Supported Chipsets
-~~~~~~~~~~~~~~~~~~
+------------------
 
 - ``APA102``
 - ``DOTSTAR``
@@ -64,10 +64,11 @@ Supported Chipsets
 - ``WS2803``
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/light/index`
 - :doc:`/esphomeyaml/components/light/fastled_clockless`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/light/fastled>`
+- `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/fastled_spi.rst>`__

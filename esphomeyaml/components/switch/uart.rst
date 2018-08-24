@@ -20,7 +20,7 @@ The ``uart`` switch platform allows you to send a pre-defined sequence of bytes 
         data: [0xDE, 0xAD, 0xBE, 0xEF]
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **data** (**Required**, string or list of bytes): The data to send via UART. Either an ASCII string
   or a list of bytes.
@@ -30,7 +30,7 @@ Configuration variables:
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/uart`
 - :doc:`API Reference </api/switch/index>`

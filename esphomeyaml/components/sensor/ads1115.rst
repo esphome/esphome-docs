@@ -30,7 +30,7 @@ voltage to Home Assistant.
         name: "ADS1115 Channel A0-GND"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  **multiplexer** (**Required**): The multiplexer channel of this sensor. Effectively means between which pins you
    want to measure voltage.
@@ -43,7 +43,7 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Multiplexer And Gain
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The ADS1115 has a multiplexer that can be configured to measure voltage between several pin configurations. These are:
 
@@ -66,10 +66,11 @@ Additionally, the ADS1115 has a Programmable Gain Amplifier (PGA) that can help 
  - ``0.256`` (measures up to 0.256V)
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`adc`
 - :doc:`max6675`
 - :doc:`API Reference </api/sensor/ads1115>`
+- `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ads1115.rst>`__

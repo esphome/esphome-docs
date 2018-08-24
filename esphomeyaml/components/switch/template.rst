@@ -33,7 +33,7 @@ Possible return values for the optional lambda:
  - ``return {};`` if the last state should be repeated.
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the switch.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
@@ -55,7 +55,7 @@ Configuration variables:
     the turn on/off actions for you.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/guides/automations`
 - :doc:`/esphomeyaml/components/switch/index`

@@ -15,7 +15,6 @@ API Reference
     :protected-members:
     :undoc-members:
 
-.. doxygenenum:: INA219VoltageSensor
-.. doxygenenum:: INA219CurrentSensor
-.. doxygenenum:: INA219PowerSensor
-.. doxygendefine:: USE_INA219
+.. doxygentypedef:: INA219VoltageSensor
+.. doxygentypedef:: INA219CurrentSensor
+.. doxygentypedef:: INA219PowerSensor

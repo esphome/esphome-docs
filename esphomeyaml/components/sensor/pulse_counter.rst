@@ -21,7 +21,7 @@ on the ESP32.
         name: "Pulse Counter"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to count pulses on.
 - **name** (**Required**, string): The name of the sensor.
@@ -46,7 +46,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 Converting units
-~~~~~~~~~~~~~~~~
+----------------
 
 The sensor defaults to measuring its values using a unit of measurement
 of “pulses/min”. You can change this by using :ref:`sensor-filters`.
@@ -65,7 +65,7 @@ count the light pulses on a power meter, you can do the following:
           - multiply: 0.06
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`rotary_encoder`

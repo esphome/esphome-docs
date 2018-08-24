@@ -457,14 +457,17 @@ See Also
 --------
 
 - :doc:`API Reference </api/light/index>`
+- `WS2812FX library <https://github.com/kitesurfer1404/WS2812FX>`__ by `@kitesurfer1404 <https://github.com/kitesurfer1404>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/index.rst>`__
 
 .. toctree::
     :maxdepth: 1
 
     binary.rst
+    cwww.rst
     monochromatic.rst
     rgb.rst
     rgbw.rst
+    rgbww.rst
     fastled_clockless.rst
     fastled_spi.rst

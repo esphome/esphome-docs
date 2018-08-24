@@ -40,7 +40,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x40``.
 - **shunt_resistance** (*Optional*, float): The value of the shunt resistor on the board for current calculation.
@@ -61,9 +61,10 @@ Configuration variables:
   See :ref:`sensor-default_filter`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`ina3221`
 - :doc:`API Reference </api/sensor/ina219>`
+- `INA291 Arduino Library <https://github.com/adafruit/Adafruit_INA219>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ina219.rst>`__

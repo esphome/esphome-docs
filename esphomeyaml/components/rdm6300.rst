@@ -32,16 +32,17 @@ with the baud rate set to 9600
         name: "RDM6300 NFC Tag"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`binary_sensor/rdm6300`
 - :doc:`pn532`
+- `RDM6300 Arduino Library <https://github.com/arliones/RDM6300-Arduino>`__ by `Arliones Hoeller Jr <https://github.com/arliones>`__
 - :doc:`API Reference </api/binary_sensor/rdm6300>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/rdm6300.rst>`__

@@ -25,7 +25,7 @@ massively long wires, work fine in most cases) between ``3.3V`` and the data pin
         name: "Livingroom Temperature"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, number): The pin the sensor bus is connected to.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
@@ -33,8 +33,9 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`sensor/dallas`
+- `Arduino DallasTemperature library <https://github.com/milesburton/Arduino-Temperature-Control-Library>`__ by `Miles Burton <https://github.com/milesburton>`__
 - :doc:`API Reference </api/sensor/dallas>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/dallas.rst>`__

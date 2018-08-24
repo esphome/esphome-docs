@@ -26,7 +26,7 @@ Possible return values for the lambda:
  - ``return {};`` if you don't want to publish a new state (advanced).
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the binary sensor.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
@@ -37,7 +37,7 @@ Configuration variables:
 - All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :ref:`automation`

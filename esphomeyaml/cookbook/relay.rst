@@ -35,7 +35,7 @@ To use a relay with esphomelib, use a :doc:`GPIO Switch </esphomeyaml/components
         pin: <PIN_RELAY_IS_CONNECTED_TO>
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/switch/gpio`
 - :doc:`/esphomeyaml/components/output/gpio`

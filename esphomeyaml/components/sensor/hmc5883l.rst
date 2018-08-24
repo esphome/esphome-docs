@@ -7,13 +7,6 @@ The ``hmc5883l`` allows you to use your HMC5883L triple-axis magnetometers
 esphomelib. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-
-.. figure:: images/hmc5883l-full.jpg
-    :align: center
-    :width: 50.0%
-
-    HMC5883L Magnetometer. Image by Adafruit_.
-
 .. _Adafruit: https://www.adafruit.com/product/1746
 
 .. code:: yaml
@@ -34,7 +27,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x1E``.
 - **field_strength_x** (*Optional*): The field strength in microtesla along the X-Axis. All options from
@@ -50,10 +43,11 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`template`
 - :doc:`ultrasonic`
 - :doc:`API Reference </api/sensor/hmc5883l>`
+- `HMC5883L Library <https://github.com/jarzebski/Arduino-HMC5883L>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hmc5883l.rst>`__

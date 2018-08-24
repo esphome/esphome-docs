@@ -22,7 +22,7 @@ dramatically improve connection times.
         subnet: 255.255.255.0
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **ssid** (*Optional*, string): The name (or `service set
   identifier <https://www.lifewire.com/definition-of-service-set-identifier-816547>`__)
@@ -59,7 +59,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Since version 1.3, esphomelib has an optional "Access Point Mode". If you include ``ap:``
 in your wifi configuration, esphomelib will automatically set up an access point that you

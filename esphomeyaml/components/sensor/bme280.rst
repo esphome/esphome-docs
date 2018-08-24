@@ -8,10 +8,9 @@ required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/bme280-full.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
-    BME280 Temperature, Pressure & Humidity Sensor. Image by `Adafruit`_.
+    BME280 Temperature, Pressure & Humidity Sensor.
 
 .. _Adafruit: https://www.adafruit.com/product/2652
 
@@ -31,7 +30,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **temperature** (**Required**): The information for the temperature.
   sensor
@@ -69,7 +68,7 @@ Configuration variables:
 .. _bme280-oversampling:
 
 Oversampling Options
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 By default, the BME280 sensor measures each value 16 times when requesting a new value. You can, however,
 configure this amount. Possible oversampling values:
@@ -82,10 +81,12 @@ configure this amount. Possible oversampling values:
 -  ``16x`` (default)
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`bme680`
 - :doc:`bmp085`
 - :doc:`API Reference </api/sensor/bme280>`
+- `Adafruit BME280 Library <https://github.com/adafruit/Adafruit_BME280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
+- `Sparkfun BME280 Library <https://github.com/sparkfun/SparkFun_BME280_Arduino_Library>`__ by `Sparkfun <https://www.sparkfun.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bme280.rst>`__

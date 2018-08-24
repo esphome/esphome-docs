@@ -23,7 +23,7 @@ The ``monochromatic`` light platform creates a simple brightness-only light from
         output: output_component1
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **output** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for this light.
@@ -45,7 +45,7 @@ Configuration variables:
     platforms like the :doc:`/esphomeyaml/components/output/gpio`.
 
 See Also
-^^^^^^^^
+--------
 
 .. figure:: images/monochromatic-detail.jpg
     :align: center

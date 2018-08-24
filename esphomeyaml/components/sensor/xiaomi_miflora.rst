@@ -31,7 +31,7 @@ sends out a BLE broadcast.
           name: "Xiaomi MiFlora Battery Level"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi MiFlora device.
 - **temperature** (*Optional*): The information for the temperature sensor.
@@ -66,7 +66,7 @@ Configuration variables:
 
 
 Setting Up Devices
-~~~~~~~~~~~~~~~~~~
+------------------
 
 To set up Xiaomi MiFlora devices you first need to find their MAC Address so that esphomelib can
 identify them. So first, create a simple configuration without any ``xiaomi_miflora`` entries like so:
@@ -89,10 +89,11 @@ in the configuration example at the top.
 
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/esp32_ble_tracker`
 - :doc:`/esphomeyaml/components/sensor/xiaomi_mijia`
 - :doc:`/esphomeyaml/components/sensor/index`
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
+- `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/xiaomi_miflora.rst>`__

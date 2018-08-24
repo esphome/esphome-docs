@@ -25,7 +25,7 @@ The ``rgb`` light platform creates an RGB light from 3 :ref:`float output compon
         blue: output_component3
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **red** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the red channel.
@@ -47,7 +47,7 @@ Configuration variables:
     platforms like the :doc:`/esphomeyaml/components/output/gpio`.
 
 See Also
-^^^^^^^^
+--------
 
 .. figure:: images/rgb-detail.jpg
     :align: center

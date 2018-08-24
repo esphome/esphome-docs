@@ -40,7 +40,7 @@ Possible return values for the optional lambda:
  - ``return {};`` if the last state should be repeated.
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  **name** (**Required**, string): The name of the cover.
 -  **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
@@ -62,7 +62,7 @@ Configuration variables:
    and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/cover/index`
 - :ref:`automation`

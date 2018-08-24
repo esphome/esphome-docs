@@ -26,7 +26,7 @@ interface are hosted by esphomelib.com. If you want to use your own service, use
       port: 80
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **port** (*Optional*, int): The port the web server should open its socket on.
 - **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults

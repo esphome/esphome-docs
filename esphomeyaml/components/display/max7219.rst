@@ -1,15 +1,15 @@
-MAX7219 8-Segment Display
+MAX7219 7-Segment Display
 =========================
 
-The ``max7219`` display platform allows you to use MAX7219 8-segment display drivers (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`__,
+The ``max7219`` display platform allows you to use MAX7219 7-segment display drivers (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf>`__,
 `hobbycomponents <https://hobbycomponents.com/displays/597-max7219-8-digit-seven-segment-display-module>`__)
-with esphomelib. Please note that this integration is *only* for 8-segment display, not matrix configurations.
+with esphomelib. Please note that this integration is *only* for 7-segment display, not matrix configurations.
 
 .. figure:: images/max7219-full.jpg
     :align: center
     :width: 75.0%
 
-    MAX7219 8-Segment Display.
+    MAX7219 7-Segment Display.
 
 As the communication with the MAX7219 is done using SPI for this integration, you need
 to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** set (miso_pin is not required).
@@ -42,8 +42,6 @@ Configuration variables:
   ``1``.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
   0 (least intense) to 15 (the default).
-- **spi_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`SPI bus <spi>` you wish to use for this max7129.
-  Use this if you want to use multiple spi buses at once.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
   See :ref:`display-max7219_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
@@ -57,7 +55,7 @@ Rendering Lambda
 ----------------
 
 The MAX7219 has a similar API to the fully fledged ::ref:`display-engine`, but it's only a subset as the MAX7219
-8-segment displays don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
+7-segment displays don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
 as with all other displays. In this case however, ``it`` is an :ref:`api-display-max7219` instance.
 
 The most basic operation with the MAX7219 is wiring a simple number to the screen as in the configuration example
@@ -108,7 +106,7 @@ Please see :ref:`display-printf` for a quick introduction into the ``printf`` fo
 
 .. _display-max7219_characters:
 
-All 8-Segment Characters
+All 7-Segment Characters
 ------------------------
 
 .. table::
@@ -321,7 +319,7 @@ All 8-Segment Characters
 
 .. note::
 
-    Original 8-segment display base image taken from Wikipedia at https://de.wikipedia.org/wiki/Datei:7_Segment_Display.svg
+    Original 7-segment display base image taken from Wikipedia at https://de.wikipedia.org/wiki/Datei:7_Segment_Display.svg
     by user `h2g2bob <https://commons.wikimedia.org/wiki/User:H2g2bob>`__ under
     `Creative Commons BY-SA 3.0 <https://creativecommons.org/licenses/by-sa/3.0/deed.de>`__ and modified
     for this documentation.
@@ -331,4 +329,5 @@ See Also
 
 - :doc:`index`
 - :doc:`API Reference </api/display/max7219>`
+- `MAX7219 Library <https://github.com/nickgammon/MAX7219>`__ by `Nick Gammon <https://github.com/nickgammon>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/max7219.rst>`__

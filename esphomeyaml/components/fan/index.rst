@@ -13,7 +13,7 @@ oscillate output.
 .. _config-fan:
 
 Base Fan Configuration
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 .. code:: yaml
 
@@ -37,7 +37,7 @@ Configuration variables:
 .. _fan-toggle_action:
 
 ``fan.toggle`` Action
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 Toggles the ON/OFF state of the fan with the given ID when executed.
 
@@ -51,7 +51,7 @@ Toggles the ON/OFF state of the fan with the given ID when executed.
 .. _fan-turn_off_action:
 
 ``fan.turn_off`` Action
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Turns the fan with the given ID off when executed.
 
@@ -65,7 +65,7 @@ Turns the fan with the given ID off when executed.
 .. _fan-turn_on_action:
 
 ``fan.turn_on`` Action
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 Turns the fan with the given ID off when executed.
 
@@ -86,7 +86,7 @@ Configuration options:
   If you template this value, return ``fan::FAN_SPEED_...``, for example ``fan::FAN_SPEED_HIGH``.
 
 Full Fan Index
-^^^^^^^^^^^^^^
+--------------
 
 - :doc:`API Reference </api/fan/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/fan/index.rst>`__
