@@ -1,23 +1,22 @@
-SPI Bus, components/spi, spi.svg
-UART Bus, components/uart, uart.svg
-RTC Time, components/time, clock-outline.svg
-
 Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
 Nextion, components/display/nextion, nextion.jpg
 SSD1306, components/display/ssd1306_i2c, ssd1306.jpg
 
 MAX7219, components/display/max7219, max7219.jpg
 LCD Display, components/display/lcd_gpio, lcd.jpg
-Uptime Sensor, components/sensor/uptime, timer.svg
+RCSwitch Integration, components/switch/remote_transmitter.html#rcswitch-remote-codes, remote.svg
 
-RCSwitch Integration, components/remote_transmitter, remote.svg
+SPI Bus, components/spi, spi.svg
+UART Bus, components/uart, uart.svg
+RTC Time, components/time, clock-outline.svg
+
+Uptime Sensor, components/sensor/uptime, timer.svg
 PN532, components/pn532, pn532.jpg
 RDM6300, components/rdm6300, rdm6300.jpg
 
 BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
 Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
 Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
-
 
 HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
 HX711, components/sensor/hx711, hx711.jpg
@@ -33,4 +32,4 @@ TCS34725, components/sensor/tcs34725, tcs34725.jpg
 
 RGBWW Light, components/light/rgbww, rgbw.png
 Cold+Warm White Light, components/light/cwww, brightness-medium.svg
-Light Effects, components/light/index, creation.svg
+Light Effects, components/light/index#light-effects, creation.svg

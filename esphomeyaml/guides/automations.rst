@@ -249,6 +249,21 @@ we're retrieving the current state of the end stop using ``.value`` and using it
           ESP_LOGD("main", "I am at execution number %d", num_executions);
           num_executions += 1;
 
+.. tip::
+
+    In some occasions, it can be useful to manually trigger an update for a component. You can do so like this:
+
+    .. code:: yaml
+
+        sensor:
+          - platform: ...
+            # ...
+            id: my_sensor
+
+        # ...
+          on_...:
+            lambda: 'id(my_sensor).update();'
+
 .. _config-templatable:
 
 Bonus: Templating Actions

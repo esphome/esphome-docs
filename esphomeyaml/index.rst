@@ -684,6 +684,8 @@ Misc Components
     :class: component-image
 .. _Time: /esphomeyaml/components/time.html
 
+.. _cookbook:
+
 Cookbook
 --------
 

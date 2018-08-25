@@ -88,7 +88,7 @@ upload button.
 HassIO add-on options
 ~~~~~~~~~~~~~~~~~~~~~
 
-Since version 1.7.0, you can optionally specify a password to use for all traffic to esphomeyaml
+Since version 1.8.0, you can optionally specify a password to use for all traffic to esphomeyaml
 using the ``password`` option in the HassIO add-on page. By default, this is an empty string
 (which means no password), but you can enter any string in there to set your password.
 

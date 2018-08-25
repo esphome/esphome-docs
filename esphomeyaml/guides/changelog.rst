@@ -5,21 +5,21 @@ Version 1.8.0
 -------------
 
 ================================================== ================================================== ==================================================
-|SPI Bus|_                                         |UART Bus|_                                        |Time|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`SPI Bus`_                                         `UART Bus`_                                        `Time`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 |Waveshare E-Paper|_                               |Nextion|_                                         |SSD1306|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `Waveshare E-Paper`_                               `Nextion`_                                         `SSD1306`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|MAX7219|_                                         |LCD Display|_                                     |Uptime Sensor|_
+|MAX7219|_                                         |LCD Display|_                                     |RCSwitch Integration|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`MAX7219`_                                         `LCD Display`_                                     `Uptime Sensor`_
+`MAX7219`_                                         `LCD Display`_                                     `RCSwitch Integration`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|RCSwitch Integration|_                            |PN532|_                                           |RDM6300|_
+|SPI Bus|_                                         |UART Bus|_                                        |RTC Time|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`RCSwitch Integration`_                            `PN532`_                                           `RDM6300`_
+`SPI Bus`_                                         `UART Bus`_                                        `RTC Time`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Uptime Sensor|_                                   |PN532|_                                           |RDM6300|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Uptime Sensor`_                                   `PN532`_                                           `RDM6300`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 |BLE RSSI|_                                        |Xiaomi MiFlora|_                                  |Xiaomi MiJia|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
@@ -37,20 +37,11 @@ Version 1.8.0
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `MH-Z19`_                                          `MS5611`_                                          `TCS34725`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|RGBWW Light|_                                     |Cold+Warm White Light|_                           |Light Effect|_
+|RGBWW Light|_                                     |Cold+Warm White Light|_                           |Light Effects|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`RGBWW Light`_                                     `Cold+Warm White Light`_                           `Light Effect`_
+`RGBWW Light`_                                     `Cold+Warm White Light`_                           `Light Effects`_
 ================================================== ================================================== ==================================================
 
-.. |SPI Bus| image:: /esphomeyaml/images/spi.svg
-    :class: component-image
-.. _SPI Bus: /esphomeyaml/components/spi.html
-.. |UART Bus| image:: /esphomeyaml/images/uart.svg
-    :class: component-image
-.. _UART Bus: /esphomeyaml/components/uart.html
-.. |Time| image:: /esphomeyaml/images/clock-outline.svg
-    :class: component-image
-.. _Time: /esphomeyaml/components/time.html
 .. |Waveshare E-Paper| image:: /esphomeyaml/images/waveshare_epaper.jpg
     :class: component-image
 .. _Waveshare E-Paper: /esphomeyaml/components/display/waveshare_epaper.html
@@ -66,12 +57,21 @@ Version 1.8.0
 .. |LCD Display| image:: /esphomeyaml/images/lcd.jpg
     :class: component-image
 .. _LCD Display: /esphomeyaml/components/display/lcd_gpio.html
+.. |RCSwitch Integration| image:: /esphomeyaml/images/remote.svg
+    :class: component-image
+.. _RCSwitch Integration: /esphomeyaml/components/switch/remote_transmitter.html#rcswitch-remote-codes.html
+.. |SPI Bus| image:: /esphomeyaml/images/spi.svg
+    :class: component-image
+.. _SPI Bus: /esphomeyaml/components/spi.html
+.. |UART Bus| image:: /esphomeyaml/images/uart.svg
+    :class: component-image
+.. _UART Bus: /esphomeyaml/components/uart.html
+.. |RTC Time| image:: /esphomeyaml/images/clock-outline.svg
+    :class: component-image
+.. _RTC Time: /esphomeyaml/components/time.html
 .. |Uptime Sensor| image:: /esphomeyaml/images/timer.svg
     :class: component-image
 .. _Uptime Sensor: /esphomeyaml/components/sensor/uptime.html
-.. |RCSwitch Integration| image:: /esphomeyaml/images/remote.svg
-    :class: component-image
-.. _RCSwitch Integration: /esphomeyaml/components/remote_transmitter.html
 .. |PN532| image:: /esphomeyaml/images/pn532.jpg
     :class: component-image
 .. _PN532: /esphomeyaml/components/pn532.html
@@ -120,9 +120,90 @@ Version 1.8.0
 .. |Cold+Warm White Light| image:: /esphomeyaml/images/brightness-medium.svg
     :class: component-image
 .. _Cold+Warm White Light: /esphomeyaml/components/light/cwww.html
-.. |Light Effect| image:: /esphomeyaml/images/creation.svg
+.. |Light Effects| image:: /esphomeyaml/images/creation.svg
     :class: component-image
-.. _Light Effect: /esphomeyaml/components/light/index.html
+.. _Light Effects: /esphomeyaml/components/light/index#light-effects.html
+
+Hi everyone,
+
+Today I have a new version of esphomelib with lots of new features and tons of time put in to present to you and
+I hope you're as excited as I am to try these new things out :)
+
+This release mainly focuses on these new features:
+
+- Lots of Bug Fixes - Now that most of the hardware has arrived from china, I was able to fix a bunch
+  of bugs with a lot of integrations.
+- :doc:`Displays! </esphomeyaml/components/display/index>`
+- NFC/RFID Readers (:doc:`PN532 </esphomeyaml/components/pn532>` and :doc:`RDM6300 </esphomeyaml/components/rdm6300>`)
+- New :doc:`ESP32 BLE integrations </esphomeyaml/components/esp32_ble_tracker>` like :doc:`Xiaomi MiFlora </esphomeyaml/components/sensor/xiaomi_miflora>`
+- Core Changes like the addition of the :ref:`SPI bus <spi>` and :ref:`UART bus <uart>`
+- Lots of new ::ref:`light effects <light-effects>` and support for cold-white/warm-white lights.
+
+And if you find esphomelib great and have some of your projects using it, please do spread the word online
+(like `Christoph Dahlen did <https://www.dahlen.org/2018/08/esp8266-via-esphomelib-mit-home-assistant-verbinden/>`__)
+and/or create :ref:`cookbook <cookbook>` entries so that others can learn from your work. Of course the main objective
+of this website is to document esphomelib's features, but my vision is that it also inspires others to start
+awesome projects ☀️
+
+Special thanks to all the contributors for this release:
+
+- `@exxamalte <https://github.com/exxamalte>`__
+- `@per1234 <https://github.com/per1234>`__
+- `@nunofgs <https://github.com/nunofgs>`__
+- `@lobradov <https://github.com/lobradov>`__
+- `@janpieper <https://github.com/janpieper>`__
+- `@aequitas <https://github.com/aequitas>`__
+- And last but not least: `@brandond <https://github.com/brandond>`__ for his awesome work on the new
+  time component
+
+And in more personal news, I'm currently getting ready for my trip to Japan 🇯🇵 to represent Austria
+in this years `international olympiad in informatics (IOI) <https://ioi2018.jp/>`__ (hence also the relatively
+short release notes). If you'll be attending too, come say hi :)
+
+Other notable changes
+*********************
+
+- Fixed certain occasions where esphomeyaml could run into recursive dependencies
+- Fixed i2c scans not showing up via MQTT
+- Improved build times by about 60%. Now, the build time should depend on the amount of components you're using, not the total esphomelib code base size.
+- Fixed ESP32 Touch setup mode
+- Fixed template binary sensors
+- Added the option to specify ``never`` for ``update_interval`` to never
+- Added ``deep_sleep.prevent`` and ``deep_sleep.enter`` actions
+- Fixed ESP32BLETracker surpassing the maximum code size
+- Fixed ESP32BLETracker/Beacon throwing an exception when a warning occurs.
+- Fixed FastLED effects not taking into account the light brightness
+- Fixed compatability with Arduino core versions below 2.0.4
+- Added ``output.turn_on``, ``output.turn_off`` and ``output.set_level`` actions.
+- Fixed the remote transmitter/receiver using the heap inefficiently on the ESP8266 (was causing reboots)
+- Fixed reliability with reading data from BME280s
+- Fixed gas resistance readings from BME680s
+- Fixed HTU21D readings only working in very verbose mode
+- Sometimes the ESP would create a WiFi hotspot even though it was not configured to do so. That should be fixed now.
+- In actions, instead of
+
+  .. code:: yaml
+
+      on_...:
+	    switch.turn_on:
+		  id: my_switch
+
+  You can now write:
+
+  .. code:: yaml
+
+      on_...:
+	    switch.turn_on: my_switch
+- You can now also have conditional actions. See !IF_ACTION!
+- The esphomeyaml dashboard and HassIO add-on now can be configured with a password.
+- Fixed YAML anchors not working (you can now prefix keys with ``.`` to make esphomeyaml ignore them)
+- Made Dallas and DHT temperature sensor a bit more reliable by making the code a bit more efficient and thus resolving some timing issues.
+
+Breaking Changes
+****************
+
+- Light Effects now need to be manually declared in the config and will no longer show up automatically. Please see :ref:`light-effects`
+- MAX6675 has been migrated to use the new SPI bus (and fixed!). Please see the docs for how to use it now.
 
 Version 1.7.0
 -------------
@@ -175,7 +256,7 @@ be travelling a lot (and enjoying my vacation 😎), so don't expect too many aw
 .. _Remote Receiver: /esphomeyaml/components/binary_sensor/remote_receiver.html
 
 New Components
-~~~~~~~~~~~~~~
+**************
 
 - New :doc:`WiFi signal strength sensor </esphomeyaml/components/sensor/wifi_signal>` by
   `@brandond <https://github.com/brandond>`__. So now you can monitor how strong the WiFi signal is for your node 📶
@@ -203,7 +284,7 @@ New Components
   :ref:`this guide <finding_remote_codes>`, but in the future more protocols will be supported out of the box.
 
 New Features
-~~~~~~~~~~~~
+************
 
 - While all :ref:`automations <automation>` were previously already performed on the ESP itself, they only
   triggered when an active WiFi and MQTT connection existed. Large parts of the WiFi and MQTT clients has now
@@ -233,7 +314,7 @@ New Features
   esphomeyaml stores the platformio project files. See :doc:`/esphomeyaml/components/esphomeyaml`.
 
 Breaking Changes
-~~~~~~~~~~~~~~~~
+****************
 
 - Fixed the :doc:`SHT3x-D </esphomeyaml/components/sensor/sht3xd>` component and removed the ``accuracy``
   parameter. The accuracy now defaults to ``HIGH``.
@@ -271,7 +352,7 @@ Breaking Changes
   :ref:`time <config-time>` units.
 
 Other Contributions
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 (Not in any order and probably missed some, still figuring this changelog stuff out...)
 
