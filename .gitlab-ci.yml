@@ -9,9 +9,6 @@ build:
     - esphomedocs
   script:
     - make html
-  artifacts:
-    paths:
-      - _build/html
 
 deploy:
   stage: deploy
@@ -26,5 +23,8 @@ deploy:
     - git worktree add _build/html
     - make deploy
     - git -C _build/html push git@github.com:OttoWinter/esphomedocs.git:gh-pages
+  artifacts:
+    paths:
+    - _build/html
   only:
     - current
