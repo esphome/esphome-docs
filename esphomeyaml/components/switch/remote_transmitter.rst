@@ -89,7 +89,7 @@ Supported remote codes:
         protocol: 1
       rc_switch_type_a:
         group: '11001'
-        device: '010000'
+        device: '01000'
         state: True
       rc_switch_type_b:
         address: 4

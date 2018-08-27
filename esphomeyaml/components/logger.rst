@@ -16,7 +16,7 @@ Configuration variables:
 ------------------------
 
 -  **baud_rate** (*Optional*, int): The baud rate to use for the serial
-   UART port. Defaults to 115200.
+   UART port. Defaults to ``115200``. Set to ``0`` to disable logging via UART.
 -  **tx_buffer_size** (*Optional*, string): The size of the buffer used
    for log messages. Decrease this if you’re having memory problems.
    Defaults to 512.

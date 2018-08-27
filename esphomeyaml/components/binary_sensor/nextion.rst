@@ -18,6 +18,7 @@ See :doc:`/esphomeyaml/components/display/nextion` for setting up the display
       - platform: nextion
         page_id: 0
         component_id: 2
+        name: "Nextion Component 2 Touch"
 
 Configuration variables:
 ------------------------

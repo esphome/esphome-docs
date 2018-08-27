@@ -43,6 +43,8 @@ Configuration variables:
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
 - **will_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   the MQTT connection is dropped. See :ref:`mqtt-last_will_birth` for more information.
+- **shutdown_message** (*Optional*, :ref:`mqtt-message`): The message to send when
+  the node shuts down and the connection is closed cleanly. See :ref:`mqtt-last_will_birth` for more information.
 - **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
   for more information.

@@ -8,8 +8,9 @@ SPHINXPROJ    = esphomelib
 SOURCEDIR     = .
 BUILDDIR      = _build
 ESPHOMELIB_PATH = ../esphomelib
+ESPHOMELIB_TAG = tags/v1.7.0
 
-.PHONY: html cleanhtml doxyg cleandoxyg deploy help webserver Makefile
+.PHONY: html cleanhtml doxyg cleandoxyg deploy help webserver Makefile $(ESPHOMELIB_PATH)
 
 html: _doxyxml
 	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
@@ -22,13 +23,18 @@ doxyg: cleandoxyg _doxyxml
 cleandoxyg:
 	rm -rf _doxyxml
 
-_doxyxml:
+_doxyxml: $(ESPHOMELIB_PATH)
 	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
 
-deploy: cleanhtml doxyg html
+$(ESPHOMELIB_PATH):
+	@if [ ! -d "$(ESPHOMELIB_PATH)" ]; then \
+	  git clone --branch $(ESPHOMELIB_TAG) https://github.com/OttoWinter/esphomelib.git $(ESPHOMELIB_PATH); \
+	fi
+
+deploy: cleanhtml doxyg html $(ESPHOMELIB_PATH)
 	touch "$(BUILDDIR)/html/.nojekyll"
 	echo "esphomelib.com" >"$(BUILDDIR)/html/CNAME"
-	cd "$(BUILDDIR)/html" && git add --all && git commit -m "Deploy to gh-pages"
+	git -C "$(BUILDDIR)/html" add --all && git -C "$(BUILDDIR)/html" commit -m "Deploy to gh-pages"
 	@printf "Run \033[0;36mcd $(BUILDDIR)/html && git push origin gh-pages\033[0m to deploy\n"
 
 help:

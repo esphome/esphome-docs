@@ -293,7 +293,7 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
   .. code:: yaml
 
       // Within lambda, push a value of 42.0
-      id(my_binary_sensor).push_new_value(42.0);
+      id(my_sensor).push_new_value(42.0);
 
 - ``value``: Retrieve the current value of the sensor that has passed through all sensor filters.
   Is ``NAN`` if no value has gotten through all filters yet.

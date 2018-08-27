@@ -156,8 +156,8 @@ Special thanks to all the contributors for this release:
 - And last but not least: `@brandond <https://github.com/brandond>`__ for his awesome work on the new
   time component
 
-And in more personal news, I'm currently getting ready for my trip to Japan 🇯🇵 to represent Austria
-in this years `international olympiad in informatics (IOI) <https://ioi2018.jp/>`__ (hence also the relatively
+And in more personal news, I'm currently getting ready for my trip to Japan 🇯🇵 to be part of team Austria
+in this year's `international olympiad in informatics (IOI) <https://ioi2018.jp/>`__ (hence also the relatively
 short release notes). If you'll be attending too, come say hi :)
 
 Other notable changes
@@ -194,7 +194,7 @@ Other notable changes
 
       on_...:
 	    switch.turn_on: my_switch
-- You can now also have conditional actions. See !IF_ACTION!
+- You can now also have conditional actions. See :ref:`if_action`.
 - The esphomeyaml dashboard and HassIO add-on now can be configured with a password.
 - Fixed YAML anchors not working (you can now prefix keys with ``.`` to make esphomeyaml ignore them)
 - Made Dallas and DHT temperature sensor a bit more reliable by making the code a bit more efficient and thus resolving some timing issues.
