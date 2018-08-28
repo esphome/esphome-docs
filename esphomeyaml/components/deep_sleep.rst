@@ -51,7 +51,24 @@ Configuration variables:
 
         mqtt:
           # ...
-          availability:
+          birth_message:
+            topic: sensor_name/status
+            payload: online
+          will_message:
+            topic: sensor_name/status
+            payload: online
+            
+         sensor:
+           - platform: bme280
+             temperature:
+               name: "sensor_name Temperature"
+               availability:
+             pressure:
+               name: "sensor_name Pressure"
+               availability:
+             humidity:
+               name: "sensor_name Humidity"
+               availability:
 
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
