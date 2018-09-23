@@ -114,9 +114,22 @@ html_theme = 'alabaster'
 # documentation.
 #
 html_theme_options = {
-    'github_user': 'OttoWinter',
-    'github_repo': 'esphomelib',
+    # 'logo': 'logo-full.png',
+    'logo_name': False,
+    'touch_icon': 'apple-touch-icon.png',
+    # 'github_user': 'OttoWinter',
+    # 'github_repo': 'esphomelib',
+    'show_related': False,
+    'sidebar_collapse': True,
+    'fixed_sidebar': True,
 }
+
+html_logo = '_static/logo-full.png'
+html_favicon = '_static/favicon.ico'
+html_copy_source = True
+html_show_sourcelink = False
+html_last_updated_fmt = None
+html_use_smartypants = False
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -130,8 +143,9 @@ html_static_path = ['_static']
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
 html_sidebars = {
     '**': [
-        'relations.html',  # needs 'show_related': True theme option to display
+        # 'about.html',
         'searchbox.html',
+        'localtoc.html',
     ]
 }
 

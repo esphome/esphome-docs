@@ -71,7 +71,7 @@ That's no good. Here are some steps that resolve some problems:
 -  **Clean the platformio cache**: Sometimes the build cache leaves behind some weird artifacts. Try running
    ``platformio run -d <NAME_OF_NODE> -t clean``.
 -  **Try with the latest Arduino framework version**:
-   See :ref:`this <using_latest_arduino_framework>`.
+   See :ref:`this <esphomeyaml-arduino_version>`.
 -  **Still an error?** Please file a bug report over in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
@@ -123,18 +123,18 @@ takes up to 2 hours!). To install the dev version of esphomeyaml:
 - From docker: Run ``docker pull ottowinter/esphomeyaml:dev`` and use ``ottowinter/esphomeyaml:dev`` in all
   commands.
 
-Next, if you want to use the latest version of esphomelib too:
+Next, if you want to use the latest version of the esphomelib C++ framework too:
 
 .. code::
 
     # Sample configuration entry
     esphomeyaml:
       name: ...
-      library_uri: 'https://github.com/OttoWinter/esphomelib.git'
+      esphomelib_version: dev
       # ...
 
 In some cases it's also a good idea to use the latest Arduino framework version. See
-:ref:`this <using_latest_arduino_framework>`.
+:ref:`this <esphomeyaml-arduino_version>`.
 
 Does esphomelib support [this device/feature]?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -166,7 +166,7 @@ Some steps that can help with the issue:
 
 -  Use the most recent version of th arduino framework. The platformio arduino package
    always takes some time to update and the most recent version often includes some awesome
-   patches. See :ref:`using_latest_arduino_framework`.
+   patches. See :ref:`esphomeyaml-arduino_version`.
 -  The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
    boards from eBay sometimes have quite bad antennas.
 -  Play around with the ``keepalive`` option of the :doc:`MQTT client </esphomeyaml/components/mqtt>`, sometimes

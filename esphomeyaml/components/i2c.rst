@@ -30,7 +30,7 @@ Configuration variables:
 .. note::
 
     If you're using the ESP32 and i2c frequently is showing errors in the logs, try with the latest
-    version of the Arduino framework. See :ref:`using_latest_arduino_framework` for information on how to do this.
+    version of the Arduino framework. See :ref:`esphomeyaml-arduino_version` for information on how to do this.
 
 See Also
 --------

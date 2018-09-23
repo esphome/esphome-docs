@@ -8,7 +8,7 @@ RCSwitch Integration, components/switch/remote_transmitter.html#rcswitch-remote-
 
 SPI Bus, components/spi, spi.svg
 UART Bus, components/uart, uart.svg
-RTC Time, components/time, clock-outline.svg
+Real Time Clock, components/time, clock-outline.svg
 
 Uptime Sensor, components/sensor/uptime, timer.svg
 PN532, components/pn532, pn532.jpg

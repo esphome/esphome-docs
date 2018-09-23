@@ -13,9 +13,9 @@ Version 1.8.0
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `MAX7219`_                                         `LCD Display`_                                     `RCSwitch Integration`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|SPI Bus|_                                         |UART Bus|_                                        |RTC Time|_
+|SPI Bus|_                                         |UART Bus|_                                        |Real Time Clock|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`SPI Bus`_                                         `UART Bus`_                                        `RTC Time`_
+`SPI Bus`_                                         `UART Bus`_                                        `Real Time Clock`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 |Uptime Sensor|_                                   |PN532|_                                           |RDM6300|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
@@ -66,9 +66,9 @@ Version 1.8.0
 .. |UART Bus| image:: /esphomeyaml/images/uart.svg
     :class: component-image
 .. _UART Bus: /esphomeyaml/components/uart.html
-.. |RTC Time| image:: /esphomeyaml/images/clock-outline.svg
+.. |Real Time Clock| image:: /esphomeyaml/images/clock-outline.svg
     :class: component-image
-.. _RTC Time: /esphomeyaml/components/time.html
+.. _Real Time Clock: /esphomeyaml/components/time.html
 .. |Uptime Sensor| image:: /esphomeyaml/images/timer.svg
     :class: component-image
 .. _Uptime Sensor: /esphomeyaml/components/sensor/uptime.html
@@ -138,6 +138,8 @@ This release mainly focuses on these new features:
 - New :doc:`ESP32 BLE integrations </esphomeyaml/components/esp32_ble_tracker>` like :doc:`Xiaomi MiFlora </esphomeyaml/components/sensor/xiaomi_miflora>`
 - Core Changes like the addition of the :ref:`SPI bus <spi>` and :ref:`UART bus <uart>`
 - Lots of new ::ref:`light effects <light-effects>` and support for cold-white/warm-white lights.
+- A LOGO FOR THIS PROJECT!!! Thanks a lot to `@messimore <https://github.com/messismore>`__ for
+  this visual masterpiece.
 
 And if you find esphomelib great and have some of your projects using it, please do spread the word online
 (like `Christoph Dahlen did <https://www.dahlen.org/2018/08/esp8266-via-esphomelib-mit-home-assistant-verbinden/>`__)
@@ -147,18 +149,25 @@ awesome projects ☀️
 
 Special thanks to all the contributors for this release:
 
-- `@exxamalte <https://github.com/exxamalte>`__
-- `@per1234 <https://github.com/per1234>`__
-- `@nunofgs <https://github.com/nunofgs>`__
-- `@lobradov <https://github.com/lobradov>`__
-- `@janpieper <https://github.com/janpieper>`__
-- `@aequitas <https://github.com/aequitas>`__
-- And last but not least: `@brandond <https://github.com/brandond>`__ for his awesome work on the new
-  time component
+- esphomeyaml: Add ‘only-generate’ parameter to generate command to only generate the C++ code `#84 <https://github.com/OttoWinter/esphomeyaml/pull/84>`__ by `@apeeters <https://github.com/apeeters>`__
+- esphomeyaml: Fix esphomeyaml logs for tls enabled mqtt brokers `#118 <https://github.com/OttoWinter/esphomeyaml/pull/118>`__ by `@johnerikhalse <https://github.com/johnerikhalse>`__
+- esphomelib: Add Samsung IR codes `#141 <https://github.com/OttoWinter/esphomelib/pull/141>`__ by `@escoand <https://github.com/escoand>`__
+- esphomelib: Add support for SNTP and RTC `#76 <https://github.com/OttoWinter/esphomelib/pull/76>`__ by `@brandond <https://github.com/brandond>`__
+- esphomelib: Run travis jobs in parallel `#123 <https://github.com/OttoWinter/esphomelib/pull/123>`__ by `@lobradov <https://github.com/lobradov>`__
+- esphomelib: Fix typo in dallas error message `#125 <https://github.com/OttoWinter/esphomelib/pull/125>`__ by `@janpieper <https://github.com/janpieper>`__
+- esphomelib: Fix esphomelib examples `#124 <https://github.com/OttoWinter/esphomelib/pull/124>`__ by `@lobradov <https://github.com/lobradov>`__
+- esphomelib: Fix panic in binary_sensor template `#111 <https://github.com/OttoWinter/esphomelib/pull/111>`__ by `@nunofgs <https://github.com/nunofgs>`__
+- esphomelib: Add ESP8266 library dependency to Arduino IDE instructions `#99 <https://github.com/OttoWinter/esphomelib/pull/99>`__ by `@per1234 <https://github.com/per1234>`__
+- esphomelib: Fixing I2C readings `#98 <https://github.com/OttoWinter/esphomelib/pull/98>`__ by `@exxamalte <https://github.com/exxamalte>`__
+- esphomedocs: Note added about resetting the ESP after serial upload before OTA upload `#14 <https://github.com/OttoWinter/esphomedocs/pull/14>`__ by `@exxamalte <https://github.com/exxamalte>`__
+- esphomedocs: Add cookbook for dual relay cover `#10 <https://github.com/OttoWinter/esphomedocs/pull/10>`__ by `@aequitas <https://github.com/aequitas>`__
 
-And in more personal news, I'm currently getting ready for my trip to Japan 🇯🇵 to be part of team Austria
-in this year's `international olympiad in informatics (IOI) <https://ioi2018.jp/>`__ (hence also the relatively
-short release notes). If you'll be attending too, come say hi :)
+And in some more personal news, you might have noticed that I was not very active in online communications (github, discord, ...)
+and that's partly been due to me concentrating on other stuff (university applications, work and
+`this year's international olympiad of informatics <http://blog.ocg.at/2018/09/dritter-blog-von-der-ioi-in-tsukuba-japan/>`__).
+But admittedly I must say being constantly active online is just very exhausting. As the next few weeks (or even months)
+will leave me with little time to due to the start of my studies, I plan on primarily focusing on GitHub communications.
+Plus I want to put an extra focus on reviewing PRs so that code submitters don't have to wait for weeks.
 
 Other notable changes
 *********************
@@ -180,28 +189,46 @@ Other notable changes
 - Fixed gas resistance readings from BME680s
 - Fixed HTU21D readings only working in very verbose mode
 - Sometimes the ESP would create a WiFi hotspot even though it was not configured to do so. That should be fixed now.
+- You can now also have conditional actions. See :ref:`if_action`.
+- The esphomeyaml dashboard and HassIO add-on now can be configured with a password.
+- Fixed YAML anchors not working (you can now prefix keys with ``.`` to make esphomeyaml ignore them)
+- Made Dallas and DHT temperature sensor a bit more reliable by making the code a bit more efficient and thus resolving some timing issues.
+- A ``heartbeat`` filter has been added to :ref:`binary sensors <binary_sensor-filters>`.
+- The :ref:`esphomeyaml-on_loop` trigger has been added.
+- esphomeyaml now know about more ESP8266/ESP32 boards, so now you can use the board-specific pin
+  names with even more board types.
+- The mqtt client has a new option ``shutdown_message`` which will be sent when the board shuts down safely.
+
 - In actions, instead of
 
   .. code:: yaml
 
       on_...:
-	    switch.turn_on:
-		  id: my_switch
+        then:
+	      - switch.turn_on:
+		      id: my_switch
 
   You can now write:
 
   .. code:: yaml
 
       on_...:
-	    switch.turn_on: my_switch
-- You can now also have conditional actions. See :ref:`if_action`.
-- The esphomeyaml dashboard and HassIO add-on now can be configured with a password.
-- Fixed YAML anchors not working (you can now prefix keys with ``.`` to make esphomeyaml ignore them)
-- Made Dallas and DHT temperature sensor a bit more reliable by making the code a bit more efficient and thus resolving some timing issues.
+        then:
+	      - switch.turn_on: my_switch
+
+  Or even shorter:
+
+  .. code:: yaml
+
+      on_...:
+        - switch.turn_on: my_switch
 
 Breaking Changes
 ****************
 
+- The :doc:`core configuration </esphomeyaml/components/esphomeyaml>` has been reworked a bit to a)
+  make using different arduino framework version easier and b) make editing your local esphomelib
+  copy easier.
 - Light Effects now need to be manually declared in the config and will no longer show up automatically. Please see :ref:`light-effects`
 - MAX6675 has been migrated to use the new SPI bus (and fixed!). Please see the docs for how to use it now.
 

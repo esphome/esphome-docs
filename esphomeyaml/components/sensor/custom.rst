@@ -77,8 +77,7 @@ slow down build times a bit:
 
     esphomeyaml:
       # ...
-      use_build_flags: False
-      simplify: False
+      use_custom_code: True
 
 You've just created your first esphomelib sensor 🎉. It doesn't do very much right now and is never registered,
 but it's a first step.

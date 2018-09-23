@@ -302,6 +302,7 @@ All Triggers
 - :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>`
 - :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>`
 - :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>`
+- :ref:`esphomeyaml.on_loop <esphomeyaml-on_loop>`
 
 All Actions
 ~~~~~~~~~~~

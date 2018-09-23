@@ -29,7 +29,8 @@ Configuration variables:
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated).
   esphomeyaml tries to automatically infer the timezone string based on the timezone of the computer that is running
   esphomeyaml, but this might not always be accurate.
-
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
+  a cron-like syntax. See :ref:`time-on_time`.
 
 .. note::
 
@@ -162,6 +163,133 @@ with the current time representation of that format option.
     ------------- -------------------------------------------------------------- -------------------------
     ``%%``        A literal ``%`` character                                      %
     ============= ============================================================== =========================
+
+.. _time-on_time:
+
+``on_time``
+-----------
+
+This powerful automation can be used to run automations at specific intervals at
+specific times of day. The syntax is a subset of the `crontab <https://crontab.guru/>`__ syntax.
+
+There are two ways to specify time intervals: Either with using the ``seconds:``, ``minutes:``, ...
+keys as seen below or using a cron expression like ``* /5 * * * *``.
+
+Basically, the automation engine looks at your configured time schedule every second and
+evaluates if the automation should run.
+
+.. code:: yaml
+
+    time:
+      - platform: sntp
+        # ...
+        on_time:
+          # Every 5 minutes
+          - seconds: 0
+            minutes: /5
+            then:
+              - switch.toggle: my_switch
+
+          # Every morning on weekdays
+          - seconds: 0
+            minutes: 30
+            hours: 7
+            days_of_week: MON-FRI
+            then:
+              - light.turn_on: my_light
+
+          # Cron syntax, trigger every 5 minutes
+          - cron: '* /5 * * * *'
+            then:
+              - switch.toggle: my_switch
+
+Configuration variables:
+
+- **seconds** (*Optional*, string): Specify for which seconds of the minute the automation will trigger.
+  Defaults to ``*`` (all seconds). Range is from 0 to 59.
+- **minutes** (*Optional*, string): Specify for which minutes of the hour the automation will trigger.
+  Defaults to ``*`` (all minutes). Range is from 0 to 59.
+- **hours** (*Optional*, string): Specify for which hours of the day the automation will trigger.
+  Defaults to ``*`` (all hours). Range is from 0 to 23.
+- **days_of_month** (*Optional*, string): Specify for which days of the month the automation will trigger.
+  Defaults to ``*`` (all hours). Range is from 1 to 31.
+- **months** (*Optional*, string): Specify for which months of the year to trigger.
+  Defaults to ``*`` (all months). The month names JAN to DEC are automatically substituted.
+  Range is from 1 (January) to 12 (December).
+- **days_of_week** (*Optional*, string): Specify for which days of the week to trigger.
+  Defaults to ``*`` (all days). The names SUN to SAT are automatically substituted.
+  Range is from 1 (Sunday) to 7 (Saturday).
+- **cron** (*Optional*, string): Alternatively, you can specify a whole cron expression like
+  ``* /5 * * * *``. Please note years and some special characters like ``L``, ``#`` are currently not supported.
+
+- See :ref:`Automation <automation>`.
+
+In the ``seconds:``, ``minutes:``, ... fields you can use the following operators:
+
+- .. code:: yaml
+
+      seconds: 0
+
+  An integer like ``0`` or ``30`` will make the automation only trigger if the current
+  second is **exactly** 0 or 30, respectively.
+- .. code:: yaml
+
+     seconds: 0,30,45
+
+  You can combine multiple expressions with the ``,`` operator. This operator makes it so that
+  if either one of the expressions separated by a comma holds true, the automation will trigger.
+  For example ``0,30,45`` will trigger if the current second is either ``0`` or ``30`` or ``45``.
+- .. code:: yaml
+
+      days_of_week: 2-6
+      # same as
+      days_of_week: MON-FRI
+      # same as
+      days_of_week: 2,3,4,5,6
+      # same as
+      days_of_week: MON,TUE,WED,THU,FRI
+
+  The ``-`` (hyphen) operator can be used to create a range of values and is shorthand for listing all
+  values with the ``,`` operator.
+- .. code:: yaml
+
+      # every 5 minutes
+      seconds: 0
+      minutes: /5
+
+      # every timestamp where the minute is 5,15,25,...
+      seconds: 0
+      minutes: 5/10
+
+  The ``/`` operator can be used to create a step value. For example ``/5`` for ``minutes:`` makes an
+  automation trigger only when the minute of the hour is 0, or 5, 10, 15, ... The value in front of the
+  ``/`` specifies the offset with which the step is applied.
+
+- .. code:: yaml
+
+      # Every minute
+      seconds: 0
+      minutes: *
+
+  Lastly, the ``*`` operator matches every number. In the example above, ``*`` could for example be substituted
+  with  ``0-59``.
+
+
+.. warning::
+
+    Please note the following automation would trigger for each second in the minutes 0,5,10,15 and not
+    once per 5 minutes as the seconds variable is not set:
+
+    .. code:: yaml
+
+        time:
+          - platform: sntp
+            # ...
+            on_time:
+              - minutes: /5
+                then:
+                  - switch.toggle: my_switch
+
 
 See Also
 --------
