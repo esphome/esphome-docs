@@ -16,10 +16,6 @@ RUN pip3 install --no-cache-dir --no-binary :all: \
         sphinx \
         breathe
 
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g html-minifier
-
 VOLUME /data/esphomedocs
 EXPOSE 8000
 WORKDIR /data/esphomedocs
