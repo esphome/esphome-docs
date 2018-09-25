@@ -36,4 +36,5 @@ See Also
 - :doc:`/esphomeyaml/components/fan/speed`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/ledc>`
+- `esp-idf LEDC API docs <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/ledc.html>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/ledc.rst>`__

@@ -1,0 +1,20 @@
+INA219 DC Current Sensor
+========================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_ina219`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::INA219Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygentypedef:: INA219VoltageSensor
+.. doxygentypedef:: INA219CurrentSensor
+.. doxygentypedef:: INA219PowerSensor

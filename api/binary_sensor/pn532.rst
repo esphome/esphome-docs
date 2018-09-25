@@ -1,0 +1,19 @@
+PN532 NFC/RFID Controller
+=========================
+
+See :cpp:func:`Application::make_pn532_component`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: binary_sensor::PN532Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::PN532BinarySensor
+    :members:
+    :protected-members:
+    :undoc-members:

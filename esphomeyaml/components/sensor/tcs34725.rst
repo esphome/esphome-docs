@@ -1,0 +1,72 @@
+TCS34725 RGB Color Sensor
+=========================
+
+The ``tcs34725`` sensor platform allows you to use your TCS34725 RGB color sensors
+(`datasheet <https://cdn-shop.adafruit.com/datasheets/TCS34725.pdf>`__,
+`Adafruit`_) temperature and pressure sensors with esphomelib. The :ref:`I²C <i2c>` is
+required to be set up in your configuration for this sensor to work.
+
+.. figure:: images/tcs34725-full.jpg
+    :align: center
+    :width: 50.0%
+
+    TCS34725 RGB Color Sensor
+
+.. _Adafruit: https://www.adafruit.com/product/1334
+
+.. figure:: images/tcs34725-ui.png
+    :align: center
+    :width: 80.0%
+
+.. code:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: tcs34725
+        red_channel:
+          name: "TCS34725 Red Channel"
+        green_channel:
+          name: "TCS34725 Green Channel"
+        blue_channel:
+          name: "TCS34725 Blue Channel"
+        clear_channel:
+          name: "TCS34725 Clear Channel"
+        illuminance:
+          name: "TCS34725 Illuminance"
+        color_temperature:
+          name: "TCS34725 Color Temperature"
+        gain: 1x
+        integration_time: 2.4ms
+        address: 0x29
+        update_interval: 15s
+
+Configuration variables:
+------------------------
+
+- **red_channel** (*Optional*): Get the percentage of how strongly the red color channel is activated.
+  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **green_channel** (*Optional*): Get the percentage of how strongly the green color channel is activated.
+  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **blue_channel** (*Optional*): Get the percentage of how strongly the blue color channel is activated.
+  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **clear_channel** (*Optional*): Get the percentage of how strongly the clear (without a color filter)
+  channel is activated. All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **illuminance** (*Optional*): Get the total illuminance of the sensor in lx.
+  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **color_temperature** (*Optional*): Get the calculated color temperature of the light in Kelvin.
+  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **gain** (*Optional*): Set the gain for the internal ADCs to work better in certain low-light conditions. Valid
+  values are ``1x`` (default), ``4x``, ``16x``, ``60x`` (highest gain).
+- **integration_time** (*Optional*): The amount of time the light sensor is exposed. Valid values are
+  ``2.4ms`` (default), ``24ms``, ``50ms``, ``101ms``, ``154ms``, ``700ms``.
+- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x29``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- `TCS34725 library <https://github.com/adafruit/Adafruit_TCS34725>`__ by `Adafruit <https://www.adafruit.com/>`__
+- :doc:`API Reference </api/sensor/tcs34725>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/tcs34725.rst>`__

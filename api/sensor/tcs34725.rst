@@ -1,0 +1,22 @@
+TCS34725 RGB Color Sensor
+=========================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_tcs34725`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::TCS34725Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenenum:: TCS34725IntegrationTime
+.. doxygenenum:: TCS34725Gain
+.. doxygentypedef:: TCS35725IlluminanceSensor
+.. doxygentypedef:: TCS35725ColorTemperatureSensor
+.. doxygentypedef:: TCS35725ColorChannelSensor

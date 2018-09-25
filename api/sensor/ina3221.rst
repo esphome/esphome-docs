@@ -1,0 +1,20 @@
+INA3221 3-Channel DC Current Sensor
+===================================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_ina3221`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::INA3221Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygentypedef:: INA3221VoltageSensor
+.. doxygentypedef:: INA3221CurrentSensor
+.. doxygentypedef:: INA3221PowerSensor

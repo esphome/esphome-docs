@@ -49,12 +49,37 @@ LightEffect
     :protected-members:
     :undoc-members:
 
-.. doxygenclass:: light::NoneLightEffect
+.. doxygenclass:: light::RandomLightEffect
     :members:
     :protected-members:
     :undoc-members:
 
-.. doxygenclass:: light::RandomLightEffect
+.. doxygenstruct:: light::StrobeLightEffectColor
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::StrobeLightEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FlickerLightEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::LambdaLightEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::BaseFastLEDLightEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FastLEDLambdaLightEffect
     :members:
     :protected-members:
     :undoc-members:
@@ -64,7 +89,40 @@ LightEffect
     :protected-members:
     :undoc-members:
 
-.. doxygenvariable:: light::light_effect_entries
+.. doxygenstruct:: light::FastLEDColorWipeEffectColor
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FastLEDColorWipeEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FastLEDScanEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FastLEDTwinkleEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FastLEDRandomTwinkleEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FastLEDFireworksEffect
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::FastLEDFlickerEffect
+    :members:
+    :protected-members:
+    :undoc-members:
 
 LightOutput
 ***********
@@ -85,12 +143,22 @@ LightOutput
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: light::CWWWLightOutput
+    :members:
+    :protected-members:
+    :undoc-members:
+
 .. doxygenclass:: light::RGBLightOutput
     :members:
     :protected-members:
     :undoc-members:
 
 .. doxygenclass:: light::RGBWLightOutput
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::RGBWWLightOutput
     :members:
     :protected-members:
     :undoc-members:

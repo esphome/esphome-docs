@@ -2,23 +2,36 @@ Sensor Core, components/sensor/index, folder-open.svg
 ADC, components/sensor/adc, flash.svg
 ADS1115, components/sensor/ads1115, ads1115.jpg
 BH1750, components/sensor/bh1750, bh1750.jpg
+BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
 BME280, components/sensor/bme280, bme280.jpg
 BME680, components/sensor/bme680, bme680.jpg
 BMP085, components/sensor/bmp085, bmp180.jpg
+BMP280, components/sensor/bmp280, bmp280.jpg
 Dallas, components/sensor/dallas, dallas.jpg
-DHT, components/sensor/dht, dht22.jpg
+DHT, components/sensor/dht, dht.jpg
 DHT12, components/sensor/dht12, dht12.jpg
 Duty Cycle, components/sensor/duty_cycle, percent.svg
 ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
 HDC1080, components/sensor/hdc1080, hdc1080.jpg
+HLW8012, components/sensor/hlw8012, hlw8012.svg
+HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
+HX711, components/sensor/hx711, hx711.jpg
+INA219, components/sensor/ina219, ina219.jpg
+INA3221, components/sensor/ina3221, ina3221.jpg
 HTU21D, components/sensor/htu21d, htu21d.jpg
 MAX6675, components/sensor/max6675, max6675.jpg
+MH-Z19, components/sensor/mhz19, mhz19.jpg
 MPU6050, components/sensor/mpu6050, mpu6050.jpg
+MS5611, components/sensor/ms5611, ms5611.jpg
 Pulse Counter, components/sensor/pulse_counter, pulse.svg
 Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
 SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+TCS34725, components/sensor/tcs34725, tcs34725.jpg
 Template Sensor, components/sensor/template, description.svg
 TSL2561, components/sensor/tsl2561, tsl2561.jpg
 Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
+Uptime Sensor, components/sensor/uptime, timer.svg
 WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
+Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
+Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
 Custom Sensor, components/sensor/custom, language-cpp.svg

@@ -22,7 +22,7 @@ This list has been compiled from the Sonoff Tasmota pin source file which can be
 https://github.com/arendst/Sonoff-Tasmota/blob/development/sonoff/sonoff_template.h ❤️
 
 Sonoff RF
-^^^^^^^^^
+---------
 
 .. table::
     :class: no-center
@@ -45,7 +45,7 @@ Sonoff RF
 
 
 Sonoff SV
-^^^^^^^^^
+---------
 
 .. table::
     :class: no-center
@@ -72,7 +72,7 @@ Sonoff SV
 
 
 Sonoff TH
-^^^^^^^^^
+---------
 
 .. table::
     :class: no-center
@@ -95,7 +95,7 @@ Sonoff TH
 
 
 Slampher
-^^^^^^^^
+--------
 
 .. table::
     :class: no-center
@@ -114,7 +114,7 @@ Slampher
 
 
 Sonoff Touch
-^^^^^^^^^^^^
+------------
 
 .. table::
     :class: no-center
@@ -133,7 +133,7 @@ Sonoff Touch
 
 
 Sonoff LED
-^^^^^^^^^^
+----------
 
 .. table::
     :class: no-center
@@ -156,7 +156,7 @@ Sonoff LED
 
 
 Sonoff T1, Sonoff T2, Sonoff T3
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
 
 .. table::
     :class: no-center
@@ -185,7 +185,7 @@ Sonoff T1, Sonoff T2, Sonoff T3
 
 
 Arilux LC01
-^^^^^^^^^^^
+-----------
 
 .. table::
     :class: no-center
@@ -210,7 +210,7 @@ Arilux LC01
 
 
 Arilux LC11
-^^^^^^^^^^^
+-----------
 
 .. table::
     :class: no-center
@@ -239,7 +239,7 @@ Arilux LC11
 
 
 Arilux LC06
-^^^^^^^^^^^
+-----------
 
 .. table::
     :class: no-center
@@ -262,7 +262,7 @@ Arilux LC06
 
 
 Sonoff Dual R2
-^^^^^^^^^^^^^^
+--------------
 
 .. table::
     :class: no-center
@@ -287,7 +287,7 @@ Sonoff Dual R2
 
 
 Sonoff S31
-^^^^^^^^^^
+----------
 
 .. table::
     :class: no-center
@@ -307,7 +307,7 @@ Sonoff S31
     ================================================== ==================================================
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`sonoff_s20`
 - :doc:`sonoff_4ch`

@@ -26,7 +26,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **temperature** (**Required**): The information for the temperature sensor.
 
@@ -46,7 +46,7 @@ Configuration variables:
   sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`dht`

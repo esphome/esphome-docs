@@ -50,7 +50,7 @@ Have everything? Great! Then you can start.
 
 
 Step 1: Opening up the Sonoff 4CH
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 The first step is to open up the Sonoff 4CH. Note that you do not have to run the original firmware
 supplied with the Sonoff 4CH before doing this step.
@@ -80,7 +80,7 @@ The chip we're interested in here is the "big" one encased in an aluminium cover
     firmware.
 
 Step 2: Connecting UART
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 Now we need our computer to somehow establish a data connection to the board. For this we will
 have to connect the four wires on the UART to USB bridge to the UART pins of the Sonoff 4Ch.
@@ -110,7 +110,7 @@ When you're done, it should look something like this:
 .. _sonoff_4ch-creating_firmware:
 
 Step 3: Creating Firmware
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 The Sonoff 4CH is based on the ``ESP8266`` platform (technically it's the ``ESP8285``, but for our purposes
 they're the same) and is a subtype of the ``esp01_1m`` board.
@@ -154,7 +154,7 @@ pre-compile the firmware.
     uploading, you can also try uploading this file directly with other tools.
 
 Step 4: Uploading Firmware
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 In order to upload the firmware, you're first going to need to get the chip into a flash mode, otherwise
 the device will start up without accepting any firmware flash attempts. To do this, while the device is UART
@@ -191,7 +191,7 @@ If above step does, however, not work, here are some steps that can help:
    the two pins and put it into flash mode again.
 
 Step 5: Adding the Button, Relay and LEDs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
 Now we would like the 4CH to actually do something, not just connect to WiFi and pretty much sit idle.
 
@@ -320,7 +320,7 @@ of course have to add them to groups if you have a ``default_view`` set):
     :width: 75.0%
 
 Step 6: Finishing Up
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 If you're sure everything is done with the 4CH and have double checked there's nothing that could cause a short
 in the case, you can put the front cover with the button on the base again and screw everything together.
@@ -331,7 +331,7 @@ connect it.
 Happy hacking!
 
 See Also
-~~~~~~~~
+----------
 
 - :doc:`sonoff`
 - :doc:`sonoff_s20`

@@ -1,0 +1,64 @@
+MS5611 Atmospheric Pressure Sensor
+==================================
+
+The ``ms5611`` sensor platform allows you to use your MS5611 atmospheric pressure sensors
+(`datasheet <http://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5611-01BA03%7FB3%7Fpdf%7FEnglish%7FENG_DS_MS5611-01BA03_B3.pdf%7FCAT-BLPS0036>`__,
+`hobbytronics`_) temperature and pressure sensors with esphomelib. The :ref:`I²C <i2c>` is
+required to be set up in your configuration for this sensor to work.
+
+.. figure:: images/ms5611-full.jpg
+    :align: center
+    :width: 50.0%
+
+    MS5611 Atmospheric Pressure Sensor
+
+.. _hobbytronics: http://www.hobbytronics.co.uk/ms5611-altitude-sensor
+
+.. figure:: images/ms5611-ui.png
+    :align: center
+    :width: 80.0%
+
+.. code:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: ms5611
+        temperature:
+          name: "Outside Temperature"
+        pressure:
+          name: "Outside Pressure"
+        address: 0x77
+        update_interval: 15s
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **pressure** (**Required**): The information for the pressure sensor.
+
+  - **name** (**Required**, string): The name for the pressure sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+- **temperature** (**Required**): The information for the temperature.
+  sensor
+
+  - **name** (**Required**, string): The name for the temperature
+    sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+- **address** (*Optional*, int): Manually specify the i^2c address of
+  the sensor. Defaults to ``0x77``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
+
+See Also
+^^^^^^^^
+
+- :ref:`sensor-filters`
+- :doc:`bmp280`
+- :doc:`bme280`
+- :doc:`bmp085`
+- `Arduino MS5611 Library <https://github.com/jarzebski/Arduino-MS5611>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
+- :doc:`API Reference </api/sensor/ms5611>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ms5611.rst>`__

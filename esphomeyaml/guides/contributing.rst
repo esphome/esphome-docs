@@ -272,6 +272,9 @@ Standard for the esphomelib codebase:
   implementations.
 - Please test your changes :)
 
+For editing a local copy of esphomelib within the esphomeyaml ecosystem please see
+:ref:`esphomeyaml.esphomelib_version <esphomeyaml-esphomelib_version>` option.
+
 Contributing to esphomeyaml
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

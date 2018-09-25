@@ -1,0 +1,24 @@
+SSD1306 OLED Display
+====================
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: display::SSD1306
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: display::SPISSD1306
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: display::I2CSSD1306
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenenum:: SSD1306Model

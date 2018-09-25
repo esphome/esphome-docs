@@ -12,4 +12,5 @@ API Reference
     Light <light/index>
     Switch <switch/index>
     Cover <cover/index>
+    Display <display/index>
     Miscellaneous <misc/index>

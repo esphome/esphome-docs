@@ -43,7 +43,7 @@ Some notes about the pins on the ESP32:
         pin: GPIO23
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`nodemcu_esp32`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/esp32.rst>`__

@@ -47,7 +47,7 @@ for a short period of time, the close/open action begins.
         optimistic: true
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`/esphomeyaml/guides/automations`
 - :doc:`/esphomeyaml/components/cover/template`

@@ -1,0 +1,63 @@
+RDM6300 NFC/RFID Tag
+====================
+
+The ``rdm6300`` binary sensor platform lets you track if an NFC/RFID tag with a given
+unique id (``uid``) is currently being detected by the RDM6300 or not.
+
+.. figure:: images/rdm6300-full.jpg
+    :align: center
+    :width: 60.0%
+
+See :doc:`/esphomeyaml/components/rdm6300` for instructions for setting up the connection to the RDM6300.
+
+.. code:: yaml
+
+    # Example configuration entry
+    uart:
+      rx_pin: D0
+      baud_rate: 9600
+
+    rdm6300:
+
+    binary_sensor:
+      - platform: rdm6300
+        uid: 7616525
+        name: "RDM6300 NFC Tag"
+
+Configuration variables:
+------------------------
+
+- **uid** (**Required**, integer): The unique ID of the NFC/RFID tag.
+- **name** (**Required**, string): The name of the binary sensor.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+.. _rdm6300-setting_up_tags:
+
+Setting Up Tags
+---------------
+
+To set up binary sensors for specific NFC tags you first have to know their unique IDs. To obtain this
+id, first set up a simple RDM6300 configuration without any binary sensors like above.
+
+When your code is running and you approach the RDM6300 with an NFC Tag, you should see a message like this:
+
+.. code::
+
+    Found new tag with ID '7616525'
+
+Then copy this id and create a ``binary_sensor`` entry as in the configuration example. Repeat this process for
+each tag.
+
+.. figure:: images/rdm6300-ui.png
+    :align: center
+    :width: 80.0%
+
+See Also
+--------
+
+- :doc:`/esphomeyaml/components/rdm6300`
+- :doc:`/esphomeyaml/components/binary_sensor/index`
+- :doc:`API Reference </api/binary_sensor/rdm6300>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/rdm6300.rst>`__
+

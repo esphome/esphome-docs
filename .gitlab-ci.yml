@@ -1,0 +1,30 @@
+---
+stages:
+- build
+- deploy
+
+build:
+  stage: build
+  tags:
+    - esphomedocs
+  script:
+    - make html
+
+deploy:
+  stage: deploy
+  tags:
+    - esphomedocs
+  before_script:
+    - mkdir -p /root/.ssh
+    - echo "$GITHUB_PRIVATE_KEY" | tr -d '\r' >/root/.ssh/id_rsa
+    - chmod 600 /root/.ssh/id_rsa
+    - ssh-keyscan -H git@github.com:OttoWinter/esphomedocs.git >>/root/.ssh/id_rsa
+  script:
+    - git worktree add _build/html
+    - make deploy
+    - git -C _build/html push git@github.com:OttoWinter/esphomedocs.git:gh-pages
+  artifacts:
+    paths:
+    - _build/html
+  only:
+    - current

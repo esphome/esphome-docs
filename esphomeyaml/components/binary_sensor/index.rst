@@ -66,6 +66,7 @@ They are similar to :ref:`Sensor Filters <sensor-filters>`.
               } else {
                 return {};
               }
+          - heartbeat: 5s
 
 Supported filters:
 
@@ -81,6 +82,8 @@ Supported filters:
 - **lambda**: Specify any :ref:`lambda <config-lambda>` for more complex filters. The input value from
   the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
   the filter chain.
+- **heartbeat**: Periodically send out the last received value from the binary sensor with the given
+  interval. All state changes are still immediately published.
 
 Binary Sensor Automation
 ------------------------
@@ -229,9 +232,12 @@ See Also
 .. toctree::
     :maxdepth: 1
 
-    gpio.rst
-    status.rst
-    esp32_ble_tracker.rst
-    esp32_touch.rst
-    template.rst
-    remote_receiver.rst
+    gpio
+    status
+    esp32_ble_tracker
+    esp32_touch
+    template
+    remote_receiver
+    pn532
+    rdm6300
+    nextion

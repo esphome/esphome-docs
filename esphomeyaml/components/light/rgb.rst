@@ -25,7 +25,7 @@ The ``rgb`` light platform creates an RGB light from 3 :ref:`float output compon
         blue: output_component3
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **red** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the red channel.
@@ -35,6 +35,7 @@ Configuration variables:
   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the light. Defaults to ``2.8``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The length of
   the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
+- **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -46,7 +47,7 @@ Configuration variables:
     platforms like the :doc:`/esphomeyaml/components/output/gpio`.
 
 See Also
-^^^^^^^^
+--------
 
 .. figure:: images/rgb-detail.jpg
     :align: center

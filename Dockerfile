@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         make \
         doxygen \
+        openssh-client \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
 
 RUN pip3 install --no-cache-dir --no-binary :all: \
@@ -20,7 +21,6 @@ RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
     npm install -g html-minifier
 
 VOLUME /data/esphomedocs
-VOLUME /data/esphomelib
 EXPOSE 8000
 WORKDIR /data/esphomedocs
 

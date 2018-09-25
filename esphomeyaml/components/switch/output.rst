@@ -22,7 +22,7 @@ The ``output`` switch platform allows you to use any output component as a switc
         output: 'generic_out'
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **output** (**Required**, :ref:`config-id`): The ID of the output component to use.
 - **name** (**Required**, string): The name for the switch.
@@ -30,7 +30,7 @@ Configuration variables:
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/output/index`
 - :doc:`API Reference </api/switch/index>`

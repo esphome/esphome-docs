@@ -71,7 +71,7 @@ That's no good. Here are some steps that resolve some problems:
 -  **Clean the platformio cache**: Sometimes the build cache leaves behind some weird artifacts. Try running
    ``platformio run -d <NAME_OF_NODE> -t clean``.
 -  **Try with the latest Arduino framework version**:
-   See :ref:`this <using_latest_arduino_framework>`.
+   See :ref:`this <esphomeyaml-arduino_version>`.
 -  **Still an error?** Please file a bug report over in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
@@ -123,18 +123,18 @@ takes up to 2 hours!). To install the dev version of esphomeyaml:
 - From docker: Run ``docker pull ottowinter/esphomeyaml:dev`` and use ``ottowinter/esphomeyaml:dev`` in all
   commands.
 
-Next, if you want to use the latest version of esphomelib too:
+Next, if you want to use the latest version of the esphomelib C++ framework too:
 
 .. code::
 
     # Sample configuration entry
     esphomeyaml:
       name: ...
-      library_uri: 'https://github.com/OttoWinter/esphomelib.git'
+      esphomelib_version: dev
       # ...
 
 In some cases it's also a good idea to use the latest Arduino framework version. See
-:ref:`this <using_latest_arduino_framework>`.
+:ref:`this <esphomeyaml-arduino_version>`.
 
 Does esphomelib support [this device/feature]?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -166,7 +166,7 @@ Some steps that can help with the issue:
 
 -  Use the most recent version of th arduino framework. The platformio arduino package
    always takes some time to update and the most recent version often includes some awesome
-   patches. See :ref:`using_latest_arduino_framework`.
+   patches. See :ref:`esphomeyaml-arduino_version`.
 -  The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
    boards from eBay sometimes have quite bad antennas.
 -  Play around with the ``keepalive`` option of the :doc:`MQTT client </esphomeyaml/components/mqtt>`, sometimes
@@ -178,55 +178,20 @@ Devices that will (hopefully) be supported soon:
 
 Devices/Sensors that I've bought and will be supported at some point (ordered by priority):
 
--  433MHz Transmitter Component
--  PN532 NFC Board
--  INA219/INA3221 Current Sensor
 -  GP2Y10 Dust Sensor
--  TCS34725 RGB Light Sensor
 -  APDS-9960 RGB Gesture Sensor
 -  MCP2301 16-Channel I/O Expander
--  MH-Z19 CO^2 Sensor
--  HMC5883L Compass Sensor
--  SPI E-Ink Display Module
--  8-Segment Display
--  I^2C LCD Display (4 rows, 20 characters)
--  I^2C/SPI SSD1306 OLED Display
--  Nextion TFT LCD Display
 -  MLX90614 Infrared Thermometer
--  MS5611 Pressure Sensor
 -  PCF8591 ADC
 -  OV2640 Camera
 -  L298N H-Bridge Motor Driver
 -  A4988 Stepper Motor Driver
--  MQ-2 Gas Sensor
 
 Other features that I'm working on:
 
--  ESP32 IR/433MHz Receiver
--  Pulse Counter for the ESP8266 (using interrupts)
 -  Multiple WiFi Networks to connect to
--  Improve "Restart due to WiFi/MQTT disconnect" logic and make the timeouts more configurable
 -  Color Temperature for Lights
--  Status LED
--  More FastLED effects
--  Support for displays (like LCD/OLED/E-Ink displays)
 -  Cameras (probably through ArduCAM)
-
-
-Devices which are supported, but not tested yet. I'm still waiting for these to arrive from China:
-
--  ADS1115 Voltage Sensor
--  TSL2561 Brightness Sensor
--  HDC1080 Temperature+Humidity Sensor
--  SHT31-D Temperature+Humidity Sensor
--  BME280
--  BME680
-
-Devices that are technically already supported, but for which guides will be created soon-ish:
-
--  Sonoff Basic
--  Sonoff Basic RF
--  Soil Moisture Sensor
 
 Anything missing? I'd be happy to chat about more integrations over on the `discord channel
 <https://discord.gg/KhAMKrd>`__ - no guarantees that everything will be supported though!

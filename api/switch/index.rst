@@ -9,6 +9,7 @@ The `switch_` namespace contains all switch helpers.
     restart
     shutdown
     template
+    uart
 
 API Reference
 -------------

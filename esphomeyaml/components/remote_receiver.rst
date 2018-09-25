@@ -28,6 +28,7 @@ Configuration variables:
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
+  - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
 
 - **tolerance** (*Optional*, int): The percentage that the remote signal lengths can devicate in the
@@ -48,5 +49,7 @@ Configuration variables:
 See Also
 --------
 
+- `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
+- `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :doc:`API Reference </api/switch/remote_transmitter>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/remote_transmitter.rst>`__

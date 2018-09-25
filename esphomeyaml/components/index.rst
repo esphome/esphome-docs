@@ -10,6 +10,7 @@ Components
     output/index
     sensor/index
     switch/index
+    display/index
     ads1115
     dallas
     debug
@@ -30,3 +31,8 @@ Components
     wifi
     esp32_ble_beacon
     status_led
+    pn532
+    rdm6300
+    spi
+    time
+    uart

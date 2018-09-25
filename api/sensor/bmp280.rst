@@ -1,0 +1,26 @@
+BMP280 Temperature/Pressure Sensor
+==================================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_bmp280_sensor`.
+
+API Reference
+-------------
+
+.. doxygenclass:: sensor::BMP280Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenenum:: sensor::BMP280Oversampling
+.. doxygenenum:: sensor::BMP280IIRFilter
+
+.. doxygentypedef:: sensor::BMP280TemperatureSensor
+.. doxygentypedef:: sensor::BMP280PressureSensor
+
+.. doxygenstruct:: sensor::BMP280CalibrationData
+    :members:
+    :protected-members:
+    :undoc-members:
+

@@ -23,7 +23,7 @@ The ``monochromatic`` light platform creates a simple brightness-only light from
         output: output_component1
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **output** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for this light.
@@ -32,6 +32,7 @@ Configuration variables:
 - **default_transition_length** (*Optional*, :ref:`config-time`): The length of
   the transition if no transition parameter is provided by Home
   Assistant. Defaults to ``1s``.
+- **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -44,7 +45,7 @@ Configuration variables:
     platforms like the :doc:`/esphomeyaml/components/output/gpio`.
 
 See Also
-^^^^^^^^
+--------
 
 .. figure:: images/monochromatic-detail.jpg
     :align: center

@@ -21,7 +21,7 @@ a bunch of useful information like reset reason, free heap size, esphomelib vers
 There are no configuration variables for this component.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`logger`
 - :doc:`API Reference </api/misc/debug>`

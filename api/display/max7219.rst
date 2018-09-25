@@ -1,0 +1,19 @@
+MAX7219 7-Segment Display
+=========================
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. _api-display-max7219:
+
+MAX7219Component
+^^^^^^^^^^^^^^^^
+
+.. doxygenclass:: display::MAX7219Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygentypedef:: max7219_writer_t

@@ -23,7 +23,7 @@ Clockless FastLED lights differ from the
         name: "FastLED WS2811 Light"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **chipset** (**Required**, string): Set a chipset to use.
@@ -45,13 +45,14 @@ Configuration variables:
   Assistant. Defaults to ``1s``.
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`/esphomeyaml/components/power_supply` to connect to
   this light. When the light is turned on, the power supply will automatically be switched on too.
+- **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _fastled_clockless-chipsets:
 
 Supported Chipsets
-~~~~~~~~~~~~~~~~~~
+------------------
 
 - ``NEOPIXEL``
 - ``WS2811``
@@ -78,23 +79,12 @@ Supported Chipsets
 - ``UCS1904``
 - ``UCS2903``
 
-Light Effects
-~~~~~~~~~~~~~
-
-Currently, only a rainbow effect is supported. In the future, more light effects will be added
-and supported out-of-the box. Creating custom effects is, however, quite easy with esphomelib.
-See the `fastled example <https://github.com/OttoWinter/esphomelib/blob/master/examples/fastled/fastled.cpp>`__
-in the esphomelib repository for a simple example.
-
-.. figure:: images/fastled_effect.png
-   :align: center
-   :width: 30.0%
-
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/light/index`
 - :doc:`/esphomeyaml/components/light/fastled_spi`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/light/fastled>`
+- `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/fastled_clockless.rst>`__

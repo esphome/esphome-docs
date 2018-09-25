@@ -9,10 +9,9 @@ required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/htu21d-full.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
-    HTU21D Temperature & Humidity Sensor. Image by `Adafruit`_.
+    HTU21D Temperature & Humidity Sensor.
 
 .. _Adafruit: https://learn.adafruit.com/adafruit-htu21d-f-temperature-humidity-sensor/overview
 
@@ -58,4 +57,5 @@ See Also
 - :doc:`hdc1080`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/htu21d>`
+- `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/htu21d.rst>`__

@@ -7,10 +7,9 @@ The ``dht12`` Temperature+Humidity sensor allows you to use your DHT12
 
 .. figure:: images/dht12-full.jpg
     :align: center
-    :target: `electrodragon`_
     :width: 50.0%
 
-    DHT12 Temperature & Humidity Sensor. Image by `electrodragon`_.
+    DHT12 Temperature & Humidity Sensor.
 
 .. _electrodragon: http://www.electrodragon.com/product/dht12/
 
@@ -30,7 +29,7 @@ The ``dht12`` Temperature+Humidity sensor allows you to use your DHT12
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **temperature** (**Required**): The information for the temperature sensor.
 
@@ -48,7 +47,7 @@ Configuration variables:
   See :ref:`sensor-default_filter`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`dht`
@@ -56,4 +55,5 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/dht12>`
+- `DHT12 Library <https://github.com/dplasa/dht>`__ by `Daniel Plasa <https://github.com/dplasa>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/dht12.rst>`__

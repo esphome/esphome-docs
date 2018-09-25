@@ -35,7 +35,7 @@ and convert those voltage measurements to illuminance values in lux using a form
     to ``3.3V``
 
 Formula Explanation:
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 To get the illuminance in lux, we first need to convert the measured voltage to the
 current flowing across the TEMT6000 sensor. This current is also equal to the current
@@ -60,7 +60,7 @@ correlates to 1 lx in the illuminance.
     to divide the analog voltage by a constant value.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/sensor/adc`
 - `TEMT6000 datasheet <https://www.sparkfun.com/datasheets/Sensors/Imaging/TEMT6000.pdf>`__

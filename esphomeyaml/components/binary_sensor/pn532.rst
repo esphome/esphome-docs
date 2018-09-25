@@ -1,0 +1,63 @@
+PN532 NFC/RFID Tag
+==================
+
+The ``pn532`` binary sensor platform lets you track if an NFC/RFID tag with a given
+unique id (``uid``) is currently being detected by the PN532 or not.
+
+.. figure:: images/pn532-full.jpg
+    :align: center
+    :width: 60.0%
+
+See :doc:`/esphomeyaml/components/pn532` for instructions for setting up the connection to the PN532.
+
+.. code:: yaml
+
+    # Example configuration entry
+    spi:
+      clk_pin: D0
+      miso_pin: D1
+      mosi_pin: D2
+
+    pn532:
+      cs_pin: D3
+      update_interval: 1s
+
+    binary_sensor:
+      - platform: pn532
+        uid: 74-10-37-94
+        name: "PN532 NFC Tag"
+
+Configuration variables:
+------------------------
+
+- **uid** (**Required**, string): The unique ID of the NFC/RFID tag. This is a hypen-separated list
+  of hexadecimal values. For example ``74-10-37-94``.
+- **name** (**Required**, string): The name of the binary sensor.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+.. _pn532-setting_up_tags:
+
+Setting Up Tags
+---------------
+
+To set up binary sensors for specific NFC tags you first have to know their unique IDs. To obtain this
+id, first set up a simple pn532 configuration without any binary sensors like above.
+
+When your code is running and you approach the PN532 with an NFC Tag, you should see a message like this:
+
+.. code::
+
+    Found new tag '74-10-37-94'
+
+Then copy this id and create a ``binary_sensor`` entry as in the configuration example. Repeat this process for
+each tag.
+
+See Also
+--------
+
+- :doc:`/esphomeyaml/components/pn532`
+- :doc:`index`
+- :doc:`API Reference </api/binary_sensor/pn532>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/pn532.rst>`__
+

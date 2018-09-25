@@ -2,6 +2,8 @@ Core, components/esphomeyaml, cloud-circle.svg
 WiFi, components/wifi, network-wifi.svg
 MQTT, components/mqtt, mqtt.png
 I²C Bus, components/i2c, i2c.svg
+SPI Bus, components/spi, spi.svg
+UART Bus, components/uart, uart.svg
 OTA Updates, components/ota, system-update.svg
 Logger, components/logger, file-document-box.svg
 Web Server, components/web_server, http.svg

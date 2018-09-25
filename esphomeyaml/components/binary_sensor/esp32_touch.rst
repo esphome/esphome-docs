@@ -25,7 +25,7 @@ an ``OFF`` state.
         threshold: 1000
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  **pin** (**Required**, :ref:`config-pin`): The pin to detect touch
    events on.
@@ -39,7 +39,7 @@ Configuration variables:
    and :ref:`MQTT Component <config-mqtt-component>`.
 
 Touch Pad Pins
-~~~~~~~~~~~~~~
+--------------
 
 8 pins on the ESP32 can be used to detect touches. These are (in the default "raw" pin names):
 
@@ -55,7 +55,7 @@ Touch Pad Pins
 -  ``GPIO33``
 
 Finding thresholds
-~~~~~~~~~~~~~~~~~~
+------------------
 
 For each touch pad you want to monitor, you need to find a threshold first. This threshold is
 used to determine if a pad is being touched or not using the raw values from the sensor. Lower
@@ -93,9 +93,10 @@ option again by setting it to ``False``. Otherwise you will end up spamming the 
 down.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/esp32_touch`
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :doc:`API Reference </api/binary_sensor/esp32_touch>`
+- `esp-idf Touch Sensor API <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/touch_pad.html>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/esp32_touch.rst>`__

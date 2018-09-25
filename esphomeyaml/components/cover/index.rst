@@ -8,7 +8,7 @@ commands: *open*, *close* and *stop*.
 .. _cover-open_action:
 
 ``cover.open`` Action
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 This action opens the cover with the given ID when executed.
 
@@ -22,7 +22,7 @@ This action opens the cover with the given ID when executed.
 .. _cover-close_action:
 
 ``cover.close`` Action
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 This action closes the cover with the given ID when executed.
 
@@ -36,7 +36,7 @@ This action closes the cover with the given ID when executed.
 .. _cover-stop_action:
 
 ``cover.stop`` Action
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 This action stops the cover with the given ID when executed.
 
@@ -49,7 +49,7 @@ This action stops the cover with the given ID when executed.
 
 
 lambda calls
-""""""""""""
+------------
 
 From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
 advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more info).
@@ -98,7 +98,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`API Reference </api/cover/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/cover/index.rst>`__

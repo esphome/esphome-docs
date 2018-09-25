@@ -20,7 +20,7 @@ GPIO39 can be used.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to measure the voltage on.
   Or on the ESP8266 alternatively also ``VCC``, see :ref:`adc-esp8266_vcc`.
@@ -40,7 +40,7 @@ Configuration variables:
 .. _adc-esp32_attenuation:
 
 ESP32 Attenuation
-~~~~~~~~~~~~~~~~~
+-----------------
 
 On the ESP32, the voltage measured with the ADC caps out at 1.1V by default as the sensing range
 or the attenuation of the ADC is set to ``0db`` by default.
@@ -56,7 +56,7 @@ To measure voltages higher than 1.1V, set ``attenuation`` to one of the `followi
 .. _adc-esp8266_vcc:
 
 ESP8266 Measuring VCC
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 On the ESP8266 you can even measure the voltage the chip is getting. This can be useful in situations
 where you want to shut down the chip if the voltage is low when using a battery.
@@ -85,10 +85,10 @@ automatically for you because of how the compiler is linking the esphomelib libr
       // ...
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`ads1115`
 - :doc:`max6675`
-- :doc:`API Reference </api/sensor/adc-sensor>`
+- :doc:`API Reference </api/sensor/adc>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/adc.rst>`__

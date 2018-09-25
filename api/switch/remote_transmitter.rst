@@ -51,6 +51,38 @@ API Reference
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: remote::RCSwitchProtocol
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenvariable:: rc_switch_protocols
+
+.. doxygenclass:: remote::RCSwitchRawTransmitter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeATransmitter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeBTransmitter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeCTransmitter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: remote::RCSwitchTypeDTransmitter
+    :members:
+    :protected-members:
+    :undoc-members:
+
 .. doxygenclass:: remote::SonyTransmitter
     :members:
     :protected-members:

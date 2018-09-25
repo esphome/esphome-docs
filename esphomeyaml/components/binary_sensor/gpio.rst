@@ -18,7 +18,7 @@ device as a binary sensor.
         device_class: window
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to periodically check.
 - **name** (**Required**, string): The name of the binary sensor.
@@ -41,7 +41,7 @@ Configuration variables:
             name: ...
 
 Inverting Values
-~~~~~~~~~~~~~~~~
+----------------
 
 Use the ``inverted`` property of the :ref:`Pin Schema <config-pin_schema>` to invert the binary
 sensor:
@@ -57,7 +57,7 @@ sensor:
         name: ...
 
 Debouncing Values
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Some binary sensors are a bit unstable and quickly transition between the ON and OFF state while
 they're pressed. To fix this and debounce the signal, use the :ref:`binary sensor filters <binary_sensor-filters>`:
@@ -87,7 +87,7 @@ will wait 10ms before publishing an OFF value:
           - delayed_off: 10ms
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/binary_sensor/index`
 - :ref:`config-pin_schema`

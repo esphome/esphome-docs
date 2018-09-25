@@ -11,7 +11,6 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
 
 .. figure:: images/dallas-wired.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
     Wired Version of the DS18b20 One-Wire Temperature Sensor.
@@ -35,7 +34,7 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
         name: "Living Room Temperature"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **address** (**Required**, int): The address of the sensor. Use either
   this option or index.
@@ -52,7 +51,7 @@ Configuration variables:
 .. _dallas-getting-ids:
 
 Getting Sensor IDs
-~~~~~~~~~~~~~~~~~~
+------------------
 
 It is highly recommended to use the ``address`` attribute for creating
 dallas sensors, because if you have multiple sensors on a bus and the
@@ -99,10 +98,11 @@ When you're finished mapping each address to a name, just change the ``Temperatu
 to your assigned names and you should be ready.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`/esphomeyaml/components/dallas`
 - :doc:`max6675`
+- `Arduino DallasTemperature library <https://github.com/milesburton/Arduino-Temperature-Control-Library>`__ by `Miles Burton <https://github.com/milesburton>`__
 - :doc:`API Reference </api/sensor/dallas>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/dallas.rst>`__

@@ -1,0 +1,19 @@
+RDM6300 NFC/RFID Controller
+===========================
+
+See :cpp:func:`Application::make_rdm6300_component`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: binary_sensor::RDM6300Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::RDM6300BinarySensor
+    :members:
+    :protected-members:
+    :undoc-members:

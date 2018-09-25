@@ -27,7 +27,7 @@ even Over The Air updates.
       sleep_duration: 10min
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **run_duration** (*Optional*, :ref:`config-time`): The time duration the node should be active, i.e. run code.
 - **run_cycles** (*Optional*, int): The number of ``loop()`` cycles to go through before
@@ -45,18 +45,19 @@ Configuration variables:
 
     The :ref:`availability feature <mqtt-last_will_birth>` of the MQTT client will cause all values
     from the node to be displayed as "unavailable" while the node is in deep sleep mode. To disable availability
-    reporting and not have any "unavailable" values, set ``availability`` to an empty value:
+    reporting and not have any "unavailable" values, set ``birth_message`` and ``will_message`` to empty values:
 
     .. code:: yaml
 
         mqtt:
           # ...
-          availability:
+          birth_message:
+          will_message:
 
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
 ESP32 Wakeup Pin Mode
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 On the ESP32, you have the option of waking up on any RTC pin. However, there's one scenario that you need
 to tell esphomelib how to handle: What if the wakeup pin is already in the state with which it would wake up
@@ -70,8 +71,64 @@ when the deep sleep should start? There are three ways of handling this using th
   then re-configure deep sleep to wake up on a LOW signal and vice versa. Useful in situations when you want to
   use observe the state changes of a pin using deep sleep and the ON/OFF values last longer.
 
+
+.. _deep_sleep-enter_action:
+
+``deep_sleep.enter`` Action
+---------------------------
+
+This action makes the given deep sleep component enter deep sleep immediately.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - deep_sleep.enter: deep_sleep_1
+
+
+.. _deep_sleep-prevent_action:
+
+``deep_sleep.prevent`` Action
+-----------------------------
+
+This action prevents the given deep sleep component from entering deep sleep.
+Useful for
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - deep_sleep.prevent: deep_sleep_1
+
+.. note::
+
+    For example, if you want to upload a binary via OTA with deep sleep mode it can be difficult to
+    catch the ESP being active.
+
+    You can use this automation to automatically prevent deep sleep when a MQTT message on the topic
+    ``livingroom/ota_mode`` with the payload ``ON`` is received. Then, to do the OTA update, just
+    use a MQTT client to publish a retained MQTT message described above. When the node wakes up again
+    it will no longer enter deep sleep mode and you can upload your OTA update.
+
+    Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
+    ``OFF``.
+
+    .. code:: yaml
+
+        deep_sleep:
+          # ...
+          id: deep_sleep_1
+        mqtt:
+          # ...
+          on_message:
+            topic: livingroom/ota_mode
+            payload: ON
+            then:
+              - deep_sleep.prevent:
+                  id: deep_sleep_1
+
 See Also
-^^^^^^^^
+--------
 
 - :doc:`switch/shutdown`
 - :ref:`automation`

@@ -17,7 +17,7 @@ supports speed settings.
         name: "Living Room Fan"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **output** (**Required**, :ref:`config-id`): The id of the
   :ref:`float output <output>` to use for this fan.
@@ -38,7 +38,7 @@ Configuration variables:
   and :ref:`Fan Component <config-fan>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/output/index`
 - :doc:`/esphomeyaml/components/fan/index`

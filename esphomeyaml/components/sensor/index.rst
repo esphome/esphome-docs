@@ -8,7 +8,7 @@ configuration options.
 .. _config-sensor:
 
 Base Sensor Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 All sensors in esphomeyaml/esphomelib have a name and some other
 optional configuration options. By default, the sensor platform will
@@ -55,10 +55,27 @@ Automations:
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 
+.. note::
+
+    If you're trying to setup filters for a sensor that has multiple outputs - for example a DHT22 which
+    reports temperature *and* humidity - put the ``filters`` option into each sensor output like this:
+
+    .. code:: yaml
+
+        sensor:
+          - platform: dht
+            # ...
+            temperature:
+              filters:
+                # ...
+            humidity:
+              filters:
+                # ...
+
 .. _sensor-filters:
 
 Sensor Filters
-~~~~~~~~~~~~~~
+--------------
 
 esphomeyaml/esphomelib allow you to do some basic preprocessing of
 sensor values before they’re sent to Home Assistant. This is for example
@@ -150,7 +167,7 @@ every filter there is currently:
    as a raw string.
 
 Example: Converting Celsius to Fahrenheit
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------
 
 While I personally don’t like the Fahrenheit temperature scale, I do
 understand that having temperature values appear in the fahrenheit unit
@@ -168,7 +185,7 @@ fahrenheit.
 .. _sensor-default_filter:
 
 Default Filter
-^^^^^^^^^^^^^^
+--------------
 
 By default, esphomelib takes an average over the last 15 values before publishing updates.
 This was done in order to automatically decrease sensor noise.
@@ -183,7 +200,7 @@ directly, put an empty ``filters:`` block in your configuration:
         filters:
 
 Sensor Automation
-^^^^^^^^^^^^^^^^^
+-----------------
 
 You can access the most recent state of the sensor in :ref:`lambdas <config-lambda>` using
 ``id(sensor_id).value`` and the most recent raw state using ``id(sensor_id).raw_value``.
@@ -191,7 +208,7 @@ You can access the most recent state of the sensor in :ref:`lambdas <config-lamb
 .. _sensor-on_value:
 
 ``on_value``
-""""""""""""
+************
 
 This automation will be triggered when a new value that has passed through all filters
 is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
@@ -213,7 +230,7 @@ Configuration variables: See :ref:`Automation <automation>`.
 .. _sensor-on_value_range:
 
 ``on_value_range``
-""""""""""""""""""
+******************
 
 With this automation you can observe if a sensor value passes from outside
 a defined range of values to inside a range. For example you can have an
@@ -245,7 +262,7 @@ Configuration variables:
 .. _sensor-on_raw_value:
 
 ``on_raw_value``
-""""""""""""""""
+****************
 
 This automation will be triggered when a new value that has passed through all filters
 is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
@@ -265,7 +282,7 @@ with ``x``.
 Configuration variables: See :ref:`Automation <automation>`.
 
 lambda calls
-""""""""""""
+************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors to do some
 advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more info).
@@ -276,7 +293,7 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
   .. code:: yaml
 
       // Within lambda, push a value of 42.0
-      id(my_binary_sensor).push_new_value(42.0);
+      id(my_sensor).push_new_value(42.0);
 
 - ``value``: Retrieve the current value of the sensor that has passed through all sensor filters.
   Is ``NAN`` if no value has gotten through all filters yet.
@@ -296,7 +313,7 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
 
 
 See Also
-^^^^^^^^
+********
 
 - :doc:`API Reference </api/sensor/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/index.rst>`__
@@ -304,26 +321,39 @@ See Also
 .. toctree::
     :maxdepth: 1
 
-    dallas.rst
-    adc.rst
-    ads1115.rst
-    bmp085.rst
-    dht.rst
-    hdc1080.rst
-    htu21d.rst
-    pulse_counter.rst
-    ultrasonic.rst
-    mpu6050.rst
-    bh1750.rst
-    bme280.rst
-    bme680.rst
-    tsl2561.rst
-    sht3xd.rst
-    dht12.rst
-    rotary_encoder.rst
-    template.rst
-    max6675.rst
-    esp32_hall.rst
-    custom.rst
-    duty_cycle.rst
-    wifi_signal.rst
+    adc
+    ads1115
+    bh1750
+    ble_rssi
+    bme280
+    bme680
+    bmp085
+    bmp280
+    custom
+    dallas
+    dht
+    dht12
+    duty_cycle
+    esp32_hall
+    hdc1080
+    hlw8012
+    hmc5883l
+    htu21d
+    hx711
+    ina219
+    ina3221
+    max6675
+    mhz19
+    mpu6050
+    ms5611
+    pulse_counter
+    rotary_encoder
+    sht3xd
+    tcs34725
+    template
+    tsl2561
+    ultrasonic
+    uptime
+    wifi_signal
+    xiaomi_miflora
+    xiaomi_mijia

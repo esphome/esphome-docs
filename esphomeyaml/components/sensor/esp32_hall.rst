@@ -23,7 +23,7 @@ by the hall sensor.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name of the hall effect sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
@@ -41,10 +41,10 @@ Configuration variables:
     please feel free to do so 😺.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`adc`
 - :doc:`/esphomeyaml/devices/esp32`
-- :doc:`API Reference </api/sensor/adc-sensor>`
+- :doc:`API Reference </api/sensor/esp32_hall>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/esp32_hall.rst>`__

@@ -53,7 +53,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
         pin: GPIO23
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`esp32`
 - :doc:`nodemcu_esp8266`

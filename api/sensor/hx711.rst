@@ -1,0 +1,18 @@
+HX711 Load Cell Amplifier
+=========================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_hx711_sensor`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::HX711Sensor
+    :members:
+    :protected-members:
+    :undoc-members:
+
+

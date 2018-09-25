@@ -12,12 +12,11 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 `sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__)
 sensors with esphomelib.
 
-.. figure:: images/dht22-full.jpg
+.. figure:: images/dht-full.jpg
     :align: center
-    :target: `Adafruit`_
     :width: 50.0%
 
-    DHT22 Temperature & Humidity Sensor. Image by `Adafruit`_.
+    DHT22 Temperature & Humidity Sensor.
 
 .. _Adafruit: https://www.adafruit.com/product/385
 
@@ -42,7 +41,7 @@ if you're having issues try the 4.7kΩ recommended by the manufacturer) between
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin where the DHT bus is connected.
 - **temperature** (**Required**): The information for the temperature sensor.
@@ -70,7 +69,7 @@ Configuration variables:
    on the DATA pin or too long cables.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`dht12`
@@ -78,4 +77,5 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`API Reference </api/sensor/dht>`
+- `Arduino DHTLib <https://playground.arduino.cc/Main/DHTLib>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/dht.rst>`__

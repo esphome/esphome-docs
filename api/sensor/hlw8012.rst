@@ -1,0 +1,28 @@
+HLW8012 Power Sensor
+====================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_hlw8012`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::HLW8012Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: sensor::HLW8012VoltageSensor
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: sensor::HLW8012CurrentSensor
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygentypedef:: HLW8012PowerSensor

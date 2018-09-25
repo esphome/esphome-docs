@@ -7,6 +7,8 @@ items = []
 
 data = list(csv.reader(open(sys.argv[1], 'r')))
 for row in data:
+    if not row:
+      continue
     name, page, image = row
     items.append({
       'name': name.strip(),

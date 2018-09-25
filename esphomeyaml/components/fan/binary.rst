@@ -16,7 +16,7 @@ The ``binary`` fan platform lets you represent any binary :ref:`output` as a fan
         name: "Living Room Fan"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **output** (**Required**, :ref:`config-id`): The id of the
   binary output component to use for this fan.
@@ -29,7 +29,7 @@ Configuration variables:
   and :ref:`Fan Component <config-fan>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/output/index`
 - :doc:`/esphomeyaml/components/output/gpio`

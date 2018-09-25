@@ -18,14 +18,14 @@ pressing the reset button or restarting the power supply.
         name: "Living Room Shutdown"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name for the switch.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`restart`
 - :doc:`template`
