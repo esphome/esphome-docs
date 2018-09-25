@@ -68,7 +68,7 @@ Configuration variables:
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **model** (**Required**): The model of the E-Paper display. Options are:
 
-  - ``1.54in`` (not tested)
+  - ``1.54in``
   - ``2.13in`` (not tested)
   - ``2.70in`` (not tested)
   - ``2.90in``
