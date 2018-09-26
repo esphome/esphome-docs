@@ -2,7 +2,7 @@ Frequently Asked Questions
 ==========================
 
 Tips for using esphomeyaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 1. esphomeyaml supports (most of) Home Assistant's YAML configuration directives like
    ``!include``, ``!secret``. So you can store all your secret WiFi passwords and so on
@@ -38,7 +38,7 @@ Tips for using esphomeyaml
 .. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
 
 What's the difference between esphomelib and esphomeyaml?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------------------
 
 `esphomelib <https://github.com/OttoWinter/esphomelib>`__ is a C++ framework
 around Arduino for creating custom firmwares for ESP8266/ESP32 devices. So with
@@ -62,7 +62,7 @@ like having an automatic schematic creator or a simple `blockly-like <https://de
 in mind that will hopefully make the user-experience of using ESP32/ESP8266 nodes a lot easier.
 
 Help! Something's not working!1!
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 That's no good. Here are some steps that resolve some problems:
 
@@ -76,7 +76,7 @@ That's no good. Here are some steps that resolve some problems:
    I will take a look at it as soon as I can. Thanks!
 
 How to submit an issue report
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------
 
 First of all, thank you very much to everybody submitting issue reports! While I try to test esphomelib/yaml as much as
 I can using my own hardware, I don't own every single device type and mostly only do tests with my own home automation
@@ -95,7 +95,7 @@ For me to fix the issue the quickest, there are some things that would be really
 You can find the issue tracker here https://github.com/OttoWinter/esphomelib/issues
 
 How do I update to the latest version?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------
 
 It's simple. Run:
 
@@ -108,7 +108,7 @@ It's simple. Run:
 And in HassIO, there's a simple UPDATE button when there's an update available as with all add-ons
 
 How do I use the latest bleeding edge version?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------
 
 First, a fair warning that the latest bleeding edge version is not always stable and might have issues.
 If you find some, please do however report them if you have time :)
@@ -137,14 +137,14 @@ In some cases it's also a good idea to use the latest Arduino framework version.
 :ref:`this <esphomeyaml-arduino_version>`.
 
 Does esphomelib support [this device/feature]?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------
 
 If it's not in :doc:`the docs </esphomeyaml/index>`, it's probably sadly not
 supported. However, I'm always trying to add support for new features, so feel free to create a feature
 request in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__. Thanks!
 
 I have a question... How can I contact you?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 Sure! I'd be happy to help :) You can contact me here:
 
@@ -156,7 +156,7 @@ Sure! I'd be happy to help :) You can contact me here:
 -  Alternatively, also under my e-mail address contact (at) otto-winter.com
 
 My node keeps reconnecting randomly
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------
 
 Jep, that's a known issue. However, it seems to be very low-level and I don't really know
 how to solve it. I'm working on possible work-arounds for the issue but currently I do
@@ -174,7 +174,7 @@ Some steps that can help with the issue:
    keepalive works better.
 
 Devices that will (hopefully) be supported soon:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------
 
 Devices/Sensors that I've bought and will be supported at some point (ordered by priority):
 
@@ -197,7 +197,7 @@ Anything missing? I'd be happy to chat about more integrations over on the `disc
 <https://discord.gg/KhAMKrd>`__ - no guarantees that everything will be supported though!
 
 I can't update using OTA because of to little space, now what?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------------------------
 
 If you are using ESP8266/Sonoff devices and you have many components enabled you will probably encounter this error during OTA update:
 
@@ -242,8 +242,11 @@ First we temporary 'remove' (comment out) all components from the ``yaml`` file,
 
 This will result in really small firmware data which has a high chance of fitting the remaining space on your device. After this OTA update has succeeded you are left with a device with no functionality except OTA. Now you can re-enable all components previously commented out and perform a 'normal' OTA update again.
 
+How to manully flash a firmware binary
+--------------------------------------
+
 See Also
-~~~~~~~~
+--------
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`contributing`

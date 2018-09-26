@@ -232,6 +232,13 @@ Breaking Changes
 - Light Effects now need to be manually declared in the config and will no longer show up automatically. Please see :ref:`light-effects`
 - MAX6675 has been migrated to use the new SPI bus (and fixed!). Please see the docs for how to use it now.
 
+Changes in 1.8.1
+****************
+
+- esphomeyaml: Limit upload speed to 115200 `#122 <https://github.com/OttoWinter/esphomeyaml/pull/122>`__
+- esphomeyaml: Fix docker installs using old platformio version `#125 <https://github.com/OttoWinter/esphomeyaml/pull/125>`__
+- esphomedocs: Waveshare E-Paper: 1.54in display works `#22 <https://github.com/OttoWinter/esphomedocs/pull/22>`__ by `@fabaff <https://github.com/fabaff>`__
+
 Version 1.7.0
 -------------
 
