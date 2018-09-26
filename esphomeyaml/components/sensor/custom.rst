@@ -370,5 +370,5 @@ for them. That's why we call ``App.register_sensor`` for each sensor we created 
 See Also
 --------
 
-- `Full source code <https://github.com/OttoWinter/esphomelib/blob/master/examples/custom-bmp180-sensor.cpp>`__
+- `Full source code <https://github.com/OttoWinter/esphomelib/blob/master/examples/custom-bmp180-sensor/custom-bmp180-sensor.cpp>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/custom.rst>`__
