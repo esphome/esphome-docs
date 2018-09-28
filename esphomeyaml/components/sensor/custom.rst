@@ -166,7 +166,7 @@ In your global ``setup()`` method, after you've setup all other components, do t
       // =========== AUTO GENERATED CODE END ============
       // ========= YOU CAN EDIT AFTER THIS LINE =========
 
-      auto *custom_sensor = new CustomSensor(5000); // update every 5000ms or every 5 seconds.
+      auto *custom_sensor = new CustomSensor("My Custom Sensor", 5000); // update every 5000ms or every 5 seconds.
       App.register_component(custom_sensor);
       App.register_sensor(custom_sensor);
 
