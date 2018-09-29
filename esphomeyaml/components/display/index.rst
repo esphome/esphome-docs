@@ -257,7 +257,7 @@ Another interesting format string is ``%7.2f``, which would become the right-jus
 - ``%`` - initiate the format
 - ``7`` - means that the number will be right-justified and be padded on the left by spaces if
   the result would be shorter than 7 characters long.
-- ``.1`` - round the decimal number to ``1`` digits after the decimal point.
+- ``.2`` - round the decimal number to ``2`` digits after the decimal point.
 - ``f`` - specifier: f(loat).
 
 You can even have as many format strings as you want in a single printf call. Just make sure the put the
@@ -317,7 +317,7 @@ Images
 Configuration variables:
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
-- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, int): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
