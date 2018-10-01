@@ -1,7 +1,7 @@
 TSL2561 Ambient Light Sensor
 ============================
 
-The ``tsl2561`` sensor platform allows you to use your BH1750
+The ``tsl2561`` sensor platform allows you to use your TSL2561
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/TSL2561.pdf>`__,
 `Adafruit`_)
 ambient light sensor with esphomelib. The :ref:`I²C <i2c>` is required to be set up in
