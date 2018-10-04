@@ -93,7 +93,10 @@ that you can modify afterwards and play around with.
 On docker, the first upload is a bit more complicated, either you manage
 to map the serial device into docker with the ``-v`` option, or you just
 call ``compile`` within the container and let platformio do the
-uploading on the host system:
+uploading on the host system.
+
+If you are running docker on Linux you can add ``--device=/dev/ttyUSB0``
+to your docker command to map a local USB device.
 
 .. code:: bash
 
