@@ -326,7 +326,7 @@ Configuration variables:
 
     To use images you will need to have the python ``pillow`` package installed.
     If you're running this as a HassIO add-on or with the official esphomeyaml docker image, it should already be
-    installed. Otherwise you need to install it using ``pip2 installl pillow``.
+    installed. Otherwise you need to install it using ``pip2 install pillow``.
 
 And then later in code:
 
