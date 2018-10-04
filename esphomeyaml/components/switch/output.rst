@@ -1,5 +1,3 @@
-.. _output:
-
 Generic Output Switch
 =====================
 
