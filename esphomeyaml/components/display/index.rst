@@ -270,7 +270,7 @@ arguments after the format string in the right order.
         # ...
         lambda: |-
           // %% - literal % sign
-          it.printf(0, 0, id(my_font), "Temperature: %.1°C, Humidity: %.1f%%", id(temperature).value, id(humidity).value);
+          it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).value, id(humidity).value);
 
 
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
