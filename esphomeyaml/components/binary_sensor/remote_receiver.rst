@@ -15,6 +15,7 @@ then immediately OFF.
 
     binary_sensor:
       - platform: remote_receiver
+        name: "Panasonic Remote Input"
         panasonic:
           address: 0x4004
           command: 0x100BCBD
