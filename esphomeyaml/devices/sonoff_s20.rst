@@ -296,7 +296,7 @@ in Home Assistant, replace the last part with this:
         output: s20_relay
 
 To make pressing the button on the front toggle the relay, have a look at the `the complete Sonoff S20
-with automation example <https://github.com/OttoWinter/esphomeyaml/blob/master/examples/sonoff_s20.yaml>`__.
+with automation example <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_s20.yaml>`__.
 
 Upload the firmware again (through OTA or Serial) and you should immediately see
 something like this in Home Assistant because of esphomeyaml's automatic MQTT discovery. (You'll
