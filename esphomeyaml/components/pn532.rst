@@ -41,7 +41,7 @@ Configuration variables:
   is connected to.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the PN532. This affects the
   duration that the individual binary sensors stay active when they're found.
-  If a device is not found within this time window, it will be marked as not present. Defaults to 300s.
+  If a device is not found within this time window, it will be marked as not present. Defaults to 1s.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
