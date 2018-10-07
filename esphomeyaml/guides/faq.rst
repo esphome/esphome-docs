@@ -169,9 +169,7 @@ Some steps that can help with the issue:
    patches. See :ref:`esphomeyaml-arduino_version`.
 -  The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
    boards from eBay sometimes have quite bad antennas.
--  Play around with the ``keepalive`` option of the :doc:`MQTT client </esphomeyaml/components/mqtt>`, sometimes
-   increasing this value helps (because it's causing more pings in the background), some other times a higher
-   keepalive works better.
+-  Give your ESP a :ref:`static IP <wifi-manual_ip>`.
 
 Devices that will (hopefully) be supported soon:
 ------------------------------------------------
@@ -241,9 +239,6 @@ First we temporary 'remove' (comment out) all components from the ``yaml`` file,
     # ...
 
 This will result in really small firmware data which has a high chance of fitting the remaining space on your device. After this OTA update has succeeded you are left with a device with no functionality except OTA. Now you can re-enable all components previously commented out and perform a 'normal' OTA update again.
-
-How to manully flash a firmware binary
---------------------------------------
 
 See Also
 --------

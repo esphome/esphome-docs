@@ -67,6 +67,36 @@ can connect to. Additionally, you can specify both a "normal" station mode and A
 same time. This will cause esphomelib to only enable the access point when no connection
 to the wifi router can be made.
 
+.. _wifi-manual_ip:
+
+Manual IPs
+----------
+
+If you're having problems with your node not connecting to WiFi or the connection
+process taking a long time, it can be a good idea to assign a static IP address
+to the ESP. This way, the ESP doesn't need to go through the slow DHCP process.
+
+You can do so with the ``manual_ip:`` option in the WiFi configuration.
+
+.. code:: yaml
+
+    wifi:
+      # ...
+      manual_ip:
+        # Set this to the IP of the ESP
+        static_ip: 10.0.0.42
+        # Set this to the IP address of the router. Often ends with .1
+        gateway: 10.0.0.1
+        # The subnet of the network. 255.255.255.0 works for most home networks.
+        subnet: 255.255.255.0
+
+After putting a manual IP in your configuration, the ESP will no longer need to negotiate
+a dynamic IP address with the router, thus improving the time until connection.
+
+Additionally, this can help with :ref:`Over-The-Air updates <ota>` if for example the
+home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
+the OTA process will automatically choose that as the target for the upload.
+
 See Also
 --------
 
