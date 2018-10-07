@@ -42,9 +42,11 @@ Configuration variables:
   - ``SSD1306 128x32`` (SSD1306 with 128 columns and 32 rows)
   - ``SSD1306 128x64``
   - ``SSD1306 96x16``
+  - ``SSD1306 64x48``
   - ``SH1106 128x32``
   - ``SH1106 128x64``
   - ``SH1106 96x16``
+  - ``SH1106 64x48``
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
