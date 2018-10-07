@@ -60,7 +60,8 @@ for information on how you can find out the MAC address of a device and track it
 .. note::
 
     The first time this component is enabled for an ESP32, the code partition needs to be
-    resized. Please flash the ESP32 via USB when adding this to your configuration.
+    resized. Please flash the ESP32 via USB when adding this to your configuration. After that,
+    you can use OTA updates again.
 
 
 Configuration variables:
