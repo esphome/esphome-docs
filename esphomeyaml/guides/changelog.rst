@@ -239,6 +239,57 @@ Changes in 1.8.1
 - esphomeyaml: Fix docker installs using old platformio version `#125 <https://github.com/OttoWinter/esphomeyaml/pull/125>`__
 - esphomedocs: Waveshare E-Paper: 1.54in display works `#22 <https://github.com/OttoWinter/esphomedocs/pull/22>`__ by `@fabaff <https://github.com/fabaff>`__
 
+Changes in 1.8.2
+****************
+
+- esphomedocs: Update custom sensor docs `#25 <https://github.com/OttoWinter/esphomedocs/pulls/25>`__
+- esphomedocs: Fix typo in warning message `#18 <https://github.com/OttoWinter/esphomedocs/pulls/18>`__ by `@janpieper <https://github.com/janpieper>`__
+- esphomedocs: Add alternative SPI pin names `#24 <https://github.com/OttoWinter/esphomedocs/pulls/24>`__
+- esphomelib: Add toggle payload to MQTT switch component `#152 <https://github.com/OttoWinter/esphomelib/pulls/152>`__
+- esphomelib: Update custom sensor example `#154 <https://github.com/OttoWinter/esphomelib/pulls/154>`__
+- esphomelib: Optimize MQTT client memory consumption a bit `#155 <https://github.com/OttoWinter/esphomelib/pulls/155>`__
+- esphomelib: Fix binary sensor initial value reporting `#156 <https://github.com/OttoWinter/esphomelib/pulls/156>`__
+- esphomeyaml: Fix binary sensor heartbeat not working `#130 <https://github.com/OttoWinter/esphomeyaml/pulls/130>`__
+- esphomeyaml: Fix MQTT discovery enabled when discovery_retain in config `#131 <https://github.com/OttoWinter/esphomeyaml/pulls/131>`__
+- esphomelib: Fix binary sensor heartbeat filter `#157 <https://github.com/OttoWinter/esphomelib/pulls/157>`__
+- esphomelib: Fix SSD1306 reset order for i2c `#159 <https://github.com/OttoWinter/esphomelib/pulls/159>`__
+- esphomeyaml: Fix SSD1306 lambda `#132 <https://github.com/OttoWinter/esphomeyaml/pulls/132>`__
+- esphomeyaml: Enable Travis Tests `#133 <https://github.com/OttoWinter/esphomeyaml/pulls/133>`__
+- esphomedocs: Fix typo in display docs `#26 <https://github.com/OttoWinter/esphomedocs/pulls/26>`__ by `@jblb <https://github.com/jblb>`__
+- esphomeyaml: Auto-Update esphomelib dev version `#134 <https://github.com/OttoWinter/esphomeyaml/pulls/134>`__
+- esphomeyaml: Add SSD1306 64x48 display `#136 <https://github.com/OttoWinter/esphomeyaml/pulls/136>`__
+- esphomedocs: Typo in display docs `#28 <https://github.com/OttoWinter/esphomedocs/pulls/28>`__ by `@yuanl <https://github.com/yuanl>`__
+- esphomedocs: Typo fix. `#33 <https://github.com/OttoWinter/esphomedocs/pulls/33>`__ by `@corbanmailloux <https://github.com/corbanmailloux>`__
+- esphomelib: Fix typo "noting" `#172 <https://github.com/OttoWinter/esphomelib/pulls/172>`__ by `@TheJulianJES <https://github.com/TheJulianJES>`__
+- esphomedocs: Added docker local USB port mapping `#31 <https://github.com/OttoWinter/esphomedocs/pulls/31>`__ by `@ladefoged81 <https://github.com/ladefoged81>`__
+- esphomedocs: Fixed typo `#30 <https://github.com/OttoWinter/esphomedocs/pulls/30>`__ by `@ladefoged81 <https://github.com/ladefoged81>`__
+- esphomedocs: Add missing (required) name to example. `#29 <https://github.com/OttoWinter/esphomedocs/pulls/29>`__ by `@corbanmailloux <https://github.com/corbanmailloux>`__
+- esphomedocs: Add ESP32 BLE workaround docs `#34 <https://github.com/OttoWinter/esphomedocs/pulls/34>`__
+- esphomelib: Apply effect after changing colors `#169 <https://github.com/OttoWinter/esphomelib/pulls/169>`__ by `@TheJulianJES <https://github.com/TheJulianJES>`__
+- esphomelib: Add 64x48 SSD1306 Display `#161 <https://github.com/OttoWinter/esphomelib/pulls/161>`__
+- esphomedocs: Fix output link `#35 <https://github.com/OttoWinter/esphomedocs/pulls/35>`__
+- esphomedocs: Fix pulse counter API typo `#36 <https://github.com/OttoWinter/esphomedocs/pulls/36>`__
+- esphomedocs: Fix display docs format typo `#37 <https://github.com/OttoWinter/esphomedocs/pulls/37>`__
+- esphomeyaml: Fix serial monitor opening when logger disabled `#138 <https://github.com/OttoWinter/esphomeyaml/pulls/138>`__
+- esphomeyaml: Add clean MQTT button to dashboard `#139 <https://github.com/OttoWinter/esphomeyaml/pulls/139>`__
+- esphomeyaml: Fix using unicode in lambdas `#141 <https://github.com/OttoWinter/esphomeyaml/pulls/141>`__
+- esphomeyaml: Bump platformio-espressif32 to 1.4.0 `#142 <https://github.com/OttoWinter/esphomeyaml/pulls/142>`__
+- esphomeyaml: Docker default to starting dashboard `#143 <https://github.com/OttoWinter/esphomeyaml/pulls/143>`__
+- esphomedocs: Improve WiFi&Manual IP docs `#38 <https://github.com/OttoWinter/esphomedocs/pulls/38>`__
+- esphomedocs: Fix PN532 update_interval typo `#39 <https://github.com/OttoWinter/esphomedocs/pulls/39>`__
+- esphomedocs: Fix Sonoff S20/4CH example configurations `#40 <https://github.com/OttoWinter/esphomedocs/pulls/40>`__
+- esphomelib: Split FastLED header from source `#175 <https://github.com/OttoWinter/esphomelib/pulls/175>`__
+- esphomelib: Fix WiFi AP-only mode `#177 <https://github.com/OttoWinter/esphomelib/pulls/177>`__
+- esphomelib: Fix RC Switch Transmitters `#178 <https://github.com/OttoWinter/esphomelib/pulls/178>`__
+- esphomelib: Use dynamic JSON buffer `#179 <https://github.com/OttoWinter/esphomelib/pulls/179>`__
+- esphomelib: Web Server Print incoming requests `#180 <https://github.com/OttoWinter/esphomelib/pulls/180>`__
+- esphomelib: Add option to have different log level over MQTT `#176 <https://github.com/OttoWinter/esphomelib/pulls/176>`__
+- esphomelib: Fix MQTT login with anonymous credentials `#182 <https://github.com/OttoWinter/esphomelib/pulls/182>`__
+- esphomelib: WiFi: Add power save mode option `#181 <https://github.com/OttoWinter/esphomelib/pulls/181>`__
+- esphomeyaml: Fix component loader value error `#149 <https://github.com/OttoWinter/esphomeyaml/pulls/149>`__
+- esphomedocs: WiFi: Add power save mode option `#41 <https://github.com/OttoWinter/esphomedocs/pulls/41>`__
+- esphomedocs: Add SSD1306 64x48 Display `#27 <https://github.com/OttoWinter/esphomedocs/pulls/27>`__
+
 Version 1.7.0
 -------------
 
