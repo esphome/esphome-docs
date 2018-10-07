@@ -56,6 +56,8 @@ Configuration variables:
 - **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``60s``.
+- **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface. Defaults to no power saving.
+  See :ref:`wifi-power_save_mode`
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode
@@ -96,6 +98,29 @@ a dynamic IP address with the router, thus improving the time until connection.
 Additionally, this can help with :ref:`Over-The-Air updates <ota>` if for example the
 home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
 the OTA process will automatically choose that as the target for the upload.
+
+.. _wifi-power_save_mode:
+
+Power Save Mode
+---------------
+
+The WiFi interface of all ESPs offer three power save modes to reduce the amount of power spent on
+WiFi. While some options *can* reduce the power usage of the ESP, they generally also decrease the
+reliability of the WiFi connection, with frequent disconnections from the router in the highest
+power saving mode.
+
+If you know what you're doing and the node doesn't need to have an extremely reliable connection to WiFi,
+you can set the power saving mode to ``LIGHT`` or even ``HIGH``. But for most situations ``NONE`` is the best.
+
+- ``NONE`` (Default, least power saving)
+- ``LIGHT``
+- ``HIGH`` (most power saving)
+
+.. code:: yaml
+
+    wifi:
+      # ...
+      power_save_mode: none
 
 See Also
 --------
