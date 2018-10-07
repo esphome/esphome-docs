@@ -44,6 +44,17 @@ Configuration variables:
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. note::
+
+    If you get errors like
+
+    .. code::
+
+        ERROR [esphomeyaml.espota] Failed
+        ERROR [esphomeyaml.espota] Host livingroom.local Not Found
+
+    when attempting to upload via OTA, please try setting a :ref:`manual IP for WiFi <wifi-manual_ip>`.
+
 See Also
 --------
 
