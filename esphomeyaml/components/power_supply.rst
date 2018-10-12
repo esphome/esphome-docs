@@ -66,3 +66,5 @@ See Also
 - :doc:`output/index`
 - :doc:`API Reference </api/core/power-supply>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/power_supply.rst>`__
+
+.. disqus::

@@ -58,3 +58,5 @@ See Also
 - `MAX6675 Library <https://github.com/adafruit/MAX6675-library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :doc:`API Reference </api/sensor/max6675>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/max6675.rst>`__
+
+.. disqus::

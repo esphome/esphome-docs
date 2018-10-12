@@ -60,3 +60,5 @@ See Also
 
 - :doc:`API Reference </api/core/ota>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/ota.rst>`__
+
+.. disqus::

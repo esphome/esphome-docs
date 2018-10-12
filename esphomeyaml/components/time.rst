@@ -296,3 +296,5 @@ See Also
 
 - :doc:`API Reference </api/core/time>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/time.rst>`__
+
+.. disqus::

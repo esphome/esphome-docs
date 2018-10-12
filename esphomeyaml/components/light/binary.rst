@@ -36,3 +36,5 @@ See Also
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/light/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/binary.rst>`__
+
+.. disqus::

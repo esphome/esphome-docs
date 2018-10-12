@@ -85,3 +85,5 @@ See Also
 - :doc:`/esphomeyaml/components/sensor/adc`
 - :doc:`/esphomeyaml/components/binary_sensor/gpio`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/bruh.rst>`__
+
+.. disqus::

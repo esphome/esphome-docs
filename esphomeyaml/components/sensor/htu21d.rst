@@ -19,6 +19,10 @@ required to be set up in your configuration for this sensor to work.
     :align: center
     :width: 80.0%
 
+.. note::
+
+    The **SI7021** sensor also works with this integration.
+
 .. code:: yaml
 
     # Example configuration entry
@@ -31,7 +35,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **temperature** (**Required**): The information for the temperature sensor.
 
@@ -49,7 +53,7 @@ Configuration variables:
   See :ref:`sensor-default_filter`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`dht`
@@ -59,3 +63,5 @@ See Also
 - :doc:`API Reference </api/sensor/htu21d>`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/htu21d.rst>`__
+
+.. disqus::

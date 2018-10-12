@@ -14,7 +14,7 @@ of the ESP32 as an output component.
         id: gpio_19
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to use LEDC on. Can only be GPIO0-GPIO33.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
@@ -28,7 +28,7 @@ Configuration variables:
 - All other options from :ref:`Output <config-output>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/output/index`
 - :doc:`/esphomeyaml/components/output/esp8266_pwm`
@@ -38,3 +38,5 @@ See Also
 - :doc:`API Reference </api/output/ledc>`
 - `esp-idf LEDC API docs <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/ledc.html>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/ledc.rst>`__
+
+.. disqus::

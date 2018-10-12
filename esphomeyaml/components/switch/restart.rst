@@ -29,3 +29,5 @@ See Also
 - :doc:`template`
 - :doc:`API Reference </api/switch/restart>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/restart.rst>`__
+
+.. disqus::

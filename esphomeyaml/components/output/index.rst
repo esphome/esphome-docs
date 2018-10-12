@@ -11,7 +11,7 @@ any rational value between 0 and 1).
 .. _config-output:
 
 Base Output Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 Each output platform extends this configuration schema.
 
@@ -39,11 +39,10 @@ Configuration variables:
   multiplied by this. Must be in range from 0 to 1. Defaults to 1.
 
 
-
 .. _output-turn_on_action:
 
 ``output.turn_on`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^
+*************************
 
 This action turns the output with the given ID on when executed.
 
@@ -56,7 +55,7 @@ This action turns the output with the given ID on when executed.
 .. _output-turn_off_action:
 
 ``output.turn_off`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**************************
 
 This action turns the output with the given ID off when executed.
 
@@ -69,7 +68,7 @@ This action turns the output with the given ID off when executed.
 .. _output-set_level_action:
 
 ``output.set_level`` Action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+***************************
 
 This action sets the float output to the given level when executed. Note: This only
 works with floating point outputs like ESP8266 PWM or LEDC.
@@ -83,7 +82,7 @@ works with floating point outputs like ESP8266 PWM or LEDC.
             level: 50%
 
 Full Output Index
-^^^^^^^^^^^^^^^^^
+-----------------
 
 - :doc:`/esphomeyaml/components/switch/output`
 - :doc:`/esphomeyaml/components/power_supply`
@@ -102,3 +101,5 @@ Full Output Index
     gpio.rst
     ledc.rst
     pca9685.rst
+
+.. disqus::

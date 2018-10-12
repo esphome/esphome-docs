@@ -6,7 +6,7 @@ your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
 basic “node” in a few simple steps.
 
 Installation
-~~~~~~~~~~~~
+------------
 
 Installing epshomeyaml is very easy. All you need to do is have `Python
 2.7 <https://www.python.org/download/releases/2.7/>`__ installed
@@ -26,7 +26,7 @@ an RPi, please install esphomelib through ``pip`` or use :doc:`the HassIO add-on
     docker pull ottowinter/esphomeyaml
 
 Creating A Project
-~~~~~~~~~~~~~~~~~~
+------------------
 
 Now let’s setup a configuration file. Fortunately, esphomeyaml has a
 friendly setup wizard that will guide you through creating your first
@@ -49,7 +49,7 @@ file ready. It doesn't do much yet and only makes your device connect to
 the WiFi network and MQTT broker, but still it’s a first step.
 
 Adding some features
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 So now you should have a file called ``livingroom.yaml`` (or similar).
 Go open that file in an editor of your choice and let’s add a :doc:`simple
@@ -73,7 +73,7 @@ above configuration, if using a NodeMCU board, you could have just as
 well set ``D1`` as the ``pin:`` option.
 
 First Uploading
-~~~~~~~~~~~~~~~
+---------------
 
 Now you can go ahead and add some more components. Once you feel like
 you have something you want to upload to your ESP board, simply plug in
@@ -116,7 +116,7 @@ cable again, as all features of esphomelib are enabled remotely as well.
 No more opening hidden boxes stowed in places hard to reach. Yay!
 
 Adding A Binary Sensor
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 Next, we’re going to add a very simple binary sensor that periodically
 checks a GPIO pin whether it’s pulled high or low - the :doc:`GPIO Binary
@@ -150,7 +150,7 @@ for docker you need to supply an additional parameter:
 .. figure:: /esphomeyaml/components/binary_sensor/images/gpio-ui.png
 
 Where To Go Next
-~~~~~~~~~~~~~~~~
+----------------
 
 Great 🎉! You’ve now successfully setup your first esphomeyaml project
 and uploaded your first esphomelib custom firmware to your node. You’ve
@@ -164,7 +164,7 @@ tracker <https://github.com/OttoWinter/esphomeyaml/issues>`__ or contact
 me via the `Discord chat <https://discord.gg/KhAMKrd>`__.
 
 Bonus: esphomeyaml dashboard
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 Starting with version 1.6.0 esphomeyaml features a dashboard that you can use to
 easily manage your nodes from a nice web interface. It was primarily designed for
@@ -187,7 +187,7 @@ After that, you will be able to access the dashboard through ``localhost:6052``.
 .. figure:: images/dashboard.png
 
 Using Custom components
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 esphomelib’s powerful core makes it easy to create own custom sensors.
 Please first follow the `Custom Sensor Component
@@ -223,8 +223,10 @@ esphomeyaml’s great configuration options.
     }
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`getting_started_hassio`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/getting_started_command_line.rst>`__
+
+.. disqus::

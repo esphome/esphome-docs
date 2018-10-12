@@ -14,7 +14,7 @@ will not show up in Home Assistant. See :doc:`GPIO Switch <gpio>`.
         id: gpio_d1
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to use PWM on.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
@@ -27,7 +27,7 @@ Configuration variables:
     see the :doc:`/esphomeyaml/components/switch/gpio`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/switch/gpio`
 - :doc:`/esphomeyaml/components/output/index`
@@ -38,3 +38,5 @@ See Also
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/gpio-binary>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/gpio.rst>`__
+
+.. disqus::

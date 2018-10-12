@@ -69,3 +69,5 @@ See Also
 - :doc:`/esphomeyaml/cookbook/garage-door`
 - :doc:`API Reference </api/cover/template>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/cover/template.rst>`__
+
+.. disqus::

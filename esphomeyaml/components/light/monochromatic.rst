@@ -60,3 +60,5 @@ See Also
 - :doc:`/esphomeyaml/components/output/pca9685`
 - :doc:`API Reference </api/light/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/monochromatic.rst>`__
+
+.. disqus::

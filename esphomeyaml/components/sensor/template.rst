@@ -43,3 +43,5 @@ See Also
 - :ref:`automation`
 - :doc:`API Reference </api/sensor/template>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/template.rst>`__
+
+.. disqus::

@@ -331,3 +331,5 @@ See Also
 - :doc:`API Reference </api/display/max7219>`
 - `MAX7219 Library <https://github.com/nickgammon/MAX7219>`__ by `Nick Gammon <https://github.com/nickgammon>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/max7219.rst>`__
+
+.. disqus::

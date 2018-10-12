@@ -96,3 +96,5 @@ Full Fan Index
 
     binary.rst
     speed.rst
+
+.. disqus::

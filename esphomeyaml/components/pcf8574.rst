@@ -59,3 +59,5 @@ See Also
 - `PCF8574 Arduino Library <https://github.com/skywodd/pcf8574_arduino_library>`__ by `Fabien Batteix <https://github.com/skywodd>`__
 - :doc:`API Reference </api/misc/pcf8574>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/pcf8574.rst>`__
+
+.. disqus::

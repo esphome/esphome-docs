@@ -11,12 +11,6 @@ IoT enabled? We just have to hook up a simple photoresistor in front of that afo
 LED and track the amount of pulses we receive. Then using esphomelib we can instantly have
 the power meter show up in Home Assistant 🎉
 
-.. note::
-
-    This guide currently only works with the ESP32, and even if it is ported back to the ESP8266
-    at some point, the ESP32 will still achieve a much higher accuracy because it has a
-    hardware-based pulse counter.
-
 Hooking it all up is quite easy: Just buy a suitable photoresistor (make sure the wave length
 approximately matches the one from your power meter). Then connect it using a simple variable
 resistor divider (see `this article <https://blog.udemy.com/arduino-ldr/>`__ for inspiration).
@@ -46,3 +40,11 @@ Thus, rearranging the expression yields a proportional factor of ``0.06`` from `
 
 And if a technician shows up and he looks confused about what the heck you have done to your
 power meter, tell them about esphomelib 😉
+
+See Also
+--------
+
+- :doc:`/esphomeyaml/components/sensor/pulse_counter`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/power_meter.rst>`__
+
+.. disqus::

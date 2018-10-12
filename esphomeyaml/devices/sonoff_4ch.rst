@@ -331,8 +331,10 @@ connect it.
 Happy hacking!
 
 See Also
-----------
+--------
 
 - :doc:`sonoff`
 - :doc:`sonoff_s20`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_4ch.rst>`__
+
+.. disqus::

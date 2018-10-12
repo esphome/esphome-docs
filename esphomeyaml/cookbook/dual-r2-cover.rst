@@ -119,3 +119,5 @@ See Also
 - :doc:`/esphomeyaml/components/cover/template`
 - :doc:`/esphomeyaml/devices/sonoff`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/dual-r2-cover.rst>`__
+
+.. disqus::

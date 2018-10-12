@@ -69,3 +69,5 @@ See Also
 - :doc:`API Reference </api/display/ssd1306>`
 - `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <http://adafruit.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/ssd1306_spi.rst>`__
+
+.. disqus::

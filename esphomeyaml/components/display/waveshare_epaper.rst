@@ -100,3 +100,5 @@ See Also
 - :doc:`API Reference </api/display/waveshare_epaper>`
 - `Arduino Waveshare E-Paper library <https://github.com/soonuse/epd-library-arduino>`__ by `Yehui (@soonuse) <https://github.com/soonuse>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/waveshare_epaper.rst>`__
+
+.. disqus::

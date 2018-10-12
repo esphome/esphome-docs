@@ -57,3 +57,5 @@ See Also
 - :doc:`API Reference </api/sensor/dht12>`
 - `DHT12 Library <https://github.com/dplasa/dht>`__ by `Daniel Plasa <https://github.com/dplasa>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/dht12.rst>`__
+
+.. disqus::

@@ -48,3 +48,5 @@ See Also
 - :doc:`/esphomeyaml/devices/esp32`
 - :doc:`API Reference </api/sensor/esp32_hall>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/esp32_hall.rst>`__
+
+.. disqus::

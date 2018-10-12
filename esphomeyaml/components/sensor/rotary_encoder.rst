@@ -76,3 +76,5 @@ See Also
 - `Mechanical Input Library <https://github.com/jkDesignDE/MechInputs>`__ by `Jochen Krapf <https://github.com/JK-de>`__
 - :doc:`API Reference </api/sensor/rotary_encoder>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/rotary_encoder.rst>`__
+
+.. disqus::

@@ -97,3 +97,5 @@ See Also
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/xiaomi_miflora.rst>`__
+
+.. disqus::

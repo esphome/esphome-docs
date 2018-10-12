@@ -64,3 +64,5 @@ See Also
 - :doc:`API Reference </api/sensor/hdc1080>`
 - `HDC1080 Library <https://github.com/closedcube/ClosedCube_HDC1080_Arduino>`__ by `ClosedCube <https://www.tindie.com/stores/closedcube/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hdc1080.rst>`__
+
+.. disqus::

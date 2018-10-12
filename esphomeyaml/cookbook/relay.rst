@@ -41,3 +41,5 @@ See Also
 - :doc:`/esphomeyaml/components/output/gpio`
 - `How do relays work <https://www.explainthatstuff.com/howrelayswork.html>`__.
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/relay.rst>`__
+
+.. disqus::

@@ -40,3 +40,5 @@ See Also
 
 - :doc:`API Reference </api/core/web-server>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/web_server.rst>`__
+
+.. disqus::

@@ -87,3 +87,5 @@ See Also
 - :doc:`API Reference </api/misc/esp32_ble_beacon>`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esp32_ble_beacon.rst>`__
+
+.. disqus::

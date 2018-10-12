@@ -121,9 +121,11 @@ Or run the upload command if your device is connected to the serial interface:
     esphomeyaml sonoff_basic.yaml run
 
 See Also
-----------
+--------
 
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_s20`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__
+
+.. disqus::
