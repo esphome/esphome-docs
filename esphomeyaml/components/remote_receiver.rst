@@ -27,6 +27,7 @@ Configuration variables:
   - **lg**: Decode and dump LG infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
+  - **samsung**: Decode and dump Samsung infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
