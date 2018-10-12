@@ -2,3 +2,6 @@ _doxyxml
 _build
 
 .python-version
+__pycache__/
+*.py[cod]
+*$py.class

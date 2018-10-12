@@ -90,3 +90,5 @@ See Also
 - `Adafruit BME280 Library <https://github.com/adafruit/Adafruit_BME280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `Sparkfun BME280 Library <https://github.com/sparkfun/SparkFun_BME280_Arduino_Library>`__ by `Sparkfun <https://www.sparkfun.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bme280.rst>`__
+
+.. disqus::

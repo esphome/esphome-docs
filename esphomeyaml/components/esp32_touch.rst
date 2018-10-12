@@ -53,3 +53,5 @@ See Also
 - :doc:`binary_sensor/esp32_touch`
 - :doc:`API Reference </api/binary_sensor/esp32_touch>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esp32_touch.rst>`__
+
+.. disqus::

@@ -55,3 +55,5 @@ See Also
 - `SparkFun TSL2561 Arduino Library <https://github.com/sparkfun/SparkFun_TSL2561_Arduino_Library>`__ by `Sparkfun <http://sparkfun.com/>`__
 - :doc:`API Reference </api/sensor/tsl2561>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/tsl2561.rst>`__
+
+.. disqus::

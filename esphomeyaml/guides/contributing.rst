@@ -12,7 +12,7 @@ Just clone the repository locally, do the changes for your new feature/bugfix an
 a pull request. I will try to take a look at your PR as soon as possible.
 
 Contributing to esphomedocs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 One of the areas of esphomelib that can always be improved is the documentation.
 If you see an issue somewhere, or spelling mistakes or if you want to share your awesome
@@ -32,12 +32,19 @@ RST primer:
       My Title
       ========
 
-  and sub-titles like this:
+  and section headers like this:
 
   .. code:: rst
 
-      My Sub Title
-      ^^^^^^^^^^^^
+      My Sub Section
+      --------------
+
+  and sub-section headers like this:
+
+  .. code:: rst
+
+      My Sub-sub section
+      ******************
 
 - **Links**: To create a link to an external resource (for example https://www.google.com), use
   ``\`Link text <link_url>\`__``. For example:
@@ -177,7 +184,18 @@ To check your documentation changes locally, you first need install sphinx (**wi
 
 .. code:: bash
 
-    pip3 install sphinx breathe
+    # in esphomedocs repo:
+    pip3 install -r requirements.txt
+
+.. note::
+
+    Alternatively, you can use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
+
+    .. code:: bash
+
+        docker run --rm -v "$PWD/..":/data -p 8000:8000 -it ottowinter/esphomedocs
+
+    And then go to ``<CONTAINER_IP>:8000`` in your browser.
 
 Next, you will also need to clone the `esphomelib repository <https://github.com/OttoWinter/esphomelib>`__ into
 the folder where ``esphomedocs`` sits like this:
@@ -222,7 +240,7 @@ Some notes about the docs:
   esphomedocs repository. New features should be added against the ``next`` branch.
 
 Contributing to esphomelib
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 esphomelib is the engine behind all the esphomeyaml stuff. The framework is also designed
 to be used on its own - i.e. without esphomeyaml. To contribute code to esphomelib to fix
@@ -276,7 +294,7 @@ For editing a local copy of esphomelib within the esphomeyaml ecosystem please s
 :ref:`esphomeyaml.esphomelib_version <esphomeyaml-esphomelib_version>` option.
 
 Contributing to esphomeyaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 esphomeyaml primarily does two things: It validates the configuration and creates C++ code.
 
@@ -368,8 +386,10 @@ it in the configuration. Specifically, it may contain these fields:
 Run ``pip2 install -e .`` to install a development version of esphomeyaml.
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`faq`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/contributing.rst>`__
+
+.. disqus::

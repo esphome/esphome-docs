@@ -39,3 +39,5 @@ See Also
 - `Arduino DallasTemperature library <https://github.com/milesburton/Arduino-Temperature-Control-Library>`__ by `Miles Burton <https://github.com/milesburton>`__
 - :doc:`API Reference </api/sensor/dallas>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/dallas.rst>`__
+
+.. disqus::

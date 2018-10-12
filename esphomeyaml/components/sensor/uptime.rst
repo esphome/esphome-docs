@@ -25,3 +25,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`API Reference </api/sensor/uptime>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/uptime.rst>`__
+
+.. disqus::

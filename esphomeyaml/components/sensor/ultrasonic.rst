@@ -83,3 +83,5 @@ See Also
 - :doc:`template`
 - :doc:`API Reference </api/sensor/ultrasonic>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ultrasonic.rst>`__
+
+.. disqus::

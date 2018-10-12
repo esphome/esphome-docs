@@ -49,3 +49,5 @@ See Also
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :doc:`API Reference </api/switch/remote_transmitter>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/remote_transmitter.rst>`__
+
+.. disqus::

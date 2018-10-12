@@ -13,7 +13,7 @@ or sensors in esphomeyaml's configuration, they will even automatically show up 
 Assistant's UI.
 
 Installation
-~~~~~~~~~~~~
+------------
 
 Installing the epshomeyaml HassIO add-on is easy. Just navigate to the HassIO
 panel in your Home Assistant frontend and add the esphomeyaml add-on repository:
@@ -41,7 +41,7 @@ creating your first configuration.
     supported. Please try using Google Chrome in that case.
 
 Dashboard Interface
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 Assuming you created your first configuration file with the wizard, let's take a quick
 tour of the esphomeyaml dashboard interface.
@@ -94,7 +94,7 @@ using the ``password`` option in the HassIO add-on page. By default, this is an 
 
 
 Adding some (basic) features
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 So now you should have a file called ``/config/esphomeyaml/livingroom.yaml`` (or similar).
 Go open that file in and add a :doc:`simple GPIO switch </esphomeyaml/components/switch/gpio>`
@@ -124,7 +124,7 @@ cable again, as all features of esphomelib are enabled remotely as well.
 No more opening hidden boxes stowed in places hard to reach. Yay!
 
 Adding A Binary Sensor
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 Next, we’re going to add a very simple binary sensor that periodically
 checks a GPIO pin whether it’s pulled high or low - the :doc:`GPIO Binary
@@ -152,7 +152,7 @@ through USB again. The upload will magically happen :doc:`"over the air" </espho
     :width: 75.0%
 
 Where To Go Next
-~~~~~~~~~~~~~~~~
+----------------
 
 Great 🎉! You’ve now successfully setup your first esphomeyaml project
 and uploaded your first esphomelib custom firmware to your node. You’ve
@@ -166,7 +166,7 @@ tracker <https://github.com/OttoWinter/esphomeyaml/issues>`__ or contact
 me via the `Discord chat <https://discord.gg/KhAMKrd>`__.
 
 Using Custom components
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 esphomelib’s powerful core makes it easy to create own custom sensors.
 Please first follow the `Custom Sensor Component
@@ -202,8 +202,10 @@ esphomeyaml’s great configuration options.
     }
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`getting_started_command_line`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/getting_started_hassio.rst>`__
+
+.. disqus::

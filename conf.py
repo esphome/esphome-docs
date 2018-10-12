@@ -26,12 +26,10 @@ import subprocess
 from sphinx import addnodes
 from sphinx.util.docfields import Field, GroupedField
 import re
+import sys
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if on_rtd:
-    subprocess.call('doxygen', shell=True)
-
+sys.path.append(os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
 
@@ -44,6 +42,7 @@ if on_rtd:
 # ones.
 extensions = [
     'breathe',
+    'disqus',
 ]
 
 breathe_projects = {"esphomelib": "./_doxyxml/"}

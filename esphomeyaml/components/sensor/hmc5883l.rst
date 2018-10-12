@@ -51,3 +51,5 @@ See Also
 - :doc:`API Reference </api/sensor/hmc5883l>`
 - `HMC5883L Library <https://github.com/jarzebski/Arduino-HMC5883L>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hmc5883l.rst>`__
+
+.. disqus::

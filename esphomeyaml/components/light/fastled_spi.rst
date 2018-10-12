@@ -72,3 +72,5 @@ See Also
 - :doc:`API Reference </api/light/fastled>`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/fastled_spi.rst>`__
+
+.. disqus::

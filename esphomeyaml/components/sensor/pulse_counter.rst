@@ -72,3 +72,5 @@ See Also
 - `esp-idf Pulse Counter API <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html>`__.
 - :doc:`API Reference </api/sensor/pulse_counter>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/pulse_counter.rst>`__
+
+.. disqus::

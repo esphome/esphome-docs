@@ -23,14 +23,14 @@ successor of the ESP8266, the ESP32, and its :doc:`ESP32 LEDC PWM <ledc>` instea
         id: pwm-output
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to use PWM on.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - All other options from :ref:`Output <config-output>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/output/index`
 - :doc:`/esphomeyaml/components/output/ledc`
@@ -39,3 +39,5 @@ See Also
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/esp8266-pwm>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/esp8266_pwm.rst>`__
+
+.. disqus::

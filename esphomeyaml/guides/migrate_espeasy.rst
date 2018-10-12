@@ -5,7 +5,7 @@ Migrating from previous ESPEasy setups is very easy. You just need to have
 esphomeyaml create a binary for you and then upload that in the ESPEasy web interface.
 
 Getting Binary
-^^^^^^^^^^^^^^
+--------------
 
 First follow the guides for the :ref:`different supported devices <devices>` and create a configuration
 file. Then, generate and download the binary:
@@ -21,7 +21,7 @@ file. Then, generate and download the binary:
   this is the binary you will upload.
 
 Uploading Binary
-^^^^^^^^^^^^^^^^
+----------------
 
 To upload the binary, navigate to the ESPEasy web interface and enter the
 "Tools " section.
@@ -41,7 +41,7 @@ the binary. If everything succeeds, you should now have esphomelib on your node 
 Happy Hacking!
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`/esphomeyaml/devices/nodemcu_esp8266`
 - :doc:`/esphomeyaml/devices/nodemcu_esp32`
@@ -52,3 +52,5 @@ See Also
 - :doc:`migrate_espurna`
 - :doc:`migrate_sonoff_tasmota`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/migrate_espeasy.rst>`__
+
+.. disqus::

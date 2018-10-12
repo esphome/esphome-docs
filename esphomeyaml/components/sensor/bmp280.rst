@@ -86,3 +86,5 @@ See Also
 - :doc:`API Reference </api/sensor/bmp280>`
 - `BME280 Library <https://github.com/adafruit/Adafruit_BMP280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bmp280.rst>`__
+
+.. disqus::

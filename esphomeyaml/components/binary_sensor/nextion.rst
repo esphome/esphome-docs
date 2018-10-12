@@ -37,3 +37,4 @@ See Also
 - :doc:`API Reference </api/display/nextion>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/nextion.rst>`__
 
+.. disqus::

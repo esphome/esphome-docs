@@ -55,3 +55,5 @@ See Also
 - :doc:`htu21d`
 - :doc:`API Reference </api/sensor/sht3xd>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/sht3xd.rst>`__
+
+.. disqus::

@@ -40,3 +40,5 @@ See Also
 - :doc:`/esphomeyaml/components/wifi`
 - :doc:`API Reference </api/sensor/wifi_signal>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/wifi_signal.rst>`__
+
+.. disqus::

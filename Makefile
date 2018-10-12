@@ -23,7 +23,7 @@ doxyg: cleandoxyg _doxyxml
 cleandoxyg:
 	rm -rf _doxyxml
 
-_doxyxml: $(ESPHOMELIB_PATH)
+_doxyxml:
 	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
 
 $(ESPHOMELIB_PATH):

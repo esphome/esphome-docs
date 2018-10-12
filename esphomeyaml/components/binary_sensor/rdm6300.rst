@@ -61,3 +61,4 @@ See Also
 - :doc:`API Reference </api/binary_sensor/rdm6300>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/rdm6300.rst>`__
 
+.. disqus::

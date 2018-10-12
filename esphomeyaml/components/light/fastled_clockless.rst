@@ -88,3 +88,5 @@ See Also
 - :doc:`API Reference </api/light/fastled>`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/fastled_clockless.rst>`__
+
+.. disqus::

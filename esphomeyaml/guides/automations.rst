@@ -93,7 +93,7 @@ There are also other triggers like ``on_release``, ``on_click`` or ``on_double_c
 .. _config-action:
 
 Actions
-^^^^^^^
+-------
 
 Now comes the actual automation block. With ``then``, you tell esphomeyaml what should happen when the press happens.
 Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
@@ -166,7 +166,7 @@ esphomelib has another extremely powerful tool to offer: Templates.
 .. _config-lambda:
 
 Templates (Lambdas)
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 With templates inside esphomelib, you can do almost *everything*. If for example you want to only perform a certain
 automation if a certain complex formula evaluates to true, you can do that with templates. Let's look at an example
@@ -267,7 +267,7 @@ we're retrieving the current state of the end stop using ``.value`` and using it
 .. _config-templatable:
 
 Bonus: Templating Actions
-^^^^^^^^^^^^^^^^^^^^^^^^^
+*************************
 
 Another feature of esphomeyaml is that you can template almost every parameter for actions in automations. For example
 if you have a light and want to set it to a pre-defined color when a button is pressed, you can do this:
@@ -290,7 +290,7 @@ Every parameter in actions that has the label "templatable" in the docs can be t
 all of the usual lambda syntax.
 
 All Triggers
-~~~~~~~~~~~~
+------------
 
 - :ref:`mqtt.on_message <mqtt-on_message>`
 - :ref:`sensor.on_value <sensor-on_value>`
@@ -305,7 +305,7 @@ All Triggers
 - :ref:`esphomeyaml.on_loop <esphomeyaml-on_loop>`
 
 All Actions
-~~~~~~~~~~~
+-----------
 
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
@@ -331,8 +331,8 @@ All Actions
 
 .. _delay_action:
 
-Delay Action
-~~~~~~~~~~~~
+``delay`` Action
+----------------
 
 This action delays the execution of the next action in the action list by a specified
 time period.
@@ -356,8 +356,8 @@ time period.
 
 .. _lambda_action:
 
-Lambda Action
-~~~~~~~~~~~~~
+``lambda`` Action
+-----------------
 
 This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`).
 
@@ -370,8 +370,8 @@ This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-la
 
 .. _if_action:
 
-If Action
-~~~~~~~~~
+``if`` Action
+-------------
 
 This action first evaluated a certain condition (``if:``) and then either
 executes the ``then:`` branch or the ``else:`` branch depending on the output of the condition.
@@ -406,8 +406,10 @@ Configuration options:
 
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`configuration-types`
 - :doc:`faq`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/automations.rst>`__
+
+.. disqus::

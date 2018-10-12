@@ -24,7 +24,7 @@ output.
         channel: 0
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **channel** (**Required**, int): Chose the channel of the PCA9685 of
@@ -35,7 +35,7 @@ Configuration variables:
 - All other options from :ref:`Output <config-output>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`/esphomeyaml/components/pca9685`
 - :doc:`/esphomeyaml/components/output/index`
@@ -47,3 +47,5 @@ See Also
 - :doc:`API Reference </api/output/pca9685>`
 - `PCA9685 Arduino Library <https://github.com/NachtRaveVL/PCA9685-Arduino>`__ by `@NachtRaveVL <https://github.com/NachtRaveVL>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/pca9685.rst>`__
+
+.. disqus::

@@ -35,3 +35,5 @@ See Also
 - :doc:`/esphomeyaml/components/uart`
 - :doc:`API Reference </api/switch/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/uart.rst>`__
+
+.. disqus::

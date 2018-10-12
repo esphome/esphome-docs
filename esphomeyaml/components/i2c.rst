@@ -37,3 +37,5 @@ See Also
 
 - :doc:`API Reference </api/core/i2c>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/i2c.rst>`__
+
+.. disqus::

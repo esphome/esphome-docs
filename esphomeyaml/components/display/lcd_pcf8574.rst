@@ -53,3 +53,5 @@ See Also
 - :doc:`API Reference </api/display/lcd_display>`
 - `Arduino LiquidCrystal Library <https://www.arduino.cc/en/Reference/LiquidCrystal>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/lcd_pcf8574.rst>`__
+
+.. disqus::
