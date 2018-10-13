@@ -35,11 +35,9 @@ Configuration variables:
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
 
-- **internal_filter** (*Optional*, int): If a pulse shorter than this
-  number of APB clock pulses (each 12.5 ns) is detected, it’s
-  discarded. See `esp-idf Filtering
-  Pulses <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html#filtering-pulses>`__
-  for more information. Defaults to the max value 1023 or about 13 µs.
+- **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
+  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32,
+  this value can not be higher than ``13us``, for the ESP8266 you can use larger intervals too.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
   See :ref:`sensor-default_filter`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
