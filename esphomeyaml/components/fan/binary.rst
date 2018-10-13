@@ -36,3 +36,5 @@ See Also
 - :doc:`/esphomeyaml/components/fan/index`
 - :doc:`API Reference </api/fan/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/fan/binary.rst>`__
+
+.. disqus::

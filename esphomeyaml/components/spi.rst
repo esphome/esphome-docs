@@ -42,3 +42,5 @@ See Also
 
 - :doc:`API Reference </api/core/spi>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/spi.rst>`__
+
+.. disqus::

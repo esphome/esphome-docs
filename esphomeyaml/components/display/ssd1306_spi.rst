@@ -42,9 +42,11 @@ Configuration variables:
   - ``SSD1306 128x32`` (SSD1306 with 128 columns and 32 rows)
   - ``SSD1306 128x64``
   - ``SSD1306 96x16``
+  - ``SSD1306 64x48``
   - ``SH1106 128x32``
   - ``SH1106 128x64``
   - ``SH1106 96x16``
+  - ``SH1106 64x48``
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
@@ -67,3 +69,5 @@ See Also
 - :doc:`API Reference </api/display/ssd1306>`
 - `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <http://adafruit.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/ssd1306_spi.rst>`__
+
+.. disqus::

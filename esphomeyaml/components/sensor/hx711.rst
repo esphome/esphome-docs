@@ -29,7 +29,7 @@ Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **name** (**Required**, string): The name for the load cell sensor.
 - **dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DOUT (or DAT) pin.
@@ -40,10 +40,12 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`adc`
 - :doc:`API Reference </api/sensor/hx711>`
 - `HX711 Library <https://github.com/bogde/HX711>`__ by `@bogde <https://github.com/bogde>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hx711.rst>`__
+
+.. disqus::

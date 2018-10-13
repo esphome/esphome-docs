@@ -60,3 +60,5 @@ See Also
 - :doc:`API Reference </api/sensor/hlw8012>`
 - `HLW8012 Library <https://github.com/xoseperez/hlw8012>`__ by `Xose Pérez <https://github.com/xoseperez>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/hlw8012.rst>`__
+
+.. disqus::

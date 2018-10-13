@@ -70,3 +70,5 @@ See Also
 - `TCS34725 library <https://github.com/adafruit/Adafruit_TCS34725>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :doc:`API Reference </api/sensor/tcs34725>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/tcs34725.rst>`__
+
+.. disqus::

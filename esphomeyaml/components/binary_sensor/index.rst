@@ -98,7 +98,7 @@ You can access the current state of the binary sensor in :ref:`lambdas <config-l
 .. _binary_sensor-on_press:
 
 ``on_press``
-""""""""""""
+************
 
 This automation will be triggered when the button is first pressed down, or in other words on the leading
 edge of the signal.
@@ -118,7 +118,7 @@ Configuration variables: See :ref:`Automation <automation>`.
 .. _binary_sensor-on_release:
 
 ``on_release``
-""""""""""""""
+**************
 
 This automation will be triggered when a button press ends, or in other words on the falling
 edge of the signal.
@@ -138,7 +138,7 @@ Configuration variables: See :ref:`Automation <automation>`.
 .. _binary_sensor-on_click:
 
 ``on_click``
-""""""""""""
+************
 
 This automation will be triggered when a button is pressed down for a time period of length
 ``min_length`` to ``max_length``. Any click longer or shorter than this will not trigger the automation.
@@ -165,12 +165,7 @@ Configuration variables:
 .. _binary_sensor-on_double_click:
 
 ``on_double_click``
-"""""""""""""""""""
-
-.. warning::
-
-    This trigger is not final and could be replaced by a ``on_multi_click`` option which would
-    allow triggering for any number of clicks.
+*******************
 
 This automation will be triggered when a button is pressed down twice, with the first click lasting between
 ``min_length`` and ``max_length``. When a second leading edge then happens within ``min_length`` and
@@ -195,7 +190,7 @@ Configuration variables:
 - See :ref:`Automation <automation>`.
 
 lambda calls
-""""""""""""
+************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods on all binary sensors to do some
 advanced stuff (see the full :doc:`API Reference </api/binary_sensor/index>` for more info).
@@ -241,3 +236,5 @@ See Also
     pn532
     rdm6300
     nextion
+
+.. disqus::

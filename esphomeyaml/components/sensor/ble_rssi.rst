@@ -32,3 +32,5 @@ See Also
 - :doc:`/esphomeyaml/components/sensor/index`
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/esp32_ble_tracker.rst>`__
+
+.. disqus::

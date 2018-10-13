@@ -54,3 +54,5 @@ See Also
 - :ref:`automation`
 - :doc:`API Reference </api/binary_sensor/template>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/template.rst>`__
+
+.. disqus::

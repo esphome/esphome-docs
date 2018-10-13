@@ -163,7 +163,7 @@ Configuration variables:
     To use fonts you will need to have the python ``pillow`` package installed, as esphomeyaml uses that package
     to translate the truetype files into an internal format. If you're running this as a HassIO add-on or with
     the official esphomeyaml docker image, it should already be installed. Otherwise you need to install it using
-    ``pip2 installl pillow``.
+    ``pip2 install pillow``.
 
 
 Then, in your display code just reference the font like so:
@@ -257,7 +257,7 @@ Another interesting format string is ``%7.2f``, which would become the right-jus
 - ``%`` - initiate the format
 - ``7`` - means that the number will be right-justified and be padded on the left by spaces if
   the result would be shorter than 7 characters long.
-- ``.1`` - round the decimal number to ``1`` digits after the decimal point.
+- ``.2`` - round the decimal number to ``2`` digits after the decimal point.
 - ``f`` - specifier: f(loat).
 
 You can even have as many format strings as you want in a single printf call. Just make sure the put the
@@ -270,7 +270,7 @@ arguments after the format string in the right order.
         # ...
         lambda: |-
           // %% - literal % sign
-          it.printf(0, 0, id(my_font), "Temperature: %.1°C, Humidity: %.1f%%", id(temperature).value, id(humidity).value);
+          it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).value, id(humidity).value);
 
 
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
@@ -317,7 +317,7 @@ Images
 Configuration variables:
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
-- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
 - **resize** (*Optional*, int): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
@@ -326,7 +326,7 @@ Configuration variables:
 
     To use images you will need to have the python ``pillow`` package installed.
     If you're running this as a HassIO add-on or with the official esphomeyaml docker image, it should already be
-    installed. Otherwise you need to install it using ``pip2 installl pillow``.
+    installed. Otherwise you need to install it using ``pip2 install pillow``.
 
 And then later in code:
 
@@ -355,3 +355,5 @@ See Also
     ssd1306_i2c
     ssd1306_spi
     waveshare_epaper
+
+.. disqus::

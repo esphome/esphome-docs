@@ -28,3 +28,5 @@ Configuration variables:
   See :ref:`sensor-default_filter`.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+.. disqus::

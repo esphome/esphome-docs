@@ -46,3 +46,5 @@ See Also
 - `RDM6300 Arduino Library <https://github.com/arliones/RDM6300-Arduino>`__ by `Arliones Hoeller Jr <https://github.com/arliones>`__
 - :doc:`API Reference </api/binary_sensor/rdm6300>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/rdm6300.rst>`__
+
+.. disqus::

@@ -20,7 +20,7 @@ To use this hub, first setup the :ref:`I²C Bus <i2c>` and connect the sensor to
       - address: 0x48
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **address** (**Required**, int): The i²c address of the sensor.
   See :ref:`I²C Addresses <ads1115_i2c_addresses>` for more information.
@@ -30,7 +30,7 @@ Configuration variables:
 .. _ads1115_i2c_addresses:
 
 I²C Addresses
-~~~~~~~~~~~~~
+-------------
 
 In order to allow multiple sensors to be connected to the same i²c bus,
 the creators of this sensor hardware have included some options to
@@ -42,9 +42,11 @@ change the i²c address.
 -  If the address pin is tied to SCL, the address is ``0x4B``.
 
 See Also
-^^^^^^^^
+--------
 
 - :doc:`sensor/ads1115`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :doc:`API Reference </api/sensor/ads1115>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/ads1115.rst>`__
+
+.. disqus::

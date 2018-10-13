@@ -5,7 +5,7 @@ Migrating from previous Sonoff Tasmota setups is very easy. You just need to hav
 esphomeyaml create a binary for you and then upload that in the Tasmota web interface.
 
 Getting Binary
-^^^^^^^^^^^^^^
+--------------
 
 First follow the guides for the :ref:`different supported devices <devices>` and create a configuration
 file. Then, generate and download the binary:
@@ -21,7 +21,7 @@ file. Then, generate and download the binary:
   this is the binary you will upload.
 
 Uploading Binary
-^^^^^^^^^^^^^^^^
+----------------
 
 To upload the binary, navigate to the tasmota web interface and enter the
 "Firmware Upgrade" section.
@@ -46,7 +46,7 @@ will connect to the configured WiFi network 🎉
 Happy Hacking!
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`/esphomeyaml/devices/sonoff_s20`
 - :doc:`/esphomeyaml/devices/sonoff_4ch`
@@ -58,3 +58,5 @@ See Also
 - :doc:`migrate_espurna`
 - :doc:`migrate_espeasy`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/migrate_sonoff_tasmota.rst>`__
+
+.. disqus::

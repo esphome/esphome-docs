@@ -43,6 +43,27 @@ for information on how you can find out the MAC address of a device and track it
         battery_level:
           name: "Xiaomi MiJia Battery Level"
 
+.. note::
+
+    The latest arduino ESP32 framework has a bug with the bluetooth module. Please set
+    :ref:`esphomeyaml-arduino_version` to ``espressif32@1.0.2`` like so:
+
+    .. code:: yaml
+
+        esphomeyaml:
+          # ...
+          arduino_version: espressif32@1.0.2
+
+    See https://github.com/OttoWinter/esphomeyaml/issues/78#issuecomment-425746566
+
+
+.. note::
+
+    The first time this component is enabled for an ESP32, the code partition needs to be
+    resized. Please flash the ESP32 via USB when adding this to your configuration. After that,
+    you can use OTA updates again.
+
+
 Configuration variables:
 ------------------------
 
@@ -57,3 +78,5 @@ See Also
 - :doc:`API Reference </api/misc/esp32_ble_tracker>`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esp32_ble_tracker.rst>`__
+
+.. disqus::

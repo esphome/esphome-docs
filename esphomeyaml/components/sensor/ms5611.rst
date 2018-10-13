@@ -31,7 +31,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **pressure** (**Required**): The information for the pressure sensor.
 
@@ -53,7 +53,7 @@ Configuration variables:
   sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`bmp280`
@@ -62,3 +62,5 @@ See Also
 - `Arduino MS5611 Library <https://github.com/jarzebski/Arduino-MS5611>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
 - :doc:`API Reference </api/sensor/ms5611>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ms5611.rst>`__
+
+.. disqus::

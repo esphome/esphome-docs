@@ -7,7 +7,7 @@ page describes them.
 .. _config-id:
 
 ID
-~~
+--
 
 Quite an important aspect of esphomeyaml are “ids”. They are used to
 connect components from different domains. For example, you define an
@@ -30,7 +30,7 @@ names <http://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>
 .. _config-pin:
 
 Pin
-~~~
+---
 
 esphomeyaml always uses the **chip-internal GPIO numbers**. These
 internal numbers are always integers like ``16`` and can be prefixed by
@@ -57,7 +57,7 @@ either one of these names in your configuration will lead to the same result.
 .. _config-pin_schema:
 
 Pin Schema
-~~~~~~~~~~
+----------
 
 In some places, esphomeyaml also supports a more advanced “pin schema”.
 
@@ -107,7 +107,7 @@ More exotic Pin Modes are also supported, but rarely used:
 .. _config-time:
 
 Time
-~~~~
+----
 
 In lots of places in esphomeyaml you need to define time periods.
 There are several ways of doing this. See below examples to see how you can specify time periods:
@@ -138,9 +138,11 @@ There are several ways of doing this. See below examples to see how you can spec
       update_interval: 0ms  # update in every loop() iteration
 
 See Also
-~~~~~~~~
+--------
 
 - :doc:`esphomeyaml index </esphomeyaml/index>`
 - :doc:`getting_started_command_line`
 - :doc:`faq`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/guides/configuration-types.rst>`__
+
+.. disqus::

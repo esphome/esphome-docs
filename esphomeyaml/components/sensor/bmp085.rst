@@ -60,3 +60,5 @@ See Also
 - :doc:`API Reference </api/sensor/bmp085>`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bmp085.rst>`__
+
+.. disqus::

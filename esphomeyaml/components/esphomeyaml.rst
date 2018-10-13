@@ -234,3 +234,5 @@ See Also
 --------
 
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esphomeyaml.rst>`__
+
+.. disqus::

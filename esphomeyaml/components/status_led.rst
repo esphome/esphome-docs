@@ -41,3 +41,5 @@ See Also
 
 - :doc:`API Reference </api/misc/status_led>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/status_led.rst>`__
+
+.. disqus::

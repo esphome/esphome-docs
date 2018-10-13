@@ -59,3 +59,5 @@ See Also
 - :doc:`/esphomeyaml/components/binary_sensor/gpio`
 - :doc:`bruh`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/pir.rst>`__
+
+.. disqus::

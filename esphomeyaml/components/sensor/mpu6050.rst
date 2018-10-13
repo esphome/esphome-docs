@@ -47,7 +47,7 @@ new feature. Supporting all possible use-cases would be quite hard.
           name: "MPU6050 Temperature"
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x68``.
 - **accel_x** (*Optional*): Use the X-Axis of the Accelerometer. All options from
@@ -69,7 +69,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`template`
@@ -77,3 +77,5 @@ See Also
 - :doc:`API Reference </api/sensor/mpu6050>`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/mpu6050.rst>`__
+
+.. disqus::

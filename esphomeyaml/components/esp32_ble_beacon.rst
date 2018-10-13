@@ -67,6 +67,19 @@ know when I'm home or away.
     :align: center
     :width: 75.0%
 
+.. note::
+
+    The latest arduino ESP32 framework has a bug with the bluetooth module. Please set
+    :ref:`esphomeyaml-arduino_version` to ``espressif32@1.0.2`` like so:
+
+    .. code:: yaml
+
+        esphomeyaml:
+          # ...
+          arduino_version: espressif32@1.0.2
+
+    See https://github.com/OttoWinter/esphomeyaml/issues/78#issuecomment-425746566
+
 See Also
 --------
 
@@ -74,3 +87,5 @@ See Also
 - :doc:`API Reference </api/misc/esp32_ble_beacon>`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/esp32_ble_beacon.rst>`__
+
+.. disqus::

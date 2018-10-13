@@ -74,3 +74,5 @@ See Also
 - :doc:`API Reference </api/sensor/ads1115>`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ads1115.rst>`__
+
+.. disqus::

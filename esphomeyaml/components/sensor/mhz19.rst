@@ -69,3 +69,5 @@ See Also
 - `MH-Z19 library <https://github.com/nara256/mhz19_uart>`__ by `@nara356 <https://github.com/nara256>`__
 - :doc:`API Reference </api/sensor/mhz19>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/mhz19.rst>`__
+
+.. disqus::

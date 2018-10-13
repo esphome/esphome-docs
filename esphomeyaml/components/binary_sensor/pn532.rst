@@ -61,3 +61,4 @@ See Also
 - :doc:`API Reference </api/binary_sensor/pn532>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/pn532.rst>`__
 
+.. disqus::

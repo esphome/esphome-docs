@@ -308,7 +308,7 @@ them in one area, and simply pass that ID later on. For example, above you can s
 output being created with the ID ``blue_led`` for the blue LED. Later on it is then transformed
 into a :doc:`monochromatic light </esphomeyaml/components/light/monochromatic>`.
 If you additionally want the buttons to control the relays, look at `the complete Sonoff 4CH
-with automation example <https://github.com/OttoWinter/esphomeyaml/blob/master/examples/sonoff_4ch.yaml>`__.
+with automation example <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_4ch.yaml>`__.
 
 Upload the firmware again (through OTA or Serial) and you should immediately see
 something like this in Home Assistant because of esphomeyaml's automatic MQTT discovery. (You'll
@@ -331,8 +331,10 @@ connect it.
 Happy hacking!
 
 See Also
-----------
+--------
 
 - :doc:`sonoff`
 - :doc:`sonoff_s20`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_4ch.rst>`__
+
+.. disqus::

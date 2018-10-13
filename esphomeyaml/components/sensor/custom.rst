@@ -166,7 +166,7 @@ In your global ``setup()`` method, after you've setup all other components, do t
       // =========== AUTO GENERATED CODE END ============
       // ========= YOU CAN EDIT AFTER THIS LINE =========
 
-      auto *custom_sensor = new CustomSensor(5000); // update every 5000ms or every 5 seconds.
+      auto *custom_sensor = new CustomSensor("My Custom Sensor", 5000); // update every 5000ms or every 5 seconds.
       App.register_component(custom_sensor);
       App.register_sensor(custom_sensor);
 
@@ -370,5 +370,7 @@ for them. That's why we call ``App.register_sensor`` for each sensor we created 
 See Also
 --------
 
-- `Full source code <https://github.com/OttoWinter/esphomelib/blob/master/examples/custom-bmp180-sensor.cpp>`__
+- `Full source code <https://github.com/OttoWinter/esphomelib/blob/master/examples/custom-bmp180-sensor/custom-bmp180-sensor.cpp>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/custom.rst>`__
+
+.. disqus::

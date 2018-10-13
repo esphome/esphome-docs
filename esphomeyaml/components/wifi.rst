@@ -56,6 +56,8 @@ Configuration variables:
 - **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``60s``.
+- **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface. Defaults to no power saving.
+  See :ref:`wifi-power_save_mode`
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode
@@ -67,8 +69,63 @@ can connect to. Additionally, you can specify both a "normal" station mode and A
 same time. This will cause esphomelib to only enable the access point when no connection
 to the wifi router can be made.
 
+.. _wifi-manual_ip:
+
+Manual IPs
+----------
+
+If you're having problems with your node not connecting to WiFi or the connection
+process taking a long time, it can be a good idea to assign a static IP address
+to the ESP. This way, the ESP doesn't need to go through the slow DHCP process.
+
+You can do so with the ``manual_ip:`` option in the WiFi configuration.
+
+.. code:: yaml
+
+    wifi:
+      # ...
+      manual_ip:
+        # Set this to the IP of the ESP
+        static_ip: 10.0.0.42
+        # Set this to the IP address of the router. Often ends with .1
+        gateway: 10.0.0.1
+        # The subnet of the network. 255.255.255.0 works for most home networks.
+        subnet: 255.255.255.0
+
+After putting a manual IP in your configuration, the ESP will no longer need to negotiate
+a dynamic IP address with the router, thus improving the time until connection.
+
+Additionally, this can help with :ref:`Over-The-Air updates <ota>` if for example the
+home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
+the OTA process will automatically choose that as the target for the upload.
+
+.. _wifi-power_save_mode:
+
+Power Save Mode
+---------------
+
+The WiFi interface of all ESPs offer three power save modes to reduce the amount of power spent on
+WiFi. While some options *can* reduce the power usage of the ESP, they generally also decrease the
+reliability of the WiFi connection, with frequent disconnections from the router in the highest
+power saving mode.
+
+If you know what you're doing and the node doesn't need to have an extremely reliable connection to WiFi,
+you can set the power saving mode to ``LIGHT`` or even ``HIGH``. But for most situations ``NONE`` is the best.
+
+- ``NONE`` (Default, least power saving)
+- ``LIGHT``
+- ``HIGH`` (most power saving)
+
+.. code:: yaml
+
+    wifi:
+      # ...
+      power_save_mode: none
+
 See Also
 --------
 
 - :doc:`API Reference </api/core/wifi>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/wifi.rst>`__
+
+.. disqus::

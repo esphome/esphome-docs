@@ -39,3 +39,5 @@ See Also
 - :doc:`output/pca9685`
 - :doc:`API Reference </api/output/pca9685>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/pca9685.rst>`__
+
+.. disqus::

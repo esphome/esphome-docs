@@ -184,8 +184,8 @@ fahrenheit.
 
 .. _sensor-default_filter:
 
-Default Filter
---------------
+``update_interval`` gotchas
+---------------------------
 
 By default, esphomelib takes an average over the last 15 values before publishing updates.
 This was done in order to automatically decrease sensor noise.
@@ -357,3 +357,5 @@ See Also
     wifi_signal
     xiaomi_miflora
     xiaomi_mijia
+
+.. disqus::

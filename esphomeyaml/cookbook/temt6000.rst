@@ -66,3 +66,5 @@ See Also
 - `TEMT6000 datasheet <https://www.sparkfun.com/datasheets/Sensors/Imaging/TEMT6000.pdf>`__
 - :doc:`bruh`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/temt6000.rst>`__
+
+.. disqus::

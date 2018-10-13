@@ -79,3 +79,5 @@ See Also
 - :doc:`API Reference </api/sensor/ina3221>`
 - `INA3221 Arduino Library <https://github.com/switchdoclabs/SDL_Arduino_INA3221>`__ by `SwitchDoc Labs <https://github.com/switchdoclabs>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ina3221.rst>`__
+
+.. disqus::

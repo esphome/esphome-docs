@@ -68,3 +68,5 @@ See Also
 - :doc:`API Reference </api/sensor/ina219>`
 - `INA291 Arduino Library <https://github.com/adafruit/Adafruit_INA219>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/ina219.rst>`__
+
+.. disqus::

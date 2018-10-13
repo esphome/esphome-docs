@@ -31,3 +31,5 @@ See Also
 - :doc:`template`
 - :doc:`API Reference </api/switch/shutdown>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/shutdown.rst>`__
+
+.. disqus::

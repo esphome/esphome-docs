@@ -1,6 +1,11 @@
 Nextion TFT LCD Display
 =======================
 
+.. warning::
+
+    This integration is experimental as I don't have the hardware to test it (yet).
+    If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
+
 The ``nextion`` display platform allows you to use Nextion LCD displays (`datasheet <https://nextion.itead.cc/resources/datasheets/>`__,
 `iTead <https://www.itead.cc/display/nextion.html>`__)
 with esphomelib.
@@ -83,3 +88,5 @@ See Also
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__
 - `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <http://itead.cc/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/nextion.rst>`__
+
+.. disqus::

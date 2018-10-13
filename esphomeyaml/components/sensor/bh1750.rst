@@ -51,3 +51,5 @@ See Also
 - :doc:`API Reference </api/sensor/bh1750>`
 - `BH1750 Library <https://github.com/claws/BH1750>`__ by `@claws <https://github.com/claws>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/bh1750.rst>`__
+
+.. disqus::

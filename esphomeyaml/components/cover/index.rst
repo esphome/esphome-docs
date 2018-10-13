@@ -107,3 +107,5 @@ See Also
     :maxdepth: 1
 
     template.rst
+
+.. disqus::

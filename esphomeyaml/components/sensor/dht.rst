@@ -79,3 +79,5 @@ See Also
 - :doc:`API Reference </api/sensor/dht>`
 - `Arduino DHTLib <https://playground.arduino.cc/Main/DHTLib>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/dht.rst>`__
+
+.. disqus::

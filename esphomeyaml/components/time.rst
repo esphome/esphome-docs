@@ -137,7 +137,7 @@ with the current time representation of that format option.
     ------------- -------------------------------------------------------------- -------------------------
     ``%H``        **Hour** (24-hour clock) as a zero-padded decimal number       00, 01, ..., 23
     ------------- -------------------------------------------------------------- -------------------------
-    ``%h``        **Hour** (12-hour clock) as a zero-padded decimal number       00, 01, ..., 12
+    ``%I``        **Hour** (12-hour clock) as a zero-padded decimal number       00, 01, ..., 12
     ------------- -------------------------------------------------------------- -------------------------
     ``%p``        **AM or PM** designation                                       AM, PM
     ------------- -------------------------------------------------------------- -------------------------
@@ -296,3 +296,5 @@ See Also
 
 - :doc:`API Reference </api/core/time>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/time.rst>`__
+
+.. disqus::

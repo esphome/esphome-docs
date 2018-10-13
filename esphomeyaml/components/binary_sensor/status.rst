@@ -31,3 +31,5 @@ See Also
 - :doc:`/esphomeyaml/components/mqtt`
 - :doc:`API Reference </api/binary_sensor/status>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/binary_sensor/status.rst>`__
+
+.. disqus::
