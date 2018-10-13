@@ -32,6 +32,7 @@ See :cpp:func:`Application::register_sensor`.
     max6675
     mhz19
     mpu6050
+    mqtt_subscribe
     ms5611
     pulse_counter
     rotary_encoder
