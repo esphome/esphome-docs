@@ -78,6 +78,8 @@ Supported remote codes:
       lg:
         data: 0x01234567890ABC
         nbits: 28
+      samsung:
+        data: 0xE0E01234
       sony:
         data: 0xABCDEF
         nbits: 12
@@ -121,6 +123,10 @@ Configuration variables:
 
   - **data**: The data bytes to send.
   - **nbits**: The number of bits to send, defaults to 28.
+
+- **samsung**: Send an Samsung IR code.
+
+  - **data**: The data bytes to send.
 
 - **sony**: Send an Sony IR code.
 
