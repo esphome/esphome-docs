@@ -83,8 +83,8 @@ It is used in several places like last will and birth messages or MQTT log optio
 
 Configuration options:
 
--  **topic** (*Required*, string): The MQTT topic to publish the message.
--  **payload** (*Required*, string): The message content. Will be filled by the actual payload with some
+-  **topic** (**Required**, string): The MQTT topic to publish the message.
+-  **payload** (**Required**, string): The message content. Will be filled by the actual payload with some
    options, like log_topic.
 -  **qos** (*Optional*, int): The `Quality of
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
@@ -92,6 +92,11 @@ Configuration options:
 -  **retain** (*Optional*, boolean): If the published message should
    have a retain flag on or not. Defaults to ``True``.
 
+
+The ``log_topic`` has an additional configuration option:
+
+- **level** (*Optional*, string): The log level to use for MQTT logs. See
+  :ref:`logger-log_levels` for options.
 
 Using with Home Assistant
 -------------------------
