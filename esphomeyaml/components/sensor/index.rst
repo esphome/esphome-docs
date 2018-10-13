@@ -313,7 +313,7 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
 
 
 See Also
-********
+--------
 
 - :doc:`API Reference </api/sensor/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/index.rst>`__

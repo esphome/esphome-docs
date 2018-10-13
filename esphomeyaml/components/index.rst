@@ -11,6 +11,7 @@ Components
     sensor/index
     switch/index
     display/index
+    text_sensor/index
     ads1115
     dallas
     debug

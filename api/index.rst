@@ -13,4 +13,5 @@ API Reference
     Switch <switch/index>
     Cover <cover/index>
     Display <display/index>
+    Text Sensors <text_sensor/index>
     Miscellaneous <misc/index>
