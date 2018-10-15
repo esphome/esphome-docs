@@ -1,0 +1,44 @@
+MCP23017 I/O Expander
+====================
+
+The MCP23017 component allows you to use MCP23017 I/O port expander with many of
+esphomelib's components. With most components, you are able to specify GPIOOutputPin or
+GPIOInputPin for internal pins. The MCP23017 component subclasses those types.
+
+Example Usage
+-------------
+
+.. code-block:: cpp
+
+    auto *mcp23017 = App.make_mcp23017_component(0x20);
+    App.make_gpio_binary_sensor("MCP pin 0 sensor", mcp23017->make_input_pin(0, MCP23017_INPUT));
+    App.make_gpio_binary_sensor("MCP pin 0 sensor", 0);
+    App.make_gpio_switch("MCP pin 1 switch", MCP23017->make_output_pin(1));
+    auto *out = App.make_gpio_output(MCP23017->make_output_pin(2));
+    App.make_binary_light("MCP pin 2 light", out);
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_mcp23017_component`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenenum:: MCP23017GPIOMode
+
+.. doxygenclass:: io::MCP23017Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: io::MCP23017GPIOInputPin
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: io::MCP23017GPIOOutputPin
+    :members:
+    :protected-members:
+    :undoc-members:

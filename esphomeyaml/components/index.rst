@@ -26,6 +26,7 @@ Components
     ota
     pca9685
     pcf8574
+    mcp23017
     power_supply
     web_server
     wifi

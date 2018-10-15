@@ -642,9 +642,9 @@ Misc Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `ESP32 Touch Hub`_                                 `Status LED`_                                      `PN532`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|RDM6300|_                                         |Time|_
+|RDM6300|_                                         |Time|_                                            |MCP23017 I/O expander|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`RDM6300`_                                         `Time`_
+`RDM6300`_                                         `Time`_                                            `MCP23017 I/O expander`_
 ================================================== ================================================== ==================================================
 
 .. |Dallas Hub| image:: /esphomeyaml/images/dallas.jpg
@@ -668,6 +668,9 @@ Misc Components
 .. |PCF8574 I/O Expander| image:: /esphomeyaml/images/pcf8574.jpg
     :class: component-image
 .. _PCF8574 I/O Expander: /esphomeyaml/components/pcf8574.html
+.. |MCP23017 I/O Expander| image:: /esphomeyaml/images/mcp23017.jpg
+    :class: component-image
+.. _MCP23017 I/O Expander: /esphomeyaml/components/mcp23017.html
 .. |ESP32 BLE Tracker| image:: /esphomeyaml/images/bluetooth.svg
     :class: component-image
 .. _ESP32 BLE Tracker: /esphomeyaml/components/esp32_ble_tracker.html
