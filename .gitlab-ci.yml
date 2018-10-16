@@ -3,6 +3,7 @@ build:
   tags:
     - esphomedocs
   script:
+    - make ../esphomelib
     - make html
   except:
     - current
@@ -22,6 +23,7 @@ deploy:
   script:
     - git fetch --force git@github.com:OttoWinter/esphomedocs.git gh-pages:gh-pages
     - git worktree add _build/html gh-pages
+    - make ../esphomelib
     - make deploy
     - git -C _build/html push git@github.com:OttoWinter/esphomedocs.git gh-pages
   artifacts:
