@@ -23,23 +23,11 @@ Configuration variables:
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The
   GPIO pin to use for the switch.
 - **name** (**Required**, string): The name for the switch.
+- **power_on_value** (*Optional*, boolean): The state this switch should be initialized with on boot.
+  Please note that certain pins can have pull-up/down resistors that activate/deactivate a pin before
+  esphomelib can initialize them. Please check with a multimeter and use another pin if necessary.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
-
-.. note::
-
-    If you want the pin to default to HIGH on startup, you can use the inverted property
-    of the :ref:`Pin Schema <config-pin_schema>`:
-
-    .. code:: yaml
-
-        # Example configuration entry
-        switch:
-          - platform: gpio
-            pin:
-              number: 25
-              inverted: True
-            name: "Living Room Dehumidifier"
 
 See Also
 --------
