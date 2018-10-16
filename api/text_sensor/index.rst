@@ -10,6 +10,7 @@ See :cpp:func:`Application::register_text_sensor`.
 
     version
     mqtt_subscribe
+    template
 
 
 API Reference

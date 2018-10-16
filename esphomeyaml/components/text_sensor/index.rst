@@ -86,5 +86,6 @@ See Also
 
     version
     mqtt_subscribe
+    template
 
 .. disqus::
