@@ -303,6 +303,7 @@ All Triggers
 - :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>`
 - :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>`
 - :ref:`esphomeyaml.on_loop <esphomeyaml-on_loop>`
+- :ref:`pn532.on_tag <pn532-on_tag>`
 
 All Actions
 -----------
