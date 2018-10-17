@@ -1,11 +1,6 @@
 Xiaomi MiFlora BLE Sensor
 =========================
 
-.. warning::
-
-    This integration is experimental as I don't have the hardware to test it (yet).
-    If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 The ``xiaomi_miflora`` sensor platform lets you track the output of Xiaomi MiFlora Bluetooth Low Energy
 devices using the :doc:`/esphomeyaml/components/esp32_ble_tracker`. This component will track the
 temperature, humidity and optionally the battery level of the MiFlora device every time the sensor
