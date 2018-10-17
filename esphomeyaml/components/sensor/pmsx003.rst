@@ -1,6 +1,11 @@
 PMSX003 Particulate Matter Sensor
 =================================
 
+.. warning::
+
+    This integration is experimental as I don't have the hardware to test it (yet).
+    If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
+
 The ``pmsx003`` sensor platform allows you to use your PMS5003, PMS7003, ... particulate matter
 (`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__)
 sensors with esphomelib.
