@@ -1,0 +1,55 @@
+CSE7766 Power Sensor
+====================
+
+The ``cse7766`` sensor platform allows you to use your CSE7766 voltage/current and power sensors
+(`datasheet <http://dl.itead.cc/S31/CSE7766.pdf>`__) sensors with
+esphomelib. This sensor is commonly found in Sonoff POW R2.
+
+As the communication with the CSE7766 done using UART, you need
+to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the CSE7766.
+Additionally, you need to set the baud rate to 9600.
+
+.. code:: yaml
+
+    # Example configuration entry
+    # Disable logging over USB
+    logger:
+      baud_rate: 0
+
+    uart:
+      rx_pin: RX
+      baud_rate: 9600
+
+    sensor:
+      - platform: cse7766
+        current:
+          name: "Sonoff Pow R2 Current"
+        voltage:
+          name: "Sonoff Pow R2 Voltage"
+        power:
+          name: "Sonoff Pow R2 Power"
+
+.. note::
+
+    The configuration above should work for Sonoff POWs (R2).
+
+Configuration variables:
+------------------------
+
+- **current** (*Optional*): Use the current value of the sensor in amperes. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
+  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
+  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :doc:`API Reference </api/sensor/cse7766>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/cse7766.rst>`__
+
+.. disqus::

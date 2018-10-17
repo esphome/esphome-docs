@@ -7,6 +7,7 @@ BME280, components/sensor/bme280, bme280.jpg
 BME680, components/sensor/bme680, bme680.jpg
 BMP085, components/sensor/bmp085, bmp180.jpg
 BMP280, components/sensor/bmp280, bmp280.jpg
+CSE7766, components/sensor/cse7766, cse7766.svg
 Dallas, components/sensor/dallas, dallas.jpg
 DHT, components/sensor/dht, dht.jpg
 DHT12, components/sensor/dht12, dht12.jpg

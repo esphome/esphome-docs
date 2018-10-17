@@ -329,6 +329,7 @@ See Also
     bme680
     bmp085
     bmp280
+    cse7766
     custom
     dallas
     dht
