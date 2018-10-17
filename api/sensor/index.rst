@@ -17,6 +17,7 @@ See :cpp:func:`Application::register_sensor`.
     bme680
     bmp085
     bmp280
+    cse7766
     dallas
     dht
     dht12

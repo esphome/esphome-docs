@@ -1,0 +1,22 @@
+CSE7766 Power Sensor
+====================
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_cse7766`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+.. doxygenclass:: sensor::CSE7766Component
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygentypedef:: sensor::CSE7766VoltageSensor
+
+.. doxygentypedef:: sensor::CSE7766CurrentSensor
+
+.. doxygentypedef:: sensor::CSE7766PowerSensor
