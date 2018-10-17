@@ -25,6 +25,7 @@ MH-Z19, components/sensor/mhz19, mhz19.jpg
 MPU6050, components/sensor/mpu6050, mpu6050.jpg
 MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
 MS5611, components/sensor/ms5611, ms5611.jpg
+PMSX003, components/sensor/pmsx003, pmsx003.svg
 Pulse Counter, components/sensor/pulse_counter, pulse.svg
 Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
 SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
