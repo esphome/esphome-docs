@@ -624,6 +624,32 @@ Cover Components
     :class: component-image
 .. _Template Cover: /esphomeyaml/components/cover/template.html
 
+Text Sensor Components
+----------------------
+
+================================================== ================================================== ==================================================
+|Text Sensor Core|_                                |MQTT Subscribe|_                                  |Version|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Text Sensor Core`_                                `MQTT Subscribe`_                                  `Version`_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+|Template Text Sensor|_
+-------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+`Template Text Sensor`_
+================================================== ================================================== ==================================================
+
+.. |Text Sensor Core| image:: /esphomeyaml/images/folder-open.svg
+    :class: component-image
+.. _Text Sensor Core: /esphomeyaml/components/text_sensor/index.html
+.. |MQTT Subscribe| image:: /esphomeyaml/images/mqtt.png
+    :class: component-image
+.. _MQTT Subscribe: /esphomeyaml/components/text_sensor/mqtt_subscribe.html
+.. |Version| image:: /esphomeyaml/images/new-box.svg
+    :class: component-image
+.. _Version: /esphomeyaml/components/text_sensor/version.html
+.. |Template Text Sensor| image:: /esphomeyaml/images/description.svg
+    :class: component-image
+.. _Template Text Sensor: /esphomeyaml/components/text_sensor/template.html
+
 
 Misc Components
 ---------------
