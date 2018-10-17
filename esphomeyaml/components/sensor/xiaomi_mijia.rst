@@ -35,13 +35,13 @@ Configuration variables:
 ------------------------
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi MiJia device.
-- **temperature** (**Required**): The information for the temperature sensor.
+- **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
-- **humidity** (**Required**): The information for the humidity sensor
+- **humidity** (*Optional*): The information for the humidity sensor
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
