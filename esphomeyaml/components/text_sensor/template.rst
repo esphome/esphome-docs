@@ -11,13 +11,14 @@ using :ref:`lambdas <config-lambda>`.
       - platform: template
         name: "Template Text Sensor"
         lambda: |-
-          return "Hello World";
+          return {"Hello World"};
         update_interval: 15s
 
 
 Possible return values for the lambda:
 
- - ``return "STRING LITERAL";`` the new value for the sensor of type ``std::string``.
+ - ``return {"STRING LITERAL"};`` the new value for the sensor of type ``std::string``. **Has to be** in
+   brackets ``{}``!
  - ``return {};`` if you don't want to publish a new state (advanced).
 
 Configuration variables:
