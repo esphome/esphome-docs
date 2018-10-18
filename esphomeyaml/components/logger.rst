@@ -74,6 +74,36 @@ purge all ``DEBUG`` log statements from the binary in order to conserve
 space. This however means that you cannot set tag-specific log levels
 that have a lower severity than the global log level.
 
+.. _logger-log_action:
+
+``logger.log`` Action
+---------------------
+
+Print a formatted message to the logs.
+
+In the ``format`` option, you can use ``printf``-style formatting (see :ref:`display-printf`).
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - logger.log: "Hello World"
+
+        # Formatted:
+        - logger.log:
+            format: "The temperature sensor reports value %.1f and humidity %.1f"
+            args: [ 'id(temperature_sensor).value', 'id(humidity_sensor).value' ]
+
+Configuration options:
+
+-  **format** (**Required**, string): The format for the message in :ref:`printf-style <display-printf>`.
+-  **args** (*Optional*, list of :ref:`lambda <config-lambda>`): The optional arguments for the
+   format message.
+-  **level** (*Optional*, string): The :ref:`log level <logger-log_levels>` to print the message
+   with. Defaults to ``DEBUG``.
+-  **tag** (*Optional*, string): The tag (seen in front of the message in the logs) to print the message
+   with. Defaults to ``main``.
+
 See Also
 --------
 
