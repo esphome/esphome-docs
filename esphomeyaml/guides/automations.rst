@@ -297,6 +297,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>`
 - :ref:`component.update <component-update_action>`
+- :ref:`script.execute <script-execute_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>`
 - :ref:`switch.toggle <switch-toggle_action>`
 - :ref:`switch.turn_off <switch-turn_off_action>`
@@ -410,6 +411,33 @@ compile error.
 
         # The same as:
         - lambda: 'id(my_component).update();'
+
+.. _script-execute_action:
+
+``script.execute`` Action
+-------------------------
+
+This action allows you to prevent code-reuse. For example if you have multiple triggers
+that perform the same exact action, you would normally have to copy the YAML lines for all
+triggers.
+
+With the ``script`` component you can define these steps in a central place, and then
+execute the script with a single call.
+
+.. code:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.execute: my_script
 
 See Also
 --------
