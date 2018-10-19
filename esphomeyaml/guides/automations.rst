@@ -182,7 +182,7 @@ first:
       - platform: template
         name: Living Room Cover
         lambda: !lambda >-
-          if (id(top_end_stop).value) {
+          if (id(top_end_stop).state) {
             return cover::COVER_OPEN;
           } else {
             return cover::COVER_CLOSED;
@@ -213,7 +213,7 @@ we're either *returning* ``cover::COVER_OPEN`` or ``cover::COVER_CLOSED`` to ind
 
 Finally, ``id(...)`` is a helper function that makes esphomeyaml fetch an object with the supplied ID (which you defined
 somewhere else, like ``top_end_stop```) and let's you call any of esphomelib's many APIs directly. For example, here
-we're retrieving the current state of the end stop using ``.value`` and using it to construct our cover state.
+we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::
 
@@ -234,7 +234,7 @@ we're retrieving the current state of the end stop using ``.value`` and using it
           ESP_LOGV("main", "This is a gray verbose message"); // doesn't show up with the default log level.
 
           // Use printf-style syntax (http://www.cplusplus.com/reference/cstdio/printf/)
-          ESP_LOGD("main", "The temperature inside is %.1f", id(outside_temperature_sensor).value);
+          ESP_LOGD("main", "The temperature inside is %.1f", id(outside_temperature_sensor).state);
 
 .. tip::
 
@@ -269,7 +269,7 @@ if you have a light and want to set it to a pre-defined color when a button is p
             blue: !lambda >-
               # The sensor outputs values from 0 to 100. The blue
               # part of the light color will be determined by the sensor value.
-              return id(some_sensor).value / 100.0;
+              return id(some_sensor).state / 100.0;
 
 Every parameter in actions that has the label "templatable" in the docs can be templated like above, using
 all of the usual lambda syntax.
@@ -337,7 +337,7 @@ time period.
         - switch.turn_off:
             id: relay_1
         # Templated, waits for 1s (1000ms) only if a reed switch is active
-        - delay: !lambda "if (id(reed_switch).value) return 1000; else return 0;"
+        - delay: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
 
 .. note::
 
@@ -376,7 +376,7 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
     on_...:
       then:
         - if:
-            lambda: 'return id(some_sensor).value < 30;'
+            lambda: 'return id(some_sensor).state < 30;'
           then:
             - lambda: 'ESP_LOGD("main", "The sensor value is below 30!");
             - light.turn_on: my_light

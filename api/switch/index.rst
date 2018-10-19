@@ -4,12 +4,9 @@ Switch
 The `switch_` namespace contains all switch helpers.
 
 .. toctree::
+    :glob:
 
-    remote_transmitter
-    restart
-    shutdown
-    template
-    uart
+    *
 
 API Reference
 -------------

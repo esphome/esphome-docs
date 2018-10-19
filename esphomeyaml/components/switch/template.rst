@@ -12,7 +12,7 @@ as a switch and can be controlled through the frontend.
       - platform: template
         name: "Template Switch"
         lambda: >-
-          if (id(some_binary_sensor).value) {
+          if (id(some_binary_sensor).state) {
             return true;
           } else {
             return false;

@@ -138,7 +138,7 @@ Let's also now make our sensor actually *output* values (42 for now):
     // class CustomSensor ...
       // ... previous code
       void update() override {
-        push_new_value(42.0);  // 42°C
+        publish_state(42.0);  // 42°C
       }
 
       std::string unit_of_measurement() override { return "°C"; }
@@ -255,7 +255,7 @@ Then update our sensor for BMP180 support:
 
       void update() override {
         int pressure = bmp.readPressure(); // in Pa, or 1/100 hPa
-        push_new_value(pressure / 100.0); // convert to hPa
+        publish_state(pressure / 100.0); // convert to hPa
       }
 
       std::string unit_of_measurement() override { return "hPa"; }
@@ -330,10 +330,10 @@ Let's look at what that could look like in code:
       void update() override {
         // This is the actual sensor reading logic.
         int pressure = bmp.readPressure();
-        pressure_sensor->push_new_value(pressure / 100.0);
+        pressure_sensor->publish_state(pressure / 100.0);
 
         float temperature = bmp.readTemperature();
-        temperature_sensor->push_new_value(temperature);
+        temperature_sensor->publish_state(temperature);
       }
     };
 

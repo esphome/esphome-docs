@@ -29,4 +29,11 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :doc:`API Reference </api/sensor/duty_cycle>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/duty_cycle.rst>`__
+
 .. disqus::

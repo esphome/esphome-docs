@@ -80,11 +80,11 @@ by default which means the character at the top left.
           it.print(1, 1, "1");
 
           // Let's write a sensor value (let's assume it's 42.1)
-          it.printf("%.1f", id(my_sensor).value);
+          it.printf("%.1f", id(my_sensor).state);
           // Result: "42.1" (the dot will appear on the "2" segment)
 
           // Print a right-padded sensor value with 0 digits after the decimal
-          it.printf("Sensor value: %8.0f", id(my_sensor).value);
+          it.printf("Sensor value: %8.0f", id(my_sensor).state);
           // Result: "Sensor value:       42"
 
           // Print the current time

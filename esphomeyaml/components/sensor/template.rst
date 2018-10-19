@@ -11,7 +11,7 @@ using :ref:`lambdas <config-lambda>`.
       - platform: template
         name: "Template Sensor"
         lambda: >-
-          if (id(some_binary_sensor).value) {
+          if (id(some_binary_sensor).state) {
             return 42.0;
           } else {
             return 0.0;

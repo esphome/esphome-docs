@@ -61,7 +61,7 @@ They are similar to :ref:`Sensor Filters <sensor-filters>`.
           - delayed_on: 100ms
           - delayed_off: 100ms
           - lambda: >-
-              if (id(other_binary_sensor).value) {
+              if (id(other_binary_sensor).state) {
                 return x;
               } else {
                 return {};
@@ -93,7 +93,7 @@ perfectly fit every use case, but at least makes the naming consistent. For exam
 in the first moment when the button on your mouse is pushed down.
 
 You can access the current state of the binary sensor in :ref:`lambdas <config-lambda>` using
-``id(binary_sensor_id).value``.
+``id(binary_sensor_id).state``.
 
 .. _binary_sensor-on_press:
 
@@ -206,12 +206,12 @@ advanced stuff (see the full :doc:`API Reference </api/binary_sensor/index>` for
       // Within lambda, publish an ON state.
       id(my_binary_sensor).publish_state(true);
 
-- ``value``: Retrieve the current value of the binary sensor.
+- ``.state``: Retrieve the current state of the binary sensor.
 
   .. code:: yaml
 
       // Within lambda, get the binary sensor state and conditionally do something
-      if (id(my_binary_sensor).value) {
+      if (id(my_binary_sensor).state) {
         // Binary sensor is ON, do something here
       } else {
         // Binary sensor is OFF, do something else here
@@ -226,15 +226,8 @@ See Also
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    gpio
-    status
-    esp32_ble_tracker
-    esp32_touch
-    template
-    remote_receiver
-    pn532
-    rdm6300
-    nextion
+    *
 
 .. disqus::

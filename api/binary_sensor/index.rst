@@ -14,14 +14,9 @@ Supported Binary Sensors
 ------------------------
 
 .. toctree::
+    :glob:
 
-    esp32_touch
-    gpio
-    pn532
-    rdm6300
-    remote_receiver
-    status
-    template
+    *
 
 Example Usage
 -------------

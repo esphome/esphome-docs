@@ -16,8 +16,15 @@ This action opens the cover with the given ID when executed.
 
     on_...:
       then:
-        - cover.open:
-            id: cover_1
+        - cover.open: cover_1
+
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        id(cover_1).open();
 
 .. _cover-close_action:
 
@@ -30,8 +37,15 @@ This action closes the cover with the given ID when executed.
 
     on_...:
       then:
-        - cover.close:
-            id: cover_1
+        - cover.close: cover_1
+
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        id(cover_1).close();
 
 .. _cover-stop_action:
 
@@ -44,8 +58,15 @@ This action stops the cover with the given ID when executed.
 
     on_...:
       then:
-        - cover.stop:
-            id: cover_1
+        - cover.stop: cover_1
+
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        id(cover_1).stop();
 
 
 lambda calls
@@ -69,33 +90,9 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 
       if (id(my_cover).state == cover::COVER_OPEN) {
         // Cover is open
-      } else if (id(my_cover).state == cover::COVER_CLOSED) {
-        // Cover is closed
       } else {
-        // The cover hasn't reported any state yet.
+        // Cover is closed
       }
-
-- ``open()``: Manually cause the cover to open from code. Similar to the ``cover.open``
-  action, but can be used in complex lambda expressions.
-
-  .. code:: yaml
-
-      id(my_cover).open();
-
-- ``close()``: Manually cause the cover to close from code. Similar to the ``cover.close``
-  action, but can be used in complex lambda expressions.
-
-  .. code:: yaml
-
-      id(my_cover).close();
-
-- ``stop()``: Manually cause the cover to stop from code. Similar to the ``cover.stop``
-  action, but can be used in complex lambda expressions.
-
-  .. code:: yaml
-
-      id(my_cover).stop();
-
 
 See Also
 --------
@@ -105,7 +102,8 @@ See Also
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    template.rst
+    *
 
 .. disqus::
