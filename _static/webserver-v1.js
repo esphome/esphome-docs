@@ -31,7 +31,7 @@ let i = 0, row;
 for (; row = states.rows[i]; i++) {
     if (row.classList.contains("switch")) {
         (function(id) {
-            row.children[2].children[0].addEventListener('click', function (e) {
+            row.children[2].children[0].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/switch/' + id.substr(7) + '/toggle', true);
                 xhr.send();
@@ -40,7 +40,7 @@ for (; row = states.rows[i]; i++) {
     }
     if (row.classList.contains("fan")) {
         (function(id) {
-            row.children[2].children[0].addEventListener('click', function (e) {
+            row.children[2].children[0].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/fan/' + id.substr(4) + '/toggle', true);
                 xhr.send();
@@ -49,7 +49,7 @@ for (; row = states.rows[i]; i++) {
     }
     if (row.classList.contains("light")) {
         (function(id) {
-            row.children[2].children[0].addEventListener('click', function (e) {
+            row.children[2].children[0].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/light/' + id.substr(6) + '/toggle', true);
                 xhr.send();

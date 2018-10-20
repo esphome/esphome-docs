@@ -56,11 +56,6 @@ esphomeyaml generates and insert your own custom components such as sensors in i
 a sensor you really want to use, is not supported, you can easily `create a custom component
 <https://github.com/OttoWinter/esphomelib/wiki/Custom-Sensor-Component>`__ for it.
 
-Because esphomeyaml runs on a host with lots of resources (as opposed to the ESP node itself),
-esphomeyaml will in the future also be able to do some really powerful stuff. I have some ideas
-like having an automatic schematic creator or a simple `blockly-like <https://developers.google.com/blockly/>`__
-in mind that will hopefully make the user-experience of using ESP32/ESP8266 nodes a lot easier.
-
 Help! Something's not working!1!
 --------------------------------
 
@@ -159,7 +154,7 @@ My node keeps reconnecting randomly
 -----------------------------------
 
 Jep, that's a known issue. However, it seems to be very low-level and I don't really know
-how to solve it. I'm working on possible work-arounds for the issue but currently I do
+how to solve it. I'm working on possible workarounds for the issue but currently I do
 not have a real solution.
 
 Some steps that can help with the issue:

@@ -311,7 +311,7 @@ Step 6: Finishing Up
 --------------------
 
 Now you're pretty much done with setting up the Sonoff S20. The only steps left are to
-remove any cables within the housing and make sure everyhing in there is clean. If, for
+remove any cables within the housing and make sure everything in there is clean. If, for
 example, you used wires to connect the UART console, you should definitely remove them to avoid
 a short with mains.
 

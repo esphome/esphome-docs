@@ -9,7 +9,7 @@ the output is not on. The power supply component can be attached to any
 :ref:`Output Component <output>` and
 will automatically switch on if any of the outputs are on. Furthermore,
 it also has a cooldown time that keeps the power supply on for a while
-after the last ouput has been disabled.
+after the last output has been disabled.
 
 .. code:: yaml
 

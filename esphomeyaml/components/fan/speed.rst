@@ -13,7 +13,7 @@ supports speed settings.
     # Example configuration entry
     fan:
       - platform: speed
-        output: myoutput_1
+        output: my_output_1
         name: "Living Room Fan"
 
 Configuration variables:

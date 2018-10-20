@@ -186,7 +186,7 @@ Configuration variables:
   - ``7.5``: MQTT initialization takes place at this priority.
   - ``0.0``: This is where most sensors are set up. They are usually set up this late so that they can dump their
     configuration in the MQTT logs.
-  - ``-5.0``: The inidividual frontend counterparts for the backend components are configured at this priority
+  - ``-5.0``: The individual frontend counterparts for the backend components are configured at this priority
   - ``-10.0``: At this priority, pretty much everything should already be initialized.
 
 - See :ref:`Automation <automation>`.

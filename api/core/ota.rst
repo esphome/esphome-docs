@@ -16,7 +16,6 @@ Example Usage
     ota->start_safe_mode();
     // OTA MD5 password
     auto *ota = App.init_ota();
-    ota->set_auth_password_hash("761d3a8c46989f1d357842e8dedf7712");
     ota->start_safe_mode();
 
 

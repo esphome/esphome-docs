@@ -14,7 +14,7 @@ pulse** on a specific pin and will send out a **echo pulse** once a
 measurement has been taken. Because sometimes (for example if no object
 is detected) the echo pulse is never returned, this sensor also has a
 timeout option which specifies how long to wait for values. During this
-timeout period the whole core will be blocked and therefore shouldn’t be
+timeout period the whole core will be blocked and therefore shouldn't be
 set too high.
 
 .. figure:: images/ultrasonic-full.jpg

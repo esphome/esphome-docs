@@ -182,7 +182,7 @@ Other notable changes
 - Fixed ESP32BLETracker surpassing the maximum code size
 - Fixed ESP32BLETracker/Beacon throwing an exception when a warning occurs.
 - Fixed FastLED effects not taking into account the light brightness
-- Fixed compatability with Arduino core versions below 2.0.4
+- Fixed compatibility with Arduino core versions below 2.0.4
 - Added ``output.turn_on``, ``output.turn_off`` and ``output.set_level`` actions.
 - Fixed the remote transmitter/receiver using the heap inefficiently on the ESP8266 (was causing reboots)
 - Fixed reliability with reading data from BME280s
@@ -358,7 +358,7 @@ New Components
 
     <span class="blink-tag">blinking</span>
 
-- The :doc:`pulse counter sensor </esphomeyaml/components/sensor/pulse_counter>` has been backported to the
+- The :doc:`pulse counter sensor </esphomeyaml/components/sensor/pulse_counter>` has been back-ported to the
   ESP8266, so now you can observe the number of pulses and frequency on any pin 🔢
 
 - A new :doc:`duty cycle sensor </esphomeyaml/components/sensor/duty_cycle>` has been added, allowing you to
@@ -461,7 +461,7 @@ Other Contributions
 - Remove BMP280 (doesn't work) (`esphomedocs/#8`_) by `@fabaff`_
 - Passing inverted to output should be valid, but does not work, use … (`esphomedocs/#7`_) by `@aequitas`_
 - Make the example configuration entry copy&paste-friendly (`esphomedocs/#6`_) by `@fabaff`_
-- Minor formatting tweaks. (`esphomedocs/#4`_) by `@Landradsh`_
+- Minor formatting tweaks. (`esphomedocs/#4`_) by `@Landrash`_
 - Details about Sonoff basic (`esphomedocs/#3`_) by `@fabaff`_
 - Add missing module (`esphomedocs/#2`_) by `@fabaff`_
 - Fix unit name (`esphomedocs/#1`_) by `@fabaff`_
@@ -496,7 +496,7 @@ Other Contributions
 .. _@fabaff: https://github.com/fabaff
 .. _@brandond: https://github.com/brandond
 .. _@r-jordan: https://github.com/r-jordan
-.. _@Landradsh: https://github.com/Landradsh
+.. _@Landrash: https://github.com/Landrash
 
 And last but not least, check out this awesome video by `The Hook Up <https://www.youtube.com/channel/UC2gyzKcHbYfqoXA5xbyGXtQ>`__
 for using esphomeyaml to create a simple wireless doorbell:

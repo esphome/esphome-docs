@@ -32,7 +32,7 @@ Configuration variables:
   - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
 
-- **tolerance** (*Optional*, int): The percentage that the remote signal lengths can devicate in the
+- **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the
   decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kb``
   on the ESP32 and ``1kb`` on the ESP8266.
