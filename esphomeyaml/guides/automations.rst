@@ -223,21 +223,6 @@ we're retrieving the current state of the end stop using ``.state`` and using it
 
 .. tip::
 
-    An easy way to debug lambdas is to use esphomelib's logging engine:
-
-    .. code:: yaml
-
-        lambda: |-
-          ESP_LOGE("main", "This is a red error message");
-          ESP_LOGW("main", "This is a yellow warning message");
-          ESP_LOGD("main", "This is a blue debug message");
-          ESP_LOGV("main", "This is a gray verbose message"); // doesn't show up with the default log level.
-
-          // Use printf-style syntax (http://www.cplusplus.com/reference/cstdio/printf/)
-          ESP_LOGD("main", "The temperature inside is %.1f", id(outside_temperature_sensor).state);
-
-.. tip::
-
     To store local variables inside lambdas that retain their value across executions, you can create ``static``
     variables like so. In this example the variable ``num_executions`` is incremented by one each time the
     lambda is executed and the current value is logged.
@@ -299,6 +284,7 @@ All Actions
 - :ref:`if <if_action>`
 - :ref:`component.update <component-update_action>`
 - :ref:`script.execute <script-execute_action>`
+- :ref:`logger.log <logger-log_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>`
 - :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>`
