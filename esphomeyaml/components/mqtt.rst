@@ -400,6 +400,22 @@ Configuration options:
 -  **retain** (*Optional*, boolean, :ref:`templatable <config-templatable>`): If the published message should
    have a retain flag on or not. Defaults to ``False``.
 
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
+    .. code:: cpp
+
+        // in lambda, parameters: <TOPIC>,    <PAYLOAD>,  <QoS>, <retain>
+        id(mqtt_client).publish("the/topic", "The Payload", 0, false);
+
 .. _mqtt-publish_json_action:
 
 ``mqtt.publish_json`` Action
