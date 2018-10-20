@@ -638,9 +638,9 @@ Text Sensor Components
 ----------------------
 
 ================================================== ================================================== ==================================================
-|Text Sensor Core|_                                |MQTT Subscribe|_                                  |Version|_
+|Text Sensor Core|_                                |MQTT Subscribe Text|_                             |Version|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Text Sensor Core`_                                `MQTT Subscribe`_                                  `Version`_
+`Text Sensor Core`_                                `MQTT Subscribe Text`_                             `Version`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 |Template Text Sensor|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
@@ -650,9 +650,9 @@ Text Sensor Components
 .. |Text Sensor Core| image:: /esphomeyaml/images/folder-open.svg
     :class: component-image
 .. _Text Sensor Core: /esphomeyaml/components/text_sensor/index.html
-.. |MQTT Subscribe| image:: /esphomeyaml/images/mqtt.png
+.. |MQTT Subscribe Text| image:: /esphomeyaml/images/mqtt.png
     :class: component-image
-.. _MQTT Subscribe: /esphomeyaml/components/text_sensor/mqtt_subscribe.html
+.. _MQTT Subscribe Text: /esphomeyaml/components/text_sensor/mqtt_subscribe.html
 .. |Version| image:: /esphomeyaml/images/new-box.svg
     :class: component-image
 .. _Version: /esphomeyaml/components/text_sensor/version.html
