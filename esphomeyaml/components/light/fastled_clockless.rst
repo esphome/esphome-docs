@@ -40,6 +40,8 @@ Configuration variables:
 - **gamma_correct** (*Optional*, float): The `gamma correction
   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the
   light. Defaults to ``2.8``.
+- **color_correct** (*Optional*, list of percentages): The color correction for each channel. This denotes
+  the maximum brightness of the red, green and blue channel. Defaults to ``color_correct: [100%, 100%, 100%]``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The length of
   the transition if no transition parameter is provided by Home
   Assistant. Defaults to ``1s``.
