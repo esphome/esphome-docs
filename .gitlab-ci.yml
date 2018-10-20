@@ -47,7 +47,7 @@ deploy-beta:
     - git fetch --force git@github.com:OttoWinter/beta.esphomelib.com.git master:gh-pages
     - git worktree add _build/html gh-pages
     - make ../esphomelib
-    - make deploy
+    - CNAME=beta.esphomelib.com make deploy
     - git -C _build/html push git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages
   only:
     - rc
