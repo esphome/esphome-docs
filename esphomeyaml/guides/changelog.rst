@@ -1,6 +1,85 @@
 Changelog
 =========
 
+Version 1.9.0
+-------------
+
+All Changes
+***********
+
+- esphomedocs: Clarify ESP32 BLE Tracker comment `#42 <https://github.com/OttoWinter/esphomedocs/pull/42>`__
+- esphomeyaml: Add a link to Home Assistant in README `#152 <https://github.com/OttoWinter/esphomeyaml/pull/152>`__ by `@jonnyair <https://github.com/jonnyair>`__
+- esphomelib: Add a link to Home Assistant in README.md `#184 <https://github.com/OttoWinter/esphomelib/pull/184>`__ by `@jonnyair <https://github.com/jonnyair>`__
+- esphomedocs: Fix time docs 12-hour clock strftime format `#43 <https://github.com/OttoWinter/esphomedocs/pull/43>`__
+- esphomelib: Fix ESP32 BLE Presence detection always on `#185 <https://github.com/OttoWinter/esphomelib/pull/185>`__
+- esphomelib: Fix LCD display include `#186 <https://github.com/OttoWinter/esphomelib/pull/186>`__
+- esphomelib: Fix template switch spamming output `#187 <https://github.com/OttoWinter/esphomelib/pull/187>`__
+- esphomelib: Fix using HTU21D for SI7021 `#188 <https://github.com/OttoWinter/esphomelib/pull/188>`__
+- esphomelib: Fix components sending invalid state on startup if integration not ready yet `#195 <https://github.com/OttoWinter/esphomelib/pull/195>`__
+- esphomelib: Log esphomelib version and compilation time on boot `#189 <https://github.com/OttoWinter/esphomelib/pull/189>`__ (new-feature)
+- esphomeyaml: Log esphomelib version and compilation time on boot `#159 <https://github.com/OttoWinter/esphomeyaml/pull/159>`__
+- esphomeyaml: Fix raw remote receiver `#158 <https://github.com/OttoWinter/esphomeyaml/pull/158>`__
+- esphomelib: Add Code of Conduct (Contributor Covenant) `#196 <https://github.com/OttoWinter/esphomelib/pull/196>`__
+- esphomelib: Create CONTRIBUTING.md `#197 <https://github.com/OttoWinter/esphomelib/pull/197>`__
+- esphomelib: Create issue templates `#198 <https://github.com/OttoWinter/esphomelib/pull/198>`__
+- esphomelib: Create pull request template `#199 <https://github.com/OttoWinter/esphomelib/pull/199>`__
+- esphomeyaml: Create Pull Request Template `#172 <https://github.com/OttoWinter/esphomeyaml/pull/172>`__
+- esphomeyaml: Create CONTRIBUTING.md `#169 <https://github.com/OttoWinter/esphomeyaml/pull/169>`__
+- esphomeyaml: Add Code of Conduct (Contributor Covenant) `#168 <https://github.com/OttoWinter/esphomeyaml/pull/168>`__
+- esphomeyaml: Create issue templates `#171 <https://github.com/OttoWinter/esphomeyaml/pull/171>`__
+- esphomedocs: Add Code of Conduct (Contributor Covenant) `#44 <https://github.com/OttoWinter/esphomedocs/pull/44>`__
+- esphomedocs: Create Pull Request Template `#45 <https://github.com/OttoWinter/esphomedocs/pull/45>`__
+- esphomeyaml: Fix readme broken link `#174 <https://github.com/OttoWinter/esphomeyaml/pull/174>`__
+- esphomelib: Fix pulse counter counting inverted on ESP8266 `#200 <https://github.com/OttoWinter/esphomelib/pull/200>`__
+- esphomeyaml: Add use_build_flags removal notice `#173 <https://github.com/OttoWinter/esphomeyaml/pull/173>`__
+- esphomedocs: Highlight update_interval gotchas `#46 <https://github.com/OttoWinter/esphomedocs/pull/46>`__
+- esphomedocs: Add Disqus and cleanup `#47 <https://github.com/OttoWinter/esphomedocs/pull/47>`__
+- esphomelib: Fix PN532 not logging discovered tags `#202 <https://github.com/OttoWinter/esphomelib/pull/202>`__
+- esphomeyaml: Add Samsung IR protocol `#176 <https://github.com/OttoWinter/esphomeyaml/pull/176>`__ by `@escoand <https://github.com/escoand>`__ (new-feature)
+- esphomelib: Bump FastLED to 3.2.0 `#203 <https://github.com/OttoWinter/esphomelib/pull/203>`__
+- esphomeyaml: Fix Wifi power_save_mode option `#178 <https://github.com/OttoWinter/esphomeyaml/pull/178>`__
+- esphomelib: Fix application sort order `#211 <https://github.com/OttoWinter/esphomelib/pull/211>`__
+- esphomedocs: Improve pulse counter docs `#49 <https://github.com/OttoWinter/esphomedocs/pull/49>`__
+- esphomelib: Fix ESP32 BLE Controller Init `#213 <https://github.com/OttoWinter/esphomelib/pull/213>`__
+- esphomelib: Fix Web Server Creating Infinite Print Loop `#214 <https://github.com/OttoWinter/esphomelib/pull/214>`__
+- esphomelib: Add TOGGLE payload to more components `#212 <https://github.com/OttoWinter/esphomelib/pull/212>`__ (new-feature)
+- esphomelib: ESP8266 Pulse Counter Improve Timing `#205 <https://github.com/OttoWinter/esphomelib/pull/205>`__
+- esphomelib: Add MQTT Subscribe Sensor `#193 <https://github.com/OttoWinter/esphomelib/pull/193>`__ (new-feature)
+- esphomeyaml: Add MQTT Subscribe sensor `#175 <https://github.com/OttoWinter/esphomeyaml/pull/175>`__
+- esphomeyaml: MQTT different log level `#167 <https://github.com/OttoWinter/esphomeyaml/pull/167>`__ (new-feature)
+- esphomeyaml: Add clean build files command and auto-clean on version change `#181 <https://github.com/OttoWinter/esphomeyaml/pull/181>`__ (new-feature)
+- esphomelib: Add power on value to switch `#207 <https://github.com/OttoWinter/esphomelib/pull/207>`__ (new-feature)
+- esphomelib: Rework OTA to be more stable `#204 <https://github.com/OttoWinter/esphomelib/pull/204>`__ (new-feature)
+- esphomeyaml: Rework OTA to be more stable `#177 <https://github.com/OttoWinter/esphomeyaml/pull/177>`__
+- esphomelib: Fix WiFi not working when GPIO 0 connected `#215 <https://github.com/OttoWinter/esphomelib/pull/215>`__
+- esphomelib: Fix MiFlora illuminance reading `#220 <https://github.com/OttoWinter/esphomelib/pull/220>`__
+- esphomelib: Remove invalid file headers `#219 <https://github.com/OttoWinter/esphomelib/pull/219>`__
+- esphomeyaml: Fix config dump time output `#184 <https://github.com/OttoWinter/esphomeyaml/pull/184>`__
+- esphomelib: GPIO Switch Rewrite `#217 <https://github.com/OttoWinter/esphomelib/pull/217>`__
+- esphomeyaml: GPIO Switch Power On Value v2 `#183 <https://github.com/OttoWinter/esphomeyaml/pull/183>`__
+- esphomeyaml: Decentralize Automation Generator Code `#182 <https://github.com/OttoWinter/esphomeyaml/pull/182>`__
+- esphomelib: Add PN532 On Tag Trigger `#226 <https://github.com/OttoWinter/esphomelib/pull/226>`__ (new-feature)
+- esphomelib: Add text sensors `#194 <https://github.com/OttoWinter/esphomelib/pull/194>`__ (new-feature)
+- esphomelib: Fix PCF8574 assert. `#223 <https://github.com/OttoWinter/esphomelib/pull/223>`__ by `@lobradov <https://github.com/lobradov>`__
+- esphomelib: Unify Xiaomi MiJia&MiFlora Implementations `#225 <https://github.com/OttoWinter/esphomelib/pull/225>`__
+- esphomeyaml: Unify Xiaomi implementations `#188 <https://github.com/OttoWinter/esphomeyaml/pull/188>`__
+- esphomelib: Add CSE7766 for Sonoff Pow R2 `#227 <https://github.com/OttoWinter/esphomelib/pull/227>`__ (new-feature)
+- esphomeyaml: Add CSE776 for Sonoff Pow R2 `#190 <https://github.com/OttoWinter/esphomeyaml/pull/190>`__
+- esphomeyaml: Add Text Sensors `#166 <https://github.com/OttoWinter/esphomeyaml/pull/166>`__
+- esphomeyaml: Add PN532 On Tag Trigger `#189 <https://github.com/OttoWinter/esphomeyaml/pull/189>`__
+- esphomelib: Add MQTT publish JSON action and subscribe JSON trigger `#230 <https://github.com/OttoWinter/esphomelib/pull/230>`__ (new-feature)
+- esphomeyaml: Add MQTT publish JSON action and subscribe JSON trigger `#193 <https://github.com/OttoWinter/esphomeyaml/pull/193>`__
+- esphomelib: Add PMSX003 Particulate Matter Sensor `#229 <https://github.com/OttoWinter/esphomelib/pull/229>`__ (new-feature)
+- esphomelib: Add update component action and scripts `#232 <https://github.com/OttoWinter/esphomelib/pull/232>`__ (new-feature)
+- esphomelib: Implement HASS device registry for MQTT components `#233 <https://github.com/OttoWinter/esphomelib/pull/233>`__ (new-feature)
+- esphomelib: Add FastLED color correction option `#234 <https://github.com/OttoWinter/esphomelib/pull/234>`__ (new-feature)
+- esphomeyaml: Add update component action and scripts `#196 <https://github.com/OttoWinter/esphomeyaml/pull/196>`__
+- esphomeyaml: Add PMSX003 Particulate Matter Sensor `#192 <https://github.com/OttoWinter/esphomeyaml/pull/192>`__
+- esphomeyaml: Add FastLED color correction option `#200 <https://github.com/OttoWinter/esphomeyaml/pull/200>`__
+- esphomeyaml: Fix triggers being interpreted as a sequence of automations `#199 <https://github.com/OttoWinter/esphomeyaml/pull/199>`__
+- esphomeyaml: Fix value range trigger :expressionless: `#201 <https://github.com/OttoWinter/esphomeyaml/pull/201>`__
+- esphomedocs: Fix template sensor docs `#66 <https://github.com/OttoWinter/esphomedocs/pull/66>`__
+
 Version 1.8.0
 -------------
 
