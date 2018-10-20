@@ -34,7 +34,7 @@ $(ESPHOMELIB_PATH):
 
 deploy: cleanhtml doxyg html $(ESPHOMELIB_PATH)
 	touch "$(BUILDDIR)/html/.nojekyll"
-	echo $CNAME >"$(BUILDDIR)/html/CNAME"
+	echo "$(CNAME)" >"$(BUILDDIR)/html/CNAME"
 	git -C "$(BUILDDIR)/html" add --all && git -C "$(BUILDDIR)/html" commit -m "Deploy to gh-pages"
 	@printf "Run \033[0;36mcd $(BUILDDIR)/html && git push origin gh-pages\033[0m to deploy\n"
 
