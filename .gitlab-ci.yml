@@ -7,8 +7,9 @@ build:
     - make html
   except:
     - current
+    - rc
 
-deploy:
+deploy-release:
   tags:
     - esphomedocs
   before_script:
@@ -26,8 +27,27 @@ deploy:
     - make ../esphomelib
     - make deploy
     - git -C _build/html push git@github.com:OttoWinter/esphomedocs.git gh-pages
-  artifacts:
-    paths:
-    - _build/html
   only:
     - current
+
+
+deploy-beta:
+  tags:
+    - esphomedocs
+  before_script:
+    - mkdir -p /root/.ssh
+    - echo "$GITHUB_BETA_PRIVATE_KEY" | tr -d '\r' >/root/.ssh/id_rsa
+    - chmod 600 /root/.ssh/id_rsa
+    - ssh-keyscan -t rsa github.com >>/root/.ssh/known_hosts
+    - git config --global user.email "$GITHUB_EMAIL"
+    - git config --global user.name "$GITHUB_NAME"
+    - git worktree prune
+    - rm -rf ../esphomelib
+  script:
+    - git fetch --force git@github.com:OttoWinter/beta.esphomelib.com.git master:gh-pages
+    - git worktree add _build/html gh-pages
+    - make ../esphomelib
+    - make deploy
+    - git -C _build/html push git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages
+  only:
+    - rc
