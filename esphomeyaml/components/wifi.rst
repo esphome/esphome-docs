@@ -109,11 +109,12 @@ WiFi. While some options *can* reduce the power usage of the ESP, they generally
 reliability of the WiFi connection, with frequent disconnections from the router in the highest
 power saving mode.
 
-If you know what you're doing and the node doesn't need to have an extremely reliable connection to WiFi,
-you can set the power saving mode to ``LIGHT`` or even ``HIGH``. But for most situations ``NONE`` is the best.
+The default is ``light`` (a bit of power saving). If you experience frequent WiFi disconnection problems,
+please switch to ``none`` (no power saving). However, ``none`` sometimes works even worse than ``light``, so it's
+best to test with both (hence ``none`` is also not the default).
 
-- ``NONE`` (Default, least power saving)
-- ``LIGHT``
+- ``NONE`` (least power saving)
+- ``LIGHT`` (Default)
 - ``HIGH`` (most power saving)
 
 .. code:: yaml

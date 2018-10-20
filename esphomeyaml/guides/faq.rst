@@ -61,12 +61,8 @@ Help! Something's not working!1!
 
 That's no good. Here are some steps that resolve some problems:
 
--  **Update platformio** Some errors are caused by platformio not having the latest version. Try running
-   ``platformio update`` in your terminal.
--  **Clean the platformio cache**: Sometimes the build cache leaves behind some weird artifacts. Try running
-   ``platformio run -d <NAME_OF_NODE> -t clean``.
--  **Try with the latest Arduino framework version**:
-   See :ref:`this <esphomeyaml-arduino_version>`.
+-  **If you're having WiFi problems**: See :ref:`wifi-problems`.
+-  **Try with the latest Arduino framework version**: See :ref:`this <esphomeyaml-arduino_version>`.
 -  **Still an error?** Please file a bug report over in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
@@ -150,6 +146,8 @@ Sure! I'd be happy to help :) You can contact me here:
    feature requests.
 -  Alternatively, also under my e-mail address contact (at) otto-winter.com
 
+.. _wifi-problems:
+
 My node keeps reconnecting randomly
 -----------------------------------
 
@@ -159,6 +157,7 @@ not have a real solution.
 
 Some steps that can help with the issue:
 
+-  Set the ``power_save_mode`` to ``NONE`` in the ``wifi:`` config. See :ref:`wifi-power_save_mode`.
 -  Use the most recent version of th arduino framework. The platformio arduino package
    always takes some time to update and the most recent version often includes some awesome
    patches. See :ref:`esphomeyaml-arduino_version`.
