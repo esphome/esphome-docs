@@ -26,7 +26,7 @@ deploy-release:
     - git worktree add _build/html gh-pages
     - make ../esphomelib
     - make deploy
-    - git -C _build/html push git@github.com:OttoWinter/esphomedocs.git gh-pages
+    - git -C _build/html push -f git@github.com:OttoWinter/esphomedocs.git gh-pages
   only:
     - current
 
@@ -44,10 +44,10 @@ deploy-beta:
     - git worktree prune
     - rm -rf ../esphomelib
   script:
-    - git fetch --force git@github.com:OttoWinter/beta.esphomelib.com.git master:gh-pages
+    - git fetch --force git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages:gh-pages
     - git worktree add _build/html gh-pages
     - make ../esphomelib
     - CNAME=beta.esphomelib.com make deploy
-    - git -C _build/html push git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages
+    - git -C _build/html push -f git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages
   only:
     - rc
