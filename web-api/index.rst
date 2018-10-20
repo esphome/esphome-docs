@@ -115,8 +115,8 @@ Switch
 Switches have the exact same properties as a binary sensor in the state reporting aspect, but they
 additionally support setting states with the ``turn_on``, ``turn_off`` and ``toggle`` methods.
 
-Each of these is quite self explanatory. Creating a POST request to ``/switch/dehumidifer/turn_on``
-would for example result in the component called "Dehumidifer" to be turned on. The server will respond
+Each of these is quite self explanatory. Creating a POST request to ``/switch/dehumidifier/turn_on``
+would for example result in the component called "Dehumidifier" to be turned on. The server will respond
 with a 200 OK HTTP return code if the call succeeded.
 
 Light

@@ -4,7 +4,7 @@ Custom Sensor Component
 .. warning::
 
     While I do try to keep the esphomeyaml configuration options as stable as possible
-    and backport them, the esphomelib API is less stable. If something in the APIs needs
+    and back-port them, the esphomelib API is less stable. If something in the APIs needs
     to be changed in order for something else to work, I will do so.
 
 So, you just set up esphomelib for your ESP32/ESP8266, but sadly esphomelib is missing a sensor integration

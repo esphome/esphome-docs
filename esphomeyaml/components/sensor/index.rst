@@ -77,7 +77,7 @@ Automations:
 Sensor Filters
 --------------
 
-esphomeyaml/esphomelib allow you to do some basic preprocessing of
+esphomeyaml/esphomelib allow you to do some basic pre-processing of
 sensor values before they’re sent to Home Assistant. This is for example
 useful if you want to apply some average over the last few values to
 relief Home Assistant’s state machine and keep the history graphs in the

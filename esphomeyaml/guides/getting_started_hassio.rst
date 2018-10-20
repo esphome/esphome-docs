@@ -15,7 +15,7 @@ Assistant's UI.
 Installation
 ------------
 
-Installing the epshomeyaml HassIO add-on is easy. Just navigate to the HassIO
+Installing the esphomeyaml HassIO add-on is easy. Just navigate to the HassIO
 panel in your Home Assistant frontend and add the esphomeyaml add-on repository:
 https://github.com/OttoWinter/esphomeyaml
 
@@ -104,7 +104,7 @@ to the configuration like this:
 
     switch:
       - platform: gpio
-        name: "Living Room Dehumidifer"
+        name: "Living Room Dehumidifier"
         pin: 5
 
 In above example, we're simply adding a switch that's called "Living Room Relay" (could control

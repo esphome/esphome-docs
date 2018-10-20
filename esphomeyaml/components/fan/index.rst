@@ -25,7 +25,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
 - **oscillation_state_topic** (*Optional*, string): The topic to
-  publish fan oscillaiton state changes to.
+  publish fan oscillation state changes to.
 - **oscillation_command_topic** (*Optional*, string): The topic to
   receive oscillation commands on.
 - **speed_state_topic** (*Optional*, string): The topic to publish fan

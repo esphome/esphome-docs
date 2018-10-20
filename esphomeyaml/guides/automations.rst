@@ -4,7 +4,7 @@ Automations And Templates
 =========================
 
 Automations and templates are two very powerful concepts of esphomelib/yaml. Automations
-allow you to perfom actions under certain conditions and templates are a way to easily
+allow you to perform actions under certain conditions and templates are a way to easily
 customize everything about your node without having to dive into the full esphomelib C++
 API.
 
@@ -15,18 +15,18 @@ Let's begin with an example to explain these concepts. Suppose you have this con
     switch:
       - platform: gpio
         pin: GPIO3
-        name: "Living Room Dehumidifer"
+        name: "Living Room Dehumidifier"
 
     binary_sensor:
       - platform: gpio
         pin: GPIO4
-        name: "Living Room Dehumidifer Toggle Button"
+        name: "Living Room Dehumidifier Toggle Button"
 
 With this file you can already perform some basic tasks. You can control the ON/OFF state
-of the dehumidifer in your livingroom from Home Assistant's front-end. But in many cases,
+of the dehumidifier in your living room from Home Assistant's front-end. But in many cases,
 controlling everything strictly from the frontend is quite a pain. That's why you have
-decided to also install a simple push button next to the dehumidifer on pin GPIO4.
-A simple push on this button should toggle the state of the dehumidifer.
+decided to also install a simple push button next to the dehumidifier on pin GPIO4.
+A simple push on this button should toggle the state of the dehumidifier.
 
 You *could* write an automation to do this task in Home Assistant's automation engine, but
 ideally the IoT should work without an internet connection and should not break without
@@ -49,7 +49,7 @@ For example, this configuration would achieve your desired behavior:
     binary_sensor:
       - platform: gpio
         pin: GPIO4
-        name: "Living Room Dehumidifer Toggle Button"
+        name: "Living Room Dehumidifier Toggle Button"
         on_press:
           then:
             - switch.toggle:

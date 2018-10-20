@@ -8,7 +8,7 @@ is hosted on GitHub and you can find the sources here:
 - `esphomeyaml <https://github.com/OttoWinter/esphomeyaml>`__ (The Python YAML to C++ transpiler)
 - `esphomedocs <https://github.com/OttoWinter/esphomedocs>`__ (The documentation which you're reading here)
 
-Just clone the repository locally, do the changes for your new feature/bugfix and submit
+Just clone the repository locally, do the changes for your new feature/bug fix and submit
 a pull request. I will try to take a look at your PR as soon as possible.
 
 Contributing to esphomedocs

@@ -1,7 +1,7 @@
 Logging Engine
 ==============
 
-esphomelib will by default log to both Serial (with baudrate 115200).
+esphomelib will by default log to both Serial (with baud rate 115200).
 
 API Reference
 -------------

@@ -8,7 +8,7 @@ basic “node” in a few simple steps.
 Installation
 ------------
 
-Installing epshomeyaml is very easy. All you need to do is have `Python
+Installing esphomeyaml is very easy. All you need to do is have `Python
 2.7 <https://www.python.org/download/releases/2.7/>`__ installed
 (because of platformio 😕) and install the console script script through
 ``pip``.
@@ -59,7 +59,7 @@ GPIO switch </esphomeyaml/components/switch/gpio>` to our app.
 
     switch:
       - platform: gpio
-        name: "Living Room Dehumidifer"
+        name: "Living Room Dehumidifier"
         pin: 5
 
 The configuration format should hopefully immediately seem similar to

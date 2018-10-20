@@ -12,12 +12,12 @@ Example Usage
 .. code-block:: cpp
 
     // Basic
-    App.make_pulse_counter_sensor("Stromverbrauch Wärmepumpe", 13);
+    App.make_pulse_counter_sensor("Pulse Counter", 13);
     // Unit conversion
-    auto strom_warme = App.make_pulse_counter_sensor("Stromverbrauch Wärmepumpe", 13);
-    strom_warme.pcnt->set_unit_of_measurement("kW");
-    strom_warme.pcnt->clear_filters();
-    strom_warme.pcnt->add_multiply_filter(0.06f); // convert from Wh pulse to kW
+    auto pcnt_1 = App.make_pulse_counter_sensor("Pulse Counter 2", 13);
+    pcnt_1.pcnt->set_unit_of_measurement("kW");
+    pcnt_1.pcnt->clear_filters();
+    pcnt_1.pcnt->add_multiply_filter(0.06f); // convert from Wh pulse to kW
 
 .. cpp:namespace:: nullptr
 

@@ -8,7 +8,7 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 `adafruit <https://www.adafruit.com/product/385>`__), AM2302
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf>`__,
 `adafruit <https://www.adafruit.com/product/393>`__) and RHT03
-(`datashet <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__,
+(`datasheet <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__,
 `sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__)
 sensors with esphomelib.
 

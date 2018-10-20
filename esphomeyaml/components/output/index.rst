@@ -20,7 +20,7 @@ Each output platform extends this configuration schema.
     # Example configuration entry
     output:
       - platform: ...
-        id: myoutput_id
+        id: my_output_id
         power_supply: power_supply_id
         inverted: False
         max_power: 0.75

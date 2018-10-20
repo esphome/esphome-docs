@@ -122,7 +122,7 @@ still appearing in Home Assistant’s front-end. This is because in order
 to have Home Assistant “discover” your devices on restart, all discovery
 MQTT messages need to be retained. Therefore the old entities will also
 re-appear on every Home Assistant restart even though they’re in
-eshomeyaml anymore.
+esphomeyaml anymore.
 
 To fix this, esphomeyaml has a simple helper script that purges stale
 retained messages for you:
