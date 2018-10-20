@@ -34,8 +34,6 @@ deploy-release:
 deploy-beta:
   tags:
     - esphomedocs
-  variables:
-    CNAME: beta.esphomelib.com
   before_script:
     - mkdir -p /root/.ssh
     - echo "$GITHUB_BETA_PRIVATE_KEY" | tr -d '\r' >/root/.ssh/id_rsa
@@ -49,7 +47,7 @@ deploy-beta:
     - git fetch --force git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages:gh-pages
     - git worktree add _build/html gh-pages
     - make ../esphomelib
-    - make deploy
+    - CNAME="beta.esphomelib.com" make deploy
     - git -C _build/html push -f git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages
   only:
     - rc
