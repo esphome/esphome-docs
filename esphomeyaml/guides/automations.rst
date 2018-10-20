@@ -293,6 +293,7 @@ All Triggers
 ------------
 
 - :ref:`mqtt.on_message <mqtt-on_message>`
+- :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`sensor.on_value <sensor-on_value>`
 - :ref:`sensor.on_value_range <sensor-on_value_range>`
 - :ref:`sensor.on_raw_value <sensor-on_raw_value>`
@@ -312,6 +313,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>`
+- :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>`
 - :ref:`switch.turn_off <switch-turn_off_action>`
 - :ref:`switch.turn_on <switch-turn_on_action>`

@@ -55,6 +55,8 @@ Configuration variables:
   WiFi traffic with more pings. Defaults to 15 seconds.
 - **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a message on a specific MQTT topic is received. See :ref:`mqtt-on_message`.
+- **on_json_message** (*Optional*, :ref:`Automation <automation>`): An action to be
+  performed when a JSON message on a specific MQTT topic is received. See :ref:`mqtt-on_json_message`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. _mqtt-message:
@@ -270,8 +272,8 @@ Configuration variables:
 
 .. _mqtt-on_message:
 
-on_message
-----------
+``on_message`` Trigger
+----------------------
 
 With this configuration option you can write complex automations whenever an MQTT
 message on a specific topic is received. To use the message content, use a :ref:`lambda <config-lambda>`
@@ -293,11 +295,6 @@ Configuration variables:
 - **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
   messages on. Every time a message with **this exact topic** is received, the automation will trigger.
 
-
-  .. note::
-
-     Currently the topic does not support MQTT wildcards like ``+`` or ``#``.
-
 - **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
 
@@ -315,6 +312,59 @@ Configuration variables:
              - topic: some/other/topic
                then:
                  - # ...
+
+.. _mqtt-on_json_message:
+
+``on_json_message`` Trigger
+---------------------------
+
+With this configuration option you can write complex automations whenever a JSON-encoded MQTT
+message is received. To use the message content, use a :ref:`lambda <config-lambda>`
+template, the decoded message payload is available under the name ``x`` inside that lambda.
+
+The ``x`` object is of type ``JsonObject`` by the `ArduinoJson <https://github.com/bblanchon/ArduinoJson>`__
+library, and you can use all of the methods of that library to access data.
+
+Basically, you can access elements by typing ``x["THE_KEY"]`` and save them into local variables.
+Please note that it's a good idea to check if the key exists in the Json Object by calling
+``containsKey`` first as the ESP will crash if an element that does not exist is accessed.
+
+.. code:: yaml
+
+    mqtt:
+      # ...
+      on_json_message:
+        topic: the/topic
+          then:
+          - light.turn_on:
+              id: living_room_lights
+
+              transition_length: !lambda |-
+                int length = 1000;
+                if (x.containsKey("length"))
+                  length = x["length"];
+                return length;
+
+              brightness: !lambda "return x["bright"];"
+
+              effect: !lambda |-
+                const char *effect = "None";
+                if (x.containsKey("effect"))
+                  effect = x["effect"];
+                return effect;
+
+Configuration variables:
+
+- **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
+  messages on. Every time a message with **this exact topic** is received, the automation will trigger.
+
+- **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+  to 0.
+
+.. note::
+
+    Due to the way this trigger works internally it is incompatible with certain actions and will
+    trigger a compile failure. For example with the ``delay`` action.
 
 .. _mqtt-publish_action:
 
@@ -348,6 +398,58 @@ Configuration options:
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean, :ref:`templatable <config-templatable>`): If the published message should
+   have a retain flag on or not. Defaults to ``False``.
+
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
+    .. code:: cpp
+
+        // in lambda, parameters: <TOPIC>,    <PAYLOAD>,  <QoS>, <retain>
+        id(mqtt_client).publish("the/topic", "The Payload", 0, false);
+
+.. _mqtt-publish_json_action:
+
+``mqtt.publish_json`` Action
+----------------------------
+
+Publish a JSON-formatted MQTT message on a topic using this action in automations.
+
+The JSON message will be constructed using the `ArduinoJson <https://github.com/bblanchon/ArduinoJson>`__ library.
+In the ``payload`` option you have access to a ``root`` object which will represents the base object
+of the JSON message. You can assign values to keys by using the ``root["KEY_NAME"] = VALUE;`` syntax
+as seen below.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - mqtt.publish_json:
+            topic: the/topic
+            payload: |-
+              root["key"] = id(my_sensor).value;
+              root["greeting"] = "Hello World";
+
+            # Will produce:
+            # {"key": 42.0, "greeting": "Hello World"}
+
+Configuration options:
+
+-  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+   The MQTT topic to publish the message.
+-  **payload** (*Required*, :ref:`lambda <config-lambda>`): The message content.
+-  **qos** (*Optional*, int): The `Quality of
+   Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
+   level of the topic. Defaults to 0.
+-  **retain** (*Optional*, boolean): If the published message should
    have a retain flag on or not. Defaults to ``False``.
 
 See Also
