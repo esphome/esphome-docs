@@ -8,7 +8,9 @@ access a combined :cpp:class:`LightState` object and use only that to set state 
 state updates.
 
 .. toctree::
-    fastled.rst
+    :glob:
+
+    *
 
 Example Usage
 -------------

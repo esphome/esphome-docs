@@ -5,8 +5,9 @@ Supported Covers
 ----------------
 
 .. toctree::
+    :glob:
 
-    template
+    *
 
 Example Usage
 -------------

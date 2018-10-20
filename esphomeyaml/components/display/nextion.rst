@@ -72,7 +72,7 @@ you can call to populate data on the display:
           it.set_component_text("textview", "Hello World!");
 
           // set the text of a component with formatting
-          it.set_component_text("textview", "The uptime is: %.1f", id(uptime_sensor).value);
+          it.set_component_text("textview", "The uptime is: %.1f", id(uptime_sensor).state);
 
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and

@@ -195,15 +195,17 @@ directly, put an empty ``filters:`` block in your configuration:
 
 .. code:: yaml
 
+    # Example configuration entry
     sensor:
-      - platform: ...
-        filters:
+      - platform: adc
+        # ...
+        filters: []
 
 Sensor Automation
 -----------------
 
 You can access the most recent state of the sensor in :ref:`lambdas <config-lambda>` using
-``id(sensor_id).value`` and the most recent raw state using ``id(sensor_id).raw_value``.
+``id(sensor_id).state`` and the most recent raw state using ``id(sensor_id).raw_value``.
 
 .. _sensor-on_value:
 
@@ -287,29 +289,29 @@ lambda calls
 From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors to do some
 advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more info).
 
-- ``push_new_value()``: Manually cause the sensor to push out a value. It will then
+- ``publish_state()``: Manually cause the sensor to push out a value. It will then
   be processed by the sensor filters, and once done be published to MQTT.
 
   .. code:: yaml
 
       // Within lambda, push a value of 42.0
-      id(my_sensor).push_new_value(42.0);
+      id(my_sensor).publish_state(42.0);
 
-- ``value``: Retrieve the current value of the sensor that has passed through all sensor filters.
+- ``.state``: Retrieve the current value of the sensor that has passed through all sensor filters.
   Is ``NAN`` if no value has gotten through all filters yet.
 
   .. code:: yaml
 
       // For example, create a custom log message when a value is received:
-      ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).value);
+      ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
 
-- ``raw_value``: Retrieve the current value of the sensor that has not passed through any filters
+- ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
   Is ``NAN`` if no value if no value has been pushed by the sensor itself yet.
 
   .. code:: yaml
 
       // For example, create a custom log message when a value is received:
-      ESP_LOGI("main", "Raw Value of my sensor: %f", id(my_sensor).value);
+      ESP_LOGI("main", "Raw Value of my sensor: %f", id(my_sensor).raw_state);
 
 
 See Also
@@ -320,45 +322,8 @@ See Also
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    adc
-    ads1115
-    bh1750
-    ble_rssi
-    bme280
-    bme680
-    bmp085
-    bmp280
-    cse7766
-    custom
-    dallas
-    dht
-    dht12
-    duty_cycle
-    esp32_hall
-    hdc1080
-    hlw8012
-    hmc5883l
-    htu21d
-    hx711
-    ina219
-    ina3221
-    max6675
-    mhz19
-    mpu6050
-    mqtt_subscribe
-    ms5611
-    pulse_counter
-    pmsx003
-    rotary_encoder
-    sht3xd
-    tcs34725
-    template
-    tsl2561
-    ultrasonic
-    uptime
-    wifi_signal
-    xiaomi_miflora
-    xiaomi_mijia
+    *
 
 .. disqus::

@@ -25,6 +25,16 @@ Configuration options:
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
   if the light supports it.
 
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        auto call = id(light_1).toggle();
+        // perform action:
+        call.perform();
+
 .. _light-turn_on_action:
 
 ``light.turn_on`` Action
@@ -48,7 +58,7 @@ This action turns a light with the given ID on when executed.
             id: light_1
             brightness: !lambda >-
               // output value must be in range 0 - 1.0
-              return id(some_sensor).value / 100.0;
+              return id(some_sensor).state / 100.0;
 
 Configuration options:
 
@@ -70,6 +80,21 @@ Configuration options:
 - **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): If set, will attempt to
   start an effect with the given name.
 
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        auto call = id(light_1).turn_on();
+        // set parameters (optional)
+        call.set_transition_length(1000); // in ms
+        call.set_brightness(1.0); // 1.0 is full brightness
+        call.set_rgb(1.0, 1.0, 1.0); // color, 1.0 is fully lit
+        call.set_effect("The Effect");
+        // perform action:
+        call.perform();
+
 .. _light-turn_off_action:
 
 ``light.turn_off`` Action
@@ -90,7 +115,17 @@ Configuration options:
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
   if the light supports it.
 
-This action turns a switch with the given ID off when executed.
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        auto call = id(light_1).turn_off();
+        // set parameters (optional)
+        call.set_transition_length(1000); // in ms
+        // perform action:
+        call.perform();
 
 .. _light-effects:
 
@@ -462,14 +497,8 @@ See Also
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    binary.rst
-    cwww.rst
-    monochromatic.rst
-    rgb.rst
-    rgbw.rst
-    rgbww.rst
-    fastled_clockless.rst
-    fastled_spi.rst
+    *
 
 .. disqus::

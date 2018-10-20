@@ -48,27 +48,19 @@ Of the four main components (button sensor, 2 relays switches and the cover), on
           # logic for cycling through movements: open->stop->close->stop->...
           - lambda: |
               if (id(cover).state == cover::COVER_OPEN) {
-                if (id(open).value){
+                if (id(open).state){
                   // cover is in opening movement, stop it
                   id(cover).stop();
                 } else {
                   // cover has finished opening, close it
                   id(cover).close();
                 }
-              } else if (id(cover).state == cover::COVER_CLOSED) {
-                if (id(close).value){
+              } else {
+                if (id(close).state){
                   // cover is in closing movement, stop it
                   id(cover).stop();
                 } else {
                   // cover has finished closing, open it
-                  id(cover).open();
-                }
-              } else {
-                // state of cover is not known
-                if (id(open).value || id(close).value){
-                  // cover is either opening or closing, stop it
-                  id(cover).stop();
-                } else {
                   id(cover).open();
                 }
               }

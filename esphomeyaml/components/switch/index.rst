@@ -88,7 +88,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
   .. code:: yaml
 
       // Within lambda, get the switch state and conditionally do something
-      if (id(my_switch).value) {
+      if (id(my_switch).state) {
         // Switch is ON, do something here
       } else {
         // Switch is OFF, do something else here
@@ -113,13 +113,8 @@ See Also
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    gpio
-    output
-    remote_transmitter
-    restart
-    shutdown
-    template
-    uart
+    *
 
 .. disqus::

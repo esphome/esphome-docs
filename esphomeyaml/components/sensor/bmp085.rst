@@ -13,7 +13,7 @@ your configuration for this sensor to work.
     :align: center
     :width: 50.0%
 
-    BMP180 Temperature & Pressure Sensor..
+    BMP180 Temperature & Pressure Sensor.
 
 .. figure:: images/temperature-pressure.png
     :align: center
@@ -31,7 +31,7 @@ your configuration for this sensor to work.
         update_interval: 15s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 - **temperature** (**Required**): The information for the temperature sensor.
 
@@ -52,7 +52,7 @@ Configuration variables:
    sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 
 See Also
-^^^^^^^^
+--------
 
 - :ref:`sensor-filters`
 - :doc:`bme280`

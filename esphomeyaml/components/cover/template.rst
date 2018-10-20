@@ -16,7 +16,7 @@ as a cover and can be controlled through the frontend.
       - platform: template
         name: "Template Cover"
         lambda: >-
-          if (id(top_end_stop).value) {
+          if (id(top_end_stop).state) {
             return cover::COVER_OPEN;
           } else {
             return cover::COVER_CLOSED;

@@ -5,12 +5,9 @@ Supported Displays
 ------------------
 
 .. toctree::
+    :glob:
 
-    lcd_display
-    max7219
-    nextion
-    ssd1306
-    waveshare_epaper
+    *
 
 API Reference
 -------------

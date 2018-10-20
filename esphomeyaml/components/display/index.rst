@@ -232,11 +232,11 @@ For example, a printf call can look like this:
       - platform: ...
         # ...
         lambda: |-
-          it.printf(0, 0, id(my_font), "The sensor value is: %.1f", id(my_sensor).value);
+          it.printf(0, 0, id(my_font), "The sensor value is: %.1f", id(my_sensor).state);
           // If the sensor has the value 30.02, the result will be: "The sensor value is: 30.0"
 
 As you can see, when you call ``printf`` most of the string is printed as-is, but when this weird percent sign with some
-stuff after it is encountered, it is magically replaced by the argument after the format (here ``id(my_sensor).value``).
+stuff after it is encountered, it is magically replaced by the argument after the format (here ``id(my_sensor).state``).
 
 Every time you type a percent sign ``%`` in a printf format string, it will treat the following letters as a format tag
 until a so-called "specifier" is encountered (in this case ``f``). You can read more about it `here <https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm>`__,
@@ -270,7 +270,7 @@ arguments after the format string in the right order.
         # ...
         lambda: |-
           // %% - literal % sign
-          it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).value, id(humidity).value);
+          it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).state, id(humidity).state);
 
 
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
@@ -289,13 +289,13 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
       - platform: ...
         # ...
         lambda: |-
-          if (id(my_binary_sensor).value) {
+          if (id(my_binary_sensor).state) {
             it.print(0, 0, id(my_font), "state: ON");
           } else {
             it.print(0, 0, id(my_font), "state: OFF");
           }
           // Shorthand:
-          it.printf(0, 0, id(my_font), "State: %s", id(my_binary_sensor).value ? "ON" : "OFF");
+          it.printf(0, 0, id(my_font), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
 
 .. _display-strftime:
 
@@ -347,13 +347,8 @@ See Also
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    lcd_gpio
-    lcd_pcf8574
-    max7219
-    nextion
-    ssd1306_i2c
-    ssd1306_spi
-    waveshare_epaper
+    *
 
 .. disqus::

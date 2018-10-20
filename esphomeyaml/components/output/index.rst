@@ -52,6 +52,14 @@ This action turns the output with the given ID on when executed.
       then:
         - output.turn_on: relay_1
 
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        id(relay_1).turn_on();
+
 .. _output-turn_off_action:
 
 ``output.turn_off`` Action
@@ -64,6 +72,14 @@ This action turns the output with the given ID off when executed.
     on_...:
       then:
         - output.turn_off: relay_1
+
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        id(relay_1).turn_off();
 
 .. _output-set_level_action:
 
@@ -81,6 +97,15 @@ works with floating point outputs like ESP8266 PWM or LEDC.
             id: output_1
             level: 50%
 
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        // range is 0.0 (off) to 1.0 (on)
+        id(relay_1).set_level(0.5);
+
 Full Output Index
 -----------------
 
@@ -96,10 +121,8 @@ Full Output Index
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    esp8266_pwm.rst
-    gpio.rst
-    ledc.rst
-    pca9685.rst
+    *
 
 .. disqus::

@@ -8,43 +8,9 @@ The `sensor` namespace contains all sensors.
 See :cpp:func:`Application::register_sensor`.
 
 .. toctree::
-    :maxdepth: 1
+    :glob:
 
-    adc
-    ads1115
-    bh1750
-    bme280
-    bme680
-    bmp085
-    bmp280
-    cse7766
-    dallas
-    dht
-    dht12
-    duty_cycle
-    esp32_hall
-    hdc1080
-    hlw8012
-    hmc5883l
-    htu21d
-    hx711
-    ina219
-    ina3221
-    max6675
-    mhz19
-    mpu6050
-    mqtt_subscribe
-    ms5611
-    pmsx003
-    pulse_counter
-    rotary_encoder
-    sht3xd
-    tcs34725
-    template
-    tsl2561
-    ultrasonic
-    uptime
-    wifi_signal
+    *
 
 
 API Reference

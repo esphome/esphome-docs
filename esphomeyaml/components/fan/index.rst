@@ -45,8 +45,7 @@ Toggles the ON/OFF state of the fan with the given ID when executed.
 
     on_...:
       then:
-        - fan.toggle:
-            id: fan_1
+        - fan.toggle: fan_1
 
 .. _fan-turn_off_action:
 
@@ -59,8 +58,7 @@ Turns the fan with the given ID off when executed.
 
     on_...:
       then:
-        - fan.turn_off:
-            id: fan_1
+        - fan.turn_off: fan_1
 
 .. _fan-turn_on_action:
 
@@ -93,8 +91,8 @@ Full Fan Index
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    binary.rst
-    speed.rst
+    *
 
 .. disqus::
