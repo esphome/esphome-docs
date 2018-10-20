@@ -272,8 +272,8 @@ Configuration variables:
 
 .. _mqtt-on_message:
 
-on_message
-----------
+``on_message`` Trigger
+----------------------
 
 With this configuration option you can write complex automations whenever an MQTT
 message on a specific topic is received. To use the message content, use a :ref:`lambda <config-lambda>`
@@ -315,8 +315,8 @@ Configuration variables:
 
 .. _mqtt-on_json_message:
 
-on_json_message
----------------
+``on_json_message`` Trigger
+---------------------------
 
 With this configuration option you can write complex automations whenever a JSON-encoded MQTT
 message is received. To use the message content, use a :ref:`lambda <config-lambda>`
