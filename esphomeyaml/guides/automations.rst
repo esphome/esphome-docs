@@ -249,21 +249,6 @@ we're retrieving the current state of the end stop using ``.value`` and using it
           ESP_LOGD("main", "I am at execution number %d", num_executions);
           num_executions += 1;
 
-.. tip::
-
-    In some occasions, it can be useful to manually trigger an update for a component. You can do so like this:
-
-    .. code:: yaml
-
-        sensor:
-          - platform: ...
-            # ...
-            id: my_sensor
-
-        # ...
-          on_...:
-            lambda: 'id(my_sensor).update();'
-
 .. _config-templatable:
 
 Bonus: Templating Actions
@@ -312,6 +297,8 @@ All Actions
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>`
+- :ref:`component.update <component-update_action>`
+- :ref:`script.execute <script-execute_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>`
 - :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>`
@@ -407,6 +394,52 @@ Configuration options:
 - **else** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to false.
   Defaults to doing nothing.
 
+
+.. _component-update_action:
+
+``component.update`` Action
+---------------------------
+
+Using this action you can manually call the ``update()`` method of a component.
+
+Please note that this only works with some component types and others will result in a
+compile error.
+
+.. code:: yaml
+
+    on_...:
+      then:
+        - component.update: my_component
+
+        # The same as:
+        - lambda: 'id(my_component).update();'
+
+.. _script-execute_action:
+
+``script.execute`` Action
+-------------------------
+
+This action allows you to prevent code-reuse. For example if you have multiple triggers
+that perform the same exact action, you would normally have to copy the YAML lines for all
+triggers.
+
+With the ``script`` component you can define these steps in a central place, and then
+execute the script with a single call.
+
+.. code:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.execute: my_script
 
 See Also
 --------
