@@ -28,13 +28,13 @@ Possible return values for the lambda:
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the binary sensor.
+- **name** (**Required**, string): The name of the sensor.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 - **id** (*Optional*,:ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
 --------
