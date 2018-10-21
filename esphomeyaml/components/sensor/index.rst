@@ -126,6 +126,9 @@ every filter there is currently:
    -  **send_every**: How often a sensor value should be pushed out. For
       example, in above configuration the weighted average is only
       pushed out on every 15th received sensor value.
+   -  **send_first_at**: By default, the very first raw value on boot is immediately
+      published. With this parameter you can specify when the very first value is to be sent.
+      Defaults to ``1``.
 
 -  **exponential_moving_average**: A simple `exponential moving
    average <https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__
