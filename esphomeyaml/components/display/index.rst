@@ -297,6 +297,11 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
           // Shorthand:
           it.printf(0, 0, id(my_font), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
 
+.. note::
+
+    For displaying external data on the display, for example data from your Home Assistant instance,
+    you can use the :doc:`/esphomeyaml/components/text_sensor/mqtt` (see the example there for more information).
+
 .. _display-strftime:
 
 Displaying Time
