@@ -681,9 +681,9 @@ Misc Components
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
 `ESP32 Touch Hub`_                                 `Status LED`_                                      `PN532`_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|RDM6300|_                                         |Time|_
+|RDM6300|_                                         |Time|_                                            |Stepper|_
 -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`RDM6300`_                                         `Time`_
+`RDM6300`_                                         `Time`_                                            `Stepper`_
 ================================================== ================================================== ==================================================
 
 .. |Dallas Hub| image:: /esphomeyaml/images/dallas.jpg
@@ -728,6 +728,10 @@ Misc Components
 .. |Time| image:: /esphomeyaml/images/clock-outline.svg
     :class: component-image
 .. _Time: /esphomeyaml/components/time.html
+.. |Stepper| image:: /esphomeyaml/images/stepper.svg
+    :class: component-image
+.. _Stepper: /esphomeyaml/components/stepper.html
+
 
 .. _cookbook:
 
