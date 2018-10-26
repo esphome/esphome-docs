@@ -60,19 +60,19 @@ lambda calls
 From :ref:`lambdas <config-lambda>`, you can call several methods on all text sensors to do some
 advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more info).
 
-- ``push_new_value()``: Manually cause the sensor to push out a value.
+- ``publish_state()``: Manually cause the sensor to push out a value.
 
   .. code:: yaml
 
       // Within lambda, push a value of "Hello World"
-      id(my_sensor).push_new_value("Hello World");
+      id(my_sensor).publish_state("Hello World");
 
-- ``value``: Retrieve the current value of the sensor as an ``std::string`` object.
+- ``.state``: Retrieve the current value of the sensor as an ``std::string`` object.
 
   .. code:: yaml
 
       // For example, create a custom log message when a value is received:
-      std::string val = id(my_sensor).value;
+      std::string val = id(my_sensor).state;
       ESP_LOGI("main", "Value of my sensor: %s", val.c_str());
 
 See Also

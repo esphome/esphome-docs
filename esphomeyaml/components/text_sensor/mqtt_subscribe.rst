@@ -27,7 +27,7 @@ Example Usage for Displays
 --------------------------
 
 This integration is especially useful for displays, to show external data on the display.
-Please note you have to use the ``.c_str()`` method on the value object together with the ``%s`` format
+Please note you have to use the ``.c_str()`` method on the ``.state`` object together with the ``%s`` format
 to use it in ``printf`` expressions.
 
 .. code:: yaml
@@ -43,7 +43,7 @@ to use it in ``printf`` expressions.
       - platform: ...
         # ...
         lambda: |-
-          it.printf("The data is: %s", id(font), id(mysensor).value.c_str());
+          it.printf(0, 0, id(font), "The data is: %s", id(mysensor).state.c_str());
 
 See Also
 --------
