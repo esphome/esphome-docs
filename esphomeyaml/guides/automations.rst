@@ -362,13 +362,14 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
     on_...:
       then:
         - if:
-            lambda: 'return id(some_sensor).state < 30;'
-          then:
-            - lambda: 'ESP_LOGD("main", "The sensor value is below 30!");
-            - light.turn_on: my_light
-            - delay: 5s
-          else:
-            - lambda: 'ESP_LOGD("main", "The sensor value is above 30!");
+            condition:
+              lambda: 'return id(some_sensor).state < 30;'
+            then:
+              - lambda: 'ESP_LOGD("main", "The sensor value is below 30!");
+              - light.turn_on: my_light
+              - delay: 5s
+            else:
+              - lambda: 'ESP_LOGD("main", "The sensor value is above 30!");
         - light.turn_off: my_light
 
 
