@@ -18,7 +18,7 @@ Installing epshomeyaml is very easy. All you need to do is have `Python
     pip install esphomeyaml
 
 Alternatively, there’s also a docker image available for easy
-installation (the docker hub image is only available for amd64 right now, if you have
+installation (the docker hub image is only available for amd64 right now; if you have
 an RPi, please install esphomelib through ``pip`` or use :doc:`the HassIO add-on <getting_started_hassio>`:
 
 .. code:: bash
@@ -59,16 +59,16 @@ GPIO switch </esphomeyaml/components/switch/gpio>` to our app.
 
     switch:
       - platform: gpio
-        name: "Living Room Dehumidifer"
+        name: "Living Room Dehumidifier"
         pin: 5
 
 The configuration format should hopefully immediately seem similar to
 you. esphomeyaml has tried to keep it as close to Home Assistant’s
-``configuration.yaml`` schema as possible. In above example, we’re
-simply adding a switch that’s called “Living Room Relay” (could control
+``configuration.yaml`` schema as possible. In the above example, we’re
+simply adding a switch that’s called “Living Room Dehumidifier” (could control
 anything really, for example lights) and is connected to pin ``GPIO5``.
 The nice thing about esphomeyaml is that it will automatically also try
-to translate pin numbers for you based on the board. For example in
+to translate pin numbers for you based on the board. For example in the
 above configuration, if using a NodeMCU board, you could have just as
 well set ``D1`` as the ``pin:`` option.
 
@@ -132,7 +132,7 @@ Sensor </esphomeyaml/components/binary_sensor/gpio>`.
           inverted: True
           mode: INPUT_PULLUP
 
-This is an advanced feature of esphomeyaml, almost all pins can
+This is an advanced feature of esphomeyaml. Almost all pins can
 optionally have a more complicated configuration schema with options for
 inversion and pinMode - the :ref:`Pin Schema <config-pin_schema>`.
 
@@ -157,8 +157,8 @@ and uploaded your first esphomelib custom firmware to your node. You’ve
 also learned how to enable some basic components via the configuration
 file.
 
-So now is a great time to go take a look at the :doc:`Components Index </esphomeyaml/index>`,
-hopefully you’ll find all sensors/outputs/… you’ll need in there. If you’re having any problems or
+So now is a great time to go take a look at the :doc:`Components Index </esphomeyaml/index>`.
+Hopefully you’ll find all sensors/outputs/… you’ll need in there. If you’re having any problems or
 want new features, please either create a new issue on the `GitHub issue
 tracker <https://github.com/OttoWinter/esphomeyaml/issues>`__ or contact
 me via the `Discord chat <https://discord.gg/KhAMKrd>`__.
@@ -166,7 +166,7 @@ me via the `Discord chat <https://discord.gg/KhAMKrd>`__.
 Bonus: esphomeyaml dashboard
 ----------------------------
 
-Starting with version 1.6.0 esphomeyaml features a dashboard that you can use to
+Starting with version 1.6.0, esphomeyaml features a dashboard that you can use to
 easily manage your nodes from a nice web interface. It was primarily designed for
 :doc:`the HassIO add-on <getting_started_hassio>`, but also works with a simple command.
 
