@@ -41,6 +41,19 @@ Thus, rearranging the expression yields a proportional factor of ``0.06`` from `
 And if a technician shows up and he looks confused about what the heck you have done to your
 power meter, tell them about esphomelib 😉
 
+.. note::
+
+    Photoresistors often have a bit of noise during their switching phases. So in certain situations,
+    a single power meter tick can result in many pulses being counted. This effect is especially big on
+    ESP8266s. If you're experiencing this, try enabling the ``internal_filter:`` filter option:
+
+    .. code:: yaml
+
+        sensor:
+          - platform: pulse_counter
+            # ...
+            internal_filter: 10us
+
 See Also
 --------
 
