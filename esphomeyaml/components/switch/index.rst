@@ -37,8 +37,7 @@ This action toggles a switch with the given ID when executed.
 
     on_...:
       then:
-        - switch.toggle:
-            id: relay_1
+        - switch.toggle: id: relay_1
 
 .. _switch-turn_on_action:
 
@@ -51,8 +50,7 @@ This action turns a switch with the given ID on when executed.
 
     on_...:
       then:
-        - switch.turn_on:
-            id: relay_1
+        - switch.turn_on: relay_1
 
 .. _switch-turn_off_action:
 
@@ -65,8 +63,7 @@ This action turns a switch with the given ID off when executed.
 
     on_...:
       then:
-        - switch.turn_off:
-            id: relay_1
+        - switch.turn_off: relay_1
 
 lambda calls
 ************

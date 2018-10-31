@@ -313,6 +313,16 @@ Configuration variables:
                then:
                  - # ...
 
+.. note::
+
+    This action can also be used in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        App.get_mqtt_client()->subscribe("the/topic", [=](const std::string &payload) {
+            // do something with payload
+        });
+
 .. _mqtt-on_json_message:
 
 ``on_json_message`` Trigger
@@ -366,6 +376,16 @@ Configuration variables:
     Due to the way this trigger works internally it is incompatible with certain actions and will
     trigger a compile failure. For example with the ``delay`` action.
 
+.. note::
+
+    This action can also be used in :ref:`lambdas <config-lambda>`:
+
+    .. code:: cpp
+
+        App.get_mqtt_client()->subscribe_json("the/topic", [=](JsonObject &root) {
+            // do something with JSON-decoded value root
+        });
+
 .. _mqtt-publish_action:
 
 ``mqtt.publish`` Action
@@ -413,8 +433,7 @@ Configuration options:
 
     .. code:: cpp
 
-        // in lambda, parameters: <TOPIC>,    <PAYLOAD>,  <QoS>, <retain>
-        id(mqtt_client).publish("the/topic", "The Payload", 0, false);
+        id(mqtt_client).publish("the/topic", "The Payload");
 
 .. _mqtt-publish_json_action:
 
@@ -451,6 +470,24 @@ Configuration options:
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean): If the published message should
    have a retain flag on or not. Defaults to ``False``.
+
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
+    .. code:: cpp
+
+        id(mqtt_client).publish_json("the/topic", [=](JsonObject &root) {
+          root["something"] = id(my_sensor).value;
+        });
+
 
 See Also
 --------

@@ -12,7 +12,7 @@ esphomelib. This sensor is commonly found in Sonoff POW R2.
 
 As the communication with the CSE7766 done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the CSE7766.
-Additionally, you need to set the baud rate to 9600.
+Additionally, you need to set the baud rate to 4800.
 
 .. code:: yaml
 
@@ -23,7 +23,7 @@ Additionally, you need to set the baud rate to 9600.
 
     uart:
       rx_pin: RX
-      baud_rate: 9600
+      baud_rate: 4800
 
     sensor:
       - platform: cse7766

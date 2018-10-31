@@ -12,3 +12,4 @@ Status LED, components/status_led, led-on.svg
 PN532, components/pn532, pn532.jpg
 RDM6300, components/rdm6300, rdm6300.jpg
 Time, components/time, clock-outline.svg
+Stepper, components/stepper/index, stepper.svg
