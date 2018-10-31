@@ -9,45 +9,44 @@ build:
     - current
     - rc
 
-deploy-release:
+.deploy: &deploy
   tags:
     - esphomedocs
   before_script:
     - mkdir -p /root/.ssh
-    - echo "$GITHUB_PRIVATE_KEY" | tr -d '\r' >/root/.ssh/id_rsa
+    - echo "$PRIVATE_KEY" | tr -d '\r' >/root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
     - ssh-keyscan -t rsa github.com >>/root/.ssh/known_hosts
     - git config --global user.email "$GITHUB_EMAIL"
     - git config --global user.name "$GITHUB_NAME"
     - git worktree prune
-    - rm -rf ../esphomelib
+    - rm -rf ../esphomelib _build/html/
   script:
-    - git fetch --force git@github.com:OttoWinter/esphomedocs.git gh-pages:gh-pages
+    - mkdir -p _build/html
+    - git fetch --force git@github.com:${TARGET_REPO}.git gh-pages:gh-pages
     - git worktree add _build/html gh-pages
     - make ../esphomelib
-    - make deploy
-    - git -C _build/html push git@github.com:OttoWinter/esphomedocs.git gh-pages
+    - touch _build/html/.nojekyll
+    - echo ${CNAME} >_build/html/CNAME
+    - make html
+    - git -C _build/html add --all
+    - git -C _build/html commit -m "Deploy to gh-pages"
+    - git -C _build/html push -f git@github.com:${TARGET_REPO}.git gh-pages
+
+deploy-release:
+  <<: *deploy
+  variables:
+    TARGET_REPO: OttoWinter/esphomedocs
+    PRIVATE_KEY: ${GITHUB_PRIVATE_KEY}
+    CNAME: esphomelib.com
   only:
     - current
 
-
 deploy-beta:
-  tags:
-    - esphomedocs
-  before_script:
-    - mkdir -p /root/.ssh
-    - echo "$GITHUB_BETA_PRIVATE_KEY" | tr -d '\r' >/root/.ssh/id_rsa
-    - chmod 600 /root/.ssh/id_rsa
-    - ssh-keyscan -t rsa github.com >>/root/.ssh/known_hosts
-    - git config --global user.email "$GITHUB_EMAIL"
-    - git config --global user.name "$GITHUB_NAME"
-    - git worktree prune
-    - rm -rf ../esphomelib
-  script:
-    - git fetch --force git@github.com:OttoWinter/beta.esphomelib.com.git master:gh-pages
-    - git worktree add _build/html gh-pages
-    - make ../esphomelib
-    - make deploy
-    - git -C _build/html push git@github.com:OttoWinter/beta.esphomelib.com.git gh-pages
+  <<: *deploy
+  variables:
+    TARGET_REPO: OttoWinter/esphomedocs-beta
+    PRIVATE_KEY: ${GITHUB_BETA_PRIVATE_KEY}
+    CNAME: beta.esphomelib.com
   only:
     - rc
