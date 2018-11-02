@@ -164,7 +164,7 @@ not have a real solution.
 
 Some steps that can help with the issue:
 
--  Use the most recent version of th arduino framework. The platformio arduino package
+-  Use the most recent version of the arduino framework. The platformio arduino package
    always takes some time to update and the most recent version often includes some awesome
    patches. See :ref:`esphomeyaml-arduino_version`.
 -  The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
