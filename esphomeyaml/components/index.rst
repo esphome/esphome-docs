@@ -2,6 +2,7 @@ Components
 ==========
 
 .. toctree::
+    :glob:
 
     binary_sensor/index
     cover/index
@@ -12,28 +13,5 @@ Components
     switch/index
     display/index
     text_sensor/index
-    ads1115
-    dallas
-    debug
-    deep_sleep
-    esp32_ble_tracker
-    esp32_touch
-    esphomeyaml
-    i2c
-    remote_transmitter
-    remote_receiver
-    logger
-    mqtt
-    ota
-    pca9685
-    pcf8574
-    power_supply
-    web_server
-    wifi
-    esp32_ble_beacon
-    status_led
-    pn532
-    rdm6300
-    spi
-    time
-    uart
+    stepper/index
+    *

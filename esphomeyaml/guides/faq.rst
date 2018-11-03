@@ -31,6 +31,7 @@ Tips for using esphomeyaml
    possible to edit anything outside of the ``AUTO GENERATED CODE BEGIN/END`` lines for creating
    :doc:`custom sensors </esphomeyaml/components/sensor/custom>`.
 
+6. You can view the full command line interface options here: :doc:`/esphomeyaml/guides/cli`
 
 .. |secret| replace:: ``!secret``
 .. _secret: https://www.home-assistant.io/docs/configuration/secrets/
@@ -97,6 +98,29 @@ It's simple. Run:
     docker pull ottowinter/esphomeyaml:latest
 
 And in HassIO, there's a simple UPDATE button when there's an update available as with all add-ons
+
+.. _faq-beta:
+
+How do I update to the latest beta release?
+-------------------------------------------
+
+esphomelib has a beta release cycle so that new releases can easily be tested before
+the changes are deployed to the stable channel. You can help test esphomeyaml (and use new features)
+by installing the esphomeyaml beta:
+
+.. code:: bash
+
+    # For pip-based installs
+    pip2 install --pre -U esphomeyaml
+
+    # From docker-based installs
+    docker pull ottowinter/esphomeyaml:rc
+    # In each command:
+    docker run [...] -it ottowinter/esphomeyaml:rc livingroom.yaml run
+
+And for HassIO, you will see a "esphomeyaml Beta" Add-On for the beta channel.
+
+The beta docs can be viewed at `https://beta.esphomelib.com <https://beta.esphomelib.com>`__
 
 How do I use the latest bleeding edge version?
 ----------------------------------------------

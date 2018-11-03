@@ -4,7 +4,7 @@ esphomeyaml
 .. raw:: html
 
     <a href="https://github.com/OttoWinter/esphomelib"><img src="https://img.shields.io/github/stars/OttoWinter/esphomelib.svg?style=social&label=Star&maxAge=2592000" alt="GitHub stars" style="max-width:100%;"></a>
-    <a href="https://esphomelib.com/esphomeyaml/guides/changelog.html"><img src="https://img.shields.io/pypi/v/esphomeyaml.svg" alt="Release" style="max-width:100%;"></a>
+    <a href="https://esphomelib.com/esphomeyaml/changelog/index.html"><img src="https://img.shields.io/pypi/v/esphomeyaml.svg" alt="Release" style="max-width:100%;"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="https://img.shields.io/discord/429907082951524364.svg" alt="Discord Chat" style="max-width:100%;"></a>
 
 Hi there! This is the documentation for esphomeyaml, a project that aims to make using ESP8266/ESP32 boards with
@@ -84,7 +84,7 @@ Guides
 .. _Contributing: /esphomeyaml/guides/contributing.html
 .. |Changelog| image:: /esphomeyaml/images/new-box.svg
     :class: component-image
-.. _Changelog: /esphomeyaml/guides/changelog.html
+.. _Changelog: /esphomeyaml/changelog/index.html
 
 
 .. _devices:
@@ -786,3 +786,4 @@ documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
     cookbook/index
     devices/index
     guides/index
+    changelog/index

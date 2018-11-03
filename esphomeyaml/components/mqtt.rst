@@ -100,6 +100,8 @@ The ``log_topic`` has an additional configuration option:
 - **level** (*Optional*, string): The log level to use for MQTT logs. See
   :ref:`logger-log_levels` for options.
 
+.. _mqtt-using_with_home_assistant:
+
 Using with Home Assistant
 -------------------------
 
