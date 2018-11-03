@@ -54,6 +54,8 @@ New Components
 New Features
 ------------
 
+- Compiling for ESP32s is now possible on RPis
+
 - :doc:`GPIO Switches </esphomeyaml/components/switch/gpio>` now have a ``power_on_value`` option which will
   initialize the state of the switch very early in the boot process. (`#207 <https://github.com/OttoWinter/esphomelib/pull/207>`__,
   `#55 <https://github.com/OttoWinter/esphomedocs/pull/55>`__)

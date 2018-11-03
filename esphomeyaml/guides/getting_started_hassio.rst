@@ -80,11 +80,6 @@ Now go ahead and use one of the :ref:`devices guides <devices>` to extend your c
 intend to flash an esphomeyaml firmware onto. Then proceed with uploading the first firmware using the
 upload button.
 
-.. note::
-
-    Currently the build toolchain for the ESP32 does not work on RPis. If you need to compile
-    software for ESP32 (**not** ESP8266) boards, please install esphomeyaml on your computer.
-
 HassIO add-on options
 ~~~~~~~~~~~~~~~~~~~~~
 
