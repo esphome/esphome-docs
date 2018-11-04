@@ -300,7 +300,7 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 .. note::
 
     For displaying external data on the display, for example data from your Home Assistant instance,
-    you can use the :doc:`/esphomeyaml/components/text_sensor/mqtt` (see the example there for more information).
+    you can use the :doc:`/esphomeyaml/components/text_sensor/mqtt_subscribe` (see the example there for more information).
 
 .. _display-strftime:
 
