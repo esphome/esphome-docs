@@ -1,125 +1,43 @@
 Version 1.8.0
 =============
 
-================================================== ================================================== ==================================================
-|Waveshare E-Paper|_                               |Nextion|_                                         |SSD1306|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Waveshare E-Paper`_                               `Nextion`_                                         `SSD1306`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|MAX7219|_                                         |LCD Display|_                                     |RCSwitch Integration|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`MAX7219`_                                         `LCD Display`_                                     `RCSwitch Integration`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|SPI Bus|_                                         |UART Bus|_                                        |Real Time Clock|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`SPI Bus`_                                         `UART Bus`_                                        `Real Time Clock`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Uptime Sensor|_                                   |PN532|_                                           |RDM6300|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Uptime Sensor`_                                   `PN532`_                                           `RDM6300`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|BLE RSSI|_                                        |Xiaomi MiFlora|_                                  |Xiaomi MiJia|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`BLE RSSI`_                                        `Xiaomi MiFlora`_                                  `Xiaomi MiJia`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|HMC5883L|_                                        |HX711|_                                           |HLW8012|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`HMC5883L`_                                        `HX711`_                                           `HLW8012`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|BMP280|_                                          |INA219|_                                          |INA3221|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`BMP280`_                                          `INA219`_                                          `INA3221`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|MH-Z19|_                                          |MS5611|_                                          |TCS34725|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`MH-Z19`_                                          `MS5611`_                                          `TCS34725`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|RGBWW Light|_                                     |Cold+Warm White Light|_                           |Light Effects|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`RGBWW Light`_                                     `Cold+Warm White Light`_                           `Light Effects`_
-================================================== ================================================== ==================================================
+.. imgtable::
 
-.. |Waveshare E-Paper| image:: /esphomeyaml/images/waveshare_epaper.jpg
-    :class: component-image
-.. _Waveshare E-Paper: /esphomeyaml/components/display/waveshare_epaper.html
-.. |Nextion| image:: /esphomeyaml/images/nextion.jpg
-    :class: component-image
-.. _Nextion: /esphomeyaml/components/display/nextion.html
-.. |SSD1306| image:: /esphomeyaml/images/ssd1306.jpg
-    :class: component-image
-.. _SSD1306: /esphomeyaml/components/display/ssd1306_i2c.html
-.. |MAX7219| image:: /esphomeyaml/images/max7219.jpg
-    :class: component-image
-.. _MAX7219: /esphomeyaml/components/display/max7219.html
-.. |LCD Display| image:: /esphomeyaml/images/lcd.jpg
-    :class: component-image
-.. _LCD Display: /esphomeyaml/components/display/lcd_gpio.html
-.. |RCSwitch Integration| image:: /esphomeyaml/images/remote.svg
-    :class: component-image
-.. _RCSwitch Integration: /esphomeyaml/components/switch/remote_transmitter.html#rcswitch-remote-codes.html
-.. |SPI Bus| image:: /esphomeyaml/images/spi.svg
-    :class: component-image
-.. _SPI Bus: /esphomeyaml/components/spi.html
-.. |UART Bus| image:: /esphomeyaml/images/uart.svg
-    :class: component-image
-.. _UART Bus: /esphomeyaml/components/uart.html
-.. |Real Time Clock| image:: /esphomeyaml/images/clock-outline.svg
-    :class: component-image
-.. _Real Time Clock: /esphomeyaml/components/time.html
-.. |Uptime Sensor| image:: /esphomeyaml/images/timer.svg
-    :class: component-image
-.. _Uptime Sensor: /esphomeyaml/components/sensor/uptime.html
-.. |PN532| image:: /esphomeyaml/images/pn532.jpg
-    :class: component-image
-.. _PN532: /esphomeyaml/components/pn532.html
-.. |RDM6300| image:: /esphomeyaml/images/rdm6300.jpg
-    :class: component-image
-.. _RDM6300: /esphomeyaml/components/rdm6300.html
-.. |BLE RSSI| image:: /esphomeyaml/images/bluetooth.svg
-    :class: component-image
-.. _BLE RSSI: /esphomeyaml/components/sensor/ble_rssi.html
-.. |Xiaomi MiFlora| image:: /esphomeyaml/images/xiaomi_miflora.jpg
-    :class: component-image
-.. _Xiaomi MiFlora: /esphomeyaml/components/sensor/xiaomi_miflora.html
-.. |Xiaomi MiJia| image:: /esphomeyaml/images/xiaomi_mijia.jpg
-    :class: component-image
-.. _Xiaomi MiJia: /esphomeyaml/components/sensor/xiaomi_mijia.html
-.. |HMC5883L| image:: /esphomeyaml/images/hmc5883l.jpg
-    :class: component-image
-.. _HMC5883L: /esphomeyaml/components/sensor/hmc5883l.html
-.. |HX711| image:: /esphomeyaml/images/hx711.jpg
-    :class: component-image
-.. _HX711: /esphomeyaml/components/sensor/hx711.html
-.. |HLW8012| image:: /esphomeyaml/images/hlw8012.svg
-    :class: component-image
-.. _HLW8012: /esphomeyaml/components/sensor/hlw8012.html
-.. |BMP280| image:: /esphomeyaml/images/bmp280.jpg
-    :class: component-image
-.. _BMP280: /esphomeyaml/components/sensor/bmp280.html
-.. |INA219| image:: /esphomeyaml/images/ina219.jpg
-    :class: component-image
-.. _INA219: /esphomeyaml/components/sensor/ina219.html
-.. |INA3221| image:: /esphomeyaml/images/ina3221.jpg
-    :class: component-image
-.. _INA3221: /esphomeyaml/components/sensor/ina3221.html
-.. |MH-Z19| image:: /esphomeyaml/images/mhz19.jpg
-    :class: component-image
-.. _MH-Z19: /esphomeyaml/components/sensor/mhz19.html
-.. |MS5611| image:: /esphomeyaml/images/ms5611.jpg
-    :class: component-image
-.. _MS5611: /esphomeyaml/components/sensor/ms5611.html
-.. |TCS34725| image:: /esphomeyaml/images/tcs34725.jpg
-    :class: component-image
-.. _TCS34725: /esphomeyaml/components/sensor/tcs34725.html
-.. |RGBWW Light| image:: /esphomeyaml/images/rgbw.png
-    :class: component-image
-.. _RGBWW Light: /esphomeyaml/components/light/rgbww.html
-.. |Cold+Warm White Light| image:: /esphomeyaml/images/brightness-medium.svg
-    :class: component-image
-.. _Cold+Warm White Light: /esphomeyaml/components/light/cwww.html
-.. |Light Effects| image:: /esphomeyaml/images/creation.svg
-    :class: component-image
-.. _Light Effects: /esphomeyaml/components/light/index#light-effects.html
+    Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
+    Nextion, components/display/nextion, nextion.jpg
+    SSD1306, components/display/ssd1306_i2c, ssd1306.jpg
+
+    MAX7219, components/display/max7219, max7219.jpg
+    LCD Display, components/display/lcd_gpio, lcd.jpg
+    RCSwitch Integration, components/switch/remote_transmitter.html#rcswitch-remote-codes, remote.svg
+
+    SPI Bus, components/spi, spi.svg
+    UART Bus, components/uart, uart.svg
+    Real Time Clock, components/time, clock-outline.svg
+
+    Uptime Sensor, components/sensor/uptime, timer.svg
+    PN532, components/pn532, pn532.jpg
+    RDM6300, components/rdm6300, rdm6300.jpg
+
+    BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
+    Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
+    Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+
+    HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
+    HX711, components/sensor/hx711, hx711.jpg
+    HLW8012, components/sensor/hlw8012, hlw8012.svg
+
+    BMP280, components/sensor/bmp280, bmp280.jpg
+    INA219, components/sensor/ina219, ina219.jpg
+    INA3221, components/sensor/ina3221, ina3221.jpg
+
+    MH-Z19, components/sensor/mhz19, mhz19.jpg
+    MS5611, components/sensor/ms5611, ms5611.jpg
+    TCS34725, components/sensor/tcs34725, tcs34725.jpg
+
+    RGBWW Light, components/light/rgbww, rgbw.png
+    Cold+Warm White Light, components/light/cwww, brightness-medium.svg
+    Light Effects, components/light/index#light-effects, creation.svg
 
 Hi everyone,
 

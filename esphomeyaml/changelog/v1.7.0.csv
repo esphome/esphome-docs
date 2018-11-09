@@ -1,7 +1,0 @@
-ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-Status LED, components/status_led, led-on.svg
-WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-Duty Cycle Sensor, components/sensor/duty_cycle, percent.svg
-Pulse Counter for ESP8266, components/sensor/pulse_counter, pulse.svg
-Remote Transmitter, components/switch/remote_transmitter, remote.svg
-Remote Receiver, components/remote_receiver, remote.svg
