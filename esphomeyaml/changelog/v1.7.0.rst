@@ -12,41 +12,17 @@ Home Assistant.
 In the next couple of weeks I unfortunately won't be able to "innovate" as quickly as in the previous weeks, as I will
 be travelling a lot (and enjoying my vacation 😎), so don't expect too many awesome features 😸
 
-================================================== ================================================== ==================================================
-|ESP32 BLE Beacon|_                                |Status LED|_                                      |WiFi Signal Strength|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`ESP32 BLE Beacon`_                                `Status LED`_                                      `WiFi Signal Strength`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Duty Cycle Sensor|_                               |Pulse Counter for ESP8266|_                       |Remote Transmitter|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Duty Cycle Sensor`_                               `Pulse Counter for ESP8266`_                       `Remote Transmitter`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Remote Receiver|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Remote Receiver`_
-================================================== ================================================== ==================================================
+.. imgtable::
 
-.. |ESP32 BLE Beacon| image:: /esphomeyaml/images/bluetooth.svg
-    :class: component-image
-.. _ESP32 BLE Beacon: /esphomeyaml/components/esp32_ble_beacon.html
-.. |Status LED| image:: /esphomeyaml/images/led-on.svg
-    :class: component-image
-.. _Status LED: /esphomeyaml/components/status_led.html
-.. |WiFi Signal Strength| image:: /esphomeyaml/images/network-wifi.svg
-    :class: component-image
-.. _WiFi Signal Strength: /esphomeyaml/components/sensor/wifi_signal.html
-.. |Duty Cycle Sensor| image:: /esphomeyaml/images/percent.svg
-    :class: component-image
-.. _Duty Cycle Sensor: /esphomeyaml/components/sensor/duty_cycle.html
-.. |Pulse Counter for ESP8266| image:: /esphomeyaml/images/pulse.svg
-    :class: component-image
-.. _Pulse Counter for ESP8266: /esphomeyaml/components/sensor/pulse_counter.html
-.. |Remote Transmitter| image:: /esphomeyaml/images/remote.svg
-    :class: component-image
-.. _Remote Transmitter: /esphomeyaml/components/switch/remote_transmitter.html
-.. |Remote Receiver| image:: /esphomeyaml/images/remote.svg
-    :class: component-image
-.. _Remote Receiver: /esphomeyaml/components/binary_sensor/remote_receiver.html
+    ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
+    Status LED, components/status_led, led-on.svg
+    WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
+
+    Duty Cycle Sensor, components/sensor/duty_cycle, percent.svg
+    Pulse Counter for ESP8266, components/sensor/pulse_counter, pulse.svg
+    Remote Transmitter, components/switch/remote_transmitter, remote.svg
+
+    Remote Receiver, components/remote_receiver, remote.svg
 
 New Components
 **************

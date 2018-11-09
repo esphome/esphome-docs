@@ -1,34 +1,17 @@
 Changelog - Version 1.9.0
 =========================
 
-================================================== ================================================== ==================================================
-|Beta Releases|_                                   |Text Sensors|_                                    |MQTT Subscribe|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Beta Releases`_                                   `Text Sensors`_                                    `MQTT Subscribe`_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-|Stepper|_                                         |CSE7766|_                                         |PMSX003|_
--------------------------------------------------- -------------------------------------------------- --------------------------------------------------
-`Stepper`_                                         `CSE7766`_                                         `PMSX003`_
-================================================== ================================================== ==================================================
+.. imgtable::
 
-.. |Beta Releases| image:: /esphomeyaml/images/new-box.svg
-    :class: component-image
-.. _Beta Releases: /esphomeyaml/guides/faq.html#how-do-i-update-to-the-latest-beta-release.html
-.. |Text Sensors| image:: /esphomeyaml/images/folder-open.svg
-    :class: component-image
-.. _Text Sensors: /esphomeyaml/components/text_sensor/index.html
-.. |MQTT Subscribe| image:: /esphomeyaml/images/mqtt.png
-    :class: component-image
-.. _MQTT Subscribe: /esphomeyaml/components/sensor/mqtt_subscribe.html
-.. |Stepper| image:: /esphomeyaml/images/stepper.svg
-    :class: component-image
-.. _Stepper: /esphomeyaml/components/stepper/index.html
-.. |CSE7766| image:: /esphomeyaml/images/cse7766.svg
-    :class: component-image
-.. _CSE7766: /esphomeyaml/components/sensor/cse7766.html
-.. |PMSX003| image:: /esphomeyaml/images/pmsx003.svg
-    :class: component-image
-.. _PMSX003: /esphomeyaml/components/sensor/pmsx003.html
+    Beta Releases, guides/faq.html#how-do-i-update-to-the-latest-beta-release, new-box.svg
+    Text Sensors, components/text_sensor/index, folder-open.svg
+    MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
+
+    Stepper, components/stepper/index, stepper.svg
+    CSE7766, components/sensor/cse7766, cse7766.svg
+    PMSX003, components/sensor/pmsx003, pmsx003.svg
+
+    esphomeflasher, guides/faq.html#i-can-t-get-flashing-over-usb-to-work, logo.svg
 
 
 New Components
@@ -36,20 +19,20 @@ New Components
 
 - There's a new base component called :doc:`text sensors </esphomeyaml/components/text_sensor/index>` for using
   text-based inputs, not just numbers like the generic :doc:`sensors </esphomeyaml/components/sensor/index>` did
-  (`#166 <https://github.com/OttoWinter/esphomeyaml/pull/166>`__, `#52 <https://github.com/OttoWinter/esphomedocs/pull/52>`__)
+  (:yamlpr:`166`, :docspr:`52`)
 
 - The new MQTT Subscribe Sensors allow you to get external data into esphomelib's ecosystem via MQTT
-  (`#193 <https://github.com/OttoWinter/esphomelib/pull/193>`_, `#175 <https://github.com/OttoWinter/esphomeyaml/pull/175>`__,
-  `#50 <https://github.com/OttoWinter/esphomedocs/pull/50>`__)
+  (:libpr:`193`, :yamlpr:`175`, :docspr:`50`)
 
 - Added :doc:`CSE7766 Power Sensor </esphomeyaml/components/sensor/cse7766>` to support power measurements
-  on the Sonoff Pow R2 (`#227 <https://github.com/OttoWinter/esphomelib/pull/227>`__, `#190 <https://github.com/OttoWinter/esphomeyaml/pull/190>`__, `#59 <https://github.com/OttoWinter/esphomedocs/pull/59>`__)
+  on the Sonoff Pow R2 (:libpr:`277`, :yamlpr:`190`, :docspr:`59`)
+
 
 - Added the :doc:`PMSX003 Particulate Matter Sensor </esphomeyaml/components/sensor/pmsx003>`
-  (`#229 <https://github.com/OttoWinter/esphomelib/pull/229>`__, `#192 <https://github.com/OttoWinter/esphomeyaml/pull/192>`__, `#58 <https://github.com/OttoWinter/esphomedocs/pull/58>`__)
+  (:libpr:`229`, :yamlpr:`192`, :docspr:`58`)
 
-- Added support for :doc:`A4988 Stepper Motors </esphomeyaml/components/stepper/index>` (`#239 <https://github.com/OttoWinter/esphomelib/pull/239>`__,
-  `#206 <https://github.com/OttoWinter/esphomeyaml/pull/206>`__, `#68 <https://github.com/OttoWinter/esphomedocs/pull/68>`__)
+- Added support for :doc:`A4988 Stepper Motors </esphomeyaml/components/stepper/index>` (:libpr:`239`,
+  :yamlpr:`206`, :docspr:`68`)
 
 New Features
 ------------
@@ -57,57 +40,58 @@ New Features
 - Compiling for ESP32s is now possible on RPis
 
 - :doc:`GPIO Switches </esphomeyaml/components/switch/gpio>` now have a ``power_on_value`` option which will
-  initialize the state of the switch very early in the boot process. (`#207 <https://github.com/OttoWinter/esphomelib/pull/207>`__,
-  `#55 <https://github.com/OttoWinter/esphomedocs/pull/55>`__)
+  initialize the state of the switch very early in the boot process
+  (:libpr:`207`, :docspr:`55`).
 
 - The :doc:`Over-the-Air Update </esphomeyaml/components/ota>` process was quite buggy sometimes and the Arduino-library
   esphomelib used was doing some weird stuff. The OTA-process has now been completely re-written to be more stable
-  (`#204 <https://github.com/OttoWinter/esphomelib/pull/204>`__, `#177 <https://github.com/OttoWinter/esphomeyaml/pull/177>`__)
+  (:libpr:`204`, :yamlpr:`177`).
 
 - Add support for the Home Assistant device registry. If you're using `Home Assistant 0.81.0 <https://www.home-assistant.io/blog/2018/10/26/release-81/>`__
-  or higher you will see a list of all components for each esphomelib node in the integrations screen (`#233 <https://github.com/OttoWinter/esphomelib/pull/233>`__).
+  or higher you will see a list of all components for each esphomelib node in the integrations screen
+  (:libpr:`233`).
 
 - The current esphomelib version and compilation time are no printed on each boot
-  (`#189 <https://github.com/OttoWinter/esphomelib/pull/189>`__, `#159 <https://github.com/OttoWinter/esphomeyaml/pull/159>`__):
+  (:libpr:`189`, :yamlpr:`159`):
 
   .. code:: bash
 
     [13:57:33][I][application:092]: You're running esphomelib v1.9.0 compiled on Nov  3 2018, 13:55:11
 
-- Stack traces in the USB logs are now automatically decoded to make debugging easier (`#214 <https://github.com/OttoWinter/esphomeyaml/pull/214>`__)
+- Stack traces in the USB logs are now automatically decoded to make debugging easier
+  (:yamlpr:`214`)
 
 - Added :ref:`mqtt-on_json_message` and :ref:`mqtt-publish_json_action` to make using JSON for MQTT payloads easier
-  (`#230 <https://github.com/OttoWinter/esphomelib/pull/230>`__, `#193 <https://github.com/OttoWinter/esphomeyaml/pull/193>`__,
-  `#60 <https://github.com/OttoWinter/esphomedocs/pull/60>`__)
+  (:libpr:`230`, :yamlpr:`193`, :docspr:`60`)
 
-- The remote (IR) components have received support for Samsung's IR protocol (`#176 <https://github.com/OttoWinter/esphomeyaml/pull/176>`__,
-  `#48 <https://github.com/OttoWinter/esphomedocs/pull/48>`__)
+- The remote (IR) components have received support for Samsung's IR protocol
+  (:yamlpr:`176`, :docspr:`48`)
 
 - Added :ref:`component-update_action`, :ref:`logger-log_action` and :ref:`script-execute_action` for simplifying
-  automations (`#232 <https://github.com/OttoWinter/esphomelib/pull/232>`__, `#196 <https://github.com/OttoWinter/esphomeyaml/pull/196>`__,
-  `#198 <https://github.com/OttoWinter/esphomeyaml/pull/198>`__, `#61 <https://github.com/OttoWinter/esphomedocs/pull/61>`__,
-  `#63 <https://github.com/OttoWinter/esphomedocs/pull/63>`__)
+  automations
+  (:libpr:`232`, :yamlpr:`196`, :yamlpr:`198`, :docspr:`61`, :docspr:`63`)
 
 - Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </esphomeyaml/components/pn532>` so that automations
-  can directly use the NFC tag ID (`#194 <https://github.com/OttoWinter/esphomelib/pull/194>`__,
-  `#189 <https://github.com/OttoWinter/esphomeyaml/pull/189>`__, `#57 <https://github.com/OttoWinter/esphomedocs/pull/57>`__).
+  can directly use the NFC tag ID
+  (:libpr:`194`, :yamlpr:`189`, :doc:`57`)
 
 - Added a ``hass-config`` command which generates a Home Assistant configuration for your esphomeyaml nodes.
-  Useful if you're not using MQTT discovery (`#208 <https://github.com/OttoWinter/esphomeyaml/pull/208>`__)
+  Useful if you're not using MQTT discovery (:yamlpr:`208`)
 
-- All documentation pages now have comment systems powered by `disqus <https://disqus.com/>`__ (`#47 <https://github.com/OttoWinter/esphomedocs/pull/47>`__)
+- All documentation pages now have comment systems powered by `disqus <https://disqus.com/>`__
+  (:docspr:`47`)
 
 - You now have to option to have a different log level for log messages sent over MQTT (:ref:`docs <mqtt-message>`,
-  `#167 <https://github.com/OttoWinter/esphomeyaml/pull/167>`__, `#51 <https://github.com/OttoWinter/esphomedocs/pull/51>`__)
+  :yamlpr:`167`, :docspr:`51`)
 
 - Added a color correction option to :doc:`FastLED addressable lights </esphomeyaml/components/light/fastled_clockless>`
-  (`#234 <https://github.com/OttoWinter/esphomelib/pull/234>`__, `#200 <https://github.com/OttoWinter/esphomeyaml/pull/200>`__,
-  `#64 <https://github.com/OttoWinter/esphomedocs/pull/64>`__)
+  (:libpr:`234`, :yamlpr:`200`, :docspr:`64`)
 
-- Added a ``clean`` command to esphomeyaml to fix some occasional build errors (`#181 <https://github.com/OttoWinter/esphomeyaml/pull/181>`__)
+- Added a ``clean`` command to esphomeyaml to fix some occasional build errors
+  (:yamlpr:`181`)
 
-- Added a ``send_first_at`` option to sliding window moving average sensor filters (`#240 <https://github.com/OttoWinter/esphomelib/pull/240>`__,
-  `#207 <https://github.com/OttoWinter/esphomeyaml/pull/207>`__, `#69 <https://github.com/OttoWinter/esphomedocs/pull/69>`__)
+- Added a ``send_first_at`` option to sliding window moving average sensor filters
+  (:libpr:`240`, :yamlpr:`207`, :docspr:`69`)
 
 
 Breaking Changes
@@ -116,16 +100,15 @@ Breaking Changes
 - As part of the rewrite of Over-The-Air updates, the old OTA protocol is incompatible with the new one -
   But fear not, esphomeyaml still supports the legacy OTA update process. On your first OTA upload with 1.9.0, you will
   see esphomeyaml try with the new OTA method and fail. After that, esphomeyaml will fall back to the old OTA
-  process and upload correctly (`#204 <https://github.com/OttoWinter/esphomelib/pull/204>`__).
+  process and upload correctly (:libpr:`204`).
 
 - esphomelib's naming convention has been made more consistent. If you're not using any :ref:`lambdas <config-lambda>`,
   everything will still work. However, if you're using the C++ API, there are a couple of breaking changes:
 
   For sensors and binary sensors, ``id(my_sensor).value`` has been deprecated and ``id(my_sensor).state`` should be used
   instead. Additionally, the syntax for toggling lights and switches through C++ has been changed. Please see
-  the `esphomedocs (#62) <https://github.com/OttoWinter/esphomedocs/pull/62>`__ changeset for more information
-  (`#231 <https://github.com/OttoWinter/esphomelib/pull/231>`__,  `#62 <https://github.com/OttoWinter/esphomedocs/pull/62>`__,
-  `#197 <https://github.com/OttoWinter/esphomeyaml/pull/197>`__)
+  the :doc:`62` changeset for more information
+  (:libpr:`231`, :docspr:`62`, :yamlpr:`197`)
 
 - In 1.8.2, you might have noticed that the WiFi performance has been greatly improved. This was due to the new default of
   the :ref:`power save mode <wifi-power_save_mode>` option: ``NONE``. However, that default made some other ESPs not
