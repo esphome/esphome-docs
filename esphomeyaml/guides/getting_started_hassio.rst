@@ -35,11 +35,6 @@ creating your first configuration.
     :align: center
     :width: 95.0%
 
-.. note::
-
-    If the UI isn't showing up correctly, it's probably because your browser isn't
-    supported. Please try using Google Chrome in that case.
-
 Dashboard Interface
 -------------------
 
@@ -68,8 +63,8 @@ there are three basic actions you can perform:
   .. note::
 
       If you're having problems with flashing over USB, you can always download the firmware using the
-      ``COMPILE`` button and upload the firmware using an application like
-      `pyflasher <https://github.com/marcelstoer/nodemcu-pyflasher>`__.
+      ``COMPILE`` button and flash the firmware using `esphomeflasher
+      <https://github.com/OttoWinter/esphomeflasher/releases>`__.
 
 - **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
   connected, it will attempt to use the serial connection. Otherwise it will use the built-in MQTT logs.
@@ -87,7 +82,7 @@ intend to flash an esphomeyaml firmware onto. Then proceed with uploading the fi
 upload button.
 
 HassIO add-on options
-~~~~~~~~~~~~~~~~~~~~~
+*********************
 
 Since version 1.8.0, you can optionally specify a password to use for all traffic to esphomeyaml
 using the ``password`` option in the HassIO add-on page. By default, this is an empty string
