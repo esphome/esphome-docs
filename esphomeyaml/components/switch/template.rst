@@ -46,13 +46,10 @@ Configuration variables:
   be performed when the remote (like Home Assistant's frontend) requests the switch to be turned on.
 - **turn_off_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the switch to be turned on.
+- **restore_state** (*Optional*, boolean): Sets whether esphomelib should attempt to restore the
+  state on boot-up and call the turn on/off actions with the recovered values. Defaults to ``yes``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
-
-.. note::
-
-    esphomelib will automatically try to restore the last state from flash on boot, it will then also call
-    the turn on/off actions for you.
 
 See Also
 --------
