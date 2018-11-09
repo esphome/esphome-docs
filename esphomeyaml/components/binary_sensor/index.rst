@@ -41,6 +41,9 @@ Automations:
 - **on_double_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is pressed twice for specified periods of time.
   See :ref:`binary_sensor-on_double_click`.
+- **on_multi_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the button is pressed in a specific sequence.
+  See :ref:`binary_sensor-on_multi_click`.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _binary_sensor-filters:
@@ -188,6 +191,78 @@ Configuration variables:
 - **min_length** (*Optional*, :ref:`config-time`): The minimum duration the click should last. Defaults to ``50ms``.
 - **max_length** (*Optional*, :ref:`config-time`): The maximum duration the click should last. Defaults to ``350ms``.
 - See :ref:`Automation <automation>`.
+
+.. _binary_sensor-on_multi_click:
+
+``on_multi_click``
+******************
+
+This automation will be triggered when a button is pressed in a user-specified sequence.
+
+
+.. code:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        # ...
+        on_multi_click:
+        - timing:
+            - ON for at most 1s
+            - OFF for at most 1s
+            - ON for 0.5s to 1s
+            - OFF for at least 0.2s
+          then:
+          - logger.log: "Double-Clicked"
+
+Configuration variables:
+
+- **timing** (**Required**): The timing of the multi click. This uses a language-based grammar using
+  these styles:
+
+  - ``<ON/OFF> for <TIME> to <TIME>``
+  - ``<ON/OFF> for at least <TIME>``
+  - ``<ON/OFF> for at most <TIME>``
+
+- **invalid_cooldown** (*Optional*, :ref:`config-time`): If a multi click is started, but the timing
+  set in ``timing`` does not match, a "cool down" period will be activated during which no timing
+  will be matched. Defaults to ``1s``.
+- See :ref:`Automation <automation>`.
+
+.. note::
+
+    Getting the timing right for your use-case can sometimes be a bit difficult. If you set the
+    :ref:`global log level <logger-log_levels>` to ``VERBOSE``, the multi click trigger shows logs
+    about what stopped the trigger from happening.
+
+You can use an ``OFF`` timing at the end of the timing sequence to differentiate between different
+kinds of presses. For example the configuration below will differentiate between double, long and short
+presses.
+
+.. code:: yaml
+
+      on_multi_click:
+      - timing:
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at least 0.2s
+        then:
+        - logger.log:
+            format: "Double Clicked"
+            level: warn
+      - timing:
+        - OFF for 1s to 2s
+        - ON for 1s to 2s
+        - OFF for at least 0.5s
+        then:
+        - logger.log: "Single Long Clicked"
+      - timing:
+        - ON for at most 1s
+        - OFF for at least 0.5s
+        then:
+        - logger.log:
+            format: "Single Short Clicked"
+            level: warn
 
 lambda calls
 ************
