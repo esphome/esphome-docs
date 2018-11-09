@@ -23,11 +23,16 @@ Configuration variables:
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The
   GPIO pin to use for the switch.
 - **name** (**Required**, string): The name for the switch.
-- **power_on_value** (*Optional*, boolean): The state this switch should be initialized with on boot.
-  Please note that certain pins can have pull-up/down resistors that activate/deactivate a pin before
-  esphomelib can initialize them. Please check with a multimeter and use another pin if necessary.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+.. note::
+
+    esphomelib will attempt to restore the state of the switch on boot-up and write the value
+    very early in the boot process.
+
+    Please note that certain pins can have pull-up/down resistors that activate/deactivate a pin before
+    esphomelib can initialize them. Please check with a multimeter and use another pin if necessary.
 
 See Also
 --------
