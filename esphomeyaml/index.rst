@@ -125,6 +125,7 @@ Sensor Components
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
+    Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
@@ -275,7 +276,6 @@ This list contains items that are technically already supported by other compone
     TEMT6000, cookbook/temt6000, temt6000.jpg
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
-    Total Energy Per Day, cookbook/total_energy, sigma.svg
 
 Do you have other awesome automations or 2nd order components? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
