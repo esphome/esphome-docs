@@ -35,6 +35,10 @@ Configuration variables:
   to https://esphomelib.com/_static/webserver-v1.min.js.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. note::
+
+    Starting with version 1.9.0, you can also upload firmware files OTA with the web server.
+
 See Also
 --------
 

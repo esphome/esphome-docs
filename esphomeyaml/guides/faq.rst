@@ -38,6 +38,42 @@ Tips for using esphomeyaml
 .. |include| replace:: ``!include``
 .. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
 
+I can't get flashing over USB to work.
+--------------------------------------
+
+esphomeyaml depends on the operating system the tool is running on to recognize
+the ESP. This can sometimes fail (driver missing, inside docker container, ...).
+Starting with esphomelib 1.9.0, the esphomelib suite provides
+`esphomeflasher <https://github.com/OttoWinter/esphomeflasher>`__, a tool to flash ESPs over USB.
+
+First, you need to get the firmware file to flash. For HassIO add-on based installs you can
+use the ``COMPILE`` button and then press ``Download Binary``. For command line based installs you
+can access the file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
+
+Then, install esphomeflasher by going to the `releases page <https://github.com/OttoWinter/esphomeflasher/releases>`__
+and downloading one of the pre-compiled binaries. Open up the application and select the serial port
+you want to flash to (on windows you can use the "device manager" to check if it's the right one).
+
+.. figure:: images/esphomeflasher-ui.png
+    :align: center
+    :width: 80%
+
+Select the firmware binary and finally press "Flash ESP".
+
+.. note::
+
+    If the serial port is not showing up, you might not have the required drivers installed.
+    ESPs usually ship with one of these two UART chips:
+
+     * CP2102 (square chip): `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
+     * CH341: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
+
+.. note::
+
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, that's
+    usually a sign that the ESP is defect or cannot be programmed. Please double check the UART wires
+    are connected correctly if flashing using a USB to UART bridge.
+
 What's the difference between esphomelib and esphomeyaml?
 ---------------------------------------------------------
 
@@ -257,6 +293,18 @@ First we temporary 'remove' (comment out) all components from the ``yaml`` file,
     # ...
 
 This will result in really small firmware data which has a high chance of fitting the remaining space on your device. After this OTA update has succeeded you are left with a device with no functionality except OTA. Now you can re-enable all components previously commented out and perform a 'normal' OTA update again.
+
+Donations
+---------
+
+I invest lots of time into this project, so if you like esphomelib and want to support the project, donations
+are very welcome.
+
+Before donating here though, please consider donating to charity (for example the red cross, UNICEF, greenpeace, ...).
+They can use the money much better than I can. Also, I don't want donations for feature requests as I cannot
+_guarantee_ that I can get a specific feature to work reliably.
+
+Donations are currently only possible via PayPal: https://www.paypal.me/ottowinter
 
 See Also
 --------
