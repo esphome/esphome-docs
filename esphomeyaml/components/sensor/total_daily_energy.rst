@@ -8,17 +8,13 @@ it over time.
 So this component allows you to convert readings in ``W`` or ``kW`` to readings of the total
 daily energy usage in ``Wh`` or ``kWh``.
 
-.. figure:: images/total-daily-energy-ui.png
-    :align: center
-    :width: 80.0%
-
 .. code:: yaml
 
     # Example configuration entry
     sensor:
       - platform: total_daily_energy
         pin: 12
-        name: "Pulse Counter"
+        name: "Total Daily Energy"
         power_id: my_power
 
       # The power sensor to convert, can be any power sensor
@@ -64,9 +60,10 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`rotary_encoder`
-- `esp-idf Pulse Counter API <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html>`__.
-- :doc:`API Reference </api/sensor/pulse_counter>`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/pulse_counter.rst>`__
+- :doc:`hlw8012`
+- :doc:`cse7766`
+- :doc:`/esphomeyaml/cookbook/power_meter`
+- :doc:`API Reference </api/sensor/total_daily_energy>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/total_daily_energy.rst>`__
 
 .. disqus::
