@@ -24,6 +24,11 @@ ESPPreferences
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: ESPPreferenceObject
+    :members:
+    :protected-members:
+    :undoc-members:
+
 .. doxygenvariable:: global_preferences
 
 esphal.h

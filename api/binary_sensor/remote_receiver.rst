@@ -76,6 +76,11 @@ API Reference
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: remote::SamsungReceiver
+    :members:
+    :protected-members:
+    :undoc-members:
+
 .. doxygenclass:: remote::RCSwitchRawReceiver
     :members:
     :protected-members:

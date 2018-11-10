@@ -63,3 +63,18 @@ MQTTFanComponent
     :members:
     :protected-members:
     :undoc-members:
+
+.. doxygenclass:: fan::ToggleAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: fan::TurnOnAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: fan::TurnOffAction
+    :members:
+    :protected-members:
+    :undoc-members:

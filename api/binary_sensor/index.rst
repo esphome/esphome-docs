@@ -53,3 +53,69 @@ MQTTBinarySensorComponent
     :members:
     :protected-members:
     :undoc-members:
+
+Filters
+*******
+
+.. doxygenclass:: binary_sensor::Filter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::DelayedOnFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::DelayedOffFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::HeartbeatFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::InvertFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::LambdaFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::UniqueFilter
+    :members:
+    :protected-members:
+    :undoc-members:
+
+Triggers
+********
+
+.. doxygenclass:: binary_sensor::PressTrigger
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::ReleaseTrigger
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::ClickTrigger
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::DoubleClickTrigger
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::MultiClickTrigger
+    :members:
+    :protected-members:
+    :undoc-members:

@@ -38,6 +38,8 @@ Tips for using esphomeyaml
 .. |include| replace:: ``!include``
 .. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
 
+.. _esphomeflasher:
+
 I can't get flashing over USB to work.
 --------------------------------------
 

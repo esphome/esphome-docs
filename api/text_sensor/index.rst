@@ -26,7 +26,7 @@ TextSensor
     :protected-members:
     :undoc-members:
 
-.. doxygenclass:: text_sensor::TextSensorValueTrigger
+.. doxygenclass:: text_sensor::TextSensorStateTrigger
     :members:
     :protected-members:
     :undoc-members:

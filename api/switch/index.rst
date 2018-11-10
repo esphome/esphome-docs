@@ -21,10 +21,18 @@ Switch
     :protected-members:
     :undoc-members:
 
-SimpleSwitch
+OutputSwitch
 ************
 
-.. doxygenclass:: switch_::SimpleSwitch
+.. doxygenclass:: switch_::OutputSwitch
+    :members:
+    :protected-members:
+    :undoc-members:
+
+GPIOSwitch
+**********
+
+.. doxygenclass:: switch_::GPIOSwitch
     :members:
     :protected-members:
     :undoc-members:

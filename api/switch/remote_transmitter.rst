@@ -46,6 +46,11 @@ API Reference
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: remote::SamsungTransmitter
+    :members:
+    :protected-members:
+    :undoc-members:
+
 .. doxygenclass:: remote::RawTransmitter
     :members:
     :protected-members:

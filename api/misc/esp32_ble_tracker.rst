@@ -36,12 +36,12 @@ API Reference
     :protected-members:
     :undoc-members:
 
-.. doxygenclass:: XiaomiMiJiaDevice
+.. doxygenclass:: XiaomiSensor
     :members:
     :protected-members:
     :undoc-members:
 
-.. doxygenclass:: XiaomiMiFloraDevice
+.. doxygenclass:: XiaomiDevice
     :members:
     :protected-members:
     :undoc-members:
@@ -54,21 +54,7 @@ API Reference
 .. doxygenvariable:: global_esp32_ble_tracker
 .. doxygenvariable:: semaphore_scan_end
 
-.. doxygentypedef:: XiaomiMiJiaTemperatureSensor
-.. doxygentypedef:: XiaomiMiJiaHumiditySensor
-.. doxygentypedef:: XiaomiMiJiaBatteryLevelSensor
-.. doxygentypedef:: XiaomiMiFloraTemperatureSensor
-.. doxygentypedef:: XiaomiMiFloraMoistureSensor
-.. doxygentypedef:: XiaomiMiFloraIlluminanceSensor
-.. doxygentypedef:: XiaomiMiFloraConductivitySensor
-.. doxygentypedef:: XiaomiMiFloraBatteryLevelSensor
-
 .. doxygenclass:: ESPBTUUID
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: ESPBTDevice
     :members:
     :protected-members:
     :undoc-members:

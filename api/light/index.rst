@@ -209,3 +209,18 @@ MQTTJSONLightComponent
     :members:
     :protected-members:
     :undoc-members:
+
+.. doxygenclass:: light::TurnOffAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::TurnOnAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: light::ToggleAction
+    :members:
+    :protected-members:
+    :undoc-members:

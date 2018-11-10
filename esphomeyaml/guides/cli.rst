@@ -21,6 +21,8 @@ The ``esphomeyaml <CONFIG> run`` command is the most common command for esphomey
 * Uploads the firmware (over OTA or USB)
 * Starts the log view
 
+.. program:: esphomeyaml run
+
 .. option:: --upload-port UPLOAD_PORT
 
     Manually specify the upload port/ip to use. For example ``/dev/cu.SLAB_USBtoUART``.
@@ -52,6 +54,8 @@ The ``esphomeyaml <CONFIG> run`` command is the most common command for esphomey
 ``config`` Command
 ------------------
 
+.. program:: esphomeyaml config
+
 The ``esphomeyaml <CONFIG> config`` validates the configuration and displays the validation result.
 
 .. option:: --topic TOPIC
@@ -77,6 +81,8 @@ The ``esphomeyaml <CONFIG> config`` validates the configuration and displays the
 ``compile`` Command
 -------------------
 
+.. program:: esphomeyaml compile
+
 The ``esphomeyaml <CONFIG> compile`` validates the configuration and compiles the firmware.
 
 .. option:: --only-generate
@@ -85,6 +91,8 @@ The ``esphomeyaml <CONFIG> compile`` validates the configuration and compiles th
 
 ``upload`` Command
 ------------------
+
+.. program:: esphomeyaml upload
 
 The ``esphomeyaml <CONFIG> upload`` validates the configuration and uploads the most recent firmware build.
 
@@ -98,6 +106,8 @@ The ``esphomeyaml <CONFIG> upload`` validates the configuration and uploads the 
 
 ``clean-mqtt`` Command
 ----------------------
+
+.. program:: esphomeyaml clean-mqtt
 
 The ``esphomeyaml <CONFIG> clean-mqtt`` cleans retained MQTT discovery messages from the MQTT broker.
 See :ref:`mqtt-using_with_home_assistant`.
@@ -122,10 +132,14 @@ See :ref:`mqtt-using_with_home_assistant`.
 ``wizard`` Command
 ------------------
 
+.. program:: esphomeyaml wizard
+
 The ``esphomeyaml <CONFIG> wizard`` command starts the esphomeyaml configuration creation wizard.
 
 ``mqtt-fingerprint`` Command
 ----------------------------
+
+.. program:: esphomeyaml mqtt-fingerprint
 
 The ``esphomeyaml <CONFIG> mqtt-fingerprint`` command shows the MQTT SSL fingerprints of the remote used
 for SSL MQTT connections. See :ref:`mqtt-ssl_fingerprints`.
@@ -133,15 +147,21 @@ for SSL MQTT connections. See :ref:`mqtt-ssl_fingerprints`.
 ``version`` Command
 -------------------
 
+.. program:: esphomeyaml version
+
 The ``esphomeyaml <CONFIG> version`` command shows the current esphomeyaml version and exits.
 
 ``clean`` Command
 -----------------
 
+.. program:: esphomeyaml clean
+
 The ``esphomeyaml <CONFIG> clean`` command cleans all build files and can help with some build issues.
 
 ``hass-config`` Command
 -----------------------
+
+.. program:: esphomeyaml hass-config
 
 The ``esphomeyaml <CONFIG> hass-config`` command shows an auto-generated Home Assistant configuration for the esphomeyaml
 node configuration file. This is useful if you're not using MQTT discovery.
@@ -149,12 +169,14 @@ node configuration file. This is useful if you're not using MQTT discovery.
 ``dashboard`` Command
 ---------------------
 
+.. program:: esphomeyaml dashboard
+
 The ``esphomeyaml <CONFIG> dashboard`` command starts the esphomeyaml dashboard server for using esphomeyaml
 through a graphical user interface.
 
 .. option:: --port PORT
 
-    Manually set the HTTP port to open connections on (defaults to 6123)
+    Manually set the HTTP port to open connections on (defaults to 6052)
 
 .. option:: --password PASSWORD
 

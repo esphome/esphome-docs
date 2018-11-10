@@ -12,6 +12,7 @@ Changelog - Version 1.9.0
     PMSX003, components/sensor/pmsx003, pmsx003.svg
 
     esphomeflasher, guides/faq.html#i-can-t-get-flashing-over-usb-to-work, logo.svg
+    Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
 
 
 New Components
@@ -34,14 +35,19 @@ New Components
 - Added support for :doc:`A4988 Stepper Motors </esphomeyaml/components/stepper/index>` (:libpr:`239`,
   :yamlpr:`206`, :docspr:`68`)
 
+- Added :doc:`total daily energy sensor </esphomeyaml/components/sensor/total_daily_energy>` to accumulate the total
+  power usage over one day (:libpr:`256`, :yamlpr:`220`)
+
 New Features
 ------------
 
-- Compiling for ESP32s is now possible on RPis
+- Compiling for ESP32s is now possible on RPis 🎉
 
-- :doc:`GPIO Switches </esphomeyaml/components/switch/gpio>` now have a ``power_on_value`` option which will
-  initialize the state of the switch very early in the boot process
-  (:libpr:`207`, :docspr:`55`).
+- esphomelib now has a new tool: `esphomeflasher <https://github.com/OttoWinter/esphomeflasher>`__ to simplify
+  flashing on Windows/MacOS machines **without having to install esphomeyaml**. So if esphomeyaml for some reason
+  can't find your USB port, you now can use the esphomeflasher app. See :ref:`esphomeflasher`.
+
+- ESP8266s now save the states of lights/switches/... internally and restore them on boot. (:libpr:`258`)
 
 - The :doc:`Over-the-Air Update </esphomeyaml/components/ota>` process was quite buggy sometimes and the Arduino-library
   esphomelib used was doing some weird stuff. The OTA-process has now been completely re-written to be more stable
@@ -71,9 +77,12 @@ New Features
   automations
   (:libpr:`232`, :yamlpr:`196`, :yamlpr:`198`, :docspr:`61`, :docspr:`63`)
 
+- Added :ref:`binary_sensor-on_multi_click` trigger to distinguish between double, long, and single clicks.
+  (:libpr:`262`, :docspr:`77`,  :yamlpr:`226`)
+
 - Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </esphomeyaml/components/pn532>` so that automations
   can directly use the NFC tag ID
-  (:libpr:`194`, :yamlpr:`189`, :doc:`57`)
+  (:libpr:`194`, :yamlpr:`189`, :docspr:`57`)
 
 - Added a ``hass-config`` command which generates a Home Assistant configuration for your esphomeyaml nodes.
   Useful if you're not using MQTT discovery (:yamlpr:`208`)
@@ -93,6 +102,8 @@ New Features
 - Added a ``send_first_at`` option to sliding window moving average sensor filters
   (:libpr:`240`, :yamlpr:`207`, :docspr:`69`)
 
+- You can now upload OTA firmware files with the :doc:`web server component </esphomeyaml/components/web_server>`
+
 
 Breaking Changes
 ----------------
@@ -107,7 +118,7 @@ Breaking Changes
 
   For sensors and binary sensors, ``id(my_sensor).value`` has been deprecated and ``id(my_sensor).state`` should be used
   instead. Additionally, the syntax for toggling lights and switches through C++ has been changed. Please see
-  the :doc:`62` changeset for more information
+  the :docspr:`62` changeset for more information
   (:libpr:`231`, :docspr:`62`, :yamlpr:`197`)
 
 - In 1.8.2, you might have noticed that the WiFi performance has been greatly improved. This was due to the new default of
@@ -123,109 +134,133 @@ Breaking Changes
 All changes
 -----------
 
-- esphomedocs: Clarify ESP32 BLE Tracker comment `#42 <https://github.com/OttoWinter/esphomedocs/pull/42>`__
-- esphomeyaml: Add a link to Home Assistant in README `#152 <https://github.com/OttoWinter/esphomeyaml/pull/152>`__ by `@jonnyair <https://github.com/jonnyair>`__
-- esphomelib: Add a link to Home Assistant in README.md `#184 <https://github.com/OttoWinter/esphomelib/pull/184>`__ by `@jonnyair <https://github.com/jonnyair>`__
-- esphomedocs: Fix time docs 12-hour clock strftime format `#43 <https://github.com/OttoWinter/esphomedocs/pull/43>`__
-- esphomelib: Fix ESP32 BLE Presence detection always on `#185 <https://github.com/OttoWinter/esphomelib/pull/185>`__
-- esphomelib: Fix LCD display include `#186 <https://github.com/OttoWinter/esphomelib/pull/186>`__
-- esphomelib: Fix template switch spamming output `#187 <https://github.com/OttoWinter/esphomelib/pull/187>`__
-- esphomelib: Fix using HTU21D for SI7021 `#188 <https://github.com/OttoWinter/esphomelib/pull/188>`__
-- esphomelib: Fix components sending invalid state on startup if integration not ready yet `#195 <https://github.com/OttoWinter/esphomelib/pull/195>`__
-- esphomelib: Log esphomelib version and compilation time on boot `#189 <https://github.com/OttoWinter/esphomelib/pull/189>`__ (new-feature)
-- esphomeyaml: Log esphomelib version and compilation time on boot `#159 <https://github.com/OttoWinter/esphomeyaml/pull/159>`__ (new-feature)
-- esphomeyaml: Fix raw remote receiver `#158 <https://github.com/OttoWinter/esphomeyaml/pull/158>`__
-- esphomelib: Add Code of Conduct (Contributor Covenant) `#196 <https://github.com/OttoWinter/esphomelib/pull/196>`__
-- esphomelib: Create CONTRIBUTING.md `#197 <https://github.com/OttoWinter/esphomelib/pull/197>`__
-- esphomelib: Create issue templates `#198 <https://github.com/OttoWinter/esphomelib/pull/198>`__
-- esphomelib: Create pull request template `#199 <https://github.com/OttoWinter/esphomelib/pull/199>`__
-- esphomeyaml: Create Pull Request Template `#172 <https://github.com/OttoWinter/esphomeyaml/pull/172>`__
-- esphomeyaml: Create CONTRIBUTING.md `#169 <https://github.com/OttoWinter/esphomeyaml/pull/169>`__
-- esphomeyaml: Add Code of Conduct (Contributor Covenant) `#168 <https://github.com/OttoWinter/esphomeyaml/pull/168>`__
-- esphomeyaml: Create issue templates `#171 <https://github.com/OttoWinter/esphomeyaml/pull/171>`__
-- esphomedocs: Add Code of Conduct (Contributor Covenant) `#44 <https://github.com/OttoWinter/esphomedocs/pull/44>`__
-- esphomedocs: Create Pull Request Template `#45 <https://github.com/OttoWinter/esphomedocs/pull/45>`__
-- esphomeyaml: Fix readme broken link `#174 <https://github.com/OttoWinter/esphomeyaml/pull/174>`__
-- esphomelib: Fix pulse counter counting inverted on ESP8266 `#200 <https://github.com/OttoWinter/esphomelib/pull/200>`__
-- esphomeyaml: Add use_build_flags removal notice `#173 <https://github.com/OttoWinter/esphomeyaml/pull/173>`__
-- esphomedocs: Highlight update_interval gotchas `#46 <https://github.com/OttoWinter/esphomedocs/pull/46>`__
-- esphomedocs: Add Disqus and cleanup `#47 <https://github.com/OttoWinter/esphomedocs/pull/47>`__ (new-feature)
-- esphomelib: Fix PN532 not logging discovered tags `#202 <https://github.com/OttoWinter/esphomelib/pull/202>`__
-- esphomeyaml: Add Samsung IR protocol `#176 <https://github.com/OttoWinter/esphomeyaml/pull/176>`__ by `@escoand <https://github.com/escoand>`__ (new-feature)
-- esphomedocs: add samsung ir protocol `#48 <https://github.com/OttoWinter/esphomedocs/pull/48>`__ by `@escoand <https://github.com/escoand>`__ (new-feature)
-- esphomelib: Bump FastLED to 3.2.0 `#203 <https://github.com/OttoWinter/esphomelib/pull/203>`__
-- esphomeyaml: Fix Wifi power_save_mode option `#178 <https://github.com/OttoWinter/esphomeyaml/pull/178>`__
-- esphomelib: Fix application sort order `#211 <https://github.com/OttoWinter/esphomelib/pull/211>`__
-- esphomedocs: Improve pulse counter docs `#49 <https://github.com/OttoWinter/esphomedocs/pull/49>`__
-- esphomelib: Fix ESP32 BLE Controller Init `#213 <https://github.com/OttoWinter/esphomelib/pull/213>`__
-- esphomelib: Fix Web Server Creating Infinite Print Loop `#214 <https://github.com/OttoWinter/esphomelib/pull/214>`__
-- esphomelib: Add TOGGLE payload to more components `#212 <https://github.com/OttoWinter/esphomelib/pull/212>`__ (new-feature)
-- esphomelib: ESP8266 Pulse Counter Improve Timing `#205 <https://github.com/OttoWinter/esphomelib/pull/205>`__
-- esphomelib: Add MQTT Subscribe Sensor `#193 <https://github.com/OttoWinter/esphomelib/pull/193>`__ (new-feature)
-- esphomedocs: Add MQTT Subscribe sensor `#50 <https://github.com/OttoWinter/esphomedocs/pull/50>`__ (new-feature)
-- esphomeyaml: Add MQTT Subscribe sensor `#175 <https://github.com/OttoWinter/esphomeyaml/pull/175>`__ (new-feature)
-- esphomeyaml: MQTT different log level `#167 <https://github.com/OttoWinter/esphomeyaml/pull/167>`__ (new-feature)
-- esphomedocs: Add option to have different log level over MQTT `#51 <https://github.com/OttoWinter/esphomedocs/pull/51>`__ (new-feature)
-- esphomeyaml: Add clean build files command and auto-clean on version change `#181 <https://github.com/OttoWinter/esphomeyaml/pull/181>`__ (new-feature)
-- esphomelib: Add power on value to switch `#207 <https://github.com/OttoWinter/esphomelib/pull/207>`__ (new-feature)
-- esphomelib: Rework OTA to be more stable `#204 <https://github.com/OttoWinter/esphomelib/pull/204>`__ (breaking-change) (new-feature)
-- esphomeyaml: Rework OTA to be more stable `#177 <https://github.com/OttoWinter/esphomeyaml/pull/177>`__ (new-feature)
-- esphomelib: Fix WiFi not working when GPIO 0 connected `#215 <https://github.com/OttoWinter/esphomelib/pull/215>`__
-- esphomelib: Fix MiFlora illuminance reading `#220 <https://github.com/OttoWinter/esphomelib/pull/220>`__
-- esphomelib: Remove invalid file headers `#219 <https://github.com/OttoWinter/esphomelib/pull/219>`__
-- esphomeyaml: Fix config dump time output `#184 <https://github.com/OttoWinter/esphomeyaml/pull/184>`__
-- esphomelib: GPIO Switch Rewrite `#217 <https://github.com/OttoWinter/esphomelib/pull/217>`__
-- esphomedocs: Add power on value to GPIO Switch `#55 <https://github.com/OttoWinter/esphomedocs/pull/55>`__ (new-feature)
-- esphomeyaml: GPIO Switch Power On Value v2 `#183 <https://github.com/OttoWinter/esphomeyaml/pull/183>`__
-- esphomeyaml: Decentralize Automation Generator Code `#182 <https://github.com/OttoWinter/esphomeyaml/pull/182>`__
-- esphomelib: Add PN532 On Tag Trigger `#226 <https://github.com/OttoWinter/esphomelib/pull/226>`__ (new-feature)
-- esphomelib: Add text sensors `#194 <https://github.com/OttoWinter/esphomelib/pull/194>`__ (new-feature)
-- esphomedocs: Add Text sensors `#52 <https://github.com/OttoWinter/esphomedocs/pull/52>`__ (new-feature)
-- esphomelib: Fix PCF8574 assert. `#223 <https://github.com/OttoWinter/esphomelib/pull/223>`__ by `@lobradov <https://github.com/lobradov>`__
-- esphomelib: Unify Xiaomi MiJia&MiFlora Implementations `#225 <https://github.com/OttoWinter/esphomelib/pull/225>`__
-- esphomedocs: Unify xiaomi implementations `#56 <https://github.com/OttoWinter/esphomedocs/pull/56>`__
-- esphomeyaml: Unify Xiaomi implementations `#188 <https://github.com/OttoWinter/esphomeyaml/pull/188>`__
-- esphomelib: Add CSE7766 for Sonoff Pow R2 `#227 <https://github.com/OttoWinter/esphomelib/pull/227>`__ (new-feature)
-- esphomedocs: Add CSE7766 for Sonoff Pow R2 `#59 <https://github.com/OttoWinter/esphomedocs/pull/59>`__ (new-feature)
-- esphomedocs: Add PN532 On Tag Trigger `#57 <https://github.com/OttoWinter/esphomedocs/pull/57>`__ (new-feature)
-- esphomeyaml: Add CSE776 for Sonoff Pow R2 `#190 <https://github.com/OttoWinter/esphomeyaml/pull/190>`__ (new-feature)
-- esphomeyaml: Add Text Sensors `#166 <https://github.com/OttoWinter/esphomeyaml/pull/166>`__ (new-feature)
-- esphomeyaml: Add PN532 On Tag Trigger `#189 <https://github.com/OttoWinter/esphomeyaml/pull/189>`__ (new-feature)
-- esphomelib: Add MQTT publish JSON action and subscribe JSON trigger `#230 <https://github.com/OttoWinter/esphomelib/pull/230>`__ (new-feature)
-- esphomeyaml: Add MQTT publish JSON action and subscribe JSON trigger `#193 <https://github.com/OttoWinter/esphomeyaml/pull/193>`__ (new-feature)
-- esphomedocs: Add MQTT publish JSON action and subscribe JSON trigger `#60 <https://github.com/OttoWinter/esphomedocs/pull/60>`__ (new-feature)
-- esphomelib: Add PMSX003 Particulate Matter Sensor `#229 <https://github.com/OttoWinter/esphomelib/pull/229>`__ (new-feature)
-- esphomedocs: Add PMSX003 Particulate Matter Sensor `#58 <https://github.com/OttoWinter/esphomedocs/pull/58>`__ (new-feature)
-- esphomelib: Add update component action and scripts `#232 <https://github.com/OttoWinter/esphomelib/pull/232>`__ (new-feature)
-- esphomedocs: Add update component action and scripts `#61 <https://github.com/OttoWinter/esphomedocs/pull/61>`__ (new-feature)
-- esphomelib: Implement HASS device registry for MQTT components `#233 <https://github.com/OttoWinter/esphomelib/pull/233>`__ (new-feature)
-- esphomelib: Add FastLED color correction option `#234 <https://github.com/OttoWinter/esphomelib/pull/234>`__ (new-feature)
-- esphomedocs: Add FastLED color correction option `#64 <https://github.com/OttoWinter/esphomedocs/pull/64>`__ (new-feature)
-- esphomeyaml: Add update component action and scripts `#196 <https://github.com/OttoWinter/esphomeyaml/pull/196>`__ (new-feature)
-- esphomeyaml: Add PMSX003 Particulate Matter Sensor `#192 <https://github.com/OttoWinter/esphomeyaml/pull/192>`__ (new-feature)
-- esphomeyaml: Add FastLED color correction option `#200 <https://github.com/OttoWinter/esphomeyaml/pull/200>`__ (new-feature)
-- esphomeyaml: Fix triggers being interpreted as a sequence of automations `#199 <https://github.com/OttoWinter/esphomeyaml/pull/199>`__
-- esphomeyaml: Fix value range trigger :expressionless: `#201 <https://github.com/OttoWinter/esphomeyaml/pull/201>`__
-- esphomelib: Make naming convention consistent `#231 <https://github.com/OttoWinter/esphomelib/pull/231>`__ (breaking-change)
-- esphomedocs: Make naming convention consistent `#62 <https://github.com/OttoWinter/esphomedocs/pull/62>`__ (breaking-change)
-- esphomedocs: Fix some typos `#65 <https://github.com/OttoWinter/esphomedocs/pull/65>`__
-- esphomeyaml: Improve API naming convention consistency `#197 <https://github.com/OttoWinter/esphomeyaml/pull/197>`__ (breaking-change)
-- esphomeyaml: Fix some typos `#202 <https://github.com/OttoWinter/esphomeyaml/pull/202>`__
-- esphomedocs: Add logger.log action `#63 <https://github.com/OttoWinter/esphomedocs/pull/63>`__ (new-feature)
-- esphomeyaml: Add logger.log action `#198 <https://github.com/OttoWinter/esphomeyaml/pull/198>`__ (new-feature)
-- esphomedocs: Fix template sensor docs `#66 <https://github.com/OttoWinter/esphomedocs/pull/66>`__
-- esphomedocs: Fix text sensor outdated API docs `#70 <https://github.com/OttoWinter/esphomedocs/pull/70>`__
-- esphomedocs: Add Stepper Support `#68 <https://github.com/OttoWinter/esphomedocs/pull/68>`__ (new-feature)
-- esphomelib: Add stepper motor support `#239 <https://github.com/OttoWinter/esphomelib/pull/239>`__ (new-feature)
-- esphomelib: Add send_first_at option to sliding window sensor filter `#240 <https://github.com/OttoWinter/esphomelib/pull/240>`__ (new-feature)
-- esphomedocs: Add send_first_at option to sliding window sensor filter `#69 <https://github.com/OttoWinter/esphomedocs/pull/69>`__ (new-feature)
-- esphomelib: Fix display line drawing algorithm `#241 <https://github.com/OttoWinter/esphomelib/pull/241>`__
-- esphomelib: Fix availability calculation `#242 <https://github.com/OttoWinter/esphomelib/pull/242>`__
-- esphomeyaml: Add Stepper Motor Support `#206 <https://github.com/OttoWinter/esphomeyaml/pull/206>`__ (new-feature)
-- esphomeyaml: Add send_first_at option to sliding window sensor filter `#207 <https://github.com/OttoWinter/esphomeyaml/pull/207>`__ (new-feature)
-- esphomedocs: Switch example to Dehumidifier, minor grammar/puncuation `#67 <https://github.com/OttoWinter/esphomedocs/pull/67>`__ by `@rorpage <https://github.com/rorpage>`__
-- esphomeyaml: Auto-Decode stacktraces `#214 <https://github.com/OttoWinter/esphomeyaml/pull/214>`__ (new-feature)
-- esphomeyaml: Add generate home assistant config command `#208 <https://github.com/OttoWinter/esphomeyaml/pull/208>`__ (new-feature)
+- docs: Clarify ESP32 BLE Tracker comment :docspr:`42`
+- yaml: Add a link to Home Assistant in README :yamlpr:`152` by :ghuser:`jonnyair`
+- lib: Add a link to Home Assistant in README.md :libpr:`184` by :ghuser:`jonnyair`
+- docs: Fix time docs 12-hour clock strftime format :docspr:`43`
+- lib: Fix ESP32 BLE Presence detection always on :libpr:`185`
+- lib: Fix LCD display include :libpr:`186`
+- lib: Fix template switch spamming output :libpr:`187`
+- lib: Fix using HTU21D for SI7021 :libpr:`188`
+- lib: Fix components sending invalid state on startup if integration not ready yet :libpr:`195`
+- lib: Log esphomelib version and compilation time on boot :libpr:`189` (new-feature)
+- yaml: Log esphomelib version and compilation time on boot :yamlpr:`159` (new-feature)
+- yaml: Fix raw remote receiver :yamlpr:`158`
+- lib: Add Code of Conduct (Contributor Covenant) :libpr:`196`
+- lib: Create CONTRIBUTING.md :libpr:`197`
+- lib: Create issue templates :libpr:`198`
+- lib: Create pull request template :libpr:`199`
+- yaml: Create Pull Request Template :yamlpr:`172`
+- yaml: Create CONTRIBUTING.md :yamlpr:`169`
+- yaml: Add Code of Conduct (Contributor Covenant) :yamlpr:`168`
+- yaml: Create issue templates :yamlpr:`171`
+- docs: Add Code of Conduct (Contributor Covenant) :docspr:`44`
+- docs: Create Pull Request Template :docspr:`45`
+- yaml: Fix readme broken link :yamlpr:`174`
+- lib: Fix pulse counter counting inverted on ESP8266 :libpr:`200`
+- yaml: Add use_build_flags removal notice :yamlpr:`173`
+- docs: Highlight update_interval gotchas :docspr:`46`
+- docs: Add Disqus and cleanup :docspr:`47` (new-feature)
+- lib: Fix PN532 not logging discovered tags :libpr:`202`
+- yaml: Add Samsung IR protocol :yamlpr:`176` by :ghuser:`escoand` (new-feature)
+- docs: add samsung ir protocol :docspr:`48` by :ghuser:`escoand` (new-feature)
+- lib: Bump FastLED to 3.2.0 :libpr:`203`
+- yaml: Fix Wifi power_save_mode option :yamlpr:`178`
+- lib: Fix application sort order :libpr:`211`
+- docs: Improve pulse counter docs :docspr:`49`
+- lib: Fix ESP32 BLE Controller Init :libpr:`213`
+- lib: Fix Web Server Creating Infinite Print Loop :libpr:`214`
+- lib: Add TOGGLE payload to more components :libpr:`212` (new-feature)
+- lib: ESP8266 Pulse Counter Improve Timing :libpr:`205`
+- lib: Add MQTT Subscribe Sensor :libpr:`193` (new-feature)
+- docs: Add MQTT Subscribe sensor :docspr:`50` (new-feature)
+- yaml: Add MQTT Subscribe sensor :yamlpr:`175` (new-feature)
+- yaml: MQTT different log level :yamlpr:`167` (new-feature)
+- docs: Add option to have different log level over MQTT :docspr:`51` (new-feature)
+- yaml: Add clean build files command and auto-clean on version change :yamlpr:`181` (new-feature)
+- lib: Add power on value to switch :libpr:`207` (new-feature)
+- lib: Rework OTA to be more stable :libpr:`204` (breaking-change) (new-feature)
+- yaml: Rework OTA to be more stable :yamlpr:`177` (new-feature)
+- lib: Fix WiFi not working when GPIO 0 connected :libpr:`215`
+- lib: Fix MiFlora illuminance reading :libpr:`220`
+- lib: Remove invalid file headers :libpr:`219`
+- yaml: Fix config dump time output :yamlpr:`184`
+- lib: GPIO Switch Rewrite :libpr:`217`
+- docs: Add power on value to GPIO Switch :docspr:`55` (new-feature)
+- yaml: Decentralize Automation Generator Code :yamlpr:`182`
+- lib: Add PN532 On Tag Trigger :libpr:`226` (new-feature)
+- lib: Add text sensors :libpr:`194` (new-feature)
+- docs: Add Text sensors :docspr:`52` (new-feature)
+- lib: Fix PCF8574 assert. :libpr:`223` by :ghuser:`lobradov`
+- lib: Unify Xiaomi MiJia&MiFlora Implementations :libpr:`225`
+- docs: Unify xiaomi implementations :docspr:`56`
+- yaml: Unify Xiaomi implementations :yamlpr:`188`
+- lib: Add CSE7766 for Sonoff Pow R2 :libpr:`227` (new-feature)
+- docs: Add CSE7766 for Sonoff Pow R2 :docspr:`59` (new-feature)
+- docs: Add PN532 On Tag Trigger :docspr:`57` (new-feature)
+- yaml: Add CSE776 for Sonoff Pow R2 :yamlpr:`190` (new-feature)
+- yaml: Add Text Sensors :yamlpr:`166` (new-feature)
+- yaml: Add PN532 On Tag Trigger :yamlpr:`189` (new-feature)
+- lib: Add MQTT publish JSON action and subscribe JSON trigger :libpr:`230` (new-feature)
+- yaml: Add MQTT publish JSON action and subscribe JSON trigger :yamlpr:`193` (new-feature)
+- docs: Add MQTT publish JSON action and subscribe JSON trigger :docspr:`60` (new-feature)
+- lib: Add PMSX003 Particulate Matter Sensor :libpr:`229` (new-feature)
+- docs: Add PMSX003 Particulate Matter Sensor :docspr:`58` (new-feature)
+- lib: Add update component action and scripts :libpr:`232` (new-feature)
+- docs: Add update component action and scripts :docspr:`61` (new-feature)
+- lib: Implement HASS device registry for MQTT components :libpr:`233` (new-feature)
+- lib: Add FastLED color correction option :libpr:`234` (new-feature)
+- docs: Add FastLED color correction option :docspr:`64` (new-feature)
+- yaml: Add update component action and scripts :yamlpr:`196` (new-feature)
+- yaml: Add PMSX003 Particulate Matter Sensor :yamlpr:`192` (new-feature)
+- yaml: Add FastLED color correction option :yamlpr:`200` (new-feature)
+- yaml: Fix triggers being interpreted as a sequence of automations :yamlpr:`199`
+- yaml: Fix value range trigger :expressionless: :yamlpr:`201`
+- lib: Make naming convention consistent :libpr:`231` (breaking-change)
+- docs: Make naming convention consistent :docspr:`62` (breaking-change)
+- docs: Fix some typos :docspr:`65`
+- yaml: Improve API naming convention consistency :yamlpr:`197` (breaking-change)
+- yaml: Fix some typos :yamlpr:`202`
+- docs: Add logger.log action :docspr:`63` (new-feature)
+- yaml: Add logger.log action :yamlpr:`198` (new-feature)
+- docs: Fix template sensor docs :docspr:`66`
+- docs: Fix text sensor outdated API docs :docspr:`70`
+- docs: Add Stepper Support :docspr:`68` (new-feature)
+- lib: Add stepper motor support :libpr:`239` (new-feature)
+- lib: Add send_first_at option to sliding window sensor filter :libpr:`240` (new-feature)
+- docs: Add send_first_at option to sliding window sensor filter :docspr:`69` (new-feature)
+- lib: Fix display line drawing algorithm :libpr:`241`
+- lib: Fix availability calculation :libpr:`242`
+- yaml: Add Stepper Motor Support :yamlpr:`206` (new-feature)
+- yaml: Add send_first_at option to sliding window sensor filter :yamlpr:`207` (new-feature)
+- docs: Switch example to Dehumidifier, minor grammar/puncuation :docspr:`67` by :ghuser:`rorpage`
+- yaml: Auto-Decode stacktraces :yamlpr:`214` (new-feature)
+- yaml: Add generate home assistant config command :yamlpr:`208` (new-feature)
+- yaml: Update Gitlab Build Script :yamlpr:`215`
+- lib: Fix status binary sensor always reporting false internally :libpr:`257`
+- yaml: Fix HLW8012 Voltage Divider option not being added to source :yamlpr:`224`
+- lib: Fix HLW8012 Initial Value Reporting :libpr:`254`
+- lib: Clean up Time API :libpr:`253`
+- yaml: Better typing to components :yamlpr:`225`
+- lib: Support uploading OTA updates over web server :libpr:`255` (new-feature)
+- lib: Save and Restore states from RTC memory :libpr:`258` (new-feature)
+- docs: Revert add power_on_value to gpio switch :docspr:`78`
+- lib: Improve default log levels and log sources :libpr:`264`
+- lib: OTA Read back server acknowledgement :libpr:`263`
+- lib: Add Multi Click Trigger to binary sensor :libpr:`262` (new-feature)
+- docs: Add binary sensor on multi click trigger :docspr:`77` (new-feature)
+- lib: ESP32 BLE Release Bluetooth Classic Memory :libpr:`261`
+- yaml: Add restore state option to template switch :yamlpr:`222`
+- docs: Advertise esphomeflasher :docspr:`76` (new-feature)
+- docs: Replace table generator with custom RST directive :docspr:`75`
+- yaml: Clean up time API :yamlpr:`221`
+- yaml: Revert Add power on value to GPIO switch :yamlpr:`223`
+- yaml: Add binary sensor multi click trigger :yamlpr:`226` (new-feature)
+- lib: Add Total Daily Energy Sensor :libpr:`256` (new-feature)
+- yaml: Add total daily energy sensor :yamlpr:`220` (new-feature)
+- docs: Add total daily energy sensor :docspr:`79`
+
+
 
 Past Changelogs
 ---------------

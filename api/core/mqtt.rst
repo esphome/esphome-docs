@@ -58,3 +58,28 @@ MQTTComponent
     :protected-members:
     :undoc-members:
 
+Triggers
+********
+
+.. doxygenclass:: mqtt::MQTTMessageTrigger
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: mqtt::MQTTJsonMessageTrigger
+    :members:
+    :protected-members:
+    :undoc-members:
+
+Actions
+*******
+
+.. doxygenclass:: mqtt::MQTTPublishAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: mqtt::MQTTPublishJsonAction
+    :members:
+    :protected-members:
+    :undoc-members:

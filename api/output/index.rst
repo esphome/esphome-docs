@@ -28,3 +28,18 @@ FloatOutput
     :members:
     :protected-members:
     :undoc-members:
+
+.. doxygenclass:: output::TurnOnAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: output::TurnOffAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: output::SetLevelAction
+    :members:
+    :protected-members:
+    :undoc-members:

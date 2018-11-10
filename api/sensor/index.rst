@@ -26,8 +26,6 @@ Sensor
     :protected-members:
     :undoc-members:
 
-.. doxygentypedef:: sensor::sensor_callback_t
-
 .. doxygenclass:: sensor::PollingSensorComponent
     :members:
     :protected-members:
