@@ -52,8 +52,7 @@ For example, this configuration would achieve your desired behavior:
         name: "Living Room Dehumidifier Toggle Button"
         on_press:
           then:
-            - switch.toggle:
-                id: dehumidifier1
+            - switch.toggle: dehumidifier1
 
 
 
@@ -104,11 +103,9 @@ like so:
     # ...
     on_press:
       then:
-        - switch.toggle:
-            id: dehumidifier1
+        - switch.toggle: dehumidifier1
         - delay: 2s
-        - switch.toggle:
-            id: dehumidifier1
+        - switch.toggle: dehumidifier1
 
 With this automation, a press on the push button would cause the dehumidifier to turn on/off for 2 seconds, and then
 cycle back to its original state. Similarly you can have a single trigger with multiple automations:
@@ -118,19 +115,15 @@ cycle back to its original state. Similarly you can have a single trigger with m
     # ...
     on_press:
       - then:
-          - switch.toggle:
-              id: dehumidifier1
+          - switch.toggle: dehumidifier1
       - then:
-          - light.toggle:
-              id: dehumidifier_indicator_light
+          - light.toggle: dehumidifier_indicator_light
 
     # Same as:
     on_press:
       then:
-        - switch.toggle:
-            id: dehumidifier1
-        - light.toggle:
-            id: dehumidifier_indicator_light
+        - switch.toggle: dehumidifier1
+        - light.toggle: dehumidifier_indicator_light
 
 
 As a last example, let's make our dehumidifier smart: Let's make it turn on automatically when the humidity a sensor
@@ -145,12 +138,10 @@ reports is above 65% and make it turn off again when it reaches 50%
           on_value_range:
             - above: 65.0
               then:
-                - switch.turn_on:
-                    id: dehumidifier1
+                - switch.turn_on: dehumidifier1
             - below: 50.0
               then:
-                - switch.turn_off:
-                    id: dehumidifier1
+                - switch.turn_off: dehumidifier1
         temperature:
           name: "Living Room Temperature"
 
@@ -317,11 +308,9 @@ time period.
 
    on_...:
      then:
-        - switch.turn_on:
-            id: relay_1
+        - switch.turn_on: relay_1
         - delay: 2s
-        - switch.turn_off:
-            id: relay_1
+        - switch.turn_off: relay_1
         # Templated, waits for 1s (1000ms) only if a reed switch is active
         - delay: !lambda "if (id(reed_switch).state) return 1000; else return 0;"
 

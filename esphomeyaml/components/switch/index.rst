@@ -37,7 +37,7 @@ This action toggles a switch with the given ID when executed.
 
     on_...:
       then:
-        - switch.toggle: id: relay_1
+        - switch.toggle: relay_1
 
 .. _switch-turn_on_action:
 

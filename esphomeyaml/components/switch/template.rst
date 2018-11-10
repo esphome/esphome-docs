@@ -18,11 +18,9 @@ as a switch and can be controlled through the frontend.
             return false;
           }
         turn_on_action:
-          - switch.turn_on:
-              id: switch2
+          - switch.turn_on: switch2
         turn_off_action:
-          - switch.turn_on:
-              id: switch1
+          - switch.turn_on: switch1
         optimistic: true
 
 

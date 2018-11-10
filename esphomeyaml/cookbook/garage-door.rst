@@ -23,27 +23,19 @@ for a short period of time, the close/open action begins.
         name: "Garage Door"
         open_action:
           # Cancel any previous action
-          - switch.turn_off:
-              id: close_switch
+          - switch.turn_off: close_switch
           # Turn the OPEN switch on briefly
-          - switch.turn_on:
-              id: open_switch
+          - switch.turn_on: open_switch
           - delay: 0.1s
-          - switch.turn_off:
-              id: open_switch
+          - switch.turn_off: open_switch
         close_action:
-          - switch.turn_off:
-              id: open_switch
-          - switch.turn_on:
-              id: close_switch
+          - switch.turn_off: open_switch
+          - switch.turn_on: close_switch
           - delay: 0.1s
-          - switch.turn_off:
-              id: close_switch
+          - switch.turn_off: close_switch
         stop_action:
-          - switch.turn_off:
-              id: close_switch
-          - switch.turn_off:
-              id: open_switch
+          - switch.turn_off: close_switch
+          - switch.turn_off: open_switch
         optimistic: true
 
 See Also

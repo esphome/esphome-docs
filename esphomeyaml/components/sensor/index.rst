@@ -255,8 +255,7 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
           above: 5
           below: 10
           then:
-            - switch.turn_on:
-                id: relay_1
+            - switch.turn_on: relay_1
 
 Configuration variables:
 
