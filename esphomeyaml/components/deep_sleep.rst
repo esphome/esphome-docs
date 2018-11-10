@@ -106,7 +106,7 @@ Useful for
     catch the ESP being active.
 
     You can use this automation to automatically prevent deep sleep when a MQTT message on the topic
-    ``livingroom/ota_mode`` with the payload ``ON`` is received. Then, to do the OTA update, just
+    ``livingroom/ota_mode`` is received. Then, to do the OTA update, just
     use a MQTT client to publish a retained MQTT message described above. When the node wakes up again
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
@@ -122,10 +122,8 @@ Useful for
           # ...
           on_message:
             topic: livingroom/ota_mode
-            payload: ON
             then:
-              - deep_sleep.prevent:
-                  id: deep_sleep_1
+              - deep_sleep.prevent: deep_sleep_1
 
 See Also
 --------

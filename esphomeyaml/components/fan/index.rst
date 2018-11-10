@@ -73,6 +73,8 @@ Turns the fan with the given ID off when executed.
       then:
         - fan.turn_on:
             id: fan_1
+        # Shorthand:
+        - fan.turn_on: fan_1
 
 Configuration options:
 

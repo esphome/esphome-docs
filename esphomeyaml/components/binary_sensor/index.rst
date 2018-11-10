@@ -113,8 +113,7 @@ edge of the signal.
         # ...
         on_press:
           then:
-            - switch.turn_on:
-                id: relay_1
+            - switch.turn_on: relay_1
 
 Configuration variables: See :ref:`Automation <automation>`.
 
@@ -133,8 +132,7 @@ edge of the signal.
         # ...
         on_release:
           then:
-            - switch.turn_off:
-                id: relay_1
+            - switch.turn_off: relay_1
 
 Configuration variables: See :ref:`Automation <automation>`.
 
@@ -156,8 +154,7 @@ The automation is therefore also triggered on the falling edge of the signal.
           min_length: 50ms
           max_length: 350ms
           then:
-            - switch.turn_off:
-                id: relay_1
+            - switch.turn_off: relay_1
 
 Configuration variables:
 
@@ -183,8 +180,7 @@ This automation will be triggered when a button is pressed down twice, with the 
           min_length: 50ms
           max_length: 350ms
           then:
-            - switch.turn_off:
-                id: relay_1
+            - switch.turn_off: relay_1
 
 Configuration variables:
 

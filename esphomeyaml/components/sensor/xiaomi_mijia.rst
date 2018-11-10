@@ -4,7 +4,8 @@ Xiaomi MiJia BLE Sensor
 The ``xiaomi_mijia`` sensor platform lets you track the output of Xiaomi MiJia Bluetooth Low Energy
 devices using the :doc:`/esphomeyaml/components/esp32_ble_tracker`. This component will track the
 temperature, humidity and optionally the battery level of the MiJia device every time the sensor
-sends out a BLE broadcast.
+sends out a BLE broadcast. Note that contrary to other implementations, esphomelib can track as many
+MiJia devices at once as you want.
 
 .. figure:: images/xiaomi_mijia-full.jpg
     :align: center

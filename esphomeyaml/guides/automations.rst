@@ -87,8 +87,7 @@ There are also other triggers like ``on_release``, ``on_click`` or ``on_double_c
     # ...
     on_press:
       then:
-        - switch.toggle:
-            id: dehumidifier1
+        - switch.toggle: dehumidifier1
 
 .. _config-action:
 

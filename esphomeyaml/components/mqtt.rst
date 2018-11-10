@@ -289,8 +289,7 @@ template, the message payload is available under the name ``x`` inside that lamb
         topic: my/custom/topic
         qos: 0
         then:
-          - switch.turn_on:
-              id: some_switch
+          - switch.turn_on: some_switch
 
 Configuration variables:
 

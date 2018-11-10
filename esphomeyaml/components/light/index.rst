@@ -18,6 +18,8 @@ This action toggles a light with the given ID when executed.
       then:
         - light.toggle:
             id: light_1
+        # Shorthand:
+        - light.toggle: light_1
 
 Configuration options:
 
@@ -59,6 +61,9 @@ This action turns a light with the given ID on when executed.
             brightness: !lambda >-
               // output value must be in range 0 - 1.0
               return id(some_sensor).state / 100.0;
+
+        # Shorthand
+        - light.turn_on: light_1
 
 Configuration options:
 
@@ -108,6 +113,9 @@ This action turns a light with the given ID off when executed.
       then:
         - light.turn_off:
             id: light_1
+
+        # Shorthand
+        - light.turn_off: light_1
 
 Configuration options:
 

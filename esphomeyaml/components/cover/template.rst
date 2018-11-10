@@ -22,14 +22,11 @@ as a cover and can be controlled through the frontend.
             return cover::COVER_CLOSED;
           }
         open_action:
-          - switch.turn_on:
-              id: open_cover_switch
+          - switch.turn_on: open_cover_switch
         close_action:
-          - switch.turn_on:
-              id: close_cover_switch
+          - switch.turn_on: close_cover_switch
         stop_action:
-          - switch.turn_on:
-              id: stop_cover_switch
+          - switch.turn_on: stop_cover_switch
         optimistic: true
 
 

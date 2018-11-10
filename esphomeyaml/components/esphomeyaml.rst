@@ -171,8 +171,7 @@ is already set up. You can however change this using the ``priority`` parameter.
         priority: -10
         # ...
         then:
-          - switch.turn_off:
-              id: switch_1
+          - switch.turn_off: switch_1
 
 Configuration variables:
 
@@ -210,8 +209,7 @@ too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or th
       # ...
       on_shutdown:
         then:
-          - switch.turn_off:
-              id: switch_1
+          - switch.turn_off: switch_1
 
 Configuration variables: See :ref:`Automation <automation>`.
 
