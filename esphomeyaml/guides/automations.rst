@@ -249,6 +249,49 @@ if you have a light and want to set it to a pre-defined color when a button is p
 Every parameter in actions that has the label "templatable" in the docs can be templated like above, using
 all of the usual lambda syntax.
 
+
+.. _config-globals:
+
+Bonus 2: Global Variables
+*************************
+
+In some cases you might require to share a global variable across multiple lambdas. For example,
+global variables can be used to store the state of a garage door.
+
+.. code:: yaml
+
+    # Example configuration entry
+    globals:
+      - id: my_global_int
+        type: int
+        restore_state: no
+        initial_value: '0'
+
+   # In an automation
+   on_press:
+     then:
+       - lambda: |-
+           if (id(my_global_int) > 5) {
+             // global value is greater than 5
+             id(my_global_int) += 1;
+           } else {
+             id(my_global_int) += 10;
+           }
+
+           ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): Give the global variable an ID so that you can refer
+  to it later in :ref:`lambdas <config-lambda>`.
+- **type** (**Required**, string): The C++ type of the global variable, for example ``bool`` (for ``true``/``false``),
+  ``int`` (for integers), ``float`` (for decimal numbers), ``int[50]`` for an array of 50 integers, etc.
+- **restore_state** (*Optional*, boolean): Whether to try to restore the state on boot up.
+  Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
+- **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
+  can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
+  the C++ default value for this type (for example ``0`` for integers).
+
 All Triggers
 ------------
 
