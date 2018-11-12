@@ -121,16 +121,6 @@ Breaking Changes
   the :docspr:`62` changeset for more information
   (:libpr:`231`, :docspr:`62`, :yamlpr:`197`)
 
-- In 1.8.2, you might have noticed that the WiFi performance has been greatly improved. This was due to the new default of
-  the :ref:`power save mode <wifi-power_save_mode>` option: ``NONE``. However, that default made some other ESPs not
-  connect to WiFi at all 😥. So now the default is back to ``LIGHT``. If you had a good WiFi perfomance in 1.8.2, do:
-
-  .. code:: yaml
-
-      wifi:
-        # ...
-        power_save_mode: NONE
-
 All changes
 -----------
 

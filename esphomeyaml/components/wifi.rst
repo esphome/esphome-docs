@@ -109,12 +109,11 @@ WiFi. While some options *can* reduce the power usage of the ESP, they generally
 reliability of the WiFi connection, with frequent disconnections from the router in the highest
 power saving mode.
 
-The default is ``light`` (a bit of power saving). If you experience frequent WiFi disconnection problems,
-please switch to ``none`` (no power saving). However, ``none`` sometimes works even worse than ``light``, so it's
-best to test with both (hence ``none`` is also not the default).
+The default is ``none`` (a bit of power saving). If you experience frequent WiFi disconnection problems,
+please also try ``light``.
 
-- ``NONE`` (least power saving)
-- ``LIGHT`` (Default)
+- ``NONE`` (least power saving, Default)
+- ``LIGHT``
 - ``HIGH`` (most power saving)
 
 .. code:: yaml

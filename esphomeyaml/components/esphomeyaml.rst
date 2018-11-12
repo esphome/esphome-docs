@@ -181,10 +181,9 @@ Configuration variables:
 
   - ``100``: This is where all hardware initialization of vital components is executed. For example setting switches
     to their initial state.
+  - ``50.0``: This is where most sensors are set up.
   - ``10``: At this priority, WiFi is initialized.
   - ``7.5``: MQTT initialization takes place at this priority.
-  - ``0.0``: This is where most sensors are set up. They are usually set up this late so that they can dump their
-    configuration in the MQTT logs.
   - ``-5.0``: The individual frontend counterparts for the backend components are configured at this priority
   - ``-10.0``: At this priority, pretty much everything should already be initialized.
 

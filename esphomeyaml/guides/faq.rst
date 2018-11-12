@@ -219,7 +219,7 @@ not have a real solution.
 
 Some steps that can help with the issue:
 
--  Set the ``power_save_mode`` to ``NONE`` in the ``wifi:`` config. See :ref:`wifi-power_save_mode`.
+-  Set the ``power_save_mode`` to ``light`` in the ``wifi:`` config. See :ref:`wifi-power_save_mode`.
 -  Use the most recent version of th arduino framework. The platformio arduino package
    always takes some time to update and the most recent version often includes some awesome
    patches. See :ref:`esphomeyaml-arduino_version`.
