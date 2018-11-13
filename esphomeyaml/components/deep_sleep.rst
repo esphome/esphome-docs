@@ -41,6 +41,15 @@ Configuration variables:
   See :ref:`deep_sleep-esp32_wakeup_pin_mode`. Defaults to ``IGNORE``
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+Advanced features:
+
+- **esp32_ext1_wakeup** (*Optional*): Use the EXT1 wakeup source of the ESP32 to wake from deep sleep to
+  wake up on multiple pins. This cannot be used together with wakeup pin.
+
+  - **pins** (**Required**, list of pin numbers): The pins to wake up on.
+  - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
+    all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
+
 .. note::
 
     The :ref:`availability feature <mqtt-last_will_birth>` of the MQTT client will cause all values
