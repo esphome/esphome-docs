@@ -8,8 +8,6 @@ limitations.
 
 - There can be a noticeable amount of flickering with increased WiFi activity.
 - The output range only goes up to about 80%.
-- It’s mostly fixed to a frequency of 1kHz, you can :ref:`increase this a
-  bit manually <esp8266_pwm-example_usage>` in code though.
 
 If you need a stable PWM signal, it’s definitely recommended to use the
 successor of the ESP8266, the ESP32, and its :doc:`ESP32 LEDC PWM <ledc>` instead.
@@ -20,6 +18,7 @@ successor of the ESP8266, the ESP32, and its :doc:`ESP32 LEDC PWM <ledc>` instea
     output:
       - platform: esp8266_pwm
         pin: D1
+        frequency: 1000 Hz
         id: pwm-output
 
 Configuration variables:
@@ -27,6 +26,8 @@ Configuration variables:
 
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to use PWM on.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
+- **frequency** (*Optional*, frequency): The frequency to run the PWM with. Lower frequencies
+  have more visual artifacts, but can represent much more colors. Defaults to ``1000 Hz``.
 - All other options from :ref:`Output <config-output>`.
 
 See Also

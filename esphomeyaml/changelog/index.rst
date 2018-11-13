@@ -47,7 +47,7 @@ New Features
   flashing on Windows/MacOS machines **without having to install esphomeyaml**. So if esphomeyaml for some reason
   can't find your USB port, you now can use the esphomeflasher app. See :ref:`esphomeflasher`.
 
-- ESP8266s now save the states of lights/switches/... internally and restore them on boot. (:libpr:`258`)
+- ESP8266s now save the states of lights/switches/... internally and restores them on boot. (:libpr:`258`)
 
 - The :doc:`Over-the-Air Update </esphomeyaml/components/ota>` process was quite buggy sometimes and the Arduino-library
   esphomelib used was doing some weird stuff. The OTA-process has now been completely re-written to be more stable
@@ -104,6 +104,9 @@ New Features
 
 - You can now upload OTA firmware files with the :doc:`web server component </esphomeyaml/components/web_server>`
 
+- Added the ability to define global variables in esphomeyaml: :ref:`config-globals`.
+
+- Added a ``frequency`` option to the :doc:`/esphomeyaml/components/output/esp8266_pwm`.
 
 Breaking Changes
 ----------------
