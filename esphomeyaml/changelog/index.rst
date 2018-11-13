@@ -50,7 +50,10 @@ New Features
   flashing on Windows/MacOS machines **without having to install esphomeyaml**. So if esphomeyaml for some reason
   can't find your USB port, you now can use the esphomeflasher app. See :ref:`esphomeflasher`.
 
-- ESP8266s now save the states of lights/switches/... internally and restores them on boot. (:libpr:`258`)
+- ESP8266s now save the states of lights/switches/... internally and restores them on boot.
+  Additionally, esphomelib can now operate in fully offline mode if your WiFi network goes down
+  or the MQTT broker is unreachable, see :ref:`automation-networkless`
+  (:libpr:`258`, :libpr:`267`, :yamlpr:`229`)
 
 - The :doc:`Over-the-Air Update </esphomeyaml/components/ota>` process was quite buggy sometimes and the Arduino-library
   esphomelib used was doing some weird stuff. The OTA-process has now been completely re-written to be more stable
