@@ -66,6 +66,74 @@ Configuration variables:
    this ``my9231`` component. Use this if you have multiple MY9231/MY9291 chains
    connected at the same time.
 
+Sonoff B1 configuration example
+-------------------------------
+
+This component can be used with a Sonoff B1 smart light blub. To flash
+the Sonoff B1, open the plastic cover and connect/solder wires to the
+PCB pads (3.3V, RX, TX, GND, GPIO0). If you connect GPIO0 to GND
+during power up, the device enters flash mode. For more information
+about flashing Sonoff devices, see:
+:doc:`/esphomeyaml/devices/sonoff_s20`. All LEDs are connected to a
+chain of two MY9321 chips that are connected to GPIO12 and GPIO14. A
+complete configuration for a Sonoff B1 looks like:
+
+.. code:: yaml
+
+    esphomeyaml:
+      name: <NAME_OF_NODE>
+      platform: ESP8266
+      board: esp01_1m
+      board_flash_mode: dout
+
+    wifi:
+      ssid: <YOUR_SSID>
+      password: <YOUR_WIFI_PASSPHRASE>
+
+    mqtt:
+      broker: <YOUR_MQTT_BROKER>
+      username: <YOUR_MQTT_USERNAME>
+      password: <YOUR_MQTT_PASSWORD>
+
+    logger:
+
+    ota:
+      password: <YOUR_OTA_PASSWORD>
+
+    my9231:
+     data_pin: GPIO12
+     clock_pin: GPIO14
+     num_channels: 6
+     num_chips: 2
+
+    output:
+      - platform: my9231
+        id: output_blue
+        channel: 0
+      - platform: my9231
+        id: output_red
+        channel: 1
+      - platform: my9231
+        id: output_green
+        channel: 2
+      - platform: my9231
+        id: output_warm_white
+        channel: 4
+      - platform: my9231
+        id: output_cold_white
+        channel: 5
+
+    light:
+      - platform: rgbww
+        name: <LIGHT_NAME>
+        red: output_red
+        green: output_green
+        blue: output_blue
+        cold_white: output_cold_white
+        warm_white: output_warm_white
+        cold_white_color_temperature: 6500 K
+        warm_white_color_temperature: 2800 K
+
 See Also
 --------
 
