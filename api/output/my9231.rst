@@ -10,8 +10,7 @@ Example Usage
 
     // Create the MY9231 Output hub connected to GPIO12 (DI pin) and
     // GPIO14 (DCKI pin).
-    auto *pmy9231 = App.make_my9231_component(GPIOOutputPin(12),
-                                              GPIOOutputPin(14));
+    auto *pmy9231 = App.make_my9231_component(12, 14);
 
 .. cpp:namespace:: nullptr
 
