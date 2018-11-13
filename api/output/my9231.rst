@@ -1,0 +1,30 @@
+MY9231/MY9291 Output
+====================
+
+FloatOutput support for an MY9231/MY9291 LED driver chain.
+
+Example Usage
+-------------
+
+.. code-block:: cpp
+
+    // Create the MY9231 Output hub connected to GPIO12 (DI pin) and
+    // GPIO14 (DCKI pin).
+    auto *pmy9231 = App.make_my9231_component(12, 14);
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_my9231_component`.
+
+API Reference
+-------------
+
+.. cpp:namespace:: nullptr
+
+MY9231OutputComponent
+**********************
+
+.. doxygenclass:: output::MY9231OutputComponent
+    :members:
+    :protected-members:
+    :undoc-members:

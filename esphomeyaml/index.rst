@@ -165,6 +165,7 @@ Output Components
     GPIO Output, components/output/gpio, pin.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
+    MY9231/MY9291, components/output/my9231, my9231.svg
 
 Light Components
 ----------------
@@ -259,6 +260,7 @@ Misc Components
     RDM6300, components/rdm6300, rdm6300.jpg
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
+    MY9231/MY9291 LED driver, components/my9231, my9231.svg
 
 .. _cookbook:
 
