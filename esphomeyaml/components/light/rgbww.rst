@@ -58,6 +58,7 @@ See Also
 - :doc:`/esphomeyaml/components/output/ledc`
 - :doc:`/esphomeyaml/components/output/esp8266_pwm`
 - :doc:`/esphomeyaml/components/output/pca9685`
+- :doc:`/esphomeyaml/components/output/my9231`
 - :doc:`API Reference </api/light/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/light/rgbww.rst>`__
 

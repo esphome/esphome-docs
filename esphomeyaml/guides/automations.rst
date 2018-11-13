@@ -292,6 +292,19 @@ Configuration options:
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).
 
+.. _automation-networkless:
+
+Do Automations Work Without a Network Connection
+************************************************
+
+YES! All automations you define in esphomelib are execute on the ESP itself and will continue to
+work even if the WiFi network is down or the MQTT server is not reachable.
+
+There is one caveat though: esphomelib automatically reboots if no connection to the MQTT broker can be
+made. This is because the ESPs typically have issues in their network stacks that require a reboot to fix.
+You can adjust this behavior (or even disable automatic rebooting) using the ``reboot_timeout`` option
+in the :doc:`wifi component </esphomeyaml/components/wifi>` and :doc:`mqtt component </esphomeyaml/components/mqtt>`.
+
 All Triggers
 ------------
 

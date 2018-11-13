@@ -55,7 +55,7 @@ Configuration variables:
   Defaults to ``.local``.
 - **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
-  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``60s``.
+  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``5min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface. Defaults to no power saving.
   See :ref:`wifi-power_save_mode`
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

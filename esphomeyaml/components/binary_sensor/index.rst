@@ -208,7 +208,7 @@ This automation will be triggered when a button is pressed in a user-specified s
             - ON for 0.5s to 1s
             - OFF for at least 0.2s
           then:
-          - logger.log: "Double-Clicked"
+            - logger.log: "Double-Clicked"
 
 Configuration variables:
 
@@ -238,27 +238,23 @@ presses.
 
       on_multi_click:
       - timing:
-        - ON for at most 1s
-        - OFF for at most 1s
-        - ON for at most 1s
-        - OFF for at least 0.2s
+          - ON for at most 1s
+          - OFF for at most 1s
+          - ON for at most 1s
+          - OFF for at least 0.2s
         then:
-        - logger.log:
-            format: "Double Clicked"
-            level: warn
+          - logger.log: "Double Clicked"
       - timing:
-        - OFF for 1s to 2s
-        - ON for 1s to 2s
-        - OFF for at least 0.5s
+          - OFF for 1s to 2s
+          - ON for 1s to 2s
+          - OFF for at least 0.5s
         then:
-        - logger.log: "Single Long Clicked"
+          - logger.log: "Single Long Clicked"
       - timing:
-        - ON for at most 1s
-        - OFF for at least 0.5s
+          - ON for at most 1s
+          - OFF for at least 0.5s
         then:
-        - logger.log:
-            format: "Single Short Clicked"
-            level: warn
+          - logger.log: "Single Short Clicked"
 
 lambda calls
 ************

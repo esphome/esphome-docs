@@ -13,6 +13,7 @@ Changelog - Version 1.9.0
 
     esphomeflasher, guides/faq.html#i-can-t-get-flashing-over-usb-to-work, logo.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
+    MY9231/MY9291 LED driver, components/my9231, my9231.svg
 
 
 New Components
@@ -28,6 +29,8 @@ New Components
 - Added :doc:`CSE7766 Power Sensor </esphomeyaml/components/sensor/cse7766>` to support power measurements
   on the Sonoff Pow R2 (:libpr:`277`, :yamlpr:`190`, :docspr:`59`)
 
+- Thanks to :ghuser:`puuu`, the LED driver in the Sonoff B1 (MY9231) is now supported!
+  (:libpr:`266`, :yamlpr:`227`, :docspr:`80`)
 
 - Added the :doc:`PMSX003 Particulate Matter Sensor </esphomeyaml/components/sensor/pmsx003>`
   (:libpr:`229`, :yamlpr:`192`, :docspr:`58`)
@@ -47,7 +50,10 @@ New Features
   flashing on Windows/MacOS machines **without having to install esphomeyaml**. So if esphomeyaml for some reason
   can't find your USB port, you now can use the esphomeflasher app. See :ref:`esphomeflasher`.
 
-- ESP8266s now save the states of lights/switches/... internally and restore them on boot. (:libpr:`258`)
+- ESP8266s now save the states of lights/switches/... internally and restores them on boot.
+  Additionally, esphomelib can now operate in fully offline mode if your WiFi network goes down
+  or the MQTT broker is unreachable, see :ref:`automation-networkless`
+  (:libpr:`258`, :libpr:`267`, :yamlpr:`229`)
 
 - The :doc:`Over-the-Air Update </esphomeyaml/components/ota>` process was quite buggy sometimes and the Arduino-library
   esphomelib used was doing some weird stuff. The OTA-process has now been completely re-written to be more stable
@@ -104,6 +110,9 @@ New Features
 
 - You can now upload OTA firmware files with the :doc:`web server component </esphomeyaml/components/web_server>`
 
+- Added the ability to define global variables in esphomeyaml: :ref:`config-globals`.
+
+- Added a ``frequency`` option to the :doc:`/esphomeyaml/components/output/esp8266_pwm`.
 
 Breaking Changes
 ----------------
