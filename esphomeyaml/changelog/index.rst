@@ -233,7 +233,9 @@ All changes
 - yaml: Add Stepper Motor Support :yamlpr:`206` (new-feature)
 - yaml: Add send_first_at option to sliding window sensor filter :yamlpr:`207` (new-feature)
 - docs: Switch example to Dehumidifier, minor grammar/puncuation :docspr:`67` by :ghuser:`rorpage`
+- docs: Tiny typo fix. :docspr:`73` by :ghuser:`corbanmailloux`
 - yaml: Auto-Decode stacktraces :yamlpr:`214` (new-feature)
+- docs: Fix a broken link to setting up a BLE tracker. :docspr:`72` by :ghuser:`corbanmailloux`
 - yaml: Add generate home assistant config command :yamlpr:`208` (new-feature)
 - yaml: Update Gitlab Build Script :yamlpr:`215`
 - lib: Fix status binary sensor always reporting false internally :libpr:`257`
@@ -258,7 +260,14 @@ All changes
 - lib: Add Total Daily Energy Sensor :libpr:`256` (new-feature)
 - yaml: Add total daily energy sensor :yamlpr:`220` (new-feature)
 - docs: Add total daily energy sensor :docspr:`79`
-
+- lib: Introduce new setup phase: "dump config" to allow fully-offline operation :libpr:`267`
+- yaml: Let esphomeyaml know about class inheritance :yamlpr:`229`
+- docs: ESP32 deep sleep wake up multiple pins :docspr:`81`
+- yaml: Deep Sleep Wake Up From Multiple Pins :yamlpr:`230`
+- lib: Deep Sleep Multi Wakeup :libpr:`268`
+- lib: MY9231/MY9291 LED driver support :libpr:`266` by :ghuser:`puuu` (new-feature)
+- yaml: Add MY9231 support :yamlpr:`227` by :ghuser:`puuu` (new-feature)
+- docs: MY9231/MY9291 LED driver documentation :docspr:`80` by :ghuser:`puuu` (new-feature)
 
 
 Past Changelogs
