@@ -13,6 +13,7 @@ Changelog - Version 1.9.0
 
     esphomeflasher, guides/faq.html#i-can-t-get-flashing-over-usb-to-work, logo.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
+    MY9231/MY9291 LED driver, components/my9231, my9231.svg
 
 
 New Components
@@ -28,6 +29,8 @@ New Components
 - Added :doc:`CSE7766 Power Sensor </esphomeyaml/components/sensor/cse7766>` to support power measurements
   on the Sonoff Pow R2 (:libpr:`277`, :yamlpr:`190`, :docspr:`59`)
 
+- Thanks to :ghuser:`puuu`, the LED driver in the Sonoff B1 (MY9231) is now supported!
+  (:libpr:`266`, :yamlpr:`227`, :docspr:`80`)
 
 - Added the :doc:`PMSX003 Particulate Matter Sensor </esphomeyaml/components/sensor/pmsx003>`
   (:libpr:`229`, :yamlpr:`192`, :docspr:`58`)
