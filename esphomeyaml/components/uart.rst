@@ -3,6 +3,11 @@
 UART Bus
 ========
 
+.. seo::
+    :description: Instructions for setting up a UART serial bus on ESPs
+    :image: uart.svg
+    :keywords: UART, serial bus
+
 UART is a common serial protocol for a lot of devices. For example, when uploading a binary to your ESP
 you have probably used UART to access the chip. UART (or for Arduino often also called Serial) usually
 consists of 2 pins:

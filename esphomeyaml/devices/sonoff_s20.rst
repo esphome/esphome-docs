@@ -1,6 +1,10 @@
 Using With Sonoff S20
 =====================
 
+.. seo::
+    :description: Instructions for putting Sonoff S20 devices into flash mode and installing esphomelib on them.
+    :image: sonoff_s20.jpg
+
 esphomeyaml can also be used with Sonoff S20 smart sockets. These devices are
 basically just an ESP8266 chip with a relay to control the socket, a small button on the
 front and a blue and green LED light.

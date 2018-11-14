@@ -1,6 +1,10 @@
 RGB Light
 =========
 
+.. seo::
+    :description: Instructions for setting up RGB lights in esphomelib.
+    :image: rgb.png
+
 The ``rgb`` light platform creates an RGB light from 3 :ref:`float output components <output>`
 (one for each color channel).
 

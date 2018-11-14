@@ -1,6 +1,10 @@
 Nextion Touch Component
 =======================
 
+.. seo::
+    :description: Instructions for setting up Nextion touch binary sensors.
+    :image: nextion.jpg
+
 The ``nextion`` binary sensor platform lets you track when a component on the display is
 touched or not. The binary sensor will turn on when the component with the given component and page id is
 pressed on, and will turn off as soon as the finger is released.

@@ -1,6 +1,11 @@
 Dallas Temperature Component
 ============================
 
+.. seo::
+    :description: Instructions for setting up dallas temperature sensor hubs that can expose many temperature sensors on a single pin using the one wire protocol.
+    :image: dallas.jpg
+    :keywords: Dallas, ds18b20, onewire
+
 The ``dallas`` component allows you to use your
 `DS18b20 <https://www.adafruit.com/product/374>`__
 (`datasheet <https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf>`__)

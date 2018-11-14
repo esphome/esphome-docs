@@ -1,6 +1,11 @@
 Custom Sensor Component
 =======================
 
+.. seo::
+    :description: Instructions for setting up Custom C++ sensors with esphomelib.
+    :image: language-cpp.svg
+    :keywords: C++, Custom
+
 .. warning::
 
     While I do try to keep the esphomeyaml configuration options as stable as possible

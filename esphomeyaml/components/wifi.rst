@@ -1,6 +1,11 @@
 WiFi Component
 ==============
 
+.. seo::
+    :description: Instructions for setting up the WiFi configuration for your ESP node in esphomelib.
+    :image: network-wifi.svg
+    :keywords: WiFi, WLAN, ESP8266, ESP32
+
 This core esphomelib component sets up WiFi connections to access points
 for you. It needs to be in your configuration or otherwise esphomeyaml
 will fail in the config validation stage.

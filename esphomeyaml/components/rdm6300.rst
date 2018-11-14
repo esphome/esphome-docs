@@ -1,6 +1,11 @@
 RDM6300 NFC/RFID Hub
 ====================
 
+.. seo::
+    :description: Instructions for setting up RDM6300 NFC/RFID tag readers in esphomelib.
+    :image: rdm6300.jpg
+    :keywords: RDM6300, NFC, RFID
+
 The ``rdm6300`` component allows you to use RDM6300 NFC/RFID controllers
 (`datasheet <https://elty.pl/upload/download/RFID/RDM630-Spec.pdf>`__, `iTead <https://www.itead.cc/rdm6300.html>`__)
 with esphomelib. This component is a global hub that establishes the connection to the RDM6300 via :ref:`UART <uart>` and

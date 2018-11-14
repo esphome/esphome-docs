@@ -1,6 +1,10 @@
 PN532 NFC/RFID Tag
 ==================
 
+.. seo::
+    :description: Instructions for setting up NFC tags for the PN532 integration.
+    :image: pn532.jpg
+
 The ``pn532`` binary sensor platform lets you track if an NFC/RFID tag with a given
 unique id (``uid``) is currently being detected by the PN532 or not.
 

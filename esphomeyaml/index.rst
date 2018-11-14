@@ -1,38 +1,19 @@
 esphomeyaml
 ===========
 
+.. image:: images/esphomeyaml-logo-full.svg
+
+.. seo::
+    :description: esphomeyaml Component index - Reimagining DIY Home Automation
+    :image: /_static/logo-full.png
+
 .. raw:: html
 
     <a href="https://github.com/OttoWinter/esphomelib"><img src="https://img.shields.io/github/stars/OttoWinter/esphomelib.svg?style=social&label=Star&maxAge=2592000" alt="GitHub stars" style="max-width:100%;"></a>
     <a href="https://esphomelib.com/esphomeyaml/changelog/index.html"><img src="https://img.shields.io/pypi/v/esphomeyaml.svg" alt="Release" style="max-width:100%;"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="https://img.shields.io/discord/429907082951524364.svg" alt="Discord Chat" style="max-width:100%;"></a>
 
-Hi there! This is the documentation for esphomeyaml, a project that aims to make using ESP8266/ESP32 boards with
-Home Assistant very easy with no programming experience required.
-
-esphomeyaml will:
-
- * Read your configuration file and warn you about potential errors (like using the invalid pins.)
- * Create a custom C++ sketch file for you using esphomeyaml's powerful C++ generation engine.
- * Compile the sketch file for you using `platformio <http://platformio.org/>`__.
- * Upload the binary to your ESP via Over the Air updates.
- * Automatically start remote logs via MQTT.
-
-
-Features
---------
-
- * **No programming experience required:** just edit YAML configuration
-   files like you're used to with Home Assistant.
- * **Flexible:** Use `esphomelib <https://github.com/OttoWinter/esphomelib>`__'s powerful core to create custom sensors/outputs.
- * **Fast and efficient:** Written in C++ and keeps memory consumption to a minimum.
- * **Small binaries:** Only the sensors/devices you actually use will appear in the binary.
- * **Made for Home Assistant:** Almost all Home Assistant features are supported out of the box. Including RGB lights and many more.
- * **Easy reproducible configuration:** No need to go through a long setup process for every single node. Just copy a configuration file and run a single command.
- * **Smart Over The Air Updates:** esphomeyaml has OTA updates deeply integrated into the system. It even automatically enters a recovery mode if a boot loop is detected.
- * **Powerful logging engine:** View colorful logs and debug issues remotely.
- * **It's Open Source 😺**
-
+.. _guides:
 
 Guides
 ------

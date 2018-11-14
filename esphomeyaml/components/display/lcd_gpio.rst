@@ -1,6 +1,10 @@
 GPIO Character-Based LCD Display
 ================================
 
+.. seo::
+    :description: Instructions for setting up GPIO character-based LCD displays.
+    :image: lcd.jpg
+
 The ``lcd_gpio`` display platform allows you to use standard character-based LCD displays like `this one <https://www.adafruit.com/product/181>`__
 with esphomelib. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
 and 2-4 rows), and not for LCD displays that can control each pixel individually. Also, this is the GPIO version of the LCD

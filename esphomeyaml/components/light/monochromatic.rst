@@ -1,6 +1,10 @@
 Monochromatic Light
 ===================
 
+.. seo::
+    :description: Instructions for setting up monochromatic (brightness-only) lights.
+    :image: brightness-medium.svg
+
 The ``monochromatic`` light platform creates a simple brightness-only light from an
 :ref:`float output component <output>`.
 

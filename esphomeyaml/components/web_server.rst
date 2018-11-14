@@ -1,6 +1,11 @@
 Web Server Component
 ====================
 
+.. seo::
+    :description: Instructions for setting up a web server in esphomelib.
+    :image: http.svg
+    :keywords: web server, http, REST API
+
 The ``web_server`` component creates a simple web server on the node that can be accessed
 through any browser and a simple `REST API`_. Please note that enabling this component
 will take up *a lot* of memory and can lead to problems, especially on the ESP8266.

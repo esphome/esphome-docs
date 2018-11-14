@@ -1,6 +1,12 @@
 Changelog - Version 1.9.0
 =========================
 
+.. seo::
+    :description: Changelog for esphomelib version 1.9.0.
+    :image: /_static/_changelog-1.9.0.png
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
 .. imgtable::
 
     Beta Releases, guides/faq.html#how-do-i-update-to-the-latest-beta-release, new-box.svg

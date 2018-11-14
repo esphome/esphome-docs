@@ -1,6 +1,11 @@
 Power Supply Component
 ======================
 
+.. seo::
+    :description: Instructions for setting up power supplies which will automatically turn on together with outputs.
+    :image: power.svg
+    :keywords: power, ATX
+
 The ``power_supply`` component allows you to have a high power mode for
 certain outputs. For example, if you’re using an `ATX power
 supply <https://en.wikipedia.org/wiki/ATX>`__ to power your LED strips,

@@ -1,6 +1,11 @@
 Remote Transmitter Component
 ============================
 
+.. seo::
+    :description: Instructions for setting up remote transmitters in esphomelib
+    :image: remote.svg
+    :keywords: RF, infrared
+
 The ``remote_transmitter`` component lets you send infrared messages to control
 devices in your home. First, you need to setup a global hub that specifies which pin your remote
 sender is connected to. Afterwards you can create :doc:`individual

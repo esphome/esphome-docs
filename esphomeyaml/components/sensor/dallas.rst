@@ -1,6 +1,11 @@
 Dallas Temperature Sensor
 =========================
 
+.. seo::
+    :description: Instructions for setting up DS18b20 and similar temperature sensors
+    :image: dallas.jpg
+    :keywords: dallas, ds18b20
+
 The ``dallas`` sensor allows you to use ds18b20 and similar sensors.
 First, you need to define a :doc:`dallas sensor component </esphomeyaml/components/dallas>`.
 The dallas sensor component (or "hub") is an internal model that defines which pins the ds18b20

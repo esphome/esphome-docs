@@ -1,6 +1,10 @@
 Nextion TFT LCD Display
 =======================
 
+.. seo::
+    :description: Instructions for setting up Nextion TFT LCD displays
+    :image: nextion.jpg
+
 .. warning::
 
     This integration is experimental as I don't have the hardware to test it (yet).

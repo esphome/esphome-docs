@@ -1,6 +1,10 @@
 Getting Started with esphomeyaml
 ================================
 
+.. seo::
+    :description: Getting Started guide for installing esphomeyaml using the command line and creating a basic configuration.
+    :image: console.svg
+
 esphomeyaml is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
 basic “node” in a few simple steps.

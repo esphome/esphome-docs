@@ -1,6 +1,10 @@
 ESP32 LEDC Output
 =================
 
+.. seo::
+    :description: Instructions for setting up LEDC hardware PWM outputs on the ESP32.
+    :image: pwm.png
+
 The LEDC output component exposes a `LEDC PWM
 channel <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/ledc.html>`__
 of the ESP32 as an output component.

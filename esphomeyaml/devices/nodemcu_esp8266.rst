@@ -1,6 +1,11 @@
 NodeMCU ESP8266
 ===============
 
+.. seo::
+    :description: Instructions for using nodemcu ESP8266 boards in esphomelib together with a description of their pins and uses.
+    :image: nodemcu_esp8266.jpg
+    :keywords: NodeMCU, ESP8266
+
 The NodeMCU board is fully supported by esphomeyaml. Simply select ``ESP8266`` when
 the esphomeyaml wizard asks you for your platform and |nodemcuv2|_ as the board type.
 

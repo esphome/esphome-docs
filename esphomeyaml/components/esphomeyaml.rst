@@ -1,6 +1,10 @@
 esphomeyaml Core Configuration
 ==============================
 
+.. seo::
+    :description: Instructions for setting up the core esphomeyaml configuration.
+    :image: cloud-circle.svg
+
 Here you specify some core information that esphomeyaml needs to create
 firmwares. Most importantly, this is the section of the configuration
 where you specify the **name** of the node, the **platform** and

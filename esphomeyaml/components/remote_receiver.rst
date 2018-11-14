@@ -1,6 +1,11 @@
 Remote Receiver Component
 =========================
 
+.. seo::
+    :description: Instructions for setting up remote receivers in esphomelib.
+    :image: remote.svg
+    :keywords: RF, infrared
+
 The ``remote_receiver`` component lets you receive and decode any remote signal, these can
 for example be infrared remotes or 433MHz signals.
 

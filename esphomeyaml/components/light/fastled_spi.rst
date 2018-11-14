@@ -1,6 +1,10 @@
 FastLED SPI Light
 =================
 
+.. seo::
+    :description: Instructions for setting up other FastLED addressable lights.
+    :image: color_lens.svg
+
 The ``fastled_spi`` light platform allows you to create RGB lights
 in esphomelib for a :ref:`number of supported chipsets <fastled_spi-chipsets>`.
 

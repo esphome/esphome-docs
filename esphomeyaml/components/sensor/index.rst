@@ -1,6 +1,10 @@
 Sensor Component
 ================
 
+.. seo::
+    :description: Instructions for setting up sensor components in esphomelib.
+    :image: folder-open.svg
+
 esphomelib has support for many different sensors. Each of them is a
 platform of the ``sensor`` domain and each sensor has several base
 configuration options.

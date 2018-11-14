@@ -1,6 +1,11 @@
 DHT12 Temperature+Humidity Sensor
 =================================
 
+.. seo::
+    :description: Instructions for setting up DHT12 temperature and humidity sensors
+    :image: dht12.jpg
+    :keywords: dht12
+
 The ``dht12`` Temperature+Humidity sensor allows you to use your DHT12
 (`datasheet <http://www.robototehnika.ru/file/DHT12.pdf>`__,
 `electrodragon`_) i2c-based sensor with esphomelib.

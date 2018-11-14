@@ -1,6 +1,11 @@
 MQTT Subscribe Text Sensor
 ==========================
 
+.. seo::
+    :description: Instructions for setting up MQTT Subscribe text sensors that show the content of a MQTT message as their state.
+    :image: mqtt.png
+    :keywords: MQTT
+
 The ``mqtt_subscribe`` text sensor platform allows you to get external data into esphomelib.
 The sensor will subscribe to messages on the given MQTT topic and save the most recent value
 in its ``id(mysensor).value``.
