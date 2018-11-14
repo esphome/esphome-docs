@@ -3,7 +3,7 @@ Changelog - Version 1.9.0
 
 .. seo::
     :description: Changelog for esphomelib version 1.9.0.
-    :image: /_static/_changelog-1.9.0.png
+    :image: /_static/changelog-1.9.0.png
     :author: Otto Winter
     :author_twitter: @OttoWinter_
 
