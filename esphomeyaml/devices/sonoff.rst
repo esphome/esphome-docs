@@ -1,6 +1,10 @@
 Generic Sonoff
 ==============
 
+.. seo::
+    :description: Instructions for using generic Sonoff devices with esphomelib.
+    :image: sonoff.svg
+
 In principle esphomelib supports all Sonoff devices, but as these devices are quite expensive
 and shipping from China takes a long time, I've only set up dedicated guides for the
 :doc:`Sonoff S20 <sonoff_s20>` and :doc:`Sonoff 4CH <sonoff_4ch>`.

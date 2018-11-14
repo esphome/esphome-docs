@@ -1,6 +1,11 @@
 Ultrasonic Distance Sensor
 ==========================
 
+.. seo::
+    :description: Instructions for setting up ultrasonic distance measurement sensors in esphomelib.
+    :image: ultrasonic.jpg
+    :keywords: ultrasonic, hc-sr04
+
 The ultrasonic distance sensor allows you to use simple ultrasonic
 sensors like the HC-SR04
 (`datasheet <https://www.electroschematics.com/wp-content/uploads/2013/07/HC-SR04-datasheet-version-2.pdf>`__,

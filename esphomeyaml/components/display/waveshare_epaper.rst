@@ -1,6 +1,10 @@
 Waveshare E-Paper Display
 =========================
 
+.. seo::
+    :description: Instructions for setting up Waveshare E-Paper displays in esphomelib.
+    :image: waveshare_epaper.jpg
+
 The ``waveshare_epaper`` display platform allows you to use
 some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/modules/oleds-lcds/e-paper.htm>`__
 with esphomelib. Similar modules sold by other vendors might also work but not have been tested yet. Currently only

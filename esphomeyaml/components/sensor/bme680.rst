@@ -1,6 +1,11 @@
 BME680 Temperature+Pressure+Humidity+Gas Sensor
 ===============================================
 
+.. seo::
+    :description: Instructions for setting up BME680 temperature, humidity, pressure and gas sensors.
+    :image: bme680.jpg
+    :keywords: BME680
+
 The ``bme680`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity sensors with esphomelib. The :ref:`I²C <i2c>` is required to be set up in

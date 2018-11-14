@@ -1,6 +1,10 @@
 Remote Receiver Binary Sensor
 =============================
 
+.. seo::
+    :description: Instructions for setting up remote receiver binary sensors for infrared and RF codes.
+    :image: remote.svg
+
 The ``remote_receiver`` binary sensor lets you track when a button on a remote control is pressed.
 
 Each time the pre-defined signal is received, the binary sensor will briefly go ON and

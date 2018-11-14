@@ -1,6 +1,10 @@
 Shutdown Switch
 ===============
 
+.. seo::
+    :description: Instructions for setting up switches that can remotely shut down the ESP.
+    :image: power_settings.svg
+
 The ``shutdown`` switch platform allows you to shutdown your node remotely
 through Home Assistant. It does this by putting the node into deep sleep mode with no
 wakeup source selected. After enabling, the only way to startup the ESP again is by

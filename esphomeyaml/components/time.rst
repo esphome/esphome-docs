@@ -3,6 +3,11 @@
 Time
 ====
 
+.. seo::
+    :description: Instructions for setting up real time clock sources in esphomelib like network based time.
+    :image: clock-outline.svg
+    :keywords: NTP, SNTP, RTC
+
 The ``time`` component allows you to set up real time clock time sources for esphomelib.
 You can then get the current time in :ref:`lambdas <config-lambda>`.
 Currently only sntp (internet-based) time is supported.

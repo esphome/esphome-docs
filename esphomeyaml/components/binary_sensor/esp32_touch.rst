@@ -1,6 +1,10 @@
 ESP32 Touch Pad Binary Sensor
 =============================
 
+.. seo::
+    :description: Instructions for setting up the touch pad on the ESP32.
+    :image: touch.svg
+
 The ``esp32_touch`` binary sensor platform lets you use the touch peripheral of the
 ESP32 to detect if a certain pin is being "touched".
 

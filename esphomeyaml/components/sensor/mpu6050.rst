@@ -1,6 +1,10 @@
 MPU6050 Accelerometer/Gyroscope Sensor
 ======================================
 
+.. seo::
+    :description: Instructions for setting up MPU6050 Accelerometer and Gyroscope sensors.
+    :image: mpu6050.jpg
+
 The ``mpu6050`` sensor platform allows you to use your MPU6050 Accelerometer/Gyroscope
 (`datasheet <https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf>`__,
 `Sparkfun`_) sensors with

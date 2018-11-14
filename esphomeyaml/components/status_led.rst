@@ -1,6 +1,10 @@
 Status LED
 ==========
 
+.. seo::
+    :description: Instructions for setting up status LEDs in esphomelib to monitor the status of an ESP.
+    :image: led-on.svg
+
 The ``status_led`` hooks into all esphomelib components and can indicate the status of
 the device. Specifically, it will:
 

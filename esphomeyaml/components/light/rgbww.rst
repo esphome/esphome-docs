@@ -1,6 +1,10 @@
 RGBWW Light
 ===========
 
+.. seo::
+    :description: Instructions for setting up RGBWW lights.
+    :image: rgbw.png
+
 The ``rgbww`` light platform creates an RGBWW (cold white + warm white)
 light from 5 :ref:`float output components <output>` (one for each channel). The cold white
 and warm white channels will be mixed using the color temperature configuration options.

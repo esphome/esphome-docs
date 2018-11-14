@@ -1,6 +1,10 @@
 Template Cover
 ==============
 
+.. seo::
+    :description: Instructions for setting up template covers in esphomelib.
+    :image: description.svg
+
 The ``template`` cover platform allows you to create simple covers out of just a few
 actions and a value lambda. Once defined, it will automatically appear in Home Assistant
 as a cover and can be controlled through the frontend.

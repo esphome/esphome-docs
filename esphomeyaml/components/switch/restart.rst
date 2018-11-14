@@ -1,6 +1,10 @@
 Restart Switch
 ==============
 
+.. seo::
+    :description: Instructions for setting up switches that can remotely reboot the ESP in esphomelib.
+    :image: restart.svg
+
 The ``restart`` switch platform allows you to restart your node remotely
 through Home Assistant.
 

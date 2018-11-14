@@ -1,6 +1,10 @@
 Light Component
 ===============
 
+.. seo::
+    :description: Instructions for setting up lights and light effects in esphomelib.
+    :image: folder-open.svg
+
 The ``light`` domain in esphomeyaml lets you create lights that will
 automatically be shown in Home Assistant’s frontend and have many
 features such as RGB colors, transitions, flashing and effects.

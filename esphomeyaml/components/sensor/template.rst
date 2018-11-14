@@ -1,6 +1,10 @@
 Template Sensor
 ===============
 
+.. seo::
+    :description: Instructions for setting up template sensors with esphomelib.
+    :image: description.svg
+
 The ``template`` sensor platform allows you to create a sensor with templated values
 using :ref:`lambdas <config-lambda>`.
 
@@ -35,6 +39,15 @@ Configuration variables:
   sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 - **id** (*Optional*,:ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+.. note::
+
+    You can use the ``publish_state()`` method to set the value of a template
+    sensor from other automations:
+
+    .. code:: cpp
+
+        id(my_sensor).publish_state(42.0);
 
 See Also
 --------

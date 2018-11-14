@@ -1,6 +1,10 @@
 Rotary Encoder Sensor
 =====================
 
+.. seo::
+    :description: Instructions for setting up rotary encoders.
+    :image: rotary_encoder.jpg
+
 The ``rotary_encoder`` sensor platform allows you to use any continuous-rotation
 rotary encoders with esphomeyaml. These devices usually have two pins with which
 they encode the rotation. Every time the knob of the rotary encoder is turned, the

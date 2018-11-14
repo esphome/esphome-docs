@@ -1,6 +1,10 @@
 PCA9685 PWM Output
 ==================
 
+.. seo::
+    :description: Instructions for setting up PCA9685 PWM controller outputs.
+    :image: pca9685.jpg
+
 The PCA9685 output component exposes a PCA9685 PWM channel of a global
 :doc:`PCA9685 hub </esphomeyaml/components/pca9685>` as a float
 output.

@@ -1,6 +1,10 @@
 GPIO Binary Sensor
 ==================
 
+.. seo::
+    :description: Instructions for setting up GPIO binary sensors with esphomelib.
+    :image: pin.svg
+
 The GPIO Binary Sensor platform allows you to use any input pin on your
 device as a binary sensor.
 

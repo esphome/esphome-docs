@@ -1,6 +1,11 @@
 ESP32 Hall Sensor
 =================
 
+.. seo::
+    :description: Instructions for setting up the integrated hall-effect sensor of the ESP32.
+    :image: magnet.svg
+    :keywords: esp32, hall
+
 The ``esp32_hall`` sensor platform allows you to use the integrated
 `hall effect sensor <https://en.wikipedia.org/wiki/Hall_effect_sensor>`__ of the
 ESP32 chip to measure the magnitude and direction of magnetic field around the

@@ -3,6 +3,10 @@
 Output Component
 ================
 
+.. seo::
+    :description: Instructions for setting up generic outputs in esphomelib
+    :image: folder-open.svg
+
 Each platform of the ``output`` domain exposes some output to
 esphomelib. These are grouped into two categories: ``binary`` outputs
 (that can only be ON/OFF) and ``float`` outputs (like PWM, can output

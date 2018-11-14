@@ -1,6 +1,11 @@
 OTA Update Component
 ====================
 
+.. seo::
+    :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to upload firmwares remotely.
+    :image: system-update.svg
+    :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
+
 With the OTA (Over The Air) update component you can upload your
 firmware binaries to your node without having to use an USB cable for
 uploads. esphomeyaml natively supports this through its ``run`` and

@@ -1,6 +1,11 @@
 CSE7766 Power Sensor
 ====================
 
+.. seo::
+    :description: Instructions for setting up CSE7766 power sensors for the Sonoff Pow R2
+    :image: cse7766.svg
+    :keywords: cse7766, Sonoff Pow R2
+
 .. warning::
 
     This integration is experimental as I don't have the hardware to test it (yet).

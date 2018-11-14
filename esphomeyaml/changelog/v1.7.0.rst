@@ -1,6 +1,11 @@
 Version 1.7.0
 =============
 
+.. seo::
+    :description: Changelog for esphomelib version 1.7.0.
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
 Wow, what a week! As you may know, I wrote a blog post on the `Home Assistant web site <https://www.home-assistant.io/blog/2018/06/05/esphomelib/>`__
 and since then, the amount of esphomelib users has grown sixfold according to the number of GitHub clones!
 

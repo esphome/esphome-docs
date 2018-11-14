@@ -3,6 +3,10 @@
 Automations And Templates
 =========================
 
+.. seo::
+    :description: Getting started guide for automations in esphomelib.
+    :image: auto-fix.svg
+
 Automations and templates are two very powerful concepts of esphomelib/yaml. Automations
 allow you to perform actions under certain conditions and templates are a way to easily
 customize everything about your node without having to dive into the full esphomelib C++

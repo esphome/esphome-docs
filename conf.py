@@ -44,6 +44,7 @@ extensions = [
     'breathe',
     'disqus',
     'github',
+    'seo',
 ]
 
 breathe_projects = {"esphomelib": "./_doxyxml/"}
@@ -207,3 +208,4 @@ texinfo_documents = [
      author, 'esphomelib', 'One line description of project.',
      'Miscellaneous'),
 ]
+html_baseurl = os.getenv('BASE_URL', 'https://esphomelib.com')

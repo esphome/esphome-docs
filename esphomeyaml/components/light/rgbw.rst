@@ -1,6 +1,10 @@
 RGBW Light
 ==========
 
+.. seo::
+    :description: Instructions for setting up RGB + White-Channel lights.
+    :image: rgbw.png
+
 The ``rgbw`` light platform creates an RGBW light from 4 :ref:`float output components <output>` (one for each channel).
 
 .. code:: yaml

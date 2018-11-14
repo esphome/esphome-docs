@@ -3,6 +3,11 @@
 SPI Bus
 =======
 
+.. seo::
+    :description: Instructions for setting up an SPI bus in esphomelib
+    :image: spi.svg
+    :keywords: SPI
+
 SPI is a very common high-speed protocol for a lot of devices. The SPI bus usually consists of 4 wires:
 
 - **CLK**: Is used to tell the receiving device when to read data. All devices on the bus can

@@ -1,6 +1,11 @@
 PCA9685 PWM Component
 =====================
 
+.. seo::
+    :description: Instructions for setting up PCA9685 LED PWM drivers.
+    :image: pca9685.jpg
+    :keywords: PCA9685
+
 The PCA9685 component represents a PCA9685 12-bit PWM driver
 (`datasheet <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__,
 `adafruit <https://www.adafruit.com/product/815>`__) in esphomelib. It

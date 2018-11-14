@@ -1,6 +1,10 @@
 Deep Sleep Component
 ====================
 
+.. seo::
+    :description: Instructions for setting up the deep sleep support for minimizing power consumption on ESPs.
+    :image: hotel.svg
+
 The ``deep_sleep`` component can be used to automatically enter a deep sleep mode on the
 ESP8266/ESP32 after a certain amount of time. This is especially useful with nodes that operate
 on batteries and therefore need to conserve as much energy as possible.

@@ -1,6 +1,10 @@
 NodeMCU ESP32
 =============
 
+.. seo::
+    :description: Instructions for using NodeMCU ESP32 boards in esphomelib and a description of all their pins and uses.
+    :image: nodemcu_esp32.jpg
+
 The NodeMCU ESP32 board (in some cases also known as ESP32-DevkitC)
 is fully supported by esphomeyaml. Simply select ``ESP32`` when
 the esphomeyaml wizard asks you for your platform and |nodemcu-32s|_ as the board type.

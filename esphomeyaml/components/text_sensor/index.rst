@@ -1,6 +1,10 @@
 Text Sensor Component
 =====================
 
+.. seo::
+    :description: Instructions for setting up text sensors that represent their state as a string of text.
+    :image: folder-open.svg
+
 Text sensors are a lot like normal :doc:`sensors </esphomeyaml/components/sensor/index>`.
 But where the "normal" sensors only represent sensors that output **numbers**, this
 component can represent any *text*.

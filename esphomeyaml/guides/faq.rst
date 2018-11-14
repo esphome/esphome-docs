@@ -1,6 +1,10 @@
 Frequently Asked Questions
 ==========================
 
+.. seo::
+    :description: Frequently asked questions in esphomelib.
+    :image: question_answer.svg
+
 Tips for using esphomeyaml
 --------------------------
 

@@ -1,6 +1,10 @@
 PCF8574 Character-Based LCD Display
 ===================================
 
+.. seo::
+    :description: Instructions for setting up the touch pad on the ESP32.
+    :image: lcd.jpg
+
 The ``lcd_pcf8574`` display platform allows you to use standard character-based LCD displays like `this one <https://docs.labs.mediatek.com/resource/linkit7697-arduino/en/tutorial/driving-1602-lcd-with-pcf8574-pcf8574a>`__
 with esphomelib. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
 and 2-4 rows), and not for LCD displays that can control each pixel individually.

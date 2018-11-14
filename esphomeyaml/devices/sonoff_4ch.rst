@@ -1,6 +1,10 @@
 Using With Sonoff 4CH
 =====================
 
+.. seo::
+    :description: Instructions for putting Sonoff 4CH devices into flash mode and installing esphomelib on them.
+    :image: sonoff_4ch.jpg
+
 esphomeyaml can also be used with Sonoff 4CH wireless switches. These devices are
 basically just an ESP8266 chip with 4 relays to control power output, a few buttons on the
 top and a few status LEDs.

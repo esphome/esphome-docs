@@ -63,10 +63,10 @@ class ImageTableDirective(Table):
                 continue
             name, page, image = row
             link = page.strip()
-            if not link.startswith('http'):
+            if not link.startswith('http') and not link.startswith('/'):
                 link = '/esphomeyaml/{}'.format(link)
-                if '.html' not in link:
-                    link += '.html'
+            if '.html' not in link:
+                link += '.html'
             items.append({
                 'name': name.strip(),
                 'link': link,
@@ -100,7 +100,7 @@ class ImageTableDirective(Table):
                 link = cell['link']
                 image = cell['image']
                 reference_node = nodes.reference(refuri=link)
-                img = nodes.image(uri=directives.uri(image))
+                img = nodes.image(uri=directives.uri(image), alt=name)
                 img['classes'].append('component-image')
                 reference_node += img
                 para = nodes.paragraph()

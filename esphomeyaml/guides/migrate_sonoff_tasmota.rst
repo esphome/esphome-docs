@@ -1,6 +1,10 @@
 Migrating from Sonoff Tasmota
 =============================
 
+.. seo::
+    :description: Migration guide for installing esphomelib on ESPs running Sonoff Tasmota.
+    :image: tasmota.svg
+
 Migrating from previous Sonoff Tasmota setups is very easy. You just need to have
 esphomeyaml create a binary for you and then upload that in the Tasmota web interface.
 

@@ -1,6 +1,10 @@
 Template Binary Sensor
 ======================
 
+.. seo::
+    :description: Instructions for setting up template binary sensors.
+    :image: description.svg
+
 The ``template`` binary sensor platform allows you to define any :ref:`lambda template <config-lambda>`
 and construct a binary sensor out if it.
 
