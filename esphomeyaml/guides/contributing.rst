@@ -1,6 +1,10 @@
 Contributing
 ============
 
+.. seo::
+    :description: Getting started guide for contributing to the esphomelib project
+    :image: github-circle.svg
+
 Contributions to the esphomelib suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:
 

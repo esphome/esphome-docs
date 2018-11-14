@@ -1,6 +1,11 @@
 TEMT6000
 ========
 
+.. seo::
+    :description: Instructions for setting up TEMT6000 ambient light sensors in esphomelib using the ADC sensor component.
+    :image: temt6000.jpg
+    :keywords: TEMT6000
+
 The TEMT6000 is a simple and cheap ambient light sensor. The sensor itself
 changes its resistance based on how much light hits the sensor. In order
 for us to read this resistance the breakout boards you can buy these chips on

@@ -1,6 +1,10 @@
 Speed Fan
 =========
 
+.. seo::
+    :description: Instructions for setting up speed-controllable fans.
+    :image: fan.svg
+
 The ``speed`` fan platform lets you represent any float :ref:`output` as a fan that
 supports speed settings.
 

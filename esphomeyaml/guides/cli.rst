@@ -1,6 +1,9 @@
 Command Line Interface
 ======================
 
+.. seo::
+    :description: Documentation for the command line interface of esphomelib.
+
 Base Usage
 ----------
 

@@ -1,6 +1,10 @@
 Web Server API
 ==============
 
+.. seo::
+    :description: Migration guide for installing esphomelib on ESPs running ESPEasy.
+    :image: espeasy.svg
+
 Since version 1.3, esphomelib includes a built-in web server that can be used to view states
 and send commands. In addition to visible the web-frontend available under the root index of the
 web server, there's also two other features the web server currently offers: A real time event

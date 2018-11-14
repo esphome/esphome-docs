@@ -1,6 +1,11 @@
 Generic ESP8266
 ===============
 
+.. seo::
+    :description: Instructions for using generic ESP8266s with esphomelib.
+    :image: esp8266.svg
+    :keywords: ESP8266
+
 All ESP8266-based devices are supported by esphomeyaml. Simply select ``ESP8266`` when
 the esphomeyaml wizard asks you for your platform and choose a board type
 from `this link <http://docs.platformio.org/en/latest/platforms/espressif8266.html>`__ when the wizard

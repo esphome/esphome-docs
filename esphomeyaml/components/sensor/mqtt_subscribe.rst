@@ -1,6 +1,11 @@
 MQTT Subscribe Sensor
 =====================
 
+.. seo::
+    :description: Instructions for setting up MQTT subscribe sensors
+    :image: mqtt.png
+    :keywords: MQTT
+
 The ``mqtt_subscribe`` sensor platform allows you to get external data into esphomelib.
 The sensor will subscribe to messages on the given MQTT topic and parse each message into
 a floating point number.

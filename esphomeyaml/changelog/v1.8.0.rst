@@ -1,6 +1,11 @@
 Version 1.8.0
 =============
 
+.. seo::
+    :description: Changelog for esphomelib version 1.8.0.
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
 .. imgtable::
 
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg

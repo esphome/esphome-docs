@@ -1,6 +1,10 @@
 RDM6300 NFC/RFID Tag
 ====================
 
+.. seo::
+    :description: Instructions for setting up NFC tags for the RDM6300 integration.
+    :image: rdm6300.jpg
+
 The ``rdm6300`` binary sensor platform lets you track if an NFC/RFID tag with a given
 unique id (``uid``) is currently being detected by the RDM6300 or not.
 

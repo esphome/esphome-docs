@@ -1,6 +1,10 @@
 Display Component
 =================
 
+.. seo::
+    :description: Instructions for setting up the display integration.
+    :image: folder-open.svg
+
 The ``display`` component houses esphomelib's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 

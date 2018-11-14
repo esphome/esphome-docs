@@ -1,6 +1,10 @@
 ESP32 Touch Pad Hub
 ===================
 
+.. seo::
+    :description: Instructions for setting up the touch pad feature on the ESP32.
+    :image: touch.svg
+
 The ``esp32_touch`` component creates a global hub for detecting touches on
 the eight touch pads of the ESP32 as :doc:`binary senors </esphomeyaml/components/binary_sensor/esp32_touch>`.
 

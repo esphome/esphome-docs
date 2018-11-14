@@ -1,6 +1,11 @@
 Xiaomi MiJia BLE Sensor
 =======================
 
+.. seo::
+    :description: Instructions for setting up Xiaomi Mi Jia bluetooth-based temperature and humidity sensors in esphomelib.
+    :image: xiaomi_miflora.jpg
+    :keywords: Xiaomi, Mi Jia, BLE, Bluetooth
+
 The ``xiaomi_mijia`` sensor platform lets you track the output of Xiaomi MiJia Bluetooth Low Energy
 devices using the :doc:`/esphomeyaml/components/esp32_ble_tracker`. This component will track the
 temperature, humidity and optionally the battery level of the MiJia device every time the sensor

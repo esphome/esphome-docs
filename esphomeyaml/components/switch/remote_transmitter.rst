@@ -1,6 +1,11 @@
 Remote Transmitter Switch
 =========================
 
+.. seo::
+    :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
+    :image: remote.svg
+    :keywords: Infrared, IR, RF, Remote, TX
+
 The ``remote_transmitter`` switch platform allows you to create switches
 that send a pre-defined remote control sequence
 using the :doc:`/esphomeyaml/components/remote_transmitter`. Every time

@@ -1,6 +1,11 @@
 MQTT Client Component
 =====================
 
+.. seo::
+    :description: Instructions for setting up the MQTT client to communicate with the local network in esphomelib.
+    :image: mqtt.png
+    :keywords: MQTT
+
 The MQTT Client Component sets up the MQTT connection to your broker and
 is currently required for esphomelib to work. In most cases, you will
 just be able to copy over the `MQTT

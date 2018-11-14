@@ -1,6 +1,11 @@
 TSL2561 Ambient Light Sensor
 ============================
 
+.. seo::
+    :description: Instructions for setting up TSL2561 ambient light sensors in esphomelib.
+    :image: tsl2561.jpg
+    :keywords: TSL2561
+
 The ``tsl2561`` sensor platform allows you to use your TSL2561
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/TSL2561.pdf>`__,
 `Adafruit`_)

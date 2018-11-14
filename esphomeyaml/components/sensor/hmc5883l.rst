@@ -1,6 +1,11 @@
 HMC5883L Magnetometer
 =====================
 
+.. seo::
+    :description: Instructions for setting up HMC5883L IMU compass sensors.
+    :image: hmc5883l.jpg
+    :keywords: HMC5883L
+
 The ``hmc5883l`` allows you to use your HMC5883L triple-axis magnetometers
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf>`__,
 `Adafruit`_) with

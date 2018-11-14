@@ -1,6 +1,10 @@
 Using With Sonoff Basic
 =======================
 
+.. seo::
+    :description: Instructions for putting Sonoff basic devices into flash mode and installing esphomelib on them.
+    :image: sonoff_basic.jpg
+
 esphomeyaml can be used with Sonoff Basic. These devices are basically just
 an ESP8266 chip with a relay to control the connection, a small button on the
 front and a green LED light. 

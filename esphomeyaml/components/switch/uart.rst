@@ -1,6 +1,10 @@
 UART Switch
 ===========
 
+.. seo::
+    :description: Instructions for setting up UART switches in esphomelib that can output arbitrary UART sequences when activated.
+    :image: uart.svg
+
 The ``uart`` switch platform allows you to send a pre-defined sequence of bytes on a
 :doc:`UART bus </esphomeyaml/components/uart>` when triggered.
 

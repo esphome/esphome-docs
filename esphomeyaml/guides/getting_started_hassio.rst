@@ -1,6 +1,10 @@
 Getting Started with esphomeyaml through HassIO
 ===============================================
 
+.. seo::
+    :description: Getting Started guide for installing esphomeyaml as a HassIO Add-on and creating a basic configuration.
+    :image: home-assistant.svg
+
 esphomeyaml is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
 basic "node" by use of the HassIO add-on.

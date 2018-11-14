@@ -1,6 +1,10 @@
 BRUH Multisensor
 ================
 
+.. seo::
+    :description: Instructions for re-creating a BRUH multisensor using esphomelib.
+    :image: bruh.png
+
 The BRUH Multisensor is a great introductory project into Home Automation with an
 amazing setup tutorial. And fortunately esphomelib has complete support for all the
 stuff used by the Multisensor 🎉

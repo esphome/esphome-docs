@@ -1,6 +1,11 @@
 Dual relay cover motor control
 ==============================
 
+.. seo::
+    :description: An example of how to integrate covers that are controlled by two relays into esphomelib.
+    :image: sonoff_dual_r2.jpg
+    :keywords: Relay, Sonoff Dual R2, Cover
+
 The following is a possible configuration file for common covers that use a motor with 2 inputs.
 Only one should be powered at a time (interlocking) to either move the cover up or down. For this
 the `Sonoff Dual R2 <https://www.itead.cc/sonoff-dual.html>`__ can be used which has two independent

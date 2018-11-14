@@ -1,6 +1,10 @@
 SSD1306 OLED Display over SPI
 =============================
 
+.. seo::
+    :description: Instructions for setting up SSD1306 OLED display drivers using an SPI bus
+    :image: ssd1306.jpg
+
 The ``ssd1306_spi`` display platform allows you to use
 SSD1306 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf>`__, `Adafruit <https://www.adafruit.com/product/326>`__)
 and SH1106 (`datasheet <https://www.elecrow.com/download/SH1106%20datasheet.pdf>`__, `electrodragon <https://www.electrodragon.com/product/1-3-12864-blue-oled-display-iicspi/>`__)

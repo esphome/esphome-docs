@@ -1,6 +1,11 @@
 INA219 DC Current Sensor
 ========================
 
+.. seo::
+    :description: Instructions for setting up INA219 DC current sensors
+    :image: ina219.jpg
+    :keywords: ina219
+
 The ``ina219`` sensor platform allows you to use your INA219 High Side DC Current Sensor
 (`datasheet <https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ina219-current-sensor-breakout.pdf>`__,
 `Adafruit`_) sensors with

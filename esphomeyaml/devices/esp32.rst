@@ -1,6 +1,10 @@
 Generic ESP32
 =============
 
+.. seo::
+    :description: Information about how to use generic ESP32 boards in esphomelib.
+    :image: esp32.svg
+
 All ESP32-based devices are supported by esphomeyaml. Simply select ``ESP32`` when
 the esphomeyaml wizard asks you for your platform and choose a board type
 from `this link <http://docs.platformio.org/en/latest/platforms/espressif32.html>`__ when the wizard

@@ -1,6 +1,11 @@
 Relay
 =====
 
+.. seo::
+    :description: Instructions for using relays in esphomelib.
+    :image: relay.jpg
+    :keywords: Relay
+
 .. figure:: images/relay-full.jpg
     :align: center
     :width: 80.0%

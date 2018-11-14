@@ -1,6 +1,10 @@
 PMSX003 Particulate Matter Sensor
 =================================
 
+.. seo::
+    :description: Instructions for setting up PMSX003 Particulate matter sensors
+    :image: pmsx003.svg
+
 .. warning::
 
     This integration is experimental as I don't have the hardware to test it (yet).

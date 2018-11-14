@@ -1,6 +1,10 @@
 SHT3X-D Temperature+Humidity Sensor
 ===================================
 
+.. seo::
+    :description: Instructions for setting up SHT31-D temperature and humidity sensors
+    :image: sht3xd.jpg
+
 The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensiron SHT31-D
 (`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,
 `Adafruit`_ ) sensors with

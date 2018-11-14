@@ -1,6 +1,11 @@
 Passive Infrared Sensor
 =======================
 
+.. seo::
+    :description: Instructions for setting up PIR (passive infrared) motion detection sensors in esphomelib
+    :image: pir.jpg
+    :keywords: PIR
+
 .. figure:: images/pir-header.jpg
     :align: center
     :width: 75.0%

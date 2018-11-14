@@ -39,6 +39,7 @@ deploy-release:
     TARGET_REPO: OttoWinter/esphomedocs
     PRIVATE_KEY: ${GITHUB_PRIVATE_KEY}
     CNAME: esphomelib.com
+    BASE_URL: https://esphomelib.com
   only:
     - current
 
@@ -48,5 +49,6 @@ deploy-beta:
     TARGET_REPO: OttoWinter/esphomedocs-beta
     PRIVATE_KEY: ${GITHUB_BETA_PRIVATE_KEY}
     CNAME: beta.esphomelib.com
+    BASE_URL: https://beta.esphomelib.com
   only:
     - rc

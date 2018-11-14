@@ -1,6 +1,11 @@
 ADS1115 Hub
 ===========
 
+.. seo::
+    :description: Instructions for setting up ADS1115 analog voltage multiplexer hubs.
+    :image: ads1115.jpg
+    :keywords: ADS1115
+
 The ``ads1115`` domain creates a global hub so that you can later create
 individual sensors using the :doc:`ADS1115 Sensor Platform </esphomeyaml/components/sensor/ads1115>`.
 To use this hub, first setup the :ref:`I²C Bus <i2c>` and connect the sensor to the pins specified there.

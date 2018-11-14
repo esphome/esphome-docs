@@ -1,6 +1,10 @@
 Non-Invasive Power Meter
 ========================
 
+.. seo::
+    :description: Instructions for hacking your power meter at home to measure your power usage.
+    :image: power_meter.jpg
+
 So an essential part of making your home smart is knowing how much power it uses over
 the day. Tracking this can be difficult, often you need to install a completely new
 power meter which can often cost a bunch of money. However, quite a few power meters
