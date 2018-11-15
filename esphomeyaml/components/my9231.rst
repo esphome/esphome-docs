@@ -106,8 +106,8 @@ complete configuration for a Sonoff B1 looks like:
       password: <YOUR_OTA_PASSWORD>
 
     my9231:
-     data_pin: GPIO12
-     clock_pin: GPIO14
+     data_pin: GPIO12  # GPIO13 for AiLight
+     clock_pin: GPIO14  # GPIO15 for AiLight
      num_channels: 6
      num_chips: 2
 
