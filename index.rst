@@ -1,6 +1,9 @@
 esphomelib
 ==========
 
+.. meta::
+    :google-site-verification: qclmMpSERA2uy_ZceVgL6ijwkeEHer75LEPyyTQnK4E
+
 .. seo::
     :description: esphomeyaml Homepage - Reimagining DIY Home Automation
     :image: /_static/logo-full.png
