@@ -296,6 +296,7 @@ All changes
 - lib: MY9231/MY9291 LED driver support :libpr:`266` by :ghuser:`puuu` (new-feature)
 - yaml: Add MY9231 support :yamlpr:`227` by :ghuser:`puuu` (new-feature)
 - docs: MY9231/MY9291 LED driver documentation :docspr:`80` by :ghuser:`puuu` (new-feature)
+- docs: SEO Optimization :docspr:`82`
 
 
 Past Changelogs
