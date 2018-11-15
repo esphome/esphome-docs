@@ -109,6 +109,8 @@ That's no good. Here are some steps that resolve some problems:
 -  **Still an error?** Please file a bug report over in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
+.. _faq-bug_report:
+
 How to submit an issue report
 -----------------------------
 

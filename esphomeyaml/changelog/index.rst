@@ -22,6 +22,28 @@ Changelog - Version 1.9.0
     MY9231/MY9291 LED driver, components/my9231, my9231.svg
 
 
+It's time for another release of esphomelib: 1.9.0. This release is quite different from the last one,
+it doesn't focus that much on new integrations with a "modest" amount of 7 new integrations. No, most of the
+development has been focused on improving the core architecture and making the esphomelib ecosystem easier to use.
+Because that's my main goal of this project: Providing a great user-experience so that you can focus on building
+awesome things with DIY hardware!
+
+The features I'm particularly excited about are:
+
+* :ref:`esphomeflasher <esphomeflasher>` - Experiencing problems flashing esphomelib firmwares using esphomeyaml?
+  No problem, esphomeflasher is a tool designed to make that super easy. Just let esphomeyaml generate the binary and flash
+  from your PC.
+* :doc:`Over-the-Air Updates </esphomeyaml/components/ota>` have been completely re-written to make them a lot more
+  stable.
+* A lot of work has been put in to provide more context in YAML validation errors. Sometimes, esphomeyaml will even
+  try to give you suggestions for how to fix a validation error!
+* A new release cycle: esphomeyaml now also has a :ref:`beta release channel <faq-beta>` kind of like Home Assistant. This helps to
+  iron out the most important bugs before each stable release
+* And of course, lots of stability improvements and bug fixes :)
+
+Thank you very much to everybody who contributed to this release with new code or by
+:ref:`reporting bugs <faq-bug_report>`!
+
 New Components
 --------------
 

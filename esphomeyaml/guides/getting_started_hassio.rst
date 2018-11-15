@@ -67,8 +67,7 @@ there are three basic actions you can perform:
   .. note::
 
       If you're having problems with flashing over USB, you can always download the firmware using the
-      ``COMPILE`` button and flash the firmware using `esphomeflasher
-      <https://github.com/OttoWinter/esphomeflasher/releases>`__.
+      ``COMPILE`` button and flash the firmware using :ref:`esphomeflasher <esphomeflasher>`.
 
 - **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
   connected, it will attempt to use the serial connection. Otherwise it will use the built-in MQTT logs.
