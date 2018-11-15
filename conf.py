@@ -45,6 +45,7 @@ extensions = [
     'disqus',
     'github',
     'seo',
+    'sitemap',
 ]
 
 breathe_projects = {"esphomelib": "./_doxyxml/"}
