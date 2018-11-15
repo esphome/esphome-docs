@@ -91,7 +91,7 @@ New Features
   or higher you will see a list of all components for each esphomelib node in the integrations screen
   (:libpr:`233`).
 
-- The current esphomelib version and compilation time are no printed on each boot
+- The current esphomelib version and compilation time are now printed on each boot
   (:libpr:`189`, :yamlpr:`159`):
 
   .. code:: bash
