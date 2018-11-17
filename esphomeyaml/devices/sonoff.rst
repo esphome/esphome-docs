@@ -33,8 +33,8 @@ Sonoff RF
     GPIO0, Button (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, Green LED (inverted),
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
     GPIO4, Optional sensor
     GPIO14, Optional sensor
 
@@ -48,8 +48,8 @@ Sonoff SV
     GPIO12, Relay and Red LED,
     GPIO13, Green LED (inverted),
     GPIO17, Analog Input,
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
     GPIO4, Optional sensor
     GPIO5, Optional sensor
     GPIO14, Optional sensor
@@ -63,8 +63,8 @@ Sonoff TH10/TH16
     GPIO0, Button (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, Green LED (inverted),
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
     GPIO4, Optional sensor
     GPIO14, Optional sensor
 
@@ -134,8 +134,8 @@ Slampher
     GPIO0, Button (inverted),
     GPIO3, Relay and Red LED,
     GPIO13, Blue LED (inverted),
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
 
 Sonoff Touch
 ------------
@@ -145,8 +145,8 @@ Sonoff Touch
     GPIO0, Button (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
 
 Sonoff LED
 ----------
@@ -210,8 +210,8 @@ Sonoff T1 1CH, 2CH, 3CH
     GPIO5, Relay 2 and Blue LED,
     GPIO10, Button 3 (inverted),
     GPIO4, Relay 3 and Blue LED,
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
 
 Arilux LC10, Magic Home
 -----------------------
@@ -224,8 +224,8 @@ Arilux LC10, Magic Home
     GPIO12, Blue Channel,
     GPIO13, White Channel,
 
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
 
 See :doc:`/esphomeyaml/components/light/rgbw` for controlling the lights together with
 :doc:`/esphomeyaml/components/output/esp8266_pwm`.
@@ -242,8 +242,8 @@ Arilux LC01
     GPIO13, Blue Channel,
     GPIO14, White Channel,
 
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
 
 See :doc:`/esphomeyaml/components/light/rgbw` for controlling the lights together with
 :doc:`/esphomeyaml/components/output/esp8266_pwm`.
@@ -261,8 +261,8 @@ Arilux LC11
     GPIO13, Cold White Channel,
     GPIO12, Warm White Channel,
 
-    GPIO1, UART RX pin (for external sensors)
-    GPIO3, UART TX pin (for external sensors)
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
 
 See :doc:`/esphomeyaml/components/light/rgbww` for controlling the lights together with
 :doc:`/esphomeyaml/components/output/esp8266_pwm`.

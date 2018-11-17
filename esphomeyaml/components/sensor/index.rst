@@ -86,7 +86,7 @@ sensor values before they’re sent to Home Assistant. This is for example
 useful if you want to apply some average over the last few values to
 relief Home Assistant’s state machine and keep the history graphs in the
 front-end a bit more clean. More sophisticated filters should be done
-with Home Assistant `filter
+with Home Assistant's `filter
 sensor <https://www.home-assistant.io/components/sensor.filter/>`__.
 
 .. code:: yaml
