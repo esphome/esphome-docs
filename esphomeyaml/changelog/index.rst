@@ -158,6 +158,16 @@ Breaking Changes
   the :docspr:`62` changeset for more information
   (:libpr:`231`, :docspr:`62`, :yamlpr:`197`)
 
+Release 1.9.1 - November 19
+---------------------------
+
+- lib: Fix RDM6300 not reporting cards :libpr:`278`
+- lib: Fix SNTP with less than 3 servers :libpr:`279`
+- lib: Fix update interval log missing time unit :libpr:`280`
+- lib: Fix CSE7766 spamming logs :libpr:`281`
+- lib: Fix outdated links :libpr:`282`
+- yaml: Fix SNTP servers option :yamlpr:`237`
+
 All changes
 -----------
 
