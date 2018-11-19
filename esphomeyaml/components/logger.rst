@@ -3,14 +3,14 @@ Logger Component
 
 .. seo::
     :description: Instructions for setting up the central logging component in esphomelib.
-    :image: file-document-box.svg
+    :image: file-document-box.png
 
 The logger component automatically logs all log messages through the
 serial port and through MQTT topics. By default, all logs with a
 severity higher than ``DEBUG`` will be shown. Decreasing the log level
 can help with the performance of the application and memory size.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     logger:
@@ -64,7 +64,7 @@ the tag for MQTT components is ``mqtt.component``.
 
 Next, we can manually set the log levels in the configuration like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     logger:
       level: VERBOSE
@@ -87,7 +87,7 @@ Print a formatted message to the logs.
 
 In the ``format`` option, you can use ``printf``-style formatting (see :ref:`display-printf`).
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:

@@ -95,10 +95,6 @@ class SEODirective(Directive):
             if not image.startswith('/'):
                 image = '/_images/' + image
             self.options['image'] = env.config.html_baseurl + image
-        description = self.options.get('description')
-        if description is not None and len(description) >= 200:
-            self.options['description'] = description[:200].rsplit(' ', 1)[0] + '...'
-
         return [SEONode(**self.options)]
 
 

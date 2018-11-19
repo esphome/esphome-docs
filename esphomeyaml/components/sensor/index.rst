@@ -3,7 +3,7 @@ Sensor Component
 
 .. seo::
     :description: Instructions for setting up sensor components in esphomelib.
-    :image: folder-open.svg
+    :image: folder-open.png
 
 esphomelib has support for many different sensors. Each of them is a
 platform of the ``sensor`` domain and each sensor has several base
@@ -19,7 +19,7 @@ optional configuration options. By default, the sensor platform will
 chose appropriate values for all of these by default, but you can always
 override them if you want to.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example sensor configuration
     name: Livingroom Temperature
@@ -64,7 +64,7 @@ Automations:
     If you're trying to setup filters for a sensor that has multiple outputs - for example a DHT22 which
     reports temperature *and* humidity - put the ``filters`` option into each sensor output like this:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         sensor:
           - platform: dht
@@ -89,7 +89,7 @@ front-end a bit more clean. More sophisticated filters should be done
 with Home Assistant's `filter
 sensor <https://www.home-assistant.io/components/sensor.filter/>`__.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example filters:
     filters:
@@ -183,7 +183,7 @@ unit internally, and I’m not planning on making converting between the
 two simple (😉), but you can use this filter to convert celsius values to
 fahrenheit.
 
-.. code:: yaml
+.. code-block:: yaml
 
     filters:
       - lambda: return x * (9.0/5.0) + 32.0;
@@ -200,7 +200,7 @@ Therefore if you have an ``update_interval`` of 15 seconds, you will only see th
 every 3 and a half minutes or so. To disable the default filter and publish all raw values
 directly, put an empty ``filters:`` block in your configuration:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -223,7 +223,7 @@ This automation will be triggered when a new value that has passed through all f
 is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
 with ``x``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: dallas
@@ -250,7 +250,7 @@ was outside the range. It will also trigger on startup if the first value receiv
 Define the range with ``above`` and ``below``. If only one of them is defined, the interval is half-open.
 So for example ``above: 5`` with no below would mean the range from 5 to positive infinity.
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: dallas
@@ -276,7 +276,7 @@ This automation will be triggered when a new value that has passed through all f
 is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
 with ``x``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: dallas
@@ -298,7 +298,7 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
 - ``publish_state()``: Manually cause the sensor to push out a value. It will then
   be processed by the sensor filters, and once done be published to MQTT.
 
-  .. code:: yaml
+  .. code-block:: cpp
 
       // Within lambda, push a value of 42.0
       id(my_sensor).publish_state(42.0);
@@ -306,7 +306,7 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
 - ``.state``: Retrieve the current value of the sensor that has passed through all sensor filters.
   Is ``NAN`` if no value has gotten through all filters yet.
 
-  .. code:: yaml
+  .. code-block:: cpp
 
       // For example, create a custom log message when a value is received:
       ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
@@ -314,7 +314,7 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
 - ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
   Is ``NAN`` if no value if no value has been pushed by the sensor itself yet.
 
-  .. code:: yaml
+  .. code-block:: cpp
 
       // For example, create a custom log message when a value is received:
       ESP_LOGI("main", "Raw Value of my sensor: %f", id(my_sensor).raw_state);

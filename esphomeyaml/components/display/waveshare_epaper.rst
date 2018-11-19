@@ -47,7 +47,7 @@ configuration.
     :align: center
     :width: 60.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     spi:

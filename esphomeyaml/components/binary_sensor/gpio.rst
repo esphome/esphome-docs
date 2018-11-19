@@ -3,7 +3,7 @@ GPIO Binary Sensor
 
 .. seo::
     :description: Instructions for setting up GPIO binary sensors with esphomelib.
-    :image: pin.svg
+    :image: pin.png
 
 The GPIO Binary Sensor platform allows you to use any input pin on your
 device as a binary sensor.
@@ -12,7 +12,7 @@ device as a binary sensor.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     binary_sensor:
@@ -35,7 +35,7 @@ Configuration variables:
     For some applications such as reed switches you need to set the pin mode to ``INPUT_PULLUP``
     like this:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         binary_sensor:
           - platform: gpio
@@ -50,7 +50,7 @@ Inverting Values
 Use the ``inverted`` property of the :ref:`Pin Schema <config-pin_schema>` to invert the binary
 sensor:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     binary_sensor:
@@ -66,7 +66,7 @@ Debouncing Values
 Some binary sensors are a bit unstable and quickly transition between the ON and OFF state while
 they're pressed. To fix this and debounce the signal, use the :ref:`binary sensor filters <binary_sensor-filters>`:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     binary_sensor:
@@ -80,7 +80,7 @@ Above example will only make the signal go high if the button has stayed high fo
 Alternatively, below configuration will make the binary sensor publish an ON value immediately, but
 will wait 10ms before publishing an OFF value:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     binary_sensor:

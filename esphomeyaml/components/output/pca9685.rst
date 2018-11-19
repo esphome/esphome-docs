@@ -15,7 +15,7 @@ output.
 
     PCA9685 16-Channel PWM Driver.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     pca9685:

@@ -3,7 +3,7 @@ CSE7766 Power Sensor
 
 .. seo::
     :description: Instructions for setting up CSE7766 power sensors for the Sonoff Pow R2
-    :image: cse7766.svg
+    :image: cse7766.png
     :keywords: cse7766, Sonoff Pow R2
 
 .. warning::
@@ -19,7 +19,7 @@ As the communication with the CSE7766 done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the CSE7766.
 Additionally, you need to set the baud rate to 4800.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     # Disable logging over USB

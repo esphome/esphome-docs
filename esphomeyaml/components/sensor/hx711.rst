@@ -3,7 +3,7 @@ HX711 Load Cell Amplifier
 
 .. seo::
     :description: Instructions for setting up HX711 load cell amplifiers with esphomelib
-    :image: hx711.svg
+    :image: hx711.png
     :keywords: HX711
 
 The ``hx711`` sensor platform allows you to use your HX711
@@ -22,7 +22,7 @@ load cell amplifier
 Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or ``SO`` for short),
 ``CS`` and ``CLOCK`` (or ``SCK``) to free GPIO pins.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -58,7 +58,7 @@ To calibrate the sensor:
 
 Once you've done those steps, you can use the ``map`` function to map the incoming value to the calibrated one:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

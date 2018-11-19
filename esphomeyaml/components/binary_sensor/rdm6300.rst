@@ -14,7 +14,7 @@ unique id (``uid``) is currently being detected by the RDM6300 or not.
 
 See :doc:`/esphomeyaml/components/rdm6300` for instructions for setting up the connection to the RDM6300.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     uart:

@@ -33,7 +33,7 @@ if you're having issues try the 4.7kΩ recommended by the manufacturer) between
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

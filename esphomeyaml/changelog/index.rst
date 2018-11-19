@@ -94,7 +94,7 @@ New Features
 - The current esphomelib version and compilation time are now printed on each boot
   (:libpr:`189`, :yamlpr:`159`):
 
-  .. code:: bash
+  .. code-block:: text
 
     [13:57:33][I][application:092]: You're running esphomelib v1.9.0 compiled on Nov  3 2018, 13:55:11
 

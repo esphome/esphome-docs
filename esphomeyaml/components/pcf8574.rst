@@ -27,7 +27,7 @@ not work.
 
 .. _Sparkfun: https://www.sparkfun.com/products/retired/8130
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     pcf8574:

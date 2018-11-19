@@ -5,8 +5,8 @@ esphomelib
     :google-site-verification: qclmMpSERA2uy_ZceVgL6ijwkeEHer75LEPyyTQnK4E
 
 .. seo::
-    :description: esphomeyaml Homepage - Reimagining DIY Home Automation
-    :image: /_static/logo-full.png
+    :description: esphomelib Homepage - Reimagining DIY Home Automation. esphomelib is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation.
+    :image: logo-full.png
 
 .. image:: /esphomeyaml/images/logo-full.svg
 
@@ -32,9 +32,9 @@ esphomeyaml will:
 
  * Read your configuration file and warn you about potential errors (like using the invalid pins.)
  * Create a custom C++ sketch file for you using esphomeyaml's powerful C++ generation engine.
- * Compile the sketch file for you using `platformio <http://platformio.org/>`__.
+ * Compile the sketch file for you using `platformio <https://platformio.org/>`__.
  * Upload the binary to your ESP via Over the Air updates.
- * If you're using `Home Assistant <https://home-assistant.io/>`__, esphomelib
+ * If you're using `Home Assistant <https://www.home-assistant.io/>`__, esphomelib
    will automatically add all components to the home assistant UI.
 
 Features

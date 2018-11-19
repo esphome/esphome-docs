@@ -3,7 +3,7 @@ WiFi Component
 
 .. seo::
     :description: Instructions for setting up the WiFi configuration for your ESP node in esphomelib.
-    :image: network-wifi.svg
+    :image: network-wifi.png
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
 This core esphomelib component sets up WiFi connections to access points
@@ -13,7 +13,7 @@ will fail in the config validation stage.
 It’s recommended to provide a static IP for your node, as it can
 dramatically improve connection times.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     wifi:
@@ -85,7 +85,7 @@ to the ESP. This way, the ESP doesn't need to go through the slow DHCP process.
 
 You can do so with the ``manual_ip:`` option in the WiFi configuration.
 
-.. code:: yaml
+.. code-block:: yaml
 
     wifi:
       # ...
@@ -121,7 +121,7 @@ please also try ``light``.
 - ``LIGHT``
 - ``HIGH`` (most power saving)
 
-.. code:: yaml
+.. code-block:: yaml
 
     wifi:
       # ...

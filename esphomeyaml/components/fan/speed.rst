@@ -3,7 +3,7 @@ Speed Fan
 
 .. seo::
     :description: Instructions for setting up speed-controllable fans.
-    :image: fan.svg
+    :image: fan.png
 
 The ``speed`` fan platform lets you represent any float :ref:`output` as a fan that
 supports speed settings.
@@ -12,7 +12,7 @@ supports speed settings.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     fan:

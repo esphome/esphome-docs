@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy Device
 
 .. seo::
     :description: Instructions for setting up BLE binary sensors for the ESP32.
-    :image: bluetooth.svg
+    :image: bluetooth.png
 
 The ``esp32_ble_tracker`` binary sensor platform lets you track the presence of a
 bluetooth low energy device.
@@ -12,7 +12,7 @@ bluetooth low energy device.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esp32_ble_tracker:
@@ -44,7 +44,7 @@ to track. Most devices show this screen in some setting menu. If you don't know 
 however, you can use the ``esp32_ble_tracker`` hub without any binary sensors attached and read through
 the logs to see discovered Bluetooth Low Energy devices.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry for finding MAC addresses
     esp32_ble_tracker:

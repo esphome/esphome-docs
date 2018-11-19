@@ -28,7 +28,7 @@ for some motors.
     feature is implemented using asynchronous automations. So every time a open/close command is sent a
     delayed relay off command is added and old ones are not removed.
 
-.. code:: yaml
+.. code-block:: yaml
 
   esphomeyaml:
     name: cover

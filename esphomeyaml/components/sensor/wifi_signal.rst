@@ -3,7 +3,7 @@ WiFi Signal Sensor
 
 .. seo::
     :description: Instructions for setting up WiFi signal sensors that track the RSSI connection strength value to the network.
-    :image: network-wifi.svg
+    :image: network-wifi.png
 
 The ``wifi_signal`` sensor platform allows you to read the signal
 strength of the currently connected :doc:`WiFi Access Point </esphomeyaml/components/wifi>`.
@@ -15,7 +15,7 @@ measured in decibels. These values are always negative and the closer they are t
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

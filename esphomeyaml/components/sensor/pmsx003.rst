@@ -3,7 +3,7 @@ PMSX003 Particulate Matter Sensor
 
 .. seo::
     :description: Instructions for setting up PMSX003 Particulate matter sensors
-    :image: pmsx003.svg
+    :image: pmsx003.png
 
 .. warning::
 
@@ -25,7 +25,7 @@ value:
 - ``PMS5003T`` for PMS5003T. These support ``pm_2_5``, ``temperature`` and ``humidity``.
 - ``PMS5003ST`` for PMS5003ST. These support ``pm_2_5``, ``temperature``, ``humidity`` and ``formaldehyde``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     uart:

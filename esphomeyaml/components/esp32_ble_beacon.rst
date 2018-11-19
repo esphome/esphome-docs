@@ -3,14 +3,14 @@ ESP32 Bluetooth Low Energy Beacon
 
 .. seo::
     :description: Instructions for setting up Bluetooth Low Energy iBeacons using the BLE feature on ESP32s.
-    :image: bluetooth.svg
+    :image: bluetooth.png
 
 The ``esp32_ble_beacon`` component creates a Bluetooth Low Energy Beacon with your ESP32 device.
 Beacons are BLE devices that repeatedly just send out a pre-defined packet of data. This packet
 can then be received by devices like smartphones and can then be used to track a phone's location.
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esp32_ble_beacon:

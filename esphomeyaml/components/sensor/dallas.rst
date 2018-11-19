@@ -26,7 +26,7 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     dallas:
@@ -67,7 +67,7 @@ level <logger-log_levels>` must be set to at least
 ``debug``!). Note that you don't need to define the individual sensors just yet, as
 the scanning will happen even with no sensors connected. For example with this configuration:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     dallas:
@@ -81,7 +81,7 @@ You will find something like this:
 
 Now we can add the individual sensors to our configuration:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     dallas:

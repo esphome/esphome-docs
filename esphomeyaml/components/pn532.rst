@@ -22,7 +22,7 @@ As the communication with the PN532 is done using SPI for this integration, you 
 the board to the SPI mode (usually by setting the first one to OFF and the second one to ON). Additionally, you need
 to have an :ref:`spi bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     spi:
@@ -71,7 +71,7 @@ if the tag is re-read many times.
 The parameter ``x`` this trigger provides is of type ``std::string`` and is the tag UID in the format
 ``74-10-37-94``. The configuration below will for example publish the tag ID on the MQTT topic ``pn532/tag``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     pn532:
       # ...

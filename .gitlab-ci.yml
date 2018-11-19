@@ -1,14 +1,4 @@
 ---
-build:
-  tags:
-    - esphomedocs
-  script:
-    - make ../esphomelib
-    - make html
-  except:
-    - current
-    - rc
-
 .deploy: &deploy
   tags:
     - esphomedocs
@@ -26,12 +16,13 @@ build:
     - git fetch --force git@github.com:${TARGET_REPO}.git gh-pages:gh-pages
     - git worktree add _build/html gh-pages
     - make ../esphomelib
-    - touch _build/html/.nojekyll
-    - echo ${CNAME} >_build/html/CNAME
     - make html
     - git -C _build/html add --all
     - git -C _build/html commit -m "Deploy to gh-pages"
     - git -C _build/html push -f git@github.com:${TARGET_REPO}.git gh-pages
+  cache:
+    paths:
+    - _build/doctrees
 
 deploy-release:
   <<: *deploy

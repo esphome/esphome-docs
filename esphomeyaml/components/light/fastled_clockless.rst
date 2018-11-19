@@ -3,7 +3,7 @@ FastLED Clockless Light
 
 .. seo::
     :description: Instructions for setting up FastLED addressable lights like NEXTION.
-    :image: color_lens.svg
+    :image: color_lens.png
 
 The ``fastled_clockless`` light platform allows you to create RGB lights
 in esphomelib for a :ref:`number of supported chipsets <fastled_clockless-chipsets>`.
@@ -15,7 +15,7 @@ Clockless FastLED lights differ from the
    :align: center
    :width: 60.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     light:

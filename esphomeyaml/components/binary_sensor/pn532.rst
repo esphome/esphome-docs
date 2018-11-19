@@ -14,7 +14,7 @@ unique id (``uid``) is currently being detected by the PN532 or not.
 
 See :doc:`/esphomeyaml/components/pn532` for instructions for setting up the connection to the PN532.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     spi:

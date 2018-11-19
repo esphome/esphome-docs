@@ -12,7 +12,7 @@ temperature, humidity and optionally the battery level of the MiFlora device eve
 sends out a BLE broadcast. Note that contrary to other implementations, esphomelib can track as many
 MiFlora devices at once as you want.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esp32_ble_tracker:
@@ -72,7 +72,7 @@ Setting Up Devices
 To set up Xiaomi MiFlora devices you first need to find their MAC Address so that esphomelib can
 identify them. So first, create a simple configuration without any ``xiaomi_miflora`` entries like so:
 
-.. code:: yaml
+.. code-block:: yaml
 
     esp32_ble_tracker:
 

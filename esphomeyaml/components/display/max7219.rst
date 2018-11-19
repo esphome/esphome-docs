@@ -24,7 +24,7 @@ You can even daisy-chain multiple MAX7219s by connecting the DOUT of the previou
 next DIN. With more than ~3 chips the 3.3V will probably not be enough, so then you will have to potentially
 use a logic level converted.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     spi:
@@ -75,7 +75,7 @@ the end of the first MAX7219, you would write ``it.print(7, "0");``.
 Also note that the ``.`` (dot) character is special because when esphomelib encounters it in the string the dot
 segment of the previous position will be enabled.
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: max7219

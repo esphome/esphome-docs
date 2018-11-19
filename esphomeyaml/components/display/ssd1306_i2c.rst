@@ -21,7 +21,7 @@ Connect D0 to the SCL pin you chose for the :ref:`I²C Bus <i2c>`, and connect D
 VCC to 3.3V and GND to GND. Optionally you can also connect the ``RESET`` pin to a pin on the ESP which may
 improve reliability.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     i2c:
@@ -66,7 +66,7 @@ See Also
 
 - :doc:`index`
 - :doc:`API Reference </api/display/ssd1306>`
-- `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <http://adafruit.com/>`__
+- `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/ssd1306_i2c.rst>`__
 
 .. disqus::

@@ -14,7 +14,7 @@ Please note this integration only works with MQTT topics that have numeric data!
 a message that is not a number is published a warning will be shown. Please use the MQTT subscribe
 text sensor for importing arbitrary text into the esphomelib ecosystem.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

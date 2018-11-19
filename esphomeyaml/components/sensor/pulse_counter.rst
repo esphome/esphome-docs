@@ -3,20 +3,20 @@ Pulse Counter Sensor
 
 .. seo::
     :description: Instructions for setting up pulse counter sensors.
-    :image: pulse.svg
+    :image: pulse.png
 
 The pulse counter sensor allows you to count the number of pulses and the frequency of a signal
 on any pin.
 
 On the ESP32, this sensor is even highly accurate because it's using the hardware `pulse counter
-peripheral <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html>`__
+peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__
 on the ESP32.
 
 .. figure:: images/pulse-counter.png
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -55,7 +55,7 @@ of “pulses/min”. You can change this by using :ref:`sensor-filters`.
 For example, if you’re using the pulse counter with a photodiode to
 count the light pulses on a power meter, you can do the following:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -71,7 +71,7 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`rotary_encoder`
-- `esp-idf Pulse Counter API <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/pcnt.html>`__.
+- `esp-idf Pulse Counter API <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__.
 - :doc:`API Reference </api/sensor/pulse_counter>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/pulse_counter.rst>`__
 

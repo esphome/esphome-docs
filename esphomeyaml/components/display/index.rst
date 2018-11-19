@@ -3,7 +3,7 @@ Display Component
 
 .. seo::
     :description: Instructions for setting up the display integration.
-    :image: folder-open.svg
+    :image: folder-open.png
 
 The ``display`` component houses esphomelib's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
@@ -38,7 +38,7 @@ option called ``lambda:`` which will be called every time esphomelib wants to re
 In there, you can write code like in any :ref:`lambda <config-lambda>` in esphomeyaml. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -70,7 +70,7 @@ Basic Shapes
 Now that you know a bit more about esphomelib's coordinate system, let's draw some basic shapes like lines, rectangles
 and circles:
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -92,7 +92,7 @@ All the above methods can optionally also be called with an argument at the end 
 color to draw. Currently, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported because
 esphomelib only has implemented binary displays.
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -111,7 +111,7 @@ esphomelib only has implemented binary displays.
 
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -136,7 +136,7 @@ at **any** size! Granted the reason for it is actually not having to worry about
 To use fonts you first have to define a font object in your esphomeyaml configuration file. Just grab
 a ``.ttf`` file from somewhere on the Internet and create a ``font:`` section in your configuration:
 
-.. code:: yaml
+.. code-block:: yaml
 
     font:
       - file: "Comic Sans MS.ttf"
@@ -172,7 +172,7 @@ Configuration variables:
 
 Then, in your display code just reference the font like so:
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -188,7 +188,7 @@ When you enter ``[0,10]`` you're really telling esphomelib that it should positi
 at ``[0,10]``. When using a different alignment, like ``TOP_RIGHT``, the text will be positioned left of the anchor
 pointed, so that, as the name implies, the anchor point is a the *top right* corner of the text.
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -202,7 +202,7 @@ pointed, so that, as the name implies, the anchor point is a the *top right* cor
 
 As with basic shapes, you can also specify a color for the text:
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -225,7 +225,7 @@ is way better documented :)
 ``printf`` can do way more stuff than you will probably ever need, but it's also quite simple for the basic stuff.
 For example, a printf call can look like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: ...
@@ -267,7 +267,7 @@ Another interesting format string is ``%7.2f``, which would become the right-jus
 You can even have as many format strings as you want in a single printf call. Just make sure the put the
 arguments after the format string in the right order.
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...
@@ -282,7 +282,7 @@ The last printf tip for use in displays I will discuss here is how to display bi
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to
 use any string you pass it, like ``"ON"`` or ``"OFF"``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: ...
@@ -316,7 +316,7 @@ With esphomelib you can also display the current time using the NTP protocol. Pl
 Images
 ^^^^^^
 
-.. code:: yaml
+.. code-block:: yaml
 
     image:
       - file: "image.png"
@@ -339,7 +339,7 @@ Configuration variables:
 
 And then later in code:
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: ...

@@ -61,7 +61,7 @@ exposes all of the basic functions.
     ``GPIO17``                                         Analog Input
     ================================================== ==================================================
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NAME_OF_NODE>
@@ -120,7 +120,7 @@ pre-compile the firmware.
 
 Or run the upload command if your device is connected to the serial interface:
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml sonoff_basic.yaml run
 

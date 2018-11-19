@@ -3,7 +3,7 @@ Binary Light
 
 .. seo::
     :description: Instructions for setting up binary ON/OFF lights in esphomelib.
-    :image: lightbulb.svg
+    :image: lightbulb.png
 
 The ``binary`` light platform creates a simple ON/OFF-only light from a
 :ref:`binary output component <output>`.
@@ -12,7 +12,7 @@ The ``binary`` light platform creates a simple ON/OFF-only light from a
     :align: center
     :width: 40.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     light:

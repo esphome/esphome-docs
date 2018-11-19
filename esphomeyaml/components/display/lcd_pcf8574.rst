@@ -23,7 +23,7 @@ As the communication with the :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`
     :align: center
     :width: 60.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     i2c:

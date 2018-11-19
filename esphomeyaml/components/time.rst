@@ -5,35 +5,31 @@ Time
 
 .. seo::
     :description: Instructions for setting up real time clock sources in esphomelib like network based time.
-    :image: clock-outline.svg
+    :image: clock-outline.png
     :keywords: NTP, SNTP, RTC
 
 The ``time`` component allows you to set up real time clock time sources for esphomelib.
 You can then get the current time in :ref:`lambdas <config-lambda>`.
 Currently only sntp (internet-based) time is supported.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     time:
       - platform: sntp
         id: sntp_time
-        servers:
-          - 0.pool.ntp.org
-          - 1.pool.ntp.org
-          - 2.pool.ntp.org
 
 
 Configuration variables:
 ------------------------
 
 - **id** (**Required**, :ref:`config-id`): Specify the ID of the time for use in lambdas.
-- **servers** (*Optional*, list of strings): Choose up to 3 NTP servers that are used for the clock source.
-  Defaults to ``0.pool.ntp.org``, ``1.pool.ntp.org`` and ``2.pool.ntp.org``
 - **timezone** (*Optional*, string): Manually tell esphomelib what timezone to use with `this format
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated).
   esphomeyaml tries to automatically infer the timezone string based on the timezone of the computer that is running
   esphomeyaml, but this might not always be accurate.
+- **servers** (*Optional*, list of strings): Choose up to 3 NTP servers that are used for the clock source.
+  Defaults to ``0.pool.ntp.org``, ``1.pool.ntp.org`` and ``2.pool.ntp.org``
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
@@ -49,7 +45,7 @@ Use In Lambdas
 To get the current local time with the timezone applied
 in :ref:`lambdas <config-lambda>`, just call the ``.now()`` method like so:
 
-.. code:: cpp
+.. code-block:: cpp
 
     auto time = id(sntp_time).now();
 
@@ -106,7 +102,7 @@ The second way to use the time object is to directly transform it into a string 
 This is directly done using C's `strftime <http://www.cplusplus.com/reference/ctime/strftime/>`__ function which
 allows for a lot of flexibility.
 
-.. code:: yaml
+.. code-block:: cpp
 
     # For example, in a display object
     it.strftime(0, 0, id(font), "%Y-%m-%d %H:%M", id(time).now());
@@ -183,7 +179,7 @@ keys as seen below or using a cron expression like ``* /5 * * * *``.
 Basically, the automation engine looks at your configured time schedule every second and
 evaluates if the automation should run.
 
-.. code:: yaml
+.. code-block:: yaml
 
     time:
       - platform: sntp
@@ -231,20 +227,20 @@ Configuration variables:
 
 In the ``seconds:``, ``minutes:``, ... fields you can use the following operators:
 
-- .. code:: yaml
+- .. code-block:: yaml
 
       seconds: 0
 
   An integer like ``0`` or ``30`` will make the automation only trigger if the current
   second is **exactly** 0 or 30, respectively.
-- .. code:: yaml
+- .. code-block:: yaml
 
      seconds: 0,30,45
 
   You can combine multiple expressions with the ``,`` operator. This operator makes it so that
   if either one of the expressions separated by a comma holds true, the automation will trigger.
   For example ``0,30,45`` will trigger if the current second is either ``0`` or ``30`` or ``45``.
-- .. code:: yaml
+- .. code-block:: yaml
 
       days_of_week: 2-6
       # same as
@@ -256,7 +252,7 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
 
   The ``-`` (hyphen) operator can be used to create a range of values and is shorthand for listing all
   values with the ``,`` operator.
-- .. code:: yaml
+- .. code-block:: yaml
 
       # every 5 minutes
       seconds: 0
@@ -270,11 +266,11 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
   automation trigger only when the minute of the hour is 0, or 5, 10, 15, ... The value in front of the
   ``/`` specifies the offset with which the step is applied.
 
-- .. code:: yaml
+- .. code-block:: yaml
 
       # Every minute
       seconds: 0
-      minutes: *
+      minutes: '*'
 
   Lastly, the ``*`` operator matches every number. In the example above, ``*`` could for example be substituted
   with  ``0-59``.
@@ -285,7 +281,7 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
     Please note the following automation would trigger for each second in the minutes 0,5,10,15 and not
     once per 5 minutes as the seconds variable is not set:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         time:
           - platform: sntp

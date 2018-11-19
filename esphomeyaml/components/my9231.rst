@@ -3,7 +3,7 @@ MY9231/MY9291 LED driver Component
 
 .. seo::
     :description: Instructions for setting up MY9231 and MY9291 LED drives in esphomelib.
-    :image: my9231.svg
+    :image: my9231.png
     :keywords: MY9231, MY9291, Sonoff B1, Ai-thinker AiLight WiFi light bulb, Arilux E27 Smart Bulb
 
 The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain
@@ -40,7 +40,7 @@ global ``my9231`` hub and give it an id, and then define the
        internal data will not reflect this state. Thus, the first fade
        is wrong, as well as the MQTT state.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     my9231:
@@ -83,7 +83,7 @@ about flashing Sonoff devices, see:
 chain of two MY9321 chips that are connected to GPIO12 and GPIO14. A
 complete configuration for a Sonoff B1 looks like:
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NAME_OF_NODE>

@@ -3,7 +3,7 @@ Deep Sleep Component
 
 .. seo::
     :description: Instructions for setting up the deep sleep support for minimizing power consumption on ESPs.
-    :image: hotel.svg
+    :image: hotel.png
 
 The ``deep_sleep`` component can be used to automatically enter a deep sleep mode on the
 ESP8266/ESP32 after a certain amount of time. This is especially useful with nodes that operate
@@ -23,7 +23,7 @@ to wake up on any RTC pin (``GPIO0``, ``GPIO2``, ``GPIO4``, ``GPIO12``, ``GPIO13
 While in deep sleep mode, the node will not do any work and not respond to any network traffic,
 even Over The Air updates.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     deep_sleep:
@@ -60,7 +60,7 @@ Advanced features:
     from the node to be displayed as "unavailable" while the node is in deep sleep mode. To disable availability
     reporting and not have any "unavailable" values, set ``birth_message`` and ``will_message`` to empty values:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         mqtt:
           # ...
@@ -92,7 +92,7 @@ when the deep sleep should start? There are three ways of handling this using th
 
 This action makes the given deep sleep component enter deep sleep immediately.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -107,7 +107,7 @@ This action makes the given deep sleep component enter deep sleep immediately.
 This action prevents the given deep sleep component from entering deep sleep.
 Useful for
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -126,7 +126,7 @@ Useful for
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
     ``OFF``.
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         deep_sleep:
           # ...

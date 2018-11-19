@@ -3,14 +3,14 @@ esphomeyaml Core Configuration
 
 .. seo::
     :description: Instructions for setting up the core esphomeyaml configuration.
-    :image: cloud-circle.svg
+    :image: cloud-circle.png
 
 Here you specify some core information that esphomeyaml needs to create
 firmwares. Most importantly, this is the section of the configuration
 where you specify the **name** of the node, the **platform** and
 **board** you’re using.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -67,7 +67,7 @@ using this configuration option.
 First, you can configure the use of either the latest esphomelib stable release (``latest``),
 the latest development code from GitHub (``dev``), or a specific version number (``1.8.0``).
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -85,7 +85,7 @@ Alternatively, if you want to develop for esphomelib, you can download the
 `latest code from GitHub <https://github.com/OttoWinter/esphomelib/archive/master.zip>`, extract the contents,
 and point esphomeyaml to your local copy. Then you can modify the esphomelib to your needs or to fix bugs.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -96,7 +96,7 @@ and point esphomeyaml to your local copy. Then you can modify the esphomelib to 
 
 And last, you can make esphomeyaml use a specific branch/commit/tag from a remote git repository:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -125,7 +125,7 @@ initializing the WiFi driver and so on. Unfortunately, every arduino framework v
 has its own quirks and bugs, especially concerning WiFi performance. With the ``arduino_version``
 option you can tell esphomeyaml which arduino framework to use for compiling.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -167,7 +167,7 @@ For the ESP32, there's currently only one arduino framework version:
 This automation will be triggered when the ESP boots up. By default, it is executed after everything else
 is already set up. You can however change this using the ``priority`` parameter.
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       # ...
@@ -206,7 +206,7 @@ too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or th
     It's not guaranteed that all components are in a connected state when this automation is triggered. For
     example, the MQTT client may have already disconnected.
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       # ...
@@ -223,7 +223,7 @@ Configuration variables: See :ref:`Automation <automation>`.
 
 This automation will be triggered on every ``loop()`` iteration (usually around every 16 milliseconds).
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       # ...

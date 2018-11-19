@@ -3,7 +3,7 @@ FastLED SPI Light
 
 .. seo::
     :description: Instructions for setting up other FastLED addressable lights.
-    :image: color_lens.svg
+    :image: color_lens.png
 
 The ``fastled_spi`` light platform allows you to create RGB lights
 in esphomelib for a :ref:`number of supported chipsets <fastled_spi-chipsets>`.
@@ -16,7 +16,7 @@ whereas the clockless lights only need a single pin.
     :align: center
     :width: 60.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     light:

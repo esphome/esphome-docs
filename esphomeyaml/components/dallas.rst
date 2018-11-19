@@ -17,7 +17,7 @@ sensors are connected to should have an external pullup resistor of
 about 4.7KΩ. For this, connect a resistor of *about* 4.7KΩ (values around that like 1Ω will, if you don't have
 massively long wires, work fine in most cases) between ``3.3V`` and the data pin.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     dallas:

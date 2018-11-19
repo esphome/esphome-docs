@@ -3,7 +3,7 @@ Getting Started with esphomeyaml through HassIO
 
 .. seo::
     :description: Getting Started guide for installing esphomeyaml as a HassIO Add-on and creating a basic configuration.
-    :image: home-assistant.svg
+    :image: home-assistant.png
 
 esphomeyaml is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
@@ -99,7 +99,7 @@ So now you should have a file called ``/config/esphomeyaml/livingroom.yaml`` (or
 Go open that file in and add a :doc:`simple GPIO switch </esphomeyaml/components/switch/gpio>`
 to the configuration like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: gpio
@@ -129,7 +129,7 @@ Next, we’re going to add a very simple binary sensor that periodically
 checks a GPIO pin whether it’s pulled high or low - the :doc:`GPIO Binary
 Sensor </esphomeyaml/components/binary_sensor/gpio>`.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -178,7 +178,7 @@ be edited and all changes in there will be overridden, but outside of
 those comments you can safely create custom sensors while still using
 esphomeyaml’s great configuration options.
 
-.. code:: cpp
+.. code-block:: cpp
 
     // Auto generated code by esphomeyaml
     #include "esphomelib/application.h"
@@ -197,7 +197,6 @@ esphomeyaml’s great configuration options.
 
     void loop() {
       App.loop();
-      delay(20);
     }
 
 See Also

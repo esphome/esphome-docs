@@ -3,7 +3,7 @@ Stepper Component
 
 .. seo::
     :description: Instructions for setting up stepper motor drivers in esphomelib
-    :image: folder-open.svg
+    :image: folder-open.png
     :keywords: stepper motor, stepper driver, a4988
 
 The ``stepper`` component allows you to use stepper motors with esphomelib.
@@ -11,7 +11,7 @@ Currently only the A4988 stepper driver
 (`datasheet <https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf>`__)
 is supported.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     stepper:
@@ -57,7 +57,7 @@ Configuration variables:
 
     If the stepper is driving in the wrong direction, you can invert the ``dir_pin``:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         stepper:
           - platform: a4988
@@ -75,7 +75,7 @@ Configuration variables:
 To use your stepper motor in :ref:`automations <automation>` or templates, you can use this action to set the target
 position (in steps). The stepper will always run towards the target position and stop once it has reached the target.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -102,7 +102,7 @@ Configuration options:
 
     This action can also be expressed as a :ref:`lambda <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(my_stepper).set_target(250);
 
@@ -122,7 +122,7 @@ that reporting the position can create unexpected moves of the stepper. For exam
 current position is at 1000 steps and you "report" a position of 0, the stepper will move 1000 steps forward to match
 the target again.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -153,7 +153,7 @@ Configuration options:
 
     This action can also be expressed as a :ref:`lambda <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(my_stepper).report_position(250);
 

@@ -45,6 +45,7 @@ extensions = [
     'disqus',
     'github',
     'seo',
+    'githubpages',
     'sitemap',
 ]
 
@@ -67,6 +68,7 @@ master_doc = 'index'
 # General information about the project.
 project = 'esphomelib'
 copyright = '2018, Otto Winter'
+html_show_copyright = False
 author = 'Otto Winter'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -94,9 +96,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # default_role = 'cpp:any'
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'xcode'
 
-# highlight_language = 'yaml'
+highlight_language = 'yaml'
 
 primary_domain = None
 
@@ -210,3 +212,4 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 html_baseurl = os.getenv('BASE_URL', 'https://esphomelib.com')
+linkcheck_ignore = [r'https://github.com/.*', r'https://discord.gg/.*']

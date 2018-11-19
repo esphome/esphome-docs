@@ -3,7 +3,7 @@ Power Supply Component
 
 .. seo::
     :description: Instructions for setting up power supplies which will automatically turn on together with outputs.
-    :image: power.svg
+    :image: power.png
     :keywords: power, ATX
 
 The ``power_supply`` component allows you to have a high power mode for
@@ -16,7 +16,7 @@ will automatically switch on if any of the outputs are on. Furthermore,
 it also has a cooldown time that keeps the power supply on for a while
 after the last output has been disabled.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     power_supply:
@@ -53,7 +53,7 @@ pin up when high power mode is needed. Most ATX power supplies however
 operate with an active-low configuration. Therefore their output needs
 to be inverted.
 
-.. code:: yaml
+.. code-block:: yaml
 
     power_supply:
       - id: 'atx_power_supply'

@@ -3,7 +3,7 @@ Generic Sonoff
 
 .. seo::
     :description: Instructions for using generic Sonoff devices with esphomelib.
-    :image: sonoff.svg
+    :image: sonoff.png
 
 In principle esphomelib supports all Sonoff devices, but as these devices are quite expensive
 and shipping from China takes a long time, I've only set up dedicated guides for the
@@ -13,7 +13,7 @@ To use sonoff devices with esphomeyaml, set the ``board`` in the
 :doc:`esphomeyaml section </esphomeyaml/components/esphomeyaml>` to ``esp01_1m`` and set
 ``board_flash_mode`` to ``dout``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NAME_OF_NODE>
