@@ -46,13 +46,6 @@ Configuration variables:
 - **deceleration** (*Optional*, float): The same as ``acceleration``, but for when the motor is decelerating
   shortly before reaching the set position. Defaults to ``inf`` (immediate deceleration).
 
-
-.. note::
-
-    Esphomelib's core loop only runs 60 times per second by default to conserve power. But this also means it's limited
-    to 60 steps per second. To have higher step rater, you have to open up the ``<NODE_NAME>/src/main.cpp`` file,
-    scroll down to the ``void loop()`` section and remove the ``delay(16);`` line.
-
 .. note::
 
     If the stepper is driving in the wrong direction, you can invert the ``dir_pin``:

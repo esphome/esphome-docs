@@ -3,7 +3,7 @@ Custom Sensor Component
 
 .. seo::
     :description: Instructions for setting up Custom C++ sensors with esphomelib.
-    :image: language-cpp.svg
+    :image: language-cpp.png
     :keywords: C++, Custom
 
 .. warning::
@@ -36,7 +36,7 @@ Step 1: Custom Sensor Definition
 
 At this point, you might have a main source file like this:
 
-.. code:: cpp
+.. code-block:: cpp
 
     // ...
     using namespace esphomelib;
@@ -54,12 +54,11 @@ At this point, you might have a main source file like this:
 
     void loop() {
       App.loop();
-      delay(16);
     }
 
 To create your own custom sensor, you just have define a C++ class that extends ``Component`` and ``Sensor`` like this:
 
-.. code:: cpp
+.. code-block:: cpp
 
     using namespace esphomelib;
 
@@ -93,7 +92,7 @@ to do in an Arduino sketch.
 
 Let's now also take a closer look at this line, which you might not be too used to when writing Arduino code:
 
-.. code:: cpp
+.. code-block:: cpp
 
     class MyCustomSensor : public Component, public sensor::Sensor {
 
@@ -110,7 +109,7 @@ with ``PollingComponent``, you can replace the ``loop()`` method with a method c
 Contrary to ``loop()``, for ``update()`` you can tell esphomelib with what **interval** the method should be called.
 Let's look at some more code:
 
-.. code:: cpp
+.. code-block:: cpp
 
     class MyCustomSensor : public PollingComponent, public sensor::Sensor {
      public:
@@ -133,7 +132,7 @@ the compiler that we want ``PollingComponent`` to be instantiated with an *updat
 
 Let's also now make our sensor actually publish values in the ``update()`` method:
 
-.. code:: cpp
+.. code-block:: cpp
 
     // class MyCustomSensor ...
       // ... previous code
@@ -153,7 +152,7 @@ Now we have our Custom Sensor set up, but unfortunately it doesn't do much right
 Actually ... it does nothing because it's never instantiated. In your YAML configuration, create
 a new sensor platform entry like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -184,7 +183,7 @@ Now all that's left to do is upload the code and let it run :)
 If you have Home Assistant MQTT discovery setup, it will even automatically show up in the frontend 🎉
 
 .. figure:: images/custom-ui.png
-    :align: center
+:align: center
     :width: 60%
 
 Step 3: BMP180 support
@@ -202,7 +201,7 @@ library to implement support for the BMP085 sensor. But you can find other libra
 First we'll need to add the library to our project dependencies. To do so, put the following in
 the ``common`` section of your ``<NODE_NAME>/platformio.ini`` file:
 
-.. code:: ini
+.. code-block:: ini
 
     [common]
     lib_deps = Adafruit BMP085 Library
@@ -211,7 +210,7 @@ the ``common`` section of your ``<NODE_NAME>/platformio.ini`` file:
 
 Next, include the library at the top of you main sketch file (``<NODE_NAME>/src/main.cpp``):
 
-.. code:: cpp
+.. code-block:: cpp
 
     #include "esphomelib/application.h"
     #include <Adafruit_BMP085.h>
@@ -222,7 +221,7 @@ Next, include the library at the top of you main sketch file (``<NODE_NAME>/src/
 
 Then update our sensor for BMP180 support:
 
-.. code:: cpp
+.. code-block:: cpp
 
     // ...
 
@@ -264,7 +263,7 @@ This is because esphomelib doesn't know these infos, it's only passed a floating
 We *could* fix that in our custom sensor class (by overriding the ``unit_of_measurement`` and ``accuracy_decimals``
 methods), but here we have the full power of esphomeyaml, so let's use that:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -292,7 +291,7 @@ the individual sensor measurements.
 
 Let's look at what that could look like in code:
 
-.. code:: cpp
+.. code-block:: cpp
 
     class MyCustomSensor : public PollingComponent {
      public:
@@ -317,6 +316,7 @@ Let's look at what that could look like in code:
     };
 
 The code here has changed a bit:
+
 - Because the values are no longer published by our custom class, ``MyCustomSensor`` no longer inherits
   from ``Sensor``.
 - The class has two new members: ``temperature_sensor`` and ``pressure_sensor``. These will be used to
@@ -327,7 +327,7 @@ The code here has changed a bit:
 
 Our YAML configuration needs an update too:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -352,6 +352,15 @@ about both of them. We do this by returning them as an array of values in the cu
 
 Note that the number of arguments you put in the curly braces *must* match the number of sensors you define in the YAML
 ``sensors:`` block - *and* they must be in the same order.
+
+Configuration variables:
+
+- **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
+  sensor(s).
+- **sensors** (**Required**, list): A list of sensors to initialize. The length here
+  must equal the number of items in the ``return`` statement of the ``lambda``.
+
+  - All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
 --------
