@@ -35,10 +35,6 @@ $(ESPHOMELIB_PATH):
 convertimages:
 	python3 svg2png.py
 
-deploy: cleanhtml doxyg html $(ESPHOMELIB_PATH) convertimages
-	git -C "$(BUILDDIR)/html" add --all && git -C "$(BUILDDIR)/html" commit -m "Deploy to gh-pages"
-	@printf "Run \033[0;36mcd $(BUILDDIR)/html && git push origin gh-pages\033[0m to deploy\n"
-
 help:
 	$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 

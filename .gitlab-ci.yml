@@ -17,6 +17,7 @@
     - git worktree add _build/html gh-pages
     - make ../esphomelib
     - make html
+    - make convertimages
     - git -C _build/html add --all
     - git -C _build/html commit -m "Deploy to gh-pages"
     - git -C _build/html push -f git@github.com:${TARGET_REPO}.git gh-pages
