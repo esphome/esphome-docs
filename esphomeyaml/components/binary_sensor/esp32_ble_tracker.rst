@@ -49,7 +49,11 @@ the logs to see discovered Bluetooth Low Energy devices.
     # Example configuration entry for finding MAC addresses
     esp32_ble_tracker:
 
-Using above configuration, first you should see a ``Starting scan...`` debug message at
+After adding that to your configuration, you will need to re-flash the ESP32 over USB, as esphomeyaml
+needs to repartition the flash memory of the ESP in order to allow for the increased firmware size that
+the BLE stack requires.
+
+Using the configuration above, first you should see a ``Starting scan...`` debug message at
 boot-up. Then, when a BLE device is discovered, you should see messages like
 ``Found device AC:37:43:77:5F:4C`` together with some information about their
 address type and advertised name. If you don't see these messages, your device is unfortunately
