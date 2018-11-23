@@ -198,7 +198,7 @@ pointed, so that, as the name implies, the anchor point is a the *top right* cor
           it.print(0, 0, id(my_font), "Left aligned");
 
           // Aligned on right edge
-          it.print(0, it.get_width(), id(my_font), TextAlign::TOP_RIGHT, "Right aligned");
+          it.print(it.get_width(), 0, id(my_font), TextAlign::TOP_RIGHT, "Right aligned");
 
 As with basic shapes, you can also specify a color for the text:
 
