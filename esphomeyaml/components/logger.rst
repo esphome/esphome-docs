@@ -39,12 +39,36 @@ Log Levels
 Possible log levels are (sorted by severity):
 
 -  ``NONE``
+
+  - No messages are logged.
+
 -  ``ERROR``
+
+  - With this log level, only errors are logged. Errors are issues that prevent the ESP from working
+    correctly. Color: red
+
 -  ``WARN``
+
+  - With this log level, warnings and errors are logged. Warnings are issues like invalid readings from
+    sensors that esphomelib can recover from. Color: yellow
+
 -  ``INFO``
--  ``DEBUG``
+
+  - With this log level, everything up to info messages are logged; so errors, warnings and info. Color: green
+
+-  ``DEBUG`` (**Default**)
+
+  - Everything up to this log level is logged. Debug messages include the current readings from a sensor
+    and status messages. Color: cyan
+
 -  ``VERBOSE``
+
+  - Like debug, but a few more messages that are usually deemed to be spam are also included. Color: grey
+
 -  ``VERY_VERBOSE``
+
+  - All internal messages are logged. Including all the data flowing through data buses like
+    i2c, spi or uart. Color: white
 
 .. _logger-manual_tag_specific_levels:
 
