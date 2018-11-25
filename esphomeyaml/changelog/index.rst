@@ -168,6 +168,14 @@ Release 1.9.1 - November 19
 - lib: Fix outdated links :libpr:`282`
 - yaml: Fix SNTP servers option :yamlpr:`237`
 
+Release 1.9.2 - November 25
+---------------------------
+
+- lib: Fix crashing when logger not being used :libpr:`285`
+- lib: Fix template cover spamming logs :libpr:`287`
+- lib: Improve ESP32 BLE tracker stability :libpr:`289`
+- lib: Fix sensor filters using C++ undefined behavior :libpr:`293`
+
 All changes
 -----------
 
