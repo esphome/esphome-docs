@@ -9,6 +9,7 @@ very similar to sensors internally.
 
 .. code-block:: cpp
 
+    #include "esphomelib.h"
     using namespace esphomelib;
 
     class MyCustomBinarySensor : public PollingComponent, public binary_sensor::BinarySensor {
@@ -30,14 +31,17 @@ very similar to sensors internally.
       }
     };
 
-    void setup() {
-      // ...
+(Store this file in your configuration directory, for example ``my_binary_sensor.h``)
 
 And in YAML:
 
 .. code-block:: yaml
 
     # Example configuration entry
+    esphomeyaml:
+      includes:
+        - my_binary_sensor.h
+
     binary_sensor:
     - platform: custom
       lambda: |-

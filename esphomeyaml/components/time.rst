@@ -40,7 +40,7 @@ Configuration variables:
 .. note::
 
     To use the automatic timezone detection you will need to have the python ``tzlocal`` package installed.
-    If you're running this as a HassIO add-on or with the official esphomeyaml docker image, it should already
+    If you're running this as a Hass.io add-on or with the official esphomeyaml docker image, it should already
     be installed. Otherwise you need to install it using ``pip2 install tzlocal``.
 
 Use In Lambdas

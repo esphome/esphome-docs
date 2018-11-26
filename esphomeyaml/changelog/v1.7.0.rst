@@ -64,7 +64,7 @@ New Features
   triggered when an active WiFi and MQTT connection existed. Large parts of the WiFi and MQTT clients has now
   been rewritten to allow for automations to be executed asynchronously, while the device is still connecting to WiFi.
 
-- The HassIO add-on now has a new ``password`` option with which you can secure your installation. See
+- The Hass.io add-on now has a new ``password`` option with which you can secure your installation. See
   :doc:`/esphomeyaml/guides/getting_started_hassio`. 🔒
 
 - Binary Sensors now have filters too. They can now be used to debounce any binary sensor and do some more
@@ -81,7 +81,7 @@ New Features
   :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>` with which you can do some advanced cleanup/setup
   on boot and shutdown of the node.
 
-- All HassIO add-on builds have now been more or less completely automated using a private Gitlab server. You
+- All Hass.io add-on builds have now been more or less completely automated using a private Gitlab server. You
   can find all the new docker files `here <https://github.com/OttoWinter/esphomeyaml/tree/master/docker>`__.
 
 - Added a new ``build_path`` option in the ``esphomeyaml`` section with which you can customize where

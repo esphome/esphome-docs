@@ -34,31 +34,30 @@ If you have any problems, I'm here to help: https://discord.gg/KhAMKrd
 Step 1: Custom Sensor Definition
 --------------------------------
 
-At this point, you might have a main source file like this:
+To create your own custom sensor, you just have to create your own C++ class. If you've never heard of that
+before, don't worry, at the end of this guide you can just copy the example source code and modify it to your needs
+- learning the intricacies of C++ classes won't be required.
+
+Before you can create your own custom sensors, let's first take a look at the basics: How sensors (and components)
+are structured in the esphomelib ecosystem.
+
+In esphomelib, a **sensor** is some hardware device (like a BMP180) that periodically
+sends out numbers, for example a temperature sensor that periodically publishes its temperature **state**.
+
+Another important abstraction in esphomelib is the concept of a **component**. In esphomelib,
+a **component** is an object with a *lifecycle* managed by the :cpp:class:`Application` class.
+What does this mean? Well if you've coded in Arduino before you might know the two special methods
+``setup()`` and ``loop()``. ``setup()`` is called one time when the node boots up and ``loop()`` is called
+very often and this is where you can do things like read out sensors etc.
+
+Components have something similar to that: They also have ``setup()`` and ``loop()`` methods which will be
+called by the application kind of like the arduino functions.
+
+So, let's now take a look at some code: This is an example of a custom component class (called ``MyCustomSensor`` here):
 
 .. code-block:: cpp
 
-    // ...
-    using namespace esphomelib;
-
-    void setup() {
-      // ===== DO NOT EDIT ANYTHING BELOW THIS LINE =====
-      // ========== AUTO GENERATED CODE BEGIN ===========
-      App.set_name("livingroom");
-      App.init_log();
-      // ...
-      // =========== AUTO GENERATED CODE END ============
-      // ========= YOU CAN EDIT AFTER THIS LINE =========
-      App.setup();
-    }
-
-    void loop() {
-      App.loop();
-    }
-
-To create your own custom sensor, you just have define a C++ class that extends ``Component`` and ``Sensor`` like this:
-
-.. code-block:: cpp
+    #include "esphomelib.h"
 
     using namespace esphomelib;
 
@@ -72,23 +71,9 @@ To create your own custom sensor, you just have define a C++ class that extends 
       }
     };
 
-    void setup() {
-      // ...
-
-You've just created your first esphomelib sensor class 🎉. It doesn't do very much right now and is never instantiated,
-but it's a first step.
-
-Let's now take a look at how a sensor works in esphomelib: A sensor is some hardware device (like a BMP180)
-that sends out new values like temperatures.
-
-Like any "Component" in esphomelib, if it's registered in the Application, the ``setup()`` method
-in your custom component will be called when the ESP boots up (similar to how the ``setup()`` method in
-Arduino is called).. ``setup()`` is also the place where you should do hardware initialization like setting
-``pinMode()`` etc.
-
-Next, every time ``App.loop()`` is called, your component will also receive a ``loop()`` method call.
-This is the place where you should do stuff like querying a sensor for a new value like you might be used
-to do in an Arduino sketch.
+In the first two lines, we're importing esphomelib so you can use the APIs and telling the compiler that
+we want to use the esphomelib "namespace" (you don't need to know what this is now, it's basically just
+there to have a clean, well-structured codebase).
 
 Let's now also take a closer look at this line, which you might not be too used to when writing Arduino code:
 
@@ -96,18 +81,22 @@ Let's now also take a closer look at this line, which you might not be too used 
 
     class MyCustomSensor : public Component, public sensor::Sensor {
 
-What this line is essentially saying is that we're defining our own class that's called ``CustomSensor``
+What this line is essentially saying is that we're defining our own class that's called ``MyCustomSensor``
 which is also a subclass of ``Component`` and ``Sensor`` (in the namespace ``sensor::``).
-``Component`` is there so that we can register it in our application and so that we will receive ``setup()``
-and ``loop()`` calls. And we're also inheriting from ``Sensor`` because, well, we're creating a sensor that will
-publish values to the frontend.
+As described before, these two "parent" classes have special semantics that we will make use of.
 
-The thing is, ``loop()`` gets called *very often*, like 60 times per second. Most sensors do not support
-reading out values at this speed! That's why there's ``PollingComponent``. If you replace the ``Component`` above
-with ``PollingComponent``, you can replace the ``loop()`` method with a method called ``update()``.
+We *could* go implement our own sensor code now by replacing the contents of ``setup()`` and ``loop()``.
+In ``setup()`` we would initialize the sensor and in ``loop()`` we would read out the sensor and publish
+the latest values.
 
-Contrary to ``loop()``, for ``update()`` you can tell esphomelib with what **interval** the method should be called.
-Let's look at some more code:
+However, there's a small problem with that approach: ``loop()`` gets called very often (about 60 times per second).
+If we would publish a new state each time that method is called we would quickly make the node unresponsive
+since the MQTT protocol wasn't really designed for 60 messages per second.
+
+So this fix this, we will use an alternative class to ``Component``: ``PollingComponent``. This class
+is for situations where you have something that should get called repeatedly with some **update interval**.
+In the code above, we can simply replace ``Component`` by ``PollingComponent`` and ``loop()`` by a special
+method ``update()`` which will be called with an interval we can specify.
 
 .. code-block:: cpp
 
@@ -126,9 +115,11 @@ Let's look at some more code:
 
 
 Our code has slightly changed, as explained above we're now inheriting from ``PollingComponent`` instead of
-just ``Component``. Additionally, we now have a new line: the constructor. In this constructor we're telling
-the compiler that we want ``PollingComponent`` to be instantiated with an *update interval* of 15s, or
-15000 milliseconds (esphomelib uses milliseconds internally).
+just ``Component``. Additionally, we now have a new line: the constructor. You also don't really need to
+know much about constructors here, so to simplify let's just say this is where we "initialize" the custom sensor.
+
+In this constructor we're telling the compiler that we want ``PollingComponent`` to be instantiated with an
+*update interval* of 15s, or 15000 milliseconds (esphomelib uses milliseconds internally).
 
 Let's also now make our sensor actually publish values in the ``update()`` method:
 
@@ -149,8 +140,20 @@ Step 2: Registering the custom sensor
 -------------------------------------
 
 Now we have our Custom Sensor set up, but unfortunately it doesn't do much right now.
-Actually ... it does nothing because it's never instantiated. In your YAML configuration, create
-a new sensor platform entry like this:
+Actually ... it does nothing because it's never included nor instantiated.
+First, create a new file called ``my_custom_sensor.h`` in your configuration directory and copy the source code
+from above into that file.
+
+Then in the YAML config, *include* that file in the top-level ``esphomeyaml`` section like this:
+
+.. code-block:: yaml
+
+    esphomeyaml:
+      # ... [Other options]
+      includes:
+        - my_custom_sensor.h
+
+Next, create a new ``custom`` sensor platform entry like this:
 
 .. code-block:: yaml
 
@@ -183,7 +186,7 @@ Now all that's left to do is upload the code and let it run :)
 If you have Home Assistant MQTT discovery setup, it will even automatically show up in the frontend 🎉
 
 .. figure:: images/custom-ui.png
-:align: center
+    :align: center
     :width: 60%
 
 Step 3: BMP180 support
@@ -198,28 +201,29 @@ use the `Adafruit BMP085 Library <https://platformio.org/lib/show/525/Adafruit%2
 library to implement support for the BMP085 sensor. But you can find other libraries too on the
 `platformio library index <https://platformio.org/lib>`__
 
-First we'll need to add the library to our project dependencies. To do so, put the following in
-the ``common`` section of your ``<NODE_NAME>/platformio.ini`` file:
+First we'll need to add the library to our project dependencies. To do so, put ``Adafruit BMP085 Library``
+in your global ``libraries``:
 
-.. code-block:: ini
+.. code-block:: yaml
 
-    [common]
-    lib_deps = Adafruit BMP085 Library
-    build_flags =
-    upload_flags =
+    esphomeyaml:
+      includes:
+        - my_custom_sensor.h
+      libraries:
+        - "Adafruit BMP085 Library"
 
-Next, include the library at the top of you main sketch file (``<NODE_NAME>/src/main.cpp``):
+Next, include the library at the top of your custom sensor file you created previously:
 
 .. code-block:: cpp
 
-    #include "esphomelib/application.h"
-    #include <Adafruit_BMP085.h>
+    #include "esphomelib.h"
+    #include "Adafruit_BMP085.h"
 
     using namespace esphomelib;
 
     // ...
 
-Then update our sensor for BMP180 support:
+Then update the sensor for BMP180 support:
 
 .. code-block:: cpp
 

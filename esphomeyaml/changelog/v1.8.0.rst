@@ -110,7 +110,7 @@ Other notable changes
 - Fixed HTU21D readings only working in very verbose mode
 - Sometimes the ESP would create a WiFi hotspot even though it was not configured to do so. That should be fixed now.
 - You can now also have conditional actions. See :ref:`if_action`.
-- The esphomeyaml dashboard and HassIO add-on now can be configured with a password.
+- The esphomeyaml dashboard and Hass.io add-on now can be configured with a password.
 - Fixed YAML anchors not working (you can now prefix keys with ``.`` to make esphomeyaml ignore them)
 - Made Dallas and DHT temperature sensor a bit more reliable by making the code a bit more efficient and thus resolving some timing issues.
 - A ``heartbeat`` filter has been added to :ref:`binary sensors <binary_sensor-filters>`.

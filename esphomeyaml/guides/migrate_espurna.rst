@@ -14,7 +14,7 @@ Getting Binary
 First follow the guides for the :ref:`different supported devices <devices>` and create a configuration
 file. Then, generate and download the binary:
 
-- **Using the HassIO add-on/dashboard**: Just click the ``COMPILE`` button, wait for
+- **Using the Hass.io add-on/dashboard**: Just click the ``COMPILE`` button, wait for
   the compilation to end and press the ``DOWNLOAD BINARY`` button.
 
   .. figure:: images/download_binary.png

@@ -21,7 +21,7 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through HassIO Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
     Configuration Types, guides/configuration-types, settings.svg
     Migrating from Sonoff-Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
     Migrating from ESPurna, guides/migrate_espurna, espurna.svg

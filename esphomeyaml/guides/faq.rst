@@ -52,7 +52,7 @@ the ESP. This can sometimes fail (driver missing, inside docker container, ...).
 Starting with esphomelib 1.9.0, the esphomelib suite provides
 `esphomeflasher <https://github.com/OttoWinter/esphomeflasher>`__, a tool to flash ESPs over USB.
 
-First, you need to get the firmware file to flash. For HassIO add-on based installs you can
+First, you need to get the firmware file to flash. For Hass.io add-on based installs you can
 use the ``COMPILE`` button and then press ``Download Binary``. For command line based installs you
 can access the file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
@@ -141,7 +141,7 @@ It's simple. Run:
     # From docker:
     docker pull ottowinter/esphomeyaml:latest
 
-And in HassIO, there's a simple UPDATE button when there's an update available as with all add-ons
+And in Hass.io, there's a simple UPDATE button when there's an update available as with all add-ons
 
 .. _faq-beta:
 
@@ -162,7 +162,7 @@ by installing the esphomeyaml beta:
     # In each command:
     docker run [...] -it ottowinter/esphomeyaml:rc livingroom.yaml run
 
-And for HassIO, you will see a "esphomeyaml Beta" Add-On for the beta channel.
+And for Hass.io, you will see a "esphomeyaml Beta" Add-On for the beta channel.
 
 The beta docs can be viewed at `https://beta.esphomelib.com <https://beta.esphomelib.com>`__
 
@@ -176,7 +176,7 @@ Installing the latest bleeding edge version of esphomelib is also quite easy. It
 if there was a bug somewhere and I didn't feel like building & pushing a whole new release out (this often
 takes up to 2 hours!). To install the dev version of esphomeyaml:
 
-- In HassIO: In the esphomeyaml add-on repository there's also a second add-on called ``esphomeyaml-edge``.
+- In Hass.io: In the esphomeyaml add-on repository there's also a second add-on called ``esphomeyaml-edge``.
   Install that and stop the stable version (both can't run at the same time without port collisions).
 - From ``pip``: Run ``pip install git+git://github.com/OttoWinter/esphomeyaml.git``
 - From docker: Run ``docker pull ottowinter/esphomeyaml:dev`` and use ``ottowinter/esphomeyaml:dev`` in all
