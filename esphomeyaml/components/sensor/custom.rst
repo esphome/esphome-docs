@@ -82,8 +82,9 @@ Let's now also take a closer look at this line, which you might not be too used 
     class MyCustomSensor : public Component, public sensor::Sensor {
 
 What this line is essentially saying is that we're defining our own class that's called ``MyCustomSensor``
-which is also a subclass of ``Component`` and ``Sensor`` (in the namespace ``sensor::``).
-As described before, these two "parent" classes have special semantics that we will make use of.
+which is also a subclass of :cpp:class:`Component` and :cpp:class:`sensor::Sensor`
+(in the namespace ``sensor::``). As described before, these two "parent" classes have
+special semantics that we will make use of.
 
 We *could* go implement our own sensor code now by replacing the contents of ``setup()`` and ``loop()``.
 In ``setup()`` we would initialize the sensor and in ``loop()`` we would read out the sensor and publish
@@ -93,10 +94,10 @@ However, there's a small problem with that approach: ``loop()`` gets called very
 If we would publish a new state each time that method is called we would quickly make the node unresponsive
 since the MQTT protocol wasn't really designed for 60 messages per second.
 
-So this fix this, we will use an alternative class to ``Component``: ``PollingComponent``. This class
-is for situations where you have something that should get called repeatedly with some **update interval**.
-In the code above, we can simply replace ``Component`` by ``PollingComponent`` and ``loop()`` by a special
-method ``update()`` which will be called with an interval we can specify.
+So this fix this, we will use an alternative class to :cpp:class:`Component`: :cpp:class`PollingComponent`.
+This class is for situations where you have something that should get called repeatedly with some **update interval**.
+In the code above, we can simply replace :cpp:class:`Component` by :cpp:class:`PollingComponent` and
+``loop()`` by a special method ``update()`` which will be called with an interval we can specify.
 
 .. code-block:: cpp
 
@@ -114,11 +115,11 @@ method ``update()`` which will be called with an interval we can specify.
     };
 
 
-Our code has slightly changed, as explained above we're now inheriting from ``PollingComponent`` instead of
-just ``Component``. Additionally, we now have a new line: the constructor. You also don't really need to
+Our code has slightly changed, as explained above we're now inheriting from :cpp:class:`PollingComponent` instead of
+just :cpp:class:`Component`. Additionally, we now have a new line: the constructor. You also don't really need to
 know much about constructors here, so to simplify let's just say this is where we "initialize" the custom sensor.
 
-In this constructor we're telling the compiler that we want ``PollingComponent`` to be instantiated with an
+In this constructor we're telling the compiler that we want :cpp:class:`PollingComponent` to be instantiated with an
 *update interval* of 15s, or 15000 milliseconds (esphomelib uses milliseconds internally).
 
 Let's also now make our sensor actually publish values in the ``update()`` method:
