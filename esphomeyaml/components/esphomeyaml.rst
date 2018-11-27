@@ -82,7 +82,7 @@ the latest development code from GitHub (``dev``), or a specific version number 
       esphomelib_version: 1.8.0
 
 Alternatively, if you want to develop for esphomelib, you can download the
-`latest code from GitHub <https://github.com/OttoWinter/esphomelib/archive/master.zip>`, extract the contents,
+`latest code from GitHub <https://github.com/OttoWinter/esphomelib/archive/dev.zip>`__, extract the contents,
 and point esphomeyaml to your local copy. Then you can modify the esphomelib to your needs or to fix bugs.
 
 .. code-block:: yaml
