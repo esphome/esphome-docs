@@ -176,6 +176,17 @@ Release 1.9.2 - November 25
 - lib: Improve ESP32 BLE tracker stability :libpr:`289`
 - lib: Fix sensor filters using C++ undefined behavior :libpr:`293`
 
+Release 1.9.3 - December 1
+--------------------------
+
+- docs: Fix Sonoff Basic pinouts :docspr:`88` by :ghuser:`sherbang`
+- docs: Update cwww.rst :docspr:`85` by :ghuser:`Melkor82`
+- lib: Fix PMSX003 :libpr:`300`
+- lib: Fix issue with filters introduced in 1.9.2 :libpr:`296`
+- lib: Fix BMP085 pressure value :libpr:`292`
+- yaml: CSE7766 update interval :yamlpr:`250`
+- docs: CSE7766 Update Interval :docspr:`91`
+
 All changes
 -----------
 
