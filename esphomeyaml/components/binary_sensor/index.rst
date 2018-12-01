@@ -249,7 +249,6 @@ presses.
         then:
           - logger.log: "Double Clicked"
       - timing:
-          - OFF for 1s to 2s
           - ON for 1s to 2s
           - OFF for at least 0.5s
         then:
