@@ -24,8 +24,8 @@ The example below is an example of a custom component that can do anything you w
         pinMode(6, OUTPUT);
       }
       void loop() override {
-        // This will be called once to set up the component
-        // think of it as the setup() call in Arduino
+        // This will be called very often after setup time.
+        // think of it as the loop() call in Arduino
         if (digitalRead(5)) {
           digitalWrite(6, HIGH);
 

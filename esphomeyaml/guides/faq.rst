@@ -53,8 +53,9 @@ Starting with esphomelib 1.9.0, the esphomelib suite provides
 `esphomeflasher <https://github.com/OttoWinter/esphomeflasher>`__, a tool to flash ESPs over USB.
 
 First, you need to get the firmware file to flash. For Hass.io add-on based installs you can
-use the ``COMPILE`` button and then press ``Download Binary``. For command line based installs you
-can access the file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
+use the ``COMPILE`` button (click the overflow icon with the three dots) and then press
+``Download Binary``. For command line based installs you can access the file under
+``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphomeflasher by going to the `releases page <https://github.com/OttoWinter/esphomeflasher/releases>`__
 and downloading one of the pre-compiled binaries. Open up the application and select the serial port
