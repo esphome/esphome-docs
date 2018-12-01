@@ -13,7 +13,7 @@ channels will be mixed using the color temperature configuration options.
 
     # Example configuration entry
     light:
-      - platform: rgbw
+      - platform: cwww
         name: "Livingroom Lights"
         cold_white: output_component1
         warm_white: output_component2
