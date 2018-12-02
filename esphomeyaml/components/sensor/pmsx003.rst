@@ -30,10 +30,11 @@ value:
     # Example configuration entry
     uart:
       rx_pin: GPIO23
+      baud_rate: 9600
 
     sensor:
       - platform: pmsx003
-        type: PMX003
+        type: PMSX003
         pm_1_0:
           name: "Particulate Matter <1.0µm Concentration"
         pm_2_5:
