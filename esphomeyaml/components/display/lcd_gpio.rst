@@ -92,8 +92,13 @@ by default which means the character at the top left.
           // Result: "Sensor value:       42"
 
           // Print the current time
-          it.strftime("It is %H:%M on %d.%m.%Y");
+          it.strftime("It is %H:%M on %d.%m.%Y", id(my_time).now());
           // Result for 10:06 on august 21st 2018 -> "It is 10:06 on 21.08.2018"
+
+    # (Optional) For displaying time:
+    time:
+    - platform: sntp
+      id: my_time
 
 .. note::
 
