@@ -134,9 +134,76 @@ class ImageTableDirective(Table):
         return [table] + messages
 
 
+class PinTableDirective(Table):
+    option_spec = {}
+
+    def run(self):
+        env = self.state.document.settings.env
+
+        items = []
+
+        data = list(csv.reader(self.content))
+        for row in data:
+            if not row:
+                continue
+            if len(row) == 3:
+                items.append((row[0], row[1], True))
+            else:
+                items.append((row[0], row[1], False))
+
+        col_widths = self.get_column_widths(2)
+        title, messages = self.make_title()
+        table = nodes.table()
+
+        # Set up column specifications based on widths
+        tgroup = nodes.tgroup(cols=2)
+        table += tgroup
+        tgroup.extend(
+            nodes.colspec(colwidth=col_width)
+            for col_width in col_widths
+        )
+
+        thead = nodes.thead()
+        tgroup += thead
+        trow = nodes.row()
+        thead += trow
+        trow.extend(
+            nodes.entry(h, nodes.paragraph(text=h))
+            for h in ('Pin', 'Function')
+        )
+
+        tbody = nodes.tbody()
+        tgroup += tbody
+        for name, func, important in items:
+            trow = nodes.row()
+            entry = nodes.entry()
+            para = nodes.paragraph()
+            para += nodes.literal(text=name)
+            entry += para
+            trow += entry
+
+            entry = nodes.entry()
+            if important:
+                para = nodes.paragraph()
+                para += nodes.strong(text=func)
+            else:
+                para = nodes.paragraph(text=func)
+            entry += para
+            trow += entry
+            tbody += trow
+
+        table['classes'] += ['no-center']
+        self.add_name(table)
+        if title:
+            table.insert(0, title)
+
+        return [table] + messages
+
+
 def setup(app):
     app.add_role('libpr', libpr_role)
     app.add_role('yamlpr', yamlpr_role)
     app.add_role('docspr', docspr_role)
     app.add_role('ghuser', ghuser_role)
     app.add_directive('imgtable', ImageTableDirective)
+    app.add_directive('pintable', PinTableDirective)

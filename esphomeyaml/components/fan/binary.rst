@@ -3,7 +3,7 @@ Binary Fan
 
 .. seo::
     :description: Instructions for setting up binary fans.
-    :image: fan.svg
+    :image: fan.png
 
 The ``binary`` fan platform lets you represent any binary :ref:`output` as a fan.
 
@@ -11,7 +11,7 @@ The ``binary`` fan platform lets you represent any binary :ref:`output` as a fan
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     fan:

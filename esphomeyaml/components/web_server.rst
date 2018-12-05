@@ -3,7 +3,7 @@ Web Server Component
 
 .. seo::
     :description: Instructions for setting up a web server in esphomelib.
-    :image: http.svg
+    :image: http.png
     :keywords: web server, http, REST API
 
 The ``web_server`` component creates a simple web server on the node that can be accessed
@@ -24,7 +24,7 @@ interface are hosted by esphomelib.com. If you want to use your own service, use
 
     Example web server frontend.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     web_server:

@@ -3,7 +3,7 @@ Generic ESP8266
 
 .. seo::
     :description: Instructions for using generic ESP8266s with esphomelib.
-    :image: esp8266.svg
+    :image: esp8266.png
     :keywords: ESP8266
 
 All ESP8266-based devices are supported by esphomeyaml. Simply select ``ESP8266`` when
@@ -12,7 +12,7 @@ from `this link <http://docs.platformio.org/en/latest/platforms/espressif8266.ht
 asks you for the board type.
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -34,7 +34,7 @@ Some notes on the pins:
   to read out voltages (in the range from 0 to 1.0V) on this pin.
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:

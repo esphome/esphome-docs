@@ -18,7 +18,7 @@ The ``rgb`` light platform creates an RGB light from 3 :ref:`float output compon
     :align: center
     :width: 40.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     light:

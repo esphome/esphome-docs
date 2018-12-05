@@ -32,7 +32,7 @@ set too high.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -70,7 +70,7 @@ option kicks in.
 
 To remove ``NAN`` values from the sensor stream, use the ``filter_nan`` :ref:`sensor filter <sensor-filters>`:
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: ultrasonic

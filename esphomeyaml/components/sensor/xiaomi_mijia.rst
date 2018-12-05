@@ -22,7 +22,7 @@ MiJia devices at once as you want.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esp32_ble_tracker:
@@ -66,7 +66,7 @@ Setting Up Devices
 To set up Xiaomi MiJia devices you first need to find their MAC Address so that esphomelib can
 identify them. So first, create a simple configuration without any ``xiaomi_mijia`` entries like so:
 
-.. code:: yaml
+.. code-block:: yaml
 
     esp32_ble_tracker:
 

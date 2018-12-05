@@ -5,7 +5,7 @@ SPI Bus
 
 .. seo::
     :description: Instructions for setting up an SPI bus in esphomelib
-    :image: spi.svg
+    :image: spi.png
     :keywords: SPI
 
 SPI is a very common high-speed protocol for a lot of devices. The SPI bus usually consists of 4 wires:
@@ -26,7 +26,7 @@ use for the functions described above. The **CS** pins are then individually man
 component also accepts a list of buses if you want to have multiple SPI buses with your ESP (though this should
 rarely be necessary, as the SPI bus can be shared by the devices).
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     spi:

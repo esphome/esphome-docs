@@ -3,12 +3,12 @@ Uptime Sensor
 
 .. seo::
     :description: Instructions for setting up a sensor that tracks the uptime of the ESP.
-    :image: timer.svg
+    :image: timer.png
 
 The ``uptime`` sensor allows you to track the time the ESP has stayed up for in seconds.
 Time rollovers are automatically handled.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

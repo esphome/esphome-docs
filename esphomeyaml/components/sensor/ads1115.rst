@@ -24,7 +24,7 @@ voltage to Home Assistant.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     ads1115:
       - address: 0x48

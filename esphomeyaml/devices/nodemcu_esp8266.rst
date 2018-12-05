@@ -19,7 +19,7 @@ the esphomeyaml wizard asks you for your platform and |nodemcuv2|_ as the board 
 .. |nodemcu| replace:: ``nodemcu``
 .. _nodemcu: http://docs.platformio.org/en/latest/platforms/espressif8266.html#nodemcu
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -55,7 +55,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
   is how they can handle voltages above 3.3V
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:

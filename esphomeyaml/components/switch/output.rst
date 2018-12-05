@@ -3,7 +3,7 @@ Generic Output Switch
 
 .. seo::
     :description: Instructions for setting up generic output switches in esphomelib that control an output component.
-    :image: upload.svg
+    :image: upload.png
 
 The ``output`` switch platform allows you to use any output component as a switch.
 
@@ -11,7 +11,7 @@ The ``output`` switch platform allows you to use any output component as a switc
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     output:

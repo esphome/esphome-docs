@@ -21,7 +21,7 @@ To get the brightness the sensor measures, we then simply have to measure the vo
 on the ``SIG`` (also called ``OUT``) pin using the :doc:`/esphomeyaml/components/sensor/adc`
 and convert those voltage measurements to illuminance values in lux using a formula:
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: adc

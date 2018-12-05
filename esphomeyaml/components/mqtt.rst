@@ -12,7 +12,7 @@ just be able to copy over the `MQTT
 section <https://www.home-assistant.io/components/mqtt/>`__ of your Home
 Assistant configuration.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     mqtt:
@@ -72,7 +72,7 @@ MQTTMessage
 With the MQTT Message schema you can tell esphomeyaml how a specific MQTT message should be sent.
 It is used in several places like last will and birth messages or MQTT log options.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Simple:
     some_option: topic/to/send/to
@@ -115,7 +115,7 @@ broker (like `mosquitto <https://mosquitto.org/>`__) and point both your
 Home Assistant installation and esphomelib to that broker. Next, enable
 discovery in your Home Assistant configuration with the following:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example Home Assistant configuration.yaml entry
     mqtt:
@@ -136,7 +136,7 @@ esphomeyaml anymore.
 To fix this, esphomeyaml has a simple helper script that purges stale
 retained messages for you:
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml configuration.yaml clean-mqtt
 
@@ -184,7 +184,7 @@ broker to send a message ``<TOPIC_PREFIX>/status`` with payload
 You can change these messages by overriding the ``birth_message`` and
 ``will_message`` with the following options.
 
-.. code:: yaml
+.. code-block:: yaml
 
     mqtt:
       # ...
@@ -217,13 +217,13 @@ and with some computing power the fingerprint can be faked.
 To get this fingerprint, first put the broker and port options in the configuration and
 then run the ``mqtt-fingerprint`` script of esphomeyaml to get the certificate:
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml livingroom.yaml mqtt-fingerprint
     > SHA1 Fingerprint: a502ff13999f8b398ef1834f1123650b3236fc07
     > Copy above string into mqtt.ssl_fingerprints section of livingroom.yaml
 
-.. code:: yaml
+.. code-block:: yaml
 
     mqtt:
       # ...
@@ -238,7 +238,7 @@ MQTT Component Base Configuration
 All components in esphomelib that do some sort of communication through
 MQTT can have some overrides for specific options.
 
-.. code:: yaml
+.. code-block:: yaml
 
     name: "Component Name"
     # Optional variables:
@@ -286,7 +286,7 @@ With this configuration option you can write complex automations whenever an MQT
 message on a specific topic is received. To use the message content, use a :ref:`lambda <config-lambda>`
 template, the message payload is available under the name ``x`` inside that lambda.
 
-.. code:: yaml
+.. code-block:: yaml
 
     mqtt:
       # ...
@@ -304,11 +304,14 @@ Configuration variables:
 - **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
 
+- **payload** (*Optional*, string): Optionally set a payload to match. Only if exactly the payload
+  you specify with this option is received, the automation will be executed.
+
 .. note::
 
     You can even specify multiple ``on_message`` triggers by using a YAML list:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         mqtt:
           on_message:
@@ -323,7 +326,7 @@ Configuration variables:
 
     This action can also be used in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         App.get_mqtt_client()->subscribe("the/topic", [=](const std::string &payload) {
             // do something with payload
@@ -345,7 +348,7 @@ Basically, you can access elements by typing ``x["THE_KEY"]`` and save them into
 Please note that it's a good idea to check if the key exists in the Json Object by calling
 ``containsKey`` first as the ESP will crash if an element that does not exist is accessed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     mqtt:
       # ...
@@ -386,7 +389,7 @@ Configuration variables:
 
     This action can also be used in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         App.get_mqtt_client()->subscribe_json("the/topic", [=](JsonObject &root) {
             // do something with JSON-decoded value root
@@ -399,7 +402,7 @@ Configuration variables:
 
 Publish an MQTT message on a topic using this action in automations.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -431,13 +434,13 @@ Configuration options:
 
     This action can also be written in :ref:`lambdas <config-lambda>`:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         mqtt:
           # Give the mqtt component an ID
           id: mqtt_client
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(mqtt_client).publish("the/topic", "The Payload");
 
@@ -453,7 +456,7 @@ In the ``payload`` option you have access to a ``root`` object which will repres
 of the JSON message. You can assign values to keys by using the ``root["KEY_NAME"] = VALUE;`` syntax
 as seen below.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -482,13 +485,13 @@ Configuration options:
 
     This action can also be written in :ref:`lambdas <config-lambda>`:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         mqtt:
           # Give the mqtt component an ID
           id: mqtt_client
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(mqtt_client).publish_json("the/topic", [=](JsonObject &root) {
           root["something"] = id(my_sensor).value;

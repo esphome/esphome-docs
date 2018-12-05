@@ -22,7 +22,7 @@ to some GPIO pins on the ESP. For power, connect
 VCC to 3.3V and GND to GND. Optionally you can also connect the ``RESET`` pin to a pin on the ESP which may
 improve reliability.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     spi:
@@ -71,7 +71,7 @@ See Also
 
 - :doc:`index`
 - :doc:`API Reference </api/display/ssd1306>`
-- `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <http://adafruit.com/>`__
+- `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/ssd1306_spi.rst>`__
 
 .. disqus::

@@ -19,7 +19,7 @@ To use this hub, first setup the :ref:`I²C Bus <i2c>` and connect the sensor to
 
 .. _Adafruit: https://www.adafruit.com/product/1085
 
-.. code:: yaml
+.. code-block:: yaml
 
     ads1115:
       - address: 0x48

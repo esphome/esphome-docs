@@ -24,7 +24,7 @@ As the communication with the MH-Z19 is done using UART, you need to have an :re
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
 Additionally, you need to set the baud rate to 9600.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     uart:
@@ -62,7 +62,7 @@ First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/d
 create a display file and insert it using the SD card slot. Then, in the rendering ``lambda``, you have 3 main methods
 you can call to populate data on the display:
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: nextion
@@ -90,7 +90,7 @@ See Also
 - :doc:`index`
 - :doc:`API Reference </api/display/nextion>`
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__
-- `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <http://itead.cc/>`__
+- `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <https://www.itead.cc/>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/display/nextion.rst>`__
 
 .. disqus::

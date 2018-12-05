@@ -5,7 +5,7 @@ Automations And Templates
 
 .. seo::
     :description: Getting started guide for automations in esphomelib.
-    :image: auto-fix.svg
+    :image: auto-fix.png
 
 Automations and templates are two very powerful concepts of esphomelib/yaml. Automations
 allow you to perform actions under certain conditions and templates are a way to easily
@@ -14,7 +14,7 @@ API.
 
 Let's begin with an example to explain these concepts. Suppose you have this configuration file:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: gpio
@@ -42,7 +42,7 @@ hopefully a bit easier to read and understand than Home Assistant's.
 
 For example, this configuration would achieve your desired behavior:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: gpio
@@ -62,7 +62,7 @@ For example, this configuration would achieve your desired behavior:
 
 Woah, hold on there. Please explain what's going on here! Sure :) Let's step through what's happening here.
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
        - platform: gpio
@@ -72,7 +72,7 @@ Woah, hold on there. Please explain what's going on here! Sure :) Let's step thr
 First, we have to give the dehumidifier an :ref:`config-id` so that we can
 later use it inside our awesome automation.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -85,7 +85,7 @@ follows what you would call these events on mouse buttons. A *press* happens whe
 There are also other triggers like ``on_release``, ``on_click`` or ``on_double_click`` available.
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     # ...
     on_press:
@@ -102,7 +102,7 @@ Within this block, you can define several "actions". For example, ``switch.toggl
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # ...
     on_press:
@@ -114,7 +114,7 @@ like so:
 With this automation, a press on the push button would cause the dehumidifier to turn on/off for 2 seconds, and then
 cycle back to its original state. Similarly you can have a single trigger with multiple automations:
 
-.. code:: yaml
+.. code-block:: yaml
 
     # ...
     on_press:
@@ -133,7 +133,7 @@ cycle back to its original state. Similarly you can have a single trigger with m
 As a last example, let's make our dehumidifier smart: Let's make it turn on automatically when the humidity a sensor
 reports is above 65% and make it turn off again when it reaches 50%
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: dht
@@ -166,7 +166,7 @@ With templates inside esphomelib, you can do almost *everything*. If for example
 automation if a certain complex formula evaluates to true, you can do that with templates. Let's look at an example
 first:
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -221,7 +221,7 @@ we're retrieving the current state of the end stop using ``.state`` and using it
     variables like so. In this example the variable ``num_executions`` is incremented by one each time the
     lambda is executed and the current value is logged.
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         lambda: |-
           static int num_executions = 0;
@@ -236,7 +236,7 @@ Bonus: Templating Actions
 Another feature of esphomeyaml is that you can template almost every parameter for actions in automations. For example
 if you have a light and want to set it to a pre-defined color when a button is pressed, you can do this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_press:
       then:
@@ -246,8 +246,8 @@ if you have a light and want to set it to a pre-defined color when a button is p
             red: 0.8
             green: 1.0
             blue: !lambda >-
-              # The sensor outputs values from 0 to 100. The blue
-              # part of the light color will be determined by the sensor value.
+              // The sensor outputs values from 0 to 100. The blue
+              // part of the light color will be determined by the sensor value.
               return id(some_sensor).state / 100.0;
 
 Every parameter in actions that has the label "templatable" in the docs can be templated like above, using
@@ -262,7 +262,7 @@ Bonus 2: Global Variables
 In some cases you might require to share a global variable across multiple lambdas. For example,
 global variables can be used to store the state of a garage door.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     globals:
@@ -364,7 +364,7 @@ All Actions
 This action delays the execution of the next action in the action list by a specified
 time period.
 
-.. code:: yaml
+.. code-block:: yaml
 
    on_...:
      then:
@@ -386,11 +386,11 @@ time period.
 
 This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`).
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
-        - lambda: >-
+        - lambda: |-
             id(some_binary_sensor).publish_state(false);
 
 .. _if_action:
@@ -406,7 +406,7 @@ After the chosen branch (``then`` or ``else``) is done with execution, the next 
 For example below you can see an automation that checks if a sensor value is below 30 and if so
 turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -441,7 +441,7 @@ Using this action you can manually call the ``update()`` method of a component.
 Please note that this only works with some component types and others will result in a
 compile error.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -462,7 +462,7 @@ triggers.
 With the ``script`` component you can define these steps in a central place, and then
 execute the script with a single call.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     script:

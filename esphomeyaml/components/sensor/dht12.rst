@@ -22,7 +22,7 @@ The ``dht12`` Temperature+Humidity sensor allows you to use your DHT12
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

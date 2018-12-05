@@ -3,7 +3,7 @@ Binary Sensor Component
 
 .. seo::
     :description: Information about the base representation of all binary sensors.
-    :image: folder-open.svg
+    :image: folder-open.png
 
 With esphomelib you can use different types of binary sensors. They will
 automatically appear in the Home Assistant front-end and have several
@@ -19,7 +19,7 @@ All binary sensors have a platform and an optional device class. By
 default, the binary will chose the appropriate device class itself, but
 you can always override it.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: ...
@@ -58,7 +58,7 @@ Binary Sensor Filters
 With binary sensor filters you can customize how esphomelib handles your binary sensor values even more.
 They are similar to :ref:`Sensor Filters <sensor-filters>`.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: ...
@@ -110,7 +110,7 @@ You can access the current state of the binary sensor in :ref:`lambdas <config-l
 This automation will be triggered when the button is first pressed down, or in other words on the leading
 edge of the signal.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -129,7 +129,7 @@ Configuration variables: See :ref:`Automation <automation>`.
 This automation will be triggered when a button press ends, or in other words on the falling
 edge of the signal.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -149,7 +149,7 @@ This automation will be triggered when a button is pressed down for a time perio
 ``min_length`` to ``max_length``. Any click longer or shorter than this will not trigger the automation.
 The automation is therefore also triggered on the falling edge of the signal.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -175,7 +175,7 @@ This automation will be triggered when a button is pressed down twice, with the 
 ``min_length`` and ``max_length``. When a second leading edge then happens within ``min_length`` and
 ``max_length``, the automation is triggered.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -200,7 +200,7 @@ Configuration variables:
 This automation will be triggered when a button is pressed in a user-specified sequence.
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -238,7 +238,7 @@ You can use an ``OFF`` timing at the end of the timing sequence to differentiate
 kinds of presses. For example the configuration below will differentiate between double, long and short
 presses.
 
-.. code:: yaml
+.. code-block:: yaml
 
       on_multi_click:
       - timing:
@@ -269,7 +269,7 @@ advanced stuff (see the full :doc:`API Reference </api/binary_sensor/index>` for
 - ``publish_state()``: Manually cause the binary sensor to publish and store a state from anywhere
   in the program.
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       // Within lambda, publish an OFF state.
       id(my_binary_sensor).publish_state(false);
@@ -279,7 +279,7 @@ advanced stuff (see the full :doc:`API Reference </api/binary_sensor/index>` for
 
 - ``.state``: Retrieve the current state of the binary sensor.
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       // Within lambda, get the binary sensor state and conditionally do something
       if (id(my_binary_sensor).state) {

@@ -14,7 +14,7 @@ required to be set up in your configuration for this sensor to work.
 
 .. _Adafruit: https://www.adafruit.com/product/1746
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

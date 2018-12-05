@@ -10,7 +10,7 @@ The ``mqtt_subscribe`` text sensor platform allows you to get external data into
 The sensor will subscribe to messages on the given MQTT topic and save the most recent value
 in its ``id(mysensor).value``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     text_sensor:
@@ -35,7 +35,7 @@ This integration is especially useful for displays, to show external data on the
 Please note you have to use the ``.c_str()`` method on the ``.state`` object together with the ``%s`` format
 to use it in ``printf`` expressions.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     text_sensor:

@@ -3,7 +3,7 @@ Changelog - Version 1.9.0
 
 .. seo::
     :description: Changelog for esphomelib version 1.9.0.
-    :image: /_static/_changelog-1.9.0.png
+    :image: /_static/changelog-1.9.0.png
     :author: Otto Winter
     :author_twitter: @OttoWinter_
 
@@ -91,10 +91,10 @@ New Features
   or higher you will see a list of all components for each esphomelib node in the integrations screen
   (:libpr:`233`).
 
-- The current esphomelib version and compilation time are no printed on each boot
+- The current esphomelib version and compilation time are now printed on each boot
   (:libpr:`189`, :yamlpr:`159`):
 
-  .. code:: bash
+  .. code-block:: text
 
     [13:57:33][I][application:092]: You're running esphomelib v1.9.0 compiled on Nov  3 2018, 13:55:11
 
@@ -157,6 +157,35 @@ Breaking Changes
   instead. Additionally, the syntax for toggling lights and switches through C++ has been changed. Please see
   the :docspr:`62` changeset for more information
   (:libpr:`231`, :docspr:`62`, :yamlpr:`197`)
+
+Release 1.9.1 - November 19
+---------------------------
+
+- lib: Fix RDM6300 not reporting cards :libpr:`278`
+- lib: Fix SNTP with less than 3 servers :libpr:`279`
+- lib: Fix update interval log missing time unit :libpr:`280`
+- lib: Fix CSE7766 spamming logs :libpr:`281`
+- lib: Fix outdated links :libpr:`282`
+- yaml: Fix SNTP servers option :yamlpr:`237`
+
+Release 1.9.2 - November 25
+---------------------------
+
+- lib: Fix crashing when logger not being used :libpr:`285`
+- lib: Fix template cover spamming logs :libpr:`287`
+- lib: Improve ESP32 BLE tracker stability :libpr:`289`
+- lib: Fix sensor filters using C++ undefined behavior :libpr:`293`
+
+Release 1.9.3 - December 1
+--------------------------
+
+- docs: Fix Sonoff Basic pinouts :docspr:`88` by :ghuser:`sherbang`
+- docs: Update cwww.rst :docspr:`85` by :ghuser:`Melkor82`
+- lib: Fix PMSX003 :libpr:`300`
+- lib: Fix issue with filters introduced in 1.9.2 :libpr:`296`
+- lib: Fix BMP085 pressure value :libpr:`292`
+- yaml: CSE7766 update interval :yamlpr:`250`
+- docs: CSE7766 Update Interval :docspr:`91`
 
 All changes
 -----------
@@ -261,7 +290,9 @@ All changes
 - yaml: Add Stepper Motor Support :yamlpr:`206` (new-feature)
 - yaml: Add send_first_at option to sliding window sensor filter :yamlpr:`207` (new-feature)
 - docs: Switch example to Dehumidifier, minor grammar/puncuation :docspr:`67` by :ghuser:`rorpage`
+- docs: Tiny typo fix. :docspr:`73` by :ghuser:`corbanmailloux`
 - yaml: Auto-Decode stacktraces :yamlpr:`214` (new-feature)
+- docs: Fix a broken link to setting up a BLE tracker. :docspr:`72` by :ghuser:`corbanmailloux`
 - yaml: Add generate home assistant config command :yamlpr:`208` (new-feature)
 - yaml: Update Gitlab Build Script :yamlpr:`215`
 - lib: Fix status binary sensor always reporting false internally :libpr:`257`
@@ -286,7 +317,15 @@ All changes
 - lib: Add Total Daily Energy Sensor :libpr:`256` (new-feature)
 - yaml: Add total daily energy sensor :yamlpr:`220` (new-feature)
 - docs: Add total daily energy sensor :docspr:`79`
-
+- lib: Introduce new setup phase: "dump config" to allow fully-offline operation :libpr:`267`
+- yaml: Let esphomeyaml know about class inheritance :yamlpr:`229`
+- docs: ESP32 deep sleep wake up multiple pins :docspr:`81`
+- yaml: Deep Sleep Wake Up From Multiple Pins :yamlpr:`230`
+- lib: Deep Sleep Multi Wakeup :libpr:`268`
+- lib: MY9231/MY9291 LED driver support :libpr:`266` by :ghuser:`puuu` (new-feature)
+- yaml: Add MY9231 support :yamlpr:`227` by :ghuser:`puuu` (new-feature)
+- docs: MY9231/MY9291 LED driver documentation :docspr:`80` by :ghuser:`puuu` (new-feature)
+- docs: SEO Optimization :docspr:`82`
 
 
 Past Changelogs

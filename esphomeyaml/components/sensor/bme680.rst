@@ -19,7 +19,7 @@ your configuration for this sensor to work.
 
 .. _Adafruit: https://www.adafruit.com/product/3660
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

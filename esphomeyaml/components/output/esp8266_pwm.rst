@@ -16,7 +16,7 @@ limitations.
 If you need a stable PWM signal, it’s definitely recommended to use the
 successor of the ESP8266, the ESP32, and its :doc:`ESP32 LEDC PWM <ledc>` instead.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     output:

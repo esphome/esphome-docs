@@ -12,7 +12,7 @@ the esphomeyaml wizard asks you for your platform and |nodemcu-32s|_ as the boar
 .. |nodemcu-32s| replace:: ``nodemcu-32s``
 .. _nodemcu-32s: http://docs.platformio.org/en/latest/platforms/espressif32.html#nodemcu
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:
@@ -43,7 +43,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
   the UART chip is directly connected to this rail and you therefore **cannot** supply other voltages
   into this pin.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esphomeyaml:

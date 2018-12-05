@@ -3,7 +3,7 @@ Remote Transmitter Component
 
 .. seo::
     :description: Instructions for setting up remote transmitters in esphomelib
-    :image: remote.svg
+    :image: remote.png
     :keywords: RF, infrared
 
 The ``remote_transmitter`` component lets you send infrared messages to control
@@ -18,7 +18,7 @@ Use-cases are for example infrared remotes or 433MHz signals.
     This component is *much* more accurate on the ESP32, since that chipset has a dedicated
     peripheral for sending exact signal sequences.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     remote_transmitter:

@@ -6,10 +6,10 @@ ESP32 LEDC Output
     :image: pwm.png
 
 The LEDC output component exposes a `LEDC PWM
-channel <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/ledc.html>`__
+channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html>`__
 of the ESP32 as an output component.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     output:
@@ -27,7 +27,7 @@ Configuration variables:
   therefore also the same frequency. Defaults to 1000Hz.
 - **bit_depth** (*Optional*, int): The bit depth to use for the LEDC channel. Defaults to 12.
 - **channel** (*Optional*, int): Manually set the `LEDC
-  channel <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__
+  channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__
   to use. Two adjacent channels share the same timer. Defaults to an automatic selection.
 - All other options from :ref:`Output <config-output>`.
 
@@ -40,7 +40,7 @@ See Also
 - :doc:`/esphomeyaml/components/fan/speed`
 - :doc:`/esphomeyaml/components/power_supply`
 - :doc:`API Reference </api/output/ledc>`
-- `esp-idf LEDC API docs <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/ledc.html>`__
+- `esp-idf LEDC API docs <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/output/ledc.rst>`__
 
 .. disqus::

@@ -3,13 +3,13 @@ Template Switch
 
 .. seo::
     :description: Instructions for setting up template switches that can execute arbitrary actions when turned on or off.
-    :image: description.svg
+    :image: description.png
 
 The ``template`` switch platform allows you to create simple switches out of just actions and
 an optional value lambda. Once defined, it will automatically appear in Home Assistant
 as a switch and can be controlled through the frontend.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     switch:

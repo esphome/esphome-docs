@@ -32,7 +32,7 @@ when the input turns off, ``NC`` is connected to ``COM``.
 
 To use a relay with esphomelib, use a :doc:`GPIO Switch </esphomeyaml/components/switch/gpio>`.
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: gpio

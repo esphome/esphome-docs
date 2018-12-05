@@ -3,7 +3,7 @@ Status LED
 
 .. seo::
     :description: Instructions for setting up status LEDs in esphomelib to monitor the status of an ESP.
-    :image: led-on.svg
+    :image: led-on.png
 
 The ``status_led`` hooks into all esphomelib components and can indicate the status of
 the device. Specifically, it will:
@@ -15,7 +15,7 @@ the device. Specifically, it will:
   recover from the error and continue with all other operations.
 - Stay off otherwise.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     status_led:
@@ -33,7 +33,7 @@ Configuration variables:
     If your LED is in an active-LOW mode (when it's on if the output is enabled), use the
     ``inverted`` option of the :ref:`Pin Schema <config-pin_schema>`:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         status_led:
           pin:

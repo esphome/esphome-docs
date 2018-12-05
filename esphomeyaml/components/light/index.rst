@@ -3,7 +3,7 @@ Light Component
 
 .. seo::
     :description: Instructions for setting up lights and light effects in esphomelib.
-    :image: folder-open.svg
+    :image: folder-open.png
 
 The ``light`` domain in esphomeyaml lets you create lights that will
 automatically be shown in Home Assistant’s frontend and have many
@@ -16,7 +16,7 @@ features such as RGB colors, transitions, flashing and effects.
 
 This action toggles a light with the given ID when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -35,7 +35,7 @@ Configuration options:
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         auto call = id(light_1).toggle();
         // perform action:
@@ -48,7 +48,7 @@ Configuration options:
 
 This action turns a light with the given ID on when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -93,7 +93,7 @@ Configuration options:
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         auto call = id(light_1).turn_on();
         // set parameters (optional)
@@ -111,7 +111,7 @@ Configuration options:
 
 This action turns a light with the given ID off when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -131,7 +131,7 @@ Configuration options:
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         auto call = id(light_1).turn_off();
         // set parameters (optional)
@@ -152,7 +152,7 @@ With esphomelib's light effects system you're basically creating a bunch of entr
 Home Assistant. If you wish to have several variants of the same effect you can of course also create multiple
 entries with each having a unique name like so:
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: ...
@@ -172,7 +172,7 @@ Random Effect
 
 This effect makes a transition (of length ``transition_length``) to a randomly-chosen color every ``update_interval``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: ...
@@ -196,7 +196,7 @@ Strobe Effect
 
 This effect cycles through a list of colors with specific durations.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: ...
@@ -239,7 +239,7 @@ Flicker Effect
 
 This effect "hovers" around the active color of the light and flickers each color channel a bit.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: ...
@@ -264,7 +264,7 @@ Lambda Effect
 
 This effect allows you to write completely custom light effects yourself using :ref:`lambdas <config-lambda>`.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: ...
@@ -302,7 +302,7 @@ FastLED Rainbow Effect
 A light effect for individually-addressable LEDs that creates a moving rainbow over the whole LED strip using
 the HSV color wheel.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: fastled_...
@@ -327,7 +327,7 @@ FastLED Color Wipe Effect
 A light effect for individually-addressable LEDs that continuously introduces new colors at the beginning of
 the strip and shifts them forward every ``add_led_interval``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: fastled_...
@@ -371,7 +371,7 @@ FastLED Scan Effect
 Create a single, fast-moving dot moving back and forth an individually-addressable LED strip. The color is chosen by the
 currently active light color.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: fastled_...
@@ -395,7 +395,7 @@ A light effect for individually-addressable LED strips that randomly chooses som
 up for a moment, like a stars twinkling in the night's sky. The color of the pixels will be chosen by the
 currently active light color.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: fastled_...
@@ -420,7 +420,7 @@ FastLED Random Twinkle Effect
 
 A light effect similar to ``fastled_twinkle``, but using random colors for each twinkle animation.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: fastled_...
@@ -447,7 +447,7 @@ FastLED Fireworks Effect
 A light effect for individually-addressable LED strips that randomly sparks some fireworks at random positions
 and lets the sparkles cascade over the LED strip.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: fastled_...
@@ -480,7 +480,7 @@ FastLED Flicker Effect
 An effect similar to the ``flicker`` effect, but for individually-addressable LED strips. This effect flickers
 each LED by its own random amount around the currently active light color.
 
-.. code:: yaml
+.. code-block:: yaml
 
     light:
       - platform: fastled_...

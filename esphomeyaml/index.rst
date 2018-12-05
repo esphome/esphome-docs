@@ -4,8 +4,8 @@ esphomeyaml
 .. image:: images/esphomeyaml-logo-full.svg
 
 .. seo::
-    :description: esphomeyaml Component index - Reimagining DIY Home Automation
-    :image: /_static/logo-full.png
+    :description: esphomeyaml Component index - esphomeyaml Homepage - Reimagining DIY Home Automation. esphomelib is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. esphomeyaml is the tool that converts YAML configuration files into custom firmwares and has many helpers so that you only have to worry about creating the hardware, esphomeyaml will take care of the rest.
+    :image: esphomeyaml-logo-full.png
 
 .. raw:: html
 

@@ -3,7 +3,7 @@ OTA Update Component
 
 .. seo::
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to upload firmwares remotely.
-    :image: system-update.svg
+    :image: system-update.png
     :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
 
 With the OTA (Over The Air) update component you can upload your
@@ -32,7 +32,7 @@ this and will go over into a safe mode after 10 unsuccessful boot
 attempts. In that mode, all components are disabled and only Serial
 Logging+WiFi+OTA are initialized, so that you can upload a new binary.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     ota:

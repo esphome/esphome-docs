@@ -3,12 +3,12 @@ MY9231/MY9291 Output
 
 .. seo::
     :description: Instructions for setting up MY931 and MY9231 outputs.
-    :image: my9231.svg
+    :image: my9231.png
 
 The MY931/MY9291 output component exposes a MY931/MY9291 channel of a global
 :doc:`/esphomeyaml/components/my9231` as a float output.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     my9231:

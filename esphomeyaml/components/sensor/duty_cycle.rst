@@ -3,7 +3,7 @@ Duty Cycle Sensor
 
 .. seo::
     :description: Instructions for setting up duty cycle sensors in esphomelib
-    :image: percent.svg
+    :image: percent.png
 
 The duty cycle sensor allows you to measure for what percentage of time a signal
 on a GPIO pin is HIGH or LOW.
@@ -15,7 +15,7 @@ For example, you can measure if a status LED of a pool controller is permanently
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

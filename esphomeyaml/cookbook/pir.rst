@@ -45,7 +45,7 @@ To configure esphomeyaml for use with the PIR sensor, use a
 if a pin is pulled HIGH/LOW and reports those values to Home Assistant. Optionally also
 set a ``device_class`` so that Home Assistant uses a nice icon for the binary sensor.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio

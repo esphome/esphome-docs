@@ -22,7 +22,7 @@ to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` conn
 MH-Z19 and the ``tx_pin`` connected to the RX Pin of the MH-Z19 (it's switched because the
 TX/RX labels are from the perspective of the MH-Z19). Additionally, you need to set the baud rate to 9600.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     uart:

@@ -3,7 +3,7 @@ Configuration Types
 
 .. seo::
     :description: Documentation of different configuration types in esphomelib
-    :image: settings.svg
+    :image: settings.png
 
 esphomeyaml’s configuration files have several configuration types. This
 page describes them.
@@ -23,7 +23,7 @@ ID twice.
 Because esphomeyaml converts your configuration into C++ code and the
 ids are in reality just C++ variable names, they must also adhere to
 C++’s naming conventions. `C++ Variable
-names <http://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>`__
+names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>`__
 …
 
 -  … must start with a letter and can end with numbers.
@@ -49,7 +49,7 @@ for the ``D0`` (as printed on the PCB silkscreen) pin on the NodeMCU ESP8266
 has the internal GPIO name ``GPIO16``, but also has an alias ``D0``. So using
 either one of these names in your configuration will lead to the same result.
 
-.. code:: yaml
+.. code-block:: yaml
 
     some_config_option:
       pin: GPIO16
@@ -65,7 +65,7 @@ Pin Schema
 
 In some places, esphomeyaml also supports a more advanced “pin schema”.
 
-.. code:: yaml
+.. code-block:: yaml
 
     some_config_option:
       # Basic:
@@ -116,7 +116,7 @@ Time
 In lots of places in esphomeyaml you need to define time periods.
 There are several ways of doing this. See below examples to see how you can specify time periods:
 
-.. code:: yaml
+.. code-block:: yaml
 
     some_config_option:
       some_time_option: 1000us  # 1000 microseconds = 1ms

@@ -3,7 +3,7 @@ Debug Component
 
 .. seo::
     :description: Instructions for setting up the debug component in esphomelib
-    :image: bug-report.svg
+    :image: bug-report.png
 
 The ``debug`` component can be used to debug problems with esphomelib. At startup, it prints
 a bunch of useful information like reset reason, free heap size, esphomelib version and so on.
@@ -13,7 +13,7 @@ a bunch of useful information like reset reason, free heap size, esphomelib vers
 
     Example debug component output.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     debug:
