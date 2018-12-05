@@ -111,7 +111,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 ``switch.is_on`` / ``switch.is_off Condition
 ********************************************
 
-This :ref:`config-condition <condition>` passes if the given switch is on/off.
+This :ref:`condition <config-condition>` passes if the given switch is on/off.
 
 .. code-block:: yaml
 

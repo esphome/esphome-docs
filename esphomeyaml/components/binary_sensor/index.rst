@@ -265,7 +265,7 @@ presses.
 ``binary_sensor.is_on`` / ``binary_sensor.is_off Condition
 **********************************************************
 
-This :ref:`config-condition <condition>` passes if the given binary sensor is on/off.
+This :ref:`condition <config-condition>` passes if the given binary sensor is on/off.
 
 .. code-block:: yaml
 
