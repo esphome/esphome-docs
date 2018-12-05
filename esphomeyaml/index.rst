@@ -95,6 +95,7 @@ Sensor Components
     INA219, components/sensor/ina219, ina219.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
     HTU21D, components/sensor/htu21d, htu21d.jpg
+    MAX31855, components/sensor/max31855, max31855.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
