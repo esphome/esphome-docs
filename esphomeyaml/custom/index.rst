@@ -1,0 +1,7 @@
+Custom
+======
+
+.. toctree::
+    :glob:
+
+    *

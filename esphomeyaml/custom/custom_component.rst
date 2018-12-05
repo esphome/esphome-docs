@@ -36,7 +36,7 @@ The example below is an example of a custom component that can do anything you w
     };
 
 In many cases however components should communicate with other appliances using the network.
-That's why there is :cpp:class:`mqtt:CustomMQTTDevice`. It is a helper class to create
+That's why there is :cpp:class:`mqtt::CustomMQTTDevice`. It is a helper class to create
 custom components that communicate using MQTT.
 
 .. code-block:: cpp
@@ -100,7 +100,7 @@ Configuration variables:
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   binary sensor(s).
 
-See :cpp:class:`Component` and :cpp:class:`mqtt:CustomMQTTDevice`.
+See :cpp:class:`Component` and :cpp:class:`mqtt::CustomMQTTDevice`.
 
 See Also
 --------

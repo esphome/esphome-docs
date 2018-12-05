@@ -12,6 +12,8 @@ Tips for using esphomeyaml
    ``!include``, ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
 
+   For even more configuration templating, take a look at :ref:`config-substitutions`.
+
 2. If you want to see how esphomeyaml interprets your configuration, run
 
    .. code-block:: bash

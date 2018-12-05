@@ -1,9 +1,9 @@
 Custom SPI Device
 =================
 
-Lots of devices communicate using the i2c protocol. If you want to integrate
+Lots of devices communicate using the SPI protocol. If you want to integrate
 a device into esphomelib that uses this protocol you can pretty much use almost
-all Arduino-based code, since the ``Wire`` library is also available in esphomelib.
+all Arduino-based code because the ``SPI`` library is also available in esphomelib.
 
 See the other custom component guides for how to register components and make
 them publish values.
@@ -16,23 +16,24 @@ them publish values.
     class MyCustomComponent : public Component {
      public:
       void setup() override {
-        // Initialize the device here. Usually Wire.begin() will be called in here,
-        // though that call is unnecessary if you have an 'i2c:' entry in your config
+        SPI.pins(SCK_PIN, MISO_PIN, MOSI_PIN);
+        SPI.begin();
 
-        Wire.begin();
+        pinMode(CS_PIN, OUTPUT);
       }
       void loop() override {
-        // Example: write the value 0x42 to register 0x78 of device with address 0x21
-        Wire.beginTransmission(0x21);
-        Wire.write(0x78);
-        Wire.write(0x42);
-        Wire.endTransmission();
+        digitalWrite(CS_PIN, LOW);
+        SPI.beginTransaction(...);
+
+        SPI.write(0x42);
+
+        digitalWrite(CS_PIN, HIGH);
       }
     };
 
 See Also
 --------
 
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/custom/i2c.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/custom/spi.rst>`__
 
 .. disqus::

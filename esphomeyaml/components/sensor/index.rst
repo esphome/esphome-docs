@@ -289,6 +289,33 @@ with ``x``.
 
 Configuration variables: See :ref:`Automation <automation>`.
 
+.. _sensor-in_range_condition:
+
+``sensor.in_range`` Condition
+*****************************
+
+This condition passes if the state of the given sensor is inside a range.
+
+Define the range with ``above`` and ``below``. If only one of them is defined, the interval is half-open.
+So for example ``above: 5`` with no below would mean the range from 5 to positive infinity.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          sensor.in_range:
+            id: my_sensor
+            above: 50.0
+        then:
+        - script.execute: my_script
+
+Configuration variables:
+
+- **above** (*Optional*, float): The minimum for the condition.
+- **below** (*Optional*, float): The maximum for the condition.
+
 lambda calls
 ************
 

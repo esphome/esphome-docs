@@ -3,7 +3,7 @@ Custom I²C Device
 
 Lots of devices communicate using the i2c protocol. If you want to integrate
 a device into esphomelib that uses this protocol you can pretty much use almost
-all Arduino-based code, since the ``Wire`` library is also available in esphomelib.
+all Arduino-based code because the ``Wire`` library is also available in esphomelib.
 
 See the other custom component guides for how to register components and make
 them publish values.

@@ -260,6 +260,24 @@ presses.
         then:
           - logger.log: "Single Short Clicked"
 
+.. _binary_sensor-is_on_off_condition:
+
+``binary_sensor.is_on`` / ``binary_sensor.is_off Condition
+**********************************************************
+
+This :ref:`config-condition <condition>` passes if the given binary sensor is on/off.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          binary_sensor.is_on: my_binary_sensor
+          # same goes for is_off
+        then:
+        - script.execute: my_script
+
 lambda calls
 ************
 
