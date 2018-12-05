@@ -47,7 +47,7 @@ Converting from W to kW
 Some sensors such as the :doc:`HLW8012 <hlw8012>` expose their power sensor with a unit of measurement of
 ``W``. To have your readings in ``kW``, use a filter:
 
-.. code::
+.. code-block:: yaml
 
     sensor:
       # The power sensor to convert, can be any power sensor

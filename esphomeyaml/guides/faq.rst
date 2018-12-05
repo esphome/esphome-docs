@@ -190,7 +190,7 @@ takes up to 2 hours!). To install the dev version of esphomeyaml:
 
 Next, if you want to use the latest version of the esphomelib C++ framework too:
 
-.. code::
+.. code-block:: yaml
 
     # Sample configuration entry
     esphomeyaml:
