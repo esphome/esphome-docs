@@ -192,7 +192,7 @@ To check your documentation changes locally, you first need install sphinx (**wi
 
     .. code-block:: bash
 
-        docker run --rm -v "$PWD/..":/data -p 8000:8000 -it ottowinter/esphomedocs
+        docker run --rm -v "$PWD/..":/data -v "$PWD":/data/esphomedocs-p 8000:8000 -it ottowinter/esphomedocs
 
     And then go to ``<CONTAINER_IP>:8000`` in your browser.
 
