@@ -286,6 +286,16 @@ Shelly 1
     GPIO4, Relay,
     GPIO5, SW Input,
 
+Shelly 2
+--------
+
+.. pintable::
+
+    GPIO4, Relay #1,
+    GPIO5, Relay #2,
+    GPIO12, SW Input #1,
+    GPIO14, SW Input #2,
+    
 See Also
 --------
 

@@ -26,7 +26,7 @@ measured in decibels. These values are always negative and the closer they are t
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the hall effect sensor.
+- **name** (**Required**, string): The name of the WiFi signal sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
