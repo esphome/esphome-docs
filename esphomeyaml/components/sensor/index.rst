@@ -212,7 +212,7 @@ Sensor Automation
 -----------------
 
 You can access the most recent state of the sensor in :ref:`lambdas <config-lambda>` using
-``id(sensor_id).state`` and the most recent raw state using ``id(sensor_id).raw_value``.
+``id(sensor_id).state`` and the most recent raw state using ``id(sensor_id).raw_state``.
 
 .. _sensor-on_value:
 
