@@ -203,7 +203,6 @@ This effect cycles through a list of colors with specific durations.
         # ...
         effects:
           - strobe:
-          - strobe:
               name: Strobe Effect With Custom Values
               colors:
                 - state: True
@@ -245,7 +244,6 @@ This effect "hovers" around the active color of the light and flickers each colo
       - platform: ...
         # ...
         effects:
-          - flicker:
           - flicker:
               name: Flicker Effect With Custom Values
               alpha: 95%
@@ -309,7 +307,6 @@ the HSV color wheel.
         # ...
         effects:
           - fastled_rainbow:
-          - fastled_rainbow:
               name: Rainbow Effect With Custom Values
               speed: 10
               width: 50
@@ -333,7 +330,6 @@ the strip and shifts them forward every ``add_led_interval``.
       - platform: fastled_...
         # ...
         effects:
-          - fastled_color_wipe:
           - fastled_color_wipe:
               name: Color Wipe Effect With Custom Values
               colors:
@@ -378,7 +374,6 @@ currently active light color.
         # ...
         effects:
           - fastled_scan:
-          - fastled_scan:
               name: Scan Effect With Custom Values
               move_interval: 100ms
 
@@ -401,7 +396,6 @@ currently active light color.
       - platform: fastled_...
         # ...
         effects:
-          - fastled_twinkle:
           - fastled_twinkle:
               name: Twinkle Effect With Custom Values
               twinkle_probability: 5%
@@ -426,7 +420,6 @@ A light effect similar to ``fastled_twinkle``, but using random colors for each 
       - platform: fastled_...
         # ...
         effects:
-          - fastled_random_twinkle:
           - fastled_random_twinkle:
               name: Random Twinkle Effect With Custom Values
               twinkle_probability: 5%
@@ -453,7 +446,6 @@ and lets the sparkles cascade over the LED strip.
       - platform: fastled_...
         # ...
         effects:
-          - fastled_fireworks:
           - fastled_fireworks:
               name: Fireworks Effect With Custom Values
               update_interval: 32ms
@@ -486,7 +478,6 @@ each LED by its own random amount around the currently active light color.
       - platform: fastled_...
         # ...
         effects:
-          - fastled_flicker:
           - fastled_flicker:
               name: Flicker Effect With Custom Values
               update_interval: 16ms
