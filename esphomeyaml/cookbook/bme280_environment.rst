@@ -18,13 +18,6 @@ The first step is to connect the sensor as described :doc:`here </esphomeyaml/co
 After validating the sensor is working, we can proceed and add some formulas.
 
 .. code-block:: yaml
-
-    globals:
-      - id: standard_sea_level_pressure_hpa
-        type: float
-        restore_state: no
-        initial_value: '1013.25'
-
     sensor:
       - platform: bme280
         temperature:
@@ -41,6 +34,7 @@ After validating the sensor is working, we can proceed and add some formulas.
       - platform: template
         name: "Altitude"
         lambda: |-
+          const float standard_sea_level_pressure_hpa = 1013,25; //in hPa, see note
           return ((id(bme280_temperature).state + 273.15) / 0.0065) * ((powf(id(standard_sea_level_pressure) / id(bme280_pressure).state), 0.190234) - 1);
         update_interval: 15s
       - platform: template
@@ -53,12 +47,10 @@ After validating the sensor is working, we can proceed and add some formulas.
 
 Altitude and absolute humidity:
 -------------------------------
-
-The first block of code (``globals``) contains the variable standard sea level pressure in hPa, which you should fill in for your location.
-
-The second block ``sensor`` starts with the normal bme280 sensor components ``temperature``, ``pressure``, and ``humidity`` with each their own id.
+The first block ``sensor`` starts with the normal bme280 sensor components ``temperature``, ``pressure``, and ``humidity`` with each their own id.
 After the bme280 sensor, a :doc:`/esphomeyaml/components/sensor/template` is defined to calculate the altitude in a lambda.
-The formula derived from `here <https://github.com/finitespace/BME280/blob/master/src/EnvironmentCalculations.cpp>`__, converts the currently measured pressure to the altitudes in meters including temperature compensation.
+The variable ``standard_sea_level_pressure_hpa`` (in hPa), should be filled in for your location.
+The formula derived from `here <https://github.com/finitespace/BME280/blob/master/src/EnvironmentCalculations.cpp>`, converts the currently measured pressure to the altitudes in meters including temperature compensation.
 
 The lambda in the second :doc:`/esphomeyaml/components/sensor/template` defines two physical constants and converts the currently measured pressure to absolute humidity (grams/m^3).
 
@@ -73,13 +65,6 @@ Equivalent sea level pressure:
 Calculating the sea level pressure with a statically mounted sensor can be be used as reference for moving sensors as mentioned in the note above.
 
 .. code-block:: yaml
-
-    globals:
-      - id: standard_altitude_meter
-        type: float
-        restore_state: no
-        initial_value: '0.6'
-
     sensor:
       - platform: bme280
         temperature:
@@ -96,6 +81,7 @@ Calculating the sea level pressure with a statically mounted sensor can be be us
       - platform: template
         name: "Equivalent sea level pressure"
         lambda: |-
+          const float standard_altitude_meter = 0.6; // in meters, see note
           return (id(bme280_pressure).state / powf(1 - ((0.0065 *id(standard_altitude_meter)) / (id(bme280_temperature).state + (0.0065 *id(standard_altitude_meter)) + 273.15)), 5.257));
         update_interval: 15s
 
@@ -113,7 +99,7 @@ Formula explanation
 See Also
 --------
 
-- :doc:`/esphomeyaml/components/sensor/template`
+- :doc:`/esphomeyaml/components/sensor/template`__
 - :doc:`/esphomeyaml/components/sensor/bme280`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/bme280_environment.rst>`__
 
