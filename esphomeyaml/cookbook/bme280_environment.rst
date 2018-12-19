@@ -35,7 +35,7 @@ After validating the sensor is working, we can proceed and add some formulas.
         name: "Altitude"
         lambda: |-
           const float STANDARD_SEA_LEVEL_PRESSURE = 1013,25; //in hPa, see note
-          return ((id(bme280_temperature).state + 273.15) / 0.0065) * ((powf(STANDARD_SEA_LEVEL_PRESSURE / id(bme280_pressure).state), 0.190234) - 1);
+          return ((id(bme280_temperature).state + 273.15) / 0.0065) * (powf((STANDARD_SEA_LEVEL_PRESSURE / id(bme280_pressure).state), 0.190234) - 1);
         update_interval: 15s
       - platform: template
         name: "Absolute Humidity"
@@ -82,7 +82,7 @@ Calculating the sea level pressure with a statically mounted sensor can be be us
         name: "Equivalent sea level pressure"
         lambda: |-
           const float STANDARD_ALTITUDE = 0.6; // in meters, see note
-          return (id(bme280_pressure).state / powf(1 - ((0.0065 *STANDARD_ALTITUDE) / (id(bme280_temperature).state + (0.0065 *STANDARD_ALTITUDE) + 273.15)), 5.257));
+          return id(bme280_pressure).state / powf(1 - ((0.0065 * STANDARD_ALTITUDE) / (id(bme280_temperature).state + (0.0065 * STANDARD_ALTITUDE) + 273.15)), 5.257);
         update_interval: 15s
 
 .. note::
