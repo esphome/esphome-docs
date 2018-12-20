@@ -27,26 +27,27 @@ After validating the sensor is working, we can proceed and add some formulas.
           name: "BME280 Pressure"
           id: bme280_pressure
         humidity:
-          name: "BME280 Humidity"
+          name: "BME280 Realtive Humidity"
           id: bme280_humidity
         address: 0x77
         update_interval: 15s
       - platform: template
         name: "Altitude"
         lambda: |-
-          const float STANDARD_SEA_LEVEL_PRESSURE = 1013,25; //in hPa, see note
-          return ((id(bme280_temperature).state + 273.15) / 0.0065) * (powf((STANDARD_SEA_LEVEL_PRESSURE / id(bme280_pressure).state), 0.190234) - 1);
+          const float STANDARD_SEA_LEVEL_PRESSURE = 1013.25; //in hPa, see note
+          return ((id(bme280_temperature).state + 273.15) / 0.0065) * (powf((STANDARD_SEA_LEVEL_PRESSURE / id(bme280_pressure).state), 0.190234) - 1); // in meter
         update_interval: 15s
       - platform: template
         name: "Absolute Humidity"
         lambda: |-
           const float mw = 18.01534; 	// molar mass of water g/mol
           const float r = 8.31447215; 	// Universal gas constant J/mol/K
-          return (6.112 * powf(2.718281828, (17.67 * id(bme280_temperature).state) / (id(bme280_temperature).state + 243.5)) * id(bme280_humidity).state * mw) / ((273.15 + id(bme280_temperature).state) * r);
+          return (6.112 * powf(2.718281828, (17.67 * id(bme280_temperature).state) / (id(bme280_temperature).state + 243.5)) * id(bme280_humidity).state * mw) / ((273.15 + id(bme280_temperature).state) * r); // in grams/m^3
         update_interval: 15s
 
 Altitude and absolute humidity:
 -------------------------------
+
 The first block ``sensor`` starts with the normal bme280 sensor components ``temperature``, ``pressure``, and ``humidity`` with each their own id.
 After the bme280 sensor, a :doc:`/esphomeyaml/components/sensor/template` is defined to calculate the altitude in a lambda.
 The variable ``STANDARD_SEA_LEVEL_PRESSURE`` (in hPa), should be filled in for your location.
@@ -74,7 +75,7 @@ Calculating the sea level pressure with a statically mounted sensor can be be us
           name: "BME280 Pressure"
           id: bme280_pressure
         humidity:
-          name: "BME280 Humidity"
+          name: "BME280 Relative Humidity"
           id: bme280_humidity
         address: 0x77
         update_interval: 15s
@@ -82,7 +83,7 @@ Calculating the sea level pressure with a statically mounted sensor can be be us
         name: "Equivalent sea level pressure"
         lambda: |-
           const float STANDARD_ALTITUDE = 0.6; // in meters, see note
-          return id(bme280_pressure).state / powf(1 - ((0.0065 * STANDARD_ALTITUDE) / (id(bme280_temperature).state + (0.0065 * STANDARD_ALTITUDE) + 273.15)), 5.257);
+          return id(bme280_pressure).state / powf(1 - ((0.0065 * STANDARD_ALTITUDE) / (id(bme280_temperature).state + (0.0065 * STANDARD_ALTITUDE) + 273.15)), 5.257); // in hPa
         update_interval: 15s
 
 .. note::
@@ -99,7 +100,7 @@ Formula explanation
 See Also
 --------
 
-- :doc:`/esphomeyaml/components/sensor/template`__
+- :doc:`/esphomeyaml/components/sensor/template`
 - :doc:`/esphomeyaml/components/sensor/bme280`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/bme280_environment.rst>`__
 
