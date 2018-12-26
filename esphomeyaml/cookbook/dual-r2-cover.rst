@@ -10,7 +10,7 @@ The following is a possible configuration file for common covers that use a moto
 Only one should be powered at a time (interlocking) to either move the cover up or down. For this
 the `Sonoff Dual R2 <https://www.itead.cc/sonoff-dual.html>`__ can be used which has two independent
 relays. Additionally this configuration allows the single button on the Sonoff to control the motion
-by cycling between: open->stop->down->stop->...
+by cycling between: open->stop->close->stop->...
 
 These kind of motors automatically stop when the end of the cover movement is reached. However,
 to be safe, this automation stops powering the motor after 1 minute of movement. In the rare case
