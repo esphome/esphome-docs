@@ -69,6 +69,7 @@ master_doc = 'index'
 project = 'esphomelib'
 copyright = '2018, Otto Winter'
 html_show_copyright = False
+html_show_sphinx = False
 author = 'Otto Winter'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -117,6 +118,7 @@ html_theme = 'alabaster'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
+html_baseurl = os.getenv('BASE_URL', 'https://esphomelib.com')
 html_theme_options = {
     # 'logo': 'logo-full.png',
     'logo_name': False,
@@ -126,6 +128,8 @@ html_theme_options = {
     'show_related': False,
     'sidebar_collapse': True,
     'fixed_sidebar': True,
+    'show_powered_by': False,
+    'canonical_url': html_baseurl + '/',
 }
 
 html_logo = '_static/logo-full.png'
@@ -211,5 +215,4 @@ texinfo_documents = [
      author, 'esphomelib', 'One line description of project.',
      'Miscellaneous'),
 ]
-html_baseurl = os.getenv('BASE_URL', 'https://esphomelib.com')
 linkcheck_ignore = [r'https://github.com/.*', r'https://discord.gg/.*']

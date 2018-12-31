@@ -58,3 +58,4 @@ Features
     esphomeyaml/index
     web-api/index
     api/index
+    misc/index
