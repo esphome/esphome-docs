@@ -47,7 +47,7 @@ Configuration variables:
 - **turn_on_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the switch to be turned on.
 - **turn_off_action** (*Optional*, :ref:`Action <config-action>`): The action that should
-  be performed when the remote (like Home Assistant's frontend) requests the switch to be turned on.
+  be performed when the remote (like Home Assistant's frontend) requests the switch to be turned off.
 - **restore_state** (*Optional*, boolean): Sets whether esphomelib should attempt to restore the
   state on boot-up and call the turn on/off actions with the recovered values. Defaults to ``yes``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
