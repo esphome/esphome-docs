@@ -66,8 +66,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'esphomelib'
-copyright = '2018, Otto Winter'
+project = 'ESPHome'
+copyright = '2019, Otto Winter'
 html_show_copyright = False
 html_show_sphinx = False
 author = 'Otto Winter'
@@ -188,7 +188,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'esphomelib.tex', 'esphomelib Documentation',
+    (master_doc, 'esphomelib.tex', 'ESPHome Documentation',
      'Otto Winter', 'manual'),
 ]
 
@@ -200,7 +200,7 @@ latex_engine = 'xelatex'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'esphomelib', 'esphomelib Documentation',
+    (master_doc, 'esphomelib', 'ESPHome Documentation',
      [author], 1)
 ]
 
@@ -211,7 +211,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'esphomelib', 'esphomelib Documentation',
+    (master_doc, 'esphomelib', 'ESPHome Documentation',
      author, 'esphomelib', 'One line description of project.',
      'Miscellaneous'),
 ]
