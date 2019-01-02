@@ -9,4 +9,3 @@
 ## Checklist:
   - [ ] The documentation change has been tested and compiles correctly.
   - [ ] Branch: `next` is for changes and new documentation that will go public with the next esphomelib release. Fixes, changes and adjustments for the current release should be created against `current`.
-  - [ ] Check this box if you have read, understand, comply, and agree with the [Code of Conduct](https://github.com/OttoWinter/esphomedocs/blob/master/CODE_OF_CONDUCT.md).
