@@ -17,9 +17,9 @@ daily energy usage in ``Wh`` or ``kWh``.
     # Example configuration entry
     sensor:
       - platform: total_daily_energy
-        pin: 12
         name: "Total Daily Energy"
         power_id: my_power
+        time_id: my_time
 
       # The power sensor to convert, can be any power sensor
       - platform: hlw8012
@@ -31,6 +31,7 @@ daily energy usage in ``Wh`` or ``kWh``.
     time:
       - platform: sntp
         id: my_time
+        timezone: Europe/Amsterdam
 
 Configuration variables:
 ------------------------
@@ -40,6 +41,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- **time_id** (**Required**, :ref:`config-id`): The ID of the time component.
 
 Converting from W to kW
 -----------------------
