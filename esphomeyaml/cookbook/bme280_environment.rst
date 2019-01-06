@@ -14,7 +14,7 @@ This guide can be applied to any sensor measuring temperature and pressure at th
     :align: center
     :width: 75.0%
 
-The first step is to connect the sensor as described :doc:`here </esphomeyaml/components/switch/bme280>`.
+The first step is to connect the sensor as described :doc:`here </esphomeyaml/components/sensor/bme280>`.
 After validating the sensor is working, we can proceed and add some formulas.
 
 .. code-block:: yaml
