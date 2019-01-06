@@ -46,3 +46,33 @@ table.docutils {
     visibility: visible;
   }
 }
+
+#upgrade-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: rgba(20,20,20,0.8);
+  min-height: 26px;
+  font-size: 14px;
+  color: #ccc;
+  line-height: 26px;
+  padding: 8px 0 8px 30px;
+  z-index: 9999;
+  display: none
+}
+#upgrade-footer-changelog {
+  background-color: #b3b3b3;
+  color: #4e4e4e;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 0 20px;
+  cursor: pointer;
+  float: right;
+  margin: 0 60px 0 10px;
+  text-decoration: none;
+}
+.not-hidden {
+  display: block !important;
+}

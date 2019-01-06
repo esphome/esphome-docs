@@ -3,14 +3,14 @@ Remote Receiver Binary Sensor
 
 .. seo::
     :description: Instructions for setting up remote receiver binary sensors for infrared and RF codes.
-    :image: remote.svg
+    :image: remote.png
 
 The ``remote_receiver`` binary sensor lets you track when a button on a remote control is pressed.
 
 Each time the pre-defined signal is received, the binary sensor will briefly go ON and
 then immediately OFF.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     remote_receiver:
@@ -45,7 +45,7 @@ Configuration variables:
     For the Sonoff RF Bridge you can use `this hack <https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack>`__
     created by the Github user wildwiz. Then use this configuration for the remote receiver/transmitter hubs:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         remote_receiver:
           pin: 4

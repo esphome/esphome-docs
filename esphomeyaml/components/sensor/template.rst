@@ -3,12 +3,12 @@ Template Sensor
 
 .. seo::
     :description: Instructions for setting up template sensors with esphomelib.
-    :image: description.svg
+    :image: description.png
 
 The ``template`` sensor platform allows you to create a sensor with templated values
 using :ref:`lambdas <config-lambda>`.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -45,7 +45,7 @@ Configuration variables:
     You can use the ``publish_state()`` method to set the value of a template
     sensor from other automations:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(my_sensor).publish_state(42.0);
 

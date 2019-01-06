@@ -17,7 +17,7 @@ required to be set up in your configuration for this sensor to work.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

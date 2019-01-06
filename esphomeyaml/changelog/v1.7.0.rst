@@ -94,7 +94,7 @@ Breaking Changes
   parameter. The accuracy now defaults to ``HIGH``.
 - The ``inverted`` option of binary sensors has been moved into the ``filters:`` section. So instead of
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       binary_sensor:
         - platform: ...
@@ -103,7 +103,7 @@ Breaking Changes
 
   you would now write:
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       binary_sensor:
         - platform: ...

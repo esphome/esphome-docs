@@ -7,7 +7,7 @@ RGBW Light
 
 The ``rgbw`` light platform creates an RGBW light from 4 :ref:`float output components <output>` (one for each channel).
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     light:

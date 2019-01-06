@@ -3,7 +3,7 @@ Contributing
 
 .. seo::
     :description: Getting started guide for contributing to the esphomelib project
-    :image: github-circle.svg
+    :image: github-circle.png
 
 Contributions to the esphomelib suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:
@@ -31,21 +31,21 @@ RST primer:
 
 - **Headers**: You can write titles like this:
 
-  .. code:: rst
+  .. code-block:: rst
 
       My Title
       ========
 
   and section headers like this:
 
-  .. code:: rst
+  .. code-block:: rst
 
       My Sub Section
       --------------
 
   and sub-section headers like this:
 
-  .. code:: rst
+  .. code-block:: rst
 
       My Sub-sub section
       ******************
@@ -53,7 +53,7 @@ RST primer:
 - **Links**: To create a link to an external resource (for example https://www.google.com), use
   ``\`Link text <link_url>\`__``. For example:
 
-  .. code:: rst
+  .. code-block:: rst
 
       `Google.com <https://www.google.com>`__
 
@@ -62,7 +62,7 @@ RST primer:
 - **References**: To reference another document, use the ``:doc:`` and ``:ref:`` roles (references
   are set up globally and can be used between documents):
 
-  .. code:: rst
+  .. code-block:: rst
 
       .. _my-reference-label:
 
@@ -77,17 +77,17 @@ RST primer:
 
 - **Inline code**: To have text appear ``like this``, use double backticks:
 
-  .. code:: rst
+  .. code-block:: rst
 
       To have text appear ``like this``, use double backticks.
 
   To have text appear ``like this``, use double backticks.
 
-- **Code blocks**: To show a sample configuration file, use the ``code`` directive:
+- **Code blocks**: To show a sample configuration file, use the ``code-block`` directive:
 
-  .. code:: rst
+  .. code-block:: rst
 
-      .. code:: yaml
+      .. code-block:: yaml
 
           # Sample configuration entry
           switch:
@@ -95,7 +95,7 @@ RST primer:
               name: "Relay #42"
               pin: GPIO13
 
-  .. code:: yaml
+  .. code-block:: yaml
 
         # Sample configuration entry
         switch:
@@ -103,14 +103,9 @@ RST primer:
             name: "Relay #42"
             pin: GPIO13
 
-  .. note::
-
-      The YAML syntax highlighter is currently broken. Somehow sphinx thinks this should be
-      C++ code 🤯. If you know how to fix this, it would be very much appreciated 😉
-
 - **Images**: To show images, use the ``figure`` directive:
 
-  .. code:: rst
+  .. code-block:: rst
 
       .. figure:: images/dashboard.png
           :align: center
@@ -127,7 +122,7 @@ RST primer:
 - **Notes and warnings**: You can create simple notes and warnings using the ``note`` and ``warning``
   directives:
 
-  .. code:: rst
+  .. code-block:: rst
 
       .. note::
 
@@ -148,7 +143,7 @@ RST primer:
 - **Italic and boldface font families**: To *italicize* text, use one asterisk around the text. To put
   **a strong emphasis** on a piece of text, put two asterisks around it.
 
-  .. code:: rst
+  .. code-block:: rst
 
       *This is italicized.* (A weird word...)
       **This is very important.**
@@ -158,7 +153,7 @@ RST primer:
 
 - **Ordered and unordered list**: The syntax for lists in RST is more or less the same as in markdown:
 
-  .. code:: rst
+  .. code-block:: rst
 
       - Unordered Item
 
@@ -186,7 +181,7 @@ please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc
 To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
 `doxygen <http://www.stack.nl/~dimitri/doxygen/>`__.
 
-.. code:: bash
+.. code-block:: bash
 
     # in esphomedocs repo:
     pip3 install -r requirements.txt
@@ -195,7 +190,7 @@ To check your documentation changes locally, you first need install sphinx (**wi
 
     Alternatively, you can use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
 
-    .. code:: bash
+    .. code-block:: bash
 
         docker run --rm -v "$PWD/..":/data -p 8000:8000 -it ottowinter/esphomedocs
 
@@ -204,7 +199,7 @@ To check your documentation changes locally, you first need install sphinx (**wi
 Next, you will also need to clone the `esphomelib repository <https://github.com/OttoWinter/esphomelib>`__ into
 the folder where ``esphomedocs`` sits like this:
 
-.. code::
+.. code-block:: text
 
     ├── esphomedocs/
     │   ├── api/
@@ -222,7 +217,7 @@ the folder where ``esphomedocs`` sits like this:
 
 Then, use the provided Makefile to build the changes and start a simple web server:
 
-.. code:: bash
+.. code-block:: bash
 
     # Update doxygen API docs
     make doxyg
@@ -256,7 +251,7 @@ look around the code base a bit and see how other components are doing stuff.
 
 To initialize the development environment, navigate to the repository and execute:
 
-.. code:: bash
+.. code-block:: bash
 
     # View available IDEs:
     pio init --help
@@ -329,13 +324,13 @@ it in the configuration. Specifically, it may contain these fields:
     and add it to the global expression index. The return value is the left hand side variable which you can use
     for further calls.
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         <TYPE> <VAR_ID> = <rhs>;
 
   - Register a variable of a pointer type using ``Pvariable(<TYPE>, <VAR_ID>, rhs)``.
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         <TYPE> *<VAR_ID> = <rhs>;
 
@@ -352,14 +347,14 @@ it in the configuration. Specifically, it may contain these fields:
     the correct operator. Additionally, you can pass a type as the second argument to ``get_variable``. This will
     cause esphomeyaml to use the first variable of that type.
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         hub = get_variable(config.get(CONF_DALLAS_ID), DallasComponent)
 
   - Pass configuration arguments to mock function calls (like ``App.make_dallas_component``) using normal
     python :)
 
-    .. code:: python
+    .. code-block:: python
 
         rhs = App.make_dallas_component(config[CONF_PIN], config.get(CONF_UPDATE_INTERVAL))
 
@@ -367,7 +362,7 @@ it in the configuration. Specifically, it may contain these fields:
 
 - ``BUILD_FLAGS``: Pass build flags that should be provided if your component is loaded.
 
-  .. code:: python
+  .. code-block:: python
 
       BUILD_FLAGS = '-DUSE_DALLAS_SENSOR'
 

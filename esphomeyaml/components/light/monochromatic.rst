@@ -3,7 +3,7 @@ Monochromatic Light
 
 .. seo::
     :description: Instructions for setting up monochromatic (brightness-only) lights.
-    :image: brightness-medium.svg
+    :image: brightness-medium.png
 
 The ``monochromatic`` light platform creates a simple brightness-only light from an
 :ref:`float output component <output>`.
@@ -18,7 +18,7 @@ The ``monochromatic`` light platform creates a simple brightness-only light from
     :align: center
     :width: 40.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     light:

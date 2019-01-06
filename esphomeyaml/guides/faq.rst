@@ -3,7 +3,7 @@ Frequently Asked Questions
 
 .. seo::
     :description: Frequently asked questions in esphomelib.
-    :image: question_answer.svg
+    :image: question_answer.png
 
 Tips for using esphomeyaml
 --------------------------
@@ -14,20 +14,20 @@ Tips for using esphomeyaml
 
 2. If you want to see how esphomeyaml interprets your configuration, run
 
-   .. code:: bash
+   .. code-block:: bash
 
        esphomeyaml livingroom.yaml config
 
 3. To view the logs from your node without uploading, run
 
-   .. code:: bash
+   .. code-block:: bash
 
        esphomeyaml livingroom.yaml logs
 
 4. If you have changed the name of the node and want to update over-the-air, just specify
    ``--upload-port`` when running esphomeyaml. For example:
 
-   .. code:: bash
+   .. code-block:: bash
 
        esphomeyaml livingroom.yaml run --upload-port 192.168.178.52
 
@@ -121,12 +121,15 @@ great way for me to track and (hopefully) fix issues, so thank you!
 
 For me to fix the issue the quickest, there are some things that would be really helpful:
 
-1.  How do you use esphomelib? Through esphomeyaml or directly through C++ code?
-2.  If it's a build/upload issue: What system are you compiling/uploading things from? Windows, POSIX, from docker?
-3.  A snippet of the code/configuration file used is always great for a better understanding of the issue.
-4.  If it's an i2c or hardware communication issue please also try setting the
+1.  **Just writing "X doesn't work" or "X gives bug" is not helpful!!!** Seriously, how do you expect
+    me to help given just that information?
+2.  A snippet of the code/configuration file used is always great for me to reproduce this issue.
+    Please read `How to create a Minimal, Complete, and Verifiable example <https://stackoverflow.com/help/mcve>`__.
+3.  If it's an i2c or hardware communication issue please also try setting the
     :ref:`log level <logger-log_levels>` to ``VERY_VERBOSE`` as it provides helpful information
     about what is going on.
+4.  Please also include what you've already tried and didn't work so that these things can
+    be
 
 You can find the issue tracker here https://github.com/OttoWinter/esphomelib/issues
 
@@ -135,7 +138,7 @@ How do I update to the latest version?
 
 It's simple. Run:
 
-.. code:: bash
+.. code-block:: bash
 
     pip2 install -U esphomeyaml
     # From docker:
@@ -152,7 +155,7 @@ esphomelib has a beta release cycle so that new releases can easily be tested be
 the changes are deployed to the stable channel. You can help test esphomeyaml (and use new features)
 by installing the esphomeyaml beta:
 
-.. code:: bash
+.. code-block:: bash
 
     # For pip-based installs
     pip2 install --pre -U esphomeyaml
@@ -208,7 +211,7 @@ I have a question... How can I contact you?
 Sure! I'd be happy to help :) You can contact me here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/t/esphomelib-library-to-greatly-simplify-home-assistant-integration-with-esp32>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/t/esphomelib-library-to-greatly-simplify-home-assistant-integration-with-esp32/402452>`__
 -  `esphomelib <https://github.com/OttoWinter/esphomelib/issues>`__ and
    `esphomeyaml <https://github.com/OttoWinter/esphomeyaml/issues>`__ issue trackers. Preferably only for issues and
    feature requests.
@@ -275,7 +278,7 @@ If even this doesn't work or you like to have a lot of components enabled there 
 
 First we temporary 'remove' (comment out) all components from the ``yaml`` file, leaving only: ``esphomeyaml``, ``ota`` and ``wifi``, example:
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: sonoff_basic

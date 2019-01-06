@@ -16,7 +16,7 @@ stuff used by the Multisensor 🎉
 Thank you very much to `@jackjohnsonuk <https://github.com/jackjohnsonuk>`__ for providing this
 configuration file 😀
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NODE_NAME>

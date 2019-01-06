@@ -121,7 +121,7 @@ Other notable changes
 
 - In actions, instead of
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       on_...:
         then:
@@ -130,7 +130,7 @@ Other notable changes
 
   You can now write:
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       on_...:
         then:
@@ -138,7 +138,7 @@ Other notable changes
 
   Or even shorter:
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       on_...:
         - switch.turn_on: my_switch

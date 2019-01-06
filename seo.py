@@ -58,7 +58,7 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     # Twitter
     create_content_meta("twitter:title", node.title)
     create_content_meta("twitter:image:src", node.image)
-    create_content_meta("twitter:card", "summary_large_image")
+    create_content_meta("twitter:card", "summary")
     create_content_meta("twitter:site", "@OttoWinter_")
     create_content_meta("twitter:creator", node.author_twitter)
     create_content_meta("twitter:description", node.description)
@@ -111,10 +111,6 @@ class SEODirective(Directive):
             if not image.startswith('/'):
                 image = '/_images/' + image
             self.options['image'] = env.config.html_baseurl + image
-        description = self.options.get('description')
-        if description is not None and len(description) >= 200:
-            self.options['description'] = description[:200].rsplit(' ', 1)[0] + '...'
-
         return [SEONode(**self.options)]
 
 class RedirectDirective(Directive):

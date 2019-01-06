@@ -11,7 +11,7 @@ pressed on, and will turn off as soon as the finger is released.
 
 See :doc:`/esphomeyaml/components/display/nextion` for setting up the display
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     display:

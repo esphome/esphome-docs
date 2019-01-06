@@ -8,7 +8,7 @@ SPHINXPROJ    = esphomelib
 SOURCEDIR     = .
 BUILDDIR      = _build
 ESPHOMELIB_PATH = ../esphomelib
-ESPHOMELIB_TAG = v1.9.0b3
+ESPHOMELIB_TAG = v1.9.3
 CNAME = esphomelib.com
 
 .PHONY: html cleanhtml doxyg cleandoxyg deploy help webserver Makefile $(ESPHOMELIB_PATH)
@@ -32,11 +32,8 @@ $(ESPHOMELIB_PATH):
 	  git clone --branch $(ESPHOMELIB_TAG) https://github.com/OttoWinter/esphomelib.git $(ESPHOMELIB_PATH); \
 	fi
 
-deploy: cleanhtml doxyg html $(ESPHOMELIB_PATH)
-	touch "$(BUILDDIR)/html/.nojekyll"
-	echo "$(CNAME)" >"$(BUILDDIR)/html/CNAME"
-	git -C "$(BUILDDIR)/html" add --all && git -C "$(BUILDDIR)/html" commit -m "Deploy to gh-pages"
-	@printf "Run \033[0;36mcd $(BUILDDIR)/html && git push origin gh-pages\033[0m to deploy\n"
+convertimages:
+	python3 svg2png.py
 
 help:
 	$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

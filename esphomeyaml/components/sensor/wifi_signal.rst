@@ -3,7 +3,7 @@ WiFi Signal Sensor
 
 .. seo::
     :description: Instructions for setting up WiFi signal sensors that track the RSSI connection strength value to the network.
-    :image: network-wifi.svg
+    :image: network-wifi.png
 
 The ``wifi_signal`` sensor platform allows you to read the signal
 strength of the currently connected :doc:`WiFi Access Point </esphomeyaml/components/wifi>`.
@@ -15,7 +15,7 @@ measured in decibels. These values are always negative and the closer they are t
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -26,7 +26,7 @@ measured in decibels. These values are always negative and the closer they are t
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the hall effect sensor.
+- **name** (**Required**, string): The name of the WiFi signal sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

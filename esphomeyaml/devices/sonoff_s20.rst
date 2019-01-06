@@ -128,7 +128,7 @@ the Sonoff S20 uses the ``dout`` SPI flash chip mode. But, as some users of othe
 said that other flash modes can brick the device, it's always good to specify it explicitly.
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NAME_OF_NODE>
@@ -169,7 +169,7 @@ The S20 should now be in a flash mode and should not blink with any LED.
 
 Now you can finally run the upload command:
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml sonoff_s20.yaml run
 
@@ -213,7 +213,7 @@ of the basic functions.
     ``GPIO3``                                ``TX`` pin (for external sensors)
     ======================================== ========================================
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NAME_OF_NODE>
@@ -274,7 +274,7 @@ into a :doc:`monochromatic light </esphomeyaml/components/light/monochromatic>`.
 And if you want the thing that's connected through the output of the S20 to appear as a light
 in Home Assistant, replace the last part with this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: restart

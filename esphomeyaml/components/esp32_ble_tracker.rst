@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy Tracker Hub
 
 .. seo::
     :description: Instructions for setting up ESP32 bluetooth low energy device trackers using esphomelib.
-    :image: bluetooth.svg
+    :image: bluetooth.png
 
 The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low
 energy devices using your ESP32 node.
@@ -11,7 +11,7 @@ energy devices using your ESP32 node.
 See :ref:`Setting up devices <esp32_ble_tracker-setting_up_devices>`
 for information on how you can find out the MAC address of a device and track it using esphomelib.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     esp32_ble_tracker:

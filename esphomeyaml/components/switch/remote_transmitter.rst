@@ -3,7 +3,7 @@ Remote Transmitter Switch
 
 .. seo::
     :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
-    :image: remote.svg
+    :image: remote.png
     :keywords: Infrared, IR, RF, Remote, TX
 
 The ``remote_transmitter`` switch platform allows you to create switches
@@ -17,7 +17,7 @@ Use cases include, but are not limited to, infrared remotes, 433MHz signals and 
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     remote_transmitter:
@@ -53,7 +53,7 @@ Configuration variables:
     For the Sonoff RF Bridge you can use `this hack <https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack>`__
     created by the Github user wildwiz. Then use this configuration for the remote receiver/transmitter hubs:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         remote_receiver:
           pin: 4
@@ -72,7 +72,7 @@ Remote Codes
 
 Supported remote codes:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
     - platform: remote_transmitter
@@ -198,7 +198,7 @@ Each remote transmitter uses a different protocol to send its information. So to
 remote you will first need to "learn" these codes. You will first need to hook up a receiver and sniff the codes
 using the :doc:`remote receiver component </esphomeyaml/components/remote_receiver>` like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     remote_receiver:
       pin: GPIO34
@@ -223,7 +223,7 @@ value denotes the output being HIGH for the specified number of microseconds.
 
 Now you only need to set up the remote transmitter (which well *send* the code) like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     remote_transmitter:
        pin: GPIO23
@@ -232,7 +232,7 @@ Now you only need to set up the remote transmitter (which well *send* the code) 
 
 And lastly, we need to set up the switch that, when turned on, will send our pre-defined remote code:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: remote_transmitter
@@ -260,7 +260,7 @@ remote protocol. If you have RF code dumping enabled for the receiver, you will 
 
 Like before with raw codes, you can then use this code to create switches:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: remote_transmitter
@@ -273,7 +273,7 @@ Alternatively, you can use the information on `this page <https://github.com/sui
 to manually find the RCSwitch codes without having to first find them using the remote receiver. For example, this would
 be the esphomelib equivalent of the first Type-A switch on that site:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: remote_transmitter
@@ -293,7 +293,7 @@ For example the RCSwitch example above always **sends the turn on** RF code to t
 you might want to have switches that can do both things, i.e. turn a light on when switched on and turn a light off
 when switched off. To do this, use the :doc:`/esphomeyaml/components/switch/template` like this:
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: remote_transmitter
@@ -328,7 +328,7 @@ for the transmission. This is necessary as many remotes use different timings to
 RCSwitch has 7 built-in protocols that cover most use cases. You can however also choose to use custom parameters
 for the protocol like so
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Use one of RCSwitch's pre-defined protocols (1-7)
     protocol: 1

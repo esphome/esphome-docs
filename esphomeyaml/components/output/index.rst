@@ -5,7 +5,7 @@ Output Component
 
 .. seo::
     :description: Instructions for setting up generic outputs in esphomelib
-    :image: folder-open.svg
+    :image: folder-open.png
 
 Each platform of the ``output`` domain exposes some output to
 esphomelib. These are grouped into two categories: ``binary`` outputs
@@ -19,7 +19,7 @@ Base Output Configuration
 
 Each output platform extends this configuration schema.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     output:
@@ -50,7 +50,7 @@ Configuration variables:
 
 This action turns the output with the given ID on when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -60,7 +60,7 @@ This action turns the output with the given ID on when executed.
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(relay_1).turn_on();
 
@@ -71,7 +71,7 @@ This action turns the output with the given ID on when executed.
 
 This action turns the output with the given ID off when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -81,7 +81,7 @@ This action turns the output with the given ID off when executed.
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(relay_1).turn_off();
 
@@ -93,7 +93,7 @@ This action turns the output with the given ID off when executed.
 This action sets the float output to the given level when executed. Note: This only
 works with floating point outputs like ESP8266 PWM or LEDC.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -105,7 +105,7 @@ works with floating point outputs like ESP8266 PWM or LEDC.
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         // range is 0.0 (off) to 1.0 (on)
         id(relay_1).set_level(0.5);

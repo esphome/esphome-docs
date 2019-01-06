@@ -3,7 +3,7 @@ Fan Component
 
 .. seo::
     :description: Instructions for setting up the base fan component.
-    :image: folder-open.svg
+    :image: folder-open.png
 
 With the ``fan`` domain you can create components that appear as fans in
 the Home Assistant frontend. A fan can be switched ON or OFF, optionally
@@ -19,7 +19,7 @@ oscillate output.
 Base Fan Configuration
 ----------------------
 
-.. code:: yaml
+.. code-block:: yaml
 
     fan:
       - platform: ...
@@ -45,7 +45,7 @@ Configuration variables:
 
 Toggles the ON/OFF state of the fan with the given ID when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -58,7 +58,7 @@ Toggles the ON/OFF state of the fan with the given ID when executed.
 
 Turns the fan with the given ID off when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -71,7 +71,7 @@ Turns the fan with the given ID off when executed.
 
 Turns the fan with the given ID off when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:

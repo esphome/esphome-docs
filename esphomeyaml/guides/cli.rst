@@ -9,7 +9,7 @@ Base Usage
 
 esphomeyaml's command line interface always has the following format
 
-.. code:: console
+.. code-block:: console
 
     esphomeyaml <CONFIGURATION> <COMMAND> [ARGUMENTS]
 

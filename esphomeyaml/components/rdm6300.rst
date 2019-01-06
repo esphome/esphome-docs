@@ -22,7 +22,7 @@ As the communication with the RDM6300 is done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the data pin of the RDM6300 and
 with the baud rate set to 9600
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     uart:

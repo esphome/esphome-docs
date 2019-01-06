@@ -3,7 +3,7 @@ Migrating from ESPurna
 
 .. seo::
     :description: Migration guide for installing esphomelib on ESPs running ESPurna.
-    :image: espurna.svg
+    :image: espurna.png
 
 Migrating from previous ESPurna setups is very easy. You just need to have
 esphomeyaml create a binary for you and then upload that in the ESPurna web interface.

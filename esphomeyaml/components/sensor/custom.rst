@@ -3,7 +3,7 @@ Custom Sensor Component
 
 .. seo::
     :description: Instructions for setting up Custom C++ sensors with esphomelib.
-    :image: language-cpp.svg
+    :image: language-cpp.png
     :keywords: C++, Custom
 
 .. warning::
@@ -27,15 +27,16 @@ esphomelib can use 2. go over how to register the sensor so that it will be show
     Since the creation of this guide, the BMP180 has been officially supported by the :doc:`BMP085 component
     <bmp085>`. The code still applies though.
 
-This guide will require at least a bit of knowledge of C++, so be prepared for that. If you have any problems,
-I'm here to help :) https://discord.gg/KhAMKrd
+This guide will require at least a bit of knowledge of C++, so be prepared for that. If you've already written
+code for an Arduino, you have already written C++ code :) (Arduino uses a slightly customized version of C++).
+If you have any problems, I'm here to help: https://discord.gg/KhAMKrd
 
 Step 1: Custom Sensor Definition
 --------------------------------
 
 At this point, you might have a main source file like this:
 
-.. code:: cpp
+.. code-block:: cpp
 
     // ...
     using namespace esphomelib;
@@ -57,7 +58,7 @@ At this point, you might have a main source file like this:
 
 To create your own custom sensor, you just have define a C++ class that extends ``Component`` and ``Sensor`` like this:
 
-.. code:: cpp
+.. code-block:: cpp
 
     using namespace esphomelib;
 
@@ -79,7 +80,7 @@ To create your own custom sensor, you just have define a C++ class that extends 
 Additionally, you need to change an internal flag that changes how esphomeyaml compiles files.
 The only downside is that this will make build times *a tiny bit* slower:
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       # ...
@@ -99,7 +100,7 @@ to do in an Arduino sketch.
 
 Let's now also take a closer look at this line, which you might not be too used to when writing pure C code:
 
-.. code:: cpp
+.. code-block:: cpp
 
     class CustomSensor : public Component, public sensor::Sensor {
 
@@ -112,7 +113,7 @@ values to the frontend (like MQTT).
 As most sensors really just setup some pins and then check the sensor every x seconds,
 there's another abstraction that we'll use to simplify our code: ``PollingSensorComponent``.
 
-.. code:: cpp
+.. code-block:: cpp
 
     class CustomSensor : public sensor::PollingSensorComponent {
      public:
@@ -138,7 +139,7 @@ in the Internet.
 
 Let's also now make our sensor actually *output* values (42 for now):
 
-.. code:: cpp
+.. code-block:: cpp
 
     // class CustomSensor ...
       // ... previous code
@@ -163,6 +164,8 @@ Actually ... it does nothing because it's never registered in the App,
 so esphomelib can't know about it. Let's change that.
 
 In your global ``setup()`` method, after you've setup all other components, do the following:
+
+.. code-block:: yaml
 
 .. code:: cpp
 
@@ -189,14 +192,14 @@ Let's go through the code for registering our custom sensor. First, we're creati
 instance with the update interval of 5000ms using the ``new`` C++ syntax (important!) and assigning it to a
 variable ``custom_sensor`` (using C++11 ``auto`` type specifier to make it simpler).
 
-.. code:: cpp
+.. code-block:: cpp
 
     auto *custom_sensor = new CustomSensor(5000);
 
 Next, we *register* the component in esphomelib's Application instance so that it can call the component's
 ``setup()`` and ``loop()``.
 
-.. code:: cpp
+.. code-block:: cpp
 
     App.register_component(custom_sensor);
 
@@ -221,7 +224,7 @@ library by Adafruit.
 First we'll need to add the library to our platformio dependencies. To do so, put the following in
 the ``common`` section of your ``platformio.ini``:
 
-.. code:: ini
+.. code-block:: ini
 
     [common]
     lib_deps = Adafruit BMP085 Library
@@ -230,7 +233,7 @@ the ``common`` section of your ``platformio.ini``:
 
 Next, include the library at the top of you main sketch file (``<NODE_NAME>/src/main.cpp``):
 
-.. code:: cpp
+.. code-block:: cpp
 
     #include "esphomelib/application.h"
     #include <Adafruit_BMP085.h>
@@ -241,7 +244,7 @@ Next, include the library at the top of you main sketch file (``<NODE_NAME>/src/
 
 Then update our sensor for BMP180 support:
 
-.. code:: cpp
+.. code-block:: cpp
 
     // ...
 
@@ -297,7 +300,7 @@ we want to expose.
 
 Let's look at what that could look like in code:
 
-.. code:: cpp
+.. code-block:: cpp
 
 
     // An empty sensor subclass that will "proxy" the temperature values

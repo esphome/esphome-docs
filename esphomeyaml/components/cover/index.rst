@@ -3,7 +3,7 @@ Cover Component
 
 .. seo::
     :description: Instructions for setting up base covers in esphomelib.
-    :image: folder-opn.svg
+    :image: folder-opn.png
 
 The ``cover`` component is a generic representation of covers in esphomelib/yaml.
 A cover can (currently) either be *closed* or *open* and supports three types of
@@ -16,7 +16,7 @@ commands: *open*, *close* and *stop*.
 
 This action opens the cover with the given ID when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -26,7 +26,7 @@ This action opens the cover with the given ID when executed.
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(cover_1).open();
 
@@ -37,7 +37,7 @@ This action opens the cover with the given ID when executed.
 
 This action closes the cover with the given ID when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -47,7 +47,7 @@ This action closes the cover with the given ID when executed.
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(cover_1).close();
 
@@ -58,7 +58,7 @@ This action closes the cover with the given ID when executed.
 
 This action stops the cover with the given ID when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -68,7 +68,7 @@ This action stops the cover with the given ID when executed.
 
     This action can also be expressed in :ref:`lambdas <config-lambda>`:
 
-    .. code:: cpp
+    .. code-block:: cpp
 
         id(cover_1).stop();
 
@@ -82,7 +82,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 - ``publish_state()``: Manually cause the cover to publish a new state and store it internally.
   If it's different from the last internal state, it's additionally published to the frontend.
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       // Within lambda, make the cover report a specific state
       id(my_cover).publish_state(cover::COVER_OPEN);
@@ -90,7 +90,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 
 - ``state``: Retrieve the current state of the cover.
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       if (id(my_cover).state == cover::COVER_OPEN) {
         // Cover is open

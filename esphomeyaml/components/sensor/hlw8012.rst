@@ -3,7 +3,7 @@ HLW8012 Power Sensor
 
 .. seo::
     :description: Instructions for setting up HLW8012 power sensors for the Sonoff Pow R1
-    :image: hlw8012.svg
+    :image: hlw8012.png
     :keywords: HLW8012, Sonoff Pow R1
 
 The ``hlw8012`` sensor platform allows you to use your HLW8012 voltage/current and power sensors
@@ -17,7 +17,7 @@ the SEL pin, one can choose between which mode to use.
 esphomelib will continuously cycle the state of the SEL pin to measure current *and* voltage, though both cannot
 be measured at the same exact points in time.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

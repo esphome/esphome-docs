@@ -21,7 +21,7 @@ commonly sold with a PCF8574 chip which only need two lines to the ESP, for that
     :align: center
     :width: 60.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     display:
@@ -71,7 +71,7 @@ Each of the three methods (``print``, ``printf`` and ``strftime``) all optionall
 beginning which can be used to print the text at a specific position. These arguments are set to ``0`` (column) and ``0`` (row)
 by default which means the character at the top left.
 
-.. code:: yaml
+.. code-block:: yaml
 
     display:
       - platform: lcd_gpio # or lcd_pcf8574
@@ -92,8 +92,13 @@ by default which means the character at the top left.
           // Result: "Sensor value:       42"
 
           // Print the current time
-          it.strftime("It is %H:%M on %d.%m.%Y");
+          it.strftime("It is %H:%M on %d.%m.%Y", id(my_time).now());
           // Result for 10:06 on august 21st 2018 -> "It is 10:06 on 21.08.2018"
+
+    # (Optional) For displaying time:
+    time:
+    - platform: sntp
+      id: my_time
 
 .. note::
 

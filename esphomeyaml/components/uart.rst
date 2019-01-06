@@ -5,7 +5,7 @@ UART Bus
 
 .. seo::
     :description: Instructions for setting up a UART serial bus on ESPs
-    :image: uart.svg
+    :image: uart.png
     :keywords: UART, serial bus
 
 UART is a common serial protocol for a lot of devices. For example, when uploading a binary to your ESP
@@ -32,7 +32,7 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
     ones used for logging. Therefore the UART data on the ESP8266 can have occasional data glitches especially with
     higher baud rates..
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     uart:

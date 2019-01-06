@@ -3,7 +3,7 @@ Version Text Sensor
 
 .. seo::
     :description: Instructions for setting up version text sensors.
-    :image: new-box.svg
+    :image: new-box.png
 
 The ``version`` text sensor platform exposes the esphomelib version the firmware
 was compiled against as a text sensor.
@@ -12,7 +12,7 @@ was compiled against as a text sensor.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     text_sensor:

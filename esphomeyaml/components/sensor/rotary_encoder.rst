@@ -27,7 +27,7 @@ To use rotary encoders in esphomeyaml, first identify the two pins encoding th s
 These are often called ``CLK`` and ``DT`` as in above image. Note if the values this sensor
 outputs go in the wrong direction, you can just swap these two pins.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -58,7 +58,7 @@ In order to not put too much stress on your network connection, you can leverage
 sensor filters. The following will only send out values if the last input value is at least
 0.1s seconds old *or* if the new rotary encoder value has changed by 10 from the previous value.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

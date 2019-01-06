@@ -3,7 +3,7 @@ Analog To Digital Sensor
 
 .. seo::
     :description: Instructions for setting up built-in analog voltage sensors.
-    :image: flash.svg
+    :image: flash.png
 
 The Analog To Digital (``adc``) Sensor allows you to use the built-in
 ADC in your device to measure a voltage on certain pins. On the ESP8266
@@ -14,7 +14,7 @@ GPIO39 can be used.
     :align: center
     :width: 80.0%
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:
@@ -50,7 +50,7 @@ On the ESP32, the voltage measured with the ADC caps out at 1.1V by default as t
 or the attenuation of the ADC is set to ``0db`` by default.
 
 To measure voltages higher than 1.1V, set ``attenuation`` to one of the `following values
-<http://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__:
+<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__:
 
 - ``0db`` for a full-scale voltage of 1.1V (default)
 - ``2.5db`` for a full-scale voltage of 1.5V
@@ -67,7 +67,7 @@ where you want to shut down the chip if the voltage is low when using a battery.
 
 To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is connected to the ``A0`` pin.
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: adc

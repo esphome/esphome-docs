@@ -3,7 +3,7 @@ Text Sensor Component
 
 .. seo::
     :description: Instructions for setting up text sensors that represent their state as a string of text.
-    :image: folder-open.svg
+    :image: folder-open.png
 
 Text sensors are a lot like normal :doc:`sensors </esphomeyaml/components/sensor/index>`.
 But where the "normal" sensors only represent sensors that output **numbers**, this
@@ -14,7 +14,7 @@ component can represent any *text*.
 Base Text Sensor Configuration
 ------------------------------
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example sensor configuration
     name: Livingroom Temperature
@@ -46,7 +46,7 @@ You can access the most recent state of the sensor in :ref:`lambdas <config-lamb
 This automation will be triggered when a new value is published.
 In :ref:`Lambdas <config-lambda>` you can get the value from the trigger with ``x``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     text_sensor:
       - platform: version
@@ -66,14 +66,14 @@ advanced stuff (see the full :doc:`API Reference </api/sensor/index>` for more i
 
 - ``publish_state()``: Manually cause the sensor to push out a value.
 
-  .. code:: yaml
+  .. code-block:: cpp
 
       // Within lambda, push a value of "Hello World"
       id(my_sensor).publish_state("Hello World");
 
 - ``.state``: Retrieve the current value of the sensor as an ``std::string`` object.
 
-  .. code:: yaml
+  .. code-block:: cpp
 
       // For example, create a custom log message when a value is received:
       std::string val = id(my_sensor).state;

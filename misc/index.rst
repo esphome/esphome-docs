@@ -1,0 +1,7 @@
+Misc
+====
+
+.. toctree::
+    :glob:
+
+    *

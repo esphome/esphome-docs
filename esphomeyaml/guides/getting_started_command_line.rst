@@ -3,7 +3,7 @@ Getting Started with esphomeyaml
 
 .. seo::
     :description: Getting Started guide for installing esphomeyaml using the command line and creating a basic configuration.
-    :image: console.svg
+    :image: console.png
 
 esphomeyaml is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
@@ -17,7 +17,7 @@ Installing esphomeyaml is very easy. All you need to do is have `Python
 (because of platformio 😕) and install the console script script through
 ``pip``.
 
-.. code:: bash
+.. code-block:: bash
 
     pip install esphomeyaml
 
@@ -25,7 +25,7 @@ Alternatively, there’s also a docker image available for easy
 installation (the docker hub image is only available for amd64 right now; if you have
 an RPi, please install esphomelib through ``pip`` or use :doc:`the HassIO add-on <getting_started_hassio>`:
 
-.. code:: bash
+.. code-block:: bash
 
     docker pull ottowinter/esphomeyaml
 
@@ -37,7 +37,7 @@ friendly setup wizard that will guide you through creating your first
 configuration file. For example, if you want to create a configuration
 file called ``livingroom.yaml``:
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml livingroom.yaml wizard
     # On Docker:
@@ -59,7 +59,7 @@ So now you should have a file called ``livingroom.yaml`` (or similar).
 Go open that file in an editor of your choice and let’s add a :doc:`simple
 GPIO switch </esphomeyaml/components/switch/gpio>` to our app.
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: gpio
@@ -84,7 +84,7 @@ you have something you want to upload to your ESP board, simply plug in
 the device via USB and type the following command (replacing
 ``livingroom.yaml`` with your configuration file):
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml livingroom.yaml run
 
@@ -102,7 +102,7 @@ uploading on the host system.
 If you are running docker on Linux you can add ``--device=/dev/ttyUSB0``
 to your docker command to map a local USB device.
 
-.. code:: bash
+.. code-block:: bash
 
     docker run --rm -v "`pwd`":/config -it ottowinter/esphomeyaml livingroom.yaml compile
     platformio run -d livingroom -t upload
@@ -126,7 +126,7 @@ Next, we’re going to add a very simple binary sensor that periodically
 checks a GPIO pin whether it’s pulled high or low - the :doc:`GPIO Binary
 Sensor </esphomeyaml/components/binary_sensor/gpio>`.
 
-.. code:: yaml
+.. code-block:: yaml
 
     binary_sensor:
       - platform: gpio
@@ -145,7 +145,7 @@ through USB again. The upload will magically happen “over the air”.
 Using esphomeyaml directly, this is the same as from a USB cable, but
 for docker you need to supply an additional parameter:
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml livingroom.yaml run
     # On docker
@@ -177,7 +177,7 @@ easily manage your nodes from a nice web interface. It was primarily designed fo
 To start the esphomeyaml dashboard, simply start esphomeyaml with the following command
 (with ``config/`` pointing to a directory where you want to store your configurations)
 
-.. code:: bash
+.. code-block:: bash
 
     # Install dashboard dependencies
     pip2 install tornado esptool
@@ -204,7 +204,7 @@ be edited and all changes in there will be overriden, but outside of
 those comments you can safely create custom sensors while still using
 esphomeyaml’s great configuration options.
 
-.. code:: cpp
+.. code-block:: cpp
 
     // Auto generated code by esphomeyaml
     #include "esphomelib/application.h"
@@ -223,7 +223,6 @@ esphomeyaml’s great configuration options.
 
     void loop() {
       App.loop();
-      delay(20);
     }
 
 See Also

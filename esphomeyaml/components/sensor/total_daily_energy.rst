@@ -3,7 +3,7 @@ Total Daily Energy Sensor
 
 .. seo::
     :description: Instructions for setting up sensors that track the total daily energy usage per day and accumulate the power usage.
-    :image: sigma.svg
+    :image: sigma.png
 
 The ``total_daily_energy`` sensor is a helper sensor that can use the energy value of
 other sensors like the :doc:`HLW8012 <hlw8012>`, :doc:`CSE7766 <cse7766>`, etc and integrate
@@ -12,7 +12,7 @@ it over time.
 So this component allows you to convert readings in ``W`` or ``kW`` to readings of the total
 daily energy usage in ``Wh`` or ``kWh``.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     sensor:

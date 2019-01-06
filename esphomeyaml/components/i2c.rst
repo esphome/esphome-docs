@@ -5,13 +5,13 @@ I²C Bus
 
 .. seo::
     :description: Instructions for setting up the i2c bus to communicate with 2-wire devices in esphomelib
-    :image: i2c.svg
+    :image: i2c.png
     :keywords: i2c, iic, bus
 
 This component sets up the i²c bus for your ESP32 or ESP8266. In order for those components
 to work correctly, you need to define the i²c bus in your configuration.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     i2c:

@@ -3,7 +3,7 @@ Template Binary Sensor
 
 .. seo::
     :description: Instructions for setting up template binary sensors.
-    :image: description.svg
+    :image: description.png
 
 The ``template`` binary sensor platform allows you to define any :ref:`lambda template <config-lambda>`
 and construct a binary sensor out if it.
@@ -11,7 +11,7 @@ and construct a binary sensor out if it.
 For example, below configuration would turn the state of an ultrasonic sensor into
 a binary sensor.
 
-.. code:: yaml
+.. code-block:: yaml
 
     # Example configuration entry
     binary_sensor:

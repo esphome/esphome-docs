@@ -3,7 +3,7 @@ Switch Component
 
 .. seo::
     :description: Instructions for setting up generic switches in esphomelib.
-    :image: folder-open.svg
+    :image: folder-open.png
 
 The ``switch`` domain includes all platforms that should show up like a
 switch and can only be turned ON or OFF.
@@ -13,7 +13,7 @@ switch and can only be turned ON or OFF.
 Base Switch Configuration
 -------------------------
 
-.. code:: yaml
+.. code-block:: yaml
 
     switch:
       - platform: ...
@@ -37,7 +37,7 @@ Configuration variables:
 
 This action toggles a switch with the given ID when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -50,7 +50,7 @@ This action toggles a switch with the given ID when executed.
 
 This action turns a switch with the given ID on when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -63,7 +63,7 @@ This action turns a switch with the given ID on when executed.
 
 This action turns a switch with the given ID off when executed.
 
-.. code:: yaml
+.. code-block:: yaml
 
     on_...:
       then:
@@ -78,7 +78,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 - ``publish_state()``: Manually cause the switch to publish a new state and store it internally.
   If it's different from the last internal state, it's additionally published to the frontend.
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       // Within lambda, make the switch report a specific state
       id(my_switch).publish_state(false);
@@ -86,7 +86,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 
 - ``state``: Retrieve the current state of the switch.
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       // Within lambda, get the switch state and conditionally do something
       if (id(my_switch).state) {
@@ -99,7 +99,7 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
   Similar to the ``switch.turn_on`` and ``switch.turn_off`` actions,
   but can be used in complex lambda expressions.
 
-  .. code:: yaml
+  .. code-block:: yaml
 
       id(my_switch).write_state(false);
       id(my_switch).write_state(true);

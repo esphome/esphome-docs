@@ -127,7 +127,7 @@ the Sonoff 4CH uses the ``dout`` SPI flash chip mode. But, as some users of othe
 said that other flash modes can brick the device, it's always good to specify it explicitly.
 
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NAME_OF_NODE>
@@ -173,7 +173,7 @@ another 2-4 seconds. The 4CH should now be in a flash mode and should not blink 
 
 Now you can finally run the upload command:
 
-.. code:: bash
+.. code-block:: bash
 
     esphomeyaml sonoff_4ch.yaml run
 
@@ -229,7 +229,7 @@ of the basic functions.
     ``GPIO3``                                ``TX`` pin (for external sensors)
     ======================================== =========================================
 
-.. code:: yaml
+.. code-block:: yaml
 
     esphomeyaml:
       name: <NAME_OF_NODE>

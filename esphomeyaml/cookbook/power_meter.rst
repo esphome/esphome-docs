@@ -27,7 +27,7 @@ And... that should already be it :)
 For esphomelib, you can then use the
 :doc:`pulse counter sensor </esphomeyaml/components/sensor/pulse_counter>` using below configuration:
 
-.. code:: yaml
+.. code-block:: yaml
 
     sensor:
       - platform: pulse_counter
@@ -51,7 +51,7 @@ power meter, tell them about esphomelib 😉
     a single power meter tick can result in many pulses being counted. This effect is especially big on
     ESP8266s. If you're experiencing this, try enabling the ``internal_filter:`` filter option:
 
-    .. code:: yaml
+    .. code-block:: yaml
 
         sensor:
           - platform: pulse_counter
