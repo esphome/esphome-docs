@@ -69,6 +69,8 @@ Configuration variables:
 Setting Up Devices
 ------------------
 
+Before you can even scan for the MiFlora sensor, you need to activate it using the Flower Care app. Set it up there and you'll be able to discover it.
+
 To set up Xiaomi MiFlora devices you first need to find their MAC Address so that esphomelib can
 identify them. So first, create a simple configuration without any ``xiaomi_miflora`` entries like so:
 
