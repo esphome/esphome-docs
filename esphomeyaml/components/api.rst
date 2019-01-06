@@ -91,10 +91,10 @@ You can repeat these steps for all your nodes, or convert them over to the new n
        });
      </script>
 
-4. Stop Home Assistant - this is necessary for the entity registry changes not to become overriden.
+4. Stop Home Assistant - this is necessary for the entity registry changes not to become overwritten.
 
 5. Convert the Entity Registry file above using the "Convert Entity Registry Button", and
-   override the ``.storage/core.entity_registry`` file with the new contents.
+   overwrite the ``.storage/core.entity_registry`` file with the new contents.
 
 6. Start Home Assistant.
 
