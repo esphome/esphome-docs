@@ -59,7 +59,8 @@ there are three basic actions you can perform:
 
       The HassIO Add-On is currently not capable of discovering new USB ports after the add-on
       has started due to some docker restrictions. Please go to the add-on details page
-      and restart the add-on if a new USB device is not automatically found.
+      and restart the add-on if a new USB device is not automatically found. If the USB device
+      is still not found, try changing the USB cable and restarting the add-on.
 
 - **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
   binary so that you can upload it yourself from your computer.
