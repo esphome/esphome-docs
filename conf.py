@@ -217,3 +217,4 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 linkcheck_ignore = [r'https://github.com/.*', r'https://discord.gg/.*']
+cname = os.getenv('CNAME', 'esphomelib.com')

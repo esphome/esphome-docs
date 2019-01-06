@@ -22,7 +22,6 @@ RUN pip3 install --no-cache-dir --no-binary :all: \
         sphinx \
         breathe
 
-VOLUME /data/esphomedocs
 EXPOSE 8000
 WORKDIR /data/esphomedocs
 
