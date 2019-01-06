@@ -141,6 +141,34 @@ There are several ways of doing this. See below examples to see how you can spec
       update_interval: never  # never update
       update_interval: 0ms  # update in every loop() iteration
 
+.. _config-substitutions:
+
+Substitutions
+-------------
+
+If you're using many ESPs in your home and have many similar configuration files, it can
+be cumbersome to keep all files up to date. There are already some ways to minimize
+repeating yourself in the configuration using the ``!include`` and ``!secret`` YAML
+directives.
+
+If you want to go one step further and reduce duplication even further, you can use
+``substitutions`` in esphomeyaml's config. Substitutions allow you define top-level
+variables which are then replaced everywhere in your configuration which are then
+substituted with their value using the bash-style ``${}`` syntax.
+
+.. code-block:: yaml
+
+    substitutions:
+      devicename: livingroom
+
+    esphomeyaml:
+      name: $devicename
+      # ...
+
+    switch:
+    - platform: ...
+      name: ${devicename} switch
+
 See Also
 --------
 

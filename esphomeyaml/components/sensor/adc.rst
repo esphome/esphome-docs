@@ -74,20 +74,6 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
         pin: VCC
         name: "VCC Voltage"
 
-Next, you need to add a line at the top of your C++ project source code. Unfortunately, esphomelib can't do this
-automatically for you because of how the compiler is linking the esphomelib library. Open up the
-``<NODE_NAME>/src/main.cpp`` file and insert the ``ADC_MODE`` line like this:
-
-.. code:: cpp
-
-    using namespace esphomelib;
-
-    // Enable measuring VCC
-    ADC_MODE(ADC_VCC);
-
-    void setup() {
-      // ...
-
 See Also
 --------
 

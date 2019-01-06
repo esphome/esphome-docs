@@ -333,8 +333,10 @@ All Actions
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>`
+- :ref:`while <while_action>`
 - :ref:`component.update <component-update_action>`
 - :ref:`script.execute <script-execute_action>`
+- :ref:`script.stop <script-stop_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>`
 - :ref:`mqtt.publish_json <mqtt-publish_json_action>`
@@ -355,6 +357,18 @@ All Actions
 - :ref:`output.set_level <output-set_level_action>`
 - :ref:`deep_sleep.enter <deep_sleep-enter_action>`
 - :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
+
+.. _config-condition:
+
+All Conditions
+--------------
+
+- :ref:`and <and_condition>`
+- :ref:`or <or_condition>`
+- :ref:`lambda <lambda_condition>`
+- :ref:`binary_sensor.is_on / binary_sensor.is_off <binary_sensor-is_on_off_condition>`
+- :ref:`switch.is_on / switch.is_off <switch-is_on_off_condition>`
+- :ref:`sensor.in_range <sensor-in_range_condition>`
 
 .. _delay_action:
 
@@ -424,12 +438,47 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 
 Configuration options:
 
-- **if** (**Required**): The condition to check which branch to take.
+- **if** (**Required**, :ref:`config-condition`): The condition to check which branch to take.
 - **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
   Defaults to doing nothing.
 - **else** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to false.
   Defaults to doing nothing.
 
+.. _while_action:
+
+``while`` Action
+----------------
+
+This actions repeats a sequence of actions until a condition is no longer met.
+
+For example, below you can see a configuration that will blink an LED as long as a template
+switch is on.
+
+.. code-block:: yaml
+
+    switch:
+    - platform: gpio
+      pin: D1
+      id: blinking_pin
+    - platform: template
+      name: Blink LED
+      id: blink
+      optimistic: true
+      turn_on_action:
+      - while:
+          condition:
+            switch.is_on: blink
+          then:
+          - switch.turn_on: blinking_pin
+          - delay: 500ms
+          - switch.turn_off: blinking_pin
+          - delay: 500ms
+
+
+Configuration options:
+
+- **if** (**Required**, :ref:`config-condition`): The condition to check whether to continue evaluation.
+- **then** (**Optional**, :ref:`config-action`): The action to perform if the condition evaluates to true.
 
 .. _component-update_action:
 
@@ -475,6 +524,89 @@ execute the script with a single call.
     # in a trigger:
     on_...:
       then:
+        - script.execute: my_script
+
+.. _script-stop_action:
+
+``script.stop`` Action
+----------------------
+
+This action allows you to stop a given script during execution. Please note this is only
+useful right now if your script contains a ``delay`` action.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.stop: my_script
+
+.. _and_condition:
+
+``and`` Condition
+-----------------
+
+This condition passes if and only if all of the conditions pass.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          and:
+          - condition_a:
+          - condition_b:
+        then:
+        - script.execute: my_script
+
+.. _or_condition:
+
+``or`` Condition
+----------------
+
+This condition passes if at least one condition passes.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          or:
+          - condition_a:
+          - condition_b:
+        then:
+        - script.execute: my_script
+
+.. _lambda_condition:
+
+``lambda`` Condition
+--------------------
+
+This condition passes if the given :ref:`lambda <config-lambda>` returns ``true``.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          lambda: |-
+            if (id(my_sensor).value > 30.0) {
+              return true;
+            } else {
+              return false;
+            }
+        then:
         - script.execute: my_script
 
 See Also

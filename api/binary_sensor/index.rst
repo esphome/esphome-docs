@@ -119,3 +119,13 @@ Triggers
     :members:
     :protected-members:
     :undoc-members:
+
+.. doxygenclass:: binary_sensor::BinarySensorCondition
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. doxygenclass:: binary_sensor::CustomBinarySensorConstructor
+    :members:
+    :protected-members:
+    :undoc-members:

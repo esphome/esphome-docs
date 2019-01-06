@@ -37,6 +37,11 @@ GPIOSwitch
     :protected-members:
     :undoc-members:
 
+.. doxygenclass:: switch_::SwitchCondition
+    :members:
+    :protected-members:
+    :undoc-members:
+
 MQTTSwitchComponent
 *******************
 

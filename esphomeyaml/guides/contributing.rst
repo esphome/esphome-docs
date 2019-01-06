@@ -372,13 +372,13 @@ it in the configuration. Specifically, it may contain these fields:
 - ``DEPENDENCIES``: Other components that are required to be in the user's configuration if this platform/component
   is loaded:
 
-  .. code::
+  .. code-block:: python
 
       DEPENDENCIES = ['i2c']
 
 - ``ESP_PLATFORMS``: Provide a whitelist of platforms this integration works on. Default is work on all platforms.
 
-  .. code::
+  .. code-block:: python
 
       ESP_PLATFORMS = [ESP_PLATFORM_ESP32]
 

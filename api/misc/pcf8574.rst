@@ -26,7 +26,7 @@ API Reference
 
 .. cpp:namespace:: nullptr
 
-.. doxygenenum:: PCF8574GPIOMode
+.. doxygenenum:: io::PCF8574GPIOMode
 
 .. doxygenclass:: io::PCF8574Component
     :members:

@@ -21,7 +21,7 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through HassIO Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
     Configuration Types, guides/configuration-types, settings.svg
     Migrating from Sonoff-Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
     Migrating from ESPurna, guides/migrate_espurna, espurna.svg
@@ -136,6 +136,7 @@ Binary Sensor Components
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
     PN532 Tag, components/binary_sensor/pn532, pn532.jpg
     RDM6300 Tag, components/binary_sensor/rdm6300, rdm6300.jpg
+    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
 -----------------
@@ -148,6 +149,7 @@ Output Components
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
+    Custom Output, components/output/custom, language-cpp.svg
 
 Light Components
 ----------------
@@ -180,6 +182,7 @@ Switch Components
     Generic Output Switch, components/switch/output, upload.svg
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
+    Custom Switch, components/switch/custom, language-cpp.svg
 
 Fan Components
 --------------
@@ -221,6 +224,7 @@ Text Sensor Components
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     Template Text Sensor, components/text_sensor/template, description.svg
+    Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
 
 Misc Components
 ---------------
@@ -243,6 +247,16 @@ Misc Components
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
     MY9231/MY9291 LED driver, components/my9231, my9231.svg
+
+Additional Custom Components
+----------------------------
+
+.. imgtable::
+
+    Generic Custom Component, custom/custom_component, language-cpp.svg
+    Custom I2C Component, custom/i2c, language-cpp.svg
+    Custom SPI Component, custom/spi, language-cpp.svg
+    Custom UART Component, custom/uart, language-cpp.svg
 
 .. _cookbook:
 
@@ -272,3 +286,4 @@ documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
     devices/index
     guides/index
     changelog/index
+    custom/index
