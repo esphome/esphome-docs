@@ -18,6 +18,7 @@ The first step is to connect the sensor as described :doc:`here </esphomeyaml/co
 After validating the sensor is working, we can proceed and add some formulas.
 
 .. code-block:: yaml
+
     sensor:
       - platform: bme280
         temperature:
@@ -66,6 +67,7 @@ Equivalent sea level pressure:
 Calculating the sea level pressure with a statically mounted sensor can be be used as reference for moving sensors as mentioned in the note above.
 
 .. code-block:: yaml
+
     sensor:
       - platform: bme280
         temperature:
