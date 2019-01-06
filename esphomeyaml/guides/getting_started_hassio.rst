@@ -59,7 +59,8 @@ there are three basic actions you can perform:
 
       The Hass.io Add-On is currently not capable of discovering new USB ports after the add-on
       has started due to some docker restrictions. Please go to the add-on details page
-      and restart the add-on if a new USB device is not automatically found.
+      and restart the add-on if a new USB device is not automatically found. If the USB device
+      is still not found, try changing the USB cable and restarting the add-on.
 
 - **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
   binary so that you can upload it yourself from your computer.
@@ -106,7 +107,7 @@ to the configuration like this:
         name: "Living Room Dehumidifier"
         pin: 5
 
-In above example, we're simply adding a switch that's called "Living Room Relay" (could control
+In above example, we're simply adding a switch that's called "Living Room Dehumidifier" (could control
 anything really, for example lights) and is connected to the pin ``GPIO5``.
 
 Now if you have `MQTT

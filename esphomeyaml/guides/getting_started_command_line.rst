@@ -41,7 +41,7 @@ file called ``livingroom.yaml``:
 
     esphomeyaml livingroom.yaml wizard
     # On Docker:
-    docker run --rm -v "`pwd`":/config -it ottowinter/esphomeyaml livingroom.yaml wizard
+    docker run --rm -v ${PWD}:/config -it ottowinter/esphomeyaml livingroom.yaml wizard
 
 .. note::
 

@@ -17,7 +17,6 @@ daily energy usage in ``Wh`` or ``kWh``.
     # Example configuration entry
     sensor:
       - platform: total_daily_energy
-        pin: 12
         name: "Total Daily Energy"
         power_id: my_power
 
