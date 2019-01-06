@@ -146,28 +146,32 @@ There are several ways of doing this. See below examples to see how you can spec
 Substitutions
 -------------
 
-If you're using many ESPs in your home and have many similar configuration files, it can
-be cumbersome to keep all files up to date. There are already some ways to minimize
-repeating yourself in the configuration using the ``!include`` and ``!secret`` YAML
-directives.
-
-If you want to go one step further and reduce duplication even further, you can use
-``substitutions`` in esphomeyaml's config. Substitutions allow you define top-level
-variables which are then replaced everywhere in your configuration which are then
-substituted with their value using the bash-style ``${}`` syntax.
+Starting with version 1.10.0, esphomeyaml has a powerful new way to reduce repetition in configuration files:
+Substitutions. With substitutions, you can have a single generic source file for all nodes of one kind and
+substitute expressions in.
 
 .. code-block:: yaml
 
     substitutions:
       devicename: livingroom
+      upper_devicename: Livingroom
 
     esphomeyaml:
-      name: $devicename
+      name: $livingroom
       # ...
 
-    switch:
-    - platform: ...
-      name: ${devicename} switch
+    sensor:
+    - platform: dht
+      # ...
+      temperature:
+        name: ${upper_devicename} Temperature
+      humidity:
+        name: ${upper_devicename} Humidity
+
+In the top-level ``substitutions`` section, you can put as many key-value pairs as you want. Before
+validating your configuration, esphomeyaml will automatically replace all occurrences of substitutions
+by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
+``${substitution_key}`` (same)
 
 See Also
 --------

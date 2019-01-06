@@ -34,7 +34,7 @@ Configuration variables:
 
 - **pin** (**Required**, number): The pin the sensor bus is connected to.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
-  Defaults to 15 seconds. See :ref:`sensor-default_filter`.
+  Defaults to 15 seconds.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also

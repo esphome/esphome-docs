@@ -37,6 +37,8 @@ GPIOSwitch
     :protected-members:
     :undoc-members:
 
+.. doxygenenum:: switch_::GPIOSwitchRestoreMode
+
 .. doxygenclass:: switch_::SwitchCondition
     :members:
     :protected-members:

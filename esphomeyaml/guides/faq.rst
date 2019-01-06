@@ -39,6 +39,8 @@ Tips for using esphomeyaml
 
 6. You can view the full command line interface options here: :doc:`/esphomeyaml/guides/cli`
 
+7. Use :ref:`substitutions <config-substitutions>` to reduce repetition in your configuration files.
+
 .. |secret| replace:: ``!secret``
 .. _secret: https://www.home-assistant.io/docs/configuration/secrets/
 .. |include| replace:: ``!include``

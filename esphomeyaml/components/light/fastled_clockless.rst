@@ -2,7 +2,7 @@ FastLED Clockless Light
 =======================
 
 .. seo::
-    :description: Instructions for setting up FastLED addressable lights like NEXTION.
+    :description: Instructions for setting up FastLED addressable lights like NEOPIXEL.
     :image: color_lens.png
 
 The ``fastled_clockless`` light platform allows you to create RGB lights

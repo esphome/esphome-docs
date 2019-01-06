@@ -19,7 +19,7 @@ as a cover and can be controlled through the frontend.
     cover:
       - platform: template
         name: "Template Cover"
-        lambda: >-
+        lambda: |-
           if (id(top_end_stop).state) {
             return cover::COVER_OPEN;
           } else {

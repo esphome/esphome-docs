@@ -51,7 +51,8 @@ extensions = [
 
 breathe_projects = {"esphomelib": "./_doxyxml/"}
 breathe_default_project = "esphomelib"
-breathe_domain_by_extension = {"h": "cpp"}
+breathe_domain_by_extension = {"h": "cpp", "tcc": "cpp"}
+breathe_default_members = ('members', 'private-members', 'undoc-members')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

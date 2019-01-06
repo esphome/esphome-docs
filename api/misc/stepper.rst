@@ -6,30 +6,7 @@ Stepper Component
 API Reference
 -------------
 
-.. cpp:namespace:: nullptr
+.. doxygenfile:: esphomelib/stepper/stepper.h
 
-Stepper
-*******
-
-.. doxygenclass:: stepper::Stepper
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: stepper::SetTargetAction
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: stepper::ReportPositionAction
-    :members:
-    :protected-members:
-    :undoc-members:
-
-A4988
-*****
-
-.. doxygenclass:: stepper::A4988
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/stepper/a4988.h
+.. doxygenfile:: esphomelib/stepper/uln2003.h

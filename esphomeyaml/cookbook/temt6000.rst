@@ -29,7 +29,7 @@ and convert those voltage measurements to illuminance values in lux using a form
         name: "TEMT6000 Illuminance"
         unit_of_measurement: lx
         filters:
-          - lambda: >-
+          - lambda: |-
               return (x / 10000.0) * 2000000.0;
 
 .. figure:: images/temt6000-pins.jpg

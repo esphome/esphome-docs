@@ -34,6 +34,8 @@ Configuration variables:
   of the WiFi access point your device should connect to.
 - **password** (*Optional*, string): The password (or PSK) for your
   WiFi network. Leave empty for no password.
+- **networks** (*Optional*): Configure multiple WiFi networks to connect to, the best one
+  that is reachable will be connected to. See :ref:`wifi-networks`.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
   - **static_ip** (*Required*, IPv4 address): The static IP of your node.
@@ -126,6 +128,38 @@ please also try ``light``.
     wifi:
       # ...
       power_save_mode: none
+
+.. _wifi-networks:
+
+Connecting to Multiple Networks
+-------------------------------
+
+Starting with version 1.10.0, you can give esphomelib a number of WiFi networks to connect to.
+Esphomelib will then attempt to connect to the one with the highest signal strength.
+
+To enable this mode, remove the ``ssid`` and ``password`` options from your wifi configuration
+and move everything under the ``networks`` key:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    wifi:
+      networks:
+      - ssid: FirstNetworkToConnectTo
+        password: VerySafePassword
+      - ssid: SecondNetworkToConnectTo
+        password: VerySafePassword
+      # Other options
+      # ...
+
+Configuration variables:
+
+- **ssid** (string): The SSID or WiFi network name.
+- **password** (string): The password to use for authentication. Leave empty for no password.
+- **channel** (int): The channel of the network (1-14). If given, only connects to networks
+  that are on this channel.
+- **bssid** (string): Optionally define a BSSID (MAC-Address) of the network to connect to.
+  This can be used to further restrict which networks to connect to.
 
 See Also
 --------

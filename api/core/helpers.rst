@@ -11,6 +11,11 @@ helpers.h
 
 .. doxygenfile:: esphomelib/helpers.h
 
+util.h
+******
+
+.. doxygenfile:: esphomelib/uil.h
+
 optional.h
 **********
 

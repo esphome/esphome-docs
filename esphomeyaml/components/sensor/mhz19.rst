@@ -36,7 +36,7 @@ TX/RX labels are from the perspective of the MH-Z19). Additionally, you need to 
           name: "MH-Z19 CO2 Value"
         temperature:
           name: "MH-Z19 Temperature"
-        update_interval: 15s
+        update_interval: 60s
 
 Configuration variables:
 ------------------------
@@ -56,7 +56,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
+  sensor. Defaults to ``60s``.
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.

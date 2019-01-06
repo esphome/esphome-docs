@@ -21,12 +21,4 @@ See :cpp:func:`Application::make_fast_led_light`.
 API Reference
 -------------
 
-.. cpp:namespace:: nullptr
-
-FastLEDLightOutputComponent
-***************************
-
-.. doxygenclass:: light::FastLEDLightOutputComponent
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/light/fast_led_light_output.h

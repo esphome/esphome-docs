@@ -189,25 +189,6 @@ fahrenheit.
       - lambda: return x * (9.0/5.0) + 32.0;
     unit_of_measurement: "°F"
 
-.. _sensor-default_filter:
-
-``update_interval`` gotchas
----------------------------
-
-By default, esphomelib takes an average over the last 15 values before publishing updates.
-This was done in order to automatically decrease sensor noise.
-Therefore if you have an ``update_interval`` of 15 seconds, you will only see the values
-every 3 and a half minutes or so. To disable the default filter and publish all raw values
-directly, put an empty ``filters:`` block in your configuration:
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    sensor:
-      - platform: adc
-        # ...
-        filters: []
-
 Sensor Automation
 -----------------
 

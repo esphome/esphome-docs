@@ -1,0 +1,86 @@
+APDS9960 Sensor
+===============
+
+.. seo::
+    :description: Instructions for setting up APDS9960 sensors.
+    :image: apds9960.jpg
+
+The ``apds9960`` sensor platform allows you to use your APDS9960 RGB and gesture sensors
+(`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf>`__,
+`Sparkfun`_) with esphomelib.
+The :ref:`I²C <i2c>` is
+required to be set up in your configuration for this sensor to work.
+
+.. figure:: images/apds9960-full.jpg
+    :align: center
+    :width: 80.0%
+
+    Image by `Sparkfun`_.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    apds9960:
+      address: 0x39
+      update_interval: 60s
+
+    sensor:
+      - platform: apds9960
+        type: CLEAR
+        name: "APDS9960 Clear Channel"
+
+    binary_sensor:
+      - platform: apds9960
+        direction: UP
+        name: "APDS960 Up Movement"
+      # Repeat for each direction
+
+.. _Sparkfun: https://www.sparkfun.com/products/12787
+
+Configuration variables:
+------------------------
+
+The configuration is made up of three parts: The central component, individual sensors,
+and direction binary sensors.
+
+Base Configuration:
+
+- **address** (*Optional*, integer): The i2c address of the sensor. Defaults to ``0x39``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval
+  to check the sensor. Defaults to ``60s``.
+
+Sensor Configuration:
+
+- **name** (**Required**, string): The name for the sensor.
+- **type** (**Required**, string): The type of sensor measurement. One of
+
+  - **CLEAR**
+  - **RED**
+  - **GREEN**
+  - **BLUE**
+  - **PROXIMITY**
+
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+Binary Sensor Configuration:
+
+- **name** (**Required**, string): The name for the binary sensor.
+- **direction** (**Required**, string): The direction to measure. One of:
+
+  - **UP**
+  - **DOWN**
+  - **LEFT**
+  - **RIGHT**
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :doc:`API Reference </api/sensor/apds9960>`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/sensor/apds9960.rst>`__
+
+.. disqus::

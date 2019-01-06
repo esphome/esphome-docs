@@ -67,7 +67,7 @@ They are similar to :ref:`Sensor Filters <sensor-filters>`.
           - invert:
           - delayed_on: 100ms
           - delayed_off: 100ms
-          - lambda: >-
+          - lambda: |-
               if (id(other_binary_sensor).state) {
                 return x;
               } else {
@@ -135,6 +135,26 @@ edge of the signal.
       - platform: gpio
         # ...
         on_release:
+          then:
+            - switch.turn_off: relay_1
+
+Configuration variables: See :ref:`Automation <automation>`.
+
+.. _binary_sensor-on_state:
+
+``on_state``
+************
+
+This automation will be triggered when a new state is received (and thus combines ``on_press``
+and ``on_release`` into one trigger). The new state will be given as the variable ``x`` as a boolean
+and can be used in :ref:`lambdas <config-lambda>`.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        # ...
+        on_state:
           then:
             - switch.turn_off: relay_1
 
@@ -260,23 +280,22 @@ presses.
         then:
           - logger.log: "Single Short Clicked"
 
-.. _binary_sensor-is_on_off_condition:
+.. _binary_sensor-is_on_condition:
+.. _binary_sensor-is_off_condition:
 
-``binary_sensor.is_on`` / ``binary_sensor.is_off Condition
-**********************************************************
+``binary_sensor.is_on`` / ``binary_sensor.is_off`` Condition
+************************************************************
 
-This :ref:`condition <config-condition>` passes if the given binary sensor is on/off.
+This :ref:`Condition <config-condition>` checks if the given binary sensor is ON (or OFF).
 
 .. code-block:: yaml
 
-    # in a trigger:
+    # In some trigger:
     on_...:
       if:
         condition:
+          # Same syntax for is_off
           binary_sensor.is_on: my_binary_sensor
-          # same goes for is_off
-        then:
-        - script.execute: my_script
 
 lambda calls
 ************

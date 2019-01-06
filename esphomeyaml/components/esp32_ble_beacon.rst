@@ -41,7 +41,7 @@ change the UUID to something unique. For example, you can copy below randomly ge
 
 .. raw:: html
 
-    <input type="text" id="ble-uuid" style="width: 240px;" readonly="readonly">
+    <input type="text" id="ble-uuid" onclick="this.focus();this.select()" style="width: 240px;" readonly="readonly">
     <script>
       // https://stackoverflow.com/a/105074/8924614
       function guid() {

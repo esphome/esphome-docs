@@ -28,15 +28,42 @@ Configuration variables:
   GPIO pin to use for the switch.
 - **name** (**Required**, string): The name for the switch.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **restore_mode** (*Optional*): Control how the GPIO Switch attempts to restore state on bootup.
+
+    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
+    - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``ALWAYS_OFF`` - Always initialize the pin as OFF on bootup.
+    - ``ALWAYS_ON`` - Always initialize the pin as ON on bootup.
+
 - All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
 
-.. note::
+To create an active-low switch (one that is turned off by default), use the :ref:`Pin Schema <config-pin_schema>`:
 
-    esphomelib will attempt to restore the state of the switch on boot-up and write the value
-    very early in the boot process.
+.. code-block:: yaml
 
-    Please note that certain pins can have pull-up/down resistors that activate/deactivate a pin before
-    esphomelib can initialize them. Please check with a multimeter and use another pin if necessary.
+    # Example configuration entry
+    switch:
+      - platform: gpio
+        pin:
+          number: 25
+          inverted: yes
+
+And to create momentary switches, for example switches that toggle a pin for a moment, use :doc:`template switches <template>`:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    switch:
+      - platform: gpio
+        pin: 25
+        id: relay
+      - platform: template
+        name: "Momentary Switch"
+        optimistic: yes
+        turn_on_action:
+        - switch.turn_on: relay
+        - delay: 100ms
+        - switch.turn_off: relay
 
 See Also
 --------

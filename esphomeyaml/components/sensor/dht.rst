@@ -43,7 +43,7 @@ if you're having issues try the 4.7kΩ recommended by the manufacturer) between
           name: "Living Room Temperature"
         humidity:
           name: "Living Room Humidity"
-        update_interval: 15s
+        update_interval: 60s
 
 Configuration variables:
 ------------------------
@@ -65,7 +65,7 @@ Configuration variables:
   one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2302``, ``RHT03``
   and helps with some connection issues. Defaults to ``AUTO_DETECT``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
+  sensor. Defaults to ``60s``.
 
 .. note::
 
