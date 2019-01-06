@@ -9,6 +9,104 @@ Changelog - Version 1.9.0
 
 TODO: Write Changelog, create seo image
 
+All changes
+-----------
+
+- lib: Fix RDM6300 not reporting cards :libpr:`278` (cherry-picked)
+- lib: Fix RDM6300 not reporting cards :libpr:`278` (cherry-picked)
+- lib: Fix SNTP with less than 3 servers :libpr:`279` (cherry-picked)
+- lib: Fix SNTP with less than 3 servers :libpr:`279` (cherry-picked)
+- lib: Fix update interval log missing time unit :libpr:`280` (cherry-picked)
+- lib: Fix update interval log missing time unit :libpr:`280` (cherry-picked)
+- lib: Fix CSE7766 spamming logs :libpr:`281` (cherry-picked)
+- lib: Fix CSE7766 spamming logs :libpr:`281` (cherry-picked)
+- lib: Fix outdated links :libpr:`282` (cherry-picked)
+- lib: Fix outdated links :libpr:`282` (cherry-picked)
+- yaml: Fix SNTP servers option :yamlpr:`237` (cherry-picked)
+- yaml: Fix SNTP servers option :yamlpr:`237` (cherry-picked)
+- lib: Optimize Code Paths A Bit :libpr:`284`
+- lib: Fix crashing when logger not being used :libpr:`285` (cherry-picked)
+- lib: Fix crashing when logger not being used :libpr:`285` (cherry-picked)
+- lib: Fix template cover spamming logs :libpr:`287` (cherry-picked)
+- lib: Fix template cover spamming logs :libpr:`287` (cherry-picked)
+- lib: Improve ESP32 BLE tracker stability :libpr:`289` (cherry-picked)
+- lib: Improve ESP32 BLE tracker stability :libpr:`289` (cherry-picked)
+- yaml: Improve one_of validator :yamlpr:`240`
+- yaml: Add Logo and Icon to HassIO add-on :yamlpr:`241`
+- lib: Fix sensor filters using C++ undefined behavior :libpr:`293` (cherry-picked)
+- lib: Fix sensor filters using C++ undefined behavior :libpr:`293` (cherry-picked)
+- lib: Fix PMSX003 :libpr:`300` (cherry-picked)
+- lib: Fix PMSX003 :libpr:`300` (cherry-picked)
+- lib: Fix issue with filters introduced in 1.9.2 :libpr:`296` (cherry-picked)
+- lib: Fix issue with filters introduced in 1.9.2 :libpr:`296` (cherry-picked)
+- lib: Fix BMP085 pressure value :libpr:`292` (cherry-picked)
+- lib: Fix BMP085 pressure value :libpr:`292` (cherry-picked)
+- yaml: CSE7766 update interval :yamlpr:`250` (cherry-picked)
+- yaml: CSE7766 update interval :yamlpr:`250` (cherry-picked)
+- docs: CSE7766 Update Interval :docspr:`91`
+- docs: add baud_rate; typo on sensor type :docspr:`90` by :ghuser:`drewp`
+- docs: Fix docs for LCD display strftime :docspr:`95`
+- lib: Make CSE7766 a polling sensor :libpr:`305`
+- lib: Supply clang-format file for contributors :libpr:`290`
+- yaml: Time SNTP validate server format :yamlpr:`254`
+- yaml: Fix GPIO input schema validator :yamlpr:`253`
+- lib: Implement custom sensor platform :libpr:`274`
+- lib: Only compile code stuff if necessary :libpr:`309`
+- yaml: [Huge] Util Refactor, Dashboard Improvements, Hass.io Auth API, Better Validation Errors, Conditions, Custom Platforms, Substitutions :yamlpr:`234`
+- docs: Fix copy paste error :docspr:`100` by :ghuser:`oscar-b`
+- lib: Fix large JSON payloads being cut off :libpr:`323` by :ghuser:`quazzie`
+- docs: Add Wikipedia link to tz database zones list :docspr:`105` by :ghuser:`apeeters`
+- docs: Add pins for Shelly 2 :docspr:`103` by :ghuser:`oscar-b`
+- lib: Native Esphomelib API :libpr:`322`
+- yaml: Add native ESPHome API :yamlpr:`265`
+- lib: Add support for MAX31855 sensor :libpr:`310` by :ghuser:`sherbang`
+- docs: Documentation for MAX31855 sensor :docspr:`97` by :ghuser:`sherbang`
+- lib: Fix typo in Output Switch :libpr:`307`
+- lib: Fix PCA9685 with many channels :libpr:`304`
+- docs: Fixed typo in Sonoff R2 Cover example :docspr:`112` by :ghuser:`voicevon`
+- lib: Dump native API Server config on boot :libpr:`338` by :ghuser:`voicevon`
+- lib: Split Automation headers from implementation :libpr:`349`
+- lib: Travis update :libpr:`350`
+- lib: Fix API Server logs :libpr:`347`
+- lib: WiFi Better logging for ESP8266 :libpr:`346`
+- lib: API Server Watchdog :libpr:`345`
+- lib: GPIO Switch Restore Mode :libpr:`344`
+- lib: Fix Remote Receiver Overflow for ESP8266 :libpr:`348`
+- yaml: Api fixes :yamlpr:`289`
+- yaml: Fix host network :yamlpr:`280`
+- yaml: Fix ESP8266 verbose logging :yamlpr:`291`
+- yaml: API Server Watchdog :yamlpr:`290`
+- lib: Implement Addressable Lights Base :libpr:`243`
+- yaml: Disable SPIFFS to save flash space :yamlpr:`288`
+- yaml: Fix MQTT message trigger :yamlpr:`282`
+- yaml: GPIO Switch Restore Mode :yamlpr:`287`
+- yaml: Addressable Lights :yamlpr:`294`
+- yaml: Toggle Auto-Update Check With Environment Variable :yamlpr:`292`
+- yaml: Make compatible with python 3 :yamlpr:`281`
+- docs: Fix copy/paste error in turn_off_action :docspr:`113` by :ghuser:`wutr`
+- yaml: GPIO Switch Fix restore_mode validator :yamlpr:`296` by :ghuser:`yottatsa`
+- yaml: Fixes for Python 3 Compatability :yamlpr:`297`
+- lib: Stop old template action when new one is started :libpr:`354`
+- lib: Add APDS-9960 support :libpr:`286`
+- lib: Change default update interval to 60 seconds :libpr:`356`
+- lib: ESP32 Ethernet support :libpr:`288`
+- lib: Add ULN2003 support :libpr:`301`
+- lib: Add clean discovery option to simplify transition to native API :libpr:`357`
+- yaml: Add clean MQTT discovery option for native API :yamlpr:`302`
+- yaml: Add APDS9960 Support :yamlpr:`300`
+- lib: Add neopixelbus component :libpr:`352`
+- yaml: Add neopixelbus component :yamlpr:`303`
+- yaml: Add support for MAX31855 sensor :yamlpr:`258` by :ghuser:`sherbang`
+- yaml: ULN2003 Support :yamlpr:`304`
+- yaml: Add ESP32 Ethernet Support :yamlpr:`301`
+- docs: total_daily_energy doesn't have pin option :docspr:`114` by :ghuser:`oscar-b`
+- docs: Getting started HassIO - USD device discovery :docspr:`110` by :ghuser:`DavidDeSloovere`
+- docs: Mismatch in example and text :docspr:`109` by :ghuser:`wellsi`
+- docs: BME280 environment cookbook entry :docspr:`107` by :ghuser:`Mynasru`
+- docs: Update getting_started_command_line.rst :docspr:`102` by :ghuser:`doskoi`
+- docs: Updated the multi click example code block :docspr:`92` by :ghuser:`cooljimy84`
+- docs: Add step to setting up devices :docspr:`101` by :ghuser:`magnusoverli`
+
 Past Changelogs
 ---------------
 
