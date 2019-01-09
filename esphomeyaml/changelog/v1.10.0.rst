@@ -1,8 +1,8 @@
-Changelog - Version 1.9.0
-=========================
+Changelog - Version 1.10.0
+==========================
 
 .. seo::
-    :description: Changelog for esphomelib version 1.9.0.
+    :description: Changelog for esphomelib version 1.10.0.
     :image: /_static/changelog-1.10.0.png
     :author: Otto Winter
     :author_twitter: @OttoWinter_
