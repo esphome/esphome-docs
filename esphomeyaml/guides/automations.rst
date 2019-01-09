@@ -317,6 +317,8 @@ All Triggers
 - :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` / :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
 - :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>` / :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>` / :ref:`esphomeyaml.on_loop <esphomeyaml-on_loop>`
 - :ref:`pn532.on_tag <pn532-on_tag>`
+- :ref:`time.on_time <time-on_time>`
+- :ref:`interval.interval <interval>`
 
 All Actions
 -----------
@@ -554,6 +556,29 @@ Please note this is only useful right now if your script contains a ``delay`` ac
     on_...:
       then:
         - script.stop: my_script
+
+.. _interval:
+
+``interval``
+------------
+
+This component allows you to run actions periodically with a fixed interval.
+For example if you want to toggle a switch every minute, you can use this component.
+Please note that this certain cases are also possible with the :ref:`time.on_time <time-on_time>`
+trigger, but this one is more light-weight and user-friendly.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    interval:
+      - interval: 1min
+        then:
+          - switch.toggle: relay_1
+
+Configuration options:
+
+- **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **then** (**Required**, :ref:`config-action`): The action to perform.
 
 See Also
 --------
