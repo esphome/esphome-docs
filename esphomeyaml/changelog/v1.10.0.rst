@@ -7,7 +7,88 @@ Changelog - Version 1.9.0
     :author: Otto Winter
     :author_twitter: @OttoWinter_
 
-TODO: Write Changelog, create seo image
+Native API
+----------
+
+This release brings with it lots of goodies, but most important is the :doc:`native API </esphomeyaml/components/api>`.
+MQTT has been the only way this project communicated with Home Assistant for a while now. And MQTT is a great protocol
+to get started, but it always had problems:
+
+- Another service to install - Users would need to install an MQTT broker in order to get started.
+- MQTT Discovery - Home Assistant's MQTT discovery has been great, but always had problems like retained messages etc.
+- Inefficient - A typical MQTT message for sending a binary sensor state is about 70 bytes long, and the MQTT library
+  we used was quite inefficient with runtime memory allocation too.
+
+So I decided to do something against that: ESPHome now features a native protocol (based on TCP+protocol buffers)
+that addresses these issues and has a
+`component on the Home Assistant <https://rc--home-assistant-docs.netlify.com/components/esphome/>`__
+side too.
+
+**Does this mean MQTT will be removed?**
+
+No! MQTT is an awesome protocol with easy integration for many tools like Node-RED and custom MQTT clients.
+This native API is only for replacing communications with Home Assistant, so *if* anything gets removed it's
+MQTT auto discovery for Home Assistant. Of course both can be used together at the same time too.
+
+**Should I switch to the native API immediately?**
+
+You definitely can, but a word of warning first: The MQTT implementation has seen tons of fixes for small quirks
+in how the ESP SDK works. From my own testing, the native API seems to be quite stable - but I'm sure it'll take a bit
+of time to find+fix some final bugs.
+
+**How do I migrate from MQTT?**
+
+First, make sure you run at least Home Assistant 0.85.0. Then, go through the
+:ref:`migration guide here <api-mqtt_to_native>`.
+
+Python 3 Comparability
+----------------------
+
+PlatformIO has finally implemented `python 3 support <https://github.com/platformio/platformio-core/issues/895>`__
+after some quick changes, ESPHome is now also compatible with python 3.5+. So with this new release
+you can try ESPHome with Python 3 already. Just make sure to install the development version of platformio first:
+
+.. code-block:: bash
+
+    pip3 install -U https://github.com/platformio/platformio-core/archive/develop.zip
+
+I don't particularly like python 2, and in a year's time support for it will officially be ended. So the plan for
+ESPHome is to drop python 2 as soon as possible. Once platformio releases version 4.0 (with python 3 support), I
+will go through and check everything still works. Maybe ESPHome will support python 2 for 1 or 2 releases after that
+but really I want to drop support for python 2 as soon as possible.
+
+Dashboard & Hass.io Addon Updates
+---------------------------------
+
+The dashboard and Hass.io addon have seen a lot of ❤️ in this release: The dashboard has seen tons of small
+changes to make the user experience better and the Hass.io addon has been completely re-written with the
+`Hass.io Community Addon Images <https://github.com/hassio-addons>`__ as the base.
+
+- The dashboard now features a built-in YAML editor.
+- Configuration wizard now shows a list of boards directly, so you just have to choose them from a dropdown.
+- Hass.io Addon: You can log in using your Home Assistant credentials now.
+- And many more changes (colored logs, auto-scroll, node status, update notifications, ...)
+
+Rename: esphome{lib, yaml} -> ESPHome
+-------------------------------------
+
+The name esphomelib and esphomeyaml were too technical, and this project has changed a lot since the first
+published release (the yaml part didn't even exist back then). So ... the project is being re-branded slightly:
+
+- esphomeyaml -> ESPHome
+- esphomelib -> ESPHome Core
+- esphomedocs -> ESPHome Docs
+
+As you see, the yaml project is now getting the "fancy" name, because that's by far the best way to use this framework.
+As part of this change, using the _core_ framework directly from code (without YAML) is being deprecated, the API docs
+have long been inaccurate now and users should really switch over to ESPHome through YAML
+
+Of course that doesn't mean you won't be able to write custom code. In fact, this release also contains lots of
+new guides and changes to make creating custom components much easier. The goal is to have a project where users
+can use YAML for the boring boilerplate code but can completely customize everything with custom components.
+
+This migration is of course huge - almost every single file in the code+docs base has esphome{lib, yaml} somewhere
+in it, so it will take time until the next release for this to be finished.
 
 All changes
 -----------

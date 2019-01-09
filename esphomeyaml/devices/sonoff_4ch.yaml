@@ -25,8 +25,7 @@ binary_sensor:
     inverted: True
   name: "Sonoff 4CH Button 1"
   on_press:
-    then:
-      switch.toggle: relay_1
+    - switch.toggle: relay_1
 - platform: gpio
   pin:
     number: GPIO9
@@ -34,8 +33,7 @@ binary_sensor:
     inverted: True
   name: "Sonoff 4CH Button 2"
   on_press:
-    then:
-      switch.toggle: relay_2
+    - switch.toggle: relay_2
 - platform: gpio
   pin:
     number: GPIO10
@@ -43,8 +41,7 @@ binary_sensor:
     inverted: True
   name: "Sonoff 4CH Button 3"
   on_press:
-    then:
-      switch.toggle: relay_3
+    - switch.toggle: relay_3
 - platform: gpio
   pin:
     number: GPIO14
@@ -52,8 +49,7 @@ binary_sensor:
     inverted: True
   name: "Sonoff 4CH Button 4"
   on_press:
-    then:
-      switch.toggle: relay_4
+    - switch.toggle: relay_4
 - platform: status
   name: "Sonoff 4CH Status"
 

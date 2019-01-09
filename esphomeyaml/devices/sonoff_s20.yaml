@@ -25,7 +25,6 @@ binary_sensor:
     inverted: True
   name: "Sonoff S20 Button"
   on_press:
-    then:
     - switch.toggle: relay
 - platform: status
   name: "Sonoff S20 Status"

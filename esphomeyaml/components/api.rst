@@ -32,8 +32,8 @@ Configuration variables:
 
 .. _api-mqtt_to_native:
 
-Converting from MQTT to Native API Setup in Home Assistant
-----------------------------------------------------------
+Migrating from MQTT to Native API Setup in Home Assistant
+---------------------------------------------------------
 
 The native API is the best way to use esphomelib together with Home Assistant - it's fast,
 highly efficient and requires almost zero setup (whereas MQTT requires you to set up an MQTT broker first).
