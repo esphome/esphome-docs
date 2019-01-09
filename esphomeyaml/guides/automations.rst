@@ -33,8 +33,8 @@ decided to also install a simple push button next to the dehumidifier on pin GPI
 A simple push on this button should toggle the state of the dehumidifier.
 
 You *could* write an automation to do this task in Home Assistant's automation engine, but
-ideally the IoT should work without an internet connection and should not break without
-the MQTT server being online.
+ideally the IoT should work without an internet connection and should not break with
+the MQTT server being offline.
 
 That's why, starting with esphomelib 1.7.0, there's a new automation engine. With it, you
 can write some basic (and also some more advanced) automations using a syntax that is

@@ -85,13 +85,14 @@ exposes all of the basic functions.
           mode: INPUT_PULLUP
           inverted: True
         name: "Sonoff Basic Button"
-      - platform: status
-        name: "Sonoff Basic Status"
+        on_press:
+          - switch.toggle: relay
 
     switch:
       - platform: gpio
         name: "Sonoff Basic Relay"
         pin: GPIO12
+        id: relay
 
     output:
       - platform: esp8266_pwm
