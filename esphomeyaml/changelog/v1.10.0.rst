@@ -145,37 +145,6 @@ Other notable changes:
 All changes
 -----------
 
-- lib: Fix RDM6300 not reporting cards :libpr:`278` (cherry-picked)
-- lib: Fix RDM6300 not reporting cards :libpr:`278` (cherry-picked)
-- lib: Fix SNTP with less than 3 servers :libpr:`279` (cherry-picked)
-- lib: Fix SNTP with less than 3 servers :libpr:`279` (cherry-picked)
-- lib: Fix update interval log missing time unit :libpr:`280` (cherry-picked)
-- lib: Fix update interval log missing time unit :libpr:`280` (cherry-picked)
-- lib: Fix CSE7766 spamming logs :libpr:`281` (cherry-picked)
-- lib: Fix CSE7766 spamming logs :libpr:`281` (cherry-picked)
-- lib: Fix outdated links :libpr:`282` (cherry-picked)
-- lib: Fix outdated links :libpr:`282` (cherry-picked)
-- yaml: Fix SNTP servers option :yamlpr:`237` (cherry-picked)
-- yaml: Fix SNTP servers option :yamlpr:`237` (cherry-picked)
-- lib: Optimize Code Paths A Bit :libpr:`284`
-- lib: Fix crashing when logger not being used :libpr:`285` (cherry-picked)
-- lib: Fix crashing when logger not being used :libpr:`285` (cherry-picked)
-- lib: Fix template cover spamming logs :libpr:`287` (cherry-picked)
-- lib: Fix template cover spamming logs :libpr:`287` (cherry-picked)
-- lib: Improve ESP32 BLE tracker stability :libpr:`289` (cherry-picked)
-- lib: Improve ESP32 BLE tracker stability :libpr:`289` (cherry-picked)
-- yaml: Improve one_of validator :yamlpr:`240`
-- yaml: Add Logo and Icon to HassIO add-on :yamlpr:`241`
-- lib: Fix sensor filters using C++ undefined behavior :libpr:`293` (cherry-picked)
-- lib: Fix sensor filters using C++ undefined behavior :libpr:`293` (cherry-picked)
-- lib: Fix PMSX003 :libpr:`300` (cherry-picked)
-- lib: Fix PMSX003 :libpr:`300` (cherry-picked)
-- lib: Fix issue with filters introduced in 1.9.2 :libpr:`296` (cherry-picked)
-- lib: Fix issue with filters introduced in 1.9.2 :libpr:`296` (cherry-picked)
-- lib: Fix BMP085 pressure value :libpr:`292` (cherry-picked)
-- lib: Fix BMP085 pressure value :libpr:`292` (cherry-picked)
-- yaml: CSE7766 update interval :yamlpr:`250` (cherry-picked)
-- yaml: CSE7766 update interval :yamlpr:`250` (cherry-picked)
 - docs: CSE7766 Update Interval :docspr:`91`
 - docs: add baud_rate; typo on sensor type :docspr:`90` by :ghuser:`drewp`
 - docs: Fix docs for LCD display strftime :docspr:`95`
@@ -239,6 +208,12 @@ All changes
 - docs: Update getting_started_command_line.rst :docspr:`102` by :ghuser:`doskoi`
 - docs: Updated the multi click example code block :docspr:`92` by :ghuser:`cooljimy84`
 - docs: Add step to setting up devices :docspr:`101` by :ghuser:`magnusoverli`
+- yaml: Update beta config :yamlpr:`305`
+- yaml: Fix component.update action :yamlpr:`308`
+- yaml: OTA don't error when upgrading from no password to password mode :yamlpr:`309`
+- yaml: use full space on small devices :yamlpr:`310` by :ghuser:`escoand`
+- lib: Fix interval compilation error :libpr:`364`
+- yaml: Fix interval trigger :yamlpr:`313`
 
 Past Changelogs
 ---------------
