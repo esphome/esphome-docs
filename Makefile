@@ -8,7 +8,7 @@ SPHINXPROJ    = esphomelib
 SOURCEDIR     = .
 BUILDDIR      = _build
 ESPHOMELIB_PATH = ../esphomelib
-ESPHOMELIB_TAG = v1.10.0b1
+ESPHOMELIB_TAG = v1.10.0b2
 
 .PHONY: html cleanhtml doxyg cleandoxyg deploy help webserver Makefile $(ESPHOMELIB_PATH)
 
