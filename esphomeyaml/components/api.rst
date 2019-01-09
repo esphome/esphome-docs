@@ -6,13 +6,6 @@ Native API Component
     :image: server-network.png
     :keywords: Native API, ESPHome, Home Assistant
 
-This core esphomelib component sets up WiFi connections to access points
-for you. It needs to be in your configuration or otherwise esphomeyaml
-will fail in the config validation stage.
-
-It’s recommended to provide a static IP for your node, as it can
-dramatically improve connection times.
-
 .. code-block:: yaml
 
     # Example configuration entry

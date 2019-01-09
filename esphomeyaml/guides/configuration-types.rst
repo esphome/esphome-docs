@@ -157,7 +157,7 @@ substitute expressions in.
       upper_devicename: Livingroom
 
     esphomeyaml:
-      name: $livingroom
+      name: $devicename
       # ...
 
     sensor:
