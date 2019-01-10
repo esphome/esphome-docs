@@ -55,7 +55,7 @@ of time to find+fix some final bugs.
 First, make sure you run at least Home Assistant 0.85.0 (currently a `beta release <https://www.home-assistant.io/docs/installation/updating/#run-the-beta-version>`__). Then, go through the
 :ref:`migration guide here <api-mqtt_to_native>`.
 
-Python 3 Compatability
+Python 3 Compatibility
 ----------------------
 
 PlatformIO has finally implemented `python 3 support <https://github.com/platformio/platformio-core/issues/895>`__
