@@ -142,6 +142,29 @@ Other notable changes:
   but esphomelib doesn't use that so now you have that as extra storage. Thanks `@brandond <http://github.com/brandond>`
 - You can now use Home Assistant to get time in ESPHome, so no more need for SNTP. See :ref:`time`.
 
+Release 1.10.1 - January 13
+---------------------------
+
+- docs: Fix substitutions example & api intro text :docspr:`117` by :ghuser:`thubot`
+- lib: Fix while action not resetting is_running :libpr:`378`
+- lib: Fix remote transmitter ESP32 repeat wait :libpr:`376`
+- lib: Fix addressable lights :libpr:`375`
+- yaml: Fix ESP32 not decoding stacktrace on broken PC :yamlpr:`330`
+- docs: Fixed missing link to BME cookbook :docspr:`120` by :ghuser:`Mynasru`
+- lib: Fix addressable flicker effect :libpr:`383`
+- lib: NeoPixelBus: fix handling of white color component :libpr:`384` by :ghuser:`badbadc0ffee`
+- lib: Fix trigger not being optional :libpr:`381`
+- docs: Add WiFi fast connect :docspr:`121`
+- yaml: Fix AsyncTCP compilation on ESP32 with Arduino breaking change :yamlpr:`334`
+- yaml: Fix show logs with MQTT and dashboard :yamlpr:`332`
+- lib: Add WiFi fast connect mode :libpr:`385`
+- lib: Fix API Server has deep sleep :libpr:`386`
+- yaml: Introduce wifi fast connect mode :yamlpr:`333`
+- lib: Fix GPIO Switch not handling inverted :libpr:`387`
+- lib: Expose NeoPixelBus Controller :libpr:`388`
+- yaml: Pin platformio platforms :yamlpr:`335`
+- lib: Fix ble tracker compile error :libpr:`390`
+
 All changes
 -----------
 
