@@ -36,7 +36,7 @@ Text Sensor Automation
 ----------------------
 
 You can access the most recent state of the sensor in :ref:`lambdas <config-lambda>` using
-``id(sensor_id).value``.
+``id(sensor_id).state``.
 
 .. _text_sensor-on_value:
 
