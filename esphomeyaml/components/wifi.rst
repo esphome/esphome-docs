@@ -65,6 +65,8 @@ Configuration variables:
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``5min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface. Defaults to no power saving.
   See :ref:`wifi-power_save_mode`
+- **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
+  first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode
