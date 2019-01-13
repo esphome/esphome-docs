@@ -463,7 +463,7 @@ as seen below.
         - mqtt.publish_json:
             topic: the/topic
             payload: |-
-              root["key"] = id(my_sensor).value;
+              root["key"] = id(my_sensor).state;
               root["greeting"] = "Hello World";
 
             # Will produce:
@@ -494,7 +494,7 @@ Configuration options:
     .. code-block:: cpp
 
         id(mqtt_client).publish_json("the/topic", [=](JsonObject &root) {
-          root["something"] = id(my_sensor).value;
+          root["something"] = id(my_sensor).state;
         });
 
 

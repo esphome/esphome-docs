@@ -122,7 +122,7 @@ position (in steps). The stepper will always run towards the target position and
       - stepper.set_target:
           id: my_stepper
           target: !lambda |-
-            if (id(my_binary_sensor).value) {
+            if (id(my_binary_sensor).state) {
               return 1000;
             } else {
               return -1000;
@@ -173,7 +173,7 @@ the target again.
       - stepper.report_position:
           id: my_stepper
           position: !lambda |-
-            if (id(my_binary_sensor).value) {
+            if (id(my_binary_sensor).state) {
               return 0;
             } else {
               return -1000;

@@ -120,7 +120,7 @@ In the ``format`` option, you can use ``printf``-style formatting (see :ref:`dis
         # Formatted:
         - logger.log:
             format: "The temperature sensor reports value %.1f and humidity %.1f"
-            args: [ 'id(temperature_sensor).value', 'id(humidity_sensor).value' ]
+            args: [ 'id(temperature_sensor).state', 'id(humidity_sensor).state' ]
 
 Configuration options:
 

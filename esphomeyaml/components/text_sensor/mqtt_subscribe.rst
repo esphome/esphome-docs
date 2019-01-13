@@ -8,7 +8,7 @@ MQTT Subscribe Text Sensor
 
 The ``mqtt_subscribe`` text sensor platform allows you to get external data into esphomelib.
 The sensor will subscribe to messages on the given MQTT topic and save the most recent value
-in its ``id(mysensor).value``.
+in its ``id(mysensor).state``.
 
 .. code-block:: yaml
 
