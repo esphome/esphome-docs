@@ -293,7 +293,7 @@ This list contains items that are technically already supported by other compone
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
     BME280 Environment, cookbook/bme280_environment, bme280.jpg
 
-Do you have other awesome automations or 2nd order components? Please feel free to add them to the
+Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
 
 .. toctree::
