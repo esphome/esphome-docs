@@ -118,7 +118,7 @@ Breaking Changes
           # other settings
           update_interval: 15s
           filters:
-            - sliding_window_moving_average:
+            - sliding_window_moving_average: {}
 
 - The fastled effects have been renamed to ``addressable_`` for the new
   :doc:`Neopixelbus </esphomeyaml/components/light/neopixelbus>` integration. See the validation error message
