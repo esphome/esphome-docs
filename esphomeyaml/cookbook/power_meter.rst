@@ -58,6 +58,9 @@ power meter, tell them about esphomelib 😉
             # ...
             internal_filter: 10us
 
+See :doc:`/esphomeyaml/components/sensor/total_daily_energy` for counting up the total daily energy usage
+with these ``pulse_counter`` power meters.
+
 See Also
 --------
 
