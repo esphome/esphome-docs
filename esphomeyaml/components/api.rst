@@ -102,6 +102,9 @@ You can repeat these steps for all your nodes, or convert them over to the new n
    you'll already see the ESP as a suggestion to be configured. But if you're having issues with that, you can
    always manually set up an ESPHome device using "Set up a new integration" -> "ESPHome".
 
+9. Now you can remove ``mqtt:`` from your ESPHome configuration. You don't have to, but doing so will
+   free up resources (of which these ESPs don't have too much).
+
 .. _api-homeassistant_service_action:
 
 ``homeassistant.service`` Action
