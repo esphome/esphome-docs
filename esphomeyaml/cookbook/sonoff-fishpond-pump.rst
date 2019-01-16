@@ -127,8 +127,7 @@ Here is the configuration with the basic operations outlined above.
         timezone: Africa/Johannesburg
         on_time:
           # Switch on on the hour
-          ## the seconds 0-5 option is used to have the pump only attempt to start within the first 5 seconds
-          - seconds: 0-5
+          - seconds: 0
             minutes: 0
             hours: '*'
             then:
