@@ -105,6 +105,12 @@ You can repeat these steps for all your nodes, or convert them over to the new n
 9. Now you can remove ``mqtt:`` from your ESPHome configuration. You don't have to, but doing so will
    free up resources (of which these ESPs don't have too much).
 
+.. warning::
+
+    Using MQTT together with the native API seems to be broken on some devices at the moment.
+    Of course in the future you will be able to use both at the same time, but the fix will
+    just take a while to get done as it's a larger scale issue.
+
 .. _api-homeassistant_service_action:
 
 ``homeassistant.service`` Action
