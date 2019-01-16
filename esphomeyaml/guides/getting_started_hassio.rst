@@ -23,6 +23,12 @@ Installing the esphomeyaml Hass.io add-on is easy. Just navigate to the Hass.io
 panel in your Home Assistant frontend and add the esphomeyaml add-on repository:
 https://github.com/OttoWinter/esphomeyaml
 
+.. note::
+
+    This add-on is currently incompatible with the 64-bit version of HassOS for RPis because
+    the compiler toolchain does not exist for this architecture. Please use the 32-bit version
+    of HassOS for RPi 3.
+
 .. figure:: images/hassio_repo.png
 
 After that, wait a bit until the add-on is installed (this can take a while) and
