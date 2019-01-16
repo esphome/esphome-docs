@@ -6,16 +6,15 @@ Sonoff Fish Pond Pump
     :image: images/sonoff-fishpond-pump-installed.jpg
     :keywords: sonoff, esp8266, home automation, ESPHome, hass, home assistant
 
-.. figure:: images/sonoff-fishpond-pump-installed.jpg
+.. figure:: images/sonoff-fishpond.jpg
     :align: center
     :width: 75.0%
 
-The Sonoff range of product containing the ESP chips from espressif has a myriad of uses and best of all, you can customize it, aka hackable.
+The Sonoff range of products containing the ESP chips from espressif has a myriad of uses and best of all, you can customize it, aka hackable.
 This quick cookbook aims to provide a clear, simple working example.
 
 This example is very basic in it's operation.
 
-* Start the pump for 5 minutes when initial power is supplied.
 * Start the pump every hour and run it for 10 minutes.
 * Manually start and stop the pump with the toggle button on the Sonoff basic.
 * Use a water float sensor and stop the pump if water level is too low.
@@ -51,28 +50,19 @@ Here is the configuration with the basic operations outlined above.
     ## Fish pond sonoff
     ## filename: fishpond.yaml
     # Sonoff basic
-    # Starts with pump in on position for 5 minutes
     # Button toggles pump on/off
     # Float sensor stops pump
     # Cron'd to run every hour, on the hour for 10 minutes
     esphomeyaml:
-      name: !secret fishpond
+      name: fishpond
       platform: ESP8266
       board: esp01_1m
       board_flash_mode: dout
 
-      # run on boot for 5 minutes
-      on_boot:
-        priority: 50
-        then:
-          - switch.turn_on: esp_fishpond_pump
-          - delay: 5min
-          - switch.turn_off: esp_fishpond_pump
-
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      domain: !secret wifi_domain
+      ## use fast_connect of you are connecting to a hidden WiFi network, else comment it out
       fast_connect: true
 
     # Enable logging
@@ -98,12 +88,12 @@ Here is the configuration with the basic operations outlined above.
     switch:
       ## restart
       - platform: restart
-        name: "ESP Fishpond Restart"
+        name: "ESP Fish Pond Restart"
 
       ## relay / pump
       - platform: gpio
         pin: GPIO12
-        name: "ESP Fishpond Pump"
+        name: "ESP Fish Pond Pump"
         id: esp_fishpond_pump
 
     binary_sensor:
@@ -133,10 +123,12 @@ Here is the configuration with the basic operations outlined above.
     ## Use time
     time:
       - platform: homeassistant
+        ## Set your timezone
         timezone: Africa/Johannesburg
         on_time:
           # Switch on on the hour
-          - seconds: 0
+          ## the seconds 0-5 option is used to have the pump only attempt to start within the first 5 seconds
+          - seconds: 0-5
             minutes: 0
             hours: '*'
             then:
@@ -159,15 +151,15 @@ See https://randomnerdtutorials.com/how-to-flash-a-custom-firmware-to-sonoff/ fo
 2.1. Put Sonoff into programming mode.
 **************************************
 
-* Press and hold the toggle pin (long black pin next to LED and custom soldered pins)
-* Supply USB power to Sonoff via FTDI (e.g. plug in USB to the FTDI, or use a power switch as explained in link above)
+* Press and hold the toggle pin (long black pin next to LED and custom soldered pins).
+* Supply USB power to Sonoff via FTDI (e.g. plug in USB to the FTDI, or use a power switch as explained in link above).
 * Keep holding the toggle pin for approx 3-5 seconds now you should be ready to program. If you get a message unable to communicate when trying flash, check your TX/RX pin or retry entering boot mode again.
 
 Quick notes:
 
-* 3.3V setting on FTDI, 5V will cause damage
-* Ensure the connections on the PCB starts at  the closed to the toggle pin, it uses 4 pins, but 5 pins are soldered on
-* TX and RX should be swapped - RX on Sonoff goes to TX on FTDI
+* 3.3V setting on FTDI, 5V will cause damage.
+* Ensure the connections on the PCB starts at  the closed to the toggle pin, it uses 4 pins, but 5 pins are soldered on.
+* TX and RX should be swapped - RX on Sonoff goes to TX on FTDI.
 
 
 
@@ -179,7 +171,7 @@ Run this command from the same directory where your fishpond.yaml file is locate
 .. code-block:: bash
 
   esphomeyaml fishpond.yaml run
-  
+
 Or if you're using the dashboard, just click the "UPLOAD" button.
 
 You should get an output starting like this
@@ -314,7 +306,7 @@ Once these actions succeeded you are pretty much in the clear and can be sure yo
 2.5. Prepping and installing
 ****************************
 
-* Ensure power is switched off
+* Ensure power is switched off.
 * You can now add your water level sensor wiring to the PCB and have it extrude, SAFELY, next to your connector block.
 * Here it will be the further most pin (GPIO14) you soldered from the toggle button and then pin (Ground) next to it.
 * You can now easily connect and disconnect your liquid level sensor.
@@ -325,7 +317,6 @@ Connecting it
 * Connect your pump to the Sonoff output.
 * Connect your input electrical wiring.
 * Test all connections are securely fastened.
-* Power on the Sonoff and your pump should automatically start.
 * You can toggle the on/off of the pump by pressing the toggle button.
 
 
