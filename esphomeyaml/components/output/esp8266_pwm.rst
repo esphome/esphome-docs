@@ -21,7 +21,7 @@ successor of the ESP8266, the ESP32, and its :doc:`ESP32 LEDC PWM <ledc>` instea
       - platform: esp8266_pwm
         pin: D1
         frequency: 1000 Hz
-        id: pwm-output
+        id: pwm_output
 
 Configuration variables:
 ------------------------
