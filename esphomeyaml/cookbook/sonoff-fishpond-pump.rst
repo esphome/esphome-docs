@@ -1,17 +1,17 @@
-Sonoff fishpond pump
-=======================
+Sonoff Fish Pond Pump
+=====================
 
 .. seo::
-    :description: Making an automated fishpond pump with timing and auto stop safety with Sonoff basic esp8266 chip
+    :description: Making an automated fish pond pump with timing and auto stop safety with Sonoff Basic ESP8266 chip
     :image: images/sonoff-fishpond-pump-installed.jpg
-    :keywords: sonoff, esp8266, home automation, esphomelib, hass, home assistant
+    :keywords: sonoff, esp8266, home automation, ESPHome, hass, home assistant
 
 .. figure:: images/sonoff-fishpond-pump-installed.jpg
     :align: center
     :width: 75.0%
 
 The Sonoff range of product containing the ESP chips from espressif has a myriad of uses and best of all, you can customize it, aka hackable.
-This quick cookbook aim to provide a clear, simple working example.
+This quick cookbook aims to provide a clear, simple working example.
 
 This example is very basic in it's operation.
 
@@ -22,9 +22,10 @@ This example is very basic in it's operation.
 
 *Some of the later Sonoff basics does not have GPIO pin available, check your board first*
 
-This example is using esphomelib and esphomeyaml 1.10.1 and Home Assistant 0.85.1
+This example is using ESPHome 1.10.1 and Home Assistant 0.85.1
 
 Assumptions
+-----------
 
 As many of the details on here a predicated on existing installations and knowledge the following is assumed:
 
@@ -40,135 +41,113 @@ As many of the details on here a predicated on existing installations and knowle
     Take care working with electricity at all times
 
 
-1.) Code
+1. Configuration
+----------------
 
-Here is the code with the basic operations outlined above.
-
+Here is the configuration with the basic operations outlined above.
 
 .. code-block:: yaml
 
-  ## Fish pond sonoff
-  ## filename: fishpond.yaml
-  # Sonoff basic
-  # Starts with pump in on position for 5 minutes
-  # Button toggles pump on/off
-  # Float sensor stops pump
-  # Cron'd to run every hour, on the hour for 10 minutes
-  esphomeyaml:
-    name: !secret fishpond
-    platform: ESP8266
-    board: esp01_1m
-    board_flash_mode: dout
-    esphomelib_version: 1.10.1
+    ## Fish pond sonoff
+    ## filename: fishpond.yaml
+    # Sonoff basic
+    # Starts with pump in on position for 5 minutes
+    # Button toggles pump on/off
+    # Float sensor stops pump
+    # Cron'd to run every hour, on the hour for 10 minutes
+    esphomeyaml:
+      name: !secret fishpond
+      platform: ESP8266
+      board: esp01_1m
+      board_flash_mode: dout
 
-    # run on boot for 5 minutes
-    on_boot:
-      priority: 50
-      then:
-        - switch.turn_on: esp_fishpond_gpio12
-        - delay: 300s
-        - switch.turn_off: esp_fishpond_gpio12
-
-  wifi:
-    ssid: !secret wifi_ssid
-    password: !secret wifi_password
-    domain: !secret wifi_domain
-    fast_connect: true
-
-  # Enable logging
-  logger:
-    level: DEBUG
-
-  ota:
-
-  api:
-    password: !secret esplibapi_password
-
-  status_led:
-    pin: GPIO13
-
-  sensor:
-    - platform: uptime
-      name: "esp_fishpond_system_uptime"
-      id: esp_fishpond_system_uptime
-
-    - platform: wifi_signal
-      name: "esp_fishpond_system_wifi_signal"
-      id: esp_fishpond_system_wifi_signal
-      update_interval: 15s
-
-  switch:
-    ## restart
-    - platform: restart
-      name: "esp_fishpond_system_restart"
-      id: esp_fishpond_system_restart
-
-    ## relay / pump
-    - platform: gpio
-      pin: GPIO12
-      name: "esp_fishpond_gpio12"
-      id: esp_fishpond_gpio12
-
-  light:
-    # Status LED
-    - platform: monochromatic
-      name: "esp_fishpond_gpio13"
-      output: esp_fishpond_gpio13
-
-  binary_sensor:
-    - platform: status
-      name: "esp_fishpond_system_status"
-      id: "esp_fishpond_system_status"
-
-    ## button - toggle relay
-    - platform: gpio
-      name: "esp_fishpond_gpio0"
-      pin:
-        number: GPIO0
-        inverted: true
-      on_press:
+      # run on boot for 5 minutes
+      on_boot:
+        priority: 50
         then:
-          - switch.toggle: esp_fishpond_gpio12
+          - switch.turn_on: esp_fishpond_pump
+          - delay: 5min
+          - switch.turn_off: esp_fishpond_pump
+
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      domain: !secret wifi_domain
+      fast_connect: true
+
+    # Enable logging
+    logger:
+      level: DEBUG
+
+    ota:
+
+    api:
+      password: !secret esplibapi_password
+
+    status_led:
+      pin: GPIO13
+
+    sensor:
+      - platform: uptime
+        name: "ESP Fish Pond System Uptime"
+
+      - platform: wifi_signal
+        name: "ESP Fish Pond WiFi Signal"
+        update_interval: 15s
+
+    switch:
+      ## restart
+      - platform: restart
+        name: "ESP Fishpond Restart"
+
+      ## relay / pump
+      - platform: gpio
+        pin: GPIO12
+        name: "ESP Fishpond Pump"
+        id: esp_fishpond_pump
+
+    binary_sensor:
+      - platform: status
+        name: "ESP Fish Pond System Status"
+
+      ## button - toggle relay
+      - platform: gpio
+        name: "ESP Fish Pond Button"
+        pin:
+          number: GPIO0
+          inverted: true
+        # Toggle pump when user presses the Sonoff Button
+        on_press:
+          - switch.toggle: esp_fishpond_pump
 
       # onboard header pin - sensor
       # when threshold is reached, turn off
-    - platform: gpio
-      name: "esp_fishpond_gpio14"
-      pin:
-        number: 14
-        mode: INPUT_PULLUP
-      on_press:
-        then:
-          - switch.turn_off:
-              id: esp_fishpond_gpio12
+      - platform: gpio
+        name: "esp_fishpond_gpio14"
+        pin:
+          number: 14
+          mode: INPUT_PULLUP
+        on_press:
+          - switch.turn_off: esp_fishpond_pump
 
-  output:
-    # Register led dimmable output ....
-    - platform: esp8266_pwm
-      id: esp_fishpond_gpio13
-      pin: GPIO13
-
-  ## Use time
-  time:
-    - platform: homeassistant
-      id: esp_5ccf7f2ce1c1_time
-      timezone: Africa/Johannesburg
-      on_time:
-      # Switch on on the hour
-        - seconds: 0-5
-          minutes: 0
-          hours: '*'
-          then:
-            - switch.turn_on: esp_fishpond_gpio12
-        # Switch off 10 minutes later
-        - seconds: 0-5
-          minutes: 10
-          hours: '*'
-          then:
-            - switch.turn_off: esp_fishpond_gpio12
+    ## Use time
+    time:
+      - platform: homeassistant
+        timezone: Africa/Johannesburg
+        on_time:
+          # Switch on on the hour
+          - seconds: 0
+            minutes: 0
+            hours: '*'
+            then:
+              - switch.turn_on: esp_fishpond_pump
+              # Switch off 10 minutes later
+              - delay: 10min
+              - switch.turn_off: esp_fishpond_pump
 
 
-2.) Programming
+2. Programming
+--------------
 
 .. figure:: images/sonoff-fishpond-pump-1-programming.jpg
     :align: center
@@ -177,8 +156,8 @@ Here is the code with the basic operations outlined above.
 Ensure you have soldered on the additional header pins to the PCB and connect your USB FTDI programmer.
 See https://randomnerdtutorials.com/how-to-flash-a-custom-firmware-to-sonoff/ for more details on the pinout and FTDI.
 
-
-1.) Put Sonoff into programming mode.
+2.1. Put Sonoff into programming mode.
+**************************************
 
 * Press and hold the toggle pin (long black pin next to LED and custom soldered pins)
 * Supply USB power to Sonoff via FTDI (e.g. plug in USB to the FTDI, or use a power switch as explained in link above)
@@ -192,13 +171,16 @@ Quick notes:
 
 
 
-2.) Upload the code via command line
+2.2. Upload the firmware
+************************
 
 Run this command from the same directory where your fishpond.yaml file is located
 
 .. code-block:: bash
 
   esphomeyaml fishpond.yaml run
+  
+Or if you're using the dashboard, just click the "UPLOAD" button.
 
 You should get an output starting like this
 
@@ -246,7 +228,8 @@ You should get an output starting like this
   INFO Successfully uploaded program.
   INFO Starting log output from /dev/ttyUSB0 with baud rate 115200
 
-3.) And then nothing will happen
+2.3. And then nothing will happen
+*********************************
 
 Once you have flashed the device, nothing will happen. You need to power cycle the device. You will notice the LED will start to flash and then becomes solid once connected to the WiFi network.
 
@@ -264,70 +247,72 @@ Your output will possibly look like this
 
 .. code-block:: text
 
-  INFO Reading configuration...
-  INFO Detected timezone 'SAST' with UTC offset 2
-  INFO Starting log output from fishpond.device using esphomelib API
-  INFO Connecting to fishpond.device:6053 (192.168.13.15)
-  INFO Successfully connected to fishpond.device
-  [11:13:27][D][time.homeassistant:029]: Synchronized time: Wed Jan 16 11:13:27 2019
-  [11:13:27][I][application:097]: You're running esphomelib v1.10.1 compiled on Jan 16 2019, 08:12:59
-  [11:13:27][C][status_led:023]: Status LED:
-  [11:13:27][C][status_led:024]:   Pin: GPIO13 (Mode: OUTPUT)
-  [11:13:27][C][wifi:341]: WiFi:
-  [11:13:27][C][wifi:240]:   SSID: 'some-ssid'
-  [11:13:27][C][wifi:241]:   IP Address: 192.168.13.15
-  [11:13:27][C][wifi:243]:   BSSID: xx:xx:xx:xx:xx:xx
-  [11:13:27][C][wifi:245]:   Hostname: 'fishpond'
-  [11:13:27][C][wifi:250]:   Signal strength: -91 dB ▂▄▆█
-  [11:13:27][C][wifi:251]:   Channel: 1
-  [11:13:27][C][wifi:252]:   Subnet: 255.255.255.0
-  [11:13:27][C][wifi:253]:   Gateway: 192.168.13.1
-  [11:13:27][C][wifi:254]:   DNS1: 192.168.13.1
-  [11:13:27][C][wifi:255]:   DNS2: 0.0.0.0
-  [11:13:27][C][binary_sensor.status:046]: Status Binary Sensor 'esp_fishpond_system_status'
-  [11:13:27][C][binary_sensor.status:046]:   Device Class: 'connectivity'
-  [11:13:28][C][switch.gpio:049]: GPIO Switch 'esp_fishpond_gpio12'
-  [11:13:28][C][switch.gpio:050]:   Pin: GPIO12 (Mode: OUTPUT)
-  [11:13:28][C][switch.gpio:066]:   Restore Mode: Restore (Default to OFF)
-  [11:13:28][C][binary_sensor.gpio:023]: GPIO Binary Sensor 'esp_fishpond_gpio0'
-  [11:13:28][C][binary_sensor.gpio:024]:   Pin: GPIO0 (Mode: INPUT, INVERTED)
-  [11:13:28][C][binary_sensor.gpio:023]: GPIO Binary Sensor 'esp_fishpond_gpio14'
-  [11:13:28][C][binary_sensor.gpio:024]:   Pin: GPIO14 (Mode: INPUT_PULLUP)
-  [11:13:28][C][output.esp8266_pwm:028]: ESP8266 PWM:
-  [11:13:28][C][output.esp8266_pwm:029]:   Pin: GPIO13 (Mode: OUTPUT)
-  [11:13:28][C][output.esp8266_pwm:030]:   Frequency: 1000.0 Hz
-  [11:13:28][C][logger:099]: Logger:
-  [11:13:28][C][logger:100]:   Level: DEBUG
-  [11:13:28][C][logger:101]:   Log Baud Rate: 115200
-  [11:13:28][C][light.state:266]: Light 'esp_fishpond_gpio13'
-  [11:13:28][C][light.state:268]:   Default Transition Length: 1000 ms
-  [11:13:28][C][light.state:269]:   Gamma Correct: 2.80
-  [11:13:28][C][switch.restart:034]: Restart Switch 'esp_fishpond_system_restart'
-  [11:13:28][C][switch.restart:034]:   Icon: 'mdi:restart'
-  [11:13:28][C][time.homeassistant:032]: Home Assistant Time:
-  [11:13:28][C][time.homeassistant:033]:   Timezone: 'SAST-2'
-  [11:13:28][C][sensor.wifi_signal:042]: WiFi Signal 'esp_fishpond_system_wifi_signal'
-  [11:13:28][C][sensor.wifi_signal:042]:   Unit of Measurement: 'dB'
-  [11:13:28](Message skipped because it was too big to fit in TCP buffer - This is only cosmetic)
-  [11:13:28](Message skipped because it was too big to fit in TCP buffer - This is only cosmetic)
-  [11:13:28][C][api:072]: API Server:
-  [11:13:28][C][api:073]:   Address: 192.168.13.15:6053
-  [11:13:28][C][ota:129]: Over-The-Air Updates:
-  [11:13:28][C][ota:130]:   Address: 192.168.13.15:8266
+    INFO Reading configuration...
+    INFO Detected timezone 'SAST' with UTC offset 2
+    INFO Starting log output from fishpond.device using esphomelib API
+    INFO Connecting to fishpond.device:6053 (192.168.13.15)
+    INFO Successfully connected to fishpond.device
+    [11:13:27][D][time.homeassistant:029]: Synchronized time: Wed Jan 16 11:13:27 2019
+    [11:13:27][I][application:097]: You're running esphomelib v1.10.1 compiled on Jan 16 2019, 08:12:59
+    [11:13:27][C][status_led:023]: Status LED:
+    [11:13:27][C][status_led:024]:   Pin: GPIO13 (Mode: OUTPUT)
+    [11:13:27][C][wifi:341]: WiFi:
+    [11:13:27][C][wifi:240]:   SSID: 'some-ssid'
+    [11:13:27][C][wifi:241]:   IP Address: 192.168.13.15
+    [11:13:27][C][wifi:243]:   BSSID: xx:xx:xx:xx:xx:xx
+    [11:13:27][C][wifi:245]:   Hostname: 'fishpond'
+    [11:13:27][C][wifi:250]:   Signal strength: -91 dB ▂▄▆█
+    [11:13:27][C][wifi:251]:   Channel: 1
+    [11:13:27][C][wifi:252]:   Subnet: 255.255.255.0
+    [11:13:27][C][wifi:253]:   Gateway: 192.168.13.1
+    [11:13:27][C][wifi:254]:   DNS1: 192.168.13.1
+    [11:13:27][C][wifi:255]:   DNS2: 0.0.0.0
+    [11:13:27][C][binary_sensor.status:046]: Status Binary Sensor 'esp_fishpond_system_status'
+    [11:13:27][C][binary_sensor.status:046]:   Device Class: 'connectivity'
+    [11:13:28][C][switch.gpio:049]: GPIO Switch 'esp_fishpond_gpio12'
+    [11:13:28][C][switch.gpio:050]:   Pin: GPIO12 (Mode: OUTPUT)
+    [11:13:28][C][switch.gpio:066]:   Restore Mode: Restore (Default to OFF)
+    [11:13:28][C][binary_sensor.gpio:023]: GPIO Binary Sensor 'esp_fishpond_gpio0'
+    [11:13:28][C][binary_sensor.gpio:024]:   Pin: GPIO0 (Mode: INPUT, INVERTED)
+    [11:13:28][C][binary_sensor.gpio:023]: GPIO Binary Sensor 'esp_fishpond_gpio14'
+    [11:13:28][C][binary_sensor.gpio:024]:   Pin: GPIO14 (Mode: INPUT_PULLUP)
+    [11:13:28][C][output.esp8266_pwm:028]: ESP8266 PWM:
+    [11:13:28][C][output.esp8266_pwm:029]:   Pin: GPIO13 (Mode: OUTPUT)
+    [11:13:28][C][output.esp8266_pwm:030]:   Frequency: 1000.0 Hz
+    [11:13:28][C][logger:099]: Logger:
+    [11:13:28][C][logger:100]:   Level: DEBUG
+    [11:13:28][C][logger:101]:   Log Baud Rate: 115200
+    [11:13:28][C][light.state:266]: Light 'esp_fishpond_gpio13'
+    [11:13:28][C][light.state:268]:   Default Transition Length: 1000 ms
+    [11:13:28][C][light.state:269]:   Gamma Correct: 2.80
+    [11:13:28][C][switch.restart:034]: Restart Switch 'esp_fishpond_system_restart'
+    [11:13:28][C][switch.restart:034]:   Icon: 'mdi:restart'
+    [11:13:28][C][time.homeassistant:032]: Home Assistant Time:
+    [11:13:28][C][time.homeassistant:033]:   Timezone: 'SAST-2'
+    [11:13:28][C][sensor.wifi_signal:042]: WiFi Signal 'esp_fishpond_system_wifi_signal'
+    [11:13:28][C][sensor.wifi_signal:042]:   Unit of Measurement: 'dB'
+    [11:13:28](Message skipped because it was too big to fit in TCP buffer - This is only cosmetic)
+    [11:13:28](Message skipped because it was too big to fit in TCP buffer - This is only cosmetic)
+    [11:13:28][C][api:072]: API Server:
+    [11:13:28][C][api:073]:   Address: 192.168.13.15:6053
+    [11:13:28][C][ota:129]: Over-The-Air Updates:
+    [11:13:28][C][ota:130]:   Address: 192.168.13.15:8266
 
 
 
-4.) Test now with OTA flashing
+2.4. Test now with OTA flashing
+*******************************
 
 Before installing the Sonoff, do a final OTA test, and this time selecting the OTA option and NOT the USB option when reflashing.
 
 .. code-block:: bash
 
-  esphomeyaml fishpond.yaml run
+    esphomeyaml fishpond.yaml run
 
 Once these actions succeeded you are pretty much in the clear and can be sure your device is ready.
 
-5.) Prepping and installing
+2.5. Prepping and installing
+****************************
 
 * Ensure power is switched off
 * You can now add your water level sensor wiring to the PCB and have it extrude, SAFELY, next to your connector block.
@@ -368,7 +353,8 @@ In this PVC housing the plates are secured using cabinet door magnets for easier
 * Ensure you are using a proper and compliant waterproof box to house your electrical equipment (Sonoff basic) in.
 * Ensure you plan to be able to remove the unit with minimal effort should you need to manually USB reflash it again in future.
 
-6.) Home assistant
+2.6. Home Assistant
+*******************
 
 You can now add your device to home assistant via the configurations page and under the Integrations option
 
