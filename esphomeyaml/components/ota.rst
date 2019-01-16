@@ -49,6 +49,17 @@ Configuration variables:
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+Updating the password:
+----------------------
+
+Since the password is used both for compiling and uploading the regular `esphomeyaml <file> run` won't work of course. This issue can be worked around by executing the operations separately.
+
+ 1. Add the new password to your ``yaml`` file
+ 2. Run ``esphomeyaml <file.yaml> compile``
+ 3. Change the ``yaml`` file back to the old password
+ 4. Run ``esphomeyaml <file.yaml> upload``
+ 5. Change the ``yaml`` file to the new password again
+
 .. note::
 
     If you get errors like
