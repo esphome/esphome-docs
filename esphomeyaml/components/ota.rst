@@ -52,13 +52,17 @@ Configuration variables:
 Updating the password:
 ----------------------
 
-Since the password is used both for compiling and uploading the regular `esphomeyaml <file> run` won't work of course. This issue can be worked around by executing the operations separately.
+Since the password is used both for compiling and uploading the regular `esphomeyaml <file> run` won't work of course. This issue can be worked around by executing the operations separately through a `on_boot` trigger:
 
- 1. Add the new password to your ``yaml`` file
- 2. Run ``esphomeyaml <file.yaml> compile``
- 3. Change the ``yaml`` file back to the old password
- 4. Run ``esphomeyaml <file.yaml> upload``
- 5. Change the ``yaml`` file to the new password again
+.. code::
+
+    esphomeyaml:
+      on_boot:
+        - lambda: |-
+            id(ota).set_auth_password("New password");
+    ota:
+      password: "Old password"
+      id: ota
 
 .. note::
 
