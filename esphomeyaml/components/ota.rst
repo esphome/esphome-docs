@@ -52,9 +52,9 @@ Configuration variables:
 Updating the password:
 ----------------------
 
-Since the password is used both for compiling and uploading the regular `esphomeyaml <file> run` won't work of course. This issue can be worked around by executing the operations separately through a `on_boot` trigger:
+Since the password is used both for compiling and uploading the regular ``esphomeyaml <file> run`` won't work of course. This issue can be worked around by executing the operations separately through a ``on_boot`` trigger:
 
-.. code::
+.. code-block:: yaml
 
     esphomeyaml:
       on_boot:
