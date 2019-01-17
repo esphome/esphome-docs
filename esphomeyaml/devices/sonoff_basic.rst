@@ -144,7 +144,7 @@ Quick notes:
 * TX and RX should be swapped - RX on Sonoff goes to TX on FTDI.
 
 
-2.2. Upload the firmware
+1.2. Upload the firmware
 ************************
 
 Run this command from the same directory where your <my-awesome>.yaml file is located
@@ -201,7 +201,7 @@ You should get an output starting like this
   INFO Successfully uploaded program.
   INFO Starting log output from /dev/ttyUSB0 with baud rate 115200
 
-2.3. And then nothing will happen
+1.3. And then nothing will happen
 *********************************
 
 Once you have flashed the device, nothing will happen. You need to power cycle the device. You will notice the LED will start to flash and then becomes solid once connected to the WiFi network.
@@ -269,7 +269,7 @@ Your output will possibly look like this
 
 
 
-2.4. Test now with OTA flashing
+1.4. Test now with OTA flashing
 *******************************
 
 Before installing the Sonoff, do a final OTA test, and this time selecting the OTA option and NOT the USB option when reflashing.
