@@ -279,13 +279,13 @@ This effect allows you to write completely custom light effects yourself using :
               lambda: |-
                 static int state = 0;
                 if (state == 0) {
-                  id(my_light).start_transition(light::LightColorValues::from_rgb(1.0, 1.0, 1.0)));
+                  id(my_light).start_transition(light::LightColorValues::from_rgb(1.0, 1.0, 1.0),1.0);
                 } else if (state == 1) {
-                  id(my_light).start_transition(light::LightColorValues::from_rgb(1.0, 0.0, 1.0)));
+                  id(my_light).start_transition(light::LightColorValues::from_rgb(1.0, 0.0, 1.0),1.0);
                 } else if (state == 2) {
-                  id(my_light).start_transition(light::LightColorValues::from_rgb(0.0, 0.0, 1.0)));
+                  id(my_light).start_transition(light::LightColorValues::from_rgb(0.0, 0.0, 1.0),1.0);
                 } else {
-                  id(my_light).start_transition(light::LightColorValues::from_rgb(0.0, 0.0, 0.0)));
+                  id(my_light).start_transition(light::LightColorValues::from_rgb(0.0, 0.0, 0.0),1.0);
                 }
                 state += 1;
                 if (state == 4)
