@@ -49,6 +49,21 @@ Configuration variables:
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+Updating the password:
+----------------------
+
+Since the password is used both for compiling and uploading the regular ``esphomeyaml <file> run`` won't work of course. This issue can be worked around by executing the operations separately through a ``on_boot`` trigger:
+
+.. code-block:: yaml
+
+    esphomeyaml:
+      on_boot:
+        - lambda: |-
+            id(ota).set_auth_password("New password");
+    ota:
+      password: "Old password"
+      id: ota
+
 .. note::
 
     If you get errors like
