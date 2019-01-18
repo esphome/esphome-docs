@@ -291,6 +291,7 @@ This list contains items that are technically already supported by other compone
     TEMT6000, cookbook/temt6000, temt6000.jpg
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
+    Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
 
 Do you have other awesome automations or 2nd order components? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
