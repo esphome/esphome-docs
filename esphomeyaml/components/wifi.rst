@@ -42,7 +42,7 @@ Configuration variables:
   - **gateway** (*Required*, IPv4 address): The gateway of the local network.
   - **subnet** (*Required*, IPv4 address): The subnet of the local network.
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
-  - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
+  - **dns2** (*Mandatory if dns1 is set*, IPv4 address): The backup DNS server to use.
 
 - **hostname** (*Optional*, string): Manually set the hostname of the
   node. Can only be 63 long at max and must only contain alphanumeric
