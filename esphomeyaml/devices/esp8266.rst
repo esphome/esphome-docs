@@ -51,30 +51,45 @@ Some notes on the pins:
 Special Pins
 ------------
 
-================= ============================================
-``GPIO0``         Controls Boot Mode
------------------ ---------------------------------------------
-``GPIO1``         UART TX pin
------------------ ---------------------------------------------
-``GPIO2``         Controls Boot Mode
------------------ ---------------------------------------------
-``GPIO3``         UART RX pin
------------------ ---------------------------------------------
-``GPIO12``        Attached to Hardware SPI controller MISO
------------------ ---------------------------------------------
-``GPIO13``        Attached to Hardware SPI controller MOSI
------------------ ---------------------------------------------
-``GPIO14``        Attached to Hardware SPI controller CLK
------------------ ---------------------------------------------
-``GPIO15``        Controls Boot Mode; Attached to Hardware SPI
-                  controller CS
------------------ ---------------------------------------------
-``GPIO16``        Special pin that can be accessed from RTC,
-                  and is Deep-Sleep wakeup pin
------------------ ---------------------------------------------
-``TOUT`` aka      ADC pin for measuring voltages, can only be
-``GPIO17``        used as analog input pin
-================= =============================================
+.. table::
+    :class: no-center
+
+    =================== =============================================
+    ``GPIO0``           Controls Boot Mode
+    ------------------- ---------------------------------------------
+    ``GPIO1``           UART TX pin
+    ------------------- ---------------------------------------------
+    ``GPIO2``           Controls Boot Mode
+    ------------------- ---------------------------------------------
+    ``GPIO3``           UART RX pin
+    ------------------- ---------------------------------------------
+    ``GPIO6``           SDIO/Flash CLK pin
+    ------------------- ---------------------------------------------
+    ``GPIO7``           SDIO/Flash Data 0 pin
+    ------------------- ---------------------------------------------
+    ``GPIO8``           SDIO/Flash Data 1 pin
+    ------------------- ---------------------------------------------
+    ``GPIO9``           SDIO/Flash Data 2 pin (qio/qout only)
+    ------------------- ---------------------------------------------
+    ``GPIO10``          SDIO/Flash Data 3 pin (qio/qout only)
+    ------------------- ---------------------------------------------
+    ``GPIO11``          SDIO/Flash CMD pin
+    ------------------- ---------------------------------------------
+    ``GPIO12``          Attached to Hardware SPI controller MISO
+    ------------------- ---------------------------------------------
+    ``GPIO13``          Attached to Hardware SPI controller MOSI
+    ------------------- ---------------------------------------------
+    ``GPIO14``          Attached to Hardware SPI controller CLK
+    ------------------- ---------------------------------------------
+    ``GPIO15``          Controls Boot Mode; Attached to Hardware SPI
+                        controller CS
+    ------------------- ---------------------------------------------
+    ``GPIO16``          Special pin that can be accessed from RTC,
+                        and is Deep-Sleep wakeup pin
+    ------------------- ---------------------------------------------
+    TOUT aka ``GPIO17`` ADC pin for measuring voltages, can only be
+                        used as analog input pin
+    =================== =============================================
 
 Boot Modes
 ----------
@@ -82,15 +97,18 @@ Boot Modes
 On each boot, the ESP8266 will check three pins to determine in which boot mode to enter.
 There are three boot modes:
 
-========================= ========= ========= ========== ==============
-**Mode**                  ``GPIO0`` ``GPIO2`` ``GPIO15`` ``boot mode:``
-------------------------- --------- --------- ---------- --------------
-Boot from Flash (normal)  HIGH      HIGH      LOW        3
-------------------------- --------- --------- ---------- --------------
-Download Code from UART   LOW       HIGH      LOW        1
-------------------------- --------- --------- ---------- --------------
-Boot from SD-Card         -         -         HIGH       4-7
-========================= ========= ========= ========== ==============
+.. table::
+    :class: no-center
+
+    ========================= ========= ========= ========== ==============
+    **Mode**                  ``GPIO0`` ``GPIO2`` ``GPIO15`` ``boot mode:``
+    ------------------------- --------- --------- ---------- --------------
+    Boot from Flash (normal)  HIGH      HIGH      LOW        3
+    ------------------------- --------- --------- ---------- --------------
+    Download Code from UART   LOW       HIGH      LOW        1
+    ------------------------- --------- --------- ---------- --------------
+    Boot from SD-Card         ANY       ANY       HIGH       4-7
+    ========================= ========= ========= ========== ==============
 
 You can identify these on boot-up by looking at the UART output, the first number
 in the ``boot mode:`` line tells you what mode was selected
@@ -108,15 +126,18 @@ Reset Causes
 Additionally, the first line also contains the **reset cause**.
 These reset causes `are documented <https://www.espressif.com/sites/default/files/documentation/esp8266_reset_causes_and_common_fatal_exception_causes_en.pdf>`__:
 
-== ===================================
-0  Undefined
--- -----------------------------------
-1  Power On Reboot
--- -----------------------------------
-2  External reset or deep-sleep wakeup
--- -----------------------------------
-4  Hardware WDT reset
-== ===================================
+.. table::
+    :class: no-center
+
+    == ===================================
+    0  Undefined
+    -- -----------------------------------
+    1  Power On Reboot
+    -- -----------------------------------
+    2  External reset or deep-sleep wakeup
+    -- -----------------------------------
+    4  Hardware WDT reset
+    == ===================================
 
 After a software reset, the reset cause will not change.
 
