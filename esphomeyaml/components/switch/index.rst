@@ -125,8 +125,8 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
 
 .. _switch-is_on_off_condition:
 
-``switch.is_on`` / ``switch.is_off Condition
-********************************************
+``switch.is_on`` / ``switch.is_off`` Condition
+**********************************************
 
 This :ref:`condition <config-condition>` passes if the given switch is on/off.
 
