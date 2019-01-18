@@ -248,6 +248,24 @@ Arilux LC01
 See :doc:`/esphomeyaml/components/light/rgbw` for controlling the lights together with
 :doc:`/esphomeyaml/components/output/esp8266_pwm`.
 
+Arilux LC02
+-----------
+
+.. pintable::
+
+    GPIO0, Button (inverted),
+    GPIO2, Blue LED,
+    GPIO5, Red Channel,
+    GPIO14, Green Channel,
+    GPIO12, Blue Channel,
+    GPIO13, White Channel,
+
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
+
+See :doc:`/esphomeyaml/components/light/rgbw` for controlling the lights together with
+:doc:`/esphomeyaml/components/output/esp8266_pwm`.
+
 Arilux LC11
 -----------
 
