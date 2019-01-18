@@ -163,7 +163,7 @@ Both options USB and OTA are done by running the command:
 
     esphomeyaml <some-yaml-file> run
 
-More details on programming can be found on :doc:`Sonoff Basic section <sonoff_basic>`
+More details on programming can be found on :doc:`Sonoff Basic section </esphomeyaml/devices/sonoff_basic>`
 
 3. Prepping and installing
 ****************************
@@ -214,7 +214,7 @@ You can now add your device to home assistant via the configurations page and un
 See Also
 --------
 
-- :doc:`sonoff_basic`
+- :doc:`/esphomeyaml/devices/sonoff_basic`
 - `Flashing sonoff basic <https://randomnerdtutorials.com/how-to-flash-a-custom-firmware-to-sonoff/>`__.
 - `Adding ESPHome to Home Assistant <https://www.home-assistant.io/components/esphome/>`__.
 
