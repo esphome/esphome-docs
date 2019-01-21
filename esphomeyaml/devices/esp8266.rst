@@ -171,6 +171,39 @@ These reset causes `are documented <https://www.espressif.com/sites/default/file
 
 After a software reset, the reset cause will not change.
 
+Electrical Characteristics
+--------------------------
+
+.. table::
+    :class: no-center
+
+    =========================================================== =========== =========== =========== ===========
+    **Parameter**                                               **Min.**    **Typical** **Max.**    **Unit**
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    Operating Temperature                                       -40                     125         °C
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    Working Voltage ``V_IO``                                    2.5         3.3         3.6         V
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    ``V_IL`` - INPUT voltage level to be considered LOW         -0.3                    0.25*V_IO   V
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    ``V_IH`` - INPUT voltage level to be considered HIGH        0.75*V_IO               3.6         V
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    ``V_OL`` - OUTPUT voltage level for LOW                                             0.1*V_IO    V
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    ``V_OH`` - OUTPUT voltage level for HIGH                    0.8*V_IO                            V
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    ``I_MAX`` - Maximum current for GPIO                                                12          mA
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    Power Consumption in Deep Sleep                                         20                      µA
+    ----------------------------------------------------------- ----------- ----------- ----------- -----------
+    Power Consumption in Active Mode                                        120                     mA
+    =========================================================== =========== =========== =========== ===========
+
+Source: `ESP8266EX datasheet <https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf>`__
+
+The internal pull up/down resistors have values of 30kΩ to 100kΩ
+(`source <https://bbs.espressif.com/viewtopic.php?t=1079>`__).
+
 See Also
 --------
 
