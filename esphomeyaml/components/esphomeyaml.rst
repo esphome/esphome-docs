@@ -118,7 +118,7 @@ And last, you can make esphomeyaml use a specific branch/commit/tag from a remot
         branch: master
 
       esphomelib_version:
-        repository: https://github.com/somebody/esphomelib.git
+        repository: https://github.com/OttoWinter/esphomelib.git
         commit: d27bac9263e8a0a5a00672245b38db3078f8992c
 
       esphomelib_version:
