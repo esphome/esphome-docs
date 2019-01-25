@@ -46,7 +46,7 @@ For this guide you will need:
 -  Sonoff S20 😉
 -  An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
    Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your S20.
--  Computer running esphomeyaml HassIO add-on.
+-  Computer running esphomeyaml Hass.io add-on.
 -  Screwdriver to open up the S20.
 -  Soldering iron and a few header pins to connect the UART interface.
 

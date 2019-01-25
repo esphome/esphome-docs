@@ -38,189 +38,35 @@ API Reference
 LightColorValues
 ****************
 
-.. doxygenclass:: light::LightColorValues
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/light/light_color_values.h
 
 LightEffect
 ***********
 
-.. doxygenclass:: light::LightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::RandomLightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenstruct:: light::StrobeLightEffectColor
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::StrobeLightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FlickerLightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::LambdaLightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::BaseFastLEDLightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDLambdaLightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDRainbowLightEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenstruct:: light::FastLEDColorWipeEffectColor
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDColorWipeEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDScanEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDTwinkleEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDRandomTwinkleEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDFireworksEffect
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::FastLEDFlickerEffect
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/light/light_effect.h
 
 LightOutput
 ***********
 
-.. doxygenclass:: light::LightOutput
-    :members:
-    :protected-members:
-    :undoc-members:
-
-
-.. doxygenclass:: light::BinaryLightOutput
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::MonochromaticLightOutput
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::CWWWLightOutput
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::RGBLightOutput
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::RGBWLightOutput
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::RGBWWLightOutput
-    :members:
-    :protected-members:
-    :undoc-members:
-
-
+.. doxygenfile:: esphomelib/light/light_output.h
 
 LightState
 **********
 
-.. doxygenclass:: light::LightState
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/light/light_state.h
 
 LightTraits
 ***********
 
-.. doxygenclass:: light::LightTraits
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/light/light_traits.h
 
 
 LightTransformer
 ****************
 
-.. doxygenclass:: light::LightTransformer
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::LightTransitionTransformer
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::LightFlashTransformer
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/light/light_transformer.h
 
 MQTTJSONLightComponent
 **********************
 
-.. doxygenclass:: light::MQTTJSONLightComponent
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::TurnOffAction
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::TurnOnAction
-    :members:
-    :protected-members:
-    :undoc-members:
-
-.. doxygenclass:: light::ToggleAction
-    :members:
-    :protected-members:
-    :undoc-members:
+.. doxygenfile:: esphomelib/light/mqtt_json_light_component.h

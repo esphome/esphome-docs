@@ -20,3 +20,4 @@ Core
     Time <time>
     SPI Bus <spi>
     UART Bus <uart>
+    Native API for Home Assistant <native-api>

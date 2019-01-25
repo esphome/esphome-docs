@@ -42,8 +42,8 @@ Configuration variables:
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32,
   this value can not be higher than ``13us``, for the ESP8266 you can use larger intervals too.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
-  See :ref:`sensor-default_filter`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 

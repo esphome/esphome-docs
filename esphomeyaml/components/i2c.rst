@@ -9,7 +9,9 @@ I²C Bus
     :keywords: i2c, iic, bus
 
 This component sets up the i²c bus for your ESP32 or ESP8266. In order for those components
-to work correctly, you need to define the i²c bus in your configuration.
+to work correctly, you need to define the i²c bus in your configuration. Please note the ESP
+will enable its internal 10kΩ pullup resistors for these pins, so you usually don't need to
+put on external ones.
 
 .. code-block:: yaml
 

@@ -412,10 +412,10 @@ Publish an MQTT message on a topic using this action in automations.
 
         # Templated:
         - mqtt.publish:
-            topic: !lambda >-
+            topic: !lambda |-
               if (id(reed_switch).state) return "topic1";
               else return "topic2";
-            payload: !lambda >-
+            payload: !lambda |-
               return id(reed_switch).state ? "YES" : "NO";
 
 Configuration options:

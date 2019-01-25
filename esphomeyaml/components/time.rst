@@ -10,7 +10,35 @@ Time
 
 The ``time`` component allows you to set up real time clock time sources for esphomelib.
 You can then get the current time in :ref:`lambdas <config-lambda>`.
-Currently only sntp (internet-based) time is supported.
+Currently only sntp (internet-based) and homeassistant time sources are supported.
+
+Home Assistant Time Source
+--------------------------
+
+The preferred way to get time in esphomelib is using Home Assistant.
+With the ``homeassistant`` time platform, the :doc:`native API </esphomeyaml/components/api>` connection
+to Home Assistant will be used to periodically synchronize the current time.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: homeassistant
+        id: homeassistant_time
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
+- **timezone** (*Optional*, string): Manually tell esphomelib what timezone to use with `this format
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
+  or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
+  <Region>/<City>. esphomeyaml tries to automatically infer the timezone string based on the timezone of the computer
+  that is running esphomeyaml, but this might not always be accurate.
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
+  a cron-like syntax. See :ref:`time-on_time`.
+
+SNTP Configuration
+------------------
 
 .. code-block:: yaml
 
@@ -19,11 +47,9 @@ Currently only sntp (internet-based) time is supported.
       - platform: sntp
         id: sntp_time
 
-
 Configuration variables:
-------------------------
 
-- **id** (**Required**, :ref:`config-id`): Specify the ID of the time for use in lambdas.
+- **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
 - **timezone** (*Optional*, string): Manually tell esphomelib what timezone to use with `this format
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated) or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form <Region>/<City>.
   esphomeyaml tries to automatically infer the timezone string based on the timezone of the computer that is running
@@ -32,12 +58,6 @@ Configuration variables:
   Defaults to ``0.pool.ntp.org``, ``1.pool.ntp.org`` and ``2.pool.ntp.org``
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
-
-.. note::
-
-    To use the automatic timezone detection you will need to have the python ``tzlocal`` package installed.
-    If you're running this as a HassIO add-on or with the official esphomeyaml docker image, it should already
-    be installed. Otherwise you need to install it using ``pip2 install tzlocal``.
 
 Use In Lambdas
 --------------

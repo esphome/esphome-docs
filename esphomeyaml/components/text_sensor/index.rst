@@ -87,9 +87,8 @@ See Also
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
-    version
-    mqtt_subscribe
-    template
+    *
 
 .. disqus::

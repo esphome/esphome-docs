@@ -17,6 +17,7 @@ MQTTClientComponent
     :undoc-members:
 
 .. doxygentypedef:: mqtt::mqtt_callback_t
+.. doxygentypedef:: mqtt::mqtt_json_callback_t
 
 .. doxygenstruct:: mqtt::MQTTMessage
     :members:
@@ -80,6 +81,16 @@ Actions
     :undoc-members:
 
 .. doxygenclass:: mqtt::MQTTPublishJsonAction
+    :members:
+    :protected-members:
+    :undoc-members:
+
+.. _api-custom_mqtt_device:
+
+CustomMQTTDevice
+****************
+
+.. doxygenclass:: mqtt::CustomMQTTDevice
     :members:
     :protected-members:
     :undoc-members:

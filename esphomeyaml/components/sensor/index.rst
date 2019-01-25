@@ -189,30 +189,11 @@ fahrenheit.
       - lambda: return x * (9.0/5.0) + 32.0;
     unit_of_measurement: "°F"
 
-.. _sensor-default_filter:
-
-``update_interval`` gotchas
----------------------------
-
-By default, esphomelib takes an average over the last 15 values before publishing updates.
-This was done in order to automatically decrease sensor noise.
-Therefore if you have an ``update_interval`` of 15 seconds, you will only see the values
-every 3 and a half minutes or so. To disable the default filter and publish all raw values
-directly, put an empty ``filters:`` block in your configuration:
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    sensor:
-      - platform: adc
-        # ...
-        filters: []
-
 Sensor Automation
 -----------------
 
 You can access the most recent state of the sensor in :ref:`lambdas <config-lambda>` using
-``id(sensor_id).state`` and the most recent raw state using ``id(sensor_id).raw_value``.
+``id(sensor_id).state`` and the most recent raw state using ``id(sensor_id).raw_state``.
 
 .. _sensor-on_value:
 
@@ -288,6 +269,33 @@ with ``x``.
                 red: !lambda "return x/255;"
 
 Configuration variables: See :ref:`Automation <automation>`.
+
+.. _sensor-in_range_condition:
+
+``sensor.in_range`` Condition
+*****************************
+
+This condition passes if the state of the given sensor is inside a range.
+
+Define the range with ``above`` and ``below``. If only one of them is defined, the interval is half-open.
+So for example ``above: 5`` with no below would mean the range from 5 to positive infinity.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          sensor.in_range:
+            id: my_sensor
+            above: 50.0
+        then:
+        - script.execute: my_script
+
+Configuration variables:
+
+- **above** (*Optional*, float): The minimum for the condition.
+- **below** (*Optional*, float): The maximum for the condition.
 
 lambda calls
 ************

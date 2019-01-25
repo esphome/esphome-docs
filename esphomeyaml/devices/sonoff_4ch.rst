@@ -47,7 +47,7 @@ For this guide you will need:
 - An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins.
-- Computer running esphomeyaml or HassIO add-on.
+- Computer running esphomeyaml or Hass.io add-on.
 - Screwdriver to open up the Sonoff 4CH.
 
 Have everything? Great! Then you can start.

@@ -37,7 +37,7 @@ required to be set up in your configuration for this sensor to work.
           name: "Living Room Temperature"
         humidity:
           name: "Living Room Humidity"
-        update_interval: 15s
+        update_interval: 60s
 
 Configuration variables:
 ------------------------
@@ -54,8 +54,8 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
-  See :ref:`sensor-default_filter`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+
 
 See Also
 --------

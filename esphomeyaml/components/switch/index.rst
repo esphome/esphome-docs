@@ -69,6 +69,23 @@ This action turns a switch with the given ID off when executed.
       then:
         - switch.turn_off: relay_1
 
+.. _switch-is_on_condition:
+.. _switch-is_off_condition:
+
+``switch.is_on`` / ``switch.is_off`` Condition
+**********************************************
+
+This :ref:`Condition <config-condition>` checks if the given switch is ON (or OFF).
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          # Same syntax for is_off
+          switch.is_on: my_switch
+
 lambda calls
 ************
 
@@ -95,16 +112,34 @@ advanced stuff (see the full :doc:`API Reference </api/cover/index>` for more in
         // Switch is OFF, do something else here
       }
 
-- ``write_state()``: Manually cause the cover to go into an OFF/ON state from code.
+- ``turn_off()``/``turn_on``: Manually turn the switch ON/OFF from code.
   Similar to the ``switch.turn_on`` and ``switch.turn_off`` actions,
   but can be used in complex lambda expressions.
 
   .. code-block:: yaml
 
-      id(my_switch).write_state(false);
-      id(my_switch).write_state(true);
+      id(my_switch).turn_off();
+      id(my_switch).turn_on(true);
       // Toggle the switch
-      id(my_switch).write_state(!id(my_switch).state);
+      id(my_switch).toggle();
+
+.. _switch-is_on_off_condition:
+
+``switch.is_on`` / ``switch.is_off Condition
+********************************************
+
+This :ref:`condition <config-condition>` passes if the given switch is on/off.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          switch.is_on: my_switch
+          # same goes for is_off
+        then:
+        - script.execute: my_script
 
 See Also
 --------

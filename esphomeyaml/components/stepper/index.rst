@@ -9,7 +9,10 @@ Stepper Component
 The ``stepper`` component allows you to use stepper motors with esphomelib.
 Currently only the A4988 stepper driver
 (`datasheet <https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf>`__)
-is supported.
+and ULN2003 (`datasheet <http://www.ti.com/lit/ds/symlink/uln2003a.pdf>`__) are supported.
+
+A4988 Configuration
+-------------------
 
 .. code-block:: yaml
 
@@ -28,7 +31,6 @@ is supported.
 
 
 Configuration variables:
-------------------------
 
 - **id** (**Required**, :ref:`config-id`): Specify the ID of the stepper so that you can control it.
 - **step_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The ``STEP`` pin of the A4988
@@ -46,13 +48,6 @@ Configuration variables:
 - **deceleration** (*Optional*, float): The same as ``acceleration``, but for when the motor is decelerating
   shortly before reaching the set position. Defaults to ``inf`` (immediate deceleration).
 
-
-.. note::
-
-    Esphomelib's core loop only runs 60 times per second by default to conserve power. But this also means it's limited
-    to 60 steps per second. To have higher step rater, you have to open up the ``<NODE_NAME>/src/main.cpp`` file,
-    scroll down to the ``void loop()`` section and remove the ``delay(16);`` line.
-
 .. note::
 
     If the stepper is driving in the wrong direction, you can invert the ``dir_pin``:
@@ -66,6 +61,46 @@ Configuration variables:
               number: D1
               inverted: True
 
+ULN2003 Configuration
+---------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    stepper:
+      - platform: uln2003
+        id: my_stepper
+        pin_a: D0
+        pin_b: D1
+        pin_c: D2
+        pin_d: D3
+        max_speed: 250 steps/s
+
+        # Optional:
+        acceleration: inf
+        deceleration: inf
+
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): Specify the ID of the stepper so that you can control it.
+- **pin_a**, **pin_b**, **pin_c**, **pin_d** (**Required**, :ref:`Pin Schema <config-pin_schema>`):
+  The four pins of the stepper control board.
+- **sleep_when_done** (*Optional*, boolean): Whether to turn off all coils when the stepper has
+  reached the target position
+- **step_mode** (*Optional*, string): The step mode to operate the motor with. One of:
+
+    - ``FULL_STEP`` (Default)
+    - ``HALF_STEP``
+    - ``WAVE_DRIVE``
+
+- **max_speed** (**Required**, float): The maximum speed in ``steps/s`` (steps per seconds) to drive the
+  stepper at. Note most steppers can't step properly with speeds higher than 250 steps/s.
+- **acceleration** (*Optional*, float): The acceleration in ``steps/s^2`` (steps per seconds squared)
+  to use when starting to move. The default is ``inf`` which means infinite acceleration, so the
+  stepper will try to drive with the full speed immediately.
+- **deceleration** (*Optional*, float): The same as ``acceleration``, but for when the motor is decelerating
+  shortly before reaching the set position. Defaults to ``inf`` (immediate deceleration).
 
 .. _stepper-set_target_action:
 

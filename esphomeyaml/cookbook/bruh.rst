@@ -49,7 +49,7 @@ configuration file 😀
         name: "Multisensor Brightness"
         unit_of_measurement: lux
         filters:
-          - lambda: >-
+          - lambda: |-
               return (x / 10000.0) * 2000000.0;
 
     binary_sensor:

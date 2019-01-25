@@ -23,7 +23,7 @@ Installing esphomeyaml is very easy. All you need to do is have `Python
 
 Alternatively, there’s also a docker image available for easy
 installation (the docker hub image is only available for amd64 right now; if you have
-an RPi, please install esphomelib through ``pip`` or use :doc:`the HassIO add-on <getting_started_hassio>`:
+an RPi, please install esphomelib through ``pip`` or use :doc:`the Hass.io add-on <getting_started_hassio>`:
 
 .. code-block:: bash
 
@@ -41,7 +41,7 @@ file called ``livingroom.yaml``:
 
     esphomeyaml livingroom.yaml wizard
     # On Docker:
-    docker run --rm -v "`pwd`":/config -it ottowinter/esphomeyaml livingroom.yaml wizard
+    docker run --rm -v ${PWD}:/config -it ottowinter/esphomeyaml livingroom.yaml wizard
 
 .. note::
 
@@ -172,7 +172,7 @@ Bonus: esphomeyaml dashboard
 
 Starting with version 1.6.0, esphomeyaml features a dashboard that you can use to
 easily manage your nodes from a nice web interface. It was primarily designed for
-:doc:`the HassIO add-on <getting_started_hassio>`, but also works with a simple command.
+:doc:`the Hass.io add-on <getting_started_hassio>`, but also works with a simple command.
 
 To start the esphomeyaml dashboard, simply start esphomeyaml with the following command
 (with ``config/`` pointing to a directory where you want to store your configurations)

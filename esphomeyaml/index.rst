@@ -21,14 +21,17 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through HassIO Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
     Configuration Types, guides/configuration-types, settings.svg
+
     Migrating from Sonoff-Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
     Migrating from ESPurna, guides/migrate_espurna, espurna.svg
     Migrating from ESPEasy, guides/migrate_espeasy, espeasy.svg
+
     Automations, guides/automations, auto-fix.svg
     FAQ and Tips, guides/faq, question_answer.svg
     Contributing, guides/contributing, github-circle.svg
+
     Changelog, changelog/index, new-box.svg
 
 .. _devices:
@@ -45,9 +48,11 @@ These are only the devices for which I've had the time to set up dedicated guide
     Generic ESP8266, devices/esp8266, esp8266.svg
     Generic ESP32, devices/esp32, esp32.svg
     NodeMCU ESP8266, devices/nodemcu_esp8266, nodemcu_esp8266.jpg
+
     NodeMCU ESP32, devices/nodemcu_esp32, nodemcu_esp32.jpg
     Sonoff S20, devices/sonoff_s20, sonoff_s20.jpg
     Sonoff 4CH, devices/sonoff_4ch, sonoff_4ch.jpg
+
     Generic Sonoff, devices/sonoff, sonoff.svg
     Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
 
@@ -59,12 +64,16 @@ Core Components
     Core, components/esphomeyaml, cloud-circle.svg
     WiFi, components/wifi, network-wifi.svg
     MQTT, components/mqtt, mqtt.png
+
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
     UART Bus, components/uart, uart.svg
+
     OTA Updates, components/ota, system-update.svg
     Logger, components/logger, file-document-box.svg
     Web Server, components/web_server, http.svg
+
+    Native API, components/api, server-network.svg
     Power Supply, components/power_supply, power.svg
     Deep Sleep, components/deep_sleep, hotel.svg
 
@@ -76,6 +85,7 @@ Sensor Components
     Sensor Core, components/sensor/index, folder-open.svg
     ADC, components/sensor/adc, flash.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
+    APDS9960, components/sensor/apds9960, apds9960.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
@@ -91,10 +101,12 @@ Sensor Components
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
+    Home Assistant, components/sensor/homeassistant, home-assistant.svg
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
     HTU21D, components/sensor/htu21d, htu21d.jpg
+    MAX31855, components/sensor/max31855, max31855.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
@@ -135,6 +147,7 @@ Binary Sensor Components
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
     PN532 Tag, components/binary_sensor/pn532, pn532.jpg
     RDM6300 Tag, components/binary_sensor/rdm6300, rdm6300.jpg
+    Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
 -----------------
@@ -147,6 +160,7 @@ Output Components
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
+    Custom Output, components/output/custom, language-cpp.svg
 
 Light Components
 ----------------
@@ -156,12 +170,16 @@ Light Components
     Light Core, components/light/index, folder-open.svg
     Binary Light, components/light/binary, lightbulb.svg
     Monochromatic Light, components/light/monochromatic, brightness-medium.svg
+
     Cold+Warm White Light, components/light/cwww, brightness-medium.svg
     RGB Light, components/light/rgb, rgb.png
     RGBW Light, components/light/rgbw, rgbw.png
+
     RGBWW Light, components/light/rgbww, rgbw.png
     FastLED Clockless Light, components/light/fastled_clockless, color_lens.svg
     FastLED SPI Light, components/light/fastled_spi, color_lens.svg
+
+    NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Clockless Light <components/light/fastled_clockless>`.
@@ -179,6 +197,7 @@ Switch Components
     Generic Output Switch, components/switch/output, upload.svg
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
+    Custom Switch, components/switch/custom, language-cpp.svg
 
 Fan Components
 --------------
@@ -217,9 +236,11 @@ Text Sensor Components
 .. imgtable::
 
     Text Sensor Core, components/text_sensor/index, folder-open.svg
+    Home Assistant, components/text_sensor/homeassistant, home-assistant.svg
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     Template Text Sensor, components/text_sensor/template, description.svg
+    Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
 
 Misc Components
 ---------------
@@ -242,6 +263,17 @@ Misc Components
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
     MY9231/MY9291 LED driver, components/my9231, my9231.svg
+    ESP32 Ethernet, components/ethernet, ethernet.svg
+
+Additional Custom Components
+----------------------------
+
+.. imgtable::
+
+    Generic Custom Component, custom/custom_component, language-cpp.svg
+    Custom I2C Component, custom/i2c, language-cpp.svg
+    Custom SPI Component, custom/spi, language-cpp.svg
+    Custom UART Component, custom/uart, language-cpp.svg
 
 .. _cookbook:
 
@@ -260,8 +292,11 @@ This list contains items that are technically already supported by other compone
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
+<<<<<<< HEAD
     Sonoff 4CH Outdoor Lights, cookbook/sonoff-4ch-lights, cookbook-sonoff-4ch-lights.jpg
     Sonoff T1 Touch 3 Gang (UK) v1.0 - Lights, cookbook/sonoff-touch-3ch-uk-lights, cookbook-sonoff-4ch-lights.jpg
+=======
+>>>>>>> ecdfbf2fc81904a63e6712b344a98bc021bf4b25
 
 Do you have other awesome automations or 2nd order components? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
@@ -274,3 +309,4 @@ documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
     devices/index
     guides/index
     changelog/index
+    custom/index

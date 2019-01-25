@@ -37,15 +37,15 @@ Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or
       - platform: max6675
         name: "Living Room Temperature"
         cs_pin: D2
-        update_interval: 15s
+        update_interval: 60s
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name for the temperature sensor.
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select pin of the SPI interface.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``15s``.
-  See :ref:`sensor-default_filter`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

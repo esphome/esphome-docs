@@ -1,0 +1,9 @@
+APDS9960 Sensor
+===============
+
+See :cpp:func:`Application::make_apds9960`.
+
+API Reference
+-------------
+
+.. doxygenclass:: esphomelib/sensor/apds9960.h

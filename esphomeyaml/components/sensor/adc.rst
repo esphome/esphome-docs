@@ -21,7 +21,7 @@ GPIO39 can be used.
       - platform: adc
         pin: A0
         name: "Living Room Brightness"
-        update_interval: 15s
+        update_interval: 60s
 
 Configuration variables:
 ------------------------
@@ -32,7 +32,7 @@ Configuration variables:
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
   attenuation to use. See :ref:`adc-esp32_attenuation`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
-  to check the sensor. Defaults to ``15s``. See :ref:`sensor-default_filter`.
+  to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -73,20 +73,6 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
       - platform: adc
         pin: VCC
         name: "VCC Voltage"
-
-Next, you need to add a line at the top of your C++ project source code. Unfortunately, esphomelib can't do this
-automatically for you because of how the compiler is linking the esphomelib library. Open up the
-``<NODE_NAME>/src/main.cpp`` file and insert the ``ADC_MODE`` line like this:
-
-.. code:: cpp
-
-    using namespace esphomelib;
-
-    // Enable measuring VCC
-    ADC_MODE(ADC_VCC);
-
-    void setup() {
-      // ...
 
 See Also
 --------

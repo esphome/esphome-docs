@@ -1,0 +1,32 @@
+{% extends 'alabaster/layout.html' %}
+
+{% block footer %}
+  <div class="footer">
+    <a href="/misc/privacy.html">Privacy Policy</a>
+  </div>
+  <div id="upgrade-footer">
+    A new version has been release since you last visited this page: {{ release }} 🎉
+    <a id="upgrade-footer-changelog" href="/esphomeyaml/changelog/index.html">View Changelog</a>
+  </div>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113203480-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-113203480-2', {'anonymize_ip': true});
+  </script>
+
+  <script>
+    var old = window.localStorage.getItem("release");
+    if (old === null) {
+      window.localStorage.setItem("release", "{{ release }}");
+    } else if (old !== "{{ release }}") {
+      document.getElementById("upgrade-footer").classList.add("not-hidden");
+      document.getElementById("upgrade-footer-changelog").addEventListener('click', function () {
+        window.localStorage.setItem("release", "{{ release }}");
+      });
+    }
+  </script>
+{% endblock %}

@@ -33,8 +33,8 @@ decided to also install a simple push button next to the dehumidifier on pin GPI
 A simple push on this button should toggle the state of the dehumidifier.
 
 You *could* write an automation to do this task in Home Assistant's automation engine, but
-ideally the IoT should work without an internet connection and should not break without
-the MQTT server being online.
+ideally the IoT should work without an internet connection and should not break with
+the MQTT server being offline.
 
 That's why, starting with esphomelib 1.7.0, there's a new automation engine. With it, you
 can write some basic (and also some more advanced) automations using a syntax that is
@@ -175,7 +175,7 @@ first:
     cover:
       - platform: template
         name: Living Room Cover
-        lambda: !lambda >-
+        lambda: !lambda |-
           if (id(top_end_stop).state) {
             return cover::COVER_OPEN;
           } else {
@@ -189,14 +189,14 @@ name lambda is used instead of Home Assistant's "template" lingo to avoid confus
 shy away from using lambdas because you just hear C++ and think oh noes, I'm not going down *that* road:
 Writing lambdas is not that hard! Here's a bit of a primer:
 
-First, you might have already wondered what the ``lambda: !lambda >-`` part is supposed to mean. ``!lambda``
+First, you might have already wondered what the ``lambda: !lambda |-`` part is supposed to mean. ``!lambda``
 tells esphomeyaml that the following block is supposed to be interpreted as a lambda, or C++ code. Note that
 here, the ``lambda:`` key would actually implicitly make the following block a lambda so in this context,
-you could have just written ``lambda: >-``.
+you could have just written ``lambda: |-``.
 
-Next, there's the weird ``>-`` character combination. This effectively tells the YAML parser to treat the following
+Next, there's the weird ``|-`` character combination. This effectively tells the YAML parser to treat the following
 **indented** (!) block as plaintext. Without it, the YAML parser would attempt to read the following block as if
-it were made up of YAML keys like ``cover:`` for example. (You may also have seen variations of this like ``|-``
+it were made up of YAML keys like ``cover:`` for example. (You may also have seen variations of this like ``>-``
 or just ``|`` or ``>``. There's a slight difference in how these different styles deal with whitespace, but for our
 purposes we can ignore that).
 
@@ -245,14 +245,13 @@ if you have a light and want to set it to a pre-defined color when a button is p
             transition_length: 0.5s
             red: 0.8
             green: 1.0
-            blue: !lambda >-
+            blue: !lambda |-
               // The sensor outputs values from 0 to 100. The blue
               // part of the light color will be determined by the sensor value.
               return id(some_sensor).state / 100.0;
 
 Every parameter in actions that has the label "templatable" in the docs can be templated like above, using
 all of the usual lambda syntax.
-
 
 .. _config-globals:
 
@@ -312,49 +311,43 @@ in the :doc:`wifi component </esphomeyaml/components/wifi>` and :doc:`mqtt compo
 All Triggers
 ------------
 
-- :ref:`mqtt.on_message <mqtt-on_message>`
-- :ref:`mqtt.on_json_message <mqtt-on_json_message>`
-- :ref:`sensor.on_value <sensor-on_value>`
-- :ref:`sensor.on_value_range <sensor-on_value_range>`
-- :ref:`sensor.on_raw_value <sensor-on_raw_value>`
-- :ref:`binary_sensor.on_press <binary_sensor-on_press>`
-- :ref:`binary_sensor.on_release <binary_sensor-on_release>`
-- :ref:`binary_sensor.on_click <binary_sensor-on_click>`
-- :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>`
-- :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
-- :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>`
-- :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>`
-- :ref:`esphomeyaml.on_loop <esphomeyaml-on_loop>`
+- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
+- :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
+- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` / :ref:`binary_sensor.on_state <binary_sensor-on_state>`
+- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` / :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
+- :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>` / :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>` / :ref:`esphomeyaml.on_loop <esphomeyaml-on_loop>`
 - :ref:`pn532.on_tag <pn532-on_tag>`
+- :ref:`time.on_time <time-on_time>`
+- :ref:`interval.interval <interval>`
 
 All Actions
 -----------
 
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
-- :ref:`if <if_action>`
+- :ref:`if <if_action>` / :ref:`while <while_action>`
 - :ref:`component.update <component-update_action>`
-- :ref:`script.execute <script-execute_action>`
+- :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>`
 - :ref:`logger.log <logger-log_action>`
-- :ref:`mqtt.publish <mqtt-publish_action>`
-- :ref:`mqtt.publish_json <mqtt-publish_json_action>`
-- :ref:`switch.toggle <switch-toggle_action>`
-- :ref:`switch.turn_off <switch-turn_off_action>`
-- :ref:`switch.turn_on <switch-turn_on_action>`
-- :ref:`light.toggle <light-toggle_action>`
-- :ref:`light.turn_off <light-turn_off_action>`
-- :ref:`light.turn_on <light-turn_on_action>`
-- :ref:`cover.open <cover-open_action>`
-- :ref:`cover.close <cover-close_action>`
-- :ref:`cover.stop <cover-stop_action>`
-- :ref:`fan.toggle <fan-toggle_action>`
-- :ref:`fan.turn_off <fan-turn_off_action>`
-- :ref:`fan.turn_on <fan-turn_on_action>`
-- :ref:`output.turn_off <output-turn_off_action>`
-- :ref:`output.turn_on <output-turn_on_action>`
-- :ref:`output.set_level <output-set_level_action>`
-- :ref:`deep_sleep.enter <deep_sleep-enter_action>`
-- :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
+- :ref:`homeassistant.service <api-homeassistant_service_action>`
+- :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
+- :ref:`switch.toggle <switch-toggle_action>` / :ref:`switch.turn_off <switch-turn_off_action>` / :ref:`switch.turn_on <switch-turn_on_action>`
+- :ref:`light.toggle <light-toggle_action>` / :ref:`light.turn_off <light-turn_off_action>` / :ref:`light.turn_on <light-turn_on_action>`
+- :ref:`cover.open <cover-open_action>` / :ref:`cover.close <cover-close_action>` / :ref:`cover.stop <cover-stop_action>`
+- :ref:`fan.toggle <fan-toggle_action>` / :ref:`fan.turn_off <fan-turn_off_action>` / :ref:`fan.turn_on <fan-turn_on_action>`
+- :ref:`output.turn_off <output-turn_off_action>` / :ref:`output.turn_on <output-turn_on_action>` / :ref:`output.set_level <output-set_level_action>`
+- :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
+
+.. _config-condition:
+
+All Conditions
+--------------
+
+- :ref:`lambda <lambda_condition>`
+- :ref:`and <and_condition>` / :ref:`or <or_condition>`
+- :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
+- :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
+- :ref:`sensor.in_range <sensor-in_range_condition>`
 
 .. _delay_action:
 
@@ -393,6 +386,45 @@ This action executes an arbitrary piece of C++ code (see :ref:`Lambda <config-la
         - lambda: |-
             id(some_binary_sensor).publish_state(false);
 
+.. _lambda_condition:
+
+``lambda`` Condition
+--------------------
+
+This condition performs an arbitrary piece of C++ code (see :ref:`Lambda <config-lambda>`)
+and can be used to create conditional flow in actions.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - if:
+            condition:
+              # Should return either true or false
+              lambda: |-
+                return id(some_sensor).state < 30;
+            # ...
+
+.. _and_condition:
+.. _or_condition:
+
+``and`` / ``or`` Condition
+--------------------------
+
+Check a combination of conditions
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - if:
+            condition:
+              # Same syntax for and
+              or:
+                - binary_sensor.is_on: some_binary_sensor
+                - binary_sensor.is_on: other_binary_sensor
+            # ...
+
 .. _if_action:
 
 ``if`` Action
@@ -414,22 +446,46 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
             condition:
               lambda: 'return id(some_sensor).state < 30;'
             then:
-              - lambda: 'ESP_LOGD("main", "The sensor value is below 30!");
+              - logger.log: "The sensor value is below 30!"
               - light.turn_on: my_light
               - delay: 5s
             else:
-              - lambda: 'ESP_LOGD("main", "The sensor value is above 30!");
+              - logger.log: "The sensor value is above 30!"
         - light.turn_off: my_light
 
 
 Configuration options:
 
-- **if** (**Required**): The condition to check which branch to take.
+- **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
 - **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
   Defaults to doing nothing.
 - **else** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to false.
   Defaults to doing nothing.
 
+.. _while_action:
+
+``while`` Action
+----------------
+
+This action is similar to the :ref:`if <if_action>` Action. The ``while`` action executes
+a block until a given condition evaluates to false.
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - while:
+          condition:
+            binary_sensor.is_on: some_binary_sensor
+          then:
+          - logger.log: "Still executing"
+          - light.toggle: some_light
+          - delay: 5s
+
+Configuration options:
+
+- **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
+- **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
 
 .. _component-update_action:
 
@@ -476,6 +532,53 @@ execute the script with a single call.
     on_...:
       then:
         - script.execute: my_script
+
+.. _script-stop_action:
+
+``script.stop`` Action
+----------------------
+
+This action allows you to stop a given script during execution. If the
+script is not running, does nothing.
+Please note this is only useful right now if your script contains a ``delay`` action.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.stop: my_script
+
+.. _interval:
+
+``interval``
+------------
+
+This component allows you to run actions periodically with a fixed interval.
+For example if you want to toggle a switch every minute, you can use this component.
+Please note that this certain cases are also possible with the :ref:`time.on_time <time-on_time>`
+trigger, but this one is more light-weight and user-friendly.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    interval:
+      - interval: 1min
+        then:
+          - switch.toggle: relay_1
+
+Configuration options:
+
+- **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
+- **then** (**Required**, :ref:`config-action`): The action to perform.
 
 See Also
 --------

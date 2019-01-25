@@ -62,7 +62,7 @@ This action turns a light with the given ID on when executed.
         # Templated
         - light.turn_on:
             id: light_1
-            brightness: !lambda >-
+            brightness: !lambda |-
               // output value must be in range 0 - 1.0
               return id(some_sensor).state / 100.0;
 
@@ -158,6 +158,9 @@ entries with each having a unique name like so:
       - platform: ...
         # ...
         effects:
+          # Use default parameters:
+          - random:
+          # Customize parameters
           - random:
               name: "My Slow Random Effect"
               transition_length: 30s
@@ -296,8 +299,8 @@ Configuration variables:
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The code to execute. ``static`` variables are
   especially useful.
 
-FastLED Rainbow Effect
-**********************
+Addressable Rainbow Effect
+**************************
 
 A light effect for individually-addressable LEDs that creates a moving rainbow over the whole LED strip using
 the HSV color wheel.
@@ -305,11 +308,11 @@ the HSV color wheel.
 .. code-block:: yaml
 
     light:
-      - platform: fastled_...
+      - platform: ...
         # ...
         effects:
-          - fastled_rainbow:
-          - fastled_rainbow:
+          - addressable_rainbow:
+          - addressable_rainbow:
               name: Rainbow Effect With Custom Values
               speed: 10
               width: 50
@@ -321,8 +324,8 @@ Configuration variables:
 - **width** (*Optional*, int): The "width" of a full-scale rainbow, unitless. Defaults to ``50``.
 
 
-FastLED Color Wipe Effect
-*************************
+Addressable Color Wipe Effect
+*****************************
 
 A light effect for individually-addressable LEDs that continuously introduces new colors at the beginning of
 the strip and shifts them forward every ``add_led_interval``.
@@ -330,11 +333,11 @@ the strip and shifts them forward every ``add_led_interval``.
 .. code-block:: yaml
 
     light:
-      - platform: fastled_...
+      - platform: ...
         # ...
         effects:
-          - fastled_color_wipe:
-          - fastled_color_wipe:
+          - addressable_color_wipe:
+          - addressable_color_wipe:
               name: Color Wipe Effect With Custom Values
               colors:
                 - red: 100%
@@ -365,8 +368,8 @@ Configuration variables:
   beginning of the strip. Defaults to ``100ms``.
 - **reverse** (*Optional*, boolean): Whether to reverse the direction of the color wipe. Defaults to ``False``.
 
-FastLED Scan Effect
-*******************
+Addressable Scan Effect
+***********************
 
 Create a single, fast-moving dot moving back and forth an individually-addressable LED strip. The color is chosen by the
 currently active light color.
@@ -374,11 +377,11 @@ currently active light color.
 .. code-block:: yaml
 
     light:
-      - platform: fastled_...
+      - platform: ...
         # ...
         effects:
-          - fastled_scan:
-          - fastled_scan:
+          - addressable_scan:
+          - addressable_scan:
               name: Scan Effect With Custom Values
               move_interval: 100ms
 
@@ -388,8 +391,8 @@ Configuration variables:
 - **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot one LED forward.
   Defaults to ``100ms``.
 
-FastLED Twinkle Effect
-**********************
+Addressable Twinkle Effect
+**************************
 
 A light effect for individually-addressable LED strips that randomly chooses some LEDs and let's them bright
 up for a moment, like a stars twinkling in the night's sky. The color of the pixels will be chosen by the
@@ -398,11 +401,11 @@ currently active light color.
 .. code-block:: yaml
 
     light:
-      - platform: fastled_...
+      - platform: ...
         # ...
         effects:
-          - fastled_twinkle:
-          - fastled_twinkle:
+          - addressable_twinkle:
+          - addressable_twinkle:
               name: Twinkle Effect With Custom Values
               twinkle_probability: 5%
               progress_interval: 4ms
@@ -415,19 +418,19 @@ Configuration variables:
 - **progress_interval** (*Optional*, :ref:`config-time`): The interval with which to progress the effect. This
   affects the duration of a twinkle animation. Defaults to ``4ms``.
 
-FastLED Random Twinkle Effect
-*****************************
+Addressable Random Twinkle Effect
+*********************************
 
-A light effect similar to ``fastled_twinkle``, but using random colors for each twinkle animation.
+A light effect similar to ``addressable_twinkle``, but using random colors for each twinkle animation.
 
 .. code-block:: yaml
 
     light:
-      - platform: fastled_...
+      - platform: ...
         # ...
         effects:
-          - fastled_random_twinkle:
-          - fastled_random_twinkle:
+          - addressable_random_twinkle:
+          - addressable_random_twinkle:
               name: Random Twinkle Effect With Custom Values
               twinkle_probability: 5%
               progress_interval: 32ms
@@ -441,8 +444,8 @@ Configuration variables:
   affects the duration of a twinkle animation. Defaults to ``4ms``.
 
 
-FastLED Fireworks Effect
-************************
+Addressable Fireworks Effect
+****************************
 
 A light effect for individually-addressable LED strips that randomly sparks some fireworks at random positions
 and lets the sparkles cascade over the LED strip.
@@ -450,11 +453,11 @@ and lets the sparkles cascade over the LED strip.
 .. code-block:: yaml
 
     light:
-      - platform: fastled_...
+      - platform: ...
         # ...
         effects:
-          - fastled_fireworks:
-          - fastled_fireworks:
+          - addressable_fireworks:
+          - addressable_fireworks:
               name: Fireworks Effect With Custom Values
               update_interval: 32ms
               spark_probability: 10%
@@ -474,8 +477,8 @@ Configuration variables:
   chosen so that the whole strip doesn't light up forever if the fade out rate is too low or that the firework
   sparks do not propagate for a long time. Defaults to ``120``.
 
-FastLED Flicker Effect
-**********************
+Addressable Flicker Effect
+**************************
 
 An effect similar to the ``flicker`` effect, but for individually-addressable LED strips. This effect flickers
 each LED by its own random amount around the currently active light color.
@@ -483,18 +486,18 @@ each LED by its own random amount around the currently active light color.
 .. code-block:: yaml
 
     light:
-      - platform: fastled_...
+      - platform: ...
         # ...
         effects:
-          - fastled_flicker:
-          - fastled_flicker:
+          - addressable_flicker:
+          - addressable_flicker:
               name: Flicker Effect With Custom Values
               update_interval: 16ms
               intensity: 5%
 
 Configuration variables:
 
-- **name** (*Optional*, string): The name of the effect. Defaults to ``FastLED Flicker``.
+- **name** (*Optional*, string): The name of the effect. Defaults to ``Addressable Flicker``.
 - **update_interval** (*Optional*, :ref:`config-time`): The time interval for updating the random offsets.
   Defaults to ``16ms``.
 - **intensity** (*Optional*, percentage): The intensity of the effect, basically how much the random values can offset

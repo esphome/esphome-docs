@@ -165,7 +165,7 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as esphomeyaml uses that package
-    to translate the truetype files into an internal format. If you're running this as a HassIO add-on or with
+    to translate the truetype files into an internal format. If you're running this as a Hass.io add-on or with
     the official esphomeyaml docker image, it should already be installed. Otherwise you need to install it using
     ``pip2 install pillow``.
 
@@ -334,7 +334,7 @@ Configuration variables:
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a HassIO add-on or with the official esphomeyaml docker image, it should already be
+    If you're running this as a Hass.io add-on or with the official esphomeyaml docker image, it should already be
     installed. Otherwise you need to install it using ``pip2 install pillow``.
 
 And then later in code:

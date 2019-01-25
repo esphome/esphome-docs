@@ -1,13 +1,13 @@
-Getting Started with esphomeyaml through HassIO
-===============================================
+Getting Started with esphomeyaml through Hass.io
+================================================
 
 .. seo::
-    :description: Getting Started guide for installing esphomeyaml as a HassIO Add-on and creating a basic configuration.
+    :description: Getting Started guide for installing esphomeyaml as a Hass.io Add-on and creating a basic configuration.
     :image: home-assistant.png
 
 esphomeyaml is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
-basic "node" by use of the HassIO add-on.
+basic "node" by use of the Hass.io add-on.
 
 But first, here's a very quick introduction of how esphomeyaml works:
 esphomeyaml is a *tool* which reads in YAML configuration files (just like Home Assistant)
@@ -19,7 +19,7 @@ Assistant's UI.
 Installation
 ------------
 
-Installing the esphomeyaml HassIO add-on is easy. Just navigate to the HassIO
+Installing the esphomeyaml Hass.io add-on is easy. Just navigate to the Hass.io
 panel in your Home Assistant frontend and add the esphomeyaml add-on repository:
 https://github.com/OttoWinter/esphomeyaml
 
@@ -57,9 +57,10 @@ there are three basic actions you can perform:
 
   .. warning::
 
-      The HassIO Add-On is currently not capable of discovering new USB ports after the add-on
+      The Hass.io Add-On is currently not capable of discovering new USB ports after the add-on
       has started due to some docker restrictions. Please go to the add-on details page
-      and restart the add-on if a new USB device is not automatically found.
+      and restart the add-on if a new USB device is not automatically found. If the USB device
+      is still not found, try changing the USB cable and restarting the add-on.
 
 - **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
   binary so that you can upload it yourself from your computer.
@@ -84,11 +85,11 @@ Now go ahead and use one of the :ref:`devices guides <devices>` to extend your c
 intend to flash an esphomeyaml firmware onto. Then proceed with uploading the first firmware using the
 upload button.
 
-HassIO add-on options
-*********************
+Hass.io add-on options
+**********************
 
 Since version 1.8.0, you can optionally specify a password to use for all traffic to esphomeyaml
-using the ``password`` option in the HassIO add-on page. By default, this is an empty string
+using the ``password`` option in the Hass.io add-on page. By default, this is an empty string
 (which means no password), but you can enter any string in there to set your password.
 
 
@@ -106,7 +107,7 @@ to the configuration like this:
         name: "Living Room Dehumidifier"
         pin: 5
 
-In above example, we're simply adding a switch that's called "Living Room Relay" (could control
+In above example, we're simply adding a switch that's called "Living Room Dehumidifier" (could control
 anything really, for example lights) and is connected to the pin ``GPIO5``.
 
 Now if you have `MQTT

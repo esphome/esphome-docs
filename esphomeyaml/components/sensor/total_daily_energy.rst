@@ -17,7 +17,6 @@ daily energy usage in ``Wh`` or ``kWh``.
     # Example configuration entry
     sensor:
       - platform: total_daily_energy
-        pin: 12
         name: "Total Daily Energy"
         power_id: my_power
 
@@ -47,7 +46,7 @@ Converting from W to kW
 Some sensors such as the :doc:`HLW8012 <hlw8012>` expose their power sensor with a unit of measurement of
 ``W``. To have your readings in ``kW``, use a filter:
 
-.. code::
+.. code-block:: yaml
 
     sensor:
       # The power sensor to convert, can be any power sensor

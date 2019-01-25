@@ -17,6 +17,12 @@ class SEONode(nodes.General, nodes.Element):
         self.keywords = keywords
 
 
+class RedirectNode(nodes.General, nodes.Element):
+    def __init__(self, url=None):
+        super(RedirectNode, self).__init__()
+        self.url = url
+
+
 def seo_visit(self: HTMLTranslator, node: SEONode):
     def encode_text(text):
         special_characters = {ord('&'): '&amp;',
@@ -52,7 +58,7 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     # Twitter
     create_content_meta("twitter:title", node.title)
     create_content_meta("twitter:image:src", node.image)
-    create_content_meta("twitter:card", "summary_large_image")
+    create_content_meta("twitter:card", "summary")
     create_content_meta("twitter:site", "@OttoWinter_")
     create_content_meta("twitter:creator", node.author_twitter)
     create_content_meta("twitter:description", node.description)
@@ -70,8 +76,18 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     create_content_meta("theme-color", "#DFDFDF")
 
 
+def redirect_visit(self: HTMLTranslator, node: RedirectNode):
+    self.meta.append('<meta http-equiv="refresh" content="0; url={}">'.format(node.url))
+
+    self.body.append(self.starttag(node, 'p',
+        'Redirecting to <a href="{0}">{0}</a>'.format(node.url)))
+
+
 def seo_depart(self, _):
     pass
+
+def redirect_depart(self, _):
+    self.body.append('</p>')
 
 
 class SEODirective(Directive):
@@ -97,8 +113,20 @@ class SEODirective(Directive):
             self.options['image'] = env.config.html_baseurl + image
         return [SEONode(**self.options)]
 
+class RedirectDirective(Directive):
+    option_spec = {
+        'url': directives.unchanged,
+    }
+
+    def run(self):
+        env = self.state.document.settings.env
+
+        return [RedirectNode(**self.options)]
+
 
 def setup(app):
     app.add_directive('seo', SEODirective)
     app.add_node(SEONode, html=(seo_visit, seo_depart))
+    app.add_directive('redirect', RedirectDirective)
+    app.add_node(RedirectNode, html=(redirect_visit, redirect_depart))
     return {'version': '1.0'}

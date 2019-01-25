@@ -42,8 +42,18 @@ Advanced options:
 - **build_path** (*Optional*, string): Customize where esphomeyaml will store the build files
   for your node. By default, esphomeyaml puts all platformio project files under a folder ``<NODE_NAME>/``,
   but you can customize this behavior using this option.
+- **platformio_options** (*Optional*, mapping): Additional options to pass over to platformio in the
+  platformio.ini file. See :ref:`esphomeyaml-platformio_options`.
+- **includes** (*Optional*, list): Additional files to include in the main.cpp for custom components.
+- **libraries** (*Optional*, list): Additional `platformio libraries <https://platformio.org/lib>`__ to
+  include in the build. Mostly for custom code.
 - **use_custom_code** (*Optional*, boolean): Whether to configure the project for writing custom components.
   This sets up some flags so that custom code should compile correctly
+- **includes** (*Optional*, list of files): A list of files to include in the main (auto-generated) sketch file
+  for custom components. The paths in this list are relative to the directory where the YAML configuration file
+  is in.
+- **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
+  to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
 
 Automations:
 
@@ -230,6 +240,26 @@ This automation will be triggered on every ``loop()`` iteration (usually around 
       on_loop:
         then:
           # do something
+
+.. _esphomeyaml-platformio_options:
+
+``platformio_options``
+----------------------
+
+Platformio supports a number of options in its ``platformio.ini`` file. With the ``platformio_options``
+parameter you can tell esphomeyaml what options to pass into the ``env`` section of the platformio file
+(Note you can also do this by editing the ``platformio.ini`` file manually).
+
+You can view a full list of platformio options here: https://docs.platformio.org/en/latest/projectconf/section_env.html
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esphomeyaml:
+      # ...
+      platformio_options:
+        upload_speed: 115200
+        board_build.f_flash: 80000000L
 
 See Also
 --------

@@ -206,7 +206,11 @@ In this PVC housing the plates are secured using cabinet door magnets for easier
 * Ensure you are using a proper and compliant waterproof box to house your electrical equipment (Sonoff basic) in.
 * Ensure you plan to be able to remove the unit with minimal effort should you need to manually USB reflash it again in future.
 
+<<<<<<< HEAD
 4. Home Assistant
+=======
+2.6. Home Assistant
+>>>>>>> ecdfbf2fc81904a63e6712b344a98bc021bf4b25
 *******************
 
 You can now add your device to home assistant via the configurations page and under the Integrations option
