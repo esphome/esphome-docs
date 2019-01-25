@@ -132,7 +132,7 @@ Slampher
 .. pintable::
 
     GPIO0, Button (inverted),
-    GPIO3, Relay and Red LED,
+    GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
     GPIO1, UART TX pin (for external sensors)
     GPIO3, UART RX pin (for external sensors)
