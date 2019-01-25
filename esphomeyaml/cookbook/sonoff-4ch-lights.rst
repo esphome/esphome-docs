@@ -51,7 +51,7 @@ Here is the configuration with the basic operations outlined above.
   # Once powered, all lights will be 'ON' for one minutes (to indicate unit is working)
   # Each button on the unit will toggle the switch (L1-l4)
   # Press and hold (2-3 seconds) of L1 will 'ON' on all the switches
-  # Press and hold (2-3 seconds) of L4 will 'OFF' on all the switches
+  # Press and hold (2-3 seconds) of L4 will 'OFF' on all the switches 
 
   ## pin outs - button
   # L1 - GPIO0
