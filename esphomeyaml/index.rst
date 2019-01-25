@@ -260,8 +260,6 @@ This list contains items that are technically already supported by other compone
     Non-Invasive Power Meter, cookbook/power_meter, power_meter.jpg
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
-    Sonoff 4CH Outdoor Lights, cookbook/sonoff-4ch-lights, cookbook-sonoff-4ch-lights.jpg
-    Sonoff T1 Touch 3 Gang (UK) v1.0 - Lights, cookbook/sonoff-touch-3ch-uk-lights, cookbook-sonoff-4ch-lights.jpg
 
 Do you have other awesome automations or 2nd order components? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing <guides/contributing>`.
