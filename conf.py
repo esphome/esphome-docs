@@ -139,6 +139,7 @@ html_copy_source = True
 html_show_sourcelink = False
 html_last_updated_fmt = None
 html_use_smartypants = False
+html_title = 'ESPHome'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
