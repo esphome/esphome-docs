@@ -189,7 +189,7 @@ To check your documentation changes locally, you first need install sphinx (**wi
 
 .. code-block:: bash
 
-    # in esphomedocs repo:
+    # in ESPHome-Docs repo:
     pip3 install -r requirements.txt
 
 .. note::
@@ -202,21 +202,23 @@ To check your documentation changes locally, you first need install sphinx (**wi
 
     And then go to ``<CONTAINER_IP>:8000`` in your browser.
 
-Next, you will also need to clone the `esphomelib repository <https://github.com/OttoWinter/esphomelib>`__ into
-the folder where ``esphomedocs`` sits like this:
+Next, you will also need to clone the `ESPHome-Core repository <https://github.com/esphome/ESPHome-Core>`__ into
+the paret folder where ``ESPHome-Docs`` sits like this:
 
 .. code-block:: text
 
-    ├── esphomedocs/
+    ├── ESPHome-Docs/
     │   ├── api/
     │   ├── esphomeyaml/
     │   ├── Doxygen
     │   ├── Makefile
     │   ├── index.rst
     │   └── ...
-    └── esphomelib/
-        ├── src/
+    └── ESPHome-Core/
+        ├── docker/
         ├── examples/
+        ├── lib/
+        ├── src/
         ├── library.json
         ├── platformio.ini
         └── ...
