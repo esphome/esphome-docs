@@ -183,24 +183,29 @@ please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc
 
 Build
 *****
-
-To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
-`doxygen <http://www.stack.nl/~dimitri/doxygen/>`__.
-
-.. code-block:: bash
-
-    # in ESPHome-Docs repo:
-    pip3 install -r requirements.txt
-
 .. note::
 
-    Alternatively, you can use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
+    The easiest way is to use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
 
     .. code-block:: bash
 
         docker run --rm -v "$PWD/..":/data -p 8000:8000 -it ottowinter/esphomedocs
 
+    .. code-block:: powershell
+
+        docker run --rm -v "${PWD}/..":/data -p 8000:8000 -it ottowinter/esphomedocs
+
     And then go to ``<CONTAINER_IP>:8000`` in your browser.
+
+    This way, you don't have to install the dependencies to build the documentation.
+
+To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
+`doxygen <http://www.doxygen.nl/>`__.
+
+.. code-block:: bash
+
+    # in ESPHome-Docs repo:
+    pip3 install -r requirements.txt
 
 Next, you will also need to clone the `ESPHome-Core repository <https://github.com/esphome/ESPHome-Core>`__ into
 the paret folder where ``ESPHome-Docs`` sits like this:
