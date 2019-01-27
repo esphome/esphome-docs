@@ -25,6 +25,9 @@ setup, please feel free to submit a pull request.
 The esphomelib documentation is built using `sphinx <http://www.sphinx-doc.org/>`__ and uses
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`__ for all source files.
 
+Synax
+*****
+
 In my opinion, markdown would have been the much better choice in hindsight, but at the time
 I was setting up the documentation good doxygen integration was key to me. Anyway, here's a quick
 RST primer:
@@ -178,6 +181,9 @@ RST primer:
 reStructured text can do a lot more than this, so if you're looking for a more complete guide
 please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
+Build
+*****
+
 To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
 `doxygen <http://www.stack.nl/~dimitri/doxygen/>`__.
 
@@ -226,6 +232,9 @@ Then, use the provided Makefile to build the changes and start a simple web serv
 
     # Updates then happen via:
     make html
+
+Notes
+*****
 
 Some notes about the docs:
 
