@@ -267,7 +267,7 @@ global variables can be used to store the state of a garage door.
     globals:
       - id: my_global_int
         type: int
-        restore_state: no
+        restore_value: no
         initial_value: '0'
 
    # In an automation
@@ -289,7 +289,7 @@ Configuration options:
   to it later in :ref:`lambdas <config-lambda>`.
 - **type** (**Required**, string): The C++ type of the global variable, for example ``bool`` (for ``true``/``false``),
   ``int`` (for integers), ``float`` (for decimal numbers), ``int[50]`` for an array of 50 integers, etc.
-- **restore_state** (*Optional*, boolean): Whether to try to restore the state on boot up.
+- **restore_value** (*Optional*, boolean): Whether to try to restore the state on boot up.
   Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
