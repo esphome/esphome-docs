@@ -511,7 +511,7 @@ compile error.
 ``script.execute`` Action
 -------------------------
 
-This action allows you to prevent code-reuse. For example if you have multiple triggers
+This action allows code-reuse. For example if you have multiple triggers
 that perform the same exact action, you would normally have to copy the YAML lines for all
 triggers.
 
