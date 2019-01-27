@@ -193,7 +193,7 @@ Build
 
     .. code-block:: powershell
 
-        docker run --rm -v "${PWD}/..":/data -p 8000:8000 -it ottowinter/esphomedocs
+        docker run --rm -v ${PWD}/..:/data -p 8000:8000 -it ottowinter/esphomedocs
 
     And then go to ``<CONTAINER_IP>:8000`` in your browser.
 
