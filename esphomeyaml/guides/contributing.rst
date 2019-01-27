@@ -25,8 +25,8 @@ setup, please feel free to submit a pull request.
 The esphomelib documentation is built using `sphinx <http://www.sphinx-doc.org/>`__ and uses
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`__ for all source files.
 
-Synax
-*****
+Syntax
+******
 
 In my opinion, markdown would have been the much better choice in hindsight, but at the time
 I was setting up the documentation good doxygen integration was key to me. Anyway, here's a quick
