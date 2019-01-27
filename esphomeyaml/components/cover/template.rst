@@ -59,8 +59,7 @@ Configuration variables:
 -  **id** (*Optional*,
    :ref:`config-id`): Manually specify
    the ID used for code generation.
--  All other options from :ref:`Binary Sensor <config-binary_sensor>`
-   and :ref:`MQTT Component <config-mqtt-component>`.
+-  All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
 --------
