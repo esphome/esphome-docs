@@ -41,6 +41,26 @@ for a short period of time, the close/open action begins.
           - switch.turn_off: close_switch
           - switch.turn_off: open_switch
         optimistic: true
+        
+        
+Another configuration that uses a single relay to activate a remote control button. The button can only start or stop the motor of the gate. In itself, the button or remote can not know if it opens or closes the gate. The relay simulates the button press for 500ms.
+
+
+.. code-block:: yaml
+
+    switch:
+      - platform: gpio
+        pin: D6
+        id: relay
+      - platform: template
+        name: "Gate Remote"
+        icon: "mdi:gate"
+        optimistic: no
+        turn_on_action:
+        - switch.turn_on: relay
+        - delay: 500ms
+        - switch.turn_off: relay
+
 
 See Also
 --------
