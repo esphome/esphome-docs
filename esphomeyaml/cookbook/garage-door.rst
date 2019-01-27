@@ -57,9 +57,9 @@ Another configuration that uses a single relay to activate a remote control butt
         icon: "mdi:gate"
         optimistic: no
         turn_on_action:
-        - switch.turn_on: relay
-        - delay: 500ms
-        - switch.turn_off: relay
+          - switch.turn_on: relay
+          - delay: 500ms
+          - switch.turn_off: relay
 
 
 See Also
