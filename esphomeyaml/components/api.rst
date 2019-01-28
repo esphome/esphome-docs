@@ -23,6 +23,13 @@ Configuration variables:
   Can be disabled by setting this to ``0s``. Defaults to ``5min``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+Per Component variables:
+------------------------
+
+-  **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+   not send any MQTT messages and can be used for :ref:`on-device automations <automation>`. Only
+   specifying an ``id`` without a ``name`` will implicitly set this to true.
+
 .. _api-mqtt_to_native:
 
 Migrating from MQTT to Native API Setup in Home Assistant
