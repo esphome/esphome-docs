@@ -92,13 +92,5 @@ For this type of led strip you have to swap the white and blue gpio numbers in t
 | 3.3v, GND, TX and RX needs to be connected to your serial adapter, the two other pins must be shorted by a jumper or a breadboard cable when flashing. 
 | (Remember to remove it afterwards) 
 
-See :doc:`/esphomeyaml/components/sensor/total_daily_energy` for counting up the total daily energy usage
-with these ``pulse_counter`` power meters.
-
-See Also
---------
-
-- :doc:`/esphomeyaml/components/sensor/pulse_counter`
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/h801.rst>`__
 
 .. disqus::
