@@ -48,7 +48,9 @@ To create an active-low switch (one that is turned off by default), use the :ref
           number: 25
           inverted: yes
 
-And to create momentary switches, for example switches that toggle a pin for a moment, use :doc:`template switches <template>`:
+To create momentary switches, for example switches that toggle a pin for a moment, you can use :doc:`template switches <template>`.
+
+An example that uses a single relay to activate a remote control button. The button can only start or stop the motor of the gate. In itself, the button or remote can not know if it opens or closes the gate. The relay simulates the button press for 500ms.
 
 .. code-block:: yaml
 
@@ -58,18 +60,24 @@ And to create momentary switches, for example switches that toggle a pin for a m
         pin: 25
         id: relay
       - platform: template
-        name: "Momentary Switch"
-        optimistic: yes
+        name: "Gate Remote"
+        icon: "mdi:gate"
+        optimistic: no
         turn_on_action:
         - switch.turn_on: relay
-        - delay: 100ms
+        - delay: 500ms
         - switch.turn_off: relay
+
+.. figure:: images/gate-remote-ui.png
+    :align: center
 
 See Also
 --------
 
 - :doc:`index`
 - :doc:`/esphomeyaml/components/output/gpio`
+- :doc:`/esphomeyaml/components/cover/template`
+- :doc:`/esphomeyaml/cookbook/garage-door`
 - :doc:`API Reference </api/switch/index>`
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/components/switch/gpio.rst>`__
 
