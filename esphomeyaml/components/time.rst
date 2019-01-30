@@ -59,6 +59,32 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+DS1307 Time Source
+------------------
+
+With the ``DS1307`` time platform, the battery powered clock chip connected via
+:doc:`I2C </esphomeyaml/components/i2c>` bus is used to synchronize the system
+time at start-up and upon request.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: sntp
+      - platform: ds1307
+        id: ds1307_time
+
+    interval:
+      - interval: 15min
+        then:
+          - lambda: id(ds1307_time).write_data();
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run
+  at specific intervals using a cron-like syntax. See :ref:`time-on_time`.
+
 Use In Lambdas
 --------------
 
