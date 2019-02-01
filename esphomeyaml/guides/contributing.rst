@@ -8,9 +8,9 @@ Contributing
 Contributions to the esphomelib suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:
 
-- `esphomelib <https://github.com/OttoWinter/esphomelib>`__ (The C++ framework)
-- `esphomeyaml <https://github.com/OttoWinter/esphomeyaml>`__ (The Python YAML to C++ transpiler)
-- `esphomedocs <https://github.com/OttoWinter/esphomedocs>`__ (The documentation which you're reading here)
+- `ESPHome-Core <https://github.com/esphome/ESPHome-Core>`__ (The C++ framework)
+- `ESPHome <https://github.com/esphome/ESPHome>`__ (The Python YAML to C++ transpiler)
+- `ESPHome-Docs <https://github.com/esphome/ESPHome-Docs>`__ (The documentation which you're reading here)
 
 Just clone the repository locally, do the changes for your new feature/bug fix and submit
 a pull request. I will try to take a look at your PR as soon as possible.
