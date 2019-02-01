@@ -38,12 +38,15 @@ To use a relay with esphomelib, use a :doc:`GPIO Switch </esphomeyaml/components
       - platform: gpio
         name: "Relay"
         pin: <PIN_RELAY_IS_CONNECTED_TO>
+        
+For a more complete example, check :doc:`Simple Garage Door </esphomeyaml/cookbook/garage-door>`.
 
 See Also
 --------
 
 - :doc:`/esphomeyaml/components/switch/gpio`
 - :doc:`/esphomeyaml/components/output/gpio`
+- :doc:`/esphomeyaml/cookbook/garage-door`
 - `How do relays work <https://www.explainthatstuff.com/howrelayswork.html>`__.
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/cookbook/relay.rst>`__
 
