@@ -62,28 +62,31 @@ Configuration variables:
 DS1307 Time Source
 ------------------
 
-With the ``DS1307`` time platform, the battery powered clock chip connected via
-:doc:`I2C </esphomeyaml/components/i2c>` bus is used to synchronize the system
-time at start-up and upon request.
+With the ``ds1307`` time platform, the battery powered :doc:`DS1307 <https://datasheets.maximintegrated.com/en/ds/DS1307.pdf>`
+clock chip connected via :doc:`I2C </esphomeyaml/components/i2c>` bus is used to synchronize the system time.
 
 .. code-block:: yaml
 
     # Example configuration entry
     time:
-      - platform: sntp
       - platform: ds1307
-        id: ds1307_time
-
-    interval:
-      - interval: 15min
-        then:
-          - lambda: id(ds1307_time).write_data();
+        set_interval: once
+        get_interval: 10min
+      # optionally add a time platform to sync the hardware clock to
+      - platform: sntp
 
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run
   at specific intervals using a cron-like syntax. See :ref:`time-on_time`.
+- **set_interval** (*Optional*): Specify the interval at which the system time
+  is written to the hardware clock. By default, the hardware clock is only
+  written to once if the clock chip was not synchronized before and if the system
+  time is valid (i.e. synchronized from another time source).
+- **get_interval** (*Optional*): Specify the interval at which the system time
+  is read from the hardware clock. By default, the hardware clock is read every
+  10 minutes.
 
 Use In Lambdas
 --------------
