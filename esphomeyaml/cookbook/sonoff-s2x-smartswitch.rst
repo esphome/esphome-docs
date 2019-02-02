@@ -8,9 +8,10 @@ Sonoff Fish Pond Pump
 
 .. figure:: images/sonoff-s2x.jpg
     :align: center
-    :width: 75.0%
+    :width: 30.0%
 
-This is a basic firmware for the Sonoff S2X smart switch series. The features are: 
+This is a basic firmware for the Sonoff S2X smart switch series. The features are:
+ 
 * The switch is automatically registered to HA via MQTT.
 * A *single click* toggles the relay (works offline).
 * A *double click*, a *triple click*, or a *longpress* triggers custom actions on HA. 
@@ -24,8 +25,8 @@ This is a basic firmware for the Sonoff S2X smart switch series. The features ar
 --------------
 Prepare your socket according to these instructions 
 
-:doc:`Sonoff S20 </esphomeyaml/devices/sonoff_s20>`
-`Sonff S26 <https://github.com/arendst/Sonoff-Tasmota/wiki/Sonoff-S26-Smart-Socket/>`
+- :doc:`Sonoff S20 </esphomeyaml/devices/sonoff_s20>`
+- `Sonoff S26 <https://github.com/arendst/Sonoff-Tasmota/wiki/Sonoff-S26-Smart-Socket/>`
 
 2. ESPHome Configuration
 ------------------------
