@@ -125,6 +125,7 @@ Sensor Components
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    TX20 / TX23 Wind Sensor, components/sensor/tx20, tx20.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
