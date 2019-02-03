@@ -1,0 +1,38 @@
+TX20/TX23 Wind Speed/Direction Sensor
+===========================================
+
+The TX20/TX23 sensor allows to monitor wind speeds and wind direction changes using esphomelib
+(`datagram <http://www.sdpro.eu/jm/images/allegati/TX20_Documentazione.pdf>`__,
+`tx23_difference <https://www.lacrossetechnology.com/tx23-wind-sensor>`__,
+`amazon <https://www.amazon.de/Technoline-TX-20/dp/B01HXZ3KLA>`__,
+`lacrosse_tx23 <https://www.lacrossetechnology.com/tx23-wind-sensor>`__,
+).
+The only required pin is the black or brown cable (which is used to transmit data.)
+The red cable should be connected to VCC (3.3V), green initiates the data transfer when connected to GND
+and should therefore be directly connected to GND and the yellow cable should be always connected to ground.
+The difference from the TX20 to the TX23 seems to be that the green does not matter anymore and the
+wind sensor is just sending a datagram every 2 seconds - pretty much the same as when the green cable was
+connected to GND in the TX20.
+
+Example Usage
+-------------
+
+.. code-block:: cpp
+
+    // Basic
+    auto tx20 = App.make_tx20_sensor("Windspeed", "Winddirection", ::GPIOInputPin(4, INPUT));
+
+    // Returns the wind direction in a textual form ('N', 'NNW', ..)
+    std::string wind_direction_text = tx20.get_wind_cardinal_direction();
+
+.. cpp:namespace:: nullptr
+
+See :cpp:func:`Application::make_tx20_sensor`.
+
+API Reference
+-------------
+
+.. doxygenclass:: sensor::TX20Component
+    :members:
+    :protected-members:
+    :undoc-members:
