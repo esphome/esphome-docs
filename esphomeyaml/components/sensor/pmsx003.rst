@@ -8,6 +8,8 @@ PMSX003 Particulate Matter Sensor
 .. warning::
 
     This integration is experimental as I don't have the hardware to test it (yet).
+    It's been known to fail until https://github.com/esphome/ESPHome-Core/pull/471
+    Now it's confirmed to work on PMSx003, and untested on PMSx003T and PMSx003ST.
     If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
 The ``pmsx003`` sensor platform allows you to use your PMS5003, PMS7003, ... particulate matter
