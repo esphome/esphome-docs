@@ -7,7 +7,7 @@ Using With Sonoff Basic
 
 esphomeyaml can be used with Sonoff Basic. These devices are basically just
 an ESP8266 chip with a relay to control the connection, a small button on the
-front and a green LED light.
+front and a green LED light. 
 
 .. figure:: images/sonoff_basic-full.jpg
     :align: center
@@ -94,17 +94,10 @@ exposes all of the basic functions.
         pin: GPIO12
         id: relay
 
-    output:
-      - platform: esp8266_pwm
-        id: basic_green_led
-        pin:
-          number: GPIO13
-          inverted: True
-
-    light:
-      - platform: monochromatic
-        name: "Sonoff Basic Green LED"
-        output: basic_green_led
+    status_led:
+      pin:
+        number: GPIO13
+        inverted: yes
 
 Now run ``esphomeyaml sonoff_basic.yaml compile`` to validate the configuration and
 pre-compile the firmware.
@@ -120,7 +113,6 @@ Or run the upload command if your device is connected to the serial interface:
 .. code-block:: bash
 
     esphomeyaml sonoff_basic.yaml run
-
 
 More detailed breakdown
 -----------------------
@@ -281,14 +273,12 @@ Before installing the Sonoff, do a final OTA test, and this time selecting the O
 
 Once these actions succeeded you are pretty much in the clear and can be sure your device is ready.
 
-
 See Also
 --------
 
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_s20`
-- :doc:`Cookbook: Sonoff Fish Pond Pump </esphomeyaml/cookbook/sonoff-fishpond-pump>`
 - `GPIO locations <https://github.com/arendst/Sonoff-Tasmota/wiki/GPIO-Locations>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__
 

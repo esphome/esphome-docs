@@ -1,0 +1,55 @@
+PCA9685 PWM Output
+==================
+
+.. seo::
+    :description: Instructions for setting up PCA9685 PWM controller outputs.
+    :image: pca9685.jpg
+
+The PCA9685 output component exposes a PCA9685 PWM channel of a global
+:doc:`PCA9685 hub </components/pca9685>` as a float
+output.
+
+.. figure:: images/pca9685-full.jpg
+    :align: center
+    :width: 75.0%
+
+    PCA9685 16-Channel PWM Driver.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    pca9685:
+      - frequency: 500
+
+    # Individual outputs
+    output:
+      - platform: pca9685
+        id: 'pca9685_output1'
+        channel: 0
+
+Configuration variables:
+------------------------
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this output component.
+- **channel** (**Required**, int): Chose the channel of the PCA9685 of
+  this output component. Must be in range from 0 to 15.
+- **pca9685_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
+  :doc:`PCA9685 hub </components/pca9685>`.
+  Use this if you have multiple PCA9685s you want to use at the same time.
+- All other options from :ref:`Output <config-output>`.
+
+See Also
+--------
+
+- :doc:`/components/pca9685`
+- :doc:`/components/output/index`
+- :doc:`/components/output/esp8266_pwm`
+- :doc:`/components/output/ledc`
+- :doc:`/components/light/monochromatic`
+- :doc:`/components/fan/speed`
+- :doc:`/components/power_supply`
+- :apiref:`output/pca9685_output_component.h`
+- `PCA9685 Arduino Library <https://github.com/NachtRaveVL/PCA9685-Arduino>`__ by `@NachtRaveVL <https://github.com/NachtRaveVL>`__
+- :ghedit:`Edit`
+
+.. disqus::
