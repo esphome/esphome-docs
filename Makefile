@@ -22,10 +22,10 @@ api:
 	sleep 2
 	echo Building API 2...
 	@if [ ! -d "$(ESPHOME_CORE_PATH)" ]; then \
-	  echo Cloning esphome-core...
-	  sleep 2
+	  echo Cloning esphome-core...; \
+	  sleep 2; \
 	  git clone --branch $(ESPHOME_CORE_TAG) https://github.com/esphome/esphome-core.git $(ESPHOME_CORE_PATH); \
-	  echo Done Cloning...
+	  echo Done Cloning...; \
 	fi
 	echo Executing doxygen...
 	sleep 2
