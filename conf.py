@@ -112,7 +112,7 @@ html_theme = 'alabaster'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_baseurl = os.getenv('BASE_URL', 'https://esphomelib.com')
+html_baseurl = os.getenv('BASE_URL', 'https://esphome.io/')
 html_theme_options = {
     # 'logo': 'logo-full.png',
     'logo_name': False,
