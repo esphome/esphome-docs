@@ -2,7 +2,7 @@ ESPHome
 =======
 
 .. meta::
-    :google-site-verification: qclmMpSERA2uy_ZceVgL6ijwkeEHer75LEPyyTQnK4E
+    :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
