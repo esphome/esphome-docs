@@ -1,7 +1,0 @@
-Miscellaneous Components
-========================
-
-.. toctree::
-    :glob:
-
-    *

@@ -41,18 +41,11 @@ sys.path.append(os.path.abspath('.'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'breathe',
     'disqus',
     'github',
     'seo',
-    'githubpages',
     'sitemap',
 ]
-
-breathe_projects = {"esphomelib": "./_doxyxml/"}
-breathe_default_project = "esphomelib"
-breathe_domain_by_extension = {"h": "cpp", "tcc": "cpp"}
-breathe_default_members = ('members', 'private-members', 'undoc-members')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -123,7 +116,6 @@ html_baseurl = os.getenv('BASE_URL', 'https://esphomelib.com')
 html_theme_options = {
     # 'logo': 'logo-full.png',
     'logo_name': False,
-    'touch_icon': 'apple-touch-icon.png',
     # 'github_user': 'OttoWinter',
     # 'github_repo': 'esphomelib',
     'show_related': False,
@@ -133,8 +125,7 @@ html_theme_options = {
     'canonical_url': html_baseurl + '/',
 }
 
-html_logo = '_static/logo-full.png'
-html_favicon = '_static/favicon.ico'
+html_logo = 'images/logo-text.svg'
 html_copy_source = True
 html_show_sourcelink = False
 html_last_updated_fmt = None

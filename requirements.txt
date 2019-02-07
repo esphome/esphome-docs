@@ -1,2 +1,1 @@
-sphinx
-breathe
+sphinx==1.8.4
