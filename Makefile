@@ -17,10 +17,21 @@ help:
 	sphinx-build -M help . _build $(O)
 
 api:
+	echo Building API...
+	mkdir -p _build/html/api
+	sleep 2
+	echo Building API 2...
 	@if [ ! -d "$(ESPHOME_CORE_PATH)" ]; then \
+	  echo Cloning esphome-core...
+	  sleep 2
 	  git clone --branch $(ESPHOME_CORE_TAG) https://github.com/esphome/esphome-core.git $(ESPHOME_CORE_PATH); \
+	  echo Done Cloning...
 	fi
+	echo Executing doxygen...
+	sleep 2
 	ESPHOME_CORE_PATH=$(ESPHOME_CORE_PATH) $(DOXYGEN) Doxygen
+	sleep 2
+	echo Doxygen done
 
 netlify-dependencies:
 	mkdir -p ../doxybin
@@ -30,7 +41,7 @@ netlify-dependencies:
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
 
-netlify: netlify-dependencies html copy-svg2png
+netlify: netlify-dependencies api html copy-svg2png
 
 webserver: html
 	cd "$(BUILDDIR)/html" && python3 -m http.server
