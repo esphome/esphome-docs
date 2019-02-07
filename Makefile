@@ -23,10 +23,9 @@ api:
 	ESPHOME_CORE_PATH=$(ESPHOME_CORE_PATH) $(DOXYGEN) Doxygen
 
 netlify-dependencies:
-	wget https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.15.xz -O doxygen-1.8.15.xz -nv
-	mkdir ../doxybin
-	xz -d <doxygen-1.8.15.xz >../doxybin/doxygen
-	rm -rf doxygen-*
+	mkdir -p ../doxybin
+	curl -L https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.15.xz | xz -d >../doxybin/doxygen
+	chmod +x ../doxybin/doxygen
 
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
