@@ -22,7 +22,7 @@ api:
 	fi
 	ESPHOME_CORE_PATH=$(ESPHOME_CORE_PATH) doxygen Doxygen
 
-netlify-api:
+netlify-api: netlify-dependencies
 	mkdir -p _build/html/api
 	@if [ ! -d "$(ESPHOME_CORE_PATH)" ]; then \
 	  git clone --branch $(ESPHOME_CORE_TAG) https://github.com/esphome/esphome-core.git $(ESPHOME_CORE_PATH); \
