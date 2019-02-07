@@ -165,7 +165,7 @@ and uploaded your first esphomelib custom firmware to your node. You’ve
 also learned how to enable some basic components via the configuration
 file.
 
-So now is a great time to go take a look at the :doc:`Components Index </esphomeyaml/index>`,
+So now is a great time to go take a look at the :doc:`Components Index </index>`,
 hopefully you’ll find all sensors/outputs/… you’ll need in there. If you’re having any problems or
 want new features, please either create a new issue on the `GitHub issue
 tracker <https://github.com/OttoWinter/esphomeyaml/issues>`__ or contact
@@ -209,7 +209,7 @@ esphomeyaml’s great configuration options.
 See Also
 --------
 
-- :doc:`esphomeyaml index </esphomeyaml/index>`
+- :doc:`ESPHome index </index>`
 - :doc:`getting_started_command_line`
 - :ghedit:`Edit`
 

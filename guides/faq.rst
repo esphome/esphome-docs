@@ -206,7 +206,7 @@ In some cases it's also a good idea to use the latest Arduino framework version.
 Does esphomelib support [this device/feature]?
 ----------------------------------------------
 
-If it's not in :doc:`the docs </esphomeyaml/index>`, it's probably sadly not
+If it's not in :doc:`the docs </index>`, it's probably sadly not
 supported. However, I'm always trying to add support for new features, so feel free to create a feature
 request in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__. Thanks!
 
@@ -326,7 +326,7 @@ Donations are currently only possible via PayPal: https://www.paypal.me/ottowint
 See Also
 --------
 
-- :doc:`esphomeyaml index </esphomeyaml/index>`
+- :doc:`ESPHome index </index>`
 - :doc:`contributing`
 - :ghedit:`Edit`
 

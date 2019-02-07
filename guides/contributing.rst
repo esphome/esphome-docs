@@ -388,7 +388,7 @@ Run ``pip2 install -e .`` to install a development version of esphomeyaml.
 See Also
 --------
 
-- :doc:`esphomeyaml index </esphomeyaml/index>`
+- :doc:`ESPHome index </index>`
 - :doc:`faq`
 - :ghedit:`Edit`
 

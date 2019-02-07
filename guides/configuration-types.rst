@@ -176,7 +176,7 @@ by their value. The syntax for a substitution is based on bash and is case-sensi
 See Also
 --------
 
-- :doc:`esphomeyaml index </esphomeyaml/index>`
+- :doc:`ESPHome index </index>`
 - :doc:`getting_started_command_line`
 - :doc:`faq`
 - :ghedit:`Edit`
