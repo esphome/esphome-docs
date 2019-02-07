@@ -39,7 +39,7 @@ netlify-api:
 
 netlify-dependencies:
 	mkdir -p ../doxybin
-	curl -L https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.15.xz | xz -d >../doxybin/doxygen
+	curl -L https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.13.xz | xz -d >../doxybin/doxygen
 	chmod +x ../doxybin/doxygen
 
 copy-svg2png:
