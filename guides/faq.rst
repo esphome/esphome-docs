@@ -81,9 +81,10 @@ Select the firmware binary and finally press "Flash ESP".
 
 .. note::
 
-    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, that's
-    usually a sign that the ESP is defect or cannot be programmed. Please double check the UART wires
-    are connected correctly if flashing using a USB to UART bridge.
+    If you're just seeing ``Connecting....____....`` on the screen and the flashing fails, that might
+    be a sign that the ESP is defect or cannot be programmed. Please double check the UART wires
+    are connected correctly if flashing using a USB to UART bridge. For some devices you need to
+    keep pressing the BOOT button until flashing has begun (ie. Geekcreit DOIT ESP32 DEVKIT V1).
 
 What's the difference between esphomelib and esphomeyaml?
 ---------------------------------------------------------

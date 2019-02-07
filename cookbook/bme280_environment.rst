@@ -28,7 +28,7 @@ After validating the sensor is working, we can proceed and add some formulas.
           name: "BME280 Pressure"
           id: bme280_pressure
         humidity:
-          name: "BME280 Realtive Humidity"
+          name: "BME280 Relative Humidity"
           id: bme280_humidity
         address: 0x77
         update_interval: 15s

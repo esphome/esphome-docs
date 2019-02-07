@@ -8,9 +8,9 @@ Contributing
 Contributions to the esphomelib suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:
 
-- `esphomelib <https://github.com/OttoWinter/esphomelib>`__ (The C++ framework)
-- `esphomeyaml <https://github.com/OttoWinter/esphomeyaml>`__ (The Python YAML to C++ transpiler)
-- `esphomedocs <https://github.com/OttoWinter/esphomedocs>`__ (The documentation which you're reading here)
+- `ESPHome-Core <https://github.com/esphome/ESPHome-Core>`__ (The C++ framework)
+- `ESPHome <https://github.com/esphome/ESPHome>`__ (The Python YAML to C++ transpiler)
+- `ESPHome-Docs <https://github.com/esphome/ESPHome-Docs>`__ (The documentation which you're reading here)
 
 Just clone the repository locally, do the changes for your new feature/bug fix and submit
 a pull request. I will try to take a look at your PR as soon as possible.
@@ -24,6 +24,9 @@ setup, please feel free to submit a pull request.
 
 The esphomelib documentation is built using `sphinx <http://www.sphinx-doc.org/>`__ and uses
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`__ for all source files.
+
+Syntax
+******
 
 In my opinion, markdown would have been the much better choice in hindsight, but at the time
 I was setting up the documentation good doxygen integration was key to me. Anyway, here's a quick
@@ -178,39 +181,49 @@ RST primer:
 reStructured text can do a lot more than this, so if you're looking for a more complete guide
 please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
-To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
-`doxygen <http://www.stack.nl/~dimitri/doxygen/>`__.
-
-.. code-block:: bash
-
-    # in esphomedocs repo:
-    pip3 install -r requirements.txt
-
+Build
+*****
 .. note::
 
-    Alternatively, you can use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
+    The easiest way is to use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
 
     .. code-block:: bash
 
         docker run --rm -v "$PWD/..":/data -p 8000:8000 -it ottowinter/esphomedocs
 
+    .. code-block:: powershell
+
+        docker run --rm -v ${PWD}/..:/data -p 8000:8000 -it ottowinter/esphomedocs
+
     And then go to ``<CONTAINER_IP>:8000`` in your browser.
 
-Next, you will also need to clone the `esphomelib repository <https://github.com/OttoWinter/esphomelib>`__ into
-the folder where ``esphomedocs`` sits like this:
+    This way, you don't have to install the dependencies to build the documentation.
+
+To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
+`doxygen <http://www.doxygen.nl/>`__.
+
+.. code-block:: bash
+
+    # in ESPHome-Docs repo:
+    pip3 install -r requirements.txt
+
+Next, you will also need to clone the `ESPHome-Core repository <https://github.com/esphome/ESPHome-Core>`__ into
+the paret folder where ``ESPHome-Docs`` sits like this:
 
 .. code-block:: text
 
-    ├── esphomedocs/
+    ├── ESPHome-Docs/
     │   ├── api/
     │   ├── esphomeyaml/
     │   ├── Doxygen
     │   ├── Makefile
     │   ├── index.rst
     │   └── ...
-    └── esphomelib/
-        ├── src/
+    └── ESPHome-Core/
+        ├── docker/
         ├── examples/
+        ├── lib/
+        ├── src/
         ├── library.json
         ├── platformio.ini
         └── ...
@@ -226,6 +239,9 @@ Then, use the provided Makefile to build the changes and start a simple web serv
 
     # Updates then happen via:
     make html
+
+Notes
+*****
 
 Some notes about the docs:
 

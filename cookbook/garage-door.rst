@@ -46,6 +46,7 @@ See Also
 --------
 
 - :doc:`/guides/automations`
+- :doc:`/components/switch/gpio`
 - :doc:`/components/cover/template`
 - :ghedit:`Edit`
 
