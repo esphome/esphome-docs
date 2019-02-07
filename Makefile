@@ -22,19 +22,27 @@ api:
 	fi
 	ESPHOME_CORE_PATH=$(ESPHOME_CORE_PATH) doxygen Doxygen
 
-netlify-api: netlify-dependencies
+netlify-api:
+	echo "building netlify api"
+	sleep 2
 	mkdir -p _build/html/api
 	@if [ ! -d "$(ESPHOME_CORE_PATH)" ]; then \
+	  echo "Cloning esphome"; \
+	  sleep 2; \
 	  git clone --branch $(ESPHOME_CORE_TAG) https://github.com/esphome/esphome-core.git $(ESPHOME_CORE_PATH); \
 	fi
+	echo "Executing doxygen"
+	sleep 2
 	ESPHOME_CORE_PATH=$(ESPHOME_CORE_PATH) ../doxybin/doxygen Doxygen
+	echo "Doxygen done"
+	sleep 2
 
 netlify-dependencies:
 	mkdir -p ../doxybin
 	curl -L https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.15.xz | xz -d >../doxybin/doxygen
 	chmod +x ../doxybin/doxygen
 
-copy-svg2png: html
+copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
 
 netlify: netlify-dependencies netlify-api html copy-svg2png
