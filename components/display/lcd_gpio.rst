@@ -60,7 +60,7 @@ Configuration variables:
 Rendering Lambda
 ----------------
 
-The LCD displays has a similar API to the fully fledged ::ref:`display-engine`, but it's only a subset as LCD displays
+The LCD displays has a similar API to the fully fledged :ref:`display-engine`, but it's only a subset as LCD displays
 don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
 as with all other displays. In this case however, ``it`` is an ``LCDDisplay`` instance.
 

@@ -21,7 +21,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the text sensor.
 - **entity_id** (**Required**, string): The entity ID to import from Home Assistant.
-- **id** (*Optional*,:ref:`config-id`): Manually specify the ID used for code generation.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Text Sensor <config-text_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also

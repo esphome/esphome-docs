@@ -33,7 +33,7 @@ Configuration variables:
   Lambda to be evaluated every update interval to get the new value of the text sensor
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   text sensor. Defaults to ``60s``.
-- **id** (*Optional*,:ref:`config-id`): Manually specify the ID used for code generation.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Text Sensor <config-text_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
