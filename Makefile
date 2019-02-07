@@ -30,7 +30,7 @@ netlify-dependencies:
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
 
-netlify: netlify-dependencies html api copy-svg2png
+netlify: netlify-dependencies html copy-svg2png
 
 webserver: html
 	cd "$(BUILDDIR)/html" && python3 -m http.server
