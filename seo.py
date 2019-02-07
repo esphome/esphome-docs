@@ -73,21 +73,17 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     create_property_meta("og:site_name", "esphomelib")
     create_property_meta("og:description", node.description)
 
-    # Misc
-    create_content_meta("HandheldFriendly", "True")
-    create_content_meta("MobileOptimized", "320")
-    create_content_meta("theme-color", "#DFDFDF")
-
 
 def redirect_visit(self: HTMLTranslator, node: RedirectNode):
     self.meta.append('<meta http-equiv="refresh" content="0; url={}">'.format(node.url))
 
     self.body.append(self.starttag(node, 'p',
-        'Redirecting to <a href="{0}">{0}</a>'.format(node.url)))
+                                   'Redirecting to <a href="{0}">{0}</a>'.format(node.url)))
 
 
 def seo_depart(self, _):
     pass
+
 
 def redirect_depart(self, _):
     self.body.append('</p>')
@@ -116,14 +112,13 @@ class SEODirective(Directive):
             self.options['image'] = env.config.html_baseurl + image
         return [SEONode(**self.options)]
 
+
 class RedirectDirective(Directive):
     option_spec = {
         'url': directives.unchanged,
     }
 
     def run(self):
-        env = self.state.document.settings.env
-
         return [RedirectNode(**self.options)]
 
 

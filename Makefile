@@ -1,41 +1,43 @@
-# Minimal makefile for Sphinx documentation
-#
+ESPHOME_CORE_PATH = ../esphome-core
+ESPHOME_CORE_TAG = v1.10.1
 
-# You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = esphomelib
-SOURCEDIR     = .
-BUILDDIR      = _build
-ESPHOMELIB_PATH = ../esphomelib
-ESPHOMELIB_TAG = v1.10.1
+.PHONY: html cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png
 
-.PHONY: html cleanhtml doxyg cleandoxyg deploy help webserver Makefile $(ESPHOMELIB_PATH)
+html:
+	sphinx-build -M html . _build $(O)
 
-html: _doxyxml
-	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+cleanhtml:
+	rm -rf "_build/html/*"
 
-cleanhtml: cleandoxyg
-	rm -rf "$(BUILDDIR)/html/*"
-
-doxyg: cleandoxyg _doxyxml
-
-cleandoxyg:
-	rm -rf _doxyxml
-
-_doxyxml:
-	ESPHOMELIB_PATH=$(ESPHOMELIB_PATH) doxygen Doxygen
-
-$(ESPHOMELIB_PATH):
-	@if [ ! -d "$(ESPHOMELIB_PATH)" ]; then \
-	  git clone --branch $(ESPHOMELIB_TAG) https://github.com/OttoWinter/esphomelib.git $(ESPHOMELIB_PATH); \
-	fi
-
-convertimages:
+svg2png:
 	python3 svg2png.py
 
 help:
-	$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	sphinx-build -M help . _build $(O)
+
+api:
+	mkdir -p _build/html/api
+	@if [ ! -d "$(ESPHOME_CORE_PATH)" ]; then \
+	  git clone --branch $(ESPHOME_CORE_TAG) https://github.com/esphome/esphome-core.git $(ESPHOME_CORE_PATH); \
+	fi
+	ESPHOME_CORE_PATH=$(ESPHOME_CORE_PATH) doxygen Doxygen
+
+netlify-api: netlify-dependencies
+	mkdir -p _build/html/api
+	@if [ ! -d "$(ESPHOME_CORE_PATH)" ]; then \
+	  git clone --branch $(ESPHOME_CORE_TAG) https://github.com/esphome/esphome-core.git $(ESPHOME_CORE_PATH); \
+	fi
+	ESPHOME_CORE_PATH=$(ESPHOME_CORE_PATH) ../doxybin/doxygen Doxygen
+
+netlify-dependencies:
+	mkdir -p ../doxybin
+	curl -L https://github.com/esphome/esphome-docs/releases/download/v1.10.1/doxygen-1.8.13.xz | xz -d >../doxybin/doxygen
+	chmod +x ../doxybin/doxygen
+
+copy-svg2png:
+	cp svg2png/*.png _build/html/_images/
+
+netlify: netlify-dependencies netlify-api html copy-svg2png
 
 webserver: html
 	cd "$(BUILDDIR)/html" && python3 -m http.server
@@ -43,4 +45,4 @@ webserver: html
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
-	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	sphinx-build -M $@ . _build $(O)
