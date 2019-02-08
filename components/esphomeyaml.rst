@@ -44,7 +44,6 @@ Advanced options:
   but you can customize this behavior using this option.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to platformio in the
   platformio.ini file. See :ref:`esphomeyaml-platformio_options`.
-- **includes** (*Optional*, list): Additional files to include in the main.cpp for custom components.
 - **libraries** (*Optional*, list): Additional `platformio libraries <https://platformio.org/lib>`__ to
   include in the build. Mostly for custom code.
 - **use_custom_code** (*Optional*, boolean): Whether to configure the project for writing custom components.
