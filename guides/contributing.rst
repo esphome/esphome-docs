@@ -187,9 +187,13 @@ Build
 
     The easiest way is to use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
 
+    On Linux
+
     .. code-block:: bash
 
         docker run --rm -v "$PWD/..":/data -p 8000:8000 -it ottowinter/esphomedocs
+
+    On Windows (PowerShell)
 
     .. code-block:: powershell
 
