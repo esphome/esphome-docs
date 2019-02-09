@@ -44,7 +44,7 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     def create_property_meta(name, content):
         if content is None:
             return
-        self.meta.append('<meta property="{}" content="{}"/>\n'.format(name, encode_text(content)))
+        self.meta.append('<meta property="{}" content="{}">\n'.format(name, encode_text(content)))
 
     # Base
     create_content_meta("description", node.description)
@@ -70,7 +70,6 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     create_property_meta("og:title", node.title)
     create_property_meta("og:image", node.image)
     create_property_meta("og:type", "article" if node.author is not None else "website")
-    create_property_meta("og:site_name", "ESPHome")
     create_property_meta("og:description", node.description)
 
 
