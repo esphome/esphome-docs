@@ -38,11 +38,13 @@ connected to GND in the TX20.
         pin: 
           number: GPIO04
           mode: INPUT
-    - platform: template
-          name: "Textual Representation Wind Direction"
-          lambda: |-
-            return id(tx20_id).get_wind_cardinal_direction();
-          update_interval: 2s
+
+    text_sensor:
+      - platform: template
+        name: "Textual Representation Wind Direction"
+        lambda: |-
+          return {id(tx20_id).get_wind_cardinal_direction()};
+        update_interval: 2s
 
 Configuration variables:
 ------------------------
