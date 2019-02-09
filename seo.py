@@ -70,7 +70,7 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     create_property_meta("og:title", node.title)
     create_property_meta("og:image", node.image)
     create_property_meta("og:type", "article" if node.author is not None else "website")
-    create_property_meta("og:site_name", "esphomelib")
+    create_property_meta("og:site_name", "ESPHome")
     create_property_meta("og:description", node.description)
 
 
