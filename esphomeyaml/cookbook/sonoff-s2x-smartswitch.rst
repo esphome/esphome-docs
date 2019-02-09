@@ -12,7 +12,7 @@ Sonoff Fish Pond Pump
 
 This is a basic firmware for the Sonoff S2X smart switch series. The features are:
  
-* The switch is automatically registered to HA via MQTT.
+* The switch is automatically registered to HA via the api.
 * A *single click* toggles the relay (works offline).
 * A *double click*, a *triple click*, or a *longpress* triggers custom actions on HA. 
 
@@ -34,6 +34,7 @@ Prepare your socket according to these instructions
 Here is the configuration with the basic operations outlined above.
 
 .. code-block:: yaml
+
     substitutions:
       devicename: sonoff1
 
@@ -50,17 +51,8 @@ Here is the configuration with the basic operations outlined above.
           password: !secret wifi_password
         - ssid: !secret wifi_ssid2
           password: !secret wifi_password2
-    # power_save_mode: none
-      ap:
-        ssid: "$devicename AP"
-        password: !secret  ap_password 
-        channel: 10
-
-    mqtt:
-      id: mqtt_client
-      broker: !secret mqtt_broker
-      username: !secret mqtt_user 
-      password: !secret mqtt_password
+    
+    api:
 
     logger:
       level: debug
@@ -98,9 +90,9 @@ Here is the configuration with the basic operations outlined above.
             - OFF for at least 0.2s
           then:
             - logger.log: "Double Clicked"
-            - lambda: |-  
+            - lambda: |-  # turn our binary sensor on
                 id(double_click).publish_state(true);
-            - light.turn_on:
+            - light.turn_on: # give visual feedback with the green led
                 id: green_led_light
                 transition_length: 0.5s
             - delay: 0.5s
@@ -115,7 +107,7 @@ Here is the configuration with the basic operations outlined above.
             - light.turn_off:
                 id: green_led_light
                 transition_length: 0.5s
-            - lambda: |-  
+            - lambda: |-   # turn our binary sensor off again
                 id(double_click).publish_state(false);
 
         - timing: # Triple Clicked
@@ -127,9 +119,9 @@ Here is the configuration with the basic operations outlined above.
             - OFF for at least 0.2s
           then:
             - logger.log: "Triple Clicked"
-            - lambda: |-  
+            - lambda: |-  # turn our binary sensor on
                 id(triple_click).publish_state(true);
-            - light.turn_on:
+            - light.turn_on: # give visual feedback with the green led
                 id: green_led_light
                 transition_length: 0.5s
             - delay: 0.5s
@@ -152,7 +144,7 @@ Here is the configuration with the basic operations outlined above.
             - light.turn_off:
                 id: green_led_light
                 transition_length: 0.5s
-            - lambda: |-  
+            - lambda: |-    # turn our binary sensor off again
                 id(triple_click).publish_state(false);
 
         - timing: # Single Long Clicked
@@ -160,19 +152,19 @@ Here is the configuration with the basic operations outlined above.
             - OFF for at least 0.5s
           then:
             - logger.log: "Single Long Clicked"
-            - lambda: |-  
+            - lambda: |-  # turn our binary sensor on
                 id(long_click).publish_state(true);
-            - light.turn_on:
+            - light.turn_on: # give visual feedback with the green led
                 id: green_led_light
                 transition_length: 0.5s
             - delay: 0.5s
             - light.turn_off:
                 id: green_led_light
                 transition_length: 0.5s
-            - lambda: |-  
+            - lambda: |-     # turn our binary sensor off again
                 id(long_click).publish_state(false);
 
-        - timing: # Single Short Clicked
+        - timing: # Single Short clicked --> toggle the relais
             - ON for at most 1s
             - OFF for at least 0.5s
           then:
@@ -201,12 +193,10 @@ Here is the configuration with the basic operations outlined above.
         lambda: |-
           return false;   
 
-
     sensor:
       - platform: wifi_signal
         name: "$devicename WiFi Signal"
         update_interval: 60s
-    #    expire_after: 0
 
     switch:        #relais
       - platform: gpio
@@ -232,18 +222,18 @@ Here is the configuration with the basic operations outlined above.
 
 
 3. Home Assistant
-*******************
+*****************
 
 An example for an automation that toggles a switch when another switch is double clicked:
 
 .. code-block:: yaml
+
     - alias: on double click
       trigger:
       - entity_id: binary_sensor.sonoff1_double_click
         platform: state
         from: 'off'
         to: 'on'
-      condition: []
       action:
       - entity_id: switch.sonoff2
         service: homeassistant.toggle
