@@ -142,6 +142,7 @@ Binary Sensor Components
 
     Binary Sensor Core, components/binary_sensor/index, folder-open.svg
     GPIO, components/binary_sensor/gpio, pin.svg
+    Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
     ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
