@@ -27,10 +27,20 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
 
 .. note::
 
-    On the ESP32, this component uses the hardware UART units and is thus very accurate. On the ESP8266 however,
-    esphomelib has to use a software implementation as there are no other hardware UART units available other than the
-    ones used for logging. Therefore the UART data on the ESP8266 can have occasional data glitches especially with
-    higher baud rates..
+    Whenever possible, esphome will use the Hardware UART unit on the processor for fast and accurate communication.
+    When the hardware UARTs are all occupied, esphome will fall back to a software implementation that may not
+    be accurate at higher baud rates.
+
+    ``UART0`` is (by default) used by the :doc:`logger component </components/logger>`, connected to ``GPIO1`` and
+    ``GPIO3``. If you configure a UART that overlaps with these pins, you can share the hardware with the logger
+    and leave others available. If you have configured the logger to use a different hardware UART, the pins used
+    for hardware sharing change accordingly.
+
+    The ESP32 has three UARTs. Any pair of GPIO pins can be used, as long as they support the proper output/input modes.
+
+    The ESP8266 has two UARTs; the second of which is TX-only. Only a limited set of pins can be used. ``UART0`` may
+    use either ``GPIO1`` and ``GPIO3``, or ``GPIO15`` and ``GPIO13``. ``UART1`` must use ``GPIO2``. Any other
+    combination of pins will result in use of a software UART.
 
 .. code-block:: yaml
 
@@ -52,6 +62,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/logger`
 - :apiref:`uart_component.h`
 - :ghedit:`Edit`
 
