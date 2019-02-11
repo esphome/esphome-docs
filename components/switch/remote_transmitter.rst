@@ -91,6 +91,8 @@ Supported remote codes:
       panasonic:
         address: 0x4004
         command: 0x1000BCD
+      jvc:
+        data: 0x1234
       rc_switch_raw:
         code: '001010011001111101011011'
         protocol: 1
@@ -142,6 +144,10 @@ Configuration variables:
 
   - **address**: The address of the device.
   - **command**: The command to send.
+
+- **jvc**: Send a JVC IR code.
+
+  - **data**: The data bytes to send.
 
 - **rc_switch_raw**: Send an RCSwitch raw code.
 
