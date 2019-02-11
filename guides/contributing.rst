@@ -15,8 +15,12 @@ is hosted on GitHub and you can find the sources here:
 Just clone the repository locally, do the changes for your new feature/bug fix and submit
 a pull request. I will try to take a look at your PR as soon as possible.
 
-Contributing to esphomedocs
----------------------------
+Contributing to ESPHome-Docs
+----------------------------
+
+.. figure:: /images/logo-docs.svg
+    :align: center
+    :width: 60.0%
 
 One of the areas of esphomelib that can always be improved is the documentation.
 If you see an issue somewhere, or spelling mistakes or if you want to share your awesome
@@ -258,8 +262,12 @@ Some notes about the docs:
 * Fixes/improvements for the docs themselves should go to the ``current`` branch of the
   esphomedocs repository. New features should be added against the ``next`` branch.
 
-Contributing to esphomelib
---------------------------
+Contributing to ESPHome-Core
+----------------------------
+
+.. figure:: /images/logo-core.svg
+    :align: center
+    :width: 60.0%
 
 esphomelib is the engine behind all the esphomeyaml stuff. The framework is also designed
 to be used on its own - i.e. without esphomeyaml. To contribute code to esphomelib to fix
@@ -313,8 +321,12 @@ Standard for the esphomelib codebase:
 For editing a local copy of esphomelib within the esphomeyaml ecosystem please see
 :ref:`esphomeyaml.esphomelib_version <esphomeyaml-esphomelib_version>` option.
 
-Contributing to esphomeyaml
----------------------------
+Contributing to ESPHome
+-----------------------
+
+.. figure:: /images/logo-text.svg
+    :align: center
+    :width: 60.0%
 
 esphomeyaml primarily does two things: It validates the configuration and creates C++ code.
 
