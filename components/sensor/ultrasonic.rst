@@ -78,7 +78,7 @@ To remove ``NAN`` values from the sensor stream, use the ``filter_nan`` :ref:`se
         echo_pin: D2
         name: "Ultrasonic Sensor"
         filters:
-          -
+          - filter_nan:
 
 
 See Also
