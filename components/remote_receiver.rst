@@ -29,6 +29,7 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs. Set to ``all`` to
   dump all available codecs:
 
+  - **jvc**: Decode and dump JVC infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.

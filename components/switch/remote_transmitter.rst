@@ -77,6 +77,8 @@ Supported remote codes:
     switch:
     - platform: remote_transmitter
       # ... - Only one of these is allowed for one remote transmitter at a time
+      jvc:
+        data: 0x1234
       nec:
         address: 0x4242
         command: 0x8484
@@ -118,6 +120,10 @@ Supported remote codes:
           - -1000
 
 Configuration variables:
+
+- **jvc**: Send a JVC IR code.
+
+  - **data**: The data bytes to send.
 
 - **nec**: Send a NEC IR code.
 
