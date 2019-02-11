@@ -15,7 +15,7 @@ def find_all(a_str, sub):
             column += len(sub)
 
 
-for f in sorted(Path('.').glob('*.rst')):
+for f in sorted(Path('.').glob('**/*.rst')):
     try:
         content = f.read_text('utf-8')
     except UnicodeDecodeError:

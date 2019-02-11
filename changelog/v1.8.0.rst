@@ -125,8 +125,8 @@ Other notable changes
 
       on_...:
         then:
-	      - switch.turn_on:
-		      id: my_switch
+          - switch.turn_on:
+              id: my_switch
 
   You can now write:
 
@@ -134,7 +134,7 @@ Other notable changes
 
       on_...:
         then:
-	      - switch.turn_on: my_switch
+          - switch.turn_on: my_switch
 
   Or even shorter:
 
