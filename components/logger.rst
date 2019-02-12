@@ -24,7 +24,7 @@ Configuration variables:
 -  **tx_buffer_size** (*Optional*, int): The size of the buffer used
    for log messages. Decrease this if you’re having memory problems.
    Defaults to ``512``.
--  **hw_uart** (*Optional*, string): The Hardware UART to use for logging.
+-  **hardware_uart** (*Optional*, string): The Hardware UART to use for logging.
    Defaults to ``UART0``.
 -  **level** (*Optional*, string): The global log level. Any log message
    with a lower severity will not be shown. Defaults to ``DEBUG``.
@@ -33,12 +33,12 @@ Configuration variables:
    information <logger-manual_tag_specific_levels>`.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-.. _logger-hw_uarts:
+.. _logger-hardware_uarts:
 
 Hardware UARTs
 --------------
 
-The logger component makes use of platform-specific hardware UARTs.
+The logger component makes use of platform-specific hardware UARTs for serial logging.
 By default, the logger will occupy ``UART0``. The ESP32 has three hardware UARTs, all of
 which can be used for both transmit and receive. The ESP8266 only has two hardware UARTs,
 one of which is transmit-only. The ESP8266 ``UART0`` can also be 'swapped' to TX/RX on the

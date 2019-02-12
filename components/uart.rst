@@ -25,23 +25,6 @@ receive/send data at using the ``baud_rate`` option. The most common baud rates 
 
 In some cases only **TX** or **RX** exists as the device at the other end only accepts data or sends data.
 
-.. note::
-
-    Whenever possible, esphome will use the Hardware UART unit on the processor for fast and accurate communication.
-    When the hardware UARTs are all occupied, esphome will fall back to a software implementation that may not
-    be accurate at higher baud rates.
-
-    ``UART0`` is (by default) used by the :doc:`logger component </components/logger>`, connected to ``GPIO1`` and
-    ``GPIO3``. If you configure a UART that overlaps with these pins, you can share the hardware with the logger
-    and leave others available. If you have configured the logger to use a different hardware UART, the pins used
-    for hardware sharing change accordingly.
-
-    The ESP32 has three UARTs. Any pair of GPIO pins can be used, as long as they support the proper output/input modes.
-
-    The ESP8266 has two UARTs; the second of which is TX-only. Only a limited set of pins can be used. ``UART0`` may
-    use either ``GPIO1`` and ``GPIO3``, or ``GPIO15`` and ``GPIO13``. ``UART1`` must use ``GPIO2``. Any other
-    combination of pins will result in use of a software UART.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -50,7 +33,6 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
       rx_pin: D1
       baud_rate: 9600
 
-
 Configuration variables:
 ------------------------
 
@@ -58,6 +40,26 @@ Configuration variables:
 - **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
 - **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
+
+.. _uart-hardware_uarts:
+
+Hardware UARTs
+--------------
+
+Whenever possible, esphome will use the Hardware UART unit on the processor for fast and accurate communication.
+When the hardware UARTs are all occupied, esphome will fall back to a software implementation that may not
+be accurate at higher baud rates.
+
+``UART0`` is (by default) used by the :doc:`logger component </components/logger>`, using ``tx_pin: GPIO1`` and
+``rx_pin: GPIO3``. If you configure a UART that overlaps with these pins, you can share the hardware with the
+logger and leave others available. If you have configured the logger to use a different hardware UART, the pins
+used for hardware sharing change accordingly.
+
+The ESP32 has three UARTs. Any pair of GPIO pins can be used, as long as they support the proper output/input modes.
+
+The ESP8266 has two UARTs; the second of which is TX-only. Only a limited set of pins can be used. ``UART0`` may
+use either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``, or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``. ``UART1`` must
+use ``tx_pin: GPIO2``. Any other combination of pins will result in use of a software UART.
 
 See Also
 --------
