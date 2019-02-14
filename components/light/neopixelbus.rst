@@ -66,14 +66,14 @@ Configuration variables:
   more about these here: `ESP32 <https://github.com/Makuna/NeoPixelBus/wiki/ESP32-NeoMethods>`__,
   `ESP8266 <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__
 
-  - ``ESP8266_DMA`` (default for ESP8266)
-  - ``ESP8266_UART0``
-  - ``ESP8266_UART1``
-  - ``ESP8266_ASYNC_UART0``
-  - ``ESP8266_ASYNC_UART1``
+  - ``ESP8266_DMA`` (default for ESP8266, only on pin GPIO3)
+  - ``ESP8266_UART0`` (only on pin GPIO1)
+  - ``ESP8266_UART1`` (only on pin GPIO3)
+  - ``ESP8266_ASYNC_UART0`` (only on pin GPIO1)
+  - ``ESP8266_ASYNC_UART1`` (only on pin GPIO3)
   - ``ESP32_I2S_0``
   - ``ESP32_I2S_1`` (default for ESP32)
-  - ``BIT_BANG``
+  - ``BIT_BANG`` (can flicker a bit)
 
 - **num_leds** (**Required**, int): The number of LEDs attached.
 
