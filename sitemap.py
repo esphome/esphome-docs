@@ -50,3 +50,8 @@ def create_sitemap(app, exception):
                                xml_declaration=True,
                                encoding='utf-8',
                                method="xml")
+    filename2 = app.outdir + "/sitemap2.xml"
+    ET.ElementTree(root).write(filename2,
+                               xml_declaration=True,
+                               encoding='utf-8',
+                               method="xml")
