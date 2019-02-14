@@ -315,14 +315,14 @@ This will result in really small firmware data which has a high chance of fittin
 Donations
 ---------
 
-I invest lots of time into this project, so if you like esphomelib and want to support the project, donations
-are very welcome.
+I invest a lot of time into this project, so if you like ESPHome and want to
+support the project, donations are very welcome :)
 
-Before donating here though, please consider donating to charity (for example the red cross, UNICEF, greenpeace, ...).
-They can use the money much better than I can. Also, I don't want donations for feature requests as I cannot
-_guarantee_ that I can get a specific feature to work reliably.
+You can donate to me via PayPal. Other donation options are being
+explored. https://www.paypal.me/ottowinter
 
-Donations are currently only possible via PayPal: https://www.paypal.me/ottowinter
+(Please do not donate for specific features as I cannot guarantee I will
+be able to implement a feature because of complexity or other problems.)
 
 See Also
 --------
