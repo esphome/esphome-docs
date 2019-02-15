@@ -122,7 +122,7 @@ html_theme_options = {
     'sidebar_collapse': True,
     'fixed_sidebar': True,
     'show_powered_by': False,
-    'canonical_url': html_baseurl + '/',
+    'font_size': '1.05em',
 }
 
 html_logo = 'images/logo-text.svg'

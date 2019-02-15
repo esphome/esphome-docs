@@ -110,6 +110,10 @@ RST primer:
             name: "Relay #42"
             pin: GPIO13
 
+  .. note::
+
+      Please note the empty line after the ``code-block`` directive. That is necessary.
+
 - **Images**: To show images, use the ``figure`` directive:
 
   .. code-block:: rst
@@ -125,6 +129,13 @@ RST primer:
      :width: 40.0%
 
      Optional figure caption.
+
+  .. note::
+
+      All images in the documentation need to be as small as possible to ensure
+      fast page load times. For normal figures the maximum size should be at most
+      about 1000x800px or so. Additionally, please use online tools like
+      https://tinypng.com/ or https://tinyjpg.com/ to further compress images.
 
 - **Notes and warnings**: You can create simple notes and warnings using the ``note`` and ``warning``
   directives:
@@ -182,6 +193,18 @@ RST primer:
   1. Ordered Item #1
   2. Ordered Item #2
 
+- **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
+  New pages need to be added to the ``imgtable`` list. The syntax is CSV with <PAGE NAME>, <FILE NAME> (without RST),
+  <IMAGE> (in top-level images/ directory). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
+
+  Because these images are served on the main page, they need to be compressed heavily. SVGs are prefered over JPGs
+  and JPGs should be max. 300x300px.
+  If you have imagemagick installed, you can use this command to convert the thumbnail:
+
+  .. code-block:: bash
+
+      convert -sampling-factor 4:2:0 -strip -interlace Plane -quality 80% -resize 300x300 in.jpg out.jpg
+
 reStructured text can do a lot more than this, so if you're looking for a more complete guide
 please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
 
@@ -195,53 +218,29 @@ Build
 
     .. code-block:: bash
 
-        docker run --rm -v "$PWD/..":/data -p 8000:8000 -it ottowinter/esphomedocs
+        docker run --rm -v "$PWD/":/data -p 8000:8000 -it ottowinter/esphomedocs
 
     On Windows (PowerShell)
 
     .. code-block:: powershell
 
-        docker run --rm -v ${PWD}/..:/data -p 8000:8000 -it ottowinter/esphomedocs
+        docker run --rm -v ${PWD}/:/data -p 8000:8000 -it ottowinter/esphomedocs
 
     And then go to ``<CONTAINER_IP>:8000`` in your browser.
 
     This way, you don't have to install the dependencies to build the documentation.
 
-To check your documentation changes locally, you first need install sphinx (**with Python 3**) and
-`doxygen <http://www.doxygen.nl/>`__.
+To check your documentation changes locally, you first need install sphinx (**with Python 3**).
 
 .. code-block:: bash
 
     # in ESPHome-Docs repo:
     pip3 install -r requirements.txt
 
-Next, you will also need to clone the `ESPHome-Core repository <https://github.com/esphome/ESPHome-Core>`__ into
-the paret folder where ``ESPHome-Docs`` sits like this:
-
-.. code-block:: text
-
-    ├── ESPHome-Docs/
-    │   ├── api/
-    │   ├── esphomeyaml/
-    │   ├── Doxygen
-    │   ├── Makefile
-    │   ├── index.rst
-    │   └── ...
-    └── ESPHome-Core/
-        ├── docker/
-        ├── examples/
-        ├── lib/
-        ├── src/
-        ├── library.json
-        ├── platformio.ini
-        └── ...
-
 Then, use the provided Makefile to build the changes and start a simple web server:
 
 .. code-block:: bash
 
-    # Update doxygen API docs
-    make doxyg
     # Start web server on port 8000
     make webserver
 
