@@ -76,9 +76,3 @@ table.docutils {
 .not-hidden {
   display: block !important;
 }
-
-@media (max-width: 540px) {
-    body {
-        font-size: 18px !important;
-    }
-}
