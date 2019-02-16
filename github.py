@@ -91,6 +91,7 @@ class ImageTableDirective(Table):
         col_widths = self.get_column_widths(3)
         title, messages = self.make_title()
         table = nodes.table()
+        table['classes'].append('table-center')
 
         # Set up column specifications based on widths
         tgroup = nodes.tgroup(cols=3)
@@ -141,7 +142,6 @@ class ImageTableDirective(Table):
             rows.append(trow)
         tbody.extend(rows)
 
-        table['classes'] += []
         self.add_name(table)
         if title:
             table.insert(0, title)
@@ -207,7 +207,6 @@ class PinTableDirective(Table):
             trow += entry
             tbody += trow
 
-        table['classes'] += ['no-center']
         self.add_name(table)
         if title:
             table.insert(0, title)

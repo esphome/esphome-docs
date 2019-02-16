@@ -72,7 +72,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the i^2c address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
-  ``OFF``, ``2x``, ``4x``, ``16x``. Defaults to ``OFF``.
+  ``OFF``, ``1x``, ``3x``, ``7x``, ``15x``, ``31x``, ``63x`` and ``127x``. Defaults to ``OFF``.
 - **heater** (*Optional*): The settings for the internal heater for the gas sensor. Set this
   to disable the internal heater.
 

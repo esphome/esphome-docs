@@ -290,7 +290,7 @@ This effect allows you to write completely custom light effects yourself using :
                 } else {
                   call.set_rgb(1.0, 0.0, 0.0);
                 }
-                call.execute();
+                call.perform();
                 state += 1;
                 if (state == 4)
                   state = 0;

@@ -37,7 +37,7 @@ def create_sitemap(app, exception):
 
     for link in app.sitemap_links:
         url = ET.SubElement(root, "url")
-        ET.SubElement(url, "loc").text = app.builder.config.html_baseurl + link
+        ET.SubElement(url, "loc").text = app.builder.config.html_baseurl + '/' + link
         priority = 0.5
         if link.endswith('index.html'):
             priority += 0.25

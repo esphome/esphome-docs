@@ -6,15 +6,16 @@ ESPHome
 
 .. seo::
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
-    :image: logo-text.png
+    :image: logo.png
 
 .. image:: /images/logo-text.svg
 
 .. raw:: html
 
-    <a href="https://github.com/OttoWinter/esphomelib"><img src="https://img.shields.io/github/stars/OttoWinter/esphomelib.svg?style=social&label=Star&maxAge=2592000" alt="GitHub stars" style="max-width:100%;"></a>
-    <a href="https://esphomelib.com/esphomeyaml/changelog/index.html"><img src="https://img.shields.io/pypi/v/esphomeyaml.svg" alt="Release" style="max-width:100%;"></a>
-    <a href="https://discord.gg/KhAMKrd"><img src="https://img.shields.io/discord/429907082951524364.svg" alt="Discord Chat" style="max-width:100%;"></a>
+    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" style="max-width:100%;height:26px;width:116.1px;margin-top:10px;"></a>
+    <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" style="max-width:100%;height:26px;width:126.3px;"></a>
+    <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" style="max-width:100%;height:26px;width:122.1px;"></a>
+    <a href="/guides/faq.html#donations"><img src="/_images/shield-donate.svg" alt="Donate" style="max-width:100%;height:26px;width:110.6px;"></a>
 
 .. _guides:
 
@@ -297,6 +298,7 @@ This list contains items that are technically already supported by other compone
     Dual Relay Motor Cover, cookbook/dual-r2-cover, sonoff_dual_r2.jpg
     BME280 Environment, cookbook/bme280_environment, bme280.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
+    H801 LED Controller, cookbook/h801, h801.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
@@ -312,3 +314,4 @@ documentation for others to copy. See :doc:`Contributing </guides/contributing>`
     guides/index
     changelog/index
     custom/index
+    images/index
