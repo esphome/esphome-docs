@@ -59,7 +59,9 @@ and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` comp
         white: pwm_w
 
 
-Make your node in the esphome dashboard and compile/upload it. (if it fails OTA it must be uploaded manually with your favorite ESP flasher, e.g. :ref:`esphomeflasher <esphomeflasher>`)
+Make your node in the esphome dashboard and compile/upload it.
+(if it fails OTA it must be uploaded manually with your favorite ESP flasher,
+e.g. :ref:`esphome-flasher <esphome-flasher>`)
 
 .. figure:: images/gpio.jpg
     :align: center

@@ -66,7 +66,7 @@ Automations:
 .. _esphome-esphome_core_version:
 
 ``esphome_core_version``
-----------------------
+------------------------
 
 With the ``esphome_core_version`` parameter you can tell ESPHome which version of the C++ framework
 to use when compiling code. For example, you can configure using the most recent (potentially unstable)

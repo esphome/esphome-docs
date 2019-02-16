@@ -212,19 +212,11 @@ Build
 *****
 .. note::
 
-    The easiest way is to use the `esphomedocs docker image <https://hub.docker.com/r/ottowinter/esphomedocs/>`__:
-
-    On Linux
+    The easiest way is to use the `esphome-docs docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
 
     .. code-block:: bash
 
-        docker run --rm -v "$PWD/":/data -p 8000:8000 -it ottowinter/esphomedocs
-
-    On Windows (PowerShell)
-
-    .. code-block:: powershell
-
-        docker run --rm -v ${PWD}/:/data -p 8000:8000 -it ottowinter/esphomedocs
+        docker run --rm -v "${PWD}/":/data -p 8000:8000 -it esphome/esphome-docs
 
     And then go to ``<CONTAINER_IP>:8000`` in your browser.
 

@@ -77,15 +77,15 @@ New Features
   can be used to tell esphomelib what to do if the wakeup pin is already in the wakeup level when attempting
   to enter deep sleep. 🛌
 
-- There are two new triggers available now: :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>` and
-  :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>` with which you can do some advanced cleanup/setup
+- There are two new triggers available now: :ref:`esphomeyaml.on_boot <esphome-on_boot>` and
+  :ref:`esphomeyaml.on_shutdown <esphome-on_shutdown>` with which you can do some advanced cleanup/setup
   on boot and shutdown of the node.
 
 - All Hass.io add-on builds have now been more or less completely automated using a private Gitlab server. You
   can find all the new docker files `here <https://github.com/OttoWinter/esphomeyaml/tree/master/docker>`__.
 
 - Added a new ``build_path`` option in the ``esphomeyaml`` section with which you can customize where
-  esphomeyaml stores the platformio project files. See :doc:`/components/esphomeyaml`.
+  esphomeyaml stores the platformio project files. See :doc:`/components/esphome`.
 
 Breaking Changes
 ****************
