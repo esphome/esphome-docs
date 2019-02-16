@@ -8,7 +8,7 @@ BME680 Temperature+Pressure+Humidity+Gas Sensor
 
 The ``bme680`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
-`Adafruit`_) temperature, pressure and humidity sensors with esphomelib. The :ref:`I²C <i2c>` is required to be set up in
+`Adafruit`_) temperature, pressure and humidity sensors with ESPHome. The :ref:`I²C <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
 .. figure:: images/bme680-full.jpg

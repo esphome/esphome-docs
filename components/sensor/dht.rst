@@ -17,7 +17,7 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 `sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__) and SI7021 (one wire Sonoff version)
 (`datasheet <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__,
 `sparkfun <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__)
-sensors with esphomelib.
+sensors with ESPHome.
 
 .. figure:: images/dht-full.jpg
     :align: center

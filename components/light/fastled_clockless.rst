@@ -6,7 +6,7 @@ FastLED Clockless Light
     :image: color_lens.png
 
 The ``fastled_clockless`` light platform allows you to create RGB lights
-in esphomelib for a :ref:`number of supported chipsets <fastled_clockless-chipsets>`.
+in ESPHome for a :ref:`number of supported chipsets <fastled_clockless-chipsets>`.
 
 Clockless FastLED lights differ from the
 :doc:`fastled_spi` in that they only have a single data wire to connect, and not separate data and clock wires.

@@ -2,7 +2,7 @@ Logger Component
 ================
 
 .. seo::
-    :description: Instructions for setting up the central logging component in esphomelib.
+    :description: Instructions for setting up the central logging component in ESPHome.
     :image: file-document-box.png
 
 The logger component automatically logs all log messages through the
@@ -71,7 +71,7 @@ Possible log levels are (sorted by severity):
 -  ``WARN``
 
   - With this log level, warnings and errors are logged. Warnings are issues like invalid readings from
-    sensors that esphomelib can recover from. Color: yellow
+    sensors that ESPHome can recover from. Color: yellow
 
 -  ``INFO``
 

@@ -7,7 +7,7 @@ MH-Z19 CO_2 and Temperature Sensor
     :keywords: mh-z19
 
 The ``mhz19`` sensor platform allows you to use MH-Z19 CO_2 and temperature sensors
-(`refspace`_) with esphomelib.
+(`refspace`_) with ESPHome.
 
 .. figure:: images/mhz19-full.jpg
     :align: center

@@ -55,7 +55,7 @@ Configuration variables:
           pin: 5
           carrier_duty_percent: 100%
 
-    Supporting the RF Bridge chip directly is currently only a long-term goal for esphomelib.
+    Supporting the RF Bridge chip directly is currently only a long-term goal for ESPHome.
 
 
 See Also

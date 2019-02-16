@@ -12,7 +12,7 @@ have a red LED on the front that blinks every time that one Wh has been used.
 
 The simple idea therefore is: Why don't we just abuse that functionality to make the power-meter
 IoT enabled? We just have to hook up a simple photoresistor in front of that aforementioned
-LED and track the amount of pulses we receive. Then using esphomelib we can instantly have
+LED and track the amount of pulses we receive. Then using ESPHome we can instantly have
 the power meter show up in Home Assistant 🎉
 
 Hooking it all up is quite easy: Just buy a suitable photoresistor (make sure the wave length
@@ -24,7 +24,7 @@ And... that should already be it :)
     :align: center
     :width: 80.0%
 
-For esphomelib, you can then use the
+For ESPHome, you can then use the
 :doc:`pulse counter sensor </components/sensor/pulse_counter>` using below configuration:
 
 .. code-block:: yaml
@@ -43,7 +43,7 @@ Thus, rearranging the expression yields a proportional factor of ``0.06`` from `
 ``kW``.
 
 And if a technician shows up and he looks confused about what the heck you have done to your
-power meter, tell them about esphomelib 😉
+power meter, tell them about ESPHome 😉
 
 .. note::
 

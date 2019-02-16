@@ -1,7 +1,7 @@
 Custom Text Sensor
 ==================
 
-This integration can be used to create custom text sensors in esphomelib
+This integration can be used to create custom text sensors in ESPHome
 using the C++ (Arduino) API.
 
 Please first read :doc:`/components/sensor/custom` guide,
@@ -13,8 +13,8 @@ the message "Hello World!".
 
 .. code-block:: cpp
 
-    #include "esphomelib.h"
-    using namespace esphomelib;
+    #include "esphome.h"
+    using namespace esphome;
 
     class MyCustomTextSensor : public PollingComponent, public text_sensor::TextSensor {
      public:
@@ -38,7 +38,7 @@ And in YAML:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       includes:
         - my_text_sensor.h
 

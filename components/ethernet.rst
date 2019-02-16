@@ -2,7 +2,7 @@ Ethernet Component
 ==================
 
 .. seo::
-    :description: Instructions for setting up the Ethernet configuration for your ESP32 node in esphomelib.
+    :description: Instructions for setting up the Ethernet configuration for your ESP32 node in ESPHome.
     :image: ethernet.png
     :keywords: Ethernet, ESP32
 
@@ -11,7 +11,7 @@ Ethernet Component
     This integration is experimental as I don't have the hardware to test it (yet).
     If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
 
-This core esphomelib component sets up ethernet connections for ESP32s.
+This core ESPHome component sets up ethernet connections for ESP32s.
 Ethernet for ESP8266 is not supported.
 
 .. code-block:: yaml
@@ -59,9 +59,6 @@ Configuration variables:
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
-- **hostname** (*Optional*, string): Manually set the hostname of the
-  node. Can only be 63 long at max and must only contain alphanumeric
-  characters plus dashes and underscores.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.

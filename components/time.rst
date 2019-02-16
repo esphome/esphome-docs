@@ -4,18 +4,18 @@ Time
 ====
 
 .. seo::
-    :description: Instructions for setting up real time clock sources in esphomelib like network based time.
+    :description: Instructions for setting up real time clock sources in ESPHome like network based time.
     :image: clock-outline.png
     :keywords: NTP, SNTP, RTC
 
-The ``time`` component allows you to set up real time clock time sources for esphomelib.
+The ``time`` component allows you to set up real time clock time sources for ESPHome.
 You can then get the current time in :ref:`lambdas <config-lambda>`.
 Currently only sntp (internet-based) and homeassistant time sources are supported.
 
 Home Assistant Time Source
 --------------------------
 
-The preferred way to get time in esphomelib is using Home Assistant.
+The preferred way to get time in ESPHome is using Home Assistant.
 With the ``homeassistant`` time platform, the :doc:`native API </components/api>` connection
 to Home Assistant will be used to periodically synchronize the current time.
 
@@ -29,11 +29,11 @@ to Home Assistant will be used to periodically synchronize the current time.
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
-- **timezone** (*Optional*, string): Manually tell esphomelib what timezone to use with `this format
+- **timezone** (*Optional*, string): Manually tell ESPHome what timezone to use with `this format
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
   or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
-  <Region>/<City>. esphomeyaml tries to automatically infer the timezone string based on the timezone of the computer
-  that is running esphomeyaml, but this might not always be accurate.
+  <Region>/<City>. ESPHome tries to automatically infer the timezone string based on the timezone of the computer
+  that is running ESPHome, but this might not always be accurate.
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
@@ -50,10 +50,10 @@ SNTP Configuration
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
-- **timezone** (*Optional*, string): Manually tell esphomelib what timezone to use with `this format
+- **timezone** (*Optional*, string): Manually tell ESPHome what timezone to use with `this format
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated) or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form <Region>/<City>.
-  esphomeyaml tries to automatically infer the timezone string based on the timezone of the computer that is running
-  esphomeyaml, but this might not always be accurate.
+  ESPHome tries to automatically infer the timezone string based on the timezone of the computer that is running
+  ESPHome, but this might not always be accurate.
 - **servers** (*Optional*, list of strings): Choose up to 3 NTP servers that are used for the clock source.
   Defaults to ``0.pool.ntp.org``, ``1.pool.ntp.org`` and ``2.pool.ntp.org``
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using

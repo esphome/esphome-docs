@@ -2,7 +2,7 @@ Restart Switch
 ==============
 
 .. seo::
-    :description: Instructions for setting up switches that can remotely reboot the ESP in esphomelib.
+    :description: Instructions for setting up switches that can remotely reboot the ESP in ESPHome.
     :image: restart.png
 
 The ``restart`` switch platform allows you to restart your node remotely

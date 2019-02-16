@@ -2,12 +2,12 @@ NodeMCU ESP32
 =============
 
 .. seo::
-    :description: Instructions for using NodeMCU ESP32 boards in esphomelib and a description of all their pins and uses.
+    :description: Instructions for using NodeMCU ESP32 boards in ESPHome and a description of all their pins and uses.
     :image: nodemcu_esp32.jpg
 
 The NodeMCU ESP32 board (in some cases also known as ESP32-DevkitC)
-is fully supported by esphomeyaml. Simply select ``ESP32`` when
-the esphomeyaml wizard asks you for your platform and |nodemcu-32s|_ as the board type.
+is fully supported by ESPHome. Simply select ``ESP32`` when
+the ESPHome wizard asks you for your platform and |nodemcu-32s|_ as the board type.
 
 .. |nodemcu-32s| replace:: ``nodemcu-32s``
 .. _nodemcu-32s: http://docs.platformio.org/en/latest/platforms/espressif32.html#nodemcu
@@ -15,7 +15,7 @@ the esphomeyaml wizard asks you for your platform and |nodemcu-32s|_ as the boar
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
         name: livingroom
         platform: ESP32
         board: nodemcu-32s
@@ -46,7 +46,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       name: livingroom
       platform: ESP32
       board: nodemcu-32s

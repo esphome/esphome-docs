@@ -42,7 +42,7 @@ Configuration variables:
     Therefore the values could very well be off by orders of magnitude. Besides, this sensor should
     only be used to detect sudden high changes in the magnetic field.
 
-    If you have a real magnetic field calibration setup and want to contribute your values to esphomelib,
+    If you have a real magnetic field calibration setup and want to contribute your values to ESPHome,
     please feel free to do so 😺.
 
 See Also

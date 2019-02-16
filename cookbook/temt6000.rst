@@ -2,7 +2,7 @@ TEMT6000
 ========
 
 .. seo::
-    :description: Instructions for setting up TEMT6000 ambient light sensors in esphomelib using the ADC sensor component.
+    :description: Instructions for setting up TEMT6000 ambient light sensors in ESPHome using the ADC sensor component.
     :image: temt6000.jpg
     :keywords: TEMT6000
 

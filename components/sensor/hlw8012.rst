@@ -8,13 +8,13 @@ HLW8012 Power Sensor
 
 The ``hlw8012`` sensor platform allows you to use your HLW8012 voltage/current and power sensors
 (`datasheet <https://github.com/xoseperez/hlw8012/blob/master/docs/HLW8012.pdf>`__) sensors with
-esphomelib. This sensor is commonly found in Sonoff POWs.
+ESPHome. This sensor is commonly found in Sonoff POWs.
 
 This sensor has two data outputs which both encode values using the frequency of a modulated signal: CF and CF1.
 CF's frequency is proportional to the (active) power measured and CF1 is proportional to the current/voltage. Using
 the SEL pin, one can choose between which mode to use.
 
-esphomelib will continuously cycle the state of the SEL pin to measure current *and* voltage, though both cannot
+ESPHome will continuously cycle the state of the SEL pin to measure current *and* voltage, though both cannot
 be measured at the same exact points in time.
 
 .. code-block:: yaml

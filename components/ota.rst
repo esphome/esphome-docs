@@ -8,26 +8,11 @@ OTA Update Component
 
 With the OTA (Over The Air) update component you can upload your
 firmware binaries to your node without having to use an USB cable for
-uploads. esphomeyaml natively supports this through its ``run`` and
+uploads. ESPHome natively supports this through its ``run`` and
 ``upload`` helper scripts.
 
-.. note::
-  Please be aware that ESP8266 modules must be reset after a serial 
-  upload before OTA can work.
-  When you are trying to conduct an OTA update and receive an error message
-  ``Bad Answer: ERR: ERROR[11]: Invalid bootstrapping`` the reason is
-  very likely that power-cycling the ESP module is required once after
-  the serial upload.
-  
-
-Optionally, you can also define a password to use for OTA updates so
-that an intruder isn’t able to upload any firmware to the ESP without
-having hardware access to it. This password is also hashed
-automatically, so an intruder can’t extract the password from the
-binary.
-
-esphomelib also supports an “OTA safe mode”. If for some reason your
-node gets into a boot loop, esphomelib will automatically try to detect
+ESPHome also has an "OTA safe mode". If for some reason your
+node gets into a boot loop, ESPHome will automatically try to detect
 this and will go over into a safe mode after 10 unsuccessful boot
 attempts. In that mode, all components are disabled and only Serial
 Logging+WiFi+OTA are initialized, so that you can upload a new binary.
@@ -49,31 +34,31 @@ Configuration variables:
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. note::
+
+  Please be aware that ESP8266 modules must be reset after a serial
+  upload before OTA can work.
+  When you are trying to conduct an OTA update and receive an error message
+  ``Bad Answer: ERR: ERROR[11]: Invalid bootstrapping`` the reason is
+  very likely that power-cycling the ESP module is required once after
+  the serial upload.
+
 Updating the password:
 ----------------------
 
-Since the password is used both for compiling and uploading the regular ``esphomeyaml <file> run`` won't work of course. This issue can be worked around by executing the operations separately through a ``on_boot`` trigger:
+Since the password is used both for compiling and uploading the regular ``esphome <file> run``
+won't work of course. This issue can be worked around by executing the operations separately
+through a ``on_boot`` trigger:
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       on_boot:
         - lambda: |-
             id(ota).set_auth_password("New password");
     ota:
       password: "Old password"
       id: ota
-
-.. note::
-
-    If you get errors like
-
-    .. code::
-
-        ERROR [esphomeyaml.espota] Failed
-        ERROR [esphomeyaml.espota] Host livingroom.local Not Found
-
-    when attempting to upload via OTA, please try setting a :ref:`manual IP for WiFi <wifi-manual_ip>`.
 
 See Also
 --------

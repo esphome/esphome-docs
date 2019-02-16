@@ -2,13 +2,13 @@ PN532 NFC/RFID Controller Hub
 =============================
 
 .. seo::
-    :description: Instructions for setting up PN532 NFC tag readers in esphomelib
+    :description: Instructions for setting up PN532 NFC tag readers in ESPHome
     :image: pn532.jpg
     :keywords: PN532, NFC, RFID
 
 The ``pn532`` component allows you to use PN532 NFC/RFID controllers
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf>`__, `adafruit <https://www.adafruit.com/product/364>`__)
-with esphomelib. This component is a global hub that establishes the connection to the PN532 via :ref:`SPI <spi>` and
+with ESPHome. This component is a global hub that establishes the connection to the PN532 via :ref:`SPI <spi>` and
 outputs its data. Using the :doc:`PN532 binary sensors </components/binary_sensor/pn532>` you can then
 create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.
 

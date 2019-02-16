@@ -1,8 +1,7 @@
-esphomeyaml:
+esphome:
   name: <NAME_OF_NODE>
   platform: ESP8266
   board: esp01_1m
-  board_flash_mode: dout
 
 wifi:
   ssid: <YOUR_SSID>

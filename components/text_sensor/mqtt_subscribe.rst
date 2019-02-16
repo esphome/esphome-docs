@@ -6,7 +6,7 @@ MQTT Subscribe Text Sensor
     :image: mqtt.png
     :keywords: MQTT
 
-The ``mqtt_subscribe`` text sensor platform allows you to get external data into esphomelib.
+The ``mqtt_subscribe`` text sensor platform allows you to get external data into ESPHome.
 The sensor will subscribe to messages on the given MQTT topic and save the most recent value
 in its ``id(mysensor).state``.
 

@@ -2,14 +2,14 @@ TSL2561 Ambient Light Sensor
 ============================
 
 .. seo::
-    :description: Instructions for setting up TSL2561 ambient light sensors in esphomelib.
+    :description: Instructions for setting up TSL2561 ambient light sensors in ESPHome.
     :image: tsl2561.jpg
     :keywords: TSL2561
 
 The ``tsl2561`` sensor platform allows you to use your TSL2561
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/TSL2561.pdf>`__,
 `Adafruit`_)
-ambient light sensor with esphomelib. The :ref:`I²C <i2c>` is required to be set up in
+ambient light sensor with ESPHome. The :ref:`I²C <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
 .. figure:: images/tsl2561-full.jpg

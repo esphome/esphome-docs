@@ -2,10 +2,10 @@ Contributing
 ============
 
 .. seo::
-    :description: Getting started guide for contributing to the esphomelib project
+    :description: Getting started guide for contributing to the ESPHome project
     :image: github-circle.png
 
-Contributions to the esphomelib suite are very welcome! All the code for the projects
+Contributions to the ESPHome suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:
 
 - `ESPHome-Core <https://github.com/esphome/ESPHome-Core>`__ (The C++ framework)
@@ -22,11 +22,11 @@ Contributing to ESPHome-Docs
     :align: center
     :width: 60.0%
 
-One of the areas of esphomelib that can always be improved is the documentation.
+One of the areas of ESPHome that can always be improved is the documentation.
 If you see an issue somewhere, or spelling mistakes or if you want to share your awesome
 setup, please feel free to submit a pull request.
 
-The esphomelib documentation is built using `sphinx <http://www.sphinx-doc.org/>`__ and uses
+The ESPHome documentation is built using `sphinx <http://www.sphinx-doc.org/>`__ and uses
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`__ for all source files.
 
 Syntax
@@ -268,10 +268,9 @@ Contributing to ESPHome-Core
     :align: center
     :width: 60.0%
 
-esphomelib is the engine behind all the esphomeyaml stuff. The framework is also designed
-to be used on its own - i.e. without esphomeyaml. To contribute code to esphomelib to fix
-a bug or add a new integration/feature, clone the repository, make your changes and create
-a pull request.
+ESPHome-Core is the engine behind all the ESPHome stuff.
+To contribute code to ESPHome-Core to fix a bug or add a new integration/feature,
+clone the repository, make your changes and create a pull request.
 
 At some point, I will create a dedicated guide for the exact setup used, but for now just
 look around the code base a bit and see how other components are doing stuff.
@@ -285,7 +284,7 @@ To initialize the development environment, navigate to the repository and execut
     # Initialize for IDE
     pio init --ide {YOUR_IDE}
 
-Standard for the esphomelib codebase:
+Standard for the esphome-core codebase:
 
 - All features should at least have a bit of documentation using the doxygen documentation style
   (see other source files for reference)
@@ -305,20 +304,20 @@ Standard for the esphomelib codebase:
 - Be careful with including large standard library headers, they can considerably
   increase the code size.
 - All features should only be compiled if a user explicitly defined so using ``-DUSE_<FEATURE>``
-  (see ``esphomeyaml/defines.h``)
+  (see ``esphome/defines.h``)
 - Header files ``.h`` should not include source code. All code should sit in C++ ``.cpp`` files.
   (except for templates)
 - Using explicit int sizes is like ``int64_t`` is preferred over standard types like ``long long``.
 - All new features should have at least one example usage in the examples directory.
 - New components should dump their configuration using ``ESP_LOGCONFIG`` at startup in ``setup()``
 - The number of external libraries should be kept to a minimum. If the component you're developing has a simple
-  communication interface, please consider implementing the library natively in esphomelib.
+  communication interface, please consider implementing the library natively in ESPHome.
 - Implementations for new devices should contain reference links for the datasheet and other sample
   implementations.
 - Please test your changes :)
 
-For editing a local copy of esphomelib within the esphomeyaml ecosystem please see
-:ref:`esphomeyaml.esphomelib_version <esphomeyaml-esphomelib_version>` option.
+For editing a local copy of esphome-core within the ESPHome ecosystem please see
+:ref:`esphome.esphome_core_version <esphome-esphome_core_version>` option.
 
 Contributing to ESPHome
 -----------------------
@@ -327,7 +326,7 @@ Contributing to ESPHome
     :align: center
     :width: 60.0%
 
-esphomeyaml primarily does two things: It validates the configuration and creates C++ code.
+ESPHome primarily does two things: It validates the configuration and creates C++ code.
 
 The configuration validation should always be very strict with validating user input - it's always
 better to fail quickly if a configuration isn't right than to have the user find out the issue after
@@ -347,7 +346,7 @@ it in the configuration. Specifically, it may contain these fields:
   schema that will be validated against the user configuration.
 - ``PLATFORM_SCHEMA``: for *platforms* like ``sensor.dallas``. This is the configuration schema that
   will be validated against every ``platform:`` definition in the config of your platform name.
-- ``to_code``: The "workhorse" of esphomeyaml. This will be called with the configuration of your component/platform
+- ``to_code``: The "workhorse" of ESPHome. This will be called with the configuration of your component/platform
   and you can add code to the global code index in here.
 
   - Call an ``Application`` method like this ``App.make_dallas_component()``
@@ -377,7 +376,7 @@ it in the configuration. Specifically, it may contain these fields:
 
   - Access variables using ``get_variable()``. The variable will automatically know if it is a pointer and use
     the correct operator. Additionally, you can pass a type as the second argument to ``get_variable``. This will
-    cause esphomeyaml to use the first variable of that type.
+    cause ESPHome to use the first variable of that type.
 
     .. code-block:: cpp
 
@@ -399,7 +398,7 @@ it in the configuration. Specifically, it may contain these fields:
       BUILD_FLAGS = '-DUSE_DALLAS_SENSOR'
 
 - ``REQUIRED_BUILD_FLAGS``: Like ``BUILD_FLAGS``, but also uses these build flags if the user has disabled build
-  flags in the :doc:`esphomeyaml section </components/esphomeyaml>`.
+  flags in the :doc:`esphome section </components/esphome>`.
 
 - ``DEPENDENCIES``: Other components that are required to be in the user's configuration if this platform/component
   is loaded:
@@ -414,7 +413,7 @@ it in the configuration. Specifically, it may contain these fields:
 
       ESP_PLATFORMS = [ESP_PLATFORM_ESP32]
 
-Run ``pip2 install -e .`` to install a development version of esphomeyaml.
+Run ``pip2 install -e .`` to install a development version of ESPHome.
 
 See Also
 --------

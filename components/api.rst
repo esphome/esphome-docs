@@ -28,10 +28,10 @@ Configuration variables:
 Migrating from MQTT to Native API Setup in Home Assistant
 ---------------------------------------------------------
 
-The native API is the best way to use esphomelib together with Home Assistant - it's fast,
+The native API is the best way to use ESPHome together with Home Assistant - it's fast,
 highly efficient and requires almost zero setup (whereas MQTT requires you to set up an MQTT broker first).
 
-If you've previously used esphomelib with Home Assistant via MQTT and have enabled MQTT discovery,
+If you've previously used ESPHome with Home Assistant via MQTT and have enabled MQTT discovery,
 the upgrade process is unfortunately not just swapping out the ``mqtt`` for ``api`` in your configuration:
 Home Assistant's `entity registry <https://developers.home-assistant.io/docs/en/entity_registry_index.html>`__ complicates
 things a bit. If you don't follow these steps, all your new native API entities will have a trailing

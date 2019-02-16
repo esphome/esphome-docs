@@ -26,6 +26,12 @@ The ``monochromatic`` light platform creates a simple brightness-only light from
         name: "Kitchen Lights"
         output: output_component1
 
+    # Example output entry
+    output:
+      - platform: esp8266_pwm
+        id: output_component1
+        pin: D1
+
 Configuration variables:
 ------------------------
 
@@ -39,14 +45,6 @@ Configuration variables:
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
-
-.. note::
-
-    The ``monochromatic`` light platform only works with ``float``
-    :ref:`outputs <output>` that can output any light intensity percentage like the
-    :doc:`ESP32 LEDC </components/output/ledc>` or
-    :doc:`ESP8266 PWM </components/output/esp8266_pwm>` components and does **not** work with output
-    platforms like the :doc:`/components/output/gpio`.
 
 See Also
 --------

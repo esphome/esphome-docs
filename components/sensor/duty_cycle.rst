@@ -2,7 +2,7 @@ Duty Cycle Sensor
 =================
 
 .. seo::
-    :description: Instructions for setting up duty cycle sensors in esphomelib
+    :description: Instructions for setting up duty cycle sensors in ESPHome
     :image: percent.png
 
 The duty cycle sensor allows you to measure for what percentage of time a signal

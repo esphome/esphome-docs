@@ -2,7 +2,7 @@ Passive Infrared Sensor
 =======================
 
 .. seo::
-    :description: Instructions for setting up PIR (passive infrared) motion detection sensors in esphomelib
+    :description: Instructions for setting up PIR (passive infrared) motion detection sensors in ESPHome
     :image: pir.jpg
     :keywords: PIR
 
@@ -11,7 +11,7 @@ Passive Infrared Sensor
     :width: 75.0%
 
 Passive Infrared Sensors (or PIR sensors for short) are completely supported by
-esphomelib. These sensors measure the infrared light emitted from objects in its
+ESPHome. These sensors measure the infrared light emitted from objects in its
 field of view, and if it detects a sudden change between different parts of the
 sensing area, the signal is pulled high.
 
@@ -40,7 +40,7 @@ On the back side you will additionally find two knobs that you can turn to chang
 sensitivity and time the signal will stay active for once motion has been detected. Turning
 these clockwise will increase sensitivity/re-trigger time.
 
-To configure esphomeyaml for use with the PIR sensor, use a
+To configure ESPHome for use with the PIR sensor, use a
 :doc:`GPIO Binary Sensor </components/binary_sensor/gpio>`. It can detect
 if a pin is pulled HIGH/LOW and reports those values to Home Assistant. Optionally also
 set a ``device_class`` so that Home Assistant uses a nice icon for the binary sensor.
