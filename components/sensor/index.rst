@@ -226,7 +226,8 @@ With this automation you can observe if a sensor value passes from outside
 a defined range of values to inside a range. For example you can have an
 automation that triggers when a humidity crosses a threshold, and then turns on a dehumidifier.
 This trigger will only trigger when the new value is inside the range and the previous value
-was outside the range. It will also trigger on startup if the first value received is inside the range.
+was outside the range. On startup, the last state before reboot is restored and if the value crossed
+the boundary during the boot process, the trigger is also executed.
 
 Define the range with ``above`` and ``below``. If only one of them is defined, the interval is half-open.
 So for example ``above: 5`` with no below would mean the range from 5 to positive infinity.
