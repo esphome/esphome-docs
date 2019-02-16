@@ -36,8 +36,8 @@ Advanced options:
 Setting Up
 ----------
 
-First, you'll need to set up the configuration for esphomeyaml. Just copy above configuration and
-change the UUID to something unique. For example, you can copy below randomly generated UUID:
+First, you'll need to set up the configuration for ESPHome. Just copy the configuration above and
+change the UUID to something unique. For example, you can copy this randomly generated UUID:
 
 .. raw:: html
 
@@ -55,9 +55,7 @@ change the UUID to something unique. For example, you can copy below randomly ge
       document.getElementById("ble-uuid").value = guid();
     </script>
 
-Then, just compile and flash the ESP32. Note that esphomeyaml needs to increase the size of the code
-partitions of the ESP32 because BLE can take up a lot of space. It does this automatically, but you need
-to flash the ESP32 via USB when enabling or disabling this component.
+Then, just compile and flash the ESP32.
 
 When everything is set up correctly, you should see a show up using your iBeacon scanner of choice. On iPhones,
 this should already work from the bluetooth screen (not tested), on Android, you will need to use an app like

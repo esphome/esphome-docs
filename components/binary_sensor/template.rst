@@ -18,12 +18,7 @@ a binary sensor.
       - platform: template
         name: "Garage Door Open"
         lambda: |-
-          if (isnan(id(ultrasonic_sensor1).state)) {
-            // isnan checks if the ultrasonic sensor echo
-            // has timed out, resulting in a NaN (not a number) state
-            // in that case, return {} to indicate that we don't know.
-            return {};
-          } else if (id(ultrasonic_sensor1).state > 30) {
+          if (id(ultrasonic_sensor1).state > 30) {
             // Garage Door is open.
             return true;
           } else {
@@ -35,20 +30,60 @@ Possible return values of the lambda:
 
  - ``return true;`` if the binary sensor should be ON.
  - ``return false;`` if the binary sensor should be OFF.
- - ``return {};`` if the last state should be repeated.
+ - ``return {};`` if the state is not known (use last known state)
 
 Configuration variables:
 ------------------------
 
 -  **name** (**Required**, string): The name of the binary sensor.
--  **lambda** (**Required**, :ref:`lambda <config-lambda>`):
+-  **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
    Lambda to be evaluated repeatedly to get the current state of the binary sensor.
-   Only state *changes* will be published to MQTT.
 -  **id** (*Optional*,
    :ref:`config-id`): Manually specify
    the ID used for code generation.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`
    and :ref:`MQTT Component <config-mqtt-component>`.
+
+.. _binary_sensor-template-publish_action:
+
+``binary_sensor.template.publish`` Action
+-----------------------------------------
+
+You can also publish a state to a template binary sensor from elsewhere in your YAML file
+with the ``binary_sensor.template.publish`` action.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: template
+        name: "Garage Door Open"
+        id: template_bin
+
+    # in some trigger
+    on_...:
+      - binary_sensor.template.publish:
+          id: template_bin
+          state: ON
+
+      # Templated
+      - binary_sensor.template.publish:
+          id: template_bin
+          state: !lambda 'return id(some_sensor).state > 30;'
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the template binary sensor.
+- **state** (**Required**, boolean, :ref:`templatable <config-templatable>`):
+  The state to publish.
+
+.. note::
+
+    This action can also be written in lambdas:
+
+    .. code-block:: cpp
+
+        id(template_bin).publish_state(true);
 
 See Also
 --------

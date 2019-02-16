@@ -2,12 +2,12 @@ Waveshare E-Paper Display
 =========================
 
 .. seo::
-    :description: Instructions for setting up Waveshare E-Paper displays in esphomelib.
+    :description: Instructions for setting up Waveshare E-Paper displays in ESPHome.
     :image: waveshare_epaper.jpg
 
 The ``waveshare_epaper`` display platform allows you to use
 some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/modules/oleds-lcds/e-paper.htm>`__
-with esphomelib. Similar modules sold by other vendors might also work but not have been tested yet. Currently only
+with ESPHome. Similar modules sold by other vendors might also work but not have been tested yet. Currently only
 single-color E-Ink displays are implemented and of those only a few modules.
 
 .. figure:: images/waveshare_epaper-full.jpg
@@ -16,12 +16,12 @@ single-color E-Ink displays are implemented and of those only a few modules.
 
     Waveshare E-Paper 2.9 Inch E-Paper Display.
 
-The communication esphomelib has chosen to use for this integration is 4-wire :ref:`SPI <spi>`, as it's the most stable
+The communication ESPHome has chosen to use for this integration is 4-wire :ref:`SPI <spi>`, as it's the most stable
 and high-speed. So you need to make sure your board is set to the 4-wire SPI mode and have an ``spi:`` section in your
 configuration.
 
 ==================== ===================== =====================
-**E-Paper Pin**      **ESP Pin**           **esphomelib Option**
+**E-Paper Pin**      **ESP Pin**           **ESPHome Option**
 -------------------- --------------------- ---------------------
 ``VCC``              ``3.3V``              N/A
 -------------------- --------------------- ---------------------

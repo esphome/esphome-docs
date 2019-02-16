@@ -9,7 +9,7 @@ HMC5883L Magnetometer
 The ``hmc5883l`` allows you to use your HMC5883L triple-axis magnetometers
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf>`__,
 `Adafruit`_) with
-esphomelib. The :ref:`I²C Bus <i2c>` is
+ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 .. _Adafruit: https://www.adafruit.com/product/1746

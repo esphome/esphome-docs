@@ -8,7 +8,7 @@ MPU6050 Accelerometer/Gyroscope Sensor
 The ``mpu6050`` sensor platform allows you to use your MPU6050 Accelerometer/Gyroscope
 (`datasheet <https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf>`__,
 `Sparkfun`_) sensors with
-esphomelib. The :ref:`I²C Bus <i2c>` is
+ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 This component only does some basic filtering and no calibration. Due to the complexity of

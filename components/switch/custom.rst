@@ -1,7 +1,7 @@
 Custom Switch
 =============
 
-This integration can be used to create custom switches in esphomelib
+This integration can be used to create custom switches in ESPHome
 using the C++ (Arduino) API.
 
 Please first read :doc:`/components/sensor/custom` guide,
@@ -12,8 +12,8 @@ same as the gpio switch implementation.
 
 .. code-block:: cpp
 
-    #include "esphomelib.h"
-    using namespace esphomelib;
+    #include "esphome.h"
+    using namespace esphome;
 
     // namespace is called 'switch_' because 'switch' is a reserved keyword
     class MyCustomSwitch : public Component, public switch_::Switch {
@@ -39,7 +39,7 @@ And in YAML:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       includes:
         - my_switch.h
 

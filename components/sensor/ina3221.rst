@@ -9,7 +9,7 @@ INA3221 3-Channel DC Current Sensor
 The ``ina3221`` sensor platform allows you to use your INA3221 3-Channel DC Current Sensor
 (`datasheet <http://www.ti.com/lit/ds/symlink/ina3221.pdf>`__,
 `switchdoc`_) sensors with
-esphomelib. The :ref:`I²C Bus <i2c>` is
+ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 

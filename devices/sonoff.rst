@@ -2,24 +2,19 @@ Generic Sonoff
 ==============
 
 .. seo::
-    :description: Instructions for using generic Sonoff devices with esphomelib.
+    :description: Instructions for using generic Sonoff devices with ESPHome.
     :image: sonoff.png
 
-In principle esphomelib supports all Sonoff devices, but as these devices are quite expensive
+In principle ESPHome supports all Sonoff devices, but as these devices are quite expensive
 and shipping from China takes a long time, I've only set up dedicated guides for the
 :doc:`Sonoff S20 <sonoff_s20>` and :doc:`Sonoff 4CH <sonoff_4ch>`.
 
-To use sonoff devices with esphomeyaml, set the ``board`` in the
-:doc:`esphomeyaml section </components/esphomeyaml>` to ``esp01_1m`` and set
-``board_flash_mode`` to ``dout``.
-
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
-      board_flash_mode: dout
 
 After that use the following list of pin to function mappings to set up your Sonoff device.
 This list has been compiled from the Sonoff Tasmota pin source file which can be found here:

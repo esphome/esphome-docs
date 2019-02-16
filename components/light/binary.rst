@@ -2,7 +2,7 @@ Binary Light
 ============
 
 .. seo::
-    :description: Instructions for setting up binary ON/OFF lights in esphomelib.
+    :description: Instructions for setting up binary ON/OFF lights in ESPHome.
     :image: lightbulb.png
 
 The ``binary`` light platform creates a simple ON/OFF-only light from a

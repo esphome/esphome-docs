@@ -2,7 +2,7 @@ Simple Garage Door
 ==================
 
 .. seo::
-    :description: Instructions for setting up a simple garage door in esphomelib.
+    :description: Instructions for setting up a simple garage door in ESPHome.
     :image: window-open.png
 
 The following is a possible configuration file for garage doors that are controlled by two relays:
@@ -41,6 +41,7 @@ for a short period of time, the close/open action begins.
           - switch.turn_off: close_switch
           - switch.turn_off: open_switch
         optimistic: true
+        assumed_state: true
 
 See Also
 --------

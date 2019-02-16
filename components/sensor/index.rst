@@ -2,10 +2,10 @@ Sensor Component
 ================
 
 .. seo::
-    :description: Instructions for setting up sensor components in esphomelib.
+    :description: Instructions for setting up sensor components in ESPHome.
     :image: folder-open.png
 
-esphomelib has support for many different sensors. Each of them is a
+ESPHome has support for many different sensors. Each of them is a
 platform of the ``sensor`` domain and each sensor has several base
 configuration options.
 
@@ -14,7 +14,7 @@ configuration options.
 Base Sensor Configuration
 -------------------------
 
-All sensors in esphomeyaml/esphomelib have a name and some other
+All sensors in ESPHome have a name and some other
 optional configuration options. By default, the sensor platform will
 chose appropriate values for all of these by default, but you can always
 override them if you want to.
@@ -81,13 +81,9 @@ Automations:
 Sensor Filters
 --------------
 
-esphomeyaml/esphomelib allow you to do some basic pre-processing of
+ESPHome allows you to do some basic pre-processing of
 sensor values before they’re sent to Home Assistant. This is for example
-useful if you want to apply some average over the last few values to
-relief Home Assistant’s state machine and keep the history graphs in the
-front-end a bit more clean. More sophisticated filters should be done
-with Home Assistant's `filter
-sensor <https://www.home-assistant.io/components/sensor.filter/>`__.
+useful if you want to apply some average over the last few values.
 
 .. code-block:: yaml
 
@@ -178,7 +174,7 @@ Example: Converting Celsius to Fahrenheit
 
 While I personally don’t like the Fahrenheit temperature scale, I do
 understand that having temperature values appear in the fahrenheit unit
-is quite useful to some users. esphomelib uses the celsius temperature
+is quite useful to some users. ESPHome uses the celsius temperature
 unit internally, and I’m not planning on making converting between the
 two simple (😉), but you can use this filter to convert celsius values to
 fahrenheit.

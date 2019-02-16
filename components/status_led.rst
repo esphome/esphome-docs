@@ -2,16 +2,16 @@ Status LED
 ==========
 
 .. seo::
-    :description: Instructions for setting up status LEDs in esphomelib to monitor the status of an ESP.
+    :description: Instructions for setting up status LEDs in ESPHome to monitor the status of an ESP.
     :image: led-on.png
 
-The ``status_led`` hooks into all esphomelib components and can indicate the status of
+The ``status_led`` hooks into all ESPHome components and can indicate the status of
 the device. Specifically, it will:
 
 - Blink slowly (about every second) when a **warning** is active. Warnings are active when for
   example reading a sensor value fails temporarily or the WiFi/MQTT connections are disrupted.
 - Blink quickly (multiple times per second) when an **error** is active. Errors indicate that
-  esphomelib has found an error while setting up. In most cases, esphomelib will still try to
+  ESPHome has found an error while setting up. In most cases, ESPHome will still try to
   recover from the error and continue with all other operations.
 - Stay off otherwise.
 

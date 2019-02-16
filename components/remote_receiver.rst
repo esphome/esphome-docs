@@ -2,7 +2,7 @@ Remote Receiver Component
 =========================
 
 .. seo::
-    :description: Instructions for setting up remote receivers in esphomelib.
+    :description: Instructions for setting up remote receivers in ESPHome.
     :image: remote.png
     :keywords: RF, infrared
 
@@ -35,6 +35,7 @@ Configuration variables:
   - **samsung**: Decode and dump Samsung infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
+  - **rc5**: Decode and dump RC5 IR codes.
   - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
 
 - **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the

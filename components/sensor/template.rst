@@ -2,7 +2,7 @@ Template Sensor
 ===============
 
 .. seo::
-    :description: Instructions for setting up template sensors with esphomelib.
+    :description: Instructions for setting up template sensors with ESPHome.
     :image: description.png
 
 The ``template`` sensor platform allows you to create a sensor with templated values
@@ -40,14 +40,46 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
 
+.. _sensor-template-publish_action:
+
+``sensor.template.publish`` Action
+----------------------------------
+
+You can also publish a state to a template sensor from elsewhere in your YAML file
+with the ``sensor.template.publish`` action.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: template
+        name: "Template Sensor"
+        id: template_sens
+
+    # in some trigger
+    on_...:
+      - sensor.template.publish:
+          id: template_sens
+          state: 42.0
+
+      # Templated
+      - sensor.template.publish:
+          id: template_sens
+          state: !lambda 'return 42.0;'
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the template sensor.
+- **state** (**Required**, float, :ref:`templatable <config-templatable>`):
+  The state to publish.
+
 .. note::
 
-    You can use the ``publish_state()`` method to set the value of a template
-    sensor from other automations:
+    This action can also be written in lambdas:
 
     .. code-block:: cpp
 
-        id(my_sensor).publish_state(42.0);
+        id(template_sens).publish_state(42.0);
 
 See Also
 --------

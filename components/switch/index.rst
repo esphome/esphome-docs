@@ -2,7 +2,7 @@ Switch Component
 ================
 
 .. seo::
-    :description: Instructions for setting up generic switches in esphomelib.
+    :description: Instructions for setting up generic switches in ESPHome.
     :image: folder-open.png
 
 The ``switch`` domain includes all platforms that should show up like a

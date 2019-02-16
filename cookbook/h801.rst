@@ -9,12 +9,12 @@ It can be used as a RGB, RGBW, RGB dual white or even control 5 individual monoc
     :align: center
     :width: 80.0%
 
-For esphomelib, you can then use the :doc:`RGBW </components/light/rgbw>` 
+For ESPHome, you can then use the :doc:`RGBW </components/light/rgbw>`
 and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` components using below configuration:
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: h801light
       platform: ESP8266
       board: esp01_1m

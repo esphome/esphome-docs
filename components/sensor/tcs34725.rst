@@ -8,7 +8,7 @@ TCS34725 RGB Color Sensor
 
 The ``tcs34725`` sensor platform allows you to use your TCS34725 RGB color sensors
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/TCS34725.pdf>`__,
-`Adafruit`_) temperature and pressure sensors with esphomelib. The :ref:`I²C <i2c>` is
+`Adafruit`_) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/tcs34725-full.jpg

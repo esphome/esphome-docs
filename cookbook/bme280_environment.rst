@@ -2,7 +2,7 @@ BME280 Environment
 ==================
 
 .. seo::
-    :description: Instructions for setting up BME280 sensors in esphomelib and calculate altitude, absolute humidity, and sea level pressure.
+    :description: Instructions for setting up BME280 sensors in ESPHome and calculate altitude, absolute humidity, and sea level pressure.
     :image: bme280.jpg
     :keywords: BME280
 

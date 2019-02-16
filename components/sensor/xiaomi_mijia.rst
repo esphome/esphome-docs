@@ -2,14 +2,14 @@ Xiaomi MiJia BLE Sensor
 =======================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi Mi Jia bluetooth-based temperature and humidity sensors in esphomelib.
+    :description: Instructions for setting up Xiaomi Mi Jia bluetooth-based temperature and humidity sensors in ESPHome.
     :image: xiaomi_miflora.jpg
     :keywords: Xiaomi, Mi Jia, BLE, Bluetooth
 
 The ``xiaomi_mijia`` sensor platform lets you track the output of Xiaomi MiJia Bluetooth Low Energy
 devices using the :doc:`/components/esp32_ble_tracker`. This component will track the
 temperature, humidity and optionally the battery level of the MiJia device every time the sensor
-sends out a BLE broadcast. Note that contrary to other implementations, esphomelib can track as many
+sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many
 MiJia devices at once as you want.
 
 .. figure:: images/xiaomi_mijia-full.jpg
@@ -63,7 +63,7 @@ Configuration variables:
 Setting Up Devices
 ------------------
 
-To set up Xiaomi MiJia devices you first need to find their MAC Address so that esphomelib can
+To set up Xiaomi MiJia devices you first need to find their MAC Address so that ESPHome can
 identify them. So first, create a simple configuration without any ``xiaomi_mijia`` entries like so:
 
 .. code-block:: yaml

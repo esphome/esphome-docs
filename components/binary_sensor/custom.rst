@@ -1,7 +1,7 @@
 Custom Binary Sensor
 ====================
 
-This integration can be used to create custom binary sensors in esphomelib
+This integration can be used to create custom binary sensors in ESPHome
 using the C++ (Arduino) API.
 
 Please first read :doc:`/components/sensor/custom` guide,
@@ -13,8 +13,8 @@ same as the gpio binary sensor.
 
 .. code-block:: cpp
 
-    #include "esphomelib.h"
-    using namespace esphomelib;
+    #include "esphome.h"
+    using namespace esphome;
 
     class MyCustomBinarySensor : public PollingComponent, public binary_sensor::BinarySensor {
      public:
@@ -41,7 +41,7 @@ And in YAML:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       includes:
         - my_binary_sensor.h
 

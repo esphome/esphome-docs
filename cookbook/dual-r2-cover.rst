@@ -2,7 +2,7 @@ Dual relay cover motor control
 ==============================
 
 .. seo::
-    :description: An example of how to integrate covers that are controlled by two relays into esphomelib.
+    :description: An example of how to integrate covers that are controlled by two relays into ESPHome.
     :image: sonoff_dual_r2.jpg
     :keywords: Relay, Sonoff Dual R2, Cover
 
@@ -30,11 +30,10 @@ for some motors.
 
 .. code-block:: yaml
 
-  esphomeyaml:
+  esphome:
     name: cover
     platform: ESP8266
     board: esp01_1m
-    board_flash_mode: dout
 
   wifi:
     ssid: '***'

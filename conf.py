@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# esphomelib documentation build configuration file, created by
+# esphome documentation build configuration file, created by
 # sphinx-quickstart on Mon Jan 22 21:44:07 2018.
 #
 # This file is execfile()d with the current directory set to its
@@ -116,8 +116,6 @@ html_baseurl = os.getenv('BASE_URL', 'https://esphome.io')
 html_theme_options = {
     # 'logo': 'logo-full.png',
     'logo_name': False,
-    # 'github_user': 'OttoWinter',
-    # 'github_repo': 'esphomelib',
     'show_related': False,
     'sidebar_collapse': True,
     'fixed_sidebar': True,
@@ -154,7 +152,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'esphomelibdoc'
+htmlhelp_basename = 'esphomedoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -181,7 +179,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'esphomelib.tex', 'ESPHome Documentation',
+    (master_doc, 'esphome.tex', 'ESPHome Documentation',
      'Otto Winter', 'manual'),
 ]
 
@@ -193,7 +191,7 @@ latex_engine = 'xelatex'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'esphomelib', 'ESPHome Documentation',
+    (master_doc, 'esphome', 'ESPHome Documentation',
      [author], 1)
 ]
 
@@ -204,9 +202,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'esphomelib', 'ESPHome Documentation',
-     author, 'esphomelib', 'One line description of project.',
+    (master_doc, 'esphome', 'ESPHome Documentation',
+     author, 'esphome', 'One line description of project.',
      'Miscellaneous'),
 ]
 linkcheck_ignore = [r'https://github.com/.*', r'https://discord.gg/.*']
-cname = os.getenv('CNAME', 'esphomelib.com')

@@ -12,7 +12,7 @@ PMSX003 Particulate Matter Sensor
 
 The ``pmsx003`` sensor platform allows you to use your PMS5003, PMS7003, ... particulate matter
 (`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__)
-sensors with esphomelib.
+sensors with ESPHome.
 
 As the communication with the PMSX003 is done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the SEND/TX pin

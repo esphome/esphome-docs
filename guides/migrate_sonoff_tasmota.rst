@@ -2,11 +2,11 @@ Migrating from Sonoff Tasmota
 =============================
 
 .. seo::
-    :description: Migration guide for installing esphomelib on ESPs running Sonoff Tasmota.
+    :description: Migration guide for installing ESPHome on ESPs running Sonoff Tasmota.
     :image: tasmota.png
 
 Migrating from previous Sonoff Tasmota setups is very easy. You just need to have
-esphomeyaml create a binary for you and then upload that in the Tasmota web interface.
+ESPHome create a binary for you and then upload that in the Tasmota web interface.
 
 Getting Binary
 --------------
@@ -19,7 +19,7 @@ file. Then, generate and download the binary:
 
   .. figure:: images/download_binary.png
 
-- **Using the command line**: run ``esphomeyaml livingroom.yaml compile`` (replacing
+- **Using the command line**: run ``esphome livingroom.yaml compile`` (replacing
   ``livingroom.yaml`` with your configuration file of course) and navigate to the
   ``<NODE_NAME>/.pioenvs/<NODE_NAME>/`` folder. There you will find a ``firmware.bin`` file,
   this is the binary you will upload.
@@ -40,7 +40,7 @@ In the "Upgrade by file upload" section, choose the binary you previously downlo
     :align: center
     :width: 60.0%
 
-If everything succeeds, you will see an "Upload Successful" message and esphomelib
+If everything succeeds, you will see an "Upload Successful" message and ESPHome
 will connect to the configured WiFi network 🎉
 
 .. figure:: images/tasmota_upload.png

@@ -6,13 +6,9 @@ ESP8266 Software PWM Output
     :image: pwm.png
 
 The ESP8266 Software PWM platform allows you to use a software PWM on
-the pins GPIO0-GPIO16 on your ESP8266. As this is only a software PWM
-and not a hardware PWM (like the :doc:`ESP32 LEDC PWM <ledc>`) and has a key
-disadvantage: There can be a noticeable amount of flickering with increased WiFi
-activity.
-
-If you need a stable PWM signal, it’s definitely recommended to use the
-successor of the ESP8266, the ESP32, and its :doc:`ESP32 LEDC PWM <ledc>` instead.
+the pins GPIO0-GPIO16 on your ESP8266. Note that this is a software PWM,
+so there can be some flickering during periods of high wifi activity. Hardware PWMs
+like the one on the ESP32 (see :doc:`ledc`) are preferred.
 
 .. code-block:: yaml
 
@@ -22,6 +18,12 @@ successor of the ESP8266, the ESP32, and its :doc:`ESP32 LEDC PWM <ledc>` instea
         pin: D1
         frequency: 1000 Hz
         id: pwm_output
+
+    # Example usage in a light
+    light:
+      - platform: monochromatic
+        output: pwm_output
+        name: "Kitchen Light"
 
 Configuration variables:
 ------------------------

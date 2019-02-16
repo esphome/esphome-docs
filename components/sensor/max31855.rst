@@ -6,7 +6,7 @@ MAX31855 K-Type Thermocouple Temperature Sensor
     :image: max31855.jpg
 
 The ``max31855`` temperature sensor allows you to use your max31855 thermocouple
-temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX31855.pdf>`__) with esphomelib
+temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX31855.pdf>`__) with ESPHome
 
 As the communication with the MAX66775 is done using SPI, you need
 to have an :ref:`spi bus <spi>` in your configuration with the **miso_pin** set (mosi is not required).

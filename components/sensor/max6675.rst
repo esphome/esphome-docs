@@ -6,7 +6,7 @@ MAX6675 K-Type Thermocouple Temperature Sensor
     :image: max6675.jpg
 
 The ``max6675`` temperature sensor allows you to use your max6675 thermocouple
-temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX6675.pdf>`__, `sainsmart`_) with esphomelib
+temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX6675.pdf>`__, `sainsmart`_) with ESPHome
 
 .. figure:: images/max6675-full.jpg
     :align: center
