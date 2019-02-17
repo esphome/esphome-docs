@@ -319,6 +319,7 @@ All Triggers
 - :ref:`pn532.on_tag <pn532-on_tag>`
 - :ref:`time.on_time <time-on_time>`
 - :ref:`interval.interval <interval>`
+- :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 
 All Actions
 -----------
