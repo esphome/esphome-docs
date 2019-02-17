@@ -326,7 +326,7 @@ All Actions
 
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
-- :ref:`if <if_action>` / :ref:`while <while_action>`
+- :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_util <wait_until_action>`
 - :ref:`component.update <component-update_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>`
 - :ref:`logger.log <logger-log_action>`
@@ -490,6 +490,25 @@ Configuration options:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
+
+.. _wait_until_action:
+
+``wait_until`` Action
+---------------------
+
+This action allows your automations to wait until a condition evaluates to true. (So this is just
+a shorthand way of writing a while action with empty then block)
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - logger.log: "Waiting for binary sensor"
+      - wait_until:
+          binary_sensor.is_on: some_binary_sensor
+      - logger.log: "Binary sensor is ready"
+
+Configuration option: A :ref:`Condition <config-condition>`.
 
 .. _component-update_action:
 
