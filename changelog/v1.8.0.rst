@@ -146,7 +146,7 @@ Other notable changes
 Breaking Changes
 ****************
 
-- The :doc:`core configuration </components/esphomeyaml>` has been reworked a bit to a)
+- The :doc:`core configuration </components/esphome>` has been reworked a bit to a)
   make using different arduino framework version easier and b) make editing your local esphomelib
   copy easier.
 - Light Effects now need to be manually declared in the config and will no longer show up automatically. Please see :ref:`light-effects`

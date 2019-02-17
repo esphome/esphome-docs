@@ -145,7 +145,7 @@ by installing the esphome beta:
 
 And for Hass.io, you will see a "ESPHome Beta" Add-On for the beta channel.
 
-The beta docs can be viewed at `https://beta.esphome.io <https://beta.esphome.io>`__
+The beta docs can be viewed at `beta.esphome.io <https://beta.esphome.io>`__
 
 How do I use the latest bleeding edge version?
 ----------------------------------------------
@@ -160,6 +160,8 @@ To install the dev version of ESPHome:
 - From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker: Run ``docker pull esphome/esphome:dev`` and use ``esphome/esphome:dev`` in all
   commands.
+
+The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
 Does ESPHome support [this device/feature]?
 -------------------------------------------
