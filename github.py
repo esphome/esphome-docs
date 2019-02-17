@@ -216,7 +216,9 @@ class PinTableDirective(Table):
 
 def setup(app):
     app.add_role('libpr', libpr_role)
+    app.add_role('corepr', libpr_role)
     app.add_role('yamlpr', yamlpr_role)
+    app.add_role('esphomepr', yamlpr_role)
     app.add_role('docspr', docspr_role)
     app.add_role('ghuser', ghuser_role)
     app.add_role('apiref', apiref_role)
