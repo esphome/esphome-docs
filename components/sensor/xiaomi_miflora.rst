@@ -39,31 +39,31 @@ Configuration variables:
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **moisture** (*Optional*): The information for the moisture sensor
 
   - **name** (**Required**, string): The name for the moisture sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **illuminance** (*Optional*): The information for the illuminance sensor
 
   - **name** (**Required**, string): The name for the illuminance sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **conductivity** (*Optional*): The information for the soil conductivity sensor
 
   - **name** (**Required**, string): The name for the soil conductivity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **battery_level** (*Optional*): The information for the battery level sensor
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 
 Setting Up Devices

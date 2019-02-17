@@ -132,10 +132,7 @@ or alternatively, you can just take the below configuration file and modify it t
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 
@@ -230,10 +227,7 @@ of the basic functions.
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 
@@ -302,11 +296,6 @@ output being created with the ID ``blue_led`` for the blue LED. Later on it is t
 into a :doc:`monochromatic light </components/light/monochromatic>`.
 If you additionally want the buttons to control the relays, look at `the complete Sonoff 4CH
 with automation example <https://github.com/OttoWinter/esphomedocs/blob/current/devices/sonoff_4ch.yaml>`__.
-
-Upload the firmware again (through OTA or Serial) and you should immediately see
-something like this in Home Assistant because of esphome's automatic MQTT discovery. (You'll
-of course have to add them to groups if you have a ``default_view`` set):
-
 
 .. figure:: images/sonoff_4ch_result.png
     :align: center

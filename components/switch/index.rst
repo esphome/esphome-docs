@@ -22,13 +22,16 @@ Base Switch Configuration
 
 Configuration variables:
 
--  **name** (**Required**, string): The name of the switch.
--  **icon** (*Optional*, icon): Manually set the icon to use for the
-   sensor in the frontend.
--  **inverted** (*Optional*, boolean): Whether to invert the binary
-   state, i.e. report ON states as OFF and vice versa. Defaults
-   to ``False``.
--  All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- **name** (**Required**, string): The name of the switch.
+- **icon** (*Optional*, icon): Manually set the icon to use for the
+  sensor in the frontend.
+- **inverted** (*Optional*, boolean): Whether to invert the binary
+  state, i.e. report ON states as OFF and vice versa. Defaults
+  to ``False``.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _switch-toggle_action:
 

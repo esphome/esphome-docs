@@ -45,7 +45,7 @@ Configuration variables:
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`bme680-oversampling`.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pressure** (**Required**): The information for the pressure sensor.
 
@@ -53,7 +53,7 @@ Configuration variables:
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`bme680-oversampling`.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **humidity** (**Required**): The information for the pressure sensor.
 
@@ -61,13 +61,13 @@ Configuration variables:
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`bme680-oversampling`.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **gas_resistance** (**Required**): The information for the gas sensor.
 
   - **name** (**Required**, string): The name for the gas resistance sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the i^2c address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.

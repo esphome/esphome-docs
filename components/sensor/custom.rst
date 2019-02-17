@@ -365,7 +365,7 @@ Configuration variables:
 - **sensors** (**Required**, list): A list of sensors to initialize. The length here
   must equal the number of items in the ``return`` statement of the ``lambda``.
 
-  - All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------

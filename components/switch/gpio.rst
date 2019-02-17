@@ -38,7 +38,7 @@ Configuration variables:
 - **interlock** (*Optional*, list): A list of other GPIO switches in an interlock group. See
   :ref:`switch-gpio-interlocking`.
 
-- All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Switch <config-switch>`.
 
 Active Low Switch
 -----------------

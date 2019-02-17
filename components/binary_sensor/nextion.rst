@@ -31,7 +31,7 @@ Configuration variables:
 - **page_id** (**Required**, int): The ID of the page the component is on. Use ``0`` for the default page.
 - **component_id** (**Required**, int): The ID (the number, not name!) of the component to track.
 - **nextion_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Nextion display.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
 --------

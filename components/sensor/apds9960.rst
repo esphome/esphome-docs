@@ -61,7 +61,7 @@ Sensor Configuration:
   - **PROXIMITY**
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Binary Sensor Configuration:
 
@@ -74,7 +74,7 @@ Binary Sensor Configuration:
   - **RIGHT**
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
 --------

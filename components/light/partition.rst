@@ -45,7 +45,11 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. note::
 

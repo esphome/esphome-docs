@@ -46,7 +46,7 @@ Configuration variables:
 - **remote_transmitter_id** (*Optional*, :ref:`config-id`): The id of the :doc:`/components/remote_transmitter`.
   Defaults to the first hub specified.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Switch <config-switch>`.
 
 .. note::
 

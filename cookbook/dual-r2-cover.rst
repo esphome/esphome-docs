@@ -18,7 +18,7 @@ of the end-stop switch in the motor failing this will reduce the risk for damage
 
 Of the four main components (button sensor, 2 relays switches and the cover), only the cover will be
 visible to the end-user. The other three are hidden by means of not including a ``name``. This is to
-prevent accidentally switching on both relays simultaneously from MQTT/Home-assistant as that might be harmful
+prevent accidentally switching on both relays simultaneously from Home Assistant as that might be harmful
 for some motors.
 
 .. note::
@@ -39,10 +39,7 @@ for some motors.
     ssid: '***'
     password: '***'
 
-  mqtt:
-    broker: 'mqtt'
-    username: ''
-    password: ''
+  api:
 
   logger:
 

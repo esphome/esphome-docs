@@ -24,7 +24,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the text sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Text Sensor <config-text_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 See Also
 --------

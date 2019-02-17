@@ -42,11 +42,12 @@ Configuration variables:
   not actually do any maths (conversion between units).
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
 - **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
-- **expire_after** (*Optional*, :ref:`config-time`): Manually set the time in which
-  the sensor values should be marked as “expired”/“unknown”. Not providing any value means no expiry.
 - **filters** (*Optional*): Specify filters to use for some basic
   transforming of values. Defaults to a basic sliding window moving
   average over the last few values. See :ref:`Sensor Filters <sensor-filters>` for more information.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
 
 Automations:
 
@@ -56,8 +57,12 @@ Automations:
   when a published value transition from outside to a range to inside. See :ref:`sensor-on_value_range`.
 - **on_raw_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a raw value is received that hasn't passed through any filters. See :ref:`sensor-on_raw_value`.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
+MQTT Options:
+
+- **expire_after** (*Optional*, :ref:`config-time`): Manually set the time in which
+  the sensor values should be marked as “expired”/“unknown”. Not providing any value means no expiry.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. note::
 

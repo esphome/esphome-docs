@@ -52,19 +52,6 @@ Advanced features:
   - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
-.. note::
-
-    The :ref:`availability feature <mqtt-last_will_birth>` of the MQTT client will cause all values
-    from the node to be displayed as "unavailable" while the node is in deep sleep mode. To disable availability
-    reporting and not have any "unavailable" values, set ``birth_message`` and ``will_message`` to empty values:
-
-    .. code-block:: yaml
-
-        mqtt:
-          # ...
-          birth_message:
-          will_message:
-
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
 ESP32 Wakeup Pin Mode

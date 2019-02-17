@@ -43,8 +43,12 @@ Configuration variables:
   the transition if no transition parameter is provided by Home
   Assistant. Defaults to ``1s``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
--  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
 --------

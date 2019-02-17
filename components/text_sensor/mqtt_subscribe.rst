@@ -26,7 +26,7 @@ Configuration variables:
 - **topic** (**Required**, string): The MQTT topic to listen for numeric messages.
 - **qos** (*Optional*, int): The MQTT QoS to subscribe with. Defaults to ``0``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Text Sensor <config-text_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 Example Usage for Displays
 --------------------------

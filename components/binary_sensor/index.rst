@@ -50,7 +50,13 @@ Automations:
 - **on_multi_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is pressed in a specific sequence.
   See :ref:`binary_sensor-on_multi_click`.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+Advanced options:
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _binary_sensor-filters:
 

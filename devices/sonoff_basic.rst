@@ -60,10 +60,7 @@ exposes all of the basic functions.
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 

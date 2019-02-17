@@ -60,7 +60,7 @@ Configuration variables:
 - **switches** (**Required**, list): A list of switches to initialize. The length here
   must equal the number of items in the ``return`` statement of the ``lambda``.
 
-  - All options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All options from :ref:`Switch <config-switch>`.
 
 See :cpp:class:`switch_::Switch`
 

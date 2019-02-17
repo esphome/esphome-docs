@@ -34,7 +34,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   text sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Text Sensor <config-text_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 .. _text_sensor-template-publish_action:
 

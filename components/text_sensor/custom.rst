@@ -59,7 +59,7 @@ Configuration variables:
 - **text_sensors** (**Required**, list): A list of text sensors to initialize. The length here
   must equal the number of items in the ``return`` statement of the ``lambda``.
 
-    - All options from :ref:`Text Sensor <config-text_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+    - All options from :ref:`Text Sensor <config-text_sensor>`.
 
 See :cpp:class:`text_sensor::TextSensor`
 

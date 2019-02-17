@@ -38,8 +38,7 @@ Configuration variables:
     setting. Must be in range 0 to 1. Defaults to 1.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`
-  and :ref:`Fan Component <config-fan>`.
+- All other options from :ref:`Fan Component <config-fan>`.
 
 See Also
 --------

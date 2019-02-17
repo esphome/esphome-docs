@@ -48,7 +48,7 @@ Configuration variables:
   An optional pin that resets the step value. This is useful with rotary encoders that have have a
   third pin. Defaults to no reset pin.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Debouncing Output
 -----------------

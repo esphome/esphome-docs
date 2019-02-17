@@ -63,7 +63,7 @@ there are three basic actions you can perform:
       is still not found, try changing the USB cable and restarting the add-on.
 
 - **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
-  connected, it will attempt to use the serial connection. Otherwise it will use the built-in MQTT logs.
+  connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
 
 - **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
   binary so that you can upload it yourself from your computer.

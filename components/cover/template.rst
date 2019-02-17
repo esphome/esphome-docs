@@ -58,8 +58,13 @@ Configuration variables:
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
   of hiding one of them. Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
+Advanced options:
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _cover-template-publish_action:
 

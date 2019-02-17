@@ -55,13 +55,13 @@ Configuration variables:
 - **max_current** (*Optional*, float): The maximum current you are expecting. ESPHome will use this to
   configure the sensor optimally. Defaults to ``3.2A``.
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
-  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): Use the power value of the sensor in watts. All options from
-  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  :ref:`Sensor <config-sensor>`.
 - **bus_voltage** (*Optional*): Use the bus voltage (voltage of the high side contact) value of the sensor in V.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **shunt_voltage** (*Optional*): Use the shunt voltage (voltage across the shunt resistor) value of the sensor in V.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 

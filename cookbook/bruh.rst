@@ -27,10 +27,7 @@ configuration file 😀
       ssid: <SSID>
       password: <PASSWORD>
 
-    mqtt:
-      broker: <MQTT_BROKER>
-      username: <USER>
-      password: <PASSWORD>
+    api:
 
     # Enable logging
     logger:

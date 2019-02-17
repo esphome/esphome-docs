@@ -42,7 +42,6 @@ Configuration variables:
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`/components/power_supply` to connect to
   this light. When the light is turned on, the power supply will automatically be switched on too.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 **Type Options:**
 
@@ -83,6 +82,13 @@ If you have one line, only specify ``pin``, otherwise specify both ``clock_pin``
 - **pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light.
 - **clock_pin** (**Required**, :ref:`config-pin`): The pin for the clock line of the light, for two-pin lights.
 - **data_pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light, for two-pin lights.
+
+**Advanced Options:**
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
 --------

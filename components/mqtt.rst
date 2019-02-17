@@ -267,9 +267,6 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
--  **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
-   not send any MQTT messages and can be used for :ref:`on-device automations <automation>`. Only
-   specifying an ``id`` without a ``name`` will implicitly set this to true.
 
 .. warning::
 
