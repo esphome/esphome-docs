@@ -507,6 +507,41 @@ Configuration variables:
 - **intensity** (*Optional*, percentage): The intensity of the effect, basically how much the random values can offset
   the currently active light color. Defaults to ``5%``.
 
+Addressable Lambda Effect
+*************************
+
+This effect allows you to access each LED individually in a custom light effect.
+
+You're passed in one variable: ``it`` - an `AddressableLight </api/classlight_1_1_addressable_light>`__
+instance (see API reference for more info).
+
+.. code-block:: yaml
+
+    light:
+    - platform: ...
+      effects:
+        - addressable_lambda:
+            name: "My Custom Effect"
+            update_interval: 16ms
+            lambda: |-
+              // it.size() - Number of LEDs
+              // it[num] - Access the LED at index num.
+              // Set the LED at num to the given r, g, b values
+              // it[num] = light::ESPColor(r, g, b);
+              // Get the color at index num (ESPColor instance)
+              // it[num].get();
+
+              // Example: Simple color wipe
+              for (int i = 1; i < it.size(); i++) {
+                it[i] = it[i - 1].get();
+              }
+              it[0] = light::ESPColor::random_color();
+
+
+Examples of this API can be found here:
+https://github.com/esphome/esphome-core/blob/dev/src/esphome/light/addressable_light_effect.cpp
+(the built-in addressable light effects).
+
 See Also
 --------
 
