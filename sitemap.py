@@ -39,6 +39,9 @@ def create_sitemap(app, exception):
                                encoding='utf-8',
                                method="xml")
 
-    if os.getenv('PRODUCTION') != 'YES':
-        with open(os.path.join(app.builder.outdir, 'robots.txt'), 'wt') as f:
+    with open(os.path.join(app.builder.outdir, 'robots.txt'), 'wt') as f:
+        if os.getenv('PRODUCTION') != 'YES':
             f.write('User-agent: *\nDisallow: /\n')
+        else:
+            f.write('User-agent: *\nDisallow: \n\n'
+                    'Sitemap: https://esphome.io/sitemap.xml\n')

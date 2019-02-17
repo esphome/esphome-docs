@@ -80,7 +80,7 @@ release = '1.10.1'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -120,7 +120,6 @@ html_theme_options = {
     'sidebar_collapse': True,
     'fixed_sidebar': True,
     'show_powered_by': False,
-    'font_size': '1.05em',
 }
 
 html_logo = 'images/logo-text.svg'
