@@ -34,13 +34,13 @@ Installation Methods Changed
 Because of this rename, ESPHome's installation methods have also changed (breaking change!).
 
 - **Hass.io**: The Hass.io addon repository has moved to `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__,
-  please remove the old addon repository and add the new repository.
+  please remove the old addon repository and add the new repository. During beta period, install beta version of addon.
 
 - **pip-based installs**: The new installation command is ``pip2 install esphome`` and
-  the ``esphomeyaml`` command now is called ``esphome``.
+  the ``esphomeyaml`` command now is called ``esphome``. Or ``pip2 install --pre esphome`` during beta period.
 
 - **docker-based installs**: The docker image has moved to ``esphome/esphome``. So now you need
-  to use ``docker run --rm -it esphome/esphome livingroom.yaml run``.
+  to use ``docker run --rm -it esphome/esphome livingroom.yaml run``. Or ``docker run --rm -it esphome/esphome:beta ...`` during beta period
 
 All old installation methods will no longer receive updates (and potentially be removed
 in the future).
