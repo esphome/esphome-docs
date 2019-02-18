@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
   <link rel="shortcut icon" href="/_static/favicon.ico">
   <link rel="icon" type="image/png" sizes="512x512" href="/_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/_static/favicon-256x256.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/_static/favicon-192x192.png">
   <link rel="icon" type="image/png" sizes="128x128" href="/_static/favicon-128x128.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/_static/favicon-32x32.png">
@@ -36,18 +37,11 @@
   </div>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113203480-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-113203480-2', {'anonymize_ip': true});
-  </script>
+  <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-113203480-2', {'anonymize_ip': true});</script>
 
   <script>
     var old = window.localStorage.getItem("release");
-    if (old === null) {
-      window.localStorage.setItem("release", "{{ release }}");
+    if (old === null) { window.localStorage.setItem("release", "{{ release }}");
     } else if (old !== "{{ release }}") {
       document.getElementById("upgrade-footer").classList.add("not-hidden");
       document.getElementById("upgrade-footer-changelog").addEventListener('click', function () {
