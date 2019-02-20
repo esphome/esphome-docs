@@ -29,7 +29,7 @@ same as the gpio binary sensor.
         // This will be called every "update_interval" milliseconds.
 
         // Publish an OFF state
-        bool state = digitalRead(5)
+        bool state = digitalRead(5);
         publish_state(state);
       }
     };
@@ -46,14 +46,14 @@ And in YAML:
         - my_binary_sensor.h
 
     binary_sensor:
-    - platform: custom
-      lambda: |-
-        auto my_custom_sensor = new MyCustomBinarySensor();
-        App.register_component(my_custom_sensor);
-        return {my_custom_sensor};
+      - platform: custom
+        lambda: |-
+          auto my_custom_sensor = new MyCustomBinarySensor();
+          App.register_component(my_custom_sensor);
+          return {my_custom_sensor};
 
-      binary_sensors:
-        name: "My Custom Binary Sensor"
+        binary_sensors:
+          name: "My Custom Binary Sensor"
 
 Configuration variables:
 

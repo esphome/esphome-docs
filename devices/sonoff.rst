@@ -205,6 +205,7 @@ Sonoff T1 1CH, 2CH, 3CH
     GPIO5, Relay 2 and Blue LED,
     GPIO10, Button 3 (inverted),
     GPIO4, Relay 3 and Blue LED,
+    GPIO13, Blue LED (inverted),
     GPIO1, UART TX pin (for external sensors)
     GPIO3, UART RX pin (for external sensors)
 
