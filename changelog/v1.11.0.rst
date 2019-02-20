@@ -59,11 +59,9 @@ Beta Fixes
 ----------
 
 - esphome: Fix custom components not registered :esphomepr:`441`
-- docs: Custom Binary Sensor: Add missing ";" and fix indentation in YAML :docspr:`164` by :ghuser:`mjoshd`
 - core: Add empty nameable constructors :corepr:`509`
 - core: Fix Nextion "Received unknown filler end bytes" :corepr:`510`
 - core: Fix functional attachInterrupt placed in flash :corepr:`511`
-- docs: Add Sonoff T1 LED pin :docspr:`165` by :ghuser:`lwis`
 - esphome: Remove duplicate scrollbar & move scrollbar :esphomepr:`443` by :ghuser:`TheZoker`
 - esphome: Remove unnecessary wrapper :esphomepr:`444` by :ghuser:`TheZoker`
 - core: Refactor addressable light and fix partition issue :corepr:`512`
