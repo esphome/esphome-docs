@@ -10,13 +10,13 @@ from docutils.parsers.rst.directives.tables import Table
 def libpr_role(name, rawtext, text, lineno, inliner, options=None,
                content=None):
     ref = 'https://github.com/esphome/esphome-core/pull/{}'.format(text)
-    return [make_link_node(rawtext, 'lib#{}'.format(text), ref, options)], []
+    return [make_link_node(rawtext, 'core#{}'.format(text), ref, options)], []
 
 
 def yamlpr_role(name, rawtext, text, lineno, inliner, options=None,
                 content=None):
     ref = 'https://github.com/esphome/esphome/pull/{}'.format(text)
-    return [make_link_node(rawtext, 'yaml#{}'.format(text), ref, options)], []
+    return [make_link_node(rawtext, 'esphome#{}'.format(text), ref, options)], []
 
 
 def docspr_role(name, rawtext, text, lineno, inliner, options=None,
