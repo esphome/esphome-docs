@@ -66,6 +66,9 @@ Beta Fixes
 - esphome: Remove unnecessary wrapper :esphomepr:`444` by :ghuser:`TheZoker`
 - core: Refactor addressable light and fix partition issue :corepr:`512`
 - esphome: Fix MQTT log topic level :esphomepr:`445`
+- core: Fix ESP8266 functional interrupts :corepr:`515`
+- esphome: Allow i2c on non-pullup pins :esphomepr:`447`
+- esphome: Allow use of arduino core v2.5.0 on ESP8266 :esphomepr:`446`
 
 
 All changes
@@ -198,6 +201,9 @@ All changes
 - esphome: Remove unnecessary wrapper :esphomepr:`444` by :ghuser:`TheZoker`
 - core: Refactor addressable light and fix partition issue :corepr:`512`
 - esphome: Fix MQTT log topic level :esphomepr:`445`
+- core: Fix ESP8266 functional interrupts :corepr:`515`
+- esphome: Allow i2c on non-pullup pins :esphomepr:`447`
+- esphome: Allow use of arduino core v2.5.0 on ESP8266 :esphomepr:`446`
 
 Past Changelogs
 ---------------
