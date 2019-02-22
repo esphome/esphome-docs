@@ -18,8 +18,6 @@ Release 1.11.0 is here, and it has been a busy few weeks :)
 First of all, thank you all for the amazing support on discord, twitter, twitch, etc.
 Seeing how much people can accomplish with this tool is really inspiring!
 
-TODO, intro; camera support deferred :(, but hopefully ready soon; faster release schedule
-
 ESPHome Rename Completed
 ------------------------
 
