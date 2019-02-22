@@ -61,6 +61,10 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. note::
+
+    To speed up the display update process you can select higher i2c frequencies.
+
 See Also
 --------
 
