@@ -348,6 +348,75 @@ And then later in code:
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
 
+.. _display-pages:
+
+Display Pages
+-------------
+
+Certain display types also allow you to show "pages". With pages you can create drawing lambdas
+that you can switch between. For example with pages you can set up 3 screens, each with
+different content, and switch between them on a timer.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        id: my_display
+        pages:
+          - id: page1
+            lambda: |-
+              it.print(0, 10, id(my_font), "This is page 1!");
+          - id: page2
+            lambda: |-
+              it.print(0, 10, id(my_font), "This is page 2!");
+
+You can then switch between these with three different actions:
+
+**show_next** / **show_prev**: Shows the next or previous page, wraps around at the end.
+
+.. code-block:: yaml
+
+    on_...:
+      - display.page.show_next: my_display
+      - display.page.show_prev: my_display
+
+    # For example cycle through pages on a timer
+    interval:
+      - interval: 5s
+        then:
+          - display.page.show_next: my_display
+          - component.update: my_display
+
+**display.page.show**: Show a specific page
+
+.. code-block:: yaml
+
+    on_...:
+      - display.page.show: page1
+
+      # Templated
+      - display.page.show: !lambda |-
+          if (id(my_binary_sensor).state) {
+            return id(page1);
+          } else {
+            return id(page2);
+          }
+
+.. note::
+
+    To trigger a redraw right after the page show use a :ref:`component.update <component-update_action>`
+    action:
+
+    .. code-block:: yaml
+
+        # For example cycle through pages on a timer
+        interval:
+          - interval: 5s
+            then:
+              - display.page.show_next: my_display
+              - component.update: my_display
+
 See Also
 --------
 

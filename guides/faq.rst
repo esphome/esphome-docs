@@ -200,6 +200,58 @@ Some steps that can help with the issue:
 - The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
   boards from eBay sometimes have quite bad antennas.
 
+Docker Reference
+----------------
+
+Install versions:
+
+.. code-block:: bash
+
+    # Stable Release
+    docker pull esphome/esphome
+    # Beta
+    docker pull esphome/esphome:beta
+    # Dev version
+    docker pull esphome/esphome:dev
+
+Command reference:
+
+.. code-block:: bash
+
+    # Start a new file wizard for file livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml wizard
+
+    # Compile and upload livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml run
+
+    # View logs
+    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml logs
+
+    # Map /dev/ttyUSB0 into container
+    docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
+
+    # Start dashboard on port 6052
+    docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
+
+And a docker compose file looks like this:
+
+.. code-block:: yaml
+
+    version: '3'
+
+    services:
+      esphome:
+        image: esphome/esphome
+        volumes:
+          - ./:/config:rw
+        network_mode: host
+        restart: always
+
+.. note::
+
+    ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
+    to work you need to enable host networking mode
+
 Donations
 ---------
 

@@ -13,20 +13,25 @@ Changelog - Version 1.11.0
     Home Assistant Binary Sensor, components/binary_sensor/homeassistant, home-assistant.svg
     Light Partition, components/light/partition, color_lens.svg
 
+Release 1.11.0 is here, and it has been a busy few weeks :)
+
+First of all, thank you all for the amazing support on discord, twitter, twitch, etc.
+Seeing how much people can accomplish with this tool is really inspiring!
+
 TODO, intro; camera support deferred :(, but hopefully ready soon; faster release schedule
 
 ESPHome Rename Completed
 ------------------------
 
-Back in 1.10.0, I decided to rename the project from esphomelib to ESPHome. This release
+Back in 1.10.0, it was decided to rename the project from esphomelib to ESPHome. This release
 has seen **massive** refactors to allow this rename. Literally thousands of files had
 to be changed, often with lots of manual action required. Now a rename might not seem
-too exciting for the user, but consider this: Lots of ancient code got revised and cleaned up,
+too exciting for you the user, but consider this: Lots of ancient code got revised and cleaned up,
 the ESPHome source got moved to a `dedicated Github Organization <https://github.com/esphome>`__
 and many other organizational changes were made which will enable faster feature development.
 
 As an example, ESPHome's documentation now gets built and served by `Netlify <https://www.netlify.com/>`__,
-so all documentation contributions will now get a preview of the changes on a deploy website.
+so all documentation contributions will now get a preview of the changes on a preview website.
 
 Installation Methods Changed
 ----------------------------
@@ -34,26 +39,74 @@ Installation Methods Changed
 Because of this rename, ESPHome's installation methods have also changed (breaking change!).
 
 - **Hass.io**: The Hass.io addon repository has moved to `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__,
-  please remove the old addon repository and add the new repository. During beta period, install beta version of addon.
+  please remove the old addon repository and add the new repository.
 
 - **pip-based installs**: The new installation command is ``pip2 install esphome`` and
-  the ``esphomeyaml`` command now is called ``esphome``. Or ``pip2 install --pre esphome`` during beta period.
+  the ``esphomeyaml`` command now is called ``esphome``.
 
 - **docker-based installs**: The docker image has moved to ``esphome/esphome``. So now you need
-  to use ``docker run --rm -it esphome/esphome livingroom.yaml run``. Or ``docker run --rm -it esphome/esphome:beta ...`` during beta period
+  to use ``docker run --rm -it esphome/esphome livingroom.yaml run``. The dashboard view
+  now uses mDNS to show online/offline status of ESPs, so you need to add ``--net=host`` for
+  that to work.
 
 All old installation methods will no longer receive updates (and potentially be removed
 in the future).
 
+Local mDNS Responder
+--------------------
+
+Up until now, many users had to set static IPs for all ESP nodes in order to be able to connect to
+them. That was not a good user experience and this project is committed to providing the best
+possible user experience. So now ESPHome bundles its own mDNS responder so static IPs are no
+longer necessary (ref: :esphomepr:`386`)! 🎉
+
+
+Faster Release Cycle
+--------------------
+
+One of the big things that needs to be changed with this project is the release cycle.
+For one thing there's all contributions by you the users that potentially have to wait
+before users can use it. But it also makes releasing small tweaks or fixes much more difficult.
+
+I know I've said this before, but I want to move ESPHome to a quicker and more regular release
+interval. As a start, I've set my personal due date for the next release to be in two weeks.
+Going forward, I want to have a regular release interval of 3 weeks (remind me of this if I forget :)
+
+Also, you might have seen me post a picture of an ESP32 camera integration for ESPHome. Don't worry,
+I've made that a top priority for the next release, but I've hit some road blocks that would have
+prevented it from working in a stable way for this release (and I needed to finally get this darn
+release out).
+
 Breaking Changes
 ----------------
 
-TODO: Copy breaking changes from PR descriptions
+- Template Switches no longer restore their state by default :corepr:`503`
+- Removed heartbeat filter from binary sensors :corepr:`454`
+- ``optimistic`` mode for template platforms has been split off into ``optimistic`` and
+  ``assumed_state`` options :corepr:`455`
+- ``run_cycles`` has been removed from deep_sleep :esphome:`353`
 
 Other notable changes:
 ----------------------
 
-TODO
+- Added GPIO Switch interlocking :corepr:`482`
+- Added light partition platform which allows you to split an addressable light into partitions
+  and combine them :corepr:`501`
+- Added ``wait_until`` action :corepr:`508`
+- Added template publish actions, which allow you to manually push a state to a template
+  platform :corepr:`453`
+- Added support for SI7021 sensors (found in Sonoff TH modules) :esphomepr:`375`
+- MQTT is no longer compiled into firmwares that do no use it, should save a bit of space
+  :corepr:`430`, :corepr:`409`
+- Added ``use_address`` option to ``wifi:`` which overrides the address ESPHome connects to :corepr:`484`
+- Added display pages, which allow you to have a display that periodically switches between
+  different pages of content :corepr:`507`
+- Added two new IR codecs: IR5 and JVC :corepr:`502`, :corepr:`493`
+- Added option to use alternative hardware UART interfaces for logging :corepr:`483`
+- All log strings are stored in flash now, so that saves a few kb of IRAM on ESP8266s :corepr:`432`
+- Fixed ESP8266s with CSE7766 rebooting often
+- Fixed using MQTT and native API at the same time
+- Personal information is now automatically redacted from dashboard logs :corepr:`488`
 
 Beta Fixes
 ----------

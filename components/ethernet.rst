@@ -6,11 +6,6 @@ Ethernet Component
     :image: ethernet.png
     :keywords: Ethernet, ESP32
 
-.. warning::
-
-    This integration is experimental as I don't have the hardware to test it (yet).
-    If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 This core ESPHome component sets up ethernet connections for ESP32s.
 Ethernet for ESP8266 is not supported.
 
