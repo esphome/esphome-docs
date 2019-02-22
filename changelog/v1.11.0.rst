@@ -126,7 +126,6 @@ Beta Fixes
 
 All changes
 -----------
-
 - core: Attemp to fix the addressable flicker effect :corepr:`392` by :ghuser:`RomRider`
 - esphome: typing is only required for python < 3.5 :esphomepr:`341` by :ghuser:`dotlambda`
 - esphome: Fix install pillow in docker image :esphomepr:`338`
@@ -244,19 +243,22 @@ All changes
 - core: Add wait_until action :corepr:`508`
 - esphome: Add wait_until action :esphomepr:`440`
 - docs: Document addressable_lambda light effect :docspr:`163`
-- esphome: Fix custom components not registered :esphomepr:`441`
+- esphome: Fix custom components not registered :esphomepr:`441` (cherry-picked)
 - docs: Custom Binary Sensor: Add missing ";" and fix indentation in YAML :docspr:`164` by :ghuser:`mjoshd`
-- core: Add empty nameable constructors :corepr:`509`
-- core: Fix Nextion "Received unknown filler end bytes" :corepr:`510`
-- core: Fix functional attachInterrupt placed in flash :corepr:`511`
+- core: Add empty nameable constructors :corepr:`509` (cherry-picked)
+- core: Fix Nextion "Received unknown filler end bytes" :corepr:`510` (cherry-picked)
+- core: Fix functional attachInterrupt placed in flash :corepr:`511` (cherry-picked)
 - docs: Add Sonoff T1 LED pin :docspr:`165` by :ghuser:`lwis`
-- esphome: Remove duplicate scrollbar & move scrollbar :esphomepr:`443` by :ghuser:`TheZoker`
-- esphome: Remove unnecessary wrapper :esphomepr:`444` by :ghuser:`TheZoker`
-- core: Refactor addressable light and fix partition issue :corepr:`512`
-- esphome: Fix MQTT log topic level :esphomepr:`445`
-- core: Fix ESP8266 functional interrupts :corepr:`515`
-- esphome: Allow i2c on non-pullup pins :esphomepr:`447`
-- esphome: Allow use of arduino core v2.5.0 on ESP8266 :esphomepr:`446`
+- esphome: Remove duplicate scrollbar & move scrollbar :esphomepr:`443` by :ghuser:`TheZoker` (cherry-picked)
+- esphome: Remove unnecessary wrapper :esphomepr:`444` by :ghuser:`TheZoker` (cherry-picked)
+- core: Refactor addressable light and fix partition issue :corepr:`512` (cherry-picked)
+- esphome: Fix MQTT log topic level :esphomepr:`445` (cherry-picked)
+- core: Fix ESP8266 functional interrupts :corepr:`515` (cherry-picked)
+- esphome: Allow i2c on non-pullup pins :esphomepr:`447` (cherry-picked)
+- esphome: Allow use of arduino core v2.5.0 on ESP8266 :esphomepr:`446` (cherry-picked)
+- core: Fix feed_wdt :corepr:`520`
+- core: Speed up waveshare Epaper :corepr:`518`
+- esphome: Improve dashboard setup wizard :esphomepr:`450`
 
 Past Changelogs
 ---------------
