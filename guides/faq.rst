@@ -196,7 +196,8 @@ Some steps that can help with the issue:
 - If you're using a hidden WiFi network, make sure to enable ``fast_connect`` mode in the WiFi
   configuration (also sometimes helps with non-hidden networks)
 - Give your ESP a :ref:`static IP <wifi-manual_ip>`.
-- Set the ``power_save_mode`` to ``light`` in the ``wifi:`` config. See :ref:`wifi-power_save_mode`.
+- Set the ``power_save_mode`` to ``light`` in the ``wifi:`` config  (only helps in some cases,
+   in other it can make things works). See :ref:`wifi-power_save_mode`.
 - The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
   boards from eBay sometimes have quite bad antennas.
 

@@ -33,6 +33,7 @@ Configuration variables:
   Note that this can slow down startup and is only recommended for when setting up new sensors. Defaults to
   ``False``.
 - **frequency** (*Optional*, float): Set the frequency the i²c bus should operate on.
+  Defaults to ``50KHz``. Values are ``50KHz``, ``100KHz``, ``200KHz``, ... ``800KHz``
 
 .. note::
 
