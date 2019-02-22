@@ -13,7 +13,7 @@ required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/mpr121_keypad.jpg
     :align: center
-    :width: 50.0%
+    :width: 20.0%
 
     MPR121 Capacitive Touch Sensor.
 
