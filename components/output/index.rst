@@ -27,6 +27,7 @@ Each output platform extends this configuration schema.
         id: my_output_id
         power_supply: power_supply_id
         inverted: False
+        min_power: 0.01
         max_power: 0.75
 
 Configuration variables:
@@ -38,9 +39,14 @@ Configuration variables:
   automatically be switched on too.
 - **inverted** (*Optional*, boolean): If the output should be treated
   as inverted. Defaults to ``False``.
+- **min_power** (*Optional*, float): Only for float outputs. Sets the
+  minimum output value of this output platform. Each value will be
+  multiplied by max_power - min_power and offset from 0 by the min_power.
+  Must be in range from 0 to max_power. Defaults to 0.
 - **max_power** (*Optional*, float): Only for float outputs. Sets the
   maximum output value of this output platform. Each value will be
-  multiplied by this. Must be in range from 0 to 1. Defaults to 1.
+  multiplied by max_power - min_power and offset from 0 by the min_power.
+  Must be in range from min_power to 1. Defaults to 1.
 
 
 .. _output-turn_on_action:
