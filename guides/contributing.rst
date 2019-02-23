@@ -253,6 +253,66 @@ Some notes about the docs:
 * Fixes/improvements for the docs themselves should go to the ``current`` branch of the
   esphomedocs repository. New features should be added against the ``next`` branch.
 
+Setting Up Development Environment
+----------------------------------
+
+For developing new features to ESPHome, you will first need to set up a development environment.
+This is only possible for ``pip`` installs.
+
+.. code-block:: bash
+
+    # Clone repos
+    git clone https://github.com/esphome/esphome.git
+    git clone https://github.com/esphome/esphome-core.git
+    git clone https://github.com/esphome/esphome-docs.git
+
+    # Install esphome, python 2!
+    cd esphome/
+    pip2 install -e .
+    pip2 install flake8==3.6.0 pylint==1.9.4 pillow
+    # Start a new feature branch
+    git checkout -b my-new-feature
+    cd ..
+
+    # Setup esphome-core environment
+    cd esphome-core/
+    pio init --ide vscode  # See 'pio init -h' for options
+    git checkout -b my-new-feature
+
+Now you can open esphome-core in your IDE of choice (mine is CLion) with the platformio
+addons (see platformio docs for more info). Then develop the new feature with the
+guidelines below.
+
+Next, for the python part of the feature you can again use any IDE you want (I use PyCharm)
+and develop the feature. You can create a ``config/`` folder inside the esphome repo
+to store configs you're working with (automatically excluded by .gitignore).
+
+To compile against your local esphome-core in esphome youhave to give the path
+to the esphome core in ``esphome_core_version``:
+
+.. code-block:: yaml
+
+    esphome:
+      esphome_core_version:
+        local: path/to/esphome-core
+
+To perform style checks for your changes (which are enforced by travis-ci) you can run
+
+.. code-block:: bash
+
+    flake8 esphome
+    pylint esphome
+
+Finally, for documentation changes go to your esphome-docs folder, and install sphinx (with Python 3!)
+
+.. code-block:: bash
+
+    pip3 install sphinx
+    make webserver
+
+Or alternatively just submit a draft PR to the docs repo and wait for netlify to create
+a build preview.
+
 Contributing to ESPHome-Core
 ----------------------------
 
