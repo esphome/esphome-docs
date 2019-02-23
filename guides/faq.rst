@@ -252,6 +252,13 @@ And a docker compose file looks like this:
 
     ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
     to work you need to enable host networking mode
+    
+    mDNS might not work if your Home Assistant server and your ESPHome node's are on different subnets. If your router supports Avahi, you are able to get mDNS working over different subnets.
+    
+    Just follow the next steps:
+    
+    1. Enable Avahi on both subnets.
+    2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
 Donations
 ---------
