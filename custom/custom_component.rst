@@ -1,9 +1,9 @@
 Generic Custom Component
 ========================
 
-This integration can be used to create generic custom components in esphomelib
+This integration can be used to create generic custom components in ESPHome
 using the C++ (Arduino) API. This integration should be used in cases where
-none of esphomelib's abstraction layers (for example the "sensor", "binary sensor",
+none of ESPHome's abstraction layers (for example the "sensor", "binary sensor",
 "switch", etc concepts) work well for your integration.
 
 Please first read :doc:`/components/sensor/custom` guide, the same principles apply here.
@@ -12,8 +12,8 @@ The example below is an example of a custom component that can do anything you w
 
 .. code-block:: cpp
 
-    #include "esphomelib.h"
-    using namespace esphomelib;
+    #include "esphome.h"
+    using namespace esphome;
 
     class MyCustomComponent : public Component {
      public:
@@ -41,8 +41,8 @@ custom components that communicate using MQTT.
 
 .. code-block:: cpp
 
-    #include "esphomelib.h"
-    using namespace esphomelib;
+    #include "esphome.h"
+    using namespace esphome;
 
     class MyCustomComponent : public Component, public mqtt::CustomMQTTDevice {
      public:
@@ -86,7 +86,7 @@ And in YAML:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       includes:
         - my_custom_component.h
 

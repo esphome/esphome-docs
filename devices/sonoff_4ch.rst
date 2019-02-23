@@ -2,10 +2,10 @@ Using With Sonoff 4CH
 =====================
 
 .. seo::
-    :description: Instructions for putting Sonoff 4CH devices into flash mode and installing esphomelib on them.
+    :description: Instructions for putting Sonoff 4CH devices into flash mode and installing ESPHome on them.
     :image: sonoff_4ch.jpg
 
-esphomeyaml can also be used with Sonoff 4CH wireless switches. These devices are
+ESPHome can also be used with Sonoff 4CH wireless switches. These devices are
 basically just an ESP8266 chip with 4 relays to control power output, a few buttons on the
 top and a few status LEDs.
 
@@ -15,19 +15,19 @@ top and a few status LEDs.
 
     Sonoff 4CH WiFi switch.
 
-This guide will step you through setting up your Sonoff 4CH and flashing the first esphomeyaml firmware
+This guide will step you through setting up your Sonoff 4CH and flashing the first ESPHome firmware
 with the serial interface. After that, you will be able to upload all future firmwares with the remote
 Over-The-Air update process.
 
 .. note::
 
     If you've previously installed Sonoff-Tasmota on your Sonoff 4CH, you're in luck 😀
-    esphomeyaml can generate a firmware binary which you can then upload via the
+    ESPHome can generate a firmware binary which you can then upload via the
     Tasmota web interface. To see how to create this binary, skip to :ref:`sonoff_4ch-creating_firmware`.
 
 Since firmware version 1.6.0, iTead (the creator of this device) has removed the ability to upload
 a custom firmware through their own upload process. Unfortunately, that means that the only way to
-flash the initial esphomeyaml firmware is by physically opening the device up and using the UART
+flash the initial ESPHome firmware is by physically opening the device up and using the UART
 interface.
 
 .. warning::
@@ -47,7 +47,7 @@ For this guide you will need:
 - An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins.
-- Computer running esphomeyaml or Hass.io add-on.
+- Computer running ESPHome or Hass.io add-on.
 - Screwdriver to open up the Sonoff 4CH.
 
 Have everything? Great! Then you can start.
@@ -118,37 +118,27 @@ Step 3: Creating Firmware
 
 The Sonoff 4CH is based on the ``ESP8266`` platform (technically it's the ``ESP8285``, but for our purposes
 they're the same) and is a subtype of the ``esp01_1m`` board.
-With this information, you can step through the esphomeyaml wizard (``esphomeyaml sonoff_4ch.yaml wizard``),
+With this information, you can step through the ESPHome wizard (``esphome sonoff_4ch.yaml wizard``),
 or alternatively, you can just take the below configuration file and modify it to your needs.
-
-If you go through the wizard, please make sure you manually set ``board_flash_mode`` to ``dout``
-as seen below. The version of the uploader used by esphomeyaml should automatically detect that
-the Sonoff 4CH uses the ``dout`` SPI flash chip mode. But, as some users of other firmwares have
-said that other flash modes can brick the device, it's always good to specify it explicitly.
-
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
-      board_flash_mode: dout
 
     wifi:
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 
     ota:
 
-Now run ``esphomeyaml sonoff_4ch.yaml compile`` to validate the configuration and
+Now run ``esphome sonoff_4ch.yaml compile`` to validate the configuration and
 pre-compile the firmware.
 
 .. note::
@@ -175,15 +165,15 @@ Now you can finally run the upload command:
 
 .. code-block:: bash
 
-    esphomeyaml sonoff_4ch.yaml run
+    esphome sonoff_4ch.yaml run
 
 If successful, you should see something like this:
 
 .. figure:: images/sonoff_4ch_upload.png
     :align: center
 
-Hooray 🎉! You've now successfully uploaded the first esphomeyaml firmware to your Sonoff 4CH. And in a moment,
-you will be able to use all of esphomeyaml's great features with your Sonoff 4CH.
+Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your Sonoff 4CH. And in a moment,
+you will be able to use all of ESPHome's great features with your Sonoff 4CH.
 
 If above step does, however, not work, here are some steps that can help:
 
@@ -228,20 +218,16 @@ of the basic functions.
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
-      board_flash_mode: dout
 
     wifi:
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 
@@ -303,18 +289,13 @@ of the basic functions.
         output: blue_led
 
 
-Above example also showcases an important concept of esphomeyaml: IDs and linking. In order
-to make all components in esphomeyaml as much "plug and play" as possible, you can use IDs to define
+Above example also showcases an important concept of esphome: IDs and linking. In order
+to make all components in esphome as much "plug and play" as possible, you can use IDs to define
 them in one area, and simply pass that ID later on. For example, above you can see an PWM (dimmer)
 output being created with the ID ``blue_led`` for the blue LED. Later on it is then transformed
 into a :doc:`monochromatic light </components/light/monochromatic>`.
 If you additionally want the buttons to control the relays, look at `the complete Sonoff 4CH
 with automation example <https://github.com/OttoWinter/esphomedocs/blob/current/devices/sonoff_4ch.yaml>`__.
-
-Upload the firmware again (through OTA or Serial) and you should immediately see
-something like this in Home Assistant because of esphomeyaml's automatic MQTT discovery. (You'll
-of course have to add them to groups if you have a ``default_view`` set):
-
 
 .. figure:: images/sonoff_4ch_result.png
     :align: center

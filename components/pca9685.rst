@@ -8,7 +8,7 @@ PCA9685 PWM Component
 
 The PCA9685 component represents a PCA9685 12-bit PWM driver
 (`datasheet <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__,
-`adafruit <https://www.adafruit.com/product/815>`__) in esphomelib. It
+`adafruit <https://www.adafruit.com/product/815>`__) in ESPHome. It
 uses :ref:`I²C Bus <i2c>` for communication.
 
 To use the channels of this components, you first need to setup the

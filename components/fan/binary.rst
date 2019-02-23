@@ -29,8 +29,7 @@ Configuration variables:
   :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
 - **id** (*Optional*, :ref:`config-id`): Manually specify
   the ID used for code generation.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`
-  and :ref:`Fan Component <config-fan>`.
+- All other options from :ref:`Fan Component <config-fan>`.
 
 See Also
 --------

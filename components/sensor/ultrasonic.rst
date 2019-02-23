@@ -2,14 +2,14 @@ Ultrasonic Distance Sensor
 ==========================
 
 .. seo::
-    :description: Instructions for setting up ultrasonic distance measurement sensors in esphomelib.
+    :description: Instructions for setting up ultrasonic distance measurement sensors in ESPHome.
     :image: ultrasonic.jpg
     :keywords: ultrasonic, hc-sr04
 
 The ultrasonic distance sensor allows you to use simple ultrasonic
 sensors like the HC-SR04
 (`datasheet <https://www.electroschematics.com/wp-content/uploads/2013/07/HC-SR04-datasheet-version-2.pdf>`__,
-`sparkfun <https://www.sparkfun.com/products/13959>`__) with esphomelib
+`sparkfun <https://www.sparkfun.com/products/13959>`__) with ESPHome
 to measure distances. These sensors usually can’t measure anything more
 than about two meters and may sometimes make some annoying clicking
 sounds.
@@ -57,7 +57,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Ultrasonic Timeouts
 -------------------

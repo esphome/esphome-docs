@@ -32,14 +32,10 @@ Configuration variables:
   the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
-
-.. note::
-
-    The RGBW light platform only works with ``float`` :ref:`outputs <output>` that
-    can output any light intensity percentage like the :doc:`ESP32 LEDC </components/output/ledc>` or
-    :doc:`ESP8266 PWM </components/output/esp8266_pwm>` components and does **not** work with output
-    platforms like the :doc:`/components/output/gpio`.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
 --------

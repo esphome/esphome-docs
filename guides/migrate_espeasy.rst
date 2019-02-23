@@ -2,11 +2,11 @@ Migrating from ESPEasy
 ======================
 
 .. seo::
-    :description: Migration guide for installing esphomelib on ESPs running ESPEasy.
+    :description: Migration guide for installing ESPHome on ESPs running ESPEasy.
     :image: espeasy.png
 
 Migrating from previous ESPEasy setups is very easy. You just need to have
-esphomeyaml create a binary for you and then upload that in the ESPEasy web interface.
+ESPHome create a binary for you and then upload that in the ESPEasy web interface.
 
 Getting Binary
 --------------
@@ -19,7 +19,7 @@ file. Then, generate and download the binary:
 
   .. figure:: images/download_binary.png
 
-- **Using the command line**: run ``esphomeyaml livingroom.yaml compile`` (replacing
+- **Using the command line**: run ``esphome livingroom.yaml compile`` (replacing
   ``livingroom.yaml`` with your configuration file of course) and navigate to the
   ``<NODE_NAME>/.pioenvs/<NODE_NAME>/`` folder. There you will find a ``firmware.bin`` file,
   this is the binary you will upload.
@@ -35,11 +35,11 @@ To upload the binary, navigate to the ESPEasy web interface and enter the
     :width: 60.0%
 
 Press "Load" under Firmware, then select the binary you previously downloaded and upload
-the binary. If everything succeeds, you should now have esphomelib on your node 🎉.
+the binary. If everything succeeds, you should now have ESPHome on your node 🎉.
 
 .. note::
 
-    With esphomelib, you in most cases won't need to worry about the available flash size, as
+    with ESPHome, you in most cases won't need to worry about the available flash size, as
     the binary only ever includes the code that you are actually using.
 
 Happy Hacking!

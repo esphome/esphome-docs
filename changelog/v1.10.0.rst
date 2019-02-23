@@ -138,7 +138,7 @@ Other notable changes:
   where the error appeared. Try it, it's so much better. Next step will be to upgrade to a better YAML reader
   to provide better error messages when the YAML syntax is invalid.
 - Added a bunch of guides (and helpers) for creating custom components. Also new: ``esphomeyaml.libraries``,
-  ``esphomeyaml.includes`` and ``esphomeyaml.platformio_options`` (:doc:`/components/esphomeyaml`)
+  ``esphomeyaml.includes`` and ``esphomeyaml.platformio_options`` (:doc:`/components/esphome`)
 - Saved a lot of flash space on ESP8266 boards. Previously, platformio would allocate about 1/4 of flash for SPIFFS,
   but esphomelib doesn't use that so now you have that as extra storage. Thanks `@brandond <http://github.com/brandond>`
 - You can now use Home Assistant to get time in ESPHome, so no more need for SNTP. See :ref:`time`.

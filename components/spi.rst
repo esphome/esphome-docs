@@ -4,7 +4,7 @@ SPI Bus
 =======
 
 .. seo::
-    :description: Instructions for setting up an SPI bus in esphomelib
+    :description: Instructions for setting up an SPI bus in ESPHome
     :image: spi.png
     :keywords: SPI
 
@@ -21,7 +21,7 @@ SPI is a very common high-speed protocol for a lot of devices. The SPI bus usual
 
 In some cases one of **MOSI** or **MISO** do not exist as the receiving device only accepts data or sends data.
 
-To set up SPI devices in esphomelib, you first need to place a top-level SPI hub like below which defines what pins to
+To set up SPI devices in ESPHome, you first need to place a top-level SPI hub like below which defines what pins to
 use for the functions described above. The **CS** pins are then individually managed by the components. The ``spi:``
 component also accepts a list of buses if you want to have multiple SPI buses with your ESP (though this should
 rarely be necessary, as the SPI bus can be shared by the devices).

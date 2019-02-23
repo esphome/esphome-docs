@@ -46,7 +46,7 @@ Configuration variables:
 - **remote_transmitter_id** (*Optional*, :ref:`config-id`): The id of the :doc:`/components/remote_transmitter`.
   Defaults to the first hub specified.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Switch <config-switch>`.
 
 .. note::
 
@@ -63,7 +63,7 @@ Configuration variables:
           pin: 5
           carrier_duty_percent: 100%
 
-    Supporting the RF Bridge chip directly is currently only a long-term goal for esphomelib.
+    Supporting the RF Bridge chip directly is currently only a long-term goal for ESPHome.
 
 .. _remote_transmitter-codes:
 
@@ -91,6 +91,8 @@ Supported remote codes:
       panasonic:
         address: 0x4004
         command: 0x1000BCD
+      jvc:
+        data: 0x1234
       rc_switch_raw:
         code: '001010011001111101011011'
         protocol: 1
@@ -111,6 +113,9 @@ Supported remote codes:
         group: 'a'
         device: 2
         state: True
+      rc5:
+        address: 0x00
+        command: 0x0B
       raw:
         carrier_frequency: 35kHz
         data:
@@ -142,6 +147,10 @@ Configuration variables:
 
   - **address**: The address of the device.
   - **command**: The command to send.
+
+- **jvc**: Send a JVC IR code.
+
+  - **data**: The data bytes to send.
 
 - **rc_switch_raw**: Send an RCSwitch raw code.
 
@@ -180,6 +189,11 @@ Configuration variables:
   - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
+- **rc5**: Send a RC5 IR code.
+
+  - **address**: The address of the device.
+  - **command**: The command to send.
+
 - **raw**: Send an arbitrary signal.
 
   - **carrier_frequency**: The frequency to use for the carrier. A lot
@@ -205,7 +219,7 @@ using the :doc:`remote receiver component </components/remote_receiver>` like th
       # dump all signals we find
       dump: all
 
-And then activate the remote control you want to have in esphomelib. you will see a log output like this:
+And then activate the remote control you want to have in ESPHome. you will see a log output like this:
 
 .. figure:: images/rf_receiver-log_raw.png
     :align: center
@@ -215,7 +229,7 @@ And then activate the remote control you want to have in esphomelib. you will se
 Raw Remote Codes
 ****************
 
-If esphomelib has a decoder set up for the code, it will spit out the decoded code in the logs. In this case,
+If ESPHome has a decoder set up for the code, it will spit out the decoded code in the logs. In this case,
 it's a proprietary protocol which would be difficult to reverse engineer. Fortunately, we can just
 do a "replay attack" by repeating the signal we just saw for our own purposes. The output you see in above image
 is encoded in microseconds: A negative value represents the output being LOW for x microseconds and a positive
@@ -251,7 +265,7 @@ a transmission.
 RCSwitch Remote Codes
 *********************
 
-Starting with version 1.8.0 esphomelib can also recognize a bunch of 433MHz RF codes directly using `RCSwitch's <https://github.com/sui77/rc-switch>`__
+Starting with version 1.8.0 ESPHome can also recognize a bunch of 433MHz RF codes directly using `RCSwitch's <https://github.com/sui77/rc-switch>`__
 remote protocol. If you have RF code dumping enabled for the receiver, you will then see log outputs like this one:
 
 .. code::
@@ -271,7 +285,7 @@ Like before with raw codes, you can then use this code to create switches:
 
 Alternatively, you can use the information on `this page <https://github.com/sui77/rc-switch/wiki/HowTo_OperateLowCostOutlets>`__
 to manually find the RCSwitch codes without having to first find them using the remote receiver. For example, this would
-be the esphomelib equivalent of the first Type-A switch on that site:
+be the ESPHome equivalent of the first Type-A switch on that site:
 
 .. code-block:: yaml
 
@@ -311,6 +325,7 @@ when switched off. To do this, use the :doc:`/components/switch/template` like t
       - platform: template
         name: Living Room Lights
         optimistic: True
+        assumed_state: True
         turn_on_action:
           - switch.turn_on: living_room_lights_on
         turn_off_action:
@@ -322,7 +337,7 @@ when switched off. To do this, use the :doc:`/components/switch/template` like t
 RCSwitch Protocol
 -----------------
 
-RCSwitch transmitters/receivers all have a ``protocol:`` option that can be used to tell esphomelib what timings to use
+RCSwitch transmitters/receivers all have a ``protocol:`` option that can be used to tell ESPHome what timings to use
 for the transmission. This is necessary as many remotes use different timings to encode a logic zero or one.
 
 RCSwitch has 7 built-in protocols that cover most use cases. You can however also choose to use custom parameters

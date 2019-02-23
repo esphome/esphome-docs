@@ -1,17 +1,13 @@
-esphomeyaml:
+esphome:
   name: <NAME_OF_NODE>
   platform: ESP8266
   board: esp01_1m
-  board_flash_mode: dout
 
 wifi:
   ssid: <YOUR_SSID>
   password: <YOUR_PASSWORD>
 
-mqtt:
-  broker: <YOUR_MQTT_BROKER>
-  username: <YOUR_USERNAME>
-  password: <YOUR_PASSWORD>
+api:
 
 logger:
 

@@ -2,11 +2,11 @@ Migrating from ESPurna
 ======================
 
 .. seo::
-    :description: Migration guide for installing esphomelib on ESPs running ESPurna.
+    :description: Migration guide for installing ESPHome on ESPs running ESPurna.
     :image: espurna.png
 
 Migrating from previous ESPurna setups is very easy. You just need to have
-esphomeyaml create a binary for you and then upload that in the ESPurna web interface.
+esphome create a binary for you and then upload that in the ESPurna web interface.
 
 Getting Binary
 --------------
@@ -19,7 +19,7 @@ file. Then, generate and download the binary:
 
   .. figure:: images/download_binary.png
 
-- **Using the command line**: run ``esphomeyaml livingroom.yaml compile`` (replacing
+- **Using the command line**: run ``esphome livingroom.yaml compile`` (replacing
   ``livingroom.yaml`` with your configuration file of course) and navigate to the
   ``<NODE_NAME>/.pioenvs/<NODE_NAME>/`` folder. There you will find a ``firmware.bin`` file,
   this is the binary you will upload.
@@ -35,11 +35,11 @@ To upload the binary, navigate to the ESPurna web interface and enter the
     :width: 80.0%
 
 In the "Upgrade" section, choose the binary you previously downloaded and press "Upgrade".
-If everything succeeds, you should now have esphomelib on your node 🎉
+If everything succeeds, you should now have ESPHome on your node 🎉
 
 .. note::
 
-    With esphomelib, you in most cases won't need to worry about the available flash size, as
+    with ESPHome, you in most cases won't need to worry about the available flash size, as
     the binary only ever includes the code that you are actually using.
 
 .. figure:: images/espurna_upload.png

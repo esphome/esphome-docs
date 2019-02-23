@@ -6,7 +6,7 @@ FastLED Clockless Light
     :image: color_lens.png
 
 The ``fastled_clockless`` light platform allows you to create RGB lights
-in esphomelib for a :ref:`number of supported chipsets <fastled_clockless-chipsets>`.
+in ESPHome for a :ref:`number of supported chipsets <fastled_clockless-chipsets>`.
 
 Clockless FastLED lights differ from the
 :doc:`fastled_spi` in that they only have a single data wire to connect, and not separate data and clock wires.
@@ -53,7 +53,11 @@ Configuration variables:
   this light. When the light is turned on, the power supply will automatically be switched on too.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _fastled_clockless-chipsets:
 

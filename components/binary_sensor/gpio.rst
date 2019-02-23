@@ -2,7 +2,7 @@ GPIO Binary Sensor
 ==================
 
 .. seo::
-    :description: Instructions for setting up GPIO binary sensors with esphomelib.
+    :description: Instructions for setting up GPIO binary sensors with ESPHome.
     :image: pin.png
 
 The GPIO Binary Sensor platform allows you to use any input pin on your
@@ -27,22 +27,25 @@ Configuration variables:
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to periodically check.
 - **name** (**Required**, string): The name of the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`
-  and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-.. note::
+Activating internal pullups
+---------------------------
 
-    For some applications such as reed switches you need to set the pin mode to ``INPUT_PULLUP``
-    like this:
+If you're hooking up a button without an external pullup or see lots of ON/OFF events
+in the log output all the time, this often means the GPIO pin is floating.
 
-    .. code-block:: yaml
+For these cases you need to manually enable the pull-up (or pull-down) resistors on the ESP,
+you can do so with the :ref:`Pin Schema <config-pin_schema>`.
 
-        binary_sensor:
-          - platform: gpio
-            pin:
-              number: D2
-              mode: INPUT_PULLUP
-            name: ...
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: D2
+          mode: INPUT_PULLUP
+        name: ...
 
 Inverting Values
 ----------------

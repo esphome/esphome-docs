@@ -2,7 +2,7 @@ Homeassistant Sensor
 ====================
 
 .. seo::
-    :description: Instructions for setting up homeassistant sensors with esphomelib that import states from your homeassistant instance.
+    :description: Instructions for setting up homeassistant sensors with ESPHome that import states from your homeassistant instance.
     :image: home-assistant.png
 
 The ``homeassistant`` sensor platform allows you to create a sensors that import
@@ -30,7 +30,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **entity_id** (**Required**, string): The entity ID to import from Home Assistant.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------

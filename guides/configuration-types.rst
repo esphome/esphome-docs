@@ -2,10 +2,10 @@ Configuration Types
 ===================
 
 .. seo::
-    :description: Documentation of different configuration types in esphomelib
+    :description: Documentation of different configuration types in ESPHome
     :image: settings.png
 
-esphomeyaml’s configuration files have several configuration types. This
+ESPHome’s configuration files have several configuration types. This
 page describes them.
 
 .. _config-id:
@@ -13,14 +13,14 @@ page describes them.
 ID
 --
 
-Quite an important aspect of esphomeyaml are “ids”. They are used to
+Quite an important aspect of ESPHome are “ids”. They are used to
 connect components from different domains. For example, you define an
 output component together with an id and then later specify that same id
 in the light component. IDs should always be unique within a
-configuration and esphomeyaml will warn you if you try to use the same
+configuration and ESPHome will warn you if you try to use the same
 ID twice.
 
-Because esphomeyaml converts your configuration into C++ code and the
+Because ESPHome converts your configuration into C++ code and the
 ids are in reality just C++ variable names, they must also adhere to
 C++’s naming conventions. `C++ Variable
 names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>`__
@@ -36,14 +36,14 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 Pin
 ---
 
-esphomeyaml always uses the **chip-internal GPIO numbers**. These
+ESPHome always uses the **chip-internal GPIO numbers**. These
 internal numbers are always integers like ``16`` and can be prefixed by
 ``GPIO``. For example to use the pin with the **internal** GPIO number 16,
 you could type ``GPIO16`` or just ``16``.
 
 Most boards however have aliases for certain pins. For example the NodeMCU
 ESP8266 uses pin names ``D0`` through ``D8`` as aliases for the internal GPIO
-pin numbers. Each board (defined in :doc:`esphomeyaml section </components/esphomeyaml>`)
+pin numbers. Each board (defined in :doc:`ESPHome section </components/esphome>`)
 has their own aliases and so not all of them are supported yet. For example,
 for the ``D0`` (as printed on the PCB silkscreen) pin on the NodeMCU ESP8266
 has the internal GPIO name ``GPIO16``, but also has an alias ``D0``. So using
@@ -63,7 +63,7 @@ either one of these names in your configuration will lead to the same result.
 Pin Schema
 ----------
 
-In some places, esphomeyaml also supports a more advanced “pin schema”.
+In some places, ESPHome also supports a more advanced “pin schema”.
 
 .. code-block:: yaml
 
@@ -113,7 +113,7 @@ More exotic Pin Modes are also supported, but rarely used:
 Time
 ----
 
-In lots of places in esphomeyaml you need to define time periods.
+In lots of places in ESPHome you need to define time periods.
 There are several ways of doing this. See below examples to see how you can specify time periods:
 
 .. code-block:: yaml
@@ -146,7 +146,7 @@ There are several ways of doing this. See below examples to see how you can spec
 Substitutions
 -------------
 
-Starting with version 1.10.0, esphomeyaml has a powerful new way to reduce repetition in configuration files:
+Starting with version 1.10.0, ESPHome has a powerful new way to reduce repetition in configuration files:
 Substitutions. With substitutions, you can have a single generic source file for all nodes of one kind and
 substitute expressions in.
 
@@ -156,7 +156,7 @@ substitute expressions in.
       devicename: livingroom
       upper_devicename: Livingroom
 
-    esphomeyaml:
+    esphome:
       name: $devicename
       # ...
 
@@ -169,9 +169,36 @@ substitute expressions in.
         name: ${upper_devicename} Humidity
 
 In the top-level ``substitutions`` section, you can put as many key-value pairs as you want. Before
-validating your configuration, esphomeyaml will automatically replace all occurrences of substitutions
+validating your configuration, ESPHome will automatically replace all occurrences of substitutions
 by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
-``${substitution_key}`` (same)
+``${substitution_key}`` (same).
+
+Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
+of nodes inherit:
+
+.. code-block:: yaml
+
+    # In common.yaml
+    esphome:
+      name: $devicename
+      # ...
+
+    sensor:
+    - platform: dht
+      # ...
+      temperature:
+        name: ${upper_devicename} Temperature
+      humidity:
+        name: ${upper_devicename} Humidity
+
+.. code-block:: yaml
+
+    # In nodemcu1.yaml
+    substitutions:
+      devicename: nodemcu1
+      upper_devicename: NodeMCU 1
+
+    <<: !include common.yaml
 
 See Also
 --------

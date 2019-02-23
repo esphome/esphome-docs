@@ -6,7 +6,7 @@ Rotary Encoder Sensor
     :image: rotary_encoder.jpg
 
 The ``rotary_encoder`` sensor platform allows you to use any continuous-rotation
-rotary encoders with esphomeyaml. These devices usually have two pins with which
+rotary encoders with ESPHome. These devices usually have two pins with which
 they encode the rotation. Every time the knob of the rotary encoder is turned, the
 signals of the two pins go HIGH and LOW in turn. See
 `this Arduino article <https://playground.arduino.cc/Main/RotaryEncoders>`__ to gain
@@ -23,7 +23,7 @@ a better understanding of these sensors.
     :align: center
     :width: 75.0%
 
-To use rotary encoders in esphomeyaml, first identify the two pins encoding th step value.
+To use rotary encoders in ESPHome, first identify the two pins encoding th step value.
 These are often called ``CLK`` and ``DT`` as in above image. Note if the values this sensor
 outputs go in the wrong direction, you can just swap these two pins.
 
@@ -48,13 +48,13 @@ Configuration variables:
   An optional pin that resets the step value. This is useful with rotary encoders that have have a
   third pin. Defaults to no reset pin.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Debouncing Output
 -----------------
 
 This sensor can output a lot of values in a short period of time when turning the knob.
-In order to not put too much stress on your network connection, you can leverage esphomelib's
+In order to not put too much stress on your network connection, you can leverage ESPHome's
 sensor filters. The following will only send out values if the last input value is at least
 0.1s seconds old *or* if the new rotary encoder value has changed by 10 from the previous value.
 

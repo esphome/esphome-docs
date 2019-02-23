@@ -7,7 +7,7 @@ MH-Z19 CO_2 and Temperature Sensor
     :keywords: mh-z19
 
 The ``mhz19`` sensor platform allows you to use MH-Z19 CO_2 and temperature sensors
-(`refspace`_) with esphomelib.
+(`refspace`_) with ESPHome.
 
 .. figure:: images/mhz19-full.jpg
     :align: center
@@ -46,14 +46,14 @@ Configuration variables:
 
   - **name** (**Required**, string): The name for the CO_2 sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **temperature** (**Required**): The information for the temperature sensor. Please note that this is
   not officially documented in the datasheet and seems to be quite inaccurate.
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.

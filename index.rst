@@ -43,9 +43,8 @@ Guides
 Devices
 -------
 
-This list contains a bunch of getting started and more advanced guides for using esphomeyaml.
-Technically, all ESP8266/ESP32 devices (and therefore all Sonoff devices) are supported by esphomeyaml/lib.
-These are only the devices for which I've had the time to set up dedicated guides.
+This list contains a bunch of getting started and more advanced guides for using ESPHome.
+Technically, all ESP8266/ESP32 devices are supported by ESPHome.
 
 .. imgtable::
 
@@ -65,7 +64,7 @@ Core Components
 
 .. imgtable::
 
-    Core, components/esphomeyaml, cloud-circle.svg
+    Core, components/esphome, cloud-circle.svg
     WiFi, components/wifi, network-wifi.svg
     MQTT, components/mqtt, mqtt.png
 
@@ -143,6 +142,7 @@ Binary Sensor Components
 
     Binary Sensor Core, components/binary_sensor/index, folder-open.svg
     GPIO, components/binary_sensor/gpio, pin.svg
+    Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
     ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
@@ -184,6 +184,7 @@ Light Components
     FastLED SPI Light, components/light/fastled_spi, color_lens.svg
 
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
+    Light Partition, components/light/partition, color_lens.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Clockless Light </components/light/fastled_clockless>`.
@@ -283,8 +284,6 @@ Additional Custom Components
 
 Cookbook
 --------
-
-This list contains items that are technically already supported by other components.
 
 .. imgtable::
 

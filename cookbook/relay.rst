@@ -2,7 +2,7 @@ Relay
 =====
 
 .. seo::
-    :description: Instructions for using relays in esphomelib.
+    :description: Instructions for using relays in ESPHome.
     :image: relay.jpg
     :keywords: Relay
 
@@ -30,7 +30,7 @@ when the input turns off, ``NC`` is connected to ``COM``.
     and so on. Please also note that relays are physical components - as such, they have a limited
     number of switches that can happen before they break.
 
-To use a relay with esphomelib, use a :doc:`GPIO Switch </components/switch/gpio>`.
+To use a relay with ESPHome, use a :doc:`GPIO Switch </components/switch/gpio>`.
 
 .. code-block:: yaml
 

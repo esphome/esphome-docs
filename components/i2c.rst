@@ -4,7 +4,7 @@ I²C Bus
 =======
 
 .. seo::
-    :description: Instructions for setting up the i2c bus to communicate with 2-wire devices in esphomelib
+    :description: Instructions for setting up the i2c bus to communicate with 2-wire devices in ESPHome
     :image: i2c.png
     :keywords: i2c, iic, bus
 
@@ -29,7 +29,7 @@ Configuration variables:
 - **scl** (*Optional*, :ref:`config-pin`): The pin for the clock line of the i²c bus.
   Defaults to the default of your board (usually GPIO22 for ESP32 and
   GPIO5 for ESP8266).
-- **scan** (*Optional*, boolean): If esphomelib should do a search of the i2c address space on startup.
+- **scan** (*Optional*, boolean): If ESPHome should do a search of the i2c address space on startup.
   Note that this can slow down startup and is only recommended for when setting up new sensors. Defaults to
   ``False``.
 - **frequency** (*Optional*, float): Set the frequency the i²c bus should operate on.
@@ -38,7 +38,7 @@ Configuration variables:
 .. note::
 
     If you're using the ESP32 and i2c frequently is showing errors in the logs, try with the latest
-    version of the Arduino framework. See :ref:`esphomeyaml-arduino_version` for information on how to do this.
+    version of the Arduino framework. See :ref:`esphome-arduino_version` for information on how to do this.
 
 See Also
 --------

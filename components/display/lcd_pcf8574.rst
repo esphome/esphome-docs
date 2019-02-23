@@ -6,7 +6,7 @@ PCF8574 Character-Based LCD Display
     :image: lcd.jpg
 
 The ``lcd_pcf8574`` display platform allows you to use standard character-based LCD displays like `this one <https://docs.labs.mediatek.com/resource/linkit7697-arduino/en/tutorial/driving-1602-lcd-with-pcf8574-pcf8574a>`__
-with esphomelib. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
+with ESPHome. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
 and 2-4 rows), and not for LCD displays that can control each pixel individually.
 
 This version of the LCD integration is for LCD displays with an PCF8574 connected to all the data pins. This has

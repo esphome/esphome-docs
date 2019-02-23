@@ -6,6 +6,19 @@ Native API Component
     :image: server-network.png
     :keywords: Native API, ESPHome, Home Assistant
 
+The ESPHome native API is used to communicate with clients directly, with a highly-optimized
+network protocol. Currently, only the esphome tool and Home Assistant use this native API.
+
+After adding an ``api:`` line to your esphome configuration you can go to the Home Assistant
+webinterface and navigate to the "Integrations" screen in the "Configuration" panel. Then wait
+for the ESPHome device to show up under the discovered section (can take up to 5 minutes) or add
+the device manually by clicking "CONFIGURE" on the ESPHome integration and entering
+"<NODE_NAME>.local" as the address.
+
+The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
+the protocol data structure definitions here: https://github.com/esphome/esphome-core/blob/dev/src/esphome/api/api.proto.
+A python library that implements this protocol can be found `here <https://github.com/esphome/aioesphomeapi>`__.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -28,10 +41,10 @@ Configuration variables:
 Migrating from MQTT to Native API Setup in Home Assistant
 ---------------------------------------------------------
 
-The native API is the best way to use esphomelib together with Home Assistant - it's fast,
+The native API is the best way to use ESPHome together with Home Assistant - it's fast,
 highly efficient and requires almost zero setup (whereas MQTT requires you to set up an MQTT broker first).
 
-If you've previously used esphomelib with Home Assistant via MQTT and have enabled MQTT discovery,
+If you've previously used ESPHome with Home Assistant via MQTT and have enabled MQTT discovery,
 the upgrade process is unfortunately not just swapping out the ``mqtt`` for ``api`` in your configuration:
 Home Assistant's `entity registry <https://developers.home-assistant.io/docs/en/entity_registry_index.html>`__ complicates
 things a bit. If you don't follow these steps, all your new native API entities will have a trailing
@@ -104,12 +117,6 @@ You can repeat these steps for all your nodes, or convert them over to the new n
 
 9. Now you can remove ``mqtt:`` from your ESPHome configuration. You don't have to, but doing so will
    free up resources (of which these ESPs don't have too much).
-
-.. warning::
-
-    Using MQTT together with the native API seems to be broken on some devices at the moment.
-    Of course in the future you will be able to use both at the same time, but the fix will
-    just take a while to get done as it's a larger scale issue.
 
 .. _api-homeassistant_service_action:
 

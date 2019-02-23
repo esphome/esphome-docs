@@ -5,7 +5,7 @@ Display Component
     :description: Instructions for setting up the display integration.
     :image: folder-open.png
 
-The ``display`` component houses esphomelib's powerful rendering and display
+The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 
 - Text based displays like :doc:`7-Segment displays <max7219>` or
@@ -14,10 +14,10 @@ engine. Fundamentally, there are these types of displays:
 - Binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper displays <waveshare_epaper>` or
   :doc:`OLED displays <ssd1306_spi>`.
 
-For the last type, esphomelib and esphomeyaml have a powerful rendering engine that can do
+For the last type, ESPHome has a powerful rendering engine that can do
 many things like draw some basic shapes, print text with any font you want, or even show images.
 
-To achieve all this flexibility displays tie in directly into esphomeyaml's :ref:`lambda system <config-lambda>`.
+To achieve all this flexibility displays tie in directly into ESPHome's :ref:`lambda system <config-lambda>`.
 So when you want to write some text or sensor values to the screen you will be writing in C++ code
 using an API that is designed to
 
@@ -29,13 +29,13 @@ using an API that is designed to
 Display Rendering Engine
 ------------------------
 
-In this section we will be discussing how to use esphomelib's display rendering engine from esphomeyaml
+In this section we will be discussing how to use ESPHome's display rendering engine from ESPHome
 and some basic commands. Please note that this only applies to displays that can control each pixel
 individually.
 
-So, first a few basics: When setting up a display platform in esphomeyaml there will be a configuration
-option called ``lambda:`` which will be called every time esphomelib wants to re-render the display.
-In there, you can write code like in any :ref:`lambda <config-lambda>` in esphomeyaml. Display
+So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
+option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
+In there, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
 .. code-block:: yaml
@@ -67,7 +67,7 @@ the rendering engine is always first specify the ``x`` coordinate and then the `
 Basic Shapes
 ************
 
-Now that you know a bit more about esphomelib's coordinate system, let's draw some basic shapes like lines, rectangles
+Now that you know a bit more about ESPHome's coordinate system, let's draw some basic shapes like lines, rectangles
 and circles:
 
 .. code-block:: yaml
@@ -90,7 +90,7 @@ and circles:
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
 color to draw. Currently, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported because
-esphomelib only has implemented binary displays.
+ESPHome only has implemented binary displays.
 
 .. code-block:: yaml
 
@@ -128,12 +128,12 @@ You can view the full API documentation for the rendering engine in the "API Ref
 Drawing Static Text
 *******************
 
-The rendering engine also has a powerful font drawer which integrates seamlessly into esphomeyaml.
+The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
 Whereas in most arduino display projects you have to use one of a few pre-defined fonts in very
-specific sizes, with esphomeyaml you have the option to use **any** truetype (``.ttf``) font file
+specific sizes, with ESPHome you have the option to use **any** truetype (``.ttf``) font file
 at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
 
-To use fonts you first have to define a font object in your esphomeyaml configuration file. Just grab
+To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
 a ``.ttf`` file from somewhere on the Internet and create a ``font:`` section in your configuration:
 
 .. code-block:: yaml
@@ -164,9 +164,9 @@ Configuration variables:
 
 .. note::
 
-    To use fonts you will need to have the python ``pillow`` package installed, as esphomeyaml uses that package
+    To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
     to translate the truetype files into an internal format. If you're running this as a Hass.io add-on or with
-    the official esphomeyaml docker image, it should already be installed. Otherwise you need to install it using
+    the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
     ``pip2 install pillow``.
 
 
@@ -181,10 +181,10 @@ Then, in your display code just reference the font like so:
           // Print the string "Hello World!" at [0,10]
           it.print(0, 10, id(my_font), "Hello World!");
 
-By default, esphomelib will *align* the text at the top left. That means if you enter the coordinates
+By default, ESPHome will *align* the text at the top left. That means if you enter the coordinates
 ``[0,10]`` for your text, the top left of the text will be at ``[0,10]``. If you want to draw some
 text at the right side of the display, it is however sometimes useful to choose a different **text alignment**.
-When you enter ``[0,10]`` you're really telling esphomelib that it should position the **anchor point** of the text
+When you enter ``[0,10]`` you're really telling ESPHome that it should position the **anchor point** of the text
 at ``[0,10]``. When using a different alignment, like ``TOP_RIGHT``, the text will be positioned left of the anchor
 pointed, so that, as the name implies, the anchor point is a the *top right* corner of the text.
 
@@ -218,7 +218,7 @@ Formatted Text
 **************
 
 Static text by itself is not too impressive. What we really want is to display *dynamic* content like sensor values
-on the display!. That's where ``printf`` comes in. ``printf`` is a formatting engine from the C era and esphomelib
+on the display!. That's where ``printf`` comes in. ``printf`` is a formatting engine from the C era and ESPHome
 chose to use because ... well, I'm too lazy to create a fully-fledged format engine where the existing stuff
 is way better documented :)
 
@@ -244,7 +244,7 @@ stuff after it is encountered, it is magically replaced by the argument after th
 
 Every time you type a percent sign ``%`` in a printf format string, it will treat the following letters as a format tag
 until a so-called "specifier" is encountered (in this case ``f``). You can read more about it `here <https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm>`__,
-but for esphomelib there are really just a few things you need to know.
+but for ESPHome there are really just a few things you need to know.
 
 Let's break ``%.1f`` down:
 
@@ -311,7 +311,7 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 Displaying Time
 ***************
 
-With esphomelib you can also display the current time using the NTP protocol. Please see the example :ref:`here <strftime>`.
+With ESPHome you can also display the current time using the NTP protocol. Please see the example :ref:`here <strftime>`.
 
 Images
 ^^^^^^
@@ -334,7 +334,7 @@ Configuration variables:
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a Hass.io add-on or with the official esphomeyaml docker image, it should already be
+    If you're running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip2 install pillow``.
 
 And then later in code:
@@ -347,6 +347,75 @@ And then later in code:
         lambda: |-
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
+
+.. _display-pages:
+
+Display Pages
+-------------
+
+Certain display types also allow you to show "pages". With pages you can create drawing lambdas
+that you can switch between. For example with pages you can set up 3 screens, each with
+different content, and switch between them on a timer.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        id: my_display
+        pages:
+          - id: page1
+            lambda: |-
+              it.print(0, 10, id(my_font), "This is page 1!");
+          - id: page2
+            lambda: |-
+              it.print(0, 10, id(my_font), "This is page 2!");
+
+You can then switch between these with three different actions:
+
+**show_next** / **show_prev**: Shows the next or previous page, wraps around at the end.
+
+.. code-block:: yaml
+
+    on_...:
+      - display.page.show_next: my_display
+      - display.page.show_prev: my_display
+
+    # For example cycle through pages on a timer
+    interval:
+      - interval: 5s
+        then:
+          - display.page.show_next: my_display
+          - component.update: my_display
+
+**display.page.show**: Show a specific page
+
+.. code-block:: yaml
+
+    on_...:
+      - display.page.show: page1
+
+      # Templated
+      - display.page.show: !lambda |-
+          if (id(my_binary_sensor).state) {
+            return id(page1);
+          } else {
+            return id(page2);
+          }
+
+.. note::
+
+    To trigger a redraw right after the page show use a :ref:`component.update <component-update_action>`
+    action:
+
+    .. code-block:: yaml
+
+        # For example cycle through pages on a timer
+        interval:
+          - interval: 5s
+            then:
+              - display.page.show_next: my_display
+              - component.update: my_display
 
 See Also
 --------

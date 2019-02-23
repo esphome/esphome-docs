@@ -5,14 +5,9 @@ PMSX003 Particulate Matter Sensor
     :description: Instructions for setting up PMSX003 Particulate matter sensors
     :image: pmsx003.png
 
-.. warning::
-
-    This integration is experimental as I don't have the hardware to test it (yet).
-    If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 The ``pmsx003`` sensor platform allows you to use your PMS5003, PMS7003, ... particulate matter
 (`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__)
-sensors with esphomelib.
+sensors with ESPHome.
 
 As the communication with the PMSX003 is done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the SEND/TX pin
@@ -46,17 +41,17 @@ Configuration variables:
 ------------------------
 
 - **pm_1_0** (*Optional*): Use the concentration of particulates of size less than 1.0µm in µg per cubic meter.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **temperature** (*Optional*): Use the temperature value in °C for the ``PMS5003T`` and ``PMS5003ST``.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **humidity** (*Optional*): Use the humidity value in % for the ``PMS5003T`` and ``PMS5003ST``.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003ST``.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 

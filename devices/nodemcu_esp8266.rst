@@ -2,12 +2,12 @@ NodeMCU ESP8266
 ===============
 
 .. seo::
-    :description: Instructions for using nodemcu ESP8266 boards in esphomelib together with a description of their pins and uses.
+    :description: Instructions for using nodemcu ESP8266 boards in ESPHome together with a description of their pins and uses.
     :image: nodemcu_esp8266.jpg
     :keywords: NodeMCU, ESP8266
 
-The NodeMCU board is fully supported by esphomeyaml. Simply select ``ESP8266`` when
-the esphomeyaml wizard asks you for your platform and |nodemcuv2|_ as the board type.
+The NodeMCU board is fully supported by ESPHome. Simply select ``ESP8266`` when
+the ESPHome wizard asks you for your platform and |nodemcuv2|_ as the board type.
 
 .. note::
 
@@ -22,14 +22,14 @@ the esphomeyaml wizard asks you for your platform and |nodemcuv2|_ as the board 
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       name: livingroom
       platform: ESP8266
       board: nodemcuv2
 
 The NodeMCU's pin numbering as seen on the board (the ``D0`` etc pins) is different from
 the internal pin numbering. For example, the ``D8`` pin number maps to the internal
-``GPIO0`` pin. Fortunately esphomeyaml knows the mapping from the on-board pin numbers
+``GPIO0`` pin. Fortunately ESPHome knows the mapping from the on-board pin numbers
 to the internal pin numbering, but you need to prefix the pin numbers with ``D`` as in below
 image in order for this automatic mapping to occur.
 
@@ -58,7 +58,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       name: livingroom
       platform: ESP8266
       board: nodemcuv2
