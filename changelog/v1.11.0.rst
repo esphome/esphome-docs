@@ -75,6 +75,13 @@ I've made that a top priority for the next release, but I've hit some road block
 prevented it from working in a stable way for this release (and I needed to finally get this darn
 release out).
 
+Release 1.11.1 - February 23
+----------------------------
+
+- core: Fix addressable not updating light :corepr:`521`
+- docs: Add Ethernet pin config for olimex esp32-poe board :docspr:`166` by :ghuser:`setola`
+- docs: FAQ: Add description for mDNS support on different subnets :docspr:`169` by :ghuser:`Taigar2015`
+
 Breaking Changes
 ----------------
 
