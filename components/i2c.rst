@@ -4,12 +4,12 @@ I²C Bus
 =======
 
 .. seo::
-    :description: Instructions for setting up the i2c bus to communicate with 2-wire devices in ESPHome
+    :description: Instructions for setting up the I²C bus to communicate with 2-wire devices in ESPHome
     :image: i2c.png
     :keywords: i2c, iic, bus
 
-This component sets up the i²c bus for your ESP32 or ESP8266. In order for those components
-to work correctly, you need to define the i²c bus in your configuration. Please note the ESP
+This component sets up the I²C bus for your ESP32 or ESP8266. In order for those components
+to work correctly, you need to define the I²C bus in your configuration. Please note the ESP
 will enable its internal 10kΩ pullup resistors for these pins, so you usually don't need to
 put on external ones.
 
@@ -24,20 +24,20 @@ put on external ones.
 Configuration variables:
 ------------------------
 
-- **sda** (*Optional*, :ref:`config-pin`): The pin for the data line of the i²c bus.
+- **sda** (*Optional*, :ref:`config-pin`): The pin for the data line of the I²C bus.
   Defaults to the default of your board (usually GPIO21 for ESP32 and GPIO4 for ESP8266).
-- **scl** (*Optional*, :ref:`config-pin`): The pin for the clock line of the i²c bus.
+- **scl** (*Optional*, :ref:`config-pin`): The pin for the clock line of the I²C bus.
   Defaults to the default of your board (usually GPIO22 for ESP32 and
   GPIO5 for ESP8266).
-- **scan** (*Optional*, boolean): If ESPHome should do a search of the i2c address space on startup.
+- **scan** (*Optional*, boolean): If ESPHome should do a search of the I²C address space on startup.
   Note that this can slow down startup and is only recommended for when setting up new sensors. Defaults to
   ``False``.
-- **frequency** (*Optional*, float): Set the frequency the i²c bus should operate on.
-  Defaults to ``50KHz``. Values are ``50KHz``, ``100KHz``, ``200KHz``, ... ``800KHz``
+- **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
+  Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
 
 .. note::
 
-    If you're using the ESP32 and i2c frequently is showing errors in the logs, try with the latest
+    If you're using the ESP32 and I²C frequently is showing errors in the logs, try with the latest
     version of the Arduino framework. See :ref:`esphome-arduino_version` for information on how to do this.
 
 See Also
