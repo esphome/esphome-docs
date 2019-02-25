@@ -14,6 +14,7 @@ Display time and temperature
 ESPHome has support for several different types of displays. 
 In this example I have used a 
 :ref:`SSD1306 OLED Display over I²C </components/display/ssd1306_i2c>`. My display is 1.3" with 128x64 monochrome pixels.
+:doc:`SSD1306 OLED Display over I²C </components/display/ssd1306_i2c>`. My display is 1.3" with 128x64 monochrome pixels.
 
 **********************
 Hardware configuration
@@ -26,10 +27,7 @@ Hardware is easy! Only four connections are needed:
 - ``SDA`` - Serial Data
 - ``SCL`` - Serial Clock
 
-.. figure:: images/display2.jpg
-    :align: center
     :width: 75.0%
-
 .. warning::
 
     Ensure your display handles 5V if you use that.
@@ -120,7 +118,7 @@ The ``reset_pin`` was not used in my hardware configuration as the display didn'
 Rendering
 ---------
 
-- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in :doc:`/api/display_8h.html`.
+- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in :doc:`/api/display_8h.html </api/display_8h.html>`.
 - The property ``has_state()`` on a sensor is useful as it can take some seconds to get the data from Home Assistant and you may not want to display ``Nan``
 - Refer to the rendering engine :ref:`display-engine` for more features (it can draw lines and circles too!)
 
@@ -128,9 +126,6 @@ Rendering
 See Also
 --------
 
-- :doc:`/components/display`
-- :doc:`/components/display/ssd1306_i2c`
-- :doc:`/api/display_8h.html`
 - :ghedit:`Edit`
 
 .. disqus::
