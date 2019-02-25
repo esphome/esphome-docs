@@ -1,5 +1,5 @@
-Display Time and Temperature
-============================
+Time & Temperature on OLED Display
+==================================
 
 .. seo::
     :description: Instructions for setting up a display in ESPhome to show sensor values from Home Assistant
@@ -10,10 +10,8 @@ Display Time and Temperature
     :align: center
     :width: 75.0%
 
-ESPHome has support for several different types of displays. 
-
-In this example I have used a :doc:`SSD1306 OLED Display over I²C </compoennts/display/ssd1306_i2c>`. 
-My display is 1.3" with 128x64 monochrome pixels (``SH1106 128x64``).
+In this example I have used a :doc:`SSD1306 OLED Display over I²C </compoennts/display/ssd1306_i2c>` to show current time and two different temperature values from Home Assistant. 
+ESPHome has support for several different types of displays. The display used here is 1.3" with 128x64 monochrome pixels (``SH1106 128x64``).
 
 Hardware configuration
 ----------------------
