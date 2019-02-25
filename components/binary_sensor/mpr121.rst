@@ -3,7 +3,7 @@ MPR121 Capacitive Touch Sensor
 
 .. seo::
     :description: Instructions for setting up MPR121 Capacitive Touch Sensor
-    :image: mpr121_full.jpg
+    :image: mpr121.png
     :keywords: MPR121
 
 The ``mpr121`` sensor platform allows you to use your MPR121
