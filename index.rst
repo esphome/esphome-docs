@@ -146,6 +146,7 @@ Binary Sensor Components
     Status, components/binary_sensor/status, server-network.svg
     ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.png
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
