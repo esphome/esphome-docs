@@ -87,7 +87,7 @@ Define the Fonts
       - file: 'arial.ttf'
         id: font3
         size: 14
-		
+
 Display Definition
 ******************
 
@@ -115,7 +115,7 @@ Note your ``address`` might be differnt, use the scan option to find the address
 
           // Print time in HH:MM format
           it.strftime(0, 60, id(font2), TextAlign::BASELINE_LEFT, "%H:%M", id(time).now()); 
-	  
+
           // Print inside temperature (from homeassistant sensor)
           if (id(inside_temperature).has_state()) { 
             it.printf(127, 23, id(font3), TextAlign::TOP_RIGHT , "%.1f°", id(inside_temperature).state);
