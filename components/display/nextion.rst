@@ -17,7 +17,7 @@ with ESPHome.
 
 As the communication with the MH-Z19 is done using UART, you need to have an :ref:`UART bus <uart>`
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
-Additionally, you need to set the baud rate to 9600.
+Additionally, you need to set the baud rate to what ever baud rate you have set on the display. Defualt is 9600.
 
 .. code-block:: yaml
 
@@ -47,14 +47,31 @@ Configuration variables:
 
 .. _display-nextion_lambda:
 
+Creating a HMI file
+-------------------
+First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
+create a display file. When you open up the editor create new project and set your device type (Device model is listed at the back of the display). 
+
+Now in ``Preinitialize Event`` You have to type ``bkcmd=3``
+
+.. figure:: images/nextion-HMI1.jpg
+    :align: center
+    :width: 75.0%
+Then you can add whatever components you want to display.
+
+If you want to enable touch for any component, you must check mark ``Send Component ID``under the desired touch event. This will let you micro controller know that this component has been pressed/released. 
+
+.. figure:: images/nextion-HMI2.jpg
+    :align: center
+    :width: 75.0%
+
 Rendering Lambda
 ----------------
 
 With Nextion displays, a dedicated chip on the display itself does the whole rendering. ESPHome can only
 send *instructions* to the display to tell it *how* to render something and *what* to render.
 
-First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
-create a display file and insert it using the SD card slot. Then, in the rendering ``lambda``, you have 3 main methods
+Then, in the rendering ``lambda``, you have 3 main methods
 you can call to populate data on the display:
 
 .. code-block:: yaml
