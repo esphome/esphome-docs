@@ -1,4 +1,4 @@
-Display time and temperature
+Display Time and Temperature
 ============================
 
 .. seo::
@@ -45,7 +45,7 @@ Get the time from Home Assistant to sync the onboard real-time-clock.
 
 Getting Temperature
 *******************
-		
+
 Next, we want to get two temperature sensors imported from Home Assistant. 
 
 I named them ``inside_temperature`` and ``outside_temperature``. You will use those references later.
