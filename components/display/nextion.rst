@@ -61,7 +61,7 @@ Now in ``Preinitialize Event`` You have to type ``bkcmd=3``
 
 Then you can add whatever components you want to display.
 
-If you want to enable touch for any component, you must check mark ``Send Component ID`` under the desired touch event. This will let you microcontroller know that this component has been pressed/released. 
+If you want to enable touch for any component, you must check mark ``Send Component ID`` under the desired touch event. This will let your microcontroller know that this component has been pressed/released. 
 
 .. figure:: images/nextion-HMI2.jpg
     :align: center
