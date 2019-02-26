@@ -219,8 +219,7 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg
-    GPIO LCD, components/display/lcd_gpio, lcd.jpg
-    PCF8574 LCD, components/display/lcd_pcf8574, lcd.jpg
+    LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
