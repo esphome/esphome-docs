@@ -12,7 +12,7 @@ engine. Fundamentally, there are these types of displays:
   :doc:`some LCD displays <lcd_gpio>`.
 - Displays like the :doc:`nextion` that have their own processors for rendering.
 - Binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper displays <waveshare_epaper>` or
-  :doc:`OLED displays <ssd1306_spi>`.
+  :doc:`OLED displays <ssd1306>`.
 
 For the last type, ESPHome has a powerful rendering engine that can do
 many things like draw some basic shapes, print text with any font you want, or even show images.

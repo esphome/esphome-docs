@@ -223,8 +223,7 @@ Display Components
     PCF8574 LCD, components/display/lcd_pcf8574, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     Nextion, components/display/nextion, nextion.jpg
-    SSD1306 I2C, components/display/ssd1306_i2c, ssd1306.jpg
-    SSD1306 SPI, components/display/ssd1306_spi, ssd1306.jpg
+    SSD1306, components/display/ssd1306, ssd1306.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
 
 Cover Components

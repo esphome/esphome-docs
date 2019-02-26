@@ -10,7 +10,7 @@ Version 1.8.0
 
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Nextion, components/display/nextion, nextion.jpg
-    SSD1306, components/display/ssd1306_i2c, ssd1306.jpg
+    SSD1306, components/display/ssd1306, ssd1306.jpg
 
     MAX7219, components/display/max7219, max7219.jpg
     LCD Display, components/display/lcd_gpio, lcd.jpg
