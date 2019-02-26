@@ -2,12 +2,53 @@ Dallas Temperature Sensor
 =========================
 
 .. seo::
-    :description: Instructions for setting up DS18b20 and similar temperature sensors
+    :description: Instructions for setting up dallas temperature sensor hubs that can expose many temperature sensors on a single pin using the one wire protocol.
     :image: dallas.jpg
-    :keywords: dallas, ds18b20
+    :keywords: Dallas, ds18b20, onewire
+
+.. _dallas-component:
+
+Component/Hub
+=============
+
+The ``dallas`` component allows you to use your
+`DS18b20 <https://www.adafruit.com/product/374>`__
+(`datasheet <https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf>`__)
+and similar One-Wire temperature sensors.
+
+To use your :ref:`dallas sensor <dallas-sensor>`, first define a dallas “hub” with a pin and
+id, which you will later use to create the sensors. The 1-Wire bus the
+sensors are connected to should have an external pullup resistor of
+about 4.7KΩ. For this, connect a resistor of *about* 4.7KΩ (values around that like 1Ω will, if you don't have
+massively long wires, work fine in most cases) between ``3.3V`` and the data pin.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    dallas:
+      - pin: 23
+
+    # Individual sensors
+    sensor:
+      - platform: dallas
+        address: 0x1c0000031edd2a28
+        name: "Livingroom Temperature"
+
+Configuration variables:
+------------------------
+
+- **pin** (**Required**, number): The pin the sensor bus is connected to.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
+  Defaults to 60 seconds.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+.. _dallas-sensor:
+
+Sensors
+=======
 
 The ``dallas`` sensor allows you to use ds18b20 and similar sensors.
-First, you need to define a :doc:`dallas sensor component </components/dallas>`.
+First, you need to define a :ref:`dallas sensor component <dallas-component>`.
 The dallas sensor component (or "hub") is an internal model that defines which pins the ds18b20
 sensors are connected to. This is because with these sensors you can actually connect multiple
 sensors to a single pin and use them all at once.
@@ -48,7 +89,7 @@ Configuration variables:
   to use address instead <dallas-getting-ids>`.
 - **resolution** (*Optional*, int): An optional resolution from 8 to
   12. Higher means more accurate. Defaults to the maximum for most dallas temperature sensors: 12.
-- **dallas_id** (*Optional*, :ref:`config-id`): The ID of the :doc:`dallas hub </components/dallas>`.
+- **dallas_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`dallas hub <dallas-component>`.
   Use this if you have multiple dallas hubs.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
@@ -106,7 +147,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`/components/dallas`
 - :doc:`max6675`
 - `Arduino DallasTemperature library <https://github.com/milesburton/Arduino-Temperature-Control-Library>`__ by `Miles Burton <https://github.com/milesburton>`__
 - :apiref:`sensor/dallas_component.h`
