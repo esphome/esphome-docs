@@ -8,8 +8,8 @@ Remote Transmitter
 
 .. _remote-transmitter-component:
 
-Component
----------
+Component/Hub
+-------------
 
 The ``remote_transmitter`` component lets you send infrared messages to control
 devices in your home. First, you need to setup a global hub that specifies which pin your remote
@@ -291,9 +291,9 @@ Now you only need to set up the remote transmitter (which well *send* the code) 
 .. code-block:: yaml
 
     remote_transmitter:
-       pin: GPIO23
-       # Set to 100% when working with RF signals, and 50% if working with IR leds
-       carrier_duty_percent: 100%
+      pin: GPIO23
+      # Set to 100% when working with RF signals, and 50% if working with IR leds
+      carrier_duty_percent: 100%
 
 And lastly, we need to set up the switch that, when turned on, will send our pre-defined remote code:
 
