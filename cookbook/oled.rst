@@ -1,15 +1,16 @@
 A guide to using SSD1306 OLED display
-===========================
+=====================================
 
-| All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` and :doc:`Display </components/display/>`. 
-| In this article i will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
-| These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
-| There is also a 1.3" version with same resolution that should work with the same config as this one, however i have not tested personally yet.
-|
-| The display used in the pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. There are different versions of the display.
+All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` and :doc:`Display </components/display/>`. 
+In this article i will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
+These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
+There is also a 1.3" version with same resolution that should work with the same config as this one, however i have not tested personally yet.
 
-| The display itself is a 0.96” OLED unit that connects to your ESP via `i2c`, you will need to add `i2c` configuration to your node.
-| It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and ``SDA`` (some of them have a misprint and the SCL pin says SCK for some reason)
+.. note::
+     The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. There are different versions of the display.
+
+The display itself is a 0.96” OLED unit that connects to your ESP via ``i2c``, you will need to add ``i2c`` configuration to your node.
+It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and ``SDA`` (some of them have a misprint and the SCL pin says SCK for some reason)
 
 
 .. figure:: images/oled-xy.png
@@ -18,11 +19,11 @@ A guide to using SSD1306 OLED display
 The XY orientation of the display.
 
 Configuration
-_______________
+_____________
 
 
 i2c:
-*********
+****
 If you don't know the i2c address for your display:
 
 .. code-block:: yaml
@@ -34,21 +35,22 @@ If you don't know the i2c address for your display:
 
 Set ``scan: true`` if you don’t know the address of your display and check the log for the node:
 
-| **[11:54:53][C][i2c:043]: I2C Bus:**
-| **[11:54:53][C][i2c:044]:   SDA Pin: GPIO14**
-| **[11:54:53][C][i2c:045]:   SCL Pin: GPIO12**
-| **[11:54:53][C][i2c:046]:   Frequency: 50000 Hz**
-| **[11:54:53][I][i2c:048]: Scanning i2c bus for active devices...**
-| **[11:54:53][I][i2c:055]: Found i2c device at address 0x3C**
-|
-| Take note of the address and set ``scan: false`` again.
-| **(The board used in this example is a Wemos D1 mini, so adapt pins to the board you are using)**
+.. code-block::
+    [11:54:53][C][i2c:043]: I2C Bus:
+    [11:54:53][C][i2c:044]:   SDA Pin: GPIO14
+    [11:54:53][C][i2c:045]:   SCL Pin: GPIO12
+    [11:54:53][C][i2c:046]:   Frequency: 50000 Hz
+    [11:54:53][I][i2c:048]: Scanning i2c bus for active devices...
+    [11:54:53][I][i2c:055]: Found i2c device at address 0x3C
+
+Take note of the address and set ``scan: false`` again.
+(The board used in this example is a Wemos D1 mini, so adapt pins to the board you are using)
 
 Node config:
-*********
+************
 
-| The configuration for your node should look something like this: 
-| (your basic node configuration, e.g. network and such is not discussed in this guide):
+The configuration for your node should look something like this: 
+(your basic node configuration, e.g. network and such is not discussed in this guide):
 
 .. code-block:: yaml
 
@@ -109,10 +111,10 @@ Node config:
 
 
 In detail:
-_________
+__________
 
 Sensors:
-*******
+********
 .. code-block:: yaml
 
     sensor:
@@ -132,7 +134,7 @@ Sensors:
 | The wifi sensor can be used in Home Assistant to monitor your node's wifi signal strength.
 |
 Clock(time):
-*******
+************
 .. code-block:: yaml
 
     time:
@@ -142,7 +144,7 @@ Clock(time):
 | This imports the current time from Home Assistant since ESPs can't really tell what time it is themselves.
 |
 Font:
-*******
+****
 .. code-block:: yaml
 
     font:
@@ -155,7 +157,7 @@ Font:
 | The .ttf file is put in the same folder as your node config .yaml file.
 |
 Graphics:
-******
+*********
 .. code-block:: yaml
 
     image:
@@ -169,15 +171,15 @@ Graphics:
         id: water
         resize: 20x20
 
-| Icons used in this sketch are imported from `MaterialDesigns <https://materialdesignicons.com/>`__ and are the same as are used in Home Assistant.
-| The 3 icons used are ``mdi:signal`` ``mdi:water-percent`` and ``mdi:thermometer``
-| You will need to download the icons from `MaterialDesigns <https://materialdesignicons.com/>`__ and put them in the same folder as your node config .yaml file is stored.
+Icons used in this sketch are imported from `MaterialDesigns <https://materialdesignicons.com/>`__ and are the same as are used in Home Assistant.
+The 3 icons used are ``mdi:signal`` ``mdi:water-percent`` and ``mdi:thermometer``
+You will need to download the icons from `MaterialDesigns <https://materialdesignicons.com/>`__ and put them in the same folder as your node config .yaml file is stored.
 
 .. note::
      The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite image editor and give them a white background if they aren't displayed correctly
 
 The display config:
-*******
+*******************
 .. code-block:: yaml
 
     display:
@@ -203,39 +205,39 @@ The display config:
           // thermometer image, thermo.png
           it.image(0, 26, id(thermo));
 
-|
-| This where the drawing API does all its magic:
-|
-| ``it.printf(20, 8, id(robo12), "%.0f db", id(wifi).state);``
-| This prints out the WiFi signal strengt of the node (in -db) at Y=8 X=20 position of the display. The "%.0f" means that we want 0 decimals for this number
-|
-| ``it.image(0, 0, id(signal));``
-| The signal bars graphic next to the wifi signal, at X=0 Y=0
-| :doc:`images </components/display/#images>`
-|
-| ``it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());``
-| The clock in the upper right corner. Time from home assistant. You can add date, day and lots of other options.
-| :doc:`strftime </components/time#strftime>`
-|
-| ``it.line(0, 14, 128, 14);``
-| The line drawn under the wifi signal and clock. From X=0 Y=14 to X=128 Y=14.
-| :doc:`Basic shapes </components/display/#basic-shapes>`
-|
-| ``it.printf(20, 30, id(robo12), "%.1f °C" , id(temp).state);``
-| Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data (if you want 2 decimals replace 1f with 2f)
-|
-| ``it.printf(76, 30, id(robo12), "%.0f %%", id(rh).state);``
-| Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign, decimals on humidity is probably not desirable "%.0f %%"
-|
-| ``it.image(0, 26, id(thermo));``
-| The thermometer image next to the temperature sensor reading
-|
-| ``it.image(56, 26, id(water));``
-| The waterdrop with a % sign inside it next to humidity sensor reading
-|
+
+This where the drawing API does all its magic:
+
+``it.printf(20, 8, id(robo12), "%.0f db", id(wifi).state);``
+This prints out the WiFi signal strengt of the node (in -db) at Y=8 X=20 position of the display. The "%.0f" means that we want 0 decimals for this number
+
+``it.image(0, 0, id(signal));``
+The signal bars graphic next to the wifi signal, at X=0 Y=0
+:doc:`images </components/display/#images>`
+
+``it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());``
+The clock in the upper right corner. Time from home assistant. You can add date, day and lots of other options.
+:doc:`strftime </components/time#strftime>`
+
+``it.line(0, 14, 128, 14);``
+The line drawn under the wifi signal and clock. From X=0 Y=14 to X=128 Y=14.
+:doc:`Basic shapes </components/display/#basic-shapes>`
+
+``it.printf(20, 30, id(robo12), "%.1f °C" , id(temp).state);``
+Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data (if you want 2 decimals replace 1f with 2f)
+
+``it.printf(76, 30, id(robo12), "%.0f %%", id(rh).state);``
+Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign, decimals on humidity is probably not desirable "%.0f %%"
+
+``it.image(0, 26, id(thermo));``
+The thermometer image next to the temperature sensor reading
+
+``it.image(56, 26, id(water));``
+The waterdrop with a % sign inside it next to humidity sensor reading
+
 
 Images:
-________________
+_______
 Some images to illustrate the article:
 
 .. figure:: images/oled-topbar.png
@@ -247,8 +249,12 @@ Some images to illustrate the article:
     :width: 80.0%
 
 References
-______________
+__________
 :doc:`Display </components/display>`
 :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
 :doc:`Time </components/time#strftime>`
 :doc:`Images </components/display/#images>`
+
+:ghedit:`Edit`
+
+.. disqus::
