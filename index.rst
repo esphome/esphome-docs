@@ -260,7 +260,6 @@ Misc Components
     Status LED, components/status_led, led-on.svg
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
-    MY9231/MY9291 LED driver, components/my9231, my9231.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
 
 Additional Custom Components
