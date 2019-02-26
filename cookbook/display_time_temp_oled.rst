@@ -3,10 +3,10 @@ Time & Temperature on OLED Display
 
 .. seo::
     :description: Instructions for setting up a display in ESPhome to show sensor values from Home Assistant
-    :image: display.jpg
+    :image: display_time_temp_oled_1.jpg
     :keywords: Display
 
-.. figure:: images/display.jpg
+.. figure:: images/display_time_temp_oled_1.jpg
     :align: left
     :width: 75.0%
 
