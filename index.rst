@@ -252,7 +252,6 @@ Misc Components
 
 .. imgtable::
 
-    Dallas Hub, components/dallas, dallas.jpg
     Remote Transmitter Hub, components/remote_transmitter, remote.svg
     Remote Receiver Hub, components/remote_receiver, remote.svg
     PCA9685 Hub, components/pca9685, pca9685.jpg
@@ -297,6 +296,7 @@ Cookbook
     BME280 Environment, cookbook/bme280_environment, bme280.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     H801 LED Controller, cookbook/h801, h801.jpg
+    Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     SSD1306 I2C Guide, cookbook/oled, oled.png
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
