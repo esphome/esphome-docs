@@ -114,7 +114,7 @@ New Features
 - Added :ref:`binary_sensor-on_multi_click` trigger to distinguish between double, long, and single clicks.
   (:libpr:`262`, :docspr:`77`,  :yamlpr:`226`)
 
-- Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </components/pn532>` so that automations
+- Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </components/binary_sensor/pn532>` so that automations
   can directly use the NFC tag ID
   (:libpr:`194`, :yamlpr:`189`, :docspr:`57`)
 

@@ -47,7 +47,7 @@ See Also
 --------
 
 - :doc:`binary_sensor/rdm6300`
-- :doc:`pn532`
+- :doc:`binary_sensor/pn532`
 - `RDM6300 Arduino Library <https://github.com/arliones/RDM6300-Arduino>`__ by `Arliones Hoeller Jr <https://github.com/arliones>`__
 - :apiref:`binary_sensor/rdm6300_component.h`
 - :ghedit:`Edit`

@@ -56,7 +56,7 @@ Advanced options (the defaults are usually quite good, but if you're having accu
   the `esp-idf docs <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html#optimization-of-measurements>`__
   for a nice explanation of this. One of ``1.5V``, ``1V``, ``0.5V``, ``0V``. Default is ``0V``.
 
-.. _esp32-touch-binary-sensor
+.. _esp32-touch-binary-sensor:
 
 Binary Sensor
 -------------
