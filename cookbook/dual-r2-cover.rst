@@ -49,7 +49,8 @@ for some motors.
     - platform: gpio
       pin:
         number: 10
-        inverted: true
+      filters:
+        invert:
       id: button
       on_press:
         then:
