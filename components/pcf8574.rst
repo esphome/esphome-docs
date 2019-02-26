@@ -2,7 +2,7 @@ PCF8574 I/O Expander
 ====================
 
 .. seo::
-    :description: Instructions for setting up PCA8574 digital port expanders in ESPHome.
+    :description: Instructions for setting up PCF8574 digital port expanders in ESPHome.
     :image: pcf8574.jpg
     :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
 
