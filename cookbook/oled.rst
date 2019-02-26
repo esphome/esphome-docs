@@ -2,7 +2,7 @@ A guide to using SSD1306 OLED display
 =====================================
 
 All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` and :doc:`Display </components/display/>`. 
-In this article i will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
+This article will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
 These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
 There is also a 1.3" version with same resolution that should work with the same config as this one, however i have not tested personally yet.
 
@@ -208,32 +208,29 @@ The display config:
 
 This where the drawing API does all its magic:
 
-``it.printf(20, 8, id(robo12), "%.0f db", id(wifi).state);``
-This prints out the WiFi signal strengt of the node (in -db) at Y=8 X=20 position of the display. The "%.0f" means that we want 0 decimals for this number
+- ``it.printf(20, 8, id(robo12), "%.0f db", id(wifi).state);``
+- This prints out the WiFi signal strengt of the node (in -db) at Y=8 X=20 position of the display. The "%.0f" means that we want 0 decimals for this number
 
-``it.image(0, 0, id(signal));``
-The signal bars graphic next to the wifi signal, at X=0 Y=0
-:doc:`images </components/display/#images>`
+- ``it.image(0, 0, id(signal));``
+- The signal bars graphic next to the wifi signal, at X=0 Y=0
 
-``it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());``
-The clock in the upper right corner. Time from home assistant. You can add date, day and lots of other options.
-:doc:`strftime </components/time#strftime>`
+- ``it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());``
+- The clock in the upper right corner. Time from home assistant. You can add date, day and lots of other options.
 
-``it.line(0, 14, 128, 14);``
-The line drawn under the wifi signal and clock. From X=0 Y=14 to X=128 Y=14.
-:doc:`Basic shapes </components/display/#basic-shapes>`
+- ``it.line(0, 14, 128, 14);``
+- The line drawn under the wifi signal and clock. From X=0 Y=14 to X=128 Y=14.
 
-``it.printf(20, 30, id(robo12), "%.1f °C" , id(temp).state);``
-Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data (if you want 2 decimals replace 1f with 2f)
+- ``it.printf(20, 30, id(robo12), "%.1f °C" , id(temp).state);``
+- Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data (if you want 2 decimals replace 1f with 2f)
 
-``it.printf(76, 30, id(robo12), "%.0f %%", id(rh).state);``
-Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign, decimals on humidity is probably not desirable "%.0f %%"
+- ``it.printf(76, 30, id(robo12), "%.0f %%", id(rh).state);``
+- Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign, decimals on humidity is probably not desirable "%.0f %%"
 
-``it.image(0, 26, id(thermo));``
-The thermometer image next to the temperature sensor reading
+- ``it.image(0, 26, id(thermo));``
+- The thermometer image next to the temperature sensor reading
 
-``it.image(56, 26, id(water));``
-The waterdrop with a % sign inside it next to humidity sensor reading
+- ``it.image(56, 26, id(water));``
+- The waterdrop with a % sign inside it next to humidity sensor reading
 
 
 Images:
