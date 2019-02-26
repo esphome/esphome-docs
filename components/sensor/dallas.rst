@@ -9,7 +9,7 @@ Dallas Temperature Sensor
 .. _dallas-component:
 
 Component/Hub
-=============
+-------------
 
 The ``dallas`` component allows you to use your
 `DS18b20 <https://www.adafruit.com/product/374>`__
@@ -35,7 +35,7 @@ massively long wires, work fine in most cases) between ``3.3V`` and the data pin
         name: "Livingroom Temperature"
 
 Configuration variables:
-------------------------
+************************
 
 - **pin** (**Required**, number): The pin the sensor bus is connected to.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
@@ -45,7 +45,7 @@ Configuration variables:
 .. _dallas-sensor:
 
 Sensors
-=======
+-------
 
 The ``dallas`` sensor allows you to use ds18b20 and similar sensors.
 First, you need to define a :ref:`dallas sensor component <dallas-component>`.
@@ -80,7 +80,7 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
         name: "Living Room Temperature"
 
 Configuration variables:
-------------------------
+************************
 
 - **address** (**Required**, int): The address of the sensor. Use either
   this option or index.
@@ -97,7 +97,7 @@ Configuration variables:
 .. _dallas-getting-ids:
 
 Getting Sensor IDs
-------------------
+******************
 
 It is highly recommended to use the ``address`` attribute for creating
 dallas sensors, because if you have multiple sensors on a bus and the
