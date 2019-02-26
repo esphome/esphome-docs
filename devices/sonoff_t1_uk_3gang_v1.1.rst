@@ -165,7 +165,7 @@ The touchpads may light up.
 .. figure:: images/sonoff_t1_uk_3g_back_plate_v1.1.jpeg
     :align: center
 
-    Connect red and yellow contacts while powering the boar up.
+    Connect red and yellow contacts while powering the board.
 
 Now you can finally run the upload command:
 
