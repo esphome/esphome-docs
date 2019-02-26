@@ -180,14 +180,13 @@ Light Components
     RGBW Light, components/light/rgbw, rgbw.png
 
     RGBWW Light, components/light/rgbww, rgbw.png
-    FastLED Clockless Light, components/light/fastled_clockless, color_lens.svg
-    FastLED SPI Light, components/light/fastled_spi, color_lens.svg
+    FastLED Light, components/light/fastled, color_lens.svg
 
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
-:doc:`FastLED Clockless Light </components/light/fastled_clockless>`.
+:doc:`FastLED Light </components/light/fastled>`.
 
 Switch Components
 -----------------

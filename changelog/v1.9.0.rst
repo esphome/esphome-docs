@@ -127,7 +127,7 @@ New Features
 - You now have to option to have a different log level for log messages sent over MQTT (:ref:`docs <mqtt-message>`,
   :yamlpr:`167`, :docspr:`51`)
 
-- Added a color correction option to :doc:`FastLED addressable lights </components/light/fastled_clockless>`
+- Added a color correction option to :doc:`FastLED addressable lights </components/light/fastled>`
   (:libpr:`234`, :yamlpr:`200`, :docspr:`64`)
 
 - Added a ``clean`` command to esphomeyaml to fix some occasional build errors
