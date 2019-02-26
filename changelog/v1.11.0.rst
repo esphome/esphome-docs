@@ -89,7 +89,7 @@ Breaking Changes
 - Removed heartbeat filter from binary sensors :corepr:`454`
 - ``optimistic`` mode for template platforms has been split off into ``optimistic`` and
   ``assumed_state`` options :corepr:`455`
-- ``run_cycles`` has been removed from deep_sleep :esphome:`353`
+- ``run_cycles`` has been removed from deep_sleep :esphomepr:`353`
 
 Other notable changes:
 ----------------------
