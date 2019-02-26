@@ -257,7 +257,6 @@ Misc Components
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    ESP32 Touch Hub, components/esp32_touch, touch.svg
     Status LED, components/status_led, led-on.svg
     PN532, components/pn532, pn532.jpg
     RDM6300, components/rdm6300, rdm6300.jpg
