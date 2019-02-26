@@ -184,7 +184,7 @@ you will be able to use all of ESPHome's great features with your Sonoff T1 UK 3
 .. note::
     While now your T1 will start up and connect to your WiFi network if you power it up from UART it will not behave normally,
     it may flash random LEDs, turn on anf off touchpads' backlight and not react on touching touchpads. This will all be fixed once you re-assemble your T1
-    and powerit up from the mains power once safe to do so.
+    and power it up from the mains power once safe to do so.
 
 If above step does, however, not work, here are some steps that can help:
 
