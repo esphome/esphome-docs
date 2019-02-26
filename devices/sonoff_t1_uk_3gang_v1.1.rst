@@ -102,7 +102,7 @@ destroy the chip.
 and the same with ``RX``/``TX``.
 
 There's no need for soldering - for quick job like one time firmware flashing you can just hold pins in respective holes by hand
-providing ``you are not touching any live contacts``, only the wires.
+provided **you are not touching any live contacts**, only the wires.
 
 .. note::
 
