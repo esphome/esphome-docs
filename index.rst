@@ -58,6 +58,7 @@ Technically, all ESP8266/ESP32 devices are supported by ESPHome.
 
     Generic Sonoff, devices/sonoff, sonoff.svg
     Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
+    Sonoff T1 UK 3 Gang V1.1, devices/sonoff_t1_uk_3gang_v1.1, sonoff_t1_uk_3g_v1.1.jpg
 
 Core Components
 ---------------
