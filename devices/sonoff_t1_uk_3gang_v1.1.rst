@@ -9,7 +9,7 @@ ESPHome can also be used with Sonoff T1 UK 3 Gang wireless switches. These devic
 basically just an ESP8266 chip with 3 relays to control power output ant three backlit capacitive touch buttons to control the relays.
 
 .. note::
-    This instruction is made for T1 UK with the touch board v1.1 which is tricker to get into flash mode
+    This instruction is made for T1 UK with the touch board v1.1 which is trickier to get into flash mode
     than v1
 
 .. figure:: images/sonoff_t1_uk_3g_v1.1.jpg
