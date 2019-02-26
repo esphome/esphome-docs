@@ -252,7 +252,6 @@ Misc Components
 
 .. imgtable::
 
-    ADS1115 Hub, components/ads1115, ads1115.jpg
     Debug Component, components/debug, bug-report.svg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
