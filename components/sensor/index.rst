@@ -90,12 +90,20 @@ ESPHome allows you to do some basic pre-processing of
 sensor values before they’re sent to Home Assistant. This is for example
 useful if you want to apply some average over the last few values.
 
+There are a lot of filters that sensors support. You define them by adding a ``filters``
+block in the sensor configuration (at the same level as ``platform``; or inside each sensor block
+for platforms with multiple sensors)
+
 .. code-block:: yaml
 
     # Example filters:
     filters:
       - offset: 2.0
       - multiply: 1.2
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 40.0 -> 45.0
+          - 100.0 -> 102.5
       - filter_out: 42.0
       - filter_nan:
       - sliding_window_moving_average:
@@ -108,20 +116,81 @@ useful if you want to apply some average over the last few values.
       - heartbeat: 5s
       - debounce: 0.1s
       - delta: 5.0
-      - unique:
       - or:
         - throttle: 1s
         - delta: 5.0
       - lambda: return x * (9.0/5.0) + 32.0;
 
-Above example configuration entry is probably a bit useless, but shows
-every filter there is currently:
+``offset`` / ``multiply``
+*************************
 
--  **offset**: Add an offset to every sensor value.
--  **multiply**: Multiply each sensor value by this number.
--  **filter_out**: Remove every sensor value that equals this number.
--  **filter_nan**: Remove every value that is considered ``NAN`` (not a
-   number) in C.
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: adc
+      # ...
+      filters:
+        - offset: 2.0
+        - multiply: 1.2
+
+Offset adds a constant value to each sensor value. Multiply multiplies each value
+by a constant value.
+
+``calibrate_linear``
+********************
+
+Calibrate your sensor values by using values you measured with an accurate "truth" source.
+
+First, collect a bunch of values of what the sensor shows and what the real value should be.
+For temperature, this can for example be achieved by using an accurate thermometer. For other
+sensors like power sensor this can be done by connecting a known load and then writing down
+the value the sensor shows.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: dht
+      # ...
+      temperature
+        filters:
+          - calibrate_linear:
+              # Map 0.0 (from sensor) to 0.0 (true value)
+              - 0.0 -> 0.0
+              - 10.0 -> 12.1
+
+The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
+then fit a linear equation to the values (using least squares). So you need to supply at least
+two values.
+
+``filter_out``
+**************
+
+Filter out specific values to be displayed. For example to filter out the value ``85.0``
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - filter_out: 85.0
+
+``sliding_window_moving_average`` / ``exponential_moving_average``
+******************************************************************
+
+Two simple moving averages over the data. These can be used to have a short update interval
+on the sensor but only push out an average on a specific interval (thus increasing resolution).
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - sliding_window_moving_average:
+            window_size: 15
+            send_every: 15
+
 -  **sliding_window_moving_average**: A `simple moving
    average <https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average>`__
    over the last few values.
@@ -142,6 +211,19 @@ every filter there is currently:
    -  **alpha**: The forget factor/alpha value of the filter.
    -  **send_every**: How often a sensor value should be pushed out.
 
+``throttle`` / ``heartbeat`` / ``debounce`` / ``delta``
+*******************************************************
+
+.. code-block:: yaml
+
+    # Example filters:
+    filters:
+      - throttle: 1s
+      - heartbeat: 5s
+      - debounce: 0.1s
+      - delta: 5.0
+      - lambda: return x * (9.0/5.0) + 32.0;
+
 -  **throttle**: Throttle the incoming values. When this filter gets an incoming value,
    it checks if the last incoming value is at least ``specified time period`` old.
    If it is not older than the configured value, the value is not passed forward.
@@ -161,18 +243,36 @@ every filter there is currently:
    is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values
    that are at least 6.0 big or -4.0.
 
--  **unique**: This filter has no parameter and does one very simple thing: It only passes
-   forward values if they are different from the last one that got through the pipeline.
+``or`` Filter
+**************
+
+.. code-block:: yaml
+
+    # Example filters:
+    filters:
+      - or:
+        - throttle: 1s
+        - delta: 5.0
 
 -  **or**: Pass forward a value with the first child filter that returns. Above example
    will only pass forward values that are *either* at least 1s old or are if the absolute
    difference is at least 5.0.
 
--  **lambda**: Perform a simple mathematical operation over the sensor
-   values. The input value is ``x`` and the result of the lambda is used
-   as output. Each floating point operation should have ``.0`` attached
-   as in above configuration. This will be copied over to the C++ code
-   as a raw string.
+
+``lambda`` Filter
+*****************
+
+.. code-block:: yaml
+
+    filters:
+      - lambda: return x * (9.0/5.0) + 32.0;
+
+**lambda**: Perform a simple mathematical operation over the sensor
+values. The input value is ``x`` and the result of the lambda is used
+as the output (use ``return``).
+
+Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
+result in integers (not floating point values).
 
 Example: Converting Celsius to Fahrenheit
 -----------------------------------------
