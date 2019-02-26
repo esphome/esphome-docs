@@ -252,7 +252,6 @@ Misc Components
 
 .. imgtable::
 
-    Dallas Hub, components/dallas, dallas.jpg
     Remote Transmitter Hub, components/remote_transmitter, remote.svg
     Remote Receiver Hub, components/remote_receiver, remote.svg
     PCA9685 Hub, components/pca9685, pca9685.jpg

@@ -4,7 +4,7 @@ ESPHOME_CORE_TAG = v1.11.1
 .PHONY: html cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png
 
 html:
-	sphinx-build -M html . _build $(O)
+	sphinx-build -M html . _build -W $(O)
 
 cleanhtml:
 	rm -rf "_build/html/*"

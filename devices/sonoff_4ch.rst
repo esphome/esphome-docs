@@ -295,7 +295,7 @@ them in one area, and simply pass that ID later on. For example, above you can s
 output being created with the ID ``blue_led`` for the blue LED. Later on it is then transformed
 into a :doc:`monochromatic light </components/light/monochromatic>`.
 If you additionally want the buttons to control the relays, look at `the complete Sonoff 4CH
-with automation example <https://github.com/OttoWinter/esphomedocs/blob/current/devices/sonoff_4ch.yaml>`__.
+with automation example <https://github.com/esphome/esphome-docs/blob/current/devices/sonoff_4ch.yaml>`__.
 
 .. figure:: images/sonoff_4ch_result.png
     :align: center
