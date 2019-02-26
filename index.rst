@@ -252,7 +252,6 @@ Misc Components
 
 .. imgtable::
 
-    PCA9685 Hub, components/pca9685, pca9685.jpg
     ADS1115 Hub, components/ads1115, ads1115.jpg
     Debug Component, components/debug, bug-report.svg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
