@@ -160,7 +160,7 @@ take a wire and connect the second Ground hole on the PCB (red) to the third fro
 that leg is connected to the GPIO0 on ESP and plug the UART to your USB port.
 
 Keep holding  GND and GPIO0 connected for 2-4 seconds. The T1 UK 3 Gang should now be in a flash mode and should not blink with any LED.
-Touchpads may be lit up.
+The touchpads may light up.
 
 .. figure:: images/sonoff_t1_uk_3g_back_plate_v1.1.jpeg
     :align: center
