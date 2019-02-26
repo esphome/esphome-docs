@@ -210,7 +210,7 @@ Finding Remote Codes
 
 Each remote transmitter uses a different protocol to send its information. So to replicate an infrared or 433MHz
 remote you will first need to "learn" these codes. You will first need to hook up a receiver and sniff the codes
-using the :doc:`remote receiver component </components/remote_receiver>` like this:
+using the :doc:`remote receiver component </components/binary_sensor/remote_receiver>` like this:
 
 .. code-block:: yaml
 
@@ -371,7 +371,7 @@ See Also
 
 - :doc:`index`
 - :doc:`/components/remote_transmitter`
-- :doc:`/components/remote_receiver`
+- :doc:`/components/binary_sensor/remote_receiver`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_transmitter.h`

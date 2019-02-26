@@ -253,7 +253,6 @@ Misc Components
 .. imgtable::
 
     Remote Transmitter Hub, components/remote_transmitter, remote.svg
-    Remote Receiver Hub, components/remote_receiver, remote.svg
     PCA9685 Hub, components/pca9685, pca9685.jpg
     ADS1115 Hub, components/ads1115, ads1115.jpg
     Debug Component, components/debug, bug-report.svg
