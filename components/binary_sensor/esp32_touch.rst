@@ -122,7 +122,7 @@ raw values mean that it is more likely that a touch is happening. For example, v
 1000 to 1600 usually mean the pad is not being touched, and values in the range of 600 and less
 mean the pad is probably being touched.
 
-To find suitable threshold values, first configure the :doc:`ESP32 touch hub </components/esp32_touch>`
+To find suitable threshold values, first configure the :ref:`ESP32 touch hub <esp32-touch-component>`
 to output measured values using the ``setup_mode:`` configuration option. Next, add some binary sensors
 for the touch pads you want to observe. Also put some threshold in the configuration as seen below
 to make the validator happy, we are going to find good thresholds in a moment anyway.

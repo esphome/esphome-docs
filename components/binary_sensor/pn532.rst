@@ -17,7 +17,7 @@ with ESPHome. This component is a global hub that establishes the connection to 
 outputs its data. Using the :ref:`PN532 binary sensors <pn532-tag>` you can then
 create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.
 
-.. figure:: binary_sensor/images/pn532-full.jpg
+.. figure:: images/pn532-full.jpg
     :align: center
     :width: 60.0%
 
@@ -58,7 +58,7 @@ Configuration variables:
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
 
-.. figure:: binary_sensor/images/pn532-spi.jpg
+.. figure:: images/pn532-spi.jpg
     :align: center
     :width: 80.0%
 
