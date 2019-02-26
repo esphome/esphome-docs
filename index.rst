@@ -258,7 +258,6 @@ Misc Components
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
     Status LED, components/status_led, led-on.svg
-    RDM6300, components/rdm6300, rdm6300.jpg
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
     MY9231/MY9291 LED driver, components/my9231, my9231.svg

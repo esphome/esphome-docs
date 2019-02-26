@@ -22,7 +22,7 @@ Version 1.8.0
 
     Uptime Sensor, components/sensor/uptime, timer.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
-    RDM6300, components/rdm6300, rdm6300.jpg
+    RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
@@ -54,7 +54,7 @@ This release mainly focuses on these new features:
 - Lots of Bug Fixes - Now that most of the hardware has arrived from china, I was able to fix a bunch
   of bugs with a lot of integrations.
 - :doc:`Displays! </components/display/index>`
-- NFC/RFID Readers (:doc:`PN532 </components/binary_sensor/pn532>` and :doc:`RDM6300 </components/rdm6300>`)
+- NFC/RFID Readers (:doc:`PN532 </components/binary_sensor/pn532>` and :doc:`RDM6300 </components/binary_sensor/rdm6300>`)
 - New :doc:`ESP32 BLE integrations </components/esp32_ble_tracker>` like :doc:`Xiaomi MiFlora </components/sensor/xiaomi_miflora>`
 - Core Changes like the addition of the :ref:`SPI bus <spi>` and :ref:`UART bus <uart>`
 - Lots of new :ref:`light effects <light-effects>` and support for cold-white/warm-white lights.
