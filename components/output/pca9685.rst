@@ -33,7 +33,7 @@ global ``pca9685`` hub and give it an id, and then define the
         channel: 0
 
 Configuration variables:
-------------------------
+************************
 
 -  **frequency** (**Required**, float): The frequency to let the
    component drive all PWM outputs at. Must be in range from 24Hz to
@@ -71,7 +71,7 @@ output.
         channel: 0
 
 Configuration variables:
-------------------------
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **channel** (**Required**, int): Chose the channel of the PCA9685 of
