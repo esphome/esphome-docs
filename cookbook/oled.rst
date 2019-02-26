@@ -48,7 +48,7 @@ Node config:
 *********
 
 | The configuration for your node should look something like this: 
-| (your basic node configuration, eg network and such is not discussed in this guide):
+| (your basic node configuration, e.g. network and such is not discussed in this guide):
 
 .. code-block:: yaml
 
