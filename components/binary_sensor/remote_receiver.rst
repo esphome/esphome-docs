@@ -8,8 +8,8 @@ Remote Receiver
 
 .. _remote-receiver-component:
 
-Component
----------
+Component/Hub
+-------------
 
 The ``remote_receiver`` component lets you receive and decode any remote signal, these can
 for example be infrared remotes or 433MHz signals.
