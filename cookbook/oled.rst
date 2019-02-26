@@ -7,6 +7,7 @@ These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/
 There is also a 1.3" version with same resolution that should work with the same config as this one, however i have not tested personally yet.
 
 .. note::
+
      The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. There are different versions of the display.
 
 The display itself is a 0.96” OLED unit that connects to your ESP via ``i2c``, you will need to add ``i2c`` configuration to your node.
@@ -24,6 +25,7 @@ _____________
 
 i2c:
 ****
+
 If you don't know the i2c address for your display:
 
 .. code-block:: yaml
@@ -115,6 +117,7 @@ __________
 
 Sensors:
 ********
+
 .. code-block:: yaml
 
     sensor:
@@ -129,12 +132,13 @@ Sensors:
         entity_id: sensor.outside_rh
         id: rh
 
-| This will set up your sensors, first one is internal from the node, the two next are imported from Home Assistant.
-| Don't give names to sensors you wish to hide from HA (no point duplicating sensors).
-| The wifi sensor can be used in Home Assistant to monitor your node's wifi signal strength.
-|
+This will set up your sensors, first one is internal from the node, the two next are imported from Home Assistant.
+Don't give names to sensors you wish to hide from Home Assistant (no point duplicating sensors).
+The wifi sensor can be used in Home Assistant to monitor your node's wifi signal strength.
+
 Clock(time):
 ************
+
 .. code-block:: yaml
 
     time:
@@ -145,6 +149,7 @@ Clock(time):
 |
 Font:
 ****
+
 .. code-block:: yaml
 
     font:
@@ -158,6 +163,7 @@ Font:
 |
 Graphics:
 *********
+
 .. code-block:: yaml
 
     image:
@@ -176,10 +182,12 @@ The 3 icons used are ``mdi:signal`` ``mdi:water-percent`` and ``mdi:thermometer`
 You will need to download the icons from `MaterialDesigns <https://materialdesignicons.com/>`__ and put them in the same folder as your node config .yaml file is stored.
 
 .. note::
+
      The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite image editor and give them a white background if they aren't displayed correctly
 
 The display config:
 *******************
+
 .. code-block:: yaml
 
     display:
@@ -235,6 +243,7 @@ This where the drawing API does all its magic:
 
 Images:
 _______
+
 Some images to illustrate the article:
 
 .. figure:: images/oled-topbar.png
@@ -245,8 +254,9 @@ Some images to illustrate the article:
     :align: center
     :width: 80.0%
 
-References
+See Also
 __________
+
 :doc:`Display </components/display>`
 :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
 :doc:`Time </components/time#strftime>`
