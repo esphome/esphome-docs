@@ -19,7 +19,7 @@ put on external ones.
     i2c:
       sda: 21
       scl: 22
-      scan: False
+      scan: True
 
 Configuration variables:
 ------------------------
@@ -30,8 +30,7 @@ Configuration variables:
   Defaults to the default of your board (usually GPIO22 for ESP32 and
   GPIO5 for ESP8266).
 - **scan** (*Optional*, boolean): If ESPHome should do a search of the I²C address space on startup.
-  Note that this can slow down startup and is only recommended for when setting up new sensors. Defaults to
-  ``False``.
+  Defaults to ``False``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
   Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
 
