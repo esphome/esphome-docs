@@ -61,12 +61,6 @@ First, setup a :ref:`ADS1115 Hub <ads1115-component>` for your ADS1115 sensor an
 sensor platform to create individual sensors that will report the
 voltage to Home Assistant.
 
-.. figure:: images/ads1115-full.jpg
-    :align: center
-    :width: 50.0%
-
-    ADS1115 16-Bit ADC.
-
 .. _Adafruit: https://www.adafruit.com/product/1085
 
 .. figure:: images/ads1115-ui.png
