@@ -7,7 +7,7 @@ The Mirabella Genio is a Tuya based smart bulb sold by Kmart in Australia.
     :align: center
     :width: 50.0%
 
-Originally intended to be used with their companion app once flashed using `tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ ESPHome generated firmware can be uploaded allowing you t control the bulbs via Home Assistant.
+Originally intended to be used with their companion app once flashed using `tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ ESPHome generated firmware can be uploaded allowing you to control the bulbs via Home Assistant.
 
 Thanks to the `existing work <https://github.com/arendst/Sonoff-tasmota/wiki/Mirabella-Genio-Bulb>`__ by `@so3n <https://github.com/arendst/Sonoff-tasmota/wiki/Mirabella-Genio-Bulb>`__ which these adaptions created by `@cryptelli <https://community.home-assistant.io/u/cryptelli>`__ and `@bircoe <https://community.home-assistant.io/u/bircoe>`__ are based on.
 
