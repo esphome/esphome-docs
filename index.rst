@@ -149,8 +149,8 @@ Binary Sensor Components
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
-    PN532 Tag, components/binary_sensor/pn532, pn532.jpg
-    RDM6300 Tag, components/binary_sensor/rdm6300, rdm6300.jpg
+    PN532, components/binary_sensor/pn532, pn532.jpg
+    RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
