@@ -70,7 +70,7 @@ supplied with the Sonoff T1 UK 3 Gang before doing this step.
 While the device is not plugged in, turn the device face down and put a narrow flat screwdriver into the slot at the bottom.
 With careful twisting motion detatch the face plate.
 
-.. figure:: images/sonoff_t1_uk_3g_back_v1.1.jpeg
+.. figure:: images/sonoff_t1_uk_3g_back_v1.1.jpg
     :align: center
     :width: 60.0%
 
@@ -79,7 +79,7 @@ With careful twisting motion detatch the face plate.
 After that, use the same screwdriver to carefully lift the top PCB off of the switch. 
 This PCB contains the ESP chip and what's left inside the switch body are relays.
 
-.. figure:: images/sonoff_t1_uk_3g_plate_off_v1.1.jpeg
+.. figure:: images/sonoff_t1_uk_3g_plate_off_v1.1.jpg
     :align: center
     :width: 75.0%
 
@@ -162,7 +162,7 @@ that leg is connected to the GPIO0 on ESP and plug the UART to your USB port.
 Keep holding  GND and GPIO0 connected for 2-4 seconds. The T1 UK 3 Gang should now be in a flash mode and should not blink with any LED.
 The touchpads may light up.
 
-.. figure:: images/sonoff_t1_uk_3g_back_plate_v1.1.jpeg
+.. figure:: images/sonoff_t1_uk_3g_back_plate_v1.1.jpg
     :align: center
 
     Connect red and yellow contacts while powering the board.
