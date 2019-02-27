@@ -8,9 +8,9 @@ Neopixelbus Light
 The ``neopixelbus`` light platform allows you to create RGB lights
 in ESPHome for a individually addressable lights like NeoPixel or WS2812.
 
-It is very similar to the :doc:`fastled_clockless` and :doc:`fastled_spi` platforms;
+It is very similar to the :doc:`fastled` platform.
 in fact most addressable lights are supported through both light platforms. The
-difference is that they use different libraries: While the fastled platforms use
+difference is that they use different libraries: While the fastled platform uses
 the `FastLED <https://github.com/FastLED/FastLED>`__ library, this integration uses
 the `NeoPixelBus <https://github.com/Makuna/NeoPixelBus/>`__ library internally.
 
@@ -94,7 +94,7 @@ See Also
 --------
 
 - :doc:`/components/light/index`
-- :doc:`/components/light/fastled_clockless`
+- :doc:`/components/light/fastled`
 - :doc:`/components/power_supply`
 - :apiref:`light/neo_pixel_light_output.h`
 - `NeoPixelBus library <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__

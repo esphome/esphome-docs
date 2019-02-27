@@ -10,10 +10,10 @@ Version 1.8.0
 
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Nextion, components/display/nextion, nextion.jpg
-    SSD1306, components/display/ssd1306_i2c, ssd1306.jpg
+    SSD1306, components/display/ssd1306, ssd1306.jpg
 
     MAX7219, components/display/max7219, max7219.jpg
-    LCD Display, components/display/lcd_gpio, lcd.jpg
+    LCD Display, components/display/lcd_display, lcd.jpg
     RCSwitch Integration, components/switch/remote_transmitter.html#rcswitch-remote-codes, remote.svg
 
     SPI Bus, components/spi, spi.svg
@@ -21,8 +21,8 @@ Version 1.8.0
     Real Time Clock, components/time, clock-outline.svg
 
     Uptime Sensor, components/sensor/uptime, timer.svg
-    PN532, components/pn532, pn532.jpg
-    RDM6300, components/rdm6300, rdm6300.jpg
+    PN532, components/binary_sensor/pn532, pn532.jpg
+    RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
@@ -54,7 +54,7 @@ This release mainly focuses on these new features:
 - Lots of Bug Fixes - Now that most of the hardware has arrived from china, I was able to fix a bunch
   of bugs with a lot of integrations.
 - :doc:`Displays! </components/display/index>`
-- NFC/RFID Readers (:doc:`PN532 </components/pn532>` and :doc:`RDM6300 </components/rdm6300>`)
+- NFC/RFID Readers (:doc:`PN532 </components/binary_sensor/pn532>` and :doc:`RDM6300 </components/binary_sensor/rdm6300>`)
 - New :doc:`ESP32 BLE integrations </components/esp32_ble_tracker>` like :doc:`Xiaomi MiFlora </components/sensor/xiaomi_miflora>`
 - Core Changes like the addition of the :ref:`SPI bus <spi>` and :ref:`UART bus <uart>`
 - Lots of new :ref:`light effects <light-effects>` and support for cold-white/warm-white lights.

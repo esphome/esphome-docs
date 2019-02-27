@@ -6,17 +6,60 @@ ADS1115 Sensor
     :image: ads1115.jpg
     :keywords: ADS1115
 
-The ``ads1115`` sensor allows you to use your ADS1115 sigma-delta ADC
-sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) with ESPHome.
-First, setup a :doc:`ADS1115 Hub </components/ads1115>` for your ADS1115 sensor and then use this
-sensor platform to create individual sensors that will report the
-voltage to Home Assistant.
+.. _ads1115-component:
+
+Component/Hub
+-------------
+
+The ``ads1115`` domain creates a global hub so that you can later create
+individual sensors using the :ref:`ADS1115 Sensor Platform <ads1115-sensor>`.
+To use this hub, first setup the :ref:`I²C Bus <i2c>` and connect the sensor to the pins specified there.
 
 .. figure:: images/ads1115-full.jpg
     :align: center
     :width: 50.0%
 
     ADS1115 16-Bit ADC.
+
+.. _Adafruit: https://www.adafruit.com/product/1085
+
+.. code-block:: yaml
+
+    ads1115:
+      - address: 0x48
+
+Configuration variables:
+************************
+
+- **address** (**Required**, int): The i²c address of the sensor.
+  See :ref:`I²C Addresses <ads1115_i2c_addresses>` for more information.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ADS1115 Hub. Use this if you
+  want to use multiple ADS1115 hubs at once.
+
+.. _ads1115_i2c_addresses:
+
+I²C Addresses
+-------------
+
+In order to allow multiple sensors to be connected to the same i²c bus,
+the creators of this sensor hardware have included some options to
+change the i²c address.
+
+-  If the address pin is pulled to GND, the address is ``0x48`` (Default).
+-  If the address pin is pulled to VCC, the address is ``0x49``.
+-  If the address pin is tied to SDA, the address is ``0x4a``.
+-  If the address pin is tied to SCL, the address is ``0x4B``.
+
+.. _ads1115-sensor:
+
+Sensor
+------
+
+The ``ads1115`` sensor allows you to use your ADS1115 sigma-delta ADC
+sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) with ESPHome.
+First, setup a :ref:`ADS1115 Hub <ads1115-component>` for your ADS1115 sensor and then use this
+sensor platform to create individual sensors that will report the
+voltage to Home Assistant.
 
 .. _Adafruit: https://www.adafruit.com/product/1085
 
@@ -35,14 +78,14 @@ voltage to Home Assistant.
         name: "ADS1115 Channel A0-GND"
 
 Configuration variables:
-------------------------
+************************
 
 -  **multiplexer** (**Required**): The multiplexer channel of this sensor. Effectively means between which pins you
    want to measure voltage.
 -  **gain** (**Required**, float): The gain of this sensor.
 -  **name** (**Required**, string): The name for this sensor.
 -  **ads1115_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
-   :doc:`ADS1115 Hub </components/ads1115>` you want to use this sensor.
+   :ref:`ADS1115 Hub <ads1115-component>` you want to use this sensor.
 -  **update_interval** (*Optional*, :ref:`config-time`): The interval
    to check the sensor. Defaults to ``60s``.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

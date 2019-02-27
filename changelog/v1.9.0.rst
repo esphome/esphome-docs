@@ -19,7 +19,7 @@ Changelog - Version 1.9.0
 
     esphomeflasher, guides/faq.html#i-can-t-get-flashing-over-usb-to-work, logo.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
-    MY9231/MY9291 LED driver, components/my9231, my9231.svg
+    MY9231/MY9291 LED driver, components/output/my9231, my9231.svg
 
 
 It's time for another release of esphomelib: 1.9.0. This release is quite different from the last one,
@@ -114,7 +114,7 @@ New Features
 - Added :ref:`binary_sensor-on_multi_click` trigger to distinguish between double, long, and single clicks.
   (:libpr:`262`, :docspr:`77`,  :yamlpr:`226`)
 
-- Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </components/pn532>` so that automations
+- Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </components/binary_sensor/pn532>` so that automations
   can directly use the NFC tag ID
   (:libpr:`194`, :yamlpr:`189`, :docspr:`57`)
 
@@ -127,7 +127,7 @@ New Features
 - You now have to option to have a different log level for log messages sent over MQTT (:ref:`docs <mqtt-message>`,
   :yamlpr:`167`, :docspr:`51`)
 
-- Added a color correction option to :doc:`FastLED addressable lights </components/light/fastled_clockless>`
+- Added a color correction option to :doc:`FastLED addressable lights </components/light/fastled>`
   (:libpr:`234`, :yamlpr:`200`, :docspr:`64`)
 
 - Added a ``clean`` command to esphomeyaml to fix some occasional build errors
