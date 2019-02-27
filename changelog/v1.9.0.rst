@@ -96,7 +96,7 @@ New Features
 
   .. code-block:: text
 
-    [13:57:33][I][application:092]: You're running esphomelib v1.9.0 compiled on Nov  3 2018, 13:55:11
+      [13:57:33][I][application:092]: You're running esphomelib v1.9.0 compiled on Nov  3 2018, 13:55:11
 
 - Stack traces in the USB logs are now automatically decoded to make debugging easier
   (:yamlpr:`214`)

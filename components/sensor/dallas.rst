@@ -2,7 +2,8 @@ Dallas Temperature Sensor
 =========================
 
 .. seo::
-    :description: Instructions for setting up dallas temperature sensor hubs that can expose many temperature sensors on a single pin using the one wire protocol.
+    :description: Instructions for setting up dallas temperature sensor hubs that can
+      expose many temperature sensors on a single pin using the one wire protocol.
     :image: dallas.jpg
     :keywords: Dallas, ds18b20, onewire
 
@@ -148,7 +149,8 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`max6675`
-- `Arduino DallasTemperature library <https://github.com/milesburton/Arduino-Temperature-Control-Library>`__ by `Miles Burton <https://github.com/milesburton>`__
+- `Arduino DallasTemperature library <https://github.com/milesburton/Arduino-Temperature-Control-Library>`__
+  by `Miles Burton <https://github.com/milesburton>`__
 - :apiref:`sensor/dallas_component.h`
 - :ghedit:`Edit`
 

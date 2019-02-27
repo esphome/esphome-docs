@@ -36,12 +36,12 @@ Configuration variables:
 
 .. note::
 
-  Please be aware that ESP8266 modules must be reset after a serial
-  upload before OTA can work.
-  When you are trying to conduct an OTA update and receive an error message
-  ``Bad Answer: ERR: ERROR[11]: Invalid bootstrapping`` the reason is
-  very likely that power-cycling the ESP module is required once after
-  the serial upload.
+    Please be aware that ESP8266 modules must be reset after a serial
+    upload before OTA can work.
+    When you are trying to conduct an OTA update and receive an error message
+    ``Bad Answer: ERR: ERROR[11]: Invalid bootstrapping`` the reason is
+    very likely that power-cycling the ESP module is required once after
+    the serial upload.
 
 Updating the password:
 ----------------------

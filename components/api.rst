@@ -48,7 +48,7 @@ If you've previously used ESPHome with Home Assistant via MQTT and have enabled 
 the upgrade process is unfortunately not just swapping out the ``mqtt`` for ``api`` in your configuration:
 Home Assistant's `entity registry <https://developers.home-assistant.io/docs/en/entity_registry_index.html>`__ complicates
 things a bit. If you don't follow these steps, all your new native API entities will have a trailing
-`_2` at the end of the entity ID.
+``_2`` at the end of the entity ID.
 
 You can repeat these steps for all your nodes, or convert them over to the new native API one by one.
 
@@ -70,32 +70,32 @@ You can repeat these steps for all your nodes, or convert them over to the new n
 
    .. raw:: html
 
-     <textarea rows="10" cols="50" id="entity-reg-converter"></textarea>
-     <button type="button" id="entity-reg-button">Convert Entity Registry</button>
-     <script>
-       var elem = document.getElementById("entity-reg-converter");
-       elem.addEventListener("click", function() {
-         elem.focus();
-         elem.select();
-       });
-       document.getElementById("entity-reg-button").addEventListener("click", function() {
-         try {
-           data = JSON.parse(elem.value);
-         } catch(e) {
-           alert(e);
-         }
-         var entities = data.data.entities;
-         var newEntities = [];
-         for (var i = 0; i < entities.length; i++) {
-           var entity = entities[i];
-           if (entity.platform != "mqtt") {
-             newEntities.push(entity);
+       <textarea rows="10" cols="50" id="entity-reg-converter"></textarea>
+       <button type="button" id="entity-reg-button">Convert Entity Registry</button>
+       <script>
+         var elem = document.getElementById("entity-reg-converter");
+         elem.addEventListener("click", function() {
+           elem.focus();
+           elem.select();
+         });
+         document.getElementById("entity-reg-button").addEventListener("click", function() {
+           try {
+             data = JSON.parse(elem.value);
+           } catch(e) {
+             alert(e);
            }
-         }
-         data.data.entities = newEntities;
-         elem.value = JSON.stringify(data, null, 4);
-       });
-     </script>
+           var entities = data.data.entities;
+           var newEntities = [];
+           for (var i = 0; i < entities.length; i++) {
+             var entity = entities[i];
+             if (entity.platform != "mqtt") {
+               newEntities.push(entity);
+             }
+           }
+           data.data.entities = newEntities;
+           elem.value = JSON.stringify(data, null, 4);
+         });
+       </script>
 
 4. Stop Home Assistant - this is necessary for the entity registry changes not to become overriden.
 
@@ -108,8 +108,8 @@ You can repeat these steps for all your nodes, or convert them over to the new n
 
   .. code-block:: yaml
 
-    # Example configuration entry
-    api:
+      # Example configuration entry
+      api:
 
 8. In Home Assistant, go to "Configuration" -> "Integrations" - if you've set up the ``discovery:`` component,
    you'll already see the ESP as a suggestion to be configured. But if you're having issues with that, you can

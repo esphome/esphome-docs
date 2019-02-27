@@ -51,7 +51,9 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
 - **timezone** (*Optional*, string): Manually tell ESPHome what timezone to use with `this format
-  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated) or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form <Region>/<City>.
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the
+  format is quite complicated) or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__
+  in the form <Region>/<City>.
   ESPHome tries to automatically infer the timezone string based on the timezone of the computer that is running
   ESPHome, but this might not always be accurate.
 - **servers** (*Optional*, list of strings): Choose up to 3 NTP servers that are used for the clock source.

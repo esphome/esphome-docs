@@ -264,24 +264,24 @@ presses.
 
 .. code-block:: yaml
 
-      on_multi_click:
-      - timing:
-          - ON for at most 1s
-          - OFF for at most 1s
-          - ON for at most 1s
-          - OFF for at least 0.2s
-        then:
-          - logger.log: "Double Clicked"
-      - timing:
-          - ON for 1s to 2s
-          - OFF for at least 0.5s
-        then:
-          - logger.log: "Single Long Clicked"
-      - timing:
-          - ON for at most 1s
-          - OFF for at least 0.5s
-        then:
-          - logger.log: "Single Short Clicked"
+    on_multi_click:
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at least 0.2s
+      then:
+        - logger.log: "Double Clicked"
+    - timing:
+        - ON for 1s to 2s
+        - OFF for at least 0.5s
+      then:
+        - logger.log: "Single Long Clicked"
+    - timing:
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        - logger.log: "Single Short Clicked"
 
 .. _binary_sensor-is_on_condition:
 .. _binary_sensor-is_off_condition:

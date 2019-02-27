@@ -31,7 +31,7 @@ As many of the details on here a predicated on existing installations and knowle
 * You have installed the relevant environment and it is functional (Home Assisant, ESPHome).
 * You need to create your own secrets.yaml file.
 * You are proficient in reading instructions and capable of using a search engine.
-* You will look at the documentation on https://esphome.io/ (we may have missed something in this example).
+* You will look at the documentation on this website (we may have missed something in this example).
 * This serves only as a guide and errors and outlets are excluded.
 
 .. warning::
@@ -137,6 +137,7 @@ Here is the configuration with the basic operations outlined above.
 
 2. Programming
 **************
+
 Follow the standard way of uploading to your Sonoff basic.
 
 .. figure:: images/sonoff-fishpond-pump-1-programming.jpg

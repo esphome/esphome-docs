@@ -215,14 +215,17 @@ Configuration variables:
     Must be a string of 0s and 1s. For example ``'11001``.
   - **device** (**Required**, string): The device within the group, usually the state of the last 5 DIP switches.
     Must be a string of 0s and 1s. For example ``'01000``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
-- **rc_switch_type_b**: Send an RCSwitch `type B code <https://github.com/sui77/rc-switch/wiki/HowTo_OperateLowCostOutlets#type-b-two-rotarysliding-switches>`__.
+- **rc_switch_type_b**: Send an RCSwitch
+  `type B code <https://github.com/sui77/rc-switch/wiki/HowTo_OperateLowCostOutlets#type-b-two-rotarysliding-switches>`__.
 
   - **address** (**Required**, int): The number of the first rotary switch. For example ``4``.
   - **channel** (**Required**, int): The number of the first rotary switch. For example ``2``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
 - **rc_switch_type_c**: Send an RCSwitch `type C code <https://github.com/sui77/rc-switch/wiki/HowTo_OperateLowCostOutlets#type-c-intertechno>`__.
@@ -230,14 +233,16 @@ Configuration variables:
   - **family** (**Required**, string): The family of the device. Must be a character from ``a`` to ``p``.
   - **group** (**Required**, int): The group of the device. For example ``4``.
   - **address** (**Required**, int): The address of the device. For example ``2``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
 - **rc_switch_type_d**: Send an RCSwitch type D code.
 
   - **group** (**Required**, string): The group of the device. Must be a character from ``a`` to ``d``.
   - **device** (**Required**, int): The address of the device. For example ``3``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
 - **rc5**: Send a RC5 IR code.

@@ -10,7 +10,8 @@ Time & Temperature on OLED Display
     :align: left
     :width: 75.0%
 
-In this example I have used a :doc:`SSD1306 OLED Display over I²C </components/display/ssd1306>` to show current time and two different temperature values from Home Assistant.
+In this example I have used a :doc:`SSD1306 OLED Display over I²C </components/display/ssd1306>` to
+show current time and two different temperature values from Home Assistant.
 
 ESPHome has support for several different types of displays. The display used here is 1.3" with 128x64 monochrome pixels (``SH1106 128x64``).
 
@@ -45,7 +46,7 @@ Get the time from Home Assistant to sync the onboard real-time-clock.
 Getting Temperature
 *******************
 
-Next, we want to get two temperature sensors imported from Home Assistant. 
+Next, we want to get two temperature sensors imported from Home Assistant.
 
 I named them ``inside_temperature`` and ``outside_temperature``. You will use those references later.
 
@@ -56,7 +57,7 @@ By adding ``internal: true`` to the sensors they won't be published back to Home
     sensor:
       - platform: homeassistant
         id: inside_temperature
-        entity_id: sensor.mellanvaning_temperature 
+        entity_id: sensor.mellanvaning_temperature
         internal: true
 
       - platform: homeassistant
@@ -68,8 +69,8 @@ Define the Fonts
 ****************
 
 - TrueType fonts are used. If you ever worked with fonts on microcontrollers you will love this!
-- Save font files in ``/config/esphome`` folder where your esphome configuration is stored. 
-- The ``.ttf`` suffix must be lowercase and of course match your filename. 
+- Save font files in ``/config/esphome`` folder where your esphome configuration is stored.
+- The ``.ttf`` suffix must be lowercase and of course match your filename.
 - Selection of fonts can be a little bit tricky for small sizes to look good. Experiment and share your findings in the comments below!
 
 .. code-block:: yaml
@@ -90,7 +91,7 @@ Define the Fonts
 Display Definition
 ******************
 
-Now setup the communication to the display and start fill the screen with live data! 
+Now setup the communication to the display and start fill the screen with live data!
 
 The ``reset_pin`` was not used in my hardware configuration as the display didn't had that pin exposed.
 
@@ -113,16 +114,16 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
           it.printf(64, 0, id(font1), TextAlign::TOP_CENTER, "Mitt Smarta Hus");
 
           // Print time in HH:MM format
-          it.strftime(0, 60, id(font2), TextAlign::BASELINE_LEFT, "%H:%M", id(time).now()); 
+          it.strftime(0, 60, id(font2), TextAlign::BASELINE_LEFT, "%H:%M", id(time).now());
 
           // Print inside temperature (from homeassistant sensor)
-          if (id(inside_temperature).has_state()) { 
+          if (id(inside_temperature).has_state()) {
             it.printf(127, 23, id(font3), TextAlign::TOP_RIGHT , "%.1f°", id(inside_temperature).state);
-          } 
+          }
 
           // Print outside temperature (from homeassistant sensor)
-          if (id(outside_temperature).has_state()) { 
-            it.printf(127, 60, id(font3), TextAlign::BASELINE_RIGHT , "%.1f°", id(outside_temperature).state); 
+          if (id(outside_temperature).has_state()) {
+            it.printf(127, 60, id(font3), TextAlign::BASELINE_RIGHT , "%.1f°", id(outside_temperature).state);
           }
 
 Rendering

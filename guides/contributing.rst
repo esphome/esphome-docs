@@ -109,11 +109,11 @@ RST primer:
 
   .. code-block:: yaml
 
-        # Sample configuration entry
-        switch:
-          - platform: gpio
-            name: "Relay #42"
-            pin: GPIO13
+      # Sample configuration entry
+      switch:
+        - platform: gpio
+          name: "Relay #42"
+          pin: GPIO13
 
   .. note::
 
@@ -130,10 +130,10 @@ RST primer:
           Optional figure caption.
 
   .. figure:: images/dashboard.png
-     :align: center
-     :width: 40.0%
+      :align: center
+      :width: 40.0%
 
-     Optional figure caption.
+      Optional figure caption.
 
   .. note::
 
@@ -149,19 +149,19 @@ RST primer:
 
       .. note::
 
-           This is a note.
+          This is a note.
 
       .. warning::
 
-           This is a warning.
+          This is a warning.
 
   .. note::
 
-       This is a note.
+      This is a note.
 
   .. warning::
 
-       This is a warning.
+      This is a warning.
 
 - **Italic and boldface font families**: To *italicize* text, use one asterisk around the text. To put
   **a strong emphasis** on a piece of text, put two asterisks around it.
@@ -198,7 +198,8 @@ RST primer:
   1. Ordered Item #1
   2. Ordered Item #2
 
-- **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
+- **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see
+  `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
   New pages need to be added to the ``imgtable`` list. The syntax is CSV with <PAGE NAME>, <FILE NAME> (without RST),
   <IMAGE> (in top-level images/ directory). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
 
@@ -215,6 +216,7 @@ please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc
 
 Build
 *****
+
 .. note::
 
     The easiest way is to use the `esphome-docs docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:

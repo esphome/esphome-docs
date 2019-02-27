@@ -8,7 +8,8 @@ Frequently Asked Questions
 Tips for using ESPHome
 ----------------------
 
-1. ESPHome supports (most of) `Home Assistant's YAML configuration directives <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
+1. ESPHome supports (most of) `Home Assistant's YAML configuration directives
+  <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
    ``!include``, ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
 
@@ -252,11 +253,12 @@ And a docker compose file looks like this:
 
     ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
     to work you need to enable host networking mode
-    
-    mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets. If your router supports Avahi, you are able to get mDNS working over different subnets.
-    
+
+    mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
+    If your router supports Avahi, you are able to get mDNS working over different subnets.
+
     Just follow the next steps:
-    
+
     1. Enable Avahi on both subnets.
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 

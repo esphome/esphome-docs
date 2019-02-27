@@ -5,14 +5,17 @@ ESPHome
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
-    :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
+    :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
+      tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers
+      for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
     :image: logo.png
 
 .. image:: /images/logo-text.svg
 
 .. raw:: html
 
-    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" style="max-width:100%;height:26px;width:116.1px;margin-top:10px;"></a>
+    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub"
+      style="max-width:100%;height:26px;width:116.1px;margin-top:10px;"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" style="max-width:100%;height:26px;width:126.3px;"></a>
     <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" style="max-width:100%;height:26px;width:122.1px;"></a>
     <a href="/guides/faq.html#donations"><img src="/_images/shield-donate.svg" alt="Donate" style="max-width:100%;height:26px;width:110.6px;"></a>

@@ -91,7 +91,8 @@ See Also
 - :doc:`/components/sensor/xiaomi_miflora`
 - :doc:`/components/sensor/index`
 - :apiref:`esp32_ble_tracker.h`
-- `Xiaomi Mijia BLE protocol <https://github.com/mspider65/Xiaomi-Mijia-Bluetooth-Temperature-and-Humidity-Sensor>`__ by `@mspider65 <https://github.com/mspider65>`__
+- `Xiaomi Mijia BLE protocol <https://github.com/mspider65/Xiaomi-Mijia-Bluetooth-Temperature-and-Humidity-Sensor>`__
+  by `@mspider65 <https://github.com/mspider65>`__
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`
 

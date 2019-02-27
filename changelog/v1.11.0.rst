@@ -148,6 +148,7 @@ Beta Fixes
 
 All changes
 -----------
+
 - core: Attemp to fix the addressable flicker effect :corepr:`392` by :ghuser:`RomRider`
 - esphome: typing is only required for python < 3.5 :esphomepr:`341` by :ghuser:`dotlambda`
 - esphome: Fix install pillow in docker image :esphomepr:`338`

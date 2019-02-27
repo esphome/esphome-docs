@@ -243,7 +243,8 @@ As you can see, when you call ``printf`` most of the string is printed as-is, bu
 stuff after it is encountered, it is magically replaced by the argument after the format (here ``id(my_sensor).state``).
 
 Every time you type a percent sign ``%`` in a printf format string, it will treat the following letters as a format tag
-until a so-called "specifier" is encountered (in this case ``f``). You can read more about it `here <https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm>`__,
+until a so-called "specifier" is encountered (in this case ``f``). You can read more about it
+`here <https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm>`__,
 but for ESPHome there are really just a few things you need to know.
 
 Let's break ``%.1f`` down:
