@@ -54,8 +54,13 @@ RST primer:
 
   .. code-block:: rst
 
-      My Sub-sub section
+      My Sub-sub Section
       ******************
+
+  .. note::
+
+      The length of the bar below the text **must** match the title Text length.
+      Also, titles should be in Title Case
 
 - **Links**: To create a link to an external resource (for example https://www.google.com), use
   ``\`Link text <link_url>\`__``. For example:

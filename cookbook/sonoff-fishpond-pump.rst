@@ -165,7 +165,7 @@ Both options USB and OTA are done by running the command:
 More details on programming can be found on :doc:`/devices/sonoff_basic`
 
 3. Prepping and installing
-****************************
+**************************
 
 * Ensure power is switched off.
 * You can now add your water level sensor wiring to the PCB and have it extrude, SAFELY, next to your connector block.

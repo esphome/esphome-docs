@@ -179,7 +179,7 @@ creating a POST request at ``/light/<id>/turn_on?brightness=128&transition=2`` w
 -  **transition**: Transition to off in this duration in seconds.
 
 Fan
-****
+***
 
 Fans are similar to switches as they can be turned on/off and toggled. In addition, if the
 underlying fan supports it, fans in the web server also support the speed settings "low", 
