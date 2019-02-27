@@ -11,7 +11,7 @@ The ``mpr121`` sensor platform allows you to use your MPR121
 `Adafruit`_) Capacitive Touch Sensor with esphomelib. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-.. figure:: images/mpr121.png
+.. figure:: /images/mpr121.png
     :align: center
     :width: 50.0%
 
