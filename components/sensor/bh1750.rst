@@ -2,13 +2,13 @@ BH1750 Ambient Light Sensor
 ===========================
 
 .. seo::
-    :description: Instructions for setting up BH1750 ambient light sensors in esphomelib.
+    :description: Instructions for setting up BH1750 ambient light sensors in ESPHome.
     :image: bh1750.jpg
     :keywords: BH1750
 
 The ``bh1750`` sensor platform allows you to use your BH1750
 (`datasheet <http://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf>`__, `Aliexpress`_, `mklec`_)
-ambient light sensor with esphomelib. The :ref:`I²C bus <i2c>` is required to be set up in
+ambient light sensor with ESPHome. The :ref:`I²C bus <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
 .. figure:: images/bh1750-full.jpg
@@ -46,7 +46,7 @@ Configuration variables:
   sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code
   generation.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------

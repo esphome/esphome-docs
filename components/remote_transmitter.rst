@@ -2,7 +2,7 @@ Remote Transmitter Component
 ============================
 
 .. seo::
-    :description: Instructions for setting up remote transmitters in esphomelib
+    :description: Instructions for setting up remote transmitters in ESPHome
     :image: remote.png
     :keywords: RF, infrared
 

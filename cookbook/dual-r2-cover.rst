@@ -2,7 +2,7 @@ Dual relay cover motor control
 ==============================
 
 .. seo::
-    :description: An example of how to integrate covers that are controlled by two relays into esphomelib.
+    :description: An example of how to integrate covers that are controlled by two relays into ESPHome.
     :image: sonoff_dual_r2.jpg
     :keywords: Relay, Sonoff Dual R2, Cover
 
@@ -18,7 +18,7 @@ of the end-stop switch in the motor failing this will reduce the risk for damage
 
 Of the four main components (button sensor, 2 relays switches and the cover), only the cover will be
 visible to the end-user. The other three are hidden by means of not including a ``name``. This is to
-prevent accidentally switching on both relays simultaneously from MQTT/Home-assistant as that might be harmful
+prevent accidentally switching on both relays simultaneously from Home Assistant as that might be harmful
 for some motors.
 
 .. note::
@@ -30,20 +30,16 @@ for some motors.
 
 .. code-block:: yaml
 
-  esphomeyaml:
+  esphome:
     name: cover
     platform: ESP8266
     board: esp01_1m
-    board_flash_mode: dout
 
   wifi:
     ssid: '***'
     password: '***'
 
-  mqtt:
-    broker: 'mqtt'
-    username: ''
-    password: ''
+  api:
 
   logger:
 

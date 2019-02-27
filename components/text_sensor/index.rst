@@ -26,6 +26,10 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the sensor.
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Automations:
 

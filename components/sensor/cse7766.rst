@@ -8,7 +8,7 @@ CSE7766 Power Sensor
 
 The ``cse7766`` sensor platform allows you to use your CSE7766 voltage/current and power sensors
 (`datasheet <http://dl.itead.cc/S31/CSE7766.pdf>`__) sensors with
-esphomelib. This sensor is commonly found in Sonoff POW R2.
+ESPHome. This sensor is commonly found in Sonoff POW R2.
 
 As the communication with the CSE7766 done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the CSE7766.
@@ -42,11 +42,11 @@ Configuration variables:
 ------------------------
 
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
-  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
-  :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  :ref:`Sensor <config-sensor>`.
 - **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want

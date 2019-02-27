@@ -5,14 +5,9 @@ Nextion TFT LCD Display
     :description: Instructions for setting up Nextion TFT LCD displays
     :image: nextion.jpg
 
-.. warning::
-
-    This integration is experimental as I don't have the hardware to test it (yet).
-    If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 The ``nextion`` display platform allows you to use Nextion LCD displays (`datasheet <https://nextion.itead.cc/resources/datasheets/>`__,
 `iTead <https://www.itead.cc/display/nextion.html>`__)
-with esphomelib.
+with ESPHome.
 
 .. figure:: images/nextion-full.jpg
     :align: center
@@ -55,7 +50,7 @@ Configuration variables:
 Rendering Lambda
 ----------------
 
-With Nextion displays, a dedicated chip on the display itself does the whole rendering. esphomelib can only
+With Nextion displays, a dedicated chip on the display itself does the whole rendering. ESPHome can only
 send *instructions* to the display to tell it *how* to render something and *what* to render.
 
 First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to

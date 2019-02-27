@@ -54,7 +54,7 @@ New Components
 
 - The new :doc:`remote receiver </components/remote_transmitter>` and
   :doc:`remote transmitter </components/remote_receiver>` components now allows you to use any 433MHz
-  receivers and senders with esphomelib. Currently, you will need to use the ``raw`` data as described in
+  receivers and senders with ESPHome. Currently, you will need to use the ``raw`` data as described in
   :ref:`this guide <finding_remote_codes>`, but in the future more protocols will be supported out of the box.
 
 New Features
@@ -77,15 +77,15 @@ New Features
   can be used to tell esphomelib what to do if the wakeup pin is already in the wakeup level when attempting
   to enter deep sleep. 🛌
 
-- There are two new triggers available now: :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>` and
-  :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>` with which you can do some advanced cleanup/setup
+- There are two new triggers available now: :ref:`esphomeyaml.on_boot <esphome-on_boot>` and
+  :ref:`esphomeyaml.on_shutdown <esphome-on_shutdown>` with which you can do some advanced cleanup/setup
   on boot and shutdown of the node.
 
 - All Hass.io add-on builds have now been more or less completely automated using a private Gitlab server. You
   can find all the new docker files `here <https://github.com/OttoWinter/esphomeyaml/tree/master/docker>`__.
 
 - Added a new ``build_path`` option in the ``esphomeyaml`` section with which you can customize where
-  esphomeyaml stores the platformio project files. See :doc:`/components/esphomeyaml`.
+  esphomeyaml stores the platformio project files. See :doc:`/components/esphome`.
 
 Breaking Changes
 ****************
@@ -134,7 +134,7 @@ Other Contributions
 - Fix deprecation of board_flash_mode parameter (`esphomeyaml/#41`_) by `@aequitas`_
 - Support specifying hostname/ip as --upload-port (`esphomeyaml/#36`_) by `@aequitas`_
 
-- DHT11 sensor doesn't work with esphomelib (`esphomelib/#88`_) by `@ayavilevich`_
+- DHT11 sensor doesn't work with ESPHome (`esphomelib/#88`_) by `@ayavilevich`_
 - tsl2561: wrong i2c function for channel 1 (`esphomelib/#81`_) by `@schumar`_
 - No need to wait after Wire.requestFrom(). (`esphomelib/#80`_) by `@Koepel`_
 - I2CComponent::write_byte_16 writes 0 words (`esphomelib/#78`_) by `@schumar`_

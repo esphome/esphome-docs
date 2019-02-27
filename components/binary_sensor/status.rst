@@ -5,9 +5,8 @@ Status Binary Sensor
     :description: Instructions for setting up MQTT status binary sensors.
     :image: server-network.png
 
-The Status Binary Sensor exposes the node state (if it’s connected to
-MQTT or not) for Home Assistant. It uses the :ref:`MQTT birth and last will messages <mqtt-last_will_birth>`
-to do this.
+The Status Binary Sensor exposes the node state (if it’s connected to via MQTT/native API)
+for Home Assistant.
 
 .. figure:: images/status-ui.png
     :align: center
@@ -25,8 +24,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`
-  and :ref:`MQTT Component <config-mqtt-component>`. (Inverted mode is not supported)
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`. (Inverted mode is not supported)
 
 See Also
 --------

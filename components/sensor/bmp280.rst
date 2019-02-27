@@ -2,13 +2,13 @@ BMP280 Temperature+Pressure Sensor
 ==================================
 
 .. seo::
-    :description: Instructions for setting up BMP280 temperature and pressure sensors with esphomelib
+    :description: Instructions for setting up BMP280 temperature and pressure sensors with ESPHome
     :image: bmp280.jpg
     :keywords: BMP280
 
 The ``bmp280`` sensor platform allows you to use your BMP280
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BMP280-DS001-11.pdf>`__,
-`Adafruit`_) temperature and pressure sensors with esphomelib. The :ref:`I²C <i2c>` is
+`Adafruit`_) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/bmp280-full.jpg
@@ -43,7 +43,7 @@ Configuration variables:
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`Oversampling Options <bmp280-oversampling>`.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pressure** (**Required**): The information for the pressure sensor.
 
@@ -51,7 +51,7 @@ Configuration variables:
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
     See :ref:`Oversampling Options <bmp280-oversampling>`.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the i^2c address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.

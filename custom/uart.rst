@@ -2,16 +2,16 @@ Custom UART Device
 ==================
 
 Lots of devices communicate using the UART protocol. If you want to integrate
-a device into esphomelib that uses this protocol you can pretty much use almost
-all Arduino-based code because esphomelib has a nice abstraction over the UART bus.
+a device into ESPHome that uses this protocol you can pretty much use almost
+all Arduino-based code because ESPHome has a nice abstraction over the UART bus.
 
 See the other custom component guides for how to register components and make
 them publish values.
 
 .. code-block:: cpp
 
-    #include "esphomelib.h"
-    using namespace esphomelib;
+    #include "esphome.h"
+    using namespace esphome;
 
     class MyCustomComponent : public Component, public UARTDevice {
      public:
@@ -36,7 +36,7 @@ And in YAML:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       includes:
         - my_custom_component.h
 

@@ -2,10 +2,10 @@ Using With Sonoff S20
 =====================
 
 .. seo::
-    :description: Instructions for putting Sonoff S20 devices into flash mode and installing esphomelib on them.
+    :description: Instructions for putting Sonoff S20 devices into flash mode and installing ESPHome on them.
     :image: sonoff_s20.jpg
 
-esphomeyaml can also be used with Sonoff S20 smart sockets. These devices are
+ESPHome can also be used with Sonoff S20 smart sockets. These devices are
 basically just an ESP8266 chip with a relay to control the socket, a small button on the
 front and a blue and green LED light.
 
@@ -15,19 +15,19 @@ front and a blue and green LED light.
 
     Sonoff S20 Smart Socket.
 
-This guide will step you through setting up your Sonoff S20 and flashing the first esphomeyaml firmware
+This guide will step you through setting up your Sonoff S20 and flashing the first ESPHome firmware
 with the serial interface. After that, you will be able to upload all future firmwares with the remote
 Over-The-Air update process.
 
 .. note::
 
     If you've previously installed Sonoff-Tasmota on your Sonoff S20, you're in luck 😀
-    esphomeyaml can generate a firmware binary which you can then upload via the
+    ESPHome can generate a firmware binary which you can then upload via the
     Tasmota web interface. To see how to create this binary, skip to :ref:`sonoff_s20-creating-firmware`.
 
 Since firmware version 1.6.0, iTead (the creator of this device) has removed the ability to upload
 a custom firmware through their own upload process. Unfortunately, that means that the only way to
-flash the initial esphomeyaml firmware is by physically opening the device up and using the UART
+flash the initial ESPHome firmware is by physically opening the device up and using the UART
 interface.
 
 .. warning::
@@ -46,7 +46,7 @@ For this guide you will need:
 -  Sonoff S20 😉
 -  An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
    Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your S20.
--  Computer running esphomeyaml Hass.io add-on.
+-  Computer running ESPHome Hass.io add-on.
 -  Screwdriver to open up the S20.
 -  Soldering iron and a few header pins to connect the UART interface.
 
@@ -119,37 +119,28 @@ Step 3: Creating Firmware
 -------------------------
 
 The Sonoff S20 is based on the ``ESP8266`` platform and is a subtype of the ``esp01_1m`` board.
-With this information, you can step through the esphomeyaml wizard (``esphomeyaml sonoff_s20.yaml wizard``),
+With this information, you can step through the ESPHome wizard (``esphome sonoff_s20.yaml wizard``),
 or alternatively, you can just take the below configuration file and modify it to your needs.
-
-If you go through the wizard, please make sure you manually set ``board_flash_mode`` to ``dout``
-as seen below. The version of the uploader used by esphomeyaml should automatically detect that
-the Sonoff S20 uses the ``dout`` SPI flash chip mode. But, as some users of other firmwares have
-said that other flash modes can brick the device, it's always good to specify it explicitly.
 
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
-      board_flash_mode: dout
 
     wifi:
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 
     ota:
 
-Now run ``esphomeyaml sonoff_s20.yaml compile`` to validate the configuration and
+Now run ``esphome sonoff_s20.yaml compile`` to validate the configuration and
 pre-compile the firmware.
 
 .. note::
@@ -171,15 +162,15 @@ Now you can finally run the upload command:
 
 .. code-block:: bash
 
-    esphomeyaml sonoff_s20.yaml run
+    esphome sonoff_s20.yaml run
 
 If successful, you should see something like this:
 
 .. figure:: images/sonoff_s20_upload.png
     :align: center
 
-Hooray 🎉! You've now successfully uploaded the first esphomeyaml firmware to your Sonoff S20. And in a moment,
-you will be able to use all of esphomeyaml's great features with your Sonoff S20.
+Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your Sonoff S20. And in a moment,
+you will be able to use all of ESPHome's great features with your Sonoff S20.
 
 If above step does, however, not work, here are some steps that can help:
 
@@ -212,20 +203,16 @@ of the basic functions.
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
-      board_flash_mode: dout
 
     wifi:
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 
@@ -262,8 +249,8 @@ of the basic functions.
         output: s20_green_led
 
 
-Above example also showcases an important concept of esphomeyaml: IDs and linking. In order
-to make all components in esphomeyaml as much "plug and play" as possible, you can use IDs to define
+Above example also showcases an important concept of esphome: IDs and linking. In order
+to make all components in ESPHome as much "plug and play" as possible, you can use IDs to define
 them in one area, and simply pass that ID later on. For example, above you can see an PWM (dimmer)
 output being created with the ID ``s20_green_led`` for the green LED. Later on it is then transformed
 into a :doc:`monochromatic light </components/light/monochromatic>`.
@@ -299,11 +286,6 @@ in Home Assistant, replace the last part with this:
 To make pressing the button on the front toggle the relay, have a look at the `the complete Sonoff S20
 with automation example <https://github.com/OttoWinter/esphomedocs/blob/current/devices/sonoff_s20.yaml>`__.
 
-Upload the firmware again (through OTA or Serial) and you should immediately see
-something like this in Home Assistant because of esphomeyaml's automatic MQTT discovery. (You'll
-of course have to add them to groups if you have a ``default_view`` set):
-
-
 .. figure:: images/sonoff_s20_result.png
     :align: center
     :width: 75.0%
@@ -317,7 +299,7 @@ example, you used wires to connect the UART console, you should definitely remov
 a short with mains.
 
 Sometimes the soldered-on header pins can also interfere with the button. It's best to remove the
-header pins again, as you will hopefully not need to use them again because of esphomeyaml's Over-The-Air
+header pins again, as you will hopefully not need to use them again because of ESPHome's Over-The-Air
 Update features (+ the OTA safe mode; if your node reboots more than 10 times in a row, it will automatically
 enter an OTA-only safe mode).
 

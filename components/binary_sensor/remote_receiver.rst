@@ -33,8 +33,7 @@ Configuration variables:
 - **remote_receiver_id** (*Optional*, :ref:`config-id`): The id of the :doc:`/components/remote_receiver`.
   Defaults to the first hub in your configuration.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`
-  and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. note::
 
@@ -55,7 +54,7 @@ Configuration variables:
           pin: 5
           carrier_duty_percent: 100%
 
-    Supporting the RF Bridge chip directly is currently only a long-term goal for esphomelib.
+    Supporting the RF Bridge chip directly is currently only a long-term goal for ESPHome.
 
 
 See Also

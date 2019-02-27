@@ -2,12 +2,12 @@ Generic ESP8266
 ===============
 
 .. seo::
-    :description: Instructions for using generic ESP8266s with esphomelib.
+    :description: Instructions for using generic ESP8266s with ESPHome.
     :image: esp8266.png
     :keywords: ESP8266
 
-All ESP8266-based devices are supported by esphomeyaml. Simply select ``ESP8266`` when
-the esphomeyaml wizard asks you for your platform and choose a board type
+All ESP8266-based devices are supported by ESPHome. Simply select ``ESP8266`` when
+the ESPHome wizard asks you for your platform and choose a board type
 from `this link <http://docs.platformio.org/en/latest/platforms/espressif8266.html>`__ when the wizard
 asks you for the board type.
 
@@ -15,13 +15,13 @@ asks you for the board type.
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       name: livingroom
       platform: ESP8266
       board: <BOARD_TYPE>
 
 Many boards have a pin numbering for the exposed pins that is different from the internally used
-ones. esphomeyaml tries to map the silk-screen pin numbers into the internal pin numbers with a few
+ones. ESPHome tries to map the silk-screen pin numbers into the internal pin numbers with a few
 boards, but for generic ESP8266 boards it is often required to just use the internal pin numbers.
 To do this, just prefix all pins with ``GPIO``, for example ``GPIO0`` for the pin with the internal pin
 number 0.
@@ -37,7 +37,7 @@ Some notes on the pins:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       name: livingroom
       platform: ESP8266
       board: nodemcuv2

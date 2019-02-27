@@ -2,7 +2,7 @@ Logger Component
 ================
 
 .. seo::
-    :description: Instructions for setting up the central logging component in esphomelib.
+    :description: Instructions for setting up the central logging component in ESPHome.
     :image: file-document-box.png
 
 The logger component automatically logs all log messages through the
@@ -21,15 +21,36 @@ Configuration variables:
 
 -  **baud_rate** (*Optional*, int): The baud rate to use for the serial
    UART port. Defaults to ``115200``. Set to ``0`` to disable logging via UART.
--  **tx_buffer_size** (*Optional*, string): The size of the buffer used
+-  **tx_buffer_size** (*Optional*, int): The size of the buffer used
    for log messages. Decrease this if you’re having memory problems.
-   Defaults to 512.
+   Defaults to ``512``.
+-  **hardware_uart** (*Optional*, string): The Hardware UART to use for logging.
+   Defaults to ``UART0``.
 -  **level** (*Optional*, string): The global log level. Any log message
-   with a lower severity will not be shown. Defaults to DEBUG.
+   with a lower severity will not be shown. Defaults to ``DEBUG``.
 -  **logs** (*Optional*, mapping): Manually set the log level for a
    specific component or tag. See :ref:`Manual Log Levels for more
    information <logger-manual_tag_specific_levels>`.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+.. _logger-hardware_uarts:
+
+Hardware UARTs
+--------------
+
+The logger component makes use of platform-specific hardware UARTs for serial logging.
+By default, the logger will occupy ``UART0``. The ESP32 has three hardware UARTs, all of
+which can be used for both transmit and receive. The ESP8266 only has two hardware UARTs,
+one of which is transmit-only. The ESP8266 ``UART0`` can also be 'swapped' to TX/RX on the
+CTS/RTS pins, if you need to use GPIO1 and GPIO3 for something else.
+
+Possible Hardware UART configurations:
+
+- ``UART0`` - TX: GPIO1, RX: GPIO3
+- ``UART0_SWAP`` - TX: GPIO15, RX: GPIO13  (Only on ESP8266)
+- ``UART1`` - TX: GPIO2, RX: None  (Only on ESP8266)
+- ``UART1`` - TX: GPIO9, RX: GPIO10  (Only on ESP832)
+- ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP832)
 
 .. _logger-log_levels:
 
@@ -50,7 +71,7 @@ Possible log levels are (sorted by severity):
 -  ``WARN``
 
   - With this log level, warnings and errors are logged. Warnings are issues like invalid readings from
-    sensors that esphomelib can recover from. Color: yellow
+    sensors that ESPHome can recover from. Color: yellow
 
 -  ``INFO``
 
@@ -135,6 +156,7 @@ Configuration options:
 See Also
 --------
 
+- :doc:`/components/uart`
 - :apiref:`log_component.h`
 - :ghedit:`Edit`
 

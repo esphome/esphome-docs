@@ -8,7 +8,7 @@ TCS34725 RGB Color Sensor
 
 The ``tcs34725`` sensor platform allows you to use your TCS34725 RGB color sensors
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/TCS34725.pdf>`__,
-`Adafruit`_) temperature and pressure sensors with esphomelib. The :ref:`I²C <i2c>` is
+`Adafruit`_) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/tcs34725-full.jpg
@@ -49,17 +49,17 @@ Configuration variables:
 ------------------------
 
 - **red_channel** (*Optional*): Get the percentage of how strongly the red color channel is activated.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **green_channel** (*Optional*): Get the percentage of how strongly the green color channel is activated.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **blue_channel** (*Optional*): Get the percentage of how strongly the blue color channel is activated.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **clear_channel** (*Optional*): Get the percentage of how strongly the clear (without a color filter)
-  channel is activated. All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  channel is activated. All options from :ref:`Sensor <config-sensor>`.
 - **illuminance** (*Optional*): Get the total illuminance of the sensor in lx.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **color_temperature** (*Optional*): Get the calculated color temperature of the light in Kelvin.
-  All options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  All options from :ref:`Sensor <config-sensor>`.
 - **gain** (*Optional*): Set the gain for the internal ADCs to work better in certain low-light conditions. Valid
   values are ``1x`` (default), ``4x``, ``16x``, ``60x`` (highest gain).
 - **integration_time** (*Optional*): The amount of time the light sensor is exposed. Valid values are

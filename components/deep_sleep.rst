@@ -10,7 +10,7 @@ ESP8266/ESP32 after a certain amount of time. This is especially useful with nod
 on batteries and therefore need to conserve as much energy as possible.
 
 To use ``deep_sleep`` first specify how long the node should be active, i.e. how long it should
-check sensor values and report them, using the ``run_duration`` and ``run_cycles`` options. If you
+check sensor values and report them, using the ``run_duration`` options. If you
 use both in your configuration, any time either one of them is finished, the node will go into deep
 sleep mode.
 
@@ -34,8 +34,6 @@ Configuration variables:
 ------------------------
 
 - **run_duration** (*Optional*, :ref:`config-time`): The time duration the node should be active, i.e. run code.
-- **run_cycles** (*Optional*, int): The number of ``loop()`` cycles to go through before
-  entering deep sleep mode. Note: for advanced use-cases with custom code only.
 - **sleep_duration** (*Optional*, :ref:`config-time`): The time duration to stay in deep sleep mode.
 - **wakeup_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`):
   Only on ESP32. A pin to wake up to once in deep sleep mode. Use the inverted property to wake up
@@ -54,26 +52,13 @@ Advanced features:
   - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
-.. note::
-
-    The :ref:`availability feature <mqtt-last_will_birth>` of the MQTT client will cause all values
-    from the node to be displayed as "unavailable" while the node is in deep sleep mode. To disable availability
-    reporting and not have any "unavailable" values, set ``birth_message`` and ``will_message`` to empty values:
-
-    .. code-block:: yaml
-
-        mqtt:
-          # ...
-          birth_message:
-          will_message:
-
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
 ESP32 Wakeup Pin Mode
 ---------------------
 
 On the ESP32, you have the option of waking up on any RTC pin. However, there's one scenario that you need
-to tell esphomelib how to handle: What if the wakeup pin is already in the state with which it would wake up
+to tell ESPHome how to handle: What if the wakeup pin is already in the state with which it would wake up
 when the deep sleep should start? There are three ways of handling this using the ``wakeup_pin_mode`` option:
 
 - ``IGNORE`` (Default): Ignore the fact that we will immediately exit the deep sleep mode because the wakeup

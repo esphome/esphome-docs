@@ -114,7 +114,7 @@ Other notable changes
 - Fixed YAML anchors not working (you can now prefix keys with ``.`` to make esphomeyaml ignore them)
 - Made Dallas and DHT temperature sensor a bit more reliable by making the code a bit more efficient and thus resolving some timing issues.
 - A ``heartbeat`` filter has been added to :ref:`binary sensors <binary_sensor-filters>`.
-- The :ref:`esphomeyaml-on_loop` trigger has been added.
+- The :ref:`esphome-on_loop` trigger has been added.
 - esphomeyaml now know about more ESP8266/ESP32 boards, so now you can use the board-specific pin
   names with even more board types.
 - The mqtt client has a new option ``shutdown_message`` which will be sent when the board shuts down safely.
@@ -146,7 +146,7 @@ Other notable changes
 Breaking Changes
 ****************
 
-- The :doc:`core configuration </components/esphomeyaml>` has been reworked a bit to a)
+- The :doc:`core configuration </components/esphome>` has been reworked a bit to a)
   make using different arduino framework version easier and b) make editing your local esphomelib
   copy easier.
 - Light Effects now need to be manually declared in the config and will no longer show up automatically. Please see :ref:`light-effects`

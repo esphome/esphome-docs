@@ -8,7 +8,7 @@ SSD1306 OLED Display over SPI
 The ``ssd1306_spi`` display platform allows you to use
 SSD1306 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf>`__, `Adafruit <https://www.adafruit.com/product/326>`__)
 and SH1106 (`datasheet <https://www.elecrow.com/download/SH1106%20datasheet.pdf>`__, `electrodragon <https://www.electrodragon.com/product/1-3-12864-blue-oled-display-iicspi/>`__)
-displays with esphomelib. Note that this component is for displays that are connected via the 4-Wire :ref:`SPI bus <spi>`.
+displays with ESPHome. Note that this component is for displays that are connected via the 4-Wire :ref:`SPI bus <spi>`.
 If your SSD1306 or SH1106 is connected via the :ref:`I²C Bus <i2c>`, see :doc:`ssd1306_i2c`.
 
 .. figure:: images/ssd1306-full.jpg
@@ -62,6 +62,7 @@ Configuration variables:
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
+- **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

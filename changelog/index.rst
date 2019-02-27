@@ -2,7 +2,7 @@ Changelog
 =========
 
 .. redirect::
-    :url: /changelog/v1.10.0.html
+    :url: /changelog/v1.11.0.html
 
 .. toctree::
     :glob:

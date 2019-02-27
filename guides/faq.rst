@@ -2,66 +2,59 @@ Frequently Asked Questions
 ==========================
 
 .. seo::
-    :description: Frequently asked questions in esphomelib.
+    :description: Frequently asked questions in ESPHome.
     :image: question_answer.png
 
-Tips for using esphomeyaml
---------------------------
+Tips for using ESPHome
+----------------------
 
-1. esphomeyaml supports (most of) `Home Assistant's YAML configuration directives <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
+1. ESPHome supports (most of) `Home Assistant's YAML configuration directives <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
    ``!include``, ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
 
    For even more configuration templating, take a look at :ref:`config-substitutions`.
 
-2. If you want to see how esphomeyaml interprets your configuration, run
+2. If you want to see how ESPHome interprets your configuration, run
 
    .. code-block:: bash
 
-       esphomeyaml livingroom.yaml config
+       esphome livingroom.yaml config
 
 3. To view the logs from your node without uploading, run
 
    .. code-block:: bash
 
-       esphomeyaml livingroom.yaml logs
+       esphome livingroom.yaml logs
 
-4. If you have changed the name of the node and want to update over-the-air, just specify
-   ``--upload-port`` when running esphomeyaml. For example:
-
-   .. code-block:: bash
-
-       esphomeyaml livingroom.yaml run --upload-port 192.168.178.52
-
-5. You can always find the source esphomeyaml generates under ``<NODE_NAME>/src/main.cpp``. It's even
+4. You can always find the source ESPHome generates under ``<NODE_NAME>/src/main.cpp``. It's even
    possible to edit anything outside of the ``AUTO GENERATED CODE BEGIN/END`` lines for creating
    :doc:`custom sensors </components/sensor/custom>`.
 
-6. You can view the full command line interface options here: :doc:`/guides/cli`
+5. You can view the full command line interface options here: :doc:`/guides/cli`
 
-7. Use :ref:`substitutions <config-substitutions>` to reduce repetition in your configuration files.
+6. Use :ref:`substitutions <config-substitutions>` to reduce repetition in your configuration files.
 
 .. |secret| replace:: ``!secret``
 .. _secret: https://www.home-assistant.io/docs/configuration/secrets/
 .. |include| replace:: ``!include``
 .. _include: https://www.home-assistant.io/docs/configuration/splitting_configuration/
 
-.. _esphomeflasher:
+.. _esphome-flasher:
 
 I can't get flashing over USB to work.
 --------------------------------------
 
-esphomeyaml depends on the operating system the tool is running on to recognize
+ESPHome depends on the operating system the tool is running on to recognize
 the ESP. This can sometimes fail (driver missing, inside docker container, ...).
-Starting with esphomelib 1.9.0, the esphomelib suite provides
-`esphomeflasher <https://github.com/OttoWinter/esphomeflasher>`__, a tool to flash ESPs over USB.
+Starting with ESPHome 1.9.0, the ESPHome suite provides
+`esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
 First, you need to get the firmware file to flash. For Hass.io add-on based installs you can
 use the ``COMPILE`` button (click the overflow icon with the three dots) and then press
 ``Download Binary``. For command line based installs you can access the file under
 ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
-Then, install esphomeflasher by going to the `releases page <https://github.com/OttoWinter/esphomeflasher/releases>`__
+Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
 and downloading one of the pre-compiled binaries. Open up the application and select the serial port
 you want to flash to (on windows you can use the "device manager" to check if it's the right one).
 
@@ -86,33 +79,14 @@ Select the firmware binary and finally press "Flash ESP".
     are connected correctly if flashing using a USB to UART bridge. For some devices you need to
     keep pressing the BOOT button until flashing has begun (ie. Geekcreit DOIT ESP32 DEVKIT V1).
 
-What's the difference between esphomelib and esphomeyaml?
----------------------------------------------------------
-
-`esphomelib <https://github.com/OttoWinter/esphomelib>`__ is a C++ framework
-around Arduino for creating custom firmwares for ESP8266/ESP32 devices. So with
-esphomelib, you need to write C++ code.
-
-`esphomeyaml <https://github.com/OttoWinter/esphomeyaml>`__ is a tool, written in python,
-that creates source code that uses the esphomelib framework. It does this by parsing in
-a YAML file and generating a C++ source file, compiling it and uploading the binary to the
-device. It is meant to be a powerful yet user-friendly engine for creating custom
-firmwares for ESP8266/ESP32 devices. Ideally, it should enable users to use a single command
-to do everything they want to do with their device without messing around with build systems and so on.
-
-The nice part of the esphomelib/esphomeyaml combo is that you can easily edit the source code
-esphomeyaml generates and insert your own custom components such as sensors in it. So, if for example
-a sensor you really want to use, is not supported, you can easily `create a custom component
-<https://github.com/OttoWinter/esphomelib/wiki/Custom-Sensor-Component>`__ for it.
-
 Help! Something's not working!1!
 --------------------------------
 
 That's no good. Here are some steps that resolve some problems:
 
 -  **If you're having WiFi problems**: See :ref:`wifi-problems`.
--  **Try with the latest Arduino framework version**: See :ref:`this <esphomeyaml-arduino_version>`.
--  **Still an error?** Please file a bug report over in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__.
+-  Enable verbose logs in the logger: section.
+-  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/OttoWinter/ESPHome/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
 .. _faq-bug_report:
@@ -120,7 +94,7 @@ That's no good. Here are some steps that resolve some problems:
 How to submit an issue report
 -----------------------------
 
-First of all, thank you very much to everybody submitting issue reports! While I try to test esphomelib/yaml as much as
+First of all, thank you very much to everybody submitting issue reports! While I try to test ESPHome/yaml as much as
 I can using my own hardware, I don't own every single device type and mostly only do tests with my own home automation
 system. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
 great way for me to track and (hopefully) fix issues, so thank you!
@@ -137,7 +111,7 @@ For me to fix the issue the quickest, there are some things that would be really
 4.  Please also include what you've already tried and didn't work so that these things can
     be
 
-You can find the issue tracker here https://github.com/OttoWinter/esphomelib/issues
+You can find the issue tracker here https://github.com/esphome/issues
 
 How do I update to the latest version?
 --------------------------------------
@@ -146,9 +120,9 @@ It's simple. Run:
 
 .. code-block:: bash
 
-    pip2 install -U esphomeyaml
+    pip2 install -U esphome
     # From docker:
-    docker pull ottowinter/esphomeyaml:latest
+    docker pull esphome/esphome:latest
 
 And in Hass.io, there's a simple UPDATE button when there's an update available as with all add-ons
 
@@ -157,23 +131,21 @@ And in Hass.io, there's a simple UPDATE button when there's an update available 
 How do I update to the latest beta release?
 -------------------------------------------
 
-esphomelib has a beta release cycle so that new releases can easily be tested before
-the changes are deployed to the stable channel. You can help test esphomeyaml (and use new features)
-by installing the esphomeyaml beta:
+ESPHome has a beta release cycle so that new releases can easily be tested before
+the changes are deployed to the stable channel. You can help test esphome (and use new features)
+by installing the esphome beta:
 
 .. code-block:: bash
 
     # For pip-based installs
-    pip2 install --pre -U esphomeyaml
+    pip2 install --pre -U esphome
 
-    # From docker-based installs
-    docker pull ottowinter/esphomeyaml:rc
-    # In each command:
-    docker run [...] -it ottowinter/esphomeyaml:rc livingroom.yaml run
+    # For docker-based installs
+    docker run [...] -it esphome/esphome:beta livingroom.yaml run
 
-And for Hass.io, you will see a "esphomeyaml Beta" Add-On for the beta channel.
+And for Hass.io, you will see a "ESPHome Beta" Add-On for the beta channel.
 
-The beta docs can be viewed at `https://beta.esphomelib.com <https://beta.esphomelib.com>`__
+The beta docs can be viewed at `beta.esphome.io <https://beta.esphome.io>`__
 
 How do I use the latest bleeding edge version?
 ----------------------------------------------
@@ -181,35 +153,22 @@ How do I use the latest bleeding edge version?
 First, a fair warning that the latest bleeding edge version is not always stable and might have issues.
 If you find some, please do however report them if you have time :)
 
-Installing the latest bleeding edge version of esphomelib is also quite easy. It's most often required
-if there was a bug somewhere and I didn't feel like building & pushing a whole new release out (this often
-takes up to 2 hours!). To install the dev version of esphomeyaml:
+To install the dev version of ESPHome:
 
-- In Hass.io: In the esphomeyaml add-on repository there's also a second add-on called ``esphomeyaml-edge``.
+- In Hass.io: In the ESPHome add-on repository there's also a second add-on called ``ESPHome Dev``.
   Install that and stop the stable version (both can't run at the same time without port collisions).
-- From ``pip``: Run ``pip install git+git://github.com/OttoWinter/esphomeyaml.git``
-- From docker: Run ``docker pull ottowinter/esphomeyaml:dev`` and use ``ottowinter/esphomeyaml:dev`` in all
+- From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
+- From docker: Run ``docker pull esphome/esphome:dev`` and use ``esphome/esphome:dev`` in all
   commands.
 
-Next, if you want to use the latest version of the esphomelib C++ framework too:
+The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
-.. code-block:: yaml
-
-    # Sample configuration entry
-    esphomeyaml:
-      name: ...
-      esphomelib_version: dev
-      # ...
-
-In some cases it's also a good idea to use the latest Arduino framework version. See
-:ref:`this <esphomeyaml-arduino_version>`.
-
-Does esphomelib support [this device/feature]?
-----------------------------------------------
+Does ESPHome support [this device/feature]?
+-------------------------------------------
 
 If it's not in :doc:`the docs </index>`, it's probably sadly not
 supported. However, I'm always trying to add support for new features, so feel free to create a feature
-request in the `esphomelib issue tracker <https://github.com/OttoWinter/esphomelib/issues>`__. Thanks!
+request in the `ESPHome feature request tracker <https://github.com/esphome/feature-requests>`__. Thanks!
 
 I have a question... How can I contact you?
 -------------------------------------------
@@ -217,11 +176,11 @@ I have a question... How can I contact you?
 Sure! I'd be happy to help :) You can contact me here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/t/esphomelib-library-to-greatly-simplify-home-assistant-integration-with-esp32/402452>`__
--  `esphomelib <https://github.com/OttoWinter/esphomelib/issues>`__ and
-   `esphomeyaml <https://github.com/OttoWinter/esphomeyaml/issues>`__ issue trackers. Preferably only for issues and
+-  `Home Assistant Community Forums <https://community.home-assistant.io/t/ESPHome-library-to-greatly-simplify-home-assistant-integration-with-esp32/402452>`__
+-  ESPHome `issue <https://github.com/esphome/issues>`__ and
+   `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
--  Alternatively, also under my e-mail address contact (at) otto-winter.com
+-  Alternatively, also under contact (at) esphome.io
 
 .. _wifi-problems:
 
@@ -234,83 +193,72 @@ not have a real solution.
 
 Some steps that can help with the issue:
 
--  Set the ``power_save_mode`` to ``light`` in the ``wifi:`` config. See :ref:`wifi-power_save_mode`.
--  If you're using a hidden WiFi network, make sure to enable ``fast_connect`` mode in the WiFi configuration.
--  Use the most recent version of th arduino framework. The platformio arduino package
-   always takes some time to update and the most recent version often includes some awesome
-   patches. See :ref:`esphomeyaml-arduino_version`.
--  The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
-   boards from eBay sometimes have quite bad antennas.
--  Give your ESP a :ref:`static IP <wifi-manual_ip>`.
+- If you're using a hidden WiFi network, make sure to enable ``fast_connect`` mode in the WiFi
+  configuration (also sometimes helps with non-hidden networks)
+- Give your ESP a :ref:`static IP <wifi-manual_ip>`.
+- Set the ``power_save_mode`` to ``light`` in the ``wifi:`` config (only helps in some cases,
+  in other it can make things works). See :ref:`wifi-power_save_mode`.
+- The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
+  boards from eBay sometimes have quite bad antennas.
 
-Devices that will (hopefully) be supported soon:
-------------------------------------------------
+Docker Reference
+----------------
 
-Devices/Sensors that I've bought and will be supported at some point (ordered by priority):
+Install versions:
 
--  GP2Y10 Dust Sensor
--  APDS-9960 RGB Gesture Sensor
--  MCP2301 16-Channel I/O Expander
--  MLX90614 Infrared Thermometer
--  PCF8591 ADC
--  OV2640 Camera
--  L298N H-Bridge Motor Driver
--  A4988 Stepper Motor Driver
+.. code-block:: bash
 
-Other features that I'm working on:
+    # Stable Release
+    docker pull esphome/esphome
+    # Beta
+    docker pull esphome/esphome:beta
+    # Dev version
+    docker pull esphome/esphome:dev
 
--  Multiple WiFi Networks to connect to
--  Color Temperature for Lights
--  Cameras (probably through ArduCAM)
+Command reference:
 
-Anything missing? I'd be happy to chat about more integrations over on the `discord channel
-<https://discord.gg/KhAMKrd>`__ - no guarantees that everything will be supported though!
+.. code-block:: bash
 
-I can't update using OTA because of to little space, now what?
---------------------------------------------------------------
+    # Start a new file wizard for file livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml wizard
 
-If you are using ESP8266/Sonoff devices and you have many components enabled you will probably encounter this error during OTA update:
+    # Compile and upload livingroom.yaml
+    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml run
 
-.. code::
+    # View logs
+    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml logs
 
-  ERROR [esphomeyaml.espota] Bad Answer: ERR: ERROR[4]: Not Enough Space
+    # Map /dev/ttyUSB0 into container
+    docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
 
-This is because of the limited amount of flash memory available on these devices (often just 1M). The size of the firmware data that is created by esphomeyaml depends on the number of components enabled (eg: webserver, sensors, etc). Especially the webserver component is very large.
+    # Start dashboard on port 6052
+    docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
 
-During an OTA update the new firmware data needs to be stored on the flash chip so it can be used to replace the old firmware. However it is possible the old firmware is taking up to much space so the new firmware won't fit next to it. This makes a normal OTA update impossible. Forcing you to choose between easy updates or components.
-
-A possible solution is to disable (large) components like webserver so the size of the firmware data stays below a certain size.
-
-If even this doesn't work or you like to have a lot of components enabled there is a workaround that might help you out so you can have your cake and eat it too. Using a two stage OTA update.
-
-First we temporary 'remove' (comment out) all components from the ``yaml`` file, leaving only: ``esphomeyaml``, ``ota`` and ``wifi``, example:
+And a docker compose file looks like this:
 
 .. code-block:: yaml
 
-    esphomeyaml:
-      name: sonoff_basic
-      platform: espressif8266
-      board: esp01_1m
-      board_flash_mode: dout
+    version: '3'
 
-    wifi:
-      ssid: '***'
-      password: '***'
+    services:
+      esphome:
+        image: esphome/esphome
+        volumes:
+          - ./:/config:rw
+        network_mode: host
+        restart: always
 
-    ota:
+.. note::
 
-    # mqtt:
-    #   broker: 'mqtt'
-    #   username: ''
-    #   password: ''
-    #
-    #
-    # logger:
-    #
-    # switch:
-    # ...
-
-This will result in really small firmware data which has a high chance of fitting the remaining space on your device. After this OTA update has succeeded you are left with a device with no functionality except OTA. Now you can re-enable all components previously commented out and perform a 'normal' OTA update again.
+    ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
+    to work you need to enable host networking mode
+    
+    mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets. If your router supports Avahi, you are able to get mDNS working over different subnets.
+    
+    Just follow the next steps:
+    
+    1. Enable Avahi on both subnets.
+    2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
 Donations
 ---------

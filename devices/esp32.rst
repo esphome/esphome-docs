@@ -2,18 +2,18 @@ Generic ESP32
 =============
 
 .. seo::
-    :description: Information about how to use generic ESP32 boards in esphomelib.
+    :description: Information about how to use generic ESP32 boards in ESPHome.
     :image: esp32.png
 
-All ESP32-based devices are supported by esphomeyaml. Simply select ``ESP32`` when
-the esphomeyaml wizard asks you for your platform and choose a board type
+All ESP32-based devices are supported by ESPHome. Simply select ``ESP32`` when
+the ESPHome wizard asks you for your platform and choose a board type
 from `this link <http://docs.platformio.org/en/latest/platforms/espressif32.html>`__ when the wizard
 asks you for the board type.
 
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       name: livingroom
       platform: ESP32
       board: <BOARD_TYPE>
@@ -36,7 +36,7 @@ Some notes about the pins on the ESP32:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       name: livingroom
       platform: ESP32
       board: <BOARD_TYPE>
