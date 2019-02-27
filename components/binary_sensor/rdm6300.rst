@@ -56,12 +56,6 @@ NFC/RFID Tag
 The ``rdm6300`` binary sensor platform lets you track if an NFC/RFID tag with a given
 unique id (``uid``) is currently being detected by the RDM6300 or not.
 
-.. figure:: images/rdm6300-full.jpg
-    :align: center
-    :width: 60.0%
-
-See :ref:`rdm6300-component` for instructions for setting up the connection to the RDM6300.
-
 .. code-block:: yaml
 
     # Example configuration entry
