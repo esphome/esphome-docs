@@ -1,17 +1,18 @@
 Mirabella Genio Bulbs
 =====================
+
+The Mirabella Genio is a Tuya based smart bulb sold by Kmart in Australia. 
+
 .. figure:: images/mirabella-genio-b22-rgbw.jpg
     :align: center
     :width: 50.0%
-    
-The Mirabella Genio is a Tuya based smart bulb sold by Kmart in Australia. 
 
 Originally intended to be used with their companion app once flashed using `tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ ESPHome generated firmware can be uploaded allowing you t control the bulbs via Home Assistant.
 
 Thanks to the `existing work <https://github.com/arendst/Sonoff-tasmota/wiki/Mirabella-Genio-Bulb>`__ by `@so3n <https://github.com/arendst/Sonoff-tasmota/wiki/Mirabella-Genio-Bulb>`__ which these adaptions created by `@cryptelli <https://community.home-assistant.io/u/cryptelli>`__ and `@bircoe <https://community.home-assistant.io/u/bircoe>`__ are based on.
 
 Dimmable Warm/Cool White Bulbs
--------------------------------------------------------------------------------------------------------------------------
+------------------------------
 
 .. code-block:: yaml
 
@@ -52,7 +53,7 @@ Dimmable Warm/Cool White Bulbs
         pin: GPIO13
 
 Tunable Warm/Cool White Bulbs
----------------------------------------------------------------------------------------------------------------
+-----------------------------
 
 .. code-block:: yaml
 
@@ -95,11 +96,11 @@ Tunable Warm/Cool White Bulbs
         id: light
         cold_white: output_daylight
         warm_white: output_warm_white
-        cold_white_color_temperature: 153.84 mireds #6500k
-        warm_white_color_temperature: 370.37 mireds #2700k
+        cold_white_color_temperature: 6500 K
+        warm_white_color_temperature: 2700 K
 
 RGBW Colour Bulbs
-----------------------------------------------------------------------------------------------  
+-----------------
 
 .. code-block:: yaml
 
@@ -153,7 +154,8 @@ RGBW Colour Bulbs
 
 
 Addding to Home Assistant
------------------
+-------------------------
+
 You can now add your bulb to home assistant via the configurations page, look for 'ESPHome' under the Integrations option and click 'Configure'.
 
 
