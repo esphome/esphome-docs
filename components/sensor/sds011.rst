@@ -1,0 +1,85 @@
+SDS011 Particulate Matter Sensor
+================================
+
+.. seo::
+    :description: Instructions for setting up SDS011 Particulate matter sensors
+    :image: sds011.jpg
+    :keywords: sds011
+
+The ``sds011`` sensor platform allows you to use SDS011 particulate matter sensors (`datasheet <https://nettigo.pl/attachments/398>`__)
+with ESPHome.
+
+.. figure:: images/sds011-full.jpg
+    :align: center
+    :width: 50.0%
+
+    SDS011 Particulate Matter Sensor
+
+As the communication with the SDS011 is done using UART, you need
+to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the TX pin of the
+SDS011 and optionally the ``tx_pin`` connected to the RX Pin of the SDS011 (it's switched because the
+TX/RX labels are from the perspective of the individual device). Additionally, you need to set the baud rate to 9600.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      rx_pin: D0
+      tx_pin: D1
+      baud_rate: 9600
+
+    sensor:
+      - platform: sds011
+        pm_2_5:
+          name: "Particulate Matter <2.5µm Concentration"
+        pm_10_0:
+          name: "Particulate Matter <10.0µm Concentration"
+        update_interval: 10min
+        query_mode: false
+        rx_only: false
+
+With ``update_interval``, the working period of the SDS011 device will be changed. If ``update_interval`` is less
+than 1 minute, the SDS011 will be set to continuous measurement and will report new measurement values
+approximately every second. If ``update_interval`` is between 1 minute and 30 minutes, the SDS011 operates
+periodically and reports the latest data. The intervals are defined in 1-minute increments. As a result, the
+sensor works 30 seconds and sleeps the remaining time. This mode can reduce power consumption and increases
+the lifetime of the SDS011.
+
+.. note::
+
+    The configuration variables ``query_mode`` and ``update_interval`` reconfigure the SDS011 device. These
+    settings are still effective after power off. This can affect the performance of other libraries.
+    Factory defaults are continuous measurement and active reporting.
+
+
+Configuration variables:
+------------------------
+
+- **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **query_mode** (*Optional*): Whether the sensor should be actively polled or actively report. Defaults to ``false``.
+
+- **rx_only** (*Optional*): Whether the sensor is connected only by RX pin to the UART bus. This connection is not
+  possible in query mode. Since the SDS011 can not be configured in RX-only mode, `update_interval` has no
+  effect and the sensor must be configured separately. Defaults to ``false``.
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. This affects the working
+  period of the SDS011 sensor as well as the query interval if query mode is enabled. Defaults to ``1s``.
+
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
+See Also
+--------
+
+- :doc:`/components/sensor/pmsx003`
+- :ref:`sensor-filters`
+- `Laser Dust Sensor Control Protocol <https://nettigo.pl/attachments/415>`__
+- :apiref:`sensor/sds011_component.h`
+- :ghedit:`Edit`
+
+.. disqus::

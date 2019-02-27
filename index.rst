@@ -132,6 +132,7 @@ Sensor Components
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
+    SDS011 Sensor, components/sensor/sds011, sds011.jpg
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
 :doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the :doc:`TEMT6000
