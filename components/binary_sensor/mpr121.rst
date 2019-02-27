@@ -47,7 +47,7 @@ Binary Sensor Configuration:
 - **name** (**Optional**, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **channel** (*Required*, integer): The channel number at the mpr121 the touchkey is connected to.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
 --------
