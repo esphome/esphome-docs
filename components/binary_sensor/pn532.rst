@@ -94,12 +94,6 @@ NFC/RFID Tag
 The ``pn532`` binary sensor platform lets you track if an NFC/RFID tag with a given
 unique id (``uid``) is currently being detected by the PN532 or not.
 
-.. figure:: images/pn532-full.jpg
-    :align: center
-    :width: 60.0%
-
-See :ref:`pn532-component` for instructions for setting up the connection to the PN532.
-
 .. code-block:: yaml
 
     # Example configuration entry
