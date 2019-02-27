@@ -70,10 +70,6 @@ commonly sold with a PCF8574 chip which only need two lines to the ESP, for that
 
     LCD Display.
 
-.. figure:: images/lcd-hello_world.jpg
-    :align: center
-    :width: 60.0%
-
 .. code-block:: yaml
 
     # Example configuration entry
