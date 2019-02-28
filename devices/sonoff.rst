@@ -192,7 +192,7 @@ Same configuration as the :doc:`Sonoff 4CH <sonoff_4ch>`.
 Sonoff B1, Ai-Thinker AiLight
 -----------------------------
 
-See :doc:`/components/my9231`.
+See :doc:`/components/output/my9231`.
 
 Sonoff T1 1CH, 2CH, 3CH
 -----------------------

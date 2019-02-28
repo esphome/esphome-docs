@@ -313,8 +313,10 @@ All Triggers
 
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
-- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` / :ref:`binary_sensor.on_state <binary_sensor-on_state>`
-- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` / :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
+- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
+  :ref:`binary_sensor.on_state <binary_sensor-on_state>`
+- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
+  :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
 - :ref:`pn532.on_tag <pn532-on_tag>`
 - :ref:`time.on_time <time-on_time>`
@@ -363,8 +365,8 @@ time period.
 
 .. code-block:: yaml
 
-   on_...:
-     then:
+    on_...:
+      then:
         - switch.turn_on: relay_1
         - delay: 2s
         - switch.turn_off: relay_1

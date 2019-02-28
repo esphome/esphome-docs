@@ -43,8 +43,7 @@ Configuration variables:
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
 - **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
 - **filters** (*Optional*): Specify filters to use for some basic
-  transforming of values. Defaults to a basic sliding window moving
-  average over the last few values. See :ref:`Sensor Filters <sensor-filters>` for more information.
+  transforming of values. See :ref:`Sensor Filters <sensor-filters>` for more information.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.

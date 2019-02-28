@@ -75,6 +75,23 @@ I've made that a top priority for the next release, but I've hit some road block
 prevented it from working in a stable way for this release (and I needed to finally get this darn
 release out).
 
+Release 1.11.2 - February 26
+----------------------------
+
+- docs: Fix units on the valid frequency values :docspr:`170` by :ghuser:`kwdavidson`
+- esphome: Allow non-pullup pins for dallas :esphomepr:`456`
+- core: Turn off light at 0% brightness :corepr:`526`
+- core: HLW8012 don't count a single pulse as power :corepr:`527`
+- core: Set initial brightness to 0 when turning light on :corepr:`528`
+- core: Allow white value of addressable lights to be controlled independently of brightness :corepr:`529`
+- core: Fix WiFi not connecting to open networks :corepr:`531`
+- esphome: Remove automatic update check :esphomepr:`457`
+- esphome: Fix mDNS library added only with OTA :esphomepr:`451`
+- docs: Merge dallas component :docspr:`179` by :ghuser:`FrengerH`
+- docs: Correct ultrasonic filter_nan example :docspr:`159` by :ghuser:`apeeters`
+- docs: Cookbook entry for Display component :docspr:`173` by :ghuser:`ahd71`
+- core: Fix light partition src offset :corepr:`525`
+
 Release 1.11.1 - February 23
 ----------------------------
 
@@ -131,6 +148,7 @@ Beta Fixes
 
 All changes
 -----------
+
 - core: Attemp to fix the addressable flicker effect :corepr:`392` by :ghuser:`RomRider`
 - esphome: typing is only required for python < 3.5 :esphomepr:`341` by :ghuser:`dotlambda`
 - esphome: Fix install pillow in docker image :esphomepr:`338`
