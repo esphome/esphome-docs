@@ -5,8 +5,8 @@ Using With Sonoff S20
     :description: Example ESPHome code to emulate stock firmware functionality while maintaining 100% local control.
     :image: teckin_sp20_us.jpg
 
-ESPHome can be used with Teckin SP20 (US) smart sockets. These devices are basically just an ESP8266 chip with a relay to control the socket, a HLW8012 power monitoring chip, a small button on the
-front and a blue and red LED light.
+ESPHome can be used with Teckin SP20 (US) smart sockets. These devices are basically just an ESP8266 chip with a relay to control the socket, a HLW8012 power 
+monitoring chip, a small button on the front and two LEDs (blue and red).
 
 .. figure:: images/teckin_sp20_us.jpg
     :align: center
@@ -16,7 +16,7 @@ front and a blue and red LED light.
 
 
 Adding the Button, Relay and LEDs
------------------------------------------
+---------------------------------
 
 Below you will find a table of all usable GPIO pins of the SP20 and a configuration file that exposes all
 to mimic the stock functionality.
@@ -42,7 +42,7 @@ to mimic the stock functionality.
     substitutions:
       device_name: '<NODE_NAME>'     # used internally
       friendly_name: '<Node Name>'   # displayed in Home Assistant
-      
+
 
     esphome:
       name: ${device_name}
@@ -54,12 +54,12 @@ to mimic the stock functionality.
       ssid: '<WIFI_SSID>'
       password: '<WIFI_PASSWORD>'
 
-        
+
     logger:
 
 
     api:
-      
+
 
     ota:
 
@@ -71,7 +71,7 @@ to mimic the stock functionality.
 
     sensor:
       - platform: hlw8012
-        sel_pin: 
+        sel_pin:
           number: GPIO12
           inverted: True
         cf_pin: GPIO5
@@ -113,7 +113,6 @@ to mimic the stock functionality.
 
 
     light:
-      # https://esphome.io/components/light/monochromatic.html
       - platform: monochromatic
         name: ${friendly_name} Blue LED
         output: blue_led_output
@@ -131,14 +130,14 @@ to mimic the stock functionality.
         on_press:
           - switch.toggle: relay_template
         internal: True
-          
+
 
     switch:
       - platform: gpio
         pin: GPIO4
         id: relay
 
-      # tie the led & relay operation together and report status based on relay state   
+      # Tie the LED & relay operation together and report status based on relay state.
       - platform: template
         name: ${friendly_name}
         id: relay_template

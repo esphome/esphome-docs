@@ -244,6 +244,7 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
             - switch.turn_on: relay_1
 
 Configuration variables:
+************************
 
 - **above** (*Optional*, float): The minimum for the trigger.
 - **below** (*Optional*, float): The maximum for the trigger.
