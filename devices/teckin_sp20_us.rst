@@ -5,8 +5,8 @@ Using With Sonoff S20
     :description: Example ESPHome code to emulate stock firmware functionality while maintaining 100% local control.
     :image: teckin_sp20_us.jpg
 
-ESPHome can be used with Teckin SP20 (US) smart sockets. These devices are basically just an ESP8266 chip with a relay to control the socket, a HLW8012 power 
-monitoring chip, a small button on the front and two LEDs (blue and red).
+ESPHome can be used with Teckin SP20 (US) smart sockets. These devices are basically just an ESP8266 chip with a relay to control the socket, a HLW8012 power
+ monitoring chip, a small button on the front and two LEDs (blue and red).
 
 .. figure:: images/teckin_sp20_us.jpg
     :align: center
