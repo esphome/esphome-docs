@@ -61,6 +61,9 @@ Technically, all ESP8266/ESP32 devices are supported by ESPHome.
 
     Generic Sonoff, devices/sonoff, sonoff.svg
     Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
+    Teckin SP20 (US), devices/teckin_sp20_us, teckin_sp20_us.jpg
+
+
 
 Core Components
 ---------------
