@@ -61,10 +61,10 @@ Configuration variables:
 - **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
   All options from :ref:`Sensor <config-sensor>`.
 
-- **query_mode** (*Optional*): Whether the sensor should be actively polled or actively report. Defaults to ``false``.
+- **query_mode** (*Optional*, boolean): Whether the sensor should be actively polled or actively report. Defaults to ``false``.
 
-- **rx_only** (*Optional*): Whether the sensor is connected only by RX pin to the UART bus. This connection is not
-  possible in query mode. Since the SDS011 can not be configured in RX-only mode, `update_interval` has no
+- **rx_only** (*Optional*, boolean): Whether the sensor is connected only by RX pin to the UART bus. This connection is not
+  possible in query mode. Since the SDS011 can not be configured in RX-only mode, ``update_interval`` has no
   effect and the sensor must be configured separately. Defaults to ``false``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. This affects the working
