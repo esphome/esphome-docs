@@ -121,6 +121,7 @@ Sensor Components
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
@@ -132,7 +133,6 @@ Sensor Components
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
-    SDS011 Sensor, components/sensor/sds011, sds011.jpg
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
 :doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the :doc:`TEMT6000
