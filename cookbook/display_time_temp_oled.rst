@@ -133,6 +133,42 @@ Rendering
 - The property ``has_state()`` on a sensor is useful as it can take some seconds to get the data from Home Assistant and you may not want to display ``Nan``
 - Refer to the rendering engine :ref:`display-engine` for more features (it can draw lines and circles too!)
 
+Add a textbased sensor
+----------------------
+Below follows an example that replaces the "Mitt smarta hem" top printout with the alarm status from the alarm component in home assistant.
+
+.. code-block:: yaml
+text_sensor:
+  - platform: homeassistant
+    entity_id: alarm_control_panel.my_alarm_system
+    name: "Alarm State"
+    id: alarm_state
+
+display:
+  - platform: ssd1306_i2c
+    model: "SH1106 128x64"
+    reset_pin: D0
+    address: 0x3C
+    lambda: |-
+      // Print "Mitt Smarta Hem" in top center.
+      // it.printf(64, 0, id(font1), TextAlign::TOP_CENTER, "Mitt Smarta Hem");
+          // Print "Alarm State: <state>" in top center
+          it.printf(64, 0, id(font1), TextAlign::TOP_CENTER, "Alarm State: %s", id(alarm_state).state.c_str());
+          // Print time in HH:MM format
+          it.strftime(0, 60, id(font2), TextAlign::BASELINE_LEFT, "%H:%M", id(time).now());
+
+          // Print inside temperature (from homeassistant sensor)
+          if (id(inside_temperature).has_state()) {
+            it.printf(127, 23, id(font3), TextAlign::TOP_RIGHT , "%.1f°", id(inside_temperature).state);
+          }
+
+          // Print outside temperature (from homeassistant sensor)
+          if (id(outside_temperature).has_state()) {
+            it.printf(127, 60, id(font3), TextAlign::BASELINE_RIGHT , "%.1f°", id(outside_temperature).state);
+          }
+
+
+
 See Also
 --------
 
