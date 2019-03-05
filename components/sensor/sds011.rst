@@ -40,17 +40,11 @@ TX/RX labels are from the perspective of the individual device). Additionally, y
 
 With ``update_interval``, the working period of the SDS011 device will be changed. If ``update_interval`` is less
 than 1 minute, the SDS011 will be set to continuous measurement and will report new measurement values
-approximately every second. If ``update_interval`` is between 1 minute and 30 minutes, the SDS011 operates
-periodically and reports the latest data. The intervals are defined in 1-minute increments. As a result, the
-sensor works 30 seconds and sleeps the remaining time. This mode can reduce power consumption and increases
+approximately every second.
+
+If ``update_interval`` is between 1-30 minutes, the SDS011 periodically turns on for 30s before each measurement.
+For the remaining time the sensor is shut off. As a result, this mode can reduce power consumption and increases
 the lifetime of the SDS011.
-
-.. note::
-
-    The configuration variables ``query_mode`` and ``update_interval`` reconfigure the SDS011 device. These
-    settings are still effective after power off. This can affect the performance of other libraries.
-    Factory defaults are continuous measurement and active reporting.
-
 
 Configuration variables:
 ------------------------
@@ -61,17 +55,24 @@ Configuration variables:
 - **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
   All options from :ref:`Sensor <config-sensor>`.
 
-- **query_mode** (*Optional*, boolean): Whether the sensor should be actively polled or actively report. Defaults to ``false``.
-
-- **rx_only** (*Optional*, boolean): Whether the sensor is connected only by RX pin to the UART bus. This connection is not
-  possible in query mode. Since the SDS011 can not be configured in RX-only mode, ``update_interval`` has no
-  effect and the sensor must be configured separately. Defaults to ``false``.
-
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. This affects the working
   period of the SDS011 sensor as well as the query interval if query mode is enabled. Defaults to ``1s``.
 
+- **query_mode** (*Optional*, boolean): Whether the sensor should be actively polled or actively report. 
+  Defaults to ``false``.
+
+- **rx_only** (*Optional*, boolean): Whether the sensor is connected **only by RX pin** to the UART bus. 
+  This connection is not possible in query mode. Since the SDS011 can not be configured in RX-only mode, 
+  ``update_interval`` has no effect and the sensor must be configured separately. Defaults to ``false``.
+
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
+
+.. note::
+
+    The configuration variables ``query_mode`` and ``update_interval`` reconfigure the SDS011 device. These
+    settings are still effective after power off. This can affect the performance of other libraries.
+    Factory defaults are continuous measurement and active reporting.
 
 See Also
 --------
