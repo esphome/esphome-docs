@@ -30,22 +30,22 @@ for some motors.
 
 .. code-block:: yaml
 
-  esphome:
+    esphome:
     name: cover
     platform: ESP8266
     board: esp01_1m
 
-  wifi:
+    wifi:
     ssid: '***'
     password: '***'
 
-  api:
+    api:
 
-  logger:
+    logger:
 
-  ota:
+    ota:
 
-  binary_sensor:
+    binary_sensor:
     - platform: gpio
       pin:
         number: 10
@@ -73,7 +73,7 @@ for some motors.
                 }
               }
 
-  switch:
+    switch:
     - platform: gpio
       pin: 12
       id: open
@@ -81,7 +81,7 @@ for some motors.
       pin: 5
       id: close
 
-  cover:
+    cover:
     - platform: template
       name: "Cover"
       id: cover

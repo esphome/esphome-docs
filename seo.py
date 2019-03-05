@@ -10,7 +10,7 @@ class SEONode(nodes.General, nodes.Element):
                  author=None, author_twitter=None, keywords=None):
         super(SEONode, self).__init__()
         self.title = title
-        self.description = description
+        self.description = description.replace('\n', ' ')
         self.image = image
         self.author = author
         self.author_twitter = author_twitter

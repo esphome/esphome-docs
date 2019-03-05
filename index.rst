@@ -5,14 +5,17 @@ ESPHome
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
 .. seo::
-    :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
+    :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
+      tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers
+      for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
     :image: logo.png
 
 .. image:: /images/logo-text.svg
 
 .. raw:: html
 
-    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" style="max-width:100%;height:26px;width:116.1px;margin-top:10px;"></a>
+    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub"
+      style="max-width:100%;height:26px;width:116.1px;margin-top:10px;"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" style="max-width:100%;height:26px;width:126.3px;"></a>
     <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" style="max-width:100%;height:26px;width:122.1px;"></a>
     <a href="/guides/faq.html#donations"><img src="/_images/shield-donate.svg" alt="Donate" style="max-width:100%;height:26px;width:110.6px;"></a>
@@ -150,8 +153,8 @@ Binary Sensor Components
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
-    PN532 Tag, components/binary_sensor/pn532, pn532.jpg
-    RDM6300 Tag, components/binary_sensor/rdm6300, rdm6300.jpg
+    PN532, components/binary_sensor/pn532, pn532.jpg
+    RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -181,14 +184,13 @@ Light Components
     RGBW Light, components/light/rgbw, rgbw.png
 
     RGBWW Light, components/light/rgbww, rgbw.png
-    FastLED Clockless Light, components/light/fastled_clockless, color_lens.svg
-    FastLED SPI Light, components/light/fastled_spi, color_lens.svg
+    FastLED Light, components/light/fastled, color_lens.svg
 
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
-:doc:`FastLED Clockless Light </components/light/fastled_clockless>`.
+:doc:`FastLED Light </components/light/fastled>`.
 
 Switch Components
 -----------------
@@ -220,12 +222,10 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg
-    GPIO LCD, components/display/lcd_gpio, lcd.jpg
-    PCF8574 LCD, components/display/lcd_pcf8574, lcd.jpg
+    LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     Nextion, components/display/nextion, nextion.jpg
-    SSD1306 I2C, components/display/ssd1306_i2c, ssd1306.jpg
-    SSD1306 SPI, components/display/ssd1306_spi, ssd1306.jpg
+    SSD1306, components/display/ssd1306, ssd1306.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
 
 Cover Components
@@ -253,22 +253,13 @@ Misc Components
 
 .. imgtable::
 
-    Dallas Hub, components/dallas, dallas.jpg
-    Remote Transmitter Hub, components/remote_transmitter, remote.svg
-    Remote Receiver Hub, components/remote_receiver, remote.svg
-    PCA9685 Hub, components/pca9685, pca9685.jpg
-    ADS1115 Hub, components/ads1115, ads1115.jpg
     Debug Component, components/debug, bug-report.svg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    ESP32 Touch Hub, components/esp32_touch, touch.svg
     Status LED, components/status_led, led-on.svg
-    PN532, components/pn532, pn532.jpg
-    RDM6300, components/rdm6300, rdm6300.jpg
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
-    MY9231/MY9291 LED driver, components/my9231, my9231.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
 
 Additional Custom Components
@@ -298,6 +289,7 @@ Cookbook
     BME280 Environment, cookbook/bme280_environment, bme280.jpg
     Sonoff Fishpond Pump, cookbook/sonoff-fishpond-pump, cookbook-sonoff-fishpond-pump.jpg
     H801 LED Controller, cookbook/h801, h801.jpg
+    Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
