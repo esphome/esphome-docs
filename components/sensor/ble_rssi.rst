@@ -37,5 +37,3 @@ See Also
 - :doc:`/components/sensor/index`
 - :apiref:`esp32_ble_tracker.h`
 - :ghedit:`Edit`
-
-.. disqus::

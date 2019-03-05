@@ -44,5 +44,3 @@ See Also
 - :doc:`/components/power_supply`
 - :apiref:`output/esp8266_pwm_output.h`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -55,5 +55,3 @@ See Also
 
 - :apiref:`text_sensor/mqtt_subscribe_text_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

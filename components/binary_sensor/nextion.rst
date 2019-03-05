@@ -40,5 +40,3 @@ See Also
 - :doc:`index`
 - :apiref:`display/nextion.h`
 - :ghedit:`Edit`
-
-.. disqus::

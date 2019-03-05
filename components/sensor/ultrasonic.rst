@@ -88,5 +88,3 @@ See Also
 - :doc:`template`
 - :apiref:`sensor/ultrasonic_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

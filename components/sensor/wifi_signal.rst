@@ -44,5 +44,3 @@ See Also
 - :doc:`/components/wifi`
 - :apiref:`sensor/wifi_signal_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

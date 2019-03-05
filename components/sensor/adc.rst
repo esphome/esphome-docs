@@ -82,5 +82,3 @@ See Also
 - :doc:`max6675`
 - :apiref:`sensor/adc.h`
 - :ghedit:`Edit`
-
-.. disqus::

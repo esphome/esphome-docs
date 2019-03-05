@@ -156,10 +156,27 @@ Configuration options:
 - **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
   Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
 
+Advantages over MQTT
+--------------------
+
+The ESPHome native API has many advantages over using MQTT for communication with Home
+Automation software (currently only Home Assistant). But MQTT is a great protocol and will
+never be removed. Features of native API (vs. MQTT):
+
+- **Much more efficient:** ESPHome encodes all messages in a highly optimized format with
+  protocol buffers - for example binary sensor state messages are about 1/10 of the size.
+- **One-click configuration:** ESPHome just needs one click to set up in Home Assistant -
+  no more messing around with retained MQTT discovery messages and alike.
+- **One less single point of failure:** In the ESPHome native API each ESP is its own server.
+  With MQTT, when the broker shuts off nothing can communicate anymore.
+- **Stability:** Since ESPHome has far more control over the protocol than with MQTT,
+  it's really easy for us to roll out stability improvements.
+- **Low Latency:** The native API is optimized for very low latency, usually this is only
+  a couple of milliseconds and far less than can be noticed by the eye.
+
+
 See Also
 --------
 
 - :apiref:`api/api_server.h`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -81,5 +81,3 @@ See Also
 - :apiref:`sensor/mpu6050_component.h`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`
-
-.. disqus::

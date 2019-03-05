@@ -30,5 +30,3 @@ See Also
 - :ref:`automation`
 - :apiref:`binary_sensor/homeassistant_binary_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

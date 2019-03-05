@@ -92,7 +92,7 @@ You will need to solder pins to the board inside the h801 (fortunately its prett
 not a lot of components or stuff in the way part from the 2 wires on the back)
 
 3.3v, GND, TX and RX (RX to RX and TX to TX) needs to be connected to your serial adapter, the
-two other pins must be shorted by a jumper or a breadboard cable when flashing.
+two other pins must be shorted throughout the flashing process by a jumper or a breadboard cable.
 (Remember to remove it after flashing)
 
 See Also
@@ -101,5 +101,3 @@ See Also
 - :doc:`/components/light/rgbw`
 - :doc:`/components/output/esp8266_pwm`
 - :ghedit:`Edit`
-
-.. disqus::

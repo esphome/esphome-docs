@@ -611,5 +611,3 @@ See Also
 - :doc:`configuration-types`
 - :doc:`faq`
 - :ghedit:`Edit`
-
-.. disqus::

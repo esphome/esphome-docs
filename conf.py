@@ -41,7 +41,6 @@ sys.path.append(os.path.abspath('.'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'disqus',
     'github',
     'seo',
     'sitemap',
@@ -113,6 +112,9 @@ html_theme = 'alabaster'
 # documentation.
 #
 html_baseurl = os.getenv('BASE_URL', 'https://esphome.io')
+with open('_static/custom.css', 'rb') as f:
+    custom_css_hash = "{:08X}".format(hash(f.read()) % 2**32)
+
 html_theme_options = {
     # 'logo': 'logo-full.png',
     'logo_name': False,
@@ -120,6 +122,10 @@ html_theme_options = {
     'sidebar_collapse': True,
     'fixed_sidebar': True,
     'show_powered_by': False,
+}
+
+html_context = {
+    'custom_css_hash': custom_css_hash,
 }
 
 html_logo = 'images/logo-text.svg'

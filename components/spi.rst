@@ -47,5 +47,3 @@ See Also
 
 - :apiref:`spi_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

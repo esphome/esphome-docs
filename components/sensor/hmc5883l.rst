@@ -56,5 +56,3 @@ See Also
 - :apiref:`sensor/hmc5883l.h`
 - `HMC5883L Library <https://github.com/jarzebski/Arduino-HMC5883L>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
 - :ghedit:`Edit`
-
-.. disqus::

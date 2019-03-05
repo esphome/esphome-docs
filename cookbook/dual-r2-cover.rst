@@ -111,5 +111,3 @@ See Also
 - :doc:`/components/cover/template`
 - :doc:`/devices/sonoff`
 - :ghedit:`Edit`
-
-.. disqus::

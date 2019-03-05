@@ -64,5 +64,3 @@ See Also
 - :doc:`/components/binary_sensor/gpio`
 - :doc:`bruh`
 - :ghedit:`Edit`
-
-.. disqus::
