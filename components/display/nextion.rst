@@ -51,11 +51,12 @@ Creating a HMI file
 -------------------
 
 First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
-create a display file. When you open up the editor create new project and set your device type (Device model is listed at the back of the display). 
+create a display file. When you open up the editor create new project and set your device type (Device model is listed at the back of the display).
 
 You can add whatever components you want to the display.
 
-If you want to enable touch for any component, you must check mark ``Send Component ID`` under the both ``Touch Press Event`` and ``Touch Release Event``. This will let your microcontroller know that this component has been pressed and released. 
+If you want to enable touch for any component, you must check mark ``Send Component ID`` under the both ``Touch Press Event`` and 
+``Touch Release Event``. This will let your microcontroller know that this component has been pressed and released.
 
 .. figure:: images/nextion-HMI1.jpg
     :align: center
