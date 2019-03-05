@@ -431,5 +431,3 @@ See Also
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_transmitter.h`
 - :ghedit:`Edit`
-
-.. disqus::

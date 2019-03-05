@@ -62,5 +62,3 @@ See Also
 - :apiref:`sensor/dht12_component.h`
 - `DHT12 Library <https://github.com/dplasa/dht>`__ by `Daniel Plasa <https://github.com/dplasa>`__
 - :ghedit:`Edit`
-
-.. disqus::

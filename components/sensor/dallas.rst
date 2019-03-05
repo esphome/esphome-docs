@@ -153,5 +153,3 @@ See Also
   by `Miles Burton <https://github.com/milesburton>`__
 - :apiref:`sensor/dallas_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

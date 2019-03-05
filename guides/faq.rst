@@ -280,5 +280,3 @@ See Also
 - :doc:`ESPHome index </index>`
 - :doc:`contributing`
 - :ghedit:`Edit`
-
-.. disqus::

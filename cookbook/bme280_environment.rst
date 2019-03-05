@@ -115,5 +115,3 @@ See Also
 - :doc:`/components/sensor/template`
 - :doc:`/components/sensor/bme280`
 - :ghedit:`Edit`
-
-.. disqus::

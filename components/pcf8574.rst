@@ -64,5 +64,3 @@ See Also
 - `PCF8574 Arduino Library <https://github.com/skywodd/pcf8574_arduino_library>`__ by `Fabien Batteix <https://github.com/skywodd>`__
 - :apiref:`io/pcf8574_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

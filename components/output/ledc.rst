@@ -51,5 +51,3 @@ See Also
 - :apiref:`output/ledc_output_component.h`
 - `esp-idf LEDC API docs <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html>`__
 - :ghedit:`Edit`
-
-.. disqus::

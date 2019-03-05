@@ -178,5 +178,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

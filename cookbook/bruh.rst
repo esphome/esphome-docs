@@ -86,5 +86,3 @@ See Also
 - :doc:`/components/sensor/adc`
 - :doc:`/components/binary_sensor/gpio`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -180,5 +180,3 @@ See Also
 
 - :apiref:`api/api_server.h`
 - :ghedit:`Edit`
-
-.. disqus::

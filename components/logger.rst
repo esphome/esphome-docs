@@ -159,5 +159,3 @@ See Also
 - :doc:`/components/uart`
 - :apiref:`log_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

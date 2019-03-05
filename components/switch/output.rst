@@ -37,5 +37,3 @@ See Also
 - :doc:`/components/output/index`
 - :apiref:`switch_/output_switch.h`
 - :ghedit:`Edit`
-
-.. disqus::

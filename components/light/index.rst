@@ -554,5 +554,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

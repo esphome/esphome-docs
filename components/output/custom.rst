@@ -90,5 +90,3 @@ See Also
 --------
 
 - :ghedit:`Edit`
-
-.. disqus::

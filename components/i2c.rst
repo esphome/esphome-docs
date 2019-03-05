@@ -44,5 +44,3 @@ See Also
 
 - :apiref:`i2c_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

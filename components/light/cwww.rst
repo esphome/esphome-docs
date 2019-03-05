@@ -56,5 +56,3 @@ See Also
 - :doc:`/components/output/pca9685`
 - :apiref:`light/light_state.h`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -65,5 +65,3 @@ See Also
 
 - :apiref:`ota_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

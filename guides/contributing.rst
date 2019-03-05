@@ -480,5 +480,3 @@ See Also
 - :doc:`ESPHome index </index>`
 - :doc:`faq`
 - :ghedit:`Edit`
-
-.. disqus::

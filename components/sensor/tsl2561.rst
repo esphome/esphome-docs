@@ -60,5 +60,3 @@ See Also
 - `SparkFun TSL2561 Arduino Library <https://github.com/sparkfun/SparkFun_TSL2561_Arduino_Library>`__ by `Sparkfun <https://sparkfun.com/>`__
 - :apiref:`sensor/tsl2561_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::
