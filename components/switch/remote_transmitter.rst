@@ -1,14 +1,65 @@
-Remote Transmitter Switch
-=========================
+Remote Transmitter
+==================
 
 .. seo::
     :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
     :image: remote.png
     :keywords: Infrared, IR, RF, Remote, TX
 
+.. _remote-transmitter-component:
+
+Component/Hub
+-------------
+
+The ``remote_transmitter`` component lets you send infrared messages to control
+devices in your home. First, you need to setup a global hub that specifies which pin your remote
+sender is connected to. Afterwards you can create :ref:`individual
+switches <remote-transmitter-switch>` that each send a pre-defined remote signal to a device.
+
+Use-cases are for example infrared remotes or 433MHz signals.
+
+.. note::
+
+    This component is *much* more accurate on the ESP32, since that chipset has a dedicated
+    peripheral for sending exact signal sequences.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    remote_transmitter:
+      pin: GPIO32
+      carrier_duty_percent: 50%
+
+    # Individual switches
+    switch:
+      - platform: remote_transmitter
+        name: "Panasonic TV Off"
+        panasonic:
+          address: 0x4004
+          command: 0x100BCBD
+
+Configuration variables:
+************************
+
+-  **pin** (**Required**, :ref:`config-pin`): The pin to transmit the remote signal on.
+-  **carrier_duty_percent** (*Optional*, int): How much of the time the remote is on. For example, infrared
+   protocols modulate the signal using a carrier signal. Set this is ``50%`` if you're working with IR leds and to
+   ``100%`` if working with a other things like 433MHz transmitters.
+-  **id** (*Optional*, :ref:`config-id`): Manually specify
+   the ID used for code generation. Use this if you have multiple remote transmitters.
+
+.. note::
+
+    See :ref:`finding_remote_codes` for a guide for setting this up.
+
+.. _remote-transmitter-switch:
+
+Switch
+------
+
 The ``remote_transmitter`` switch platform allows you to create switches
 that send a pre-defined remote control sequence
-using the :doc:`/components/remote_transmitter`. Every time
+using the :ref:`remote-transmitter-component`. Every time
 the switch is turned on, the configured remote signal is sent.
 
 Use cases include, but are not limited to, infrared remotes, 433MHz signals and so on.
@@ -33,7 +84,7 @@ Use cases include, but are not limited to, infrared remotes, 433MHz signals and 
         repeat: 25
 
 Configuration variables:
-------------------------
+************************
 
 - **name** (**Required**, string): The name for the switch.
 - The remote code, see :ref:`remote_transmitter-codes`. Only one
@@ -43,7 +94,7 @@ Configuration variables:
   - **times** (int): The number of times the code should be sent. Defaults to ``1``.
   - **wait_time** (:ref:`time <config-time>`): The time to wait between repeats.
 
-- **remote_transmitter_id** (*Optional*, :ref:`config-id`): The id of the :doc:`/components/remote_transmitter`.
+- **remote_transmitter_id** (*Optional*, :ref:`config-id`): The id of the :ref:`remote-transmitter-component`.
   Defaults to the first hub specified.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Switch <config-switch>`.
@@ -68,7 +119,7 @@ Configuration variables:
 .. _remote_transmitter-codes:
 
 Remote Codes
-------------
+************
 
 Supported remote codes:
 
@@ -164,14 +215,17 @@ Configuration variables:
     Must be a string of 0s and 1s. For example ``'11001``.
   - **device** (**Required**, string): The device within the group, usually the state of the last 5 DIP switches.
     Must be a string of 0s and 1s. For example ``'01000``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
-- **rc_switch_type_b**: Send an RCSwitch `type B code <https://github.com/sui77/rc-switch/wiki/HowTo_OperateLowCostOutlets#type-b-two-rotarysliding-switches>`__.
+- **rc_switch_type_b**: Send an RCSwitch
+  `type B code <https://github.com/sui77/rc-switch/wiki/HowTo_OperateLowCostOutlets#type-b-two-rotarysliding-switches>`__.
 
   - **address** (**Required**, int): The number of the first rotary switch. For example ``4``.
   - **channel** (**Required**, int): The number of the first rotary switch. For example ``2``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
 - **rc_switch_type_c**: Send an RCSwitch `type C code <https://github.com/sui77/rc-switch/wiki/HowTo_OperateLowCostOutlets#type-c-intertechno>`__.
@@ -179,14 +233,16 @@ Configuration variables:
   - **family** (**Required**, string): The family of the device. Must be a character from ``a`` to ``p``.
   - **group** (**Required**, int): The group of the device. For example ``4``.
   - **address** (**Required**, int): The address of the device. For example ``2``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
 - **rc_switch_type_d**: Send an RCSwitch type D code.
 
   - **group** (**Required**, string): The group of the device. Must be a character from ``a`` to ``d``.
   - **device** (**Required**, int): The address of the device. For example ``3``.
-  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch is triggered. See :ref:`remote_transmitter-on_off_template`.
+  - **state** (**Required**, boolean): Whether to send a "turn on" or "turn off" signal when this switch
+    is triggered. See :ref:`remote_transmitter-on_off_template`.
   - **protocol** (*Optional*, :ref:`RCSwitch protocol <rc_switch-protocol>`): The RCSwitch protocol to use. Defaults to ``1``.
 
 - **rc5**: Send a RC5 IR code.
@@ -210,7 +266,7 @@ Finding Remote Codes
 
 Each remote transmitter uses a different protocol to send its information. So to replicate an infrared or 433MHz
 remote you will first need to "learn" these codes. You will first need to hook up a receiver and sniff the codes
-using the :doc:`remote receiver component </components/remote_receiver>` like this:
+using the :doc:`remote receiver component </components/binary_sensor/remote_receiver>` like this:
 
 .. code-block:: yaml
 
@@ -240,9 +296,9 @@ Now you only need to set up the remote transmitter (which well *send* the code) 
 .. code-block:: yaml
 
     remote_transmitter:
-       pin: GPIO23
-       # Set to 100% when working with RF signals, and 50% if working with IR leds
-       carrier_duty_percent: 100%
+      pin: GPIO23
+      # Set to 100% when working with RF signals, and 50% if working with IR leds
+      carrier_duty_percent: 100%
 
 And lastly, we need to set up the switch that, when turned on, will send our pre-defined remote code:
 
@@ -370,8 +426,7 @@ See Also
 --------
 
 - :doc:`index`
-- :doc:`/components/remote_transmitter`
-- :doc:`/components/remote_receiver`
+- :doc:`/components/binary_sensor/remote_receiver`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote/remote_transmitter.h`

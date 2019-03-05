@@ -6,7 +6,7 @@ Light Partition
     :image: color_lens.png
 
 The ``partition`` light platform allows you to combine multiple addressable light segments
-(like :doc:`fastled_clockless` or :doc:`neopixelbus`) into a single addressable light.
+(like :doc:`fastled` or :doc:`neopixelbus`) into a single addressable light.
 This platform also allows splitting up an addressable lights into multiple segments, so that
 segments can be individually controlled.
 
@@ -61,7 +61,7 @@ See Also
 --------
 
 - :doc:`/components/light/index`
-- :doc:`/components/light/fastled_clockless`
+- :doc:`/components/light/fastled`
 - :doc:`/components/light/neopixelbus`
 - :apiref:`light/addressable_light.h`
 - :ghedit:`Edit`
