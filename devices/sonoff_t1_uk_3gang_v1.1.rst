@@ -9,6 +9,7 @@ ESPHome can also be used with Sonoff T1 UK 3 Gang wireless switches. These devic
 basically just an ESP8266 chip with 3 relays to control power output ant three backlit capacitive touch buttons to control the relays.
 
 .. note::
+
     This instruction is made for T1 UK with the touch board v1.1 which is trickier to get into flash mode
     than v1
 
@@ -76,7 +77,7 @@ With careful twisting motion detatch the face plate.
 
     Careful twisting motion.
 
-After that, use the same screwdriver to carefully lift the top PCB off of the switch. 
+After that, use the same screwdriver to carefully lift the top PCB off of the switch.
 This PCB contains the ESP chip and what's left inside the switch body are relays.
 
 .. figure:: images/sonoff_t1_uk_3g_plate_off_v1.1.jpg
@@ -151,7 +152,7 @@ Step 4: Uploading Firmware
 --------------------------
 
 In order to upload the firmware, you're first going to need to get the chip into a flash mode, otherwise
-the device will start up without accepting any firmware flash attempts. 
+the device will start up without accepting any firmware flash attempts.
 To put ESP8266 into flash mode you need to connect ``GPIO0`` to ``GND`` when the device is powering up.
 
 This is a tricky process with T1 and the best way to do it is to use a wire with pins on either side.
@@ -182,6 +183,7 @@ Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your
 you will be able to use all of ESPHome's great features with your Sonoff T1 UK 3 Gang. Now you can put your T1 back together and fire up.
 
 .. note::
+
     While now your T1 will start up and connect to your WiFi network if you power it up from UART it will not behave normally,
     it may flash random LEDs, turn on anf off touchpads' backlight and not react on touching touchpads. This will all be fixed once you re-assemble your T1
     and power it up from the mains power once safe to do so.
