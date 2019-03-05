@@ -14,11 +14,10 @@ ESPHome
 
 .. raw:: html
 
-    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub"
-      style="max-width:100%;height:26px;width:116.1px;margin-top:10px;"></a>
-    <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" style="max-width:100%;height:26px;width:126.3px;"></a>
-    <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" style="max-width:100%;height:26px;width:122.1px;"></a>
-    <a href="/guides/faq.html#donations"><img src="/_images/shield-donate.svg" alt="Donate" style="max-width:100%;height:26px;width:110.6px;"></a>
+    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
+    <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
+    <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
+    <a href="/guides/faq.html#donations"><img src="/_images/shield-donate.svg" alt="Donate" class="index-shield"></a>
 
 .. _guides:
 

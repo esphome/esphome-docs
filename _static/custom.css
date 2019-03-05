@@ -76,3 +76,9 @@ table.docutils {
 .not-hidden {
   display: block !important;
 }
+
+img.index-shield {
+  max-width: 100%;
+  height: 26px;
+  margin-top: 10px;
+}
