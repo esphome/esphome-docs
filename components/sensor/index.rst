@@ -243,7 +243,7 @@ on the sensor but only push out an average on a specific interval (thus increasi
    that are at least 6.0 big or -4.0.
 
 ``or`` Filter
-**************
+*************
 
 .. code-block:: yaml
 

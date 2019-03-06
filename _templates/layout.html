@@ -5,7 +5,7 @@
 {% endblock %}
 
 {%- block extrahead %}
-  <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}?hash={{ custom_css_hash }}" type="text/css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
   <link rel="shortcut icon" href="/_static/favicon.ico">
   <link rel="icon" type="image/png" sizes="512x512" href="/_static/favicon-512x512.png">

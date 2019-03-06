@@ -133,6 +133,29 @@ Rendering
 - The property ``has_state()`` on a sensor is useful as it can take some seconds to get the data from Home Assistant and you may not want to display ``Nan``
 - Refer to the rendering engine :ref:`display-engine` for more features (it can draw lines and circles too!)
 
+Add a Text-Based Sensor
+-----------------------
+
+Below follows an example that replaces the "Mitt smarta hem" top printout with the alarm status from the alarm component in Home Assistant.
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: homeassistant
+        entity_id: alarm_control_panel.my_alarm_system
+        name: "Alarm State"
+        id: alarm_state
+
+    display:
+      - platform: ssd1306_i2c
+        model: "SH1106 128x64"
+        reset_pin: D0
+        address: 0x3C
+        lambda: |-
+          // Print "Alarm State: <state>" in top center
+          it.printf(64, 0, id(font1), TextAlign::TOP_CENTER, "Alarm State: %s", id(alarm_state).state.c_str());
+
+
 See Also
 --------
 
