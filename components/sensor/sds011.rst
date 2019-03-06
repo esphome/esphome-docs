@@ -35,7 +35,6 @@ TX/RX labels are from the perspective of the individual device). Additionally, y
         pm_10_0:
           name: "Particulate Matter <10.0µm Concentration"
         update_interval: 10min
-        query_mode: false
         rx_only: false
 
 With ``update_interval``, the working period of the SDS011 device will be changed. If ``update_interval`` is less
@@ -56,23 +55,19 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. This affects the working
-  period of the SDS011 sensor as well as the query interval if query mode is enabled. Defaults to ``1s``.
-
-- **query_mode** (*Optional*, boolean): Whether the sensor should be actively polled or actively report. 
-  Defaults to ``false``.
+  period of the SDS011 sensor. Defaults to ``1s``.
 
 - **rx_only** (*Optional*, boolean): Whether the sensor is connected **only by RX pin** to the UART bus. 
-  This connection is not possible in query mode. Since the SDS011 can not be configured in RX-only mode, 
-  ``update_interval`` has no effect and the sensor must be configured separately. Defaults to ``false``.
+  Since the SDS011 can not be configured in RX-only mode, ``update_interval`` has no effect and the sensor must be
+  configured separately. Defaults to ``false``.
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
 .. note::
 
-    The configuration variables ``query_mode`` and ``update_interval`` reconfigure the SDS011 device. These
-    settings are still effective after power off. This can affect the performance of other libraries.
-    Factory defaults are continuous measurement and active reporting.
+    The configuration variable ``update_interval`` reconfigure the SDS011 device. This setting is still effective
+    after power off. This can affect the performance of other libraries. Factory default is continuous measurement.
 
 See Also
 --------
