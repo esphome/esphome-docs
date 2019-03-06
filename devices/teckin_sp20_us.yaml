@@ -1,36 +1,32 @@
-# Example ESPHome code to emulate stock firmware functionality while maintaining 100% local control through Home Assistant.
+# Example ESPHome code to emulate stock firmware functionality while maintaining 100% 
+# local control through Home Assistant.
 
 substitutions:
   device_name: '<NODE_NAME>'     # used internally.. e.g. teckin_sp20
   friendly_name: '<Node Name>'   # displayed in HA.. e.g. Teckin SP20
-
+  wifi_ssid: '<WIFI_SSID>'
+  wifi_password: '<WIFI_PASSWORD>'
 
 esphome:
   name: ${device_name}
   platform: ESP8266
   board: esp01_1m
 
-
 wifi:
-  ssid: '<WIFI_SSID>'
-  password: '<WIFI_PASSWORD>'
+  ssid: ${wifi_ssid}
+  password: ${wifi_password}
 
-
+# Enable Logs from the device
 logger:
 
-
+# Enable Home Assistant API
 api:
 
-
+# Enable Over-The-Air updates
 ota:
 
-
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-
-
 sensor:
+  # Power measuring sensor
   - platform: hlw8012
     sel_pin:
       number: GPIO12
@@ -41,9 +37,10 @@ sensor:
       name: ${friendly_name} Current
     power:
       name: ${friendly_name} Power
-      id: ${device_name}_power
+      id: power
       filters:
-        - lambda: return (x / 2.2);
+        # Some calibration
+        - multiply: 0.4545
     voltage:
       name: ${friendly_name} Voltage
     current_resistor: 0.001  # default 0.001
@@ -51,66 +48,46 @@ sensor:
     change_mode_every: 3     # default 8
     update_interval: 3s      # default 60s
 
+  # Sum power readings over the day
   - platform: total_daily_energy
     name: ${friendly_name} Total Daily Energy
-    power_id: ${device_name}_power
+    power_id: power
     filters:
       - multiply: 0.001   # convert Wh to kWh
     unit_of_measurement: kWh
 
+# Enable getting local time for total daily energy calculation
+time:
+  - platform: homeassistant
+    id: homeassistant_time
 
 status_led:
   pin:
     number: GPIO0   # Red LED
     inverted: True
 
-
-output:
-  - platform: esp8266_pwm
-    id: blue_led_output
-    pin:
-      number: GPIO2
-      inverted: True
-
-
-light:
-  - platform: monochromatic
-    name: ${friendly_name} Blue LED
-    output: blue_led_output
-    id: blue_led
-    default_transition_length: 1ms   # default 1s
-    internal: True
-
-
 binary_sensor:
   - platform: gpio
-    pin:
-      number: GPIO13
+    pin: GPIO13
     id: button
     name: ${friendly_name} Button
     on_press:
-      - switch.toggle: relay_template
+      - switch.toggle: relay
     internal: True
-
 
 switch:
   - platform: gpio
+    id: blue_led
+    pin:
+      number: GPIO2
+      inverted: True
+    
+  - platform: gpio
     pin: GPIO4
     id: relay
-
-  # Tie the LED & relay operation together and report status based on relay state.
-  - platform: template
     name: ${friendly_name}
-    id: relay_template
-    lambda: |-
-      if (id(relay).state) {
-        return true;
-      } else {
-        return false;
-      }
-    turn_on_action:
-      - light.turn_on: blue_led
-      - switch.turn_on: relay
-    turn_off_action:
-      - light.turn_off: blue_led
-      - switch.turn_off: relay
+    # Tie Blue LED to relay
+    on_turn_on:
+    - switch.turn_on: blue_led
+    on_turn_off:
+    - switch.turn_off: blue_led
