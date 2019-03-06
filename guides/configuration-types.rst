@@ -207,3 +207,5 @@ See Also
 - :doc:`getting_started_command_line`
 - :doc:`faq`
 - :ghedit:`Edit`
+
+.. disqus::

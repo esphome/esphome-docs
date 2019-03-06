@@ -175,3 +175,5 @@ See Also
 - :apiref:`light/fastled_light_output.h`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - :ghedit:`Edit`
+
+.. disqus::

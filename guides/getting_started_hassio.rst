@@ -159,3 +159,5 @@ See Also
 - :doc:`ESPHome index </index>`
 - :doc:`getting_started_command_line`
 - :ghedit:`Edit`
+
+.. disqus::

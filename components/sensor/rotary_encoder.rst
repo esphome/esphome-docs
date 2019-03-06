@@ -87,3 +87,5 @@ See Also
 - `Mechanical Input Library <https://github.com/jkDesignDE/MechInputs>`__ by `Jochen Krapf <https://github.com/JK-de>`__
 - :apiref:`sensor/rotary_encoder.h`
 - :ghedit:`Edit`
+
+.. disqus::

@@ -38,3 +38,5 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sensor/mqtt_subscribe_sensor.h`
 - :ghedit:`Edit`
+
+.. disqus::

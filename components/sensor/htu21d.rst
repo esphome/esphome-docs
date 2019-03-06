@@ -67,3 +67,5 @@ See Also
 - :apiref:`sensor/htu21d_component.h`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`
+
+.. disqus::

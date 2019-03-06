@@ -148,3 +148,5 @@ See Also
 - :apiref:`display/ssd1306.h`
 - `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`
+
+.. disqus::

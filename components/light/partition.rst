@@ -65,3 +65,5 @@ See Also
 - :doc:`/components/light/neopixelbus`
 - :apiref:`light/addressable_light.h`
 - :ghedit:`Edit`
+
+.. disqus::

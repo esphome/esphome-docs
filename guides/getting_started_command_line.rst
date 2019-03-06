@@ -186,3 +186,5 @@ See Also
 - :doc:`ESPHome index </index>`
 - :doc:`getting_started_hassio`
 - :ghedit:`Edit`
+
+.. disqus::

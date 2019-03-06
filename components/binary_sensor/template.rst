@@ -92,3 +92,5 @@ See Also
 - :ref:`automation`
 - :apiref:`binary_sensor/template_binary_sensor.h`
 - :ghedit:`Edit`
+
+.. disqus::

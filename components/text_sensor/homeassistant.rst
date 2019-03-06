@@ -31,3 +31,5 @@ See Also
 - :ref:`automation`
 - :apiref:`text_sensor/homeassistant_text_sensor.h`
 - :ghedit:`Edit`
+
+.. disqus::

@@ -42,3 +42,5 @@ See Also
 - :doc:`/components/power_supply`
 - :apiref:`output/gpio_binary_output_component.h`
 - :ghedit:`Edit`
+
+.. disqus::

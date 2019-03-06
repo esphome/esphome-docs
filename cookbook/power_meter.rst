@@ -66,3 +66,5 @@ See Also
 
 - :doc:`/components/sensor/pulse_counter`
 - :ghedit:`Edit`
+
+.. disqus::

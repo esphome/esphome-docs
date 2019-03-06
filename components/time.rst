@@ -313,3 +313,5 @@ See Also
 
 - :apiref:`time/rtc_component.h`
 - :ghedit:`Edit`
+
+.. disqus::

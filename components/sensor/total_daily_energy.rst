@@ -68,3 +68,5 @@ See Also
 - :doc:`/cookbook/power_meter`
 - :apiref:`sensor/total_daily_energy.h`
 - :ghedit:`Edit`
+
+.. disqus::

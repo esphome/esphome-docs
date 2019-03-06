@@ -99,3 +99,5 @@ See Also
 - :apiref:`light/neo_pixel_light_output.h`
 - `NeoPixelBus library <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__
 - :ghedit:`Edit`
+
+.. disqus::

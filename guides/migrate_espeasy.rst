@@ -56,3 +56,5 @@ See Also
 - :doc:`migrate_espurna`
 - :doc:`migrate_sonoff_tasmota`
 - :ghedit:`Edit`
+
+.. disqus::

@@ -69,3 +69,5 @@ See Also
 - :apiref:`sensor/hdc1080_component.h`
 - `HDC1080 Library <https://github.com/closedcube/ClosedCube_HDC1080_Arduino>`__ by `ClosedCube <https://www.tindie.com/stores/closedcube/>`__
 - :ghedit:`Edit`
+
+.. disqus::

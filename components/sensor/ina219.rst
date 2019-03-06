@@ -73,3 +73,5 @@ See Also
 - :apiref:`sensor/ina219.h`
 - `INA291 Arduino Library <https://github.com/adafruit/Adafruit_INA219>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`
+
+.. disqus::

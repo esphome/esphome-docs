@@ -217,3 +217,5 @@ See Also
 - :doc:`/devices/sonoff_basic`
 - `Flashing sonoff basic <https://randomnerdtutorials.com/how-to-flash-a-custom-firmware-to-sonoff/>`__.
 - `Adding ESPHome to Home Assistant <https://www.home-assistant.io/components/esphome/>`__.
+
+.. disqus::

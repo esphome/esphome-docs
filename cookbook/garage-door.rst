@@ -50,3 +50,5 @@ See Also
 - :doc:`/components/switch/gpio`
 - :doc:`/components/cover/template`
 - :ghedit:`Edit`
+
+.. disqus::

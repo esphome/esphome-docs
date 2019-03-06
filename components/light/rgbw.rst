@@ -50,3 +50,5 @@ See Also
 - :doc:`/components/output/my9231`
 - :apiref:`light/light_state.h`
 - :ghedit:`Edit`
+
+.. disqus::

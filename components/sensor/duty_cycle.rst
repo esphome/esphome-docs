@@ -39,3 +39,5 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sensor/duty_cycle_sensor.h`
 - :ghedit:`Edit`
+
+.. disqus::
