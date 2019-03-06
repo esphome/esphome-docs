@@ -57,7 +57,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. This affects the working
   period of the SDS011 sensor. Defaults to ``1s``.
 
-- **rx_only** (*Optional*, boolean): Whether the sensor is connected **only by RX pin** to the UART bus. 
+- **rx_only** (*Optional*, boolean): Whether the sensor is connected **only by RX pin** to the UART bus.
   Since the SDS011 can not be configured in RX-only mode, ``update_interval`` has no effect and the sensor must be
   configured separately. Defaults to ``false``.
 
