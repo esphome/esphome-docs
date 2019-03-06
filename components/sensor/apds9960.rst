@@ -82,3 +82,5 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sensor/apds9960.h`
 - :ghedit:`Edit`
+
+.. disqus::

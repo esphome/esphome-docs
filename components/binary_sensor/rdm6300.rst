@@ -106,3 +106,5 @@ See Also
 - :doc:`/components/binary_sensor/index`
 - :apiref:`binary_sensor/rdm6300_component.h`
 - :ghedit:`Edit`
+
+.. disqus::

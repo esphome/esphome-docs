@@ -50,3 +50,5 @@ See Also
 - :doc:`/components/output/pca9685`
 - :apiref:`fan/fan_state.h`
 - :ghedit:`Edit`
+
+.. disqus::

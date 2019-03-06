@@ -167,3 +167,5 @@ See Also
 - :apiref:`display/lcd_display.h`
 - `Arduino LiquidCrystal Library <https://www.arduino.cc/en/Reference/LiquidCrystal>`__
 - :ghedit:`Edit`
+
+.. disqus::

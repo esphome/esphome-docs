@@ -31,3 +31,5 @@ See Also
 
 - :apiref:`text_sensor/version_text_sensor.h`
 - :ghedit:`Edit`
+
+.. disqus::

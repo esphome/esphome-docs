@@ -333,3 +333,5 @@ See Also
 - :apiref:`display/max7219.h`
 - `MAX7219 Library <https://github.com/nickgammon/MAX7219>`__ by `Nick Gammon <https://github.com/nickgammon>`__
 - :ghedit:`Edit`
+
+.. disqus::

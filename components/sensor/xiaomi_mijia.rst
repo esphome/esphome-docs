@@ -95,3 +95,5 @@ See Also
   by `@mspider65 <https://github.com/mspider65>`__
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`
+
+.. disqus::

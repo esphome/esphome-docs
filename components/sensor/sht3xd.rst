@@ -59,3 +59,5 @@ See Also
 - :doc:`htu21d`
 - :apiref:`sensor/sht3xd_component.h`
 - :ghedit:`Edit`
+
+.. disqus::

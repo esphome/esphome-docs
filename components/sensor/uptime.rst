@@ -29,3 +29,5 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sensor/uptime_sensor.h`
 - :ghedit:`Edit`
+
+.. disqus::

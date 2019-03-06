@@ -144,3 +144,5 @@ See Also
 - :doc:`rdm6300`
 - :apiref:`binary_sensor/pn532_component.h`
 - :ghedit:`Edit`
+
+.. disqus::

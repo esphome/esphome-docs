@@ -39,3 +39,5 @@ See Also
 - :ref:`automation`
 - :apiref:`sensor/homeassistant_sensor.h`
 - :ghedit:`Edit`
+
+.. disqus::

@@ -130,3 +130,5 @@ See Also
 - :ref:`automation`
 - :apiref:`deep_sleep_component.h`
 - :ghedit:`Edit`
+
+.. disqus::
