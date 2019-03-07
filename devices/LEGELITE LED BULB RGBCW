@@ -1,0 +1,63 @@
+#sold on amazon. https://www.amazon.com/gp/product/B07GR4SN63/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+#still have some funkiness with the cold white to warm white with colors.  but for the most more it works.
+esphome:
+  name: rgb_bulb1
+  platform: ESP8266
+  board: esp01_1m
+  
+wifi:
+  ssid: '**********'
+  password: '**********'
+  manual_ip:
+    # Set this to the IP of the ESP
+    static_ip: 192.168.2.33
+    # Set this to the IP address of the router. Often ends with .1
+    gateway: 192.168.2.1
+    # The subnet of the network. 255.255.255.0 works for most home networks.
+    subnet: 255.255.255.0  
+  
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: '********'
+
+ota:
+  password: '*********'
+
+#mqtt:
+# broker: '192.168.1.***'
+# username: '*****'
+# password: '*****'
+
+# Individual outputs
+output:
+  - platform: esp8266_pwm
+    pin: GPIO4
+    id: 'output_red'
+  - platform: esp8266_pwm  
+    pin: GPIO12
+    id: 'output_green'
+  - platform: esp8266_pwm  
+    pin: GPIO14
+    id: 'output_blue'
+  - platform: esp8266_pwm   
+    pin: GPIO15
+    id: 'output_cold_white'
+  - platform: esp8266_pwm   
+    pin: GPIO13
+    id: 'output_warm_white'    
+    
+light:
+  - platform: rgbww
+    name: "rgb_bulb1"
+    red: output_red
+    green: output_green
+    blue: output_blue
+    cold_white: output_cold_white
+    warm_white: output_warm_white
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2800 K    
+    
+    
