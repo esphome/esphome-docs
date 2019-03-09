@@ -45,7 +45,7 @@ Configuration variables:
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
 - **use_address** (*Optional*, string): Manually override what address to use to connect
-  to the ESP. Defaults to auto-generated value.
+  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the prior configured IP address.
 - **ap** (*Optional*): Enable an access point mode on the node.
 
   - **ssid** (*Required*, string): The name of the access point to create.
