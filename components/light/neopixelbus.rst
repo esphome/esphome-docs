@@ -67,9 +67,9 @@ Configuration variables:
 
   - ``ESP8266_DMA`` (default for ESP8266, only on pin GPIO3)
   - ``ESP8266_UART0`` (only on pin GPIO1)
-  - ``ESP8266_UART1`` (only on pin GPIO3)
+  - ``ESP8266_UART1`` (only on pin GPIO2)
   - ``ESP8266_ASYNC_UART0`` (only on pin GPIO1)
-  - ``ESP8266_ASYNC_UART1`` (only on pin GPIO3)
+  - ``ESP8266_ASYNC_UART1`` (only on pin GPIO2)
   - ``ESP32_I2S_0``
   - ``ESP32_I2S_1`` (default for ESP32)
   - ``BIT_BANG`` (can flicker a bit)

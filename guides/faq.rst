@@ -159,8 +159,19 @@ To install the dev version of ESPHome:
 - In Hass.io: In the ESPHome add-on repository there's also a second add-on called ``ESPHome Dev``.
   Install that and stop the stable version (both can't run at the same time without port collisions).
 - From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
-- From docker: Run ``docker pull esphome/esphome:dev`` and use ``esphome/esphome:dev`` in all
-  commands.
+- From docker, you need to build the docker image yourself (automated dev builds are not possible
+  due to docker hubs limited build quota)
+
+  .. code-block:: bash
+
+      git clone https://github.com/esphome/esphome.git
+      cd esphome
+      docker build -t esphome-dev -f docker/Dockerfile .
+      docker run [...] -it esphome-dev livingroom.yaml compile
+
+      # Update image and rebuild
+      git pull
+      docker build -t esphome-dev -f docker/Dockerfile .
 
 The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
@@ -181,7 +192,7 @@ Sure! I'd be happy to help :) You can contact me here:
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
--  Alternatively, also under contact (at) esphome.io
+-  Alternatively, also under contact (at) esphome.io (NO SUPPORT!)
 
 .. _wifi-problems:
 
