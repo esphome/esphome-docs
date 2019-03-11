@@ -1,7 +1,7 @@
 Brilliant / Mirabella Genio Smart Plugs
 =======================================
 
-Brilliant / Mirabella Genio Smart Plugs are a tuya based smart bulb sold by Bunnings and Kmart respectively in Australia.
+Brilliant / Mirabella Genio Smart Plugs are a tuya based smart plugs sold by Bunnings and Kmart respectively in Australia.
 
 .. figure:: images/brilliant-mirabella-genio-smart-plugs.jpg
     :align: center
