@@ -150,7 +150,7 @@ the value the sensor shows.
     # Example configuration entry
     - platform: dht
       # ...
-      temperature
+      temperature:
         filters:
           - calibrate_linear:
               # Map 0.0 (from sensor) to 0.0 (true value)
