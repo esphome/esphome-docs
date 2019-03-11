@@ -126,7 +126,6 @@ variable ``output_component1``.
       board: esp01_1m
 
       # Ensure the light turns on by default if the physical switch is actuated.
-      # https://esphome.io/components/esphome#esphome-on-boot
       on_boot:
         priority: 100 # Highest priority, ensures light turns on without delay.
         then:
@@ -164,7 +163,6 @@ variable ``output_component1``.
       board: esp01_1m
 
       # Ensure the light turns on by default if the physical switch is actuated.
-      # https://esphome.io/components/esphome#esphome-on-boot
       on_boot:
         priority: 100 # Highest priority, ensures light turns on without delay.
         then:
@@ -208,7 +206,6 @@ variable ``output_component1``.
       board: esp01_1m
 
       # Ensure the light turns on by default if the physical switch is actuated.
-      # https://esphome.io/components/esphome#esphome-on-boot
       on_boot:
         priority: 100 # Highest priority, ensures light turns on without delay.
         then:
