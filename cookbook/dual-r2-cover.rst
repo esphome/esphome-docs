@@ -31,13 +31,13 @@ for some motors.
 .. code-block:: yaml
 
     esphome:
-    name: cover
-    platform: ESP8266
-    board: esp01_1m
+      name: cover
+      platform: ESP8266
+      board: esp01_1m
 
     wifi:
-    ssid: '***'
-    password: '***'
+      ssid: '***'
+      password: '***'
 
     api:
 
@@ -48,7 +48,7 @@ for some motors.
     binary_sensor:
     - platform: gpio
       pin:
-        number: 10
+        number: GPIO10
         inverted: true
       id: button
       on_press:
@@ -75,10 +75,10 @@ for some motors.
 
     switch:
     - platform: gpio
-      pin: 12
+      pin: GPIO12
       id: open
     - platform: gpio
-      pin: 5
+      pin: GPIO5
       id: close
 
     cover:
@@ -102,7 +102,8 @@ for some motors.
       stop_action:
         - switch.turn_off: open
         - switch.turn_off: close
-      optimistic: true
+      optimistic: True
+      assumed_state: True
 
 See Also
 --------

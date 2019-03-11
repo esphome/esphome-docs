@@ -278,7 +278,7 @@ Cookbook
 
 .. imgtable::
 
-    Garage Door, cookbook/garage-door, window-open.svg
+    Endstop Cover, cookbook/endstop-cover, window-open.svg
     PIR Sensor, cookbook/pir, pir.jpg
     Relay, cookbook/relay, relay.jpg
     BRUH Multisensor, cookbook/bruh, bruh.png
@@ -290,6 +290,7 @@ Cookbook
     H801 LED Controller, cookbook/h801, h801.jpg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
+    Garage Door, cookbook/garage-door, window-open.svg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
