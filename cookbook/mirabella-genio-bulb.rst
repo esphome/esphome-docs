@@ -12,6 +12,7 @@ firmware can be uploaded allowing you to control the bulbs via Home Assistant.
 
 1. Create the ESPHome Firmware
 ------------------------------
+
 #. Refer to either :doc:`/guides/getting_started_command_line` or :doc:`/guides/getting_started_hassio` before moving onto the next step.
 #. Select a bulb configuration below based on the bulb/s you have and copy all of the text in the code block and paste into your
    ``name_of_esphome_configuration.yaml`` file.
