@@ -92,7 +92,6 @@ Contributors
 - `escoand (@escoand) <https://github.com/escoand>`__ - 5 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
-- `Franck Nijhof (@frenck) <https://github.com/frenck>`__ - 57 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
 - `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 2 contributions
@@ -138,4 +137,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Mon Mar 11 18:53:06 2019 UTC.*
+*This page was last updated Mon Mar 11 19:13:02 2019 UTC.*
