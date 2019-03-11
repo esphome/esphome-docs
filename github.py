@@ -1,27 +1,27 @@
 import csv
 from itertools import zip_longest
+import os
 
 from docutils import nodes, utils
-from docutils.parsers.rst import directives, states
+from docutils.parsers.rst import directives
 from docutils.parsers.rst.directives.tables import Table
-from sphinx.util.nodes import make_refnode
 
 
 def libpr_role(name, rawtext, text, lineno, inliner, options=None,
                content=None):
-    ref = 'https://github.com/OttoWinter/esphomelib/pull/{}'.format(text)
-    return [make_link_node(rawtext, 'lib#{}'.format(text), ref, options)], []
+    ref = 'https://github.com/esphome/esphome-core/pull/{}'.format(text)
+    return [make_link_node(rawtext, 'core#{}'.format(text), ref, options)], []
 
 
 def yamlpr_role(name, rawtext, text, lineno, inliner, options=None,
                 content=None):
-    ref = 'https://github.com/OttoWinter/esphomeyaml/pull/{}'.format(text)
-    return [make_link_node(rawtext, 'yaml#{}'.format(text), ref, options)], []
+    ref = 'https://github.com/esphome/esphome/pull/{}'.format(text)
+    return [make_link_node(rawtext, 'esphome#{}'.format(text), ref, options)], []
 
 
 def docspr_role(name, rawtext, text, lineno, inliner, options=None,
                 content=None):
-    ref = 'https://github.com/OttoWinter/esphomedocs/pull/{}'.format(text)
+    ref = 'https://github.com/esphome/esphome-docs/pull/{}'.format(text)
     return [make_link_node(rawtext, 'docs#{}'.format(text), ref, options)], []
 
 
@@ -29,6 +29,21 @@ def ghuser_role(name, rawtext, text, lineno, inliner, options=None,
                 content=None):
     ref = 'https://github.com/{}'.format(text)
     return [make_link_node(rawtext, '@{}'.format(text), ref, options)], []
+
+
+def apiref_role(name, rawtext, text, lineno, inliner, options=None,
+                content=None):
+    text = text.split('/')[-1].replace('_', '__').replace('.', '_8')
+    ref = '/api/{}.html'.format(text)
+    return [make_link_node(rawtext, 'API Reference', ref, options)], []
+
+
+def ghedit_role(name, rawtext, text, lineno, inliner, options=None,
+                content=None):
+    path = os.path.relpath(inliner.document.current_source,
+                           inliner.document.settings.env.app.srcdir)
+    ref = 'https://github.com/esphome/esphome-docs/blob/current/{}'.format(path)
+    return [make_link_node(rawtext, 'Edit this page on GitHub', ref, options)], []
 
 
 def make_link_node(rawtext, text, ref, options=None):
@@ -64,18 +79,19 @@ class ImageTableDirective(Table):
             name, page, image = row
             link = page.strip()
             if not link.startswith('http') and not link.startswith('/'):
-                link = '/esphomeyaml/{}'.format(link)
+                link = '/{}'.format(link)
             if '.html' not in link:
                 link += '.html'
             items.append({
                 'name': name.strip(),
                 'link': link,
-                'image': '/esphomeyaml/images/{}'.format(image.strip()),
+                'image': '/images/{}'.format(image.strip()),
             })
 
         col_widths = self.get_column_widths(3)
         title, messages = self.make_title()
         table = nodes.table()
+        table['classes'].append('table-center')
 
         # Set up column specifications based on widths
         tgroup = nodes.tgroup(cols=3)
@@ -126,7 +142,6 @@ class ImageTableDirective(Table):
             rows.append(trow)
         tbody.extend(rows)
 
-        table['classes'] += []
         self.add_name(table)
         if title:
             table.insert(0, title)
@@ -192,7 +207,6 @@ class PinTableDirective(Table):
             trow += entry
             tbody += trow
 
-        table['classes'] += ['no-center']
         self.add_name(table)
         if title:
             table.insert(0, title)
@@ -202,8 +216,12 @@ class PinTableDirective(Table):
 
 def setup(app):
     app.add_role('libpr', libpr_role)
+    app.add_role('corepr', libpr_role)
     app.add_role('yamlpr', yamlpr_role)
+    app.add_role('esphomepr', yamlpr_role)
     app.add_role('docspr', docspr_role)
     app.add_role('ghuser', ghuser_role)
+    app.add_role('apiref', apiref_role)
+    app.add_role('ghedit', ghedit_role)
     app.add_directive('imgtable', ImageTableDirective)
     app.add_directive('pintable', PinTableDirective)

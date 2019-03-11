@@ -10,7 +10,7 @@ class SEONode(nodes.General, nodes.Element):
                  author=None, author_twitter=None, keywords=None):
         super(SEONode, self).__init__()
         self.title = title
-        self.description = description
+        self.description = description.replace('\n', ' ')
         self.image = image
         self.author = author
         self.author_twitter = author_twitter
@@ -44,7 +44,7 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     def create_property_meta(name, content):
         if content is None:
             return
-        self.meta.append('<meta property="{}" content="{}"/>\n'.format(name, encode_text(content)))
+        self.meta.append('<meta property="{}" content="{}">\n'.format(name, encode_text(content)))
 
     # Base
     create_content_meta("description", node.description)
@@ -70,24 +70,19 @@ def seo_visit(self: HTMLTranslator, node: SEONode):
     create_property_meta("og:title", node.title)
     create_property_meta("og:image", node.image)
     create_property_meta("og:type", "article" if node.author is not None else "website")
-    create_property_meta("og:site_name", "esphomelib")
     create_property_meta("og:description", node.description)
-
-    # Misc
-    create_content_meta("HandheldFriendly", "True")
-    create_content_meta("MobileOptimized", "320")
-    create_content_meta("theme-color", "#DFDFDF")
 
 
 def redirect_visit(self: HTMLTranslator, node: RedirectNode):
     self.meta.append('<meta http-equiv="refresh" content="0; url={}">'.format(node.url))
 
     self.body.append(self.starttag(node, 'p',
-        'Redirecting to <a href="{0}">{0}</a>'.format(node.url)))
+                                   'Redirecting to <a href="{0}">{0}</a>'.format(node.url)))
 
 
 def seo_depart(self, _):
     pass
+
 
 def redirect_depart(self, _):
     self.body.append('</p>')
@@ -116,14 +111,13 @@ class SEODirective(Directive):
             self.options['image'] = env.config.html_baseurl + image
         return [SEONode(**self.options)]
 
+
 class RedirectDirective(Directive):
     option_spec = {
         'url': directives.unchanged,
     }
 
     def run(self):
-        env = self.state.document.settings.env
-
         return [RedirectNode(**self.options)]
 
 

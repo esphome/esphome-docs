@@ -1,0 +1,18 @@
+[build]
+  publish = "_build/html"
+  command = "make netlify"
+  environment = { BASE_URL = "https://esphome.io" }
+
+[context.beta]
+  environment = { BASE_URL = "https://beta.esphome.io" }
+
+[context.next]
+  environment = { BASE_URL = "https://next.esphome.io" }
+
+[context.production]
+  environment = { BASE_URL = "https://esphome.io", PRODUCTION = "YES" }
+
+# A basic redirect rule
+[[redirects]]
+  from = "/esphomeyaml/*"
+  to = "/:splat"

@@ -2,10 +2,10 @@ Web Server API
 ==============
 
 .. seo::
-    :description: Migration guide for installing esphomelib on ESPs running ESPEasy.
+    :description: Migration guide for installing ESPHome on ESPs running ESPEasy.
     :image: espeasy.png
 
-Since version 1.3, esphomelib includes a built-in web server that can be used to view states
+Since version 1.3, ESPHome includes a built-in web server that can be used to view states
 and send commands. In addition to visible the web-frontend available under the root index of the
 web server, there's also two other features the web server currently offers: A real time event
 source and REST API.
@@ -15,13 +15,13 @@ not something like configuring the node, as that would quickly blow up the requi
 memory size.
 
 First up, to use the web server enable it using ``App.init_web_server()`` directly from code
-or using the :doc:`Web Server Section </esphomeyaml/components/web_server>` in esphomeyaml.
+or using the :doc:`Web Server Section </components/web_server>` in ESPHome.
 Then, navigate to the front end interface with the IP of the node or alternatively using
 mDNS with ``<name>.local/``. So for example to navigate to the web server of a node called
 ``livingroom``, you would enter ``livingroom.local/`` in your browser.
 
-While it's currently recommended to use esphomelib directly through Home Assistant, if you want
-to integrate esphomelib with an external or self-built application you can use two available
+While it's currently recommended to use ESPHome directly through Home Assistant, if you want
+to integrate ESPHome with an external or self-built application you can use two available
 APIs: the real-time event source API and REST API.
 
 Event Source API
@@ -179,10 +179,10 @@ creating a POST request at ``/light/<id>/turn_on?brightness=128&transition=2`` w
 -  **transition**: Transition to off in this duration in seconds.
 
 Fan
-****
+***
 
 Fans are similar to switches as they can be turned on/off and toggled. In addition, if the
-underlying fan supports it, fans in the web server also support the speed settings "low", 
+underlying fan supports it, fans in the web server also support the speed settings "low",
 "medium" and "high" and an oscillation setting. To get the current state of a fan, create a
 GET request to ``/fan/<id>``.
 
