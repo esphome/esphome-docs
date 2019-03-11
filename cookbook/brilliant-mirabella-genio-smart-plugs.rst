@@ -101,15 +101,16 @@ firmware can be uploaded allowing you to control the smart plugs via Home Assist
    * Brilliant `(PDF Manual) <https://www.brilliantsmart.com.au/wp-content/uploads/2019/02/03.-How-to-setup-the-Smart-plug.pdf>`__
 
     * To connect the Smart WiFi Plug to your WiFi press and hold the manual control button for about 5 seconds until you hear a click. Let go of the button
-      as soon as you hear the **click**. Then press button once again to activate blinking. **The red indicator light should now blink rapidly (2 times per second)**.
+      as soon as you hear the **click**. Then press button once again to activate blinking. **The red indicator light should now blink rapidly (2 times per
+      second)**.
 
    * Mirabella `(PDF Manual) <https://img1.wsimg.com/blobby/go/67cdd3b9-3600-4104-b097-603c05201237/downloads/1cq5h6nt7_336441.pdf>`__
 
-    * To do this, ensure your plug is on (the indicator light should be blue), hold the power button down for 5 seconds until you hear a click, let go of the power
-      button and then press the button once to activate.
+    * To do this, ensure your plug is on (the indicator light should be blue), hold the power button down for 5 seconds until you hear a click, let go of the
+      power button and then press the button once to activate.
 
-#. Press enter on your putty window to start the flash process and wait. If the connection is successful you should see a large amount of scrolling text, this is the
-   script backing up the factory shipped firmware.
+#. Press enter on your putty window to start the flash process and wait. If the connection is successful you should see a large amount of scrolling text, this
+   is the script backing up the factory shipped firmware.
 #. Once the process is complete you can type ``curl http://10.42.42.42/flashURL?url=http://10.42.42.1/files/firmware.bin``
 #. The plug will restart and if everything is working correctly after a few seconds you should be able to press the button triggering the relay and turning the
    blue led on.
