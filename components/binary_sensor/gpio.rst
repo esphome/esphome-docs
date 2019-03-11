@@ -50,7 +50,7 @@ you can do so with the :ref:`Pin Schema <config-pin_schema>`.
 Inverting Values
 ----------------
 
-Use the ``inverted`` property of the :ref:`Pin Schema <config-pin_schema>` to invert the binary
+Use the ``invert`` property of the :ref:`binary sensor filters <binary_sensor-filters>` to invert the binary
 sensor:
 
 .. code-block:: yaml
@@ -60,7 +60,8 @@ sensor:
       - platform: gpio
         pin:
           number: D2
-          inverted: True
+          filters:
+            invert:
         name: ...
 
 Debouncing Values
