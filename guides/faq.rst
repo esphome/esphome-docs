@@ -273,18 +273,6 @@ And a docker compose file looks like this:
     1. Enable Avahi on both subnets.
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
-Donations
----------
-
-I invest a lot of time into this project, so if you like ESPHome and want to
-support the project, donations are very welcome :)
-
-You can donate to me via PayPal. Other donation options are being
-explored. https://www.paypal.me/ottowinter
-
-(Please do not donate for specific features as I cannot guarantee I will
-be able to implement a feature because of complexity or other problems.)
-
 See Also
 --------
 

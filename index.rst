@@ -17,7 +17,7 @@ ESPHome
     <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
     <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
-    <a href="/guides/faq.html#donations"><img src="/_images/shield-donate.svg" alt="Donate" class="index-shield"></a>
+    <a href="/guides/supporters.html"><img src="/_images/shield-donate.svg" alt="Donate" class="index-shield"></a>
 
 .. _guides:
 
@@ -39,6 +39,7 @@ Guides
     Contributing, guides/contributing, github-circle.svg
 
     Changelog, changelog/index, new-box.svg
+    Supporters, guides/supporters, heart.svg
 
 .. _devices:
 

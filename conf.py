@@ -20,7 +20,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+import hashlib
 import os
 import subprocess
 from sphinx import addnodes
@@ -114,7 +114,7 @@ html_theme = 'alabaster'
 #
 html_baseurl = os.getenv('BASE_URL', 'https://esphome.io')
 with open('_static/custom.css', 'rb') as f:
-    custom_css_hash = "{:08X}".format(hash(f.read()) % 2**32)
+    custom_css_hash = hashlib.md5(f.read()).hexdigest()[:8]
 
 html_theme_options = {
     # 'logo': 'logo-full.png',
