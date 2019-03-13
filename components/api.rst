@@ -30,6 +30,7 @@ Configuration variables:
 
 - **port** (*Optional*, integer): The port to run the API Server on. Defaults to ``6053``.
 - **password** (*Optional*, string): The password to protect the API Server with. Defaults to no password.
+- **services** (*Optional*, list): A list of user-defined services. See :ref:`api-services`.
 - **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
   client connects to the API. This is needed because sometimes the low level ESP functions report that
   the ESP is connected to the network, when in fact it is not - only a full reboot fixes it.
@@ -156,6 +157,71 @@ Configuration options:
 - **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
   Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
 
+
+.. _api-services:
+
+User-defined Services
+---------------------
+
+It is also possible to get data from Home Assistant to ESPHome with user-defined services.
+When you declare services in your ESPHome YAML file, they will automatically show up in
+Home Assistant and you can call them directly.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    api:
+      services:
+        - service: start_laundry
+          then:
+            - switch.turn_on: relay
+            - delay: 3h
+            - switch.turn_off: relay
+
+For example with the configuration seen above, after uploading you will see a service
+called ``esphome.livingroom_start_laundry`` (livingroom is the node name) which you can
+then call.
+
+Additionally, you can also transmit data from Home Assistant to ESPHome with this method:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    api:
+      services:
+        - service: start_effect
+          variables:
+            my_brightness: int
+            my_effect: string
+          then:
+            - light.turn_on:
+                id: my_light
+                brightness: !lambda 'return my_brightness;'
+                my_effect: !lambda 'return my_effect;'
+
+Using the ``variables`` key you can tell ESPHome which variables to expect from Home Assistant.
+For example the service seen above would be executed with something like this:
+
+.. code-block:: yaml
+
+    # Example Home Assistant Service Call
+    service: esphome.livingroom_start_effect
+    data_template:
+      my_brightness: "{{ states.brightness.state }}"
+      my_effect: "Rainbow"
+
+Then each variable you define in the ``variables`` section is accessible in the automation
+triggered by the user-defined service through the name you gave it in the variables section
+(note: this is a local variable, so do not wrap it in ``id(...)`` to access it).
+
+There are currently 4 types of variables:
+
+- bool: A boolean (ON/OFF). C++ type: ``bool``
+- int: An integer. C++ type: ``int``/``int32_t``
+- float: A floating point number. C++ type: ``float``
+- string: A string. C++ type: ``std::string``
+
+
 Advantages over MQTT
 --------------------
 
@@ -173,7 +239,6 @@ never be removed. Features of native API (vs. MQTT):
   it's really easy for us to roll out stability improvements.
 - **Low Latency:** The native API is optimized for very low latency, usually this is only
   a couple of milliseconds and far less than can be noticed by the eye.
-
 
 See Also
 --------
