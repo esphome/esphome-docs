@@ -54,8 +54,13 @@ RST primer:
 
   .. code-block:: rst
 
-      My Sub-sub section
+      My Sub-sub Section
       ******************
+
+  .. note::
+
+      The length of the bar below the text **must** match the title Text length.
+      Also, titles should be in Title Case
 
 - **Links**: To create a link to an external resource (for example https://www.google.com), use
   ``\`Link text <link_url>\`__``. For example:
@@ -104,11 +109,11 @@ RST primer:
 
   .. code-block:: yaml
 
-        # Sample configuration entry
-        switch:
-          - platform: gpio
-            name: "Relay #42"
-            pin: GPIO13
+      # Sample configuration entry
+      switch:
+        - platform: gpio
+          name: "Relay #42"
+          pin: GPIO13
 
   .. note::
 
@@ -125,10 +130,10 @@ RST primer:
           Optional figure caption.
 
   .. figure:: images/dashboard.png
-     :align: center
-     :width: 40.0%
+      :align: center
+      :width: 40.0%
 
-     Optional figure caption.
+      Optional figure caption.
 
   .. note::
 
@@ -144,19 +149,19 @@ RST primer:
 
       .. note::
 
-           This is a note.
+          This is a note.
 
       .. warning::
 
-           This is a warning.
+          This is a warning.
 
   .. note::
 
-       This is a note.
+      This is a note.
 
   .. warning::
 
-       This is a warning.
+      This is a warning.
 
 - **Italic and boldface font families**: To *italicize* text, use one asterisk around the text. To put
   **a strong emphasis** on a piece of text, put two asterisks around it.
@@ -193,7 +198,8 @@ RST primer:
   1. Ordered Item #1
   2. Ordered Item #2
 
-- **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
+- **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see
+  `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
   New pages need to be added to the ``imgtable`` list. The syntax is CSV with <PAGE NAME>, <FILE NAME> (without RST),
   <IMAGE> (in top-level images/ directory). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
 
@@ -210,6 +216,7 @@ please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc
 
 Build
 *****
+
 .. note::
 
     The easiest way is to use the `esphome-docs docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
@@ -312,6 +319,63 @@ Finally, for documentation changes go to your esphome-docs folder, and install s
 
 Or alternatively just submit a draft PR to the docs repo and wait for netlify to create
 a build preview.
+
+Setting Up Git Environment
+--------------------------
+
+ESPHome's code-base is hosted on GitHub, and contributing is done exclusively through
+"Pull Requests" (PRs) in the GitHub interface. So you need to set up your git environment
+first.
+
+When you want to create a patch for ESPHome, first go to the repository you want to contribute to
+(esphome, esphome-core, etc) and click fork in the top right corner. This will create
+a fork of the repository that you can modify and create git branches on.
+
+.. code-block:: bash
+
+    # Clone your fork
+    git clone https://github.com/<YOUR_GITHUB_USERNAME>/<REPO_NAME>.git
+    # For example: git clone https://github.com/OttoWinter/esphome-core.git
+
+    # Add "upstream" remote
+    git remote add upstream https://github.com/esphome/<REPO_NAME>.git
+    # For example: git clone https://github.com/esphome/esphome-core.git
+
+    # For each patch, create a new branch from latest dev
+    git checkout dev
+    git pull upstream dev
+    git checkout -b <MY_NEW_FEATURE>
+    # For example: git checkout -b gpio-switch-fix
+
+    # Make your modifications, then commit changes with message describing changes
+    git add .
+    git commit -m "<COMMIT_MESSAGE>"
+    # For example: git commit -m "Fix GPIO Switch Not Turning Off Interlocked Switches"
+
+    # Upload changes
+    git push -u origin <BRANCH_NAME>
+    # For example: git push -u origin gpio-switch-fix
+
+Then go to your repository fork in GitHub and wait for a create pull request message to show
+up in the top (alternatively go to branches and create it from there). Fill out the
+Pull Request template outlining your changes; if your PR is not ready to merge yet please
+mark it as a draft PR in the dropdown of the green "create PR" button.
+
+**Review Process:** ESPHome's code base tries to have a high code standard. At the bottom
+of the Pull Request you will be able to see the "Travis" continuous integration check which
+will automatically go through your patch and try to spot errors. If the CI check fails,
+please see the travis log and fix all errors that appear there. Only PRs that pass the automated
+checks can be merged!
+
+**Catching up with reality**: Sometimes other commits have been made to the same files
+you edited. Then your changes need to be re-applied on top of the latest changes with
+a "rebase". More info `here <https://developers.home-assistant.io/docs/en/development_catching_up.html>`__.
+
+.. code-block:: bash
+
+    # Fetch the latest upstream changes and apply them
+    git fetch upstream dev
+    git rebase upstream/dev
 
 Contributing to ESPHome-Core
 ----------------------------

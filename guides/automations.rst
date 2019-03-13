@@ -313,8 +313,10 @@ All Triggers
 
 - :ref:`api.services <api-services>`
 - :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
-- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` / :ref:`binary_sensor.on_state <binary_sensor-on_state>`
-- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` / :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
+- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
+  :ref:`binary_sensor.on_state <binary_sensor-on_state>`
+- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
+  :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
 - :ref:`time.on_time <time-on_time>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
@@ -342,6 +344,8 @@ All Actions
 - :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>` /
   :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>` /
   :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
+- :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
+- :ref:`servo.write <servo-write_action>`
 
 .. _config-condition:
 
@@ -364,8 +368,8 @@ time period.
 
 .. code-block:: yaml
 
-   on_...:
-     then:
+    on_...:
+      then:
         - switch.turn_on: relay_1
         - delay: 2s
         - switch.turn_off: relay_1

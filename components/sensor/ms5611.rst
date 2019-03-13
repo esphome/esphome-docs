@@ -7,8 +7,7 @@ MS5611 Atmospheric Pressure Sensor
     :keywords: MS5611
 
 The ``ms5611`` sensor platform allows you to use your MS5611 atmospheric pressure sensors
-(`datasheet <https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5611-01BA03%7FB3%7Fpdf%7FEnglish%7FENG_DS_MS5611-01BA03_B3.pdf%7FCAT-BLPS0036>`__,
-`hobbytronics`_) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
+(`hobbytronics`_) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/ms5611-full.jpg

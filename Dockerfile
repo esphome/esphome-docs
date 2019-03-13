@@ -17,6 +17,6 @@ RUN pip3 install --no-cache-dir --no-binary :all: \
         sphinx
 
 EXPOSE 8000
-WORKDIR /data/esphomedocs
+WORKDIR /data/esphome-docs
 
 CMD ["make", "webserver"]

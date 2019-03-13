@@ -8,7 +8,8 @@ Frequently Asked Questions
 Tips for using ESPHome
 ----------------------
 
-1. ESPHome supports (most of) `Home Assistant's YAML configuration directives <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
+1. ESPHome supports (most of) `Home Assistant's YAML configuration directives
+   <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
    ``!include``, ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
 
@@ -158,8 +159,19 @@ To install the dev version of ESPHome:
 - In Hass.io: In the ESPHome add-on repository there's also a second add-on called ``ESPHome Dev``.
   Install that and stop the stable version (both can't run at the same time without port collisions).
 - From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
-- From docker: Run ``docker pull esphome/esphome:dev`` and use ``esphome/esphome:dev`` in all
-  commands.
+- From docker, you need to build the docker image yourself (automated dev builds are not possible
+  due to docker hubs limited build quota)
+
+  .. code-block:: bash
+
+      git clone https://github.com/esphome/esphome.git
+      cd esphome
+      docker build -t esphome-dev -f docker/Dockerfile .
+      docker run [...] -it esphome-dev livingroom.yaml compile
+
+      # Update image and rebuild
+      git pull
+      docker build -t esphome-dev -f docker/Dockerfile .
 
 The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
@@ -180,7 +192,7 @@ Sure! I'd be happy to help :) You can contact me here:
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
--  Alternatively, also under contact (at) esphome.io
+-  Alternatively, also under contact (at) esphome.io (NO SUPPORT!)
 
 .. _wifi-problems:
 
@@ -252,11 +264,12 @@ And a docker compose file looks like this:
 
     ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
     to work you need to enable host networking mode
-    
-    mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets. If your router supports Avahi, you are able to get mDNS working over different subnets.
-    
+
+    mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
+    If your router supports Avahi, you are able to get mDNS working over different subnets.
+
     Just follow the next steps:
-    
+
     1. Enable Avahi on both subnets.
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 

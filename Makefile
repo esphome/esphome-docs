@@ -1,10 +1,10 @@
 ESPHOME_CORE_PATH = ../esphome-core
-ESPHOME_CORE_TAG = v1.11.0
+ESPHOME_CORE_TAG = v1.11.2
 
 .PHONY: html cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png
 
 html:
-	sphinx-build -M html . _build $(O)
+	sphinx-build -M html . _build -W $(O)
 
 cleanhtml:
 	rm -rf "_build/html/*"
@@ -41,7 +41,7 @@ netlify: netlify-dependencies netlify-api html copy-svg2png
 	python3 travis.py
 
 webserver: html
-	cd "$(BUILDDIR)/html" && python3 -m http.server
+	cd "_build/html" && python3 -m http.server
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

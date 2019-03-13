@@ -51,8 +51,15 @@ Advanced options:
   is in.
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
+
+ESP8266 Options:
+
 - **board_flash_mode** (*Optional*, string): The `SPI flash mode <https://github.com/espressif/esptool/wiki/SPI-Flash-Modes>`__
   to use for the board. One of ``qio``, ``qout``, ``dio`` and ``dout``. Defaults to ``dout``.
+- **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash so
+  that the device state can be restored across power cycles. Keep in mind that this will slowly
+  wear out the flash (so if you have automations that repeatedly toggle a component do not use this
+  option (flash usually supports 100 000 write cycles). Defaults to ``no``.
 
 Automations:
 

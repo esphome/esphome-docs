@@ -53,8 +53,9 @@ of time to find+fix some final bugs.
 
 **How do I migrate from MQTT?**
 
-First, make sure you run at least Home Assistant 0.85.0 (currently a `beta release <https://www.home-assistant.io/docs/installation/updating/#run-the-beta-version>`__). Then, go through the
-:ref:`migration guide here <api-mqtt_to_native>`.
+First, make sure you run at least Home Assistant 0.85.0 (currently a
+`beta release <https://www.home-assistant.io/docs/installation/updating/#run-the-beta-version>`__).
+Then, go through the :ref:`migration guide here <api-mqtt_to_native>`.
 
 Python 3 Compatibility
 ----------------------
