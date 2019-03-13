@@ -135,6 +135,8 @@ for platforms with multiple sensors)
 Offset adds a constant value to each sensor value. Multiply multiplies each value
 by a constant value.
 
+.. _sensor-filter-calibrate_linear:
+
 ``calibrate_linear``
 ********************
 
