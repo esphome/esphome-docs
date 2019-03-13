@@ -38,8 +38,8 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
-- No patrons yet :( Become the first one here: https://www.patreon.com/ottowinter
-
+- Paul Morley
+- Nick Rout
 
 Contributors
 ------------
