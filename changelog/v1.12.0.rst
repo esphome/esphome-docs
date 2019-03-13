@@ -115,6 +115,9 @@ All changes
 - docs: Cookbook Guide for Brilliant / Mirabella Genio Smart Plugs :docspr:`195` by :ghuser:`cryptelli`
 - esphome: Add ESP32 Camera :esphomepr:`475`
 - docs: Add native API User-Defined services :docspr:`171`
+- docs: BME280 environment micrograms -> grams :docspr:`198` by :ghuser:`hajdbo`
+- esphome: Changes for 1.12 :esphomepr:`482`
+- core: Fixes for 1.12 :corepr:`551`
 
 Past Changelogs
 ---------------
