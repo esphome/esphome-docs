@@ -261,7 +261,9 @@ Misc Components
     Status LED, components/status_led, led-on.svg
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
+    Servo, components/servo, servo.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
+    ESP32 Camera, components/esp32_camera, camera.svg
 
 Additional Custom Components
 ----------------------------

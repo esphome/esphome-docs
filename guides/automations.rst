@@ -343,6 +343,8 @@ All Actions
 - :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>` /
   :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>` /
   :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
+- :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
+- :ref:`servo.write <servo-write_action>`
 
 .. _config-condition:
 
