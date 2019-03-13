@@ -14,8 +14,14 @@ of the ESP32 as an output component.
     # Example configuration entry
     output:
       - platform: ledc
-        pin: 19
+        pin: GPIO19
         id: gpio_19
+
+    # Example usage in a light
+    light:
+      - platform: monochromatic
+        output: gpio_19
+        name: "Kitchen Light"
 
 Configuration variables:
 ------------------------
@@ -26,10 +32,13 @@ Configuration variables:
   channel’s timer. Two LEDC channels always share the same timer and
   therefore also the same frequency. Defaults to 1000Hz.
 - **bit_depth** (*Optional*, int): The bit depth to use for the LEDC channel. Defaults to 12.
+- All other options from :ref:`Output <config-output>`.
+
+Advanced options:
+
 - **channel** (*Optional*, int): Manually set the `LEDC
   channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__
   to use. Two adjacent channels share the same timer. Defaults to an automatic selection.
-- All other options from :ref:`Output <config-output>`.
 
 See Also
 --------

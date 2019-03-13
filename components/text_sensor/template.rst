@@ -2,7 +2,7 @@ Template Text Sensor
 ====================
 
 .. seo::
-    :description: Instructions for setting up template text sensors in esphomelib
+    :description: Instructions for setting up template text sensors in ESPHome
     :image: description.png
 
 The ``template`` text sensor platform allows you to create a text sensor with templated values
@@ -34,7 +34,48 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   text sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Text Sensor <config-text_sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+.. _text_sensor-template-publish_action:
+
+``text_sensor.template.publish`` Action
+---------------------------------------
+
+You can also publish a state to a template text sensor from elsewhere in your YAML file
+with the ``text_sensor.template.publish`` action.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    text_sensor:
+      - platform: template
+        name: "Template Text Sensor"
+        id: template_text
+
+    # in some trigger
+    on_...:
+      - text_sensor.template.publish:
+          id: template_text
+          state: "Hello World"
+
+      # Templated
+      - text_sensor.template.publish:
+          id: template_text
+          state: !lambda 'return "Hello World";'
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the template text sensor.
+- **state** (**Required**, string, :ref:`templatable <config-templatable>`):
+  The state to publish.
+
+.. note::
+
+    This action can also be written in lambdas:
+
+    .. code-block:: cpp
+
+        id(template_text).publish_state("Hello World");
 
 See Also
 --------

@@ -6,6 +6,19 @@ Native API Component
     :image: server-network.png
     :keywords: Native API, ESPHome, Home Assistant
 
+The ESPHome native API is used to communicate with clients directly, with a highly-optimized
+network protocol. Currently, only the esphome tool and Home Assistant use this native API.
+
+After adding an ``api:`` line to your esphome configuration you can go to the Home Assistant
+webinterface and navigate to the "Integrations" screen in the "Configuration" panel. Then wait
+for the ESPHome device to show up under the discovered section (can take up to 5 minutes) or add
+the device manually by clicking "CONFIGURE" on the ESPHome integration and entering
+"<NODE_NAME>.local" as the address.
+
+The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
+the protocol data structure definitions here: https://github.com/esphome/esphome-core/blob/dev/src/esphome/api/api.proto.
+A python library that implements this protocol can be found `here <https://github.com/esphome/aioesphomeapi>`__.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -28,14 +41,14 @@ Configuration variables:
 Migrating from MQTT to Native API Setup in Home Assistant
 ---------------------------------------------------------
 
-The native API is the best way to use esphomelib together with Home Assistant - it's fast,
+The native API is the best way to use ESPHome together with Home Assistant - it's fast,
 highly efficient and requires almost zero setup (whereas MQTT requires you to set up an MQTT broker first).
 
-If you've previously used esphomelib with Home Assistant via MQTT and have enabled MQTT discovery,
+If you've previously used ESPHome with Home Assistant via MQTT and have enabled MQTT discovery,
 the upgrade process is unfortunately not just swapping out the ``mqtt`` for ``api`` in your configuration:
 Home Assistant's `entity registry <https://developers.home-assistant.io/docs/en/entity_registry_index.html>`__ complicates
 things a bit. If you don't follow these steps, all your new native API entities will have a trailing
-`_2` at the end of the entity ID.
+``_2`` at the end of the entity ID.
 
 You can repeat these steps for all your nodes, or convert them over to the new native API one by one.
 
@@ -57,32 +70,32 @@ You can repeat these steps for all your nodes, or convert them over to the new n
 
    .. raw:: html
 
-     <textarea rows="10" cols="50" id="entity-reg-converter"></textarea>
-     <button type="button" id="entity-reg-button">Convert Entity Registry</button>
-     <script>
-       var elem = document.getElementById("entity-reg-converter");
-       elem.addEventListener("click", function() {
-         elem.focus();
-         elem.select();
-       });
-       document.getElementById("entity-reg-button").addEventListener("click", function() {
-         try {
-           data = JSON.parse(elem.value);
-         } catch(e) {
-           alert(e);
-         }
-         var entities = data.data.entities;
-         var newEntities = [];
-         for (var i = 0; i < entities.length; i++) {
-           var entity = entities[i];
-           if (entity.platform != "mqtt") {
-             newEntities.push(entity);
+       <textarea rows="10" cols="50" id="entity-reg-converter"></textarea>
+       <button type="button" id="entity-reg-button">Convert Entity Registry</button>
+       <script>
+         var elem = document.getElementById("entity-reg-converter");
+         elem.addEventListener("click", function() {
+           elem.focus();
+           elem.select();
+         });
+         document.getElementById("entity-reg-button").addEventListener("click", function() {
+           try {
+             data = JSON.parse(elem.value);
+           } catch(e) {
+             alert(e);
            }
-         }
-         data.data.entities = newEntities;
-         elem.value = JSON.stringify(data, null, 4);
-       });
-     </script>
+           var entities = data.data.entities;
+           var newEntities = [];
+           for (var i = 0; i < entities.length; i++) {
+             var entity = entities[i];
+             if (entity.platform != "mqtt") {
+               newEntities.push(entity);
+             }
+           }
+           data.data.entities = newEntities;
+           elem.value = JSON.stringify(data, null, 4);
+         });
+       </script>
 
 4. Stop Home Assistant - this is necessary for the entity registry changes not to become overriden.
 
@@ -95,8 +108,8 @@ You can repeat these steps for all your nodes, or convert them over to the new n
 
   .. code-block:: yaml
 
-    # Example configuration entry
-    api:
+      # Example configuration entry
+      api:
 
 8. In Home Assistant, go to "Configuration" -> "Integrations" - if you've set up the ``discovery:`` component,
    you'll already see the ESP as a suggestion to be configured. But if you're having issues with that, you can
@@ -104,12 +117,6 @@ You can repeat these steps for all your nodes, or convert them over to the new n
 
 9. Now you can remove ``mqtt:`` from your ESPHome configuration. You don't have to, but doing so will
    free up resources (of which these ESPs don't have too much).
-
-.. warning::
-
-    Using MQTT together with the native API seems to be broken on some devices at the moment.
-    Of course in the future you will be able to use both at the same time, but the fix will
-    just take a while to get done as it's a larger scale issue.
 
 .. _api-homeassistant_service_action:
 
@@ -148,6 +155,25 @@ Configuration options:
   This is evaluated on the Home Assistant side with Home Assistant's templating engine.
 - **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
   Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
+
+Advantages over MQTT
+--------------------
+
+The ESPHome native API has many advantages over using MQTT for communication with Home
+Automation software (currently only Home Assistant). But MQTT is a great protocol and will
+never be removed. Features of native API (vs. MQTT):
+
+- **Much more efficient:** ESPHome encodes all messages in a highly optimized format with
+  protocol buffers - for example binary sensor state messages are about 1/10 of the size.
+- **One-click configuration:** ESPHome just needs one click to set up in Home Assistant -
+  no more messing around with retained MQTT discovery messages and alike.
+- **One less single point of failure:** In the ESPHome native API each ESP is its own server.
+  With MQTT, when the broker shuts off nothing can communicate anymore.
+- **Stability:** Since ESPHome has far more control over the protocol than with MQTT,
+  it's really easy for us to roll out stability improvements.
+- **Low Latency:** The native API is optimized for very low latency, usually this is only
+  a couple of milliseconds and far less than can be noticed by the eye.
+
 
 See Also
 --------

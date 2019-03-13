@@ -5,7 +5,7 @@ Binary Sensor Component
     :description: Information about the base representation of all binary sensors.
     :image: folder-open.png
 
-With esphomelib you can use different types of binary sensors. They will
+With ESPHome you can use different types of binary sensors. They will
 automatically appear in the Home Assistant front-end and have several
 configuration options.
 
@@ -50,14 +50,20 @@ Automations:
 - **on_multi_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is pressed in a specific sequence.
   See :ref:`binary_sensor-on_multi_click`.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+Advanced options:
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _binary_sensor-filters:
 
 Binary Sensor Filters
 ---------------------
 
-With binary sensor filters you can customize how esphomelib handles your binary sensor values even more.
+With binary sensor filters you can customize how ESPHome handles your binary sensor values even more.
 They are similar to :ref:`Sensor Filters <sensor-filters>`.
 
 .. code-block:: yaml
@@ -75,7 +81,6 @@ They are similar to :ref:`Sensor Filters <sensor-filters>`.
               } else {
                 return {};
               }
-          - heartbeat: 5s
 
 Supported filters:
 
@@ -91,15 +96,12 @@ Supported filters:
 - **lambda**: Specify any :ref:`lambda <config-lambda>` for more complex filters. The input value from
   the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
   the filter chain.
-- **heartbeat**: Periodically send out the last received value from the binary sensor with the given
-  interval. All state changes are still immediately published.
 
 Binary Sensor Automation
 ------------------------
 
-The triggers for binary sensors in esphomeyaml use the lingo from computer mouses. This naming might not
-perfectly fit every use case, but at least makes the naming consistent. For example, a ``press`` is triggered
-in the first moment when the button on your mouse is pushed down.
+The triggers for binary sensors in ESPHome use the lingo from computer mouses.
+For example, a ``press`` is triggered in the first moment when the button on your mouse is pushed down.
 
 You can access the current state of the binary sensor in :ref:`lambdas <config-lambda>` using
 ``id(binary_sensor_id).state``.
@@ -262,24 +264,24 @@ presses.
 
 .. code-block:: yaml
 
-      on_multi_click:
-      - timing:
-          - ON for at most 1s
-          - OFF for at most 1s
-          - ON for at most 1s
-          - OFF for at least 0.2s
-        then:
-          - logger.log: "Double Clicked"
-      - timing:
-          - ON for 1s to 2s
-          - OFF for at least 0.5s
-        then:
-          - logger.log: "Single Long Clicked"
-      - timing:
-          - ON for at most 1s
-          - OFF for at least 0.5s
-        then:
-          - logger.log: "Single Short Clicked"
+    on_multi_click:
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 1s
+        - ON for at most 1s
+        - OFF for at least 0.2s
+      then:
+        - logger.log: "Double Clicked"
+    - timing:
+        - ON for 1s to 2s
+        - OFF for at least 0.5s
+      then:
+        - logger.log: "Single Long Clicked"
+    - timing:
+        - ON for at most 1s
+        - OFF for at least 0.5s
+      then:
+        - logger.log: "Single Short Clicked"
 
 .. _binary_sensor-is_on_condition:
 .. _binary_sensor-is_off_condition:

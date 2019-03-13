@@ -1,6 +1,6 @@
-#include "esphomelib.h"
+#include "esphome.h"
 
-using namespace esphomelib;
+using namespace esphome;
 
 class MyCustomSensor : public PollingComponent, public sensor::Sensor {
  public:

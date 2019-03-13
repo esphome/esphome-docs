@@ -31,8 +31,7 @@ Configuration variables:
 -  **name** (**Required**, string): The name of the binary sensor.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
--  All other options from :ref:`Binary Sensor <config-binary_sensor>`
-   and :ref:`MQTT Component <config-mqtt-component>`.
+-  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _esp32_ble_tracker-setting_up_devices:
 
@@ -48,10 +47,6 @@ the logs to see discovered Bluetooth Low Energy devices.
 
     # Example configuration entry for finding MAC addresses
     esp32_ble_tracker:
-
-After adding that to your configuration, you will need to re-flash the ESP32 over USB, as esphomeyaml
-needs to repartition the flash memory of the ESP in order to allow for the increased firmware size that
-the BLE stack requires.
 
 Using the configuration above, first you should see a ``Starting scan...`` debug message at
 boot-up. Then, when a BLE device is discovered, you should see messages like

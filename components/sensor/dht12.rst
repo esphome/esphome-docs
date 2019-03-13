@@ -8,7 +8,7 @@ DHT12 Temperature+Humidity Sensor
 
 The ``dht12`` Temperature+Humidity sensor allows you to use your DHT12
 (`datasheet <http://www.robototehnika.ru/file/DHT12.pdf>`__,
-`electrodragon`_) i2c-based sensor with esphomelib. This sensor is also called AM2320 by some sellers.
+`electrodragon`_) i2c-based sensor with ESPHome. This sensor is also called AM2320 by some sellers.
 
 .. figure:: images/dht12-full.jpg
     :align: center
@@ -40,13 +40,13 @@ Configuration variables:
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **humidity** (**Required**): The information for the humidity sensor
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 

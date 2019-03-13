@@ -2,10 +2,10 @@ Light Component
 ===============
 
 .. seo::
-    :description: Instructions for setting up lights and light effects in esphomelib.
+    :description: Instructions for setting up lights and light effects in ESPHome.
     :image: folder-open.png
 
-The ``light`` domain in esphomeyaml lets you create lights that will
+The ``light`` domain in ESPHome lets you create lights that will
 automatically be shown in Home Assistant’s frontend and have many
 features such as RGB colors, transitions, flashing and effects.
 
@@ -144,11 +144,11 @@ Configuration options:
 Light Effects
 -------------
 
-esphomelib also offers a bunch of light effects you can use for your lights. The defaults for the
-effect parameters are made to work well on their own but of course esphomelib gives you the option to manually change
+ESPHome also offers a bunch of light effects you can use for your lights. The defaults for the
+effect parameters are made to work well on their own but of course ESPHome gives you the option to manually change
 these parameters.
 
-With esphomelib's light effects system you're basically creating a bunch of entries for the effects dropdown in
+With ESPHome's light effects system you're basically creating a bunch of entries for the effects dropdown in
 Home Assistant. If you wish to have several variants of the same effect you can of course also create multiple
 entries with each having a unique name like so:
 
@@ -506,6 +506,41 @@ Configuration variables:
   Defaults to ``16ms``.
 - **intensity** (*Optional*, percentage): The intensity of the effect, basically how much the random values can offset
   the currently active light color. Defaults to ``5%``.
+
+Addressable Lambda Effect
+*************************
+
+This effect allows you to access each LED individually in a custom light effect.
+
+You're passed in one variable: ``it`` - an `AddressableLight </api/classlight_1_1_addressable_light>`__
+instance (see API reference for more info).
+
+.. code-block:: yaml
+
+    light:
+    - platform: ...
+      effects:
+        - addressable_lambda:
+            name: "My Custom Effect"
+            update_interval: 16ms
+            lambda: |-
+              // it.size() - Number of LEDs
+              // it[num] - Access the LED at index num.
+              // Set the LED at num to the given r, g, b values
+              // it[num] = light::ESPColor(r, g, b);
+              // Get the color at index num (ESPColor instance)
+              // it[num].get();
+
+              // Example: Simple color wipe
+              for (int i = 1; i < it.size(); i++) {
+                it[i] = it[i - 1].get();
+              }
+              it[0] = light::ESPColor::random_color();
+
+
+Examples of this API can be found here:
+https://github.com/esphome/esphome-core/blob/dev/src/esphome/light/addressable_light_effect.cpp
+(the built-in addressable light effects).
 
 See Also
 --------

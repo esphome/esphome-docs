@@ -19,7 +19,7 @@ Changelog - Version 1.9.0
 
     esphomeflasher, guides/faq.html#i-can-t-get-flashing-over-usb-to-work, logo.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
-    MY9231/MY9291 LED driver, components/my9231, my9231.svg
+    MY9231/MY9291 LED driver, components/output/my9231, my9231.svg
 
 
 It's time for another release of esphomelib: 1.9.0. This release is quite different from the last one,
@@ -30,7 +30,7 @@ awesome things with DIY hardware!
 
 The features I'm particularly excited about are:
 
-* :ref:`esphomeflasher <esphomeflasher>` - Experiencing problems flashing esphomelib firmwares using esphomeyaml?
+* :ref:`esphomeflasher <esphome-flasher>` - Experiencing problems flashing esphomelib firmwares using esphomeyaml?
   No problem, esphomeflasher is a tool designed to make that super easy. Just let esphomeyaml generate the binary and flash
   from your PC.
 * :doc:`Over-the-Air Updates </components/ota>` have been completely re-written to make them a lot more
@@ -74,9 +74,9 @@ New Features
 
 - Compiling for ESP32s is now possible on RPis 🎉
 
-- esphomelib now has a new tool: `esphomeflasher <https://github.com/OttoWinter/esphomeflasher>`__ to simplify
+- esphomelib now has a new tool: `esphomeflasher <https://github.com/esphome/esphome-flasher>`__ to simplify
   flashing on Windows/MacOS machines **without having to install esphomeyaml**. So if esphomeyaml for some reason
-  can't find your USB port, you now can use the esphomeflasher app. See :ref:`esphomeflasher`.
+  can't find your USB port, you now can use the esphomeflasher app. See :ref:`esphome-flasher`.
 
 - ESP8266s now save the states of lights/switches/... internally and restores them on boot.
   Additionally, esphomelib can now operate in fully offline mode if your WiFi network goes down
@@ -96,7 +96,7 @@ New Features
 
   .. code-block:: text
 
-    [13:57:33][I][application:092]: You're running esphomelib v1.9.0 compiled on Nov  3 2018, 13:55:11
+      [13:57:33][I][application:092]: You're running esphomelib v1.9.0 compiled on Nov  3 2018, 13:55:11
 
 - Stack traces in the USB logs are now automatically decoded to make debugging easier
   (:yamlpr:`214`)
@@ -114,7 +114,7 @@ New Features
 - Added :ref:`binary_sensor-on_multi_click` trigger to distinguish between double, long, and single clicks.
   (:libpr:`262`, :docspr:`77`,  :yamlpr:`226`)
 
-- Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </components/pn532>` so that automations
+- Added an :ref:`pn532-on_tag` to :doc:`PN532 NFC Readers </components/binary_sensor/pn532>` so that automations
   can directly use the NFC tag ID
   (:libpr:`194`, :yamlpr:`189`, :docspr:`57`)
 
@@ -127,7 +127,7 @@ New Features
 - You now have to option to have a different log level for log messages sent over MQTT (:ref:`docs <mqtt-message>`,
   :yamlpr:`167`, :docspr:`51`)
 
-- Added a color correction option to :doc:`FastLED addressable lights </components/light/fastled_clockless>`
+- Added a color correction option to :doc:`FastLED addressable lights </components/light/fastled>`
   (:libpr:`234`, :yamlpr:`200`, :docspr:`64`)
 
 - Added a ``clean`` command to esphomeyaml to fix some occasional build errors

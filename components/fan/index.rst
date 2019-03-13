@@ -28,6 +28,12 @@ Base Fan Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+
+MQTT options:
+
 - **oscillation_state_topic** (*Optional*, string): The topic to
   publish fan oscillation state changes to.
 - **oscillation_command_topic** (*Optional*, string): The topic to

@@ -6,11 +6,11 @@ Neopixelbus Light
     :image: color_lens.png
 
 The ``neopixelbus`` light platform allows you to create RGB lights
-in esphomelib for a individually addressable lights like NeoPixel or WS2812.
+in ESPHome for a individually addressable lights like NeoPixel or WS2812.
 
-It is very similar to the :doc:`fastled_clockless` and :doc:`fastled_spi` platforms;
+It is very similar to the :doc:`fastled` platform.
 in fact most addressable lights are supported through both light platforms. The
-difference is that they use different libraries: While the fastled platforms use
+difference is that they use different libraries: While the fastled platform uses
 the `FastLED <https://github.com/FastLED/FastLED>`__ library, this integration uses
 the `NeoPixelBus <https://github.com/Makuna/NeoPixelBus/>`__ library internally.
 
@@ -42,7 +42,6 @@ Configuration variables:
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`/components/power_supply` to connect to
   this light. When the light is turned on, the power supply will automatically be switched on too.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 **Type Options:**
 
@@ -68,9 +67,9 @@ Configuration variables:
 
   - ``ESP8266_DMA`` (default for ESP8266, only on pin GPIO3)
   - ``ESP8266_UART0`` (only on pin GPIO1)
-  - ``ESP8266_UART1`` (only on pin GPIO3)
+  - ``ESP8266_UART1`` (only on pin GPIO2)
   - ``ESP8266_ASYNC_UART0`` (only on pin GPIO1)
-  - ``ESP8266_ASYNC_UART1`` (only on pin GPIO3)
+  - ``ESP8266_ASYNC_UART1`` (only on pin GPIO2)
   - ``ESP32_I2S_0``
   - ``ESP32_I2S_1`` (default for ESP32)
   - ``BIT_BANG`` (can flicker a bit)
@@ -84,11 +83,18 @@ If you have one line, only specify ``pin``, otherwise specify both ``clock_pin``
 - **clock_pin** (**Required**, :ref:`config-pin`): The pin for the clock line of the light, for two-pin lights.
 - **data_pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light, for two-pin lights.
 
+**Advanced Options:**
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+
 See Also
 --------
 
 - :doc:`/components/light/index`
-- :doc:`/components/light/fastled_clockless`
+- :doc:`/components/light/fastled`
 - :doc:`/components/power_supply`
 - :apiref:`light/neo_pixel_light_output.h`
 - `NeoPixelBus library <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__

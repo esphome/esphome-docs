@@ -2,7 +2,7 @@ Restart Switch
 ==============
 
 .. seo::
-    :description: Instructions for setting up switches that can remotely reboot the ESP in esphomelib.
+    :description: Instructions for setting up switches that can remotely reboot the ESP in ESPHome.
     :image: restart.png
 
 The ``restart`` switch platform allows you to restart your node remotely
@@ -24,7 +24,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the switch.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Switch <config-switch>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Switch <config-switch>`.
 
 See Also
 --------

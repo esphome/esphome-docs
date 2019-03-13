@@ -2,7 +2,7 @@ Dual relay cover motor control
 ==============================
 
 .. seo::
-    :description: An example of how to integrate covers that are controlled by two relays into esphomelib.
+    :description: An example of how to integrate covers that are controlled by two relays into ESPHome.
     :image: sonoff_dual_r2.jpg
     :keywords: Relay, Sonoff Dual R2, Cover
 
@@ -18,7 +18,7 @@ of the end-stop switch in the motor failing this will reduce the risk for damage
 
 Of the four main components (button sensor, 2 relays switches and the cover), only the cover will be
 visible to the end-user. The other three are hidden by means of not including a ``name``. This is to
-prevent accidentally switching on both relays simultaneously from MQTT/Home-assistant as that might be harmful
+prevent accidentally switching on both relays simultaneously from Home Assistant as that might be harmful
 for some motors.
 
 .. note::
@@ -30,29 +30,25 @@ for some motors.
 
 .. code-block:: yaml
 
-  esphomeyaml:
-    name: cover
-    platform: ESP8266
-    board: esp01_1m
-    board_flash_mode: dout
+    esphome:
+      name: cover
+      platform: ESP8266
+      board: esp01_1m
 
-  wifi:
-    ssid: '***'
-    password: '***'
+    wifi:
+      ssid: '***'
+      password: '***'
 
-  mqtt:
-    broker: 'mqtt'
-    username: ''
-    password: ''
+    api:
 
-  logger:
+    logger:
 
-  ota:
+    ota:
 
-  binary_sensor:
+    binary_sensor:
     - platform: gpio
       pin:
-        number: 10
+        number: GPIO10
         inverted: true
       id: button
       on_press:
@@ -77,15 +73,15 @@ for some motors.
                 }
               }
 
-  switch:
+    switch:
     - platform: gpio
-      pin: 12
+      pin: GPIO12
       id: open
     - platform: gpio
-      pin: 5
+      pin: GPIO5
       id: close
 
-  cover:
+    cover:
     - platform: template
       name: "Cover"
       id: cover
@@ -106,7 +102,8 @@ for some motors.
       stop_action:
         - switch.turn_off: open
         - switch.turn_off: close
-      optimistic: true
+      optimistic: True
+      assumed_state: True
 
 See Also
 --------

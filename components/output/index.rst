@@ -4,11 +4,11 @@ Output Component
 ================
 
 .. seo::
-    :description: Instructions for setting up generic outputs in esphomelib
+    :description: Instructions for setting up generic outputs in ESPHome
     :image: folder-open.png
 
 Each platform of the ``output`` domain exposes some output to
-esphomelib. These are grouped into two categories: ``binary`` outputs
+ESPHome. These are grouped into two categories: ``binary`` outputs
 (that can only be ON/OFF) and ``float`` outputs (like PWM, can output
 any rational value between 0 and 1).
 

@@ -28,7 +28,7 @@ Configuration variables:
    sensor.
 -  **name** (**Required**, string): The name of the sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------

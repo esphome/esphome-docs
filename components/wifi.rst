@@ -2,12 +2,12 @@ WiFi Component
 ==============
 
 .. seo::
-    :description: Instructions for setting up the WiFi configuration for your ESP node in esphomelib.
+    :description: Instructions for setting up the WiFi configuration for your ESP node in ESPHome.
     :image: network-wifi.png
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
-This core esphomelib component sets up WiFi connections to access points
-for you. It needs to be in your configuration or otherwise esphomeyaml
+This core ESPHome component sets up WiFi connections to access points
+for you. It needs to be in your configuration or otherwise ESPHome
 will fail in the config validation stage.
 
 It’s recommended to provide a static IP for your node, as it can
@@ -44,9 +44,8 @@ Configuration variables:
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
-- **hostname** (*Optional*, string): Manually set the hostname of the
-  node. Can only be 63 long at max and must only contain alphanumeric
-  characters plus dashes and underscores.
+- **use_address** (*Optional*, string): Manually override what address to use to connect
+  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the prior configured IP address.
 - **ap** (*Optional*): Enable an access point mode on the node.
 
   - **ssid** (*Required*, string): The name of the access point to create.
@@ -65,17 +64,21 @@ Configuration variables:
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``5min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface. Defaults to no power saving.
   See :ref:`wifi-power_save_mode`
+
 - **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
+  The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
+  better ones are available.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode
 -----------------
 
-Since version 1.3, esphomelib has an optional "Access Point Mode". If you include ``ap:``
-in your wifi configuration, esphomelib will automatically set up an access point that you
+ESPHome has an optional "Access Point Mode". If you include ``ap:``
+in your wifi configuration, ESPHome will automatically set up an access point that you
 can connect to. Additionally, you can specify both a "normal" station mode and AP mode at the
-same time. This will cause esphomelib to only enable the access point when no connection
+same time. This will cause ESPHome to only enable the access point when no connection
 to the wifi router can be made.
 
 .. _wifi-manual_ip:
@@ -136,8 +139,8 @@ please also try ``light``.
 Connecting to Multiple Networks
 -------------------------------
 
-Starting with version 1.10.0, you can give esphomelib a number of WiFi networks to connect to.
-Esphomelib will then attempt to connect to the one with the highest signal strength.
+Starting with version 1.10.0, you can give ESPHome a number of WiFi networks to connect to.
+ESPHome will then attempt to connect to the one with the highest signal strength.
 
 To enable this mode, remove the ``ssid`` and ``password`` options from your wifi configuration
 and move everything under the ``networks`` key:
@@ -156,12 +159,14 @@ and move everything under the ``networks`` key:
 
 Configuration variables:
 
-- **ssid** (string): The SSID or WiFi network name.
-- **password** (string): The password to use for authentication. Leave empty for no password.
-- **channel** (int): The channel of the network (1-14). If given, only connects to networks
+- **ssid** (*Optional*, string): The SSID or WiFi network name.
+- **password** (*Optional*, string): The password to use for authentication. Leave empty for no password.
+- **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.
-- **bssid** (string): Optionally define a BSSID (MAC-Address) of the network to connect to.
+- **bssid** (*Optional*, string): Optionally define a BSSID (MAC-Address) of the network to connect to.
   This can be used to further restrict which networks to connect to.
+- **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
+  If you add this option you also have to specify ssid.
 
 See Also
 --------

@@ -4,7 +4,7 @@ DHT Temperature+Humidity Sensor
 .. seo::
     :description: Instructions for setting up DHT11 and DHT22 temperature and humidity sensors.
     :image: dht.jpg
-    :keywords: DHT11, DHT22, AM2302, RHT03
+    :keywords: DHT11, DHT22, AM2302, RHT03, SI7021
 
 The DHT Temperature+Humidity sensor allows you to use your DHT11
 (`datasheet <https://akizukidenshi.com/download/ds/aosong/DHT11.pdf>`__,
@@ -12,10 +12,12 @@ The DHT Temperature+Humidity sensor allows you to use your DHT11
 (`datasheet <https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf>`__,
 `adafruit <https://www.adafruit.com/product/385>`__), AM2302
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf>`__,
-`adafruit <https://www.adafruit.com/product/393>`__) and RHT03
+`adafruit <https://www.adafruit.com/product/393>`__), RHT03
 (`datasheet <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__,
-`sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__)
-sensors with esphomelib.
+`sparkfun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__) and SI7021 (one wire Sonoff version)
+(`datasheet <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__,
+`sparkfun <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__)
+sensors with ESPHome.
 
 .. figure:: images/dht-full.jpg
     :align: center
@@ -53,25 +55,25 @@ Configuration variables:
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **humidity** (**Required**): The information for the humidity sensor
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **model** (*Optional*, int): Manually specify the DHT model, can be
-  one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2302``, ``RHT03``
-  and helps with some connection issues. Defaults to ``AUTO_DETECT``.
+  one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``AM2302``, ``RHT03``, ``SI7021``
+  and helps with some connection issues. Defaults to ``AUTO_DETECT``.  Auto detection doesn't work for the SI7021 chip.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
 .. note::
 
-   If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
-   DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
-   on the DATA pin or too long cables.
+    If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
+    DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
+    on the DATA pin or too long cables.
 
 See Also
 --------

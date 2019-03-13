@@ -28,10 +28,10 @@ Assumptions
 
 As many of the details on here a predicated on existing installations and knowledge the following is assumed:
 
-* You have installed the relevant environment and it is functional (Home Assisant, esphomeyaml).
+* You have installed the relevant environment and it is functional (Home Assisant, ESPHome).
 * You need to create your own secrets.yaml file.
 * You are proficient in reading instructions and capable of using a search engine.
-* You will look at the documentation on https://esphomelib.com/ (we may have missed something in this example).
+* You will look at the documentation on this website (we may have missed something in this example).
 * This serves only as a guide and errors and outlets are excluded.
 
 .. warning::
@@ -53,11 +53,10 @@ Here is the configuration with the basic operations outlined above.
     # Button toggles pump on/off
     # Float sensor stops pump
     # Cron'd to run every hour, on the hour for 10 minutes
-    esphomeyaml:
+    esphome:
       name: fishpond
       platform: ESP8266
       board: esp01_1m
-      board_flash_mode: dout
 
     wifi:
       ssid: !secret wifi_ssid
@@ -138,6 +137,7 @@ Here is the configuration with the basic operations outlined above.
 
 2. Programming
 **************
+
 Follow the standard way of uploading to your Sonoff basic.
 
 .. figure:: images/sonoff-fishpond-pump-1-programming.jpg
@@ -150,23 +150,23 @@ For USB uploads this generally includes:
 * Modifications (soldering) made on the PCB for USB UART / FTDI uploads.
 * The relevant USB UART / FTDI uploads device connected to you PC and to your Sonoff.
 * Start Sonoff in programming mode.
-* Compile and upload the firmware via USB using ``esphomeyaml <some-yaml-file> run``.
+* Compile and upload the firmware via USB using ``esphome <some-yaml-file> run``.
 
 For OTA the generally includes:
 
 * Ensure device is on.
-* Compile and upload the firmware via USB using ``esphomeyaml <some-yaml-file> run``.
+* Compile and upload the firmware via USB using ``esphome <some-yaml-file> run``.
 
 Both options USB and OTA are done by running the command:
 
 .. code-block:: bash
 
-    esphomeyaml <some-yaml-file> run
+    esphome <some-yaml-file> run
 
-More details on programming can be found on :doc:`Sonoff Basic section </devices/sonoff_basic>`
+More details on programming can be found on :doc:`/devices/sonoff_basic`
 
 3. Prepping and installing
-****************************
+**************************
 
 * Ensure power is switched off.
 * You can now add your water level sensor wiring to the PCB and have it extrude, SAFELY, next to your connector block.

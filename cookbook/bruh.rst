@@ -2,11 +2,11 @@ BRUH Multisensor
 ================
 
 .. seo::
-    :description: Instructions for re-creating a BRUH multisensor using esphomelib.
+    :description: Instructions for re-creating a BRUH multisensor using ESPHome.
     :image: bruh.png
 
 The BRUH Multisensor is a great introductory project into Home Automation with an
-amazing setup tutorial. And fortunately esphomelib has complete support for all the
+amazing setup tutorial. And fortunately ESPHome has complete support for all the
 stuff used by the Multisensor 🎉
 
 .. raw:: html
@@ -18,7 +18,7 @@ configuration file 😀
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: <NODE_NAME>
       platform: ESP8266
       board: nodemcuv2
@@ -27,10 +27,7 @@ configuration file 😀
       ssid: <SSID>
       password: <PASSWORD>
 
-    mqtt:
-      broker: <MQTT_BROKER>
-      username: <USER>
-      password: <PASSWORD>
+    api:
 
     # Enable logging
     logger:

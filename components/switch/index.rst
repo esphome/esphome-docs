@@ -2,7 +2,7 @@ Switch Component
 ================
 
 .. seo::
-    :description: Instructions for setting up generic switches in esphomelib.
+    :description: Instructions for setting up generic switches in ESPHome.
     :image: folder-open.png
 
 The ``switch`` domain includes all platforms that should show up like a
@@ -22,13 +22,20 @@ Base Switch Configuration
 
 Configuration variables:
 
--  **name** (**Required**, string): The name of the switch.
--  **icon** (*Optional*, icon): Manually set the icon to use for the
-   sensor in the frontend.
--  **inverted** (*Optional*, boolean): Whether to invert the binary
-   state, i.e. report ON states as OFF and vice versa. Defaults
-   to ``False``.
--  All other options from :ref:`MQTT Component <config-mqtt-component>`.
+- **name** (**Required**, string): The name of the switch.
+- **icon** (*Optional*, icon): Manually set the icon to use for the
+  sensor in the frontend.
+- **inverted** (*Optional*, boolean): Whether to invert the binary
+  state, i.e. report ON states as OFF and vice versa. Defaults
+  to ``False``.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the switch is turned on. See :ref:`switch-on_turn_on_off_trigger`.
+- **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the switch is turned off. See :ref:`switch-on_turn_on_off_trigger`.
+- If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _switch-toggle_action:
 
@@ -140,6 +147,25 @@ This :ref:`condition <config-condition>` passes if the given switch is on/off.
           # same goes for is_off
         then:
         - script.execute: my_script
+
+.. _switch-on_turn_on_off_trigger:
+
+``switch.on_turn_on`` / ``switch.on_turn_off`` Trigger
+******************************************************
+
+This trigger is activated each time the switch is turned on. It becomes active
+right after the switch component has acknowledged the state (e.g. after it switched
+ON/OFF itself).
+
+.. code-block:: yaml
+
+    switch:
+      - platform: gpio  # or any other platform
+        # ...
+        on_turn_on:
+        - logger.log: "Switch Turned On!"
+        on_turn_off:
+        - logger.log: "Switch Turned Off!"
 
 See Also
 --------

@@ -2,7 +2,7 @@ Custom Output
 =============
 
 This integration can be used to create custom binary and float :doc:`outputs </components/output/index>`
-in esphomelib using the C++ (Arduino) API.
+in ESPHome using the C++ (Arduino) API.
 
 Please first read :doc:`/components/sensor/custom` guide, the same principles apply here.
 
@@ -11,8 +11,8 @@ same as the :doc:`ESP8266 software PWM output </components/output/esp8266_pwm>`.
 
 .. code-block:: cpp
 
-    #include "esphomelib.h"
-    using namespace esphomelib;
+    #include "esphome.h"
+    using namespace esphome;
 
     class MyCustomFloatOutput : public Component, public output::FloatOutput {
      public:
@@ -49,7 +49,7 @@ And in YAML:
 .. code-block:: yaml
 
     # Example configuration entry
-    esphomeyaml:
+    esphome:
       includes:
         - my_output.h
 

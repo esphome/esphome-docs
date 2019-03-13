@@ -2,7 +2,7 @@ Binary Light
 ============
 
 .. seo::
-    :description: Instructions for setting up binary ON/OFF lights in esphomelib.
+    :description: Instructions for setting up binary ON/OFF lights in ESPHome.
     :image: lightbulb.png
 
 The ``binary`` light platform creates a simple ON/OFF-only light from a
@@ -29,7 +29,11 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light, though binary lights
   only support very few of them.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 See Also
 --------

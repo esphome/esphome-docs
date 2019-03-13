@@ -2,11 +2,11 @@ Stepper Component
 =================
 
 .. seo::
-    :description: Instructions for setting up stepper motor drivers in esphomelib
+    :description: Instructions for setting up stepper motor drivers in ESPHome
     :image: folder-open.png
     :keywords: stepper motor, stepper driver, a4988
 
-The ``stepper`` component allows you to use stepper motors with esphomelib.
+The ``stepper`` component allows you to use stepper motors with ESPHome.
 Currently only the A4988 stepper driver
 (`datasheet <https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf>`__)
 and ULN2003 (`datasheet <http://www.ti.com/lit/ds/symlink/uln2003a.pdf>`__) are supported.

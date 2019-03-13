@@ -2,14 +2,14 @@ Xiaomi MiFlora BLE Sensor
 =========================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi Mi Flora bluetooth-based plant monitors in esphomelib.
+    :description: Instructions for setting up Xiaomi Mi Flora bluetooth-based plant monitors in ESPHome.
     :image: xiaomi_miflora.jpg
     :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
 
 The ``xiaomi_miflora`` sensor platform lets you track the output of Xiaomi MiFlora Bluetooth Low Energy
 devices using the :doc:`/components/esp32_ble_tracker`. This component will track the
 temperature, humidity and optionally the battery level of the MiFlora device every time the sensor
-sends out a BLE broadcast. Note that contrary to other implementations, esphomelib can track as many
+sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many
 MiFlora devices at once as you want.
 
 .. code-block:: yaml
@@ -39,31 +39,31 @@ Configuration variables:
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **moisture** (*Optional*): The information for the moisture sensor
 
   - **name** (**Required**, string): The name for the moisture sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **illuminance** (*Optional*): The information for the illuminance sensor
 
   - **name** (**Required**, string): The name for the illuminance sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **conductivity** (*Optional*): The information for the soil conductivity sensor
 
   - **name** (**Required**, string): The name for the soil conductivity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 - **battery_level** (*Optional*): The information for the battery level sensor
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 
 Setting Up Devices
@@ -71,7 +71,7 @@ Setting Up Devices
 
 Before you can even scan for the MiFlora sensor, you need to activate it using the Flower Care app. Set it up there and you'll be able to discover it.
 
-To set up Xiaomi MiFlora devices you first need to find their MAC Address so that esphomelib can
+To set up Xiaomi MiFlora devices you first need to find their MAC Address so that ESPHome can
 identify them. So first, create a simple configuration without any ``xiaomi_miflora`` entries like so:
 
 .. code-block:: yaml

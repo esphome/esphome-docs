@@ -2,10 +2,10 @@ Using With Sonoff Basic
 =======================
 
 .. seo::
-    :description: Instructions for putting Sonoff basic devices into flash mode and installing esphomelib on them.
+    :description: Instructions for putting Sonoff basic devices into flash mode and installing ESPHome on them.
     :image: sonoff_basic.jpg
 
-esphomeyaml can be used with Sonoff Basic. These devices are basically just
+ESPHome can be used with Sonoff Basic. These devices are basically just
 an ESP8266 chip with a relay to control the connection, a small button on the
 front and a green LED light.
 
@@ -22,20 +22,15 @@ pretty similar.
 .. note::
 
     If you've previously installed Sonoff-Tasmota or ESPurna on your Sonoff Basic, you're in luck 😀
-    esphomeyaml can generate a firmware binary which you can then upload via the
+    ESPHome can generate a firmware binary which you can then upload via the
     web interface.
 
 Sample configuration
 --------------------
 
 The Sonoff Basic is based on the ``ESP8266`` platform and is a subtype of the ``esp01_1m`` board.
-With this information, you can also step through the esphomeyaml wizard (``esphomeyaml sonoff_basic.yaml wizard``)
+With this information, you can also step through the ESPHome wizard (``esphome sonoff_basic.yaml wizard``)
 if you don't want to use the sample configuration file from below.
-
-If you go through the wizard, please make sure you manually set ``board_flash_mode`` to ``dout``
-as seen below. The version of the uploader used by esphomeyaml should automatically detect that
-the Sonoff Basic uses the ``dout`` SPI flash chip mode. But, as some users of other firmwares have
-said that other flash modes can brick the device, it's always good to specify it explicitly.
 
 Below you will find a table of all usable GPIO pins of the Sonoff Basic and a configuration file that
 exposes all of the basic functions.
@@ -56,20 +51,16 @@ exposes all of the basic functions.
 
 .. code-block:: yaml
 
-    esphomeyaml:
+    esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp01_1m
-      board_flash_mode: dout
 
     wifi:
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
-    mqtt:
-      broker: <YOUR_MQTT_BROKER>
-      username: <YOUR_USERNAME>
-      password: <YOUR_PASSWORD>
+    api:
 
     logger:
 
@@ -91,19 +82,12 @@ exposes all of the basic functions.
         pin: GPIO12
         id: relay
 
-    output:
-      - platform: esp8266_pwm
-        id: basic_green_led
-        pin:
-          number: GPIO13
-          inverted: True
+    status_led:
+      pin:
+        number: GPIO13
+        inverted: yes
 
-    light:
-      - platform: monochromatic
-        name: "Sonoff Basic Green LED"
-        output: basic_green_led
-
-Now run ``esphomeyaml sonoff_basic.yaml compile`` to validate the configuration and
+Now run ``esphome sonoff_basic.yaml compile`` to validate the configuration and
 pre-compile the firmware.
 
 .. note::
@@ -116,8 +100,7 @@ Or run the upload command if your device is connected to the serial interface:
 
 .. code-block:: bash
 
-    esphomeyaml sonoff_basic.yaml run
-
+    esphome sonoff_basic.yaml run
 
 More detailed breakdown
 -----------------------
@@ -133,7 +116,8 @@ See https://randomnerdtutorials.com/how-to-flash-a-custom-firmware-to-sonoff/ fo
 
 * Press and hold the toggle pin (long black pin next to LED and custom soldered pins).
 * Supply USB power to Sonoff via FTDI (e.g. plug in USB to the FTDI, or use a power switch as explained in link above).
-* Keep holding the toggle pin for approx 3-5 seconds now you should be ready to program. If you get a message unable to communicate when trying flash, check your TX/RX pin or retry entering boot mode again.
+* Keep holding the toggle pin for approx 3-5 seconds now you should be ready to program.
+  If you get a message unable to communicate when trying flash, check your TX/RX pin or retry entering boot mode again.
 
 Quick notes:
 
@@ -149,7 +133,7 @@ Run this command from the same directory where your <my-awesome>.yaml file is lo
 
 .. code-block:: bash
 
-  esphomeyaml <my-awesome>.yaml run
+    esphome <my-awesome>.yaml run
 
 Or if you're using the dashboard, just click the "UPLOAD" button.
 
@@ -157,58 +141,59 @@ You should get an output starting like this
 
 .. code-block:: text
 
-  INFO Reading configuration...
-  INFO Detected timezone 'SAST' with UTC offset 2
-  INFO Generating C++ source...
-  INFO Compiling app...
-  INFO Running:  platformio run -d fishpond
-  ********************************************************************************************************
-  Obsolete PIO Core v3.6.3 is used (previous was 3.6.4b1)
-  Please remove multiple PIO Cores from a system:
-  https://docs.platformio.org/page/faq.html#multiple-pio-cores-in-a-system
-  ...
-  lots of compile stuff
-  ...
-  Memory Usage -> http://bit.ly/pio-memory-usage
-  DATA:    [======    ]  55.6% (used 45512 bytes from 81920 bytes)
-  PROGRAM: [====      ]  38.1% (used 390576 bytes from 1023984 bytes)
-  ===================================== [SUCCESS] Took 4.70 seconds =====================================
-  INFO Successfully compiled program.
-  Found multiple options, please choose one:
+    INFO Reading configuration...
+    INFO Detected timezone 'SAST' with UTC offset 2
+    INFO Generating C++ source...
+    INFO Compiling app...
+    INFO Running:  platformio run -d fishpond
+    ********************************************************************************************************
+    Obsolete PIO Core v3.6.3 is used (previous was 3.6.4b1)
+    Please remove multiple PIO Cores from a system:
+    https://docs.platformio.org/page/faq.html#multiple-pio-cores-in-a-system
+    ...
+    lots of compile stuff
+    ...
+    Memory Usage -> http://bit.ly/pio-memory-usage
+    DATA:    [======    ]  55.6% (used 45512 bytes from 81920 bytes)
+    PROGRAM: [====      ]  38.1% (used 390576 bytes from 1023984 bytes)
+    ===================================== [SUCCESS] Took 4.70 seconds =====================================
+    INFO Successfully compiled program.
+    Found multiple options, please choose one:
     [1] /dev/ttyUSB0 (FT232R USB UART)
     [2] Over The Air (fishpond.device)
-  (number): 1
-  INFO Running:  esptool.py --before default_reset --after hard_reset --chip esp8266 --port /dev/ttyUSB0 write_flash 0x0 fishpond/.pioenvs/fishpond/firmware.bin
-  esptool.py v2.6
-  Serial port /dev/ttyUSB0
-  Connecting....
-  Chip is ESP8266EX
-  Features: WiFi
-  MAC: xx:xx:xx:xx:xx:xx
-  Uploading stub...
-  Running stub...
-  Stub running...
-  Configuring flash size...
-  Auto-detected Flash size: 1MB
-  Compressed 394720 bytes to 267991...
-  Wrote 394720 bytes (267991 compressed) at 0x00000000 in 23.8 seconds (effective 132.7 kbit/s)...
-  Hash of data verified.
+    (number): 1
+    ...
+    esptool.py v2.6
+    Serial port /dev/ttyUSB0
+    Connecting....
+    Chip is ESP8266EX
+    Features: WiFi
+    MAC: xx:xx:xx:xx:xx:xx
+    Uploading stub...
+    Running stub...
+    Stub running...
+    Configuring flash size...
+    Auto-detected Flash size: 1MB
+    Compressed 394720 bytes to 267991...
+    Wrote 394720 bytes (267991 compressed) at 0x00000000 in 23.8 seconds (effective 132.7 kbit/s)...
+    Hash of data verified.
 
-  Leaving...
-  Hard resetting via RTS pin...
-  INFO Successfully uploaded program.
-  INFO Starting log output from /dev/ttyUSB0 with baud rate 115200
+    Leaving...
+    Hard resetting via RTS pin...
+    INFO Successfully uploaded program.
+    INFO Starting log output from /dev/ttyUSB0 with baud rate 115200
 
 1.3. And then nothing will happen
 *********************************
 
-Once you have flashed the device, nothing will happen. You need to power cycle the device. You will notice the LED will start to flash and then becomes solid once connected to the WiFi network.
+Once you have flashed the device, nothing will happen. You need to power cycle the device.
+You will notice the LED will start to flash and then becomes solid once connected to the WiFi network.
 
 You can follow the logs produced by the running module by running the command
 
 .. code-block:: bash
 
-  esphomeyaml <my-awesome>.yaml logs
+    esphome <my-awesome>.yaml logs
 
 Your output will possibly look like this
 
@@ -216,11 +201,11 @@ Your output will possibly look like this
 
     INFO Reading configuration...
     INFO Detected timezone 'SAST' with UTC offset 2
-    INFO Starting log output from fishpond.device using esphomelib API
+    INFO Starting log output from fishpond.device using ESPHome API
     INFO Connecting to fishpond.device:6053 (192.168.13.15)
     INFO Successfully connected to fishpond.device
     [11:13:27][D][time.homeassistant:029]: Synchronized time: Wed Jan 16 11:13:27 2019
-    [11:13:27][I][application:097]: You're running esphomelib v1.10.1 compiled on Jan 16 2019, 08:12:59
+    [11:13:27][I][application:097]: You're running ESPHome v1.10.1 compiled on Jan 16 2019, 08:12:59
     [11:13:27][C][status_led:023]: Status LED:
     [11:13:27][C][status_led:024]:   Pin: GPIO13 (Mode: OUTPUT)
     [11:13:27][C][wifi:341]: WiFi:
@@ -274,10 +259,9 @@ Before installing the Sonoff, do a final OTA test, and this time selecting the O
 
 .. code-block:: bash
 
-    esphomeyaml <my-awesome>.yaml run
+    esphome <my-awesome>.yaml run
 
 Once these actions succeeded you are pretty much in the clear and can be sure your device is ready.
-
 
 See Also
 --------
@@ -285,8 +269,7 @@ See Also
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_s20`
-- :doc:`Cookbook: Sonoff Fish Pond Pump </cookbook/sonoff-fishpond-pump>`
 - `GPIO locations <https://github.com/arendst/Sonoff-Tasmota/wiki/GPIO-Locations>`__
-- :ghedit:`Edit`
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__
 
 .. disqus::

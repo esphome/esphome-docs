@@ -2,10 +2,10 @@ Cover Component
 ===============
 
 .. seo::
-    :description: Instructions for setting up base covers in esphomelib.
+    :description: Instructions for setting up base covers in ESPHome.
     :image: folder-opn.png
 
-The ``cover`` component is a generic representation of covers in esphomelib/yaml.
+The ``cover`` component is a generic representation of covers in ESPHome.
 A cover can (currently) either be *closed* or *open* and supports three types of
 commands: *open*, *close* and *stop*.
 

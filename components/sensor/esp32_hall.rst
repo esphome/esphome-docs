@@ -34,7 +34,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-sensor>` and :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 .. warning::
 
@@ -42,7 +42,7 @@ Configuration variables:
     Therefore the values could very well be off by orders of magnitude. Besides, this sensor should
     only be used to detect sudden high changes in the magnetic field.
 
-    If you have a real magnetic field calibration setup and want to contribute your values to esphomelib,
+    If you have a real magnetic field calibration setup and want to contribute your values to ESPHome,
     please feel free to do so 😺.
 
 See Also

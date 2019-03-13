@@ -2,17 +2,17 @@ PCF8574 I/O Expander
 ====================
 
 .. seo::
-    :description: Instructions for setting up PCA8574 digital port expanders in esphomelib.
+    :description: Instructions for setting up PCF8574 digital port expanders in ESPHome.
     :image: pcf8574.jpg
     :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
 
 The PCF8574 component allows you to use PCF8574 or PCF8575 I/O expanders
 (`datasheet <http://www.ti.com/lit/ds/symlink/pcf8574.pdf>`__,
-`Sparkfun`_) in esphomeyaml. It uses :ref:`I²C Bus <i2c>` for communication.
+`Sparkfun`_) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
 
 Once configured, you can use any of the 8 pins (PCF8574) or 16 pins (PCF8575) as
-pins for your projects. Within esphomelib they emulate a real internal GPIO pin
-and can therefore be used with many of esphomelib's components such as the GPIO
+pins for your projects. Within ESPHome they emulate a real internal GPIO pin
+and can therefore be used with many of ESPHome's components such as the GPIO
 binary sensor or GPIO switch.
 
 Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more

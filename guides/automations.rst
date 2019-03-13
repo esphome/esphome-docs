@@ -4,12 +4,12 @@ Automations And Templates
 =========================
 
 .. seo::
-    :description: Getting started guide for automations in esphomelib.
+    :description: Getting started guide for automations in ESPHome.
     :image: auto-fix.png
 
-Automations and templates are two very powerful concepts of esphomelib/yaml. Automations
+Automations and templates are two very powerful concepts of ESPHome. Automations
 allow you to perform actions under certain conditions and templates are a way to easily
-customize everything about your node without having to dive into the full esphomelib C++
+customize everything about your node without having to dive into the full ESPHome C++
 API.
 
 Let's begin with an example to explain these concepts. Suppose you have this configuration file:
@@ -36,7 +36,7 @@ You *could* write an automation to do this task in Home Assistant's automation e
 ideally the IoT should work without an internet connection and should not break with
 the MQTT server being offline.
 
-That's why, starting with esphomelib 1.7.0, there's a new automation engine. With it, you
+That's why, starting with ESPHome 1.7.0, there's a new automation engine. With it, you
 can write some basic (and also some more advanced) automations using a syntax that is
 hopefully a bit easier to read and understand than Home Assistant's.
 
@@ -97,7 +97,7 @@ There are also other triggers like ``on_release``, ``on_click`` or ``on_double_c
 Actions
 -------
 
-Now comes the actual automation block. With ``then``, you tell esphomeyaml what should happen when the press happens.
+Now comes the actual automation block. With ``then``, you tell ESPHome what should happen when the press happens.
 Within this block, you can define several "actions". For example, ``switch.toggle`` and the line after that form an
 action. Each action is separated by a dash and multiple actions can be executed in series by just adding another ``-``
 like so:
@@ -153,16 +153,16 @@ That's a lot of indentation 😉 ``on_value_range`` is a special trigger for sen
 of the sensor is within a certain range. In the first example, this range is defined as "any value above or including
 65.0", and the second one refers to once the humidity reaches 50% or below.
 
-Now that concludes the introduction into automations in esphomeyaml. They're a powerful tool to automate almost
+Now that concludes the introduction into automations in ESPHome. They're a powerful tool to automate almost
 everything on your device with an easy-to-use syntax. For the cases where the "pure" YAML automations don't work,
-esphomelib has another extremely powerful tool to offer: Templates.
+ESPHome has another extremely powerful tool to offer: Templates.
 
 .. _config-lambda:
 
 Templates (Lambdas)
 -------------------
 
-With templates inside esphomelib, you can do almost *everything*. If for example you want to only perform a certain
+With templates inside ESPHome, you can do almost *everything*. If for example you want to only perform a certain
 automation if a certain complex formula evaluates to true, you can do that with templates. Let's look at an example
 first:
 
@@ -190,7 +190,7 @@ shy away from using lambdas because you just hear C++ and think oh noes, I'm not
 Writing lambdas is not that hard! Here's a bit of a primer:
 
 First, you might have already wondered what the ``lambda: !lambda |-`` part is supposed to mean. ``!lambda``
-tells esphomeyaml that the following block is supposed to be interpreted as a lambda, or C++ code. Note that
+tells ESPHome that the following block is supposed to be interpreted as a lambda, or C++ code. Note that
 here, the ``lambda:`` key would actually implicitly make the following block a lambda so in this context,
 you could have just written ``lambda: |-``.
 
@@ -205,13 +205,13 @@ the first parentheses evaluates to ``true``` then execute the first block (in th
 or else evaluate the second block. ``return ...;`` makes the code block give back a value to the template. In this case,
 we're either *returning* ``cover::COVER_OPEN`` or ``cover::COVER_CLOSED`` to indicate that the cover is closed or open.
 
-Finally, ``id(...)`` is a helper function that makes esphomeyaml fetch an object with the supplied ID (which you defined
-somewhere else, like ``top_end_stop```) and let's you call any of esphomelib's many APIs directly. For example, here
+Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
+somewhere else, like ``top_end_stop```) and let's you call any of ESPHome's many APIs directly. For example, here
 we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::
 
-    esphomeyaml (currently) does not check the validity of lambda expressions you enter and will blindly copy
+    ESPHome does not check the validity of lambda expressions you enter and will blindly copy
     them into the generated C++ code. If compilation fails or something else is not working as expected
     with lambdas, it's always best to look at the generated C++ source file under ``<NODE_NAME>/src/main.cpp``.
 
@@ -233,7 +233,7 @@ we're retrieving the current state of the end stop using ``.state`` and using it
 Bonus: Templating Actions
 *************************
 
-Another feature of esphomeyaml is that you can template almost every parameter for actions in automations. For example
+Another feature of ESPHome is that you can template almost every parameter for actions in automations. For example
 if you have a light and want to set it to a pre-defined color when a button is pressed, you can do this:
 
 .. code-block:: yaml
@@ -300,10 +300,10 @@ Configuration options:
 Do Automations Work Without a Network Connection
 ************************************************
 
-YES! All automations you define in esphomelib are execute on the ESP itself and will continue to
+YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
 
-There is one caveat though: esphomelib automatically reboots if no connection to the MQTT broker can be
+There is one caveat though: ESPHome automatically reboots if no connection to the MQTT broker can be
 made. This is because the ESPs typically have issues in their network stacks that require a reboot to fix.
 You can adjust this behavior (or even disable automatic rebooting) using the ``reboot_timeout`` option
 in the :doc:`wifi component </components/wifi>` and :doc:`mqtt component </components/mqtt>`.
@@ -313,19 +313,22 @@ All Triggers
 
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`sensor.on_value <sensor-on_value>` / :ref:`sensor.on_raw_value <sensor-on_raw_value>` / :ref:`sensor.on_value_range <sensor-on_value_range>`
-- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` / :ref:`binary_sensor.on_state <binary_sensor-on_state>`
-- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` / :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
-- :ref:`esphomeyaml.on_boot <esphomeyaml-on_boot>` / :ref:`esphomeyaml.on_shutdown <esphomeyaml-on_shutdown>` / :ref:`esphomeyaml.on_loop <esphomeyaml-on_loop>`
+- :ref:`binary_sensor.on_press <binary_sensor-on_press>` / :ref:`binary_sensor.on_release <binary_sensor-on_release>` /
+  :ref:`binary_sensor.on_state <binary_sensor-on_state>`
+- :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
+  :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
+- :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
 - :ref:`pn532.on_tag <pn532-on_tag>`
 - :ref:`time.on_time <time-on_time>`
 - :ref:`interval.interval <interval>`
+- :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 
 All Actions
 -----------
 
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
-- :ref:`if <if_action>` / :ref:`while <while_action>`
+- :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_util <wait_until_action>`
 - :ref:`component.update <component-update_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>`
 - :ref:`logger.log <logger-log_action>`
@@ -337,6 +340,9 @@ All Actions
 - :ref:`fan.toggle <fan-toggle_action>` / :ref:`fan.turn_off <fan-turn_off_action>` / :ref:`fan.turn_on <fan-turn_on_action>`
 - :ref:`output.turn_off <output-turn_off_action>` / :ref:`output.turn_on <output-turn_on_action>` / :ref:`output.set_level <output-set_level_action>`
 - :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
+- :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>` /
+  :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>` /
+  :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
 
 .. _config-condition:
 
@@ -359,8 +365,8 @@ time period.
 
 .. code-block:: yaml
 
-   on_...:
-     then:
+    on_...:
+      then:
         - switch.turn_on: relay_1
         - delay: 2s
         - switch.turn_off: relay_1
@@ -486,6 +492,25 @@ Configuration options:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
+
+.. _wait_until_action:
+
+``wait_until`` Action
+---------------------
+
+This action allows your automations to wait until a condition evaluates to true. (So this is just
+a shorthand way of writing a while action with empty then block)
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - logger.log: "Waiting for binary sensor"
+      - wait_until:
+          binary_sensor.is_on: some_binary_sensor
+      - logger.log: "Binary sensor is ready"
+
+Configuration option: A :ref:`Condition <config-condition>`.
 
 .. _component-update_action:
 
