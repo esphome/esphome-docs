@@ -38,8 +38,10 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
-- Paul Morley
+- Kenvase
 - Nick Rout
+- Paul Morley
+
 
 Contributors
 ------------
@@ -51,7 +53,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1416 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1423 contributions
 
 Contributors
 ************
@@ -82,7 +84,7 @@ Contributors
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__ - 1 contribution
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__ - 5 contributions
-- `cryptelli (@cryptelli) <https://github.com/cryptelli>`__ - 1 contribution
+- `cryptelli (@cryptelli) <https://github.com/cryptelli>`__ - 2 contributions
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__ - 1 contribution
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
@@ -94,7 +96,7 @@ Contributors
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
-- `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 2 contributions
+- `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 3 contributions
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__ - 2 contributions
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
@@ -121,7 +123,7 @@ Contributors
 - `per1234 (@per1234) <https://github.com/per1234>`__ - 2 contributions
 - `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__ - 1 contribution
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
-- `puuu (@puuu) <https://github.com/puuu>`__ - 5 contributions
+- `puuu (@puuu) <https://github.com/puuu>`__ - 6 contributions
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__ - 1 contribution
 - `r-jordan (@r-jordan) <https://github.com/r-jordan>`__ - 1 contribution
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__ - 1 contribution
@@ -137,4 +139,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Mon Mar 11 19:13:02 2019 UTC.*
+*This page was last updated Wed Mar 13 17:25:05 2019 UTC.*
