@@ -17,7 +17,7 @@ ESPHome
     <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
     <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
-    <a href="/guides/faq.html#donations"><img src="/_images/shield-donate.svg" alt="Donate" class="index-shield"></a>
+    <a href="/guides/supporters.html"><img src="/_images/shield-donate.svg" alt="Donate" class="index-shield"></a>
 
 .. _guides:
 
@@ -39,6 +39,7 @@ Guides
     Contributing, guides/contributing, github-circle.svg
 
     Changelog, changelog/index, new-box.svg
+    Supporters, guides/supporters, heart.svg
 
 .. _devices:
 
@@ -282,7 +283,7 @@ Cookbook
 
 .. imgtable::
 
-    Garage Door, cookbook/garage-door, window-open.svg
+    Endstop Cover, cookbook/endstop-cover, window-open.svg
     PIR Sensor, cookbook/pir, pir.jpg
     Relay, cookbook/relay, relay.jpg
     BRUH Multisensor, cookbook/bruh, bruh.png
@@ -294,6 +295,8 @@ Cookbook
     H801 LED Controller, cookbook/h801, h801.jpg
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
+    Garage Door, cookbook/garage-door, window-open.svg
+    Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

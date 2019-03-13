@@ -24,3 +24,6 @@ that will only be used in raw HTML and thus not auto-included.
 
 .. image:: logo-text.svg
 
+.. image:: donate-patreon.png
+
+.. image:: donate-paypal.png

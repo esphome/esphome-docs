@@ -47,7 +47,8 @@ After validating the sensor is working, we can proceed and add some formulas.
           const float r = 8.31447215;   // Universal gas constant J/mol/K
           return (6.112 * powf(2.718281828, (17.67 * id(bme280_temperature).state) /
             (id(bme280_temperature).state + 243.5)) * id(bme280_humidity).state * mw) /
-            ((273.15 + id(bme280_temperature).state) * r); // in grams/m^3
+            ((273.15 + id(bme280_temperature).state) * r); // in micrograms/m^3
+        accuracy_decimals: 2
         update_interval: 15s
 
 Altitude and absolute humidity:
