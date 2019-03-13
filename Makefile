@@ -1,5 +1,5 @@
 ESPHOME_CORE_PATH = ../esphome-core
-ESPHOME_CORE_TAG = v1.11.2
+ESPHOME_CORE_TAG = v1.12.0b1
 
 .PHONY: html cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png
 
