@@ -143,20 +143,6 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 
     ota:
 
-    output:
-      - platform: esp8266_pwm
-        id: power_led
-        pin:
-          number: GPIO12
-          inverted: true
-
-    light:
-      - platform: monochromatic
-        name: "Power LED"
-        output: power_led
-        id: red_led
-        default_transition_length: 0s
-
     binary_sensor:
       - platform: gpio
         pin:
@@ -166,10 +152,17 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
         name: "Power Button"
         on_press:
           - switch.toggle: relay
+
       - platform: status
-        name: Status
+        name: "Status"
 
     switch:
+      - platform: gpio
+        id: red_led
+        pin:
+          number: GPIO12
+          inverted: true
+
       - platform: gpio
         name: "Brilliant Smart Plug"
         pin: GPIO5
@@ -177,16 +170,12 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 
         # Turn off red LED to show blue when turned on
         on_turn_on:
-          - light.turn_off:
-              id: red_led
-              transition_length: 0s
+          - switch.turn_off: red_led
 
         # Turns on the red LED once the plug is turned off. Stock plug doesn't do this, to restore normal behavior remove the on_turn_on and on_turn_off
         # blocks.
         on_turn_off:
-          - light.turn_on:
-              id: red_led
-              transition_length: 0s
+          - switch.turn_on: red_led
 
 
 3.2 Mirabella Genio Wi-Fi 1 USB Adaptor
@@ -208,13 +197,6 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
     api:
 
     ota:
-
-    output:
-      - platform: esp8266_pwm
-        id: power_led
-        pin:
-          number: GPIO12
-          inverted: true
 
     binary_sensor:
       - platform: gpio
