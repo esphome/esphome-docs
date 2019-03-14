@@ -14,6 +14,8 @@ Changelog - Version 1.12.0
     SDS011, components/sensor/sds011, sds011.jpg
     ESP32 Camera, components/esp32_camera, camera.svg
     Servo, components/servo, servo.svg
+    MCP23017, components/mcp23017, mcp23017.svg
+    WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
 
 TODO
 
@@ -21,14 +23,29 @@ TODO
 Breaking Changes
 ----------------
 
-TODO - No major ones though (+ all handled through validation error messages)
+- The ``timeout_meter`` and ``timeout_time`` options of the ultrasonic sensor
+  have been merged into ``timeout``. (:doc:`/components/sensor/ultrasonic`)
+- Ultrasonic Sensor no longer works with GPIO16 as echo pin on ESP8266s because
+  the implementation switched to an asynchronous interrupt mode.
 
 Other notable changes:
 ----------------------
 
 - Added ``calibrate_linear`` sensor filter for easier calibration of sensors
   (:ref:`sensor-filter-calibrate_linear`)
-- Added ``for`` parameter :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` condition.
+- Added ``for`` parameter to :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` condition.
+- Added ``streamer_mode``, ``status_use_ping`` and ``relative_url`` options to the Hass.io addon
+  (see addon description).
+- Improved validation. For small typos for config variables similar keys are automatically
+  suggested.
+- Added ``esp8266_restore_from_flash`` to :doc:`esphome section </components/esphome>` which
+  enables restoring state from flash instead of RTC memory - this allows recovering relay state
+  even after a power cycle.
+- ``!secret`` values are now hidden for config validation.
+- Rotary Encoders have a new ``min_value`` and ``max_value`` option. (:doc:`/components/sensor/rotary_encoder`)
+- Fixed OTA not working for ESP32 when BLE enabled.
+- Allowed the use of newest Arduino Core version for ESP8266: ``2.5.0`` (not default yet,
+  please try it out on non-critical devices and report if there are no wifi issues)
 
 All changes
 -----------

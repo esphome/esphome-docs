@@ -162,12 +162,15 @@ option you can tell ESPHome which arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the arduino version to these values (see the full
 list of arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
-* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (the latest version)
+* `2.5.0 <https://github.com/esp8266/Arduino/releases/tag/2.5.0>`__
+* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (default)
 * `2.4.1 <https://github.com/esp8266/Arduino/releases/tag/2.4.1>`__
 * `2.4.0 <https://github.com/esp8266/Arduino/releases/tag/2.4.0>`__
 
-For the ESP32, there's currently only one arduino framework version:
-`1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__.
+For the ESP32, there are two arduino framework versions:
+
+- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default).
+- `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__.
 
 .. _esphome-on_boot:
 

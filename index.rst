@@ -247,6 +247,7 @@ Text Sensor Components
     Home Assistant, components/text_sensor/homeassistant, home-assistant.svg
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
+    WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
 
@@ -257,6 +258,7 @@ Misc Components
 
     Debug Component, components/debug, bug-report.svg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
+    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
     Status LED, components/status_led, led-on.svg
