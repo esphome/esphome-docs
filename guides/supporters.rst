@@ -38,9 +38,11 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
-- Kenvase
-- Nick Rout
 - Paul Morley
+- Nick Rout
+- Kenvase
+- Magnus Overli
+- Dattas Moonchaser
 
 
 Contributors
@@ -53,7 +55,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1423 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1437 contributions
 
 Contributors
 ************
@@ -96,7 +98,7 @@ Contributors
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
-- `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 3 contributions
+- `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 4 contributions
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__ - 2 contributions
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
@@ -139,4 +141,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Wed Mar 13 17:25:05 2019 UTC.*
+*This page was last updated Sat Mar 16 21:23:19 2019 UTC.*
