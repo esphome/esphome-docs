@@ -130,7 +130,7 @@ be able to control the servo from the frontend.
           # Replace livingroom with the name you gave the ESP
           - service: esphome.livingroom_control_servo
             data_template:
-              target: '{{ trigger.to_state.state | int }}'
+              level: '{{ trigger.to_state.state | int }}'
 
 .. code-block:: yaml
 
