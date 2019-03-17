@@ -3,7 +3,7 @@ Binary Sensor Map
 
 .. seo::
     :description: Instructions for setting up a Binary Sensor Map
-    :image: binary_sensor_map.png
+    :image: binary_sensor_map.jpg
 
 The ``binary_sensor_map`` sensor platform allows you to map your ``binary_sensors`` as channels into a binary sensor map.
 This sensor is mostly used for touch devices but could be used for any ``binary_sensor`` that publishes its ``ON`` or ``OFF`` state.
