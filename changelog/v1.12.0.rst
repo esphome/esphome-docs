@@ -35,7 +35,7 @@ local and communicates *directly* with Home Assistant. It took a bit longer than
 anticipated to iron out most stability issues, but with 1.12.0 it's finally here :)
 
 And thanks very much to :ghuser:`puuu` for the :doc:`SDS011 Particulate Matter integration </components/sensor/sds011>` and
-:ghuser:`mvturnho` for the newly added 
+:ghuser:`mvturnho` for the newly added
 :doc:`MPR121 Capacitive Touch sensor </components/binary_sensor/mpr121>` support!
 
 And as always, this release contains tons of small adjustments (like automatically providing
