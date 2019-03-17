@@ -62,7 +62,6 @@ Configuration variables:
 
   - **channel** (**Required**): The id of the ``binary_sensor`` to add as a channel for this sensor.
   - **value** (**Optional**): The value this channel shoul report when its binary_sensor is active. This option is only used for the ``GROUP`` type sensor.
-  
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
