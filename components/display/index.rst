@@ -9,10 +9,10 @@ The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
 
 - Text based displays like :doc:`7-Segment displays <max7219>` or
-  :doc:`some LCD displays <lcd_gpio>`.
+  :doc:`some LCD displays <lcd_display>`.
 - Displays like the :doc:`nextion` that have their own processors for rendering.
 - Binary displays which can toggle ON/OFF any pixel, like :doc:`E-Paper displays <waveshare_epaper>` or
-  :doc:`OLED displays <ssd1306_spi>`.
+  :doc:`OLED displays <ssd1306>`.
 
 For the last type, ESPHome has a powerful rendering engine that can do
 many things like draw some basic shapes, print text with any font you want, or even show images.
@@ -243,7 +243,8 @@ As you can see, when you call ``printf`` most of the string is printed as-is, bu
 stuff after it is encountered, it is magically replaced by the argument after the format (here ``id(my_sensor).state``).
 
 Every time you type a percent sign ``%`` in a printf format string, it will treat the following letters as a format tag
-until a so-called "specifier" is encountered (in this case ``f``). You can read more about it `here <https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm>`__,
+until a so-called "specifier" is encountered (in this case ``f``). You can read more about it
+`here <https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm>`__,
 but for ESPHome there are really just a few things you need to know.
 
 Let's break ``%.1f`` down:
@@ -347,6 +348,75 @@ And then later in code:
         lambda: |-
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
+
+.. _display-pages:
+
+Display Pages
+-------------
+
+Certain display types also allow you to show "pages". With pages you can create drawing lambdas
+that you can switch between. For example with pages you can set up 3 screens, each with
+different content, and switch between them on a timer.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        id: my_display
+        pages:
+          - id: page1
+            lambda: |-
+              it.print(0, 10, id(my_font), "This is page 1!");
+          - id: page2
+            lambda: |-
+              it.print(0, 10, id(my_font), "This is page 2!");
+
+You can then switch between these with three different actions:
+
+**show_next** / **show_prev**: Shows the next or previous page, wraps around at the end.
+
+.. code-block:: yaml
+
+    on_...:
+      - display.page.show_next: my_display
+      - display.page.show_prev: my_display
+
+    # For example cycle through pages on a timer
+    interval:
+      - interval: 5s
+        then:
+          - display.page.show_next: my_display
+          - component.update: my_display
+
+**display.page.show**: Show a specific page
+
+.. code-block:: yaml
+
+    on_...:
+      - display.page.show: page1
+
+      # Templated
+      - display.page.show: !lambda |-
+          if (id(my_binary_sensor).state) {
+            return id(page1);
+          } else {
+            return id(page2);
+          }
+
+.. note::
+
+    To trigger a redraw right after the page show use a :ref:`component.update <component-update_action>`
+    action:
+
+    .. code-block:: yaml
+
+        # For example cycle through pages on a timer
+        interval:
+          - interval: 5s
+            then:
+              - display.page.show_next: my_display
+              - component.update: my_display
 
 See Also
 --------

@@ -5,11 +5,6 @@ Nextion TFT LCD Display
     :description: Instructions for setting up Nextion TFT LCD displays
     :image: nextion.jpg
 
-.. warning::
-
-    This integration is experimental as I don't have the hardware to test it (yet).
-    If you can verify it works (or if it doesn't), notify me on `discord <https://discord.gg/KhAMKrd>`__.
-
 The ``nextion`` display platform allows you to use Nextion LCD displays (`datasheet <https://nextion.itead.cc/resources/datasheets/>`__,
 `iTead <https://www.itead.cc/display/nextion.html>`__)
 with ESPHome.

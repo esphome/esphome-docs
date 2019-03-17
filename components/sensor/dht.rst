@@ -71,9 +71,9 @@ Configuration variables:
 
 .. note::
 
-   If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
-   DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
-   on the DATA pin or too long cables.
+    If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
+    DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
+    on the DATA pin or too long cables.
 
 See Also
 --------

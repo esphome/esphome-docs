@@ -1,0 +1,45 @@
+Changelog - Version 1.12.0
+==========================
+
+.. seo::
+    :description: Changelog for ESPHome version 1.12.0.
+    :image: /_static/changelog-1.12.0.png
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
+.. imgtable::
+
+    User-Defined Services, components/api.html#user-defined-services, home-assistant.svg
+    MPR121, components/binary_sensor/mpr121, mpr121.jpg
+    SDS011, components/sensor/sds011, sds011.jpg
+    ESP32 Camera, components/esp32_camera, camera.svg
+    Servo, components/servo, servo.svg
+
+TODO
+
+
+Breaking Changes
+----------------
+
+TODO - No major ones though (+ all handled through validation error messages)
+
+Other notable changes:
+----------------------
+
+- Added ``calibrate_linear`` sensor filter for easier calibration of sensors
+  (:ref:`sensor-filter-calibrate_linear`)
+- Added ``for`` parameter :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` condition.
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
+
+.. disqus::

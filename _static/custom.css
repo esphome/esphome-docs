@@ -76,3 +76,31 @@ table.docutils {
 .not-hidden {
   display: block !important;
 }
+
+img.index-shield {
+  max-width: 100%;
+  height: 26px;
+  margin-top: 10px;
+}
+
+.supporters-row {
+  display: flex;
+}
+
+.supporters-column {
+  flex: 50%;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.supporters-row .supporters-column:first-child {
+  border-right: 1px solid #a0a0a0;
+}
+
+.supporters-column img {
+  width: 75%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

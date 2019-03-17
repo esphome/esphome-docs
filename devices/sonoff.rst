@@ -192,7 +192,7 @@ Same configuration as the :doc:`Sonoff 4CH <sonoff_4ch>`.
 Sonoff B1, Ai-Thinker AiLight
 -----------------------------
 
-See :doc:`/components/my9231`.
+See :doc:`/components/output/my9231`.
 
 Sonoff T1 1CH, 2CH, 3CH
 -----------------------
@@ -288,7 +288,7 @@ Sonoff S31
 
     GPIO0, Button (inverted),
     GPIO12, Relay and Red LED,
-    GPIO13, Green LED (inverteD),
+    GPIO13, Green LED (inverted),
 
 See :doc:`/components/sensor/cse7766` for measuring power
 
@@ -309,7 +309,41 @@ Shelly 2
     GPIO5, Relay #2,
     GPIO12, SW Input #1,
     GPIO14, SW Input #2,
-    
+
+Teckin
+------
+
+.. pintable::
+
+    GPIO1, Button (inverted),
+    GPIO3, Blue LED (inverted),
+    GPIO13, Red LED (inverted),
+    GPIO14, Relay,
+
+    GPIO12, HLW8012 SEL Pin (inverted),
+    GPIO4, HLW8012 CF Pin,
+    GPIO5, HLW8012 CF1 Pin,
+
+See :doc:`/components/sensor/hlw8012` for measuring power.
+Example config: `teckin.yaml <https://github.com/esphome/esphome-docs/blob/current/devices/teckin.yaml>`__
+
+Teckin SP20 (US)
+----------------
+
+.. pintable::
+
+    GPIO13, Button,
+    GPIO2, Blue LED (inverted),
+    GPIO0, Red LED (inverted),
+    GPIO4, Relay,
+
+    GPIO12, HLW8012 SEL Pin (inverted),
+    GPIO5, HLW8012 CF Pin,
+    GPIO14, HLW8012 CF1 Pin,
+
+See :doc:`/components/sensor/hlw8012` for measuring power.
+Example config: `teckin_sp20_us.yaml <https://github.com/esphome/esphome-docs/blob/current/devices/teckin_sp20_us.yaml>`__
+
 See Also
 --------
 
