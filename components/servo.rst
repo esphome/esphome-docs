@@ -51,6 +51,13 @@ Advanced Options:
 - **max_level** (*Optional*, percentage): The PWM duty cycle the maximum value (100%) will map
   to. Defaults to ``12.0%``.
 
+.. note::
+
+    Some servos support a larger range for the level. For continuous rotation servos
+    this can speed them up a bit and for absolute servos this can extend their angle range.
+    You can configure the ``min_level`` and ``max_level`` options to adjust the level range
+    to match your servo (Experiment with these values).
+
 .. _servo-write_action:
 
 ``servo.write`` Action

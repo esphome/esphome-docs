@@ -46,9 +46,9 @@ Advanced options:
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **use_custom_code** (*Optional*, boolean): Whether to configure the project for writing custom components.
   This sets up some flags so that custom code should compile correctly
-- **includes** (*Optional*, list of files): A list of files to include in the main (auto-generated) sketch file
+- **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
-  is in.
+  is in. Should have file extension ``.h``
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
 

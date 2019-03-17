@@ -10,6 +10,8 @@ the Home Assistant frontend. A fan can be switched ON or OFF, optionally
 has a speed setting (``LOW``, ``MEDIUM``, ``HIGH``) and can have an
 oscillate output.
 
+This component restores its state on reboot/reset.
+
 .. figure:: images/fan-ui.png
     :align: center
     :width: 70.0%
