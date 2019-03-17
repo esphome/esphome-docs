@@ -8,7 +8,8 @@ Binary Sensor Map
 The ``binary_sensor_map`` sensor platform allows you to map your ``binary_sensors`` as channels into a binary sensor map.
 This sensor is mostly used for touch devices but could be used for any ``binary_sensor`` that publishes its ``ON`` or ``OFF`` state.
 
-Add your ``binary_sensors`` as ``channels`` to the ``binary_sensor_map``. The ``binary_sensor_map`` then publishes a value depending on the type of the ``binary_sensor_map`` and the values specified with each channel.
+Add your ``binary_sensors`` as ``channels`` to the ``binary_sensor_map``. The ``binary_sensor_map`` then publishes a value depending
+ on the type of the ``binary_sensor_map`` and the values specified with each channel.
 
 This platform will support three sensor types, which you need to specify using the ``type:`` configuration
 value:
