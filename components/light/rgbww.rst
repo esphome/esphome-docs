@@ -20,8 +20,8 @@ and warm white channels will be mixed using the color temperature configuration 
         blue: output_component3
         cold_white: output_component4
         warm_white: output_component5
-        cold_white_color_temperature: 153 mireds
-        warm_white_color_temperature: 500 mireds
+        cold_white_color_temperature: 6536 K
+        warm_white_color_temperature: 2000 K
 
 Configuration variables:
 ------------------------
