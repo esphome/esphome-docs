@@ -25,34 +25,34 @@ value:
       id: mpr121_first
       address: 0x5A
 
-	binary_sensor:
-	  - platform: mpr121
-	    channel: 0
-	    id: touchkey0
-	  - platform: mpr121
-	    channel: 1
-	    id: touchkey1
-	  - platform: mpr121
-	    channel: 2
-	    id: touchkey2
-	  - platform: mpr121
-	    channel: 3
-	    id: touchkey3
+    binary_sensor:
+      - platform: mpr121
+        channel: 0
+        id: touchkey0
+      - platform: mpr121
+        channel: 1
+        id: touchkey1
+      - platform: mpr121
+        channel: 2
+        id: touchkey2
+      - platform: mpr121
+        channel: 3
+        id: touchkey3
 
-	sensor:
-	  - platform: binary_sensor_map
-	    id: group_0
-	    name: 'Group Map 0'
-	    type: GROUP
-	    channels:
-	      - channel: touchkey0
-	        value: 0
-	      - channel: touchkey1
-	        value: 10
-	      - channel: touchkey2
-	        value: 20
-	      - channel: touchkey3
-	        value: 30
+    sensor:
+      - platform: binary_sensor_map
+        id: group_0
+        name: 'Group Map 0'
+        type: GROUP
+        channels:
+          - channel: touchkey0
+            value: 0
+          - channel: touchkey1
+            value: 10
+          - channel: touchkey2
+            value: 20
+          - channel: touchkey3
+            value: 30
 
 Configuration variables:
 ------------------------
