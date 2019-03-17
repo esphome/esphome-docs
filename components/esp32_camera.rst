@@ -87,6 +87,11 @@ Frame Settings:
 - **vertical_flip** (*Optional*, bool): Whether to flip the image vertically. Defaults to ``true``.
 - **horizontal_mirror** (*Optional*, bool): Whether to mirror the image horizontally. Defaults to ``true``.
 
+.. note::
+
+    The camera integration in Home Assistant isn't in stable or beta HA builds, so until 0.91
+    ships or goes into beta you will need to use a development version of Home Assistant.
+
 Configuration for Ai-Thinker Camera
 -----------------------------------
 

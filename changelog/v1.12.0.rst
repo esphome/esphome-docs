@@ -10,15 +10,36 @@ Changelog - Version 1.12.0
 .. imgtable::
 
     User-Defined Services, components/api.html#user-defined-services, home-assistant.svg
-    MPR121, components/binary_sensor/mpr121, mpr121.jpg
-    SDS011, components/sensor/sds011, sds011.jpg
     ESP32 Camera, components/esp32_camera, camera.svg
-    Servo, components/servo, servo.svg
+    MPR121, components/binary_sensor/mpr121, mpr121.jpg
+
+    SDS011, components/sensor/sds011, sds011.jpg
     MCP23017, components/mcp23017, mcp23017.svg
+    Servo, components/servo, servo.svg
+
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
 
-TODO
+It's release day! 🎉 Today I'm happy to release ESPHome 1.12.0. What's new? A lot of awesome
+stuff got added! Let me walk you through it:
 
+Before 1.12, it was only possible to transfer data from ESPHome to Home Assistant (with the
+``homeassistant.service`` call). With 1.12 you get :ref:`User-defined services <api-services>`,
+just define a service in your ESPHome file and call it like any other service from HA. All the
+rest (like variables, data validation, etc) are handled automatically!
+
+:doc:`ESP32 Camera Support </components/esp32_camera>`: This is huge. When integrating cameras
+into your smart home you'd always have to weigh between security and price; cheap cameras often
+are very insecure (and sometimes even exposed on the web). And even the pricier ones would
+sometimes phone back to the manufacturer and upload your data. With ESPHome, everything's 100%
+local and communicates *directly* with Home Assistant. It took a bit longer than I initially
+anticipated to iron out most stability issues, but with 1.12.0 it's finally here :)
+
+And thanks very much to :ghuser:`puuu` for the :doc:`SDS011 Particulate Matter integration </components/sensor/sds011>` and
+:ghuser:`mvturnho` for the newly added 
+:doc:`MPR121 Capacitive Touch sensor </components/binary_sensor/mpr121>` support!
+
+And as always, this release contains tons of small adjustments (like automatically providing
+suggestions for validation errors) and bug fixes to make your life easier.
 
 Breaking Changes
 ----------------
@@ -41,9 +62,13 @@ Other notable changes:
 - Added ``esp8266_restore_from_flash`` to :doc:`esphome section </components/esphome>` which
   enables restoring state from flash instead of RTC memory - this allows recovering relay state
   even after a power cycle.
+- Added ability
 - ``!secret`` values are now hidden for config validation.
 - Rotary Encoders have a new ``min_value`` and ``max_value`` option. (:doc:`/components/sensor/rotary_encoder`)
 - Fixed OTA not working for ESP32 when BLE enabled.
+- Added a "delete" button in the dashboard interface to delete configuration files.
+- Reworked GPIO interrupts, this will fix a bunch of issues with components that use interrupts
+  (rotary encoder, software uart, remote receiver, ...)
 - Allowed the use of newest Arduino Core version for ESP8266: ``2.5.0`` (not default yet,
   please try it out on non-critical devices and report if there are no wifi issues)
 
