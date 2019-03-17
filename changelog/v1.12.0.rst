@@ -114,10 +114,12 @@ All changes
 - core: Add ESP32 camera support :corepr:`544`
 - docs: Cookbook Guide for Brilliant / Mirabella Genio Smart Plugs :docspr:`195` by :ghuser:`cryptelli`
 - esphome: Add ESP32 Camera :esphomepr:`475`
-- docs: Add native API User-Defined services :docspr:`171`
+- docs: Add native API User-Defined services :docspr:`171` (cherry-picked)
 - docs: BME280 environment micrograms -> grams :docspr:`198` by :ghuser:`hajdbo`
-- esphome: Changes for 1.12 :esphomepr:`482`
-- core: Fixes for 1.12 :corepr:`551`
+- esphome: Changes for 1.12 :esphomepr:`482` (cherry-picked)
+- core: Fixes for 1.12 :corepr:`551` (cherry-picked)
+- core: More changes for 1.12 :corepr:`552`
+- esphome: More changes for 1.12 :esphomepr:`483`
 
 Past Changelogs
 ---------------
