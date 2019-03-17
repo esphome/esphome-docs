@@ -10,6 +10,7 @@ The ``partition`` light platform allows you to combine multiple addressable ligh
 This platform also allows splitting up an addressable lights into multiple segments, so that
 segments can be individually controlled.
 
+Similarly, a single light strip can be partitioned into multiple partitions with this integration.
 
 .. code-block:: yaml
 

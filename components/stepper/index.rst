@@ -11,6 +11,11 @@ Currently only the A4988 stepper driver
 (`datasheet <https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf>`__)
 and ULN2003 (`datasheet <http://www.ti.com/lit/ds/symlink/uln2003a.pdf>`__) are supported.
 
+.. note::
+
+    This component will not show up in the Home Assistant front-end automatically because
+    Home Assistant doesn't have support for steppers. Please see :ref:`stepper-ha-config`.
+
 A4988 Configuration
 -------------------
 
@@ -133,6 +138,23 @@ Configuration options:
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
 
+.. warning::
+
+    This turns the stepper to an absolute position! To have the servo move *relative* to the current
+    position, first reset the current position and then set the target to the relative value.
+
+    .. code-block:: yaml
+
+        on_...:
+          then:
+            # Move 150 steps forward
+            - stepper.report_position:
+                id: my_stepper
+                position: 0
+            - stepper:set_target:
+                id: my_stepper
+                target: 150
+
 .. note::
 
     This action can also be expressed as a :ref:`lambda <config-lambda>`:
@@ -194,6 +216,58 @@ Configuration options:
 
         // Get the current position:
         int pos = id(my_stepper).current_position;
+
+.. _stepper-ha-config:
+
+Home Assistant Configuration
+----------------------------
+
+This component will not show up in the Home Assistant frontend automatically because Home Assistant
+does not support steppers natively (raise this issue in Home Assistant forums to make this a
+higher priority for Home Assistant). You can add this to your Home Assistant configuration to
+be able to control the stepper from the frontend.
+
+.. code-block:: yaml
+
+    # Home Assistant configuration
+    input_number:
+      stepper_control:
+        name: Stepper Control
+        initial: 0
+        min: -1000
+        max: 1000
+        step: 1
+        mode: slider
+
+    automation:
+      - alias: Write Stepper Value to ESP
+        trigger:
+          platform: state
+          entity_id: input_number.stepper_control
+        action:
+          # Replace livingroom with the name you gave the ESP
+          - service: esphome.livingroom_control_stepper
+            data_template:
+              target: '{{ trigger.to_state.state | int }}'
+
+.. code-block:: yaml
+
+    # ESPHome configuration
+    api:
+      services:
+        - service: control_stepper
+          variables:
+            target: int
+          then:
+            - stepper.set_target:
+                id: my_stepper
+                target: !lambda 'return target;'
+
+    stepper:
+      - platform: ...
+        # [...] stepper config
+        id: my_stepper
+
 
 See Also
 --------

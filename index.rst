@@ -122,6 +122,7 @@ Sensor Components
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
@@ -150,6 +151,7 @@ Binary Sensor Components
     Status, components/binary_sensor/status, server-network.svg
     ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
@@ -260,7 +262,9 @@ Misc Components
     Status LED, components/status_led, led-on.svg
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
+    Servo, components/servo, servo.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
+    ESP32 Camera, components/esp32_camera, camera.svg
 
 Additional Custom Components
 ----------------------------
@@ -292,6 +296,7 @@ Cookbook
     Time & Temperature on OLED Display, cookbook/display_time_temp_oled, display_time_temp_oled_2.jpg
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
     Garage Door, cookbook/garage-door, window-open.svg
+    Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

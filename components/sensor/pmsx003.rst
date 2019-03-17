@@ -58,6 +58,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/sensor/sds011`
 - :ref:`sensor-filters`
 - :apiref:`sensor/pmsx003.h`
 - :ghedit:`Edit`
