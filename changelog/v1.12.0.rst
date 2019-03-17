@@ -145,6 +145,7 @@ All changes
 - core: Fixes for 1.12 :corepr:`551` (cherry-picked)
 - core: More changes for 1.12 :corepr:`552`
 - esphome: More changes for 1.12 :esphomepr:`483`
+- esphome: Update Hassio base image to 1.4.1 :esphomepr:`484`
 
 Past Changelogs
 ---------------
