@@ -5,11 +5,10 @@ Binary Sensor Map
     :description: Instructions for setting up a Binary Sensor Map
     :image: binary_sensor_map.png
 
-The ``binary_sensor_map`` sensor platform allows you to map your ``binary_sensors`` as ``channels`` into a ``binary_sensor_map``.
+The ``binary_sensor_map`` sensor platform allows you to map your ``binary_sensors`` as channels into a binary sensor map.
 This sensor is mostly used for touch devices but could be used for any ``binary_sensor`` that publishes its ``ON`` or ``OFF`` state.
 
-Add your ``binary_sensors`` as ``channels`` to the ``binary_sensor_map``. The ``binary_sensor_map`` then publishes a value depending
- on the type of the ``binary_sensor_map`` and the values specified with each channel.
+Add your ``binary_sensors`` as ``channels`` to the ``binary_sensor_map``. The ``binary_sensor_map`` then publishes a value depending on the type of the ``binary_sensor_map`` and the values specified with each channel.
 
 This platform will support three sensor types, which you need to specify using the ``type:`` configuration
 value:
@@ -60,8 +59,10 @@ Configuration variables:
 - **name** (**Required**, string): The name for the binary sensor.
 - **type** (**Optional**, string): The sensor type. Should be one of: ``GROUP``, ``SLIDER``, ``WHEEL``. defaults to ``GROUP``
 - **channels** (**Required**): A list of channels that are mapped to certain values.
+
   - **channel** (**Required**): The id of the ``binary_sensor`` to add as a channel for this sensor.
   - **value** (**Optional**): The value this channel shoul report when its binary_sensor is active. This option is only used for the ``GROUP`` type sensor.
+  
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
