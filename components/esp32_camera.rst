@@ -47,8 +47,8 @@ Connection Options:
 
 - **i2c_pins** (**Required**): The i2c control pins of the camera.
 
-  - **sda** (**Required**, pin): The SDA pin of the i2c interface.
-  - **scl** (**Required**, pin): The SCL pin of the i2c interface.
+  - **sda** (**Required**, pin): The SDA pin of the i2c interface. Also called ``SIOD``.
+  - **scl** (**Required**, pin): The SCL pin of the i2c interface. Also called ``SIOC``.
 
 - **reset_pin** (*Optional*, pin): The ESP pin the reset pin of the camera is connected to.
   If set, this will reset the camera before the ESP boots.
