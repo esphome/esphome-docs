@@ -46,6 +46,9 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
+- **gamma_correct** (*Optional*, float): The `gamma correction
+  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the
+  light. Defaults to ``2.8``.
 
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
