@@ -8,19 +8,6 @@ ESP32 Camera Component
 The ``esp32_camera`` component allows you to use ESP32-based camera boards in ESPHome that
 directly integrate into Home Assistant through the native API.
 
-.. warning::
-
-    Some ESP32 Camera boards have insufficient cooling and will overheat over time,
-    ESPHome does only activate the camera when Home Assistant requests an image, but
-    the camera until can still heat up considerably for some boards.
-
-    If the camera is not recognized after a reboot and the unit feels warm, try waiting for
-    it to cool down and check again - if that still doesn't work try enabling the test pattern.
-
-.. note::
-
-    The example configuration is valid for M5Stack ESP32 camera models.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -60,8 +47,8 @@ Connection Options:
 
 - **i2c_pins** (**Required**): The i2c control pins of the camera.
 
-  - **sda** (**Required**, pin): The SDA pin of the i2c interface.
-  - **scl** (**Required**, pin): The SCL pin of the i2c interface.
+  - **sda** (**Required**, pin): The SDA pin of the i2c interface. Also called ``SIOD``.
+  - **scl** (**Required**, pin): The SCL pin of the i2c interface. Also called ``SIOC``.
 
 - **reset_pin** (*Optional*, pin): The ESP pin the reset pin of the camera is connected to.
   If set, this will reset the camera before the ESP boots.
@@ -99,6 +86,89 @@ Frame Settings:
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **vertical_flip** (*Optional*, bool): Whether to flip the image vertically. Defaults to ``true``.
 - **horizontal_mirror** (*Optional*, bool): Whether to mirror the image horizontally. Defaults to ``true``.
+
+.. note::
+
+    The camera integration in Home Assistant isn't in stable or beta HA builds, so until 0.91
+    ships or goes into beta you will need to use a development version of Home Assistant.
+
+Configuration for Ai-Thinker Camera
+-----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO0
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO26
+        scl: GPIO27
+      data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+      vsync_pin: GPIO25
+      href_pin: GPIO23
+      pixel_clock_pin: GPIO22
+      power_down_pin: GPIO32
+
+      # Image settings
+      name: My Camera
+      # ...
+
+Configuration for M5Stack Camera
+--------------------------------
+
+.. warning::
+
+    This camera board has insufficient cooling and will overheat over time,
+    ESPHome does only activate the camera when Home Assistant requests an image, but
+    the camera until can still heat up considerably for some boards.
+
+    If the camera is not recognized after a reboot and the unit feels warm, try waiting for
+    it to cool down and check again - if that still doesn't work try enabling the test pattern.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+
+      # Image settings
+      name: My Camera
+      # ...
+
+
+Configuration for Wrover Kit Boards
+-----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO21
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO26
+        scl: GPIO27
+      data_pins: [GPIO4, GPIO5, GPIO18, GPIO19, GPIO36, GPIO39, GPIO34, GPIO35]
+      vsync_pin: GPIO25
+      href_pin: GPIO23
+      pixel_clock_pin: GPIO22
+
+      # Image settings
+      name: My Camera
+      # ...
 
 See Also
 --------

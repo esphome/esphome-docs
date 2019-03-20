@@ -200,6 +200,13 @@ of nodes inherit:
 
     <<: !include common.yaml
 
+.. tip::
+
+    To hide these base files from the dashboard, you can
+
+    - Place them in a subdirectory (dashboard only shows files in top-level dir)
+    - Prepend a dot to the filename, like ``.base.yaml``
+
 See Also
 --------
 

@@ -17,8 +17,8 @@ channels will be mixed using the color temperature configuration options.
         name: "Livingroom Lights"
         cold_white: output_component1
         warm_white: output_component2
-        cold_white_color_temperature: 153 mireds
-        warm_white_color_temperature: 500 mireds
+        cold_white_color_temperature: 6536 K
+        warm_white_color_temperature: 2000 K
 
 Configuration variables:
 ------------------------
