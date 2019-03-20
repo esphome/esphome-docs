@@ -72,6 +72,16 @@ Other notable changes:
 - Allowed the use of newest Arduino Core version for ESP8266: ``2.5.0`` (not default yet,
   please try it out on non-critical devices and report if there are no wifi issues)
 
+Release 1.12.1 - March 20
+-------------------------
+
+- core: Fix homeassistant mqtt discovery for light components :corepr:`553` by :ghuser:`puuu`
+- esphome: Fix filter_out: nan filer :esphomepr:`486`
+- docs: Sonoff S20 yaml fix :docspr:`200` by :ghuser:`BananaPukeh`
+- core: Fix WiFi Info Text Sensor :corepr:`554`
+- core: Fix addressable lights starting white at boot :corepr:`556`
+- esphome: Fix IPAddress in validate secret :esphomepr:`488`
+
 All changes
 -----------
 
