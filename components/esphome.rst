@@ -56,11 +56,8 @@ ESP8266 Options:
 
 - **board_flash_mode** (*Optional*, string): The `SPI flash mode <https://github.com/espressif/esptool/wiki/SPI-Flash-Modes>`__
   to use for the board. One of ``qio``, ``qout``, ``dio`` and ``dout``. Defaults to ``dout``.
-- **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash so
-  that the device state can be restored across power cycles. Keep in mind that this will slowly
-  wear out the flash (so if you have automations that repeatedly toggle a component do not use this
-  option (flash usually supports 100 000 write cycles). Defaults to ``no``.
-  See :ref:`esphome-esp8266_restore_from_flash` for more info
+- **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash on ESP8266s.
+  Defaults to ``no``. See :ref:`esphome-esp8266_restore_from_flash` for more info
 
 Automations:
 
@@ -176,14 +173,21 @@ For the ESP32, there are two arduino framework versions:
 .. _esphome-esp8266_restore_from_flash:
 
 ``esp8266_restore_from_flash``
---------------------------------
+------------------------------
 
-The ``light``, ``switch`` and ``fan`` components use this under the hood, so enabling this will allow you to
-maintain state across power loss. The ``ota`` component also uses this to store the number of bad boots, before
-reverting to safe mode, so enabling this option will change the behavior slightly, since repeated power loss
-within the checking time can result in safe mode being enabled (hard to hit, though). The ``on_value_range``
-automation in sensors also use this, so be very careful if using it, since it can wear out the flash quickly
-if your sensor gets in and out of range very frequently.
+With this option you can control where the state of certain components is kept on the ESP.
+Components like ``light``, ``switch``, ``fan`` and ``globals`` can restore their state upon
+boot.
+
+However, by default this data is stored in the "RTC memory" section of the ESP8266s. This memory
+is cleared when the ESP8266 is disconnected from power. So by default the state cannot be recovered
+after power loss.
+
+To still have these components restore their state upon power loss the state can additionally be
+saved in *flash* memory by setting this option to ``true``.
+
+Beware: The flash has a limited number of write cycles (usually around 100 000), after that
+the flash section will fail.
 
 .. _esphome-on_boot:
 
