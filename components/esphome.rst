@@ -59,7 +59,13 @@ ESP8266 Options:
 - **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash so
   that the device state can be restored across power cycles. Keep in mind that this will slowly
   wear out the flash (so if you have automations that repeatedly toggle a component do not use this
-  option (flash usually supports 100 000 write cycles). Defaults to ``no``.
+  option (flash usually supports 100 000 write cycles). Defaults to ``no``. The ``light``, ``switch`` and ``fan``
+  components use this under the hood, so enabling this will allow you to maintain state across power
+  loss. The ``ota`` component also uses this to store the number of bad boots, before reverting to safe mode,
+  so enabling this option will change the behavior slightly, since repeated power loss within the checking time
+  can result in safe mode being enabled (hard to hit, though). The ``on_value_range`` automation in sensors
+  also use this, so be very careful if using it, since it can wear out the flash quickly if your sensor gets
+  in and out of range very frequently. 
 
 Automations:
 
