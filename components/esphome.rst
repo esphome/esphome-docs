@@ -187,7 +187,9 @@ To still have these components restore their state upon power loss the state can
 saved in *flash* memory by setting this option to ``true``.
 
 Beware: The flash has a limited number of write cycles (usually around 100 000), after that
-the flash section will fail.
+the flash section will fail. So do not use this option when you have components that update rapidly.
+These include GPIO switches that are used internally (disable restoring with the ``restore_mode`` option),
+certain light effects like ``random`` and the ``on_value_range`` trigger.
 
 .. _esphome-on_boot:
 
