@@ -22,6 +22,10 @@ text sensor for importing arbitrary text into the ESPHome ecosystem.
         name: "Data from topic"
         id: mysensor
         topic: the/topic
+      - platform: template
+        name: "Data calculation"
+        lambda: |-
+          return (id(mysensor).state * 10)
 
 Configuration variables:
 ------------------------
