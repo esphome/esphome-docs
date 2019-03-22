@@ -44,6 +44,7 @@ You guys are awesome!
 - Magnus Overli
 - Dattas Moonchaser
 - Intermittent Technology
+- Andrea Donno
 
 
 Contributors
@@ -56,7 +57,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1523 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1525 contributions
 
 Contributors
 ************
@@ -126,6 +127,7 @@ Contributors
 - `Paul Nicholls (@pauln) <https://github.com/pauln>`__ - 1 contribution
 - `per1234 (@per1234) <https://github.com/per1234>`__ - 2 contributions
 - `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__ - 1 contribution
+- `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 1 contribution
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
 - `puuu (@puuu) <https://github.com/puuu>`__ - 10 contributions
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__ - 1 contribution
@@ -143,4 +145,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Wed Mar 20 19:06:00 2019 UTC.*
+*This page was last updated Fri Mar 22 20:07:33 2019 UTC.*
