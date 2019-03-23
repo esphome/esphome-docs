@@ -45,6 +45,7 @@ You guys are awesome!
 - Dattas Moonchaser
 - Intermittent Technology
 - Andrea Donno
+- Ryan Bahm
 
 
 Contributors
@@ -57,7 +58,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1525 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1526 contributions
 
 Contributors
 ************
@@ -145,4 +146,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Fri Mar 22 20:07:33 2019 UTC.*
+*This page was last updated Sat Mar 23 21:40:15 2019 UTC.*
