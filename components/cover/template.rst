@@ -115,5 +115,3 @@ See Also
 - :doc:`/cookbook/garage-door`
 - :apiref:`cover/template_cover.h`
 - :ghedit:`Edit`
-
-.. disqus::

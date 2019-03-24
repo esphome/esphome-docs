@@ -184,5 +184,3 @@ See Also
 - :apiref:`output/my9231_output_component.h`
 - `MY92XX LED driver library for Arduino AVR and ESP8266 <https://github.com/xoseperez/my92xx>`__ by `@xoseperez <https://github.com/xoseperez>`__
 - :ghedit:`Edit`
-
-.. disqus::

@@ -109,5 +109,3 @@ See Also
 - :doc:`/components/cover/template`
 - :doc:`dual-r2-cover`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -86,5 +86,3 @@ See Also
 - :apiref:`sensor/dht_component.h`
 - `Arduino DHTLib <https://playground.arduino.cc/Main/DHTLib>`__
 - :ghedit:`Edit`
-
-.. disqus::

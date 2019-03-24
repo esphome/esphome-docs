@@ -345,5 +345,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

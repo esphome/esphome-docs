@@ -562,5 +562,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

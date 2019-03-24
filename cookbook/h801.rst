@@ -101,5 +101,3 @@ See Also
 - :doc:`/components/light/rgbw`
 - :doc:`/components/output/esp8266_pwm`
 - :ghedit:`Edit`
-
-.. disqus::

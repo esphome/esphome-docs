@@ -35,5 +35,3 @@ See Also
 - :doc:`template`
 - :apiref:`switch_/shutdown_switch.h`
 - :ghedit:`Edit`
-
-.. disqus::

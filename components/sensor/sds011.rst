@@ -76,5 +76,3 @@ See Also
 - `Laser Dust Sensor Control Protocol <https://nettigo.pl/attachments/415>`__
 - :apiref:`sensor/sds011_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

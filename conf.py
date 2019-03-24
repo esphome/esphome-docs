@@ -41,7 +41,6 @@ sys.path.append(os.path.abspath('.'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'disqus',
     'github',
     'seo',
     'sitemap',

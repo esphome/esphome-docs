@@ -74,5 +74,3 @@ See Also
 - :doc:`/components/logger`
 - :apiref:`uart_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

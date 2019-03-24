@@ -49,5 +49,3 @@ See Also
 - :doc:`binary_sensor/gpio`
 - :apiref:`io/mcp23017.h`
 - :ghedit:`Edit`
-
-.. disqus::

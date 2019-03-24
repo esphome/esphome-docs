@@ -33,5 +33,3 @@ See Also
 - :doc:`template`
 - :apiref:`switch_/restart_switch.h`
 - :ghedit:`Edit`
-
-.. disqus::

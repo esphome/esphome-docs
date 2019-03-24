@@ -58,5 +58,3 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sensor/cse7766.h`
 - :ghedit:`Edit`
-
-.. disqus::

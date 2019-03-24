@@ -100,5 +100,3 @@ See Also
 - :ref:`config-pin_schema`
 - :apiref:`binary_sensor/gpio_binary_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

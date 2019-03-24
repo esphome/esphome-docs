@@ -74,5 +74,3 @@ See Also
 - `MH-Z19 library <https://github.com/nara256/mhz19_uart>`__ by `@nara356 <https://github.com/nara256>`__
 - :apiref:`sensor/mhz19_component.h`
 - :ghedit:`Edit`
-
-.. disqus::
