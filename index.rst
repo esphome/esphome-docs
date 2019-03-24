@@ -28,14 +28,10 @@ Guides
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
     Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
-    Configuration Types, guides/configuration-types, settings.svg
-
-    Migrating from Sonoff-Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
-    Migrating from ESPurna, guides/migrate_espurna, espurna.svg
-    Migrating from ESPEasy, guides/migrate_espeasy, espeasy.svg
-
-    Automations, guides/automations, auto-fix.svg
     FAQ and Tips, guides/faq, question_answer.svg
+
+    Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
+    Automations, guides/automations, auto-fix.svg
     Contributing, guides/contributing, github-circle.svg
 
     Changelog, changelog/index, new-box.svg
