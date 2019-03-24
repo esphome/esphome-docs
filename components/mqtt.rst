@@ -12,6 +12,12 @@ just be able to copy over the `MQTT
 section <https://www.home-assistant.io/components/mqtt/>`__ of your Home
 Assistant configuration.
 
+.. warning::
+
+    When enabling MQTT and you do *not* use the "native API" for Home Assistant, you must
+    remove the ``api:`` line from your ESPHome configuration, otherwise the ESP will
+    reboot every 5 minutes because no client connected to the native API.
+
 .. code-block:: yaml
 
     # Example configuration entry

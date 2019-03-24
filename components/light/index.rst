@@ -9,6 +9,8 @@ The ``light`` domain in ESPHome lets you create lights that will
 automatically be shown in Home Assistant’s frontend and have many
 features such as RGB colors, transitions, flashing and effects.
 
+This component restores its state on reboot/reset.
+
 .. _light-toggle_action:
 
 ``light.toggle`` Action
@@ -103,6 +105,12 @@ Configuration options:
         call.set_effect("The Effect");
         // perform action:
         call.perform();
+
+.. note::
+
+    The ``red``, ``green`` and ``blue`` values only control the color of the light, not its
+    brightness! If you assign ``50%`` to all RGB channels it will be interpreted as 100% on.
+    Only use ``brightness`` to control the brightness of the light.
 
 .. _light-turn_off_action:
 

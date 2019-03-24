@@ -10,10 +10,10 @@ Version 1.8.0
 
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Nextion, components/display/nextion, nextion.jpg
-    SSD1306, components/display/ssd1306_i2c, ssd1306.jpg
+    SSD1306, components/display/ssd1306, ssd1306.jpg
 
     MAX7219, components/display/max7219, max7219.jpg
-    LCD Display, components/display/lcd_gpio, lcd.jpg
+    LCD Display, components/display/lcd_display, lcd.jpg
     RCSwitch Integration, components/switch/remote_transmitter.html#rcswitch-remote-codes, remote.svg
 
     SPI Bus, components/spi, spi.svg
@@ -21,8 +21,8 @@ Version 1.8.0
     Real Time Clock, components/time, clock-outline.svg
 
     Uptime Sensor, components/sensor/uptime, timer.svg
-    PN532, components/pn532, pn532.jpg
-    RDM6300, components/rdm6300, rdm6300.jpg
+    PN532, components/binary_sensor/pn532, pn532.jpg
+    RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
@@ -54,7 +54,7 @@ This release mainly focuses on these new features:
 - Lots of Bug Fixes - Now that most of the hardware has arrived from china, I was able to fix a bunch
   of bugs with a lot of integrations.
 - :doc:`Displays! </components/display/index>`
-- NFC/RFID Readers (:doc:`PN532 </components/pn532>` and :doc:`RDM6300 </components/rdm6300>`)
+- NFC/RFID Readers (:doc:`PN532 </components/binary_sensor/pn532>` and :doc:`RDM6300 </components/binary_sensor/rdm6300>`)
 - New :doc:`ESP32 BLE integrations </components/esp32_ble_tracker>` like :doc:`Xiaomi MiFlora </components/sensor/xiaomi_miflora>`
 - Core Changes like the addition of the :ref:`SPI bus <spi>` and :ref:`UART bus <uart>`
 - Lots of new :ref:`light effects <light-effects>` and support for cold-white/warm-white lights.
@@ -69,18 +69,30 @@ awesome projects ☀️
 
 Special thanks to all the contributors for this release:
 
-- esphomeyaml: Add ‘only-generate’ parameter to generate command to only generate the C++ code `#84 <https://github.com/OttoWinter/esphomeyaml/pull/84>`__ by `@apeeters <https://github.com/apeeters>`__
-- esphomeyaml: Fix esphomeyaml logs for tls enabled mqtt brokers `#118 <https://github.com/OttoWinter/esphomeyaml/pull/118>`__ by `@johnerikhalse <https://github.com/johnerikhalse>`__
-- esphomelib: Add Samsung IR codes `#141 <https://github.com/OttoWinter/esphomelib/pull/141>`__ by `@escoand <https://github.com/escoand>`__
-- esphomelib: Add support for SNTP and RTC `#76 <https://github.com/OttoWinter/esphomelib/pull/76>`__ by `@brandond <https://github.com/brandond>`__
-- esphomelib: Run travis jobs in parallel `#123 <https://github.com/OttoWinter/esphomelib/pull/123>`__ by `@lobradov <https://github.com/lobradov>`__
-- esphomelib: Fix typo in dallas error message `#125 <https://github.com/OttoWinter/esphomelib/pull/125>`__ by `@janpieper <https://github.com/janpieper>`__
-- esphomelib: Fix esphomelib examples `#124 <https://github.com/OttoWinter/esphomelib/pull/124>`__ by `@lobradov <https://github.com/lobradov>`__
-- esphomelib: Fix panic in binary_sensor template `#111 <https://github.com/OttoWinter/esphomelib/pull/111>`__ by `@nunofgs <https://github.com/nunofgs>`__
-- esphomelib: Add ESP8266 library dependency to Arduino IDE instructions `#99 <https://github.com/OttoWinter/esphomelib/pull/99>`__ by `@per1234 <https://github.com/per1234>`__
-- esphomelib: Fixing I2C readings `#98 <https://github.com/OttoWinter/esphomelib/pull/98>`__ by `@exxamalte <https://github.com/exxamalte>`__
-- esphomedocs: Note added about resetting the ESP after serial upload before OTA upload `#14 <https://github.com/OttoWinter/esphomedocs/pull/14>`__ by `@exxamalte <https://github.com/exxamalte>`__
-- esphomedocs: Add cookbook for dual relay cover `#10 <https://github.com/OttoWinter/esphomedocs/pull/10>`__ by `@aequitas <https://github.com/aequitas>`__
+- esphomeyaml: Add ‘only-generate’ parameter to generate command to only generate the C++ code
+  `#84 <https://github.com/OttoWinter/esphomeyaml/pull/84>`__ by `@apeeters <https://github.com/apeeters>`__
+- esphomeyaml: Fix esphomeyaml logs for tls enabled mqtt brokers
+  `#118 <https://github.com/OttoWinter/esphomeyaml/pull/118>`__ by `@johnerikhalse <https://github.com/johnerikhalse>`__
+- esphomelib: Add Samsung IR codes `#141 <https://github.com/OttoWinter/esphomelib/pull/141>`__
+  by `@escoand <https://github.com/escoand>`__
+- esphomelib: Add support for SNTP and RTC `#76 <https://github.com/OttoWinter/esphomelib/pull/76>`__
+  by `@brandond <https://github.com/brandond>`__
+- esphomelib: Run travis jobs in parallel `#123 <https://github.com/OttoWinter/esphomelib/pull/123>`__
+  by `@lobradov <https://github.com/lobradov>`__
+- esphomelib: Fix typo in dallas error message `#125 <https://github.com/OttoWinter/esphomelib/pull/125>`__
+  by `@janpieper <https://github.com/janpieper>`__
+- esphomelib: Fix esphomelib examples `#124 <https://github.com/OttoWinter/esphomelib/pull/124>`__
+  by `@lobradov <https://github.com/lobradov>`__
+- esphomelib: Fix panic in binary_sensor template `#111 <https://github.com/OttoWinter/esphomelib/pull/111>`__
+  by `@nunofgs <https://github.com/nunofgs>`__
+- esphomelib: Add ESP8266 library dependency to Arduino IDE instructions `#99 <https://github.com/OttoWinter/esphomelib/pull/99>`__
+  by `@per1234 <https://github.com/per1234>`__
+- esphomelib: Fixing I2C readings `#98 <https://github.com/OttoWinter/esphomelib/pull/98>`__
+  by `@exxamalte <https://github.com/exxamalte>`__
+- esphomedocs: Note added about resetting the ESP after serial upload before OTA upload
+  `#14 <https://github.com/OttoWinter/esphomedocs/pull/14>`__ by `@exxamalte <https://github.com/exxamalte>`__
+- esphomedocs: Add cookbook for dual relay cover `#10 <https://github.com/OttoWinter/esphomedocs/pull/10>`__
+  by `@aequitas <https://github.com/aequitas>`__
 
 And in some more personal news, you might have noticed that I was not very active in online communications (github, discord, ...)
 and that's partly been due to me concentrating on other stuff (university applications, work and
@@ -94,7 +106,8 @@ Other notable changes
 
 - Fixed certain occasions where esphomeyaml could run into recursive dependencies
 - Fixed i2c scans not showing up via MQTT
-- Improved build times by about 60%. Now, the build time should depend on the amount of components you're using, not the total esphomelib code base size.
+- Improved build times by about 60%. Now, the build time should depend on the amount of components you're using,
+  not the total esphomelib code base size.
 - Fixed ESP32 Touch setup mode
 - Fixed template binary sensors
 - Added the option to specify ``never`` for ``update_interval`` to never
@@ -181,11 +194,15 @@ Changes in 1.8.2
 - esphomedocs: Typo in display docs `#28 <https://github.com/OttoWinter/esphomedocs/pull/28>`__ by `@yuanl <https://github.com/yuanl>`__
 - esphomedocs: Typo fix. `#33 <https://github.com/OttoWinter/esphomedocs/pull/33>`__ by `@corbanmailloux <https://github.com/corbanmailloux>`__
 - esphomelib: Fix typo "noting" `#172 <https://github.com/OttoWinter/esphomelib/pull/172>`__ by `@TheJulianJES <https://github.com/TheJulianJES>`__
-- esphomedocs: Added docker local USB port mapping `#31 <https://github.com/OttoWinter/esphomedocs/pull/31>`__ by `@ladefoged81 <https://github.com/ladefoged81>`__
-- esphomedocs: Fixed typo `#30 <https://github.com/OttoWinter/esphomedocs/pull/30>`__ by `@ladefoged81 <https://github.com/ladefoged81>`__
-- esphomedocs: Add missing (required) name to example. `#29 <https://github.com/OttoWinter/esphomedocs/pull/29>`__ by `@corbanmailloux <https://github.com/corbanmailloux>`__
+- esphomedocs: Added docker local USB port mapping `#31 <https://github.com/OttoWinter/esphomedocs/pull/31>`__
+  by `@ladefoged81 <https://github.com/ladefoged81>`__
+- esphomedocs: Fixed typo `#30 <https://github.com/OttoWinter/esphomedocs/pull/30>`__
+  by `@ladefoged81 <https://github.com/ladefoged81>`__
+- esphomedocs: Add missing (required) name to example. `#29 <https://github.com/OttoWinter/esphomedocs/pull/29>`__
+  by `@corbanmailloux <https://github.com/corbanmailloux>`__
 - esphomedocs: Add ESP32 BLE workaround docs `#34 <https://github.com/OttoWinter/esphomedocs/pull/34>`__
-- esphomelib: Apply effect after changing colors `#169 <https://github.com/OttoWinter/esphomelib/pull/169>`__ by `@TheJulianJES <https://github.com/TheJulianJES>`__
+- esphomelib: Apply effect after changing colors `#169 <https://github.com/OttoWinter/esphomelib/pull/169>`__
+  by `@TheJulianJES <https://github.com/TheJulianJES>`__
 - esphomelib: Add 64x48 SSD1306 Display `#161 <https://github.com/OttoWinter/esphomelib/pull/161>`__
 - esphomedocs: Fix output link `#35 <https://github.com/OttoWinter/esphomedocs/pull/35>`__
 - esphomedocs: Fix pulse counter API typo `#36 <https://github.com/OttoWinter/esphomedocs/pull/36>`__

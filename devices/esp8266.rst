@@ -145,7 +145,8 @@ Reset Causes
 ------------
 
 Additionally, the first line also contains the **reset cause**.
-These reset causes `are documented <https://www.espressif.com/sites/default/files/documentation/esp8266_reset_causes_and_common_fatal_exception_causes_en.pdf>`__:
+These reset causes `are documented
+<https://www.espressif.com/sites/default/files/documentation/esp8266_reset_causes_and_common_fatal_exception_causes_en.pdf>`__:
 
 == ===================================
 0  Undefined

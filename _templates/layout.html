@@ -5,7 +5,7 @@
 {% endblock %}
 
 {%- block extrahead %}
-  <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}?hash={{ custom_css_hash }}" type="text/css" />
   <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
   <link rel="shortcut icon" href="/_static/favicon.ico">
   <link rel="icon" type="image/png" sizes="512x512" href="/_static/favicon-512x512.png">
@@ -33,19 +33,19 @@
   </div>
   <div id="upgrade-footer">
     A new version has been release since you last visited this page: {{ release }} 🎉
-    <a id="upgrade-footer-changelog" href="/changelog/index.html">View Changelog</a>
+    <a id="upgrade-footer-changelog" href="/changelog/v{{ version }}.0.html">View Changelog</a>
   </div>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113203480-2"></script>
   <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-113203480-2', {'anonymize_ip': true});</script>
 
   <script>
-    var old = window.localStorage.getItem("release");
-    if (old === null) { window.localStorage.setItem("release", "{{ release }}");
-    } else if (old !== "{{ release }}") {
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "{{ version }}");
+    } else if (old !== "{{ version }}") {
       document.getElementById("upgrade-footer").classList.add("not-hidden");
       document.getElementById("upgrade-footer-changelog").addEventListener('click', function () {
-        window.localStorage.setItem("release", "{{ release }}");
+        window.localStorage.setItem("version", "{{ version }}");
       });
     }
   </script>

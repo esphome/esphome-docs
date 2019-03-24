@@ -6,10 +6,11 @@ Light Partition
     :image: color_lens.png
 
 The ``partition`` light platform allows you to combine multiple addressable light segments
-(like :doc:`fastled_clockless` or :doc:`neopixelbus`) into a single addressable light.
+(like :doc:`fastled` or :doc:`neopixelbus`) into a single addressable light.
 This platform also allows splitting up an addressable lights into multiple segments, so that
 segments can be individually controlled.
 
+Similarly, a single light strip can be partitioned into multiple partitions with this integration.
 
 .. code-block:: yaml
 
@@ -45,6 +46,9 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
+- **gamma_correct** (*Optional*, float): The `gamma correction
+  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the
+  light. Defaults to ``2.8``.
 
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
@@ -61,7 +65,7 @@ See Also
 --------
 
 - :doc:`/components/light/index`
-- :doc:`/components/light/fastled_clockless`
+- :doc:`/components/light/fastled`
 - :doc:`/components/light/neopixelbus`
 - :apiref:`light/addressable_light.h`
 - :ghedit:`Edit`

@@ -9,8 +9,6 @@ The following is a possible configuration file for garage doors that are control
 One for opening and another one for closing the garage door. When either one of them is turned on
 for a short period of time, the close/open action begins.
 
-
-
 .. code-block:: yaml
 
     switch:

@@ -18,9 +18,7 @@ This sensor platform expects a sensor that can be sent a **trigger
 pulse** on a specific pin and will send out a **echo pulse** once a
 measurement has been taken. Because sometimes (for example if no object
 is detected) the echo pulse is never returned, this sensor also has a
-timeout option which specifies how long to wait for values. During this
-timeout period the whole core will be blocked and therefore shouldn't be
-set too high.
+timeout option which specifies how long to wait for values.
 
 .. figure:: images/ultrasonic-full.jpg
     :align: center
@@ -49,36 +47,12 @@ Configuration variables:
 - **echo_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The input pin on which to
   wait for the echo.
 - **name** (**Required**, string): The name of the sensor.
-- **timeout_meter** (*Optional*, float): The number of meters for the
-  timeout. Use either this or ``timeout_time``. Defaults to 2 meters.
-- **timeout_time** (*Optional*, int): The number of microseconds for
-  the timeout. Use either this or ``timeout_meter``. Defaults to
-  11662µs.
+- **timeout** (*Optional*, float): The number of meters for the
+  timeout. Most sensors can only sense up to 2 meters. Defaults to 10 meters.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
-
-Ultrasonic Timeouts
--------------------
-
-The ultrasonic sensor works by sending a small ultrasonic pulse out and then waiting until
-the pulse arrives back. However, there are cases where no such signal arrives back. This is most commonly caused
-by either having the sensor pointed at a soft surface that muffles the incoming signal. The other case where this
-can happen is when the the object is too far away and the timeout set by the ``timeout_meter`` or ``timeout_time``
-option kicks in.
-
-To remove ``NAN`` values from the sensor stream, use the ``filter_nan`` :ref:`sensor filter <sensor-filters>`:
-
-.. code-block:: yaml
-
-    sensor:
-      - platform: ultrasonic
-        trigger_pin: D1
-        echo_pin: D2
-        name: "Ultrasonic Sensor"
-        filters:
-          -
 
 
 See Also

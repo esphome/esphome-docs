@@ -116,7 +116,8 @@ See https://randomnerdtutorials.com/how-to-flash-a-custom-firmware-to-sonoff/ fo
 
 * Press and hold the toggle pin (long black pin next to LED and custom soldered pins).
 * Supply USB power to Sonoff via FTDI (e.g. plug in USB to the FTDI, or use a power switch as explained in link above).
-* Keep holding the toggle pin for approx 3-5 seconds now you should be ready to program. If you get a message unable to communicate when trying flash, check your TX/RX pin or retry entering boot mode again.
+* Keep holding the toggle pin for approx 3-5 seconds now you should be ready to program.
+  If you get a message unable to communicate when trying flash, check your TX/RX pin or retry entering boot mode again.
 
 Quick notes:
 
@@ -140,58 +141,59 @@ You should get an output starting like this
 
 .. code-block:: text
 
-  INFO Reading configuration...
-  INFO Detected timezone 'SAST' with UTC offset 2
-  INFO Generating C++ source...
-  INFO Compiling app...
-  INFO Running:  platformio run -d fishpond
-  ********************************************************************************************************
-  Obsolete PIO Core v3.6.3 is used (previous was 3.6.4b1)
-  Please remove multiple PIO Cores from a system:
-  https://docs.platformio.org/page/faq.html#multiple-pio-cores-in-a-system
-  ...
-  lots of compile stuff
-  ...
-  Memory Usage -> http://bit.ly/pio-memory-usage
-  DATA:    [======    ]  55.6% (used 45512 bytes from 81920 bytes)
-  PROGRAM: [====      ]  38.1% (used 390576 bytes from 1023984 bytes)
-  ===================================== [SUCCESS] Took 4.70 seconds =====================================
-  INFO Successfully compiled program.
-  Found multiple options, please choose one:
+    INFO Reading configuration...
+    INFO Detected timezone 'SAST' with UTC offset 2
+    INFO Generating C++ source...
+    INFO Compiling app...
+    INFO Running:  platformio run -d fishpond
+    ********************************************************************************************************
+    Obsolete PIO Core v3.6.3 is used (previous was 3.6.4b1)
+    Please remove multiple PIO Cores from a system:
+    https://docs.platformio.org/page/faq.html#multiple-pio-cores-in-a-system
+    ...
+    lots of compile stuff
+    ...
+    Memory Usage -> http://bit.ly/pio-memory-usage
+    DATA:    [======    ]  55.6% (used 45512 bytes from 81920 bytes)
+    PROGRAM: [====      ]  38.1% (used 390576 bytes from 1023984 bytes)
+    ===================================== [SUCCESS] Took 4.70 seconds =====================================
+    INFO Successfully compiled program.
+    Found multiple options, please choose one:
     [1] /dev/ttyUSB0 (FT232R USB UART)
     [2] Over The Air (fishpond.device)
-  (number): 1
-  INFO Running:  esptool.py --before default_reset --after hard_reset --chip esp8266 --port /dev/ttyUSB0 write_flash 0x0 fishpond/.pioenvs/fishpond/firmware.bin
-  esptool.py v2.6
-  Serial port /dev/ttyUSB0
-  Connecting....
-  Chip is ESP8266EX
-  Features: WiFi
-  MAC: xx:xx:xx:xx:xx:xx
-  Uploading stub...
-  Running stub...
-  Stub running...
-  Configuring flash size...
-  Auto-detected Flash size: 1MB
-  Compressed 394720 bytes to 267991...
-  Wrote 394720 bytes (267991 compressed) at 0x00000000 in 23.8 seconds (effective 132.7 kbit/s)...
-  Hash of data verified.
+    (number): 1
+    ...
+    esptool.py v2.6
+    Serial port /dev/ttyUSB0
+    Connecting....
+    Chip is ESP8266EX
+    Features: WiFi
+    MAC: xx:xx:xx:xx:xx:xx
+    Uploading stub...
+    Running stub...
+    Stub running...
+    Configuring flash size...
+    Auto-detected Flash size: 1MB
+    Compressed 394720 bytes to 267991...
+    Wrote 394720 bytes (267991 compressed) at 0x00000000 in 23.8 seconds (effective 132.7 kbit/s)...
+    Hash of data verified.
 
-  Leaving...
-  Hard resetting via RTS pin...
-  INFO Successfully uploaded program.
-  INFO Starting log output from /dev/ttyUSB0 with baud rate 115200
+    Leaving...
+    Hard resetting via RTS pin...
+    INFO Successfully uploaded program.
+    INFO Starting log output from /dev/ttyUSB0 with baud rate 115200
 
 1.3. And then nothing will happen
 *********************************
 
-Once you have flashed the device, nothing will happen. You need to power cycle the device. You will notice the LED will start to flash and then becomes solid once connected to the WiFi network.
+Once you have flashed the device, nothing will happen. You need to power cycle the device.
+You will notice the LED will start to flash and then becomes solid once connected to the WiFi network.
 
 You can follow the logs produced by the running module by running the command
 
 .. code-block:: bash
 
-  esphome <my-awesome>.yaml logs
+    esphome <my-awesome>.yaml logs
 
 Your output will possibly look like this
 

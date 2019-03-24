@@ -46,13 +46,20 @@ Advanced options:
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **use_custom_code** (*Optional*, boolean): Whether to configure the project for writing custom components.
   This sets up some flags so that custom code should compile correctly
-- **includes** (*Optional*, list of files): A list of files to include in the main (auto-generated) sketch file
+- **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
-  is in.
+  is in. Should have file extension ``.h``
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
+
+ESP8266 Options:
+
 - **board_flash_mode** (*Optional*, string): The `SPI flash mode <https://github.com/espressif/esptool/wiki/SPI-Flash-Modes>`__
   to use for the board. One of ``qio``, ``qout``, ``dio`` and ``dout``. Defaults to ``dout``.
+- **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash so
+  that the device state can be restored across power cycles. Keep in mind that this will slowly
+  wear out the flash (so if you have automations that repeatedly toggle a component do not use this
+  option (flash usually supports 100 000 write cycles). Defaults to ``no``.
 
 Automations:
 
@@ -155,12 +162,15 @@ option you can tell ESPHome which arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the arduino version to these values (see the full
 list of arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
-* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (the latest version)
+* `2.5.0 <https://github.com/esp8266/Arduino/releases/tag/2.5.0>`__
+* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (default)
 * `2.4.1 <https://github.com/esp8266/Arduino/releases/tag/2.4.1>`__
 * `2.4.0 <https://github.com/esp8266/Arduino/releases/tag/2.4.0>`__
 
-For the ESP32, there's currently only one arduino framework version:
-`1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__.
+For the ESP32, there are two arduino framework versions:
+
+- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default).
+- `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__.
 
 .. _esphome-on_boot:
 

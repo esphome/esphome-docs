@@ -8,6 +8,8 @@ all Arduino-based code because the ``SPI`` library is also available in ESPHome.
 See the other custom component guides for how to register components and make
 them publish values.
 
+Please refer to the SPI library docs for more information.
+
 .. code-block:: cpp
 
     #include "esphome.h"
@@ -16,18 +18,13 @@ them publish values.
     class MyCustomComponent : public Component {
      public:
       void setup() override {
-        SPI.pins(SCK_PIN, MISO_PIN, MOSI_PIN);
+        SPI.pins(SCK_PIN, MISO_PIN, MOSI_PIN, CS_PIN);
         SPI.begin();
-
-        pinMode(CS_PIN, OUTPUT);
       }
       void loop() override {
-        digitalWrite(CS_PIN, LOW);
-        SPI.beginTransaction(...);
+        SPI.beginTransaction(...)
 
         SPI.write(0x42);
-
-        digitalWrite(CS_PIN, HIGH);
       }
     };
 
