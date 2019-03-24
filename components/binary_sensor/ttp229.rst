@@ -1,0 +1,56 @@
+TTP229 Capacitive Touch Sensor
+==============================
+
+.. seo::
+    :description: Instructions for setting up TTP229 Capacitive Touch Sensor
+    :image: ttp229.jpg
+    :keywords: TTP229
+
+The ``ttp229`` sensor platform allows you to use your TTP229
+(`datasheet <https://www.tontek.com.tw/uploads/product/106/TTP229-LSF_V1.0_EN.pdf>`__,
+`TonTouch`_) Capacitive Touch Sensor with esphomelib. The :ref:`I²C <i2c>` is
+required to be set up in your configuration for this sensor to work.
+
+.. figure:: images/ttp229-full.jpg
+    :align: center
+    :width: 50.0%
+
+    TTP229 Capacitive Touch Sensor. Image by `RobotDyn`_.
+
+.. _RobotDyn: https://www.tinytronics.nl/shop/nl/sensoren/touch/robotdyn-touch-module-ttp229-lsf-16-kanaals
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    ttp229_lsf:
+      id: ttp229_device
+
+    binary_sensor:
+      - platform: ttp229_lsf
+        id: touchkey0
+        channel: 0
+
+Configuration variables:
+------------------------
+
+The configuration is made up of two parts: The central component, and individual Binary sensors per channel.
+
+Base Configuration:
+
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
+
+Binary Sensor Configuration:
+
+- **name** (**Optional**, string): The name for the binary sensor.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **channel** (*Required*, integer): The channel number at the ttp229 the touchkey is connected to.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`sensor/ttp229_sensor.h`
+- :ghedit:`Edit`
+
+.. disqus::
