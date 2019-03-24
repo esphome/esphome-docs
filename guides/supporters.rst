@@ -46,6 +46,7 @@ You guys are awesome!
 - Intermittent Technology
 - Andrea Donno
 - Ryan Bahm
+- Jung Ervin
 
 
 Contributors
@@ -58,7 +59,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1526 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1527 contributions
 
 Contributors
 ************
@@ -101,6 +102,7 @@ Contributors
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 1 contribution
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
 - `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 4 contributions
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
@@ -146,4 +148,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Sat Mar 23 21:40:15 2019 UTC.*
+*This page was last updated Sun Mar 24 09:35:47 2019 UTC.*
