@@ -46,7 +46,9 @@ I can't get flashing over USB to work.
 --------------------------------------
 
 ESPHome depends on the operating system the tool is running on to recognize
-the ESP. This can sometimes fail. Common causes are that you're on a Mac and did not install `the driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__ or you are trying to upload from a Docker container and did not mount the ESP device into your container using `--device=/dev/ttyUSB0`.
+the ESP. This can sometimes fail. Common causes are that you did not install 
+the drivers (see note below) or you are trying to upload from a Docker container 
+and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
 
 Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
