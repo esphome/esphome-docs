@@ -39,8 +39,18 @@ configuration file 😀
         pin: D7
         temperature:
           name: "Multisensor Temperature"
+          id: dht_temprature
         humidity:
           name: "Multisensor Humidity"
+          id: dht_humidity
+      - platform: template
+        name: "Multisensor Feels Like"
+        lambda: |-
+          return (((-42.379 + (2.04901523*((id(dht_temprature).state*1.8)+32)) + (10.14333127*id(dht_humidity).state) - (0.22475541*((id(dht_temprature).state*1.8)+32)*id(dht_humidity).state) - (6.83783 * pow(10,(-3))*pow(((id(dht_temprature).state*1.8)+32),2)) - (5.481717 * pow(10,(-2))*pow(id(dht_humidity).state,2)) + (1.22874 * pow(10,(-3))*(pow(((id(dht_temprature).state*1.8)+32),2)*id(dht_humidity).state)) + (8.5282 * pow(10,(-4))*((id(dht_temprature).state*1.8)+32)*pow(id(dht_humidity).state,2)) - (1.99 * pow(10,(-6))*pow((id(dht_temprature).state*1.8)+32),2)*pow(id(dht_humidity).state,2)))-32)/1.8);
+          update_interval: 60s
+          accuracy_decimals: 1
+          unit_of_measurement: "°C"
+          icon: "mdi:thermometer"
       - platform: adc
         pin: A0
         name: "Multisensor Brightness"
