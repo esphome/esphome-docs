@@ -5,8 +5,9 @@ All the info in this guide can be found in the documentation :doc:`ssd1306_i2c <
 and :doc:`Display </components/display/>`.
 This article will show some practical examples on how to use it, and maybe it can help beginners getting started
 using this display. The documentation will have more in depth info on all the options available.
-These displays are pretty cheap on 
-`AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
+These displays are pretty cheap on
+`AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ 
+and they are quite bright.
 There is also a 1.3" version with same resolution that should work with the same config as this one, however I have not tested them personally yet.
 
 .. note::
@@ -160,8 +161,8 @@ Font:
         id: robo12
         size: 12
 
-Embeds the roboto font into your sketch, for more sizes make more of the same font with different 
-sizes.
+Embeds the roboto font into your sketch,
+for more sizes make more of the same font with different sizes.
 You can have multiple fonts and sizes in your sketch. The font used in this example is `Roboto Condensed light <http://allfont.net/download/roboto-condensed-light/>`__
 The .ttf file is put in the same folder as your node config .yaml file.
 
@@ -184,12 +185,13 @@ Graphics:
 Icons used in this sketch are imported from `MaterialDesigns <https://materialdesignicons.com/>`__ and are the same as are used in
 Home Assistant.
 The 3 icons used are ``mdi:signal`` ``mdi:water-percent`` and ``mdi:thermometer``
-You will need to download the icons from `MaterialDesigns <https://materialdesignicons.com/>`__ and put them in 
+You will need to download the icons from `MaterialDesigns <https://materialdesignicons.com/>`__ and put them in
 the same folder as your node config .yaml file is stored.
 
 .. note::
 
-    The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite image editor and give them a white background if they aren't displayed correctly
+    The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite
+    image editor and give them a white background if they aren't displayed correctly
 
 The Display Config:
 *******************
