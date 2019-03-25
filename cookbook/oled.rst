@@ -1,23 +1,25 @@
 A guide to using SSD1306 OLED display
 =====================================
 
-All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` 
+All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
 and :doc:`Display </components/display/>`.
-This article will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
+This article will show some practical examples on how to use it, and maybe it can help beginners getting started 
+using this display. The documentation will have more in depth info on all the options available.
 These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
 There is also a 1.3" version with same resolution that should work with the same config as this one, however I have not tested them personally yet.
 
 .. note::
 
-    The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. There are different versions of the display.
+    The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. 
+    There are different versions of the display.
 
 The display itself is a 0.96” OLED unit that connects to your ESP via ``i2c``, you will need to add ``i2c`` configuration to your node.
 It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and ``SDA`` (some of them have a misprint and the SCL pin says SCK for some reason)
 
-
 .. figure:: images/oled-xy.png
     :align: center
     :width: 80.0%
+
 The XY orientation of the display.
 
 Configuration
@@ -182,7 +184,7 @@ You will need to download the icons from `MaterialDesigns <https://materialdesig
 
 .. note::
 
-     The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite image editor and give them a white background if they aren't displayed correctly
+    The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite image editor and give them a white background if they aren't displayed correctly
 
 The Display Config:
 *******************
@@ -231,7 +233,8 @@ This where the drawing API does all its magic:
 - Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data (if you want 2 decimals replace 1f with 2f)
 
 - ``it.printf(76, 30, id(robo12), "%.0f %%", id(rh).state);``
-- Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign, decimals on humidity is probably not desirable "%.0f %%"
+- Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign, 
+decimals on humidity is probably not desirable "%.0f %%"
 
 - ``it.image(0, 26, id(thermo));``
 - The thermometer image next to the temperature sensor reading
