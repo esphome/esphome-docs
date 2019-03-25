@@ -1,6 +1,5 @@
 A guide to using SSD1306 OLED display
 =====================================
-
 All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` and :doc:`Display </components/display/>`. 
 This article will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
 These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
@@ -21,8 +20,6 @@ The XY orientation of the display.
 
 Configuration
 _____________
-
-
 i2c:
 ****
 
@@ -50,7 +47,6 @@ Take note of the address and set ``scan: false`` again.
 
 Node config:
 ************
-
 The configuration for your node should look something like this: 
 (your basic node configuration, e.g. network and such is not discussed in this guide):
 
@@ -136,7 +132,7 @@ This will set up your sensors, first one is internal from the node, the two next
 Don't give names to sensors you wish to hide from Home Assistant (no point duplicating sensors).
 The wifi sensor can be used in Home Assistant to monitor your node's wifi signal strength.
 
-Clock(time):
+Clock(Time):
 ************
 
 .. code-block:: yaml
@@ -185,9 +181,8 @@ You will need to download the icons from `MaterialDesigns <https://materialdesig
 
      The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite image editor and give them a white background if they aren't displayed correctly
 
-The display config:
+The Display Config:
 *******************
-
 .. code-block:: yaml
 
     display:
@@ -240,10 +235,8 @@ This where the drawing API does all its magic:
 - ``it.image(56, 26, id(water));``
 - The waterdrop with a % sign inside it next to humidity sensor reading
 
-
 Images:
 _______
-
 Some images to illustrate the article:
 
 .. figure:: images/oled-topbar.png
@@ -256,11 +249,10 @@ Some images to illustrate the article:
 
 See Also
 __________
-
 :doc:`Display </components/display>`
 :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
-:doc:`Time </components/time#strftime>`
-:doc:`Images </components/display/#images>`
+:doc:`Time </components/time>`
+:doc:`Images </components/display>`
 
 :ghedit:`Edit`
 
