@@ -1,13 +1,15 @@
 A guide to using SSD1306 OLED display
 =====================================
-All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` and :doc:`Display </components/display/>`. 
+
+All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` 
+and :doc:`Display </components/display/>`.
 This article will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
 These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
 There is also a 1.3" version with same resolution that should work with the same config as this one, however I have not tested them personally yet.
 
 .. note::
 
-     The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. There are different versions of the display.
+    The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. There are different versions of the display.
 
 The display itself is a 0.96” OLED unit that connects to your ESP via ``i2c``, you will need to add ``i2c`` configuration to your node.
 It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and ``SDA`` (some of them have a misprint and the SCL pin says SCK for some reason)
@@ -46,8 +48,9 @@ Take note of the address and set ``scan: false`` again.
 (The board used in this example is a Wemos D1 mini, so adapt pins to the board you are using)
 
 Node config:
+
 ************
-The configuration for your node should look something like this: 
+The configuration for your node should look something like this:
 (your basic node configuration, e.g. network and such is not discussed in this guide):
 
 .. code-block:: yaml
@@ -95,7 +98,7 @@ The configuration for your node should look something like this:
           // signal bars, signal.png
           it.image(0, 0, id(signal));
           // Time
-          it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());    
+          it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());
           // LINE, draw a line from X start, Y start, X stop, Y stop
           it.line(0, 14, 128, 14);
           // temperature
@@ -141,10 +144,10 @@ Clock(Time):
       - platform: homeassistant
         id: time
 
-| This imports the current time from Home Assistant since ESPs can't really tell what time it is themselves.
-|
+This imports the current time from Home Assistant since ESPs can't really tell what time it is themselves.
+
 Font:
-****
+*****
 
 .. code-block:: yaml
 
@@ -153,10 +156,10 @@ Font:
         id: robo12
         size: 12
 
-| Embeds the roboto font into your sketch, for more sizes make more of the same font with different sizes.
-| You can have multiple fonts and sizes in your sketch. The font used in this example is `Roboto Condensed light <http://allfont.net/download/roboto-condensed-light/>`__
-| The .ttf file is put in the same folder as your node config .yaml file.
-|
+Embeds the roboto font into your sketch, for more sizes make more of the same font with different sizes.
+You can have multiple fonts and sizes in your sketch. The font used in this example is `Roboto Condensed light <http://allfont.net/download/roboto-condensed-light/>`__
+The .ttf file is put in the same folder as your node config .yaml file.
+
 Graphics:
 *********
 
@@ -183,6 +186,7 @@ You will need to download the icons from `MaterialDesigns <https://materialdesig
 
 The Display Config:
 *******************
+
 .. code-block:: yaml
 
     display:
@@ -196,7 +200,7 @@ The Display Config:
           // signal bars, signal.png
           it.image(0, 0, id(signal));
           // Time
-          it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());    
+          it.strftime(100, 0, id(robo12), "%H:%M", id(time).now());
           // LINE, draw a line from X start, Y start, X stop, Y stop
           it.line(0, 14, 128, 14);
           // temperature
