@@ -3,7 +3,7 @@ A guide to using SSD1306 OLED display
 All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>` and :doc:`Display </components/display/>`. 
 This article will show some practical examples on how to use it, and maybe it can help beginners getting started using this display. The documentation will have more in depth info on all the options available.
 These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
-There is also a 1.3" version with same resolution that should work with the same config as this one, however i have not tested personally yet.
+There is also a 1.3" version with same resolution that should work with the same config as this one, however I have not tested them personally yet.
 
 .. note::
 
