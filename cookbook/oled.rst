@@ -3,14 +3,15 @@ A guide to using SSD1306 OLED display
 
 All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
 and :doc:`Display </components/display/>`.
-This article will show some practical examples on how to use it, and maybe it can help beginners getting started 
+This article will show some practical examples on how to use it, and maybe it can help beginners getting started
 using this display. The documentation will have more in depth info on all the options available.
-These displays are pretty cheap on `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
+These displays are pretty cheap on 
+`AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__ and they are quite bright.
 There is also a 1.3" version with same resolution that should work with the same config as this one, however I have not tested them personally yet.
 
 .. note::
 
-    The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue. 
+    The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue.
     There are different versions of the display.
 
 The display itself is a 0.96” OLED unit that connects to your ESP via ``i2c``, you will need to add ``i2c`` configuration to your node.
@@ -39,6 +40,7 @@ If you don't know the i2c address for your display:
 Set ``scan: true`` if you don’t know the address of your display and check the log for the node:
 
 .. code-block::
+
     [11:54:53][C][i2c:043]: I2C Bus:
     [11:54:53][C][i2c:044]:   SDA Pin: GPIO14
     [11:54:53][C][i2c:045]:   SCL Pin: GPIO12
@@ -50,8 +52,8 @@ Take note of the address and set ``scan: false`` again.
 (The board used in this example is a Wemos D1 mini, so adapt pins to the board you are using)
 
 Node config:
-
 ************
+
 The configuration for your node should look something like this:
 (your basic node configuration, e.g. network and such is not discussed in this guide):
 
@@ -158,7 +160,8 @@ Font:
         id: robo12
         size: 12
 
-Embeds the roboto font into your sketch, for more sizes make more of the same font with different sizes.
+Embeds the roboto font into your sketch, for more sizes make more of the same font with different 
+sizes.
 You can have multiple fonts and sizes in your sketch. The font used in this example is `Roboto Condensed light <http://allfont.net/download/roboto-condensed-light/>`__
 The .ttf file is put in the same folder as your node config .yaml file.
 
@@ -178,9 +181,11 @@ Graphics:
         id: water
         resize: 20x20
 
-Icons used in this sketch are imported from `MaterialDesigns <https://materialdesignicons.com/>`__ and are the same as are used in Home Assistant.
+Icons used in this sketch are imported from `MaterialDesigns <https://materialdesignicons.com/>`__ and are the same as are used in
+Home Assistant.
 The 3 icons used are ``mdi:signal`` ``mdi:water-percent`` and ``mdi:thermometer``
-You will need to download the icons from `MaterialDesigns <https://materialdesignicons.com/>`__ and put them in the same folder as your node config .yaml file is stored.
+You will need to download the icons from `MaterialDesigns <https://materialdesignicons.com/>`__ and put them in 
+the same folder as your node config .yaml file is stored.
 
 .. note::
 
@@ -230,10 +235,11 @@ This where the drawing API does all its magic:
 - The line drawn under the wifi signal and clock. From X=0 Y=14 to X=128 Y=14.
 
 - ``it.printf(20, 30, id(robo12), "%.1f °C" , id(temp).state);``
-- Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data (if you want 2 decimals replace 1f with 2f)
+- Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data
+(if you want 2 decimals replace 1f with 2f)
 
 - ``it.printf(76, 30, id(robo12), "%.0f %%", id(rh).state);``
-- Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign, 
+- Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign,
 decimals on humidity is probably not desirable "%.0f %%"
 
 - ``it.image(0, 26, id(thermo));``
