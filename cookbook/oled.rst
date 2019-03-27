@@ -41,7 +41,6 @@ If you don't know the i2c address for your display:
 Set ``scan: true`` if you don’t know the address of your display and check the log for the node:
 
 .. code-block::
-
     [11:54:53][C][i2c:043]: I2C Bus:
     [11:54:53][C][i2c:044]:   SDA Pin: GPIO14
     [11:54:53][C][i2c:045]:   SCL Pin: GPIO12
