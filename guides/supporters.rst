@@ -47,6 +47,7 @@ You guys are awesome!
 - Andrea Donno
 - Ryan Bahm
 - Jung Ervin
+- Book of the Future
 
 
 Contributors
@@ -59,7 +60,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1527 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1540 contributions
 
 Contributors
 ************
@@ -87,6 +88,7 @@ Contributors
 - `Adriaan Peeters (@apeeters) <https://github.com/apeeters>`__ - 3 contributions
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__ - 4 contributions
 - `balk77 (@balk77) <https://github.com/balk77>`__ - 1 contribution
+- `Paulus Schoutsen (@balloob) <https://github.com/balloob>`__ - 1 contribution
 - `Brandon Davidson (@brandond) <https://github.com/brandond>`__ - 11 contributions
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__ - 1 contribution
@@ -148,4 +150,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Sun Mar 24 09:35:47 2019 UTC.*
+*This page was last updated Wed Mar 27 22:00:35 2019 UTC.*
