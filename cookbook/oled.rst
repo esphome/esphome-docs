@@ -39,7 +39,7 @@ If you don't know the i2c address for your display:
 
 The display in this example has the address ``0x3C`` this may vary on different batches of displays
 
-.. code-block::
+.. code-block:: yaml
 
     [11:54:53][C][i2c:043]: I2C Bus:
     [11:54:53][C][i2c:044]:   SDA Pin: GPIO14
