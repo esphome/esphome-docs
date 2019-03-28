@@ -18,17 +18,16 @@ There is also a 1.3" version with same resolution that should work with the same
 The display itself is a 0.96” OLED unit that connects to your ESP via ``i2c``, you will need to add ``i2c`` configuration to your node.
 It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and ``SDA`` (some of them have a misprint and the SCL pin says SCK for some reason)
 
-.. figure:: images/oled-xy.png
+.. figure:: images/oled-xy.jpg
     :align: center
     :width: 80.0%
 
 The XY orientation of the display.
 
-Configuration
-_____________
-i2c:
-****
+i2c bus configuraton:
+*********************
 
+i2c devices use adresses to identify and communicate on the bus.
 If you don't know the i2c address for your display:
 
 .. code-block:: yaml
@@ -38,7 +37,7 @@ If you don't know the i2c address for your display:
       scl: D6
       scan: true
 
-Set ``scan: true`` if you don’t know the address of your display and check the log for the node:
+The display in this example has the address ``0x3C`` this may vary on different batches of displays
 
 .. code-block::
 
@@ -49,14 +48,14 @@ Set ``scan: true`` if you don’t know the address of your display and check the
     [11:54:53][I][i2c:048]: Scanning i2c bus for active devices...
     [11:54:53][I][i2c:055]: Found i2c device at address 0x3C
 
-Take note of the address and set ``scan: false`` again.
 (The board used in this example is a Wemos D1 mini, so adapt pins to the board you are using)
 
-Node config:
+Node Config:
 ************
 
+Your basic node configuration, e.g. network and such is not discussed in this guide.
 The configuration for your node should look something like this:
-(your basic node configuration, e.g. network and such is not discussed in this guide):
+
 
 .. code-block:: yaml
 
@@ -77,7 +76,7 @@ The configuration for your node should look something like this:
     i2c:
       sda: D5
       scl: D6
-      scan: false
+      scan: true
     font:
       - file: "roboto.ttf"
         id: robo12
@@ -117,7 +116,7 @@ The configuration for your node should look something like this:
 
 
 In detail:
-__________
+----------
 
 Sensors:
 ********
@@ -252,19 +251,19 @@ decimals on humidity is probably not desirable "%.0f %%"
 - The waterdrop with a % sign inside it next to humidity sensor reading
 
 Images:
-_______
+-------
 Some images to illustrate the article:
 
-.. figure:: images/oled-topbar.png
+.. figure:: images/oled-topbar.jpg
     :align: center
     :width: 80.0%
 
-.. figure:: images/oled-temphum.png
+.. figure:: images/oled-temphum.jpg
     :align: center
     :width: 80.0%
 
 See Also
-__________
+--------
 :doc:`Display </components/display>`
 :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
 :doc:`Time </components/time>`
