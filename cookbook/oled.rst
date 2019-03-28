@@ -238,7 +238,7 @@ This where the drawing API does all its magic:
 
 - ``it.printf(20, 30, id(robo12), "%.1f °C" , id(temp).state);``
 - Temperature reading from your chosen Home Assistant sensor. We want 1 decimal so we use "%.1f" process the sensor data
-(if you want 2 decimals replace 1f with 2f)
+if you want 2 decimals replace 1f with 2f
 
 - ``it.printf(76, 30, id(robo12), "%.0f %%", id(rh).state);``
 - Humidity from your chosen Home Assistant sensor. You need the double % sign to print a litteral % sign,
