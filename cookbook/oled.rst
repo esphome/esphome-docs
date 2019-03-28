@@ -22,7 +22,7 @@ It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and `
     :align: center
     :width: 80.0%
 
-The XY orientation of the display.
+    The XY orientation of the display.
 
 i2c bus configuraton:
 *********************
