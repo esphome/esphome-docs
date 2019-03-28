@@ -252,6 +252,7 @@ decimals on humidity is probably not desirable "%.0f %%"
 
 Images:
 -------
+
 Some images to illustrate the article:
 
 .. figure:: images/oled-topbar.jpg
@@ -264,6 +265,7 @@ Some images to illustrate the article:
 
 See Also
 --------
+
 :doc:`Display </components/display>`
 :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
 :doc:`Time </components/time>`
