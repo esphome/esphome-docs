@@ -48,6 +48,7 @@ You guys are awesome!
 - Ryan Bahm
 - Jung Ervin
 - Book of the Future
+- Daan Damhuis
 
 
 Contributors
@@ -60,7 +61,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1540 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1541 contributions
 
 Contributors
 ************
@@ -150,4 +151,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Wed Mar 27 22:00:35 2019 UTC.*
+*This page was last updated Fri Mar 29 20:43:46 2019 UTC.*
