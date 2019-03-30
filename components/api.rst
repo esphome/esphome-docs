@@ -197,7 +197,7 @@ Additionally, you can also transmit data from Home Assistant to ESPHome with thi
             - light.turn_on:
                 id: my_light
                 brightness: !lambda 'return my_brightness;'
-                my_effect: !lambda 'return my_effect;'
+                effect: !lambda 'return my_effect;'
 
 Using the ``variables`` key you can tell ESPHome which variables to expect from Home Assistant.
 For example the service seen above would be executed with something like this:
