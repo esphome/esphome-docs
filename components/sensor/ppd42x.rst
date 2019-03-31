@@ -6,8 +6,8 @@ PPD42X Particulate Matter Sensor
     :image: ppd42x.jpg
     :keywords: PPD42X
 
-The ``PPD42X`` sensor platform allows you to use PPD42X particulate matter sensors (`datasheet <https://www.researchgate.net/profile/Visa_Tasic/project/low-cost-sensor-platform-for-air-quality-monitoring/attachment/58332d5908ae91d0fe260283/AS:430912497295360@1479748953328/download/ShinyeiPPD42NS_TechDoc.pdf?context=ProjectUpdatesLog>`__)
-with ESPHome.
+The ``PPD42X`` sensor platform allows you to use PPD42X particulate matter sensors 
+(`datasheet <https://www.researchgate.net>`__) with ESPHome.
 
 .. figure:: images/ppd42-full.jpg
     :align: center
