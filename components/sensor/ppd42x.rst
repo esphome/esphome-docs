@@ -16,6 +16,7 @@ weight method, and the unit is pcs/L or pcs/0.01cf
     :width: 50.0%
 
     PPD42X Particulate Matter Sensor
+
 Wiring:
 -------
 
@@ -40,8 +41,9 @@ Pin 5 is closest to the corner of the board (and there is a 5 printed on both si
 Note the colors in the photo above are different from the wire colors available from other sources (like Grove).
 
 The P1 output is used to measure particles between 1um and 10um.
-The P2 output (with the threshold pin unconnected) is used to measure particles between 2.5um and 10um.
-To read the sensor, the total time that the P1 or P2 signal is low (measured in microsends) is used to determine particle concentrations.
+The P2 output (with the P5 threshold pin unconnected) is used to measure particles between 2.5um and 10um.
+To read the sensor, the total time that the P1 or P2 signal is low (measured in microseconds) is used 
+to determine particle concentrations.
 
 .. code-block:: yaml
 
@@ -60,7 +62,7 @@ To read the sensor, the total time that the P1 or P2 signal is low (measured in 
 
 With ``update_interval``, the working period of the PPD42X device will be changed. If ``update_interval`` is
 equal to ``0min``, the PPD42X will be set to continuous measurement and will report wrong measurement values
-approximately every second: the update_interval must be > time_out
+approximately every second: the update_interval must be > time_out.
 
 If ``update_interval`` is between 1-30 minutes, the PPD42X periodically turns on for 30s before each measurement.
 
