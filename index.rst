@@ -153,6 +153,7 @@ Binary Sensor Components
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
+    TTP229-LSF  Capacitive Touch Sensor, components/binary_sensor/ttp229, ttp229.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
