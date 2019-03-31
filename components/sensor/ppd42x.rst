@@ -31,7 +31,7 @@ Wiring:
 -------------------- --------------------- ---------------------
 ``4``                 ``P1 (output)``        ``Black``
 -------------------- --------------------- ---------------------
-``5``                 ``Threshold V for P2    ``Red``(*) 
+``5``                 ``Threshold V for P2    ``Red``(*)
 ==================== ===================== =====================
 
 (*) (not yet implemented)
@@ -42,7 +42,7 @@ Note the colors in the photo above are different from the wire colors available 
 
 The P1 output is used to measure particles between 1um and 10um.
 The P2 output (with the P5 threshold pin unconnected) is used to measure particles between 2.5um and 10um.
-To read the sensor, the total time that the P1 or P2 signal is low (measured in microseconds) is used 
+To read the sensor, the total time that the P1 or P2 signal is low (measured in microseconds) is used
 to determine particle concentrations.
 
 .. code-block:: yaml
