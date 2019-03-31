@@ -49,5 +49,3 @@ See Also
 
 - :apiref:`web_server.h`
 - :ghedit:`Edit`
-
-.. disqus::

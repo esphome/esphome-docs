@@ -62,5 +62,3 @@ See Also
 - `MAX6675 Library <https://github.com/adafruit/MAX6675-library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :apiref:`sensor/max6675_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

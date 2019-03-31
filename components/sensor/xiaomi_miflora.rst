@@ -100,5 +100,3 @@ See Also
 - :apiref:`esp32_ble_tracker.h`
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`
-
-.. disqus::

@@ -265,5 +265,3 @@ See Also
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/guides/automations`
 - :ghedit:`Edit`
-
-.. disqus::

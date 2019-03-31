@@ -44,5 +44,3 @@ See Also
 - :doc:`/components/power_supply`
 - :apiref:`light/light_state.h`
 - :ghedit:`Edit`
-
-.. disqus::

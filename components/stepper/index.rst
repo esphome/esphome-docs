@@ -274,5 +274,3 @@ See Also
 
 - :apiref:`stepper/stepper.h`
 - :ghedit:`Edit`
-
-.. disqus::

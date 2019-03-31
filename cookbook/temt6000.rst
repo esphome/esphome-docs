@@ -71,5 +71,3 @@ See Also
 - `TEMT6000 datasheet <https://www.sparkfun.com/datasheets/Sensors/Imaging/TEMT6000.pdf>`__
 - :doc:`bruh`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -442,5 +442,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

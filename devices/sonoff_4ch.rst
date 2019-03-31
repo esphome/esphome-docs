@@ -318,5 +318,3 @@ See Also
 - :doc:`sonoff`
 - :doc:`sonoff_s20`
 - :ghedit:`Edit`
-
-.. disqus::

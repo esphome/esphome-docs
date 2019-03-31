@@ -62,5 +62,3 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sensor/pmsx003.h`
 - :ghedit:`Edit`
-
-.. disqus::

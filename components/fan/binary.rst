@@ -39,5 +39,3 @@ See Also
 - :doc:`/components/fan/index`
 - :apiref:`fan/fan_state.h`
 - :ghedit:`Edit`
-
-.. disqus::

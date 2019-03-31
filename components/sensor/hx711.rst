@@ -84,5 +84,3 @@ See Also
 - :apiref:`sensor/hx711.h`
 - `HX711 Library <https://github.com/bogde/HX711>`__ by `@bogde <https://github.com/bogde>`__
 - :ghedit:`Edit`
-
-.. disqus::

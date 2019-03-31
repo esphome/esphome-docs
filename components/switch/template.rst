@@ -103,5 +103,3 @@ See Also
 - :doc:`/components/binary_sensor/index`
 - :apiref:`switch_/template_switch.h`
 - :ghedit:`Edit`
-
-.. disqus::

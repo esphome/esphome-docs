@@ -39,5 +39,3 @@ See Also
 - :doc:`/components/uart`
 - :apiref:`switch_/uart_switch.h`
 - :ghedit:`Edit`
-
-.. disqus::
