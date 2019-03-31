@@ -6,7 +6,7 @@ PPD42X Particulate Matter Sensor
     :image: ppd42x.jpg
     :keywords: PPD42X
 
-The ``PPD42X`` sensor platform allows you to use PPD42X particulate matter sensors 
+The ``PPD42X`` sensor platform allows you to use PPD42X particulate matter sensors
 (`datasheet <https://www.researchgate.net>`__) with ESPHome.
 
 .. figure:: images/ppd42-full.jpg
@@ -16,7 +16,7 @@ The ``PPD42X`` sensor platform allows you to use PPD42X particulate matter senso
     PPD42X Particulate Matter Sensor
 Wiring:
 Pin Function    Wire color (in picture above)
-1   Ground	                   Green
+1   Ground                     Green
 2   P2 (output)                White
 3   5V                         Yellow
 4   P1 (output)                Black
@@ -52,6 +52,7 @@ the lifetime of the PPD42X.
 
 Configuration variables:
 ------------------------
+
 - **time_out** (*mandatory*, :ref:`config-time`): The interval to check the P1 and P2 pins in micro-seconds.
   This affects the working period of the PPD42X sensor. Defaults to ``30000 mico-seconds``.
 
