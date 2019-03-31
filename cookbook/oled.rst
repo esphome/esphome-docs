@@ -1,22 +1,28 @@
 A guide to using SSD1306 OLED display
 =====================================
 
-All the info in this guide can be found in the documentation :doc:`ssd1306_i2c </components/display/ssd1306_i2c>`
+All the info in this guide can be found in the documentation :doc:`ssd1306 </components/display/ssd1306>`
 and :doc:`Display </components/display/>`.
+
 This article will show some practical examples on how to use it, and maybe it can help beginners getting started
-using this display. The documentation will have more in depth info on all the options available.
-These displays are pretty cheap on
+using this display. The documentation has more in depth info on all the options available.
+
+These SSD1306 displays are pretty cheap on
 `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__
-and they are quite bright.
-There is also a 1.3" version with same resolution that should work with the same config as this one, however I have not tested them personally yet.
+and are quite bright too.
+
+There is also a 1.3" version with same resolution that should work with the same config as this one, however they have not been tested by the author of this guide yet.
 
 .. note::
 
-    The display used in the example pictures is a dual color display. X 0-127 through Y 0-15 are yellow pixels, the rest are blue.
-    There are different versions of the display.
+    The display used in the example pictures is a dual color display. However, dual color does not mean that you can choose
+    which color should be displayed at which pixel.
+
+    All pixels from X 0-127 through Y 0-15 are yellow pixels, the rest are blue.
 
 The display itself is a 0.96” OLED unit that connects to your ESP via ``i2c``, you will need to add ``i2c`` configuration to your node.
-It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and ``SDA`` (some of them have a misprint and the SCL pin says SCK for some reason)
+
+It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` (also called ``SCK``) and ``SDA``
 
 .. figure:: images/oled-xy.jpg
     :align: center
@@ -24,11 +30,13 @@ It has 4 pins that needs to be connected: ``GND``, ``VCC`` (3.3v), ``SCL`` and `
 
     The XY orientation of the display.
 
-i2c bus configuraton:
-*********************
+I2c Bus Configuraton
+********************
 
-i2c devices use adresses to identify and communicate on the bus.
-If you don't know the i2c address for your display:
+The SSD1306 used here is based on the i2c ("i squared c") protocol. This protocol
+is an addressed protocol, which means you first need to figure out the address of your
+display on the i2c bus. You can always check the address of your display by using the ``scan``
+functionality as seen below. Replace D5 and D6 with your respective pins.
 
 .. code-block:: yaml
 
@@ -37,7 +45,7 @@ If you don't know the i2c address for your display:
       scl: D6
       scan: true
 
-The display in this example has the address ``0x3C`` this may vary on different batches of displays
+The display in this example has the address ``0x3C`` this may vary owithn different batches of displays
 
 .. code-block:: yaml
 
@@ -48,17 +56,17 @@ The display in this example has the address ``0x3C`` this may vary on different 
     [11:54:53][I][i2c:048]: Scanning i2c bus for active devices...
     [11:54:53][I][i2c:055]: Found i2c device at address 0x3C
 
-(The board used in this example is a Wemos D1 mini, so adapt pins to the board you are using)
+Data Source Config
+******************
 
-Node Config:
-************
-
-Your basic node configuration, e.g. network and such is not discussed in this guide.
-The configuration for your node should look something like this:
-
+Of course your display should do something useful, such as displaying wifi signal
+strength and some data from your Home Assistant instance. Of course this depends highly
+on what you're trying to achive, but a basic configuration example for some sensors can
+be seen below:
 
 .. code-block:: yaml
 
+    # Some sensors to show
     sensor:
       - platform: wifi_signal
         name: "WiFi Signal oledtest"
@@ -70,13 +78,17 @@ The configuration for your node should look something like this:
       - platform: homeassistant
         entity_id: sensor.outside_rh
         id: rh
+    # Import time from Home Assistant to show on the display
     time:
       - platform: homeassistant
         id: time
+
+    # Display configuration
     i2c:
       sda: D5
       scl: D6
       scan: true
+    # Some fonts & images to display
     font:
       - file: "roboto.ttf"
         id: robo12
@@ -91,6 +103,7 @@ The configuration for your node should look something like this:
       - file: "water.png"
         id: water
         resize: 20x20
+    # The actual display config, here the magic happens
     display:
       - platform: ssd1306_i2c
         model: "SSD1306 128x64"
@@ -112,14 +125,10 @@ The configuration for your node should look something like this:
           // waterdrop image, water.png
           it.image(56, 26, id(water));
           // thermometer image, thermo.png
-          it.image(0, 26, id(thermo));
+          it.image(0, 26, id(thermo))
 
-
-In detail:
-----------
-
-Sensors:
-********
+Sensors
+*******
 
 .. code-block:: yaml
 
@@ -135,11 +144,11 @@ Sensors:
         entity_id: sensor.outside_rh
         id: rh
 
-This will set up your sensors, first one is internal from the node, the two next are imported from Home Assistant.
-Don't give names to sensors you wish to hide from Home Assistant (no point duplicating sensors).
+This will set up your sensors, the first one is internal from the node, the two next are imported from Home Assistant.
+Don't give names to sensors you wish to hide from Home Assistant.
 The wifi sensor can be used in Home Assistant to monitor your node's wifi signal strength.
 
-Clock(Time):
+Clock (Time)
 ************
 
 .. code-block:: yaml
@@ -150,8 +159,8 @@ Clock(Time):
 
 This imports the current time from Home Assistant since ESPs can't really tell what time it is themselves.
 
-Font:
-*****
+Font
+****
 
 .. code-block:: yaml
 
@@ -166,8 +175,8 @@ You can have multiple fonts and sizes in your sketch. The font used in this exam
 `Roboto Condensed light <http://allfont.net/download/roboto-condensed-light/>`__
 The .ttf file is put in the same folder as your node config .yaml file.
 
-Graphics:
-*********
+Graphics
+********
 
 .. code-block:: yaml
 
@@ -193,8 +202,8 @@ the same folder as your node config .yaml file is stored.
     The icons from MaterialDesigns can come with a transparent background so you may have to fire up your favorite
     image editor and give them a white background if they aren't displayed correctly
 
-The Display Config:
-*******************
+The Display Config
+******************
 
 .. code-block:: yaml
 
@@ -250,8 +259,8 @@ decimals on humidity is probably not desirable "%.0f %%"
 - ``it.image(56, 26, id(water));``
 - The waterdrop with a % sign inside it next to humidity sensor reading
 
-Images:
--------
+Images
+------
 
 Some images to illustrate the article:
 
