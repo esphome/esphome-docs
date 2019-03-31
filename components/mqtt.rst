@@ -312,6 +312,8 @@ Configuration variables:
 .. note::
 
     You can even specify multiple ``on_message`` triggers by using a YAML list:
+    
+    ( The topics may be duplicated if you want to do different actions depending on payload. )
 
     .. code-block:: yaml
 
