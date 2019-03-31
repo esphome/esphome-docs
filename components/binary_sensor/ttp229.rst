@@ -50,5 +50,3 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sensor/ttp229_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::
