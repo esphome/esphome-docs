@@ -7,7 +7,7 @@ TTP229 Capacitive Touch Sensor
     :keywords: TTP229
 
 The ``ttp229`` sensor platform allows you to use your TTP229 `datasheet <https://www.tontek.com.tw/uploads/product/106/TTP229-LSF_V1.0_EN.pdf>`__
-Capacitive Touch Sensor with esphomelib. The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
+Capacitive Touch Sensor with ESPHome. The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/ttp229-full.jpg
     :align: center
@@ -25,7 +25,7 @@ Capacitive Touch Sensor with esphomelib. The :ref:`I²C <i2c>` is required to be
 
     binary_sensor:
       - platform: ttp229_lsf
-        id: touchkey0
+        name: TTP229 Channel 0
         channel: 0
 
 Configuration variables:
@@ -39,9 +39,9 @@ Base Configuration:
 
 Binary Sensor Configuration:
 
-- **name** (**Optional**, string): The name for the binary sensor.
+- **name** (**Required**, string): The name of the binary sensor.
+- **channel** (**Required**, integer): The channel number at the ttp229 the touchkey is connected to.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **channel** (*Required*, integer): The channel number at the ttp229 the touchkey is connected to.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
