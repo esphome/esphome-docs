@@ -61,7 +61,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1541 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1553 contributions
 
 Contributors
 ************
@@ -91,10 +91,12 @@ Contributors
 - `balk77 (@balk77) <https://github.com/balk77>`__ - 1 contribution
 - `Paulus Schoutsen (@balloob) <https://github.com/balloob>`__ - 1 contribution
 - `Brandon Davidson (@brandond) <https://github.com/brandond>`__ - 11 contributions
+- `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__ - 1 contribution
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__ - 1 contribution
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__ - 5 contributions
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__ - 2 contributions
+- `Dave Richer (@davericher) <https://github.com/davericher>`__ - 1 contribution
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__ - 1 contribution
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
@@ -135,6 +137,7 @@ Contributors
 - `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__ - 1 contribution
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 1 contribution
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
+- `Leandro Puerari (@puerari) <https://github.com/puerari>`__ - 1 contribution
 - `puuu (@puuu) <https://github.com/puuu>`__ - 10 contributions
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__ - 1 contribution
 - `r-jordan (@r-jordan) <https://github.com/r-jordan>`__ - 1 contribution
@@ -151,4 +154,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Fri Mar 29 20:43:46 2019 UTC.*
+*This page was last updated Sun Mar 31 11:30:41 2019 UTC.*
