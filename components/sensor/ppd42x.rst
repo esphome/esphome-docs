@@ -1,64 +1,79 @@
-Ultrasonic Distance Sensor
-==========================
+PPD42X Particulate Matter Sensor
+================================
 
 .. seo::
-    :description: Instructions for setting up ultrasonic distance measurement sensors in ESPHome.
-    :image: ultrasonic.jpg
-    :keywords: ultrasonic, hc-sr04
+    :description: Instructions for setting up PPD42X Particulate matter sensors
+    :image: ppd42x.jpg
+    :keywords: PPD42X
 
-The ultrasonic distance sensor allows you to use simple ultrasonic
-sensors like the HC-SR04
-(`datasheet <https://www.electroschematics.com/wp-content/uploads/2013/07/HC-SR04-datasheet-version-2.pdf>`__,
-`sparkfun <https://www.sparkfun.com/products/13959>`__) with ESPHome
-to measure distances. These sensors usually can’t measure anything more
-than about two meters and may sometimes make some annoying clicking
-sounds.
+The ``PPD42X`` sensor platform allows you to use PPD42X particulate matter sensors (`datasheet <https://www.researchgate.net/profile/Visa_Tasic/project/low-cost-sensor-platform-for-air-quality-monitoring/attachment/58332d5908ae91d0fe260283/AS:430912497295360@1479748953328/download/ShinyeiPPD42NS_TechDoc.pdf?context=ProjectUpdatesLog>`__)
+with ESPHome.
 
-This sensor platform expects a sensor that can be sent a **trigger
-pulse** on a specific pin and will send out a **echo pulse** once a
-measurement has been taken. Because sometimes (for example if no object
-is detected) the echo pulse is never returned, this sensor also has a
-timeout option which specifies how long to wait for values.
-
-.. figure:: images/ultrasonic-full.jpg
+.. figure:: images/ppd42-full.jpg
     :align: center
     :width: 50.0%
 
-    HC-SR04 Ultrasonic Distance Sensor.
+    PPD42X Particulate Matter Sensor
+Wiring:
+Pin	Function	Wire color (in picture above)
+1	Ground	    Green
+2	P2 (output)	White
+3	5V	        Yellow
+4	P1 (output)	Black
+5	Threshold voltage for P2	Red
+Pin 5 is closest to the corner of the board (and there is a 5 printed on both sides of the board near pin 5). 
+Note the colors in the photo above are different from the wire colors available from other sources (like Grove).
 
-.. figure:: images/ultrasonic-ui.png
-    :align: center
-    :width: 80.0%
+The P1 output is used to measure particles between 1um and 10um. 
+The P2 output (with the threshold pin unconnected) is used to measure particles between 2.5um and 10um.
+To read the sensor, the total time that the P1 or P2 signal is low (measured in microsends) is used to determine particle concentrations..
 
 .. code-block:: yaml
 
     # Example configuration entry
+
     sensor:
-      - platform: ultrasonic
-        trigger_pin: D1
-        echo_pin: D2
-        name: "Ultrasonic Sensor"
+      - platform: ppd42x
+        time_out: 30000
+        pm_2_5:
+          name: "Particulate Matter <2.5µm Concentration"
+        pm_10_0:
+          name: "Particulate Matter <10.0µm Concentration"
+        update_interval: 5min
+
+With ``update_interval``, the working period of the PPD42X device will be changed. If ``update_interval`` is
+equal to ``0min``, the PPD42X will be set to continuous measurement and will report new measurement values
+approximately every second.
+
+If ``update_interval`` is between 1-30 minutes, the PPD42X periodically turns on for 30s before each measurement.
+For the remaining time the sensor is shut off. As a result, this mode can reduce power consumption and increases
+the lifetime of the PPD42X.
 
 Configuration variables:
 ------------------------
+- **time_out** (*mandatory*, :ref:`config-time`): The interval to check the P1 and P2 pins in micro-seconds.
+  This affects the working period of the PPD42X sensor. Defaults to ``30000 mico-seconds``.
 
-- **trigger_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The output pin to
-  periodically send the trigger pulse to.
-- **echo_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The input pin on which to
-  wait for the echo.
-- **name** (**Required**, string): The name of the sensor.
-- **timeout** (*Optional*, float): The number of meters for the
-  timeout. Most sensors can only sense up to 2 meters. Defaults to 10 meters.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``60s``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-sensor>`.
+- **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter.
+  All options from :ref:`Sensor <config-sensor>`.
 
+- **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor in minutes.
+  This affects the working period of the PPD42X sensor. Defaults to ``0min``.
+
+
+.. note::
+
+    The configuration variable ``update_interval`` reconfigure the PPD42X device. This setting is still effective
+    after power off. This can affect the performance of other libraries. Factory default is continuous measurement.
 
 See Also
 --------
 
+- :doc:`/components/sensor/ppd42x`
 - :ref:`sensor-filters`
-- :doc:`template`
-- :apiref:`sensor/ultrasonic_sensor.h`
+- `Laser Dust Sensor Control Protocol <https://nettigo.pl/attachments/415>`__
+- :apiref:`sensor/ppd42x_component.h`
 - :ghedit:`Edit`
