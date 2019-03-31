@@ -15,18 +15,19 @@ with ESPHome.
 
     PPD42X Particulate Matter Sensor
 Wiring:
-Pin	Function	Wire color (in picture above)
-1	Ground	    Green
-2	P2 (output)	White
-3	5V	        Yellow
-4	P1 (output)	Black
-5	Threshold voltage for P2	Red
-Pin 5 is closest to the corner of the board (and there is a 5 printed on both sides of the board near pin 5). 
+Pin Function    Wire color (in picture above)
+1   Ground	                   Green
+2   P2 (output)                White
+3   5V                         Yellow
+4   P1 (output)                Black
+5   Threshold voltage for P2   Red
+
+Pin 5 is closest to the corner of the board (and there is a 5 printed on both sides of the board near pin 5).
 Note the colors in the photo above are different from the wire colors available from other sources (like Grove).
 
-The P1 output is used to measure particles between 1um and 10um. 
+The P1 output is used to measure particles between 1um and 10um.
 The P2 output (with the threshold pin unconnected) is used to measure particles between 2.5um and 10um.
-To read the sensor, the total time that the P1 or P2 signal is low (measured in microsends) is used to determine particle concentrations..
+To read the sensor, the total time that the P1 or P2 signal is low (measured in microsends) is used to determine particle concentrations.
 
 .. code-block:: yaml
 
