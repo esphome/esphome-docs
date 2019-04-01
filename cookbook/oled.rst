@@ -11,7 +11,8 @@ These SSD1306 displays are pretty cheap on
 `AliExpress <https://www.aliexpress.com/item/10pcs-0-96-yellow-blue-0-96-inch-OLED-module-New-128X64-OLED-LCD-LED-Display/32638669209.html>`__
 and are quite bright too.
 
-There is also a 1.3" version with same resolution that should work with the same config as this one, however they have not been tested by the author of this guide yet.
+There is also a 1.3" version with same resolution that should work with the same config as this one, however they have not been
+tested by the author of this guide yet.
 
 .. note::
 
