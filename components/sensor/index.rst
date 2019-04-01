@@ -104,7 +104,6 @@ for platforms with multiple sensors)
           - 40.0 -> 45.0
           - 100.0 -> 102.5
       - filter_out: 42.0
-      - filter_nan:
       - sliding_window_moving_average:
           window_size: 15
           send_every: 15
