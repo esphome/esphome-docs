@@ -49,6 +49,7 @@ You guys are awesome!
 - Jung Ervin
 - Book of the Future
 - Daan Damhuis
+- Dennis Münchgesang
 
 
 Contributors
@@ -61,7 +62,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1553 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1555 contributions
 
 Contributors
 ************
@@ -96,7 +97,7 @@ Contributors
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__ - 1 contribution
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__ - 5 contributions
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__ - 2 contributions
-- `Dave Richer (@davericher) <https://github.com/davericher>`__ - 1 contribution
+- `Dave Richer (@davericher) <https://github.com/davericher>`__ - 2 contributions
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__ - 1 contribution
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
@@ -126,7 +127,7 @@ Contributors
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__ - 1 contribution
 - `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__ - 3 contributions
-- `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__ - 3 contributions
+- `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__ - 5 contributions
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__ - 1 contribution
 - `Alex (@nnmalex) <https://github.com/nnmalex>`__ - 1 contribution
 - `Greg Johnson (@notgwj) <https://github.com/notgwj>`__ - 1 contribution
@@ -135,7 +136,7 @@ Contributors
 - `Paul Nicholls (@pauln) <https://github.com/pauln>`__ - 1 contribution
 - `per1234 (@per1234) <https://github.com/per1234>`__ - 2 contributions
 - `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__ - 1 contribution
-- `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 1 contribution
+- `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 2 contributions
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__ - 1 contribution
 - `puuu (@puuu) <https://github.com/puuu>`__ - 10 contributions
@@ -154,4 +155,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Sun Mar 31 11:30:41 2019 UTC.*
+*This page was last updated Mon Apr  1 08:25:52 2019 UTC.*
