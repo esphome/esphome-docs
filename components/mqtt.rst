@@ -144,7 +144,7 @@ retained messages for you:
 .. code-block:: bash
 
     esphome configuration.yaml clean-mqtt
-    
+
 With Docker:
 
 .. code-block:: bash
