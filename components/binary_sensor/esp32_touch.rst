@@ -11,7 +11,7 @@ Component/Hub
 -------------
 
 The ``esp32_touch`` component creates a global hub for detecting touches on
-the eight touch pads of the ESP32 as :ref:`binary senors <esp32-touch-binary-sensor>`.
+the eight touch pads of the ESP32 as :ref:`binary sensors <esp32-touch-binary-sensor>`.
 
 .. code-block:: yaml
 
