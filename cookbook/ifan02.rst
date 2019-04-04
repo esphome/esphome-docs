@@ -54,47 +54,47 @@ Then you need to set it up with yaml.
       board: esp8285
       includes:
         - ifan02.h
-    
+
     binary_sensor:
       - platform: gpio
         id: vbutton_light
-        pin: 
+        pin:
           number: GPIO0
           inverted: True
         on_press:
           then:
             - light.toggle: light
-    
+
       - platform: gpio
         id: vbutton_relay_1
-        pin: 
+        pin:
           number: GPIO9
           inverted: True
         on_press:
           then:
             - switch.toggle: fan_relay1
             - switch.turn_on: update_fan_speed
-    
+
       - platform: gpio
         id: vbutton_relay_2
-        pin: 
+        pin:
           number: GPIO10
           inverted: True
         on_press:
           then:
             - switch.toggle: fan_relay2
             - switch.turn_on: update_fan_speed
-            
+
       - platform: gpio
         id: vbutton_relay_3
-        pin: 
+        pin:
           number: GPIO14
           inverted: True
         on_press:
           then:
             - switch.toggle: fan_relay3
             - switch.turn_on: update_fan_speed
-    
+
     output:
       - platform: custom
         type: float
@@ -104,17 +104,17 @@ Then you need to set it up with yaml.
           auto ifan02 = new IFan02Output();
           App.register_component(ifan02);
           return {ifan02};
-          
+
       - platform: gpio
         pin: GPIO12
         id: light_output
-    
+
     light:
       - platform: binary
         name: ifan02_light
         output: light_output
         id: light
-    
+
     switch:
       - platform: template
         id: update_fan_speed
@@ -122,7 +122,7 @@ Then you need to set it up with yaml.
         turn_on_action:
           then:
             - delay: 200ms
-            - if: 
+            - if:
                 condition:
                   and:
                     - switch.is_off: fan_relay1
@@ -137,7 +137,7 @@ Then you need to set it up with yaml.
                     - switch.is_off: fan_relay2
                     - switch.is_off: fan_relay3
                 then:
-                  - fan.turn_on: 
+                  - fan.turn_on:
                       id: ifan02
                       speed: LOW
             - if:
@@ -147,7 +147,7 @@ Then you need to set it up with yaml.
                     - switch.is_on: fan_relay2
                     - switch.is_off: fan_relay3
                 then:
-                  - fan.turn_on: 
+                  - fan.turn_on:
                       id: ifan02
                       speed: MEDIUM
             - if:
@@ -157,23 +157,23 @@ Then you need to set it up with yaml.
                     - switch.is_off: fan_relay2
                     - switch.is_on: fan_relay3
                 then:
-                  - fan.turn_on: 
+                  - fan.turn_on:
                       id: ifan02
                       speed: HIGH
             - switch.turn_off: update_fan_speed
-    
+
       - platform: gpio
         pin: GPIO5
         id: fan_relay1
-        
+
       - platform: gpio
         pin: GPIO4
         id: fan_relay2
-        
+
       - platform: gpio
         pin: GPIO15
         id: fan_relay3
-    
+
     fan:
       - platform: speed
         output: fanoutput
