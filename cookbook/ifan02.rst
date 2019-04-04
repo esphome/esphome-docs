@@ -1,14 +1,18 @@
-Ifan02
-======
+Sonoff iFan02
+=============
 
 .. seo::
     :description: Instructions for using Sonoff ifan02 in ESPHome.
     :keywords: Fan, Sonoff, ifan02
 
+Sonoff iFan02 is a driver for ceiling fans with lights. 
+By replacing the old driver with iFan02, your non-smart led ceiling fan will be 
+converted to a smart ceiling fan. 
+For more information see `iFan02 <https://www.itead.cc/sonoff-ifan02-wifi-smart-ceiling-fan-with-light.html>`__
 
-Configuration for `Sonoff ifan02 <https://www.itead.cc/sonoff-ifan02-wifi-smart-ceiling-fan-with-light.html>`__.
+This configuration will expose a :doc:`components/light/binary` and a :doc:`components/fan/speed`.
 
-First you need a :doc:`components/output/custom.html` to control the ifan02.
+To get this working in ESPHome you first need to create a :doc:`components/output/custom` to control the iFan02.
 
 Create a ifan02.h file:
 
@@ -17,30 +21,30 @@ Create a ifan02.h file:
     #include "esphome.h"
     using namespace esphome;
 
-    class IFan02Output : public Component, public output::FloatOutput {
+    class IFan02Output : public output::FloatOutput {
       public:
         void write_state(float state) override {
-            if (state < 0.3) {
-              digitalWrite(5, LOW);
-              digitalWrite(4, LOW);
-              digitalWrite(15, LOW);
-            }
-
-            if (state >= 0.32 && state <= 0.34) {
-              digitalWrite(5, HIGH);
-              digitalWrite(4, LOW);
-              digitalWrite(15, LOW);
-            }
-            if (state >= 0.65 && state <= 0.67) {
-              digitalWrite(5, HIGH);
-              digitalWrite(4, HIGH);
-              digitalWrite(15, LOW);
-            }
-            if (state >= 0.9) {
-              digitalWrite(5, HIGH);
-              digitalWrite(4, LOW);
-              digitalWrite(15, HIGH);
-            }
+          if (state < 0.3) {
+            // OFF
+            digitalWrite(5, LOW);
+            digitalWrite(4, LOW);
+            digitalWrite(15, LOW);
+          } else if (state < 0.6) {
+            // low speed
+            digitalWrite(5, HIGH);
+            digitalWrite(4, LOW);
+            digitalWrite(15, LOW);
+          } else if (state < 0.9) {
+            // medium speed
+            digitalWrite(5, HIGH);
+            digitalWrite(4, HIGH);
+            digitalWrite(15, LOW);
+          } else {
+            // high speed
+            digitalWrite(5, HIGH);
+            digitalWrite(4, LOW);
+            digitalWrite(15, HIGH);
+          }
         }
     };
 
@@ -179,3 +183,15 @@ Then you need to set it up with yaml.
         output: fanoutput
         id: ifan02
         name: ifan02_fan
+
+See Also
+--------
+
+- :doc:`/components/light/index`
+- :doc:`/components/light/binary`
+- :doc:`/components/fan`
+- :doc:`/components/fan/speed`
+- :doc:`/components/output/index`
+- :doc:`/components/output/custom`
+- :doc:`/guides/automations`
+- :ghedit:`Edit`
