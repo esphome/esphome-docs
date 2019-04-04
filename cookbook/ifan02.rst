@@ -4,6 +4,7 @@ Sonoff iFan02
 .. seo::
     :description: Instructions for using Sonoff ifan02 in ESPHome.
     :keywords: Fan, Sonoff, ifan02
+    :image: fan.svg
 
 Sonoff iFan02 is a driver for ceiling fans with lights. 
 By replacing the old driver with iFan02, your non-smart led ceiling fan will be 
