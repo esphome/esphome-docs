@@ -14,35 +14,35 @@ Create a ifan02.h file:
 
 .. code-block:: c++
 
-  #include "esphome.h"
-  using namespace esphome;
+    #include "esphome.h"
+    using namespace esphome;
 
-  class IFan02Output : public Component, public output::FloatOutput {
-    public:
-      void write_state(float state) override {
-          if (state < 0.3) {
-            digitalWrite(5, LOW);
-            digitalWrite(4, LOW);
-            digitalWrite(15, LOW);
-          }
+    class IFan02Output : public Component, public output::FloatOutput {
+      public:
+        void write_state(float state) override {
+            if (state < 0.3) {
+              digitalWrite(5, LOW);
+              digitalWrite(4, LOW);
+              digitalWrite(15, LOW);
+            }
 
-          if (state >= 0.32 && state <= 0.34) {
-            digitalWrite(5, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(15, LOW);
-          }
-          if (state >= 0.65 && state <= 0.67) {
-            digitalWrite(5, HIGH);
-            digitalWrite(4, HIGH);
-            digitalWrite(15, LOW);
-          }
-          if (state >= 0.9) {
-            digitalWrite(5, HIGH);
-            digitalWrite(4, LOW);
-            digitalWrite(15, HIGH);
-          }
-      }
-  };
+            if (state >= 0.32 && state <= 0.34) {
+              digitalWrite(5, HIGH);
+              digitalWrite(4, LOW);
+              digitalWrite(15, LOW);
+            }
+            if (state >= 0.65 && state <= 0.67) {
+              digitalWrite(5, HIGH);
+              digitalWrite(4, HIGH);
+              digitalWrite(15, LOW);
+            }
+            if (state >= 0.9) {
+              digitalWrite(5, HIGH);
+              digitalWrite(4, LOW);
+              digitalWrite(15, HIGH);
+            }
+        }
+    };
 
 Then you need to set it up with yaml.
 
