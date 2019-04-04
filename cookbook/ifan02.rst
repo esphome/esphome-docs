@@ -179,4 +179,3 @@ Then you need to set it up with yaml.
         output: fanoutput
         id: ifan02
         name: ifan02_fan
-
