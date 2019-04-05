@@ -6,9 +6,8 @@ Sonoff iFan02
     :keywords: Fan, Sonoff, ifan02
     :image: fan.svg
 
-Sonoff iFan02 is a driver for ceiling fans with lights. 
-By replacing the old driver with iFan02, your non-smart led ceiling fan will be 
-converted to a smart ceiling fan. 
+Sonoff iFan02 is a driver for ceiling fans with lights.
+By replacing the old driver with iFan02, your non-smart led ceiling fan will be converted to a smart ceiling fan.
 For more information see `iFan02 <https://www.itead.cc/sonoff-ifan02-wifi-smart-ceiling-fan-with-light.html>`__
 
 This configuration will expose a :doc:`components/light/binary` and a :doc:`components/fan/speed`.
