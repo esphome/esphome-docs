@@ -1,0 +1,40 @@
+esphome:
+  name: '<NODE_NAME>'
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: '<WIFI_SSID>'
+  password: '<WIFI_PASSWORD>'
+
+logger:
+  # Disable UART logging (pins GPIO1/3 are used for button/led)
+  baud_rate: 0
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+output:
+  - platform: esp8266_pwm
+    id: output_red
+    pin: GPIO14
+  - platform: esp8266_pwm
+    id: output_green
+    pin: GPIO12
+  - platform: esp8266_pwm
+    id: output_blue
+    pin: GPIO13
+  - platform: esp8266_pwm
+    id: output_white
+    pin: GPIO4
+
+light:
+  - platform: rgbw
+    name: '<LIGHT_NAME>'
+    id: light
+    red: output_red
+    green: output_green
+    blue: output_blue
+    white: output_white
