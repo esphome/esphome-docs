@@ -10,11 +10,11 @@ The ``ttp229 BSF`` sensor platform allows you to use your TTP229 BSF `datasheet 
 Capacitive Touch Sensor with ESPHome.
 
 The TTP229 BSF has no software configurations so you have to configure your device by hardware.
-For the 16 key touchpads there are some excellent technotes around. 
+For the 16 key touchpads there are some excellent technotes around.
 for instance the one found at `HobbyComponents forum <http://forum.hobbycomponents.com/viewtopic.php?f=73&t=1781&hilit=hcmodu0079>`__
 
 When you have the 16 key ttp229-bsf touchkeypad you need to connect the TP2 jumper to have full use of the 16 keypads.
-Also when you want to allow for multi keypress detection for all 16 keys you need to connect TP3 and TP4 as well. 
+Also when you want to allow for multi keypress detection for all 16 keys you need to connect TP3 and TP4 as well.
 
 .. figure:: images/ttp229_bsf.png
     :align: center
