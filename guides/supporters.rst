@@ -38,7 +38,6 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
-- Paul Morley
 - Nick Rout
 - Kenvase
 - Magnus Overli
@@ -50,6 +49,7 @@ You guys are awesome!
 - Book of the Future
 - Daan Damhuis
 - Dennis Münchgesang
+- DrZzs
 
 
 Contributors
@@ -62,7 +62,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1555 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1556 contributions
 
 Contributors
 ************
@@ -114,7 +114,7 @@ Contributors
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__ - 2 contributions
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
-- `jdads1 (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
+- `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 3 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__ - 2 contributions
@@ -155,4 +155,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Mon Apr  1 08:25:52 2019 UTC.*
+*This page was last updated Sun Apr  7 12:19:13 2019 UTC.*
