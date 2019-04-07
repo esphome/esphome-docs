@@ -54,4 +54,3 @@ See Also
 
 - :ref:`sensor-filters`
 - :apiref:`sensor/ttp229_bsf_sensor.h`
-- :ghedit:`Edit`
