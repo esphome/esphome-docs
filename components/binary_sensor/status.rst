@@ -33,5 +33,3 @@ See Also
 - :doc:`/components/mqtt`
 - :apiref:`binary_sensor/status_binary_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

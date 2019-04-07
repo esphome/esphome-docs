@@ -102,5 +102,3 @@ See Also
 - :apiref:`display/waveshare_epaper.h`
 - `Arduino Waveshare E-Paper library <https://github.com/soonuse/epd-library-arduino>`__ by `Yehui (@soonuse) <https://github.com/soonuse>`__
 - :ghedit:`Edit`
-
-.. disqus::

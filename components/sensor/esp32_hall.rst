@@ -53,5 +53,3 @@ See Also
 - :doc:`/devices/esp32`
 - :apiref:`sensor/esp32_hall_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

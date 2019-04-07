@@ -30,19 +30,12 @@ Configuration variables:
   Defaults to the default of your board (usually GPIO22 for ESP32 and
   GPIO5 for ESP8266).
 - **scan** (*Optional*, boolean): If ESPHome should do a search of the I²C address space on startup.
-  Defaults to ``False``.
+  Defaults to ``True``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
   Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
-
-.. note::
-
-    If you're using the ESP32 and I²C frequently is showing errors in the logs, try with the latest
-    version of the Arduino framework. See :ref:`esphome-arduino_version` for information on how to do this.
 
 See Also
 --------
 
 - :apiref:`i2c_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

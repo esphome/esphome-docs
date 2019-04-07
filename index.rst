@@ -28,14 +28,10 @@ Guides
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
     Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
-    Configuration Types, guides/configuration-types, settings.svg
-
-    Migrating from Sonoff-Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
-    Migrating from ESPurna, guides/migrate_espurna, espurna.svg
-    Migrating from ESPEasy, guides/migrate_espeasy, espeasy.svg
-
-    Automations, guides/automations, auto-fix.svg
     FAQ and Tips, guides/faq, question_answer.svg
+
+    Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
+    Automations, guides/automations, auto-fix.svg
     Contributing, guides/contributing, github-circle.svg
 
     Changelog, changelog/index, new-box.svg
@@ -157,6 +153,7 @@ Binary Sensor Components
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
+    TTP229-LSF  Capacitive Touch Sensor, components/binary_sensor/ttp229, ttp229.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components

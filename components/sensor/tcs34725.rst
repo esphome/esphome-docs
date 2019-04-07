@@ -75,5 +75,3 @@ See Also
 - `TCS34725 library <https://github.com/adafruit/Adafruit_TCS34725>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :apiref:`sensor/tcs34725.h`
 - :ghedit:`Edit`
-
-.. disqus::

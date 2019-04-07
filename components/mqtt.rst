@@ -505,5 +505,3 @@ See Also
 
 - :apiref:`mqtt/mqtt_client_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -163,5 +163,3 @@ See Also
 - :doc:`/components/display/index`
 - :doc:`/components/sensor/homeassistant`
 - :ghedit:`Edit`
-
-.. disqus::

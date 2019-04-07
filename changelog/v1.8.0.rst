@@ -228,5 +228,3 @@ Changes in 1.8.2
 - esphomedocs: WiFi: Add power save mode option `#41 <https://github.com/OttoWinter/esphomedocs/pull/41>`__
 - esphomedocs: Add SSD1306 64x48 Display `#27 <https://github.com/OttoWinter/esphomedocs/pull/27>`__
 - esphomeyaml: WiFi: Add power save mode option `#150 <https://github.com/OttoWinter/esphomeyaml/pull/150>`__
-
-.. disqus::

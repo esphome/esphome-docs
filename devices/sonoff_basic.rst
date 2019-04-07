@@ -271,5 +271,3 @@ See Also
 - :doc:`sonoff_s20`
 - `GPIO locations <https://github.com/arendst/Sonoff-Tasmota/wiki/GPIO-Locations>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__
-
-.. disqus::

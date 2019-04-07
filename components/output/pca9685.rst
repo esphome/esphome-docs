@@ -93,5 +93,3 @@ See Also
 - :apiref:`output/pca9685_output_component.h`
 - `PCA9685 Arduino Library <https://github.com/NachtRaveVL/PCA9685-Arduino>`__ by `@NachtRaveVL <https://github.com/NachtRaveVL>`__
 - :ghedit:`Edit`
-
-.. disqus::

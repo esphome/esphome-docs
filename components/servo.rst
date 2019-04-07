@@ -163,5 +163,3 @@ See Also
 
 - :apiref:`servo.h`
 - :ghedit:`Edit`
-
-.. disqus::

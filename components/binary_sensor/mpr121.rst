@@ -56,5 +56,3 @@ See Also
 - :apiref:`sensor/mpr121_sensor.h`
 - `Adafruit MPR121 Library <https://github.com/adafruit/Adafruit_MPR121_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`
-
-.. disqus::

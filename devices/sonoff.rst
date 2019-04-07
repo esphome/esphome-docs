@@ -352,5 +352,3 @@ See Also
 - :doc:`sonoff_basic`
 - :doc:`esp8266`
 - :ghedit:`Edit`
-
-.. disqus::

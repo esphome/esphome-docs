@@ -35,5 +35,3 @@ See Also
 
 - :apiref:`text_sensor/wifi_info.h`
 - :ghedit:`Edit`
-
-.. disqus::

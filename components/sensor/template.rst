@@ -88,5 +88,3 @@ See Also
 - :ref:`automation`
 - :apiref:`sensor/template_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

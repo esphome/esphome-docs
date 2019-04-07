@@ -158,5 +158,3 @@ See Also
 - :apiref:`binary_sensor/esp32_touch_binary_sensor.h`
 - `esp-idf Touch Sensor API <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/touch_pad.html>`__
 - :ghedit:`Edit`
-
-.. disqus::

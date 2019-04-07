@@ -145,5 +145,3 @@ See Also
 - :doc:`/cookbook/garage-door`
 - :apiref:`switch_/gpio_switch.h`
 - :ghedit:`Edit`
-
-.. disqus::
