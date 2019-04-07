@@ -16,7 +16,7 @@ for instance the one found at `HobbyComponents forum <http://forum.hobbycomponen
 When you have the 16 key ttp229-bsf touchkeypad you need to connect the TP2 jumper to have full use of the 16 keypads.
 Also when you want to allow for multi keypress detection for all 16 keys you need to connect TP3 and TP4 as well.
 
-.. figure:: images/ttp229_bsf.png
+.. figure:: images/ttp229_bsf_full.png
     :align: center
     :width: 50.0%
 
