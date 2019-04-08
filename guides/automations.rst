@@ -366,6 +366,7 @@ All Lambda Calls
 - :ref:`Display <display-display_rendering_engine>`
 - :ref:`Cover <cover-lambda_calls>`
 - :ref:`Text Sensor <text_sensor-lambda_calls>`
+- :ref:`Stepper <stepper-lambda_calls>`
 
 .. _delay_action:
 
