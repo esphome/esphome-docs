@@ -358,6 +358,15 @@ All Conditions
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
 - :ref:`sensor.in_range <sensor-in_range_condition>`
 
+All Lambda Calls
+----------------
+- :ref:`Sensor <sensor-lambda_calls>`
+- :ref:`Binary Sensor <binary_sensor-lambda_calls>`
+- :ref:`Switch <switch-lambda_calls>`
+- :ref:`Display <display-display_rendering_engine>`
+- :ref:`Cover <cover-lambda_calls>`
+- :ref:`Text Sensor <text_sensor-lambda_calls>`
+
 .. _delay_action:
 
 ``delay`` Action
