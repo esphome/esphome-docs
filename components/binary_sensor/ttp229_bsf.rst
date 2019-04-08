@@ -6,7 +6,7 @@ TTP229 Capacitive Touch Sensor
     :image: ttp229_bsf.png
     :keywords: TTP229_BSF
 
-The ``ttp229 BSF`` sensor platform allows you to use your TTP229 BSF `datasheet <https://www.sunrom.com/get/611100>`__
+The ``ttp229_bsf`` sensor platform allows you to use your TTP229 BSF `datasheet <https://www.sunrom.com/get/611100>`__
 Capacitive Touch Sensor with ESPHome.
 
 The TTP229 BSF has no software configurations so you have to configure your device by hardware.
