@@ -53,7 +53,6 @@ Binary Sensor Configuration:
 - **channel** (**Required**, integer): The channel number at the ttp229 the touchkey is connected to.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
-http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=61063
 
 See Also
 --------
