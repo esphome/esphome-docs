@@ -17,8 +17,10 @@ When you have the 16 key ttp229-bsf touchkeypad you need to connect the TP2 jump
 Also when you want to allow for multi keypress detection for all 16 keys you need to connect TP3 and TP4 as well.
 
 There are two types of these TTP229 devices available.
-- The TTP229-LSF this is the i2c variant that is also supported by esphome, see :doc:`/components/binary_sensor/ttp229`.
+
+- The TTP229-LSF this is the :ref:`I²C <i2c>` variant that is also supported by esphome, see :doc:`/components/binary_sensor/ttp229`.
 - The TTP229-BSF this device uses a two wire proprietary protocol.
+
 Besides the communication protocol these device also have a different pin layout. So they are in no way interchangeable.
 
 .. figure:: images/ttp229_bsf_full.jpg
