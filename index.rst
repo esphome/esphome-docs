@@ -154,7 +154,7 @@ Binary Sensor Components
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229-LSF  Capacitive Touch Sensor, components/binary_sensor/ttp229, ttp229.jpg
-    TTP229-BSF  Capacitive Touch Sensor, components/binary_sensor/ttp229_bsf, ttp229_bsf.png
+    TTP229-BSF  Capacitive Touch Sensor, components/binary_sensor/ttp229_bsf, ttp229_bsf.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
