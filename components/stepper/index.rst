@@ -252,26 +252,33 @@ lambda calls
 From :ref:`lambdas <config-lambda>`, you can call several methods on stepper motors to do some
 advanced stuff (see the full API Reference for more info).
 
-- ``set_target``: Set or get a target postion of the motor.
+- ``set_target``: Set the target postion of the motor as an integer.
 
     .. code-block:: cpp
 
+        // Argument is integer (signed int)
+        // Set the (absolute) target position to 250 steps
         id(my_stepper).set_target(250);
 
-        // Get the currently set target position:
-        int target = id(my_stepper).target_position;
-
-- ``report_position``: Report the current postion.
+- ``report_position``: Report the current postion as an integer.
 
     .. code-block:: cpp
 
+        // Report the (absolute) current position as 250 steps
         id(my_stepper).report_position(250);
 
-- ``current_postion``: Get the current postion of the motor
+- ``current_postion``: Get the current postion of the stepper as an integer.
 
     .. code-block:: cpp
 
         int pos = id(my_stepper).current_position;
+
+
+- ``target_position``: Get the set target postion of the stepper  as an integer.
+
+    .. code-block:: cpp
+
+        int pos = id(my_stepper).target_position;
 
 See Also
 --------
