@@ -55,7 +55,6 @@ Configuration variables:
    chain. Must be in range from 3 to 255. Defaults to 3.
 -  **num_chips** (*Optional*, int): Number of chips in the chain. Must be
    in range from 1 to 85. Defaults to 1.
--  **update_on_boot** (*Optional*, boolean): Update/reset duty data at boot. Defaults to ``True``.
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``sm16716`` component. Use this if you have multiple SM16716 chains
    connected at the same time.
