@@ -246,6 +246,8 @@ be able to control the stepper from the frontend.
         # [...] stepper config
         id: my_stepper
 
+.. _stepper-lambda_calls:
+
 lambda calls
 ------------
 
