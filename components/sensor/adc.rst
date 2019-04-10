@@ -38,8 +38,10 @@ Configuration variables:
 
 .. note::
 
-    On the ESP8266, the voltage range is 0 to 1.0V - so to measure any higher voltage you need to scale the voltage
-    down using, for example, a voltage divider circuit.
+    This component uses the voltage at the chip pin. On the ESP8266, the voltage range is 0 to 1.0V. Development boards 
+    such as the NodeMCU include a voltage divider circuit such that a voltage range at the board pin of 0 to 3.2V translates 
+    to a voltage range at the chip pin of 0 to 1.0V. To measure any higher voltage, you need to scale the voltage down using, 
+    for example, a voltage divider circuit. 
 
 .. _adc-esp32_attenuation:
 
