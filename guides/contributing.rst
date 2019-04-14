@@ -531,6 +531,31 @@ it in the configuration. Specifically, it may contain these fields:
 
 Run ``pip2 install -e .`` to install a development version of ESPHome.
 
+ESPHome via Gitpod
+******************
+
+The easiest way to run ESPHome is via `Gitpod <https://www.gitpod.io>`__. Simply open the repo at https://gitpod.io/#https://github.com/esphome/esphome (or your own fork) in Gitpod, ESPHome will be installed for you and the dashboard wizard will run on startup.
+
+You can also run the steps manually.
+
+.. code-block:: bash
+
+    python setup.py install
+
+To start a command line wizard, run
+
+.. code-block:: bash
+
+    python esphome my_configuration.yaml wizard
+
+To get the web-based dashboard, use
+
+.. code-block:: bash
+
+    python esphome my_configuration.yaml dashboard
+
+and allow exposing the web app at port 6052.
+
 See Also
 --------
 
