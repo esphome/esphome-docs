@@ -50,6 +50,7 @@ You guys are awesome!
 - Daan Damhuis
 - Dennis Münchgesang
 - DrZzs
+- fabi
 
 
 Contributors
@@ -62,7 +63,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1556 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1570 contributions
 
 Contributors
 ************
@@ -70,6 +71,7 @@ Contributors
 (in alphabetical order)
 
 - `2016for (@2016for) <https://github.com/2016for>`__ - 1 contribution
+- `Aalian Khan (@AalianKhan) <https://github.com/AalianKhan>`__ - 2 contributions
 - `Alexandre Danault (@AlexDanault) <https://github.com/AlexDanault>`__ - 1 contribution
 - `Rutger Nijhuis (@BananaPukeh) <https://github.com/BananaPukeh>`__ - 1 contribution
 - `Bierchermuesli (@Bierchermuesli) <https://github.com/Bierchermuesli>`__ - 1 contribution
@@ -91,6 +93,7 @@ Contributors
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__ - 4 contributions
 - `balk77 (@balk77) <https://github.com/balk77>`__ - 1 contribution
 - `Paulus Schoutsen (@balloob) <https://github.com/balloob>`__ - 1 contribution
+- `Patrik Hermansson (@bphermansson) <https://github.com/bphermansson>`__ - 1 contribution
 - `Brandon Davidson (@brandond) <https://github.com/brandond>`__ - 11 contributions
 - `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__ - 1 contribution
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
@@ -114,6 +117,7 @@ Contributors
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__ - 2 contributions
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
+- `jcullen86 (@jcullen86) <https://github.com/jcullen86>`__ - 1 contribution
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 3 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
@@ -123,6 +127,7 @@ Contributors
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__ - 3 contributions
 - `Lewis Juggins (@lwis) <https://github.com/lwis>`__ - 1 contribution
 - `Magnus Øverli (@magnusoverli) <https://github.com/magnusoverli>`__ - 1 contribution
+- `MeIchthys (@meichthys) <https://github.com/meichthys>`__ - 1 contribution
 - `meijerwynand (@meijerwynand) <https://github.com/meijerwynand>`__ - 2 contributions
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__ - 1 contribution
@@ -144,6 +149,7 @@ Contributors
 - `r-jordan (@r-jordan) <https://github.com/r-jordan>`__ - 1 contribution
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__ - 1 contribution
 - `Robbie Page (@rorpage) <https://github.com/rorpage>`__ - 1 contribution
+- `sethcohn (@sethcohn) <https://github.com/sethcohn>`__ - 1 contribution
 - `Emanuele Tessore (@setola) <https://github.com/setola>`__ - 1 contribution
 - `sherbang (@sherbang) <https://github.com/sherbang>`__ - 4 contributions
 - `thubot (@thubot) <https://github.com/thubot>`__ - 1 contribution
@@ -155,4 +161,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Sun Apr  7 12:19:13 2019 UTC.*
+*This page was last updated Mon Apr 15 20:09:38 2019 UTC.*
