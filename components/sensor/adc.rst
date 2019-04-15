@@ -42,9 +42,9 @@ Configuration variables:
     Some development boards like the Wemos D1 mini include external voltage divider circuitry to scale down
     a 3.3V input signal to the chip-internal 1.0V. If your board has this circuitry, add a multiply filter to
     get correct values:
-    
+
     .. code-block:: yaml
-    
+
         sensor:
           - platform: adc
             # ...
