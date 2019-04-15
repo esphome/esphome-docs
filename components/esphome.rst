@@ -56,10 +56,8 @@ ESP8266 Options:
 
 - **board_flash_mode** (*Optional*, string): The `SPI flash mode <https://github.com/espressif/esptool/wiki/SPI-Flash-Modes>`__
   to use for the board. One of ``qio``, ``qout``, ``dio`` and ``dout``. Defaults to ``dout``.
-- **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash so
-  that the device state can be restored across power cycles. Keep in mind that this will slowly
-  wear out the flash (so if you have automations that repeatedly toggle a component do not use this
-  option (flash usually supports 100 000 write cycles). Defaults to ``no``.
+- **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash on ESP8266s.
+  Defaults to ``no``. See :ref:`esphome-esp8266_restore_from_flash` for more info
 
 Automations:
 
@@ -171,6 +169,27 @@ For the ESP32, there are two arduino framework versions:
 
 - `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default).
 - `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__.
+
+.. _esphome-esp8266_restore_from_flash:
+
+``esp8266_restore_from_flash``
+------------------------------
+
+With this option you can control where the state of certain components is kept on the ESP.
+Components like ``light``, ``switch``, ``fan`` and ``globals`` can restore their state upon
+boot.
+
+However, by default this data is stored in the "RTC memory" section of the ESP8266s. This memory
+is cleared when the ESP8266 is disconnected from power. So by default the state cannot be recovered
+after power loss.
+
+To still have these components restore their state upon power loss the state can additionally be
+saved in *flash* memory by setting this option to ``true``.
+
+Beware: The flash has a limited number of write cycles (usually around 100 000), after that
+the flash section will fail. So do not use this option when you have components that update rapidly.
+These include GPIO switches that are used internally (disable restoring with the ``restore_mode`` option),
+certain light effects like ``random`` and the ``on_value_range`` trigger.
 
 .. _esphome-on_boot:
 

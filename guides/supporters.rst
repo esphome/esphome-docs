@@ -38,7 +38,6 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
-- Paul Morley
 - Nick Rout
 - Kenvase
 - Magnus Overli
@@ -49,6 +48,8 @@ You guys are awesome!
 - Jung Ervin
 - Book of the Future
 - Daan Damhuis
+- Dennis Münchgesang
+- DrZzs
 
 
 Contributors
@@ -61,7 +62,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1541 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1556 contributions
 
 Contributors
 ************
@@ -91,10 +92,12 @@ Contributors
 - `balk77 (@balk77) <https://github.com/balk77>`__ - 1 contribution
 - `Paulus Schoutsen (@balloob) <https://github.com/balloob>`__ - 1 contribution
 - `Brandon Davidson (@brandond) <https://github.com/brandond>`__ - 11 contributions
+- `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__ - 1 contribution
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__ - 1 contribution
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__ - 5 contributions
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__ - 2 contributions
+- `Dave Richer (@davericher) <https://github.com/davericher>`__ - 2 contributions
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__ - 1 contribution
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
@@ -111,7 +114,7 @@ Contributors
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__ - 2 contributions
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
-- `jdads1 (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
+- `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 3 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__ - 2 contributions
@@ -124,7 +127,7 @@ Contributors
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__ - 1 contribution
 - `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__ - 3 contributions
-- `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__ - 3 contributions
+- `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__ - 5 contributions
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__ - 1 contribution
 - `Alex (@nnmalex) <https://github.com/nnmalex>`__ - 1 contribution
 - `Greg Johnson (@notgwj) <https://github.com/notgwj>`__ - 1 contribution
@@ -133,8 +136,9 @@ Contributors
 - `Paul Nicholls (@pauln) <https://github.com/pauln>`__ - 1 contribution
 - `per1234 (@per1234) <https://github.com/per1234>`__ - 2 contributions
 - `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__ - 1 contribution
-- `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 1 contribution
+- `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 2 contributions
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
+- `Leandro Puerari (@puerari) <https://github.com/puerari>`__ - 1 contribution
 - `puuu (@puuu) <https://github.com/puuu>`__ - 10 contributions
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__ - 1 contribution
 - `r-jordan (@r-jordan) <https://github.com/r-jordan>`__ - 1 contribution
@@ -151,4 +155,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Fri Mar 29 20:43:46 2019 UTC.*
+*This page was last updated Sun Apr  7 12:19:13 2019 UTC.*
