@@ -305,6 +305,8 @@ This :ref:`Condition <config-condition>` checks if the given binary sensor is ON
             id: my_binary_sensor
             for: 5s
 
+.. _binary_sensor-lambda_calls:
+
 lambda calls
 ************
 

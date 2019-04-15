@@ -62,6 +62,8 @@ In :ref:`Lambdas <config-lambda>` you can get the value from the trigger with ``
 
 Configuration variables: See :ref:`Automation <automation>`.
 
+.. _text_sensor-lambda_calls:
+
 lambda calls
 ************
 
