@@ -38,8 +38,18 @@ Configuration variables:
 
 .. note::
 
-    On the ESP8266, the voltage range is 0 to 1.0V - so to measure any higher voltage you need to scale the voltage
-    down using, for example, a voltage divider circuit.
+    This component prints the voltage as seen by the chip pin. On the ESP8266, this is always 0.0V to 1.0V
+    Some development boards like the Wemos D1 mini include external voltage divider circuitry to scale down
+    a 3.3V input signal to the chip-internal 1.0V. If your board has this circuitry, add a multiply filter to
+    get correct values:
+
+    .. code-block:: yaml
+
+        sensor:
+          - platform: adc
+            # ...
+            filters:
+              - multiply: 3.3
 
 .. _adc-esp32_attenuation:
 
