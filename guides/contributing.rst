@@ -534,7 +534,8 @@ Run ``pip2 install -e .`` to install a development version of ESPHome.
 ESPHome via Gitpod
 ******************
 
-An alternative to a local checkout and build is doing so via `Gitpod <https://www.gitpod.io>`__. ESPHome will be installed for you and the dashboard wizard will run on startup.
+An alternative to a local checkout and build is doing so via `Gitpod <https://www.gitpod.io>`__.
+ESPHome will be installed for you and the dashboard wizard will run on startup.
 
 You can also run the steps manually.
 
