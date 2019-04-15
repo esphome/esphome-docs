@@ -360,6 +360,7 @@ All Conditions
 
 All Lambda Calls
 ----------------
+
 - :ref:`Sensor <sensor-lambda_calls>`
 - :ref:`Binary Sensor <binary_sensor-lambda_calls>`
 - :ref:`Switch <switch-lambda_calls>`
