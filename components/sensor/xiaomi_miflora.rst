@@ -68,7 +68,7 @@ Configuration variables:
 .. note::
 
     The ``battery_level`` does not appear to work with some firmware versions of the device (the other sensors
-    do work though). See https://github.com/esphome/issues/issues/107#issuecomment-483693214 for more information.
+    do work though). See https://github.com/esphome/issues/issues/107 for more information.
 
 Setting Up Devices
 ------------------
