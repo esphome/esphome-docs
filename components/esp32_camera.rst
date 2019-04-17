@@ -147,6 +147,23 @@ Configuration for M5Stack Camera
       name: My Camera
       # ...
 
+`Different models of M5Camera <https://camo.githubusercontent.com/52bae30bf9fcea048318f841481ad7b88db9f499/68747470733a2f2f6d35737461636b2e6f73732d636e2d7368656e7a68656e2e616c6979756e63732e636f6d2f696d6167652f6d352d646f63735f7461626c652f63616d6572615f636f6d70617269736f6e2f43616d65726150696e436f6d70617269736f6e5f656e2e706e67>`__
+
+.. code-block:: yaml
+
+    # Example configuration entry for M5Camera (B Model) / M5CameraX 
+    esp32_camera:
+     external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+    i2c_pins:
+        sda: GPIO22
+        scl: GPIO23
+    data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+    vsync_pin: GPIO25
+    href_pin: GPIO26
+    pixel_clock_pin: GPIO21
+    reset_pin: GPIO15
 
 Configuration for Wrover Kit Boards
 -----------------------------------
