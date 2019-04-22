@@ -38,19 +38,22 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
-- Nick Rout
-- Kenvase
-- Magnus Overli
-- Dattas Moonchaser
-- Intermittent Technology
 - Andrea Donno
-- Ryan Bahm
-- Jung Ervin
 - Book of the Future
 - Daan Damhuis
+- Dattas Moonchaser
 - Dennis Münchgesang
 - DrZzs
 - fabi
+- Intermittent Technology
+- Jung Ervin
+- Kenvase
+- Magnus Overli
+- Nick Rout
+- Paul Krischer
+- Paul Morley
+- Ryan
+- Ryan Bahm
 
 
 Contributors
@@ -63,7 +66,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1570 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1578 contributions
 
 Contributors
 ************
@@ -110,6 +113,7 @@ Contributors
 - `escoand (@escoand) <https://github.com/escoand>`__ - 5 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
+- `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 3 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
 - `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 1 contribution
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
@@ -122,6 +126,7 @@ Contributors
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 3 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__ - 2 contributions
+- `kimonm (@kimonm) <https://github.com/kimonm>`__ - 1 contribution
 - `Ken Davidson (@kwdavidson) <https://github.com/kwdavidson>`__ - 1 contribution
 - `Jeppe Ladefoged (@ladefoged81) <https://github.com/ladefoged81>`__ - 2 contributions
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__ - 3 contributions
@@ -161,4 +166,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Mon Apr 15 20:09:38 2019 UTC.*
+*This page was last updated Mon Apr 22 14:14:00 2019 UTC.*
