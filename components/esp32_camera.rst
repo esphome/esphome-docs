@@ -171,7 +171,7 @@ Configuration for Wrover Kit Boards
       # ...
 
 Configuration for TTGO T-Camera
------------------------------------
+-------------------------------
 
 .. code-block:: yaml
 
