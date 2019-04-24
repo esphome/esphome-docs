@@ -52,6 +52,7 @@ You guys are awesome!
 - Nick Rout
 - Paul Krischer
 - Paul Morley
+- Roman Priesol
 - Ryan
 - Ryan Bahm
 
@@ -66,7 +67,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1578 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1581 contributions
 
 Contributors
 ************
@@ -84,6 +85,7 @@ Contributors
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__ - 1 contribution
 - `Marco  (@Melkor82) <https://github.com/Melkor82>`__ - 2 contributions
 - `Mynasru (@Mynasru) <https://github.com/Mynasru>`__ - 2 contributions
+- `Erik Näsström (@Naesstrom) <https://github.com/Naesstrom>`__ - 1 contribution
 - `Jérôme W. (@RomRider) <https://github.com/RomRider>`__ - 1 contribution
 - `Taigar2015 (@Taigar2015) <https://github.com/Taigar2015>`__ - 1 contribution
 - `Spencer Hachmeister (@TheHackmeister) <https://github.com/TheHackmeister>`__ - 1 contribution
@@ -113,7 +115,7 @@ Contributors
 - `escoand (@escoand) <https://github.com/escoand>`__ - 5 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
-- `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 3 contributions
+- `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 4 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
 - `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 1 contribution
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
@@ -166,4 +168,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Mon Apr 22 14:14:00 2019 UTC.*
+*This page was last updated Wed Apr 24 12:15:41 2019 UTC.*
