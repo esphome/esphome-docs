@@ -35,8 +35,6 @@ Configuration variables:
 
 Advanced options:
 
-- **esphome_core_version** (*Optional*): The version of the C++ `ESPHome-Core framework <https://github.com/esphome/esphome-core>`__
-  to use. See :ref:`esphome-esphome_core_version`.
 - **arduino_version** (*Optional*): The version of the arduino framework to link the project against.
   See :ref:`esphome-arduino_version`.
 - **build_path** (*Optional*, string): Customize where ESPHome will store the build files
@@ -67,67 +65,6 @@ Automations:
   right before the node shuts down. See :ref:`esphome-on_shutdown`.
 - **on_loop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   on each ``loop()`` iteration. See :ref:`esphome-on_loop`.
-
-.. _esphome-esphome_core_version:
-
-``esphome_core_version``
-------------------------
-
-With the ``esphome_core_version`` parameter you can tell ESPHome which version of the C++ framework
-to use when compiling code. For example, you can configure using the most recent (potentially unstable)
-version of ESPHome straight from github. Or you can configure the use of a local copy of esphome-core
-using this configuration option.
-
-First, you can configure the use of either the latest esphome-core stable release (``latest``),
-the latest development code from GitHub (``dev``), or a specific version number (``1.8.0``).
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    esphome:
-      # ...
-      # Use the latest ESPHome stable release
-      esphome_core_version: latest
-
-      # Or use the latest code from github
-      esphome_core_version: dev
-
-      # Use a specific version number
-      esphome_core_version: 1.8.0
-
-Alternatively, if you want to develop for ESPHome, you can download the
-`latest code from GitHub <https://github.com/esphome/esphome-core/archive/dev.zip>`__, extract the contents,
-and point ESPHome to your local copy. Then you can modify the ESPHome to your needs or to fix bugs.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    esphome:
-      # ...
-      # Use a local copy of ESPHome
-      esphome_core_version:
-        local: path/to/esphome-core
-
-And last, you can make ESPHome use a specific branch/commit/tag from a remote git repository:
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    esphome:
-      # ...
-      # Use a specific commit/branch/tag from a remote repository
-      esphome_core_version:
-        # Repository defaults to https://github.com/esphome/esphome-core.git
-        repository: https://github.com/esphome/esphome-core.git
-        branch: master
-
-      esphome_core_version:
-        repository: https://github.com/somebody/esphome-core.git
-        commit: d27bac9263e8a0a5a00672245b38db3078f8992c
-
-      esphome_core_version:
-        repository: https://github.com/esphome/esphome-core.git
-        tag: v1.8.0
 
 .. _esphome-arduino_version:
 
