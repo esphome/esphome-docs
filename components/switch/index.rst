@@ -121,14 +121,14 @@ advanced stuff (see the full API Reference for more info).
         // Switch is OFF, do something else here
       }
 
-- ``turn_off()``/``turn_on``: Manually turn the switch ON/OFF from code.
+- ``turn_off()``/``turn_on()``: Manually turn the switch ON/OFF from code.
   Similar to the ``switch.turn_on`` and ``switch.turn_off`` actions,
   but can be used in complex lambda expressions.
 
   .. code-block:: yaml
 
       id(my_switch).turn_off();
-      id(my_switch).turn_on(true);
+      id(my_switch).turn_on();
       // Toggle the switch
       id(my_switch).toggle();
 
