@@ -45,6 +45,7 @@ You guys are awesome!
 - Dennis Münchgesang
 - DrZzs
 - fabi
+- Franck Nijhof
 - Intermittent Technology
 - Jung Ervin
 - Kenvase
@@ -55,6 +56,7 @@ You guys are awesome!
 - Roman Priesol
 - Ryan
 - Ryan Bahm
+- Wojciech Bederski
 
 
 Contributors
@@ -67,7 +69,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1581 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1592 contributions
 
 Contributors
 ************
@@ -128,6 +130,7 @@ Contributors
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 3 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__ - 2 contributions
+- `Kevin O'Rourke (@kevinior) <https://github.com/kevinior>`__ - 1 contribution
 - `kimonm (@kimonm) <https://github.com/kimonm>`__ - 1 contribution
 - `Ken Davidson (@kwdavidson) <https://github.com/kwdavidson>`__ - 1 contribution
 - `Jeppe Ladefoged (@ladefoged81) <https://github.com/ladefoged81>`__ - 2 contributions
@@ -168,4 +171,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Wed Apr 24 12:15:41 2019 UTC.*
+*This page was last updated Wed May  1 15:23:32 2019 UTC.*
