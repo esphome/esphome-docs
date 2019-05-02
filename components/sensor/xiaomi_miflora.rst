@@ -19,7 +19,7 @@ MiFlora devices at once as you want.
 
     sensor:
       - platform: xiaomi_miflora
-        mac_address: 94:2B:FF:5C:91:61
+        mac_address: '94:2B:FF:5C:91:61'
         temperature:
           name: "Xiaomi MiFlora Temperature"
         moisture:
