@@ -122,7 +122,7 @@ Configuration for M5Stack Camera
 
     This camera board has insufficient cooling and will overheat over time,
     ESPHome does only activate the camera when Home Assistant requests an image, but
-    the camera until can still heat up considerably for some boards.
+    the camera unit can still heat up considerably for some boards.
 
     If the camera is not recognized after a reboot and the unit feels warm, try waiting for
     it to cool down and check again - if that still doesn't work try enabling the test pattern.
