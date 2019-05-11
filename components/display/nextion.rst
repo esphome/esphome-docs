@@ -15,7 +15,7 @@ with ESPHome.
 
     Nextion LCD Display.
 
-As the communication with the MH-Z19 is done using UART, you need to have an :ref:`UART bus <uart>`
+As the communication with the Nextion LCD display is done using UART, you need to have an :ref:`UART bus <uart>`
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
 Additionally, you need to set the baud rate to 9600.
 

@@ -399,6 +399,8 @@ Configuration variables:
 - **above** (*Optional*, float): The minimum for the condition.
 - **below** (*Optional*, float): The maximum for the condition.
 
+.. _sensor-lambda_calls:
+
 lambda calls
 ************
 

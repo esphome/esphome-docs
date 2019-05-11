@@ -72,6 +72,7 @@ This action stops the cover with the given ID when executed.
 
         id(cover_1).stop();
 
+.. _cover-lambda_calls:
 
 lambda calls
 ------------
