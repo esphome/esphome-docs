@@ -38,6 +38,7 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
+- Anders
 - Andrea Donno
 - Book of the Future
 - Daan Damhuis
@@ -69,7 +70,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1592 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1610 contributions
 
 Contributors
 ************
@@ -82,6 +83,8 @@ Contributors
 - `Rutger Nijhuis (@BananaPukeh) <https://github.com/BananaPukeh>`__ - 1 contribution
 - `Bierchermuesli (@Bierchermuesli) <https://github.com/Bierchermuesli>`__ - 1 contribution
 - `David De Sloovere (@DavidDeSloovere) <https://github.com/DavidDeSloovere>`__ - 3 contributions
+- `Eenoo (@Eenoo) <https://github.com/Eenoo>`__ - 1 contribution
+- `EmmanuelLM (@EmmanuelLM) <https://github.com/EmmanuelLM>`__ - 1 contribution
 - `FrengerH (@FrengerH) <https://github.com/FrengerH>`__ - 2 contributions
 - `Jimmy Hedman (@HeMan) <https://github.com/HeMan>`__ - 5 contributions
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__ - 1 contribution
@@ -112,12 +115,13 @@ Contributors
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
 - `Drew Perttula (@drewp) <https://github.com/drewp>`__ - 1 contribution
-- `Anders Persson (@emwap) <https://github.com/emwap>`__ - 1 contribution
+- `Anders Persson (@emwap) <https://github.com/emwap>`__ - 4 contributions
+- `Nico Weichbrodt (@envy) <https://github.com/envy>`__ - 1 contribution
 - `erazor666 (@erazor666) <https://github.com/erazor666>`__ - 1 contribution
 - `escoand (@escoand) <https://github.com/escoand>`__ - 5 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
-- `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 4 contributions
+- `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 7 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
 - `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 1 contribution
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
@@ -141,10 +145,11 @@ Contributors
 - `meijerwynand (@meijerwynand) <https://github.com/meijerwynand>`__ - 2 contributions
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__ - 1 contribution
-- `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__ - 3 contributions
+- `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__ - 4 contributions
 - `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__ - 5 contributions
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__ - 1 contribution
 - `Alex (@nnmalex) <https://github.com/nnmalex>`__ - 1 contribution
+- `ffabi (@norges) <https://github.com/norges>`__ - 2 contributions
 - `Greg Johnson (@notgwj) <https://github.com/notgwj>`__ - 1 contribution
 - `Nuno Sousa (@nunofgs) <https://github.com/nunofgs>`__ - 1 contribution
 - `Oscar Bolmsten (@oscar-b) <https://github.com/oscar-b>`__ - 3 contributions
@@ -154,10 +159,11 @@ Contributors
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 2 contributions
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__ - 1 contribution
-- `puuu (@puuu) <https://github.com/puuu>`__ - 10 contributions
+- `puuu (@puuu) <https://github.com/puuu>`__ - 12 contributions
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__ - 1 contribution
 - `r-jordan (@r-jordan) <https://github.com/r-jordan>`__ - 1 contribution
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__ - 1 contribution
+- `Richard Lewis (@richrd) <https://github.com/richrd>`__ - 1 contribution
 - `Robbie Page (@rorpage) <https://github.com/rorpage>`__ - 1 contribution
 - `sethcohn (@sethcohn) <https://github.com/sethcohn>`__ - 1 contribution
 - `Emanuele Tessore (@setola) <https://github.com/setola>`__ - 1 contribution
@@ -171,4 +177,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Wed May  1 15:23:32 2019 UTC.*
+*This page was last updated Sat May 11 09:54:48 2019 UTC.*
