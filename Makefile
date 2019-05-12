@@ -38,7 +38,6 @@ copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
 
 netlify: netlify-dependencies netlify-api html copy-svg2png
-	python3 travis.py
 
 webserver: html
 	cd "_build/html" && python3 -m http.server
