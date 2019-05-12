@@ -37,5 +37,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`i2c_component.h`
+- :apiref:`i2c/i2c.h`
 - :ghedit:`Edit`

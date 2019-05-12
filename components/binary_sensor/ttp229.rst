@@ -6,7 +6,7 @@ TTP229 Capacitive Touch Sensor
     :image: ttp229.jpg
     :keywords: TTP229
 
-The ``ttp229`` sensor platform allows you to use your TTP229 `datasheet <https://www.tontek.com.tw/uploads/product/106/TTP229-LSF_V1.0_EN.pdf>`__
+The ``ttp229_lsf`` sensor platform allows you to use your TTP229 `datasheet <https://www.tontek.com.tw/uploads/product/106/TTP229-LSF_V1.0_EN.pdf>`__
 Capacitive Touch Sensor with ESPHome. The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/ttp229-full.jpg
@@ -21,7 +21,6 @@ Capacitive Touch Sensor with ESPHome. The :ref:`I²C <i2c>` is required to be se
 
     # Example configuration entry
     ttp229_lsf:
-      id: ttp229_device
 
     binary_sensor:
       - platform: ttp229_lsf
@@ -48,5 +47,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`sensor/ttp229_sensor.h`
+- :apiref:`ttp229_lsf/ttp229_lsf.h`
 - :ghedit:`Edit`

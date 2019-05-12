@@ -90,5 +90,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`ads1115`
 - :doc:`max6675`
-- :apiref:`sensor/adc.h`
+- :apiref:`adc/adc_sensor.h`
 - :ghedit:`Edit`

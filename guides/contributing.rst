@@ -8,12 +8,11 @@ Contributing
 Contributions to the ESPHome suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:
 
-- `ESPHome-Core <https://github.com/esphome/ESPHome-Core>`__ (The C++ framework)
-- `ESPHome <https://github.com/esphome/ESPHome>`__ (The Python YAML to C++ transpiler)
+- `ESPHome <https://github.com/esphome/ESPHome>`__ (Project Source Code)
 - `ESPHome-Docs <https://github.com/esphome/ESPHome-Docs>`__ (The documentation which you're reading here)
 
 Just clone the repository locally, do the changes for your new feature/bug fix and submit
-a pull request. I will try to take a look at your PR as soon as possible.
+a pull request.
 
 Contributing to ESPHome-Docs
 ----------------------------
@@ -229,7 +228,7 @@ Build
 
     This way, you don't have to install the dependencies to build the documentation.
 
-To check your documentation changes locally, you first need install sphinx (**with Python 3**).
+To check your documentation changes locally, you first need install sphinx (with **Python 3**).
 
 .. code-block:: bash
 
@@ -251,14 +250,14 @@ Notes
 
 Some notes about the docs:
 
-* Use the english language (duh...)
-* An image tells a thousand words, please use them wherever possible. But also don't forget to shrink them, for example
+- Use the english language (duh...)
+- An image tells a thousand words, please use them wherever possible. But also don't forget to shrink them, for example
   I often use https://tinypng.com/
-* Try to use examples as often as possible (also while it's great to use highly accurate,
+- Try to use examples as often as possible (also while it's great to use highly accurate,
   and domain-specific lingo, it should not interfere with new users understanding the content)
-* When adding new files, please also add them to the ``index.rst`` file in the directory you're editing.
-* Fixes/improvements for the docs themselves should go to the ``current`` branch of the
+- Fixes/improvements for the docs themselves should go to the ``current`` branch of the
   esphomedocs repository. New features should be added against the ``next`` branch.
+- Always create new branches in your fork for each pull request.
 
 Setting Up Development Environment
 ----------------------------------
@@ -270,55 +269,21 @@ This is only possible for ``pip`` installs.
 
     # Clone repos
     git clone https://github.com/esphome/esphome.git
-    git clone https://github.com/esphome/esphome-core.git
     git clone https://github.com/esphome/esphome-docs.git
 
     # Install esphome, python 2!
     cd esphome/
-    pip2 install -e .
-    pip2 install flake8==3.6.0 pylint==1.9.4 pillow
+    script/setup
     # Start a new feature branch
     git checkout -b my-new-feature
     cd ..
 
-    # Setup esphome-core environment
-    cd esphome-core/
-    pio init --ide vscode  # See 'pio init -h' for options
-    git checkout -b my-new-feature
-
-Now you can open esphome-core in your IDE of choice (mine is CLion) with the platformio
+Now you can open esphome in your IDE of choice (mine is CLion) with the platformio
 addons (see platformio docs for more info). Then develop the new feature with the
 guidelines below.
 
-Next, for the python part of the feature you can again use any IDE you want (I use PyCharm)
-and develop the feature. You can create a ``config/`` folder inside the esphome repo
-to store configs you're working with (automatically excluded by .gitignore).
-
-To compile against your local esphome-core in esphome youhave to give the path
-to the esphome core in ``esphome_core_version``:
-
-.. code-block:: yaml
-
-    esphome:
-      esphome_core_version:
-        local: path/to/esphome-core
-
-To perform style checks for your changes (which are enforced by travis-ci) you can run
-
-.. code-block:: bash
-
-    flake8 esphome
-    pylint esphome
-
-Finally, for documentation changes go to your esphome-docs folder, and install sphinx (with Python 3!)
-
-.. code-block:: bash
-
-    pip3 install sphinx
-    make webserver
-
-Or alternatively just submit a draft PR to the docs repo and wait for netlify to create
-a build preview.
+All PRs are automatically checked for some basic formatting/code mistakes with travis.
+These checks *must* pass for your PR to be mergable.
 
 Setting Up Git Environment
 --------------------------
@@ -328,18 +293,18 @@ ESPHome's code-base is hosted on GitHub, and contributing is done exclusively th
 first.
 
 When you want to create a patch for ESPHome, first go to the repository you want to contribute to
-(esphome, esphome-core, etc) and click fork in the top right corner. This will create
+(esphome, etc) and click fork in the top right corner. This will create
 a fork of the repository that you can modify and create git branches on.
 
 .. code-block:: bash
 
     # Clone your fork
     git clone https://github.com/<YOUR_GITHUB_USERNAME>/<REPO_NAME>.git
-    # For example: git clone https://github.com/OttoWinter/esphome-core.git
+    # For example: git clone https://github.com/OttoWinter/esphome.git
 
     # Add "upstream" remote
     git remote add upstream https://github.com/esphome/<REPO_NAME>.git
-    # For example: git clone https://github.com/esphome/esphome-core.git
+    # For example: git clone https://github.com/esphome/esphome.git
 
     # For each patch, create a new branch from latest dev
     git checkout dev
@@ -377,63 +342,32 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
     git fetch upstream dev
     git rebase upstream/dev
 
-Contributing to ESPHome-Core
-----------------------------
-
-.. figure:: /images/logo-core.svg
-    :align: center
-    :width: 60.0%
-
-ESPHome-Core is the engine behind all the ESPHome stuff.
-To contribute code to ESPHome-Core to fix a bug or add a new integration/feature,
-clone the repository, make your changes and create a pull request.
-
-At some point, I will create a dedicated guide for the exact setup used, but for now just
-look around the code base a bit and see how other components are doing stuff.
-
-To initialize the development environment, navigate to the repository and execute:
-
-.. code-block:: bash
-
-    # View available IDEs:
-    pio init --help
-    # Initialize for IDE
-    pio init --ide {YOUR_IDE}
+Codebase Standards
+------------------
 
 Standard for the esphome-core codebase:
 
-- All features should at least have a bit of documentation using the doxygen documentation style
-  (see other source files for reference)
-- The code style is based on the `Google C++ Style Guide <https://google.github.io/styleguide/cppguide.html>`__ with
-  a few modifications.
+- The C++ code style is based on the
+  `Google C++ Style Guide <https://google.github.io/styleguide/cppguide.html>`__ with a few modifications.
 
-- function, method and variable names are ``lower_snake_case``
-- class/struct/enum names should be ``UpperCamelCase``
-- constants should be ``UPPER_SNAKE_CASE``
-- fields should be ``protected`` and ``lowe_snake_case_with_trailing_underscore_`` (NOT private)
-- It's preferred to use long variable/function names over short and non-descriptive ones.
-- All uses of class members should be prefixed with ``this->`` to distinguish class from
-  global functions in code review.
-- Use two spaces, not tabs.
-- Using ``#define`` s is discouraged and should be replaced by constants.
-- Use ``using type_t = int;`` instead of ``typedef int type_t;``
-- Be careful with including large standard library headers, they can considerably
-  increase the code size.
-- All features should only be compiled if a user explicitly defined so using ``-DUSE_<FEATURE>``
-  (see ``esphome/defines.h``)
-- Header files ``.h`` should not include source code. All code should sit in C++ ``.cpp`` files.
-  (except for templates)
-- Using explicit int sizes is like ``int64_t`` is preferred over standard types like ``long long``.
-- All new features should have at least one example usage in the examples directory.
-- New components should dump their configuration using ``ESP_LOGCONFIG`` at startup in ``setup()``
+    - function, method and variable names are ``lower_snake_case``
+    - class/struct/enum names should be ``UpperCamelCase``
+    - constants should be ``UPPER_SNAKE_CASE``
+    - fields should be ``protected`` and ``lowe_snake_case_with_trailing_underscore_`` (DO NOT use private)
+    - It's preferred to use long variable/function names over short and non-descriptive ones.
+    - All uses of class members and member functions should be prefixed with
+      ``this->`` to distinguish them from global functions in code review.
+    - Use two spaces, not tabs.
+    - Using ``#define`` s is discouraged and should be replaced with constants.
+    - Use ``using type_t = int;`` instead of ``typedef int type_t;``
+
+- New components should dump their configuration using ``ESP_LOGCONFIG``
+  at startup in ``dump_config()``
 - The number of external libraries should be kept to a minimum. If the component you're developing has a simple
   communication interface, please consider implementing the library natively in ESPHome.
 - Implementations for new devices should contain reference links for the datasheet and other sample
   implementations.
 - Please test your changes :)
-
-For editing a local copy of esphome-core within the ESPHome ecosystem please see
-:ref:`esphome.esphome_core_version <esphome-esphome_core_version>` option.
 
 Contributing to ESPHome
 -----------------------
@@ -448,88 +382,35 @@ The configuration validation should always be very strict with validating user i
 better to fail quickly if a configuration isn't right than to have the user find out the issue after
 a few hours of debugging.
 
-Preferably, the configuration validation messages should explain the exact validation issue (and not "invalid name!")
+Preferably, the configuration validation messages should explain the exact validation issue
 and try to suggest a possible fix.
 
-The C++ code generation engine is 99% syntactic sugar and unfortunately not too well documented yet.
+The C++ code generation engine is 99% syntactic sugar.
 Have a look around other components and you will hopefully quickly get the gist of how to interact with
 the code generation engine.
 
-The python source code of your component will automatically be loaded if the user uses
-it in the configuration. Specifically, it may contain these fields:
+All python modules have some magic symbols that will automatically be loaded by the ESPHome
+loader. These are:
 
-- ``CONFIG_SCHEMA``: for *components* like ``dallas``. This is the configuration
-  schema that will be validated against the user configuration.
-- ``PLATFORM_SCHEMA``: for *platforms* like ``sensor.dallas``. This is the configuration schema that
-  will be validated against every ``platform:`` definition in the config of your platform name.
-- ``to_code``: The "workhorse" of ESPHome. This will be called with the configuration of your component/platform
-  and you can add code to the global code index in here.
+- ``CONFIG_SCHEMA``: The configuration schema to validate the user config against.
+- ``to_code``: The function that will be called with the validated configuration and should
+  create the necessary C++ source code.
+- ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
+  added these components in their configuration, a validation error will be generated.
+- ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
+- ``MULTI_CONF``: Mark this component to accept an array of configurations.
+- ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
+  has one of them in the config, a validation error will be generated.
 
-  - Call an ``Application`` method like this ``App.make_dallas_component()``
+- ``ESP_PLATFORMS``: Provide a whitelist of ESP types this integration works with.
 
-  - Register a variable using ``variable(<TYPE>, <VAR_ID>, rhs)``. This will generate an assignment expression
-    and add it to the global expression index. The return value is the left hand side variable which you can use
-    for further calls.
+TODO Phases:
 
-    .. code-block:: cpp
-
-        <TYPE> <VAR_ID> = <rhs>;
-
-  - Register a variable of a pointer type using ``Pvariable(<TYPE>, <VAR_ID>, rhs)``.
-
-    .. code-block:: cpp
-
-        <TYPE> *<VAR_ID> = <rhs>;
-
-        // rhs = App.make_dallas_component(12, 15000)
-        // var = Pvariable(DallasComponent, "dallas_id", rhs)
-        // add(var.hello_world())
-        DallasComponent *dallas_id = App.make_dallas_component(12, 15000)
-        dallas_id->hello_world()
-
-  - Expressions like ``var.hello_world()`` are not automatically added to the code and need to be added to the
-    global expression index using ``add()``.
-
-  - Access variables using ``get_variable()``. The variable will automatically know if it is a pointer and use
-    the correct operator. Additionally, you can pass a type as the second argument to ``get_variable``. This will
-    cause ESPHome to use the first variable of that type.
-
-    .. code-block:: cpp
-
-        hub = get_variable(config.get(CONF_DALLAS_ID), DallasComponent)
-
-  - Pass configuration arguments to mock function calls (like ``App.make_dallas_component``) using normal
-    python :)
-
-    .. code-block:: python
-
-        rhs = App.make_dallas_component(config[CONF_PIN], config.get(CONF_UPDATE_INTERVAL))
-
-    Note the ``config.get()``: Trailing ``None`` values in function calls are stripped.
-
-- ``BUILD_FLAGS``: Pass build flags that should be provided if your component is loaded.
-
-  .. code-block:: python
-
-      BUILD_FLAGS = '-DUSE_DALLAS_SENSOR'
-
-- ``REQUIRED_BUILD_FLAGS``: Like ``BUILD_FLAGS``, but also uses these build flags if the user has disabled build
-  flags in the :doc:`esphome section </components/esphome>`.
-
-- ``DEPENDENCIES``: Other components that are required to be in the user's configuration if this platform/component
-  is loaded:
-
-  .. code-block:: python
-
-      DEPENDENCIES = ['i2c']
-
-- ``ESP_PLATFORMS``: Provide a whitelist of platforms this integration works on. Default is work on all platforms.
-
-  .. code-block:: python
-
-      ESP_PLATFORMS = [ESP_PLATFORM_ESP32]
-
-Run ``pip2 install -e .`` to install a development version of ESPHome.
+ - Component loading (explain paths, directory structure)
+ - Validation (explain how to validate properly)
+ - Codegen (explain how code can be generated)
+ - Runtime setup phase
+ - Runtime loop/update phase
 
 ESPHome via Gitpod
 ******************

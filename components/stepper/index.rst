@@ -195,6 +195,26 @@ Configuration options:
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
 
+.. _stepper-set_speed_action:
+
+``stepper.set_speed`` Action
+----------------------------
+
+This :ref:`Action <config-action>` allows you to set the speed of a stepper at runtime.
+
+.. code-block:: yaml
+
+    on_...:
+      - stepper.set_speed:
+          id: my_stepper
+          speed: 250 steps/s
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **speed** (**Required**, :ref:`templatable <config-templatable>`, float): The speed
+  in ``steps/s`` (steps per seconds) to drive the stepper at.
+
 .. _stepper-ha-config:
 
 Home Assistant Configuration

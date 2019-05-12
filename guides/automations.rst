@@ -177,9 +177,9 @@ first:
         name: Living Room Cover
         lambda: !lambda |-
           if (id(top_end_stop).state) {
-            return cover::COVER_OPEN;
+            return COVER_OPEN;
           } else {
-            return cover::COVER_CLOSED;
+            return COVER_CLOSED;
           }
 
 What's happening here? First, we define a binary sensor (with the id ``top_end_stop``) and then a
@@ -201,9 +201,9 @@ or just ``|`` or ``>``. There's a slight difference in how these different style
 purposes we can ignore that).
 
 With ``if (...) { ... } else { ... }`` we create a *condition*. What this effectively says that if the thing inside
-the first parentheses evaluates to ``true``` then execute the first block (in this case ``return cover::COVER_OPEN;``,
+the first parentheses evaluates to ``true``` then execute the first block (in this case ``return COVER_OPEN;``,
 or else evaluate the second block. ``return ...;`` makes the code block give back a value to the template. In this case,
-we're either *returning* ``cover::COVER_OPEN`` or ``cover::COVER_CLOSED`` to indicate that the cover is closed or open.
+we're either *returning* ``COVER_OPEN`` or ``COVER_CLOSED`` to indicate that the cover is closed or open.
 
 Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
 somewhere else, like ``top_end_stop```) and let's you call any of ESPHome's many APIs directly. For example, here
@@ -545,6 +545,27 @@ compile error.
         # The same as:
         - lambda: 'id(my_component).update();'
 
+.. _globals_set_action:
+
+``globals.set`` Action
+----------------------
+
+This :ref:`Action <config-action>` allows you to change the value of a :ref:`global <config-globals>`
+variable without having to go through the lambda syntax.
+
+.. code-block:: yaml
+
+    on_...:
+      - globals.set:
+          id: my_global_var
+          value: '10'
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the global variable to set.
+- **value** (**Required**, :ref:`templatable <config-templatable>`): The value to set the global
+  variable to.
+
 .. _script-execute_action:
 
 ``script.execute`` Action
@@ -595,6 +616,51 @@ Please note this is only useful right now if your script contains a ``delay`` ac
     on_...:
       then:
         - script.stop: my_script
+
+.. _script-is_running_condition:
+
+``script.is_running`` Condition
+-------------------------------
+
+This :ref:`condition <config-condition>` allows you to check if a given script is running.
+Please note that multiple scripts can be running concurrently, this condition only tells
+you if at least one script of the given type is running, not how many.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          - script.is_running: my_script
+        then:
+          - logger.log: Script is running!
+
+.. _for_condition:
+
+``for`` Condition
+-----------------
+
+This :ref:`Condition <config-condition>` allows you to check if a given condition has been
+true for at least a given amount of time.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          for:
+            time: 5min
+            condition:
+              api.connected:
+        then:
+          - logger.log: API has stayed connected for at least 5 minutes!
+
+Configuration variables:
+
+- **time** (**Required**, :ref:`templatable <config-templatable>`, :ref:`config-time`):
+  The time for which the condition has to have been true.
+- **condition** (**Required**, :ref:`Condition <config-condition>`):
+  The condition to check.
 
 .. _interval:
 

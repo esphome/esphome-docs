@@ -505,9 +505,25 @@ Configuration options:
           root["something"] = id(my_sensor).state;
         });
 
+.. _mqtt.connected_condition:
+
+``mqtt.connected`` Condition
+----------------------------
+
+This :ref:`Condition <config-condition>` checks if the MQTT client is currently connected to
+the MQTT broker.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          mqtt.connected:
+        then:
+          - logger.log: MQTT is connected!
 
 See Also
 --------
 
-- :apiref:`mqtt/mqtt_client_component.h`
+- :apiref:`mqtt/mqtt_client.h`
 - :ghedit:`Edit`

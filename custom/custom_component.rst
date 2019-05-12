@@ -13,7 +13,6 @@ The example below is an example of a custom component that can do anything you w
 .. code-block:: cpp
 
     #include "esphome.h"
-    using namespace esphome;
 
     class MyCustomComponent : public Component {
      public:
@@ -36,15 +35,14 @@ The example below is an example of a custom component that can do anything you w
     };
 
 In many cases however components should communicate with other appliances using the network.
-That's why there is :cpp:class:`mqtt::CustomMQTTDevice`. It is a helper class to create
+That's why there is :apiclass:`mqtt::CustomMQTTDevice`. It is a helper class to create
 custom components that communicate using MQTT.
 
 .. code-block:: cpp
 
     #include "esphome.h"
-    using namespace esphome;
 
-    class MyCustomComponent : public Component, public mqtt::CustomMQTTDevice {
+    class MyCustomComponent : public Component, public CustomMQTTDevice {
      public:
       void setup() override {
         // This will be called once to set up the component
@@ -100,7 +98,7 @@ Configuration variables:
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   binary sensor(s).
 
-See :cpp:class:`Component` and :cpp:class:`mqtt::CustomMQTTDevice`.
+See :apiclass:`Component` and :apiclass:`mqtt::CustomMQTTDevice`.
 
 See Also
 --------

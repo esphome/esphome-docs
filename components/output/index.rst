@@ -124,7 +124,8 @@ Full Output Index
 - :doc:`/components/light/rgb`
 - :doc:`/components/fan/binary`
 - :doc:`/components/fan/speed`
-- :apiref:`output/binary_output.h`, :apiref:`output/float_output.h`
+- :apiref:`binary_output.h <output/binary_output.h>`,
+  :apiref:`float_output.h <output/float_output.h>`
 - :ghedit:`Edit`
 
 .. toctree::

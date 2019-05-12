@@ -5,6 +5,7 @@ Components
     :glob:
 
     binary_sensor/index
+    climate/index
     cover/index
     fan/index
     light/index

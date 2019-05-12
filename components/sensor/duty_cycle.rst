@@ -37,5 +37,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`sensor/duty_cycle_sensor.h`
+- :apiref:`duty_cycle/duty_cycle_sensor.h`
 - :ghedit:`Edit`

@@ -300,11 +300,6 @@ This :ref:`Condition <config-condition>` checks if the given binary sensor is ON
           # Same syntax for is_off
           binary_sensor.is_on: my_binary_sensor
 
-          # With duration, true if has been on for at least 5s
-          binary_sensor.is_on:
-            id: my_binary_sensor
-            for: 5s
-
 .. _binary_sensor-lambda_calls:
 
 lambda calls

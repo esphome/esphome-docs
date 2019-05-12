@@ -143,5 +143,5 @@ See Also
 - :doc:`/components/output/gpio`
 - :doc:`/components/cover/template`
 - :doc:`/cookbook/garage-door`
-- :apiref:`switch_/gpio_switch.h`
+- :apiref:`gpio/switch/gpio_switch.h`
 - :ghedit:`Edit`

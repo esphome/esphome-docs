@@ -172,7 +172,7 @@ ON/OFF itself).
 See Also
 --------
 
-- :apiref:`switch_/switch.h`
+- :apiref:`switch/switch.h`
 - :ghedit:`Edit`
 
 .. toctree::

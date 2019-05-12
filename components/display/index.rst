@@ -421,7 +421,7 @@ You can then switch between these with three different actions:
 See Also
 --------
 
-- :apiref:`display/display.h`
+- :apiref:`display/display_buffer.h`
 - :ghedit:`Edit`
 
 .. toctree::

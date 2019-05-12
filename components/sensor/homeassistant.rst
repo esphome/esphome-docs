@@ -37,5 +37,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :ref:`automation`
-- :apiref:`sensor/homeassistant_sensor.h`
+- :apiref:`homeassistant/sensor/homeassistant_sensor.h`
 - :ghedit:`Edit`

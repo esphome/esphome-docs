@@ -95,7 +95,7 @@ Configuration options:
   Set the oscillation state of the fan. Defaults to not affecting oscillation.
 - **speed** (*Optional*, string, :ref:`templatable <config-templatable>`):
   Set the speed setting of the fan. One of ``OFF``, ``LOW``, ``MEDIUM``, ``HIGH``.
-  If you template this value, return ``fan::FAN_SPEED_...``, for example ``fan::FAN_SPEED_HIGH``.
+  If you template this value, return ``FAN_SPEED_...``, for example ``FAN_SPEED_HIGH``.
 
 Full Fan Index
 --------------

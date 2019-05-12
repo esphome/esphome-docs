@@ -47,5 +47,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`web_server.h`
+- :apiref:`web_server/web_server.h`
 - :ghedit:`Edit`

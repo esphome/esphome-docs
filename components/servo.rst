@@ -161,5 +161,5 @@ be able to control the servo from the frontend.
 See Also
 --------
 
-- :apiref:`servo.h`
+- :apiref:`servo/servo.h`
 - :ghedit:`Edit`

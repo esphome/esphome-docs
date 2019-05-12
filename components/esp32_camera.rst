@@ -197,5 +197,5 @@ Configuration for TTGO T-Camera
 See Also
 --------
 
-- :apiref:`wifi_component.h`
+- :apiref:`esp32_camera/esp32_camera.h`
 - :ghedit:`Edit`

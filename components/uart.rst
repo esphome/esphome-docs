@@ -72,5 +72,5 @@ See Also
 --------
 
 - :doc:`/components/logger`
-- :apiref:`uart_component.h`
+- :apiref:`uart/uart.h`
 - :ghedit:`Edit`
