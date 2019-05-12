@@ -3,7 +3,7 @@ Sun
 
 .. seo::
     :description: Instructions for setting up tracking the sun position in ESPHome.
-    :image: TODO.png
+    :image: weather-sunny.png
 
 The ``sun`` component allows you to track the sun's position in the sky.
 

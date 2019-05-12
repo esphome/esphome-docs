@@ -3,7 +3,7 @@ Endstop Cover
 
 .. seo::
     :description: Instructions for setting up time-based covers in ESPHome.
-    :image: TODO.png
+    :image: electric-switch.png
 
 The ``endstop`` cover platform allows you to create covers with position control that have
 endstops at both ends of the cover to detect the fully-open and fully-closed states.

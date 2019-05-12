@@ -108,6 +108,7 @@ Sensor Components
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
+    Integration, components/sensor/integration, sigma.svg
     HTU21D, components/sensor/htu21d, htu21d.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
@@ -145,7 +146,7 @@ Binary Sensor Components
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
-    ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
+    ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
@@ -234,6 +235,8 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
+    Endstop Cover, components/cover/endstop, electric-switch.svg
+    Time-Based Cover, components/cover/time_based, timer.svg
 
 Text Sensor Components
 ----------------------
@@ -247,6 +250,14 @@ Text Sensor Components
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
+
+Climate Components
+------------------
+
+.. imgtable::
+
+    Climate Core, components/climate/index, folder-open.svg
+    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
 
 Misc Components
 ---------------
@@ -262,6 +273,7 @@ Misc Components
     Time, components/time, clock-outline.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
+    Sun, components/sun, weather-sunny.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
 
