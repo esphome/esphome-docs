@@ -51,7 +51,7 @@ Making a Display File
 ---------------------
 
 First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
-create a display file. Itead have made lots of tools to help you make a GUI. 
+create a display file. Itead have made lots of tools to help you make a GUI.
 To enable touch for specific components, for example a button, you will need to select the component,
 then move over to the event window. Click the checkbox that say "Send Component ID" in
 both "Touch Press Event" and "Touch Release Event". Now the display will send data when
