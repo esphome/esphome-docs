@@ -95,6 +95,7 @@ Sensor Components
     BME680, components/sensor/bme680, bme680.jpg
     BMP085, components/sensor/bmp085, bmp180.jpg
     BMP280, components/sensor/bmp280, bmp280.jpg
+    CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
     Dallas, components/sensor/dallas, dallas.jpg
     DHT, components/sensor/dht, dht.jpg
@@ -154,7 +155,7 @@ Binary Sensor Components
     Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
-    TTP229-LSF  Capacitive Touch Sensor, components/binary_sensor/ttp229, ttp229.jpg
+    TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -276,6 +277,7 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
+    GPS, components/gps, crosshairs-gps.svg
 
 Additional Custom Components
 ----------------------------
