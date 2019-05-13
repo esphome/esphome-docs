@@ -47,14 +47,18 @@ Configuration variables:
 
 .. _display-nextion_lambda:
 
+Making a Display File
+---------------------
+First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
+create a display file. Itead have made lots of tools to help you make a GUI. To enable touch for specific components, for example a button, you will need to select the component, then move over to the event window. Click the checkbox that say "Send Component ID" in both "Touch Press Event" and "Touch Release Event". Now the display will send data when someone touches your component. 
+
 Rendering Lambda
 ----------------
 
 With Nextion displays, a dedicated chip on the display itself does the whole rendering. ESPHome can only
 send *instructions* to the display to tell it *how* to render something and *what* to render.
 
-First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
-create a display file and insert it using the SD card slot. Then, in the rendering ``lambda``, you have 3 main methods
+In the rendering ``lambda``, you have 3 main methods
 you can call to populate data on the display:
 
 .. code-block:: yaml
@@ -72,6 +76,63 @@ you can call to populate data on the display:
 
           // set the text of a component with formatting
           it.set_component_text_printf("textview", "The uptime is: %.1f", id(uptime_sensor).state);
+
+These are all the avaliable lambda calls you can do to the nextion display:
+
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| Call                                       | Description                                                                             | Example |
++============================================+=========================================================================================+=========+
+| ``set_component_text``                     | Set the text of a component to a static string.                                         |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_text_printf``              | Set the text of a component to a formatted string, eg sensor value.                     |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_value``                    | Set the integer value of a component                                                    |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_background_color``         | Set the background color of a component                                                 |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_pressed_background_color`` | Set the pressed background color of a component.                                        |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_font_color``               | Set the font color of a component.                                                      |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_pressed_font_color``       | Set the font color when a component is pressed.                                         |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_coordinates``              | Set the coordinates of a component on screen.                                           |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_component_font``                     | Set the font id for a component.                                                        |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_nextion_rtc_time``                   | Send the current time to the nextion display.                                           |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``goto_page``                              | Show the page with a given name.                                                        |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``hide_component``                         | hide_component.                                                                         |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``show_component``                         | Show a component.                                                                       |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``enable_component_touch``                 | Enable touch for a component.                                                           |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``disable_component_touch``                | Disable touch for a component.                                                          |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``add_waveform_data``                      | Add waveform data to a waveform component.                                              |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``display_picture``                        | Display a picture at coordinates.                                                       |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``fill_area``                              | Fill a rectangle with a color.                                                          |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``line``                                   | Draw a line on the screen.                                                              |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``rectangle``                              | Draw a rectangle outline.                                                               |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``circle``                                 | Draw a circle outline.                                                                  |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``filled_circle``                          | Draw a filled circled.                                                                  |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_backlight_brightness``               | Set the brightness of the backlight.                                                    |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``set_touch_sleep_timeout``                | Set the touch sleep timeout of the display.                                             |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+| ``send_command_no_ack``                    | Manually send a raw command to the display and don't wait for an acknowledgement packet |         |
++--------------------------------------------+-----------------------------------------------------------------------------------------+---------+
+
 
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
