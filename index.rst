@@ -152,7 +152,6 @@ Binary Sensor Components
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
-    Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
@@ -200,7 +199,6 @@ Switch Components
 
     Switch Core, components/switch/index, folder-open.svg
     GPIO Switch, components/switch/gpio, pin.svg
-    Remote Transmitter, components/switch/remote_transmitter, remote.svg
     Restart Switch, components/switch/restart, restart.svg
     Shutdown Switch, components/switch/shutdown, power_settings.svg
     Generic Output Switch, components/switch/output, upload.svg
@@ -265,19 +263,25 @@ Misc Components
 
 .. imgtable::
 
-    Debug Component, components/debug, bug-report.svg
-    PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
-    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
+    Remote Receiver, components/remote_receiver, remote.svg
+    Remote Transmitter, components/remote_transmitter, remote.svg
+    Status LED, components/status_led, led-on.svg
+
+    Time, components/time, clock-outline.svg
+    Sun, components/sun, weather-sunny.svg
+    GPS, components/gps, crosshairs-gps.svg
+
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    Status LED, components/status_led, led-on.svg
-    Time, components/time, clock-outline.svg
+    ESP32 Ethernet, components/ethernet, ethernet.svg
+
+    ESP32 Camera, components/esp32_camera, camera.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
-    Sun, components/sun, weather-sunny.svg
-    ESP32 Ethernet, components/ethernet, ethernet.svg
-    ESP32 Camera, components/esp32_camera, camera.svg
-    GPS, components/gps, crosshairs-gps.svg
+
+    PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
+    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
+    Debug Component, components/debug, bug-report.svg
 
 Additional Custom Components
 ----------------------------

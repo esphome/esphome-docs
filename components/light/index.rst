@@ -265,7 +265,7 @@ to a specific color.
     on_...:
       - light.addressable_set:
           id: my_light
-          range_from: 1
+          range_from: 0
           range_to: 50
           red: 100%
           green: 0%
@@ -275,9 +275,10 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the addressable light to control.
 - **range_from** (*Optional*, :ref:`templatable <config-templatable>`, int): The beginning
-  of the range of LEDs to control. 1-based indexing. Defaults to 1 (the beginning of the strip).
+  of the range of LEDs to control. 0-based indexing. Defaults to 0 (the beginning of the strip).
 - **range_to** (*Optional*, :ref:`templatable <config-templatable>`, int): The end of the
-  range of LEDs to control. 1-based indexing. Defaults to the end of the strip.
+  range of LEDs to control - this is a half-open interval. 0-based indexing.
+  Defaults to the end of the strip (``num_leds``).
 - **red** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the red channel to.
 - **green** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to

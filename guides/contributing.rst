@@ -78,7 +78,7 @@ RST primer:
       .. _my-reference-label:
 
       Section to cross-reference
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+      --------------------------
 
       See :ref:`my-reference-label`, also see :doc:`/components/switch/gpio`.
       :doc:`Using custom text </components/switch/gpio>`.
@@ -259,6 +259,8 @@ Some notes about the docs:
   esphomedocs repository. New features should be added against the ``next`` branch.
 - Always create new branches in your fork for each pull request.
 
+.. _setup_dev_env:
+
 Setting Up Development Environment
 ----------------------------------
 
@@ -342,6 +344,211 @@ a "rebase". More info `here <https://developers.home-assistant.io/docs/en/develo
     git fetch upstream dev
     git rebase upstream/dev
 
+Contributing to ESPHome
+-----------------------
+
+.. figure:: /images/logo-text.svg
+    :align: center
+    :width: 60.0%
+
+This is a guide to contributing to the ESPHome codebase. ESPHome uses two languages for its project:
+Python and C++.
+
+The user configuration is read, validated and transformed into a custom firmware
+with the python side of the firmware.
+
+The C++ codebase is what's actually running on the ESP and called the "runtime". This part of
+the codebase should first set up the communication interface to a sensor/component/etc and
+communicate with the ESPHome core via the defined interfaces (like Sensor, BinarySensor, Switch).
+
+1. Directory Structure
+**********************
+
+After you've :ref:`set up development environment <setup_dev_env>`, you will have a folder structure
+like this:
+
+.. code-block:: text
+
+    esphome
+    ├── __main__.py
+    ├── automation.py
+    ├── codegen.py
+    ├── config_validation.py
+    ├── components
+    │   ├── __init__.py
+    │   ├── dht12
+    │   │   ├── __init__.py
+    │   │   ├── dht12.cpp
+    │   │   ├── dht12.h
+    │   │   ├── sensor.py
+    │   ├── restart
+    │   │   ├── __init__.py
+    │   │   ├── restart_switch.cpp
+    │   │   ├── restart_switch.h
+    │   │   ├── switch.py
+    │  ...
+
+As you can see, all components are in the "components" folder. Each component is in its own
+subfolder which contains the python code (.py) and the C++ code (.h and .cpp).
+
+Suppose the user types in the following:
+
+.. code-block:: yaml
+
+    hello1:
+
+    sensor:
+      - platform: hello2
+
+In both cases, ESPHome will automatically look for corresponding entries in the "components"
+folder and find the directory with the given name. For example the first entry will make ESPHome
+look at the ``esphome/components/hello1/__init__.py`` file and the second entry will result in
+``esphome/components/hello2/sensor.py``.
+
+Let's leave what's written in those files for (2.), but for now you should also know that
+whenever a component is loaded, all the C++ source files in the folder of the component
+are automatically copied into the generated platformio project. So you just need to add the C++
+source files in the folder and the ESPHome core will copy them with no additional code required
+by the integration developer.
+
+.. note::
+
+    Additionally, ESPHome has a ``custom_components`` mechanism like
+    `Home Assistant does <https://developers.home-assistant.io/docs/en/creating_component_loading.html>`__.
+    So for testing you can also create a new ``custom_components`` folder inside of your ESPHome
+    config folder and create new integrations in there.
+
+2. Config Validation
+********************
+
+The first thing ESPHome does is read and validate the user config. For this ESPHome has a powerful
+"config validation" mechanism. Each component defines a config schema that is validated against
+the user config.
+
+To do this, all ESPHome python modules that can be configured by the user have a special field
+called ``CONFIG_SCHEMA``. An example of such a schema is shown below:
+
+.. code-block:: python
+
+    import esphome.config_validation as cv
+
+    CONF_MY_REQUIRED_KEY = 'my_required_key'
+    CONF_MY_OPTIONAL_KEY = 'my_optional_key'
+
+    CONFIG_SCHEMA = cv.Schema({
+      cv.Required(CONF_MY_REQUIRED_KEY): cv.string,
+      cv.Optional(CONF_MY_OPTIONAL_KEY, default=10): cv.int_,
+    }).extend(cv.COMPONENT_SCHEMA)
+
+This variable is automatically loaded by the ESPHome core and validated against.
+The underlying system ESPHome uses for this is `voluptuous <https://github.com/alecthomas/voluptuous>`__.
+Going into how to validate is out of scope for this guide, but the best way to learn is to look
+at examples of how similar integrations validate user input.
+
+A few point on validation:
+
+- ESPHome ts a lot of effort in **strict validation** - If possible, all validation methods should be as strict
+  as possible and detect wrong user input at the validation stage (and not later).
+- All default values should be defined in the schema (and not in C++ codebase or other code parts).
+- Config keys should be descriptive - If the meaning of a key is not immediately obvious you should
+  always prefer long_but_descriptive_keys.
+
+3. Code Generation
+******************
+
+After the user input has been successfully validated, the last step of the python codebase
+is called: Code generation.
+
+As you may know, ESPHome converts the user's configuration into C++ code (you can see the generated
+code under ``<NODE_NAME>/src/main.cpp``). Each integration must define its own ``to_code`` method
+that converts the user input to C++ code.
+
+This method is also automatically loaded and invoked by the ESPHome core. An example of
+such a method can be seen below:
+
+.. code-block:: python
+
+    import esphome.codegen as cg
+
+    def to_code(config):
+        var = cg.new_Pvariable(config[CONF_ID])
+        yield cg.register_component(var)
+
+        cg.add(var.set_my_required_key(config[CONF_MY_REQUIRED_KEY]))
+
+Again, going into all the details of ESPHome code generation would be out-of-scope. However,
+ESPHome's code generation is 99% syntactic sugar - and again it's probably best to study other
+integrations and just copy what they do.
+
+There's one important concept for the ``to_code`` method: coroutines with ``yield``.
+First the problem that leads to coroutines: In ESPHome, integrations can declare (via ``cg.Pvariable``) and access variables
+(``cg.get_variable()``) - but sometimes when one part of the code base requests a variable
+it has not been declared yet because the code for the component creating the variable has not run yet.
+
+To allow for ID references, ESPHome uses so-called ``coroutines``. When you see a ``yield`` statement
+in a ``to_code`` method, ESPHome will call the provided method - and if that method needs to wait
+for a variable to be declared first, ``yield`` will wait until that variable has been declared.
+After that, ``yield`` returns and the method will execute on the next line.
+
+Next, there's a special method - ``cg.add`` - that you will often use. ``cg.add()`` does a very simple
+thing: Any C++ declared in the paranetheses of ``cg.add()`` will be added to the generated code.
+If you do not call "add" a piece of code explicitly, it will not be added to the main.cpp file!
+
+4. Runtime
+----------
+
+Okay, the python part of the codebase is now complete - now let's talk about the C++ part of
+creating a new integration.
+
+The two major parts of any integration roughly are:
+
+ - Setup Phase
+ - Run Phase
+
+When you create a new integration, your new component will inherit from :apiclass:`Component`.
+That class has a special ``setup()`` method that will be called once to set up the component -
+at the time the ``setup()`` method is called, all the setters generated by the python codebase
+have already run and the all fields are set for your class.
+
+The ``setup()`` method should set up the communication interface for the component and check
+if communication works (if not, it should call ``mark_failed()``).
+
+Again, look at examples of other integrations to learn more.
+
+The next thing that will be called with your component is ``loop()`` (or ``update()`` for a
+:apiclass:`PollingComponent`). In these methods you should retrieve the latest data from the
+component and publish them with the provided methods. One thing to note in these methods
+is that anything in ``loop()`` or ``setup()`` **should not block**. Specifically methods like
+``delay(10)`` should be avoided and delays above ~10ms are not permitted. The reason for this
+is that ESPHome uses a central single-threaded loop for all components - if your component
+blocks the whole loop will be slowed down.
+
+Finally, your component should have a ``dump_config`` method that prints the user configuration.
+
+5. Extras
+*********
+
+.. note::
+
+    This serves as documentation for some of ESPHome's internals and is not necessarily part of the
+    development guide.
+
+All python modules have some magic symbols that will automatically be loaded by the ESPHome
+loader. These are:
+
+- ``CONFIG_SCHEMA``: The configuration schema to validate the user config against.
+- ``to_code``: The function that will be called with the validated configuration and should
+  create the necessary C++ source code.
+- ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
+  added these components in their configuration, a validation error will be generated.
+- ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
+- ``MULTI_CONF``: Mark this component to accept an array of configurations.
+- ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
+  has one of them in the config, a validation error will be generated.
+
+- ``ESP_PLATFORMS``: Provide a whitelist of ESP types this integration works with.
+
+
 Codebase Standards
 ------------------
 
@@ -363,54 +570,26 @@ Standard for the esphome-core codebase:
 
 - New components should dump their configuration using ``ESP_LOGCONFIG``
   at startup in ``dump_config()``
+- ESPHome uses a unified formatting tool for all source files (but this tool can be difficult to install).
+  When creating a new PR in GitHub, see the travis-ci output to see what formatting needs to be changed
+  and what potential problems are detected.
+
 - The number of external libraries should be kept to a minimum. If the component you're developing has a simple
   communication interface, please consider implementing the library natively in ESPHome.
+
+  - This depends on the communication interface of course - if the library is directly working
+    with pins or doesn't do any I/O itself, it's ok. However if it's something like i2c, then ESPHome's
+    own communication abstractions should be used. Especially if the library accesses a global variable/state
+    like ``Wire`` there's a problem because then the component may not modular (i.e. not possible
+    to create two instances of a component on one ESP)
+
+- Integrations **must** use the provided abstractions like ``Sensor``, ``Switch`` etc.
+  Integration should specifically **not** directly access other components like for example
+  publish to MQTT topics.
+
 - Implementations for new devices should contain reference links for the datasheet and other sample
   implementations.
 - Please test your changes :)
-
-Contributing to ESPHome
------------------------
-
-.. figure:: /images/logo-text.svg
-    :align: center
-    :width: 60.0%
-
-ESPHome primarily does two things: It validates the configuration and creates C++ code.
-
-The configuration validation should always be very strict with validating user input - it's always
-better to fail quickly if a configuration isn't right than to have the user find out the issue after
-a few hours of debugging.
-
-Preferably, the configuration validation messages should explain the exact validation issue
-and try to suggest a possible fix.
-
-The C++ code generation engine is 99% syntactic sugar.
-Have a look around other components and you will hopefully quickly get the gist of how to interact with
-the code generation engine.
-
-All python modules have some magic symbols that will automatically be loaded by the ESPHome
-loader. These are:
-
-- ``CONFIG_SCHEMA``: The configuration schema to validate the user config against.
-- ``to_code``: The function that will be called with the validated configuration and should
-  create the necessary C++ source code.
-- ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
-  added these components in their configuration, a validation error will be generated.
-- ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
-- ``MULTI_CONF``: Mark this component to accept an array of configurations.
-- ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
-  has one of them in the config, a validation error will be generated.
-
-- ``ESP_PLATFORMS``: Provide a whitelist of ESP types this integration works with.
-
-TODO Phases:
-
- - Component loading (explain paths, directory structure)
- - Validation (explain how to validate properly)
- - Codegen (explain how code can be generated)
- - Runtime setup phase
- - Runtime loop/update phase
 
 ESPHome via Gitpod
 ******************
