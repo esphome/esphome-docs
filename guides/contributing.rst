@@ -8,8 +8,8 @@ Contributing
 Contributions to the ESPHome suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:
 
-- `ESPHome <https://github.com/esphome/ESPHome>`__ (Project Source Code)
-- `ESPHome-Docs <https://github.com/esphome/ESPHome-Docs>`__ (The documentation which you're reading here)
+- `ESPHome <https://github.com/esphome/esphome>`__ (Project Source Code)
+- `ESPHome-Docs <https://github.com/esphome/esphome-docs>`__ (The documentation which you're reading here)
 
 Just clone the repository locally, do the changes for your new feature/bug fix and submit
 a pull request.

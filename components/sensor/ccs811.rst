@@ -62,10 +62,18 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
+
+Advanced:
+
 - **address** (*Optional*, int): The :ref:`I²C <i2c>` address of the sensor.
 
 - **baseline** (*Optional*, int): The baseline value for the unit, for calibration
   purposes. See :ref:`ccs811-calibrating` for more info.
+
+- **temperature** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
+  here. This can improve the sensor's internal calculations.
+- **humidity** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
+  here. This can improve the sensor's internal calculations.
 
 .. _ccs811-calibrating:
 
