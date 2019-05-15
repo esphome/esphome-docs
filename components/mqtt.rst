@@ -505,7 +505,7 @@ Configuration options:
           root["something"] = id(my_sensor).state;
         });
 
-.. _mqtt.connected_condition:
+.. _mqtt-connected_condition:
 
 ``mqtt.connected`` Condition
 ----------------------------

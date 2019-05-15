@@ -495,7 +495,7 @@ thing: Any C++ declared in the paranetheses of ``cg.add()`` will be added to the
 If you do not call "add" a piece of code explicitly, it will not be added to the main.cpp file!
 
 4. Runtime
-----------
+**********
 
 Okay, the python part of the codebase is now complete - now let's talk about the C++ part of
 creating a new integration.

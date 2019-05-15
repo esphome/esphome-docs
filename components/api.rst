@@ -220,7 +220,7 @@ There are currently 4 types of variables:
 - float: A floating point number. C++ type: ``float``
 - string: A string. C++ type: ``std::string``
 
-.. _api.connected_condition:
+.. _api-connected_condition:
 
 ``api.connected`` Condition
 ---------------------------

@@ -168,7 +168,7 @@ Configuration variables:
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
 
-.. _wifi.connected_condition:
+.. _wifi-connected_condition:
 
 ``wifi.connected`` Condition
 ----------------------------

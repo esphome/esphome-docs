@@ -320,9 +320,12 @@ All Triggers
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
 - :ref:`time.on_time <time-on_time>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
-- :ref:`pn532.on_tag <pn532-on_tag>`
+- :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
+- :doc:`remote_receiver.on_* </components/remote_receiver>`
+- :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
+- :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 
 All Actions
 -----------
@@ -337,15 +340,25 @@ All Actions
 - :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>` / :ref:`switch.turn_off <switch-turn_off_action>` / :ref:`switch.turn_on <switch-turn_on_action>`
 - :ref:`light.toggle <light-toggle_action>` / :ref:`light.turn_off <light-turn_off_action>` / :ref:`light.turn_on <light-turn_on_action>`
-- :ref:`cover.open <cover-open_action>` / :ref:`cover.close <cover-close_action>` / :ref:`cover.stop <cover-stop_action>`
+  / :ref:`light.control <light-control_action>` / :ref:`light.dim_relative <light-dim_relative_action>`
+  / :ref:`light.addressable_set <light-addressable_set_action>`
+- :ref:`cover.open <cover-open_action>` / :ref:`cover.close <cover-close_action>` / :ref:`cover.stop <cover-stop_action>` /
+  :ref:`cover.control <cover-control_action>`
 - :ref:`fan.toggle <fan-toggle_action>` / :ref:`fan.turn_off <fan-turn_off_action>` / :ref:`fan.turn_on <fan-turn_on_action>`
 - :ref:`output.turn_off <output-turn_off_action>` / :ref:`output.turn_on <output-turn_on_action>` / :ref:`output.set_level <output-set_level_action>`
 - :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
-- :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>` /
-  :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>` /
-  :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
+- :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>`
+  / :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>`
+  / :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
 - :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
-- :ref:`servo.write <servo-write_action>`
+  / :ref:`stepper.set_speed <stepper-set_speed_action>`
+- :ref:`servo.write <servo-write_action>` / :ref:`servo.detach <servo-detach_action>`
+- :ref:`globals.set <globals-set_action>`
+- :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
+- :ref:`climate.control <climate-control_action>`
+- :ref:`output.esp8266_pwm.set_frequency <output-esp8266_pwm-set_frequency_action>`
+- :ref:`sensor.integration.reset <sensor-integration-reset_action>`
+- :ref:`display.page.show_* <display-pages>`
 
 .. _config-condition:
 
@@ -353,10 +366,16 @@ All Conditions
 --------------
 
 - :ref:`lambda <lambda_condition>`
-- :ref:`and <and_condition>` / :ref:`or <or_condition>`
+- :ref:`and <and_condition>` / :ref:`or <or_condition>` / :ref:`not <not_condition>`
+- :ref:`for <for_condition>`
 - :ref:`binary_sensor.is_on <binary_sensor-is_on_condition>` / :ref:`binary_sensor.is_off <binary_sensor-is_off_condition>`
 - :ref:`switch.is_on <switch-is_on_condition>` / :ref:`switch.is_off <switch-is_off_condition>`
 - :ref:`sensor.in_range <sensor-in_range_condition>`
+- :ref:`wifi.connected <wifi-connected_condition>` / :ref:`api.connected <api-connected_condition>`
+  / :ref:`mqtt.connected <mqtt-connected_condition>`
+- :ref:`script.is_running <script-is_running_condition>`
+- :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
+- :ref:`text_sensor.state <text_sensor-state_condition>`
 
 All Lambda Calls
 ----------------
@@ -427,9 +446,10 @@ and can be used to create conditional flow in actions.
 
 .. _and_condition:
 .. _or_condition:
+.. _not_condition:
 
-``and`` / ``or`` Condition
---------------------------
+``and`` / ``or`` / ``not`` Condition
+------------------------------------
 
 Check a combination of conditions
 
@@ -444,6 +464,11 @@ Check a combination of conditions
                 - binary_sensor.is_on: some_binary_sensor
                 - binary_sensor.is_on: other_binary_sensor
             # ...
+
+        - if:
+            condition:
+              not:
+                binary_sensor.is_off: some_binary_sensor
 
 .. _if_action:
 
@@ -545,7 +570,7 @@ compile error.
         # The same as:
         - lambda: 'id(my_component).update();'
 
-.. _globals_set_action:
+.. _globals-set_action:
 
 ``globals.set`` Action
 ----------------------

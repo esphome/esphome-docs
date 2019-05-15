@@ -106,6 +106,28 @@ Configuration options:
 
         id(my_servo).write(1.0);
 
+.. _servo-detach_action:
+
+``servo.detach`` Action
+-----------------------
+
+This :ref:`Action <config-action>` allows you to disable the output on a servo motor -
+this will make the servo motor stop immediately and disable its active control.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+      - servo.detach: my_servo
+
+.. note::
+
+    This action can also be expressed as a :ref:`lambda <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(my_servo).detach();
+
 .. _servo-ha-config:
 
 Home Assistant Configuration
