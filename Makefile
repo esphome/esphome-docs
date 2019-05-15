@@ -4,10 +4,10 @@ ESPHOME_REF = dev
 .PHONY: html html-strict cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png
 
 html:
-	sphinx-build -M html . _build $(O)
+	sphinx-build -M html . _build -j auto -n $(O)
 
 html-strict:
-	sphinx-build -M html . _build -W $(O)
+	sphinx-build -M html . _build -W -j auto -n $(O)
 
 cleanhtml:
 	rm -rf "_build/html/*"

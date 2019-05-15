@@ -55,7 +55,7 @@ New Components
 - The new :doc:`remote receiver </components/remote_receiver>` and
   :doc:`remote transmitter </components/remote_transmitter>` components now allows you to use any 433MHz
   receivers and senders with ESPHome. Currently, you will need to use the ``raw`` data as described in
-  :ref:`this guide <finding_remote_codes>`, but in the future more protocols will be supported out of the box.
+  this guide, but in the future more protocols will be supported out of the box.
 
 New Features
 ************

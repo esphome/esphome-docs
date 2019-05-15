@@ -188,6 +188,7 @@ Light Components
 
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
+    Custom Light, components/light/custom, language-cpp.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
@@ -236,6 +237,7 @@ Cover Components
     Template Cover, components/cover/template, description.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Time-Based Cover, components/cover/time_based, timer.svg
+    Custom Cover, components/cover/custom, language-cpp.svg
 
 Text Sensor Components
 ----------------------
@@ -257,6 +259,7 @@ Climate Components
 
     Climate Core, components/climate/index, folder-open.svg
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
+    Custom Climate, components/climate/custom, language-cpp.svg
 
 Misc Components
 ---------------

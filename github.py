@@ -265,3 +265,6 @@ def setup(app):
     app.add_role('ghedit', ghedit_role)
     app.add_directive('imgtable', ImageTableDirective)
     app.add_directive('pintable', PinTableDirective)
+    return {"version": "1.0.0",
+            "parallel_read_safe": True,
+            "parallel_write_safe": True}
