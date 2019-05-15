@@ -90,7 +90,7 @@ That's no good. Here are some steps that resolve some problems:
 
 -  **If you're having WiFi problems**: See :ref:`wifi-problems`.
 -  Enable verbose logs in the logger: section.
--  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/OttoWinter/ESPHome/issues>`__.
+-  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/esphome/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
 .. _faq-bug_report:
@@ -190,7 +190,7 @@ I have a question... How can I contact you?
 Sure! I'd be happy to help :) You can contact me here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/t/ESPHome-library-to-greatly-simplify-home-assistant-integration-with-esp32/402452>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
