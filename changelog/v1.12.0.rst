@@ -82,6 +82,32 @@ Release 1.12.1 - March 20
 - core: Fix addressable lights starting white at boot :corepr:`556`
 - esphome: Fix IPAddress in validate secret :esphomepr:`488`
 
+Release 1.12.2 - March 31
+-------------------------
+
+- esphome: Better symlink support under Windows :esphomepr:`487` by :ghuser:`glmnet`
+- core: Fix WiFi Info sensor for ESP32 :corepr:`561`
+- core: Revert ultrasonic sensor to non-interrupt mode :corepr:`562`
+- core: Fix web_server for text_sensors :corepr:`567`
+- core: Fix ESP8266 cannot OTA after failed OTA attempt :corepr:`564`
+- core: ESP8266 SDK Core 2.3.0 compat :corepr:`563`
+- esphome: ESP8266 SDK 2.3.0 compat :esphomepr:`490`
+- docs: Expand USB flashing, clarify how to report a bug. :docspr:`204` by :ghuser:`balloob`
+- core: Fix dallas on GPIO0 :corepr:`568`
+- docs: Fix api homeassistant.service docs :docspr:`209` by :ghuser:`davericher`
+- esphome: Upgrade ESPAsyncTCP to 1.2.0 :esphomepr:`497`
+- core: Upgrade espasynctcp :corepr:`576`
+- esphome: Fix dashboard wizard unicode :esphomepr:`494`
+- esphome: Fix text sensor MQTT settings :esphomepr:`495`
+- core: Split up WiFi ESP32 and ESP8266 implementation :corepr:`572`
+- core: Fix MCP23017 to work on OUTPUT mode. :corepr:`571` by :ghuser:`puerari`
+- core: Disable wifi interface on shutdown :corepr:`566`
+- core: Fix light flashes :corepr:`578`
+- core: Rewrite PN532 to fix some lowvbat issues :corepr:`575`
+- core: cse7766 fix :corepr:`558` by :ghuser:`brianrjones69`
+- esphome: Upgrade docker base image to 1.4.3 :esphomepr:`499`
+- core: Fix neopixelbus logging causes section type conflict :corepr:`579`
+
 All changes
 -----------
 

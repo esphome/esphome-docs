@@ -11,6 +11,43 @@ features such as RGB colors, transitions, flashing and effects.
 
 This component restores its state on reboot/reset.
 
+.. _config-light:
+
+Base Light Configuration
+------------------------
+
+All light configuration schemas inherit these options.
+
+.. code-block:: yaml
+
+    light:
+      - platform: ...
+
+
+Configuration variables:
+
+- **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
+- **gamma_correct** (*Optional*, float): Apply a `gamma correction
+  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ to the light channels.
+  Defaults to ``2.8``.
+- **default_transition_length** (*Optional*, :ref:`config-time`): The default transition length
+  to use when no transition length is set in the light call. Defaults to ``1s``.
+
+Additional Configuration variables for addressable lights:
+
+- **color_correct** (*Optional*, list of float): Apply a color correction to each color channel.
+  This defines the maximum brightness of each channel. For example ``[100%, 50%, 100%]`` would set the
+  green channel to be at most at 50% brightness.
+- **power_supply** (*Optional*, :ref:`config-id`): The :doc:`/components/power_supply` to connect to
+  this light. When the light is turned on, the power supply will automatically be switched on too.
+
+Advanced options:
+
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
+- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+
 .. _light-toggle_action:
 
 ``light.toggle`` Action
@@ -146,6 +183,110 @@ Configuration options:
         call.set_transition_length(1000); // in ms
         // perform action:
         call.perform();
+
+.. _light-control_action:
+
+``light.control`` Action
+------------------------
+
+This :ref:`Action <config-action>` is a generic call to change the state of a light - it
+is essentially just a combination of the turn_on and turn_off calls.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - light.control:
+            id: light_1
+            state: on
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the light.
+- **state** (*Optional*, :ref:`templatable <config-templatable>`, boolean): Change the ON/OFF
+  state of the light.
+- All other options from :ref:`light.turn_on <light-turn_on_action>`.
+
+.. _light-dim_relative_action:
+
+``light.dim_relative`` Action
+-----------------------------
+
+This :ref:`Action <config-action>` allows you to dim a light that supports brightness
+by a relative amount.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        # Increases the brightness by 5%
+        - light.dim_relative:
+            id: light_1
+            relative_brightness: 5%
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the light.
+- **relative_brightness** (**Required***, :ref:`templatable <config-templatable>`, percentage):
+  The relative brightness to dim the light by.
+- **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
+
+.. note::
+
+    Example: dimming a light with a button press
+
+    .. code-block:: yaml
+
+        binary_sensor:
+          - platform: gpio
+            # ...
+            id: my_binary_sensor
+            on_press:
+              - while:
+                  condition:
+                    binary_sensor.is_on: my_binary_sensor
+                  then:
+                    - light.dim_relative:
+                        id: light_1
+                        relative_brightness: 5%
+                        transition_length: 0.1s
+                    - delay: 0.1s
+
+.. _light-addressable_set_action:
+
+``light.addressable_set`` Action
+--------------------------------
+
+This :ref:`Action <config-action>` allows you to manually set a range of LEDs on an addressable light
+to a specific color.
+
+.. code-block:: yaml
+
+    on_...:
+      - light.addressable_set:
+          id: my_light
+          range_from: 0
+          range_to: 50
+          red: 100%
+          green: 0%
+          blue: 0%
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the addressable light to control.
+- **range_from** (*Optional*, :ref:`templatable <config-templatable>`, int): The beginning
+  of the range of LEDs to control. 0-based indexing. Defaults to 0 (the beginning of the strip).
+- **range_to** (*Optional*, :ref:`templatable <config-templatable>`, int): The end of the
+  range of LEDs to control - this is a half-open interval. 0-based indexing.
+  Defaults to the end of the strip (``num_leds``).
+- **red** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
+  set the red channel to.
+- **green** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
+  set the green channel to.
+- **blue** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
+  set the blue channel to.
+- **white** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
+  set the white channel to.
 
 .. _light-effects:
 
@@ -520,7 +661,7 @@ Addressable Lambda Effect
 
 This effect allows you to access each LED individually in a custom light effect.
 
-You're passed in one variable: ``it`` - an `AddressableLight </api/classlight_1_1_addressable_light>`__
+You're passed in one variable: ``it`` - an :apiclass:`AddressableLight <light::AddressableLight>`
 instance (see API reference for more info).
 
 .. code-block:: yaml
@@ -535,7 +676,7 @@ instance (see API reference for more info).
               // it.size() - Number of LEDs
               // it[num] - Access the LED at index num.
               // Set the LED at num to the given r, g, b values
-              // it[num] = light::ESPColor(r, g, b);
+              // it[num] = ESPColor(r, g, b);
               // Get the color at index num (ESPColor instance)
               // it[num].get();
 
@@ -543,11 +684,14 @@ instance (see API reference for more info).
               for (int i = 1; i < it.size(); i++) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = light::ESPColor::random_color();
+              it[0] = ESPColor::random_color();
 
+              // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
+              it.range(0, 50) = ESPColor::BLACK;
+              it.all().fade_to_black(10);
 
 Examples of this API can be found here:
-https://github.com/esphome/esphome-core/blob/dev/src/esphome/light/addressable_light_effect.cpp
+https://github.com/esphome/esphome/blob/dev/esphome/components/light/addressable_light_effect.h
 (the built-in addressable light effects).
 
 See Also

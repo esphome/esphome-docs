@@ -66,5 +66,5 @@ See Also
 - :doc:`hlw8012`
 - :doc:`cse7766`
 - :doc:`/cookbook/power_meter`
-- :apiref:`sensor/total_daily_energy.h`
+- :apiref:`total_daily_energy/total_daily_energy.h`
 - :ghedit:`Edit`

@@ -72,7 +72,7 @@ know when I'm home or away.
 See Also
 --------
 
-- :doc:`binary_sensor/esp32_ble_tracker`
-- :apiref:`esp32_ble_beacon.h`
+- :doc:`esp32_ble_tracker`
+- :apiref:`esp32_ble_beacon/esp32_ble_beacon.h`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - :ghedit:`Edit`

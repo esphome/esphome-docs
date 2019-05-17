@@ -122,7 +122,7 @@ Configuration for M5Stack Camera
 
     This camera board has insufficient cooling and will overheat over time,
     ESPHome does only activate the camera when Home Assistant requests an image, but
-    the camera until can still heat up considerably for some boards.
+    the camera unit can still heat up considerably for some boards.
 
     If the camera is not recognized after a reboot and the unit feels warm, try waiting for
     it to cool down and check again - if that still doesn't work try enabling the test pattern.
@@ -170,8 +170,32 @@ Configuration for Wrover Kit Boards
       name: My Camera
       # ...
 
+Configuration for TTGO T-Camera
+-------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO32
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO13
+        scl: GPIO12
+      data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+      vsync_pin: GPIO27
+      href_pin: GPIO25
+      pixel_clock_pin: GPIO19
+      power_down_pin: GPIO26
+
+      # Image settings
+      name: My Camera
+      # ...
+
+
 See Also
 --------
 
-- :apiref:`wifi_component.h`
+- :apiref:`esp32_camera/esp32_camera.h`
 - :ghedit:`Edit`

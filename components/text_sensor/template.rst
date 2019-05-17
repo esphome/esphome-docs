@@ -81,5 +81,5 @@ See Also
 --------
 
 - :ref:`automation`
-- :apiref:`text_sensor/template_text_sensor.h`
+- :apiref:`template/text_sensor/template_text_sensor.h`
 - :ghedit:`Edit`

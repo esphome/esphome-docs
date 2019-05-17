@@ -33,5 +33,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`text_sensor/wifi_info.h`
+- :apiref:`wifi_info/wifi_info_text_sensor.h`
 - :ghedit:`Edit`

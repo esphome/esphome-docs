@@ -65,6 +65,13 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+.. note::
+
+    This integration requires the MiFlora device to have a recent firmware version, see
+    https://github.com/esphome/issues/issues/260#issuecomment-487684720 for more info.
+
+    The ``battery_level`` does not appear to work with some firmware versions of the device (the other sensors
+    do work though). See https://github.com/esphome/issues/issues/107 for more information.
 
 Setting Up Devices
 ------------------
@@ -97,6 +104,6 @@ See Also
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/xiaomi_mijia`
 - :doc:`/components/sensor/index`
-- :apiref:`esp32_ble_tracker.h`
+- :apiref:`xiaomi_miflora/xiaomi_miflora.h`
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`

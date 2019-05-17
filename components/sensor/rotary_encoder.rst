@@ -68,5 +68,5 @@ See Also
 - :doc:`pulse_counter`
 - :doc:`template`
 - `Mechanical Input Library <https://github.com/jkDesignDE/MechInputs>`__ by `Jochen Krapf <https://github.com/JK-de>`__
-- :apiref:`sensor/rotary_encoder.h`
+- :apiref:`rotary_encoder/rotary_encoder.h`
 - :ghedit:`Edit`

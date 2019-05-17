@@ -5,7 +5,7 @@ ESP32 Bluetooth Low Energy Device
     :description: Instructions for setting up BLE binary sensors for the ESP32.
     :image: bluetooth.png
 
-The ``esp32_ble_tracker`` binary sensor platform lets you track the presence of a
+The ``ble_presence`` binary sensor platform lets you track the presence of a
 bluetooth low energy device.
 
 .. figure:: images/esp32_ble-ui.png
@@ -19,7 +19,7 @@ bluetooth low energy device.
       scan_interval: 300s
 
     binary_sensor:
-      - platform: esp32_ble_tracker
+      - platform: ble_presence
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
 
@@ -62,6 +62,6 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/binary_sensor/index`
-- :apiref:`esp32_ble_tracker.h`
+- :apiref:`ble_presence/ble_presence.h`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - :ghedit:`Edit`

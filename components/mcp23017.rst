@@ -47,5 +47,5 @@ See Also
 - :ref:`i2c`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
-- :apiref:`io/mcp23017.h`
+- :apiref:`mcp23017/mcp23017.h`
 - :ghedit:`Edit`

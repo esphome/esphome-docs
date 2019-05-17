@@ -56,5 +56,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`sensor/cse7766.h`
+- :apiref:`cse7766/cse7766.h`
 - :ghedit:`Edit`

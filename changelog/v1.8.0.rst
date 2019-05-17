@@ -14,7 +14,7 @@ Version 1.8.0
 
     MAX7219, components/display/max7219, max7219.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
-    RCSwitch Integration, components/switch/remote_transmitter.html#rcswitch-remote-codes, remote.svg
+    RCSwitch Integration, components/remote_transmitter.html#rcswitch-remote-codes, remote.svg
 
     SPI Bus, components/spi, spi.svg
     UART Bus, components/uart, uart.svg

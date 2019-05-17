@@ -47,18 +47,22 @@ Configuration variables:
 - **echo_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The input pin on which to
   wait for the echo.
 - **name** (**Required**, string): The name of the sensor.
-- **timeout** (*Optional*, float): The number of meters for the
-  timeout. Most sensors can only sense up to 2 meters. Defaults to 10 meters.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+Advanced options:
+
+- **timeout** (*Optional*, float): The number of meters for the
+  timeout. Most sensors can only sense up to 2 meters. Defaults to 2 meters.
+- **pulse_time** (*Optional*, :ref:`config-time`): The duration for which the trigger pin will be
+  active. Defaults to ``10us``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also
 --------
 
 - :ref:`sensor-filters`
 - :doc:`template`
-- :apiref:`sensor/ultrasonic_sensor.h`
+- :apiref:`ultrasonic/ultrasonic_sensor.h`
 - :ghedit:`Edit`

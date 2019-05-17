@@ -63,5 +63,5 @@ through a ``on_boot`` trigger:
 See Also
 --------
 
-- :apiref:`ota_component.h`
+- :apiref:`ota/ota_component.h`
 - :ghedit:`Edit`

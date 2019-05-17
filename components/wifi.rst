@@ -168,8 +168,24 @@ Configuration variables:
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
 
+.. _wifi-connected_condition:
+
+``wifi.connected`` Condition
+----------------------------
+
+This :ref:`Condition <config-condition>` checks if the WiFi client is currently connected to a station.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          wifi.connected:
+        then:
+          - logger.log: WiFi is connected!
+
 See Also
 --------
 
-- :apiref:`wifi_component.h`
+- :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`
