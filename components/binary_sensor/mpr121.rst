@@ -25,12 +25,16 @@ required to be set up in your configuration for this sensor to work.
     mpr121:
       id: mpr121_component
       address: 0x5A
+      touch_debounce: 1
+      release_debounce: 1
 
     binary_sensor:
       - platform: mpr121
         id: touch_key0
         channel: 0
         name: "Touch Key 0"
+        touch_threshold: 12
+        release_threshold: 6
 
 Configuration variables:
 ------------------------
@@ -41,12 +45,16 @@ Base Configuration:
 
 - **address** (*Optional*, integer): The i2c address of the sensor. Defaults to ``0x5A``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
+- **touch_debounce** (*Optional*, integer): The number of bounces before a touch is recognized. The value should be between 0 and 7.
+- **release_debounce** (*Optional*, integer): The number of bounces before a release is recognized. The value should be between 0 and 7.
 
 Binary Sensor Configuration:
 
 - **name** (**Optional**, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **channel** (*Required*, integer): The channel number at the mpr121 the touchkey is connected to.
+- **touch_threshold** (*Optional*, integer): Typically the touch threshold is a little bigger than the release threshold. Value should be between 5 and 30.
+- **release_threshold** (*Optional*, integer): The release threshold value should be between 5 and 30.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
