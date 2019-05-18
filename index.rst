@@ -260,6 +260,8 @@ Climate Components
     Climate Core, components/climate/index, folder-open.svg
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
+    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
+    Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
 
 Misc Components
 ---------------
