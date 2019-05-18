@@ -127,7 +127,7 @@ variable ``output_component1``.
 
       # Ensure the light turns on by default if the physical switch is actuated.
       on_boot:
-        priority: 100 # Highest priority, ensures light turns on without delay.
+        priority: 40 # Prioritize light on, ensures light turns on without delay.
         then:
           - light.turn_on: light
 
@@ -164,7 +164,7 @@ variable ``output_component1``.
 
       # Ensure the light turns on by default if the physical switch is actuated.
       on_boot:
-        priority: 100 # Highest priority, ensures light turns on without delay.
+        priority: 40 # Prioritize light on, ensures light turns on without delay.
         then:
           - light.turn_on: light
 
@@ -207,7 +207,7 @@ variable ``output_component1``.
 
       # Ensure the light turns on by default if the physical switch is actuated.
       on_boot:
-        priority: 100 # Highest priority, ensures light turns on without delay.
+        priority: 40 # Prioritize light on, ensures light turns on without delay.
         then:
           - light.turn_on: light
 
