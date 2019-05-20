@@ -244,6 +244,7 @@ Cover Components
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
+    Tilt Cover, components/cover/tilt, icons8-blinds-96.png
 
 Text Sensor Components
 ----------------------
