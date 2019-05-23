@@ -21,7 +21,8 @@ The ``am2320`` Temperature+Humidity sensor allows you to use your am2320
 
 .. note::
 
-    Logs might include some warnings about receiving a NACK from the sensor. This is due to a wake call to the sensor which the sensor never acknowledges by design.
+    Logs might include some warnings about receiving a NACK from the sensor.
+    This is due to a wake call to the sensor which the sensor never acknowledges by design.
 
 .. code-block:: yaml
 
