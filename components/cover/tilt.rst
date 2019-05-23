@@ -20,8 +20,8 @@ The value is expressed as a percentage of full up (or right) angle position.
         name: "Tilt Cover"
         tilt_closed_value: 0%
         tilt_opened_value: 100%
-        tilt_close_speed: 20
-        tilt_open_speed: 20
+        tilt_close_speed: 20%/s
+        tilt_open_speed: 20%/s
         id: tilt_cover
         tilt_action:
           - output.set_level:
@@ -53,10 +53,12 @@ Configuration variables:
   remote requests the cover tilt to be set to closed. Defaults to 0%.
 - **tilt_opened_value** (*Optional*, percentage): Tilt position to set the cover to when the
   remote requests the cover tilt to be set to open. Defaults to 100%.
-- **tilt_close_speed** (*Optional*, float): Speed of movement in the closing direction, in units of %/second.
-  Defaults to 0, which disables the speed control and sets the tilt position command immediately.
-- **tilt_open_speed** (*Optional*, float): Speed of movement in the opening direction, in units of %/second.
-  Defaults to 0, which disables the speed control and sets the tilt position command immediately.
+- **tilt_close_speed** (*Optional*, percentage/second): Speed of movement in the closing direction.
+  Must be a floating point value larger than ``0%/s``.
+  Defaults to ``inf%/s``, which sets the tilt to the commanded position immediately.
+- **tilt_open_speed** (*Optional*, percentage/second): Speed of movement in the opening direction.
+  Must be a floating point value larger than ``0%/s``.
+  Defaults to ``inf%/s``, which sets the tilt to the commanded position immediately.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
