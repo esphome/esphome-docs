@@ -29,7 +29,7 @@ global ``pca9685`` hub and give it an id, and then define the
     # Individual outputs
     output:
       - platform: pca9685
-        pca9685_id: 'pca9685_hub1'
+        id: 'pca9685_hub1'
         channel: 0
 
 Configuration variables:
