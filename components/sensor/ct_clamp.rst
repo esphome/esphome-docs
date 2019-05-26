@@ -62,7 +62,7 @@ Configuration variables:
 See Also
 --------
 
-- :doc:`hlw801`
+- :doc:`hlw8012`
 - :doc:`cse7766`
 - :apiref:`sensor/ct_clamp.h`
 - :ghedit:`Edit`
