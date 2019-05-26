@@ -151,7 +151,7 @@ Configuration options:
             - stepper.report_position:
                 id: my_stepper
                 position: 0
-            - stepper:set_target:
+            - stepper.set_target:
                 id: my_stepper
                 target: 150
 
