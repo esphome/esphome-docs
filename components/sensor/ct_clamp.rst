@@ -1,11 +1,11 @@
 CT Clamp Current Sensor
-========================
+=======================
 
 .. seo::
     :description: Instructions for setting up ct clamp sensors.
     :image: flash.png
 
-The (``ct_clamp``) Sensor allows you to hook up a CT Clamp to an
+The Current Transformer Clamp (``ct_clamp``) Sensor allows you to hook up a CT Clamp to an
 ADC pin in your device to measure single phase AC current. On the ESP8266
 only pin A0 (GPIO17) supports this. On the ESP32 pins GPIO32 through
 GPIO39 can be used.
@@ -23,6 +23,7 @@ GPIO39 can be used.
         name: "Measured Current"
         calibration: 111.1
         sample_size: 1480
+        supply_voltage: 1V
         update_interval: 60s
 
 Configuration variables:
@@ -61,7 +62,7 @@ Configuration variables:
 See Also
 --------
 
-- :doc:`hlw8012`
+- :doc:`hlw801
 - :doc:`cse7766`
 - :apiref:`sensor/ct_clamp.h`
 - :ghedit:`Edit`
