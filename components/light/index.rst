@@ -702,6 +702,45 @@ Examples of this API can be found here:
 https://github.com/esphome/esphome/blob/dev/esphome/components/light/addressable_light_effect.h
 (the built-in addressable light effects).
 
+Automation Light Effect
+***********************
+
+Additionally to the ``lambda`` and ``addressable_lambda`` light effects, effects can also
+be written through ESPHome's :ref:`Automation <automation>` system with the ``automation``
+effect type.
+
+The automation given in the ``sequence`` block will be repeatedly executed until the effect
+is stopped by the user.
+
+.. code-block:: yaml
+
+    light:
+    - platform: ...
+      id: my_light
+      effects:
+        - automation:
+            name: Custom Automation Effect
+            sequence:
+              - light.addressable_set:
+                  id: my_light
+                  red: 100%
+                  green: 100%
+                  blue: 100%
+              - delay: 100ms
+              - light.addressable_set:
+                  id: my_light
+                  range_from: 0
+                  range_to: 20
+                  red: 100%
+                  green: 0%
+                  blue: 0%
+
+Configuration variables:
+
+- **name** (*Optional*, string): The name of the effect.
+- **sequence** (*Optional*, :ref:`Action <config-action>`): The actions to perform in sequence
+  until the effect is stopped.
+
 See Also
 --------
 
