@@ -1,4 +1,4 @@
-Coolix IR Remote Climate 
+Coolix IR Remote Climate
 ========================
 
 .. seo::
@@ -10,7 +10,7 @@ as your remote unit would do.
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
 
-Due to the unidirectional nature of IR remote controllers, this component cannot determine the 
+Due to the unidirectional nature of IR remote controllers, this component cannot determine the
 actual state of the device, and will assume the state of the device is the latest state requested.
 
 .. figure:: images/climate-ui.png
@@ -34,7 +34,7 @@ Configuration variables:
 - **name** (**Required**, string): The name for the climate.
 - **supports_cool** (*Optional*, boolean): Enables setting cool mode for this climate device. Defaults to `True`.
 - **supports_heat** (*Optional*, boolean): Enables setting cool heat for this climate device. Defaults to `True`.
-- **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient 
+- **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient
   temperature. This is only for reporting the current temperature in the frontend.
 - All other options from :ref:`Climate <config-climate>`.
 
