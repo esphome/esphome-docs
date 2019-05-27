@@ -5,7 +5,7 @@ Coolix IR Remote Climate
     :description: Controls a Coolix compatible Climate via IR
     :image: air-conditioner.png
 
-The ``coolix`` climate platform allows you to controll a compatible AC unit by sending IR signals
+The ``coolix`` climate platform allows you to control a Coolix compatible AC unit by sending IR signals
 as your remote unit would do.
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
@@ -26,21 +26,27 @@ actual state of the device, and will assume the state of the device is the lates
 
     climate:
       - platform: coolix
-      - name: "Living Room AC"
+        name: "Living Room AC"
 
 Configuration variables:
 ------------------------
+
 - **name** (**Required**, string): The name for the climate.
+- **supports_cool** (*Optional*, boolean): Enables setting cool mode for this climate device. Defaults to `True`.
+- **supports_heat** (*Optional*, boolean): Enables setting cool heat for this climate device. Defaults to `True`.
+- **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient 
+  temperature. This is only for reporting the current temperature in the frontend.
+- All other options from :ref:`Climate <config-climate>`.
+
+Advanced options:
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the remote transmitter.
-- **supports_cool** (*Optional*, boolean): Enables setting cool mode from Home Assistant. Defaults to `True`
-- **supports_heat** (*Optional*, boolean): Enables setting cool heat from Home Assistant. Defaults to `True`
-- **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient 
-  temperature. This is only for report in the Home Assistant climate device.
 
 See Also
 --------
 
 - :doc:`/components/climate/index`
 - :doc:`/components/remote_transmitter`
+- :apiref:`coolix/coolix.h`
 - :ghedit:`Edit`
