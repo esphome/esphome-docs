@@ -88,6 +88,7 @@ Sensor Components
     Sensor Core, components/sensor/index, folder-open.svg
     ADC, components/sensor/adc, flash.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
+    AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
