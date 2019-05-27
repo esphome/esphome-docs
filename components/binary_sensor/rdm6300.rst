@@ -68,7 +68,7 @@ unsigned integer.
         then:
           - mqtt.publish:
               topic: rdm6300/tag
-              payload: !lambda 'return x;'
+              payload: !lambda 'return uint32_to_string(x);'
 
 .. _rdm6300-tag:
 
