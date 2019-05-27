@@ -32,6 +32,14 @@ Configuration variables:
   Defaults to ``2.8``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The default transition length
   to use when no transition length is set in the light call. Defaults to ``1s``.
+- **restore_mode** (*Optional*): Control how the GPIO Switch attempts to restore state on bootup.
+  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
+  :doc:`esphome section </components/esphome>`.
+
+    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
+    - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
+    - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
 Additional Configuration variables for addressable lights:
 
