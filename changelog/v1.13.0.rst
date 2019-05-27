@@ -43,6 +43,74 @@ Other notable changes:
 
 - TODO
 
+All changes
+-----------
+
+- docs: Extend the documentation of esp8266_restore_from_flash to include pla… :docspr:`203` by :ghuser:`placidorevilla`
+- esphome: TTP229-LSF i2c device support :esphomepr:`489` by :ghuser:`mvturnho`
+- docs: TTP229-LSF i2c device support :docspr:`205` by :ghuser:`mvturnho`
+- docs: Remove deprecated filter_nan: option :docspr:`214` by :ghuser:`davericher`
+- docs: Minor Gramatical fix :docspr:`220` by :ghuser:`meichthys`
+- esphome: Add cover position/tilt support :esphomepr:`496`
+- esphome: Add climate support :esphomepr:`502`
+- esphome: Add 'at' time trigger :esphomepr:`493`
+- docs: Stepper combine lambda docs :docspr:`223` by :ghuser:`AalianKhan`
+- esphome: Simplify coroutine syntax :esphomepr:`503`
+- docs: Added a section for all lambda calls :docspr:`222` by :ghuser:`AalianKhan`
+- docs: Typo in ESP32 Touch Component :docspr:`216` by :ghuser:`jcullen86`
+- docs: MQTT clean-mqtt: Document for docker :docspr:`210` by :ghuser:`bphermansson`
+- esphome: Wio_link and wio_node pinout improvements :esphomepr:`505` by :ghuser:`sethcohn`
+- docs: Voltage range of ADC is at the chip pin :docspr:`224` by :ghuser:`kimonm`
+- esphome: Escape double quotes and backslashes in ssid and psk :esphomepr:`507` by :ghuser:`gitolicious`
+- docs: Added Gitpod documentation :docspr:`225` by :ghuser:`gitolicious`
+- docs: Fixed lint and ref errors :docspr:`228` by :ghuser:`gitolicious`
+- esphome: 🏗 Merge C++ into python codebase :esphomepr:`504`
+- docs: Create .gitpod.yml :docspr:`226` by :ghuser:`gitolicious`
+- esphome: Cleanup dashboard JS :esphomepr:`491`
+- docs: Add esp32_camera ttgo-camera example :docspr:`231` by :ghuser:`Naesstrom`
+- esphome: Hass.io Ingress :esphomepr:`519`
+- docs: Fix config name for showing previous page :docspr:`238` by :ghuser:`kevinior`
+- docs: fixed copy paste error :docspr:`237` by :ghuser:`norges`
+- docs: Update switch/index.rst lambda section :docspr:`236` by :ghuser:`EmmanuelLM`
+- docs: Update h801 cookbook :docspr:`235` by :ghuser:`Eenoo`
+- esphome: Create .gitpod.yml :esphomepr:`508` by :ghuser:`gitolicious`
+- esphome: Fix MQTT Not Working in dev branch :esphomepr:`527` by :ghuser:`mtl010957`
+- esphome: Fix custom_sensor codegen :esphomepr:`526` by :ghuser:`emwap`
+- esphome: Fix compilation of automations :esphomepr:`525` by :ghuser:`envy`
+- esphome: Add Custom Component tests :esphomepr:`529` by :ghuser:`emwap`
+- esphome: Create .editorconfig :esphomepr:`524` by :ghuser:`gitolicious`
+- docs: Fix minor typo in ESP32 camera docs :docspr:`241` by :ghuser:`richrd`
+- esphome: Added save & validate button in editor window :esphomepr:`511` by :ghuser:`gitolicious`
+- esphome: Fix compilation of my9231 component :esphomepr:`533` by :ghuser:`puuu`
+- esphome: Allow rx_only mode of sds011 component :esphomepr:`534` by :ghuser:`puuu`
+- esphome: MPU6050 fix temperature reading (wrong datatype) :esphomepr:`532` by :ghuser:`norges`
+- esphome: Check lambdas for return statement :esphomepr:`539`
+- esphome: Auto-Generate esphome.h :esphomepr:`538`
+- esphome: Revert HLW8012 to use pulse counter :esphomepr:`537`
+- esphome: Use int_range validator :esphomepr:`542`
+- esphome: Dashboard editor live validation :esphomepr:`540`
+- esphome: Sun support :esphomepr:`531`
+- esphome: Update CI linter :esphomepr:`544`
+- esphome: Updates for 1.13 :esphomepr:`546`
+- esphome: Make Climate component work over mqtt :esphomepr:`535` by :ghuser:`puuu`
+- esphome: CCS811 support :esphomepr:`536`
+- esphome: GPS time source :esphomepr:`543`
+- esphome: TTP229 BSF support :esphomepr:`547`
+- docs: Update links :docspr:`243` by :ghuser:`oscar-b`
+- esphome: Bme680 pressure value fix :esphomepr:`550` by :ghuser:`plopp`
+- docs: Fix typo in docs mi flora :docspr:`250` by :ghuser:`seuros`
+- docs: Stepper component: fix typo in doc :docspr:`254` by :ghuser:`Johboh`
+- esphome: Suggested fix for empty domain :esphomepr:`555` by :ghuser:`ASMfreaK`
+- docs: Sensor: correct example for on_raw_value :docspr:`255` by :ghuser:`Johboh`
+- docs: Update bh1750.rst (fix incorrect link text) :docspr:`246` by :ghuser:`richrd`
+- esphome: Don't fall back to the global availability topic if it is empty :esphomepr:`553` by :ghuser:`brandond`
+- esphome: Add examples to Nextion page :esphomepr:`548` by :ghuser:`AalianKhan`
+- esphome: Support for AM2320 temperature and humidity sensor :esphomepr:`554` by :ghuser:`T3m3z`
+- docs: Documentation for AM2320 component :docspr:`249` by :ghuser:`T3m3z`
+- esphome: Add TCL112 climate :esphomepr:`523` by :ghuser:`glmnet`
+- docs: Add Coolix Tcl112 Climate :docspr:`247` by :ghuser:`glmnet`
+- esphome: Add coolix climate ❄ 🔥 :esphomepr:`521` by :ghuser:`glmnet`
+
 Past Changelogs
 ---------------
 
