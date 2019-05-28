@@ -49,8 +49,8 @@ Base Configuration:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
 - **touch_debounce** (*Optional*, integer): The number of bounces before a touch is recognized. The value should be between 0 and 7 and is default 0.
 - **release_debounce** (*Optional*, integer): The number of bounces before a release is recognized. The value should be between 0 and 7 and is default 0.
-- **touch_threshold** (*Optional*, integer): The touch threshold for all channels this defines the sensitivity for touch detection and should be between 5 and 30. 
-Default value 6. Typically the touch threshold is a little bigger than the release threshold.
+- **touch_threshold** (*Optional*, integer): The touch threshold for all channels this defines the sensitivity for touch detection 
+  and should be between 5 and 30. Default value 6. Typically the touch threshold is a little bigger than the release threshold.
 - **release_threshold** (*Optional*, integer): The release defines the sensitivity for touch detection and should be between 5 and 30. Default value is 12.
 
 Binary Sensor Configuration:
@@ -59,9 +59,9 @@ Binary Sensor Configuration:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **channel** (*Required*, integer): The channel number at the mpr121 the touchkey is connected to.
 - **touch_threshold** (*Optional*, integer): The touch threshold per channel this defines the sensitivity for touch detection and should be between 5 and 30.
-The default value is the components value for touch_threshold.
+  The default value is the components value for touch_threshold.
 - **release_threshold** (*Optional*, integer): The release defines the sensitivity for touch detection and should be between 5 and 30.
-The default is the components value.
+  The default is the components value.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 See Also
