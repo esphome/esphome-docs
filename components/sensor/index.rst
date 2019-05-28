@@ -355,16 +355,16 @@ Configuration variables:
 ``on_raw_value``
 ****************
 
-This automation will be triggered when a new value that has passed through all filters
-is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
-with ``x``.
+This automation will be triggered when a new value is received that hasn't passed
+through any filters. In :ref:`Lambdas <config-lambda>` you can get the value from the
+trigger with ``x``.
 
 .. code-block:: yaml
 
     sensor:
       - platform: dallas
         # ...
-        on_value:
+        on_raw_value:
           then:
             - light.turn_on:
                 id: light_1

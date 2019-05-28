@@ -71,6 +71,7 @@ Configuration variables:
   of ``heat_action`` and ``cool_action`` need to be specified.
 - **cool_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device wants to cooling mode and decrease the current temperature.
+- All other options from :ref:`Climate <config-climate>`.
 
 Advanced options:
 
