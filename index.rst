@@ -91,6 +91,7 @@ Sensor Components
     AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
+    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
