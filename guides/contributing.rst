@@ -548,7 +548,6 @@ loader. These are:
 
 - ``ESP_PLATFORMS``: Provide a whitelist of ESP types this integration works with.
 
-
 Codebase Standards
 ------------------
 
@@ -590,6 +589,18 @@ Standard for the esphome-core codebase:
 - Implementations for new devices should contain reference links for the datasheet and other sample
   implementations.
 - Please test your changes :)
+
+.. note::
+
+    You can also run the lint and travis checks through a docker image:
+
+    .. code-block:: bash
+
+        # Full lint+test suite
+        docker run --rm -v "${PWD}/":/esphome -it esphome/esphome-lint script/fulltest
+
+        # Run lint only over changed files
+        docker run --rm -v "${PWD}/":/esphome -it esphome/esphome-lint script/quicklint
 
 ESPHome via Gitpod
 ******************

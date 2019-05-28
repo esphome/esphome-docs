@@ -30,7 +30,8 @@ Changelog - Version 1.13.0
     Sun, components/sun, weather-sunny.svg
 
     GPS, components/gps, crosshairs-gps.svg
-
+    Resistance Sensor, components/sensor/resistance, omega.svg
+    NTC Thermistor, components/sensor/ntc, ntc.jpg
 
 
 Breaking Changes
