@@ -1,0 +1,57 @@
+Changelog - Version 1.13.0
+==========================
+
+.. seo::
+    :description: Changelog for ESPHome version 1.13.0.
+    :image: /_static/changelog-1.13.0.png
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
+.. imgtable::
+
+    AM2320, components/sensor/am2320, am2320.jpg
+    CCS811, components/sensor/ccs811, ccs811.jpg
+    Integration, components/sensor/integration, sigma.svg
+
+    Pulse Width, components/sensor/pulse_width, pulse.svg
+    TTP229, components/binary_sensor/ttp229, ttp229.jpg
+    Custom Light, components/light/custom, language-cpp.svg
+
+    Endstop Cover, components/cover/endstop, electric-switch.svg
+    Time-Based Cover, components/cover/time_based, timer.svg
+    Custom Cover, components/cover/custom, language-cpp.svg
+
+    Climate Core, components/climate/index, folder-open.svg
+    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
+    Custom Climate, components/climate/custom, language-cpp.svg
+
+    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
+    Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
+    Sun, components/sun, weather-sunny.svg
+
+    GPS, components/gps, crosshairs-gps.svg
+
+
+
+Breaking Changes
+----------------
+
+- TODO
+
+Other notable changes:
+----------------------
+
+- TODO
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
