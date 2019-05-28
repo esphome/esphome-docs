@@ -1,7 +1,7 @@
 Custom Climate
 ==============
 
-This integration can be used to create custom switches in ESPHome
+This integration can be used to create custom climate devices in ESPHome
 using the C++ (Arduino) API.
 
 Please first read :doc:`/components/sensor/custom` guide,
@@ -54,7 +54,7 @@ And in YAML:
     # Example configuration entry
     esphome:
       includes:
-        - my_switch.h
+        - my_climate.h
 
     climate:
     - platform: custom
@@ -70,7 +70,7 @@ Configuration variables:
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   climate(s).
-- **switches** (**Required**, list): A list of switches to initialize. The length here
+- **climates** (**Required**, list): A list of climates to initialize. The length here
   must equal the number of items in the ``return`` statement of the ``lambda``.
 
   - All options from :ref:`Climate <config-climate>`.

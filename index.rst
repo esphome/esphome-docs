@@ -88,6 +88,7 @@ Sensor Components
     Sensor Core, components/sensor/index, folder-open.svg
     ADC, components/sensor/adc, flash.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
+    AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
@@ -119,6 +120,7 @@ Sensor Components
     MS5611, components/sensor/ms5611, ms5611.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
+    Pulse Width, components/sensor/pulse_width, pulse.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
@@ -260,6 +262,8 @@ Climate Components
     Climate Core, components/climate/index, folder-open.svg
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
+    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
+    Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
 
 Misc Components
 ---------------
