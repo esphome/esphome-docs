@@ -5,8 +5,8 @@ Binary Sensor Map
     :description: Instructions for setting up a Binary Sensor Map
     :image: binary_sensor_map.jpg
 
-The ``binary_sensor_map`` sensor platform allows you to map ``binary_sensors`` to values. When a given binary sensor
-is on, the value associated with it in this platform's configuration will be published.
+The ``binary_sensor_map`` sensor platform allows you to map :doc:`binary sensor </components/binary_sensor>`
+to values. When a given binary sensor is on, the value associated with it in this platform's configuration will be published.
 
 This sensor is **mostly used for touch** devices but could be used for any ``binary_sensor`` that publishes its ``ON`` or ``OFF`` state.
 
@@ -16,7 +16,8 @@ on the type of the binary sensor map and the values specified with each channel.
 This platform currently supports only one measurement type: ``GROUP``, but others might get added later.
 You need to specify which type of mapping you want with the ``type:`` configuration value:
 
-- ``GROUP`` Each channel has its own value. The sensor publishes the average value for all active binary_sensors.
+- ``GROUP`` Each channel has its own value. The sensor publishes the average value of all active
+  binary sensors.
 
 .. code-block:: yaml
 
@@ -27,13 +28,13 @@ You need to specify which type of mapping you want with the ``type:`` configurat
         name: 'Group Map 0'
         type: GROUP
         channels:
-          - channel: touchkey0
+          - binary_sensor: touchkey0
             value: 0
-          - channel: touchkey1
+          - binary_sensor: touchkey1
             value: 10
-          - channel: touchkey2
+          - binary_sensor: touchkey2
             value: 20
-          - channel: touchkey3
+          - binary_sensor: touchkey3
             value: 30
 
     # Example binary sensors using MPR121 component
@@ -45,15 +46,7 @@ You need to specify which type of mapping you want with the ``type:`` configurat
       - platform: mpr121
         channel: 0
         id: touchkey0
-      - platform: mpr121
-        channel: 1
-        id: touchkey1
-      - platform: mpr121
-        channel: 2
-        id: touchkey2
-      - platform: mpr121
-        channel: 3
-        id: touchkey3
+      # ...
 
 Configuration variables:
 ------------------------
@@ -62,16 +55,16 @@ Configuration variables:
 - **type** (**Required**, string): The sensor type. Should be one of: ``GROUP``.
 - **channels** (**Required**): A list of channels that are mapped to certain values.
 
-  - **channel** (**Required**): The id of the ``binary_sensor`` to add as a channel for this sensor.
-  - **value** (**Required**): The value this channel shoul report when its binary_sensor is active.
-  
-- All other options from :ref:`Sensor <config-sensor>`.
+  - **binary_sensor** (**Required**): The id of the :doc:`binary sensor </components/binary_sensor>`
+    to add as a channel for this sensor.
+  - **value** (**Required**): The value this channel should report when its binary sensor is active.
 
+- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
 
 - :doc:`/components/binary_sensor/mpr121`
 - :ref:`sensor-filters`
-- :apiref:`sensor/binary_sensor_map.h`
+- :apiref:`binary_sensor_map/binary_sensor_map.h`
 - :ghedit:`Edit`
