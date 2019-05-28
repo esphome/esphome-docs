@@ -47,8 +47,10 @@ Base Configuration:
 
 - **address** (*Optional*, integer): The i2c address of the sensor. Defaults to ``0x5A``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
-- **touch_debounce** (*Optional*, integer): The minimum length before a touch is recognized. Range is from 0 to 7. Defaults to 0.
-- **release_debounce** (*Optional*, integer): The minimum length that no touch is recognized before a release event is created. Range is from 0 to 7. Defaults to 0.
+- **touch_debounce** (*Optional*, integer): The minimum length before a touch is recognized. Range is from 0 to 7. 
+  Defaults to 0.
+- **release_debounce** (*Optional*, integer): The minimum length that no touch is recognized before a release event is created.
+  Range is from 0 to 7. Defaults to 0.
 - **touch_threshold** (*Optional*, integer): The touch threshold for all channels. This defines the sensitivity for touch detection
   and should be between 5 and 30 (lower = more sensitive). Defaults to 12. Typically the touch threshold is a little bigger than the release threshold.
 - **release_threshold** (*Optional*, integer): The release defines the sensitivity for touch detection and should be between 5 and 30. Defaults to 6.
