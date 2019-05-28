@@ -5,7 +5,7 @@ Binary Sensor Map
     :description: Instructions for setting up a Binary Sensor Map
     :image: binary_sensor_map.jpg
 
-The ``binary_sensor_map`` sensor platform allows you to map :doc:`binary sensor </components/binary_sensor>`
+The ``binary_sensor_map`` sensor platform allows you to map :doc:`binary sensor </components/binary_sensor/index>`
 to values. When a given binary sensor is on, the value associated with it in this platform's configuration will be published.
 
 This sensor is **mostly used for touch** devices but could be used for any ``binary_sensor`` that publishes its ``ON`` or ``OFF`` state.
@@ -55,7 +55,7 @@ Configuration variables:
 - **type** (**Required**, string): The sensor type. Should be one of: ``GROUP``.
 - **channels** (**Required**): A list of channels that are mapped to certain values.
 
-  - **binary_sensor** (**Required**): The id of the :doc:`binary sensor </components/binary_sensor>`
+  - **binary_sensor** (**Required**): The id of the :doc:`binary sensor </components/binary_sensor/index>`
     to add as a channel for this sensor.
   - **value** (**Required**): The value this channel should report when its binary sensor is active.
 
