@@ -29,20 +29,92 @@ Changelog - Version 1.13.0
     Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
     Sun, components/sun, weather-sunny.svg
 
-    GPS, components/gps, crosshairs-gps.svg
+    GPS Time Source, components/gps, crosshairs-gps.svg
     Resistance Sensor, components/sensor/resistance, omega.svg
     NTC Thermistor, components/sensor/ntc, ntc.jpg
 
+Oh hi there!
 
-Breaking Changes
-----------------
+It's been a while since the last release (once again 😅). But I hope you'll be excited
+to hear what's new in this latest release of ESPHome: 1.13.0!
 
-- TODO
+First of all, as you can see in the table above, a *ton* of new components have been added. Some to
+highlight are:
+
+- **Cover Updates**: Covers now support setting arbitrary position (and the new time-based and endstop covers
+  make full use of it).
+- **Climate Support**: ESPHome now has a full climate abstraction - with the "bang bang" climate device
+  you can automate thermostats directly on the ESP.
+- **Sun, GPS** etc - This release brings a lot of helper components too of course.
+
+But... the biggest change in this version has yet to be mentioned here: A complete refactor of the
+ESPHome codebase. Remember the project rename in 1.11? It's nothing compared to the latest and greatest
+`code refactor <https://github.com/esphome/esphome/pull/504>`__. ESPHome has gotten a completely new
+directory structure, and the codebase has been simplified a lot.
+
+**What does this mean for you?**
+
+Well, you'll be happy to hear that this refactor improves **compile times** by around **2x**.
+Additionally, these changes will make contributing a lot easier, because now the code is much more
+modular.
+
+**But it doesn't stop there!**
+
+This release also brings another awesome new feature: Live validation! If you use the editor in the
+ESPHome dashboard, your configuration will be validated on-the-fly and any validation errors
+are shown directly in the editor in less than half a second!
+
+.. figure:: images/live-validation.png
+    :align: center
+    :width: 70.0%
+
+I also want to give special shout outs to these awesome people who have contributed a lot of
+features in this version:
+
+- :ghuser:`gitolicious` for his awesome work on improving the dashboard!
+- :ghuser:`mvturnho` for the new TTP219 and binary sensor map additions!
+- :ghuser:`glmnet` for adding the TCL112 and Coolix climate platforms, as well :ghuser:`puuu`
+  for pushing ahead with the climate component!
+- Everyone who has been supporting me financially over `Patreon <https://www.patreon.com/ottowinter>`__!
+- Everybody who reported bugs, contributed documentation and fixed things!
 
 Other notable changes:
 ----------------------
 
-- TODO
+- Hass.io Ingress - ESPHome now supports showing the dashboard directly in the Home Assistant frontend
+  via the Hass.io Ingress feature.
+- The i2c variant of the ttp229 device is now also supported.
+- Covers now support position & tilt - you can use these with the new :doc:`endstop </components/cover/endstop>`
+  and :doc:`time-based </components/cover/time_based>` cover platforms.
+- ESPHome has received support for climate devices, you can now let your ESP control heaters/coolers
+  directly on the ESP. Great for building a DIY thermostat or making an existing one IoT-enabled.
+- :doc:`Lights </components/light/index>` now have some new actions: ``light.dim_relative`` and
+  ``light.addressable_set``. Addressable lights now also support a new range syntax (``.range()`` and ``.all()``)
+  functions to allow easier effect creation.
+- Added a new custom component mechanism and contribution guidelines have been updated. See the
+  :doc:`contributing guide </guides/contributing>` for more details.
+- :doc:`RDM6300 </components/binary_sensor/rdm6300>` now also has a ``on_tag`` trigger like the PN532.
+- :doc:`Remote Transmitter </components/remote_transmitter>` and :doc:`Remote Receiver </components/remote_receiver>`
+  have gotten some new features: custom triggers and actions with templatable values.
+- Added ``output.esp8266_pwm.set_frequency`` action for dynamically changing the frequency of the ESP8266
+  PWM output (for example for active buzzers).
+- Added ``servo.detach`` action to disable a servo - this prevents it from moving around once it's in position.
+- Added ``stepper.set_speed`` to dynamically change a stepper's speed at runtime.
+- Added ``text_sensor.state`` condition for checking a text sensor's state against a fixed value.
+- Added :ref:`globals.set <globals-set_action>` action,
+  :ref:`script.is_running <script-is_running_condition>` condition,
+  :ref:`for <for_condition>` condition.
+
+Breaking Changes
+----------------
+
+All of these are also documented in validation - just view the validation output and it should tell
+you what has changed.
+
+- The ``esp32_ble_tracker`` binary sensor has been renamed to ``ble_presence``
+- The remote transmitter switch has been removed and a template switch with the new actions should be used.
+  See validation output.
+- ``esphome_core_version`` has been removed - ESPHome is no longer split up in the core and python repository.
 
 Past Changelogs
 ---------------
