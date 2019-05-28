@@ -87,5 +87,5 @@ See Also
 - :doc:`adc`
 - :doc:`resistance`
 - :ref:`sensor-filters`
-- :apiref:`resistance/resistance_sensor.h`
+- :apiref:`ntc/ntc.h`
 - :ghedit:`Edit`
