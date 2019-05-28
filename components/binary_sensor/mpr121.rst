@@ -49,7 +49,7 @@ Base Configuration:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
 - **touch_debounce** (*Optional*, integer): The number of bounces before a touch is recognized. The value should be between 0 and 7 and is default 0.
 - **release_debounce** (*Optional*, integer): The number of bounces before a release is recognized. The value should be between 0 and 7 and is default 0.
-- **touch_threshold** (*Optional*, integer): The touch threshold for all channels this defines the sensitivity for touch detection 
+- **touch_threshold** (*Optional*, integer): The touch threshold for all channels this defines the sensitivity for touch detection
   and should be between 5 and 30. Default value 6. Typically the touch threshold is a little bigger than the release threshold.
 - **release_threshold** (*Optional*, integer): The release defines the sensitivity for touch detection and should be between 5 and 30. Default value is 12.
 
