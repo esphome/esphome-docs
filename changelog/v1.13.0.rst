@@ -114,7 +114,7 @@ Breaking Changes
 All of these are also documented in validation - just view the validation output and it should tell
 you what has changed.
 
-- The ``esp32_ble_tracker`` binary sensor has been renamed to ``ble_presence``
+- The ``esp32_ble_tracker`` binary sensor platform (not the global hub) has been renamed to ``ble_presence``.
 - The remote transmitter switch has been removed and a template switch with the new actions should be used.
   See validation output.
 - ``esphome_core_version`` has been removed - ESPHome is no longer split up in the core and python repository.
@@ -188,13 +188,17 @@ All changes
 - esphome: Add coolix climate ❄ 🔥 :esphomepr:`521` by :ghuser:`glmnet`
 - esphome: added link from dashboard to web server, if configured :esphomepr:`556` by :ghuser:`gitolicious` (cherry-picked)
 - esphome: Add NTC and resistance sensor :esphomepr:`560` (cherry-picked)
-- esphome: Waveshare enter deep sleep mode on shutdown :esphomepr:`561`
-- docs: extended mpr121 docs with debounce and thresholds config :docspr:`245` by :ghuser:`mvturnho`
-- esphome: Mpr121 added debounce and thresholds config :esphomepr:`558` by :ghuser:`mvturnho`
-- docs: Documentation for binary_sensor_map :docspr:`199` by :ghuser:`mvturnho`
-- esphome: Binary sensor map implementation :esphomepr:`551` by :ghuser:`mvturnho`
-- esphome: Fix CWWW/RGBWW lights :esphomepr:`562`
-- esphome: added download, edit and retry buttons to upload modal :esphomepr:`557` by :ghuser:`gitolicious`
+- esphome: Waveshare enter deep sleep mode on shutdown :esphomepr:`561` (cherry-picked)
+- docs: extended mpr121 docs with debounce and thresholds config :docspr:`245` by :ghuser:`mvturnho` (cherry-picked)
+- esphome: Mpr121 added debounce and thresholds config :esphomepr:`558` by :ghuser:`mvturnho` (cherry-picked)
+- docs: Documentation for binary_sensor_map :docspr:`199` by :ghuser:`mvturnho` (cherry-picked)
+- esphome: Binary sensor map implementation :esphomepr:`551` by :ghuser:`mvturnho` (cherry-picked)
+- esphome: Fix CWWW/RGBWW lights :esphomepr:`562` (cherry-picked)
+- esphome: added download, edit and retry buttons to upload modal :esphomepr:`557` by :ghuser:`gitolicious` (cherry-picked)
+- esphome: Renamed upload button :esphomepr:`563` by :ghuser:`gitolicious`
+- esphome: Warn if a component does long-running work in loop thread :esphomepr:`565`
+- esphome: Add CT Clamp component :esphomepr:`559` by :ghuser:`jesserockz`
+- docs: Add docs for CT Clamp :docspr:`256` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
