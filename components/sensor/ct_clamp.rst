@@ -3,12 +3,16 @@ CT Clamp Current Sensor
 
 .. seo::
     :description: Instructions for setting up ct clamp sensors.
-    :image: flash.png
+    :image: ct_clamp.jpg
 
-The Current Transformer Clamp (``ct_clamp``) Sensor allows you to hook up a CT Clamp to an
-ADC pin in your device to measure single phase AC current. On the ESP8266
-only pin A0 (GPIO17) supports this. On the ESP32 pins GPIO32 through
-GPIO39 can be used.
+The Current Transformer Clamp (``ct_clamp``) sensor allows you to hook up a CT Clamp to an analog
+voltage sensor (like the :doc:`ADC sensor <adc>`) and convert the readings to measured current.
+
+First, you need to set up a voltage sensor source (:doc:`ADC sensor <adc>`, but for example also
+:doc:`ADS1115 <ads1115>`) and pass it to the CT clamp sensor with the ``sensor`` option.
+
+Please also see `this guide <https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/introduction>`__
+as an introduction to the working principle of CT clamp sensors and how to hook them up to your device.
 
 .. figure:: images/ct_clamp-ui.png
     :align: center
@@ -19,49 +23,59 @@ GPIO39 can be used.
     # Example configuration entry
     sensor:
       - platform: ct_clamp
-        pin: A0
+        sensor: adc_sensor
         name: "Measured Current"
-        calibration: 111.1
-        sample_size: 1480
-        supply_voltage: 1V
         update_interval: 60s
+
+      # Example source sensor
+      - platform: adc
+        pin: A0
+        id: adc_sensor
 
 Configuration variables:
 ------------------------
 
-- **pin** (**Required**, :ref:`config-pin`): The pin to measure the current on.
-- **name** (**Required**, string): The name of the voltage sensor.
-- **calibration** (*Required*): Calibration value to match the
-  CT clamp and burden resistor (see below)
-- **sample_size** (*Optional*): Number of samples to take per
-  reading (see below). Defaults to ``1480``.
+- **name** (**Required**, string): The name of the sensor.
+- **sensor** (**Required**, :ref:`config-id`): The source sensor to measure voltage values from.
+- **sample_duration** (*Optional*, :ref:`config-time`): The time duration to sample the current clamp
+  with. Higher values can increase accuracy. Defaults to ``200ms``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
-- **supply_voltage** (*Optional*): Voltage used in the circuitry.
-  See below. Defaults to ``1V``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
-.. note::
+Calibration
+-----------
 
-    Some development boards like the Wemos D1 mini include external voltage divider circuitry to scale down
-    a 3.3V input signal to the chip-internal 1.0V. If your board has this circuitry, apply the supply_voltage
-    config option to the voltage which provides the full ADC reading of 1024, or 4095 for ESP32.
+This sensor needs calibration to show correct values, for this you can use the
+:ref:`calibrate_linear <sensor-filter-calibrate_linear>` sensor filter. First, hook up a known
+current load like a lamp that uses a known amount of current.
 
-    .. code-block:: yaml
+Then switch it on and see what value the CT clamp sensor reports. For example in the configuration below
+a 4.0 A device is showing a value of 0.1333 in the logs. Now go into your configuration file
 
-        sensor:
-          - platform: ct_clamp
-            # ...
-            supply_voltage: 3.3V
+.. code-block:: yaml
 
-    The logic for this sensor came from (`EMonLib <https://github.com/openenergymonitor/EmonLib>`__)
-    and following instructions (`here <https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/introduction>`__)
-    for building the circuit and setting up the correct values.
+    # Example configuration entry
+    sensor:
+      - platform: ct_clamp
+        sensor: adc_sensor
+        name: "Measured Current"
+        update_interval: 60s
+        filters:
+          # Measured value of 0 maps to 0A
+          - 0 -> 0
+          # Known load: 4.0A
+          # Value shown in logs: 0.1333A
+          - 0.1333 -> 4.0
+
+Recompile and upload, now your CT clamp sensor is calibrated!
 
 See Also
 --------
 
+- `EMonLib <https://github.com/openenergymonitor/EmonLib>`__
+- `CT Clamp Guide <https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/introduction>`__
 - :doc:`hlw8012`
 - :doc:`cse7766`
 - :apiref:`sensor/ct_clamp.h`
