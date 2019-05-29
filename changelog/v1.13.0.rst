@@ -199,6 +199,10 @@ All changes
 - esphome: Warn if a component does long-running work in loop thread :esphomepr:`565`
 - esphome: Add CT Clamp component :esphomepr:`559` by :ghuser:`jesserockz`
 - docs: Add docs for CT Clamp :docspr:`256` by :ghuser:`jesserockz`
+- docs: Put 'MAC_ADDRESS' instead of MAC_ADDRESS :docspr:`239` by :ghuser:`tiagofreire-pt`
+- esphome: Fix TSL2561 invalid default :esphomepr:`566`
+- esphome: Use copy for custom includes :esphomepr:`568`
+- esphome: Add uart.write action :esphomepr:`567`
 
 Past Changelogs
 ---------------
