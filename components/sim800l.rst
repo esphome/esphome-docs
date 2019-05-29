@@ -3,7 +3,7 @@ Sim800L Component
 
 .. seo::
     :description: Instructions for setting up the SIM800L gsm module to send and receive SMS in ESPHome.
-    :image: sim800l.png
+    :image: sim800l.jpg
     :keywords: SMS SIM800L GSM
 
 The ``SIM800L`` Component provides the ability to send and receive SMS text messages. The device must be
