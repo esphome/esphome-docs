@@ -7,17 +7,20 @@ Sim800L Component
     :keywords: SMS SIM800L GSM
 
 The ``SIM800L`` Component provides the ability to send and receive SMS text messages. The device must be
-connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line.
+connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line. 
+The uart bus must be configured at the same speed of the module which is by default 9600bps. 
+The required connection wires are `+VCC`, `GND`, `RX` and `TX`.
 
-The uart bus must be configured at the same speed of the module which is by default 9600bps. Either hardware
-or software uarts are supported. If you are using the hardware uart in the ESP8266, make sure you disable
-the  :doc:`logger`.
+.. warning::
+
+    If you are using the :doc:`logger` make sure you are not using the same pins for ``TX`` and ``RX`` or
+    otherwise disable the uart logging with the ``baud_rate: 0`` option.
 
 .. note::
 
-    This module requires a custom power supply between 3.8v and 4.2v that can handle current spikes up
+    This module requires a power supply between 3.8V and 4.2V that can handle current spikes up
     to 2 amps, it will not work by powering from the same 3.3v power source of the ESP. However you can
-    connect TX and RX lines directly without any level shifter.
+    connect `TX` and `RX` lines directly without any level shifter.
 
 .. figure:: images/sim800l-full.jpg
     :align: center
@@ -103,6 +106,47 @@ Configuration options:
     .. code-block:: cpp
 
         id(sim800l1).send_sms("+15551234567", "The message content");
+
+
+Getting started with Home Assistant
+-----------------------------------
+
+The following code will get you up and running with a configuration updating received messages 
+on Home Assistant and will also setup a service so you can send messages with your Sim800L.
+
+.. code-block:: yaml
+
+    api:
+      services:
+      - service: send_sms
+        variables:
+          param_recipient: string
+          param_message: string
+        then:
+        - sim800l.send_sms:
+            id: sim800l1
+            recipient: !lambda 'return param_recipient;'
+            message: !lambda 'return param_message;'
+
+    text_sensor:
+    - platform: template
+      id: sms_sender
+      name: "Sms Sender"
+    - platform: template
+      id: sms_message
+      name: "Sms Message"
+
+    uart:
+      baud_rate: 9600
+      tx_pin: TX
+      rx_pin: RX
+
+    sim800l:
+      id: sim800l1
+      on_sms_received:
+      - lambda: |-
+          id(sms_sender).publish_state(sender);
+          id(sms_message).publish_state(message);
 
 See Also
 --------
