@@ -107,6 +107,6 @@ Configuration options:
 See Also
 --------
 
-- :apiref:`sim800l.h`
+- :apiref:`sim800l/sim800l.h`
 - :doc:`/components/uart`
 - :ghedit:`Edit`
