@@ -33,6 +33,9 @@ Changelog - Version 1.13.0
     Resistance Sensor, components/sensor/resistance, omega.svg
     NTC Thermistor, components/sensor/ntc, ntc.jpg
 
+    CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
+    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
+
 Oh hi there!
 
 It's been a while since the last release (once again 😅). But I hope you'll be excited
