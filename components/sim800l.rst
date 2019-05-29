@@ -15,7 +15,7 @@ the  :doc:`logger`.
 
 .. note::
 
-    This module requires a custom power supply between 3.8v and 4.2v that can handle  current pikes up
+    This module requires a custom power supply between 3.8v and 4.2v that can handle current spikes up
     to 2 amps, it will not work by powering from the same 3.3v power source of the ESP. However you can
     connect TX and RX lines directly without any level shifter.
 
