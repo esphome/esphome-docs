@@ -6,9 +6,7 @@ CT Clamp Current Sensor
     :image: flash.png
 
 The Current Transformer Clamp (``ct_clamp``) Sensor allows you to hook up a CT Clamp to an
-ADC pin in your device to measure single phase AC current. On the ESP8266
-only pin A0 (GPIO17) supports this. On the ESP32 pins GPIO32 through
-GPIO39 can be used.
+analog input sensor like the :ref:`adc sensor <adc>` in your device to measure single phase AC current. 
 
 .. figure:: images/ct_clamp-ui.png
     :align: center
@@ -19,41 +17,45 @@ GPIO39 can be used.
     # Example configuration entry
     sensor:
       - platform: ct_clamp
-        pin: A0
+        sensor: adc_component
         name: "Measured Current"
-        calibration: 111.1
-        sample_size: 1480
-        supply_voltage: 1V
+        sample_duration: 200ms
         update_interval: 60s
+        filters: 
+          - multiply: 111.1 # Calibration variable to work with the burden resistor
+
+    # Example input entry
+    sensor:
+      - platform: adc
+        id: adc_component
+        pin: A0
 
 Configuration variables:
 ------------------------
 
-- **pin** (**Required**, :ref:`config-pin`): The pin to measure the current on.
 - **name** (**Required**, string): The name of the voltage sensor.
-- **calibration** (*Required*): Calibration value to match the
-  CT clamp and burden resistor (see below)
-- **sample_size** (*Optional*): Number of samples to take per
-  reading (see below). Defaults to ``1480``.
+- **sensor** (**Required**, :ref:`config-id`): The analog sensor to measure from.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
-  to check the sensor. Defaults to ``60s``.
-- **supply_voltage** (*Optional*): Voltage used in the circuitry.
-  See below. Defaults to ``1V``.
+  to trigger a calculation from the sensor. Defaults to ``60s``.
+- **sample_duration** (*Optional*, :ref:`config-time`): The duration to sample for.
+  Defaults to ``200ms`` which would be 10 whole cycles on a 50Hz system.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. note::
 
     Some development boards like the Wemos D1 mini include external voltage divider circuitry to scale down
-    a 3.3V input signal to the chip-internal 1.0V. If your board has this circuitry, apply the supply_voltage
-    config option to the voltage which provides the full ADC reading of 1024, or 4095 for ESP32.
+    a 3.3V input signal to the chip-internal 1.0V. If your board has this circuitry, apply a multiply filter
+    set to the voltage.
 
     .. code-block:: yaml
 
         sensor:
           - platform: ct_clamp
             # ...
-            supply_voltage: 3.3V
+            filters: 
+              - multiply: 111.1 # Calibration variable to work with the burden resistor
+              - multiply: 3.3 # Voltage calibration for Wemos D1 board with 3.3V adc divider.
 
     The logic for this sensor came from (`EMonLib <https://github.com/openenergymonitor/EmonLib>`__)
     and following instructions (`here <https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/introduction>`__)
@@ -64,5 +66,7 @@ See Also
 
 - :doc:`hlw8012`
 - :doc:`cse7766`
+- :doc:`adc`
+- :doc:`ads1115`
 - :apiref:`sensor/ct_clamp.h`
 - :ghedit:`Edit`
