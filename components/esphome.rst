@@ -47,7 +47,7 @@ Advanced options:
   This sets up some flags so that custom code should compile correctly
 - **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
-  is in. Should have file extension ``.h``
+  is in. Should have file extension ``.h`` - See :ref:`esphome-includes` for more info.
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
 
@@ -218,6 +218,34 @@ You can view a full list of platformio options here: https://docs.platformio.org
       platformio_options:
         upload_speed: 115200
         board_build.f_flash: 80000000L
+
+.. _esphome-includes:
+
+``includes``
+------------
+
+With ``includes`` you can include source files in the generated platformio project.
+All files declared with this option are copied to the project each time it is compiled.
+
+You can always look at the generated platformio project (``<CONFIG_DIR>/<NODENAME>``) to see what
+is happening - and if you want you can even copy the include files directly into the ``src/`` folder.
+The ``includes`` option is only a helper option that does that for you.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esphome:
+      # ...
+      includes:
+        - my_switch.h
+
+This option behaves differently depending on what the included file is pointing at:
+
+ - If the include string is pointing at a directory, the entire directory tree is copied over
+   to the src/ folder.
+ - If the include string is point at a header file (.h, .hpp, .tcc) - it is copied in the src/ folder
+   AND included in the main.cpp. This way the lambda code can access it.
+ - If the include str
 
 See Also
 --------

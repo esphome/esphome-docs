@@ -359,6 +359,7 @@ All Actions
 - :ref:`output.esp8266_pwm.set_frequency <output-esp8266_pwm-set_frequency_action>`
 - :ref:`sensor.integration.reset <sensor-integration-reset_action>`
 - :ref:`display.page.show_* <display-pages>`
+- :ref:`uart.write <uart-write_action>`
 
 .. _config-condition:
 
