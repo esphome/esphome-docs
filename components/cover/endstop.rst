@@ -10,7 +10,7 @@ endstops at both ends of the cover to detect the fully-open and fully-closed sta
 When any of these endstops are reached, the cover is stopped (via ``stop_action``)
 and the corresponding state is sent out.
 
-This cover platform is mainly intended for DIY cover setups: Two endstops at either and a motor
+This cover platform is mainly intended for DIY cover setups: Two endstops at either end and a motor
 controlling the cover. The user just needs to enter what to do when the platform wants to move the
 cover in either direction, or stop it, as well as information about open and close information so that
 the current position can be approximated.
