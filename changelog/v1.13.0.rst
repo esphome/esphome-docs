@@ -8,33 +8,32 @@ Changelog - Version 1.13.0
     :author_twitter: @OttoWinter_
 
 .. imgtable::
+    :columns: 4
+
+    Climate Devices, components/climate/index, folder-open.svg
+    Endstop Cover, components/cover/endstop, electric-switch.svg
+    Time-Based Cover, components/cover/time_based, timer.svg
+    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
 
     AM2320, components/sensor/am2320, am2320.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     Integration, components/sensor/integration, sigma.svg
-
     Pulse Width, components/sensor/pulse_width, pulse.svg
+
+    Resistance Sensor, components/sensor/resistance, omega.svg
+    NTC Thermistor, components/sensor/ntc, ntc.jpg
+    CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
+    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
+
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
-    Custom Light, components/light/custom, language-cpp.svg
-
-    Endstop Cover, components/cover/endstop, electric-switch.svg
-    Time-Based Cover, components/cover/time_based, timer.svg
-    Custom Cover, components/cover/custom, language-cpp.svg
-
-    Climate Core, components/climate/index, folder-open.svg
-    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
-    Custom Climate, components/climate/custom, language-cpp.svg
-
     Coolix IR Remote, components/climate/coolix, air-conditioner.svg
     Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
     Sun, components/sun, weather-sunny.svg
 
     GPS Time Source, components/gps, crosshairs-gps.svg
-    Resistance Sensor, components/sensor/resistance, omega.svg
-    NTC Thermistor, components/sensor/ntc, ntc.jpg
-
-    CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
-    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
+    Custom Light, components/light/custom, language-cpp.svg
+    Custom Cover, components/cover/custom, language-cpp.svg
+    Custom Climate, components/climate/custom, language-cpp.svg
 
 Oh hi there!
 
@@ -107,6 +106,7 @@ Other notable changes:
 - Added :ref:`globals.set <globals-set_action>` action,
   :ref:`script.is_running <script-is_running_condition>` condition,
   :ref:`for <for_condition>` condition.
+- Custom components can now access ESPHome's global variables.
 
 Breaking Changes
 ----------------
@@ -118,6 +118,8 @@ you what has changed.
 - The remote transmitter switch has been removed and a template switch with the new actions should be used.
   See validation output.
 - ``esphome_core_version`` has been removed - ESPHome is no longer split up in the core and python repository.
+- Because of some internal changes, some ID names are used internally and can no longer be used.
+  See validation errors.
 
 All changes
 -----------

@@ -104,10 +104,13 @@ def grouper(n, iterable, fillvalue=None):
 # Based on https://www.slideshare.net/doughellmann/better-documentation-through-automation-creating-docutils-sphinx-extensions
 class ImageTableDirective(Table):
 
-    option_spec = {}
+    option_spec = {
+        'columns': directives.positive_int,
+    }
 
     def run(self):
         env = self.state.document.settings.env
+        cols = self.options.get('columns', 3)
 
         items = []
 
@@ -127,13 +130,13 @@ class ImageTableDirective(Table):
                 'image': '/images/{}'.format(image.strip()),
             })
 
-        col_widths = self.get_column_widths(3)
+        col_widths = self.get_column_widths(cols)
         title, messages = self.make_title()
         table = nodes.table()
         table['classes'].append('table-center')
 
         # Set up column specifications based on widths
-        tgroup = nodes.tgroup(cols=3)
+        tgroup = nodes.tgroup(cols=cols)
         table += tgroup
         tgroup.extend(
             nodes.colspec(colwidth=col_width)
@@ -143,7 +146,7 @@ class ImageTableDirective(Table):
         tbody = nodes.tbody()
         tgroup += tbody
         rows = []
-        for value in grouper(3, items):
+        for value in grouper(cols, items):
             trow = nodes.row()
             for cell in value:
                 entry = nodes.entry()
