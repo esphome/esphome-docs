@@ -80,6 +80,9 @@ features in this version:
 - Everyone who has been supporting me financially over `Patreon <https://www.patreon.com/ottowinter>`__!
 - Everybody who reported bugs, contributed documentation and fixed things!
 
+If you like this version, please consider starring the `ESPHome repository <https://github.com/esphome/esphome>`__
+on Github 💫! Let's get to 1k!
+
 Other notable changes:
 ----------------------
 
