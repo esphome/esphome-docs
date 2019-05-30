@@ -5,14 +5,6 @@ CCS811 CO_2 and Volatile Organic Compound Sensor
     :description: Instructions for setting up CCS811 sensors.
     :image: ccs811.jpg
 
-.. warning::
-
-    This component has not been fully tested yet, if you have this component
-    and can confirm it works, please create a quick new issue here
-    https://github.com/esphome/issues/
-
-    Thanks!
-
 The ``ccs811`` sensor platform allows you to use CCS811 CO_2 and volatile organic compound sensors
 (`Adafruit`_) with ESPHome.
 
