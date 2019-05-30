@@ -296,6 +296,24 @@ Configuration variables:
 - **white** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the white channel to.
 
+.. _light-is_on_condition:
+.. _light-is_off_condition:
+
+``light.is_on`` / ``light.is_off`` Condition
+********************************************
+
+This :ref:`Condition <config-condition>` checks if the given light is ON or OFF. OFF means
+that the light is completely OFF, and ON means that the light is emitting at least a bit of light.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          # Same syntax for is_off
+          light.is_on: my_light
+
 .. _light-effects:
 
 Light Effects
