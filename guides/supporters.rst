@@ -58,6 +58,7 @@ You guys are awesome!
 - Ryan
 - Ryan Bahm
 - Wojciech Bederski
+- Zoltán Jáki
 
 
 Contributors
@@ -70,7 +71,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1725 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1728 contributions
 
 Contributors
 ************
@@ -183,4 +184,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Thu May 30 14:55:00 2019 UTC.*
+*This page was last updated Thu May 30 19:07:58 2019 UTC.*
