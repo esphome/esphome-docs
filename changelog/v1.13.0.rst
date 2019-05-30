@@ -209,6 +209,8 @@ All changes
 - esphome: Fix TSL2561 invalid default :esphomepr:`566`
 - esphome: Use copy for custom includes :esphomepr:`568`
 - esphome: Add uart.write action :esphomepr:`567`
+- esphome: Correctly set warm white variables :esphomepr:`569` by :ghuser:`jesserockz`
+- esphome: Register light conditions :esphomepr:`570`
 
 Past Changelogs
 ---------------
