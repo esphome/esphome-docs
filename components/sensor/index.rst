@@ -104,7 +104,6 @@ for platforms with multiple sensors)
           - 40.0 -> 45.0
           - 100.0 -> 102.5
       - filter_out: 42.0
-      - filter_nan:
       - sliding_window_moving_average:
           window_size: 15
           send_every: 15
@@ -356,16 +355,16 @@ Configuration variables:
 ``on_raw_value``
 ****************
 
-This automation will be triggered when a new value that has passed through all filters
-is published. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger
-with ``x``.
+This automation will be triggered when a new value is received that hasn't passed
+through any filters. In :ref:`Lambdas <config-lambda>` you can get the value from the
+trigger with ``x``.
 
 .. code-block:: yaml
 
     sensor:
       - platform: dallas
         # ...
-        on_value:
+        on_raw_value:
           then:
             - light.turn_on:
                 id: light_1
@@ -399,6 +398,8 @@ Configuration variables:
 
 - **above** (*Optional*, float): The minimum for the condition.
 - **below** (*Optional*, float): The maximum for the condition.
+
+.. _sensor-lambda_calls:
 
 lambda calls
 ************

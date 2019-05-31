@@ -16,7 +16,7 @@ the device manually by clicking "CONFIGURE" on the ESPHome integration and enter
 "<NODE_NAME>.local" as the address.
 
 The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
-the protocol data structure definitions here: https://github.com/esphome/esphome-core/blob/dev/src/esphome/api/api.proto.
+the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/src/esphome/components/api/api.proto
 A python library that implements this protocol can be found `here <https://github.com/esphome/aioesphomeapi>`__.
 
 .. code-block:: yaml
@@ -157,7 +157,6 @@ Configuration options:
 - **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
   Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
 
-
 .. _api-services:
 
 User-defined Services
@@ -220,6 +219,23 @@ There are currently 4 types of variables:
 - int: An integer. C++ type: ``int``/``int32_t``
 - float: A floating point number. C++ type: ``float``
 - string: A string. C++ type: ``std::string``
+
+.. _api-connected_condition:
+
+``api.connected`` Condition
+---------------------------
+
+This :ref:`Condition <config-condition>` checks if at least one client is connected to the ESPHome
+native API.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          api.connected:
+        then:
+          - logger.log: API is connected!
 
 
 Advantages over MQTT

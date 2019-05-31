@@ -1,0 +1,7 @@
+ports:
+- port: 8000
+  onOpen: open-preview
+
+tasks:
+- before: pip3 install -r requirements.txt
+  command: make webserver

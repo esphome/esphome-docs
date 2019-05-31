@@ -29,11 +29,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light, though binary lights
   only support very few of them.
-
-- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
-  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
-  a ``name`` will implicitly set this to true.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Light <config-light>`.
 
 See Also
 --------
@@ -42,5 +38,5 @@ See Also
 - :doc:`/components/light/index`
 - :doc:`/components/output/gpio`
 - :doc:`/components/power_supply`
-- :apiref:`light/light_state.h`
+- :apiref:`binary/light/binary_light_output.h`
 - :ghedit:`Edit`

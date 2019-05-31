@@ -52,7 +52,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`template`
-- :doc:`ultrasonic`
-- :apiref:`sensor/hmc5883l.h`
+- :apiref:`hmc5883l/hmc5883l.h`
 - `HMC5883L Library <https://github.com/jarzebski/Arduino-HMC5883L>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
 - :ghedit:`Edit`

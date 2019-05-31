@@ -88,14 +88,18 @@ Sensor Components
     Sensor Core, components/sensor/index, folder-open.svg
     ADC, components/sensor/adc, flash.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
+    AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
+    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
     BMP085, components/sensor/bmp085, bmp180.jpg
     BMP280, components/sensor/bmp280, bmp280.jpg
+    CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
+    CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
     Dallas, components/sensor/dallas, dallas.jpg
     DHT, components/sensor/dht, dht.jpg
     DHT12, components/sensor/dht12, dht12.jpg
@@ -108,6 +112,7 @@ Sensor Components
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
+    Integration, components/sensor/integration, sigma.svg
     HTU21D, components/sensor/htu21d, htu21d.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
@@ -115,8 +120,11 @@ Sensor Components
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     MS5611, components/sensor/ms5611, ms5611.jpg
+    NTC Thermistor, components/sensor/ntc, ntc.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
+    Pulse Width, components/sensor/pulse_width, pulse.svg
+    Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
@@ -145,15 +153,14 @@ Binary Sensor Components
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
-    ESP32 BLE Device, components/binary_sensor/esp32_ble_tracker, bluetooth.svg
+    ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
-    Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
-    TTP229-LSF  Capacitive Touch Sensor, components/binary_sensor/ttp229, ttp229.jpg
+    TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -188,6 +195,7 @@ Light Components
 
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
+    Custom Light, components/light/custom, language-cpp.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
@@ -199,7 +207,6 @@ Switch Components
 
     Switch Core, components/switch/index, folder-open.svg
     GPIO Switch, components/switch/gpio, pin.svg
-    Remote Transmitter, components/switch/remote_transmitter, remote.svg
     Restart Switch, components/switch/restart, restart.svg
     Shutdown Switch, components/switch/shutdown, power_settings.svg
     Generic Output Switch, components/switch/output, upload.svg
@@ -235,6 +242,9 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
+    Endstop Cover, components/cover/endstop, electric-switch.svg
+    Time-Based Cover, components/cover/time_based, timer.svg
+    Custom Cover, components/cover/custom, language-cpp.svg
 
 Text Sensor Components
 ----------------------
@@ -249,22 +259,41 @@ Text Sensor Components
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
 
+Climate Components
+------------------
+
+.. imgtable::
+
+    Climate Core, components/climate/index, folder-open.svg
+    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
+    Custom Climate, components/climate/custom, language-cpp.svg
+    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
+    Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
+
 Misc Components
 ---------------
 
 .. imgtable::
 
-    Debug Component, components/debug, bug-report.svg
-    PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
-    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
+    Remote Receiver, components/remote_receiver, remote.svg
+    Remote Transmitter, components/remote_transmitter, remote.svg
+    Status LED, components/status_led, led-on.svg
+
+    Time, components/time, clock-outline.svg
+    Sun, components/sun, weather-sunny.svg
+    GPS, components/gps, crosshairs-gps.svg
+
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    Status LED, components/status_led, led-on.svg
-    Time, components/time, clock-outline.svg
+    ESP32 Ethernet, components/ethernet, ethernet.svg
+
+    ESP32 Camera, components/esp32_camera, camera.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
-    ESP32 Ethernet, components/ethernet, ethernet.svg
-    ESP32 Camera, components/esp32_camera, camera.svg
+
+    PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
+    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
+    Debug Component, components/debug, bug-report.svg
 
 Additional Custom Components
 ----------------------------

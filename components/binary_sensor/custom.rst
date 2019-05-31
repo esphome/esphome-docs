@@ -14,9 +14,8 @@ same as the gpio binary sensor.
 .. code-block:: cpp
 
     #include "esphome.h"
-    using namespace esphome;
 
-    class MyCustomBinarySensor : public PollingComponent, public binary_sensor::BinarySensor {
+    class MyCustomBinarySensor : public PollingComponent, public BinarySensor {
      public:
       // constructor
       MyCustomBinarySensor() : PollingComponent(15000) {}
@@ -64,7 +63,7 @@ Configuration variables:
 
     - All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-See :cpp:class:`binary_sensor::BinarySensor`
+See :apiclass:`BinarySensor <binary_sensor::BinarySensor>`
 
 See Also
 --------

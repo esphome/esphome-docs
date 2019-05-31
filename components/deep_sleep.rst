@@ -128,5 +128,5 @@ See Also
 
 - :doc:`switch/shutdown`
 - :ref:`automation`
-- :apiref:`deep_sleep_component.h`
+- :apiref:`deep_sleep/deep_sleep_component.h`
 - :ghedit:`Edit`

@@ -9,6 +9,9 @@ The LEDC output component exposes a `LEDC PWM
 channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html>`__
 of the ESP32 as an output component.
 
+The frequency range of LEDC is from 10Hz to 40MHz - however, higher frequencies require a smaller
+bit_depth which means the output is not that accurate for frequencies above ~300kHz.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -29,9 +32,9 @@ Configuration variables:
 - **pin** (**Required**, :ref:`config-pin`): The pin to use LEDC on. Can only be GPIO0-GPIO33.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **frequency** (*Optional*, float): At which frequency to run the LEDC
-  channel’s timer. Two LEDC channels always share the same timer and
-  therefore also the same frequency. Defaults to 1000Hz.
-- **bit_depth** (*Optional*, int): The bit depth to use for the LEDC channel. Defaults to 12.
+  channel’s timer. Defaults to 1000Hz.
+- **bit_depth** (*Optional*, int): The bit depth to use for the LEDC channel. Defaults to the
+  highest possible for the configured frequency.
 - All other options from :ref:`Output <config-output>`.
 
 Advanced options:
@@ -48,6 +51,6 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`output/ledc_output_component.h`
+- :apiref:`ledc/ledc_output.h`
 - `esp-idf LEDC API docs <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html>`__
 - :ghedit:`Edit`

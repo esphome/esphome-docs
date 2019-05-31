@@ -145,6 +145,12 @@ retained messages for you:
 
     esphome configuration.yaml clean-mqtt
 
+With Docker:
+
+.. code-block:: bash
+
+    docker run --rm -v "${PWD}":/config -it esphome/esphome configuration.yaml clean-mqtt
+
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
 topic, simply add ``--topic <your_topic>`` to the command.
@@ -499,9 +505,25 @@ Configuration options:
           root["something"] = id(my_sensor).state;
         });
 
+.. _mqtt-connected_condition:
+
+``mqtt.connected`` Condition
+----------------------------
+
+This :ref:`Condition <config-condition>` checks if the MQTT client is currently connected to
+the MQTT broker.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          mqtt.connected:
+        then:
+          - logger.log: MQTT is connected!
 
 See Also
 --------
 
-- :apiref:`mqtt/mqtt_client_component.h`
+- :apiref:`mqtt/mqtt_client.h`
 - :ghedit:`Edit`

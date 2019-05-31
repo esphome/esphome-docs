@@ -86,5 +86,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :ref:`automation`
-- :apiref:`sensor/template_sensor.h`
+- :apiref:`template/sensor/template_sensor.h`
 - :ghedit:`Edit`
