@@ -81,7 +81,7 @@ features in this version:
 - Everybody who reported bugs, contributed documentation and fixed things!
 
 If you like this version, please consider starring the `ESPHome repository <https://github.com/esphome/esphome>`__
-on Github 💫! Let's get to 1k!
+on Github 💫!
 
 Other notable changes:
 ----------------------
