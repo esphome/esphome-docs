@@ -61,5 +61,6 @@ See Also
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/pca9685`
 - :doc:`/components/output/my9231`
+- :doc:`/components/output/sm16716`
 - :apiref:`rgb/rgb_light_output.h`
 - :ghedit:`Edit`
