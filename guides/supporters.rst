@@ -45,6 +45,7 @@ You guys are awesome!
 - Dattas Moonchaser
 - Dennis Münchgesang
 - DrZzs
+- E. Phenix
 - fabi
 - Franck Nijhof
 - Intermittent Technology
@@ -71,7 +72,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1728 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1744 contributions
 
 Contributors
 ************
@@ -184,4 +185,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Thu May 30 19:07:58 2019 UTC.*
+*This page was last updated Fri May 31 13:04:59 2019 UTC.*
