@@ -41,6 +41,7 @@ You guys are awesome!
 - Anders
 - Andrea Donno
 - Book of the Future
+- Clayton
 - Daan Damhuis
 - Dattas Moonchaser
 - Dennis Münchgesang
@@ -72,7 +73,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1744 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1747 contributions
 
 Contributors
 ************
@@ -123,7 +124,7 @@ Contributors
 - `Anders Persson (@emwap) <https://github.com/emwap>`__ - 4 contributions
 - `Nico Weichbrodt (@envy) <https://github.com/envy>`__ - 1 contribution
 - `erazor666 (@erazor666) <https://github.com/erazor666>`__ - 1 contribution
-- `escoand (@escoand) <https://github.com/escoand>`__ - 5 contributions
+- `escoand (@escoand) <https://github.com/escoand>`__ - 6 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 10 contributions
@@ -185,4 +186,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Fri May 31 13:04:59 2019 UTC.*
+*This page was last updated Fri May 31 14:35:19 2019 UTC.*
