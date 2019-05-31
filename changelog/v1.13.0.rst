@@ -133,6 +133,18 @@ Release 1.13.1 - May 30
 - esphome: Dashboard work around Hass.io bug :esphomepr:`575`
 - esphome: Fix waveshare 7.5in model :esphomepr:`576`
 
+Release 1.13.2 - May 31
+-----------------------
+
+- esphome: Fix remote_receiver binary_sensor schema :esphomepr:`578`
+- esphome: Fix MQTT client_id changed :esphomepr:`579`
+- esphome: Fix Rotary Encoder :esphomepr:`580`
+- esphome: Fix travis build :esphomepr:`582`
+- esphome: Fix MQTT on_message trigger :esphomepr:`583`
+- esphome: Fix light partition :esphomepr:`584`
+- esphome: Fix i2c setup priority :esphomepr:`585`
+- docs: add note for asynchronously update of adc :docspr:`259` by :ghuser:`escoand`
+
 All changes
 -----------
 
