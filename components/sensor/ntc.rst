@@ -81,6 +81,43 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+Self-Heating
+------------
+
+A constant voltage supply to the NTC sensor causes it to heat up and therefore creates unreliable temperature values.
+So it's recommended to only supply the NTC sensor (and voltage divider) during the actual measurement.
+More info `here <https://learn.adafruit.com/thermistor/using-a-thermistor#self-heating-3-22>`__.
+
+To do this, replace the 3.3V side of the voltage divider with a connection to a GPIO pin. This GPIO pin will
+be switched HIGH (3.3V) only during the measurement, thus preventing the sensor from heating up.
+In the example below, the pin ``D0`` is the "top" side of the voltage divider:
+
+.. code-block:: yaml
+
+    sensor:
+      # Same as before:
+      - platform: ntc
+        sensor: resistance_sensor
+        # ...
+
+      - platform: adc
+        pin: A0
+        id: source_sensor
+        # Added:
+        update_interval: never
+
+    switch:
+      - platform: gpio
+        pin: D0
+        id: ntc_vcc
+
+    interval:
+      - interval: 60s
+        then:
+          - switch.turn_on: ntc_vcc
+          - component.update: source_sensor
+          - switch.turn_off: ntc_vcc
+
 See Also
 --------
 
