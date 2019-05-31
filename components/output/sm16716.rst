@@ -1,5 +1,5 @@
 SM16716 LED driver
-========================
+==================
 
 .. seo::
     :description: Instructions for setting up SM16716 LED drivers in ESPHome.
