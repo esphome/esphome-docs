@@ -81,34 +81,42 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
-.. note::
+Self-Heating
+------------
 
-    A constant VCC causes the NTC to heat up and therefore unreliable temperature values. So it's recommended
-    to use a different GPIO pin as ``VCC`` which gets switched on and off just to update the ``adc`` value:
+A constant voltage supply to the NTC sensor causes it to heat up and therefore creates unreliable temperature values.
+So it's recommended to only supply the NTC sensor (and voltage divider) during the actual measurement.
+More info `here <https://learn.adafruit.com/thermistor/using-a-thermistor#self-heating-3-22>`__.
 
-    .. code-block:: yaml
+To do this, replace the 3.3V side of the voltage divider with a connection to a GPIO pin. This GPIO pin will
+be switched HIGH (3.3V) only during the measurement, thus preventing the sensor from heating up.
+In the example below, the pin ``D0`` is the "top" side of the voltage divider:
 
-        sensor:
-          - platform: ntc
-            sensor: adc_sensor
-            # ...
+.. code-block:: yaml
 
-          - platform: adc
-            pin: A0
-            id: adc_sensor
-            update_interval: never
+    sensor:
+      # Same as before:
+      - platform: ntc
+        sensor: resistance_sensor
+        # ...
 
-        switch:
-          - platform: gpio
-            pin: D0
-            id: adc_vcc
+      - platform: adc
+        pin: A0
+        id: source_sensor
+        # Added:
+        update_interval: never
 
-        interval:
-          - interval: 60s
-            then:
-              - switch.turn_on: adc_vcc
-              - component.update: adc_sensor
-              - switch.turn_off: adc_vcc
+    switch:
+      - platform: gpio
+        pin: D0
+        id: ntc_vcc
+
+    interval:
+      - interval: 60s
+        then:
+          - switch.turn_on: ntc_vcc
+          - component.update: source_sensor
+          - switch.turn_off: ntc_vcc
 
 See Also
 --------
