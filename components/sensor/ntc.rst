@@ -81,6 +81,35 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. note::
+
+    A constant VCC causes the NTC to heat up and therefore unreliable temperature values. So it's recommended
+    to use a different GPIO pin as ``VCC`` which gets switched on and off just to update the ``adc`` value:
+
+    .. code-block:: yaml
+
+        sensor:
+          - platform: ntc
+            sensor: adc_sensor
+            # ...
+
+          - platform: adc
+            pin: A0
+            id: adc_sensor
+            update_interval: never
+
+        switch:
+          - platform: gpio
+            pin: D0
+            id: adc_vcc
+
+        interval:
+          - interval: 60s
+            then:
+              - switch.turn_on: adc_vcc
+              - component.update: adc_sensor
+              - switch.turn_off: adc_vcc
+
 See Also
 --------
 
