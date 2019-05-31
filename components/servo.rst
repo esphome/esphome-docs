@@ -30,6 +30,7 @@ only operate in this frequency range.
         output: pwm_output
 
     # Example output platform
+    # On ESP32, use ledc output
     output:
       - platform: esp8266_pwm
         id: pwm_output
@@ -39,7 +40,8 @@ only operate in this frequency range.
 Configuration variables:
 ------------------------
 
-- **output** (**Required**, :ref:`config-id`): The ID of the output component to use for this servo.
+- **output** (**Required**, :ref:`config-id`): The ID of the :doc:`output component </components/output/index>`
+  to use for this servo.
 - **id** (**Required**, :ref:`config-id`): The ID of this servo so that it can be controlled.
 
 Advanced Options:

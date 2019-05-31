@@ -126,6 +126,14 @@ you what has changed.
 - Because of some internal changes, some ID names are used internally and can no longer be used.
   See validation errors.
 
+Release 1.13.1 - May 30
+-----------------------
+
+- esphome: Fix validation TypeError :esphomepr:`574`
+- esphome: Fix Sun Trigger :esphomepr:`572`
+- esphome: Dashboard work around Hass.io bug :esphomepr:`575`
+- esphome: Fix waveshare 7.5in model :esphomepr:`576`
+
 All changes
 -----------
 
