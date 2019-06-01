@@ -145,6 +145,19 @@ Release 1.13.2 - May 31
 - esphome: Fix i2c setup priority :esphomepr:`585`
 - docs: add note for asynchronously update of adc :docspr:`259` by :ghuser:`escoand`
 
+Release 1.13.3 - June 1
+-----------------------
+
+- esphome: List the correct boards when building for ESP32 :esphomepr:`589` by :ghuser:`macourteau`
+- esphome: Fix addressable effects :esphomepr:`590`
+- esphome: Fix scripts circular dependency :esphomepr:`591`
+- esphome: Fix timezone detection for timezones without daylight savings time :esphomepr:`586`
+- esphome: Fix remote_receiver binary_sensor :esphomepr:`592`
+- docs: Add missing filter name for ct_clamp :docspr:`258` by :ghuser:`jesserockz`
+- esphome: Fix flicker light effect turning itself off :esphomepr:`594`
+- esphome: Fix medium fan speed :esphomepr:`595`
+- esphome: Fix dashboard for Py3 installs :esphomepr:`596`
+
 All changes
 -----------
 
