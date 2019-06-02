@@ -12,8 +12,11 @@ instructions for setting up this platform.
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entry for ESPHome < 1.13.2
     esp32_ble_tracker:
+      scan_interval: 300s 
+    # Example configuration entru for ESPHome > 1.13.2
+    ble_presence:
       scan_interval: 300s
 
     sensor:
