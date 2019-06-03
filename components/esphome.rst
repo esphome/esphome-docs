@@ -147,17 +147,16 @@ is already set up. You can however change this using the ``priority`` parameter.
 
 Configuration variables:
 
-- **priority** (*Optional*, float): The priority to execute your custom initialization code. A higher value (for example
-  positive values) mean a high priority and thus also your code being executed earlier. So for example negative priorities
-  are executed very late. Defaults to ``-10``. Priorities (you can use any value between them too):
+- **priority** (*Optional*, float): The priority to execute your custom initialization code. A higher value
+  means a high priority and thus also your code being executed earlier. Please note this is an esphome-internal
+  value and any change will not be marked as a breaking change. Defaults to ``-10``. Priorities (you can use any value between them too):
 
-  - ``100``: This is where all hardware initialization of vital components is executed. For example setting switches
+  - ``800.0``: This is where all hardware initialization of vital components is executed. For example setting switches
     to their initial state.
-  - ``50.0``: This is where most sensors are set up.
-  - ``10``: At this priority, WiFi is initialized.
-  - ``7.5``: MQTT initialization takes place at this priority.
-  - ``-5.0``: The individual frontend counterparts for the backend components are configured at this priority
-  - ``-10.0``: At this priority, pretty much everything should already be initialized.
+  - ``600.0``: This is where most sensors are set up.
+  - ``250.0``: At this priority, WiFi is initialized.
+  - ``200.0``: Network connections like MQTT/native API are set up at this priority.
+  - ``-100.0``: At this priority, pretty much everything should already be initialized.
 
 - See :ref:`Automation <automation>`.
 
