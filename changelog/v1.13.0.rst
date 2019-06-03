@@ -158,6 +158,18 @@ Release 1.13.3 - June 1
 - esphome: Fix medium fan speed :esphomepr:`595`
 - esphome: Fix dashboard for Py3 installs :esphomepr:`596`
 
+Release 1.13.4 - June 3
+-----------------------
+
+- esphome: Add better esphomeyaml migration path :esphomepr:`600`
+- esphome: Allow old remote_transmitter repeat schema :esphomepr:`601`
+- esphome: Fix color wipe effect :esphomepr:`599`
+- docs: Update integration.rst :docspr:`263` by :ghuser:`balk77`
+- esphome: Fix hx711 :esphomepr:`602`
+- esphome: Fix validation infinite loop with empty platform block :esphomepr:`598`
+- esphome: Fix ADS1115 calculation :esphomepr:`606`
+- esphome: ESP8266 connect fixes :esphomepr:`605`
+
 All changes
 -----------
 
