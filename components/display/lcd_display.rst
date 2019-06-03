@@ -112,7 +112,7 @@ Rendering Lambda
 
 The LCD displays has a similar API to the fully fledged :ref:`display-engine`, but it's only a subset as LCD displays
 don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
-as with all other displays. In this case however, ``it`` is an ``LCDDisplay`` instance.
+as with all other displays. In this case however, ``it`` is an instance of either ``GPIOLCDDisplay`` or ``PCF8574LCDDisplay``.
 
 The most basic operation with LCD Displays is writing static text to the screen as in the configuration example
 at the top of this page.
@@ -156,6 +156,52 @@ by default which means the character at the top left.
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
+
+Backlight Control
+-----------------
+
+For the GPIO based display, the backlight is lit by applying Vcc to the A pin and K connected to ground.
+The backlight can draw more power than the microcontroller output pins can supply, so it is advisable to use
+a transistor as a switch to control the power for the backlight pins.
+
+With the ``lcd_pcf8574`` the backlight can be turned on by ``it.backlight()`` and off by ``it.no_backlight()`` in the
+display lamdba definition. The jumper on the PCF8574 board needs to be closed for the backlight control to work.
+Keep in mind that the display lamda runs for every ``update_interval``, so if the backlight is turned on/off there,
+it cannot be overridden from other parts.
+
+Here is one solution for a typical use-case where the backlight is turned on after a motion sensor activates and
+turns off 90 seconds after the last activation of the sensor.
+
+.. code-block:: yaml
+
+    display:
+      - platform: lcd_pcf8574
+        id: mydisplay
+        # ...
+
+    binary_sensor:
+      - platform: gpio
+        # ...
+        on_press:
+          then:
+            - binary_sensor.template.publish:
+                id: backlight
+                state: ON
+            - binary_sensor.template.publish:
+                id: backlight
+                state: OFF
+      - platform: template
+        id: backlight
+        filters:
+          - delayed_off: 90s
+        on_press:
+          then:
+            - lambda: |-
+                id(mydisplay).backlight();
+        on_release:
+          then:
+            - lambda: |-
+                id(mydisplay).no_backlight();
 
 See Also
 --------
