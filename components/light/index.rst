@@ -563,12 +563,15 @@ currently active light color.
           - addressable_scan:
               name: Scan Effect With Custom Values
               move_interval: 100ms
+              scan_length: 15
 
 Configuration variables:
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Scan``.
-- **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot one LED forward.
+- **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot/line one LED forward.
   Defaults to ``100ms``.
+- **scan_length** (*Optional*, integer): The number of LED's to use.
+  Defaults to ``1``.
 
 Addressable Twinkle Effect
 **************************
