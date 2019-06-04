@@ -1,4 +1,4 @@
- #I have Configuration for Sonoff T1 US 3 Gang as bellow
+ #This is Configuration for Sonoff T1 US 3 Gang 
  
  esphome:
   name: livingroom
