@@ -259,8 +259,11 @@ And a docker compose file looks like this:
         image: esphome/esphome
         volumes:
           - ./:/config:rw
+          - /etc/localtime:/etc/localtime:ro
         network_mode: host
         restart: always
+
+To ensure the timezone of the ESPHome container is correct, only map `/etc/localtime`; ESPHome has no need for `/etc/timezone` nor a `TZ` environment variable.
 
 .. note::
 
