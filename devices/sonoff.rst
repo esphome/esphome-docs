@@ -310,6 +310,20 @@ Shelly 2
     GPIO12, SW Input #1,
     GPIO14, SW Input #2,
 
+Shelly 2.5
+--------
+
+.. pintable::
+
+    GPIO4, Relay #1,
+    GPIO15, Relay #2,
+    GPIO13, SW Input #1,
+    GPIO5, SW Input #2,
+    GPIO0, LED (inverted),
+    GPIO2, Button (inverted),
+    A0, ADC temperature sensor (returns voltage, no temperature),
+    ?, power measurement on both relays,
+
 Teckin
 ------
 
