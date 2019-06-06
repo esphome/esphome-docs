@@ -259,6 +259,7 @@ And a docker compose file looks like this:
         image: esphome/esphome
         volumes:
           - ./:/config:rw
+          # Use local time for logging timestamps
           - /etc/localtime:/etc/localtime:ro
         network_mode: host
         restart: always
