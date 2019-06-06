@@ -264,8 +264,6 @@ And a docker compose file looks like this:
         network_mode: host
         restart: always
 
-To ensure the timezone of the ESPHome container is correct, only map `/etc/localtime`; ESPHome has no need for `/etc/timezone` nor a `TZ` environment variable.
-
 .. note::
 
     ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
