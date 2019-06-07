@@ -96,7 +96,7 @@ Configuration options:
 - **position** (*Optional*, :ref:`templatable <config-templatable>`, float):
   The position to publish, from 0 (CLOSED) to 1.0 (OPEN)
 - **current_operation** (*Optional*, :ref:`templatable <config-templatable>`, string):
-  The current operation mode to publish. One of ``IDLE``, ``OPENING`` and ``CLOSING``.
+  The current operation mode to publish. One of ``COVER_OPERATION_IDLE``, ``COVER_OPERATION_OPENING`` and ``COVER_OPERATION_CLOSING``.
 
 .. note::
 
