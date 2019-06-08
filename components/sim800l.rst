@@ -35,7 +35,6 @@ The required connection wires are `+VCC`, `GND`, `RX` and `TX`.
       rx_pin: RX
 
     sim800l:
-      id: sim800l1
       on_sms_received:
         - logger.log:
             format: "Received '%s' from %s"
@@ -61,10 +60,10 @@ under the variables named ``message`` and ``sender`` respectively.
 
 .. code-block:: yaml
 
-  on_sms_received:
-    - lambda: |-
-        id(sms_sender).publish_state(sender);
-        id(sms_message).publish_state(message);
+    on_sms_received:
+      - lambda: |-
+          id(sms_sender).publish_state(sender);
+          id(sms_message).publish_state(message);
 
 
 .. _sim800l-send_sms_action:
@@ -79,13 +78,11 @@ Send a SMS message to a phone recipient using this action in automations.
     on_...:
       then:
         - sim800l.send_sms:
-            id: sim800l1
             recipient: '+15551234567'
             message: Hello there
 
         # Templated:
         - sim800l.send_sms:
-            id: sim800l1
             recipient: !lambda |-
               if (id(reed_switch).state) return "+15551234567";
               else return "15551234568";
@@ -94,10 +91,10 @@ Send a SMS message to a phone recipient using this action in automations.
 
 Configuration options:
 
-- **id** (*Required*, string): The ID of the SIM800L
-- **recipient** (*Required*, string, :ref:`templatable <config-templatable>`): The message recipient.
-  number. Make sure to use quotes if the number starts with a `+` or the parser will remove it.
-- **message** (*Required*, string, :ref:`templatable <config-templatable>`): The message content.
+- **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The message recipient.
+  number.
+- **message** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Sim800L if you have multiple components.
 
 .. note::
 
@@ -120,13 +117,12 @@ on Home Assistant and will also setup a service so you can send messages with yo
       services:
       - service: send_sms
         variables:
-          param_recipient: string
-          param_message: string
+          recipient: string
+          message: string
         then:
         - sim800l.send_sms:
-            id: sim800l1
-            recipient: !lambda 'return param_recipient;'
-            message: !lambda 'return param_message;'
+            recipient: !lambda 'return recipient;'
+            message: !lambda 'return message;'
 
     text_sensor:
     - platform: template
@@ -142,11 +138,24 @@ on Home Assistant and will also setup a service so you can send messages with yo
       rx_pin: RX
 
     sim800l:
-      id: sim800l1
       on_sms_received:
       - lambda: |-
           id(sms_sender).publish_state(sender);
           id(sms_message).publish_state(message);
+
+Now your latest received sms and sender number will be displayed by the text sensors.
+
+To trigger the automation from Home Assistant you can invoke the service with this code:
+
+.. code-block:: yaml
+
+    automation:
+      # ...
+      action:
+      - service: esphome.livingroom_send_sms
+        data:
+          recipient: "+15551234567"
+          message: "Hello World!"
 
 See Also
 --------
