@@ -41,6 +41,7 @@ You guys are awesome!
 - Anders
 - Andrea Donno
 - Book of the Future
+- Christer Frostmo
 - Clayton
 - Daan Damhuis
 - Dattas Moonchaser
@@ -73,7 +74,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1747 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1780 contributions
 
 Contributors
 ************
@@ -103,11 +104,12 @@ Contributors
 - `TheJulianJES (@TheJulianJES) <https://github.com/TheJulianJES>`__ - 2 contributions
 - `Florian Gareis (@TheZoker) <https://github.com/TheZoker>`__ - 7 contributions
 - `Rick van Hattem (@WoLpH) <https://github.com/WoLpH>`__ - 1 contribution
+- `Attila Darazs (@adarazs) <https://github.com/adarazs>`__ - 1 contribution
 - `Johan Bloemberg (@aequitas) <https://github.com/aequitas>`__ - 6 contributions
 - `Anders (@ahd71) <https://github.com/ahd71>`__ - 1 contribution
 - `Adriaan Peeters (@apeeters) <https://github.com/apeeters>`__ - 3 contributions
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__ - 4 contributions
-- `balk77 (@balk77) <https://github.com/balk77>`__ - 1 contribution
+- `balk77 (@balk77) <https://github.com/balk77>`__ - 2 contributions
 - `Paulus Schoutsen (@balloob) <https://github.com/balloob>`__ - 1 contribution
 - `Patrik Hermansson (@bphermansson) <https://github.com/bphermansson>`__ - 1 contribution
 - `Brandon Davidson (@brandond) <https://github.com/brandond>`__ - 12 contributions
@@ -127,7 +129,7 @@ Contributors
 - `escoand (@escoand) <https://github.com/escoand>`__ - 6 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
-- `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 10 contributions
+- `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 11 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
 - `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 4 contributions
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
@@ -137,7 +139,7 @@ Contributors
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
 - `jcullen86 (@jcullen86) <https://github.com/jcullen86>`__ - 1 contribution
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
-- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 6 contributions
+- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 7 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__ - 2 contributions
 - `Kevin O'Rourke (@kevinior) <https://github.com/kevinior>`__ - 1 contribution
@@ -146,7 +148,9 @@ Contributors
 - `Jeppe Ladefoged (@ladefoged81) <https://github.com/ladefoged81>`__ - 2 contributions
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__ - 3 contributions
 - `Lewis Juggins (@lwis) <https://github.com/lwis>`__ - 1 contribution
+- `Marc-Antoine Courteau (@macourteau) <https://github.com/macourteau>`__ - 1 contribution
 - `Magnus Øverli (@magnusoverli) <https://github.com/magnusoverli>`__ - 1 contribution
+- `Major Péter (@majorpeter) <https://github.com/majorpeter>`__ - 1 contribution
 - `MeIchthys (@meichthys) <https://github.com/meichthys>`__ - 1 contribution
 - `meijerwynand (@meijerwynand) <https://github.com/meijerwynand>`__ - 2 contributions
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
@@ -165,6 +169,7 @@ Contributors
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 2 contributions
 - `Marcus Kempe (@plopp) <https://github.com/plopp>`__ - 1 contribution
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
+- `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__ - 1 contribution
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__ - 1 contribution
 - `puuu (@puuu) <https://github.com/puuu>`__ - 14 contributions
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__ - 1 contribution
@@ -186,4 +191,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Fri May 31 14:35:19 2019 UTC.*
+*This page was last updated Tue Jun  4 16:45:34 2019 UTC.*
