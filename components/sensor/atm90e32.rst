@@ -37,7 +37,7 @@ upper and lower threshold.
 
 .. code-block:: yaml
 
-    # Example CS 2-channel entry
+    # Example configuration entry
     sensor:
       - platform: atm90e32
         cs_pin: 5
