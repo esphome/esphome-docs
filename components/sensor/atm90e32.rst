@@ -15,6 +15,7 @@ voltage measurement would be used for the mains electricity phase of a
 household. Three current measurements are read via CT clamps. 
 
 The `CircuitSetup 2-Channel Energy Monitor <https://circuitsetup.us/index.php/product/split-single-phase-real-time-whole-house-energy-meter-v1-2/>`__ can read 2 current channels and one voltage channel.
+
 .. figure:: images/atm90e32-cs-2chan-full.jpg
     :align: center
     :width: 50.0%
@@ -22,6 +23,7 @@ The `CircuitSetup 2-Channel Energy Monitor <https://circuitsetup.us/index.php/pr
     CircuitSetup Split Single Phase Real Time Whole House Energy Meter.
 
 The `CircuitSetup 6-Channel Energy Monitor <https://circuitsetup.us/index.php/product/expandable-6-channel-esp32-energy-meter/>`__ can read 6 current channels and 2 voltage channels at a time, this board has two atm90e32 ICs and requires two sensors to be configured in ESPHome.
+
 .. figure:: images/atm90e32-cs-6chan-full.jpg
     :align: center
     :width: 50.0%
