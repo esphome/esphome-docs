@@ -159,9 +159,9 @@ Additional Examples
         cs_pin: 4
         phase_a:
           current:
-            name: "EMON CT3 Current"
+            name: "EMON CT4 Current"
           power:
-            name: "EMON Active Power CT3"
+            name: "EMON Active Power CT4"
           gain_voltage: 47660
           gain_ct: 12577
         phase_b:
@@ -180,6 +180,7 @@ Additional Examples
           gain_ct: 12577
         line_frequency: 50Hz
         gain_pga: 2X
+        update_interval: 60s
 
 
 See Also
