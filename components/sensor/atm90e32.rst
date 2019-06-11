@@ -89,7 +89,7 @@ A load which uses a known amount of current can be used to calibrate. For for a 
 `Kill-A-Watt <https://amzn.to/2TXT7jx>`__ meter or similar, mains voltages can fluctuate depending on grid load.
 
 Voltage
-~~~~~~~
+^^^^^^^
 
 Use the expected mains voltage for your region 110V/230V or plug in the Kill-A-Watt and select voltage. See what 
 value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calculation:
@@ -99,7 +99,7 @@ value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calc
 Update **gain_voltage** for all phases in your ESPHome yaml, recompile and upload. Repeat as necessary.
 
 Current
-~~~~~~~
+^^^^^^^
 
 Switch on the current load and see what value the ATM90E32 sensor reports for
 current on the selected phase. Using the known or measured current adjust the
