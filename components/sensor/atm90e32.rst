@@ -14,26 +14,19 @@ The atm90e32 IC can measure up to three AC voltages although typically only one
 voltage measurement would be used for the mains electricity phase of a
 household. Three current measurements are read via CT clamps. 
 
-The CircuitSetup Split Single Phase Real Time Whole House Energy Meter can read 2 current channels and one voltage channel.
+The `CircuitSetup 2-Channel Energy Monitor <https://circuitsetup.us/index.php/product/split-single-phase-real-time-whole-house-energy-meter-v1-2/>`__ can read 2 current channels and one voltage channel.
 .. figure:: images/atm90e32-cs-2chan-full.jpg
     :align: center
     :width: 50.0%
 
     CircuitSetup Split Single Phase Real Time Whole House Energy Meter.
 
-The CircuitSetup Expandable 6 Channel ESP32 Energy Meter can read 6 current channels and 2 voltage channels at a time, this board has two atm90e32 ICs and requires two sensors to be configured in ESPHome.
+The `CircuitSetup 6-Channel Energy Monitor <https://circuitsetup.us/index.php/product/expandable-6-channel-esp32-energy-meter/>`__ can read 6 current channels and 2 voltage channels at a time, this board has two atm90e32 ICs and requires two sensors to be configured in ESPHome.
 .. figure:: images/atm90e32-cs-6chan-full.jpg
     :align: center
     :width: 50.0%
 
     CircuitSetup Expandable 6 Channel ESP32 Energy Meter Main Board.
-
-The IC supports a number of measurements, these are not yet exported by ESPHome
-Electrical parameters measurement: Vrms, Irms, mean active/reactive/apparent
-power, frequency, power factor and phase angle.
-Enhanced event detection: sag, over voltage, phase loss, over current, reverse V/I
-phase sequence, calculated neutral line current INC over-current and frequency
-upper and lower threshold.
 
 .. code-block:: yaml
 
@@ -41,94 +34,152 @@ upper and lower threshold.
     sensor:
       - platform: atm90e32
         cs_pin: 5
-        voltage_a:
-          name: "EMON Line Voltage A"
-        current_a:
-          name: "EMON CT1 Current"
-        current_b:
-          name: "EMON CT2 Current"
-        power:
-          name: "EMON Total Active Power CT1-2"
+        phase_a:
+          voltage:
+            name: "EMON Line Voltage A"
+          current:
+            name: "EMON CT1 Current"
+          power:
+            name: "EMON Active Power CT1"
+          gain_voltage: 41820
+          gain_ct: 25498
+        phase_b:
+          current:
+            name: "EMON CT2 Current"
+          power:
+            name: "EMON Active Power CT2"
+          gain_voltage: 41820
+          gain_ct: 25498
         frequency:
           name: "EMON Line Frequency"
         line_freq: 50Hz
         gain_pga: 2X
-        gain_volt_a: 47660
-        gain_ct_a: 12577
-        gain_ct_b: 12577
         update_interval: 60s
-
-    # Example CS 6-channel entry
-    sensor:
-      - platform: atm90e32
-        cs_pin: 5
-        voltage_a:
-          name: "EMON Line Voltage A"
-        current_a:
-          name: "EMON CT1 Current"
-        current_b:
-          name: "EMON CT2 Current"
-        current_c:
-          name: "EMON CT3 Current"
-        power:
-          name: "EMON Total Active Power CT1-3"
-        frequency:
-          name: "EMON Line Frequency"
-        line_freq: 50Hz
-        gain_pga: 2X
-        gain_volt_a: 47660
-        gain_ct_a: 12577
-        gain_ct_b: 12577
-        gain_ct_c: 12577
-        update_interval: 60s
-      - platform: atm90e32
-        cs_pin: 4
-        current_a:
-          name: "EMON CT4 Current"
-        current_b:
-          name: "EMON CT5 Current"
-        current_c:
-          name: "EMON CT6 Current"
-        power:
-          name: "EMON Total Active Power CT4-6"
-        line_freq: 50Hz
-        gain_pga: 2X
-        gain_volt_a: 47660
-        gain_ct_a: 12577
-        gain_ct_b: 12577
-        gain_ct_c: 12577
-        update_interval: 60s
-
-.. note::
-
-    The gain values must be calibrated for each installation, see instructions at https://github.com/CircuitSetup/Split-Single-Phase-Energy-Meter#calibration. 
 
 Configuration variables:
 ------------------------
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin CS is connected to.
-- **voltage_a** (*Optional*): Use the channel A voltage value of the sensor in V (RMS).
-  All options from :ref:`Sensor <config-sensor>`.
-- **voltage_b** (*Optional*): Use the channel B voltage value of the sensor in V (RMS).
-  All options from :ref:`Sensor <config-sensor>`.
-- **voltage_c** (*Optional*): Use the channel . voltage value of the sensor in V (RMS).
-  All options from :ref:`Sensor <config-sensor>`.
-- **current_a** (*Optional*): Use the channel A current value of the sensor in amperes. All options from
-  :ref:`Sensor <config-sensor>`.
-- **current_b** (*Optional*): Use the channel B current value of the sensor in amperes. All options from
-  :ref:`Sensor <config-sensor>`.
-- **current_c** (*Optional*): Use the channel C current value of the sensor in amperes. All options from
-  :ref:`Sensor <config-sensor>`.
-- **power** (*Optional*): Use the combined (active) power value of all current channels of the sensor in watts. All options from
-  :ref:`Sensor <config-sensor>`.
+- **phase_a** (*Optional*): The configuration options for the 1st phase.
+
+  - **voltage** (*Optional*): Use the voltage value of this phase in V (RMS).
+    All options from :ref:`Sensor <config-sensor>`.
+  - **current** (*Optional*): Use the current value of this phase in amperes. All options from
+    :ref:`Sensor <config-sensor>`.
+  - **power** (*Optional*): Use the power value on this phase in watts. All options from
+    :ref:`Sensor <config-sensor>`.
+  - **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power pack to household mains feed.
+    Defaults to ``41820``.
+  - **gain_ct** (*Optional*, int): CT clamp calibration for this phase.
+    Defaults to ``25498``.
+
+- **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as 1st phase.
+- **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
 - **line_freq** (*Required*, string): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
   Defaults to ``2X`` which is suitable for the popular SCT-013-000 clamp.
-- **gain_volt_a** (*Optional*, short): Voltage gain to scale the low voltage AC power pack to household mains feed.
-- **gain_ct_a** (*Optional*, short): CT clamp 1 calibration.
-- **gain_ct_b** (*Optional*, short): CT clamp 2 calibration.
-- **gain_ct_c** (*Optional*, short): CT clamp 3 calibration.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+
+Calibration
+-----------
+
+This sensor needs calibration to show correct values. The default gain configuration is set to use the `SCT-013-000 <https://amzn.to/2E0KVvo>`__
+current transformers, and the `Jameco Reliapro 9v AC transformer <https://amzn.to/2XcWJjI>`__. 
+A load which uses a known amount of current can be used to calibrate. For for a more accurate calibration use a
+`Kill-A-Watt <https://amzn.to/2TXT7jx>`__ meter or similar, mains voltages can fluctuate depending on grid load.
+
+Voltage
+~~~~~~~
+
+Use the expected mains voltage for your region 110V/230V or plug in the Kill-A-Watt and select voltage. See what 
+value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calculation:
+
+New **gain_voltage** = (your voltage reading / ESPHome voltage reading) * existing **gain_voltage** value
+
+Update **gain_voltage** for all phases in your ESPHome yaml, recompile and upload. Repeat as necessary.
+
+Current
+~~~~~~~
+
+Switch on the current load and see what value the ATM90E32 sensor reports for
+current on the selected phase. Using the known or measured current adjust the
+sensor using calculation:
+
+New **gain_ct** = (your current reading / ESPHome current reading) * existing **gain_ct** value
+
+Update **gain_ct** for the phase in your ESPHome yaml, recompile and upload. Repeat as necessary.
+
+It is possible that the two identical CT current sensors will have different
+**gain_ct** numbers due to variances in manufacturing although it will be
+small. The current calibration can be done once and used on all sensors or
+repeated for each one.
+
+Additional Examples
+-------------------
+
+.. code-block:: yaml
+
+    # Example CircuitSetup 6-channel entry
+    spi:
+      clk_pin: 18
+      miso_pin: 19
+      mosi_pin: 23
+    sensor:
+      - platform: atm90e32
+        cs_pin: 5
+        phase_a:
+          voltage:
+            name: "EMON Line Voltage A"
+          current:
+            name: "EMON CT1 Current"
+          power:
+            name: "EMON Active Power CT1"
+          gain_voltage: 47660
+          gain_ct: 12577
+        phase_b:
+          current:
+            name: "EMON CT2 Current"
+          power:
+            name: "EMON Active Power CT2"
+          gain_voltage: 47660
+          gain_ct: 12577
+        phase_c:
+          current:
+            name: "EMON CT3 Current"
+          power:
+            name: "EMON Active Power CT3"
+          gain_voltage: 47660
+          gain_ct: 12577
+        frequency:
+          name: "EMON Line Frequency"
+        line_frequency: 50Hz
+        gain_pga: 2X
+        update_interval: 60s
+      - platform: atm90e32
+        cs_pin: 4
+        phase_a:
+          current:
+            name: "EMON CT3 Current"
+          power:
+            name: "EMON Active Power CT3"
+          gain_voltage: 47660
+          gain_ct: 12577
+        phase_b:
+          current:
+            name: "EMON CT5 Current"
+          power:
+            name: "EMON Active Power CT5"
+          gain_voltage: 47660
+          gain_ct: 12577
+        phase_c:
+          current:
+            name: "EMON CT6 Current"
+          power:
+            name: "EMON Active Power CT6"
+          gain_voltage: 47660
+          gain_ct: 12577
+        line_frequency: 50Hz
+        gain_pga: 2X
 
 
 See Also
