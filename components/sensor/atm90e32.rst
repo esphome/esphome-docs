@@ -1,5 +1,5 @@
 ATM90E32 Power Sensor
-====================
+=====================
 
 .. seo::
     :description: Instructions for setting up ATM90E32 energy metering sensors
