@@ -47,7 +47,6 @@ You guys are awesome!
 - Dattas Moonchaser
 - Dennis Münchgesang
 - DrZzs
-- E. Phenix
 - fabi
 - Franck Nijhof
 - Intermittent Technology
@@ -60,6 +59,7 @@ You guys are awesome!
 - Roman Priesol
 - Ryan
 - Ryan Bahm
+- starwolf73
 - Wojciech Bederski
 - Zoltán Jáki
 
@@ -74,7 +74,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1780 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1812 contributions
 
 Contributors
 ************
@@ -112,7 +112,7 @@ Contributors
 - `balk77 (@balk77) <https://github.com/balk77>`__ - 2 contributions
 - `Paulus Schoutsen (@balloob) <https://github.com/balloob>`__ - 1 contribution
 - `Patrik Hermansson (@bphermansson) <https://github.com/bphermansson>`__ - 1 contribution
-- `Brandon Davidson (@brandond) <https://github.com/brandond>`__ - 12 contributions
+- `Brandon Davidson (@brandond) <https://github.com/brandond>`__ - 13 contributions
 - `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__ - 1 contribution
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__ - 1 contribution
@@ -139,6 +139,7 @@ Contributors
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
 - `jcullen86 (@jcullen86) <https://github.com/jcullen86>`__ - 1 contribution
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
+- `jeff-h (@jeff-h) <https://github.com/jeff-h>`__ - 1 contribution
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 7 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__ - 2 contributions
@@ -177,6 +178,7 @@ Contributors
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__ - 1 contribution
 - `Richard Lewis (@richrd) <https://github.com/richrd>`__ - 2 contributions
 - `Robbie Page (@rorpage) <https://github.com/rorpage>`__ - 1 contribution
+- `Ryan Nazaretian (@ryannazaretian) <https://github.com/ryannazaretian>`__ - 1 contribution
 - `sethcohn (@sethcohn) <https://github.com/sethcohn>`__ - 1 contribution
 - `Emanuele Tessore (@setola) <https://github.com/setola>`__ - 1 contribution
 - `Abdelkader Boudih (@seuros) <https://github.com/seuros>`__ - 1 contribution
@@ -191,4 +193,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Tue Jun  4 16:45:34 2019 UTC.*
+*This page was last updated Tue Jun 11 18:24:06 2019 UTC.*
