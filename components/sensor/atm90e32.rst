@@ -94,7 +94,7 @@ Voltage
 Use the expected mains voltage for your region 110V/230V or plug in the Kill-A-Watt and select voltage. See what 
 value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calculation:
 
-New **gain_voltage** = (your voltage reading / ESPHome voltage reading) * existing **gain_voltage** value
+``New gain_voltage = (your voltage reading / ESPHome voltage reading) * existing gain_voltage value``
 
 Update **gain_voltage** for all phases in your ESPHome yaml, recompile and upload. Repeat as necessary.
 
@@ -105,7 +105,7 @@ Switch on the current load and see what value the ATM90E32 sensor reports for
 current on the selected phase. Using the known or measured current adjust the
 sensor using calculation:
 
-New **gain_ct** = (your current reading / ESPHome current reading) * existing **gain_ct** value
+``New gain_ct = (your current reading / ESPHome current reading) * existing gain_ct value``
 
 Update **gain_ct** for the phase in your ESPHome yaml, recompile and upload. Repeat as necessary.
 
