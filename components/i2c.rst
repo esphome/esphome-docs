@@ -25,10 +25,10 @@ Configuration variables:
 ------------------------
 
 - **sda** (*Optional*, :ref:`config-pin`): The pin for the data line of the I²C bus.
-  Defaults to the default of your board (usually GPIO21 for ESP32 and GPIO4 for ESP8266).
+  Defaults to the default of your board (usually GPIO21 for ESP32 and GPIO4(Pin D2) for ESP8266).
 - **scl** (*Optional*, :ref:`config-pin`): The pin for the clock line of the I²C bus.
   Defaults to the default of your board (usually GPIO22 for ESP32 and
-  GPIO5 for ESP8266).
+  GPIO5(Pin D1) for ESP8266 ).
 - **scan** (*Optional*, boolean): If ESPHome should do a search of the I²C address space on startup.
   Defaults to ``True``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
