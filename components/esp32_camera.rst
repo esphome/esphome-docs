@@ -192,7 +192,47 @@ Configuration for TTGO T-Camera
       # Image settings
       name: My Camera
       # ...
+      
+Configuration for ESP-Eye 
+-------------------------
 
+.. warning:: 
+
+    This camera pretty finicky:
+        - It is prone to overheat
+        - Took a couple flashes to stick
+        - Requires a 2.1A power supply. 
+        - Needs particular esphome options:
+    
+.. code-block:: yaml
+
+    name: $device_name 
+    platform: ESP32
+    board: esp-wrover-kit
+    platformio_options:
+        # More info on why this is needed: https://community.platformio.org/t/esp-eye-devkit-board/7295/3
+        build_flags: '-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue'
+    # ...
+    
+.. code-block:: yaml
+    
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO4
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO18
+        scl: GPIO23
+      data_pins: [GPIO34, GPIO13, GPIO14, GPIO35, GPIO39, GPIO38, GPIO37, GPIO36]
+      vsync_pin: GPIO5
+      href_pin: GPIO27
+      pixel_clock_pin: GPIO25
+
+      # Image settings
+      name: My Camera
+      # ...
+Connections are documented in the `esp-who repo <https://github.com/espressif/esp-who/blob/master/docs/en/Camera_connections.md>`_.
 
 See Also
 --------
