@@ -77,7 +77,7 @@ Configuration variables:
 
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as 1st phase.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
-- **line_freq** (*Required*, string): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``
+- **line_freq** (**Required**, string): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
   Defaults to ``2X`` which is suitable for the popular SCT-013-000 clamp.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
