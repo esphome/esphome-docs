@@ -268,6 +268,7 @@ Climate Components
     Custom Climate, components/climate/custom, language-cpp.svg
     Coolix IR Remote, components/climate/coolix, air-conditioner.svg
     Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
+    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
 
 Misc Components
 ---------------
