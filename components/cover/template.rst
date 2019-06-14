@@ -92,16 +92,16 @@ Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the template cover.
 - **state** (*Optional*, :ref:`templatable <config-templatable>`):
-  The state to publish. One of ``OPEN``, ``CLOSED``.
+  The state to publish. One of ``OPEN``, ``CLOSED``. If using a lambda, use ``COVER_OPEN`` or ``COVER_CLOSED``.
 - **position** (*Optional*, :ref:`templatable <config-templatable>`, float):
-  The position to publish, from 0 (CLOSED) to 1.0 (OPEN)
+  The position to publish, from 0.0 (CLOSED) to 1.0 (OPEN)
 - **current_operation** (*Optional*, :ref:`templatable <config-templatable>`, string):
-  The current operation mode to publish. One of ``IDLE``, ``OPENING`` and ``CLOSING``.
+  The current operation mode to publish. One of ``IDLE``, ``OPENING`` and ``CLOSING``. If using a lambda, use ``COVER_OPERATION_IDLE``, ``COVER_OPERATION_OPENING``, and ``COVER_OPERATION_CLOSING``.
 
 .. note::
 
     This action can also be written in lambdas:
-
+L
     .. code-block:: cpp
 
         id(template_cov).position = COVER_OPEN;

@@ -171,6 +171,25 @@ Release 1.13.4 - June 3
 - esphome: Fix ADS1115 calculation :esphomepr:`606`
 - esphome: ESP8266 connect fixes :esphomepr:`605`
 
+Release 1.13.5 - June 8
+-----------------------
+
+- esphome: Move ESPHome version define :esphomepr:`607`
+- esphome: Fix ForCondition time duration check :esphomepr:`610` by :ghuser:`ptatrai`
+- docs: Add timezone mapping to Docker compose. :docspr:`266` by :ghuser:`jeff-h`
+- esphome: DHT22 ignore invalid values :esphomepr:`614`
+- esphome: Template Cover don't auto-set current_operation :esphomepr:`612`
+- esphome: Fix Hass.io addon SSL :esphomepr:`613`
+- esphome: Fix remote_receiver always shows sony :esphomepr:`617`
+- esphome: Make ForCondition a component :esphomepr:`616`
+- esphome: Update docker base image to 1.8.0 :esphomepr:`618`
+- esphome: Fix integration sensor, add test :esphomepr:`619`
+- esphome: Fix sun default elevation :esphomepr:`620`
+- esphome: Update base image to 1.8.3 :esphomepr:`625`
+- esphome: Fix status binary sensor for MQTT :esphomepr:`628`
+- esphome: Work around ESP32 BLE issue :esphomepr:`626`
+- esphome: Work around ESP32 core WiFi Bug :esphomepr:`627`
+
 All changes
 -----------
 
