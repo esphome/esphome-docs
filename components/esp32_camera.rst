@@ -148,6 +148,30 @@ Configuration for M5Stack Camera
       # ...
 
 
+Configuration for M5CameraF Camera (c.f. https://github.com/m5stack/m5stack-cam-psram)
+--------------------------------
+.. code-block:: yaml
+
+    # Example configuration entry for M5 camera F
+    esp32_camera:
+      name: m5_cam
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO22
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO25
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+      resolution: 1280x1024
+      max_framerate: 8 fps
+      idle_framerate: 0.1 fps
+
+
+
 Configuration for Wrover Kit Boards
 -----------------------------------
 
