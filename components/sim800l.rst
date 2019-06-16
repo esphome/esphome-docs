@@ -9,7 +9,7 @@ Sim800L Component
 The ``SIM800L`` Component provides the ability to send and receive SMS text messages. The device must be
 connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line. 
 The uart bus must be configured at the same speed of the module which is by default 9600bps. 
-The required connection wires are `+VCC`, `GND`, `RX` and `TX`.
+The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
 
 .. warning::
 
