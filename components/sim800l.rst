@@ -20,7 +20,7 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
 
     This module requires a power supply between 3.8V and 4.2V that can handle current spikes up
     to 2 amps, it will not work by powering from the same 3.3v power source of the ESP. However you can
-    connect `TX` and `RX` lines directly without any level shifter.
+    connect ``TX`` and ``RX`` lines directly without any level shifter.
 
 .. figure:: images/sim800l-full.jpg
     :align: center
