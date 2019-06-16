@@ -10,9 +10,12 @@ The ``atm90e32`` sensor platform allows you to use your ATM90E32 voltage/current
 (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf>`__) sensors with
 ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy meters.
 
+Communication with the device is done via an :ref:`SPI bus <spi>`, so you need to have an ``spi:`` entry in your configuration
+with both ``mosi_pin`` and ``miso_pin`` set.
+
 The atm90e32 IC can measure up to three AC voltages although typically only one
 voltage measurement would be used for the mains electricity phase of a
-household. Three current measurements are read via CT clamps. 
+household. Three current measurements are read via CT clamps.
 
 The `CircuitSetup 2-Channel Energy Monitor <https://circuitsetup.us/index.php/product/split-single-phase-real-time-whole-house-energy-meter-v1-2/>`__ can read 2 current channels and one voltage channel.
 
@@ -33,6 +36,11 @@ The `CircuitSetup 6-Channel Energy Monitor <https://circuitsetup.us/index.php/pr
 .. code-block:: yaml
 
     # Example configuration entry
+    spi:
+      clk_pin: 18
+      miso_pin: 19
+      mosi_pin: 23
+
     sensor:
       - platform: atm90e32
         cs_pin: 5
@@ -54,7 +62,7 @@ The `CircuitSetup 6-Channel Energy Monitor <https://circuitsetup.us/index.php/pr
           gain_ct: 25498
         frequency:
           name: "EMON Line Frequency"
-        line_freq: 50Hz
+        line_frequency: 50Hz
         gain_pga: 2X
         update_interval: 60s
 
@@ -62,7 +70,7 @@ Configuration variables:
 ------------------------
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin CS is connected to.
-- **line_freq** (**Required**, string): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``
+- **line_frequency** (**Required**, string): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``.
 - **phase_a** (*Optional*): The configuration options for the 1st phase.
 
   - **voltage** (*Optional*): Use the voltage value of this phase in V (RMS).
@@ -81,6 +89,8 @@ Configuration variables:
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
   Defaults to ``2X`` which is suitable for the popular SCT-013-000 clamp.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
+  to use multiple SPI buses.
 
 Calibration
 -----------
