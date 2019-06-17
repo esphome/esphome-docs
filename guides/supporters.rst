@@ -56,9 +56,11 @@ You guys are awesome!
 - Nick Rout
 - Paul Krischer
 - Paul Morley
+- Radu Tizu
 - Roman Priesol
 - Ryan
 - Ryan Bahm
+- Ryan Nazaretian
 - starwolf73
 - Wojciech Bederski
 - Zoltán Jáki
@@ -74,7 +76,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1812 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1824 contributions
 
 Contributors
 ************
@@ -193,4 +195,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Tue Jun 11 18:24:06 2019 UTC.*
+*This page was last updated Sat Jun 15 16:55:22 2019 UTC.*
