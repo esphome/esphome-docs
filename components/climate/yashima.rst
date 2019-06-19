@@ -1,11 +1,11 @@
-Tcl112 Remote Climate
-=====================
+Yashima Remote Climate
+======================
 
 .. seo::
-    :description: Controls a Tcl112 compatible Climate via IR
+    :description: Controls a Yashima compatible Climate via IR
     :image: air-conditioner.png
 
-The ``tcl112`` climate platform allows you to control a TCL112 compatible AC unit by sending IR signals
+The ``yashima`` climate platform allows you to control a Yashima compatible AC unit by sending IR signals
 as your remote unit would do.
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
@@ -25,7 +25,7 @@ actual state of the device, and will assume the state of the device is the lates
       carrier_duty_percent: 50%
 
     climate:
-      - platform: tcl112
+      - platform: yashima
         name: "Living Room AC"
 
 Configuration variables:
@@ -48,5 +48,5 @@ See Also
 
 - :doc:`/components/climate/index`
 - :doc:`/components/remote_transmitter`
-- :apiref:`tcl112/tcl112.h`
+- :apiref:`yashima/yashima.h`
 - :ghedit:`Edit`

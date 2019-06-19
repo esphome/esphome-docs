@@ -226,7 +226,8 @@ There are currently 4 types of variables:
 ---------------------------
 
 This :ref:`Condition <config-condition>` checks if at least one client is connected to the ESPHome
-native API.
+native API. Please note client not only includes Home Assistant, but also ESPHome's OTA log output
+if logs are shown remotely.
 
 .. code-block:: yaml
 

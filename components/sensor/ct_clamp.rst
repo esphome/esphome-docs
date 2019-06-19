@@ -63,11 +63,12 @@ a 4.0 A device is showing a value of 0.1333 in the logs. Now go into your config
         name: "Measured Current"
         update_interval: 60s
         filters:
-          # Measured value of 0 maps to 0A
-          - 0 -> 0
-          # Known load: 4.0A
-          # Value shown in logs: 0.1333A
-          - 0.1333 -> 4.0
+          - calibrate_linear:
+              # Measured value of 0 maps to 0A
+              - 0 -> 0
+              # Known load: 4.0A
+              # Value shown in logs: 0.1333A
+              - 0.1333 -> 4.0
 
 Recompile and upload, now your CT clamp sensor is calibrated!
 

@@ -83,6 +83,10 @@ the process by pressing the grey bluetooth button on the back of the device.
 Then just copy the address (``7A:80:8E:19:36:BA``) into a new ``sensor.xiaomi_mijia`` platform entry like
 in the configuration example at the top.
 
+.. note::
+
+    The ESPHome Xiaomi integration listens passively to packets the xiaomi device sends by itself.
+    ESPHome therefore has no impact on the battery life of the device.
 
 See Also
 --------
