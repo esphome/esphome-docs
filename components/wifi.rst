@@ -45,7 +45,8 @@ Configuration variables:
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
 - **use_address** (*Optional*, string): Manually override what address to use to connect
-  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the prior configured IP address.
+  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previusly configured IP address.
+
 - **ap** (*Optional*): Enable an access point mode on the node.
 
   - **ssid** (*Required*, string): The name of the access point to create.
@@ -110,6 +111,10 @@ a dynamic IP address with the router, thus improving the time until connection.
 Additionally, this can help with :doc:`Over-The-Air updates <ota>` if for example the
 home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
 the OTA process will automatically choose that as the target for the upload.
+
+.. note::
+
+    See also :ref:`esphome-changing_node_name`.
 
 .. _wifi-power_save_mode:
 
