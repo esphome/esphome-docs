@@ -101,7 +101,7 @@ Configuration options:
 .. note::
 
     This action can also be written in lambdas:
-L
+
     .. code-block:: cpp
 
         id(template_cov).position = COVER_OPEN;
