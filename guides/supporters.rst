@@ -55,6 +55,7 @@ You guys are awesome!
 - Kenvase
 - Magnus Overli
 - Nick Rout
+- Niklas Fondberg
 - Paul Krischer
 - Paul Morley
 - Philippe Penochet
@@ -63,7 +64,8 @@ You guys are awesome!
 - Ryan
 - Ryan Bahm
 - Ryan Nazaretian
-- starwolf73
+- Starwolf73
+- Vincèn
 - Wojciech Bederski
 - Yonatan Adest
 - Zoltán Jáki
@@ -79,7 +81,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1835 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1836 contributions
 
 Contributors
 ************
@@ -176,6 +178,7 @@ Contributors
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 2 contributions
 - `Marcus Kempe (@plopp) <https://github.com/plopp>`__ - 1 contribution
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
+- `Iván Povedano (@pove) <https://github.com/pove>`__ - 1 contribution
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__ - 1 contribution
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__ - 1 contribution
 - `puuu (@puuu) <https://github.com/puuu>`__ - 14 contributions
@@ -201,4 +204,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Sun Jun 23 20:06:10 2019 UTC.*
+*This page was last updated Mon Jun 24 20:42:10 2019 UTC.*
