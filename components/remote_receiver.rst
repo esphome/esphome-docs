@@ -151,9 +151,8 @@ Remote code selection (exactly one of these has to be included):
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
-  - **code** (**Required**, string): The remote code to listen for, copy this from the dumper output.
-  - **mask** (*Optional*, string): The mask to define which bits of the code to use (``1``) or ignore (``0``)
-    in the comparison to inputs. Defaults to ``"11111111111111111111111111111111"`` (use all 32 bits).
+  - **code** (**Required**, string): The remote code to listen for, copy this from the dumper output. To ignore a bit
+    in the received data, use ``x`` at that place in the **code**.
   - **protocol** (*Optional*): The RC Switch protocol to use, see :ref:`remote_transmitter-rc_switch-protocol` for more info.
 
 - **rc_switch_type_a**: Trigger on a decoded RC Switch Type A remote code with the given data.
