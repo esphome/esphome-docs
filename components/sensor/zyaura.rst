@@ -1,4 +1,4 @@
-ZyAura CO2+Temperature+Humidity Sensor
+ZyAura CO2 & Temperature & Humidity Sensor
 ======================================
 
 .. seo::
@@ -6,7 +6,7 @@ ZyAura CO2+Temperature+Humidity Sensor
     :image: zgm053.jpg
     :keywords: CO2, MT8057, MT8057S, MT8060, ZGm05, ZGm053U, ZG1683R, ZG1583RUD
 
-The ZyAura CO2+Temperature+Humidity sensor allows you to use your
+The ZyAura CO2 & Temperature & Humidity sensor allows you to use your
 `ZGm05(3)(U) <http://www.zyaura.com/products/ZGm05.asp>`__
 (`MT8057 <https://masterkit.ru/shop/1266110>`__, `MT8057S <https://medgadgets.ru/shop/kit-mt8057.html>`__),
 `ZG1683R(U) <http://www.zyaura.com/products/ZG1683R.asp>`__ (`MT8060 <https://masterkit.ru/shop/1921398>`__),
