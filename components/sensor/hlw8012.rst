@@ -1,0 +1,95 @@
+HLW8012 Power Sensor
+====================
+
+.. seo::
+    :description: Instructions for setting up HLW8012 power sensors for the Sonoff Pow R1
+    :image: hlw8012.png
+    :keywords: HLW8012, Sonoff Pow R1
+
+The ``hlw8012`` sensor platform allows you to use your HLW8012 voltage/current and power sensors
+(`datasheet <https://github.com/xoseperez/hlw8012/blob/master/docs/HLW8012.pdf>`__) sensors with
+ESPHome. This sensor is commonly found in Sonoff POWs.
+
+This sensor has two data outputs which both encode values using the frequency of a modulated signal: CF and CF1.
+CF's frequency is proportional to the (active) power measured and CF1 is proportional to the current/voltage. Using
+the SEL pin, one can choose between which mode to use.
+
+ESPHome will continuously cycle the state of the SEL pin to measure current *and* voltage, though both cannot
+be measured at the same exact points in time.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: hlw8012
+        sel_pin: 5
+        cf_pin: 14
+        cf1_pin: 13
+        current:
+          name: "HLW8012 Current"
+        voltage:
+          name: "HLW8012 Voltage"
+        power:
+          name: "HLW8012 Power"
+        update_interval: 60s
+
+.. note::
+
+    The configuration above should work for Sonoff POWs (R1).
+
+Configuration variables:
+------------------------
+
+- **sel_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin SEL is connected to.
+- **cf_pin** (**Required**, :ref:`config-pin`): The pin CF is connected to.
+- **cf1_pin** (**Required**, :ref:`config-pin`): The pin CF1 is connected to.
+- **current** (*Optional*): Use the current value of the sensor in amperes. All options from
+  :ref:`Sensor <config-sensor>`.
+- **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
+  :ref:`Sensor <config-sensor>`.
+- **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
+  All options from :ref:`Sensor <config-sensor>`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+
+Advanced Options:
+
+- **current_resistor** (*Optional*, float): The value of the shunt resistor for current measurement.
+  Defaults to the Sonoff POW's value ``0.001 ohm``.
+- **voltage_divider** (*Optional*, float): The value of the voltage divider on the board as ``(R_upstream + R_downstream) / R_downstream``.
+  Defaults to the Sonoff POW's value ``2351``.
+- **change_mode_every** (*Optional*, int): After how many updates to cycle between the current/voltage measurement mode.
+  Note that the first value after switching is discarded because it is often inaccurate. Defaults to ``8``.
+- **initial_mode** (*Optional*, string): The initial measurement mode. Defaults to ``VOLTAGE``.
+  Possible initial measurement modes are ``VOLTAGE`` or ``CURRENT``.
+
+Permanent SEL Pin
+-----------------
+
+Some devices have the SEL pin permanently pulled high or low. If this is the case, you can configure
+the initial measurement mode to match whichever mode the device uses, and disable mode switching.
+
+.. code-block:: yaml
+
+    # Example configuration entry for device with fixed measurement mode
+    sensor:
+      - platform: hlw8012
+        sel_pin: 5
+        cf_pin: 14
+        cf1_pin: 13
+        current:
+          name: "HLW8012 Current"
+        voltage:
+          name: "HLW8012 Voltage"
+        power:
+          name: "HLW8012 Power"
+        update_interval: 60s
+        initial_mode: CURRENT
+        change_mode_every: 4294967295
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`hlw8012/hlw8012.h`
+- `HLW8012 Library <https://github.com/xoseperez/hlw8012>`__ by `Xose Pérez <https://github.com/xoseperez>`__
+- :ghedit:`Edit`

@@ -1,31 +1,46 @@
 {% extends 'alabaster/layout.html' %}
 
+{%- block doctype %}
+  <!DOCTYPE html>
+{% endblock %}
+
+{%- block extrahead %}
+  <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}?hash={{ custom_css_hash }}" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/_static/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/_static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="/_static/favicon-512x512.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/_static/favicon-256x256.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/_static/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="/_static/favicon-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/_static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/_static/favicon-16x16.png">
+  <link rel="manifest" href="/_static/site.webmanifest">
+  <link rel="mask-icon" href="/_static/safari-pinned-tab.svg" color="#646464">
+  <meta name="apple-mobile-web-app-title" content="ESPHome">
+  <meta name="application-name" content="ESPHome">
+  <meta name="msapplication-TileColor" content="#dfdfdf">
+  <meta name="msapplication-config" content="/_static/browserconfig.xml">
+  <meta name="theme-color" content="#dfdfdf">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta property="og:site_name" content="ESPHome">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+{% endblock %}
+
 {% block footer %}
-  <div class="footer">
-    <a href="/misc/privacy.html">Privacy Policy</a>
-  </div>
   <div id="upgrade-footer">
     A new version has been release since you last visited this page: {{ release }} 🎉
-    <a id="upgrade-footer-changelog" href="/esphomeyaml/changelog/index.html">View Changelog</a>
+    <a id="upgrade-footer-changelog" href="/changelog/v{{ version }}.0.html">View Changelog</a>
   </div>
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113203480-2"></script>
+  <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-113203480-2', {'anonymize_ip': true});</script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-113203480-2', {'anonymize_ip': true});
-  </script>
-
-  <script>
-    var old = window.localStorage.getItem("release");
-    if (old === null) {
-      window.localStorage.setItem("release", "{{ release }}");
-    } else if (old !== "{{ release }}") {
+    var old = window.localStorage.getItem("version");
+    if (old === null) { window.localStorage.setItem("version", "{{ version }}");
+    } else if (old !== "{{ version }}") {
       document.getElementById("upgrade-footer").classList.add("not-hidden");
       document.getElementById("upgrade-footer-changelog").addEventListener('click', function () {
-        window.localStorage.setItem("release", "{{ release }}");
+        window.localStorage.setItem("version", "{{ version }}");
       });
     }
   </script>
