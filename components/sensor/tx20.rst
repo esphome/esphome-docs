@@ -1,5 +1,5 @@
 Tx20/Tx23 Wind Speed/Direction Sensor
-===========================================
+=====================================
 
 .. seo::
     :description: Instructions for setting up Tx20/Tx23 wind speed and direction sensors
