@@ -71,8 +71,6 @@ Configuration variables:
     ZGm05 monitor (and maybe others) needs some initial time to get correct data when powered
     on. Only after this timespan will the sensor report correct values. It's not recommended to set
     ``update_interval`` lower than ``20s``.
-    and gives incorrect data for some time. It's not recommended to set
-    ``update_interval`` lower than ``20s``.
 
 See Also
 --------
