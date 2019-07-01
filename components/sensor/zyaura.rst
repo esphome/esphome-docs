@@ -63,7 +63,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``20s``.
+  sensor. Defaults to ``60s``.
 
 
 .. note::
