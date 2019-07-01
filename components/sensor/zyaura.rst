@@ -68,7 +68,9 @@ Configuration variables:
 
 .. note::
 
-    ZGm05 monitor (and maybe others) has loading delay after turning on
+    ZGm05 monitor (and maybe others) needs some initial time to get correct data when powered
+    on. Only after this timespan will the sensor report correct values. It's not recommended to set
+    ``update_interval`` lower than ``20s``.
     and gives incorrect data for some time. It's not recommended to set
     ``update_interval`` lower than ``20s``.
 
