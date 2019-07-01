@@ -311,7 +311,7 @@ Shelly 2
     GPIO14, SW Input #2,
     
 Shelly RGBW2
---------
+------------
 
 .. pintable::
 
