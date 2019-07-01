@@ -309,6 +309,18 @@ Shelly 2
     GPIO5, Relay #2,
     GPIO12, SW Input #1,
     GPIO14, SW Input #2,
+    
+Shelly RGBW2
+--------
+
+.. pintable::
+
+    GPIO12, LED Red,
+    GPIO15, LED Green,
+    GPIO14, LED Blue,
+    GPIO04, LED White,
+    GPIO??, SW Input,
+    GPIO??, Power Meter,
 
 Teckin
 ------
