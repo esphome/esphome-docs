@@ -1,5 +1,5 @@
 ZyAura CO2 & Temperature & Humidity Sensor
-======================================
+==========================================
 
 .. seo::
     :description: Instructions for setting up ZyAura co2, temperature and humidity monitors.
