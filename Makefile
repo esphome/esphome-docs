@@ -45,6 +45,9 @@ netlify: netlify-dependencies netlify-api html copy-svg2png
 webserver: html
 	cd "_build/html" && python3 -m http.server
 
+lint: html-strict
+	python3 travis.py
+
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
