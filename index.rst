@@ -133,6 +133,7 @@ Sensor Components
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
+    Tx20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
