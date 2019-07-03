@@ -12,6 +12,8 @@ ESPHome
 
 .. image:: /images/logo-text.svg
 
+ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+
 .. raw:: html
 
     <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
