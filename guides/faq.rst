@@ -248,6 +248,9 @@ Command reference:
     # Start dashboard on port 6052
     docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
 
+    # Setup a bash alias:
+    alias esphome='docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome'
+
 And a docker compose file looks like this:
 
 .. code-block:: yaml
@@ -276,6 +279,16 @@ And a docker compose file looks like this:
 
     1. Enable Avahi on both subnets.
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
+
+Can Configuration Files Be Recovered From The Device?
+-----------------------------------------------------
+
+If you lost your ESPHome YAML configuration files, there's no way to recover them.
+The configuration is *not* stored on the device directly - only the generated firmware is on
+the device itself (technically, the configuration can be reverse-engineered from that, but only
+with a lot of work).
+
+Always back up all your files!
 
 See Also
 --------
