@@ -107,7 +107,7 @@ Useful for
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
-    ``OFF``.
+    ``OFF``. Note that the device won't enter deep sleep again until the next reboot.
 
     .. code-block:: yaml
 
@@ -118,6 +118,7 @@ Useful for
           # ...
           on_message:
             topic: livingroom/ota_mode
+            payload: 'ON'
             then:
               - deep_sleep.prevent: deep_sleep_1
 
