@@ -1,0 +1,216 @@
+SM-S0301 WiFi Smart Power Strip with USB
+========================================
+
+The SM-S0301 is a multi-outlet power strip with four individually controllable
+NEMA 5-15R receptacles and four USB Type A connectors that are controlled as a
+group.
+
+There is a single button surrounded by blue and red LEDs. There are red LEDs
+next to each socket but they are not controllable from software.
+
+Based upon the Tuya platform, it is rebranded and resold by many companies.
+Installing ESPHome with Tuya-Convert should be possible. If not, it is
+relatively easy to remove the rear cover and access the ESP8266 module,
+although some soldering is necessary to connect wires to the ESP8266 module.
+
+See the Blakaddr_ Tasmota template respository for pictures and reflashing
+information.
+
+.. code-block:: yaml
+
+    substitutions:
+      device_name: sms0301_multi_outlet_power_strip
+      friendly_name: SM-S0301 Multi-Outlet Power Strip
+
+    esphome:
+      name: ${device_name}
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+
+    api:
+      password: !secret api_password
+      reboot_timeout: 0s
+
+    ota:
+      password: !secret ota_password
+
+    logger:
+
+    status_led:
+      pin:
+        number: GPIO0
+        inverted: true
+
+    sensor:
+      - platform: uptime
+        name: ${friendly_name} Uptime Sensor
+
+      - platform: wifi_signal
+        name: ${friendly_name} WiFi Signal Sensor
+        update_interval: 60s
+
+    binary_sensor:
+      - platform: status
+        name: ${friendly_name} Status
+
+      - platform: gpio
+        id: power_button
+        name: ${friendly_name} Power Button
+        internal: true
+        pin:
+          number: GPIO5
+          mode: INPUT_PULLUP
+        on_press:
+          then:
+            - if:
+                condition:
+                  or:
+                    - switch.is_on: relay1
+                    - switch.is_on: relay2
+                    - switch.is_on: relay3
+                    - switch.is_on: relay4
+                    - switch.is_on: relay5
+                then:
+                  - switch.turn_off: relay1
+                  - switch.turn_off: relay2
+                  - switch.turn_off: relay3
+                  - switch.turn_off: relay4
+                  - switch.turn_off: relay5
+                else:
+                  - switch.turn_on: relay1
+                  - switch.turn_on: relay2
+                  - switch.turn_on: relay3
+                  - switch.turn_on: relay4
+                  - switch.turn_on: relay5
+
+    output:
+      - platform: gpio
+        id: output_red_leds
+        pin: GPIO3
+        inverted: true
+
+    light:
+      - platform: binary
+        id: red_leds
+        internal: true
+        output: output_red_leds
+
+    switch:
+
+      # The outlet closest to the power cord
+      - platform: gpio
+        id: relay1
+        name: ${friendly_name} Relay 1
+        pin:
+          number: GPIO4
+          inverted: true
+        on_turn_on:
+          - light.turn_on: red_leds
+        on_turn_off:
+          - if:
+              condition:
+                or:
+                  - switch.is_on: relay1
+                  - switch.is_on: relay2
+                  - switch.is_on: relay3
+                  - switch.is_on: relay4
+                  - switch.is_on: relay5
+              then:
+                - light.turn_on: red_leds
+              else:
+                - light.turn_off: red_leds
+
+      - platform: gpio
+        id: relay2
+        name: ${friendly_name} Relay 2
+        pin:
+        number: GPIO13
+        inverted: true
+        on_turn_on:
+          - light.turn_on: red_leds
+        on_turn_off:
+          - if:
+              condition:
+                or:
+                  - switch.is_on: relay1
+                  - switch.is_on: relay2
+                  - switch.is_on: relay3
+                  - switch.is_on: relay4
+                  - switch.is_on: relay5
+              then:
+                - light.turn_on: red_leds
+              else:
+                - light.turn_off: red_leds
+
+    - platform: gpio
+        id: relay3
+        name: ${friendly_name} Relay 3
+        pin:
+          number: GPIO12
+          inverted: true
+        on_turn_on:
+          - light.turn_on: red_leds
+        on_turn_off:
+          - if:
+              condition:
+                or:
+                  - switch.is_on: relay1
+                  - switch.is_on: relay2
+                  - switch.is_on: relay3
+                  - switch.is_on: relay4
+                  - switch.is_on: relay5
+              then:
+                - light.turn_on: red_leds
+              else:
+                - light.turn_off: red_leds
+
+    # The outlet farthest from the power cord
+      - platform: gpio
+        id: relay4
+        name: ${friendly_name} Relay 4
+        pin:
+          number: GPIO14
+          inverted: true
+        on_turn_on:
+         - light.turn_on: red_leds
+        on_turn_off:
+          - if:
+              condition:
+                or:
+                  - switch.is_on: relay1
+                  - switch.is_on: relay2
+                  - switch.is_on: relay3
+                  - switch.is_on: relay4
+                  - switch.is_on: relay5
+              then:
+                - light.turn_on: red_leds
+              else:
+                - light.turn_off: red_leds
+
+      # The USB plugs
+      - platform: gpio
+        id: relay5
+        name: ${friendly_name} Relay 5
+        pin:
+          number: GPIO16
+        on_turn_on:
+          - light.turn_on: red_leds
+        on_turn_off:
+          - if:
+              condition:
+                or:
+                  - switch.is_on: relay1
+                  - switch.is_on: relay2
+                  - switch.is_on: relay3
+                  - switch.is_on: relay4
+                  - switch.is_on: relay5
+              then:
+                - light.turn_on: red_leds
+              else:
+                - light.turn_off: red_leds
+
+.. _Blakaddr: https://blakadder.github.io/templates/sm-s0301-us.html
