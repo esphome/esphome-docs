@@ -75,6 +75,7 @@ Configuration variables:
   - ``2.90in``
   - ``4.20in`` (not tested)
   - ``7.50in`` (not tested)
+  - ``7.50in_c`` color display (not tested)
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
@@ -94,6 +95,10 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+.. warning::
+  7.5inch color display uses flash memory for storage, updates are **VERY** slow (around 1 minute). To speedup
+  updates, make sure lambda code updates screen on at most of 6 horizontal lines.
 
 See Also
 --------
