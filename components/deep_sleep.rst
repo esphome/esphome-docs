@@ -103,7 +103,7 @@ Useful for
 
     You can use this automation to automatically prevent deep sleep when a MQTT message on the topic
     ``livingroom/ota_mode`` is received. Then, to do the OTA update, just
-    use a MQTT client to publish a retained MQTT message described above. When the node wakes up again
+    use a MQTT client to publish a retained MQTT message described below. When the node wakes up again
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
