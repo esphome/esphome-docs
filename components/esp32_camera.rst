@@ -193,6 +193,28 @@ Configuration for TTGO T-Camera
       name: My Camera
       # ...
 
+Configuration for TTGO T-Journal
+--------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+
+
+      # Image settings
+      name: My Camera
+      # ...
 
 See Also
 --------
