@@ -164,8 +164,6 @@ See Also
 - :doc:`/components/switch/gpio`
 - :doc:`/components/binary_sensor/gpio`
 - :doc:`/components/pcf8574`
-- :apiref:`display/lcd_display.h`
+- :apiref:`lcd_base/lcd_display.h`
 - `Arduino LiquidCrystal Library <https://www.arduino.cc/en/Reference/LiquidCrystal>`__
 - :ghedit:`Edit`
-
-.. disqus::

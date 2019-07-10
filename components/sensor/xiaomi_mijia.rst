@@ -83,6 +83,10 @@ the process by pressing the grey bluetooth button on the back of the device.
 Then just copy the address (``7A:80:8E:19:36:BA``) into a new ``sensor.xiaomi_mijia`` platform entry like
 in the configuration example at the top.
 
+.. note::
+
+    The ESPHome Xiaomi integration listens passively to packets the xiaomi device sends by itself.
+    ESPHome therefore has no impact on the battery life of the device.
 
 See Also
 --------
@@ -90,10 +94,8 @@ See Also
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/xiaomi_miflora`
 - :doc:`/components/sensor/index`
-- :apiref:`esp32_ble_tracker.h`
+- :apiref:`xiaomi_mijia/xiaomi_mijia.h`
 - `Xiaomi Mijia BLE protocol <https://github.com/mspider65/Xiaomi-Mijia-Bluetooth-Temperature-and-Humidity-Sensor>`__
   by `@mspider65 <https://github.com/mspider65>`__
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`
-
-.. disqus::

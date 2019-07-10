@@ -55,28 +55,11 @@ Configuration variables:
     - 4
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **min_value** (*Optional*, int): The minimum value this rotary encoder will go to, turning
+  the knob further will not decrease the number. Defaults to no minimum.
+- **max_value** (*Optional*, int): The maximum value this rotary encoder will go to, turning
+  the knob further will not increase the number. Defaults to no maximum.
 - All other options from :ref:`Sensor <config-sensor>`.
-
-Debouncing Output
------------------
-
-This sensor can output a lot of values in a short period of time when turning the knob.
-In order to not put too much stress on your network connection, you can leverage ESPHome's
-sensor filters. The following will only send out values if the last input value is at least
-0.1s seconds old *or* if the new rotary encoder value has changed by 10 from the previous value.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    sensor:
-      - platform: rotary_encoder
-        name: "Rotary Encoder"
-        pin_a: D1
-        pin_b: D2
-        filters:
-          - or:
-            - debounce: 0.1s
-            - delta: 10
 
 See Also
 --------
@@ -85,7 +68,5 @@ See Also
 - :doc:`pulse_counter`
 - :doc:`template`
 - `Mechanical Input Library <https://github.com/jkDesignDE/MechInputs>`__ by `Jochen Krapf <https://github.com/JK-de>`__
-- :apiref:`sensor/rotary_encoder.h`
+- :apiref:`rotary_encoder/rotary_encoder.h`
 - :ghedit:`Edit`
-
-.. disqus::

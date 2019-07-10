@@ -69,7 +69,5 @@ See Also
 --------
 
 - :doc:`output/index`
-- :apiref:`power_supply_component.h`
+- :apiref:`power_supply/power_supply.h`
 - :ghedit:`Edit`
-
-.. disqus::

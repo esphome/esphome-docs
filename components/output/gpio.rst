@@ -40,7 +40,5 @@ See Also
 - :doc:`/components/light/binary`
 - :doc:`/components/fan/binary`
 - :doc:`/components/power_supply`
-- :apiref:`output/gpio_binary_output_component.h`
+- :apiref:`gpio/output/gpio_binary_output.h`
 - :ghedit:`Edit`
-
-.. disqus::

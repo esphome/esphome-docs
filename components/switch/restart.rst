@@ -31,7 +31,5 @@ See Also
 
 - :doc:`shutdown`
 - :doc:`template`
-- :apiref:`switch_/restart_switch.h`
+- :apiref:`restart/restart_switch.h`
 - :ghedit:`Edit`
-
-.. disqus::

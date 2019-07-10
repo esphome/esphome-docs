@@ -45,7 +45,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`spi_component.h`
+- :apiref:`spi/spi.h`
 - :ghedit:`Edit`
-
-.. disqus::

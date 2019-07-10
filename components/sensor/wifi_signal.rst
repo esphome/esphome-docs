@@ -42,7 +42,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`/components/wifi`
-- :apiref:`sensor/wifi_signal_sensor.h`
+- :apiref:`wifi_signal/wifi_signal_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

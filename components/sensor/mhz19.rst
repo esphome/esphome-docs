@@ -72,7 +72,5 @@ See Also
 
 - :ref:`sensor-filters`
 - `MH-Z19 library <https://github.com/nara256/mhz19_uart>`__ by `@nara356 <https://github.com/nara256>`__
-- :apiref:`sensor/mhz19_component.h`
+- :apiref:`mhz19/mhz19.h`
 - :ghedit:`Edit`
-
-.. disqus::

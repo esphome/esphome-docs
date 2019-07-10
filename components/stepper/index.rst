@@ -11,6 +11,11 @@ Currently only the A4988 stepper driver
 (`datasheet <https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf>`__)
 and ULN2003 (`datasheet <http://www.ti.com/lit/ds/symlink/uln2003a.pdf>`__) are supported.
 
+.. note::
+
+    This component will not show up in the Home Assistant front-end automatically because
+    Home Assistant doesn't have support for steppers. Please see :ref:`stepper-ha-config`.
+
 A4988 Configuration
 -------------------
 
@@ -133,16 +138,22 @@ Configuration options:
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
 
-.. note::
+.. warning::
 
-    This action can also be expressed as a :ref:`lambda <config-lambda>`:
+    This turns the stepper to an absolute position! To have the servo move *relative* to the current
+    position, first reset the current position and then set the target to the relative value.
 
-    .. code-block:: cpp
+    .. code-block:: yaml
 
-        id(my_stepper).set_target(250);
-
-        // Get the currently set target position:
-        int target = id(my_stepper).target_position;
+        on_...:
+          then:
+            # Move 150 steps forward
+            - stepper.report_position:
+                id: my_stepper
+                position: 0
+            - stepper.set_target:
+                id: my_stepper
+                target: 150
 
 .. _stepper-report_position_action:
 
@@ -184,21 +195,115 @@ Configuration options:
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
 
-.. note::
+.. _stepper-set_speed_action:
 
-    This action can also be expressed as a :ref:`lambda <config-lambda>`:
+``stepper.set_speed`` Action
+----------------------------
+
+This :ref:`Action <config-action>` allows you to set the speed of a stepper at runtime.
+
+.. code-block:: yaml
+
+    on_...:
+      - stepper.set_speed:
+          id: my_stepper
+          speed: 250 steps/s
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **speed** (**Required**, :ref:`templatable <config-templatable>`, float): The speed
+  in ``steps/s`` (steps per seconds) to drive the stepper at.
+
+.. _stepper-ha-config:
+
+Home Assistant Configuration
+----------------------------
+
+This component will not show up in the Home Assistant frontend automatically because Home Assistant
+does not support steppers natively (raise this issue in Home Assistant forums to make this a
+higher priority for Home Assistant). You can add this to your Home Assistant configuration to
+be able to control the stepper from the frontend.
+
+.. code-block:: yaml
+
+    # Home Assistant configuration
+    input_number:
+      stepper_control:
+        name: Stepper Control
+        initial: 0
+        min: -1000
+        max: 1000
+        step: 1
+        mode: slider
+
+    automation:
+      - alias: Write Stepper Value to ESP
+        trigger:
+          platform: state
+          entity_id: input_number.stepper_control
+        action:
+          # Replace livingroom with the name you gave the ESP
+          - service: esphome.livingroom_control_stepper
+            data_template:
+              target: '{{ trigger.to_state.state | int }}'
+
+.. code-block:: yaml
+
+    # ESPHome configuration
+    api:
+      services:
+        - service: control_stepper
+          variables:
+            target: int
+          then:
+            - stepper.set_target:
+                id: my_stepper
+                target: !lambda 'return target;'
+
+    stepper:
+      - platform: ...
+        # [...] stepper config
+        id: my_stepper
+
+.. _stepper-lambda_calls:
+
+lambda calls
+------------
+
+From :ref:`lambdas <config-lambda>`, you can call several methods on stepper motors to do some
+advanced stuff (see the full API Reference for more info).
+
+- ``set_target``: Set the target postion of the motor as an integer.
 
     .. code-block:: cpp
 
+        // Argument is integer (signed int)
+        // Set the (absolute) target position to 250 steps
+        id(my_stepper).set_target(250);
+
+- ``report_position``: Report the current postion as an integer.
+
+    .. code-block:: cpp
+
+        // Report the (absolute) current position as 250 steps
         id(my_stepper).report_position(250);
 
-        // Get the current position:
+- ``current_postion``: Get the current postion of the stepper as an integer.
+
+    .. code-block:: cpp
+
         int pos = id(my_stepper).current_position;
+
+
+- ``target_position``: Get the set target postion of the stepper  as an integer.
+
+    .. code-block:: cpp
+
+        int pos = id(my_stepper).target_position;
 
 See Also
 --------
 
 - :apiref:`stepper/stepper.h`
 - :ghedit:`Edit`
-
-.. disqus::

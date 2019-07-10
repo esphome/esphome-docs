@@ -271,7 +271,7 @@ in Home Assistant, replace the last part with this:
           number: GPIO13
           inverted: True
       # Note: do *not* make the relay a dimmable (PWM) signal, relays cannot handle that
-      - platform: binary
+      - platform: gpio
         id: s20_relay
         pin: GPIO12
 
@@ -317,5 +317,3 @@ See Also
 - :doc:`sonoff`
 - :doc:`sonoff_4ch`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -29,7 +29,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :ref:`automation`
-- :apiref:`text_sensor/homeassistant_text_sensor.h`
+- :apiref:`homeassistant/text_sensor/homeassistant_text_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

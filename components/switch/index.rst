@@ -93,6 +93,8 @@ This :ref:`Condition <config-condition>` checks if the given switch is ON (or OF
           # Same syntax for is_off
           switch.is_on: my_switch
 
+.. _switch-lambda_calls:
+
 lambda calls
 ************
 
@@ -119,14 +121,14 @@ advanced stuff (see the full API Reference for more info).
         // Switch is OFF, do something else here
       }
 
-- ``turn_off()``/``turn_on``: Manually turn the switch ON/OFF from code.
+- ``turn_off()``/``turn_on()``: Manually turn the switch ON/OFF from code.
   Similar to the ``switch.turn_on`` and ``switch.turn_off`` actions,
   but can be used in complex lambda expressions.
 
   .. code-block:: yaml
 
       id(my_switch).turn_off();
-      id(my_switch).turn_on(true);
+      id(my_switch).turn_on();
       // Toggle the switch
       id(my_switch).toggle();
 
@@ -170,7 +172,7 @@ ON/OFF itself).
 See Also
 --------
 
-- :apiref:`switch_/switch.h`
+- :apiref:`switch/switch.h`
 - :ghedit:`Edit`
 
 .. toctree::
@@ -178,5 +180,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

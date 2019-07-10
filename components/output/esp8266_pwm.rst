@@ -34,6 +34,27 @@ Configuration variables:
   have more visual artifacts, but can represent much more colors. Defaults to ``1000 Hz``.
 - All other options from :ref:`Output <config-output>`.
 
+.. _output-esp8266_pwm-set_frequency_action:
+
+``output.esp8266_pwm.set_frequency`` Action
+-------------------------------------------
+
+This :ref:`Action <config-action>` allows you to manually change the frequency of an ESP8266 PWM
+channel at runtime. Use cases include controlling a passive buzzer (for pitch control).
+
+.. code-block:: yaml
+
+    on_...:
+      - output.esp8266_pwm.set_frequency:
+          id: pwm_output
+          frequency: 100Hz
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the PWM output to change.
+- **frequency** (**Required**, :ref:`templatable <config-templatable>`, float): The frequency
+  to set in hertz.
+
 See Also
 --------
 
@@ -42,7 +63,5 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`output/esp8266_pwm_output.h`
+- :apiref:`esp8266_pwm/esp8266_pwm.h`
 - :ghedit:`Edit`
-
-.. disqus::

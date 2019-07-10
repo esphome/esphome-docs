@@ -21,9 +21,9 @@ as a cover and can be controlled through the frontend.
         name: "Template Cover"
         lambda: |-
           if (id(top_end_stop).state) {
-            return cover::COVER_OPEN;
+            return COVER_OPEN;
           } else {
-            return cover::COVER_CLOSED;
+            return COVER_CLOSED;
           }
         open_action:
           - switch.turn_on: open_cover_switch
@@ -36,8 +36,8 @@ as a cover and can be controlled through the frontend.
 
 Possible return values for the optional lambda:
 
- - ``return cover::COVER_OPEN;`` if the cover should be reported as OPEN.
- - ``return cover::COVER_CLOSED;`` if the cover should be reported as CLOSED.
+ - ``return COVER_OPEN;`` if the cover should be reported as OPEN.
+ - ``return COVER_CLOSED;`` if the cover should be reported as CLOSED.
  - ``return {};`` if the last state should be repeated.
 
 Configuration variables:
@@ -50,7 +50,8 @@ Configuration variables:
   be performed when the remote (like Home Assistant's frontend) requests the cover to be opened.
 - **close_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed.
-- **stop_action** (*Optional*, :ref:`Action <config-action>`):
+- **stop_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when the remote requests the cover to be stopped.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the template cover will immediately update the reported state and no lambda
   needs to be used. Defaults to ``false``.
@@ -58,13 +59,7 @@ Configuration variables:
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
   of hiding one of them. Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-
-Advanced options:
-
-- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
-  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
-  a ``name`` will implicitly set this to true.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Cover <config-cover>`.
 
 .. _cover-template-publish_action:
 
@@ -91,13 +86,17 @@ with the ``cover.template.publish`` action.
       # Templated
       - cover.template.publish:
           id: template_cov
-          state: !lambda 'return cover::COVER_OPEN;'
+          state: !lambda 'return COVER_OPEN;'
 
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the template cover.
-- **state** (**Required**, :ref:`templatable <config-templatable>`):
-  The state to publish. One of ``OPEN``, ``CLOSED``.
+- **state** (*Optional*, :ref:`templatable <config-templatable>`):
+  The state to publish. One of ``OPEN``, ``CLOSED``. If using a lambda, use ``COVER_OPEN`` or ``COVER_CLOSED``.
+- **position** (*Optional*, :ref:`templatable <config-templatable>`, float):
+  The position to publish, from 0.0 (CLOSED) to 1.0 (OPEN)
+- **current_operation** (*Optional*, :ref:`templatable <config-templatable>`, string):
+  The current operation mode to publish. One of ``IDLE``, ``OPENING`` and ``CLOSING``. If using a lambda, use ``COVER_OPERATION_IDLE``, ``COVER_OPERATION_OPENING``, and ``COVER_OPERATION_CLOSING``.
 
 .. note::
 
@@ -105,7 +104,8 @@ Configuration options:
 
     .. code-block:: cpp
 
-        id(template_cov).publish_state(cover::COVER_OPEN);
+        id(template_cov).position = COVER_OPEN;
+        id(template_cov).publish_state();
 
 See Also
 --------
@@ -113,7 +113,5 @@ See Also
 - :doc:`/components/cover/index`
 - :ref:`automation`
 - :doc:`/cookbook/garage-door`
-- :apiref:`cover/template_cover.h`
+- :apiref:`template/cover/template_cover.h`
 - :ghedit:`Edit`
-
-.. disqus::

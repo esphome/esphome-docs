@@ -62,6 +62,42 @@ In :ref:`Lambdas <config-lambda>` you can get the value from the trigger with ``
 
 Configuration variables: See :ref:`Automation <automation>`.
 
+.. _text_sensor-state_condition:
+
+``text_sensor.state`` Condition
+-------------------------------
+
+This :ref:`Condition <config-condition>` allows you to check if a given text sensor
+has a specific state.
+
+.. code-block:: yaml
+
+    on_...:
+      - if:
+          condition:
+            # Checks if "my_text_sensor" has state "Hello World"
+            text_sensor.state:
+              id: my_text_sensor
+              state: 'Hello World'
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The text sensor ID.
+- **state** (**Required**, :ref:`templatable <config-templatable>`, string): The state to compare
+  to.
+
+.. note::
+
+    This condition can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        if (id(my_text_sensor).state == "Hello World") {
+          // do something
+        }
+
+.. _text_sensor-lambda_calls:
+
 lambda calls
 ************
 
@@ -94,5 +130,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

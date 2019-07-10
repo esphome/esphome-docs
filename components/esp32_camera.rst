@@ -1,0 +1,201 @@
+ESP32 Camera Component
+======================
+
+.. seo::
+    :description: Instructions for setting up the ESP32 Cameras in ESPHome
+    :image: camera.png
+
+The ``esp32_camera`` component allows you to use ESP32-based camera boards in ESPHome that
+directly integrate into Home Assistant through the native API.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      name: My Camera
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+      resolution: 640x480
+      jpeg_quality: 10
+
+Configuration variables:
+------------------------
+
+- **name** (**Required**, string): The name of the camera.
+
+Connection Options:
+
+- **data_pins** (**Required**, list of pins): The data lanes of the camera, this must be a list
+  of 8 gpio pins.
+- **vsync_pin** (**Required**, pin): The pin the VSYNC line of the camera is connected to.
+- **href_pin** (**Required**, pin): The pin the HREF line of the camera is connected to.
+- **pixel_clock_pin** (**Required**, pin): The pin the pixel clock line of the camera is connected to.
+- **external_clock** (**Required**): The configuration of the external clock to drive the camera.
+
+  - **pin** (**Required**, pin): The pin the external clock line is connected to.
+  - **frequency** (*Optional*, float): The frequency of the external clock, must be either 20MHz
+    or 10MHz. Defaults to ``20MHz``.
+
+- **i2c_pins** (**Required**): The i2c control pins of the camera.
+
+  - **sda** (**Required**, pin): The SDA pin of the i2c interface. Also called ``SIOD``.
+  - **scl** (**Required**, pin): The SCL pin of the i2c interface. Also called ``SIOC``.
+
+- **reset_pin** (*Optional*, pin): The ESP pin the reset pin of the camera is connected to.
+  If set, this will reset the camera before the ESP boots.
+- **power_down_pin** (*Optional*, pin): The ESP pin to power down the camera.
+  If set, this will power down the camera while it is inactive.
+- **test_pattern** (*Optional*, boolean): When enabled, the camera will show a test pattern
+  that can be used to debug connection issues.
+
+Frame Settings:
+
+- **max_framerate** (*Optional*, float): The maximum framerate the camera will generate images at.
+  Up to 60Hz is possible (with reduced frame sizes), but beware of overheating. Defaults to ``10 fps``.
+- **idle_framerate** (*Optional*, float): The framerate to capture images at when no client
+  is requesting a full stream. Defaults to ``0.1 fps``.
+- **resolution** (*Optional*, enum): The resolution the camera will capture images at. Higher
+  resolutions require more memory, if there's not enough memory you will see an error during startup.
+
+    - ``160x120`` (QQVGA)
+    - ``128x160`` (QQVGA2)
+    - ``176x144`` (QCIF)
+    - ``240x176`` (HQVGA)
+    - ``320x240`` (QVGA)
+    - ``400x296`` (CIF)
+    - ``640x480`` (VGA, default)
+    - ``800x600`` (SVGA)
+    - ``1024x768`` (XGA)
+    - ``1280x1024`` (SXGA)
+    - ``1600x1200`` (UXGA)
+
+- **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
+  From 10 to 63. Defaults to ``10``.
+
+- **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
+- **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
+- **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
+- **vertical_flip** (*Optional*, bool): Whether to flip the image vertically. Defaults to ``true``.
+- **horizontal_mirror** (*Optional*, bool): Whether to mirror the image horizontally. Defaults to ``true``.
+
+.. note::
+
+    The camera integration in Home Assistant isn't in stable or beta HA builds, so until 0.91
+    ships or goes into beta you will need to use a development version of Home Assistant.
+
+Configuration for Ai-Thinker Camera
+-----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO0
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO26
+        scl: GPIO27
+      data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+      vsync_pin: GPIO25
+      href_pin: GPIO23
+      pixel_clock_pin: GPIO22
+      power_down_pin: GPIO32
+
+      # Image settings
+      name: My Camera
+      # ...
+
+Configuration for M5Stack Camera
+--------------------------------
+
+.. warning::
+
+    This camera board has insufficient cooling and will overheat over time,
+    ESPHome does only activate the camera when Home Assistant requests an image, but
+    the camera unit can still heat up considerably for some boards.
+
+    If the camera is not recognized after a reboot and the unit feels warm, try waiting for
+    it to cool down and check again - if that still doesn't work try enabling the test pattern.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+
+      # Image settings
+      name: My Camera
+      # ...
+
+
+Configuration for Wrover Kit Boards
+-----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO21
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO26
+        scl: GPIO27
+      data_pins: [GPIO4, GPIO5, GPIO18, GPIO19, GPIO36, GPIO39, GPIO34, GPIO35]
+      vsync_pin: GPIO25
+      href_pin: GPIO23
+      pixel_clock_pin: GPIO22
+
+      # Image settings
+      name: My Camera
+      # ...
+
+Configuration for TTGO T-Camera
+-------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO32
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO13
+        scl: GPIO12
+      data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+      vsync_pin: GPIO27
+      href_pin: GPIO25
+      pixel_clock_pin: GPIO19
+      power_down_pin: GPIO26
+
+      # Image settings
+      name: My Camera
+      # ...
+
+
+See Also
+--------
+
+- :apiref:`esp32_camera/esp32_camera.h`
+- :ghedit:`Edit`

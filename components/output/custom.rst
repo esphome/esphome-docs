@@ -14,7 +14,7 @@ same as the :doc:`ESP8266 software PWM output </components/output/esp8266_pwm>`.
     #include "esphome.h"
     using namespace esphome;
 
-    class MyCustomFloatOutput : public Component, public output::FloatOutput {
+    class MyCustomFloatOutput : public Component, public FloatOutput {
      public:
       void setup() override {
         // This will be called by App.setup()
@@ -30,7 +30,7 @@ same as the :doc:`ESP8266 software PWM output </components/output/esp8266_pwm>`.
     };
 
     // Custom binary output, for exposing binary states
-    class MyCustomBinaryOutput : public Component, public output::BinaryOutput {
+    class MyCustomBinaryOutput : public Component, public BinaryOutput {
      public:
       void setup() override {
         // This will be called by App.setup()
@@ -84,11 +84,9 @@ Configuration variables:
 
     - All options from :ref:`Output <config-output>`.
 
-See :cpp:class:`output::BinaryOutput` and :cpp:class`output::FloatOutput`.
+See :apiclass:`output::BinaryOutput` and :apiclass:`output::FloatOutput`.
 
 See Also
 --------
 
 - :ghedit:`Edit`
-
-.. disqus::

@@ -88,8 +88,6 @@ See Also
 - :doc:`bme280`
 - :doc:`bme680`
 - :doc:`bmp085`
-- :apiref:`sensor/bmp280_component.h`
+- :apiref:`bmp280/bmp280.h`
 - `BMP280 Library <https://github.com/adafruit/Adafruit_BMP280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`
-
-.. disqus::

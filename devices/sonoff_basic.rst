@@ -38,9 +38,9 @@ exposes all of the basic functions.
 ================================================== ==================================================
 ``GPIO0``                                          Button (inverted)
 -------------------------------------------------- --------------------------------------------------
-``GPIO1``                                          ``RX`` pin (C1 Pin 2)
+``GPIO1``                                          ``TX`` pin (C1 Pin 2)
 -------------------------------------------------- --------------------------------------------------
-``GPIO3``                                          ``TX`` pin (C1 Pin 3)
+``GPIO3``                                          ``RX`` pin (C1 Pin 3)
 -------------------------------------------------- --------------------------------------------------
 ``GPIO12``                                         Relay
 -------------------------------------------------- --------------------------------------------------
@@ -271,5 +271,3 @@ See Also
 - :doc:`sonoff_s20`
 - `GPIO locations <https://github.com/arendst/Sonoff-Tasmota/wiki/GPIO-Locations>`__
 - `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__
-
-.. disqus::

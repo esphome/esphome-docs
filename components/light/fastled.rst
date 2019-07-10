@@ -46,23 +46,9 @@ Configuration variables:
 - **max_refresh_rate** (*Optional*, :ref:`config-time`):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to the default value for the used chipset.
-- **gamma_correct** (*Optional*, float): The `gamma correction
-  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the
-  light. Defaults to ``2.8``.
-- **color_correct** (*Optional*, list of percentages): The color correction for each channel. This denotes
-  the maximum brightness of the red, green and blue channel. Defaults to ``color_correct: [100%, 100%, 100%]``.
-- **default_transition_length** (*Optional*, :ref:`config-time`): The length of
-  the transition if no transition parameter is provided by Home
-  Assistant. Defaults to ``1s``.
-- **power_supply** (*Optional*, :ref:`config-id`): The :doc:`/components/power_supply` to connect to
-  this light. When the light is turned on, the power supply will automatically be switched on too.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-
-- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
-  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
-  a ``name`` will implicitly set this to true.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Light <config-light>`.
 
 .. _fastled_clockless-chipsets:
 
@@ -137,21 +123,9 @@ Configuration variables:
 - **max_refresh_rate** (*Optional*, :ref:`config-time`):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to the default value for the used chipset.
-- **gamma_correct** (*Optional*, float): The `gamma correction
-  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the light. Defaults to ``2.8``.
-- **color_correct** (*Optional*, list of percentages): The color correction for each channel. This denotes
-  the maximum brightness of the red, green and blue channel. Defaults to ``color_correct: [100%, 100%, 100%]``.
-- **default_transition_length** (*Optional*, :ref:`config-time`): The length of
-  the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
-- **power_supply** (*Optional*, :ref:`config-id`): The :doc:`/components/power_supply` to connect to
-  this light. When the light is turned on, the power supply will automatically be switched on too.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-
-- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
-  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
-  a ``name`` will implicitly set this to true.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Light <config-light>`.
 
 .. _fastled_spi-chipsets:
 
@@ -172,8 +146,6 @@ See Also
 
 - :doc:`/components/light/index`
 - :doc:`/components/power_supply`
-- :apiref:`light/fastled_light_output.h`
+- :apiref:`fastled_base/fastled_light.h`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - :ghedit:`Edit`
-
-.. disqus::

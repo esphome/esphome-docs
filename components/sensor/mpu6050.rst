@@ -78,8 +78,6 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`template`
 - :doc:`ultrasonic`
-- :apiref:`sensor/mpu6050_component.h`
+- :apiref:`mpu6050/mpu6050.h`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`
-
-.. disqus::

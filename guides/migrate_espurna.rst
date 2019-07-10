@@ -60,5 +60,3 @@ See Also
 - :doc:`migrate_espeasy`
 - :doc:`migrate_sonoff_tasmota`
 - :ghedit:`Edit`
-
-.. disqus::

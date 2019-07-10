@@ -10,6 +10,8 @@ the Home Assistant frontend. A fan can be switched ON or OFF, optionally
 has a speed setting (``LOW``, ``MEDIUM``, ``HIGH``) and can have an
 oscillate output.
 
+This component restores its state on reboot/reset.
+
 .. figure:: images/fan-ui.png
     :align: center
     :width: 70.0%
@@ -93,7 +95,7 @@ Configuration options:
   Set the oscillation state of the fan. Defaults to not affecting oscillation.
 - **speed** (*Optional*, string, :ref:`templatable <config-templatable>`):
   Set the speed setting of the fan. One of ``OFF``, ``LOW``, ``MEDIUM``, ``HIGH``.
-  If you template this value, return ``fan::FAN_SPEED_...``, for example ``fan::FAN_SPEED_HIGH``.
+  If you template this value, return ``FAN_SPEED_...``, for example ``FAN_SPEED_HIGH``.
 
 Full Fan Index
 --------------
@@ -106,5 +108,3 @@ Full Fan Index
     :glob:
 
     *
-
-.. disqus::

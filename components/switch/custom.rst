@@ -13,10 +13,8 @@ same as the gpio switch implementation.
 .. code-block:: cpp
 
     #include "esphome.h"
-    using namespace esphome;
 
-    // namespace is called 'switch_' because 'switch' is a reserved keyword
-    class MyCustomSwitch : public Component, public switch_::Switch {
+    class MyCustomSwitch : public Component, public Switch {
      public:
       void setup() override {
         // This will be called by App.setup()
@@ -62,11 +60,9 @@ Configuration variables:
 
   - All options from :ref:`Switch <config-switch>`.
 
-See :cpp:class:`switch_::Switch`
+See :apiclass:`Switch <switch_::Switch>`
 
 See Also
 --------
 
 - :ghedit:`Edit`
-
-.. disqus::

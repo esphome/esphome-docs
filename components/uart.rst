@@ -68,11 +68,31 @@ The ESP8266 has two UARTs; the second of which is TX-only. Only a limited set of
 use either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``, or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``. ``UART1`` must
 use ``tx_pin: GPIO2``. Any other combination of pins will result in use of a software UART.
 
+.. _uart-write_action:
+
+``uart.write`` Action
+---------------------
+
+This :ref:`Action <config-action>` sends a defined UART signal to the given UART bus.
+
+.. code-block:: yaml
+
+    on_...:
+      - uart.write: 'Hello World'
+
+      # For escape characters, you must use double quotes!
+      - uart.write: 'Hello World\r\n'
+
+      # Raw data
+      - uart.write: [0x00, 0x20, 0x42]
+
+      # Templated, return type is std::vector<uint8_t>
+      - uart.write: !lambda
+          return {0x00, 0x20, 0x42};
+
 See Also
 --------
 
 - :doc:`/components/logger`
-- :apiref:`uart_component.h`
+- :apiref:`uart/uart.h`
 - :ghedit:`Edit`
-
-.. disqus::

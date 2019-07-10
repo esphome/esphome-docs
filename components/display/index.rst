@@ -374,13 +374,13 @@ different content, and switch between them on a timer.
 
 You can then switch between these with three different actions:
 
-**show_next** / **show_prev**: Shows the next or previous page, wraps around at the end.
+**show_next** / **show_previous**: Shows the next or previous page, wraps around at the end.
 
 .. code-block:: yaml
 
     on_...:
       - display.page.show_next: my_display
-      - display.page.show_prev: my_display
+      - display.page.show_previous: my_display
 
     # For example cycle through pages on a timer
     interval:
@@ -421,7 +421,7 @@ You can then switch between these with three different actions:
 See Also
 --------
 
-- :apiref:`display/display.h`
+- :apiref:`display/display_buffer.h`
 - :ghedit:`Edit`
 
 .. toctree::
@@ -429,5 +429,3 @@ See Also
     :glob:
 
     *
-
-.. disqus::

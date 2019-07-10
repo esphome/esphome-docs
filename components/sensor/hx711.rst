@@ -51,12 +51,13 @@ Converting Units
 As the HX711 does not have any calibration data, you have to convert the measurement to units yourself.
 To calibrate the sensor:
 
-1. Place nothing or a known mass on the sensor, for example ``0kg``
+1. Place a zero load or a known mass on the sensor, for example ``0kg``
 2. Wait for the data to arrive in the logs and write down the value. For example ``120``.
 3. Place another (different) known mass on the sensor, for example ``1kg``
 4. Again wait for the data to arrive and note the value, for example ``810``.
 
-Once you've done those steps, you can use the ``map`` function to map the incoming value to the calibrated one:
+Once you've done those steps, you can use the ``calibrate_linear`` filter to map the incoming value
+to the calibrated one:
 
 .. code-block:: yaml
 
@@ -65,13 +66,9 @@ Once you've done those steps, you can use the ``map`` function to map the incomi
       - platform: hx711
         # ... Other HX711 options
         filters:
-          - lambda: |-
-              auto first_mass = 0.0; // first known mass was 0kg
-              auto first_value = 120.0; // value for the first known mass was 120
-              auto second_mass = 1.0; // second mass was 1kg
-              auto second_value = 810.0; // second value was 810
-
-              return map(x, first_value, second_value, first_mass, second_mass);
+          - calibrate_linear:
+              - 120 -> 0
+              - 810 -> 1
         unit_of_measurement: kg
 
 Replace the masses and values ``120.0``, ``810.0``, etc with your values.
@@ -81,8 +78,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`adc`
-- :apiref:`sensor/hx711.h`
+- :apiref:`hx711/hx711.h`
 - `HX711 Library <https://github.com/bogde/HX711>`__ by `@bogde <https://github.com/bogde>`__
 - :ghedit:`Edit`
-
-.. disqus::

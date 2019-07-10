@@ -10,9 +10,7 @@ ESP8266/ESP32 after a certain amount of time. This is especially useful with nod
 on batteries and therefore need to conserve as much energy as possible.
 
 To use ``deep_sleep`` first specify how long the node should be active, i.e. how long it should
-check sensor values and report them, using the ``run_duration`` options. If you
-use both in your configuration, any time either one of them is finished, the node will go into deep
-sleep mode.
+check sensor values and report them, using the ``run_duration`` option.
 
 Next, tell the node how it should wakeup. On the ESP8266, you can only put the node into deep sleep
 for a duration using ``sleep_duration``, note that on the ESP8266 ``GPIO16`` must be connected to
@@ -128,7 +126,5 @@ See Also
 
 - :doc:`switch/shutdown`
 - :ref:`automation`
-- :apiref:`deep_sleep_component.h`
+- :apiref:`deep_sleep/deep_sleep_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

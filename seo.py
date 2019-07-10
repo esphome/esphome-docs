@@ -126,4 +126,6 @@ def setup(app):
     app.add_node(SEONode, html=(seo_visit, seo_depart))
     app.add_directive('redirect', RedirectDirective)
     app.add_node(RedirectNode, html=(redirect_visit, redirect_depart))
-    return {'version': '1.0'}
+    return {"version": "1.0.0",
+            "parallel_read_safe": True,
+            "parallel_write_safe": True}

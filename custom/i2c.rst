@@ -11,7 +11,6 @@ them publish values.
 .. code-block:: cpp
 
     #include "esphome.h"
-    using namespace esphome;
 
     class MyCustomComponent : public Component {
      public:
@@ -34,5 +33,3 @@ See Also
 --------
 
 - :ghedit:`Edit`
-
-.. disqus::

@@ -70,8 +70,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`ina3221`
-- :apiref:`sensor/ina219.h`
+- :apiref:`ina219/ina219.h`
 - `INA291 Arduino Library <https://github.com/adafruit/Adafruit_INA219>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`
-
-.. disqus::

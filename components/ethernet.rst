@@ -87,7 +87,5 @@ Configuration for Olimex ESP32-POE
 See Also
 --------
 
-- :apiref:`wifi_component.h`
+- :apiref:`ethernet/ethernet_component.h`
 - :ghedit:`Edit`
-
-.. disqus::

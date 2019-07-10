@@ -46,7 +46,10 @@ I can't get flashing over USB to work.
 --------------------------------------
 
 ESPHome depends on the operating system the tool is running on to recognize
-the ESP. This can sometimes fail (driver missing, inside docker container, ...).
+the ESP. This can sometimes fail. Common causes are that you did not install
+the drivers (see note below) or you are trying to upload from a Docker container
+and did not mount the ESP device into your container using ``--device=/dev/ttyUSB0``.
+
 Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
@@ -87,7 +90,7 @@ That's no good. Here are some steps that resolve some problems:
 
 -  **If you're having WiFi problems**: See :ref:`wifi-problems`.
 -  Enable verbose logs in the logger: section.
--  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/OttoWinter/ESPHome/issues>`__.
+-  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/esphome/issues>`__.
    I will take a look at it as soon as I can. Thanks!
 
 .. _faq-bug_report:
@@ -103,14 +106,13 @@ great way for me to track and (hopefully) fix issues, so thank you!
 For me to fix the issue the quickest, there are some things that would be really helpful:
 
 1.  **Just writing "X doesn't work" or "X gives bug" is not helpful!!!** Seriously, how do you expect
-    me to help given just that information?
-2.  A snippet of the code/configuration file used is always great for me to reproduce this issue.
+    help given just that information?
+2.  A snippet of the code/configuration file used is always great to reproduce this issue.
     Please read `How to create a Minimal, Complete, and Verifiable example <https://stackoverflow.com/help/mcve>`__.
 3.  If it's an i2c or hardware communication issue please also try setting the
     :ref:`log level <logger-log_levels>` to ``VERY_VERBOSE`` as it provides helpful information
     about what is going on.
-4.  Please also include what you've already tried and didn't work so that these things can
-    be
+4.  Please also include what you've already tried and didn't work as that can help us track down the issue.
 
 You can find the issue tracker here https://github.com/esphome/issues
 
@@ -188,7 +190,7 @@ I have a question... How can I contact you?
 Sure! I'd be happy to help :) You can contact me here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/t/ESPHome-library-to-greatly-simplify-home-assistant-integration-with-esp32/402452>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
@@ -246,6 +248,9 @@ Command reference:
     # Start dashboard on port 6052
     docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
 
+    # Setup a bash alias:
+    alias esphome='docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome'
+
 And a docker compose file looks like this:
 
 .. code-block:: yaml
@@ -257,6 +262,8 @@ And a docker compose file looks like this:
         image: esphome/esphome
         volumes:
           - ./:/config:rw
+          # Use local time for logging timestamps
+          - /etc/localtime:/etc/localtime:ro
         network_mode: host
         restart: always
 
@@ -273,11 +280,19 @@ And a docker compose file looks like this:
     1. Enable Avahi on both subnets.
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
+Can Configuration Files Be Recovered From The Device?
+-----------------------------------------------------
+
+If you lost your ESPHome YAML configuration files, there's no way to recover them.
+The configuration is *not* stored on the device directly - only the generated firmware is on
+the device itself (technically, the configuration can be reverse-engineered from that, but only
+with a lot of work).
+
+Always back up all your files!
+
 See Also
 --------
 
 - :doc:`ESPHome index </index>`
 - :doc:`contributing`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -37,47 +37,30 @@ ESPHome uses Home Assistant's cover architecture model which has two states: "OP
 
 
     binary_sensor:
-      # The top endstop
       - platform: gpio
         pin: D4
         id: top_endstop
-        on_press:
-          # Acknowledge that the cover is open
-          - cover.template.publish:
-              id: my_cover
-              state: OPEN
-          # Stop the cover motors
-          - cover.stop: my_cover
-
       - platform: gpio
         pin: D5
         id: bottom_endstop
-        on_press:
-          # Acknowledge that the cover is closed
-          - cover.template.publish:
-              id: my_cover
-              state: CLOSED
-          # Stop the cover motors
-          - cover.stop: my_cover
 
     cover:
-      - platform: template
+      - platform: endstop
         name: "My Endstop Cover"
         id: my_cover
         open_action:
           - switch.turn_on: up_pin
-          # Failsafe: Turn off motors after 3min if endstop not reached.
-          - delay: 3 min
-          - cover.stop: my_cover
+        open_duration: 2min
+        open_endstop: top_endstop
+
         close_action:
           - switch.turn_on: down_pin
-          - delay: 3 min
-          - cover.stop: my_cover
+        close_duration: 2min
+        close_endstop: bottom_endstop
         stop_action:
           - switch.turn_off: up_pin
           - switch.turn_off: down_pin
-        optimistic: True
-        assumed_state: True
+        max_duration: 3min
 
 You can then optionally also add manual controls to the cover with three buttons:
 open, close, and stop.
@@ -109,5 +92,3 @@ See Also
 - :doc:`/components/cover/template`
 - :doc:`dual-r2-cover`
 - :ghedit:`Edit`
-
-.. disqus::

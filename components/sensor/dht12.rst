@@ -59,8 +59,6 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`sensor/dht12_component.h`
+- :apiref:`dht12/dht12.h`
 - `DHT12 Library <https://github.com/dplasa/dht>`__ by `Daniel Plasa <https://github.com/dplasa>`__
 - :ghedit:`Edit`
-
-.. disqus::

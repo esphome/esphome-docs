@@ -25,9 +25,9 @@ be travelling a lot (and enjoying my vacation 😎), so don't expect too many aw
 
     Duty Cycle Sensor, components/sensor/duty_cycle, percent.svg
     Pulse Counter for ESP8266, components/sensor/pulse_counter, pulse.svg
-    Remote Transmitter, components/switch/remote_transmitter, remote.svg
+    Remote Transmitter, components/remote_transmitter, remote.svg
 
-    Remote Receiver, components/binary_sensor/remote_receiver, remote.svg
+    Remote Receiver, components/remote_receiver, remote.svg
 
 New Components
 **************
@@ -52,10 +52,10 @@ New Components
   measure how much of the time a specific pin is HIGH or LOW. Can for example be used to detect if a status LED
   on an external device is blinking or permanently on.
 
-- The new :doc:`remote receiver </components/binary_sensor/remote_receiver>` and
-  :doc:`remote transmitter </components/switch/remote_transmitter>` components now allows you to use any 433MHz
+- The new :doc:`remote receiver </components/remote_receiver>` and
+  :doc:`remote transmitter </components/remote_transmitter>` components now allows you to use any 433MHz
   receivers and senders with ESPHome. Currently, you will need to use the ``raw`` data as described in
-  :ref:`this guide <finding_remote_codes>`, but in the future more protocols will be supported out of the box.
+  this guide, but in the future more protocols will be supported out of the box.
 
 New Features
 ************
@@ -118,7 +118,7 @@ Breaking Changes
 - The ``receive_timeout`` option has been removed from the :doc:`i2c component </components/i2c>` as it
   turns out it didn't actually do anything.
 
-- The ``ir_transmitter`` component has been renamed to :doc:`remote_transmitter </components/switch/remote_transmitter>`
+- The ``ir_transmitter`` component has been renamed to :doc:`remote_transmitter </components/remote_transmitter>`
   as it now works with all kinds of protocols, not just infrared-based ones.
 
 - The ``pull_mode`` option of the :doc:`Pulse Counter </components/sensor/pulse_counter>` has been removed, please
@@ -192,5 +192,3 @@ for using esphomeyaml to create a simple wireless doorbell:
 
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xCQoOZNdaGY"
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-.. disqus::

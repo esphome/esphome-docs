@@ -125,12 +125,6 @@ variable ``output_component1``.
       platform: ESP8266
       board: esp01_1m
 
-      # Ensure the light turns on by default if the physical switch is actuated.
-      on_boot:
-        priority: 100 # Highest priority, ensures light turns on without delay.
-        then:
-          - light.turn_on: light
-
     wifi:
       ssid: 'WIFI'
       password: 'WIFIPASS'
@@ -147,6 +141,9 @@ variable ``output_component1``.
         id: light
         output: output_component1
 
+        # Ensure the light turns on by default if the physical switch is actuated.
+        restore_mode: ALWAYS_ON
+
     output:
       - platform: esp8266_pwm
         id: output_component1
@@ -161,12 +158,6 @@ variable ``output_component1``.
       name: mirabella_genio_cwww_1
       platform: ESP8266
       board: esp01_1m
-
-      # Ensure the light turns on by default if the physical switch is actuated.
-      on_boot:
-        priority: 100 # Highest priority, ensures light turns on without delay.
-        then:
-          - light.turn_on: light
 
     wifi:
       ssid: 'WIFI'
@@ -195,6 +186,9 @@ variable ``output_component1``.
         cold_white_color_temperature: 6500 K
         warm_white_color_temperature: 2700 K
 
+        # Ensure the light turns on by default if the physical switch is actuated.
+        restore_mode: ALWAYS_ON
+
 3.3 RGBW Color Bulbs
 ********************
 
@@ -204,12 +198,6 @@ variable ``output_component1``.
       name: rgbw_e27_01
       platform: ESP8266
       board: esp01_1m
-
-      # Ensure the light turns on by default if the physical switch is actuated.
-      on_boot:
-        priority: 100 # Highest priority, ensures light turns on without delay.
-        then:
-          - light.turn_on: light
 
     wifi:
       ssid: 'WIFI'
@@ -244,6 +232,9 @@ variable ``output_component1``.
         blue: output_blue
         white: output_white
 
+        # Ensure the light turns on by default if the physical switch is actuated.
+        restore_mode: ALWAYS_ON
+
 
 4. Adding to Home Assistant
 ---------------------------
@@ -265,5 +256,3 @@ See Also
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/guides/automations`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -62,7 +62,7 @@ The formula derived from `here <https://github.com/finitespace/BME280/blob/maste
 converts the currently measured pressure to the altitudes in meters including temperature compensation.
 
 The lambda in the second :doc:`/components/sensor/template` defines two physical constants and
-converts the currently measured pressure to absolute humidity (grams/m^3).
+converts the currently measured temperature and relative humidity to absolute humidity (grams/m^3).
 
 .. note::
 
@@ -116,5 +116,3 @@ See Also
 - :doc:`/components/sensor/template`
 - :doc:`/components/sensor/bme280`
 - :ghedit:`Edit`
-
-.. disqus::

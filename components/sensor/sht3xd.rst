@@ -57,7 +57,5 @@ See Also
 - :doc:`dht12`
 - :doc:`hdc1080`
 - :doc:`htu21d`
-- :apiref:`sensor/sht3xd_component.h`
+- :apiref:`sht3xd/sht3xd.h`
 - :ghedit:`Edit`
-
-.. disqus::

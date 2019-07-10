@@ -49,6 +49,12 @@ will connect to the configured WiFi network 🎉
 
 Happy Hacking!
 
+.. note::
+
+    When using the :doc:`esp8266_pwm output </components/output/esp8266_pwm>` platform and
+    switching from Tasmota, you need to power-cycle the device once. After that
+    the dimming functionality will work as usual and no more power cycles are required.
+
 See Also
 --------
 
@@ -62,5 +68,3 @@ See Also
 - :doc:`migrate_espurna`
 - :doc:`migrate_espeasy`
 - :ghedit:`Edit`
-
-.. disqus::

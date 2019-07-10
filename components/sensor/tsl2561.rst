@@ -58,7 +58,5 @@ See Also
 - :doc:`bh1750`
 - :doc:`adc`
 - `SparkFun TSL2561 Arduino Library <https://github.com/sparkfun/SparkFun_TSL2561_Arduino_Library>`__ by `Sparkfun <https://sparkfun.com/>`__
-- :apiref:`sensor/tsl2561_sensor.h`
+- :apiref:`tsl2561/tsl2561.h`
 - :ghedit:`Edit`
-
-.. disqus::

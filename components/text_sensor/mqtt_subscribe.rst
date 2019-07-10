@@ -53,7 +53,5 @@ to use it in ``printf`` expressions.
 See Also
 --------
 
-- :apiref:`text_sensor/mqtt_subscribe_text_sensor.h`
+- :apiref:`mqtt_subscribe/text_sensor/mqtt_subscribe_text_sensor.h`
 - :ghedit:`Edit`
-
-.. disqus::

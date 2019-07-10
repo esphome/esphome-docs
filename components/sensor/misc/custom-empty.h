@@ -2,7 +2,7 @@
 
 using namespace esphome;
 
-class MyCustomSensor : public PollingComponent, public sensor::Sensor {
+class MyCustomSensor : public PollingComponent, public Sensor {
  public:
   MyCustomSensor() : PollingComponent(15000) {}
 

@@ -49,5 +49,3 @@ See Also
 - :doc:`/cookbook/garage-door`
 - `How do relays work <https://www.explainthatstuff.com/howrelayswork.html>`__.
 - :ghedit:`Edit`
-
-.. disqus::

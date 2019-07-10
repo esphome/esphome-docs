@@ -311,7 +311,5 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
 See Also
 --------
 
-- :apiref:`time/rtc_component.h`
+- :apiref:`time/real_time_clock.h`
 - :ghedit:`Edit`
-
-.. disqus::

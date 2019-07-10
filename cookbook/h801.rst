@@ -40,11 +40,11 @@ and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` comp
         frequency: 1000 Hz
         id: pwm_b
       - platform: esp8266_pwm
-        pin: 15
+        pin: 13
         frequency: 1000 Hz
         id: pwm_g
       - platform: esp8266_pwm
-        pin: 13
+        pin: 15
         frequency: 1000 Hz
         id: pwm_r
       - platform: esp8266_pwm
@@ -101,5 +101,3 @@ See Also
 - :doc:`/components/light/rgbw`
 - :doc:`/components/output/esp8266_pwm`
 - :ghedit:`Edit`
-
-.. disqus::

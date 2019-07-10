@@ -64,9 +64,7 @@ Configuration variables:
 See Also
 --------
 
-- :doc:`binary_sensor/esp32_ble_tracker`
-- :apiref:`esp32_ble_tracker.h`
+- :doc:`binary_sensor/ble_presence`
+- :apiref:`esp32_ble_tracker/esp32_ble_tracker.h`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - :ghedit:`Edit`
-
-.. disqus::

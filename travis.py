@@ -103,13 +103,6 @@ for f in sorted(Path('.').glob('**/*.rst')):
                               "{}:{}".format(directive_name, num_indent, f, j+1))
                 break
 
-    # Check line length
-    for i, line in enumerate(lines):
-        max_line_length = 160
-        if len(line) > max_line_length:
-            errors.append("Lines must not be longer than {} characters. Line {}:{} is {} "
-                          "characters long. Please insert newlines."
-                          "".format(max_line_length, f, i+1, len(line)))
 
     for i, line in enumerate(lines):
         if esphome_io_regex.search(line):

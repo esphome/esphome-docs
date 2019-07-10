@@ -55,62 +55,46 @@ for some motors.
         then:
           # logic for cycling through movements: open->stop->close->stop->...
           - lambda: |
-              if (id(cover).state == cover::COVER_OPEN) {
-                if (id(open).state){
-                  // cover is in opening movement, stop it
-                  id(cover).stop();
+              if (id(my_cover).current_operation == COVER_OPERATION_IDLE) {
+                // Cover is idle, check current state and either open or close cover.
+                if (id(my_cover).is_fully_closed()) {
+                  id(my_cover).open();
                 } else {
-                  // cover has finished opening, close it
-                  id(cover).close();
+                  id(my_cover).close();
                 }
               } else {
-                if (id(close).state){
-                  // cover is in closing movement, stop it
-                  id(cover).stop();
-                } else {
-                  // cover has finished closing, open it
-                  id(cover).open();
-                }
+                // Cover is opening/closing. Stop it.
+                id(my_cover).stop();
               }
 
     switch:
     - platform: gpio
       pin: GPIO12
-      id: open
+      interlock: &interlock [open_cover, close_cover]
+      id: open_cover
     - platform: gpio
       pin: GPIO5
-      id: close
+      interlock: *interlock
+      id: close_cover
 
     cover:
-    - platform: template
+    - platform: time_based
       name: "Cover"
-      id: cover
+      id: my_cover
       open_action:
-        # cancel potential previous movement
-        - switch.turn_off: close
-        # perform movement
-        - switch.turn_on: open
-        # wait until cover is open
-        - delay: 60s
-        # turn of relay to prevent keeping the motor powered
-        - switch.turn_off: open
+        - switch.turn_on: open_cover
+      open_duration: 60s
       close_action:
-        - switch.turn_off: open
-        - switch.turn_on: close
-        - delay: 60s
-        - switch.turn_off: close
+        - switch.turn_on: close_cover
+      close_duration: 60s
       stop_action:
-        - switch.turn_off: open
-        - switch.turn_off: close
-      optimistic: True
-      assumed_state: True
+        - switch.turn_off: open_cover
+        - switch.turn_off: close_cover
 
 See Also
 --------
 
 - :doc:`/guides/automations`
-- :doc:`/components/cover/template`
+- :doc:`/components/cover/time_based`
 - :doc:`/devices/sonoff`
 - :ghedit:`Edit`
-
-.. disqus::

@@ -4,7 +4,6 @@
 **Related issue (if applicable):** fixes <link to issue>
 
 **Pull request in [esphome](https://github.com/esphome/esphome) with YAML changes (if applicable):** esphome/esphome#<esphome PR number goes here>
-**Pull request in [esphome-core](https://github.com/esphome/esphome-core) with C++ framework changes (if applicable):** esphome/esphome-core#<esphome-core PR number goes here>
 
 ## Checklist:
 

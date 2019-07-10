@@ -45,7 +45,8 @@ Configuration variables:
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
 - **use_address** (*Optional*, string): Manually override what address to use to connect
-  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the prior configured IP address.
+  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previusly configured IP address.
+
 - **ap** (*Optional*): Enable an access point mode on the node.
 
   - **ssid** (*Required*, string): The name of the access point to create.
@@ -111,6 +112,10 @@ Additionally, this can help with :doc:`Over-The-Air updates <ota>` if for exampl
 home network doesn't allow for ``.local`` addresses. When a manual IP is in your configuration,
 the OTA process will automatically choose that as the target for the upload.
 
+.. note::
+
+    See also :ref:`esphome-changing_node_name`.
+
 .. _wifi-power_save_mode:
 
 Power Save Mode
@@ -168,10 +173,24 @@ Configuration variables:
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
 
+.. _wifi-connected_condition:
+
+``wifi.connected`` Condition
+----------------------------
+
+This :ref:`Condition <config-condition>` checks if the WiFi client is currently connected to a station.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          wifi.connected:
+        then:
+          - logger.log: WiFi is connected!
+
 See Also
 --------
 
-- :apiref:`wifi_component.h`
+- :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`
-
-.. disqus::
