@@ -533,6 +533,13 @@ earlier, create a new template switch that sends the RF code when triggered:
 Recompile again, when you power up the device the next time you will see a new switch
 in the frontend. Click on it and you should see the remote signal being transmitted. Done!
 
+If you cannot get it to work at first time, try setting up a different node for transmitting
+and receiving, then check that your transmitter node and remote control causes the same received
+code on the receiver logs, some devices requires that the transmitted code be repeated for the
+signal to be picked as valid. Also the interval between repetitions can be important. Check
+that the pace of repetition logs are consistent between the remote controller and the transmitter
+node. You can adjust the `repeat:` settings as needed.
+
 See Also
 --------
 
