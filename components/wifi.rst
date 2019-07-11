@@ -193,4 +193,5 @@ See Also
 --------
 
 - :apiref:`wifi/wifi_component.h`
+- :wifirssi:`sensor/wifi_signal.h`
 - :ghedit:`Edit`
