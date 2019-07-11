@@ -5,10 +5,12 @@ MCP230xx I/O Expander
     :description: Instructions for setting up MCP23017 or MCP23008 digital port expanders in ESPHome.
     :image: mcp230xx.png
 
-The Microchip MCP230xx series of general purpose, parallel I/O expansion for I2C
+The Microchip MCP230xx series of general purpose, parallel I/O expansion for I²C
 bus applications come in two different variants: the 8-bit MCP23008 and the 16-bit
 MCP23017, which provide 8 and 16 additional GPIO pins, respectively.
 
+MCP23017
+--------
 
 The MCP23017 component allows you to use MCP23017 I/O expanders
 (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf>`__,
@@ -46,6 +48,11 @@ Configuration variables:
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x21``.
 
+
+
+MCP23008
+--------
+
 The configuration is essentially the same with the MCP23008 component
 (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/21919e.pdf>`__,
 `Adafruit <https://www.adafruit.com/product/593>`__):
@@ -68,6 +75,15 @@ The configuration is essentially the same with the MCP23008 component
           # One of INPUT, INPUT_PULLUP or OUTPUT
           mode: INPUT_PULLUP
           inverted: False
+
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this MCP23008 component.
+- **address** (*Optional*, int): The I²C address of the driver.
+  Defaults to ``0x21``.
+
 
 See Also
 --------
