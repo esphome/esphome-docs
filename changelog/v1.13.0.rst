@@ -118,6 +118,7 @@ Breaking Changes
 All of these are also documented in validation - just view the validation output and it should tell
 you what has changed.
 
+- ``esphome_core_version`` has been removed - ESPHome is no longer split up in the core and python repository.
 - The ``esp32_ble_tracker`` binary sensor platform (not the global hub) has been renamed to ``ble_presence``.
 - The remote transmitter switch has been removed and a template switch with the new actions should be used.
   See validation output.

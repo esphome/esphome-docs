@@ -12,6 +12,8 @@ ESPHome
 
 .. image:: /images/logo-text.svg
 
+ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+
 .. raw:: html
 
     <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
@@ -90,6 +92,7 @@ Sensor Components
     ADS1115, components/sensor/ads1115, ads1115.jpg
     AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
+    ATM90E32, components/sensor/atm90e32, atm90e32.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
@@ -132,11 +135,13 @@ Sensor Components
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
+    Tx20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
@@ -174,6 +179,7 @@ Output Components
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
+    SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
 
 Light Components
@@ -268,6 +274,7 @@ Climate Components
     Custom Climate, components/climate/custom, language-cpp.svg
     Coolix IR Remote, components/climate/coolix, air-conditioner.svg
     Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
+    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
 
 Misc Components
 ---------------
@@ -292,6 +299,8 @@ Misc Components
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg
+    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
+    SIM800L, components/sim800l, sim800l.jpg
     Debug Component, components/debug, bug-report.svg
 
 Additional Custom Components

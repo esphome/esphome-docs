@@ -64,7 +64,9 @@ Binary Sensor Filters
 ---------------------
 
 With binary sensor filters you can customize how ESPHome handles your binary sensor values even more.
-They are similar to :ref:`Sensor Filters <sensor-filters>`.
+They are similar to :ref:`Sensor Filters <sensor-filters>`. All filters are processed in a pipeline.
+This means all binary sensor filters are processed in the order given in the configuration (so order
+of these entries matters!)
 
 .. code-block:: yaml
 
