@@ -1,5 +1,5 @@
 Xiaomi LYWSD02 BLE Sensor
-=======================
+=========================
 
 .. seo::
     :description: Instructions for setting up Xiaomi LYWSD02 bluetooth-based temperature and humidity sensors in ESPHome.
