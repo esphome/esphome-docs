@@ -12,7 +12,7 @@ temperature, humidity of the LYWSD02 device every time the sensor
 sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many
 LYWSD02 devices at once as you want.
 
-.. figure:: images/xiaomi_lywsd02-full.jpg
+.. figure:: images/xiaomi_lywsd02-full.png
     :align: center
     :width: 60.0%
 
