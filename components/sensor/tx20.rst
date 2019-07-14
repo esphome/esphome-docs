@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 Tx20/Tx23 Wind Speed/Direction Sensor
 =====================================
 
@@ -87,4 +84,3 @@ See Also
 - `Datagram Tx20 <http://www.sdpro.eu/jm/images/allegati/Tx20_Documentazione.pdf>`__
 - `Datagram Tx23 <https://www.lacrossetechnology.com/tx23-wind-sensor>`__-
 - :ghedit:`Edit`
->>>>>>> fixed missing newline
