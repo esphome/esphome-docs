@@ -36,7 +36,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the climate.
 - **supports_cool** (*Optional*, boolean): Enables setting cool mode for this climate device. Defaults to ``True``.
-- **supports_heat** (*Optional*, boolean): Enables setting cool heat for this climate device. Defaults to ``True``.
+- **supports_heat** (*Optional*, boolean): Enables setting heat mode for this climate device. Defaults to ``True``.
 - **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient
   temperature. This is only for reporting the current temperature in the frontend.
 - **receiver_id** (*Optional*, :ref:`config-id`): The remote_receiver id, see: :ref:`coolix-receiver_id`.
@@ -52,9 +52,24 @@ Advanced options:
 Using a receiver
 ----------------
 
-When using a receiver it is recommended to put the IR receiver as close as the equipment's IR receiver
-so the chances of receiving (and not receiving) IR signals are the same as of the AC unit.
-It is recommended to use a high tolerance, like 50 or so in the receiver configuration.
+When using a receiver it is recommended to put the IR receiver as close as possible to the equipment's
+IR receiver.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    remote_receiver:
+      id: rcvr
+      pin:
+        number: GPIO14
+        inverted: True
+        mode: INPUT_PULLUP
+      tolerance: 55 # high tolerance required for some remote control units
+
+    climate:
+      - platform: coolix
+        name: "Living Room AC"
+        receiver_id: rcvr
 
 See Also
 --------
