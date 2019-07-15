@@ -22,9 +22,8 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): This is the name of the node. It
-  should always be unique to the node and no other node in your system
-  can use the same name. It can also only contain upper/lowercase
-  characters, digits and underscores.
+  should always be unique in your esphome network. May only contain upper/lowercase
+  characters, digits and underscores. See :ref:`esphome-changing_node_name`.
 - **platform** (**Required**, string): The platform your board is on,
   either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
 - **board** (**Required**, string): The board ESPHome should
@@ -96,15 +95,19 @@ option you can tell ESPHome which arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the arduino version to these values (see the full
 list of arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
+* `2.5.2 <https://github.com/esp8266/Arduino/releases/tag/2.5.2>`__
+* `2.5.1 <https://github.com/esp8266/Arduino/releases/tag/2.5.1>`__
 * `2.5.0 <https://github.com/esp8266/Arduino/releases/tag/2.5.0>`__
 * `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (default)
 * `2.4.1 <https://github.com/esp8266/Arduino/releases/tag/2.4.1>`__
 * `2.4.0 <https://github.com/esp8266/Arduino/releases/tag/2.4.0>`__
+* `2.3.0 <https://github.com/esp8266/Arduino/releases/tag/2.3.0>`__ (used by Tasmota etc)
 
-For the ESP32, there are two arduino framework versions:
+For the ESP32, there are these arduino `framework versions <https://github.com/espressif/arduino-esp32/releases>`__:
 
-- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default).
-- `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__.
+- `1.0.2 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.2>`__
+- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default)
+- `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__
 
 .. _esphome-esp8266_restore_from_flash:
 
@@ -245,6 +248,46 @@ This option behaves differently depending on what the included file is pointing 
  - If the include string is point at a header file (.h, .hpp, .tcc) - it is copied in the src/ folder
    AND included in the main.cpp. This way the lambda code can access it.
  - If the include str
+
+.. _esphome-changing_node_name:
+
+Changing ESPHome Node Name
+--------------------------
+
+Trying to change the name of a node or its address in the network?
+You can do so with the ``use_address`` option of the :doc:`WiFi configuration <wifi>`.
+
+Change the device name or address in your YAML to the new value and additionally
+set ``use_address`` to point to the old address like so:
+
+.. code-block:: yaml
+
+    # Step 1. Changing name from test8266 to kitchen
+    esphome:
+      name: kitchen
+      # ...
+
+    wifi:
+      # ...
+      use_address: test8266.local
+
+Now upload the updated config to the device. As a second step, you now need to remove the
+``use_address`` option from your configuration again so that subsequent uploads will work again
+(otherwise it will try to upload to the old address).
+
+.. code-block:: yaml
+
+    # Step 2
+    esphome:
+      name: kitchen
+      # ...
+
+    wifi:
+      # ...
+      # Remove or comment out use_address
+      # use_address: test8266.local
+
+The same procedure can be done for changing the static IP of a device.
 
 See Also
 --------

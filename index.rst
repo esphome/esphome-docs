@@ -12,6 +12,8 @@ ESPHome
 
 .. image:: /images/logo-text.svg
 
+ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+
 .. raw:: html
 
     <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
@@ -133,11 +135,13 @@ Sensor Components
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
+    Tx20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the

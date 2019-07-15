@@ -45,6 +45,7 @@ You guys are awesome!
 - Clayton
 - Daan Damhuis
 - Dattas Moonchaser
+- David Padbury
 - Dennis Münchgesang
 - DrZzs
 - fabi
@@ -54,13 +55,19 @@ You guys are awesome!
 - Kenvase
 - Magnus Overli
 - Nick Rout
+- Niklas Fondberg
 - Paul Krischer
 - Paul Morley
+- Philippe Penochet
+- Radu Tizu
 - Roman Priesol
 - Ryan
 - Ryan Bahm
-- starwolf73
+- Ryan Nazaretian
+- Starwolf73
+- Vincèn
 - Wojciech Bederski
+- Yonatan Adest
 - Zoltán Jáki
 
 
@@ -74,7 +81,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1812 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1836 contributions
 
 Contributors
 ************
@@ -119,6 +126,7 @@ Contributors
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__ - 5 contributions
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__ - 2 contributions
 - `Dave Richer (@davericher) <https://github.com/davericher>`__ - 2 contributions
+- `Mario Di Raimondo (@diraimondo) <https://github.com/diraimondo>`__ - 1 contribution
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__ - 1 contribution
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
@@ -131,7 +139,7 @@ Contributors
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 10 contributions
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 11 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
-- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 4 contributions
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 6 contributions
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
 - `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 4 contributions
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
@@ -156,7 +164,7 @@ Contributors
 - `meijerwynand (@meijerwynand) <https://github.com/meijerwynand>`__ - 2 contributions
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__ - 1 contribution
-- `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__ - 4 contributions
+- `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__ - 5 contributions
 - `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__ - 10 contributions
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__ - 1 contribution
 - `Alex (@nnmalex) <https://github.com/nnmalex>`__ - 1 contribution
@@ -170,6 +178,7 @@ Contributors
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 2 contributions
 - `Marcus Kempe (@plopp) <https://github.com/plopp>`__ - 1 contribution
 - `DK (@poldim) <https://github.com/poldim>`__ - 1 contribution
+- `Iván Povedano (@pove) <https://github.com/pove>`__ - 1 contribution
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__ - 1 contribution
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__ - 1 contribution
 - `puuu (@puuu) <https://github.com/puuu>`__ - 14 contributions
@@ -177,12 +186,14 @@ Contributors
 - `r-jordan (@r-jordan) <https://github.com/r-jordan>`__ - 1 contribution
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__ - 1 contribution
 - `Richard Lewis (@richrd) <https://github.com/richrd>`__ - 2 contributions
+- `rnauber (@rnauber) <https://github.com/rnauber>`__ - 2 contributions
 - `Robbie Page (@rorpage) <https://github.com/rorpage>`__ - 1 contribution
 - `Ryan Nazaretian (@ryannazaretian) <https://github.com/ryannazaretian>`__ - 1 contribution
 - `sethcohn (@sethcohn) <https://github.com/sethcohn>`__ - 1 contribution
 - `Emanuele Tessore (@setola) <https://github.com/setola>`__ - 1 contribution
 - `Abdelkader Boudih (@seuros) <https://github.com/seuros>`__ - 1 contribution
 - `sherbang (@sherbang) <https://github.com/sherbang>`__ - 4 contributions
+- `Andrew Thompson (@thompsa) <https://github.com/thompsa>`__ - 1 contribution
 - `thubot (@thubot) <https://github.com/thubot>`__ - 1 contribution
 - `tiagofreire-pt (@tiagofreire-pt) <https://github.com/tiagofreire-pt>`__ - 1 contribution
 - `tubalainen (@tubalainen) <https://github.com/tubalainen>`__ - 2 contributions
@@ -193,4 +204,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Tue Jun 11 18:24:06 2019 UTC.*
+*This page was last updated Mon Jun 24 20:42:10 2019 UTC.*

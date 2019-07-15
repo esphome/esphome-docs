@@ -80,6 +80,9 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
     on_...:
       - uart.write: 'Hello World'
 
+      # For escape characters, you must use double quotes!
+      - uart.write: 'Hello World\r\n'
+
       # Raw data
       - uart.write: [0x00, 0x20, 0x42]
 

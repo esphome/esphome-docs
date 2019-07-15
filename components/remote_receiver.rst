@@ -14,7 +14,7 @@ handles setting the pin and some other settings, and individual
 :ref:`remote receiver binary sensors <remote-receiver-binary-sensor>`
 which will trigger when they hear their own configured signal.
 
-**See :ref:`remote-setting-up-infrared` and :ref:`remote-setting-up-rf` for set up guides.**
+**See** :ref:`remote-setting-up-infrared` **and** :ref:`remote-setting-up-rf` **for set up guides.**
 
 .. code-block:: yaml
 
@@ -151,7 +151,8 @@ Remote code selection (exactly one of these has to be included):
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
-  - **code** (**Required**, string): The remote code to listen for, copy this from the dumper output.
+  - **code** (**Required**, string): The remote code to listen for, copy this from the dumper output. To ignore a bit
+    in the received data, use ``x`` at that place in the **code**.
   - **protocol** (*Optional*): The RC Switch protocol to use, see :ref:`remote_transmitter-rc_switch-protocol` for more info.
 
 - **rc_switch_type_a**: Trigger on a decoded RC Switch Type A remote code with the given data.

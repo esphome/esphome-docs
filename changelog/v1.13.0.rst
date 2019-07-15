@@ -190,6 +190,18 @@ Release 1.13.5 - June 8
 - esphome: Work around ESP32 BLE issue :esphomepr:`626`
 - esphome: Work around ESP32 core WiFi Bug :esphomepr:`627`
 
+Release 1.13.6 - June 14
+------------------------
+
+- docs: Lambas won't just work with the short name :docspr:`269` by :ghuser:`ryannazaretian`
+- esphome: Fix ESP32 RCSwitch Dump Stack Smash Protection :esphomepr:`636`
+- esphome: Fix russia timezone detection :esphomepr:`637`
+- esphome: Fix esp8266_restore_from_flash :esphomepr:`638`
+- esphome: Fix globals.set :esphomepr:`635`
+- esphome: Fix version.h file :esphomepr:`630`
+- esphome: Fix remote_receiver raw binary sensor :esphomepr:`639`
+- esphome: Re-add CustomMQTTDevice class :esphomepr:`640`
+
 All changes
 -----------
 

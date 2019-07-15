@@ -58,6 +58,11 @@ Configuration variables:
 - **assumed_state** (*Optional*, boolean): Whether the true state of the cover is not known.
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
   of hiding one of them. Defaults to ``false``.
+- **tilt_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
+  tilt position.
+- **tilt_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda to be evaluated repeatedly to get the current tilt position of the cover.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
@@ -94,17 +99,20 @@ Configuration options:
 - **state** (*Optional*, :ref:`templatable <config-templatable>`):
   The state to publish. One of ``OPEN``, ``CLOSED``. If using a lambda, use ``COVER_OPEN`` or ``COVER_CLOSED``.
 - **position** (*Optional*, :ref:`templatable <config-templatable>`, float):
-  The position to publish, from 0.0 (CLOSED) to 1.0 (OPEN)
+  The position to publish, from 0 (CLOSED) to 1.0 (OPEN)
+- **tilt** (*Optional*, :ref:`templatable <config-templatable>`, float):
+  The tilt position to publish, from 0 (CLOSED) to 1.0 (OPEN)
 - **current_operation** (*Optional*, :ref:`templatable <config-templatable>`, string):
   The current operation mode to publish. One of ``IDLE``, ``OPENING`` and ``CLOSING``. If using a lambda, use ``COVER_OPERATION_IDLE``, ``COVER_OPERATION_OPENING``, and ``COVER_OPERATION_CLOSING``.
 
 .. note::
 
     This action can also be written in lambdas:
-L
+
     .. code-block:: cpp
 
         id(template_cov).position = COVER_OPEN;
+        id(template_cov).tilt = 0.5;
         id(template_cov).publish_state();
 
 See Also
