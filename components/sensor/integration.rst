@@ -6,8 +6,8 @@ Integration Sensor
     :image: sigma.png
 
 The ``integration`` sensor is a helper sensor that can integrate values from other sensors over
-time. This can for example be useful to integrate the values of a water flow sensor (in m^2/s) over
-time (result is in m^2).
+time. This can for example be useful to integrate the values of a water flow sensor (in m^3/s) over
+time (result is in m^3).
 
 This component can be considered a more-generic version of the :doc:`total_daily_energy`.
 

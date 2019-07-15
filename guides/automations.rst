@@ -326,6 +326,7 @@ All Triggers
 - :doc:`remote_receiver.on_* </components/remote_receiver>`
 - :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
 - :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
+- :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 
 All Actions
 -----------
@@ -359,6 +360,8 @@ All Actions
 - :ref:`output.esp8266_pwm.set_frequency <output-esp8266_pwm-set_frequency_action>`
 - :ref:`sensor.integration.reset <sensor-integration-reset_action>`
 - :ref:`display.page.show_* <display-pages>`
+- :ref:`uart.write <uart-write_action>`
+- :ref:`sim800l.send_sms <sim800l-send_sms_action>`
 
 .. _config-condition:
 
@@ -376,6 +379,7 @@ All Conditions
 - :ref:`script.is_running <script-is_running_condition>`
 - :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
 - :ref:`text_sensor.state <text_sensor-state_condition>`
+- :ref:`light.is_on <binary_sensor-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 
 All Lambda Calls
 ----------------

@@ -296,6 +296,24 @@ Configuration variables:
 - **white** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the white channel to.
 
+.. _light-is_on_condition:
+.. _light-is_off_condition:
+
+``light.is_on`` / ``light.is_off`` Condition
+********************************************
+
+This :ref:`Condition <config-condition>` checks if the given light is ON or OFF. OFF means
+that the light is completely OFF, and ON means that the light is emitting at least a bit of light.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          # Same syntax for is_off
+          light.is_on: my_light
+
 .. _light-effects:
 
 Light Effects
@@ -545,12 +563,15 @@ currently active light color.
           - addressable_scan:
               name: Scan Effect With Custom Values
               move_interval: 100ms
+              scan_width: 1
 
 Configuration variables:
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Scan``.
-- **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot one LED forward.
+- **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot/line one LED forward.
   Defaults to ``100ms``.
+- **scan_width** (*Optional*, integer): The number of LEDs to use.
+  Defaults to ``1``.
 
 Addressable Twinkle Effect
 **************************

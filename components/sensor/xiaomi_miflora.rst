@@ -19,7 +19,7 @@ MiFlora devices at once as you want.
 
     sensor:
       - platform: xiaomi_miflora
-        mac_address: 94:2B:FF:5C:91:61
+        mac_address: '94:2B:FF:5C:91:61'
         temperature:
           name: "Xiaomi MiFlora Temperature"
         moisture:
@@ -97,6 +97,10 @@ Note that it can sometimes take some time for the first BLE broadcast to be rece
 Then just copy the address (``94:2B:FF:5C:91:61``) into a new ``sensor.xiaomi_miflora`` platform entry like
 in the configuration example at the top.
 
+.. note::
+
+    The ESPHome Xiaomi integration listens passively to packets the xiaomi device sends by itself.
+    ESPHome therefore has no impact on the battery life of the device.
 
 See Also
 --------
