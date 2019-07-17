@@ -1,5 +1,5 @@
 STS3X Temperature Sensor
-===================================
+========================
 
 .. seo::
     :description: Instructions for setting up STS3x-DIS temperature sensors
