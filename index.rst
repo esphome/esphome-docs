@@ -111,6 +111,7 @@ Sensor Components
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
+    QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg

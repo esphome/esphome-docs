@@ -28,6 +28,9 @@ required to be set up in your configuration for this sensor to work.
           name: "HMC5883L Field Strength Z"
         heading:
           name: "HMC5883L Heading"
+        oversampling: 1x
+        data_rate: 15Hz
+        measurement_mode: normal
         range: 130uT
         update_interval: 60s
 
@@ -43,9 +46,62 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **heading** (*Optional*): The heading of the sensor in degrees. All options from
   :ref:`Sensor <config-sensor>`.
+- **oversampling** (*Optional*): The oversampling parameter for the sensor.
+- **data_rate** (*Optional*): The data rate parameter for the sensor.
+- **measurement_mode** (*Optional*): The measurement mode parameter for the sensor.
+- **range** (*Optional*): The range parameter for the sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
-
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+Oversampling Options
+--------------------
+
+By default, the HMC5883L sensor measures each value 1 times when requesting a new value. You can, however,
+configure this amount. Possible sampling values:
+
+-  ``1x`` (default)
+-  ``2x``
+-  ``4x``
+-  ``8x``
+
+Data Rate Options
+-----------------
+
+By default, the HMC5883L sensor measures 15 sampled ever second. You can, however,
+configure this amount. Possible sampling values:
+
+-  ``0.75Hz``
+-  ``1.5Hz``
+-  ``3.0Hz``
+-  ``7.5Hz``
+-  ``15Hz`` (default)
+-  ``30Hz``
+-  ``75Hz``
+
+Measurement Mode Options
+------------------------
+
+By default, the HMC5883L sensor measurement mode is normal. You can, however,
+configure this amount. Possible sampling values:
+
+-  ``normal`` (default)
+-  ``pos_bias``
+-  ``neg_bias``
+
+Range Options
+-------------
+
+By default, the HMC5883L sensor measurement range is 130uT. You can, however,
+configure this amount. Possible sampling values:
+
+-  ``88uT``
+-  ``130uT`` (default)`
+-  ``190uT``
+-  ``250uT``
+-  ``400uT``
+-  ``470uT``
+-  ``560uT``
+-  ``810uT``
 
 See Also
 --------
