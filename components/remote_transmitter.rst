@@ -162,7 +162,7 @@ This :ref:`action <config-action>` a Sony infrared remote code to a remote trans
 .. code-block:: yaml
 
     on_...:
-      - remote_transmitter.transmitsony:
+      - remote_transmitter.transmit_sony:
           data: 0x123
           nbits: 12
 
