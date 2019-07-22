@@ -48,6 +48,9 @@ Configuration variables:
 - **stop_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed or the cover has been opening/closing
   for the given durations.
+- **has_built_in_endstop** (*Optional*, boolean): Indicates that the cover has built in end stop
+  detectors and ESPHome should not execute ``stop_action`` when the open or close time is completed.
+  Defaults to ``False``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
