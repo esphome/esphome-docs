@@ -27,6 +27,8 @@ even Over The Air updates.
     deep_sleep:
       run_duration: 10s
       sleep_duration: 10min
+      
+Note: only one Deep Sleep Component may be configured.
 
 Configuration variables:
 ------------------------
