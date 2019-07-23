@@ -29,6 +29,9 @@ interface are hosted by esphome.io. If you want to use your own service, use the
     # Example configuration entry
     web_server:
       port: 80
+      auth:
+        username: 'admin'
+        password: !secrets web_server_password
 
 Configuration variables:
 ------------------------
@@ -38,6 +41,11 @@ Configuration variables:
   to https://esphome.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
 - **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
   to https://esphome.io/_static/webserver-v1.min.js.
+- **auth** (*Optional*): Enables basic authentication with username and password.
+
+  - **username** (**Required**, string)
+  - **password** (**Required**, string)
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. note::
