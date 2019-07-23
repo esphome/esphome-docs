@@ -31,7 +31,7 @@ interface are hosted by esphome.io. If you want to use your own service, use the
       port: 80
       auth:
         username: admin
-        password: !secrets web_server_password
+        password: !secret web_server_password
 
 Configuration variables:
 ------------------------
