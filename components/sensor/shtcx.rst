@@ -1,17 +1,20 @@
-SHT3X-D Temperature+Humidity Sensor
-===================================
+SHTCx Temperature+Humidity Sensors
+==================================
 
 .. seo::
-    :description: Instructions for setting up SHT31-D temperature and humidity sensors
-    :image: sht3xd.jpg
+    :description: Instructions for setting up SHTC1 and SHTC3 temperature and humidity sensors
+    :image: shtc3.jpg
 
-The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensiron SHT31-D
-(`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,
-`Adafruit`_ ) sensors with
+The ``shtcx`` sensor platform Temperature+Humidity sensor allows you to use your Sensiron SHTC1
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHTC1_Datasheet.pdf>`__,
+`Sensirion STHC1 <https://www.sensirion.com/en/environmental-sensors/humidity-sensors/digital-humidity-sensor-for-consumer-electronics-and-iot/>`__) and
+the newer SHTC3
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHTC3_Datasheet.pdf>`__,
+`Sparkfun`_ ) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-.. _Adafruit: https://www.adafruit.com/product/2857
+.. _Sparkfun: https://www.sparkfun.com/products/15074
 
 .. figure:: images/temperature-humidity.png
     :align: center
@@ -21,12 +24,12 @@ required to be set up in your configuration for this sensor to work.
 
     # Example configuration entry
     sensor:
-      - platform: sht3xd
+      - platform: shtcx
         temperature:
           name: "Living Room Temperature"
         humidity:
           name: "Living Room Humidity"
-        address: 0x44
+        address: 0x70
         update_interval: 60s
 
 Configuration variables:
@@ -45,7 +48,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
-  Defaults to ``0x44``.
+  Defaults to ``0x70``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
@@ -57,7 +60,7 @@ See Also
 - :doc:`dht12`
 - :doc:`hdc1080`
 - :doc:`htu21d`
-- :doc:`shtcx`
 - :doc:`sts3x`
-- :apiref:`sht3xd/sht3xd.h`
+- :doc:`sht3xd`
+- :apiref:`shtcx/shtcx.h`
 - :ghedit:`Edit`

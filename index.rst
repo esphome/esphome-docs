@@ -130,6 +130,7 @@ Sensor Components
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
+    SHTCx, components/sensor/shtcx, shtcx.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg

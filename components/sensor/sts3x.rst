@@ -48,5 +48,6 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
+- :doc:`shtcx`
 - :apiref:`sts3x/sts3x.h`
 - :ghedit:`Edit`
