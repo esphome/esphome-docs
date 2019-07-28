@@ -20,24 +20,20 @@ required to be set up in your configuration for this sensor to work.
     # Example configuration entry
     sensor:
       - platform: sts3x
-        temperature:
-          name: "Living Room Temperature"
+        name: "Living Room Temperature"
         address: 0x4A
         update_interval: 60s
 
 Configuration variables:
 ------------------------
 
-- **temperature** (**Required**): The information for the temperature sensor.
-
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
+- **name** (**Required**, string): The name for the temperature sensor.
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
   Defaults to ``0x4A``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
