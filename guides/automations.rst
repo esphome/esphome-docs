@@ -307,6 +307,8 @@ There is one caveat though: ESPHome automatically reboots if no connection to th
 made. This is because the ESPs typically have issues in their network stacks that require a reboot to fix.
 You can adjust this behavior (or even disable automatic rebooting) using the ``reboot_timeout`` option
 in the :doc:`wifi component </components/wifi>` and :doc:`mqtt component </components/mqtt>`.
+(Beware that effectively disables the reboot watchdog, so you will need to power cycle the device
+if it fails to connect to the network without a reboot)
 
 All Triggers
 ------------
