@@ -300,6 +300,7 @@ Misc Components
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
     SIM800L, components/sim800l, sim800l.jpg
+    DFPlayer, components/dfplayer_mini, dfplayer.svg
     Debug Component, components/debug, bug-report.svg
 
 Additional Custom Components
