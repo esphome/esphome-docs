@@ -84,7 +84,6 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`shtcx`
-- :doc:`sts3x`
 - :apiref:`dht/dht.h`
 - `Arduino DHTLib <https://playground.arduino.cc/Main/DHTLib>`__
 - :ghedit:`Edit`

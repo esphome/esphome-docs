@@ -65,7 +65,6 @@ See Also
 - :doc:`hdc1080`
 - :doc:`sht3xd`
 - :doc:`shtcx`
-- :doc:`sts3x`
 - :apiref:`htu21d/htu21d.h`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`

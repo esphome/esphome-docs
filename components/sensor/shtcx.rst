@@ -60,7 +60,6 @@ See Also
 - :doc:`dht12`
 - :doc:`hdc1080`
 - :doc:`htu21d`
-- :doc:`sts3x`
 - :doc:`sht3xd`
 - :apiref:`shtcx/shtcx.h`
 - :ghedit:`Edit`

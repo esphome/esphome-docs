@@ -132,7 +132,6 @@ Sensor Components
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
-    STS3X, components/sensor/sts3x, sts3x.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg

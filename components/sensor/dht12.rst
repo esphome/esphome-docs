@@ -60,7 +60,6 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`shtcx`
-- :doc:`sts3x`
 - :apiref:`dht12/dht12.h`
 - `DHT12 Library <https://github.com/dplasa/dht>`__ by `Daniel Plasa <https://github.com/dplasa>`__
 - :ghedit:`Edit`
