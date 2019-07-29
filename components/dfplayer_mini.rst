@@ -19,6 +19,7 @@ in your configuration.
 
 Overview
 --------
+
 The module can be powered by the 3V output of an NodeMCU and a powered speaker connected to
 the modules ``DAC_R``, ``DAC_I`` and ``GND`` . You can connect only the ``tx_pin`` of
 the ``uart`` bus to the module's ``RX`` but if you need feedback of playback active you will
@@ -119,15 +120,15 @@ from 1 to 10 and file number from 1 to 1000.
 
 .. code-block:: bash
 
-  /01
-    /001.mp3
-    /002.mp3
-    ..
-  /02
-    /001.mp3
-    /002.mp3
-    /003.mp3
-    ..
+    /01
+      /001.mp3
+      /002.mp3
+      ..
+    /02
+      /001.mp3
+      /002.mp3
+      /003.mp3
+      ..
 
 .. code-block:: yaml
 
@@ -140,6 +141,7 @@ from 1 to 10 and file number from 1 to 1000.
 
 Configuration options:
 **********************
+
 - **folder** (**Required**, int, :ref:`templatable <config-templatable>`): The folder number.
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The file number
   inside the folder to play. Optional only if ``loop`` is not set.
@@ -290,107 +292,107 @@ Sample code
 
 .. code-block:: yaml
 
-  esphome:
-    name: test_node
-    platform: ESP8266
-    board: nodemcu
+    esphome:
+      name: test_node
+      platform: ESP8266
+      board: nodemcu
 
-  wifi:
-    ssid: !secret wifi_ssid
-    password: !secret wifi_pass
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_pass
 
-  logger:
-    level: VERBOSE
+    logger:
+      level: VERBOSE
 
-  uart:
-    tx_pin: GPIO2
-    rx_pin: GPIO5
-    baud_rate: 9600
+    uart:
+      tx_pin: GPIO2
+      rx_pin: GPIO5
+      baud_rate: 9600
 
-  dfplayer:
-    on_finished_playback:
-      then:
-        logger.log: 'Playback finished event'
+    dfplayer:
+      on_finished_playback:
+        then:
+          logger.log: 'Playback finished event'
 
-  api:
-    services:
-    - service: dfplayer_next
-      then:
-        - dfplayer.play_next:
-    - service: dfplayer_previous
-      then:
-        - dfplayer.play_previous:
-    - service: dfplayer_play
-      variables:
-        file: int
-      then:
-        - dfplayer.play: !lambda 'return file;'
-    - service: dfplayer_play_loop
-      variables:
-        file: int
-        loop_: bool
-      then:
-        - dfplayer.play:
-            file: !lambda 'return file;'
-            loop: !lambda 'return loop_;'
-    - service: dfplayer_play_folder
-      variables:
-        folder: int
-        file: int
-      then:
-        - dfplayer.play_folder:
-            folder: !lambda 'return folder;'
-            file: !lambda 'return file;'
+    api:
+      services:
+      - service: dfplayer_next
+        then:
+          - dfplayer.play_next:
+      - service: dfplayer_previous
+        then:
+          - dfplayer.play_previous:
+      - service: dfplayer_play
+        variables:
+          file: int
+        then:
+          - dfplayer.play: !lambda 'return file;'
+      - service: dfplayer_play_loop
+        variables:
+          file: int
+          loop_: bool
+        then:
+          - dfplayer.play:
+              file: !lambda 'return file;'
+              loop: !lambda 'return loop_;'
+      - service: dfplayer_play_folder
+        variables:
+          folder: int
+          file: int
+        then:
+          - dfplayer.play_folder:
+              folder: !lambda 'return folder;'
+              file: !lambda 'return file;'
 
-    - service: dfplayer_play_loo_folder
-      variables:
-        folder: int
-      then:
-        - dfplayer.play_folder:
-            folder: !lambda 'return folder;'
-            loop: True
+      - service: dfplayer_play_loo_folder
+        variables:
+          folder: int
+        then:
+          - dfplayer.play_folder:
+              folder: !lambda 'return folder;'
+              loop: True
 
-    - service: dfplayer_set_device
-      variables:
-        device: int
-      then:
-        - dfplayer.set_device:
-            device: TF_CARD
+      - service: dfplayer_set_device
+        variables:
+          device: int
+        then:
+          - dfplayer.set_device:
+              device: TF_CARD
 
-    - service: dfplayer_set_volume
-      variables:
-        volume: int
-      then:
-        - dfplayer.set_volume: !lambda 'return volume;'
-    - service: dfplayer_set_eq
-      variables:
-        preset: int
-      then:
-        - dfplayer.set_eq: !lambda 'return static_cast<dfplayer::EqPreset>(preset);'
+      - service: dfplayer_set_volume
+        variables:
+          volume: int
+        then:
+          - dfplayer.set_volume: !lambda 'return volume;'
+      - service: dfplayer_set_eq
+        variables:
+          preset: int
+        then:
+          - dfplayer.set_eq: !lambda 'return static_cast<dfplayer::EqPreset>(preset);'
 
-    - service: dfplayer_sleep
-      then:
-        - dfplayer.sleep
+      - service: dfplayer_sleep
+        then:
+          - dfplayer.sleep
 
-    - service: dfplayer_reset
-      then:
-        - dfplayer.reset
+      - service: dfplayer_reset
+        then:
+          - dfplayer.reset
 
-    - service: dfplayer_start
-      then:
-        - dfplayer.start
+      - service: dfplayer_start
+        then:
+          - dfplayer.start
 
-    - service: dfplayer_pause
-      then:
-        - dfplayer.pause
+      - service: dfplayer_pause
+        then:
+          - dfplayer.pause
 
-    - service: dfplayer_stop
-      then:
-        - dfplayer.stop
+      - service: dfplayer_stop
+        then:
+          - dfplayer.stop
 
-    - service: dfplayer_random
-      then:
-        - dfplayer.random
+      - service: dfplayer_random
+        then:
+          - dfplayer.random
 
 See Also
 --------
