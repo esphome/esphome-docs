@@ -60,7 +60,7 @@ Advanced:
 - **humidity** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
   here. This can improve the sensor's internal calculations.
 
- - **uptime** (*Optional*, :ref:`config-id`): Give an ID of uptime sensor
+- **uptime** (*Optional*, :ref:`config-id`): Give an ID of uptime sensor
   here. This is needed for reliability calculation of baseline readings.
 
 .. _sgp30-calibrating:
