@@ -45,16 +45,21 @@ Configuration variables:
 
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
   Defaults to ``0x58``.
+
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
 Advanced:
+
 - **baseline** (*Optional*, int): The baseline value for the unit, for calibration
   purposes. See :ref:`sgp30-calibrating` for more info.
+
 - **temperature** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
   here. This can improve the sensor's internal calculations.
+
 - **humidity** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
   here. This can improve the sensor's internal calculations.
+
  - **uptime** (*Optional*, :ref:`config-id`): Give an ID of uptime sensor
   here. This is needed for reliability calculation of baseline readings.
 
