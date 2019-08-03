@@ -131,6 +131,7 @@ Sensor Components
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SGP30, components/sensor/sgp30, sgp30.png
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
