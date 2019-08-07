@@ -37,6 +37,7 @@ TX/RX labels are from the perspective of the MH-Z19). Additionally, you need to 
         temperature:
           name: "MH-Z19 Temperature"
         update_interval: 60s
+        automatic_baseline_calibration: false
 
 Configuration variables:
 ------------------------
