@@ -16,7 +16,7 @@ the device manually by clicking "CONFIGURE" on the ESPHome integration and enter
 "<NODE_NAME>.local" as the address.
 
 The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
-the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/src/esphome/components/api/api.proto
+the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto
 A python library that implements this protocol can be found `here <https://github.com/esphome/aioesphomeapi>`__.
 
 .. code-block:: yaml
