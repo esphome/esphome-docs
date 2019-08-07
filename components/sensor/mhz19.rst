@@ -62,6 +62,8 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for actions.
+
 - **automatic_baseline_calibration** (*Optional*, boolean): MH-Z19 has automatic calibration procedure.
   The automatic calibration cycle is every 24 hours after powered on.
   Set this value to ``false`` to disable ABC on boot (it's better if you use sensor indoor).
