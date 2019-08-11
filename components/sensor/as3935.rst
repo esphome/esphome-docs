@@ -68,25 +68,25 @@ A1            I²C address selection MSB
 Configuration variables (shared):
 ---------------------------------
 - **pin** (**Required**, :ref:`config-pin`): The IRQ pin, wh ich indicates if a lighning strike has been detected.
-- **indoor** (**Optional**, boolean): Indicates if the sensor is used indoor (default: true).
-- **watchdog_threshold** (**Optional**, integer): Determines the threshold for events that trigger the IRQ pin (default: 2).
-- **noise_level** (**Optional**, integer): Noise floor level is compared to known reference voltage. If this level is exceeded the chip will issue an interrupt to the IRQ pin, broadcasting that it can not operate properly due to noise (INT_NH). (default: 2)
-- **spike_rejection** (**Optional**, integer): Helps to differentiate between real events and actual lightning. Increasing this value increases robustness at the cost of sensitivity to distant events.  (default: 2).
-- **lightning_threshold** (**Optional**, integer): The number of lightning events before IRQ is set high. 15 minutes is The window of time before the number of detected lightning events is reset. The number of lightning strikes can be set to 1,5,9, or 16 (default: 0).
-- **mask_disturber** (**Optional**, boolean): This setting will return whether or not disturbers trigger the IRQ Pin (default: false).
-- **div_ratio** (**Optional**, integer): The antenna is designed to resonate at 500kHz and so can be tuned with the following setting. The accuracy of the antenna must be within 3.5 percent of that value for proper signal validation and distance estimation (default: 0).
-- **cap** (**Optional**, integer): This setting will add capacitance to the series RLC antenna on the product to help tune its resonance. The datasheet specifies being within 3.5 percent of 500kHz to get optimal lightning detection and distance sensing. It's possible to add up to 120pF in steps of 8pF to the antenna. (default: 0).
-- **lightning_energy** (**Optional**): Lightning energy value. According to the datasheet this is only a pure value that doesn't have any physical meaning. 
+- **indoor** (*Optional*, boolean): Indicates if the sensor is used indoor (default: true).
+- **watchdog_threshold** (*Optional*, integer): Determines the threshold for events that trigger the IRQ pin (default: 2).
+- **noise_level** (*Optional*, integer): Noise floor level is compared to known reference voltage. If this level is exceeded the chip will issue an interrupt to the IRQ pin, broadcasting that it can not operate properly due to noise (INT_NH). (default: 2)
+- **spike_rejection** (*Optional*, integer): Helps to differentiate between real events and actual lightning. Increasing this value increases robustness at the cost of sensitivity to distant events.  (default: 2).
+- **lightning_threshold** (*Optional*, integer): The number of lightning events before IRQ is set high. 15 minutes is The window of time before the number of detected lightning events is reset. The number of lightning strikes can be set to 1,5,9, or 16 (default: 0).
+- **mask_disturber** (*Optional*, boolean): This setting will return whether or not disturbers trigger the IRQ Pin (default: false).
+- **div_ratio** (*Optional*, integer): The antenna is designed to resonate at 500kHz and so can be tuned with the following setting. The accuracy of the antenna must be within 3.5 percent of that value for proper signal validation and distance estimation (default: 0).
+- **cap** (*Optional*, integer): This setting will add capacitance to the series RLC antenna on the product to help tune its resonance. The datasheet specifies being within 3.5 percent of 500kHz to get optimal lightning detection and distance sensing. It's possible to add up to 120pF in steps of 8pF to the antenna. (default: 0).
+- **lightning_energy** (*Optional*): Lightning energy value. According to the datasheet this is only a pure value that doesn't have any physical meaning. 
 
   - **name** (**Required**, string): The name for the lightning energy sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
-- **distance** (**Optional**): Distance in km to the front of the storm and not the distance to a lightning strike. 
+- **distance** (*Optional*): Distance in km to the front of the storm and not the distance to a lightning strike. 
 
   - **name** (**Required**, string): The name for the distance sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
-- **binary sensor** (**Optional**): Binary sensor that indicates if a lightning strike was detected.
+- **binary sensor** (*Optional*): Binary sensor that indicates if a lightning strike was detected.
 
   -  **name** (**Required**, string): The name of the binary sensor.
   -  **id** (*Optional*,
