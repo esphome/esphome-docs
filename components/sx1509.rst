@@ -130,7 +130,6 @@ Configuration variables for the SX1509 keypad keys:
 
 - **row** (**Required**, : int): The row number for this key on the keypad.
 - **col** (**Required**, : int): The column number for this key on the keypad.
-  Defaults to ``0x3E``.
 
 With the folowing configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
 The outputs can in turn be used to add pwm enabled lights like the monochromatic light.
@@ -143,6 +142,7 @@ The outputs can in turn be used to add pwm enabled lights like the monochromatic
         name: "SX1509 Pin #0"
         pin:
           sx1509: sx1509_hub1
+          # Use pin number 0 on the sx1509
           number: 0
           mode: INPUT_PULLUP
           inverted: True
@@ -153,9 +153,9 @@ The outputs can in turn be used to add pwm enabled lights like the monochromatic
         name: "SX1509 Pin #1"
         pin:
           sx1509: sx1509_hub1
-          # Use pin number 1
-          number: 0
-          # One of INPUT, INPUT_PULLUP or OUTPUT
+          # Use pin number 1 on the sx1509
+          number: 1
+          # use as output for switch
           mode: OUTPUT
           inverted: False
 
@@ -164,6 +164,7 @@ The outputs can in turn be used to add pwm enabled lights like the monochromatic
       - platform: sx1509
         sx1509_id: sx1509_hub1
         id: 'sx1509_output'
+        # Use pin number 2 on the sx1509
         pin: 2
 
     # lights can then use the configured output
