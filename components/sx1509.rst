@@ -1,5 +1,5 @@
 SX1509 16 channel I/O Expander with LED driver and keypad engine
-====================
+================================================================
 
 .. seo::
     :description: Instructions for setting up SX1509 16 channel I/O expander in ESPHome.
@@ -62,21 +62,78 @@ up to 8x8 matrix (i.e. 64 keys).
 - **scan_time** (*Optional*, int): 
 - **debounce_time** (*Optional*, int): 
 
-Whith this configured you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
-Attention should be paid to the pwm capabilities of certain pins.
+.. figure:: images/sx1509-keypad.jpg
+    :align: center
+    :width: 80.0%
 
-+------------+------------+-----------+
-| Header 1   | Header 2   | Header 3  |
-+============+============+===========+
-| body row 1 | column 2   | column 3  |
-+------------+------------+-----------+
-| body row 2 | Cells may span columns.|
-+------------+------------+-----------+
-| body row 3 | Cells may  | - Cells   |
-+------------+ span rows. | - contain |
-| body row 4 |            | - blocks. |
-+------------+------------+-----------+
+    SX1509 pins for keypad setup (image from the datasheet).
 
+Attention should be paid to the capabilities of the I/O pins.
+
++---------------+--------------+
+|               | Keypad       |
++---------------+-----+--------+
+| I/O | LED PWM | Row | Column |
++=====+=========+=====+========+
+| 0   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 1   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 2   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 3   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 4   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 5   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 6   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 7   |    ✓    |  ✓  |        |
++-----+---------+-----+--------+
+| 8   |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+| 9   |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+| 10  |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+| 11  |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+| 12  |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+| 13  |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+| 14  |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+| 15  |    ✓    |     |   ✓    |
++-----+---------+-----+--------+
+
+To use the individual keys on the keypad you need to add individual binary_sensor entries in the config.
+
+.. code-block:: yaml
+
+    # individual binary_sensor for keypad keys
+    binary_sensor:
+      - platform: sx1509
+        sx1509_id: sx1509_hub1
+        name: "keypadkey_0"
+        row: 0
+        col: 0
+      - platform: sx1509
+        sx1509_id: sx1509_hub1
+        name: "keypadkey_1"
+        row: 0
+        col: 1
+
+Configuration variables for the SX1509 keypad keys:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **row** (**Required**, : int): The row number for this key on the keypad.
+- **col** (**Required**, : int): The column number for this key on the keypad.
+  Defaults to ``0x3E``.
+
+With the folowing configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
+The outputs can in turn be used to add pwm enabled lights like the monochromatic light.
 
 .. code-block:: yaml
 
@@ -116,12 +173,9 @@ Attention should be paid to the pwm capabilities of certain pins.
         name: "light0"
         output: sx1509_output
 
-Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+- All other options from :ref:`Output <config-output>`.
 
-- **id** (**Required**, :ref:`config-id`): The id to use for this PCF8574 component.
-- **address** (*Optional*, int): The I²C address of the driver.
-  Defaults to ``0x21``.
+And naturaly you may use all automation functions with these SX1509 binary_sensor's, switches and output (lights).
 
 See Also
 --------
@@ -129,6 +183,9 @@ See Also
 - :ref:`i2c`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
+- :doc:`/components/light/monochromatic`
+- :doc:`/components/fan/speed`
+- :doc:`/components/power_supply`
 - `PCF8574 Arduino Library <https://github.com/skywodd/pcf8574_arduino_library>`__ by `Fabien Batteix <https://github.com/skywodd>`__
 - :apiref:`pcf8574/pcf8574.h`
 - :ghedit:`Edit`
