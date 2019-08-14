@@ -1,10 +1,10 @@
 Sonoff T1 US 3 Gang
-=====================
+===================
 
 .. code-block:: yaml
 
-    #This is Configuration for Sonoff T1 US 3 Gang 
-     
+    #This is Configuration for Sonoff T1 US 3 Gang
+	
     esphome:
       name: livingroom
       platform: ESP8266
@@ -13,8 +13,8 @@ Sonoff T1 US 3 Gang
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      
-    # Enable logging
+
+   # Enable logging
     logger:
 
     # Enable Home Assistant API
