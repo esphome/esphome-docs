@@ -4,7 +4,7 @@ Sonoff T1 US 3 Gang
 .. code-block:: yaml
 
     #This is Configuration for Sonoff T1 US 3 Gang
-	
+
     esphome:
       name: livingroom
       platform: ESP8266
