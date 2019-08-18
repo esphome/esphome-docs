@@ -170,8 +170,8 @@ Configuration for Wrover Kit Boards
       name: My Camera
       # ...
 
-Configuration for TTGO T-Camera
--------------------------------
+Configuration for TTGO T-Camera V05
+-----------------------------------
 
 .. code-block:: yaml
 
@@ -192,6 +192,31 @@ Configuration for TTGO T-Camera
       # Image settings
       name: My Camera
       # ...
+
+
+Configuration for TTGO T-Camera V17
+-----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      name: $devicename Camera
+      external_clock:
+        pin: GPIO32
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO13
+        scl: GPIO12
+      data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+      vsync_pin: GPIO27
+      href_pin: GPIO25
+      pixel_clock_pin: GPIO19
+     # power_down_pin: GPIO26
+      resolution: 1600x1200
+      jpeg_quality: 10
+      vertical_flip: true
+      horizontal_mirror: true
 
 Configuration for TTGO T-Journal
 --------------------------------
