@@ -292,7 +292,7 @@ Sonoff S31
 See :doc:`/components/sensor/cse7766` for measuring power
 
 Sonoff Mini
-------------
+-----------
 
 .. pintable::
 
