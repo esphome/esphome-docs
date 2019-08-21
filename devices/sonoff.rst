@@ -33,7 +33,6 @@ Sonoff RF
     GPIO4, Optional sensor
     GPIO14, Optional sensor
 
-
 Sonoff SV
 ---------
 
@@ -302,7 +301,7 @@ Sonoff Mini
     GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
     GPIO17, Optional sensor
-    
+
 
 Shelly 1
 --------
