@@ -1,0 +1,77 @@
+substitutions:
+  SWITCH_NAME: <your switch node>
+  SSID: <your SSID>
+  PASSWORD: <your wifi password>
+
+esphome:
+  name: ${SWITCH_NAME}_t1_us_r2
+  platform: ESP8266
+  board: esp01_1m
+  
+wifi:
+  ssid: ${SSID}
+  password: ${PASSWORD}
+    
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  
+ota:
+  
+switch:
+  - platform: gpio
+    name: ${SWITCH_NAME}_CH_1
+    pin: GPIO12
+    id: relay1
+  - platform: gpio
+    name: ${SWITCH_NAME}_CH_2
+    pin: GPIO5
+    id: relay2
+  - platform: restart
+    name: ${SWITCH_NAME}_restart
+    
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: ${SWITCH_NAME}_CH_1_touch
+    on_press:
+     - switch.toggle: relay1
+  - platform: gpio
+    pin:
+      number: GPIO9
+      mode: INPUT_PULLUP
+      inverted: True
+    name: ${SWITCH_NAME}_CH_2_touch
+    on_press:
+        - switch.toggle: relay2
+  - platform: status
+    name: ${SWITCH_NAME}_status
+    
+output:
+  # Register the blue LED as a dimmable output ....
+  - platform: esp8266_pwm
+    id: blue_led
+    pin: GPIO13
+    inverted: True
+    
+light:
+  # ... and then make a light out of it.
+  - platform: monochromatic
+    name: ${SWITCH_NAME}_led
+    output: blue_led
+    
+sensor:
+  - platform: wifi_signal
+    name: ${SWITCH_NAME}_WiFi_signal
+    update_interval: 1200s
+  - platform: uptime
+    name: ${SWITCH_NAME}_uptime
+    
+text_sensor:
+  - platform: version
+    name: ${SWITCH_NAME}
