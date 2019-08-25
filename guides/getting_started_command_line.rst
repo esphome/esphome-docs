@@ -165,13 +165,13 @@ from a nice web interface. It was primarily designed for
 \*nix machines (sorry, no windows).
 
 To start the ESPHome dashboard, simply start ESPHome with the following command
-(with ``config/`` pointing to a directory where you want to store your configurations)
+(with ``/config`` pointing to a directory where you want to store your configurations)
 
 .. code-block:: bash
 
     # Install dashboard dependencies
     pip2 install tornado esptool
-    esphome config/ dashboard
+    esphome /config dashboard
 
     # On docker, host networking mode is required for online status indicators
     docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome
