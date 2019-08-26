@@ -6,23 +6,22 @@ Getting Started with ESPHome
     :image: console.png
 
 ESPHome is the perfect solution for creating custom firmwares for
-your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
+your ESP8266/ESP32 boards. In this guide we’ll go through how to set up a
 basic “node” in a few simple steps.
 
 Installation
 ------------
 
 Installing ESPHome is very easy. All you need to do is have `Python
-2.7 <https://www.python.org/download/releases/2.7/>`__ installed
-(because of platformio 😕) and install the console script script through
+<https://www.python.org/>`__ installed and install the console script script through
 ``pip``.
 
 .. code-block:: bash
 
     pip install esphome
 
-Alternatively, there’s also a docker image available for easy
-installation (the docker hub image is only available for amd64 right now; if you have
+Alternatively, there’s also a Docker image available for easy
+installation (the Docker hub image is only available for amd64 right now; if you have
 an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <getting_started_hassio>`:
 
 .. code-block:: bash
@@ -145,13 +144,13 @@ for docker you need to supply an additional parameter:
 Where To Go Next
 ----------------
 
-Great 🎉! You’ve now successfully setup your first ESPHome project
+Great 🎉! You’ve now successfully set up your first ESPHome project
 and uploaded your first ESPHome custom firmware to your node. You’ve
 also learned how to enable some basic components via the configuration
 file.
 
 So now is a great time to go take a look at the :doc:`Components Index </index>`.
-Hopefully you’ll find all sensors/outputs/… you’ll need in there. If you’re having any problems or
+Hopefully you’ll find all sensors/outputs/etc. you’ll need in there. If you’re having any problems or
 want new features, please either create a new issue on the `GitHub issue
 tracker <https://github.com/esphome/issues/issues>`__ or find us on the
 `Discord chat <https://discord.gg/KhAMKrd>`__ (also make sure to read the :doc:`FAQ <faq>`).
@@ -170,10 +169,10 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
 .. code-block:: bash
 
     # Install dashboard dependencies
-    pip2 install tornado esptool
+    pip install tornado esptool
     esphome config/ dashboard
 
-    # On docker, host networking mode is required for online status indicators
+    # On Docker, host networking mode is required for online status indicators
     docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome
 
 After that, you will be able to access the dashboard through ``localhost:6052``.

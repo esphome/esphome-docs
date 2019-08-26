@@ -228,12 +228,12 @@ Build
 
     This way, you don't have to install the dependencies to build the documentation.
 
-To check your documentation changes locally, you first need install sphinx (with **Python 3**).
+To check your documentation changes locally, you first need install sphinx (with **Python 3** only).
 
 .. code-block:: bash
 
     # in ESPHome-Docs repo:
-    pip3 install -r requirements.txt
+    pip install -r requirements.txt
 
 Then, use the provided Makefile to build the changes and start a simple web server:
 
@@ -273,7 +273,7 @@ This is only possible for ``pip`` installs.
     git clone https://github.com/esphome/esphome.git
     git clone https://github.com/esphome/esphome-docs.git
 
-    # Install esphome, python 2!
+    # Install esphome
     cd esphome/
     script/setup
     # Start a new feature branch
