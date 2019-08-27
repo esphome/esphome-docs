@@ -35,11 +35,11 @@ Configuration variables:
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
   Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
 - **id** (*Optional*, :ref:`config-id`) Manually specify the ID for this I²C bus if you need multiple I²C buses.
-  
+
 .. note::
 
-  If the device can support multiple I²C buses (ESP32 has 2) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
-  
+    If the device can support multiple I²C buses (ESP32 has 2) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -57,7 +57,7 @@ Configuration variables:
      i2c_id: bus_b
      address: 0x76
      # ...
-  
+
 See Also
 --------
 
