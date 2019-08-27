@@ -201,7 +201,6 @@ Configuration for TTGO T-Camera V17
 
     # Example configuration entry
     esp32_camera:
-      name: $devicename Camera
       external_clock:
         pin: GPIO32
         frequency: 20MHz
@@ -212,11 +211,13 @@ Configuration for TTGO T-Camera V17
       vsync_pin: GPIO27
       href_pin: GPIO25
       pixel_clock_pin: GPIO19
-     # power_down_pin: GPIO26
-      resolution: 1600x1200
-      jpeg_quality: 10
+      # power_down_pin: GPIO26
       vertical_flip: true
       horizontal_mirror: true
+      
+      # Image settings
+      name: My Camera
+      # ...
 
 Configuration for TTGO T-Journal
 --------------------------------
