@@ -36,8 +36,10 @@ Configuration variables:
   Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
 - **id** (*Optional*, :ref:`config-id`) Manually specify the ID for this I²C bus if you need multiple I²C buses.
   
-  *Note:*
+.. note::
+
   If the device can support multiple I²C buses (ESP32 has 2) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
+  
 .. code-block:: yaml
 
     # Example configuration entry
