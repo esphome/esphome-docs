@@ -54,7 +54,7 @@ Configuration variables:
    - platform: bme680
      i2c_id: bus_b
      address: 0x76
-     ...
+     # ...
   
 See Also
 --------
