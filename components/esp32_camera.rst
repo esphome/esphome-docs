@@ -214,7 +214,7 @@ Configuration for TTGO T-Camera V17
       # power_down_pin: GPIO26
       vertical_flip: true
       horizontal_mirror: true
-      
+
       # Image settings
       name: My Camera
       # ...
