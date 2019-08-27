@@ -20,6 +20,7 @@ put on external ones.
       sda: 21
       scl: 22
       scan: True
+      id: bus_a
 
 Configuration variables:
 ------------------------
@@ -33,6 +34,7 @@ Configuration variables:
   Defaults to ``True``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
   Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
+- **id** (Optional, ID): Manually specify the ID for this i2c Bus if you need multiple i2c buses.
 
 See Also
 --------
