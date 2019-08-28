@@ -77,6 +77,7 @@ of these entries matters!)
           - invert:
           - delayed_on: 100ms
           - delayed_off: 100ms
+          - delayed_on_off: 100ms
           - lambda: |-
               if (id(other_binary_sensor).state) {
                 return x;
