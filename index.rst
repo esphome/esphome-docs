@@ -129,6 +129,7 @@ Sensor Components
     Pulse Width, components/sensor/pulse_width, pulse.svg
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
