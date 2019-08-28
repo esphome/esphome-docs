@@ -1,5 +1,5 @@
 SenseAir CO_2 Sensor
-==================================
+====================
 
 .. seo::
     :description: Instructions for setting up SenseAir S8 CO2 sensor
