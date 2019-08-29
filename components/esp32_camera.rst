@@ -79,7 +79,7 @@ Frame Settings:
     - ``1600x1200`` (UXGA)
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
-  From 10 to 63. Defaults to ``10``.
+  From 10 (best) to 63 (worst). Defaults to ``10``.
 
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
