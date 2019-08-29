@@ -141,6 +141,7 @@ Sensor Components
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
