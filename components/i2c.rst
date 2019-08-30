@@ -40,23 +40,23 @@ Configuration variables:
 
     If the device can support multiple I²C buses (ESP32 has 2) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
 
-.. code-block:: yaml
+    .. code-block:: yaml
 
-    # Example configuration entry
-    i2c:
-      - id: bus_a
-        sda: 13
-        scl: 16
-        scan: True
-      - id: bus_b
-        sda: 14
-        scl: 15
-        scan: True
-   # Sensors should be specified as follows
-   - platform: bme680
-     i2c_id: bus_b
-     address: 0x76
-     # ...
+        # Example configuration entry
+        i2c:
+          - id: bus_a
+            sda: 13
+            scl: 16
+            scan: True
+          - id: bus_b
+            sda: 14
+            scl: 15
+            scan: True
+       # Sensors should be specified as follows
+       - platform: bme680
+         i2c_id: bus_b
+         address: 0x76
+         # ...
 
 See Also
 --------
