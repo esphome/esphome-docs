@@ -1,8 +1,8 @@
-SGP30 CO<sub>2</sub> and Volatile Organic Compound Sensor
-=========================================================
+SGP30 CO₂ and Volatile Organic Compound Sensor
+==============================================
 
 .. seo::
-    :description: Instructions for setting up SGP30 CO<sub>2</sub>eq and Volatile Organic Compound sensor
+    :description: Instructions for setting up SGP30 CO₂eq and Volatile Organic Compound sensor
     :image: sgp30.png
 
 The ``sgp30`` sensor platform  allows you to use your Sensiron SGP30 multi-pixel gas 
@@ -31,9 +31,9 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 Configuration variables:
 ------------------------
 
-- **eco2** (**Required**): The information for the CO<sub>2</sub>eq. sensor.
+- **eco2** (**Required**): The information for the CO₂eq. sensor.
 
-  - **name** (**Required**, string): The name for the CO<sub>2</sub>eq sensor.
+  - **name** (**Required**, string): The name for the CO₂eq sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -54,14 +54,13 @@ Advanced:
 - **baseline** (*Optional*, int): The baseline value for the unit, for calibration
   purposes. See :ref:`sgp30-calibrating` for more info.
 
-- **temperature** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
+- **compensation** (*Optional*): The block containing sensors used for compensation.
+
+  - **temperature_source** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
   here. This can improve the sensor's internal calculations.
 
-- **humidity** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
+  - **humidity_source** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
   here. This can improve the sensor's internal calculations.
-
-- **uptime** (*Optional*, :ref:`config-id`): Give an ID of uptime sensor
-  here. This is needed for reliability calculation of baseline readings.
 
 .. _sgp30-calibrating:
 
@@ -88,7 +87,6 @@ via the logs:
       - platform: sgp30
         # ...
         baseline: 0x44D4
-        uptime: workshop_uptime_sensor
 
 The next time you upload the code, the SGP30 will be continue its operation with this baseline and you will get consistent values.
 
