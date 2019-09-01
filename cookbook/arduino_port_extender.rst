@@ -17,7 +17,7 @@ With this sketch you can use any compatible Arduino board with ESPHome and read 
 
 The Arduino is connected to the ESP via I²C. Most Arduinos use the ``A4`` and ``A5`` pins for the I²C bus
 so those pins are not available to read from ESPHome.
-It is recommended to use a 3.3V Arduino, however using 5V arduinos seems to work too. In the last
+It is recommended to use a 3.3V I/O level Arduino, however using 5V Arduinos seems to work too. In the latter
 case you should power your 5V Arduino with 3.3V otherwise you will need a level converter for the
 I²C bus.
 
