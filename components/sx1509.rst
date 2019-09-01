@@ -16,7 +16,6 @@ binary sensor or GPIO switch.
 The SX1509 can do much more than just simple digital pin control. It can produce PWM signals.
 And, with a built-in keypad engine, it can interface with up to 64 buttons set up in an 8x8 matrix.
 
-
 Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more
 complicated components that use the pin schema will not work. For example the I2C or SPI pins.
 
@@ -34,7 +33,7 @@ complicated components that use the pin schema will not work. For example the I2
     sx1509:
       - id: sx1509_hub1
         address: 0x3E
-        # if you need a keypad
+        # If you need a keypad
         keypad:
           key_rows: 3
           key_columns: 4
@@ -53,13 +52,14 @@ The SX1509 integrates a fully programmable keypad scanning engine to implement k
 up to 8x8 matrix (i.e. 64 keys).
 
 - **keypad** (*Optional*): Add this to enable the keypad.
-- **key_row** (*Required*, int): The number of keypad rows to use. This enables any number of the first 7 pins. 
-  So a value of 3 enables pins 0,1,2 to be used as the rows for the keypad matrix. This value must be between 1 and 8.
-- **key_columns** (*Required*, int): The number of keypad columns to use. This enables any number of the last 7 pins. 
-  So a value of 4 enables pins 8,9,10,11 to be used as the columns for the keypad matrix. This value must be between 1 and 8.
-- **sleep_time** (*Optional*, int): 
-- **scan_time** (*Optional*, int): 
-- **debounce_time** (*Optional*, int): 
+
+  - **key_row** (*Required*, int): The number of keypad rows to use. This enables any number of the first 7 pins.
+    So a value of 3 enables pins 0,1,2 to be used as the rows for the keypad matrix. This value must be between 1 and 8.
+  - **key_columns** (*Required*, int): The number of keypad columns to use. This enables any number of the last 7 pins.
+    So a value of 4 enables pins 8,9,10,11 to be used as the columns for the keypad matrix. This value must be between 1 and 8.
+  - **sleep_time** (*Optional*, int):
+  - **scan_time** (*Optional*, int):
+  - **debounce_time** (*Optional*, int):
 
 .. figure:: images/sx1509-keypad.jpg
     :align: center
