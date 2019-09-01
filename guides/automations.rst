@@ -307,6 +307,8 @@ There is one caveat though: ESPHome automatically reboots if no connection to th
 made. This is because the ESPs typically have issues in their network stacks that require a reboot to fix.
 You can adjust this behavior (or even disable automatic rebooting) using the ``reboot_timeout`` option
 in the :doc:`wifi component </components/wifi>` and :doc:`mqtt component </components/mqtt>`.
+(Beware that effectively disables the reboot watchdog, so you will need to power cycle the device
+if it fails to connect to the network without a reboot)
 
 All Triggers
 ------------
@@ -362,6 +364,7 @@ All Actions
 - :ref:`display.page.show_* <display-pages>`
 - :ref:`uart.write <uart-write_action>`
 - :ref:`sim800l.send_sms <sim800l-send_sms_action>`
+- :ref:`mhz19.calibrate_zero <mhz19-calibrate_zero_action>` / :ref:`mhz19.abc_enable <mhz19-abc_enable_action>` / :ref:`mhz19.abc_disable <mhz19-abc_disable_action>`
 
 .. _config-condition:
 
