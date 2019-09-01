@@ -131,7 +131,7 @@ Configuration variables for the SX1509 keypad keys:
 - **row** (**Required**, : int): The row number for this key on the keypad.
 - **col** (**Required**, : int): The column number for this key on the keypad.
 
-With the folowing configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
+With the following configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
 The outputs can in turn be used to add pwm enabled lights like the monochromatic light.
 
 .. code-block:: yaml
@@ -176,7 +176,7 @@ The outputs can in turn be used to add pwm enabled lights like the monochromatic
 
 - All other options from :ref:`Output <config-output>`.
 
-And naturaly you may use all automation functions with these SX1509 binary_sensor's, switches and output (lights).
+And naturally you may use all automation functions with these SX1509 binary_sensors, switches and output (lights).
 
 See Also
 --------
