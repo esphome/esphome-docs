@@ -134,7 +134,7 @@ Then declare the ESPHome reference of the sensor in the same order as declared i
         - name: Analog A2
           id: analog_a2
           filters:
-            - throttle: 2sec
+            - throttle: 2s
 
 The listed `sensors` supports all options from :ref:`Sensor <config-sensor>` like
 automations and filters.
