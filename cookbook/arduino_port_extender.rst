@@ -136,7 +136,7 @@ Then declare the ESPHome reference of the sensor in the same order as declared i
           filters:
             - throttle: 2s
 
-The listed `sensors` supports all options from :ref:`Sensor <config-sensor>` like
+The listed ``sensors`` supports all options from :ref:`Sensor <config-sensor>` like
 automations and filters.
 
 .. note::
