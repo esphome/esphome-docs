@@ -364,6 +364,7 @@ All Actions
 - :ref:`display.page.show_* <display-pages>`
 - :ref:`uart.write <uart-write_action>`
 - :ref:`sim800l.send_sms <sim800l-send_sms_action>`
+- :ref:`mhz19.calibrate_zero <mhz19-calibrate_zero_action>` / :ref:`mhz19.abc_enable <mhz19-abc_enable_action>` / :ref:`mhz19.abc_disable <mhz19-abc_disable_action>`
 
 .. _config-condition:
 
