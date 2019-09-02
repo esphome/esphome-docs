@@ -1,19 +1,17 @@
-Arduino Port Extender
+Arduino Port Expander
 =====================
 
 .. seo::
-    :description: Instructions on using an Arduino board, like the Pro Mini for extending ports of a ESPHome node
+    :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of a ESPHome node
     :image: arduino_pro_mini.jpg
-    :keywords: Arduino port extender ESPHome
+    :keywords: Arduino port expander extender ESPHome
 
-The Arduino is a widely used microcontroller, easy to use and accesible.
-With this sketch you can use any compatible Arduino board with ESPHome and read and write pins.
-
+With this sketch you can control pins of a remote Arduino board through ESPHome. The Arduino acts as a port
+expander, allowing you to use more pins than a standard ESP8266/ESP32 has.
 
 .. figure:: images/arduino_pro_mini.jpg
     :align: center
     :width: 75.0%
-
 
 The Arduino is connected to the ESP via I²C. Most Arduinos use the ``A4`` and ``A5`` pins for the I²C bus
 so those pins are not available to read from ESPHome.
@@ -27,16 +25,17 @@ Currently it is supported:
     - reading analog inputs
     - writing digital outputs
 
-The Arduino sketch can be retrieved from `Here <https://github.com/glmnet/esphome_devices/tree/master/ArduinoPortExtender/src>`__
+The Arduino sketch can be retrieved from `here <https://github.com/glmnet/esphome_devices/tree/master/ArduinoPortExpander/src>`__
+you can rename it to ``.ino`` and use the Arduino IDE to program it.
 
-You need to download `ape.h <https://github.com/glmnet/esphome_devices/blob/master/ape.h>`__ and include the ape.h in the ESPHome configuration.
+You need to download `arduino_port_expander.h <https://github.com/glmnet/esphome_devices/blob/master/arduino_port_expander.h>`__ and include the ape.h in the ESPHome configuration.
 
 .. code-block:: yaml
 
     esphome:
       ...
       includes:
-          - ape.h
+          - arduino_port_expander.h
 
 Setup your :ref:`I²C Bus <i2c>` and assign it an ``id``:
 
@@ -56,7 +55,7 @@ individual IOs.
   custom_component:
     - id: ape
       lambda: |-
-        auto ape_component = new ArduinoPortExtender(i2c_component, 0x08);
+        auto ape_component = new ArduinoPortExpander(i2c_component, 0x08);
         return {ape_component};
 
 By default the I²C address is ``0x08`` but you can change it on the arduino sketch so you can have more slaves
@@ -112,7 +111,7 @@ comparer setup to 1 volt, so voltages bigger are read as 1023. You can configure
 voltage to VIN voltage, this voltage might be 5 volts or 3.3 volts, depending on how you are powering it. To
 do so, pass an additional true value to the hub constructor:
 
-``auto ape_component = new ArduinoPortExtender(i2c_component, 0x08, true);``
+``auto ape_component = new ArduinoPortExpander(i2c_component, 0x08, true);``
 
 To setup sensors, create a custom platform as below, list in braces all the sensors you want,
 in the example below two sensors are declared on pin ``A1`` and ``A2``
@@ -175,6 +174,148 @@ in the example below two outputs are declared on pin ``3`` and ``4``
     - platform: binary
       name: Switch pin 4
       output: output_pin_4
+
+Full Example
+------------
+
+Let's connect a 4 channel relay board and 2 push buttons to toggle the relays, a PIR sensor, a window and a door
+a LM35 temperature sensor and a voltage sensor. Seems a bit too much for an ESP8266? You'll still have some
+spares I/Os.
+
+
+.. code-block:: yaml
+
+  esphome:
+    name: test_arduino
+    platform: ESP8266
+    board: nodemcu
+    includes:
+      - arduino_port_expander.h
+
+  wifi:
+    ssid: !secret wifi_ssid
+    password: !secret wifi_pass
+
+  api:
+
+  ota:
+
+  # define i2c device
+  # for an ESP8266 SDA is D2 and goes to Arduino's A4
+  #                SCL is D1 and goes to Arduino's A5
+  i2c:
+    id: i2c_component
+
+  logger:
+    level: DEBUG
+
+  # define the port expander hub, here we define one with id 'expander1',
+  # but you can define many
+  custom_component:
+    - id: expander1
+      lambda: |-
+        auto expander = new ArduinoPortExpander(i2c_component, 0x08, true);
+        return {expander};
+
+  # define binary outputs, here we have 4, as the relays are inverse logic
+  # (a path to ground turns the relay ON), we defined the inverted: true
+  # option of ESPHome outputs.
+  output:
+  - platform: custom
+    type: binary
+    lambda: |-
+      return {ape_binary_output(expander1, 2),
+              ape_binary_output(expander1, 3),
+              ape_binary_output(expander1, 4),
+              ape_binary_output(expander1, 5)};
+
+    outputs:
+      - id: relay_1
+        inverted: true
+      - id: relay_2
+        inverted: true
+      - id: relay_3
+        inverted: true
+      - id: relay_4
+        inverted: true
+
+  # connect lights to the first 2 relays
+  light:
+    - platform: binary
+      id: ceiling_light
+      name: Ceiling light
+      output: relay_1
+    - platform: binary
+      id: room_light
+      name: Living room light
+      output: relay_2
+
+  # connect a fan to the third relay
+  fan:
+  - platform: binary
+    id: ceiling_fan
+    output: relay_3
+    name: Ceiling fan
+
+  # connect a pump to the 4th relay
+  switch:
+    - platform: output
+      name: Tank pump
+      id: tank_pump
+      output: relay_4
+
+
+  # define binary sensors, use the Arduino PIN number for digital pins and
+  # for analog use 14 for A0, 15 for A1 and so on...
+  binary_sensor:
+    - platform: custom
+      lambda: |-
+        return {ape_binary_sensor(expander1, 7),
+                ape_binary_sensor(expander1, 8),
+                ape_binary_sensor(expander1, 9),
+                ape_binary_sensor(expander1, 10),
+                ape_binary_sensor(expander1, 14) // 14 = A0
+                };
+
+      binary_sensors:
+        - id: push_button1
+          internal: true # don't show on HA
+          on_press:
+            - light.toggle: ceiling_light
+        - id: push_button2
+          internal: true # don't show on HA
+          on_press:
+            - light.toggle: room_light
+        - id: pir_sensor
+          name: Living PIR
+          device_class: motion
+        - id: window_reed_switch
+          name: Living Window
+          device_class: window
+        - id: garage_door
+          name: Garage garage
+          device_class: garage_door
+
+  # define analog sensors
+  sensor:
+    - platform: custom
+      lambda: |-
+        return {ape_analog_input(expander1, 1),  // 1 = A1
+                ape_analog_input(expander1, 2)};
+      sensors:
+        - name: LM35 Living room temperature
+          id: lm35_temp
+          filters:
+            # update every 60s
+            - throttle: 60s
+            # LM35 outputs 0.01v per ºC, and 1023 means 3.3 volts
+            - lambda: return x * 330.0 / 1023.0;
+        - name: Analog A2
+          id: analog_a2
+          filters:
+            - throttle: 2s
+
+
 
 See Also
 --------
