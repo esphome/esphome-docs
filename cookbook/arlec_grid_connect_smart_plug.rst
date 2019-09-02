@@ -1,5 +1,5 @@
 Arlec Grid Connect Smart Plug
-=======================================
+=============================
 
 Arlec Grid Connect Smart Plugs are a tuya based smart plugs sold in Australia. 
 
