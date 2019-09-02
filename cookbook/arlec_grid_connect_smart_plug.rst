@@ -111,7 +111,7 @@ Configuration
           - switch.turn_off: led
           
 Adding to Home Assistant
----------------------------
+------------------------
 
 You can now add your smart plug to home assistant via the configurations page, look for 'ESPHome' under the Integrations option and click 'Configure'.
 
