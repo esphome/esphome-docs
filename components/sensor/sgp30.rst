@@ -26,7 +26,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
           accuracy_decimals: 1
         address: 0x58
         update_interval: 5s
-        
+
 
 Configuration variables:
 ------------------------
@@ -57,10 +57,10 @@ Advanced:
 - **compensation** (*Optional*): The block containing sensors used for compensation.
 
   - **temperature_source** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
-  here. This can improve the sensor's internal calculations.
+    here. This can improve the sensor's internal calculations.
 
   - **humidity_source** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
-  here. This can improve the sensor's internal calculations.
+    here. This can improve the sensor's internal calculations.
 
 .. _sgp30-calibrating:
 
