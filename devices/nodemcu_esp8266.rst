@@ -49,7 +49,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
   not be pulled low on startup. You can, however, still use them as output pins.
 - ``A0``: This pin can be used as a normal GPIO pin (like ``D1`` etc) but additionally can measure
   voltages from 0 to 1.0V using the :doc:`/components/sensor/adc`.
-- ``VIN``: This pin can be used to use an external power supply with the board. Supply a voltage from
+- ``VIN``: This board can be powered by an external power supply by using this pin. Supply a voltage between
   3.3V to 12V to this pin and the linear voltage regulator on the board will power the board.
 - ``ENABLE``/``RESET``: When these pins are triggered, the board resets. The difference between the pins
   is how they can handle voltages above 3.3V
