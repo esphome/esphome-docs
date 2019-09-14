@@ -21,7 +21,7 @@ Create a ifan02.h file:
     #include "esphome.h"
     using namespace esphome;
 
-    class IFan02Output : public output::FloatOutput {
+    class IFan02Output : public Component, public FloatOutput {
       public:
         void write_state(float state) override {
           if (state < 0.3) {
@@ -58,6 +58,21 @@ Then you need to set it up with yaml.
       board: esp8285
       includes:
         - ifan02.h
+      on_boot:
+        priority: 225
+        # turn off the light as early as possible
+        then:
+          - light.turn_off: ifan02_light
+    
+    wifi:
+      ssid: <YOUR_SSID>
+      password: <YOUR_PASSWORD>
+
+    api:
+
+    logger:
+
+    ota:
 
     binary_sensor:
       - platform: gpio
@@ -67,7 +82,7 @@ Then you need to set it up with yaml.
           inverted: True
         on_press:
           then:
-            - light.toggle: light
+            - light.toggle: ifan02_light
 
       - platform: gpio
         id: vbutton_relay_1
@@ -105,9 +120,9 @@ Then you need to set it up with yaml.
         outputs:
           id: fanoutput
         lambda: |-
-          auto ifan02 = new IFan02Output();
-          App.register_component(ifan02);
-          return {ifan02};
+          auto ifan02_fan = new IFan02Output();
+          App.register_component(ifan02_fan);
+          return {ifan02_fan};
 
       - platform: gpio
         pin: GPIO12
@@ -115,9 +130,9 @@ Then you need to set it up with yaml.
 
     light:
       - platform: binary
-        name: ifan02_light
+        name: "iFan02 Light"
         output: light_output
-        id: light
+        id: ifan02_light
 
     switch:
       - platform: template
@@ -133,7 +148,7 @@ Then you need to set it up with yaml.
                     - switch.is_off: fan_relay2
                     - switch.is_off: fan_relay3
                 then:
-                  - fan.turn_off: ifan02
+                  - fan.turn_off: ifan02_fan
             - if:
                 condition:
                   and:
@@ -142,7 +157,7 @@ Then you need to set it up with yaml.
                     - switch.is_off: fan_relay3
                 then:
                   - fan.turn_on:
-                      id: ifan02
+                      id: ifan02_fan
                       speed: LOW
             - if:
                 condition:
@@ -152,7 +167,7 @@ Then you need to set it up with yaml.
                     - switch.is_off: fan_relay3
                 then:
                   - fan.turn_on:
-                      id: ifan02
+                      id: ifan02_fan
                       speed: MEDIUM
             - if:
                 condition:
@@ -162,7 +177,7 @@ Then you need to set it up with yaml.
                     - switch.is_on: fan_relay3
                 then:
                   - fan.turn_on:
-                      id: ifan02
+                      id: ifan02_fan
                       speed: HIGH
             - switch.turn_off: update_fan_speed
 
@@ -181,8 +196,8 @@ Then you need to set it up with yaml.
     fan:
       - platform: speed
         output: fanoutput
-        id: ifan02
-        name: ifan02_fan
+        id: ifan02_fan
+        name: "iFan02 Fan"
 
 See Also
 --------
