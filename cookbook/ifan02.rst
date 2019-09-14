@@ -63,7 +63,7 @@ Then you need to set it up with yaml.
         # turn off the light as early as possible
         then:
           - light.turn_off: ifan02_light
-    
+
     wifi:
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
