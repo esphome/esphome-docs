@@ -204,7 +204,7 @@ See Also
 
 - :doc:`/components/light/index`
 - :doc:`/components/light/binary`
-- :doc:`/components/fan`
+- :doc:`/components/fan/index`
 - :doc:`/components/fan/speed`
 - :doc:`/components/output/index`
 - :doc:`/components/output/custom`
