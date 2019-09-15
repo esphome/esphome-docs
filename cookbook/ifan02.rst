@@ -10,9 +10,9 @@ Sonoff iFan02 is a driver for ceiling fans with lights.
 By replacing the old driver with iFan02, your non-smart led ceiling fan will be converted to a smart ceiling fan.
 For more information see `iFan02 <https://www.itead.cc/sonoff-ifan02-wifi-smart-ceiling-fan-with-light.html>`__
 
-This configuration will expose a :doc:`components/light/binary` and a :doc:`components/fan/speed`.
+This configuration will expose a :doc:`/components/light/binary` and a :doc:`/components/fan/speed`.
 
-To get this working in ESPHome you first need to create a :doc:`components/output/custom` to control the iFan02.
+To get this working in ESPHome you first need to create a :doc:`/components/output/custom` to control the iFan02.
 
 Create a ifan02.h file:
 
