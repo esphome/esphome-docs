@@ -57,9 +57,9 @@ up to 8x8 matrix (i.e. 64 keys).
     So a value of 3 enables pins 0,1,2 to be used as the rows for the keypad matrix. This value must be between 1 and 8.
   - **key_columns** (*Required*, int): The number of keypad columns to use. This enables any number of the last 7 pins.
     So a value of 4 enables pins 8,9,10,11 to be used as the columns for the keypad matrix. This value must be between 1 and 8.
-  - **sleep_time** (*Optional*, int):
-  - **scan_time** (*Optional*, int):
-  - **debounce_time** (*Optional*, int):
+  - **sleep_time** (*Optional*, int): No key press within this time will set keypad engine to sleep.
+  - **scan_time** (*Optional*, int): Scan time per row (must be set above debounce time).
+  - **debounce_time** (*Optional*, int): The debounce time is common to all IOs. 
 
 .. figure:: images/sx1509-keypad.jpg
     :align: center
@@ -128,8 +128,8 @@ To use the individual keys on the keypad you need to add individual binary_senso
 Configuration variables for the SX1509 keypad keys:
 ---------------------------------------------------
 
-- **row** (**Required**, : int): The row number for this key on the keypad.
-- **col** (**Required**, : int): The column number for this key on the keypad.
+- **row** (**Required**, int): The row number for this key on the keypad.
+- **col** (**Required**, int): The column number for this key on the keypad.
 
 With the following configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
 The outputs can in turn be used to add pwm enabled lights like the monochromatic light.
@@ -185,8 +185,4 @@ See Also
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
 - :doc:`/components/light/monochromatic`
-- :doc:`/components/fan/speed`
-- :doc:`/components/power_supply`
-- `PCF8574 Arduino Library <https://github.com/skywodd/pcf8574_arduino_library>`__ by `Fabien Batteix <https://github.com/skywodd>`__
-- :apiref:`pcf8574/pcf8574.h`
 - :ghedit:`Edit`
