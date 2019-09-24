@@ -59,8 +59,6 @@ Configuration variables:
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-.. _ssd1325-spi:
-
 See Also
 --------
 
