@@ -14,11 +14,11 @@ many ClearGrass devices at once as you want.
 
 .. figure:: images/xiaomi_cleargrass-full.jpg
     :align: center
-    :width: 60.0%
+    :width: 80.0%
 
     Xiaomi ClearGrass Temperature and Humidity Sensor over BLE.
 
-.. figure:: images/xiaomi_cleargrass-ui.png
+.. figure:: images/xiaomi_cleargrass-ui.jpg
     :align: center
     :width: 80.0%
 
