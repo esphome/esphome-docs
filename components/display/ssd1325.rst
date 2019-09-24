@@ -5,10 +5,10 @@ SSD1325 OLED Display
     :description: Instructions for setting up SSD1325 OLED display drivers.
     :image: ssd1325.jpg
 
-.. _ssd1325-i2c:
+.. _ssd1325-spi:
 
 Usage
---------
+-----
 
 The ``ssd1325_spi`` display platform allows you to use
 SSD1325 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1325.pdf>`__,
