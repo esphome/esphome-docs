@@ -104,6 +104,10 @@ for platforms with multiple sensors)
           - 40.0 -> 45.0
           - 100.0 -> 102.5
       - filter_out: 42.0
+      - median:
+          window_size: 5
+          send_every: 5
+          send_first_at: 1
       - sliding_window_moving_average:
           window_size: 15
           send_every: 15
@@ -152,6 +156,7 @@ the value the sensor shows.
     - platform: dht
       # ...
       temperature:
+        name: "DHT22 Temperature"
         filters:
           - calibrate_linear:
               # Map 0.0 (from sensor) to 0.0 (true value)
@@ -161,6 +166,30 @@ the value the sensor shows.
 The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
 then fit a linear equation to the values (using least squares). So you need to supply at least
 two values.
+
+``calibrate_polynomial``
+************************
+
+Calibrate your sensor values by fitting them to a polynomial functions. This is similar to
+the ``calibrate_linear`` filter, but also allows for higher-order functions like quadratic polynomials.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: adc
+      # ...
+      filters:
+        - calibrate_polynomial:
+           degree: 2
+           datapoints:
+            # Map 0.0 (from sensor) to 0.0 (true value)
+            - 0.0 -> 0.0
+            - 10.0 -> 12.1
+            - 13.0 -> 14.0
+
+The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. Additionally, you need
+to specify the degree of the resulting polynomial, the datapoints will then be fitted to the given
+degree with a least squares solver.
 
 ``filter_out``
 **************
@@ -174,6 +203,40 @@ Filter out specific values to be displayed. For example to filter out the value 
       # ...
       filters:
         - filter_out: 85.0
+
+``median``
+**********
+
+Calculate moving median over the data. This can be used to filter outliers from the received
+sensor data. A large window size will make the filter slow to react to input changes.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: wifi_signal
+      # ...
+      filters:
+        - median:
+            window_size: 7
+            send_every: 4
+            send_first_at: 3
+
+-  **median**: A `simple moving median
+   <https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example>`__
+   over the last few values.
+
+   -  **window_size**: The number of values over which to calculate the median
+      when pushing out a value. This number should
+      be odd if you want an actual received value pushed out.
+      Defaults to ``5``.
+   -  **send_every**: How often a sensor value should be pushed out. For
+      example, in above configuration the median is calculated after every 4th
+      received sensor value, over the last 7 received values.
+      Defaults to ``5``.
+   -  **send_first_at**: By default, the very first raw value on boot is immediately
+      published. With this parameter you can specify when the very first value is to be sent.
+      Must be smaller than or equal to ``send_every``
+      Defaults to ``1``.
 
 ``sliding_window_moving_average`` / ``exponential_moving_average``
 ******************************************************************

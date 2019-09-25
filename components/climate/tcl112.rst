@@ -33,7 +33,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the climate.
 - **supports_cool** (*Optional*, boolean): Enables setting cool mode for this climate device. Defaults to ``True``.
-- **supports_heat** (*Optional*, boolean): Enables setting cool heat for this climate device. Defaults to ``True``.
+- **supports_heat** (*Optional*, boolean): Enables setting heat mode for this climate device. Defaults to ``True``.
 - **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient
   temperature. This is only for reporting the current temperature in the frontend.
 - All other options from :ref:`Climate <config-climate>`.
