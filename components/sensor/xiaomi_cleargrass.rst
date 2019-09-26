@@ -1,8 +1,8 @@
-Xiaomi ClearGrass E-Ink BLE Sensor
-==================================
+Xiaomi ClearGrass BLE Sensor
+============================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi ClearGrass bluetooth-based temperature and humidity sensors in ESPHome.
+    :description: Instructions for setting up Xiaomi ClearGrass E-Ink bluetooth-based temperature and humidity sensors in ESPHome.
     :image: xiaomi_cleargrass.jpg
     :keywords: Xiaomi, ClearGrass, BLE, E-Ink, Bluetooth
 
@@ -40,7 +40,7 @@ many ClearGrass devices at once as you want.
 Configuration variables:
 ------------------------
 
-- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi MiJia device.
+- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi ClearGrass device.
 - **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.

@@ -143,7 +143,7 @@ Sensor Components
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
-    Xiaomi ClearGrass (E-Ink), components/sensor/xiaomi_cleargrass, xiaomi_cleargrass.jpg
+    Xiaomi ClearGrass, components/sensor/xiaomi_cleargrass, xiaomi_cleargrass.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
