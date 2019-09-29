@@ -22,15 +22,24 @@ MiScale devices at once as you want.
         mac_address: '94:2B:FF:5C:91:61'
         weight:
           name: "Xiaomi Mi Scale Weight"
+        battery_level:
+          name: "Xiaomi Mi Scale Battery Level"
+        impedance:
+          name: "Xiaomi Mi Scale Impedance"
 
 Configuration variables:
 ------------------------
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi MiScale device.
 - **weight** (**Required**): The information for the weight sensor.
-
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **name** (**Required**, string): The name for the weight sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+  
+- **battery_level** (**Optional**, Battery Level): The battery level of the Xiaomi MiScale device.
+  - **name** (**Required**, string): The name for the battery level sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+- **impedance** (**Optional**, Impedance): The information for the impedance sensor, useful for biometric extrapolation of fat and water content.
+  - **name** (**Required**, string): The name for the impedance level sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 
@@ -51,17 +60,12 @@ it detects these sensors, it will automatically parse the BLE message print a me
 
 .. code::
 
-    Xiaomi MiScale 94:2B:FF:5C:91:61 Got weight=75kg
+    Xiaomi MiScale 94:2B:FF:5C:91:61 Got weight=75kg impedance=20Ohm battery_level=80%
 
 Note that it can sometimes take some time for the first BLE broadcast to be received.
 
 Then just copy the address (``94:2B:FF:5C:91:61``) into a new ``sensor.xiaomi_miscale`` platform entry like
 in the configuration example at the top.
-
-.. note::
-
-    The ESPHome Xiaomi integration listens passively to packets the xiaomi device sends by itself.
-    ESPHome therefore has no impact on the battery life of the device.
 
 See Also
 --------
