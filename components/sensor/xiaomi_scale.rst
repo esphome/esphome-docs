@@ -1,5 +1,5 @@
 Xiaomi MiScale v1 and v2 BLE Sensor
-=========================
+===================================
 
 .. seo::
     :description: Instructions for setting up Xiaomi MiScale bluetooth-based scale in ESPHome.
