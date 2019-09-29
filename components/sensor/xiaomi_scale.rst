@@ -38,6 +38,7 @@ Configuration variables:
 - **battery_level** (**Optional**, Battery Level): The battery level of the Xiaomi MiScale device.
   - **name** (**Required**, string): The name for the battery level sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
+  
 - **impedance** (**Optional**, Impedance): The information for the impedance sensor, useful for biometric extrapolation of fat and water content.
   - **name** (**Required**, string): The name for the impedance level sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
