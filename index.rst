@@ -131,6 +131,7 @@ Sensor Components
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
+    SCD30, components/sensor/scd30, scd30.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
@@ -142,6 +143,7 @@ Sensor Components
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
     Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
     TX20 / TX23 Wind Sensor, components/sensor/tx20, tx20.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
@@ -302,6 +304,8 @@ Misc Components
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
     SIM800L, components/sim800l, sim800l.jpg
+
+    Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
 
 Additional Custom Components

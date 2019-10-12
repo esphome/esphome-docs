@@ -360,12 +360,6 @@ Configuration variables:
 
   - All options from :ref:`Sensor <config-sensor>`.
 
-.. note::
-
-    The ``id()`` wrapper for ESPHome-lambdas is not available in custom code. However, in most
-    cases you can drop the ``id()`` wrapper and use the ID directly: ``id(my_var).state`` ->
-    ``my_var->state``
-
 Logging in Custom Components
 ----------------------------
 
