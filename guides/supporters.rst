@@ -48,24 +48,27 @@ You guys are awesome!
 - Dattas Moonchaser
 - David Padbury
 - Dennis Münchgesang
+- Dmitriy Khazansky
 - DrZzs
 - fabi
 - Franck Nijhof
 - Intermittent Technology
 - Jung Ervin
 - Kenvase
+- Lazar Obradovic
 - Magnus Overli
 - Nick Rout
-- Niklas Fondberg
+- Nigel Michki
 - Paul Krischer
 - Paul Morley
 - Philippe Penochet
 - Radu Tizu
 - Roman Priesol
-- Ryan
+- LMR
 - Ryan Bahm
 - Ryan Nazaretian
 - Sam Absalom
+- Saulo Onze
 - Starwolf73
 - Thomas Hermine
 - Vincèn PUJOL
@@ -234,4 +237,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Sat Oct 12 11:51:15 2019 UTC.*
+*This page was last updated Sat Oct 12 12:03:02 2019 UTC.*
