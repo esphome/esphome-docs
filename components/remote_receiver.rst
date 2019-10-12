@@ -14,8 +14,6 @@ handles setting the pin and some other settings, and individual
 :ref:`remote receiver binary sensors <remote-receiver-binary-sensor>`
 which will trigger when they hear their own configured signal.
 
-**See :ref:`remote-setting-up-infrared` and :ref:`remote-setting-up-rf` for set up guides.**
-
 .. code-block:: yaml
 
     # Example configuration entry
