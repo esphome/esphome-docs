@@ -50,6 +50,10 @@ Advanced features:
   - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
+.. note::
+
+    Only one deep sleep component may be configured.
+
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
 ESP32 Wakeup Pin Mode
