@@ -29,9 +29,6 @@ interface are hosted by esphome.io. If you want to use your own service, use the
     # Example configuration entry
     web_server:
       port: 80
-      auth:
-        username: admin
-        password: !secret web_server_password
 
 Configuration variables:
 ------------------------
@@ -50,7 +47,16 @@ Configuration variables:
 
 .. note::
 
-    Starting with version 1.9.0, you can also upload firmware files OTA with the web server.
+    Example web_server configuration using HTTP authentication:
+
+    .. code-block:: yaml
+
+        # Example configuration entry
+        web_server:
+          port: 80
+          auth:
+            username: admin
+            password: !secret web_server_password
 
 See Also
 --------
