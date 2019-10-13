@@ -43,8 +43,8 @@ Configuration variables:
   to https://esphome.io/_static/webserver-v1.min.js.
 - **auth** (*Optional*): Enables basic authentication with username and password.
 
-  - **username** (**Required**, string)
-  - **password** (**Required**, string)
+  - **username** (**Required**, string): The username to use for authentication.
+  - **password** (**Required**, string): The password to check for authentication.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
