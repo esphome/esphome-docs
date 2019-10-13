@@ -280,6 +280,10 @@ And a docker compose file looks like this:
     1. Enable Avahi on both subnets.
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
+    Alternatively, you can make esphome use ICMP pings to check the status of the device
+    with the Hass.io Addon ``"status_use_ping": true,`` option or with docker ``-e ESPHOME_DASHBOARD_USE_PING=true``
+    See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
+
 Can Configuration Files Be Recovered From The Device?
 -----------------------------------------------------
 
