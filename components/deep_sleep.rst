@@ -27,8 +27,6 @@ even Over The Air updates.
     deep_sleep:
       run_duration: 10s
       sleep_duration: 10min
-      
-Note: only one Deep Sleep Component may be configured.
 
 Configuration variables:
 ------------------------
@@ -51,6 +49,10 @@ Advanced features:
   - **pins** (**Required**, list of pin numbers): The pins to wake up on.
   - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
+
+.. note::
+
+    Only one deep sleep component may be configured.
 
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
