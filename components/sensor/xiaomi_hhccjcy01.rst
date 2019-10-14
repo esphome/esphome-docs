@@ -1,16 +1,16 @@
-Xiaomi MiFlora BLE Sensor
-=========================
+Xiaomi HHCCJCY01 BLE Sensor
+===========================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi Mi Flora bluetooth-based plant monitors in ESPHome.
-    :image: xiaomi_miflora.jpg
-    :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
+    :description: Instructions for setting up Xiaomi HHCCJCY01 bluetooth-based plant monitors model HHCCJCY01 in ESPHome.
+    :image: xiaomi_hhccjcy01.jpg
+    :keywords: Xiaomi, Mi Flora, BLE, Bluetooth, HHCCJCY01
 
-The ``xiaomi_miflora`` sensor platform lets you track the output of Xiaomi MiFlora Bluetooth Low Energy
+The ``xiaomi_hhccjcy01`` sensor platform lets you track the output of Xiaomi HHCCJCY01 Bluetooth Low Energy
 devices using the :doc:`/components/esp32_ble_tracker`. This component will track the
-temperature, humidity and optionally the battery level of the MiFlora device every time the sensor
+temperature, humidity and optionally the battery level of the HHCCJCY01 device every time the sensor
 sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many
-MiFlora devices at once as you want.
+HHCCJCY01 devices at once as you want.
 
 .. code-block:: yaml
 
@@ -18,23 +18,23 @@ MiFlora devices at once as you want.
     esp32_ble_tracker:
 
     sensor:
-      - platform: xiaomi_miflora
+      - platform: xiaomi_hhccjcy01
         mac_address: '94:2B:FF:5C:91:61'
         temperature:
-          name: "Xiaomi MiFlora Temperature"
+          name: "Xiaomi HHCCJCY01 Temperature"
         moisture:
-          name: "Xiaomi MiFlora Moisture"
+          name: "Xiaomi HHCCJCY01 Moisture"
         illuminance:
-          name: "Xiaomi MiFlora Illuminance"
+          name: "Xiaomi HHCCJCY01 Illuminance"
         conductivity:
-          name: "Xiaomi MiFlora Soil Conductivity"
+          name: "Xiaomi HHCCJCY01 Soil Conductivity"
         battery_level:
-          name: "Xiaomi MiFlora Battery Level"
+          name: "Xiaomi HHCCJCY01 Battery Level"
 
 Configuration variables:
 ------------------------
 
-- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi MiFlora device.
+- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi HHCCJCY01 device.
 - **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
@@ -67,7 +67,7 @@ Configuration variables:
 
 .. note::
 
-    This integration requires the MiFlora device to have a recent firmware version, see
+    This integration requires the device to have a recent firmware version, see
     https://github.com/esphome/issues/issues/260#issuecomment-487684720 for more info.
 
     The ``battery_level`` does not appear to work with some firmware versions of the device (the other sensors
@@ -76,25 +76,25 @@ Configuration variables:
 Setting Up Devices
 ------------------
 
-Before you can even scan for the MiFlora sensor, you need to activate it using the Flower Care app. Set it up there and you'll be able to discover it.
+Before you can even scan for the sensor, you need to activate it using the Flower Care app. Set it up there and you'll be able to discover it.
 
-To set up Xiaomi MiFlora devices you first need to find their MAC Address so that ESPHome can
-identify them. So first, create a simple configuration without any ``xiaomi_miflora`` entries like so:
+To set up Xiaomi HHCCJCY01 devices you first need to find their MAC Address so that ESPHome can
+identify them. So first, create a simple configuration without any ``xiaomi_hhccjcy01`` entries like so:
 
 .. code-block:: yaml
 
     esp32_ble_tracker:
 
-After uploading the ESP32 will immediately try to scan for BLE devices such as the Xiaomi MiFlora. When
+After uploading the ESP32 will immediately try to scan for BLE devices such as the Xiaomi HHCCJCY01. When
 it detects these sensors, it will automatically parse the BLE message print a message like this one:
 
 .. code::
 
-    Xiaomi MiFlora 94:2B:FF:5C:91:61 Got temperature=23.4°C
+    Got Xiaomi HHCCJCY01 94:2B:FF:5C:91:61 Got temperature=23.4°C
 
 Note that it can sometimes take some time for the first BLE broadcast to be received.
 
-Then just copy the address (``94:2B:FF:5C:91:61``) into a new ``sensor.xiaomi_miflora`` platform entry like
+Then just copy the address (``94:2B:FF:5C:91:61``) into a new ``sensor.xiaomi_hhccjcy01`` platform entry like
 in the configuration example at the top.
 
 .. note::
@@ -106,8 +106,8 @@ See Also
 --------
 
 - :doc:`/components/esp32_ble_tracker`
-- :doc:`/components/sensor/xiaomi_mijia`
+- :doc:`/components/sensor/xiaomi_lywsdcgq`
 - :doc:`/components/sensor/index`
-- :apiref:`xiaomi_miflora/xiaomi_miflora.h`
+- :apiref:`xiaomi_hhccjcy01/xiaomi_hhccjcy01.h`
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`

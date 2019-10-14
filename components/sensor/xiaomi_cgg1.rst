@@ -1,24 +1,24 @@
-Xiaomi ClearGrass BLE Sensor
+Xiaomi CGG1 BLE Sensor
 ============================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi ClearGrass E-Ink bluetooth-based temperature and humidity sensors in ESPHome.
-    :image: xiaomi_cleargrass.jpg
-    :keywords: Xiaomi, ClearGrass, BLE, E-Ink, Bluetooth
+    :description: Instructions for setting up Xiaomi CGG1 E-Ink bluetooth-based temperature and humidity sensors in ESPHome.
+    :image: xiaomi_cgg1.jpg
+    :keywords: Xiaomi, CGG1, BLE, E-Ink, Bluetooth
 
-The ``xiaomi_cleargrass`` sensor platform lets you track the output of Xiaomi ClearGrass Bluetooth
+The ``xiaomi_cgg1`` sensor platform lets you track the output of Xiaomi CGG1 Bluetooth
 Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track the
-temperature, humidity and optionally the battery level of the ClearGrass device every time the
+temperature, humidity and optionally the battery level of the CGG1 device every time the
 sensor sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as
-many ClearGrass devices at once as you want.
+many CGG1 devices at once as you want.
 
-.. figure:: images/xiaomi_cleargrass-full.jpg
+.. figure:: images/xiaomi_cgg1-full.jpg
     :align: center
     :width: 80.0%
 
-    Xiaomi ClearGrass Temperature and Humidity Sensor over BLE.
+    Xiaomi CGG1 Temperature and Humidity Sensor over BLE.
 
-.. figure:: images/xiaomi_cleargrass-ui.jpg
+.. figure:: images/xiaomi_cgg1-ui.jpg
     :align: center
     :width: 80.0%
 
@@ -28,19 +28,19 @@ many ClearGrass devices at once as you want.
     esp32_ble_tracker:
 
     sensor:
-      - platform: xiaomi_cleargrass
+      - platform: xiaomi_cgg1
         mac_address: 7A:80:8E:19:36:BA
         temperature:
-          name: "Xiaomi ClearGrass Temperature"
+          name: "Xiaomi CGG1 Temperature"
         humidity:
-          name: "Xiaomi ClearGrass Humidity"
+          name: "Xiaomi CGG1 Humidity"
         battery_level:
-          name: "Xiaomi ClearGrass Battery Level"
+          name: "Xiaomi CGG1 Battery Level"
 
 Configuration variables:
 ------------------------
 
-- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi ClearGrass device.
+- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi CGG1 device.
 - **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
@@ -63,8 +63,8 @@ Configuration variables:
 Setting Up Devices
 ------------------
 
-To set up Xiaomi ClearGrass devices you first need to find their MAC Address so that ESPHome can
-identify them. So first, create a simple configuration without any ``xiaomi_cleargrass`` entries
+To set up Xiaomi CGG1 devices you first need to find their MAC Address so that ESPHome can
+identify them. So first, create a simple configuration without any ``xiaomi_cgg1`` entries
 like so:
 
 .. code-block:: yaml
@@ -72,17 +72,17 @@ like so:
     esp32_ble_tracker:
 
 After uploading the ESP32 will immediately try to scan for BLE devices such as the Xiaomi
-ClearGrass. When it detects these sensors, it will automatically parse the BLE message print a
+CGG1. When it detects these sensors, it will automatically parse the BLE message print a
 message like this one:
 
 .. code::
 
-    Xiaomi ClearGrass 7A:80:8E:19:36:BA Got temperature=23.4°C, humidity=65.0%
+    Got Xiaomi CGG1 7A:80:8E:19:36:BA Got temperature=23.4°C, humidity=65.0%
 
 Note that it can sometimes take some time for the first BLE broadcast to be received. You can speed
 up the process by pressing the grey bluetooth button on the back of the device.
 
-Then just copy the address (``7A:80:8E:19:36:BA``) into a new ``sensor.xiaomi_cleargrass`` platform
+Then just copy the address (``7A:80:8E:19:36:BA``) into a new ``sensor.xiaomi_cgg1`` platform
 entry like in the configuration example at the top.
 
 .. note::
@@ -98,7 +98,7 @@ See Also
 - :doc:`/components/sensor/xiaomi_miflora`
 - :doc:`/components/sensor/xiaomi_lywsd02`
 - :doc:`/components/sensor/index`
-- :apiref:`xiaomi_cleargrass/xiaomi_cleargrass.h`
+- :apiref:`xiaomi_cgg1/xiaomi_cgg1.h`
 - `Xiaomi Mijia BLE protocol <https://github.com/mspider65/Xiaomi-Mijia-Bluetooth-Temperature-and-Humidity-Sensor>`__
   by `@mspider65 <https://github.com/mspider65>`__
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
