@@ -1,5 +1,5 @@
 TECKIN SB50 LED Bulb
-================
+====================
 
 .. seo::
     :description: ESPHome configuration for Teckin SB50 LED Bulb.
@@ -71,7 +71,7 @@ See Also
 --------
 
 - :doc:`/devices/nodemcu_esp8266`
-- :doc:`cookbook/mirabella-genio-bulb`
+- :doc:`/cookbook/mirabella-genio-bulb`
 - :doc:`/components/light/rgb`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/binary_sensor/gpio`
