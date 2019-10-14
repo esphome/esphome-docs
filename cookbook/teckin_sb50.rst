@@ -3,13 +3,14 @@ TECKIN SB50 LED Bulb
 
 .. seo::
     :description: ESPHome configuration for Teckin SB50 LED Bulb.
-    :image: teckin_sb50.jpg
+    :image: images/teckin_sb50.jpg
+    :keywords: Teckin SB50
 
 .. figure:: images/teckin_sb50.jpg
     :align: center
     :width: 50.0%
 
-The Teckin SB50 Bulb's are a great option for lighting that can be flashed with tuya-convert. More details can be found at tuya-convert \`github page <https://github.com/ct-Open-Source/tuya-convert>\`
+The Teckin SB50 Bulb's are a great option for lighting that can be flashed with tuya-convert. More details can be found at tuya-convert `github page <https://github.com/ct-Open-Source/tuya-convert>`.
 Below is the esphome configuration file that will get you up and running. This assumes you have a secret.yaml with ssid,password, api_password and ota_password keys.
 
 .. code-block:: yaml
