@@ -1,5 +1,5 @@
 Xiaomi CGG1 BLE Sensor
-=======================
+======================
 
 .. seo::
     :description: Instructions for setting up Xiaomi CGG1 bluetooth-based temperature and humidity sensors in ESPHome.
@@ -12,7 +12,7 @@ temperature, humidity and the battery level of the CGG! device every time the se
 sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many
 CGG1 devices at once as you want.
 
-.. figure:: images/xiaomi_CGG1-full.jpg
+.. figure:: images/xiaomi_cgg1-full.jpg
     :align: center
     :width: 60.0%
 
@@ -60,7 +60,7 @@ Setting Up Devices
 ------------------
 
 To set up Xiaomi CGG1 devices you first need to find their MAC Address so that ESPHome can
-identify them. So first, create a simple configuration without any ``xiaomi_CGG1`` entries like so:
+identify them. So first, create a simple configuration without any ``xiaomi_cgg1`` entries like so:
 
 .. code-block:: yaml
 
@@ -76,7 +76,7 @@ it detects these sensors, it will automatically parse the BLE message print a me
 Note that it can sometimes take some time for the first BLE broadcast to be received. You can speed up
 the process by pressing the grey bluetooth button on the back of the device.
 
-Then just copy the address (``58:2D:34:10:7A:8C``) into a new ``sensor.xiaomi_CGG1`` platform entry like
+Then just copy the address (``58:2D:34:10:7A:8C``) into a new ``sensor.xiaomi_cgg1`` platform entry like
 in the configuration example at the top.
 
 .. note::
@@ -90,7 +90,7 @@ See Also
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/xiaomi_mijia`
 - :doc:`/components/sensor/index`
-- :apiref:`xiaomi_CGG1/xiaomi_CGG1.h`
+- :apiref:`xiaomi_cgg1/xiaomi_cgg1.h`
 - `Xiaomi Mi Jia BLE protocol <https://github.com/mspider65/Xiaomi-MiJia-Bluetooth-Temperature-and-Humidity-Sensor>`__
   by `@mspider65 <https://github.com/mspider65>`__
 - :ghedit:`Edit`
