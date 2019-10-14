@@ -15,6 +15,7 @@ where you specify the **name** of the node, the **platform** and
     # Example configuration entry
     esphome:
         name: livingroom
+        comment: Living room ESP32 controller
         platform: ESP32
         board: nodemcu-32s
 
@@ -49,6 +50,7 @@ Advanced options:
   is in. Should have file extension ``.h`` - See :ref:`esphome-includes` for more info.
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
+- **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 
 ESP8266 Options:
 
