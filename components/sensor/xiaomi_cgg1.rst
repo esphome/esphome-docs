@@ -3,7 +3,7 @@ Xiaomi CGG1 BLE Sensor
 
 .. seo::
     :description: Instructions for setting up Xiaomi CGG1 bluetooth-based temperature and humidity sensors in ESPHome.
-    :image: xiaomi_cgg1-full.jpg
+    :image: xiaomi_cgg1.jpg
     :keywords: Xiaomi, CGG1, BLE, Bluetooth
 
 The ``xiaomi_cgg1`` sensor platform lets you track the output of Xiaomi CGG1 Bluetooth Low Energy
