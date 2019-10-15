@@ -300,7 +300,7 @@ Sonoff Mini
     GPIO4, SW Input,
     GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
-    GPIO17, Optional sensor
+    GPIO16, Optional sensor
 
 
 Shelly 1
