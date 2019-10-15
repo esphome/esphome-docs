@@ -27,17 +27,20 @@ Below is the esphome configuration file that will get you up and running. This a
       ssid: !secret wifi_ssid
       password: !secret wifi_password
 
-    # Enable logging
+    # Enable logging to ESPHome
     logger:
+      # Disable logging to serial
       baud_rate: 0
 
     # Enable Home Assistant API
     api:
       password: !secret api_password
 
+    # Setup OTA password
     ota:
       password: !secret ota_password
 
+    # Define output pins
     output:
       - platform: esp8266_pwm
         id: output_red
@@ -55,6 +58,7 @@ Below is the esphome configuration file that will get you up and running. This a
         id: output_cold_white
         pin: GPIO5
 
+    # Define a light entity
     light:
       - platform: rgbww
         name: $devicename
