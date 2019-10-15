@@ -1,5 +1,5 @@
 Xiaomi CGG1 BLE Sensor
-============================
+======================
 
 .. seo::
     :description: Instructions for setting up Xiaomi ClearGrass CGG1 E-Ink bluetooth-based temperature and humidity sensors in ESPHome.
