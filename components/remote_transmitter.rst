@@ -14,7 +14,7 @@ First, you need to setup a global hub that specifies which pin your remote
 sender is connected to. Then you can use the available actions to send encoded
 remote signals.
 
-**See :ref:`remote-setting-up-infrared` and :ref:`remote-setting-up-rf` for set up guides.**
+**See** :ref:`remote-setting-up-infrared` **and** :ref:`remote-setting-up-rf` **for set up guides.**
 
 .. note::
 
