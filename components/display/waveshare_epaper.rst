@@ -73,7 +73,7 @@ Configuration variables:
   - ``2.13in`` (not tested)
   - ``2.70in`` (not tested)
   - ``2.90in``
-  - ``4.20in`` (not tested)
+  - ``4.20in``
   - ``7.50in``
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
