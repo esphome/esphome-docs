@@ -2,7 +2,7 @@ Xiaomi HHCCJCY01 BLE Sensor
 ===========================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi HHCCJCY01 bluetooth-based plant monitors model HHCCJCY01 in ESPHome.
+    :description: Instructions for setting up Xiaomi Mi Flora HHCCJCY01 bluetooth-based plant monitors in ESPHome.
     :image: xiaomi_hhccjcy01.jpg
     :keywords: Xiaomi, Mi Flora, BLE, Bluetooth, HHCCJCY01
 

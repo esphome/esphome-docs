@@ -2,9 +2,9 @@ Xiaomi CGG1 BLE Sensor
 ============================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi CGG1 E-Ink bluetooth-based temperature and humidity sensors in ESPHome.
+    :description: Instructions for setting up Xiaomi ClearGrass CGG1 E-Ink bluetooth-based temperature and humidity sensors in ESPHome.
     :image: xiaomi_cgg1.jpg
-    :keywords: Xiaomi, CGG1, BLE, E-Ink, Bluetooth
+    :keywords: Xiaomi, ClearGrass, BLE, E-Ink, Bluetooth, CGG1
 
 The ``xiaomi_cgg1`` sensor platform lets you track the output of Xiaomi CGG1 Bluetooth
 Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track the

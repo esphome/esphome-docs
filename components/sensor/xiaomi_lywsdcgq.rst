@@ -2,7 +2,7 @@ Xiaomi LYWSDCGQ BLE Sensor
 ==========================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi Mi Jia bluetooth-based temperature and humidity sensors model LYWSDCGQ in ESPHome.
+    :description: Instructions for setting up Xiaomi Mi Jia LYWSDCGQ bluetooth-based temperature and humidity sensors in ESPHome.
     :image: xiaomi_lywsdcgq.jpg
     :keywords: Xiaomi, Mi Jia, BLE, Bluetooth, LYWSDCGQ
 
