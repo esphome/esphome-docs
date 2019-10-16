@@ -140,10 +140,10 @@ Sensor Components
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-    Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
-    Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
+    Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
-    Xiaomi ClearGrass, components/sensor/xiaomi_cleargrass, xiaomi_cleargrass.jpg
+    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
