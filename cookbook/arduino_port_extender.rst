@@ -41,8 +41,8 @@ Setup your :ref:`I²C Bus <i2c>` and assign it an ``id``:
 
 .. code-block:: yaml
 
- i2c:
-   id: i2c_component
+    i2c:
+      id: i2c_component
 
 By default ESP8266 uses ``SDA`` pin ``GPIO4`` which you need to connect to Arduino's ``A4`` and the ``SCL``
 is ``GPIO5`` which goes to Arduino's ``A5``.
@@ -52,11 +52,11 @@ individual IOs.
 
 .. code-block:: yaml
 
-  custom_component:
-    - id: ape
-      lambda: |-
-        auto ape_component = new ArduinoPortExpander(i2c_component, 0x08);
-        return {ape_component};
+    custom_component:
+      - id: ape
+        lambda: |-
+          auto ape_component = new ArduinoPortExpander(i2c_component, 0x08);
+          return {ape_component};
 
 By default the I²C address is ``0x08`` but you can change it on the arduino sketch so you can have more slaves
 on the same bus.
@@ -81,20 +81,20 @@ Then declare the ESPHome reference of the binary sensor in the same order as dec
 
 .. code-block:: yaml
 
-  binary_sensor:
-    - platform: custom
-      lambda: |-
-        return {ape_binary_sensor(ape, 9),
-                ape_binary_sensor(ape, 14) // 14 = A0
-                };
+    binary_sensor:
+      - platform: custom
+        lambda: |-
+          return {ape_binary_sensor(ape, 9),
+                  ape_binary_sensor(ape, 14) // 14 = A0
+                  };
 
-      binary_sensors:
-        - id: binary_sensor_pin2
-          name: Binary sensor pin 2
-        - id: binary_sensor_pin3
-          name: Binary sensor pin 3
-          on_press:
-            ...
+        binary_sensors:
+          - id: binary_sensor_pin2
+            name: Binary sensor pin 2
+          - id: binary_sensor_pin3
+            name: Binary sensor pin 3
+            on_press:
+              ...
 
 The listed `binary_sensors` supports all options from :ref:`Binary Sensor <config-binary_sensor>` like
 automations and filters.
@@ -120,28 +120,28 @@ Then declare the ESPHome reference of the sensor in the same order as declared i
 
 .. code-block:: yaml
 
-  sensor:
-    - platform: custom
-      lambda: |-
-        return {ape_analog_input(ape, 1),  // 1 = A1
-                ape_analog_input(ape, 2)};
-      sensors:
-        - name: Analog A1
-          id: analog_a1
-          filters:
-            - throttle: 1s
-        - name: Analog A2
-          id: analog_a2
-          filters:
-            - throttle: 2s
+    sensor:
+      - platform: custom
+        lambda: |-
+          return {ape_analog_input(ape, 1),  // 1 = A1
+                  ape_analog_input(ape, 2)};
+        sensors:
+          - name: Analog A1
+            id: analog_a1
+            filters:
+              - throttle: 1s
+          - name: Analog A2
+            id: analog_a2
+            filters:
+              - throttle: 2s
 
 The listed ``sensors`` supports all options from :ref:`Sensor <config-sensor>` like
 automations and filters.
 
 .. note::
 
-  Sensors are polled by default every loop cycle so it is recommended to use the ``throttle`` filter
-  to not flood the network.
+    Sensors are polled by default every loop cycle so it is recommended to use the ``throttle`` filter
+    to not flood the network.
 
 Output
 ------
@@ -153,27 +153,27 @@ in the example below two outputs are declared on pin ``3`` and ``4``
 
 .. code-block:: yaml
 
-  output:
-  - platform: custom
-    type: binary
-    lambda: |-
-      return {ape_binary_output(ape, 3),
-              ape_binary_output(ape, 4)};
-    outputs:
-      - id: output_pin_3
-        inverted: true
-      - id: output_pin_4
-        inverted: true
+    output:
+    - platform: custom
+      type: binary
+      lambda: |-
+        return {ape_binary_output(ape, 3),
+                ape_binary_output(ape, 4)};
+      outputs:
+        - id: output_pin_3
+          inverted: true
+        - id: output_pin_4
+          inverted: true
 
-  switch:
-    - platform: output
-      name: Switch pin 3
-      output: output_pin_3
+    switch:
+      - platform: output
+        name: Switch pin 3
+        output: output_pin_3
 
-  light:
-    - platform: binary
-      name: Switch pin 4
-      output: output_pin_4
+    light:
+      - platform: binary
+        name: Switch pin 4
+        output: output_pin_4
 
 Full Example
 ------------
@@ -185,135 +185,135 @@ spares I/Os.
 
 .. code-block:: yaml
 
-  esphome:
-    name: test_arduino
-    platform: ESP8266
-    board: nodemcu
-    includes:
+    esphome:
+      name: test_arduino
+      platform: ESP8266
+      board: nodemcu
+      includes:
       - arduino_port_expander.h
 
-  wifi:
-    ssid: !secret wifi_ssid
-    password: !secret wifi_pass
-
-  api:
-
-  ota:
-
-  # define i2c device
-  # for an ESP8266 SDA is D2 and goes to Arduino's A4
-  #                SCL is D1 and goes to Arduino's A5
-  i2c:
-    id: i2c_component
-
-  logger:
-    level: DEBUG
-
-  # define the port expander hub, here we define one with id 'expander1',
-  # but you can define many
-  custom_component:
-    - id: expander1
-      lambda: |-
-        auto expander = new ArduinoPortExpander(i2c_component, 0x08, true);
-        return {expander};
-
-  # define binary outputs, here we have 4, as the relays are inverse logic
-  # (a path to ground turns the relay ON), we defined the inverted: true
-  # option of ESPHome outputs.
-  output:
-  - platform: custom
-    type: binary
-    lambda: |-
-      return {ape_binary_output(expander1, 2),
-              ape_binary_output(expander1, 3),
-              ape_binary_output(expander1, 4),
-              ape_binary_output(expander1, 5)};
-
-    outputs:
-      - id: relay_1
-        inverted: true
-      - id: relay_2
-        inverted: true
-      - id: relay_3
-        inverted: true
-      - id: relay_4
-        inverted: true
-
-  # connect lights to the first 2 relays
-  light:
-    - platform: binary
-      id: ceiling_light
-      name: Ceiling light
-      output: relay_1
-    - platform: binary
-      id: room_light
-      name: Living room light
-      output: relay_2
-
-  # connect a fan to the third relay
-  fan:
-  - platform: binary
-    id: ceiling_fan
-    output: relay_3
-    name: Ceiling fan
-
-  # connect a pump to the 4th relay
-  switch:
-    - platform: output
-      name: Tank pump
-      id: tank_pump
-      output: relay_4
-
-
-  # define binary sensors, use the Arduino PIN number for digital pins and
-  # for analog use 14 for A0, 15 for A1 and so on...
-  binary_sensor:
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_pass
+  
+    api:
+  
+    ota:
+  
+    # define i2c device
+    # for an ESP8266 SDA is D2 and goes to Arduino's A4
+    #                SCL is D1 and goes to Arduino's A5
+    i2c:
+      id: i2c_component
+  
+    logger:
+      level: DEBUG
+  
+    # define the port expander hub, here we define one with id 'expander1',
+    # but you can define many
+    custom_component:
+      - id: expander1
+        lambda: |-
+          auto expander = new ArduinoPortExpander(i2c_component, 0x08, true);
+          return {expander};
+  
+    # define binary outputs, here we have 4, as the relays are inverse logic
+    # (a path to ground turns the relay ON), we defined the inverted: true
+    # option of ESPHome outputs.
+    output:
     - platform: custom
+      type: binary
       lambda: |-
-        return {ape_binary_sensor(expander1, 7),
-                ape_binary_sensor(expander1, 8),
-                ape_binary_sensor(expander1, 9),
-                ape_binary_sensor(expander1, 10),
-                ape_binary_sensor(expander1, 14) // 14 = A0
-                };
-
-      binary_sensors:
-        - id: push_button1
-          internal: true # don't show on HA
-          on_press:
-            - light.toggle: ceiling_light
-        - id: push_button2
-          internal: true # don't show on HA
-          on_press:
-            - light.toggle: room_light
-        - id: pir_sensor
-          name: Living PIR
-          device_class: motion
-        - id: window_reed_switch
-          name: Living Window
-          device_class: window
-        - id: garage_door
-          name: Garage garage
-          device_class: garage_door
-
-  # define analog sensors
-  sensor:
-    - platform: custom
-      lambda: |-
-        return {ape_analog_input(expander1, 1),  // 1 = A1
-                ape_analog_input(expander1, 2)};
-      sensors:
-        - name: LM35 Living room temperature
-          id: lm35_temp
-          filters:
-            # update every 60s
-            - throttle: 60s
-            # LM35 outputs 0.01v per ºC, and 1023 means 3.3 volts
-            - lambda: return x * 330.0 / 1023.0;
-        - name: Analog A2
-          id: analog_a2
-          filters:
-            - throttle: 2s
+        return {ape_binary_output(expander1, 2),
+                ape_binary_output(expander1, 3),
+                ape_binary_output(expander1, 4),
+                ape_binary_output(expander1, 5)};
+  
+      outputs:
+        - id: relay_1
+          inverted: true
+        - id: relay_2
+          inverted: true
+        - id: relay_3
+          inverted: true
+        - id: relay_4
+          inverted: true
+  
+    # connect lights to the first 2 relays
+    light:
+      - platform: binary
+        id: ceiling_light
+        name: Ceiling light
+        output: relay_1
+      - platform: binary
+        id: room_light
+        name: Living room light
+        output: relay_2
+  
+    # connect a fan to the third relay
+    fan:
+    - platform: binary
+      id: ceiling_fan
+      output: relay_3
+      name: Ceiling fan
+  
+    # connect a pump to the 4th relay
+    switch:
+      - platform: output
+        name: Tank pump
+        id: tank_pump
+        output: relay_4
+  
+  
+    # define binary sensors, use the Arduino PIN number for digital pins and
+    # for analog use 14 for A0, 15 for A1 and so on...
+    binary_sensor:
+      - platform: custom
+        lambda: |-
+          return {ape_binary_sensor(expander1, 7),
+                  ape_binary_sensor(expander1, 8),
+                  ape_binary_sensor(expander1, 9),
+                  ape_binary_sensor(expander1, 10),
+                  ape_binary_sensor(expander1, 14) // 14 = A0
+                  };
+  
+        binary_sensors:
+          - id: push_button1
+            internal: true # don't show on HA
+            on_press:
+              - light.toggle: ceiling_light
+          - id: push_button2
+            internal: true # don't show on HA
+            on_press:
+              - light.toggle: room_light
+          - id: pir_sensor
+            name: Living PIR
+            device_class: motion
+          - id: window_reed_switch
+            name: Living Window
+            device_class: window
+          - id: garage_door
+            name: Garage garage
+            device_class: garage_door
+  
+    # define analog sensors
+    sensor:
+      - platform: custom
+        lambda: |-
+          return {ape_analog_input(expander1, 1),  // 1 = A1
+                  ape_analog_input(expander1, 2)};
+        sensors:
+          - name: LM35 Living room temperature
+            id: lm35_temp
+            filters:
+              # update every 60s
+              - throttle: 60s
+              # LM35 outputs 0.01v per ºC, and 1023 means 3.3 volts
+              - lambda: return x * 330.0 / 1023.0;
+          - name: Analog A2
+            id: analog_a2
+            filters:
+              - throttle: 2s
 
 
 
