@@ -25,7 +25,6 @@ required to be set up in your configuration for this sensor to work.
           name: "QMC5883L Field Strength Z"
         heading:
           name: "QMC5883L Heading"
-        data_rate: 10Hz
         range: 200uT
         oversampling: 512x
         update_interval: 60s
@@ -42,37 +41,25 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **heading** (*Optional*): The heading of the sensor in degrees. All options from
   :ref:`Sensor <config-sensor>`.
-- **data_rate** (*Optional*): The data rate parameter for the sensor.
 - **range** (*Optional*): The range parameter for the sensor.
 - **oversampling** (*Optional*): The oversampling parameter for the sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-Data Rate Options
------------------
-
-By default, the QMC5883L sensor measures 15 sampled ever second. You can, however,
-configure this amount. Possible sampling values:
-
--  ``10Hz`` (default)
--  ``50Hz``
--  ``100Hz``
--  ``200Hz``
-
 Range Options
 -------------
 
 By default, the QMC5883L sensor measurement range is 130uT. You can, however,
-configure this amount. Possible sampling values:
+configure this amount. Possible values:
 
--  ``200uT`` (default)`
+-  ``200uT`` (default)
 -  ``800uT``
 
 Oversampling Options
 --------------------
 
-By default, the QMC5883L sensor measures each value 1 times when requesting a new value. You can, however,
-configure this amount. Possible sampling values:
+By default, the QMC5883L sensor measures each value 512 times when requesting a new value. You can, however,
+configure this amount. The result is the sensor will take the adverage of the x samples. Possible sampling values:
 
 -  ``512x`` (default)
 -  ``256x``
