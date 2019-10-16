@@ -41,6 +41,7 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **even_pin_count** (*Optional*): Support for even (2 or 4) pin-count sensors.  Defaults to ``False`` (3 pins). 
 - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
