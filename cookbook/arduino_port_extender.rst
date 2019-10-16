@@ -195,20 +195,20 @@ spares I/Os.
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_pass
-  
+
     api:
-  
+
     ota:
-  
+
     # define i2c device
     # for an ESP8266 SDA is D2 and goes to Arduino's A4
     #                SCL is D1 and goes to Arduino's A5
     i2c:
       id: i2c_component
-  
+
     logger:
       level: DEBUG
-  
+
     # define the port expander hub, here we define one with id 'expander1',
     # but you can define many
     custom_component:
@@ -228,7 +228,7 @@ spares I/Os.
                 ape_binary_output(expander1, 3),
                 ape_binary_output(expander1, 4),
                 ape_binary_output(expander1, 5)};
-  
+
       outputs:
         - id: relay_1
           inverted: true
@@ -238,7 +238,7 @@ spares I/Os.
           inverted: true
         - id: relay_4
           inverted: true
-  
+
     # connect lights to the first 2 relays
     light:
       - platform: binary
@@ -249,22 +249,22 @@ spares I/Os.
         id: room_light
         name: Living room light
         output: relay_2
-  
+
     # connect a fan to the third relay
     fan:
     - platform: binary
       id: ceiling_fan
       output: relay_3
       name: Ceiling fan
-  
+
     # connect a pump to the 4th relay
     switch:
       - platform: output
         name: Tank pump
         id: tank_pump
         output: relay_4
-  
-  
+
+
     # define binary sensors, use the Arduino PIN number for digital pins and
     # for analog use 14 for A0, 15 for A1 and so on...
     binary_sensor:
@@ -276,7 +276,7 @@ spares I/Os.
                   ape_binary_sensor(expander1, 10),
                   ape_binary_sensor(expander1, 14) // 14 = A0
                   };
-  
+
         binary_sensors:
           - id: push_button1
             internal: true # don't show on HA
@@ -295,7 +295,7 @@ spares I/Os.
           - id: garage_door
             name: Garage garage
             device_class: garage_door
-  
+
     # define analog sensors
     sensor:
       - platform: custom
