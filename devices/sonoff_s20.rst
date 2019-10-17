@@ -83,11 +83,7 @@ Step 2: Connecting UART
 -----------------------
 
 We're interested in the main part of the S20 with the green PCB. On the bottom of the PCB, you will
-<<<<<<< HEAD
 find four unpopulated holes. These pins expose the UART interface used to flash firmware onto the device
-=======
-find four unpopulated holes. These pins expose the UART interface used to flash firmwares onto the device
->>>>>>> e3807a43f8a79c488e9422ec136b0769755f0f2b
 and debug issues.
 
 .. figure:: images/sonoff_s20_pcb.jpg
