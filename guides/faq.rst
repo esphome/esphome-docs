@@ -84,7 +84,7 @@ Select the firmware binary and finally press "Flash ESP".
     keep pressing the BOOT button until flashing has begun (ie. Geekcreit DOIT ESP32 DEVKIT V1).
 
 Help! Something's not working!!
---------------------------------
+-------------------------------
 
 That's no good. Here are some steps that resolve some problems:
 
