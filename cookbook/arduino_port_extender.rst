@@ -216,7 +216,7 @@ spares I/Os.
         lambda: |-
           auto expander = new ArduinoPortExpander(i2c_component, 0x08, true);
           return {expander};
-  
+
     # define binary outputs, here we have 4, as the relays are inverse logic
     # (a path to ground turns the relay ON), we defined the inverted: true
     # option of ESPHome outputs.
