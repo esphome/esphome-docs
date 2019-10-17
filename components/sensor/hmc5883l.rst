@@ -1,3 +1,5 @@
+.. _hmc5883l:
+
 HMC5883L Magnetometer
 =====================
 
@@ -8,9 +10,14 @@ HMC5883L Magnetometer
 
 The ``hmc5883l`` allows you to use your HMC5883L triple-axis magnetometers
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf>`__,
-`Adafruit`_) with
-ESPHome. The :ref:`I²C Bus <i2c>` is
-required to be set up in your configuration for this sensor to work.
+`Adafruit`_) with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration
+for this sensor to work.
+
+.. figure:: ../../images/hmc5883l.jpg
+    :align: center
+    :width: 30.0%
+
+    HMC5883L Magnetometer.
 
 .. _Adafruit: https://www.adafruit.com/product/1746
 
@@ -35,7 +42,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x1E``.
+- **address** (*Optional*, int): Manually specify the  I²c address of the sensor. Defaults to ``0x1E``.
 - **field_strength_x** (*Optional*): The field strength in microtesla along the X-Axis. All options from
   :ref:`Sensor <config-sensor>`.
 - **field_strength_y** (*Optional*): The field strength in microtesla along the Y-Axis. All options from

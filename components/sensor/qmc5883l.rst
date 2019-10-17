@@ -8,8 +8,16 @@ QMC5883L Magnetometer
 
 The ``qmc5883l`` allows you to use your QMC5883L triple-axis magnetometers
 (`datasheet <http://wiki.sunfounder.cc/images/7/72/QMC5883L-Datasheet-1.0.pdf>`__) with
-ESPHome. The :ref:`I²C Bus <i2c>` is
-required to be set up in your configuration for this sensor to work.
+ESPHome. This sensor is very simular to the :ref:`HMC5883L <hmc5883l>` sensor and is oftern found
+as a knock off replacement. The QMC5883L sensor preforms on par to the HMC5883L sensor,
+though the congiuration differs. The :ref:`I²C Bus <i2c>` is required to be set up in your
+configuration for this sensor to work.
+
+.. figure:: ../../images/qmc5883l.jpg
+    :align: center
+    :width: 30.0%
+
+    QMC5883L Magnetometer.
 
 .. code-block:: yaml
 
@@ -32,7 +40,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x1E``.
+- **address** (*Optional*, int): Manually specify the  I²c address of the sensor. Defaults to ``0x1E``.
 - **field_strength_x** (*Optional*): The field strength in microtesla along the X-Axis. All options from
   :ref:`Sensor <config-sensor>`.
 - **field_strength_y** (*Optional*): The field strength in microtesla along the Y-Axis. All options from
