@@ -29,7 +29,7 @@ an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <
 
     docker pull esphome/esphome
 
-Creating a project
+Creating a Project
 ------------------
 
 Now let’s setup a configuration file. Fortunately, ESPHome has a
