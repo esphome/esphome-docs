@@ -181,12 +181,12 @@ How do I use my Home Assistant secrets.yaml?
 ---------------------------------------------
 
 If you want to keep all your secrets in one place, make a ``secrets.yaml`` file in the 
-   esphome directory with these contents (so it pulls in the contents of your main Home Assistant 
-   ``secrets.yaml`` file from one directory higher):
+esphome directory with these contents (so it pulls in the contents of your main Home Assistant 
+``secrets.yaml`` file from one directory higher):
    
-   .. code-block:: yaml
+.. code-block:: yaml
    
-       <<: !include ../secrets.yaml
+    <<: !include ../secrets.yaml
 
 
 Does ESPHome support [this device/feature]?
