@@ -11,7 +11,7 @@ the ESPHome wizard asks you for your platform and |nodemcuv2|_ as the board type
 
 .. note::
 
-    Most NodeMCU that can be purchased now are version 2 or upwards, if you're using an
+    Most NodeMCU that can be purchased now are version 2 or upwards. If you're using an
     original v1 board, set the board type to |nodemcu|_.
 
 .. |nodemcuv2| replace:: ``nodemcuv2``
@@ -30,8 +30,8 @@ the ESPHome wizard asks you for your platform and |nodemcuv2|_ as the board type
 The NodeMCU's pin numbering as seen on the board (the ``D0`` etc pins) is different from
 the internal pin numbering. For example, the ``D8`` pin number maps to the internal
 ``GPIO0`` pin. Fortunately ESPHome knows the mapping from the on-board pin numbers
-to the internal pin numbering, but you need to prefix the pin numbers with ``D`` as in below
-image in order for this automatic mapping to occur.
+to the internal pin numbering, but you need to prefix the pin numbers with ``D`` as in
+the image below in order for this automatic mapping to occur.
 
 In general, it is best to just use the ``D0``, ``D1``, ... pin numbering to avoid confusion
 
@@ -52,7 +52,7 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
 - ``VIN``: This pin can be used to use an external power supply with the board. Supply a voltage from
   3.3V to 12V to this pin and the linear voltage regulator on the board will power the board.
 - ``ENABLE``/``RESET``: When these pins are triggered, the board resets. The difference between the pins
-  is how they can handle voltages above 3.3V
+  is how they can handle voltages above 3.3V.
 
 
 .. code-block:: yaml

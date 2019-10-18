@@ -21,7 +21,7 @@ Over-The-Air update process.
 
 .. note::
 
-    If you've previously installed Sonoff-Tasmota on your Sonoff 4CH, you're in luck 😀
+    If you've previously installed Sonoff-Tasmota on your Sonoff 4CH, you're in luck 😀.
     ESPHome can generate a firmware binary which you can then upload via the
     Tasmota web interface. To see how to create this binary, skip to :ref:`sonoff_4ch-creating_firmware`.
 
@@ -33,9 +33,9 @@ interface.
 .. warning::
 
     Opening up this device can be very dangerous if not done correctly. While the device is open,
-    you will be a single touch away from being electrocuted if the device is plugged in.
+    you will be a single touch away from being electrocuted if the device is plugged in or connected to a high voltage 'mains' power supply.
 
-    So, during this *entire* guide **never ever** plug the device in. Also, you should only do this
+    So, during this *entire* guide **never ever** plug the device in or have it connected to mains power. Also, you should only do this
     if you know what you're doing. If you, at any step, feel something is wrong or are uncomfortable
     with continuing, it's best to just stop for your own safety.
 
@@ -43,12 +43,12 @@ interface.
 
 For this guide you will need:
 
-- Sonoff 4CH 😉
-- An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
+- Sonoff 4CH 😉.
+- A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins.
-- Computer running ESPHome or Hass.io add-on.
-- Screwdriver to open up the Sonoff 4CH.
+- A computer running Home Assistant with the ESPHome Hass.io add-on.
+- A screwdriver to open up the Sonoff 4CH.
 
 Have everything? Great! Then you can start.
 
@@ -62,7 +62,7 @@ supplied with the Sonoff 4CH before doing this step.
 .. warning::
 
     Just to repeat this: Make **absolutely sure** the device is not connected to any appliance or
-    plugged in before doing this step.
+    connected to mains power before doing this step.
 
 While the device is not plugged in, turn the device so you are viewing it from the top,
 then unscrew the long screws in the four corners of the top cover.
@@ -92,7 +92,7 @@ have to connect the four wires on the UART to USB bridge to the UART pins of the
 Fortunately for us, exactly these pins come pre-populated with a few header pins. You can identify
 these by the ``VCC33``, ``RX``, ``TX`` and ``GND`` markings on the silk-screen.
 
-Now go ahead and connect these pins to your UART to USB bridge as seen in below image. Make sure
+Now go ahead and connect these pins to your UART to USB bridge as seen in the below image. Make sure
 that you connect these correctly, especially the ``VCC33`` and ``GND`` parts as you can otherwise
 destroy the chip.
 
@@ -151,10 +151,10 @@ Step 4: Uploading Firmware
 --------------------------
 
 In order to upload the firmware, you're first going to need to get the chip into a flash mode, otherwise
-the device will start up without accepting any firmware flash attempts. To do this, while the device is UART
-bridge is not connected to your USB port, start pressing the bottom-left push button labeled ``FW/IO0``
+the device will start up without accepting any firmware flash attempts. To do this, while the UART
+bridge is not connected to your USB port, press and hold the bottom-left push button labeled ``FW/IO0``
 and continue to do so while plugging in the UART bridge into your computer. Keep holding the button for
-another 2-4 seconds. The 4CH should now be in a flash mode and should not blink with any LED.
+another 2-4 seconds. The 4CH should now be in a flash mode and should not blink any LED.
 
 .. figure:: images/sonoff_4ch_buttons.jpg
     :align: center
@@ -175,12 +175,12 @@ If successful, you should see something like this:
 Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your Sonoff 4CH. And in a moment,
 you will be able to use all of ESPHome's great features with your Sonoff 4CH.
 
-If above step does, however, not work, here are some steps that can help:
+If above step don't work, however, here are some steps that can help:
 
 -  Sometimes the UART bridge cannot supply enough current to the chip to operate, in this
    case use a 3.3V supply you have lying around. A nice hack is to use the power supply of
-   NodeMCU boards. Simply connect the NodeMCU's 3.3V to VCC and GND to GND. **Do not attempt
-   to plug the device into a socket to overcome this problem while troubleshooting.**
+   NodeMCU boards. Simply connect the NodeMCU's 3.3V to VCC and GND to GND. **Do not connect mains
+   power to the device in an attempt to overcome this problem while troubleshooting.**
 -  In other cases the ``TX`` and ``RX`` pin are reversed. Simple disconnect the device, swap
    the two pins and put it into flash mode again.
 
@@ -307,7 +307,7 @@ Step 6: Finishing Up
 --------------------
 
 If you're sure everything is done with the 4CH and have double checked there's nothing that could cause a short
-in the case, you can put the front cover with the button on the base again and screw everything together.
+in the case, you can put the front cover back on and screw everything together.
 
 Now triple or even quadruple check the UART bridge is not connected to the 4CH, then comes the time when you can
 connect it.
