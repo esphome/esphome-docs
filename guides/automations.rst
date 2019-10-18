@@ -337,7 +337,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_util <wait_until_action>`
 - :ref:`component.update <component-update_action>`
-- :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>`
+- :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
@@ -648,6 +648,32 @@ Please note this is only useful right now if your script contains a ``delay`` ac
     on_...:
       then:
         - script.stop: my_script
+
+.. _script-wait_action:
+
+``script.wait`` Action
+----------------------
+
+This action suspends execution of the automation until a script has finished executing.
+
+Note: If no script is executing, this will continue immediately. If multiple instances of the script
+are running, this will block until all of them have terminated.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.execute: my_script
+        - script.wait: my_script
 
 .. _script-is_running_condition:
 
