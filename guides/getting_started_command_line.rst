@@ -21,6 +21,8 @@ Installing ESPHome is very easy. All you need to do is have `Python
 
     pip install esphome
 
+Don't forget to add the esphome binary to PATH to ensure proper execution.
+
 Alternatively, there’s also a docker image available for easy
 installation (the docker hub image is only available for amd64 right now; if you have
 an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <getting_started_hassio>`:
@@ -28,6 +30,14 @@ an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <
 .. code-block:: bash
 
     docker pull esphome/esphome
+
+Installation on Windows 10
+--------------------------
+
+It's possible to also install ESPHome command line in Windows 10, inside the `Windows Subsystem for Linux
+(WSL) <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`__ using the same ``pip`` command as
+above. The main limitation is that COM ports are not exposed properly in WSL, so only OTA flashing works.
+Or local flashing from Windows using `esphome-flasher <https://github.com/esphome/esphome-flasher>`__.
 
 Creating A Project
 ------------------
@@ -162,7 +172,7 @@ Bonus: ESPHome dashboard
 ESPHome features a dashboard that you can use to easily manage your nodes
 from a nice web interface. It was primarily designed for
 :doc:`the Hass.io add-on <getting_started_hassio>`, but also works with a simple command on
-\*nix machines (sorry, no windows).
+\*nix machines and WSL on Windows 10.
 
 To start the ESPHome dashboard, simply start ESPHome with the following command
 (with ``config/`` pointing to a directory where you want to store your configurations)
