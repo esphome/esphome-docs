@@ -356,7 +356,7 @@ See :doc:`/components/sensor/hlw8012` for measuring power.
 Example config: `teckin_sp20_us.yaml <https://github.com/esphome/esphome-docs/blob/current/devices/teckin_sp20_us.yaml>`__
 
 TorchStar LED Controller (Nov 2018)
-----------------
+-----------------------------------
 
 .. pintable::
 
