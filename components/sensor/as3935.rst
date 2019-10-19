@@ -1,5 +1,5 @@
 AMS AS3935 Franklin Lightning Sensor
-=====================================
+====================================
 
 .. seo::
     :description: Instructions for setting up AS3935 lightning sensor
@@ -140,7 +140,7 @@ Use this if you want to use your AS3935 in i^2c mode.
   Another address can be ``0x02``.
 
 Configuration variables (spi):
--------------------------------
+------------------------------
 
 Use this if you want to use your AS3935 in SPI mode.
 
