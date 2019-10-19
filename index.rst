@@ -202,7 +202,7 @@ Light Components
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
 
     Light Partition, components/light/partition, color_lens.svg
-    Tuya Dimmer, components/light/tuyadimmer, brightness-medium.svg
+    Tuya Dimmer, components/light/tuya, brightness-medium.svg
     Custom Light, components/light/custom, language-cpp.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
