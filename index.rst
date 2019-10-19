@@ -309,7 +309,7 @@ Misc Components
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg
     SIM800L, components/sim800l, sim800l.jpg
-
+    DFPlayer, components/dfplayer_mini, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
 
