@@ -3,7 +3,7 @@ Xiaomi MiJia BLE Sensor
 
 .. seo::
     :description: Instructions for setting up Xiaomi Mi Jia bluetooth-based temperature and humidity sensors in ESPHome.
-    :image: xiaomi_miflora.jpg
+    :image: xiaomi_mijia.jpg
     :keywords: Xiaomi, Mi Jia, BLE, Bluetooth
 
 The ``xiaomi_mijia`` sensor platform lets you track the output of Xiaomi MiJia Bluetooth Low Energy

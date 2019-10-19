@@ -22,7 +22,7 @@ Contributing to ESPHome-Docs
     :width: 60.0%
 
 One of the areas of ESPHome that can always be improved is the documentation.
-If you see an issue somewhere, or spelling mistakes or if you want to share your awesome
+If you see an issue somewhere, a spelling mistakes or if you want to share your awesome
 setup, please feel free to submit a pull request.
 
 The ESPHome documentation is built using `sphinx <http://www.sphinx-doc.org/>`__ and uses
@@ -31,7 +31,7 @@ The ESPHome documentation is built using `sphinx <http://www.sphinx-doc.org/>`__
 Syntax
 ******
 
-In my opinion, markdown would have been the much better choice in hindsight, but at the time
+In my opinion, Markdown would have been the much better choice in hindsight, but at the time
 I was setting up the documentation good doxygen integration was key to me. Anyway, here's a quick
 RST primer:
 
@@ -138,7 +138,7 @@ RST primer:
 
       All images in the documentation need to be as small as possible to ensure
       fast page load times. For normal figures the maximum size should be at most
-      about 1000x800px or so. Additionally, please use online tools like
+      about 1000x800 px or so. Additionally, please use online tools like
       https://tinypng.com/ or https://tinyjpg.com/ to further compress images.
 
 - **Notes and warnings**: You can create simple notes and warnings using the ``note`` and ``warning``
@@ -173,29 +173,29 @@ RST primer:
   *This is italicized.* (A weird word...)
   **This is very important.**
 
-- **Ordered and unordered list**: The syntax for lists in RST is more or less the same as in markdown:
+- **Ordered and unordered list**: The syntax for lists in RST is more or less the same as in Markdown:
 
   .. code-block:: rst
 
-      - Unordered Item
+      - Unordered item
 
-        - Unordered Sub-Item
+        - Unordered sub-item
 
       - Item with a very long text so that it does not fully fit in a single line and
         must be split up into multiple lines.
 
-      1. Ordered Item #1
-      2. Ordered Item #2
+      1. Ordered item #1
+      2. Ordered item #2
 
-  - Unordered Item
+  - Unordered item
 
-    - Unordered Sub-Item
+    - Unordered sub-item
 
   - Item with a very long text so that it does not fully fit in a single line and
     must be split up into multiple lines.
 
-  1. Ordered Item #1
-  2. Ordered Item #2
+  1. Ordered item #1
+  2. Ordered item #2
 
 - **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see
   `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
@@ -218,7 +218,7 @@ Build
 
 .. note::
 
-    The easiest way is to use the `esphome-docs docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
+    The easiest way is to use the `esphome-docs Docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
 
     .. code-block:: bash
 
@@ -228,7 +228,7 @@ Build
 
     This way, you don't have to install the dependencies to build the documentation.
 
-To check your documentation changes locally, you first need install sphinx (with **Python 3**).
+To check your documentation changes locally, you first need install Sphinx (with **Python 3**).
 
 .. code-block:: bash
 
@@ -284,7 +284,7 @@ Now you can open esphome in your IDE of choice (mine is CLion) with the platform
 addons (see platformio docs for more info). Then develop the new feature with the
 guidelines below.
 
-All PRs are automatically checked for some basic formatting/code mistakes with travis.
+All PRs are automatically checked for some basic formatting/code mistakes with Travis.
 These checks *must* pass for your PR to be mergable.
 
 Setting Up Git Environment
@@ -355,10 +355,10 @@ This is a guide to contributing to the ESPHome codebase. ESPHome uses two langua
 Python and C++.
 
 The user configuration is read, validated and transformed into a custom firmware
-with the python side of the firmware.
+with the Python side of the firmware.
 
 The C++ codebase is what's actually running on the ESP and called the "runtime". This part of
-the codebase should first set up the communication interface to a sensor/component/etc and
+the codebase should first set up the communication interface to a sensor/component/etc. and
 communicate with the ESPHome core via the defined interfaces (like Sensor, BinarySensor, Switch).
 
 1. Directory Structure
@@ -389,7 +389,7 @@ like this:
     │  ...
 
 As you can see, all components are in the "components" folder. Each component is in its own
-subfolder which contains the python code (.py) and the C++ code (.h and .cpp).
+subfolder which contains the Python code (.py) and the C++ code (.h and .cpp).
 
 Suppose the user types in the following:
 
@@ -425,7 +425,7 @@ The first thing ESPHome does is read and validate the user config. For this ESPH
 "config validation" mechanism. Each component defines a config schema that is validated against
 the user config.
 
-To do this, all ESPHome python modules that can be configured by the user have a special field
+To do this, all ESPHome Python modules that can be configured by the user have a special field
 called ``CONFIG_SCHEMA``. An example of such a schema is shown below:
 
 .. code-block:: python
@@ -456,7 +456,7 @@ A few point on validation:
 3. Code Generation
 ******************
 
-After the user input has been successfully validated, the last step of the python codebase
+After the user input has been successfully validated, the last step of the Python codebase
 is called: Code generation.
 
 As you may know, ESPHome converts the user's configuration into C++ code (you can see the generated
@@ -497,7 +497,7 @@ If you do not call "add" a piece of code explicitly, it will not be added to the
 4. Runtime
 **********
 
-Okay, the python part of the codebase is now complete - now let's talk about the C++ part of
+Okay, the Python part of the codebase is now complete - now let's talk about the C++ part of
 creating a new integration.
 
 The two major parts of any integration roughly are:
@@ -507,7 +507,7 @@ The two major parts of any integration roughly are:
 
 When you create a new integration, your new component will inherit from :apiclass:`Component`.
 That class has a special ``setup()`` method that will be called once to set up the component -
-at the time the ``setup()`` method is called, all the setters generated by the python codebase
+at the time the ``setup()`` method is called, all the setters generated by the Python codebase
 have already run and the all fields are set for your class.
 
 The ``setup()`` method should set up the communication interface for the component and check
@@ -533,7 +533,7 @@ Finally, your component should have a ``dump_config`` method that prints the use
     This serves as documentation for some of ESPHome's internals and is not necessarily part of the
     development guide.
 
-All python modules have some magic symbols that will automatically be loaded by the ESPHome
+All Python modules have some magic symbols that will automatically be loaded by the ESPHome
 loader. These are:
 
 - ``CONFIG_SCHEMA``: The configuration schema to validate the user config against.
@@ -559,7 +559,7 @@ Standard for the esphome-core codebase:
     - function, method and variable names are ``lower_snake_case``
     - class/struct/enum names should be ``UpperCamelCase``
     - constants should be ``UPPER_SNAKE_CASE``
-    - fields should be ``protected`` and ``lowe_snake_case_with_trailing_underscore_`` (DO NOT use private)
+    - fields should be ``protected`` and ``lower_snake_case_with_trailing_underscore_`` (DO NOT use private)
     - It's preferred to use long variable/function names over short and non-descriptive ones.
     - All uses of class members and member functions should be prefixed with
       ``this->`` to distinguish them from global functions in code review.
