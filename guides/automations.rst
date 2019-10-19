@@ -333,7 +333,7 @@ All Actions
 
 - :ref:`delay <delay_action>`
 - :ref:`lambda <lambda_action>`
-- :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_util <wait_until_action>`
+- :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_until <wait_until_action>`
 - :ref:`component.update <component-update_action>`
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>`
 - :ref:`logger.log <logger-log_action>`
