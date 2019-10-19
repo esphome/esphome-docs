@@ -123,7 +123,7 @@ It's simple. Run:
 
 .. code-block:: bash
 
-    pip2 install -U esphome
+    pip install -U esphome
     # From docker:
     docker pull esphome/esphome:latest
 
@@ -141,7 +141,7 @@ by installing the esphome beta:
 .. code-block:: bash
 
     # For pip-based installs
-    pip2 install --pre -U esphome
+    pip install --pre -U esphome
 
     # For docker-based installs
     docker run [...] -it esphome/esphome:beta livingroom.yaml run
