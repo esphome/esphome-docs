@@ -51,7 +51,6 @@ See Also
 - :doc:`dht`
 - :doc:`adc`
 - :doc:`sht3xd`
-- :doc:`shtcx`
 - :doc:`max6675`
 - `MAX31855 Library <https://github.com/adafruit/Adafruit-MAX31855-library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :apiref:`max31855/max31855.h`
