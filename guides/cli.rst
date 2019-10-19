@@ -171,9 +171,13 @@ through a graphical user interface.
 
     Manually set the HTTP port to open connections on (defaults to 6052)
 
+.. option:: --username USERNAME
+
+    The optional username to require for authentication.
+
 .. option:: --password PASSWORD
 
-    The optional password to require for all requests.
+    The optional password to require for authentication.
 
 .. option:: --open-ui
 
