@@ -17,15 +17,8 @@ tuya serial component.
     which meant it was bricked until I cut it open.
 
 There are two components, the Tuya bus and the dimmer that uses it.  The ``tuya``
-component requires a :ref:`UART bus <uart>` to be configured.  If you don't know the ids to
-use, just put the ``tuya`` component in the config and it will list the possible devices for
-you in the config log.
-
-Here is the output for my dimmer::
-
-    [18:04:13][C][tuya:059]: Tuya:
-    [18:04:13][C][tuya:066]:   3: int value
-    [18:04:13][C][tuya:064]:   1: switch
+component requires a :ref:`UART bus <uart>` to be configured.  Put the ``tuya`` component in
+the config and it will list the possible devices for you in the config log.
 
 .. code-block:: yaml
 
@@ -54,12 +47,25 @@ Here is the output for my dimmer::
     # Register the Tuya MCU connection
     tuya:
 
+Here is the output for my dimmer::
+
+    [21:50:28][C][tuya:024]: Tuya:
+    [21:50:28][C][tuya:031]:   Datapoint 3: int value (value: 139)
+    [21:50:28][C][tuya:029]:   Datapoint 1: switch (value: OFF)
+
+On my dimmer, the toggle switch is datapoint 1 and the dimmer value is datapoint 3.
+Now you can create the light.  You probably want to set the ``gamma_correct`` to
+``1.0`` as the dimmer handles that.  Also, if your dimmer has a built-in transition,
+you should set the ``default_transition_length`` to ``0s``.
+
+.. code-block:: yaml
+
     # Create a light using the dimmer
     light:
       - platform: "tuya"
         name: "dim1"
-        dimmer: 3
-        switch: 1
+        dimmer_datapoint: 3
+        switch_datapoint: 1
         gamma_correct: 1.0
         default_transition_length: 0s
 
@@ -68,10 +74,10 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.
-- **dimmer** (**Required**, int): The id number of the dimmer value.
-- **switch** (*Optional*, int): The number of the power switch.  My dimmer required this to be able to
-  turn the light on and off.  Without this you would only be able to change the brightness and would
-  have to toggle the light using the physical buttons.
+- **dimmer_datapoint** (**Required**, int): The datapoint id number of the dimmer value.
+- **switch_datapoint** (*Optional*, int): The datapoint id number of the power switch.  My dimmer
+  required this to be able to turn the light on and off.  Without this you would only be able to
+  change the brightness and would have to toggle the light using the physical buttons.
 - **min_value** (*Optional*, int, default 0): The lowest dimmer value allowed.  My dimmer had a
   minimum of 25 and wouldn't even accept anything lower, but this option is available if necessary.
 - **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  My dimmer had a
