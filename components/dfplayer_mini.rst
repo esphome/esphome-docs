@@ -134,8 +134,8 @@ from 1 to 10 and file number from 1 to 1000.
     on_...:
       then:
         - dfplayer.play_folder:
-          folder: 2
-          file: 1
+            folder: 2
+            file: 1
 
 
 Configuration options:
