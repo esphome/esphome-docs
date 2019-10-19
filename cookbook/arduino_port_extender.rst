@@ -33,7 +33,7 @@ You need to download `arduino_port_expander.h <https://github.com/glmnet/esphome
 .. code-block:: yaml
 
     esphome:
-      ...
+      # ...
       includes:
           - arduino_port_expander.h
 
@@ -61,7 +61,7 @@ individual IOs.
 By default the I²C address is ``0x08`` but you can change it on the arduino sketch so you can have more slaves
 on the same bus.
 
-Now it is time to add the ports
+Now it is time to add the ports.
 
 Binary_Sensor
 -------------
@@ -96,7 +96,7 @@ Then declare the ESPHome reference of the binary sensor in the same order as dec
             on_press:
               ...
 
-The listed `binary_sensors` supports all options from :ref:`Binary Sensor <config-binary_sensor>` like
+The listed ``binary_sensors`` supports all options from :ref:`Binary Sensor <config-binary_sensor>` like
 automations and filters.
 
 Sensor
@@ -111,7 +111,9 @@ comparer setup to 1 volt, so voltages bigger are read as 1023. You can configure
 voltage to VIN voltage, this voltage might be 5 volts or 3.3 volts, depending on how you are powering it. To
 do so, pass an additional true value to the hub constructor:
 
-``auto ape_component = new ArduinoPortExpander(i2c_component, 0x08, true);``
+.. code-block:: cpp
+
+    auto ape_component = new ArduinoPortExpander(i2c_component, 0x08, true);
 
 To setup sensors, create a custom platform as below, list in braces all the sensors you want,
 in the example below two sensors are declared on pin ``A1`` and ``A2``
