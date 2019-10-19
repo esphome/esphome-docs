@@ -34,6 +34,14 @@ Configuration variables:
   have more visual artifacts, but can represent much more colors. Defaults to ``1000 Hz``.
 - All other options from :ref:`Output <config-output>`.
 
+.. note::
+
+    If you previously had Tasmota installed on your device and have just flashed ESPHome onto it,
+    you may encounter an issue where the PWM output is only fully on or off.
+
+    A hard reset fixes the problem - if you have this issue please power cycle the device, that
+    should fix it.
+
 .. _output-esp8266_pwm-set_frequency_action:
 
 ``output.esp8266_pwm.set_frequency`` Action

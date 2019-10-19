@@ -40,6 +40,7 @@ See Also
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/pca9685`
+- :doc:`/components/output/tlc59208f`
 - :doc:`/components/output/my9231`
 - :doc:`/components/output/sm16716`
 - :apiref:`rgbw/rgb_light_output.h`
