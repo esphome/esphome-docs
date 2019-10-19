@@ -313,6 +313,7 @@ Cookbook
 
 .. imgtable::
 
+    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     Endstop Cover, cookbook/endstop-cover, window-open.svg
     PIR Sensor, cookbook/pir, pir.jpg
     Relay, cookbook/relay, relay.jpg
