@@ -53,7 +53,6 @@ Configuration variables:
    in range from 1 to 255. Defaults to 2.
 -  **bit_depths** (*Optional*, int): The bit depth to use for all output
    channels in this chain. Must be one of 8, 12, 14 or 16. Defaults to 16.
--  **update_on_boot** (*Optional*, boolean): Update/reset duty data at boot. Defaults to ``True``.
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``my9231`` component. Use this if you have multiple MY9231/MY9291 chains
    connected at the same time.
@@ -121,24 +120,6 @@ complete configuration for a Sonoff B1 looks like:
         warm_white: output_warm_white
         cold_white_color_temperature: 6500 K
         warm_white_color_temperature: 2800 K
-
-.. note::
-
-    One of the features of the MY9231/MY9291 driver is that the chips
-    remember their state after a power cycling. Unfortunately, the
-    state of the driver can not be read. Therefore, if ESPHome can
-    not restore the previous state, it will result in a mismatch of
-    the driver output and the internal state (= MQTT state). So you
-    can configure the behaviour on boot time:
-
-    ``update_on_boot: True``
-      On device power up/boot, the light may flash shortly, to the
-      state before powering off.
-
-    ``update_on_boot: False``
-      On device power up/boot, the light show the last state, but the
-      internal data will not reflect this state. Thus, the first fade
-      is wrong, as well as the MQTT state.
 
 .. _my9231-output:
 

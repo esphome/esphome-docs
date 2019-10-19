@@ -1,24 +1,24 @@
-Xiaomi MiJia BLE Sensor
-=======================
+Xiaomi LYWSD02 BLE Sensor
+=========================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi Mi Jia bluetooth-based temperature and humidity sensors in ESPHome.
-    :image: xiaomi_miflora.jpg
-    :keywords: Xiaomi, Mi Jia, BLE, Bluetooth
+    :description: Instructions for setting up Xiaomi LYWSD02 bluetooth-based temperature and humidity sensors in ESPHome.
+    :image: xiaomi_lywsd02.jpg
+    :keywords: Xiaomi, LYWSD02, BLE, Bluetooth
 
-The ``xiaomi_mijia`` sensor platform lets you track the output of Xiaomi MiJia Bluetooth Low Energy
+The ``xiaomi_lywsd02`` sensor platform lets you track the output of Xiaomi LYWSD02 Bluetooth Low Energy
 devices using the :doc:`/components/esp32_ble_tracker`. This component will track the
-temperature, humidity and optionally the battery level of the MiJia device every time the sensor
+temperature, humidity of the LYWSD02 device every time the sensor
 sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many
-MiJia devices at once as you want.
+LYWSD02 devices at once as you want.
 
-.. figure:: images/xiaomi_mijia-full.jpg
+.. figure:: images/xiaomi_lywsd02-full.png
     :align: center
     :width: 60.0%
 
-    Xiaomi MiJia Temperature and Humidity Sensor over BLE.
+    Xiaomi LYWSD02 Temperature and Humidity Sensor over BLE.
 
-.. figure:: images/xiaomi_mijia-ui.png
+.. figure:: images/xiaomi_lywsd02-ui.png
     :align: center
     :width: 80.0%
 
@@ -28,19 +28,17 @@ MiJia devices at once as you want.
     esp32_ble_tracker:
 
     sensor:
-      - platform: xiaomi_mijia
-        mac_address: 7A:80:8E:19:36:BA
+      - platform: xiaomi_lywsd02
+        mac_address: 3F:5B:7D:82:58:4E
         temperature:
-          name: "Xiaomi MiJia Temperature"
+          name: "Xiaomi LYWSD02 Temperature"
         humidity:
-          name: "Xiaomi MiJia Humidity"
-        battery_level:
-          name: "Xiaomi MiJia Battery Level"
+          name: "Xiaomi LYWSD02 Humidity"
 
 Configuration variables:
 ------------------------
 
-- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi MiJia device.
+- **mac_address** (**Required**, MAC Address): The MAC address of the Xiaomi LYWSD02 device.
 - **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
@@ -53,34 +51,27 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **battery_level** (*Optional*): The information for the battery level sensor
-
-  - **name** (**Required**, string): The name for the humidity sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-
 Setting Up Devices
 ------------------
 
-To set up Xiaomi MiJia devices you first need to find their MAC Address so that ESPHome can
-identify them. So first, create a simple configuration without any ``xiaomi_mijia`` entries like so:
+To set up Xiaomi LYWSD02 devices you first need to find their MAC Address so that ESPHome can
+identify them. So first, create a simple configuration without any ``xiaomi_lywsd02`` entries like so:
 
 .. code-block:: yaml
 
     esp32_ble_tracker:
 
-After uploading the ESP32 will immediately try to scan for BLE devices such as the Xiaomi MiJia. When
+After uploading the ESP32 will immediately try to scan for BLE devices such as the Xiaomi LYWSD02. When
 it detects these sensors, it will automatically parse the BLE message print a message like this one:
 
 .. code::
 
-    Xiaomi MiJia 7A:80:8E:19:36:BA Got temperature=23.4°C, humidity=65.0%
+    Got Xiaomi LYWSD02 (3F:5B:7D:82:58:4E): Temperature: 26.9°C
 
 Note that it can sometimes take some time for the first BLE broadcast to be received. You can speed up
 the process by pressing the grey bluetooth button on the back of the device.
 
-Then just copy the address (``7A:80:8E:19:36:BA``) into a new ``sensor.xiaomi_mijia`` platform entry like
+Then just copy the address (``3F:5B:7D:82:58:4E``) into a new ``sensor.xiaomi_lywsd02`` platform entry like
 in the configuration example at the top.
 
 .. note::
@@ -92,9 +83,10 @@ See Also
 --------
 
 - :doc:`/components/esp32_ble_tracker`
-- :doc:`/components/sensor/xiaomi_miflora`
+- :doc:`/components/sensor/xiaomi_lywsdcgq`
+- :doc:`/components/sensor/xiaomi_hhccjcy01`
 - :doc:`/components/sensor/index`
-- :apiref:`xiaomi_mijia/xiaomi_mijia.h`
+- :apiref:`xiaomi_lywsd02/xiaomi_lywsd02.h`
 - `Xiaomi Mijia BLE protocol <https://github.com/mspider65/Xiaomi-Mijia-Bluetooth-Temperature-and-Humidity-Sensor>`__
   by `@mspider65 <https://github.com/mspider65>`__
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
