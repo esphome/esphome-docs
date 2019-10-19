@@ -61,6 +61,38 @@ Configuration variables:
   the knob further will not increase the number. Defaults to no maximum.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+``sensor.rotary_encoder.set_value`` Action
+------------------------------------------
+
+The internal state of the rotary encoder can be manually changed to any value with this action.
+After executing this action, rotating the encoder further will increase/decrease the state relative
+to the newly set internal value.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: rotary_encoder
+        id: my_rotary_encoder
+        # ...
+
+    # in some trigger
+    on_...:
+      - sensor.rotary_encoder.set_value:
+          id: my_rotary_encoder
+          value: 10
+
+      # Templated
+      - sensor.my_rotary_encoder.publish:
+          id: my_rotary_encoder
+          value: !lambda 'return -1;'
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the rotary encoder.
+- **value** (**Required**, int, :ref:`templatable <config-templatable>`):
+  The value to set the internal counter to.
+
 See Also
 --------
 
