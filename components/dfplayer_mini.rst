@@ -102,7 +102,6 @@ Plays a track.
         - dfplayer.play: 23
 
 Configuration options:
-**********************
 
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The global track
   number (from all tracks in the device). If not specified plays the first track.
@@ -140,7 +139,6 @@ from 1 to 10 and file number from 1 to 1000.
 
 
 Configuration options:
-**********************
 
 - **folder** (**Required**, int, :ref:`templatable <config-templatable>`): The folder number.
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The file number
@@ -177,7 +175,6 @@ Changes volume.
         - dfplayer.set_volume: 20
 
 Configuration options:
-**********************
 
 - **volume** (**Required**, int, :ref:`templatable <config-templatable>`): The volume value.
   Valid values goes from 0 to 30.
@@ -197,7 +194,6 @@ Changes audio equalization preset.
         - dfplayer.set_eq: ROCK
 
 Configuration options:
-**********************
 
 - **eq_preset** (**Required**): Eq Preset value. Valid values are ``NORMAL``, ``POP``, ``ROCK``, ``JAZZ``,
   ``CLASSIC`` and ``BASS``.
