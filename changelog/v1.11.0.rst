@@ -39,7 +39,7 @@ Because of this rename, ESPHome's installation methods have also changed (breaki
 - **Hass.io**: The Hass.io addon repository has moved to `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__,
   please remove the old addon repository and add the new repository.
 
-- **pip-based installs**: The new installation command is ``pip2 install esphome`` and
+- **pip-based installs**: The new installation command is ``pip install esphome`` and
   the ``esphomeyaml`` command now is called ``esphome``.
 
 - **docker-based installs**: The docker image has moved to ``esphome/esphome``. So now you need
