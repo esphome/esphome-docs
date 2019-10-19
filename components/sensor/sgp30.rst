@@ -74,7 +74,7 @@ that also means that if the sensor reboots at a time when the air is less clean 
 the values will have a constant offset and cannot be compared to the values before the last
 boot.
 
-To do this, first configure the optional **uptime** sensor otherwise the reliability of the baseline can not be calculated. Let the sensor boot up with no baseline set and let the sensor calibrate itself. After around 12 hours you can then view the remote logs on the ESP. The next
+To do this, let the sensor boot up with no baseline set and let the sensor calibrate itself. After around 12 hours you can then view the remote logs on the ESP. The next
 time the sensor is read out, you will see a log message with something like ``Current eCO2 & TVOC baseline: 0x44D4``.
 
 Now set the baseline property in your configuration file like so with the value you got
