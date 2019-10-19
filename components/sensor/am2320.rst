@@ -62,7 +62,6 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :doc:`sts3x`
 - :apiref:`am2320/am2320.h`
 - `AM2320 Library <https://github.com/EngDial/AM2320>`__ by `Aleksey <https://github.com/EngDial>`__
 - :ghedit:`Edit`
