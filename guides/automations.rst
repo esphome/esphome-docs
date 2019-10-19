@@ -1,13 +1,13 @@
 .. _automation:
 
-Automations And Templates
+Automations and Templates
 =========================
 
 .. seo::
     :description: Getting started guide for automations in ESPHome.
     :image: auto-fix.png
 
-Automations and templates are two very powerful concepts of ESPHome. Automations
+Automations and templates are two very powerful aspects of ESPHome. Automations
 allow you to perform actions under certain conditions and templates are a way to easily
 customize everything about your node without having to dive into the full ESPHome C++
 API.
@@ -130,8 +130,8 @@ cycle back to its original state. Similarly you can have a single trigger with m
         - light.toggle: dehumidifier_indicator_light
 
 
-As a last example, let's make our dehumidifier smart: Let's make it turn on automatically when the humidity a sensor
-reports is above 65% and make it turn off again when it reaches 50%
+As a last example, let's make our dehumidifier smart: Let's make it turn on automatically when the humidity reported by a sensor
+is above 65%, and make it turn off again when it falls below 50%:
 
 .. code-block:: yaml
 
@@ -149,11 +149,11 @@ reports is above 65% and make it turn off again when it reaches 50%
         temperature:
           name: "Living Room Temperature"
 
-That's a lot of indentation 😉 ``on_value_range`` is a special trigger for sensors that triggers when the value output
+That's a lot of indentation 😉 ``on_value_range`` is a special trigger for sensors that trigger when the value output
 of the sensor is within a certain range. In the first example, this range is defined as "any value above or including
 65.0", and the second one refers to once the humidity reaches 50% or below.
 
-Now that concludes the introduction into automations in ESPHome. They're a powerful tool to automate almost
+Now that concludes the introduction to automations in ESPHome. They're a powerful tool to automate almost
 everything on your device with an easy-to-use syntax. For the cases where the "pure" YAML automations don't work,
 ESPHome has another extremely powerful tool to offer: Templates.
 
@@ -183,7 +183,8 @@ first:
           }
 
 What's happening here? First, we define a binary sensor (with the id ``top_end_stop``) and then a
-:doc:`template cover </components/cover/template>`. The *state* of the template cover is
+:doc:`template cover </components/cover/template>`. (If you're new to Home Assistant, a 'cover' is
+something like a window blind, a roller shutter, or a garage door.) The *state* of the template cover is
 controlled by a template, or "lambda". In lambdas you're effectively writing C++ code and therefore the
 name lambda is used instead of Home Assistant's "template" lingo to avoid confusion. But before you go
 shy away from using lambdas because you just hear C++ and think oh noes, I'm not going down *that* road:
@@ -337,7 +338,7 @@ All Actions
 - :ref:`lambda <lambda_action>`
 - :ref:`if <if_action>` / :ref:`while <while_action>` / :ref:`wait_util <wait_until_action>`
 - :ref:`component.update <component-update_action>`
-- :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>`
+- :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
@@ -382,7 +383,7 @@ All Conditions
 - :ref:`script.is_running <script-is_running_condition>`
 - :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
 - :ref:`text_sensor.state <text_sensor-state_condition>`
-- :ref:`light.is_on <binary_sensor-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
+- :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 
 All Lambda Calls
 ----------------
@@ -545,7 +546,7 @@ Configuration options:
 ---------------------
 
 This action allows your automations to wait until a condition evaluates to true. (So this is just
-a shorthand way of writing a while action with empty then block)
+a shorthand way of writing a ``while`` action with an empty ``then`` block.)
 
 .. code-block:: yaml
 
@@ -631,7 +632,7 @@ execute the script with a single call.
 ----------------------
 
 This action allows you to stop a given script during execution. If the
-script is not running, does nothing.
+script is not running, it does nothing.
 Please note this is only useful right now if your script contains a ``delay`` action.
 
 .. code-block:: yaml
@@ -649,13 +650,39 @@ Please note this is only useful right now if your script contains a ``delay`` ac
       then:
         - script.stop: my_script
 
+.. _script-wait_action:
+
+``script.wait`` Action
+----------------------
+
+This action suspends execution of the automation until a script has finished executing.
+
+Note: If no script is executing, this will continue immediately. If multiple instances of the script
+are running, this will block until all of them have terminated.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    script:
+      - id: my_script
+        then:
+          - switch.turn_on: my_switch
+          - delay: 1s
+          - switch.turn_off: my_switch
+
+    # in a trigger:
+    on_...:
+      then:
+        - script.execute: my_script
+        - script.wait: my_script
+
 .. _script-is_running_condition:
 
 ``script.is_running`` Condition
 -------------------------------
 
 This :ref:`condition <config-condition>` allows you to check if a given script is running.
-Please note that multiple scripts can be running concurrently, this condition only tells
+Please note that multiple scripts can be running concurrently. This condition only tells
 you if at least one script of the given type is running, not how many.
 
 .. code-block:: yaml
@@ -699,10 +726,10 @@ Configuration variables:
 ``interval``
 ------------
 
-This component allows you to run actions periodically with a fixed interval.
+This component allows you to run actions at fixed time intervals.
 For example if you want to toggle a switch every minute, you can use this component.
-Please note that this certain cases are also possible with the :ref:`time.on_time <time-on_time>`
-trigger, but this one is more light-weight and user-friendly.
+Please note that it's possible to achieve the same thing with the :ref:`time.on_time <time-on_time>`
+trigger, but this technique is more light-weight and user-friendly.
 
 .. code-block:: yaml
 

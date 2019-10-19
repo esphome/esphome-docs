@@ -33,7 +33,6 @@ Sonoff RF
     GPIO4, Optional sensor
     GPIO14, Optional sensor
 
-
 Sonoff SV
 ---------
 
@@ -291,6 +290,18 @@ Sonoff S31
     GPIO13, Green LED (inverted),
 
 See :doc:`/components/sensor/cse7766` for measuring power
+
+Sonoff Mini
+-----------
+
+.. pintable::
+
+    GPIO0, Button (inverted),
+    GPIO4, SW Input,
+    GPIO12, Relay and Red LED,
+    GPIO13, Blue LED (inverted),
+    GPIO16, Optional sensor
+
 
 Shelly 1
 --------

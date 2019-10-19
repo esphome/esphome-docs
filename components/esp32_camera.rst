@@ -79,7 +79,7 @@ Frame Settings:
     - ``1600x1200`` (UXGA)
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
-  From 10 to 63. Defaults to ``10``.
+  From 10 (best) to 63 (worst). Defaults to ``10``.
 
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
@@ -170,8 +170,8 @@ Configuration for Wrover Kit Boards
       name: My Camera
       # ...
 
-Configuration for TTGO T-Camera
--------------------------------
+Configuration for TTGO T-Camera V05
+-----------------------------------
 
 .. code-block:: yaml
 
@@ -193,6 +193,54 @@ Configuration for TTGO T-Camera
       name: My Camera
       # ...
 
+
+Configuration for TTGO T-Camera V17
+-----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO32
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO13
+        scl: GPIO12
+      data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+      vsync_pin: GPIO27
+      href_pin: GPIO25
+      pixel_clock_pin: GPIO19
+      # power_down_pin: GPIO26
+      vertical_flip: true
+      horizontal_mirror: true
+
+      # Image settings
+      name: My Camera
+      # ...
+
+Configuration for TTGO T-Journal
+--------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+
+
+      # Image settings
+      name: My Camera
+      # ...
 
 See Also
 --------

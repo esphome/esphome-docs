@@ -54,8 +54,8 @@ Possible Hardware UART configurations:
 - ``UART0`` - TX: GPIO1, RX: GPIO3
 - ``UART0_SWAP`` - TX: GPIO15, RX: GPIO13  (Only on ESP8266)
 - ``UART1`` - TX: GPIO2, RX: None  (Only on ESP8266)
-- ``UART1`` - TX: GPIO9, RX: GPIO10  (Only on ESP832)
-- ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP832)
+- ``UART1`` - TX: GPIO9, RX: GPIO10  (Only on ESP32)
+- ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP32)
 
 .. _logger-log_levels:
 

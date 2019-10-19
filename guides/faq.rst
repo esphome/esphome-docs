@@ -10,7 +10,7 @@ Tips for using ESPHome
 
 1. ESPHome supports (most of) `Home Assistant's YAML configuration directives
    <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
-   ``!include``, ``!secret``. So you can store all your secret WiFi passwords and so on
+   ``!include`` and ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
 
    For even more configuration templating, take a look at :ref:`config-substitutions`.
@@ -31,7 +31,7 @@ Tips for using ESPHome
    possible to edit anything outside of the ``AUTO GENERATED CODE BEGIN/END`` lines for creating
    :doc:`custom sensors </components/sensor/custom>`.
 
-5. You can view the full command line interface options here: :doc:`/guides/cli`
+5. You can view the full list of command line interface options here: :doc:`/guides/cli`
 
 6. Use :ref:`substitutions <config-substitutions>` to reduce repetition in your configuration files.
 
@@ -83,8 +83,8 @@ Select the firmware binary and finally press "Flash ESP".
     are connected correctly if flashing using a USB to UART bridge. For some devices you need to
     keep pressing the BOOT button until flashing has begun (ie. Geekcreit DOIT ESP32 DEVKIT V1).
 
-Help! Something's not working!1!
---------------------------------
+Help! Something's not working!!
+-------------------------------
 
 That's no good. Here are some steps that resolve some problems:
 
@@ -103,7 +103,7 @@ I can using my own hardware, I don't own every single device type and mostly onl
 system. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
 great way for me to track and (hopefully) fix issues, so thank you!
 
-For me to fix the issue the quickest, there are some things that would be really helpful:
+For me to fix the issue quickly, there are some things that would be really helpful:
 
 1.  **Just writing "X doesn't work" or "X gives bug" is not helpful!!!** Seriously, how do you expect
     help given just that information?
@@ -180,7 +180,7 @@ The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 Does ESPHome support [this device/feature]?
 -------------------------------------------
 
-If it's not in :doc:`the docs </index>`, it's probably sadly not
+If it's not in :doc:`the docs </index>`, it's probably not
 supported. However, I'm always trying to add support for new features, so feel free to create a feature
 request in the `ESPHome feature request tracker <https://github.com/esphome/feature-requests>`__. Thanks!
 
@@ -211,9 +211,9 @@ Some steps that can help with the issue:
   configuration (also sometimes helps with non-hidden networks)
 - Give your ESP a :ref:`static IP <wifi-manual_ip>`.
 - Set the ``power_save_mode`` to ``light`` in the ``wifi:`` config (only helps in some cases,
-  in other it can make things works). See :ref:`wifi-power_save_mode`.
-- The issue seems to be happen with cheap boards more frequently. Especially the "cheap" NodeMCU
-  boards from eBay sometimes have quite bad antennas.
+  in other it can make things worse). See :ref:`wifi-power_save_mode`.
+- The issue seems to happen with cheap boards more frequently. Especially the "cheap" NodeMCU
+  boards from eBay which sometimes have quite bad antennas.
 
 Docker Reference
 ----------------
@@ -279,6 +279,10 @@ And a docker compose file looks like this:
 
     1. Enable Avahi on both subnets.
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
+
+    Alternatively, you can make esphome use ICMP pings to check the status of the device
+    with the Hass.io Addon ``"status_use_ping": true,`` option or with docker ``-e ESPHOME_DASHBOARD_USE_PING=true``
+    See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
 
 Can Configuration Files Be Recovered From The Device?
 -----------------------------------------------------
