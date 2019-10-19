@@ -249,7 +249,7 @@ This option behaves differently depending on what the included file is pointing 
    to the src/ folder.
  - If the include string is point at a header file (.h, .hpp, .tcc) - it is copied in the src/ folder
    AND included in the main.cpp. This way the lambda code can access it.
- - If the include str
+
 
 .. _esphome-changing_node_name:
 

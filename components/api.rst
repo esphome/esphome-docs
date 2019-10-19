@@ -7,17 +7,17 @@ Native API Component
     :keywords: Native API, ESPHome, Home Assistant
 
 The ESPHome native API is used to communicate with clients directly, with a highly-optimized
-network protocol. Currently, only the esphome tool and Home Assistant use this native API.
+network protocol. Currently, only the ESPHome tool and Home Assistant use this native API.
 
-After adding an ``api:`` line to your esphome configuration you can go to the Home Assistant
-webinterface and navigate to the "Integrations" screen in the "Configuration" panel. Then wait
+After adding an ``api:`` line to your ESPHome configuration you can go to the Home Assistant
+web interface and navigate to the "Integrations" screen in the "Configuration" panel. Then wait
 for the ESPHome device to show up under the discovered section (can take up to 5 minutes) or add
-the device manually by clicking "CONFIGURE" on the ESPHome integration and entering
-"<NODE_NAME>.local" as the address.
+the device manually by choosing "ESPHome" from the integration overview and entering
+"<NODE_NAME>.local" or the IP address of the unit in the "Host" field.
 
 The ESPHome native API is based on a custom TCP protocol using protocol buffers. You can find
-the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/src/esphome/components/api/api.proto
-A python library that implements this protocol can be found `here <https://github.com/esphome/aioesphomeapi>`__.
+the protocol data structure definitions here: https://github.com/esphome/esphome/blob/dev/esphome/components/api/api.proto
+A Python library that implements this protocol is `aioesphomeapi <https://github.com/esphome/aioesphomeapi>`__.
 
 .. code-block:: yaml
 
