@@ -33,15 +33,40 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the climate.
 - **supports_cool** (*Optional*, boolean): Enables setting cool mode for this climate device. Defaults to ``True``.
-- **supports_heat** (*Optional*, boolean): Enables setting cool heat for this climate device. Defaults to ``True``.
+- **supports_heat** (*Optional*, boolean): Enables setting heat mode for this climate device. Defaults to ``True``.
 - **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient
   temperature. This is only for reporting the current temperature in the frontend.
+- **receiver_id** (*Optional*, :ref:`config-id`): The remote_receiver id, see: :ref:`tcl112-receiver_id`.
 - All other options from :ref:`Climate <config-climate>`.
 
 Advanced options:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the remote transmitter.
+
+.. _tcl112-receiver_id:
+
+Using a receiver
+----------------
+
+When using a receiver it is recommended to put the IR receiver as close as possible to the equipment's
+IR receiver.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    remote_receiver:
+      id: rcvr
+      pin:
+        number: GPIO14
+        inverted: True
+        mode: INPUT_PULLUP
+      tolerance: 45 # high tolerance required for some remote control units
+
+    climate:
+      - platform: tcl112
+        name: "Living Room AC"
+        receiver_id: rcvr
 
 See Also
 --------

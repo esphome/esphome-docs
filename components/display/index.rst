@@ -315,7 +315,7 @@ Displaying Time
 With ESPHome you can also display the current time using the NTP protocol. Please see the example :ref:`here <strftime>`.
 
 Images
-^^^^^^
+******
 
 .. code-block:: yaml
 

@@ -129,8 +129,13 @@ Sensor Components
     Pulse Width, components/sensor/pulse_width, pulse.svg
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
+    SCD30, components/sensor/scd30, scd30.jpg
+    SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    STS3X, components/sensor/sts3x, sts3x.jpg
+    SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
@@ -139,8 +144,10 @@ Sensor Components
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-    Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
-    Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
+    Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
+    Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
+    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
@@ -178,6 +185,7 @@ Output Components
     GPIO Output, components/output/gpio, pin.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
+    TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
@@ -197,9 +205,10 @@ Light Components
 
     RGBWW Light, components/light/rgbww, rgbw.png
     FastLED Light, components/light/fastled, color_lens.svg
-
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
+
     Light Partition, components/light/partition, color_lens.svg
+    Tuya Dimmer, components/light/tuya, brightness-medium.svg
     Custom Light, components/light/custom, language-cpp.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
@@ -238,6 +247,7 @@ Display Components
     MAX7219, components/display/max7219, max7219.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
+    SSD1325, components/display/ssd1325, ssd1325.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
 
 Cover Components
@@ -298,8 +308,11 @@ Misc Components
     Servo, components/servo, servo.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
-    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
+    MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg
+    SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SIM800L, components/sim800l, sim800l.jpg
+    DFPlayer, components/dfplayer_mini, dfplayer.svg
+    Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
 
 Additional Custom Components
@@ -333,6 +346,7 @@ Cookbook
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
     Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
+    Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

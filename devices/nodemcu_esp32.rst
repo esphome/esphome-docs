@@ -28,17 +28,17 @@ you don't have to worry about other kinds of pin numberings, yay!
 
     Pins on the NodeMCU ESP32 development board.
 
-Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in above image.
+Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in the above image.
 
 - ``GPIO0`` is used to determine the boot mode on startup. It should therefore not be pulled LOW
   on startup to avoid booting into flash mode. You can, however, still use this as an output pin.
 - ``GPIO34``-``GPIO39`` can not be used as outputs (even though GPIO stands for "general purpose input
-  **output**"...)
+  **output**"...).
 - ``GPIO32``-``GPIO39``: These pins can be used with the :doc:`/components/sensor/adc` to measure
   voltages.
-- ``GPIO2``: This pin is connected to the blue LED on the board as seen in above picture. It also supports
-  the :doc:`touch pad binary sensor </components/binary_sensor/esp32_touch>` like some other
-  pins.
+- ``GPIO2``: This pin is connected to the blue LED on the board as seen in the picture above. It also supports
+  the :doc:`touch pad binary sensor </components/binary_sensor/esp32_touch>` as do the other
+  pins marked ``touch`` in the above image.
 - ``5V`` is connected to the 5V rail from the USB bus and can be used to power the board. Note that
   the UART chip is directly connected to this rail and you therefore **cannot** supply other voltages
   into this pin.

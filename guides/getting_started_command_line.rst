@@ -28,7 +28,7 @@ an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <
 
     docker pull esphome/esphome
 
-Creating A Project
+Creating a Project
 ------------------
 
 Now let’s setup a configuration file. Fortunately, ESPHome has a
@@ -70,7 +70,7 @@ to translate pin numbers for you based on the board. For example in the
 above configuration, if using a NodeMCU board, you could have just as
 well set ``D1`` as the ``pin:`` option.
 
-First Uploading
+First uploading
 ---------------
 
 Now you can go ahead and add some more components. Once you feel like
@@ -96,7 +96,7 @@ to your docker command to map a local USB device.
     docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome livingroom.yaml run
 
 Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
-should see the ESPHome device show up in the discovered section (can take up to 5 minutes).
+should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
 and entering "<NODE_NAME>.local" as the host.
 
@@ -111,7 +111,7 @@ Adding A Binary Sensor
 ----------------------
 
 Next, we’re going to add a very simple binary sensor that periodically
-checks a GPIO pin whether it’s pulled high or low - the :doc:`GPIO Binary
+checks if a particular GPIO pin is pulled high or low - the :doc:`GPIO Binary
 Sensor </components/binary_sensor/gpio>`.
 
 .. code-block:: yaml
