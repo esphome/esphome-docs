@@ -47,16 +47,16 @@ the config and it will list the possible devices for you in the config log.
     # Register the Tuya MCU connection
     tuya:
 
-Here is the output for my dimmer::
+Here is an example output for a Tuya dimmer:
+
+.. code-block:: text
 
     [21:50:28][C][tuya:024]: Tuya:
     [21:50:28][C][tuya:031]:   Datapoint 3: int value (value: 139)
     [21:50:28][C][tuya:029]:   Datapoint 1: switch (value: OFF)
 
-On my dimmer, the toggle switch is datapoint 1 and the dimmer value is datapoint 3.
-Now you can create the light.  You probably want to set the ``gamma_correct`` to
-``1.0`` as the dimmer handles that.  Also, if your dimmer has a built-in transition,
-you should set the ``default_transition_length`` to ``0s``.
+On this dimmer, the toggle switch is datapoint 1 and the dimmer value is datapoint 3.
+Now you can create the light.
 
 .. code-block:: yaml
 
@@ -66,8 +66,6 @@ you should set the ``default_transition_length`` to ``0s``.
         name: "dim1"
         dimmer_datapoint: 3
         switch_datapoint: 1
-        gamma_correct: 1.0
-        default_transition_length: 0s
 
 Configuration variables:
 ------------------------
@@ -83,9 +81,12 @@ Configuration variables:
 - **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  My dimmer had a
   maximum of 255 which seems like it would be the typical value.
 - All other options from :ref:`Light <config-light>`.
-- **gamma_correct**: Recommended to be set to ``1.0``.
-- **default_transition_length**: Recommended to be set to ``0s`` because the dimmer MCU does its own
-  fade transition.
+
+.. note::
+
+    The MCU on the Tuya dimmer handles transitions and gamma correction on its own.
+    Therefore the ``gamma_correct`` setting default is ``1.0`` and the the
+    ``default_transition_length`` parameter is ``0s`` by default.
 
 See Also
 --------
