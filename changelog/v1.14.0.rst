@@ -7,7 +7,22 @@ Changelog - Version 1.13.0 - May 30th 2019
     :author: Otto Winter
     :author_twitter: @OttoWinter_
 
+.. imgtable::
+    :columns: 4
 
+    ATM90E32, components/sensor/atm90e32, atm90e32.jpg
+    SenseAir, components/sensor/senseair, senseair_s8.jpg
+    SCD30, components/sensor/scd30, scd30.jpg
+    Tx20, components/sensor/tx20, tx20.jpg
+    Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
+    Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
+    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
+    ZyAura, components/sensor/zyaura, zgm053.jpg
+    TLC59208F, components/output/tlc59208f, tlc59208f.jpg
+    SM16716, components/output/sm16716, sm16716.svg
+    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
+    SIM800L, components/sim800l, sim800l.jpg
+    Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
 
 All changes
 -----------
