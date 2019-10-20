@@ -338,6 +338,7 @@ Cookbook
 
 .. imgtable::
 
+    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     Endstop Cover, cookbook/endstop-cover, window-open.svg
     PIR Sensor, cookbook/pir, pir.jpg
     Relay, cookbook/relay, relay.jpg
@@ -352,6 +353,7 @@ Cookbook
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
     Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
+    Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the

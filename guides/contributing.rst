@@ -559,7 +559,7 @@ Standard for the esphome-core codebase:
     - function, method and variable names are ``lower_snake_case``
     - class/struct/enum names should be ``UpperCamelCase``
     - constants should be ``UPPER_SNAKE_CASE``
-    - fields should be ``protected`` and ``lowe_snake_case_with_trailing_underscore_`` (DO NOT use private)
+    - fields should be ``protected`` and ``lower_snake_case_with_trailing_underscore_`` (DO NOT use private)
     - It's preferred to use long variable/function names over short and non-descriptive ones.
     - All uses of class members and member functions should be prefixed with
       ``this->`` to distinguish them from global functions in code review.
