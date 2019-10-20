@@ -89,6 +89,7 @@ Sensor Components
 
     Sensor Core, components/sensor/index, folder-open.svg
     ADC, components/sensor/adc, flash.svg
+    ADE7953, components/sensor/ade7953, ade7953.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
     AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
@@ -128,6 +129,9 @@ Sensor Components
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Pulse Width, components/sensor/pulse_width, pulse.svg
+    PZEM004T, components/sensor/pzem004t, pzem004t.svg
+    PZEM AC, components/sensor/pzemac, pzemac.svg
+    PZEM DC, components/sensor/pzemdc, pzemdc.svg
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
@@ -144,6 +148,7 @@ Sensor Components
     Tx20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
     Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
