@@ -8,7 +8,7 @@ Changelog - Version 1.13.0 - TBD Update Date
     :author_twitter: @OttoWinter_
 
 .. imgtable::
-    :columns: 4
+    :columns: 5
 
     ADE7953, components/sensor/ade7953, ade7953.svg
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
