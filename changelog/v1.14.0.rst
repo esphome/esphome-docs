@@ -1,5 +1,5 @@
-Changelog - Version 1.13.0 - May 30th 2019
-==========================================
+Changelog - Version 1.13.0 - TBD Update Date
+============================================
 
 .. seo::
     :description: Changelog for ESPHome version 1.14.0.
@@ -10,14 +10,19 @@ Changelog - Version 1.13.0 - May 30th 2019
 .. imgtable::
     :columns: 4
 
+    ADE7953, components/sensor/ade7953, ade7953.svg
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
     AS3935, components/sensor/as3935, as3935.jpg
+    PZEM004T, components/sensor/pzem004t, pzem004t.svg
+    PZEM AC, components/sensor/pzemac, pzemac.svg
+    PZEM DC, components/sensor/pzemdc, pzemdc.svg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     Tx20, components/sensor/tx20, tx20.jpg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
     Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
     Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
