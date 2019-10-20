@@ -11,8 +11,12 @@ Changelog - Version 1.13.0 - May 30th 2019
     :columns: 4
 
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
+    AS3935, components/sensor/as3935, as3935.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SCD30, components/sensor/scd30, scd30.jpg
+    SHTCx, components/sensor/shtcx, shtc3.jpg
+    STS3X, components/sensor/sts3x, sts3x.jpg
+    SGP30, components/sensor/sgp30, sgp30.jpg
     Tx20, components/sensor/tx20, tx20.jpg
     Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
@@ -20,8 +24,13 @@ Changelog - Version 1.13.0 - May 30th 2019
     ZyAura, components/sensor/zyaura, zgm053.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     SM16716, components/output/sm16716, sm16716.svg
+    Tuya Dimmer, components/light/tuya, brightness-medium.svg
+    SSD1325, components/display/ssd1325, ssd1325.jpg
     Yashima IR Remote, components/climate/yashima, air-conditioner.svg
+    MCP23008 I/O Expander, components/mcp230xx, mcp230xx.svg
+    SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SIM800L, components/sim800l, sim800l.jpg
+    DFPlayer, components/dfplayer_mini, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
 
 All changes
@@ -191,6 +200,37 @@ All changes
 - esphome: Switch to Python 3 for docker installs :esphomepr:`774`
 - docs: Add script.wait action :docspr:`367`
 - docs: Add ESP32 scan parameters :docspr:`368`
+- docs: Hint how to include HA secrets.yaml instead :docspr:`362` by :ghuser:`rlowens`
+- esphome: Add SSD1325 Display Component :esphomepr:`736` by :ghuser:`evandcoleman`
+- docs: Add documentation for SSD1325 OLED displays :docspr:`347` by :ghuser:`evandcoleman`
+- esphome: Add support for SGP30 eCO2 and TVOC sensors :esphomepr:`679` by :ghuser:`valordk`
+- docs: Add documentation for SGP30 eCO2 and TVOC sensors :docspr:`308` by :ghuser:`valordk`
+- esphome: Add support for SHTCx Temperature sensors :esphomepr:`676` by :ghuser:`valordk`
+- esphome: Add support for STS3x Temperature sensors :esphomepr:`669` by :ghuser:`valordk`
+- docs: Add documentation for SHTCx Temperature sensors :docspr:`305` by :ghuser:`valordk`
+- docs: Add documentation for STS3x Temperature sensors :docspr:`300` by :ghuser:`valordk`
+- esphome: Add dfplayer mini component :esphomepr:`655` by :ghuser:`glmnet`
+- docs: Add DFPlayer docs :docspr:`306` by :ghuser:`glmnet`
+- docs: Add rotary_encoder.set_value action :docspr:`358`
+- esphome: Add new component for Tuya dimmers :esphomepr:`743` by :ghuser:`ssieb`
+- docs: Add documentation for new Tuya dimmer component :docspr:`353` by :ghuser:`ssieb`
+- docs: SX1509 device documentation :docspr:`315` by :ghuser:`mvturnho`
+- docs: Fix typo :docspr:`352` by :ghuser:`bonanitech`
+- docs: Minor typo :docspr:`349` by :ghuser:`dannysauer`
+- docs: Clarify NodeMCU ESP8266 VIN pin :docspr:`340` by :ghuser:`Justahobby01`
+- docs: Add TorchStar LED controller to 'Generic Sonoff' page :docspr:`351` by :ghuser:`dale3h`
+- docs: Remove references to Python 2 :docspr:`328` by :ghuser:`fabaff`
+- docs: Cookbook Guide for Zemismart LED RGBW Downlights :docspr:`297` by :ghuser:`cryptelli`
+- docs: Authorization by username and password :docspr:`296` by :ghuser:`Anonym-tsk`
+- docs: AS3935 Lightning sensor :docspr:`294` by :ghuser:`TheEggi`
+- docs: Cookbook ape :docspr:`334` by :ghuser:`glmnet`
+- docs: fix indent on sample :docspr:`369` by :ghuser:`glmnet`
+- esphome: Add script.wait action :esphomepr:`778`
+- docs: update esp32camera documentation - note about PWM :docspr:`348` by :ghuser:`h0--`
+- esphome: Vl53l0x :esphomepr:`644`
+- esphome: Add GPIO Switch interlock wait time :esphomepr:`777`
+- esphome: Add PZEM004T/PZEMAC/PZEMDC Support :esphomepr:`587`
+- esphome: Update AsyncMQTTClient/ESPAsyncWebServer :esphomepr:`779`
 
 Past Changelogs
 ---------------
