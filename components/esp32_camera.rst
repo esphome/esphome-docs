@@ -89,8 +89,8 @@ Frame Settings:
 
 .. note::
 
-    The camera integration in Home Assistant isn't in stable or beta HA builds, so until 0.91
-    ships or goes into beta you will need to use a development version of Home Assistant.
+    Camera uses PWM timer #1. If you need PWM (via the ``ledc`` platform) you need to manually specify
+    a channel there (with the ``channel: 2``  parameter)
 
 Configuration for Ai-Thinker Camera
 -----------------------------------
