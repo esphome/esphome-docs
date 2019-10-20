@@ -177,6 +177,18 @@ To install the dev version of ESPHome:
 
 The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
+How do I use my Home Assistant secrets.yaml?
+--------------------------------------------
+
+If you want to keep all your secrets in one place, make a ``secrets.yaml`` file in the
+esphome directory with these contents (so it pulls in the contents of your main Home Assistant
+``secrets.yaml`` file from one directory higher):
+
+.. code-block:: yaml
+
+    <<: !include ../secrets.yaml
+
+
 Does ESPHome support [this device/feature]?
 -------------------------------------------
 
