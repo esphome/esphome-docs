@@ -306,7 +306,7 @@ a fork of the repository that you can modify and create git branches on.
 
     # Add "upstream" remote
     git remote add upstream https://github.com/esphome/<REPO_NAME>.git
-    # For example: git clone https://github.com/esphome/esphome.git
+    # For example: git remote add upstream https://github.com/esphome/esphome.git
 
     # For each patch, create a new branch from latest dev
     git checkout dev
