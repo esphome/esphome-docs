@@ -45,5 +45,6 @@ See Also
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/pca9685`
+- :doc:`/components/output/tlc59208f`
 - :apiref:`cwww/cww_light_output.h`
 - :ghedit:`Edit`

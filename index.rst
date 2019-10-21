@@ -89,10 +89,12 @@ Sensor Components
 
     Sensor Core, components/sensor/index, folder-open.svg
     ADC, components/sensor/adc, flash.svg
+    ADE7953, components/sensor/ade7953, ade7953.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
     AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
+    AS3935, components/sensor/as3935, as3935.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
@@ -127,11 +129,18 @@ Sensor Components
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Pulse Width, components/sensor/pulse_width, pulse.svg
+    PZEM004T, components/sensor/pzem004t, pzem004t.svg
+    PZEM AC, components/sensor/pzemac, pzemac.svg
+    PZEM DC, components/sensor/pzemdc, pzemdc.svg
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SCD30, components/sensor/scd30, scd30.jpg
+    SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    STS3X, components/sensor/sts3x, sts3x.jpg
+    SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
@@ -139,10 +148,12 @@ Sensor Components
     Tx20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-    Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
-    Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+    Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
+    Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
+    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
@@ -180,6 +191,7 @@ Output Components
     GPIO Output, components/output/gpio, pin.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
+    TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
@@ -199,9 +211,10 @@ Light Components
 
     RGBWW Light, components/light/rgbww, rgbw.png
     FastLED Light, components/light/fastled, color_lens.svg
-
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
+
     Light Partition, components/light/partition, color_lens.svg
+    Tuya Dimmer, components/light/tuya, brightness-medium.svg
     Custom Light, components/light/custom, language-cpp.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
@@ -240,6 +253,7 @@ Display Components
     MAX7219, components/display/max7219, max7219.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
+    SSD1325, components/display/ssd1325, ssd1325.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
 
 Cover Components
@@ -300,9 +314,10 @@ Misc Components
     Servo, components/servo, servo.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
-    MCP23017 I/O Expander, components/mcp23017, mcp23017.svg
+    MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg
+    SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SIM800L, components/sim800l, sim800l.jpg
-
+    DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
 
@@ -323,6 +338,7 @@ Cookbook
 
 .. imgtable::
 
+    Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     Endstop Cover, cookbook/endstop-cover, window-open.svg
     PIR Sensor, cookbook/pir, pir.jpg
     Relay, cookbook/relay, relay.jpg
@@ -337,6 +353,8 @@ Cookbook
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
     Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
+    Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
+    Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Arlec Grid Connect Smart Plug, cookbook/arlec_grid_connect_smart_plug, arlec-grid-connect.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the

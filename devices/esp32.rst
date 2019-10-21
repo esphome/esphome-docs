@@ -26,10 +26,10 @@ Some notes about the pins on the ESP32:
 - ``GPIO0`` is used to determine the boot mode on startup. It should therefore not be pulled LOW
   on startup to avoid booting into flash mode. You can, however, still use this as an output pin.
 - ``GPIO34``-``GPIO39`` can not be used as outputs (even though GPIO stands for "general purpose input
-  **output**"...)
+  **output**"...).
 - ``GPIO32``-``GPIO39``: These pins can be used with the :doc:`/components/sensor/adc` to measure
   voltages.
-- ``GPIO2``: This pin is connected to the blue LED on the board as seen in above picture. It also supports
+- ``GPIO2``: This pin is connected to the blue LED on the board. It also supports
   the :doc:`touch pad binary sensor </components/binary_sensor/esp32_touch>` like some other
   pins.
 

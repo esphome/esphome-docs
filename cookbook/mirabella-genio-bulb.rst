@@ -172,7 +172,7 @@ variable ``output_component1``.
     output:
       - platform: esp8266_pwm
         id: output_warm_white
-        pin: GPIO14
+        pin: GPIO13
       - platform: esp8266_pwm
         id: output_daylight
         pin: GPIO5
