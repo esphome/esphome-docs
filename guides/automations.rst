@@ -69,7 +69,7 @@ Woah, hold on there. Please explain what's going on here! Sure :) Let's step thr
          # ...
          id: dehumidifier1
 
-First, we have to give the dehumidifier an :ref:`config-id` so that we can
+First, we have to give the dehumidifier a :ref:`config-id` so that we can
 later use it inside our awesome automation.
 
 .. code-block:: yaml

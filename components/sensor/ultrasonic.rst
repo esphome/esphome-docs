@@ -15,7 +15,7 @@ than about two meters and may sometimes make some annoying clicking
 sounds.
 
 This sensor platform expects a sensor that can be sent a **trigger
-pulse** on a specific pin and will send out a **echo pulse** once a
+pulse** on a specific pin and will send out an **echo pulse** once a
 measurement has been taken. Because sometimes (for example if no object
 is detected) the echo pulse is never returned, this sensor also has a
 timeout option which specifies how long to wait for values.

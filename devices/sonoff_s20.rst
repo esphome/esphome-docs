@@ -109,7 +109,7 @@ It's best to just use a multimeter and double check if it's unclear.
 .. note::
 
     On some older S20s, the ``RX`` and ``TX`` pins are swapped (sometimes even the written silkscreen is
-    wrong). If your upload fails with a ``error: espcomm_upload_mem failed`` message it's most likely due
+    wrong). If your upload fails with an ``error: espcomm_upload_mem failed`` message it's most likely due
     to the pins being swapped. In that case, just swap ``RX`` and ``TX`` and try again - you won't break
     anything if they're swapped.
 

@@ -48,7 +48,7 @@ Updating the password:
 
 Since the password is used both for compiling and uploading the regular ``esphome <file> run``
 won't work of course. This issue can be worked around by executing the operations separately
-through a ``on_boot`` trigger:
+through an ``on_boot`` trigger:
 
 .. code-block:: yaml
 
