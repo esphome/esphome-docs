@@ -47,6 +47,10 @@ Configuration variables:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **force_update** (*Optional*, boolean): If true, this option will force the frontend (usually Home
+  Assistant) to create a state changed event when the sensor updates even if the value stayed the same.
+  Some applications like Grafana require this when working with Home Assistant, but beware it can
+  significantly increase the database size. Defaults to ``false``.
 
 Automations:
 
