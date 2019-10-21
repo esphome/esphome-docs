@@ -25,7 +25,7 @@ for some motors.
 
     Controlling the cover to quickly (sending new open/close commands within a minute of previous commands)
     might cause unexpected behaviour (eg: cover stopping halfway). This is because the delayed relay off
-    feature is implemented using asynchronous automations. So every time a open/close command is sent a
+    feature is implemented using asynchronous automations. So every time an open/close command is sent a
     delayed relay off command is added and old ones are not removed.
 
 .. code-block:: yaml

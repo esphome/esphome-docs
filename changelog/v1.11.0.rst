@@ -149,7 +149,7 @@ Beta Fixes
 All changes
 -----------
 
-- core: Attemp to fix the addressable flicker effect :corepr:`392` by :ghuser:`RomRider`
+- core: Attempt to fix the addressable flicker effect :corepr:`392` by :ghuser:`RomRider`
 - esphome: typing is only required for python < 3.5 :esphomepr:`341` by :ghuser:`dotlambda`
 - esphome: Fix install pillow in docker image :esphomepr:`338`
 - esphome: Allow IPv4 addresses for SNTP servers :esphomepr:`340`
@@ -222,7 +222,7 @@ All changes
 - core: Better error messages for OTA :corepr:`486`
 - esphome: Better error messages for OTA :esphomepr:`418`
 - core: Synchronize homeassistant time periodically :corepr:`485`
-- core: ESP8266 Arduino 2.5.0 Compatability :corepr:`481` (cherry-picked)
+- core: ESP8266 Arduino 2.5.0 Compatibility :corepr:`481` (cherry-picked)
 - esphome: Add Switch Interlocking :esphomepr:`411` (cherry-picked)
 - esphome: Add local mDNS responder for .local :esphomepr:`386` (cherry-picked)
 - core: Auto-Redact private information from logs :corepr:`488`
