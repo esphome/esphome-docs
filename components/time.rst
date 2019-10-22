@@ -62,7 +62,7 @@ Configuration variables:
   a cron-like syntax. See :ref:`time-on_time`.
 
 GPS Time Source
---------------------------
+---------------
 
 You first need to set up the :doc:`GPS </components/gps>` component.
 
@@ -83,7 +83,7 @@ Configuration variables:
   that is running ESPHome, but this might not always be accurate.
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
-  
+
 Use In Lambdas
 --------------
 
