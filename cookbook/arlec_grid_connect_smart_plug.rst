@@ -1,5 +1,5 @@
 Arlec Grid Connect Smart Plug
-=======================================
+=============================
 
 Arlec Grid Connect Smart Plugs are a tuya based smart plugs sold in Australia. 
 
@@ -10,10 +10,10 @@ Arlec Grid Connect Smart Plugs are a tuya based smart plugs sold in Australia.
 These plugs can be flashed with a bit of work.
 
 Flashing
------------
+--------
 
 Prerequisites
-*****************
+*************
 
 #. Before you begin you'll need:
 
@@ -25,7 +25,7 @@ Prerequisites
 Take a look at :doc:`/guides/getting_started_command_line` or :doc:`/guides/getting_started_hassio` to get ESPHome installed.
 
 Configuration
-----------------------------
+-------------
 
 Copy the code below and paste it into your ``name_of_esphome_configuration.yaml`` file. Be sure to add your own SSID and Password where marked. Compile the firmware in the dashboard interface by clicking COMPILE with the ESPHome code below. Download the Binary and use the .bin file that is generated when uploading.
 
@@ -80,7 +80,7 @@ Copy the code below and paste it into your ``name_of_esphome_configuration.yaml`
           - switch.turn_off: led
 
 Connections
-*****************
+***********
 
 The Arlec Grid Connect uses the TYWE2S Tuya module, which can easily be flashed with these connections.
 
@@ -107,7 +107,7 @@ More information on uploading to the TYWE2S can be found here: `TYWE2S <https://
 =======================================
 
 Uploading
-*****************
+*********
 
 Use ESPHome-flasher to flash the firmware as it is pre-made for ESPHome.
 
