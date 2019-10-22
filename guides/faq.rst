@@ -27,9 +27,7 @@ Tips for using ESPHome
 
        esphome livingroom.yaml logs
 
-4. You can always find the source ESPHome generates under ``<NODE_NAME>/src/main.cpp``. It's even
-   possible to edit anything outside of the ``AUTO GENERATED CODE BEGIN/END`` lines for creating
-   :doc:`custom sensors </components/sensor/custom>`.
+4. You can always find the source ESPHome generates under ``<NODE_NAME>/src/``.
 
 5. You can view the full list of command line interface options here: :doc:`/guides/cli`
 
