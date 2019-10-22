@@ -169,7 +169,7 @@ Logger Automation
 
 This automation will be triggered when a new message is added to the log.
 In :ref:`lambdas <config-lambda>` you can get the message, log level and tag from the trigger
-using ``message``, ``level`` and ``tag``.
+using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const char *``).
 
 .. code-block:: yaml
 
@@ -179,7 +179,7 @@ using ``message``, ``level`` and ``tag``.
         level: ERROR
         then:
           lambda: |-
-            ESP_LOGD("DEBUG", "Triggered on_message with level %s, tag %s and message %s", level, tag, message);
+            ESP_LOGD("DEBUG", "Triggered on_message with level %u, tag %s and message %s", level, tag, message);
 
 See Also
 --------
