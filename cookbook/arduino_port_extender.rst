@@ -71,7 +71,7 @@ When adding binary sensors the pins are configured as INPUT_PULLUP, you can use 
 
 .. note::
 
-    Arduino PIN 13 usually has a LED conected to it and using it as digital input with the built in internal
+    Arduino PIN 13 usually has a LED connected to it and using it as digital input with the built in internal
     pull up might be problematic, using it as an output is preferred.
 
 To setup binary sensors, create a custom platform as below, list in braces all the sensors you want,

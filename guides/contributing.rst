@@ -202,7 +202,7 @@ RST primer:
   New pages need to be added to the ``imgtable`` list. The syntax is CSV with <PAGE NAME>, <FILE NAME> (without RST),
   <IMAGE> (in top-level images/ directory). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
 
-  Because these images are served on the main page, they need to be compressed heavily. SVGs are prefered over JPGs
+  Because these images are served on the main page, they need to be compressed heavily. SVGs are preferred over JPGs
   and JPGs should be max. 300x300px.
   If you have imagemagick installed, you can use this command to convert the thumbnail:
 
@@ -306,7 +306,7 @@ a fork of the repository that you can modify and create git branches on.
 
     # Add "upstream" remote
     git remote add upstream https://github.com/esphome/<REPO_NAME>.git
-    # For example: git clone https://github.com/esphome/esphome.git
+    # For example: git remote add upstream https://github.com/esphome/esphome.git
 
     # For each patch, create a new branch from latest dev
     git checkout dev
