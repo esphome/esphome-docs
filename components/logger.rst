@@ -159,6 +159,28 @@ Configuration options:
 -  **tag** (*Optional*, string): The tag (seen in front of the message in the logs) to print the message
    with. Defaults to ``main``.
 
+Logger Automation
+-----------------
+
+.. _logger-on_message:
+
+``on_message``
+**************
+
+This automation will be triggered when a new message is added to the log.
+In :ref:`lambdas <config-lambda>` you can get the message, log level and tag from the trigger
+using ``message``, ``level`` and ``tag``.
+
+.. code-block:: yaml
+
+    logger:
+      # ...
+      on_message:
+        level: ERROR
+        then:
+          lambda: |-
+            ESP_LOGD("DEBUG", "Triggered on_message with level %s, tag %s and message %s", level, tag, message);
+
 See Also
 --------
 

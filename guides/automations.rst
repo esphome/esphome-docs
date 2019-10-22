@@ -321,6 +321,7 @@ All Triggers
 - :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
   :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
+- :ref:`logger.on_message <logger-on_message>`
 - :ref:`time.on_time <time-on_time>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
