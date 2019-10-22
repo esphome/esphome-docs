@@ -8,7 +8,7 @@ Please first read :doc:`/components/sensor/custom` guide,
 the same principles apply here.
 
 All internal stuff (like effects, transitions etc) is handled by the light core
-and cannot be overriden. Light outputs are only responsible for displaying some state
+and cannot be overridden. Light outputs are only responsible for displaying some state
 when asked to do so.
 
 The example below is an example of a custom light output.

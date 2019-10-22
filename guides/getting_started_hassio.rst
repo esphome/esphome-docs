@@ -25,6 +25,10 @@ https://github.com/esphome/hassio
 
 .. figure:: images/hassio_repo.png
 
+Then, scroll down and locate the ESPHome Hass.io Add-Ons section. Click on ESPHome, then INSTALL.
+
+.. figure:: images/hassio_addons_section.png
+
 After that, wait a bit until the add-on is installed (this can take a while) and
 go to the add-on page. Start the add-on and then click "Open Web UI".
 

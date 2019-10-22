@@ -212,7 +212,7 @@ All changes
 - yaml: Make compatible with python 3 :yamlpr:`281`
 - docs: Fix copy/paste error in turn_off_action :docspr:`113` by :ghuser:`wutr`
 - yaml: GPIO Switch Fix restore_mode validator :yamlpr:`296` by :ghuser:`yottatsa`
-- yaml: Fixes for Python 3 Compatability :yamlpr:`297`
+- yaml: Fixes for Python 3 Compatibility :yamlpr:`297`
 - lib: Stop old template action when new one is started :libpr:`354`
 - lib: Add APDS-9960 support :libpr:`286`
 - lib: Change default update interval to 60 seconds :libpr:`356`
