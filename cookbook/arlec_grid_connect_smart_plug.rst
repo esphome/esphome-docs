@@ -104,8 +104,6 @@ If you are using an Arduino, connect the RST pin to GND to disable the microcont
 
 More information on uploading to the TYWE2S can be found here: `TYWE2S <https://github.com/arendst/Sonoff-Tasmota/wiki/CE-Smart-Home---LA-WF3-Wifi-Plug-(TYWE2S)>`_
 
-=======================================
-
 Uploading
 *********
 
