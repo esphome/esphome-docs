@@ -178,8 +178,14 @@ using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const c
       on_message:
         level: ERROR
         then:
-          lambda: |-
-            ESP_LOGD("DEBUG", "Triggered on_message with level %u, tag %s and message %s", level, tag, message);
+          - mqtt.publish:
+              topic: some/topic
+              payload: !lambda |-
+                return "Triggered on_message with level " + std::to_string(level) + ", tag " + tag + " and message " + message;
+
+.. note::
+
+    Don't use `logger.log` action and `ESP_LOGx` functions in this automation!
 
 See Also
 --------
