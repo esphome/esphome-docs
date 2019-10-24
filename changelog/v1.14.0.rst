@@ -37,6 +37,7 @@ Changelog - Version 1.14.0 - TBD Update Date
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer_mini, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
+    Visual Studio Code Plugin, TODO, visual-studio-code.svg
 
 All changes
 -----------
