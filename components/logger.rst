@@ -185,7 +185,8 @@ using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const c
 
 .. note::
 
-    Don't use `logger.log` action and `ESP_LOGx` functions in this automation!
+    Logging will not work in the ``on_message`` trigger. You can't use the :doc:`logger.log <logger-log_action>` action  
+    and the ``ESP_LOGx`` logging macros in this automation.
 
 See Also
 --------
