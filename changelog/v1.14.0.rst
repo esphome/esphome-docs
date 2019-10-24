@@ -230,6 +230,7 @@ All changes
 - docs: Authorization by username and password :docspr:`296` by :ghuser:`Anonym-tsk` (cherry-picked)
 - docs: AS3935 Lightning sensor :docspr:`294` by :ghuser:`TheEggi` (cherry-picked)
 - docs: Cookbook ape :docspr:`334` by :ghuser:`glmnet`
+- esphome: Add lint check for integer constants :esphomepr:`775`
 - docs: fix indent on sample :docspr:`369` by :ghuser:`glmnet` (cherry-picked)
 - esphome: Add script.wait action :esphomepr:`778` (cherry-picked)
 - docs: update esp32camera documentation - note about PWM :docspr:`348` by :ghuser:`h0--`
@@ -237,18 +238,24 @@ All changes
 - esphome: Add GPIO Switch interlock wait time :esphomepr:`777` (cherry-picked)
 - esphome: Add PZEM004T/PZEMAC/PZEMDC Support :esphomepr:`587` (cherry-picked)
 - esphome: Update AsyncMQTTClient/ESPAsyncWebServer :esphomepr:`779` (cherry-picked)
-- esphome: Implementation of LCD Clear :esphomepr:`781` by :ghuser:`amishv`
+- esphome: Implementation of LCD Clear :esphomepr:`781` by :ghuser:`amishv` (cherry-picked)
 - docs: fixed typo :docspr:`370` by :ghuser:`amishv`
-- esphome: Add sensor force_update option :esphomepr:`783`
-- docs: Add sensor force_update option :docspr:`371`
+- esphome: Add sensor force_update option :esphomepr:`783` (cherry-picked)
+- docs: Add sensor force_update option :docspr:`371` (cherry-picked)
 - docs: Spelling and grammar fixes :docspr:`372` by :ghuser:`scop`
 - docs: Add missing actual install step in getting started with Hass.io :docspr:`373` by :ghuser:`scop`
-- esphome: Update docker base image to 2.0.1 :esphomepr:`785`
-- esphome: Fix ledc can't find bit_depth :esphomepr:`786`
-- esphome: web_server_base AUTO_LOAD includes ASYNC_TCP :esphomepr:`788` by :ghuser:`Schnilz`
-- esphome: Add Python 2 deprecation notice :esphomepr:`784`
+- esphome: Update docker base image to 2.0.1 :esphomepr:`785` (cherry-picked)
+- esphome: Fix ledc can't find bit_depth :esphomepr:`786` (cherry-picked)
+- esphome: web_server_base AUTO_LOAD includes ASYNC_TCP :esphomepr:`788` by :ghuser:`Schnilz` (cherry-picked)
+- esphome: Add Python 2 deprecation notice :esphomepr:`784` (cherry-picked)
 - docs: Update time.rst to add GPS as source :docspr:`375` by :ghuser:`mbo18`
-- esphome: Fix modbus CRC calculation :esphomepr:`789`
+- esphome: Fix modbus CRC calculation :esphomepr:`789` (cherry-picked)
+- esphome: Add additional custom lint checks :esphomepr:`790`
+- esphome: Implement more dump_configs :esphomepr:`791`
+- esphome: Add missing include - fixes missing GPIOPin definition :esphomepr:`794` by :ghuser:`cjd`
+- esphome: Fix MQTT not showing logs with Python 3 :esphomepr:`797`
+- esphome: Fix scheduler first execution :esphomepr:`798`
+- esphome: Make file generation saving atomic :esphomepr:`792`
 
 Past Changelogs
 ---------------
