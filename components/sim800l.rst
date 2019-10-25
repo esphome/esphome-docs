@@ -11,11 +11,6 @@ connected via a :doc:`UART bus </components/uart>` supporting both receiving and
 The uart bus must be configured at the same speed of the module which is by default 9600bps. 
 The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
 
-.. warning::
-
-    If you are using the :doc:`logger` make sure you are not using the same pins for ``TX`` and ``RX`` or
-    otherwise disable the uart logging with the ``baud_rate: 0`` option.
-
 .. note::
 
     This module requires a power supply between 3.8V and 4.2V that can handle current spikes up
@@ -39,6 +34,9 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
         - logger.log:
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
+
+    logger:
+      baud_rate: 0 # disable uart logger on esp 8266
 
 Configuration variables:
 ------------------------
