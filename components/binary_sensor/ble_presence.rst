@@ -22,13 +22,25 @@ bluetooth low energy device.
       - platform: ble_presence
         mac_address: AC:37:43:77:5F:4C
         name: "ESP32 BLE Tracker Google Home Mini"
+      - platform: ble_presence
+        service_uuid: '11aa'
+        name: "ESP32 BLE Tracker Test Service 16 bit"
+      - platform: ble_presence
+        service_uuid: '11aa11aa'
+        name: "ESP32 BLE Tracker Test Service 32 bit"
+      - platform: ble_presence
+        service_uuid: '11223344-5566-7788-99aa-bbccddeeff00'
+        name: "ESP32 BLE Tracker Test Service 128 bit"
 
 Configuration variables:
 ------------------------
 
--  **mac_address** (**Required**, MAC Address): The MAC address to track for this
-   binary sensor.
 -  **name** (**Required**, string): The name of the binary sensor.
+-  **mac_address** (*Optional*, MAC Address): The MAC address to track for this
+   binary sensor. Either this or **service_uuid** has to be present.
+-  **service_uuid** (*Optional*, 16 bit, 32 bit, or 128 bit BLE Service UUID): The BLE
+   Service UUID which can be tracked if the device randomizes the MAC address. Either
+   this or **mac_address** has to be present.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
