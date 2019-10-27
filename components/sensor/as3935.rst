@@ -51,10 +51,10 @@ A1            I²C address selection MSB
     # Example configuration for SPI (decide for one!)
     as3935_spi:
       cs_pin: GPIO12
-      pin: GPIO13
+      irq_pin: GPIO13
     # Example configuration for I2C (decide for one!)
     as3935_i2c:
-      pin: GPIO12
+      irq_pin: GPIO12
 
     # Example configuration for creating sensors
     sensor:
@@ -71,7 +71,7 @@ A1            I²C address selection MSB
 Configuration variables (shared):
 ---------------------------------
 
-- **pin** (**Required**, :ref:`config-pin`): The IRQ pin, wh ich indicates if a lightning strike has been detected.
+- **irq_pin** (**Required**, :ref:`config-pin`): The IRQ pin, which indicates if a lightning strike has been detected.
 - **indoor** (*Optional*, boolean): Indicates if the sensor is used indoor. Defaults to ``true``.
 - **noise_level** (*Optional*, integer): Noise floor level is compared to known reference voltage.
   If this level is exceeded the chip will issue an interrupt to the IRQ pin, broadcasting that it can not
@@ -123,7 +123,7 @@ Use this if you want to use your AS3935 in i^2c mode.
 
     # Example configuration for I2C (decide for one!)
     as3935_i2c:
-      pin: GPIO12
+      irq_pin: GPIO12
     # Example shared configuration
     sensor:
       - platform: as3935
@@ -149,7 +149,7 @@ Use this if you want to use your AS3935 in SPI mode.
     # Example configuration for SPI (decide for one!)
     as3935_spi:
       cs_pin: GPIO12
-      pin: GPIO13
+      irq_pin: GPIO13
     # Example lightning and energy sensor
     sensor:
       - platform: as3935
