@@ -72,7 +72,7 @@ currently not supported.
 Please note that devices that show a ``RANDOM`` address type in the logs cannot be used for
 MAC address based tracking, since their MAC-address periodically changes. Instead you can create
 a BLE beacon, set a unique 16 bit, 32 bit or 128 bit Service UUID and track your device based on that.
-Make sure you don't pick a [GATT Service UUID](https://www.bluetooth.com/specifications/gatt/services/),
+Make sure you don't pick a .. _GATT Service UUID: https://www.bluetooth.com/specifications/gatt/services/,
 otherwise generic services might give you incorrect tracking results.
 
 
