@@ -31,7 +31,7 @@ bluetooth low energy device.
 .. note::
 
     Service UUID can be 16 bit long, as in the example, but it can also be 32 bit long
-    like `1122aaff`, or 128 bit long like `11223344-5566-7788-99aa-bbccddeeff00`.
+    like ``1122aaff``, or 128 bit long like ``11223344-5566-7788-99aa-bbccddeeff00``.
 
 
 
