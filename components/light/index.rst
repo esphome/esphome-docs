@@ -707,7 +707,7 @@ instance (see API reference for more info).
               // it[num].get();
 
               // Example: Simple color wipe
-              for (int i = it.size() -1; i > 0; i--) {
+              for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
               it[0] = ESPColor::random_color();              
