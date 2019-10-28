@@ -134,6 +134,7 @@ Sensor Components
     PZEM DC, components/sensor/pzemdc, pzemdc.svg
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SCD30, components/sensor/scd30, scd30.jpg
