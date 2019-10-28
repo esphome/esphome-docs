@@ -43,7 +43,7 @@ Configuration variables:
    binary sensor. Either this or ``service_uuid`` has to be present.
 -  **service_uuid** (*Optional*, string) 16 bit, 32 bit, or 128 bit BLE Service UUID
    which can be tracked if the device randomizes the MAC address. Either
-   this or ''mac_address'' has to be present.
+   this or ``mac_address`` has to be present.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
