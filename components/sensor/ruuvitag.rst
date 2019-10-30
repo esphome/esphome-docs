@@ -38,7 +38,7 @@ movement count and measurement sequence number are also tracked.
       pressure:
         name: "RuuviTag Pressure"
       acceleration_x:
-        name: "tRuuviTag Acceleration X"
+        name: "RuuviTag Acceleration X"
       acceleration_y:
         name: "RuuviTag Acceleration Y"
       acceleration_z:
