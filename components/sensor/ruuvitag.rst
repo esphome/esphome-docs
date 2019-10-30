@@ -9,7 +9,9 @@ RuuviTag Open Source BLE Sensor
 The ``ruuvitag`` sensor platform lets you track the output of RuuviTag
 Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`.
 This component will track the temperature, humidity, acceleration and battery
-voltage of a RuuviTag device every time the sensor sends out a BLE broadcast.
+voltage of a RuuviTag device with RAWv1 protocol every time the sensor sends
+out a BLE broadcast. RAWv2 protocol is supported too. Then tx power,
+movement count and measurement sequence number are also tracked.
 
 .. figure:: images/ruuvitag-full.jpg
     :align: center
@@ -43,6 +45,12 @@ voltage of a RuuviTag device every time the sensor sends out a BLE broadcast.
         name: "RuuviTag Acceleration Z"
       battery_voltage:
         name: "RuuviTag Battery Voltage"
+      tx_power:
+        name: "RuuviTag TX Power"
+      movement_counter:
+        name: "RuuviTag Movement Counter"
+      measurement_sequence_number:
+        name: "RuuviTag Measurement Sequence Number"
 
 Configuration variables:
 ------------------------
@@ -97,11 +105,38 @@ Configuration variables:
 - **battery_voltage** (*Optional*): The information for the battery voltage
   sensor
 
-  - **name** (**Required**, string): The name for the voltage sensor.
+  - **name** (**Required**, string): The name for the battery voltage sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
     in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **tx_power** (*Optional*): The information for the transmit power
+  sensor
+
+  - **name** (**Required**, string): The name for the transmit power sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
+    in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+  - Only available if RAWv2 protocol is used.
+
+- **movement_count** (*Optional*): The information for the movement count
+  sensor
+
+  - **name** (**Required**, string): The name for the movement count sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
+    in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+  - Only available if RAWv2 protocol is used.
+
+- **measurement_sequence_number** (*Optional*): The information for the
+  measurment sequence number sensor
+
+  - **name** (**Required**, string): The name for the measurment sequence
+    number sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
+    in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+  - Only available if RAWv2 protocol is used.
 
 Setting Up Devices
 ------------------
