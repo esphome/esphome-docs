@@ -103,7 +103,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **battery_voltage** (*Optional*): The information for the battery voltage
-  sensor
+  sensor.
 
   - **name** (**Required**, string): The name for the battery voltage sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
