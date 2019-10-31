@@ -69,8 +69,16 @@ Advanced options:
 
 .. _ir-receiver_id:
 
-Using a receiver
+Using a Receiver
 ----------------
+
+.. note::
+
+    This is only supported with select climate devices, see "Supports receiver" in the table at the top of the page.
+
+Optionally, some platforms can listen to data the climate device sends over infrared to update their state (
+for example what mode the device is in). By setting up a :doc:`remote_receiver </components/remote_receiver>`
+and passing its ID to the climate platform you can enable this mode.
 
 When using a receiver it is recommended to put the IR receiver as close as possible to the equipment's
 IR receiver.
