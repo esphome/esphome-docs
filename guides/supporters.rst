@@ -38,6 +38,7 @@ Patrons
 People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
 You guys are awesome!
 
+- Alexander Leisentritt
 - Anders
 - Andrea Donno
 - Andrew Tierney
@@ -71,6 +72,7 @@ You guys are awesome!
 - Sam Absalom
 - Saulo Onze
 - Starwolf73
+- Thibault Maekelbergh
 - Thomas Hermine
 - Vincèn PUJOL
 - Wojciech Bederski
@@ -88,7 +90,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1985 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1991 contributions
 
 Contributors
 ************
@@ -96,6 +98,7 @@ Contributors
 (in alphabetical order)
 
 - `2016for (@2016for) <https://github.com/2016for>`__ - 1 contribution
+- `Pavel Golovin (@31337Ghost) <https://github.com/31337Ghost>`__ - 1 contribution
 - `Pavel Pletenev (@ASMfreaK) <https://github.com/ASMfreaK>`__ - 1 contribution
 - `Aalian Khan (@AalianKhan) <https://github.com/AalianKhan>`__ - 4 contributions
 - `Alexander Leisentritt (@Alex9779) <https://github.com/Alex9779>`__ - 2 contributions
@@ -104,6 +107,7 @@ Contributors
 - `Nikolay Vasilchuk (@Anonym-tsk) <https://github.com/Anonym-tsk>`__ - 11 contributions
 - `Rutger Nijhuis (@BananaPukeh) <https://github.com/BananaPukeh>`__ - 1 contribution
 - `Bierchermuesli (@Bierchermuesli) <https://github.com/Bierchermuesli>`__ - 1 contribution
+- `John (@CircuitSetup) <https://github.com/CircuitSetup>`__ - 1 contribution
 - `David De Sloovere (@DavidDeSloovere) <https://github.com/DavidDeSloovere>`__ - 3 contributions
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__ - 1 contribution
 - `EmmanuelLM (@EmmanuelLM) <https://github.com/EmmanuelLM>`__ - 1 contribution
@@ -170,9 +174,9 @@ Contributors
 - `Fritz Mueller (@fritzm) <https://github.com/fritzm>`__ - 1 contribution
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 11 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
-- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 28 contributions
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 34 contributions
 - `Giorgos Logiotatidis (@glogiotatidis) <https://github.com/glogiotatidis>`__ - 1 contribution
-- `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 3 contributions
+- `Antoine GRÉA (@grea09) <https://github.com/grea09>`__ - 4 contributions
 - `guptamp (@guptamp) <https://github.com/guptamp>`__ - 1 contribution
 - `h0-- (@h0--) <https://github.com/h0-->`__ - 1 contribution
 - `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 4 contributions
@@ -267,4 +271,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Fri Oct 25 09:48:41 2019 UTC.*
+*This page was last updated Thu Oct 31 12:15:48 2019 UTC.*
