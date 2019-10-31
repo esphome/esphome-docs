@@ -3,7 +3,7 @@ IR Remote Climate
 
 .. seo::
     :description: Controls a variety of compatible Climate via IR
-    :image: air-conditioner.png
+    :image: air-conditioner-ir.png
 
 The climate component allows you to control a variety of compatible AC units by sending IR signals
 as your remote unit would do.
