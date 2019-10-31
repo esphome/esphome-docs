@@ -21,13 +21,13 @@ request so it will be added (see FAQ).
 +========================+=====================+======================+
 | Coolix                 | ``coolix``          | yes                  |
 +------------------------+---------------------+----------------------+
-| Fujitsu General        | ``fujitsu_general`` |                      |
+| Fujitsu General        | ``fujitsu_general`` | no                   |
 +------------------------+---------------------+----------------------+
-| Mitsubishi             | ``mitsubishi``      |                      |
+| Mitsubishi             | ``mitsubishi``      | no                   |
 +------------------------+---------------------+----------------------+
 | TCL112, Fuego          | ``tcl112``          | yes                  |
 +------------------------+---------------------+----------------------+
-| Yashima                | ``yashima``         |                      |
+| Yashima                | ``yashima``         | no                   |
 +------------------------+---------------------+----------------------+
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
