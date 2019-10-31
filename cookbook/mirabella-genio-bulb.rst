@@ -188,6 +188,47 @@ variable ``output_component1``.
 
         # Ensure the light turns on by default if the physical switch is actuated.
         restore_mode: ALWAYS_ON
+        
+3.2.1 Cold + Warm White Bulbs (Candle)
+***************************
+
+.. code-block:: yaml
+
+    esphome:
+      name: mirabella_genio_cwww_1
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+    logger:
+
+    api:
+
+    ota:
+
+    output:
+      - platform: esp8266_pwm
+        id: output_warm_white
+        pin: GPIO12
+      - platform: esp8266_pwm
+        id: output_daylight
+        pin: GPIO5
+
+    light:
+      - platform: cwww
+        name: "Mirabella Genio Smart Bulb"
+        id: light
+        cold_white: output_daylight
+        warm_white: output_warm_white
+        cold_white_color_temperature: 6500 K
+        warm_white_color_temperature: 2700 K
+
+        # Ensure the light turns on by default if the physical switch is actuated.
+        restore_mode: ALWAYS_ON
+
 
 3.3 RGBW Color Bulbs
 ********************
