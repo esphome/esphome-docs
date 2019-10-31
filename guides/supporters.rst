@@ -52,7 +52,6 @@ You guys are awesome!
 - DrZzs
 - fabi
 - Franck Nijhof
-- Gaiar Baimuratov
 - Intermittent Technology
 - Jung Ervin
 - Kenvase
@@ -88,7 +87,7 @@ that have made it into the `ESPHome organization's <https://github.com/esphome>`
 Author & Main Developer
 ***********************
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1985 contributions
+- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 1962 contributions
 
 Contributors
 ************
@@ -101,7 +100,7 @@ Contributors
 - `Alexander Leisentritt (@Alex9779) <https://github.com/Alex9779>`__ - 2 contributions
 - `Alexandre Danault (@AlexDanault) <https://github.com/AlexDanault>`__ - 1 contribution
 - `Alex Mekkering (@AlexMekkering) <https://github.com/AlexMekkering>`__ - 1 contribution
-- `Nikolay Vasilchuk (@Anonym-tsk) <https://github.com/Anonym-tsk>`__ - 11 contributions
+- `Nikolay Vasilchuk (@Anonym-tsk) <https://github.com/Anonym-tsk>`__ - 10 contributions
 - `Rutger Nijhuis (@BananaPukeh) <https://github.com/BananaPukeh>`__ - 1 contribution
 - `Bierchermuesli (@Bierchermuesli) <https://github.com/Bierchermuesli>`__ - 1 contribution
 - `David De Sloovere (@DavidDeSloovere) <https://github.com/DavidDeSloovere>`__ - 3 contributions
@@ -118,7 +117,6 @@ Contributors
 - `Mynasru (@Mynasru) <https://github.com/Mynasru>`__ - 2 contributions
 - `Erik Näsström (@Naesstrom) <https://github.com/Naesstrom>`__ - 1 contribution
 - `Jérôme W. (@RomRider) <https://github.com/RomRider>`__ - 1 contribution
-- `Nils Schulte (@Schnilz) <https://github.com/Schnilz>`__ - 1 contribution
 - `Paul Krischer (@SqyD) <https://github.com/SqyD>`__ - 1 contribution
 - `Teemu Mikkonen (@T3m3z) <https://github.com/T3m3z>`__ - 2 contributions
 - `Taigar2015 (@Taigar2015) <https://github.com/Taigar2015>`__ - 1 contribution
@@ -133,7 +131,7 @@ Contributors
 - `Attila Darazs (@adarazs) <https://github.com/adarazs>`__ - 1 contribution
 - `Johan Bloemberg (@aequitas) <https://github.com/aequitas>`__ - 6 contributions
 - `Anders (@ahd71) <https://github.com/ahd71>`__ - 1 contribution
-- `amishv (@amishv) <https://github.com/amishv>`__ - 3 contributions
+- `amishv (@amishv) <https://github.com/amishv>`__ - 1 contribution
 - `Adriaan Peeters (@apeeters) <https://github.com/apeeters>`__ - 3 contributions
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__ - 4 contributions
 - `balk77 (@balk77) <https://github.com/balk77>`__ - 2 contributions
@@ -144,7 +142,6 @@ Contributors
 - `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__ - 1 contribution
 - `bwente (@bwente) <https://github.com/bwente>`__ - 1 contribution
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
-- `Chris Debenham (@cjd) <https://github.com/cjd>`__ - 1 contribution
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__ - 1 contribution
 - `Corban Mailloux (@corbanmailloux) <https://github.com/corbanmailloux>`__ - 5 contributions
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__ - 3 contributions
@@ -201,7 +198,6 @@ Contributors
 - `Magnus Øverli (@magnusoverli) <https://github.com/magnusoverli>`__ - 1 contribution
 - `Major Péter (@majorpeter) <https://github.com/majorpeter>`__ - 1 contribution
 - `Marcel van der Veldt (@marcelveldt) <https://github.com/marcelveldt>`__ - 2 contributions
-- `mbo18 (@mbo18) <https://github.com/mbo18>`__ - 1 contribution
 - `MeIchthys (@meichthys) <https://github.com/meichthys>`__ - 1 contribution
 - `meijerwynand (@meijerwynand) <https://github.com/meijerwynand>`__ - 2 contributions
 - `Pauline Middelink (@middelink) <https://github.com/middelink>`__ - 2 contributions
@@ -241,7 +237,6 @@ Contributors
 - `rnauber (@rnauber) <https://github.com/rnauber>`__ - 2 contributions
 - `Robbie Page (@rorpage) <https://github.com/rorpage>`__ - 1 contribution
 - `Ryan Nazaretian (@ryannazaretian) <https://github.com/ryannazaretian>`__ - 1 contribution
-- `Ville Skyttä (@scop) <https://github.com/scop>`__ - 3 contributions
 - `Sergio Mayoral Martínez (@sermayoral) <https://github.com/sermayoral>`__ - 1 contribution
 - `sethcohn (@sethcohn) <https://github.com/sethcohn>`__ - 1 contribution
 - `Emanuele Tessore (@setola) <https://github.com/setola>`__ - 1 contribution
@@ -267,4 +262,4 @@ Contributors
 - `Vladimir Eremin (@yottatsa) <https://github.com/yottatsa>`__ - 1 contribution
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 
-*This page was last updated Fri Oct 25 09:48:41 2019 UTC.*
+*This page was last updated Sun Oct 20 18:32:10 2019 UTC.*
