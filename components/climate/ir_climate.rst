@@ -13,7 +13,7 @@ as your remote unit would do.
     :width: 60.0%
 
 There is a growing list of compatible units. If your unit is not listed below you can fill a feature
-request so it will be added.
+request so it will be added (see FAQ).
 
 +------------------------+---------------------+----------------------+
 | Name                   | Platform name       |  Supports receiver   |
