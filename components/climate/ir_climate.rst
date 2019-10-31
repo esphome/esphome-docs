@@ -1,24 +1,43 @@
-Coolix IR Remote Climate
-========================
+IR Remote Climate
+=================
 
 .. seo::
-    :description: Controls a Coolix compatible Climate via IR
+    :description: Controls a variety of compatible Climate via IR
     :image: air-conditioner.png
 
-The ``coolix`` climate platform allows you to control a Coolix compatible AC unit by sending IR signals
+The climate component allows you to control a variety of compatible AC units by sending IR signals
 as your remote unit would do.
+
+.. figure:: images/climate-ui.png
+    :align: center
+    :width: 60.0%
+
+There is a growing list of compatible units. If your unit is not listed below you can fill a feature
+request so it will be added.
+
++------------------------+---------------------+----------------------+
+| Name                   | Platform name       |  Supports receiver   |
+|                        |                     |                      +
++========================+=====================+======================+
+| Coolix                 | ``coolix``          | yes                  |
++------------------------+---------------------+----------------------+
+| Fujitsu General        | ``fujitsu_general`` |                      |
++------------------------+---------------------+----------------------+
+| Mitsubishi             | ``mitsubishi``      |                      |
++------------------------+---------------------+----------------------+
+| TCL112, Fuego          | ``tcl112``          | yes                  |
++------------------------+---------------------+----------------------+
+| Yashima                | ``yashima``         |                      |
++------------------------+---------------------+----------------------+
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
 
 Due to the unidirectional nature of IR remote controllers, this component cannot determine the
 actual state of the device, and will assume the state of the device is the latest state requested.
 
-Optionally you can add a :doc:`/components/remote_receiver` component so the climate state will be
-tracked when it is operated with the original remote controller unit.
-
-.. figure:: images/climate-ui.png
-    :align: center
-    :width: 60.0%
+However, when receiver is supported, you can optionally you can add a
+:doc:`/components/remote_receiver` component so the climate state will be tracked when it is operated
+with the original remote controller unit.
 
 .. code-block:: yaml
 
@@ -28,7 +47,7 @@ tracked when it is operated with the original remote controller unit.
       carrier_duty_percent: 50%
 
     climate:
-      - platform: coolix
+      - platform: coolix #  change here the platform name for your AC model
         name: "Living Room AC"
 
 Configuration variables:
@@ -64,7 +83,7 @@ IR receiver.
         number: GPIO14
         inverted: True
         mode: INPUT_PULLUP
-      tolerance: 55 # high tolerance required for some remote control units
+      tolerance: 55%  # high 55% tolerance is recommended for some remote control units
 
     climate:
       - platform: coolix
