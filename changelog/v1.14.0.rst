@@ -250,12 +250,28 @@ All changes
 - esphome: Add Python 2 deprecation notice :esphomepr:`784` (cherry-picked)
 - docs: Update time.rst to add GPS as source :docspr:`375` by :ghuser:`mbo18`
 - esphome: Fix modbus CRC calculation :esphomepr:`789` (cherry-picked)
-- esphome: Add additional custom lint checks :esphomepr:`790`
-- esphome: Implement more dump_configs :esphomepr:`791`
-- esphome: Add missing include - fixes missing GPIOPin definition :esphomepr:`794` by :ghuser:`cjd`
-- esphome: Fix MQTT not showing logs with Python 3 :esphomepr:`797`
-- esphome: Fix scheduler first execution :esphomepr:`798`
-- esphome: Make file generation saving atomic :esphomepr:`792`
+- esphome: Add additional custom lint checks :esphomepr:`790` (cherry-picked)
+- esphome: Implement more dump_configs :esphomepr:`791` (cherry-picked)
+- esphome: Add missing include - fixes missing GPIOPin definition :esphomepr:`794` by :ghuser:`cjd` (cherry-picked)
+- esphome: Fix MQTT not showing logs with Python 3 :esphomepr:`797` (cherry-picked)
+- esphome: Fix scheduler first execution :esphomepr:`798` (cherry-picked)
+- esphome: Make file generation saving atomic :esphomepr:`792` (cherry-picked)
+- esphome: Fujitsu General climate new component :esphomepr:`677` by :ghuser:`31337Ghost`
+- esphome: Warn when UART and logger operating on same bus :esphomepr:`803`
+- esphome: Add Tuya message for no datapoints :esphomepr:`804`
+- esphome: AS3935 Use normal pin polling for IRQ :esphomepr:`805`
+- esphome: Fix modbus register :esphomepr:`806`
+- esphome: Fix web server transition length truncated :esphomepr:`807`
+- docs: fix xiaomi docs :docspr:`384` by :ghuser:`Alex9779`
+- esphome: Add check if middle_text is too short :esphomepr:`811` by :ghuser:`grea09`
+- esphome: [Hotfix] Dashboard authentication on Py3 :esphomepr:`812` by :ghuser:`Anonym-tsk`
+- esphome: Uppercase ESPHome :esphomepr:`814`
+- esphome: Print update interval for pulse counter :esphomepr:`816`
+- esphome: Allow TimePeriod for time_period_str_unit :esphomepr:`815`
+- docs: Typo fix pzem004t :docspr:`387` by :ghuser:`Anonym-tsk`
+- esphome: Scheduler fixes :esphomepr:`813`
+- esphome: Fix fan oscillating :esphomepr:`818`
+- esphome: Fix some binary_sensor not having an initial state :esphomepr:`819`
 
 Past Changelogs
 ---------------
