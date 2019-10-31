@@ -47,7 +47,7 @@ with the original remote controller unit.
       carrier_duty_percent: 50%
 
     climate:
-      - platform: coolix #  change here the platform name for your AC model
+      - platform: coolix       # adjust to match your AC unit!
         name: "Living Room AC"
 
 Configuration variables:
