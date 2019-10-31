@@ -67,7 +67,7 @@ Advanced options:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the remote transmitter.
 
-.. _coolix-receiver_id:
+.. _ir-receiver_id:
 
 Using a receiver
 ----------------
