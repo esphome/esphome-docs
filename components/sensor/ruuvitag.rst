@@ -37,6 +37,8 @@ movement count and measurement sequence number are also tracked.
         name: "RuuviTag Temperature"
       pressure:
         name: "RuuviTag Pressure"
+      acceleration:
+        name: "RuuviTag Acceleration"
       acceleration_x:
         name: "RuuviTag Acceleration X"
       acceleration_y:
@@ -74,6 +76,14 @@ Configuration variables:
 - **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
+    in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **acceleration_x** (*Optional*): The information for the acceleration
+  sensor.
+
+  - **name** (**Required**, string): The name for the acceleration sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
     in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
