@@ -1,0 +1,100 @@
+esphome:
+  name: meamor_3switch
+  platform: ESP8266
+  board: esp01_1m
+#The Meamor is identical to the Sonoff UK 3, but can handle 10 Amps. 
+#You can find it on Amazon.de searching for "Meamor Lichtschalter"
+
+wifi:
+  ssid: 'MySSID'
+  password: 'MyPassword
+    static_ip: 192.168.1.2
+    gateway: 192.168.1.1
+   
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO5
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Meamor Touchpad 1"
+    on_press:
+      - switch.toggle: stand_1
+      - switch.toggle: LED_1
+  - platform: gpio
+    pin:
+      number: GPIO12
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Meamor Touchpad 2"
+    on_press:
+      - switch.toggle: stand_2
+      - switch.toggle: LED_2
+  - platform: gpio
+    pin:
+      number: GPIO3
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Meamor Touchpad 3"
+    on_press:
+      - switch.toggle: stand_3
+      - switch.toggle: LED_3
+  - platform: status
+    name: "Meamor 3 switch Status"
+
+switch:
+  - platform: gpio
+    name: "Stand_1"
+    id: stand_1
+    pin: GPIO4
+    inverted: False
+    interlock: [stand_2,stand_3]
+    restore_mode: RESTORE_DEFAULT_ON
+  - platform: gpio
+    name: "Stand_2"
+    id: stand_2
+    pin: GPIO15
+    inverted: False
+    interlock: [stand_1,stand_3]
+    restore_mode: RESTORE_DEFAULT_ON
+  - platform: gpio
+    name: "Stand_3"
+    id: stand_3
+    pin: GPIO13
+    inverted: False
+    interlock: [stand_1,stand_2]
+    restore_mode: RESTORE_DEFAULT_ON
+  - platform: gpio
+    name: "LED_1"
+    id: LED_1
+    pin: GPIO1
+    inverted: False
+    interlock: [LED_2,LED_3]
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "LED_2"
+    id: LED_2
+    pin: GPIO16
+    inverted: False
+    interlock: [LED_1,LED_3]
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    name: "LED_3"
+    id: LED_3
+    pin: GPIO14
+    inverted: False
+    interlock: [LED_1,LED_2]
+    restore_mode: RESTORE_DEFAULT_OFF  
+    
