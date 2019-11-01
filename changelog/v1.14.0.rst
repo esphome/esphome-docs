@@ -254,7 +254,7 @@ All changes
 - esphome: Implement more dump_configs :esphomepr:`791` (cherry-picked)
 - esphome: Add missing include - fixes missing GPIOPin definition :esphomepr:`794` by :ghuser:`cjd` (cherry-picked)
 - esphome: Fix MQTT not showing logs with Python 3 :esphomepr:`797` (cherry-picked)
-- esphome: Fix scheduler first execution :esphomepr:`798` (cherry-picked)
+- esphome: Fix scheduler first execution :esphomepr:`798` (ciherry-picked)
 - esphome: Make file generation saving atomic :esphomepr:`792` (cherry-picked)
 - esphome: Fujitsu General climate new component :esphomepr:`677` by :ghuser:`31337Ghost`
 - esphome: Warn when UART and logger operating on same bus :esphomepr:`803`
