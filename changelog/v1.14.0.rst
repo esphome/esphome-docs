@@ -94,7 +94,7 @@ various PZEM-004Ts and the power monitoring chip in the :doc:`Shelly 2.5 </compo
 
 Of course there's a lot more features in this release that didn't fit here anymore.
 Just to name a few: new Xiaomi BLE devices are supported, the
-:doc:`Tuya MCU protocol </components/light/tuya>` has been added and major
+:doc:`Tuya MCU protocol </components/light/tuya>` (thanks :ghuser:`ssieb` and :ghuser:`brandond`!) has been added and major
 architectural parts of the ESPHome native API have changed to allow for faster
 development.
 
