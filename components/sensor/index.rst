@@ -171,6 +171,8 @@ The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``.
 then fit a linear equation to the values (using least squares). So you need to supply at least
 two values.
 
+.. _sensor-calibrate_polynomial:
+
 ``calibrate_polynomial``
 ************************
 
