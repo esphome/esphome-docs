@@ -1,5 +1,5 @@
-Changelog - Version 1.14.0 - TBD Update Date
-============================================
+Changelog - Version 1.14.0 - November 1
+=======================================
 
 .. seo::
     :description: Changelog for ESPHome version 1.14.0.
@@ -10,8 +10,8 @@ Changelog - Version 1.14.0 - TBD Update Date
 .. imgtable::
     :columns: 5
 
-    Visual Studio Code Plugin, TODO, visual-studio-code.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
+    Visual Studio Code Plugin, https://marketplace.visualstudio.com/items?itemName=ESPHome.esphome-vscode, visual-studio-code.svg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     AS3935, components/sensor/as3935, as3935.jpg
@@ -32,17 +32,80 @@ Changelog - Version 1.14.0 - TBD Update Date
     VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
     Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
-    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
-
     ZyAura, components/sensor/zyaura, zgm053.jpg
+
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     SM16716, components/output/sm16716, sm16716.svg
     Tuya Dimmer, components/light/tuya, brightness-medium.svg
     SSD1325, components/display/ssd1325, ssd1325.jpg
-
     Yashima IR Remote, components/climate/yashima, air-conditioner.svg
+
     MCP23008 I/O Expander, components/mcp230xx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
+
+So... it's been a while since the last release...
+
+But today - november 1 - the wait has finally ended! We're proud to announce ESPHome 1.14,
+a release with the most features additions to date thanks to a ton of contributors!
+
+Captive Portal
+**************
+
+First, we've heard your feedback in the feature request tracker. One of the highest requested
+features has been to add a WiFi captive portal (also called "WiFiManager") capability to ESPHome.
+
+.. figure:: /components/images/captive_portal-ui.png
+    :align: center
+    :width: 60.0%
+
+With the new :doc:`captive portal </components/captive_portal>` component you can set up a fallback
+WiFi hotspot that gets created if the ESP fails to connect to the WiFi network. If you're creating
+a new device this is automatically enabled. To add this feature existing devices check out the
+:doc:`captive portal example </components/captive_portal>`.
+
+VSCode Plugin & New Integrations
+********************************
+
+:ghuser:`glmnet` has been very active in the ESPHome community - he not only managed a ton
+of bug reports and feature requests, he also implemented some very interesting features:
+
+- ESPHome now has a working VSCode plugin with live config validation support!
+  Check out the `ESPHome plugin on the VSCode marketplace <https://marketplace.visualstudio.com/items?itemName=ESPHome.esphome-vscode>`__.
+- The new :doc:`SIM800L integration </components/sim800l>` lets you send SMS and
+  with :doc:`DF-Player </components/dfplayer>` you can play some music from your ESP 🎵
+
+.. figure:: images/vscode-validation.png
+    :align: center
+    :width: 60.0%
+
+Thank you :ghuser:`glmnet` for your work!
+
+New Sensors
+***********
+
+As you can see in the grid at the top of this page, there's been no shortage of sensors either!
+There are all kinds of new sensor types here: from :doc:`lightning detectors ⚡️ </components/sensor/as3935>`,
+the laser distance measuring :doc:`vl53l0x </components/sensor/vl53l0x>` to various environmental
+sensors (thanks :ghuser:`TheEggi`, :ghuser:`valordk`!).
+
+In list of supported power measuring chips has grown a lot with the 3-channel :doc:`ATM90E32 </components/sensor/atm90e32>`,
+various PZEM-004Ts and the power monitoring chip in the :doc:`Shelly 2.5 </components/sensor/ade7953>`
+(thanks :ghuser:`thompsa`` :ghuser:`tsunglung`!).
+
+Of course there's a lot more features in this release that didn't fit here anymore.
+Just to name a few: new Xiaomi BLE devices are supported, the
+:doc:`Tuya MCU protocol </components/light/tuya>` has been added and major
+architectural parts of the ESPHome native API have changed to allow for faster
+development.
+
+Oh, and before we forget: ESPHome has reached 1.000 stars on GitHub!
+
+.. figure:: images/github-1000-stars.png
+    :align: center
+    :width: 75.0%
+
+As always, thanks to all contributors, bug reporters and patrons! Without you this would not
+be possible!
 
 Breaking Changes
 ----------------
@@ -53,8 +116,8 @@ Breaking Changes
 
 - The ``xiaomi_`` BLE platforms have been renamed to match their model numbers (:esphomepr:`755`).
 
-   - ``xiaomi_mijia`` -> ``xiaomi_lywsdcgq``
-   - ``xiaomi_miflora`` -> ``xiaomi_hhccjcy01``
+   - ``xiaomi_mijia`` -> :doc:`xiaomi_lywsdcgq </components/sensor/xiaomi_lywsdcgq>`
+   - ``xiaomi_miflora`` -> :doc:`xiaomi_hhccjcy01 </components/sensor/xiaomi_hhccjcy01>`
 
 - As part of the addition of the captive portal component, the default ``reboot_timeout`` for
   ``wifi`` has been increased to 15 minutes from the previous 5 minutes (:esphomepr:`624`).
@@ -64,6 +127,8 @@ Notable Changes & New Features
 
 - Dashboard Interface: Add an "Update all" button (:esphomepr:`615`).
 - Uploads over USB are now about 4 times faster (:esphomepr:`761`).
+- `ESPHome-Flasher v1.2.0 <https://github.com/esphome/esphome-flasher/releases/tag/v1.2.0>`__ has been
+  released with fixes for ESP32s and faster uploads.
 - All :doc:`native API </components/api>` communication stubs are now automatically
   generated using automated scripts. This is a big step towards making the API more flexible, for
   example cross-device communication (:esphomepr:`633`).
