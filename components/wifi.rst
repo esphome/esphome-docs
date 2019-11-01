@@ -171,6 +171,9 @@ Configuration variables:
   This can be used to further restrict which networks to connect to.
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
+- **priority** (*Optional*, float): The priority of this network. After each time, the network with
+  the highest priority is chosen. If the connection fails, the priority is decreased by one.
+  Defaults to ``0``.
 
 .. _wifi-connected_condition:
 
