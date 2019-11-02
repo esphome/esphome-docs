@@ -45,7 +45,7 @@ Custom Components & Code
 - `Custom D6T Thermal Sensor <https://gist.github.com/mKeRix/4fc553574af0a2d8682734695160b859>`__ by :ghuser:`mKeRix`
 - `Custom 斐讯DC1 Mains Socket Component (chinese) <https://github.com/Samuel-0-0/phicomm_dc1-esphome>`__ by :ghuser:`Samuel-0-0`
 - `Custom Component for Tuya PIR sensors <https://github.com/brandond/esphome-tuya_pir>`__ by :ghuser:`brandond`
-- `DIY Whole Home Power Monitoring with ATM90E32AS chip <https://www.youtube.com/watch?v=BOgy6QbfeZk>`__
+- `DIY Whole Home Power Monitoring with ATM90E32AS chip <https://www.youtube.com/watch?v=BOgy6QbfeZk>`__ by `digiblurDIY <https://www.youtube.com/channel/UC5ZdPKE2ckcBhljTc2R_qNA>`__
 - `SK6812 Addressable Light as Display Matrix <https://github.com/rnauber/ESPHomeMatrixLED>`__ by :ghuser:`rnauber`
 - `Custom MAX7219 Matrix Display Component <https://github.com/ASMfreaK/esphome_max7219>`__ by :ghuser:`ASMfreaK`
 - `Custom ESPHome Roomba Component <https://github.com/mannkind/ESPHomeRoombaComponent>`__ by :ghuser:`mannkind`
