@@ -46,6 +46,7 @@ Configuration variables:
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
 - **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
 - **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
+- **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
 
 .. _uart-hardware_uarts:
