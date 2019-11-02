@@ -52,6 +52,9 @@ Advanced Options:
   to. This is also the state of the servo at startup. Defaults to ``7.5%``.
 - **max_level** (*Optional*, percentage): The PWM duty cycle the maximum value (100%) will map
   to. Defaults to ``12.0%``.
+- **restore** (*Optional*, boolean): Whether to restore the state of the servo motor at startup.
+  This is useful if you have an absolute servo motor and it goes back to its 0 position at startup.
+  Defaults to ``false``.
 
 .. note::
 
