@@ -361,12 +361,13 @@ All Actions
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
-- :ref:`output.esp8266_pwm.set_frequency <output-esp8266_pwm-set_frequency_action>`
+- :ref:`output.esp8266_pwm.set_frequency <output-esp8266_pwm-set_frequency_action>` / :ref:`output.ledc.set_frequency <output-ledc-set_frequency_action>`
 - :ref:`sensor.integration.reset <sensor-integration-reset_action>`
 - :ref:`display.page.show_* <display-pages>`
 - :ref:`uart.write <uart-write_action>`
 - :ref:`sim800l.send_sms <sim800l-send_sms_action>`
 - :ref:`mhz19.calibrate_zero <mhz19-calibrate_zero_action>` / :ref:`mhz19.abc_enable <mhz19-abc_enable_action>` / :ref:`mhz19.abc_disable <mhz19-abc_disable_action>`
+- :ref:`sensor.rotary_encoder.set_value <sensor-rotary_encoder-set_value_action>`
 
 .. _config-condition:
 

@@ -34,6 +34,94 @@ The example below is an example of a custom component that can do anything you w
       }
     };
 
+(Store this file in your configuration directory, for example ``my_custom_component.h``)
+
+And in YAML:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esphome:
+      includes:
+        - my_custom_component.h
+
+    custom_component:
+    - lambda: |-
+        auto my_custom = new MyCustomComponent();
+        return {my_custom};
+
+Configuration variables:
+
+- **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
+  binary sensor(s).
+
+See also :apiclass:`Component`.
+
+Native API Custom Component
+---------------------------
+
+If you want to communicate directly with Home Assistant via the :doc:`native API </components/api>`
+you can use the :apiclass:`CustomAPIDevice` class to declare services that can be executed from
+Home Assistant, as well as starting services in Home Assistant.
+
+.. code-block:: cpp
+
+    #include "esphome.h"
+
+    class MyCustomComponent : public Component, public CustomAPIDevice {
+     public:
+      void setup() override {
+        // This will be called once to set up the component
+        // think of it as the setup() call in Arduino
+        pinMode(6, OUTPUT);
+
+        // Declare a service "hello_world"
+        //  - Service will be called "esphome.<NODE_NAME>_hello_world" in Home Assistant.
+        //  - The service has no arguments
+        //  - The function on_hello_world declared below will attached to the service.
+        register_service(&MyCustomComponent::on_hello_world, "hello_world");
+
+        // Declare a second service "start_washer_cycle"
+        //  - Service will be called "esphome.<NODE_NAME>_start_washer_cycle" in Home Assistant.
+        //  - The service has three arguments (type inferred from method definition):
+        //     - cycle_duration: integer
+        //     - silent: boolean
+        //     - string_argument: string
+        //  - The function on_hello_world declared below will attached to the service.
+        register_service(&MyCustomComponent::on_start_washer_cycle, "start_washer_cycle",
+                         {"cycle_duration", "silent", "string_argument"});
+
+        // Subscribe to a Home Assistant state "sensor.temperature"
+        //  - Each time the ESP connects or Home Assistant updates the state, the function
+        //    on_state_changed will be called
+        //  - The state is a string - if you want to use it as an int you must parse it manually
+        subscribe_homeassistant_state(&MyCustomComponent::on_state_changed, "sensor.temperature");
+      }
+      void on_hello_world() {
+        ESP_LOGD("custom", "Hello World!");
+
+        if (is_connected()) {
+          // Example check to see if a client is connected
+        }
+      }
+      void on_start_washer_cycle(int cycle_duration, bool silent, std::string string_argument) {
+        ESP_LOGD("custom", "Starting washer cycle!");
+        digitalWrite(8, HIGH);
+        // do something with arguments
+
+        // Call a homeassistant service
+        call_homeassistant_service("homeassistant.service");
+      }
+      void on_state_changed(std::string state) {
+        ESP_LOGD(TAG, "Temperature has changed to %s", state.c_str());
+      }
+    };
+
+See also :apiclass:`CustomAPIDevice`.
+
+MQTT Custom Component
+---------------------
+
 In many cases however components should communicate with other appliances using the network.
 That's why there is :apiclass:`mqtt::CustomMQTTDevice`. It is a helper class to create
 custom components that communicate using MQTT.
@@ -77,28 +165,7 @@ custom components that communicate using MQTT.
       }
     };
 
-(Store this file in your configuration directory, for example ``my_custom_component.h``)
-
-And in YAML:
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    esphome:
-      includes:
-        - my_custom_component.h
-
-    custom_component:
-    - lambda: |-
-        auto my_custom = new MyCustomComponent();
-        return {my_custom};
-
-Configuration variables:
-
-- **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
-  binary sensor(s).
-
-See :apiclass:`Component` and :apiclass:`mqtt::CustomMQTTDevice`.
+See also :apiclass:`mqtt::CustomMQTTDevice`.
 
 See Also
 --------

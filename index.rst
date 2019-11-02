@@ -38,6 +38,7 @@ Guides
 
     Changelog, changelog/index, new-box.svg
     Supporters, guides/supporters, heart.svg
+    DIY Examples, guides/diy, earth.svg
 
 .. _devices:
 

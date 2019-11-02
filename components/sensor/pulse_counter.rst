@@ -49,6 +49,11 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. note::
+
+    See :doc:`integration sensor </components/sensor/integration>` for summing up pulse counter
+    values over time.
+
 Converting units
 ----------------
 
