@@ -184,37 +184,53 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 .. code-block:: yaml
 
     esphome:
-      name: mirabella_genio_smart_plug
-      platform: ESP8266
-      board: esp01_1m
+  name: mirabella_genio_smart_plug
+  platform: ESP8266
+  board: esp01_1m
 
-    wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+wifi:
+  ssid: 'WIFI'
+  password: 'WIFIPASS'
 
-    logger:
+logger:
 
-    api:
+api:
 
-    ota:
+ota:
 
-    binary_sensor:
-      - platform: gpio
-        pin:
-          number: GPIO13
-          mode: INPUT_PULLUP
-          inverted: true
-        name: "Power Button"
-        on_press:
-          - switch.toggle: relay
-      - platform: status
-        name: Status
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO12
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Power Button"
+    on_press:
+      - switch.toggle: relay
 
-    switch:
-      - platform: gpio
-        name: "Mirabella Genio Smart Plug"
-        pin: GPIO12
-        id: relay
+  - platform: status
+    name: "Status"
+
+switch:
+  - platform: gpio
+    id: red_led
+    pin:
+      number: GPIO4
+      inverted: true
+
+  - platform: gpio
+    name: "MirabellaSmart Plug"
+    pin: GPIO13
+    id: relay
+
+    # Turn off red LED to show blue when turned on
+    on_turn_on:
+      - switch.turn_off: red_led
+
+    # Turns on the red LED once the plug is turned off. Stock plug doesn't do this, to restore normal behavior remove the on_turn_on and on_turn_off
+    # blocks.
+    on_turn_off:
+      - switch.turn_on: red_led
 
 4. Adding to Home Assistant
 ---------------------------
