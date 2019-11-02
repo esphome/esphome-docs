@@ -128,6 +128,19 @@ Breaking Changes
 - For :doc:`pcf8574 </components/pcf8574>`, the ``INPUT_PULLUP`` option has been removed and replaced
   with ``INPUT`` (:esphomepr:`828`, :doc:`docs </components/pcf8574>`).
 
+Release 1.14.1 - November 2
+---------------------------
+
+- docs: DIY Examples page :docspr:`395`
+- esphome: refactored xiaomi ble data parsing :esphomepr:`823` by :ghuser:`Alex9779`
+- docs: Document UART stop_bits :docspr:`396`
+- esphome: Fix wizard mkdir :esphomepr:`824`
+- esphome: Move native API enums to new namespace :esphomepr:`825`
+- esphome: Fix update-all input in dashboard :esphomepr:`826`
+- esphome: Remove PCF8574 input_pullup mode and cleanup :esphomepr:`828`
+- esphome: Add servo missing restore option to codegen :esphomepr:`829`
+- docs: Document missing servo restore option :docspr:`398`
+
 Notable Changes & New Features
 ------------------------------
 
