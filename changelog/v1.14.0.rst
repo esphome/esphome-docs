@@ -141,6 +141,11 @@ Release 1.14.1 - November 2
 - esphome: Add servo missing restore option to codegen :esphomepr:`829`
 - docs: Document missing servo restore option :docspr:`398`
 
+Release 1.14.2 - November 3
+---------------------------
+
+- esphome: Fix weird ESP8266 wifi crashes :esphomepr:`831`
+
 Notable Changes & New Features
 ------------------------------
 
