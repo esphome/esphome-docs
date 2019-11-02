@@ -65,6 +65,7 @@ Sample Configurations
 - Sonoff POW R2 Washing Machine Sensor: https://gist.github.com/frenck/1b4f0ea98f1f6d86d597c2d9636636db
 - Sonoff iFan02 Custom Output Example: https://gist.github.com/quazzie/09ee3ef2c419ecbcf979a7410062481b
 - TTGO Esp32 Camera with display: https://gist.github.com/Snipercaine/d8345571563536e9661422c3509d1119
+- ESPHome configs using ``substitution`` and ``!include``, by :ghuser:`AlexMekkering`: https://github.com/AlexMekkering/esphome-config
 - ESPHome configs by :ghuser:`glmnet`: https://github.com/glmnet/esphome_devices
 - DS102 3 Gang: https://gist.github.com/tribut/ddde2ef1e2fa3919c50c4ab9c03e7056
 - ESP32 Higrow Plant Moisture Sensor: https://gist.github.com/WoLpH/bc284ba9aeb5d1263f72d6294e239c1a
