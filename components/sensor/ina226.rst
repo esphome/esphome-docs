@@ -6,40 +6,36 @@ INA226 DC current and power sensor
     :image: ina226.jpg
     :keywords: ina226
 
-The ``ina219`` sensor platform allows you to use your INA219 High Side DC Current Sensor
-(`datasheet <https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ina219-current-sensor-breakout.pdf>`__,
-`Adafruit`_) sensors with
+The ``ina226`` sensor platform allows you to use your INA226 DC Current and Power Sensor
+(`datasheet <http://www.ti.com/lit/ds/symlink/ina226.pdf>`__,
+`eBay`_) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
 
-.. figure:: images/ina219-full.jpg
+.. figure:: images/ina226-full.jpg
     :align: center
     :width: 50.0%
 
-    INA219 DC Current Sensor.
+    INA226 DC Current and Power Sensor.
 
-.. _Adafruit: https://www.adafruit.com/product/904
-
-.. figure:: images/ina219-ui.png
-    :align: center
-    :width: 80.0%
+.. _eBay: https://www.ebay.com/sch/i.html?_nkw=INA226
 
 .. code-block:: yaml
 
     # Example configuration entry
     sensor:
-      - platform: ina219
+      - platform: ina226
         address: 0x40
         shunt_resistance: 0.1 ohm
         current:
-          name: "INA219 Current"
+          name: "INA226 Current"
         power:
-          name: "INA219 Power"
+          name: "INA226 Power"
         bus_voltage:
-          name: "INA219 Bus Voltage"
+          name: "INA226 Bus Voltage"
         shunt_voltage:
-          name: "INA219 Shunt Voltage"
+          name: "INA226 Shunt Voltage"
         max_current: 3.2A
         update_interval: 60s
 
@@ -49,8 +45,6 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x40``.
 - **shunt_resistance** (*Optional*, float): The value of the shunt resistor on the board for current calculation.
   Defaults to ``0.1 ohm``.
-- **max_voltage** (*Optional*, float): The maximum bus voltage you are expecting. ESPHome will use this to
-  configure the sensor optimally. Defaults to ``32V`` (the max).
 - **max_current** (*Optional*, float): The maximum current you are expecting. ESPHome will use this to
   configure the sensor optimally. Defaults to ``3.2A``.
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
@@ -68,7 +62,8 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`ina219`
 - :doc:`ina3221`
-- :apiref:`ina219/ina219.h`
-- `INA291 Arduino Library <https://github.com/adafruit/Adafruit_INA219>`__ by `Adafruit <https://www.adafruit.com/>`__
+- :apiref:`ina226/ina226.h`
+- `INA226 Arduino Library <https://github.com/SV-Zanshin/INA226>`__
 - :ghedit:`Edit`
