@@ -80,7 +80,7 @@ Configuration variables:
     in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **acceleration_x** (*Optional*): The information for the acceleration
+- **acceleration** (*Optional*): The information for the acceleration
   sensor.
 
   - **name** (**Required**, string): The name for the acceleration sensor.
