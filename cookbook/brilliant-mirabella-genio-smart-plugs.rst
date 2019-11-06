@@ -216,6 +216,74 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
         pin: GPIO12
         id: relay
 
+
+3.3 Gosund SP1
+**************
+
+.. code-block:: yaml
+
+    esphome:
+      name: gosund_sp1_smart_plug
+      platform: ESP8266
+      board: esp8285
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+    logger:
+
+    api:
+
+    ota:
+
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: GPIO3
+          inverted: True
+        name: "Power Button"
+        on_press:
+          - switch.toggle: relay
+
+    switch:
+      - platform: gpio
+        id: led
+        pin: GPIO1
+
+      - platform: gpio
+        name: "Gosund SP1 Smart Plug"
+        pin: GPIO14
+        id: relay
+        on_turn_on:
+          - switch.turn_on: led
+        on_turn_off:
+          - switch.turn_off: led
+
+    sensor:
+      - platform: hlw8012
+        sel_pin:
+          number: GPIO12
+          inverted: True
+        cf_pin: GPIO04
+        cf1_pin: GPIO05
+        current_resistor: 0.00221
+        voltage_divider: 871
+        current:
+          name: "Gosund SP1 Smart Plug current"
+          unit_of_measurement: A
+        voltage:
+          name: "Gosund SP1 Smart Plug Voltage"
+          unit_of_measurement: V
+        power:
+          name: "Gosund SP1 Smart Plug Wattage"
+          unit_of_measurement: W
+          id: "energy_temp_Wattage"
+        change_mode_every: 8
+        update_interval: 10s
+
+Check the following page for calibrating the measurements: :ref:`sensor-filter-calibrate_linear`.
+
 4. Adding to Home Assistant
 ---------------------------
 
