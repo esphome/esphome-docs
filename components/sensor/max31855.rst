@@ -30,8 +30,6 @@ Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or
         name: "Living Room Temperature"
         cs_pin: D2
         update_interval: 60s
-        reference_temperature:
-          name: "MAX31855 Temperature"
 
 Configuration variables:
 ------------------------
