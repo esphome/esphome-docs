@@ -282,7 +282,7 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
         change_mode_every: 8
         update_interval: 10s
 
-Check the following page for calibrating the measurements: [Calibrate Linear](/components/sensor/index.html#calibrate-linear).
+Check the following page for calibrating the measurements: :ref:`sensor-filter-calibrate_linear`.
 
 4. Adding to Home Assistant
 ---------------------------
