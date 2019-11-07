@@ -212,10 +212,23 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 
     switch:
       - platform: gpio
+        id: red_led
+        pin:
+          number: GPIO4
+          inverted: true
+          
+      - platform: gpio
         name: "Mirabella Genio Smart Plug"
         pin: GPIO12
         id: relay
+        
+        # Turn on red LED
+        on_turn_on:
+          - switch.turn_on: red_led
 
+        # Turns off red LED
+        on_turn_off:
+          - switch.turn_off: red_led
 
 3.3 Gosund SP1
 **************
