@@ -7,7 +7,8 @@ Sonoff T1/T2/T3 UK
     :image: sonoff_1t_t3.png
     :keywords: Relay, Sonoff Basic, Sonoff Dual Dual R1, Light, HASS, Home Assistant, ESPHome
 
-I'm going to assume you have read up about :doc:`the Sonoff T1 / T2 / T3 and how to flash it with ESPHome </devices/sonoff_t1_uk_3gang_v1.1>`.
+Please make sure you have read up about :doc:`the Sonoff T1 / T2 / T3 and how to flash it with ESPHome </devices/sonoff_t1_uk_3gang_v1.1>`.
+
 So lets get straight on with the code
 
 T1
@@ -63,12 +64,13 @@ T1
          inverted: yes
 
 
-In the above code block, I am using a *secrets.yaml* file so that I have just one place to change my wifi
-details for all my devices.
+In the above code block, there is a *secrets.yaml* file so that you have just one place to change wifi
+details for all your devices.
 
 The use_address is required because the sonoff T series don't work with mDNS properly. This means that it will
 show as off line in the dashboard, and you will need to use the ip address to view the logs or upload new versions
-of the formware. You will also need to manually add the device in integrations by IP address.
+of the firmware. You will also need to manually add the device in integrations by IP address. You will need to
+assign a fixed IP in the above configuratino, or use a fixed IP assigned fro your DHCP server.
 
 See `issue #810 <https://github.com/esphome/issues/issues/810>`__ for further details.
 
