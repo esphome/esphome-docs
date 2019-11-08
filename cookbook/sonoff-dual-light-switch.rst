@@ -8,14 +8,14 @@ DIY Light switch using a Sonoff Dual
 
 .. note::
 
-  This is a DIY solution, and you will need to have some knowledge of electrical wiring and enough
-  capabilities to do this work safely.
+    This is a DIY solution, and you will need to have some knowledge of electrical wiring and enough
+    capabilities to do this work safely.
 
-  The author, and the ESPHome team, take no responsibility for any actions, injuries or outcomes
-  from following this guide.
+    The author, and the ESPHome team, take no responsibility for any actions, injuries or outcomes
+    from following this guide.
 
-  In some countries you may need specific qualifications before you can carry out such work in
-  a residentaial property.
+    In some countries you may need specific qualifications before you can carry out such work in
+    a residentaial property.
 
 Please read up on :doc:`/cookbook/sonoff-basic-light-switch` to get the background and principals of
 the this project. Its all basically the same, but with a double switch.
@@ -194,70 +194,70 @@ Its basically the same as the :doc:`T2 </cookbook/sonoff-t1-3>`
 
 .. code-block:: yaml
 
-     esphome:
-       name: dual_ls
-       platform: ESP8266
-       board: esp01_1m
+    esphome:
+      name: dual_ls
+      platform: ESP8266
+      board: esp01_1m
 
-     wifi:
-       ssid: !secret wifi_ssid
-       password: !secret wifi_password
-       fast_connect: True
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      fast_connect: True
 
-     logger:
+    logger:
 
-     api:
+    api:
 
-     ota:
+    ota:
 
-     binary_sensor:
-       - platform: gpio
-         pin:
-           number: GPIO0
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_1
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: GPIO0
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_1
 
-       - platform: gpio
-         pin:
-           number: GPIO14
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_2
+      - platform: gpio
+        pin:
+          number: GPIO14
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_2
 
-       - platform: status
-         name: "Dual LS Status"
+      - platform: status
+        name: "Dual LS Status"
 
-     output:
-       - platform: gpio
-         pin: GPIO12
-         id: relay_1
+    output:
+      - platform: gpio
+        pin: GPIO12
+        id: relay_1
 
-       - platform: gpio
-         pin: GPIO5
-         id: relay_2
+      - platform: gpio
+        pin: GPIO5
+        id: relay_2
 
-     light:
-       - platform: binary
-         name: "Dual L1"
-         id: light_1
-         output: relay_1
+    light:
+      - platform: binary
+        name: "Dual L1"
+        id: light_1
+        output: relay_1
 
-       - platform: binary
-         name: "Dual L2"
-         id: light_2
-         output: relay_2
+      - platform: binary
+        name: "Dual L2"
+        id: light_2
+        output: relay_2
 
-     status_led:
-       pin:
-         number: GPIO13
-         inverted: yes
+    status_led:
+      pin:
+        number: GPIO13
+        inverted: yes
 
 
 

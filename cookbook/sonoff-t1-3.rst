@@ -16,52 +16,52 @@ T1
 
 .. code-block:: yaml
 
-     esphome:
-       name: my_t1
-       platform: ESP8266
-       board: esp01_1m
+    esphome:
+      name: my_t1
+      platform: ESP8266
+      board: esp01_1m
 
-     wifi:
-       ssid: !secret wifi_ssid
-       password: !secret wifi_password
-       fast_connect: True
-       use_address: xxx.xxx.xxx.xxx
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      fast_connect: True
+      use_address: xxx.xxx.xxx.xxx
 
-     logger:
+    logger:
 
-     api:
+    api:
 
-     ota:
+    ota:
 
-     binary_sensor:
-       - platform: gpio
-         pin:
-           number: GPIO0
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_1
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: GPIO0
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_1
 
-       - platform: status
-         name: "T1 Status"
+      - platform: status
+        name: "T1 Status"
 
-     output:
-       - platform: gpio
-         pin: GPIO12
-         id: relay_1
+    output:
+      - platform: gpio
+        pin: GPIO12
+        id: relay_1
 
-     light:
-       - platform: binary
-         name: "T1"
-         id: light_1
-         output: relay_1
+    light:
+      - platform: binary
+        name: "T1"
+        id: light_1
+        output: relay_1
 
-     status_led:
-       pin:
-         number: GPIO13
-         inverted: yes
+    status_led:
+      pin:
+        number: GPIO13
+        inverted: yes
 
 
 In the above code block, there is a *secrets.yaml* file so that you have just one place to change wifi
@@ -80,71 +80,71 @@ T2
 
 .. code-block:: yaml
 
-     esphome:
-       name: my_t2
-       platform: ESP8266
-       board: esp01_1m
+    esphome:
+      name: my_t2
+      platform: ESP8266
+      board: esp01_1m
 
-     wifi:
-       ssid: !secret wifi_ssid
-       password: !secret wifi_password
-       fast_connect: True
-       use_address: xxx.xxx.xxx.xxx
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      fast_connect: True
+      use_address: xxx.xxx.xxx.xxx
 
-     logger:
+    logger:
 
-     api:
+    api:
 
-     ota:
+    ota:
 
-     binary_sensor:
-       - platform: gpio
-         pin:
-           number: GPIO0
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_1
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: GPIO0
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_1
 
-       - platform: gpio
-         pin:
-           number: GPIO9
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_2
+      - platform: gpio
+        pin:
+          number: GPIO9
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_2
 
-       - platform: status
-         name: "T2 Status"
+      - platform: status
+        name: "T2 Status"
 
-     output:
-       - platform: gpio
-         pin: GPIO12
-         id: relay_1
+    output:
+      - platform: gpio
+        pin: GPIO12
+        id: relay_1
 
-       - platform: gpio
-         pin: GPIO5
-         id: relay_2
+      - platform: gpio
+        pin: GPIO5
+        id: relay_2
 
-     light:
-       - platform: binary
-         name: "T2 L1"
-         id: light_1
-         output: relay_1
+    light:
+      - platform: binary
+        name: "T2 L1"
+        id: light_1
+        output: relay_1
 
-       - platform: binary
-         name: "T2 L2"
-         id: light_2
-         output: relay_2
+      - platform: binary
+        name: "T2 L2"
+        id: light_2
+        output: relay_2
 
-     status_led:
-       pin:
-         number: GPIO13
-         inverted: yes
+    status_led:
+      pin:
+        number: GPIO13
+        inverted: yes
 
 
 T3
@@ -152,90 +152,90 @@ T3
 
 .. code-block:: yaml
 
-     esphome:
-       name: my_t3
-       platform: ESP8266
-       board: esp01_1m
+    esphome:
+      name: my_t3
+      platform: ESP8266
+      board: esp01_1m
 
-     wifi:
-       ssid: !secret wifi_ssid
-       password: !secret wifi_password
-       fast_connect: True
-       use_address: xxx.xxx.xxx.xxx
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      fast_connect: True
+      use_address: xxx.xxx.xxx.xxx
 
-     logger:
+    logger:
 
-     api:
+    api:
 
-     ota:
+    ota:
 
-     binary_sensor:
-       - platform: gpio
-         pin:
-           number: GPIO0
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_1
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: GPIO0
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_1
 
-       - platform: gpio
-         pin:
-           number: GPIO9
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_2
+      - platform: gpio
+        pin:
+          number: GPIO9
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_2
 
-       - platform: gpio
-         pin:
-           number: GPIO10
-           mode: INPUT_PULLUP
-           inverted: True
-         id: button
-         on_press:
-           then:
-             - light.toggle: light_3
+      - platform: gpio
+        pin:
+          number: GPIO10
+          mode: INPUT_PULLUP
+          inverted: True
+        id: button
+        on_press:
+          then:
+            - light.toggle: light_3
 
-       - platform: status
-         name: "T3 Status"
+      - platform: status
+        name: "T3 Status"
 
-     output:
-       - platform: gpio
-         pin: GPIO12
-         id: relay_1
+    output:
+      - platform: gpio
+        pin: GPIO12
+        id: relay_1
 
-       - platform: gpio
-         pin: GPIO5
-         id: relay_2
+      - platform: gpio
+        pin: GPIO5
+        id: relay_2
 
-       - platform: gpio
-         pin: GPIO4
-         id: relay_3
+      - platform: gpio
+        pin: GPIO4
+        id: relay_3
 
-     light:
-       - platform: binary
-         name: "T3 L1"
-         id: light_1
-         output: relay_1
+    light:
+      - platform: binary
+        name: "T3 L1"
+        id: light_1
+        output: relay_1
 
-       - platform: binary
-         name: "T3 L2"
-         id: light_2
-         output: relay_2
+      - platform: binary
+        name: "T3 L2"
+        id: light_2
+        output: relay_2
 
-       - platform: binary
-         name: "T3 L3"
-         id: light_3
-         output: relay_3
+      - platform: binary
+        name: "T3 L3"
+        id: light_3
+        output: relay_3
 
-     status_led:
-       pin:
-         number: GPIO13
-         inverted: yes
+    status_led:
+      pin:
+        number: GPIO13
+        inverted: yes
 
 
 See Also

@@ -8,14 +8,14 @@ DIY Light switch using a Sonoff Basic
 
 .. note::
 
-  This is a DIY solution, and you will need to have some knowledge of electrical wiring and enough
-  capabilities to do this work safely.
+    This is a DIY solution, and you will need to have some knowledge of electrical wiring and enough
+    capabilities to do this work safely.
 
-  The author, and the ESPHome team, take no responsibility for any actions, injuries or outcomes
-  from following this guide.
+    The author, and the ESPHome team, take no responsibility for any actions, injuries or outcomes
+    from following this guide.
 
-  In some countries you may need specific qualifications before you can carry out such work in
-  a residentaial property.
+    In some countries you may need specific qualifications before you can carry out such work in
+    a residentaial property.
 
 Background
 ----------
@@ -61,20 +61,20 @@ This can come in useful because if you remove the PCB from the plastic case it a
 
 .. warning::
 
-  If you plan to take the pcb out of the plastic case you need to make sure its properly insulated, and that the back
-  box is deep enough to hold the PCB as well as the switch. You should also insulate the PCB, for instance by dropping it
-  in a heavy duty glue lined heat shrink sleeve.
+    If you plan to take the pcb out of the plastic case you need to make sure its properly insulated, and that the back
+    box is deep enough to hold the PCB as well as the switch. You should also insulate the PCB, for instance by dropping it
+    in a heavy duty glue lined heat shrink sleeve.
 
-  **The PCB has mains electricity flowing through it, if you are in any doubt about your capabilities do not attempt to do
-  this.**
+    **The PCB has mains electricity flowing through it, if you are in any doubt about your capabilities do not attempt to do
+    this.**
 
 If you have a light switch in a brick wall, an option might be to place the Sonoff Basic above the light in the ceiling void,
 and use the cable that ran from the light to the switch as a low voltage cable to connect the Sonoff GPIO.
 
 .. warning::
 
-  If you are going to reuse existing wiring to connect to the GPIO, you must make sure its connected directly to the switch
-  and does not have mains voltage on it from another circuit.
+    If you are going to reuse existing wiring to connect to the GPIO, you must make sure its connected directly to the switch
+    and does not have mains voltage on it from another circuit.
 
 Implementation
 --------------
@@ -157,13 +157,13 @@ if the light switch disconnects for any reason.
 
 .. note::
 
-  If you wante to use a pull cord switch (in a bathroom for instance) that works like a standard switch and
-  changes state each pull (as opposed to a retractive switch that you press and let go) then you can change
-  a single line *on_press:* to *on_state:* which will trigger the light toggle everytime the state of the
-  switch changes.
+    If you wante to use a pull cord switch (in a bathroom for instance) that works like a standard switch and
+    changes state each pull (as opposed to a retractive switch that you press and let go) then you can change
+    a single line *on_press:* to *on_state:* which will trigger the light toggle everytime the state of the
+    switch changes.
 
-  If you do this its important that you do not use GPIO0, otherwise if the device reboots and the switch happens
-  to be in the closed state the Sonoff will boot into flash mode and not work.
+    If you do this its important that you do not use GPIO0, otherwise if the device reboots and the switch happens
+    to be in the closed state the Sonoff will boot into flash mode and not work.
 
 
 
