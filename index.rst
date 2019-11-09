@@ -304,6 +304,7 @@ Misc Components
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
+    HTTP Request, components/http_request, connection.svg
 
     Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
