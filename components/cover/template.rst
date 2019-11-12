@@ -58,8 +58,9 @@ Configuration variables:
 - **assumed_state** (*Optional*, boolean): Whether the true state of the cover is not known.
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
   of hiding one of them. Defaults to ``false``.
-- **has_position** (*Optional*, boolean): Whether this cover will publish its position.  If true, you
-  can include the position attribute in the publish command.  Defaults to ``false``.
+- **has_position** (*Optional*, boolean): Whether this cover will publish its position as a floating point number.
+  By default (``false``), the cover only publishes OPEN/CLOSED position.
+  By setting this to true you can also send any position in between using the publish action.
 - **tilt_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   tilt position.
