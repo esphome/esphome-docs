@@ -89,8 +89,19 @@ Configuration variables:
 
 -  **pin** (**Required**, :ref:`config-pin`): The pin to detect touch
    events on.
--  **threshold** (**Required**, int): The threshold to use to detect touch events. Smaller values mean
+-  **threshold** (*Optional*, int): The threshold to use to detect touch events. Smaller values mean
    a higher probability that the pad is being touched.
+
+-  **adaptive_threshold** (*Optional*): Continuously collect a set of touch pad values used for adjusting
+   the threshold according to environmental changes.
+
+  - **offset** (**Required**, int): New thresholds will be offset by this value below the most occuring touch
+    pad value in each collected set. Increase the sensitivity by reducing this value.
+  - **interval** (*Optional*, :ref:`config-time`): The interval to collect a raw value. Higher values
+    increase accuracy but decrease response time. Default is 2 seconds.
+  - **samples** (*Optional*, int): The number of touch pad values to collect before setting a new
+    threshold. Higher values increase accuracy but decrease response time. Default is 10.
+
 -  **name** (**Required**, string): The name of the binary sensor.
 -  **id** (*Optional*,
    :ref:`config-id`): Manually specify
@@ -150,6 +161,40 @@ touch/non-touch events.
 Finally, put your threshold parameter in the configuration. Do not forget to disable the ``setup_mode``
 option again by setting it to ``False``. Otherwise you will end up spamming the logs and slowing the device
 down.
+
+Adaptive thresholds
+-------------------
+
+If you find your touch pad unresponsive or randomly triggering during certain times, it may be the raw
+non-touch values drifting over changing temperatures/humidity. You can setup an adaptive threshold to
+compensate for such variances.
+
+To determine the offset, enable ``setup_mode`` and choose a short interval and small sample size to speed up
+the response. Observe which value is the most occuring when the pad is not being touched. This will be the
+'steady-state' non-touch value. Then, place a steady finger on the touch pad and observe how much the value
+has decreased. Use this difference as the offset.
+
+.. code-block:: yaml
+
+    # Example configuration entry for finding adaptive threshold offset
+    esp32_touch:
+      setup_mode: True
+
+    binary_sensor:
+      - platform: esp32_touch
+        name: "ESP32 Touch Pad GPIO27"
+        pin: GPIO27
+        adaptive_threshold:
+          offset: 500
+          interval: 1s
+          samples: 10
+
+Upload the program and you will see an update every time a new threshold is set. Play around with the touch
+pad then adjust the offset accordingly to increase or decrease the sensitivity. A lower offset will increase
+the sensitivity. Try not to set the offset too low or the touch pad may be triggered by random noise.
+
+Remember to set ``setup_mode`` back to ``False`` again, and set the interval and sample size to a larger
+value to filter out touch events and random noise spikes more effectively. The defaults generally works well.
 
 See Also
 --------
