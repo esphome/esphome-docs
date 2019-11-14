@@ -347,7 +347,6 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
           - switch.turn_off: green_led
 
         # Turns on the green LED once the plug is turned off.
-        # blocks.
         on_turn_off:
           - switch.turn_on: green_led
 
