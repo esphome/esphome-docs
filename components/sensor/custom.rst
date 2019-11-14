@@ -291,7 +291,7 @@ Let's look at what that could look like in code:
 
 .. code-block:: cpp
 
-    class MyCustomSensor : public PollingComponent {
+    class MyCustomSensor : public PollingComponent, public Sensor {
      public:
       Adafruit_BMP085 bmp;
       Sensor *temperature_sensor = new Sensor();
