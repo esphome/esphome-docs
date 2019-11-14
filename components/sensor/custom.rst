@@ -333,9 +333,10 @@ Our YAML configuration needs an update too:
       lambda: |-
         auto my_sensor = new MyCustomSensor();
         App.register_component(my_sensor);
-        return {my_sensor->temperature_sensor, my_sensor->pressure_sensor};
+        return {my_sensor, my_sensor->temperature_sensor, my_sensor->pressure_sensor};
 
       sensors:
+      - name: "My Custom Sensor Component"
       - name: "My Custom Temperature Sensor"
         unit_of_measurement: °C
         accuracy_decimals: 1
@@ -343,13 +344,11 @@ Our YAML configuration needs an update too:
         unit_of_measurement: hPa
         accuracy_decimals: 2
 
-In ``lambda`` the return statement has changed: Because we have *two* sensors now we must tell ESPHome
-about both of them. We do this by returning them as an array of values in the curly braces.
+In ``lambda`` the return statement has changed: Apart from my_sensor component, we also have *two* sensors now we must tell ESPHome about both of them. We do this by returning them as an array of values in the curly braces after the component. 
 
 ``sensors:`` has also changed a bit: Now that we have multiple sensors, each of them needs an entry here.
 
-Note that the number of arguments you put in the curly braces *must* match the number of sensors you define in the YAML
-``sensors:`` block - *and* they must be in the same order.
+Note that the number of arguments you put in the curly braces *must* match the number of components and sensors you define in the YAML ``sensors:`` block - *and* they must be in the same order. 
 
 Configuration variables:
 
