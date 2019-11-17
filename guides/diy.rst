@@ -56,6 +56,7 @@ Custom Components & Code
 - `Custom ESPHome Keypad sensor <https://github.com/Syralist/esphomekeypad>`__ by :ghuser:`Syralist`
 - `LINP-Doorbell-g03 Custom Component <https://github.com/pauln/esphome-linp-doorbell-g03>`__ by :ghuser:`pauln`
 - `ESPHome <-> Homebridge <https://www.npmjs.com/package/homebridge-esphome>`__ by `basdelfos <https://www.npmjs.com/~basdelfos>`__
+- `Custom ESPHome for Wofea V10 Alarm <https://github.com/nbergont/wofea_v10_hack>`__ by :ghuser:`nbergont`
 
 Sample Configurations
 ---------------------
@@ -74,3 +75,4 @@ Sample Configurations
 - `LOHAS RGBW/CWWW Smart bulbs <https://www.youtube.com/watch?v=fTb6n6flJIw>`__ by `digiblurDIY <https://www.youtube.com/channel/UC5ZdPKE2ckcBhljTc2R_qNA>`__
 - `ESPHome with MakerLife Weather Station Kit <https://github.com/mkuoppa/esphomeweatherstation>`__ by :ghuser:`mkuoppa`
 - `ESPHome DIY Multisensor Cat Feeder <https://github.com/335iguy/diy-multisensor-cat-feeder>`__ by :ghuser:`335iguy`
+- `ESPHome config for Universal IR Remote ZJ-A1 (russian) <https://kvvhost.ru/2019/10/30/review-firmware-zj-a1-ir-remote/>`__ by `kvvhost <https://kvvhost.ru/>`__
