@@ -146,6 +146,45 @@ Release 1.14.2 - November 3
 
 - esphome: Fix weird ESP8266 wifi crashes :esphomepr:`831`
 
+Release 1.14.3 - November 17
+----------------------------
+
+- docs: Fix typo: as3935 sensor docs :docspr:`401` by :ghuser:`TheJulianJES`
+- docs: Remove references to scan_interval :docspr:`400` by :ghuser:`marrold`
+- esphome: ESP8266 remove default opmode check :esphomepr:`835`
+- esphome: WiFi AP apply manual ip settings :esphomepr:`836`
+- esphome: Fix ESP32 rotary encoder :esphomepr:`834`
+- esphome: Fix homeassistant.service schema lambda :esphomepr:`833`
+- esphome: Update platformio libraries :esphomepr:`837`
+- docs: Update brilliant-mirabella-genio-smart-plugs.rst - Added Gosund… :docspr:`402` by :ghuser:`Taigar2015`
+- esphome: Update variable in scheduler :esphomepr:`838`
+- esphome: Fix sun calculations for negative sun declination :esphomepr:`839`
+- docs: Update diy.rst :docspr:`404` by :ghuser:`kvvoff`
+- docs: DIY Examples : add Custom ESPHome for Wofea Alarm :docspr:`405` by :ghuser:`nbergont`
+- docs: Update Mirabella Genio red LED GPIO :docspr:`406` by :ghuser:`ankycooper`
+- esphome: fix missing checks of is_playing condition :esphomepr:`844` by :ghuser:`glmnet`
+- docs: Update lcd_display.rst :docspr:`411` by :ghuser:`Destix`
+- esphome: Add wifi output_power setting :esphomepr:`853`
+- esphome: Add missing state attribute :esphomepr:`851`
+- esphome: Fix neopixelbus missing method pins :esphomepr:`848`
+- esphome: Fix sensor force_update native API :esphomepr:`847`
+- esphome: Web server CORS headers :esphomepr:`840`
+- esphome: Check DHT sensor exists before publishing :esphomepr:`850`
+- esphome: Adjust some units :esphomepr:`852`
+- esphome: Fix PZEM004T v2 :esphomepr:`846`
+- esphome: Mark python 3.5 support deprecated :esphomepr:`849`
+- docs: document the new has_position parameter for the template cover :docspr:`410` by :ghuser:`ssieb`
+- esphome: add position reporting to the template cover :esphomepr:`821` by :ghuser:`ssieb`
+- esphome: Atm90e32 pf fix :esphomepr:`841` by :ghuser:`Diramu`
+- esphome: Switch to 115200 baud upload if 460800 fails :esphomepr:`856`
+- esphome: Fix logger uart conflict check :esphomepr:`858` by :ghuser:`brandond`
+- esphome: Tuya: Fix init sequence and handle wifi test command :esphomepr:`820` by :ghuser:`brandond`
+- docs: add Topersun smart plug :docspr:`413` by :ghuser:`hmoffatt`
+- esphome: Improve WiFi disconnect messages :esphomepr:`857`
+- esphome: Fix MQTT python 3 stringify IPAddress Type :esphomepr:`864`
+- esphome: Revert ESP32 BLE Tracker defaults :esphomepr:`863`
+- esphome: Change ESP8266 default wifi output power :esphomepr:`862`
+
 Notable Changes & New Features
 ------------------------------
 
