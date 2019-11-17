@@ -297,6 +297,59 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 
 Check the following page for calibrating the measurements: :ref:`sensor-filter-calibrate_linear`.
 
+3.4 Topersun WL-SC01 Smart Plug
+*******************************
+
+.. code-block:: yaml
+
+    esphome:
+      name: topersun_smart_plug
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+    logger:
+
+    api:
+
+    ota:
+
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: 14
+          mode: INPUT_PULLUP
+          inverted: true
+        name: "Power Button"
+        on_press:
+          - switch.toggle: relay
+
+      - platform: status
+        name: "Status"
+
+    switch:
+      - platform: gpio
+        id: green_led
+        pin:
+          number: GPIO4
+          inverted: true
+
+      - platform: gpio
+        name: "Brilliant Smart Plug"
+        pin: GPIO12
+        id: relay
+
+        # Turn off green LED to show red when turned on.
+        on_turn_on:
+          - switch.turn_off: green_led
+
+        # Turns on the green LED once the plug is turned off.
+        on_turn_off:
+          - switch.turn_on: green_led
+
 4. Adding to Home Assistant
 ---------------------------
 
