@@ -117,10 +117,12 @@ Sensor Components
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
+    INA226, components/sensor/ina226, ina226.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
     Integration, components/sensor/integration, sigma.svg
     HTU21D, components/sensor/htu21d, htu21d.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
+    MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
@@ -135,6 +137,7 @@ Sensor Components
     PZEM DC, components/sensor/pzemdc, pzemdc.svg
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SCD30, components/sensor/scd30, scd30.jpg
@@ -302,6 +305,7 @@ Misc Components
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
+    HTTP Request, components/http_request, connection.svg
 
     Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
