@@ -177,6 +177,28 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
 
 After that, you will be able to access the dashboard through ``localhost:6052``.
 
+You can protect the dashboard with a password (which is a recommended security practice):
+
+.. code-block:: bash
+
+  # On Docker:
+  docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome esphome . dashboard --password MY_PW
+  
+  # For docker-compose it is easier to use a .env file:
+    esphome:
+      container_name: esphome
+      image: esphome/esphome
+      network_mode: "host"
+      env_file: ./esphome.env
+      volumes:
+        - "${PWD}":/config
+        
+    # esphome.env file:
+    PASSWORD=MY_PW
+    
+Note that you only have to type the password once, so for testing you can use a 'private window' to ensure everthing works.
+
+
 .. figure:: images/dashboard.png
 
 See Also
