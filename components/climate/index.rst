@@ -85,7 +85,7 @@ Configuration variables:
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
   ``FOCUS``, ``DIFFUSE``.
 - **swing_mode** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the swing mode
-  of the climate device. Onf of ``OFF``, ``BOTH``, ``VERTICAL``, ``HORIZONTAL``.
+  of the climate device. One of ``OFF``, ``BOTH``, ``VERTICAL``, ``HORIZONTAL``.
 
 .. _climate-lambda_calls:
 
