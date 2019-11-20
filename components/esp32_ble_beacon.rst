@@ -63,7 +63,8 @@ this should already work from the bluetooth screen (not tested), on Android, you
 
 For using these beacons to track the location of your phone, you will need to use another app. For example, I used
 `this guide by the owntracks <https://owntracks.org/booklet/features/beacons/>`__ app to let my Home Automation system
-know when I'm home or away.
+know when I'm home or away. Another nice Android app is `Beacon MQTT <https://turbo-lab.github.io/android-beacon-mqtt/>`__.
+It can work with multiple beacons simultaneously.
 
 .. figure:: images/esp32_ble_beacon-ibeacon.png
     :align: center
