@@ -66,6 +66,11 @@ Configuration variables:
   tilt position.
 - **tilt_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated repeatedly to get the current tilt position of the cover.
+- **position_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
+  position.
+- **position_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda to be evaluated repeatedly to get the current position of the cover.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
