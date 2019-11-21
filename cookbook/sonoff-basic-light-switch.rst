@@ -148,7 +148,6 @@ Now you have a pair of wires from the GPIO and 0v to your retractive switch lets
 In the above code block, there is a *secrets.yaml* file so that you have just one place to change wifi
 details for all your devices.
 
-The logger level INFO is required to overcome a bug that can stop the Sonoff Basic connecting to the wifi.
 See `issue #455 <https://github.com/esphome/issues/issues/455>`__ for further details.
 
 Although not visible day to day, there is also the status LED configured so that it can be used when setting
@@ -173,4 +172,3 @@ See Also
 - :doc:`/cookbook/sonoff-light-switch`
 - :doc:`/guides/automations`
 - :doc:`/devices/sonoff_basic`
-
