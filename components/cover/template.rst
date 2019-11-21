@@ -46,6 +46,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the cover.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated repeatedly to get the current state of the cover.
+  Use ``position_lambda`` instead if you want position sending to be enabled.
 - **open_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover to be opened.
 - **close_action** (*Optional*, :ref:`Action <config-action>`): The action that should
@@ -58,14 +59,24 @@ Configuration variables:
 - **assumed_state** (*Optional*, boolean): Whether the true state of the cover is not known.
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
   of hiding one of them. Defaults to ``false``.
+- **position_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
+  position.
+- **position_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda to be evaluated repeatedly to get the current position of the cover.
 - **has_position** (*Optional*, boolean): Whether this cover will publish its position as a floating point number.
   By default (``false``), the cover only publishes OPEN/CLOSED position.
-  By setting this to true you can also send any position in between using the publish action.
+  By setting this to true you can also send any position in between using the :ref:`publish action <cover-template-publish_action>`.
+  This will automatically be set to true if you define either of ``position_action`` or ``position_lambda``.
 - **tilt_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   tilt position.
 - **tilt_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated repeatedly to get the current tilt position of the cover.
+- **has_tilt** (*Optional*, boolean): Whether this cover will publish its tilt position as a floating point number.
+  By default (``false``), the cover doesn't publish a tilt position.
+  By setting this to true you can send a tilt position using the :ref:`publish action <cover-template-publish_action>`.
+  This will automatically be set to true if you define either of ``tilt_action`` or ``tilt_lambda``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
