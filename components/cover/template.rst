@@ -60,7 +60,8 @@ Configuration variables:
   of hiding one of them. Defaults to ``false``.
 - **has_position** (*Optional*, boolean): Whether this cover will publish its position as a floating point number.
   By default (``false``), the cover only publishes OPEN/CLOSED position.
-  By setting this to true you can also send any position in between using the publish action.
+  By setting this to true you can also send any position in between using the publish action. 
+  Parameter useless if you set the POSITION_ACTION
 - **tilt_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   tilt position.
@@ -69,8 +70,6 @@ Configuration variables:
 - **position_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the cover be set to a specific
   position.
-- **position_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-  Lambda to be evaluated repeatedly to get the current position of the cover.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
