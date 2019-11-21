@@ -97,7 +97,7 @@ The R1 version of the Dual controls the relays via the UART, so the code gets a 
             condition:
               switch.is_off: relay_1
             then:
-              - switch.turn_on: relay_2_on
+              - uart.write: [0xA0, 0x04, 0x02, 0xA1]
             else:
               - switch.turn_on: relay_12_on
         turn_off_action:
