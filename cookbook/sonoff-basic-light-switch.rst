@@ -106,10 +106,8 @@ Now you have a pair of wires from the GPIO and 0v to your retractive switch lets
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      fast_connect: true
 
     logger:
-      level: INFO
 
     api:
 
@@ -147,8 +145,6 @@ Now you have a pair of wires from the GPIO and 0v to your retractive switch lets
 
 In the above code block, there is a *secrets.yaml* file so that you have just one place to change wifi
 details for all your devices.
-
-See `issue #455 <https://github.com/esphome/issues/issues/455>`__ for further details.
 
 Although not visible day to day, there is also the status LED configured so that it can be used when setting
 up / debugging. Also a configured binary sensor to give status incase you want to perform an action / alert

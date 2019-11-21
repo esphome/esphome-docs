@@ -24,7 +24,6 @@ T1
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      fast_connect: True
       use_address: xxx.xxx.xxx.xxx
 
     logger:
@@ -88,7 +87,6 @@ T2
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      fast_connect: True
       use_address: xxx.xxx.xxx.xxx
 
     logger:
@@ -160,7 +158,6 @@ T3
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      fast_connect: True
       use_address: xxx.xxx.xxx.xxx
 
     logger:

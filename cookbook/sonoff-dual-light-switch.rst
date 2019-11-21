@@ -38,7 +38,6 @@ The R1 version of the Dual controls the relays via the UART, so the code gets a 
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      fast_connect: True
 
     logger:
       baud_rate: 0
@@ -54,22 +53,6 @@ The R1 version of the Dual controls the relays via the UART, so the code gets a 
       baud_rate: 19200
 
     switch:
-      - platform: uart
-        id: relay_12_off
-        data: [0xA0, 0x04, 0x00, 0xA1]
-
-      - platform: uart
-        id: relay_1_on
-        data: [0xA0, 0x04, 0x01, 0xA1]
-
-      - platform: uart
-        id: relay_2_on
-        data: [0xA0, 0x04, 0x02, 0xA1]
-
-      - platform: uart
-        id: relay_12_on
-        data: [0xA0, 0x04, 0x03, 0xA1]
-
       - platform: template
         id: relay_1
         turn_on_action:
@@ -202,7 +185,6 @@ Its basically the same as the :doc:`T2 </cookbook/sonoff-t1-3>`
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      fast_connect: True
 
     logger:
 
