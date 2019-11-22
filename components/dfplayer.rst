@@ -6,7 +6,7 @@ DF-Player mini
     :image: crosshair-gps.png
 
 The ``dfplayer`` (`datasheet <https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299>`__), component
-allows you to play sound and music stored in SD card.
+allows you to play sound and music stored in an SD card or USB flash drive.
 
 .. figure:: images/dfplayer-full.jpg
     :align: center
@@ -20,10 +20,13 @@ in your configuration.
 Overview
 --------
 
-The module can be powered by the 3V output of an NodeMCU and a powered speaker connected to
-the modules ``DAC_R``, ``DAC_I`` and ``GND`` . You can connect only the ``tx_pin`` of
-the ``uart`` bus to the module's ``RX`` but if you need feedback of playback active you will
-also need to connect the ``rx_pin`` to the module's ``TX``.
+The module can be powered by the 3.3V output of an NodeMCU. For communication you can connect only
+the ``tx_pin`` of the ``uart`` bus to the module's ``RX`` but if you need feedback of playback active 
+you will also need to connect the ``rx_pin`` to the module's ``TX``.
+For best quality audio a powered stereo speaker can be connected to the modules ``DAC_R``,
+``DAC_I`` and ``GND``, alternatively the module features a built-in 3W audio amplifier, in that case 
+the pins ``SPK_1`` and ``SPK_2`` should be connected to one passive speaker and a 5V 1A power supply
+will be required.
 
 .. code-block:: yaml
 
@@ -150,9 +153,7 @@ Configuration options:
 ``dfplayer.set_device`` Action
 ------------------------------
 
-Changes the device in use. Valid values are ``TF_CARD`` and ``USB``. *Note: only* ``TF_CARD``
-*is tested. If you connect a USB stick and found it works please create an issue at ESPHome
-GitHub*.
+Changes the device in use. Valid values are ``TF_CARD`` and ``USB``.
 
 .. code-block:: yaml
 
@@ -340,7 +341,7 @@ Sample code
               folder: !lambda 'return folder;'
               file: !lambda 'return file;'
 
-      - service: dfplayer_play_loo_folder
+      - service: dfplayer_play_loop_folder
         variables:
           folder: int
         then:
@@ -348,12 +349,13 @@ Sample code
               folder: !lambda 'return folder;'
               loop: True
 
-      - service: dfplayer_set_device
-        variables:
-          device: int
+      - service: dfplayer_set_device_tf
         then:
-          - dfplayer.set_device:
-              device: TF_CARD
+          - dfplayer.set_device: TF_CARD
+
+      - service: dfplayer_set_device_usb
+        then:
+          - dfplayer.set_device: USB
 
       - service: dfplayer_set_volume
         variables:
