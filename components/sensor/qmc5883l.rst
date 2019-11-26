@@ -57,11 +57,11 @@ Configuration variables:
 Range Options
 -------------
 
-By default, the QMC5883L sensor measurement range is 130uT. You can, however,
+By default, the QMC5883L sensor measurement range is 200µT. You can, however,
 configure this amount. Possible values:
 
--  ``200uT`` (default)
--  ``800uT``
+-  ``200µT`` (default)
+-  ``800µT``
 
 Oversampling Options
 --------------------
