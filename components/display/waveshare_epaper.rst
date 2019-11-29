@@ -75,7 +75,7 @@ Configuration variables:
   - ``2.13in-ttgo`` (T5_V2.3 tested)
   - ``2.70in`` (not tested)
   - ``2.90in``
-  - ``2.90in`` (B/W display only)
+  - ``2.90in-b`` (B/W display only)
   - ``4.20in``
   - ``7.50in``
 
