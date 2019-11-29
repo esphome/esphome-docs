@@ -41,7 +41,7 @@ Get the time from Home Assistant to sync the onboard real-time-clock.
 
     time:
       - platform: homeassistant
-        id: time
+        id: esptime
 
 Getting Temperature
 *******************
@@ -114,7 +114,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
           it.printf(64, 0, id(font1), TextAlign::TOP_CENTER, "Mitt Smarta Hus");
 
           // Print time in HH:MM format
-          it.strftime(0, 60, id(font2), TextAlign::BASELINE_LEFT, "%H:%M", id(time).now());
+          it.strftime(0, 60, id(font2), TextAlign::BASELINE_LEFT, "%H:%M", id(esptime).now());
 
           // Print inside temperature (from homeassistant sensor)
           if (id(inside_temperature).has_state()) {
