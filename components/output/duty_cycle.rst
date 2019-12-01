@@ -3,7 +3,7 @@ Duty Cycle Output
 
 .. seo::
     :description: Instructions for setting up duty cycle outputs for GPIO pins.
-    :image: percent.png
+    :image: percent.svg
 
 Similar to PWM, The Duty Cycle Output platform allows you to control GPIO pins by 
 pulsing them on/off over a given time period. It could be used to control a 

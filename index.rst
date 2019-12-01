@@ -192,7 +192,7 @@ Output Components
 
     Output Core, components/output/index, folder-open.svg
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
-    Duty Cycle, components/output/duty_cycle, percent.png
+    Duty Cycle, components/output/duty_cycle, percent.svg
     GPIO Output, components/output/gpio, pin.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
