@@ -64,6 +64,8 @@ Configuration variables:
   - ``ESP32_I2S_1`` (default for ESP32)
   - ``BIT_BANG`` (can flicker a bit)
 
+- **invert** (*Optional*, boolean): Invert data output, for use with n-type transistor. Defaults to ``no``.  
+
 - **num_leds** (**Required**, int): The number of LEDs attached.
 
 **Pin Options:** Some chipsets have two data pins to connect, others only have one.
