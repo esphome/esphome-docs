@@ -8,7 +8,7 @@ TM1651 Battery Display
 .. _tm1651:
 
 Battery Display
--------
+---------------
 
 The ``tm1651`` display platform allows you to use battery display units based on TM1651 chip, like
 `this one <https://aliexpress.com/item/32811491559.html>`__
