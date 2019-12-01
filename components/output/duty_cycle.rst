@@ -1,5 +1,5 @@
 Duty Cycle Output
-===========================
+=================
 
 .. seo::
     :description: Instructions for setting up duty cycle outputs for GPIO pins.
