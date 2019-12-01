@@ -27,3 +27,15 @@ Configuration variables:
 - **period** (**Required**, frequency): The duration of each cycle. (i.e. a 10s 
   period at 50% duty would result in the pin being turned on for 5s, then off for 5s)
 - All other options from :ref:`Output <config-output>`.
+
+See Also
+--------
+
+- :doc:`/components/output/index`
+- :doc:`/components/output/esp8266_pwm`
+- :doc:`/components/output/ledc`
+- :doc:`/components/light/monochromatic`
+- :doc:`/components/fan/speed`
+- :doc:`/components/power_supply`
+- :apiref:`duty_cycle/duty_cycle_output.h`
+- :ghedit:`Edit`
