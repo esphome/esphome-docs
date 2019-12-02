@@ -43,6 +43,8 @@ to some pins on your board and the baud rate set to 9600.
           name: "PZEM-004T Voltage"
         power:
           name: "PZEM-004T Power"
+        energy:
+          name: "PZEM-004T Energy"
         update_interval: 60s
 
 Configuration variables:
@@ -54,10 +56,24 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **voltage** (*Optional*): Use the voltage value of the sensor in volts.
   All options from :ref:`Sensor <config-sensor>`.
+- **energy** (*Optional*): Use the accumulated energy value of the sensor in watt per hour.
+  All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
+
+Example config for energy
+-------------------------
+.. code-block:: yaml
+
+    utility_meter:
+      energy:
+        source: sensor.energy_kwh
+        cycle: monthly
+      daily_energy:
+        source: sensor.energy_kwh
+        cycle: daily
 
 See Also
 --------
@@ -67,3 +83,4 @@ See Also
 - :doc:`pzemdc`
 - :apiref:`pzem004t/pzem004t.h`
 - :ghedit:`Edit`
+- :link:https://www.home-assistant.io/integrations/utility_meter/
