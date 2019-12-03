@@ -95,6 +95,10 @@ Configuration variables:
 - **write** (*Optional*): Addition register writes to Atm90e32 registers during setup (becarefull read the datasheet). Followed by one or more addr/data pairs. This option to used to access advantage feature or to debug.
   - **addr** (**Required** with **write**, int): address of register. Note that yaml integers can be writing in hexidecimal form starting with 0x.
   - **data** (**Required** with **write**, int): data to write to register. Note that yaml integers can be writing in hexidecimal form starting with 0x.
+- **read** (*Optional*): Create a sensor from a register read. Followed by one or more register/addr pairs. This option to used to monitor advantage feature or to debug.
+  - **register** (**Required** with **read**): monitor a register
+    :ref:`Sensor <config-sensor>`.
+  - **addr** (**Required** with **read**, int): address of register. Note that yaml integers can be writing in hexidecimal form starting with 0x.
 
 Calibration
 -----------
@@ -122,7 +126,6 @@ current on the selected phase. Using the known or measured current adjust the
 sensor using calculation:
 
 ``New gain_ct = (your current reading / ESPHome current reading) * existing gain_ct value``
-
 Update **gain_ct** for the phase in your ESPHome yaml, recompile and upload. Repeat as necessary.
 
 It is possible that the two identical CT current sensors will have different
@@ -199,7 +202,7 @@ Additional Examples
         gain_pga: 2X
         update_interval: 60s
 
-Register Write for Setup
+Register Write for Setup and Register as Sensor
 ------------------------
 
 The setup for this may not work for everyone/ever country, or you may want to fine tune calibration, so if you can understand the datasheet for the atm90e32 you have the ability to admend the default setup.  It's unlikely you can destroy the device, but playing with internal setup registers may have undesired effects.
@@ -211,12 +214,28 @@ The setup for this may not work for everyone/ever country, or you may want to fi
       - platform: atm90e32
         cs_pin: 5
 	write:
-        # set input mux to all use the same voltage, no need to bridge jumpers
-        - addr: 0x02
-          data: 0x0444
-	# set internal 50Hz,3P4W,sum all phases.  This will overwite line_frequency
-        - addr: 0x33
-          data: 0x087
+          # set input mux to all use the same voltage, no need to bridge jumpers
+          - addr: 0x02
+            data: 0x0444
+  	# set internal 50Hz,3P4W,sum all phases.  This will overwite line_frequency
+          - addr: 0x33
+            data: 0x087
+        read:
+          - register:
+              name: Phase A angle
+              filters:
+                - multiply: 0.1
+            addr: 0xF9
+          - register:
+              name: Phase B angle
+              filters:
+                - multiply: 0.1
+            addr: 0xFA
+          - register:
+              name: Phase C angle
+              filters:
+                - multiply: 0.1
+            addr: 0xFB
 
 For debugging
 ------------
@@ -368,6 +387,7 @@ This access is done through home assistance with following pannel
     :width: 50.0%
 
 It could be improve with a better lovelace interface to handle integers as hexidecimal numbers
+
 
 See Also
 --------
