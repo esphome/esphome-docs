@@ -259,7 +259,6 @@ Display Components
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    TM1651 Battery Display, components/display/tm1651, tm1651_battery_display.jpg
 
 Cover Components
 ----------------
@@ -327,6 +326,7 @@ Misc Components
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
+    TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
 
 Additional Custom Components
 ----------------------------
