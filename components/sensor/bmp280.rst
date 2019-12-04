@@ -74,7 +74,7 @@ Oversampling Options
 By default, the BMP280 sensor measures each value 16 times when requesting a new value. You can, however,
 configure this amount. Possible oversampling values:
 
--  ``NONE``
+-  ``NONE`` (value is skipped)
 -  ``1x``
 -  ``2x``
 -  ``4x``
