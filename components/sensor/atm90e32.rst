@@ -95,8 +95,7 @@ Configuration variables:
   - **addr** (**Required** with **write**, int): address of register. Note that yaml integers can be writing in hexidecimal form starting with 0x.
   - **data** (**Required** with **write**, int): data to write to register. Note that yaml integers can be writing in hexidecimal form starting with 0x.
 - **read** (*Optional*): Create a sensor from a register read. Followed by one or more register/addr pairs. This option to used to monitor advantage feature or to debug.
-  - **register** (**Required** with **read**): monitor a register
-    :ref:`Sensor <config-sensor>`.
+  - **register** (**Required** with **read**, :ref:`Sensor <config-sensor>`): monitor a register
   - **addr** (**Required** with **read**, int): address of register. Note that yaml integers can be writing in hexidecimal form starting with 0x.
 
 Calibration
