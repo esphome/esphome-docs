@@ -1,5 +1,5 @@
 Slow PWM Output
-=================
+===============
 
 .. seo::
     :description: Instructions for setting up slow pwm outputs for GPIO pins.
