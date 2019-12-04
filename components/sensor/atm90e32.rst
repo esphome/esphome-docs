@@ -44,7 +44,6 @@ The `CircuitSetup 6-Channel Energy Monitor <https://circuitsetup.us/index.php/pr
     sensor:
       - platform: atm90e32
         cs_pin: 5
-	write:
         phase_a:
           voltage:
             name: "EMON Line Voltage A"
@@ -213,11 +212,11 @@ The setup for this may not work for everyone/ever country, or you may want to fi
     sensor:
       - platform: atm90e32
         cs_pin: 5
-	write:
+        write:
           # set input mux to all use the same voltage, no need to bridge jumpers
           - addr: 0x02
             data: 0x0444
-  	# set internal 50Hz,3P4W,sum all phases.  This will overwite line_frequency
+  	  # set internal 50Hz,3P4W,sum all phases.  This will overwite line_frequency
           - addr: 0x33
             data: 0x087
         read:
@@ -244,6 +243,7 @@ In Home Assistance config add the following input_number:
 
 
 .. code-block:: yaml
+
 input_number:
   do_read:
     name: do_read
@@ -286,6 +286,7 @@ input_number:
 The following code is added to esphome yaml configuration for this device
 
 .. code-block:: yaml
+
    # register eddress for reading or writing
   - platform:  homeassistant
     name: Read Address
