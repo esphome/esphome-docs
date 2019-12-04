@@ -202,7 +202,7 @@ Additional Examples
         update_interval: 60s
 
 Register Write for Setup and Register as Sensor
-------------------------
+-----------------------------------------------
 
 The setup for this may not work for everyone/ever country, or you may want to fine tune calibration, so if you can understand the datasheet for the atm90e32 you have the ability to admend the default setup.  It's unlikely you can destroy the device, but playing with internal setup registers may have undesired effects.
 
@@ -216,7 +216,7 @@ The setup for this may not work for everyone/ever country, or you may want to fi
           # set input mux to all use the same voltage, no need to bridge jumpers
           - addr: 0x02
             data: 0x0444
-  	  # set internal 50Hz,3P4W,sum all phases.  This will overwite line_frequency
+          # set internal 50Hz,3P4W,sum all phases.  This will overwite line_frequency
           - addr: 0x33
             data: 0x087
         read:
@@ -237,7 +237,8 @@ The setup for this may not work for everyone/ever country, or you may want to fi
             addr: 0xFB
 
 For debugging
-------------
+-------------
+
 Getting into the depths of this component, it is possible to create a register read and write interface with Home Assistant. One technique follows.
 In Home Assistance config add the following input_number:
 
@@ -287,96 +288,96 @@ The following code is added to esphome yaml configuration for this device
 
 .. code-block:: yaml
 
-   # register eddress for reading or writing
-  - platform:  homeassistant
-    name: Read Address
-    entity_id: input_number.reg_addr
-    id: rr_addr
-   # data to write
-  - platform:  homeassistant
-    name: Write Data
-    entity_id: input_number.reg_data
-    id: wr_data
-    # bit wise number to select atm90e32
-  - platform:  homeassistant
-    name: ATM Sel
-    entity_id: input_number.atm_write
-    id: wr_atm
-
-    # flag to do read when set to 1
-  - platform:  homeassistant
-    name: Read
-    entity_id: input_number.do_read
-    id: rr_do
-    on_value_range:
-      above: 0.5
-      then:
-        # reset flag so only read once
-      - homeassistant.service:
-          service: input_number.set_value 
-          data:
-            entity_id: input_number.do_read
-            value: '0'
-            # call the read function for each atm90 and set a local sensor to the return vale
-      - lambda: |-
-          atm90e32::ATM90E32Component *comp[4] = {id(atm1),id(atm2),id(atm3),id(atm4)};
-          template_::TemplateSensor *rr[4] = {id(atm1rr),id(atm2rr),id(atm3rr),id(atm4rr)}; ;
-          int addr;
-          int data;
-          addr = id(rr_addr).state;
-          ESP_LOGI("main", "rr_do The address is 0x%x (%d)", addr, addr);
-          for( auto i = 0; i < 4; i++ ) {
-             data = id(comp[i]).read16(addr);
-             ESP_LOGI("main","atm%d 0x%04x %d",i+1, data, data);
-             id(rr[i]).publish_state(data);
-          }
-
-    # flag to do write when set to 1
-  - platform:  homeassistant
-    name: write
-    entity_id: input_number.do_write
-    id: wr_do
-    on_value_range:
-      above: 0.5
-      then:
-        # reset flag so only read once
-      - homeassistant.service:
-          service: input_number.set_value 
-          data:
-            entity_id: input_number.do_write
-            value: '0'
-            # call the write function for each atm90 with a set bit in the wr_atm state
-            # enable/disable configuration before/after the write
-      - lambda: |-
-          atm90e32::ATM90E32Component *comp[4] = {id(atm1),id(atm2),id(atm3),id(atm4)};
-          int addr;
-          int data;
-          int atms;
-          addr = id(rr_addr).state;
-          data = id(wr_data).state;
-          atms = id(wr_atm).state;
-          ESP_LOGI("main", "wr_do data 0x%x to address is 0x%x (%d) of atms 0x%x", data, addr, addr, atms);
-          for( auto i = 0; i < 4; i++ ) {
-             if (atms & (1<<i)) {
-               id(comp[i]).write16(0x7F,0x55AA);
-               id(comp[i]).write16(addr,data);
-               id(comp[i]).write16(0x7F,0);
+    # register eddress for reading or writing
+    - platform:  homeassistant
+      name: Read Address
+      entity_id: input_number.reg_addr
+      id: rr_addr
+     # data to write
+    - platform:  homeassistant
+      name: Write Data
+      entity_id: input_number.reg_data
+      id: wr_data
+      # bit wise number to select atm90e32
+    - platform:  homeassistant
+      name: ATM Sel
+      entity_id: input_number.atm_write
+      id: wr_atm
+  
+      # flag to do read when set to 1
+    - platform:  homeassistant
+      name: Read
+      entity_id: input_number.do_read
+      id: rr_do
+      on_value_range:
+        above: 0.5
+        then:
+          # reset flag so only read once
+        - homeassistant.service:
+            service: input_number.set_value 
+            data:
+              entity_id: input_number.do_read
+              value: '0'
+              # call the read function for each atm90 and set a local sensor to the return vale
+        - lambda: |-
+            atm90e32::ATM90E32Component *comp[4] = {id(atm1),id(atm2),id(atm3),id(atm4)};
+            template_::TemplateSensor *rr[4] = {id(atm1rr),id(atm2rr),id(atm3rr),id(atm4rr)}; ;
+            int addr;
+            int data;
+            addr = id(rr_addr).state;
+            ESP_LOGI("main", "rr_do The address is 0x%x (%d)", addr, addr);
+            for( auto i = 0; i < 4; i++ ) {
                data = id(comp[i]).read16(addr);
-               ESP_LOGI("main","atm%d 0x%04x",i+1,data);
-             }
-          }
-  - platform:  template
-    name: atm1 read reg
-    id: atm1rr
-  - platform:  template
-    name: atm2 read reg
-    id: atm2rr
-  - platform:  template
-    name: atm3 read reg
-    id: atm3rr
-  - platform:  template
-    name: atm4 read reg
-    id: atm4rr
+               ESP_LOGI("main","atm%d 0x%04x %d",i+1, data, data);
+               id(rr[i]).publish_state(data);
+            }
+  
+      # flag to do write when set to 1
+    - platform:  homeassistant
+      name: write
+      entity_id: input_number.do_write
+      id: wr_do
+      on_value_range:
+        above: 0.5
+        then:
+          # reset flag so only read once
+        - homeassistant.service:
+            service: input_number.set_value 
+            data:
+              entity_id: input_number.do_write
+              value: '0'
+              # call the write function for each atm90 with a set bit in the wr_atm state
+              # enable/disable configuration before/after the write
+        - lambda: |-
+            atm90e32::ATM90E32Component *comp[4] = {id(atm1),id(atm2),id(atm3),id(atm4)};
+            int addr;
+            int data;
+            int atms;
+            addr = id(rr_addr).state;
+            data = id(wr_data).state;
+            atms = id(wr_atm).state;
+            ESP_LOGI("main", "wr_do data 0x%x to address is 0x%x (%d) of atms 0x%x", data, addr, addr, atms);
+            for( auto i = 0; i < 4; i++ ) {
+               if (atms & (1<<i)) {
+                 id(comp[i]).write16(0x7F,0x55AA);
+                 id(comp[i]).write16(addr,data);
+                 id(comp[i]).write16(0x7F,0);
+                 data = id(comp[i]).read16(addr);
+                 ESP_LOGI("main","atm%d 0x%04x",i+1,data);
+               }
+            }
+    - platform:  template
+      name: atm1 read reg
+      id: atm1rr
+    - platform:  template
+      name: atm2 read reg
+      id: atm2rr
+    - platform:  template
+      name: atm3 read reg
+      id: atm3rr
+    - platform:  template
+      name: atm4 read reg
+      id: atm4rr
 
 
 The above setup is for a 12-Channel system, 2 6-Channel boards (one main, one extention), so the system has 4 atm90e32 platforms with ids atm1,atm2,atm3,atm4.
