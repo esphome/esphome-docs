@@ -96,7 +96,7 @@ Oversampling Options
 By default, the BME680 sensor measures each value 16 times when requesting a new value. You can, however,
 configure this amount. Possible oversampling values:
 
--  ``NONE``
+-  ``NONE`` (value is skipped)
 -  ``1x``
 -  ``2x``
 -  ``4x``
