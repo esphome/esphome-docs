@@ -69,8 +69,8 @@ This :ref:`Action <config-action>` allows you to manually change the brightness 
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
-- **brightness** (**Required**, :ref:`templatable <config-templatable>`, int): There is three levels
-of brightness (``1``, ``2`` or ``3``) from lowest to highest brightness.
+- **brightness** (**Required**, :ref:`templatable <config-templatable>`, int): There is three levels of brightness
+  (``1``, ``2`` or ``3``) from lowest to highest brightness.
 
 Advanced Configuration
 ----------------------
