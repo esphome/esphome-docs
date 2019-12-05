@@ -48,7 +48,7 @@ Configuration variables:
 .. rf_bridge-on_code_received:
 
 ``on_code_received`` Trigger
----------------------------
+----------------------------
 
 With this configuration option you can write complex automations whenever a code is
 received. To use the code, use a :ref:`lambda <config-lambda>` template, the code
@@ -70,7 +70,7 @@ variables named ``code``, ``sync``, ``high`` and ``low``.
 .. rf_bridge-send_code_action:
 
 ``rf_bridge.send_code`` Action
----------------------------
+------------------------------
 
 Send an RF code using this action in automations.
 
@@ -104,7 +104,7 @@ Configuration options:
 .. rf_bridge-learn_action:
 
 ``rf_bridge.learn`` Action
----------------------------
+--------------------------
 
 Tell the RF Bridge to learn new protocol timings using this action in automations.
 A new code with timings will be returned to :ref:`rf_bridge-on_code_received`
