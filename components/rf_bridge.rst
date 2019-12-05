@@ -1,5 +1,5 @@
 RF Bridge Component
-=================
+===================
 
 .. seo::
     :description: Instructions for setting up the RF Bridge in ESPHome.
