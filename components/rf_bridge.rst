@@ -45,7 +45,7 @@ Configuration variables:
 - **on_code_received** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a code is received. See :ref:`rf_bridge-on_code_received`.
 
-.. rf_bridge-on_code_received:
+.. _rf_bridge-on_code_received:
 
 ``on_code_received`` Trigger
 ----------------------------
