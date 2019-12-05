@@ -329,6 +329,7 @@ Misc Components
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
+    RF Bridge, components/rf_bridge, rf_bridge.jpg
 
 Additional Custom Components
 ----------------------------
