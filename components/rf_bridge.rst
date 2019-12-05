@@ -17,7 +17,7 @@ which is 19200bps.
     If you are using the :doc:`logger` make sure you disable the uart logging with the
     ``baud_rate: 0`` option.
 
-.. figure:: images/rf_bridge.jpg
+.. figure:: images/rf_bridge-full.jpg
     :align: center
     :width: 60.0%
 
