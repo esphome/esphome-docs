@@ -85,6 +85,18 @@ Sonoff Dual R2
     GPIO4, Optional sensor
     GPIO14, Optional sensor
 
+Sonoff Dual R2 (PCB v1.4)
+--------------
+
+.. pintable::
+
+    GPIO12, Relay #1 and red color on LED,
+    GPIO5, Relay #2 and green color on LED,
+    GPIO10, Button,
+    GPIO13, Blue LED (inverted),
+    GPIO0, Pin "button 0" on expansion header
+    GPIO9, Pin "button 1" on expansion header
+
 Sonoff Pow R1
 -------------
 
