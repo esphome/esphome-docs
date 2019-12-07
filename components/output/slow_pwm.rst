@@ -11,7 +11,8 @@ heating element through a relay where a fast PWM update cycle would not be appro
 
 .. note::
 
-    This is for **slow** PWM output. For fast-switching PWM outputs (for example, lights), see these outputs:
+    This is for **slow** PWM output. For fast-switching PWM outputs (for example,
+    lights), see these outputs:
 
     - ESP32: :doc:`ledc`
     - ESP8266: :doc:`esp8266_pwm`
