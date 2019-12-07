@@ -120,10 +120,13 @@ class ImageTableDirective(Table):
                 continue
             name, page, image = row
             link = page.strip()
-            if not link.startswith('http') and not link.startswith('/'):
-                link = '/{}'.format(link)
-            if '.html' not in link:
-                link += '.html'
+            if link.startswith('http'):
+                pass
+            else:
+                if not link.startswith('/'):
+                    link = '/{}'.format(link)
+                if '.html' not in link:
+                    link += '.html'
             items.append({
                 'name': name.strip(),
                 'link': link,

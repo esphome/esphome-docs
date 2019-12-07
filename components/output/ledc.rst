@@ -43,6 +43,27 @@ Advanced options:
   channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__
   to use. Two adjacent channels share the same timer. Defaults to an automatic selection.
 
+.. _output-ledc-set_frequency_action:
+
+``output.ledc.set_frequency`` Action
+------------------------------------
+
+This :ref:`Action <config-action>` allows you to manually change the frequency of an LEDC
+channel at runtime. Use cases include controlling a passive buzzer (for pitch control).
+
+.. code-block:: yaml
+
+    on_...:
+      - output.ledc.set_frequency:
+          id: ledc_output
+          frequency: 100Hz
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the LEDC output to change.
+- **frequency** (**Required**, :ref:`templatable <config-templatable>`, float): The frequency
+  to set in hertz.
+
 See Also
 --------
 

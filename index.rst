@@ -38,6 +38,7 @@ Guides
 
     Changelog, changelog/index, new-box.svg
     Supporters, guides/supporters, heart.svg
+    DIY Examples, guides/diy, earth.svg
 
 .. _devices:
 
@@ -143,6 +144,7 @@ Sensor Components
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
@@ -327,6 +329,7 @@ Misc Components
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
+    TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
 
 Additional Custom Components
 ----------------------------
