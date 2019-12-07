@@ -5,9 +5,16 @@ Slow PWM Output
     :description: Instructions for setting up slow pwm outputs for GPIO pins.
     :image: pwm.png
 
-Similar to PWM, The Slow PWM Output platform allows you to control GPIO pins by
+Similar to PWM, the Slow PWM Output platform allows you to control GPIO pins by
 pulsing them on/off over a longer time period. It could be used to control a
 heating element through a relay where a fast PWM update cycle would not be appropriate.
+
+.. note::
+
+    This is for **slow** PWM output. For fast-switching PWM outputs (for example, lights), see these outputs:
+
+    - ESP32: :doc:`ledc`
+    - ESP8266: :doc:`esp8266_pwm`
 
 .. code-block:: yaml
 
