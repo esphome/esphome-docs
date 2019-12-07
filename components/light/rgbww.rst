@@ -23,6 +23,33 @@ and warm white channels will be mixed using the color temperature configuration 
         cold_white_color_temperature: 6536 K
         warm_white_color_temperature: 2000 K
 
+Color Correction
+----------------
+
+It is often favourable to calibrate/correct the color produced by an LED strip light as the
+perceived intensity of different colors will generally vary. This can be done by using
+:ref:`max_power <config-output>` on individual output channels:
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    light:
+      - platform: rgbw
+        name: "Livingroom Lights"
+        red: output_component1
+        green: output_component2
+        blue: output_component3
+        white: output_component4
+
+    # Example output entry
+    output:
+      - platform: esp8266_pwm
+        id: output_component1
+        pin: D1
+        max_power: 80%
+
+
 Configuration variables:
 ------------------------
 
