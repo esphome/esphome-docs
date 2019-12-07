@@ -32,7 +32,7 @@ Configuration variables:
 
 - **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to pulse.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
-- **period** (**Required**, frequency): The duration of each cycle. (i.e. a 10s
+- **period** (**Required**, :ref:`config-time`): The duration of each cycle. (i.e. a 10s
   period at 50% duty would result in the pin being turned on for 5s, then off for 5s)
 - All other options from :ref:`Output <config-output>`.
 
