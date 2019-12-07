@@ -122,7 +122,7 @@ created based on a given format. If you want to get the current time attributes,
 -------------------- ---------------------------------------- ---------------------------------------- --------------------
 ``.is_dst``          Is daylight savings time                 false, true                              true
 -------------------- ---------------------------------------- ---------------------------------------- --------------------
-``.time``            Unix epoch time (seconds since UTC       [-2147483648 - 2147483647] (negative     1534606002
+``.timestamp``       Unix epoch time (seconds since UTC       [-2147483648 - 2147483647] (negative     1534606002
                      Midnight January 1, 1970)                values for time past January 19th 2038)
 -------------------- ---------------------------------------- ---------------------------------------- --------------------
 ``.is_valid()``      Basic check if the time is valid         false, true                              true
