@@ -28,8 +28,8 @@ Color Correction
 
 It is often favourable to calibrate/correct the color produced by an LED strip light as the
 perceived intensity of different colors will generally vary. This can be done by using
-`max_power </components/output/index#base-output-configuration>` on individual output
-channels:
+:ref:`max_power <config-output>` on individual output channels:
+
 
 .. code-block:: yaml
 
