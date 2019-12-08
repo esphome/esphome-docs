@@ -101,7 +101,7 @@ Configuration options:
         id(rf_bridge).send_code(0x700, 0x800, 0x1000, 0xABC123);
 
 
-.. rf_bridge-learn_action:
+.. _rf_bridge-learn_action:
 
 ``rf_bridge.learn`` Action
 --------------------------
