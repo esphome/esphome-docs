@@ -67,7 +67,7 @@ variables named ``code``, ``sync``, ``high`` and ``low``.
             code: !lambda 'char buffer [10];return itoa(data.code,buffer,16);'
 
 
-.. rf_bridge-send_code_action:
+.. _rf_bridge-send_code_action:
 
 ``rf_bridge.send_code`` Action
 ------------------------------
