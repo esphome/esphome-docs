@@ -303,7 +303,7 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
           it.printf(0, 0, id(my_font), "State: %s", id(my_binary_sensor).state ? "ON" : "OFF");
 
 .. note::
-   
+
     For displaying data from Home Assistant you can use the :doc:`/components/text_sensor/homeassistant` (see the :doc:`/cookbook/display_time_temp_oled` example for how to use this sensor)
     
     For displaying external data on the display you can use the :doc:`/components/text_sensor/mqtt_subscribe` (see the example there for more information).
