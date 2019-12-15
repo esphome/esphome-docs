@@ -16,7 +16,6 @@ bluetooth low energy device.
 
     # Example configuration entry
     esp32_ble_tracker:
-      scan_interval: 300s
 
     binary_sensor:
       # Presence based on MAC address

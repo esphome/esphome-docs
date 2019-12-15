@@ -61,6 +61,8 @@ Configuration variables:
   the knob further will not increase the number. Defaults to no maximum.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. _sensor-rotary_encoder-set_value_action:
+
 ``sensor.rotary_encoder.set_value`` Action
 ------------------------------------------
 
