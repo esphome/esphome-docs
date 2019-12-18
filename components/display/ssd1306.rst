@@ -68,6 +68,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 .. note::
 
@@ -140,6 +141,7 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 See Also
 --------
