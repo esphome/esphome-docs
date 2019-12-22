@@ -30,7 +30,7 @@ Configuration variables:
 ------------------------
 
 - **broker** (**Required**, string): The host of your MQTT broker.
-- **port** (*Optional*, int): The port to connect to. Defaults to 1883.
+- **port** (*Optional*, string): The port to connect to. Defaults to 1883.
 - **username** (*Optional*, string): The username to use for
   authentication. Empty (the default) means no authentication.
 - **password** (*Optional*, string): The password to use for
