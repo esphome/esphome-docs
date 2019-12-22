@@ -224,7 +224,7 @@ Configuration variables:
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_pioneer`` Action
-************************************************
+**********************************************
 
 This :ref:`action <config-action>` sends a Pioneer infrared remote code to a remote transmitter.
 
