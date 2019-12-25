@@ -1,0 +1,56 @@
+CAT9554 I/O Expander
+====================
+
+.. seo::
+    :description: Instructions for setting up CAT9554 digital port expanders in ESPHome.
+    :image: cat9554.jpg
+
+The CAT9554 component allows you to use CAT9554 I/O expanders
+(`datasheet <https://www.onsemi.cn/PowerSolutions/document/CAT9554-D.PDF>`__) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
+
+Once configured, you can use any of the 8 pins as
+pins for your projects. Within ESPHome they emulate a real internal GPIO pin
+and can therefore be used with many of ESPHome's components such as the GPIO
+binary sensor or GPIO switch.
+
+Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more
+complicated components that do communication through this I/O expander will
+not work.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    cat9554:
+      - id: 'cat9554_hub'
+        address: 0x20
+        irq_pin: GPIO4
+
+    # Individual outputs
+    switch:
+      - platform: gpio
+        name: "CAT9554 Pin #0"
+        pin:
+          cat9554: cat9554_hub
+          # Use pin number 0
+          number: 0
+          # One of INPUT or OUTPUT
+          mode: OUTPUT
+          inverted: False
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this CAT9554 component.
+- **address** (*Optional*, int): The I²C address of the driver.
+  Defaults to ``0x20``.
+- **irq_pin** (*Optional*, :ref:`config-pin`): CAT9554 support IRQ mode. If any input pin is changed, IRQ pin will generate falling signal.
+  If irq_pin is not configed, ESPhome will polling input pin status.
+
+See Also
+--------
+
+- :ref:`i2c`
+- :doc:`switch/gpio`
+- :doc:`binary_sensor/gpio`
+- :apiref:`cat9554/cat9554.h`
+- :ghedit:`Edit`
