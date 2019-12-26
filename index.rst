@@ -126,6 +126,7 @@ Sensor Components
     MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
+    MLX90393, components/sensor/mlx90393, mlx90393.jpg
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     MS5611, components/sensor/ms5611, ms5611.jpg

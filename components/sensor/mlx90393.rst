@@ -1,0 +1,100 @@
+.. _mlx90393:
+
+MLX90393 Magnetometer
+=====================
+
+.. seo::
+    :description: Instructions for setting up MLX90393 magnetometers sensors.
+    :image: mlx90393.jpg
+    :keywords: MLX90393
+
+The ``mlx90393`` sensor platform allows you to use your MLX90393 triple-axis magnetometers
+(`datasheet <https://cdn-learn.adafruit.com/assets/assets/000/069/600/original/MLX90393-Datasheet-Melexis.pdf>`__,
+`Adafruit`_) with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration
+for this sensor to work.
+
+.. figure:: images/mlx90393-full.jpg
+    :align: center
+    :width: 50.0%
+
+    MLX90393 Magnetometer. Image by `Adafruit`_.
+
+.. _Adafruit: https://www.adafruit.com/product/4022
+
+The MLX90393 is intended to be used to detect a near by magnet instead of acting as a compass.  As a result they
+have relatively low factory supplied accuracy for their precision, meaning that they generally can't be used
+compass type applications without manual calibration.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: mlx90393
+        address: 0x0C
+        field_strength_x:
+          name: "MLX90393 Field Strength X"
+        field_strength_y:
+          name: "MLX90393 Field Strength Y"
+        field_strength_z:
+          name: "MLX90393 Field Strength Z"
+        temperature:
+          name: "MLX90393 Temperature"
+        oversampling: 8x
+        range: 18bit
+        gain: 1x
+        update_interval: 60s
+
+Configuration variables:
+------------------------
+
+- **field_strength_x** (*Optional*): The field strength in microtesla along the X-Axis.
+
+  - **name** (**Required**, string): The name for the field strength sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **field_strength_y** (*Optional*): The field strength in microtesla along the Y-Axis.
+
+  - **name** (**Required**, string): The name for the field strength sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **field_strength_z** (*Optional*): The field strength in microtesla along the Z-Axis.
+
+  - **name** (**Required**, string): The name for the field strength sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **temperature** (*Optional*): The information for the integrated temperature sensor.
+
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **address** (*Optional*, int): Manually specify the i²c address of
+  the sensor. Defaults to ``0x0C``.
+- **oversampling** (*Optional*): The oversampling parameter for the sensor. One of
+  ``NONE``, ``2x``, ``4x``, ``8x``. Defaults to ``8x``.
+- **range** (*Optional*): The exposed range parameter for the sensor in bits. One of
+  ``16bit``, ``17bit``, ``18bit``, ``19bit``. Defaults to ``18bit``.
+- **gain** (*Optional*): The gain parameter for the sensor. One of
+  ``1x``, ``1.33x``, ``1.67x``, ``2x``, ``2.5x``, ``3x``, ``4x``, ``5x``. Defaults to ``1x``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+Sensor Range
+------------
+
+The MLX90393 sensor has an internal 19 bit wide ADC, but it is only capable of reporting 16 bits of that
+at a time.  So the range selected determines the window of the ADC output reported.  The larger bit widths
+provide more total range in exchange for less resolution: the least significant bits are omitted.  The
+data sheet also specifies and effective ADC span as 17.4 bits, so it should not saturate even in 18 bit
+reporting mode.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`mlx90393/mlx90393.h`
+- `Adafruit MLX90393 Library <https://github.com/adafruit/Adafruit_MLX90393_Library>`__ by `Limor "Ladyada" Fried <https://github.com/ladyada>`__
+- :ghedit:`Edit`
