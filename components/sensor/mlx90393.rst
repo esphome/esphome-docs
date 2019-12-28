@@ -78,7 +78,8 @@ Configuration variables:
 - **range** (*Optional*): The exposed range parameter for the sensor in bits. One of
   ``16bit``, ``17bit``, ``18bit``, ``19bit``. Defaults to ``18bit``.
 - **gain** (*Optional*): The gain parameter for the sensor. One of
-  ``1x``, ``1.33x``, ``1.67x``, ``2x``, ``2.5x``, ``3x``, ``4x``, ``5x``. Defaults to ``1x``.
+  ``1x``, ``1.25x``, ``1.67x``, ``2x``, ``2.5x``, ``3x``, ``3.75x``, ``5x``. Defaults to ``1x``.  Smaller gain
+  values have less resolution but can sense a more intense magnetic field.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
