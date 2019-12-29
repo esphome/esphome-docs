@@ -58,6 +58,7 @@ Custom Components & Code
 - `LINP-Doorbell-g03 Custom Component <https://github.com/pauln/esphome-linp-doorbell-g03>`__ by :ghuser:`pauln`
 - `ESPHome <-> Homebridge <https://www.npmjs.com/package/homebridge-esphome>`__ by `basdelfos <https://www.npmjs.com/~basdelfos>`__
 - `Custom ESPHome for Wofea V10 Alarm <https://github.com/nbergont/wofea_v10_hack>`__ by :ghuser:`nbergont`
+- `Custom Smart meter P1 port reader <https://github.com/nldroid/CustomP1UartComponent`__ by :ghuser:`nldroid`
 
 Sample Configurations
 ---------------------
