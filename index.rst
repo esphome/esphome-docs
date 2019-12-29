@@ -149,6 +149,7 @@ Sensor Components
     SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
+    TMP102, components/sensor/tmp102, tmp102.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Tx20, components/sensor/tx20, tx20.jpg
