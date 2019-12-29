@@ -4,7 +4,7 @@ TMP102 Temperature Sensor
 .. seo::
     :description: Instructions for setting up TMP102 temperature sensors.
     :image: tmp102.jpg
-    :keywords: HTU21D
+    :keywords: TMP102
 
 The TMP102 Temperature sensor allows you to use your TMP102
 (`Sparkfun <https://www.sparkfun.com/products/13314>`__) sensors with
