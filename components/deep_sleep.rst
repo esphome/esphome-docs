@@ -66,7 +66,7 @@ when the deep sleep should start? There are three ways of handling this using th
 - ``IGNORE`` (Default): Ignore the fact that we will immediately exit the deep sleep mode because the wakeup
   pin is already active.
 - ``KEEP_AWAKE``: Keep the ESP32 awake while the wakeup pin is still active. Or in other words: defer the
-  activation of the deep sleep until the wakeup pin is no longer active.
+  activation of the deep sleep until the wakeup pin is no longer active. To use this mode, ``sleep_duration`` cannot be set.
 - ``INVERT_WAKEUP``: When deep sleep was set up to wake up on a HIGH signal, but the wakeup pin is already HIGH,
   then re-configure deep sleep to wake up on a LOW signal and vice versa. Useful in situations when you want to
   use observe the state changes of a pin using deep sleep and the ON/OFF values last longer.
