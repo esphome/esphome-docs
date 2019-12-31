@@ -114,13 +114,16 @@ Sensor Components
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
+    QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
+    INA226, components/sensor/ina226, ina226.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
     Integration, components/sensor/integration, sigma.svg
     HTU21D, components/sensor/htu21d, htu21d.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
+    MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
@@ -135,11 +138,13 @@ Sensor Components
     PZEM DC, components/sensor/pzemdc, pzemdc.svg
     Resistance, components/sensor/resistance, omega.svg
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
@@ -189,6 +194,7 @@ Output Components
 
     Output Core, components/output/index, folder-open.svg
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
+    Slow PWM, components/output/slow_pwm, pwm.png
     GPIO Output, components/output/gpio, pin.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     PCA9685, components/output/pca9685, pca9685.jpg
@@ -289,9 +295,7 @@ Climate Components
     Climate Core, components/climate/index, folder-open.svg
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
-    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
-    Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
-    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
+    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
 
 Misc Components
 ---------------
@@ -301,6 +305,7 @@ Misc Components
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
+    HTTP Request, components/http_request, connection.svg
 
     Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
@@ -321,6 +326,8 @@ Misc Components
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
+    TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
+    RF Bridge, components/rf_bridge, rf_bridge.jpg
 
 Additional Custom Components
 ----------------------------
