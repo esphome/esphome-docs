@@ -53,9 +53,9 @@ Advanced:
 
 - **baseline** (*Optional*): The block containing baselines for calibration purposes. See :ref:`sgp30-calibrating` for more info.
 
-  - **eco2_baseline** (*Required*, int): The eCO2 baseline for calibration purposes.
+  - **eco2_baseline** (**Required**, int): The eCO2 baseline for calibration purposes.
 
-  - **tvoc_baseline** (*Required*, int): The TVOC baseline for calibration purposes.
+  - **tvoc_baseline** (**Required**, int): The TVOC baseline for calibration purposes.
 
 - **compensation** (*Optional*): The block containing sensors used for compensation.
 
