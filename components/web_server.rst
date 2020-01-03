@@ -36,8 +36,14 @@ Configuration variables:
 - **port** (*Optional*, int): The port the web server should open its socket on.
 - **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults
   to https://esphome.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
+- **css_include** (*Optional*, local file): Path to local file to be included in web server index page.
+  Useful when building device without internet access, where you want to use built-in AP and webserver.
+  When this option is set, **css_url** is ignored.
 - **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
   to https://esphome.io/_static/webserver-v1.min.js.
+- **js_include** (*Optional*, local file): Path to local file to be included in web server index page.
+  Useful when building device without internet access, where you want to use built-in AP and webserver.
+  When this option is set, **js_url** is ignored.
 - **auth** (*Optional*): Enables basic authentication with username and password.
 
   - **username** (**Required**, string): The username to use for authentication.
@@ -57,6 +63,16 @@ Configuration variables:
           auth:
             username: admin
             password: !secret web_server_password
+
+    Example web_server configuration with CSS and JS included from esphome-docs:
+
+    .. code-block:: yaml
+
+        # Example configuration entry
+        web_server:
+          port: 80
+          css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
+          js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
 
 See Also
 --------
