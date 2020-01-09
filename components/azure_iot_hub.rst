@@ -11,6 +11,7 @@ The ``azure_iot_hub`` component allows sending telemetry to Azure IoT Hub. It su
 messages via Azure IoT Hub REST API and automatically integrates with existing ESPHome data sources/components.
 Once you add ``azure_iot_hub`` to your configuration file, sensor data will be posted to configured IoT Hub
 as standard device-to-cloud telemetry messages.
+
 To begin, please provision an Azure IoT Hub (free tier is ok but is limited in the number of telemetry messages
 allowed per day, so setup sensor polling rates accordingly) and create a new IoT device to represent this
 ESPHome device. Once your device is provisioned in `Azure Portal <https://portal.azure.com>`__, configure the connection.
@@ -39,11 +40,11 @@ Configuration variables:
 
 
 JSON Payload Format
---------------------
+-------------------
 
 ``azure_iot_hub`` component will post telemetry data in json format structured as follows:
 
-.. code-block:: json
+.. code-block:: javascript
 
     {
       "deviceId": "device_id",
