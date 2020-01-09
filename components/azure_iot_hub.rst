@@ -56,7 +56,7 @@ JSON Payload Format
       }
     }
 
-Each component type supported by :ref:`api` and :ref:`mqtt` will report its type (e.g. ``sensor``, ``switch``, ``light``, etc.). Its values will
+Each component type supported by :doc:`/components/api` and :doc:`/components/mqtt` will report its type (e.g. ``sensor``, ``switch``, ``light``, etc.). Its values will
 be reported as a separate JSON structure keyed by the component id (in the example above *sensor_id*). Inside this structure all the readings will be stored.
 
 
