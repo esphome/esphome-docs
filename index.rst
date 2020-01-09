@@ -328,6 +328,7 @@ Misc Components
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
+    Azure IoT Hub REST, components/azure_iot_hub, azure_iot_hub.png
 
 Additional Custom Components
 ----------------------------
