@@ -17,9 +17,9 @@ for information on how you can find out the MAC address of a device and track it
     esp32_ble_tracker:
 
     binary_sensor:
-      - platform: esp32_ble_tracker
+      - platform: ble_presence
         mac_address: AC:37:43:77:5F:4C
-        name: "ESP32 BLE Tracker Google Home Mini"
+        name: "ESP32 BLE Presence Google Home Mini"
 
     sensor:
       - platform: ble_rssi
