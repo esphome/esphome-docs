@@ -710,10 +710,10 @@ instance (see API reference for more info).
               // it[num].get();
 
               // Example: Simple color wipe
-              for (int i = 1; i < it.size(); i++) {
+              for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = ESPColor::random_color();
+              it[0] = ESPColor::random_color();              
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
               it.range(0, 50) = ESPColor::BLACK;
