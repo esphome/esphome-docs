@@ -86,7 +86,7 @@ Sonoff Dual R2
     GPIO14, Optional sensor
 
 Sonoff Dual R2 v1.4
---------------
+-------------------
 
 .. pintable::
 
