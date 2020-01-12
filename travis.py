@@ -45,19 +45,19 @@ for f in sorted(Path('.').glob('**/*.rst')):
 
     lines = content.splitlines(keepends=False)
 
-    for i, line in enumerate(lines):
-        if i == 0:
-            continue
-
-        if not section_regex.match(line):
-            continue
-        line_above = lines[i - 1]
-        if len(line_above) != len(line):
-            errors.append("The title length must match the bar length below it. See {}:{}"
-                          "".format(f, i+1))
-        if i + 1 < len(lines) and lines[i + 1]:
-            errors.append("Empty line after heading is missing. Please insert an "
-                          "empty line. See {}:{}".format(f, i+1))
+    # for i, line in enumerate(lines):
+    #     if i == 0:
+    #         continue
+    #
+    #     if not section_regex.match(line):
+    #         continue
+    #     line_above = lines[i - 1]
+    #     if len(line_above) != len(line):
+    #         errors.append("The title length must match the bar length below it. See {}:{}"
+    #                       "".format(f, i+1))
+    #     if i + 1 < len(lines) and lines[i + 1]:
+    #         errors.append("Empty line after heading is missing. Please insert an "
+    #                       "empty line. See {}:{}".format(f, i+1))
 
     for i, line in enumerate(lines):
         m = directive_regex.match(line)
