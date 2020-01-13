@@ -7,9 +7,12 @@ def setup(app):
     app.connect('html-page-context', add_html_link)
     app.connect('build-finished', create_sitemap)
     app.sitemap_links = []
+
+    is_production = os.getenv('PRODUCTION') == 'YES'
+
     return {"version": "1.0.0",
             "parallel_read_safe": True,
-            "parallel_write_safe": True}
+            "parallel_write_safe": not is_production}
 
 
 def add_html_link(app, pagename, templatename, context, doctree):

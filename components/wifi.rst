@@ -56,14 +56,16 @@ Configuration variables:
     Defaults to 1.
   - **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as
     manual_ip for station mode.
+  - **ap_timeout** (*Optional*, :ref:`time <config-time>`): The time after which to enable the
+    configured fallback hotspot. Defaults to ``1min``.
 
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
 - **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
-  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``5min``.
-- **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface. Defaults to no power saving.
+  seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
+- **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
 
 - **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
@@ -126,11 +128,8 @@ WiFi. While some options *can* reduce the power usage of the ESP, they generally
 reliability of the WiFi connection, with frequent disconnections from the router in the highest
 power saving mode.
 
-The default is ``none`` (a bit of power saving). If you experience frequent WiFi disconnection problems,
-please also try ``light``.
-
-- ``NONE`` (least power saving, Default)
-- ``LIGHT``
+- ``NONE`` (least power saving, Default for ESP8266)
+- ``LIGHT`` (Default for ESP32)
 - ``HIGH`` (most power saving)
 
 .. code-block:: yaml
@@ -172,6 +171,9 @@ Configuration variables:
   This can be used to further restrict which networks to connect to.
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
+- **priority** (*Optional*, float): The priority of this network. After each time, the network with
+  the highest priority is chosen. If the connection fails, the priority is decreased by one.
+  Defaults to ``0``.
 
 .. _wifi-connected_condition:
 
@@ -192,5 +194,6 @@ This :ref:`Condition <config-condition>` checks if the WiFi client is currently 
 See Also
 --------
 
+- :doc:`captive_portal`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`

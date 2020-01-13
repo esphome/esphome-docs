@@ -11,7 +11,16 @@ ESPHome's command line interface always has the following format
 
 .. code-block:: console
 
-    esphome <CONFIGURATION> <COMMAND> [ARGUMENTS]
+    esphome <CONFIGURATION...> <COMMAND> [ARGUMENTS]
+
+.. note::
+
+    You can specify multiple configuration files in the command line interface,
+    just list all files in front of the <COMMAND> like so:
+
+    .. code-block:: console
+
+        esphome livingroom.yaml kitchen.yaml run
 
 
 ``run`` Command
@@ -162,9 +171,13 @@ through a graphical user interface.
 
     Manually set the HTTP port to open connections on (defaults to 6052)
 
+.. option:: --username USERNAME
+
+    The optional username to require for authentication.
+
 .. option:: --password PASSWORD
 
-    The optional password to require for all requests.
+    The optional password to require for authentication.
 
 .. option:: --open-ui
 

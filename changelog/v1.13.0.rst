@@ -98,7 +98,7 @@ Other notable changes:
   functions to allow easier effect creation.
 - Added a new custom component mechanism and contribution guidelines have been updated. See the
   :doc:`contributing guide </guides/contributing>` for more details.
-- :doc:`RDM6300 </components/binary_sensor/rdm6300>` now also has a ``on_tag`` trigger like the PN532.
+- :doc:`RDM6300 </components/binary_sensor/rdm6300>` now also has an ``on_tag`` trigger like the PN532.
 - :doc:`Remote Transmitter </components/remote_transmitter>` and :doc:`Remote Receiver </components/remote_receiver>`
   have gotten some new features: custom triggers and actions with templatable values.
 - Added ``output.esp8266_pwm.set_frequency`` action for dynamically changing the frequency of the ESP8266

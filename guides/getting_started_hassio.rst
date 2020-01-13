@@ -5,14 +5,14 @@ Getting Started with ESPHome through Hass.io
     :description: Getting Started guide for installing ESPHome as a Hass.io Add-on and creating a basic configuration.
     :image: home-assistant.png
 
-ESPHome is the perfect solution for creating custom firmwares for
+ESPHome is the perfect solution for creating custom firmware for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
 basic "node" by use of the Hass.io add-on.
 
-But first, here's a very quick introduction of how ESPHome works:
-ESPHome is a *tool* which reads in YAML configuration files (just like Home Assistant)
-and creates custom firmwares. The tool also has many helpers that simplify flashing devices
-and aims to make managing your ESP boards as simple as possible. Once you have added devices
+But first, here's a very quick introduction to how ESPHome works:
+ESPHome is a *tool* which reads in a YAML configuration file (just like Home Assistant)
+and creates a custom firmware binary. The tool also has many helpers that simplify flashing devices (uploading the new binary file)
+and aim to make managing your ESP boards as simple as possible. Once you have added devices
 or sensors in ESPHome's configuration, they will even automatically show up in Home
 Assistant's UI.
 
@@ -24,6 +24,10 @@ panel in your Home Assistant frontend and add the ESPHome add-on repository:
 https://github.com/esphome/hassio
 
 .. figure:: images/hassio_repo.png
+
+Then, scroll down and locate the ESPHome Hass.io Add-Ons section. Click on ESPHome, then INSTALL.
+
+.. figure:: images/hassio_addons_section.png
 
 After that, wait a bit until the add-on is installed (this can take a while) and
 go to the add-on page. Start the add-on and then click "Open Web UI".
@@ -85,7 +89,7 @@ Adding some (basic) features
 ----------------------------
 
 So now you should have a file called ``/config/esphome/livingroom.yaml`` (or similar).
-Go open that file in and add a :doc:`simple GPIO switch </components/switch/gpio>`
+Go open that file (in any text editor) and add a :doc:`simple GPIO switch </components/switch/gpio>`
 to the configuration like this:
 
 .. code-block:: yaml
@@ -99,7 +103,7 @@ In above example, we're simply adding a switch that's called "Living Room Dehumi
 anything really, for example lights) and is connected to the pin ``GPIO5``.
 
 Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
-should see the ESPHome device show up in the discovered section (can take up to 5 minutes).
+should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
 and entering "<NODE_NAME>.local" as the host.
 
@@ -115,7 +119,7 @@ Adding A Binary Sensor
 ----------------------
 
 Next, we’re going to add a very simple binary sensor that periodically
-checks a GPIO pin whether it’s pulled high or low - the :doc:`GPIO Binary
+checks a GPIO pin to see whether it’s pulled high or low - the :doc:`GPIO Binary
 Sensor </components/binary_sensor/gpio>`.
 
 .. code-block:: yaml

@@ -7,7 +7,8 @@ Waveshare E-Paper Display
 
 The ``waveshare_epaper`` display platform allows you to use
 some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/modules/oleds-lcds/e-paper.htm>`__
-with ESPHome. Similar modules sold by other vendors might also work but not have been tested yet. Currently only
+with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board is supported as well.
+Similar modules sold by other vendors might also work but not have been tested yet. Currently only
 single-color E-Ink displays are implemented and of those only a few modules.
 
 .. figure:: images/waveshare_epaper-full.jpg
@@ -71,10 +72,12 @@ Configuration variables:
 
   - ``1.54in``
   - ``2.13in`` (not tested)
+  - ``2.13in-ttgo`` (T5_V2.3 tested)
   - ``2.70in`` (not tested)
   - ``2.90in``
-  - ``4.20in`` (not tested)
-  - ``7.50in`` (not tested)
+  - ``2.90in-b`` (B/W rendering only)
+  - ``4.20in``
+  - ``7.50in``
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.

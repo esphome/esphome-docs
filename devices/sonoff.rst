@@ -33,7 +33,6 @@ Sonoff RF
     GPIO4, Optional sensor
     GPIO14, Optional sensor
 
-
 Sonoff SV
 ---------
 
@@ -292,6 +291,18 @@ Sonoff S31
 
 See :doc:`/components/sensor/cse7766` for measuring power
 
+Sonoff Mini
+-----------
+
+.. pintable::
+
+    GPIO0, Button (inverted),
+    GPIO4, SW Input,
+    GPIO12, Relay and Red LED,
+    GPIO13, Blue LED (inverted),
+    GPIO16, Optional sensor
+
+
 Shelly 1
 --------
 
@@ -343,6 +354,19 @@ Teckin SP20 (US)
 
 See :doc:`/components/sensor/hlw8012` for measuring power.
 Example config: `teckin_sp20_us.yaml <https://github.com/esphome/esphome-docs/blob/current/devices/teckin_sp20_us.yaml>`__
+
+TorchStar LED Controller (Nov 2018)
+-----------------------------------
+
+.. pintable::
+
+    GPIO13, Button (inverted),
+    GPIO16, Blue LED (inverted),
+    GPIO4, Red LED (inverted),
+    GPIO14, Red Channel,
+    GPIO12, Green Channel,
+    GPIO5, Blue Channel,
+    GPIO15, White Channel,
 
 See Also
 --------

@@ -46,7 +46,7 @@ As the communication with the :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`
 Configuration variables:
 ************************
 
-- **dimensions** (**Required**, string): The dimensions of the display with ``ROWSxCOLUMNS``. If you're not
+- **dimensions** (**Required**, string): The dimensions of the display with ``COLUMNSxROWS``. If you're not
   sure, power the display up and just count them.
 - **address** (*Optional*, int): The :ref:`I²C <i2c>` address of the PCF8574 chip, defaults to ``0x3F``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
@@ -90,7 +90,7 @@ commonly sold with a PCF8574 chip which only need two lines to the ESP, for that
 Configuration variables:
 ************************
 
-- **dimensions** (**Required**, string): The dimensions of the display with ``ROWSxCOLUMNS``. If you're not
+- **dimensions** (**Required**, string): The dimensions of the display with ``COLUMNSxROWS``. If you're not
   sure, power the display up and just count them.
 - **data_pins** (**Required**, list of :ref:`Pin Schemas <config-pin_schema>`): A list of the data pins you
   have hooked up to the LCD. The list can either be 8 items long (when you have connected all 8 data pins), or

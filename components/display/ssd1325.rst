@@ -1,0 +1,68 @@
+SSD1325 OLED Display
+====================
+
+.. seo::
+    :description: Instructions for setting up SSD1325 OLED display drivers.
+    :image: ssd1325.jpg
+
+.. _ssd1325-spi:
+
+Usage
+-----
+
+The ``ssd1325_spi`` display platform allows you to use
+SSD1325 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1325.pdf>`__,
+`Adafruit <https://www.adafruit.com/product/2674>`__)
+displays with ESPHome. Note that this component is for displays that are connected via the 4-Wire :ref:`SPI bus <spi>`.
+
+.. figure:: images/ssd1325-full.jpg
+    :align: center
+    :width: 75.0%
+
+    SSD1325 OLED Display
+
+Connect CLK, DIN, CS, DC, and RST to pins on your ESP. For power, connect
+VCC to 3.3V and GND to GND.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    spi:
+      clk_pin: D5
+      mosi_pin: D7
+
+    display:
+      - platform: ssd1325_spi
+        model: "SSD1325 128x64"
+        reset_pin: D0
+        cs_pin: D8
+        dc_pin: D1
+        lambda: |-
+          it.print(0, 0, id(font), "Hello World!");
+
+Configuration variables:
+************************
+
+- **model** (**Required**): The model of the display. Options are:
+
+  - ``SSD1325 128x32`` (SSD1325 with 128 columns and 32 rows)
+  - ``SSD1325 128x64``
+  - ``SSD1325 96x16``
+  - ``SSD1325 64x48``
+
+- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
+  See :ref:`display-engine` for more information.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
+- **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+See Also
+--------
+
+- :doc:`index`
+- :apiref:`ssd1325_base/ssd1325_base.h`
+- `SSD1325 Library <https://github.com/adafruit/Adafruit_SSD1325>`__ by `Adafruit <https://www.adafruit.com/>`__
+- :ghedit:`Edit`

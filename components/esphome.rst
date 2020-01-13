@@ -15,6 +15,7 @@ where you specify the **name** of the node, the **platform** and
     # Example configuration entry
     esphome:
         name: livingroom
+        comment: Living room ESP32 controller
         platform: ESP32
         board: nodemcu-32s
 
@@ -49,6 +50,7 @@ Advanced options:
   is in. Should have file extension ``.h`` - See :ref:`esphome-includes` for more info.
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
+- **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 
 ESP8266 Options:
 
@@ -95,18 +97,20 @@ option you can tell ESPHome which arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the arduino version to these values (see the full
 list of arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
-* `2.5.2 <https://github.com/esp8266/Arduino/releases/tag/2.5.2>`__
+* `2.5.2 <https://github.com/esp8266/Arduino/releases/tag/2.5.2>`__ (default)
 * `2.5.1 <https://github.com/esp8266/Arduino/releases/tag/2.5.1>`__
 * `2.5.0 <https://github.com/esp8266/Arduino/releases/tag/2.5.0>`__
-* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (default)
+* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__
 * `2.4.1 <https://github.com/esp8266/Arduino/releases/tag/2.4.1>`__
 * `2.4.0 <https://github.com/esp8266/Arduino/releases/tag/2.4.0>`__
 * `2.3.0 <https://github.com/esp8266/Arduino/releases/tag/2.3.0>`__ (used by Tasmota etc)
 
 For the ESP32, there are these arduino `framework versions <https://github.com/espressif/arduino-esp32/releases>`__:
 
+- `1.0.4 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.4>`__ (default)
+- `1.0.3 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.3>`__
 - `1.0.2 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.2>`__
-- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default)
+- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__
 - `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__
 
 .. _esphome-esp8266_restore_from_flash:
@@ -247,7 +251,7 @@ This option behaves differently depending on what the included file is pointing 
    to the src/ folder.
  - If the include string is point at a header file (.h, .hpp, .tcc) - it is copied in the src/ folder
    AND included in the main.cpp. This way the lambda code can access it.
- - If the include str
+
 
 .. _esphome-changing_node_name:
 
