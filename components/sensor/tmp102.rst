@@ -17,8 +17,6 @@ configuration for this sensor to work.
 
     TMP102 Temperature Sensor.
 
-.. _Sparkfun: https://learn.sparkfun.com/tutorials/tmp102-digital-temperature-sensor-hookup-guide
-
 .. figure:: images/temperature.png
     :align: center
     :width: 80.0%
