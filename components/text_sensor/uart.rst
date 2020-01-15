@@ -1,5 +1,5 @@
 Custom UART Text Sensor
-===================
+=======================
 
 .. seo::
     :description: Instructions for setting up a custom uart text sensor.
@@ -7,7 +7,6 @@ Custom UART Text Sensor
 
 Lots of devices communicate using the UART protocol. If you want to read 
 lines from uart to a Text Sensor you can do so using this code example.
-Note state will change a lot. 
 
 Consider making the sensor internal since this could flood home-assistant state log.
 Use automations to set switch or sensor states.
@@ -67,6 +66,7 @@ And in YAML:
         - UartReadLineStateComponent.h
     
     logger:
+      level: VERBOSE #makes uart stream available in esphome logstream
       baud_rate: 0 #disable logging over uart
 
     uart:
@@ -82,8 +82,37 @@ And in YAML:
         App.register_component(my_custom_sensor);
         return {my_custom_sensor};
       text_sensors:
-        name: "UART Text Sensor"
-        #internal: true
+        id: "uart_readline"
+
+Example usage
+-------
+
+Here is an example template switch using the uart text sensor to set switch state.
+
+.. code-block:: yaml
+
+    switch:
+      - platform: template
+        id: projector_power
+        name: "Projector"
+        icon: "mdi:projector"
+        lambda: |-
+          if (id(uart_readline).state == "*POW=ON#") {
+            return true;
+          } else if(id(uart_readline).state == "*POW=OFF#") {
+            return false;
+          } else {
+            return {};
+          }
+        turn_on_action:
+          - uart.write: "\r*pow=on#\r"
+        turn_off_action:
+          - uart.write: "\r*pow=off#\r"
+    
+    interval:
+      - interval: 10s
+        then:
+          - uart.write: "\r*pow=?#\r"
 
 See Also
 --------
