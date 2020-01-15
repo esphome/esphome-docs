@@ -87,7 +87,7 @@ And in YAML:
         id: "uart_readline"
 
 Example usage
--------
+-------------
 
 Here is an example template switch using the uart text sensor to set switch state.
 
