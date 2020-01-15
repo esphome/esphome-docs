@@ -15,9 +15,9 @@ Use automations to set switch or sensor states.
 
     #include "esphome.h"
 
-    class UartReadLineStateComponent : public Component, public UARTDevice, public TextSensor {
+    class UartReadLineSensor : public Component, public UARTDevice, public TextSensor {
      public:
-      UartReadLineStateComponent(UARTComponent *parent) : UARTDevice(parent) {}    
+      UartReadLineSensor(UARTComponent *parent) : UARTDevice(parent) {}    
 
       void setup() override {
         // nothing to do here
@@ -55,6 +55,8 @@ Use automations to set switch or sensor states.
         }
       }
     };
+
+(Store this file in your configuration directory, for example ``uart_read_line_sensor.h``)
     
 And in YAML:
 
@@ -63,7 +65,7 @@ And in YAML:
     # Example configuration entry
     esphome:
       includes:
-        - UartReadLineStateComponent.h
+        - uart_read_line_sensor.h
     
     logger:
       level: VERBOSE #makes uart stream available in esphome logstream
@@ -78,7 +80,7 @@ And in YAML:
     text_sensor:
     - platform: custom
       lambda: |-
-        auto my_custom_sensor = new UartReadLineStateComponent(id(uart_bus));
+        auto my_custom_sensor = new UartReadLineSensor(id(uart_bus));
         App.register_component(my_custom_sensor);
         return {my_custom_sensor};
       text_sensors:
@@ -89,13 +91,14 @@ Example usage
 
 Here is an example template switch using the uart text sensor to set switch state.
 
+Is uses interval to request status from the device. The reponse will be stored in uart text sensor.
+Then the switch uses the sensor state to update state.
+
 .. code-block:: yaml
 
     switch:
       - platform: template
-        id: projector_power
-        name: "Projector"
-        icon: "mdi:projector"
+        name: "Switch"
         lambda: |-
           if (id(uart_readline).state == "*POW=ON#") {
             return true;
