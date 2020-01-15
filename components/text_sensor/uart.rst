@@ -89,10 +89,10 @@ And in YAML:
 Example usage
 -------------
 
-Here is an example template switch using the uart text sensor to set switch state.
+Here is an example switch using the uart text sensor to set switch state.
 
-Is uses interval to request status from the device. The reponse will be stored in uart text sensor.
-Then the switch uses the sensor state to update state.
+Here we use interval to request status from the device. The reponse will be stored in uart text sensor.
+Then the switch uses the text sensor state to set its own state.
 
 .. code-block:: yaml
 
