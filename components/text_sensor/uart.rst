@@ -8,8 +8,7 @@ Custom UART Text Sensor
 Lots of devices communicate using the UART protocol. If you want to read 
 lines from uart to a Text Sensor you can do so using this code example.
 
-Consider making the sensor internal since this could flood home-assistant state log.
-Use automations to set switch or sensor states.
+With this you can use automations or lambda to set switch or sensor states.
 
 .. code-block:: cpp
 
