@@ -61,6 +61,7 @@ Sonoff TH10/TH16
     GPIO3, UART RX pin (for external sensors)
     GPIO4, Optional sensor
     GPIO14, Optional sensor
+    GPIO2, Optional Pin EXP-LOG (TH16 Ver 2.1 2019)
 
 Sonoff Dual R1
 --------------
