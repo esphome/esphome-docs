@@ -1,8 +1,8 @@
-SCD30 CO₂, Temperature and Relative Humidty Sensor
+SCD30 CO₂, Temperature and Relative Humidity Sensor
 ==================================================
 
 .. seo::
-    :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidty Sensor
+    :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidity Sensor
     :image: scd30.jpg
 
 The ``scd30`` sensor platform  allows you to use your Sensiron SCD30 CO₂  
@@ -28,6 +28,8 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
           name: "Workshop Humidity"
           accuracy_decimals: 1
         address: 0x61
+        altitude_compensation: 800
+        automatic_self_calibration: True
         update_interval: 5s
         
 
@@ -36,7 +38,7 @@ Configuration variables:
 
 - **co2** (**Required**): The information for the CO₂ sensor.
 
-  - **name** (**Required**, string): The name for the CO₂eq sensor.
+  - **name** (**Required**, string): The name for the CO₂ sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -55,6 +57,13 @@ Configuration variables:
 
 - **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
   Defaults to ``0x61``.
+
+- **altitude_compensation** (*Optional*, int): Set the altitude used for CO₂ measurement compensation,
+  in meters above sea level. When absent, altitude compensation is disabled.
+
+- **automatic_self_calibration** (*Optional*, boolean): Enable the automatic self calibration
+  process on the sensor. This allows the sensor automatically adjust its calibration when exposed
+  to fresh air. Defaults to ``True``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
