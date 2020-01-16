@@ -685,6 +685,42 @@ Configuration variables:
 - **intensity** (*Optional*, percentage): The intensity of the effect, basically how much the random values can offset
   the currently active light color. Defaults to ``5%``.
 
+Addressable Gradient Effect
+**************************
+
+An effect similar to the ``addressable_rainbow`` effect, but with a user defined color gradient and length. The length
+should be larger then the number of LEDs in the stripe.
+
+.. code-block:: yaml
+
+    light:
+      - platform: ...
+        # ...
+        effects:
+          - addressable_gradient:
+            length: 150
+            gradient: |
+              GIMP Gradient
+              Name: Abstract 2
+              6
+              0.000000 0.333532 0.570952 1.000000 0.000000 0.055296 1.000000 0.922731 0.452483 0.984953 1.000000 0 0
+              0.570952 0.616469 0.664441 0.922731 0.452483 0.984953 1.000000 0.122236 0.319840 0.583333 1.000000 0 0
+              0.664441 0.727880 0.756260 0.122236 0.319840 0.583333 1.000000 0.059646 1.000000 0.558369 1.000000 0 0
+              0.756260 0.799666 0.843072 0.059646 1.000000 0.558369 1.000000 0.969697 0.948568 0.533333 1.000000 0 0
+              0.843072 0.905766 0.949917 0.969697 0.948568 0.533333 1.000000 1.000000 0.490000 1.000000 1.000000 0 0
+              0.949917 0.988314 1.000000 1.000000 0.490000 1.000000 1.000000 0.238108 0.191841 1.000000 1.000000 0 0
+
+
+Configuration variables:
+
+- **name** (*Optional*, string): The name of the effect. Defaults to ``Gradient``.
+- **move_interval** (*Optional*, :ref:`config-time`): The time interval moving the color.
+  Defaults to ``0.1s``.
+- **use_white** (*Optional*, boolean): Use the white LED for white part of the color.
+- **flip** (*Optional*, boolean): Flip the direction on the end of the gradient.
+- **reverse** (*Optional*, boolean): Push colors from the back of the stip.
+
+
 Addressable Lambda Effect
 *************************
 
