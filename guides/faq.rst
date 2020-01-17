@@ -224,6 +224,12 @@ Some steps that can help with the issue:
   in other it can make things worse). See :ref:`wifi-power_save_mode`.
 - The issue seems to happen with cheap boards more frequently. Especially the "cheap" NodeMCU
   boards from eBay which sometimes have quite bad antennas.
+- ESPHome reboots on purpose when something is not going right, e.g. 
+  :doc:`wifi connetion cannot be made </components/wifi>` or 
+  :doc:`api connetion is lost </components/api>` or 
+  :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
+  to explicitely set the ``reboot_timeout`` option to ``0s`` on the components being used.
+
 
 Docker Reference
 ----------------
