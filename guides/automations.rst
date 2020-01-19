@@ -612,6 +612,9 @@ triggers.
 With the ``script`` component you can define these steps in a central place, and then
 execute the script with a single call.
 
+Tip
+You can execute a script from inside a lamba using ``id(my_script).execute;``
+
 .. code-block:: yaml
 
     # Example configuration entry
