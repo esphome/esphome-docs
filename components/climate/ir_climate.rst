@@ -21,6 +21,8 @@ request so it will be added (see FAQ).
 +========================+=====================+======================+
 | Coolix                 | ``coolix``          | yes                  |
 +------------------------+---------------------+----------------------+
+| Daikin                 | ``daikin``          | no                   |
++------------------------+---------------------+----------------------+
 | Fujitsu General        | ``fujitsu_general`` | no                   |
 +------------------------+---------------------+----------------------+
 | Mitsubishi             | ``mitsubishi``      | no                   |
@@ -105,6 +107,7 @@ See Also
 - :doc:`/components/climate/index`
 - :doc:`/components/remote_transmitter`
 - :apiref:`coolix.h <coolix/coolix.h>`,
+  :apiref:`daikin.h <daikin/daikin.h>`
   :apiref:`fujitsu_general.h <fujitsu_general/fujitsu_general.h>`,
   :apiref:`mitsubishi.h <mitsubishi/mitsubishi.h>`,
   :apiref:`tcl112.h <tcl112/tcl112.h>`,
