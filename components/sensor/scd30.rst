@@ -28,7 +28,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
           name: "Workshop Humidity"
           accuracy_decimals: 1
         address: 0x61
-        altitude_compensation: 800
+        altitude_compensation: 800m
         automatic_self_calibration: True
         update_interval: 5s
         
