@@ -44,6 +44,10 @@ Configuration variables:
   - **password** (**Required**, string): The password to check for authentication.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **enable_cors** (*Optional*, boolean): Set to true to send the Access-Control-Allow-Origin
+  header in http-response. Defaults to False
+- **cors_header** (*Optional*, string): Access-Control-Allow-Origin header in http-response.
+  Defaults to *. You must additional set enable_cors to True
 
 .. note::
 
