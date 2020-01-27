@@ -55,6 +55,11 @@ Happy Hacking!
     switching from Tasmota, you need to power-cycle the device once. After that
     the dimming functionality will work as usual and no more power cycles are required.
 
+
+.. note::
+
+    If you are using Tasmota 8+ and get an error after uploading the firmware, go to the console and type ```SetOption78 1```, then restart the device and try the firmware again.
+    
 See Also
 --------
 
