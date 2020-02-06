@@ -249,6 +249,10 @@ MQTT Component Base Configuration
 All components in ESPHome that do some sort of communication through
 MQTT can have some overrides for specific options.
 
+.. warning::
+
+    Components without **name** are internal only, thus they will not send or receive mqtt messages.
+
 .. code-block:: yaml
 
     name: "Component Name"
