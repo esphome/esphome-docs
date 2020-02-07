@@ -51,7 +51,7 @@ Configuration variables:
    chain. Must be in range from 3 to 1020. Defaults to 6.
 -  **num_chips** (*Optional*, int): Number of chips in the chain. Must be
    in range from 1 to 255. Defaults to 2.
--  **bit_depths** (*Optional*, int): The bit depth to use for all output
+-  **bit_depth** (*Optional*, int): The bit depth to use for all output
    channels in this chain. Must be one of 8, 12, 14 or 16. Defaults to 16.
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``my9231`` component. Use this if you have multiple MY9231/MY9291 chains
@@ -92,6 +92,7 @@ complete configuration for a Sonoff B1 looks like:
       clock_pin: GPIO14  # GPIO15 for AiLight
       num_channels: 6
       num_chips: 2
+      bit_depth: 8
 
     output:
       - platform: my9231
