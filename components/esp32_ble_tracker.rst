@@ -52,6 +52,7 @@ for information on how you can find out the MAC address of a device and track it
     resized. Please flash the ESP32 via USB when adding this to your configuration. After that,
     you can use OTA updates again.
 
+.. _config-esp32_ble_tracker:
 
 Configuration variables:
 ------------------------

@@ -7,7 +7,7 @@ ESP32 Bluetooth Low Energy Scanner
     :keywords: ESP32
 
 The ``ble_scanner`` text sensor platform lets you track reachable BLE devices.
-See the `BLE Tracker Configuration variables <https://esphome.io/components/esp32_ble_tracker.html#configuration-variables>`__ for
+See the :ref:`BLE Tracker Configuration variables <config-esp32_ble_tracker>` for
 instructions for setting up scan parameters.
 The sensor platform is similar to :doc:`/components/sensor/ble_rssi` but in contrast to that platform, this text sensor sends out all raw BLE scan information and does not filter devices.
 
