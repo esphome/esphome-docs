@@ -33,50 +33,6 @@ The `CircuitSetup Expandable 6 Channel Energy Meter <https://circuitsetup.us/ind
 
     CircuitSetup Expandable 6 Channel ESP32 Energy Meter Main Board.
 
-.. code-block:: yaml
-
-    # Example configuration entry for split single phase meter
-    spi:
-      clk_pin: 18
-      miso_pin: 19
-      mosi_pin: 23
-
-    sensor:
-      - platform: atm90e32
-        cs_pin: 5
-        phase_a:
-          voltage:
-            name: "EMON Line Voltage A"
-          current:
-            name: "EMON CT1 Current"
-          power:
-            name: "EMON Active Power CT1"
-          reactive_power: 
-            name: "EMON Reactive Power CT1"
-          power_factor:
-            name: "EMON Power Factor CT1"
-          gain_voltage: 3920
-          gain_ct: 39473
-        phase_c:
-          current:
-            name: "EMON CT2 Current"
-          power:
-            name: "EMON Active Power CT2"
-          reactive_power: 
-            name: "EMON Reactive Power CT2"
-          power_factor:
-            name: "EMON Power Factor CT2"
-          gain_voltage: 3920
-          gain_ct: 39473
-        frequency:
-          name: "EMON Line Frequency"
-        chip_temperature:
-          name: "EMON Chip Temperature"
-        line_frequency: 50Hz
-        current_phases: 2
-        gain_pga: 2X
-        update_interval: 60s
-
 Configuration variables:
 ------------------------
 
@@ -128,7 +84,7 @@ value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calc
 
 Update **gain_voltage** for all phases in your ESPHome yaml, recompile and upload. Repeat as necessary.
 
-Here are common voltage calibrations for the Split Single Energy Meter:
+Here are common voltage calibrations for the **Split Single Energy Meter**:
    For meter <= v1.3:
       42080 - 9v AC Transformer - Jameco 112336
       32428 - 12v AC Transformer - Jameco 167151
@@ -139,7 +95,7 @@ Here are common voltage calibrations for the Split Single Energy Meter:
    For Meters >= v1.4 rev.3
       3920 - 9v AC Transformer - Jameco 157041
 
-Here are common voltage calibrations for the Expandable 6 Channel Energy Meter:
+Here are common voltage calibrations for the **Expandable 6 Channel Energy Meter**:
    For meter <= v1.2:
       42080 - 9v AC Transformer - Jameco 112336
       32428 - 12v AC Transformer - Jameco 167151
@@ -162,22 +118,66 @@ It is possible that the two identical CT current sensors will have different
 small. The current calibration can be done once and used on all sensors or
 repeated for each one.
 
-Here are common current calibration values for the Split Single Phase meter when PGA Gain is set to 2X:
+Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to 2X:
    20A/25mA SCT-006: 10170
    100A/50mA SCT-013-000: 25498
    120A/40mA SCT-016: 39473
    Magnalab 100A: 46539
 
-Here are common current calibrations for the Expandable 6 Channel Energy Meter when PGA Gain is set to 1X:
-  20A/25mA SCT-006: 11131
-  30A/1V SCT-013-030: 8650
-  50A/1V SCT-013-050: 15420
-  80A/26.6mA SCT-010: 41996
-  100A/50ma SCT-013-000: 27961
-  120A/40mA: SCT-016: 41880
+Here are common current calibrations for the **Expandable 6 Channel Energy Meter** when **gain_pga** is set to 1X:
+   20A/25mA SCT-006: 11131
+   30A/1V SCT-013-030: 8650
+   50A/1V SCT-013-050: 15420
+   80A/26.6mA SCT-010: 41996
+   100A/50ma SCT-013-000: 27961
+   120A/40mA: SCT-016: 41880
 
 Additional Examples
 -------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry for split single phase meter
+    spi:
+      clk_pin: 18
+      miso_pin: 19
+      mosi_pin: 23
+
+    sensor:
+      - platform: atm90e32
+        cs_pin: 5
+        phase_a:
+          voltage:
+            name: "EMON Line Voltage A"
+          current:
+            name: "EMON CT1 Current"
+          power:
+            name: "EMON Active Power CT1"
+          reactive_power: 
+            name: "EMON Reactive Power CT1"
+          power_factor:
+            name: "EMON Power Factor CT1"
+          gain_voltage: 3920
+          gain_ct: 39473
+        phase_c:
+          current:
+            name: "EMON CT2 Current"
+          power:
+            name: "EMON Active Power CT2"
+          reactive_power: 
+            name: "EMON Reactive Power CT2"
+          power_factor:
+            name: "EMON Power Factor CT2"
+          gain_voltage: 3920
+          gain_ct: 39473
+        frequency:
+          name: "EMON Line Frequency"
+        chip_temperature:
+          name: "EMON Chip Temperature"
+        line_frequency: 50Hz
+        current_phases: 2
+        gain_pga: 2X
+        update_interval: 60s
 
 .. code-block:: yaml
 
