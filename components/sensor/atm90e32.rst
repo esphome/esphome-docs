@@ -64,7 +64,7 @@ Configuration variables:
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
   Defaults to ``2X`` which is suitable for the popular SCT-013-000 clamp.
 - **current_phases** (*Optional*): The number of phases the meter has, ``2`` or, ``3``
-  The 6 Channel Expandable Energy Meter should be set to 3, and the Split Single Phase meter should be set to 2. Defaults to ``3``.
+  The 6 Channel Expandable Energy Meter should be set to ``3``, and the Split Single Phase meter should be set to ``2``. Defaults to ``3``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
@@ -86,21 +86,21 @@ Update **gain_voltage** for all phases in your ESPHome yaml, recompile and uploa
 
 Here are common voltage calibrations for the **Split Single Energy Meter**:
    For meter <= v1.3:
-      42080 - 9v AC Transformer - Jameco 112336
-      32428 - 12v AC Transformer - Jameco 167151
+      - 42080 - 9v AC Transformer - Jameco 112336
+      - 32428 - 12v AC Transformer - Jameco 167151
    For meter > v1.4:
-      37106 - 9v AC Transformer - Jameco 157041
-      38302 - 9v AC Transformer - Jameco 112336
-      29462 - 12v AC Transformer - Jameco 167151
+      - 37106 - 9v AC Transformer - Jameco 157041
+      - 38302 - 9v AC Transformer - Jameco 112336
+      - 29462 - 12v AC Transformer - Jameco 167151
    For Meters >= v1.4 rev.3
-      3920 - 9v AC Transformer - Jameco 157041
+      - 3920 - 9v AC Transformer - Jameco 157041
 
 Here are common voltage calibrations for the **Expandable 6 Channel Energy Meter**:
    For meter <= v1.2:
-      42080 - 9v AC Transformer - Jameco 112336
-      32428 - 12v AC Transformer - Jameco 167151
+      - 42080 - 9v AC Transformer - Jameco 112336
+      - 32428 - 12v AC Transformer - Jameco 167151
    For meter > v1.3:
-      7305 - 9v AC Transformer - Jameco 157041
+      - 7305 - 9v AC Transformer - Jameco 157041
 
 Current
 ^^^^^^^
@@ -118,19 +118,19 @@ It is possible that the two identical CT current sensors will have different
 small. The current calibration can be done once and used on all sensors or
 repeated for each one.
 
-Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to 2X:
-   20A/25mA SCT-006: 10170
-   100A/50mA SCT-013-000: 25498
-   120A/40mA SCT-016: 39473
-   Magnalab 100A: 46539
+Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``2X``:
+   - 20A/25mA SCT-006: 10170
+   - 100A/50mA SCT-013-000: 25498
+   - 120A/40mA SCT-016: 39473
+   - Magnalab 100A: 46539
 
-Here are common current calibrations for the **Expandable 6 Channel Energy Meter** when **gain_pga** is set to 1X:
-   20A/25mA SCT-006: 11131
-   30A/1V SCT-013-030: 8650
-   50A/1V SCT-013-050: 15420
-   80A/26.6mA SCT-010: 41996
-   100A/50ma SCT-013-000: 27961
-   120A/40mA: SCT-016: 41880
+Here are common current calibrations for the **Expandable 6 Channel Energy Meter** when **gain_pga** is set to ``1X``:
+   - 20A/25mA SCT-006: 11131
+   - 30A/1V SCT-013-030: 8650
+   - 50A/1V SCT-013-050: 15420
+   - 80A/26.6mA SCT-010: 41996
+   - 100A/50ma SCT-013-000: 27961
+   - 120A/40mA: SCT-016: 41880
 
 Additional Examples
 -------------------
