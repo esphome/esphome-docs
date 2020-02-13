@@ -55,9 +55,9 @@ The `CircuitSetup Expandable 6 Channel Energy Meter <https://circuitsetup.us/ind
             name: "EMON Reactive Power CT1"
           power_factor:
             name: "EMON Power Factor CT1"
-          gain_voltage: 41820
-          gain_ct: 25498
-        phase_b:
+          gain_voltage: 3920
+          gain_ct: 39473
+        phase_c:
           current:
             name: "EMON CT2 Current"
           power:
@@ -66,13 +66,14 @@ The `CircuitSetup Expandable 6 Channel Energy Meter <https://circuitsetup.us/ind
             name: "EMON Reactive Power CT2"
           power_factor:
             name: "EMON Power Factor CT2"
-          gain_voltage: 41820
-          gain_ct: 25498
+          gain_voltage: 3920
+          gain_ct: 39473
         frequency:
           name: "EMON Line Frequency"
         chip_temperature:
           name: "EMON Chip Temperature"
         line_frequency: 50Hz
+        current_phases: 2
         gain_pga: 2X
         update_interval: 60s
 
@@ -94,9 +95,9 @@ Configuration variables:
   - **power_factor** (*Optional*): Use the power factor value on this phase. All options from 
     :ref:`Sensor <config-sensor>`.
   - **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power pack to household mains feed.
-    Defaults to ``41820``.
+    Defaults to ``7305``.
   - **gain_ct** (*Optional*, int): CT clamp calibration for this phase.
-    Defaults to ``25498``.
+    Defaults to ``27961``.
 
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as 1st phase.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
@@ -106,6 +107,8 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
   Defaults to ``2X`` which is suitable for the popular SCT-013-000 clamp.
+- **current_phases** (*Optional*): The number of phases the meter has, ``2`` or, ``3``
+  The 6 Channel Expandable Energy Meter should be set to 3, and the Split Single Phase meter should be set to 2. Defaults to ``3``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
@@ -113,10 +116,7 @@ Configuration variables:
 Calibration
 -----------
 
-This sensor needs calibration to show correct values. The default gain configuration is set to use the `SCT-013-000 <https://amzn.to/2E0KVvo>`__ 
-current transformers with gain_pga set to 2X, and the `Jameco Reliapro 9v AC transformer <https://amzn.to/2XcWJjI>`__. 
-A load which uses a known amount of current can be used to calibrate. For a more accurate calibration use a
-`Kill-A-Watt <https://amzn.to/2TXT7jx>`__ meter or similar, mains voltages can fluctuate depending on grid load.
+This sensor needs calibration to show correct values. The default gain configuration is set to use the `SCT-013-000 <https://amzn.to/2E0KVvo>` current transformers with gain_pga set to 2X, and the `Jameco Reliapro 9v 120V AC transformer <https://amzn.to/2XcWJjI>` to measure voltage and supply power to the meter boards. A load which uses a known amount of current can be used to calibrate. For a more accurate calibration use a `Kill-A-Watt <https://amzn.to/2TXT7jx>` meter or similar. Mains voltages can fluctuate depending on grid load.
 
 Voltage
 ^^^^^^^
@@ -127,6 +127,24 @@ value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calc
 ``New gain_voltage = (your voltage reading / ESPHome voltage reading) * existing gain_voltage value``
 
 Update **gain_voltage** for all phases in your ESPHome yaml, recompile and upload. Repeat as necessary.
+
+Here are common voltage calibrations for the Split Single Energy Meter:
+   For meter <= v1.3:
+      42080 - 9v AC Transformer - Jameco 112336
+      32428 - 12v AC Transformer - Jameco 167151
+   For meter > v1.4:
+      37106 - 9v AC Transformer - Jameco 157041
+      38302 - 9v AC Transformer - Jameco 112336
+      29462 - 12v AC Transformer - Jameco 167151
+   For Meters >= v1.4 rev.3
+      3920 - 9v AC Transformer - Jameco 157041
+
+Here are common voltage calibrations for the Expandable 6 Channel Energy Meter:
+   For meter <= v1.2:
+      42080 - 9v AC Transformer - Jameco 112336
+      32428 - 12v AC Transformer - Jameco 167151
+   For meter > v1.3:
+      7305 - 9v AC Transformer - Jameco 157041
 
 Current
 ^^^^^^^
@@ -143,6 +161,20 @@ It is possible that the two identical CT current sensors will have different
 **gain_ct** numbers due to variances in manufacturing, although it will be
 small. The current calibration can be done once and used on all sensors or
 repeated for each one.
+
+Here are common current calibration values for the Split Single Phase meter when PGA Gain is set to 2X:
+   20A/25mA SCT-006: 10170
+   100A/50mA SCT-013-000: 25498
+   120A/40mA SCT-016: 39473
+   Magnalab 100A: 46539
+
+Here are common current calibrations for the Expandable 6 Channel Energy Meter when PGA Gain is set to 1X:
+  20A/25mA SCT-006: 11131
+  30A/1V SCT-013-030: 8650
+  50A/1V SCT-013-050: 15420
+  80A/26.6mA SCT-010: 41996
+  100A/50ma SCT-013-000: 27961
+  120A/40mA: SCT-016: 41880
 
 Additional Examples
 -------------------
@@ -164,26 +196,27 @@ Additional Examples
             name: "EMON CT1 Current"
           power:
             name: "EMON Active Power CT1"
-          gain_voltage: 47660
+          gain_voltage: 7305
           gain_ct: 12577
         phase_b:
           current:
             name: "EMON CT2 Current"
           power:
             name: "EMON Active Power CT2"
-          gain_voltage: 47660
+          gain_voltage: 7305
           gain_ct: 12577
         phase_c:
           current:
             name: "EMON CT3 Current"
           power:
             name: "EMON Active Power CT3"
-          gain_voltage: 47660
+          gain_voltage: 7305
           gain_ct: 12577
         frequency:
           name: "EMON Line Frequency"
         line_frequency: 50Hz
-        gain_pga: 2X
+        current_phases: 3
+        gain_pga: 1X
         update_interval: 60s
       - platform: atm90e32
         cs_pin: 4
@@ -192,36 +225,37 @@ Additional Examples
             name: "EMON CT4 Current"
           power:
             name: "EMON Active Power CT4"
-          gain_voltage: 47660
+          gain_voltage: 7305
           gain_ct: 12577
         phase_b:
           current:
             name: "EMON CT5 Current"
           power:
             name: "EMON Active Power CT5"
-          gain_voltage: 47660
+          gain_voltage: 7305
           gain_ct: 12577
         phase_c:
           current:
             name: "EMON CT6 Current"
           power:
             name: "EMON Active Power CT6"
-          gain_voltage: 47660
+          gain_voltage: 7305
           gain_ct: 12577
         line_frequency: 50Hz
-        gain_pga: 2X
+        current_phases: 3
+        gain_pga: 1X
         update_interval: 60s
         
 
 .. code-block:: yaml
 
-    # Example CircuitSetup 6-channel without jumpers jp9-jp11 joined
+    # Example CircuitSetup 6-channel without jumpers jp9-jp11 joined or < meter v1.4
     # power is calculated in a template
     
     substitutions:
       disp_name: 6C
       update_time: 10s
-      current_cal: '32498'
+      current_cal: '27961'
   
     spi:
       clk_pin: 18
@@ -253,7 +287,8 @@ Additional Examples
         frequency:
           name: ${disp_name} Freq A
         line_frequency: 60Hz
-        gain_pga: 2X
+        current_phases: 3
+        gain_pga: 1X
         update_interval: ${update_time}
       - platform: atm90e32
         cs_pin: 4
@@ -280,7 +315,8 @@ Additional Examples
         frequency:
           name: ${disp_name} Freq B
         line_frequency: 60Hz
-        gain_pga: 2X
+        current_phases: 3
+        gain_pga: 1X
         update_interval: ${update_time}
     
     #Watts per channel
