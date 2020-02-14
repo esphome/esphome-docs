@@ -79,3 +79,4 @@ Sample Configurations
 - `ESPHome DIY Multisensor Cat Feeder <https://github.com/335iguy/diy-multisensor-cat-feeder>`__ by :ghuser:`335iguy`
 - `ESPHome config for Universal IR Remote ZJ-A1 (russian) <https://kvvhost.ru/2019/10/30/review-firmware-zj-a1-ir-remote/>`__ by `kvvhost <https://kvvhost.ru/>`__
 - `ESPHome Home Assistant Cheap Cat Feeder <https://github.com/rubengargar/diy-cheap-cat-feeder>`__ by :ghuser:`rubengargar`
+- `ESPHome configs <https://github.com/nuttytree/ESPHome-Devices>`__ by :ghuser:`nuttytree`
