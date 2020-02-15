@@ -95,7 +95,7 @@ Configuration variables:
 .. _tm1651-turn_off:
 
 ``tm1651.turn_off`` Action
--------------------------
+--------------------------
 
 This :ref:`Action <config-action>` turns off all the LEDs.
 
