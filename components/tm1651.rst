@@ -92,6 +92,40 @@ Configuration variables:
 - **brightness** (**Required**, :ref:`templatable <config-templatable>`, int): There is three levels of brightness
   (``1``, ``2`` or ``3``) from lowest to highest brightness.
 
+.. _tm1651-turn_off:
+
+``tm1651.turn_on`` Action
+---------------------------
+
+This :ref:`Action <config-action>` turns off all the LEDs.
+
+.. code-block:: yaml
+
+    on_...:
+      - tm1651.turn_off:
+          id: tm1651_battery
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
+
+.. _tm1651-turn_on:
+
+``tm1651.turn_on`` Action
+---------------------------
+
+This :ref:`Action <config-action>` turns on the LEDs.
+
+.. code-block:: yaml
+
+    on_...:
+      - tm1651.turn_on:
+          id: tm1651_battery
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
+
 Advanced Configuration
 ----------------------
 
