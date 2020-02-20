@@ -38,7 +38,7 @@ T1
           number: GPIO0
           mode: INPUT_PULLUP
           inverted: True
-        id: button
+        id: button_1
         on_press:
           then:
             - light.toggle: light_1
@@ -101,7 +101,7 @@ T2
           number: GPIO0
           mode: INPUT_PULLUP
           inverted: True
-        id: button
+        id: button_1
         on_press:
           then:
             - light.toggle: light_1
@@ -111,7 +111,7 @@ T2
           number: GPIO9
           mode: INPUT_PULLUP
           inverted: True
-        id: button
+        id: button_2
         on_press:
           then:
             - light.toggle: light_2
@@ -172,7 +172,7 @@ T3
           number: GPIO0
           mode: INPUT_PULLUP
           inverted: True
-        id: button
+        id: button_1
         on_press:
           then:
             - light.toggle: light_1
@@ -182,7 +182,7 @@ T3
           number: GPIO9
           mode: INPUT_PULLUP
           inverted: True
-        id: button
+        id: button_2
         on_press:
           then:
             - light.toggle: light_2
@@ -192,7 +192,7 @@ T3
           number: GPIO10
           mode: INPUT_PULLUP
           inverted: True
-        id: button
+        id: button_3
         on_press:
           then:
             - light.toggle: light_3
