@@ -37,12 +37,12 @@ Configuration variables:
 - **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults
   to https://esphome.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc). Can be set to empty string.
 - **css_include** (*Optional*, local file): Path to local file to be included in web server index page. 
-  Contents of this file will be inlined in the rendered page inside <style type='text/css'></style> tags.
+  Contents of this file will be served as ``/0.css`` and used as CSS stylesheet by internal webserver.
   Useful when building device without internet access, where you want to use built-in AP and webserver.
 - **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
   to https://esphome.io/_static/webserver-v1.min.js. Can be set to empty string.
 - **js_include** (*Optional*, local file): Path to local file to be included in web server index page.
-  Contents of this file will be inlined in the rendered page inside <script type='text/javascript'></script> tags.
+  Contents of this file will be served as ``/0.js`` and used as JS script by internal webserver.
   Useful when building device without internet access, where you want to use built-in AP and webserver.
 - **auth** (*Optional*): Enables basic authentication with username and password.
 
