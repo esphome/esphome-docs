@@ -1,5 +1,5 @@
 SSD1325/7 OLED Display
-====================
+======================
 
 .. seo::
     :description: Instructions for setting up SSD1325/7 OLED display drivers.
