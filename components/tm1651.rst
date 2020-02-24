@@ -32,6 +32,26 @@ Configuration variables:
 - **dio_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): DIO pin
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. _tm1651-set_level_percent_action:
+
+``tm1651.set_level_percent`` Action
+-----------------------------------
+
+This :ref:`Action <config-action>` changes the level of the battery display at runtime.
+Automatically calculates input level in percentages to actual level for the display.
+
+.. code-block:: yaml
+
+    on_...:
+      - tm1651.set_level_percent:
+          id: tm1651_battery
+          level_percent: 50
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
+- **level_percent** (**Required**, :ref:`templatable <config-templatable>`, int): Level from 0 to 100
+
 .. _tm1651-set_level_action:
 
 ``tm1651.set_level`` Action
@@ -44,12 +64,12 @@ This :ref:`Action <config-action>` changes the level of the battery display at r
     on_...:
       - tm1651.set_level:
           id: tm1651_battery
-          level: 50
+          level: 5
 
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
-- **level** (**Required**, :ref:`templatable <config-templatable>`, int): Level from 9 to 100
+- **level** (**Required**, :ref:`templatable <config-templatable>`, int): Level from 0 to 7
 
 .. _tm1651-set_brightness_action:
 
@@ -70,6 +90,40 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
 - **brightness** (**Required**, :ref:`templatable <config-templatable>`, int): There is three levels of brightness
   (``1``, ``2`` or ``3``) from lowest to highest brightness.
+
+.. _tm1651-turn_off:
+
+``tm1651.turn_off`` Action
+--------------------------
+
+This :ref:`Action <config-action>` turns off all the LEDs.
+
+.. code-block:: yaml
+
+    on_...:
+      - tm1651.turn_off:
+          id: tm1651_battery
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
+
+.. _tm1651-turn_on:
+
+``tm1651.turn_on`` Action
+-------------------------
+
+This :ref:`Action <config-action>` turns on the LEDs.
+
+.. code-block:: yaml
+
+    on_...:
+      - tm1651.turn_on:
+          id: tm1651_battery
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the TM1651.
 
 Advanced Configuration
 ----------------------
