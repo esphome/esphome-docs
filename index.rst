@@ -249,6 +249,7 @@ Fan Components
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
     Speed Fan, components/fan/speed, fan.svg
+    Tuya Fan, components/fan/tuya, fan.svg
 
 Display Components
 ------------------
