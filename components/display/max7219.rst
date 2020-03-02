@@ -207,6 +207,8 @@ All 7-Segment Characters
 ------------------------------ ------------------------------
 |max721908|                    ``_``
 ------------------------------ ------------------------------
+|max721909|                    ``=``
+------------------------------ ------------------------------
 |max721906|                    ``|``
 ------------------------------ ------------------------------
 |max72190D|                    ``c``
@@ -307,6 +309,8 @@ All 7-Segment Characters
 .. |max721901| image:: images/max7219/seg01.svg
     :class: component-image
 .. |max721908| image:: images/max7219/seg08.svg
+    :class: component-image
+.. |max721909| image:: images/max7219/seg09.svg
     :class: component-image
 .. |max721906| image:: images/max7219/seg06.svg
     :class: component-image
