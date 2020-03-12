@@ -23,7 +23,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): This is the name of the node. It
-  should always be unique in your esphome network. May only contain upper/lowercase
+  should always be unique in your esphome network. May only contain lowercase
   characters, digits and underscores. See :ref:`esphome-changing_node_name`.
 - **platform** (**Required**, string): The platform your board is on,
   either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
