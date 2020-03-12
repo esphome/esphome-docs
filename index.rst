@@ -288,6 +288,7 @@ Text Sensor Components
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
 
 Climate Components
 ------------------
