@@ -1,5 +1,5 @@
-Zemismart LED RGBW Downlights
-=============================
+Zemismart LED RGBW/RGBWW Downlights
+===================================
 
 The Zemismart LED RGBW Downlight is a tuya based downlight available from various retailers online or from `zemismart.com <https://www.zemismart.com>`__ direct.
 
@@ -116,6 +116,7 @@ firmware can be uploaded allowing you to control the smart plugs via Home Assist
 Thanks to `@1972rx2 <https://community.home-assistant.io/u/1972rx2>`__ for creating the below ESPHome configuration
 which this cookbook article by `@cryptelli <https://community.home-assistant.io/u/cryptelli>`__ is based on.
 
+Depending ion the type of your light you either need a config using my9231 driver (RGBW) or 5 pwm channels (RGBWW).
 
 3.1 Zemismart LED RGBW Downlight YAML
 *************************************
@@ -166,6 +167,42 @@ which this cookbook article by `@cryptelli <https://community.home-assistant.io/
         green: output_green
         blue: output_blue
         white: output_white
+
+3.2. Zemismart LED RGBWw Downlight YAML
+***************************************
+
+Known devices: *Zemismart 2,5 zoll WiFi RGBW Led Downlight 7w*
+
+.. code-block:: yaml
+
+    output:
+      - platform: esp8266_pwm
+        pin: 14
+        id: output_blue
+      - platform: esp8266_pwm
+        pin: 12
+        id: output_green
+      - platform: esp8266_pwm
+        pin: 4
+        id: output_red
+      - platform: esp8266_pwm
+        pin: 5
+        id: output_coldwhite
+      - platform: esp8266_pwm
+        pin: 13
+        id: output_warmwhite
+
+    light:
+      - platform: rgbww
+        name: '${device_name} Light'
+        default_transition_length: 0s
+        red: output_red
+        green: output_green
+        blue: output_blue
+        cold_white: output_coldwhite
+        warm_white: output_warmwhite
+        cold_white_color_temperature: 6500 K
+        warm_white_color_temperature: 2700 K
 
 4. Adding to Home Assistant
 ---------------------------
