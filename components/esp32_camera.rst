@@ -244,7 +244,7 @@ Configuration for TTGO T-Journal
       
       
 Configuration for TTGO-Camera Plus
---------------------------------
+----------------------------------
 
 .. code-block:: yaml
 
