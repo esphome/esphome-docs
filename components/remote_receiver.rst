@@ -33,6 +33,7 @@ Configuration variables:
   - **lg**: Decode and dump LG infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
+  - **pioneer**: Decode and dump Pioneer infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **samsung**: Decode and dump Samsung infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
@@ -76,6 +77,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_panasonic** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   panasonic remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::PanasonicData`
+  is passed to the automation for use in lambdas.
+- **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  pioneer remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::PioneerData`
   is passed to the automation for use in lambdas.
 
 .. _remote-receiver-binary-sensor:
@@ -148,6 +152,10 @@ Remote code selection (exactly one of these has to be included):
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **command** (**Required**, int): The command.
+
+- **pioneer**: Trigger on a decoded Pioneer remote code with the given data.
+
+  - **rc_code_1** (**Required**, int): The remote control code trigger on, see dumper output for more details.
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 

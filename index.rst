@@ -150,6 +150,7 @@ Sensor Components
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
     TMP102, components/sensor/tmp102, tmp102.jpg
+    TMP117, components/sensor/tmp117, tmp117.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Tx20, components/sensor/tx20, tx20.jpg
@@ -250,6 +251,7 @@ Fan Components
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
     Speed Fan, components/fan/speed, fan.svg
+    Tuya Fan, components/fan/tuya, fan.svg
 
 Display Components
 ------------------
@@ -259,6 +261,7 @@ Display Components
     Display Core, components/display/index, folder-open.svg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
+    TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
@@ -287,6 +290,7 @@ Text Sensor Components
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
 
 Climate Components
 ------------------
@@ -296,10 +300,7 @@ Climate Components
     Climate Core, components/climate/index, folder-open.svg
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
-    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
-    Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
-    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
-    Fujitsu General IR Remote, components/climate/fujitsu_general, air-conditioner.svg
+    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
 
 Misc Components
 ---------------
