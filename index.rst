@@ -40,6 +40,8 @@ Guides
     Supporters, guides/supporters, heart.svg
     DIY Examples, guides/diy, earth.svg
 
+    Configuration types, guides/configuration-types, puzzle.svg
+
 .. _devices:
 
 Devices
