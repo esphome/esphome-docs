@@ -27,8 +27,8 @@ Configuration variables:
 ------------------------
 
 - **pin** (**Required**, :ref:`config-pin`): The pin to receive the remote signal on.
-- **dump** (*Optional*, list): Decode and dump these remote codes in the logs. Set to ``all`` to
-  dump all available codecs:
+- **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG). 
+  Set to ``all`` to dump all available codecs:
 
   - **lg**: Decode and dump LG infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
