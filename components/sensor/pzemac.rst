@@ -44,10 +44,12 @@ to some pins on your board and the baud rate set to 9600.
       - platform: pzemac
         current:
           name: "PZEM-004T V3 Current"
-        voltage:
-          name: "PZEM-004T V3 Voltage"
         power:
           name: "PZEM-004T V3 Power"
+        voltage:
+          name: "PZEM-004T V3 Voltage"
+        energy:
+          name: "PZEM-004T V3 Energy"
         frequency:
           name: "PZEM-004T V3 Frequency"
         power_factor:
@@ -63,6 +65,8 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **voltage** (*Optional*): Use the voltage value of the sensor in volts.
   All options from :ref:`Sensor <config-sensor>`.
+- **energy** (*Optional*): Use the (active) energy value of the sensor in watt*hours. All options from
+  :ref:`Sensor <config-sensor>`.
 - **frequency** (*Optional*): Use the frequency value of the sensor in hertz.
   All options from :ref:`Sensor <config-sensor>`.
 - **power_factor** (*Optional*): Use the power factor value of the sensor.
