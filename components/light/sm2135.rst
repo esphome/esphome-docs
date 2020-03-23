@@ -1,0 +1,75 @@
+SM2135 Output component
+=============
+
+.. seo::
+    :description: Instructions for setting up SM2135 controlled RGBWW lights like the LCS GU10, E14 and E27 lights.
+    :image: color_lens.png
+
+.. _Introduction:
+
+Introduction
+---------
+
+The ``sm2135`` output component allows you to control RGBWW lights
+in ESPHome.
+
+One major not-a-bug-but-a-feature of these controllers is that they don't support saturation, in that you can send
+either RGB or Cold White/Warm White commands. Whatever is sent last is executed. You can either set up the lamp as two lamps
+or simply leave the W slider at the maximum value and adjust either the temperature or the color. Note that transitions don't
+work if you're going from one to the other.
+
+Having the sm2135 as an output component allows you to use many types of lights, but the most obvious one is RGBWW. 
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sm2135:
+        data_pin: GPIO12
+        clock_pin: GPIO14
+    
+    output:
+      - platform: sm2135
+        id: output_red
+        channel: 0
+      - platform: sm2135
+        id: output_green
+        channel: 1
+      - platform: sm2135
+        id: output_blue
+        channel: 2
+      - platform: sm2135
+        id: output_white
+        channel: 3
+      - platform: sm2135
+        id: output_warmwhite
+        channel: 4
+
+    light:
+      - platform: rgbww
+        name: "$devicename RGBWW"
+        default_transition_length: 1s
+        cold_white: output_white
+        warm_white: output_warmwhite
+        cold_white_color_temperature: 6536 K
+        warm_white_color_temperature: 2000 K
+        restore_mode: ALWAYS_ON
+        red: output_red
+        green: output_green
+        blue: output_blue
+
+Configuration variables:
+************************
+For the sm2135 module:
+
+- **data_pin** (**Required**, string): The pin connected to data.
+- **clock_pin** (**Required**, string): The pin connected to clock.
+For the outputs:
+
+- **id** (**Required**, string): The name of the sm2135 channel.
+- **channel** (**Required**, string): The number of the sm2135 channel.
+
+See Also
+--------
+
+- :doc:`/components/light/index`
+- :ghedit:`Edit`
