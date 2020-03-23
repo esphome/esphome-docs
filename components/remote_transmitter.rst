@@ -30,11 +30,12 @@ remote signals.
 
     # Individual switches
     switch:
-      - platform: remote_transmitter
+      - platform: template
         name: "Panasonic TV Off"
-        panasonic:
-          address: 0x4004
-          command: 0x100BCBD
+        turn_on_action:
+          remote_transmitter.transmit_panasonic:
+            address: 0x4004
+            command: 0x100BCBD
 
 Configuration variables:
 ------------------------
