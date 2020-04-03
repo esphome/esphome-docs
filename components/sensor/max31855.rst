@@ -8,7 +8,7 @@ MAX31855 K-Type Thermocouple Temperature Sensor
 The ``max31855`` temperature sensor allows you to use your max31855 thermocouple
 temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX31855.pdf>`__) with ESPHome
 
-As the communication with the MAX66775 is done using SPI, you need
+As the communication with the MAX31855 is done using SPI, you need
 to have an :ref:`spi bus <spi>` in your configuration with the **miso_pin** set (mosi is not required).
 
 Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or ``SO`` for short),
@@ -50,8 +50,7 @@ See Also
 - :doc:`dallas`
 - :doc:`dht`
 - :doc:`adc`
-- :doc:`sht3xd`
 - :doc:`max6675`
 - `MAX31855 Library <https://github.com/adafruit/Adafruit-MAX31855-library>`__ by `Adafruit <https://www.adafruit.com/>`__
-- :apiref:`sensor/max31855_sensor.h`
+- :apiref:`max31855/max31855.h`
 - :ghedit:`Edit`

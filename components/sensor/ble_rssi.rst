@@ -14,7 +14,6 @@ instructions for setting up this platform.
 
     # Example configuration entry
     esp32_ble_tracker:
-      scan_interval: 300s
 
     sensor:
       - platform: ble_rssi
@@ -35,5 +34,5 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
-- :apiref:`esp32_ble_tracker.h`
+- :apiref:`ble_rssi/ble_rssi_sensor.h`
 - :ghedit:`Edit`

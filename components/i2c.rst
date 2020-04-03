@@ -20,6 +20,7 @@ put on external ones.
       sda: 21
       scl: 22
       scan: True
+      id: bus_a
 
 Configuration variables:
 ------------------------
@@ -33,9 +34,32 @@ Configuration variables:
   Defaults to ``True``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
   Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
+- **id** (*Optional*, :ref:`config-id`) Manually specify the ID for this I²C bus if you need multiple I²C buses.
+
+.. note::
+
+    If the device can support multiple I²C buses (ESP32 has 2) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
+
+    .. code-block:: yaml
+
+        # Example configuration entry
+        i2c:
+          - id: bus_a
+            sda: 13
+            scl: 16
+            scan: True
+          - id: bus_b
+            sda: 14
+            scl: 15
+            scan: True
+       # Sensors should be specified as follows
+       - platform: bme680
+         i2c_id: bus_b
+         address: 0x76
+         # ...
 
 See Also
 --------
 
-- :apiref:`i2c_component.h`
+- :apiref:`i2c/i2c.h`
 - :ghedit:`Edit`

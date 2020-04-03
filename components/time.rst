@@ -6,11 +6,11 @@ Time
 .. seo::
     :description: Instructions for setting up real time clock sources in ESPHome like network based time.
     :image: clock-outline.png
-    :keywords: NTP, SNTP, RTC
+    :keywords: GPS, NTP, RTC, SNTP
 
 The ``time`` component allows you to set up real time clock time sources for ESPHome.
 You can then get the current time in :ref:`lambdas <config-lambda>`.
-Currently only sntp (internet-based) and homeassistant time sources are supported.
+Currently only sntp (internet-based), homeassistant time and GPS sources are supported.
 
 Home Assistant Time Source
 --------------------------
@@ -61,6 +61,29 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+GPS Time Source
+---------------
+
+You first need to set up the :doc:`GPS </components/gps>` component.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: gps
+        id: gps_time
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
+- **timezone** (*Optional*, string): Manually tell ESPHome what timezone to use with `this format
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
+  or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
+  <Region>/<City>. ESPHome tries to automatically infer the timezone string based on the timezone of the computer
+  that is running ESPHome, but this might not always be accurate.
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
+  a cron-like syntax. See :ref:`time-on_time`.
+
 Use In Lambdas
 --------------
 
@@ -99,7 +122,7 @@ created based on a given format. If you want to get the current time attributes,
 -------------------- ---------------------------------------- ---------------------------------------- --------------------
 ``.is_dst``          Is daylight savings time                 false, true                              true
 -------------------- ---------------------------------------- ---------------------------------------- --------------------
-``.time``            Unix epoch time (seconds since UTC       [-2147483648 - 2147483647] (negative     1534606002
+``.timestamp``       Unix epoch time (seconds since UTC       [-2147483648 - 2147483647] (negative     1534606002
                      Midnight January 1, 1970)                values for time past January 19th 2038)
 -------------------- ---------------------------------------- ---------------------------------------- --------------------
 ``.is_valid()``      Basic check if the time is valid         false, true                              true
@@ -311,5 +334,5 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
 See Also
 --------
 
-- :apiref:`time/rtc_component.h`
+- :apiref:`time/real_time_clock.h`
 - :ghedit:`Edit`

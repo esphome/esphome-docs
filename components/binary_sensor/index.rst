@@ -64,7 +64,9 @@ Binary Sensor Filters
 ---------------------
 
 With binary sensor filters you can customize how ESPHome handles your binary sensor values even more.
-They are similar to :ref:`Sensor Filters <sensor-filters>`.
+They are similar to :ref:`Sensor Filters <sensor-filters>`. All filters are processed in a pipeline.
+This means all binary sensor filters are processed in the order given in the configuration (so order
+of these entries matters!)
 
 .. code-block:: yaml
 
@@ -75,6 +77,7 @@ They are similar to :ref:`Sensor Filters <sensor-filters>`.
           - invert:
           - delayed_on: 100ms
           - delayed_off: 100ms
+          - delayed_on_off: 100ms
           - lambda: |-
               if (id(other_binary_sensor).state) {
                 return x;
@@ -93,6 +96,9 @@ Supported filters:
   an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
   Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
   **Useful for debouncing push buttons**.
+- **delayed_on_off**: Only send an ON or OFF value if the binary sensor has stayed in the same state
+  for at least the specified time period.
+  **Useful for debouncing binary switches**.
 - **lambda**: Specify any :ref:`lambda <config-lambda>` for more complex filters. The input value from
   the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
   the filter chain.
@@ -189,6 +195,27 @@ Configuration variables:
 - **min_length** (*Optional*, :ref:`config-time`): The minimum duration the click should last. Defaults to ``50ms``.
 - **max_length** (*Optional*, :ref:`config-time`): The maximum duration the click should last. Defaults to ``350ms``.
 - See :ref:`Automation <automation>`.
+
+.. note::
+
+    Multiple ``on_click`` entries can be defined like this (see also :ref:`binary_sensor-on_multi_click`
+    for more complex matching):
+
+    .. code-block:: yaml
+
+        binary_sensor:
+          - platform: gpio
+            # ...
+            on_click:
+            - min_length: 50ms
+              max_length: 350ms
+              then:
+                - switch.turn_off: relay_1
+            - min_length: 500ms
+              max_length: 1000ms
+              then:
+                - switch.turn_on: relay_1
+
 
 .. _binary_sensor-on_double_click:
 
@@ -300,10 +327,7 @@ This :ref:`Condition <config-condition>` checks if the given binary sensor is ON
           # Same syntax for is_off
           binary_sensor.is_on: my_binary_sensor
 
-          # With duration, true if has been on for at least 5s
-          binary_sensor.is_on:
-            id: my_binary_sensor
-            for: 5s
+.. _binary_sensor-lambda_calls:
 
 lambda calls
 ************

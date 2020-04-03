@@ -45,7 +45,7 @@ In ESPHome, a **sensor** is some hardware device (like a BMP180) that periodical
 sends out numbers, for example a temperature sensor that periodically publishes its temperature **state**.
 
 Another important abstraction in ESPHome is the concept of a **component**. In ESPHome,
-a **component** is an object with a *lifecycle* managed by the :cpp:class:`Application` class.
+a **component** is an object with a *lifecycle* managed by the :apiclass:`Application` class.
 What does this mean? Well if you've coded in Arduino before you might know the two special methods
 ``setup()`` and ``loop()``. ``setup()`` is called one time when the node boots up and ``loop()`` is called
 very often and this is where you can do things like read out sensors etc.
@@ -59,9 +59,7 @@ So, let's now take a look at some code: This is an example of a custom component
 
     #include "esphome.h"
 
-    using namespace esphome;
-
-    class MyCustomSensor : public Component, public sensor::Sensor {
+    class MyCustomSensor : public Component, public Sensor {
      public:
       void setup() override {
         // This will be called by App.setup()
@@ -71,37 +69,34 @@ So, let's now take a look at some code: This is an example of a custom component
       }
     };
 
-In the first two lines, we're importing ESPHome so you can use the APIs and telling the compiler that
-we want to use the esphome "namespace" (you don't need to know what this is now, it's basically just
-there to have a clean, well-structured codebase).
+In the first two lines, we're importing ESPHome so you can use the APIs via the ``#include``
+statement.
 
 Let's now also take a closer look at this line, which you might not be too used to when writing Arduino code:
 
 .. code-block:: cpp
 
-    class MyCustomSensor : public Component, public sensor::Sensor {
+    class MyCustomSensor : public Component, public Sensor {
 
 What this line is essentially saying is that we're defining our own class that's called ``MyCustomSensor``
-which is also a subclass of :cpp:class:`Component` and :cpp:class:`sensor::Sensor`
-(in the namespace ``sensor::``). As described before, these two "parent" classes have
-special semantics that we will make use of.
+which is also a subclass of :apiclass:`Component` and :apiclass:`Sensor <sensor::Sensor>`.
+As described before, these two "parent" classes have special semantics that we will make use of.
 
 We *could* go implement our own sensor code now by replacing the contents of ``setup()`` and ``loop()``.
 In ``setup()`` we would initialize the sensor and in ``loop()`` we would read out the sensor and publish
 the latest values.
 
 However, there's a small problem with that approach: ``loop()`` gets called very often (about 60 times per second).
-If we would publish a new state each time that method is called we would quickly make the node unresponsive
-since the MQTT protocol wasn't really designed for 60 messages per second.
+If we would publish a new state each time that method is called we would quickly make the node unresponsive.
 
-So this fix this, we will use an alternative class to :cpp:class:`Component`: :cpp:class`PollingComponent`.
+So this fix this, we will use an alternative class to :apiclass:`Component`: :apiclass:`PollingComponent`.
 This class is for situations where you have something that should get called repeatedly with some **update interval**.
-In the code above, we can simply replace :cpp:class:`Component` by :cpp:class:`PollingComponent` and
+In the code above, we can simply replace :apiclass:`Component` by :apiclass:`PollingComponent` and
 ``loop()`` by a special method ``update()`` which will be called with an interval we can specify.
 
 .. code-block:: cpp
 
-    class MyCustomSensor : public PollingComponent, public sensor::Sensor {
+    class MyCustomSensor : public PollingComponent, public Sensor {
      public:
       // constructor
       MyCustomSensor() : PollingComponent(15000) {}
@@ -115,11 +110,11 @@ In the code above, we can simply replace :cpp:class:`Component` by :cpp:class:`P
     };
 
 
-Our code has slightly changed, as explained above we're now inheriting from :cpp:class:`PollingComponent` instead of
-just :cpp:class:`Component`. Additionally, we now have a new line: the constructor. You also don't really need to
+Our code has slightly changed, as explained above we're now inheriting from :apiclass:`PollingComponent` instead of
+just :apiclass:`Component`. Additionally, we now have a new line: the constructor. You also don't really need to
 know much about constructors here, so to simplify let's just say this is where we "initialize" the custom sensor.
 
-In this constructor we're telling the compiler that we want :cpp:class:`PollingComponent` to be instantiated with an
+In this constructor we're telling the compiler that we want :apiclass:`PollingComponent` to be instantiated with an
 *update interval* of 15s, or 15000 milliseconds (ESPHome uses milliseconds internally).
 
 Let's also now make our sensor actually publish values in the ``update()`` method:
@@ -220,8 +215,6 @@ Next, include the library at the top of your custom sensor file you created prev
     #include "esphome.h"
     #include "Adafruit_BMP085.h"
 
-    using namespace esphome;
-
     // ...
 
 Then update the sensor for BMP180 support:
@@ -230,7 +223,7 @@ Then update the sensor for BMP180 support:
 
     // ...
 
-    class MyCustomSensor : public PollingComponent, public sensor::Sensor {
+    class MyCustomSensor : public PollingComponent, public Sensor {
      public:
       Adafruit_BMP085 bmp;
 
@@ -301,8 +294,8 @@ Let's look at what that could look like in code:
     class MyCustomSensor : public PollingComponent {
      public:
       Adafruit_BMP085 bmp;
-      sensor::Sensor *temperature_sensor = new sensor::Sensor();
-      sensor::Sensor *pressure_sensor = new sensor::Sensor();
+      Sensor *temperature_sensor = new Sensor();
+      Sensor *pressure_sensor = new Sensor();
 
       MyCustomSensor() : PollingComponent(15000) { }
 
@@ -366,6 +359,37 @@ Configuration variables:
   must equal the number of items in the ``return`` statement of the ``lambda``.
 
   - All options from :ref:`Sensor <config-sensor>`.
+
+Logging in Custom Components
+----------------------------
+
+It is possible to log inside of custom components too. You can use the provided ``ESP_LOGx``
+functions for this.
+
+.. code-block:: cpp
+
+    ESP_LOGD("custom", "This is a custom debug message");
+    // Levels:
+    //  - ERROR: ESP_LOGE
+    //  - WARNING: ESP_LOGW
+    //  - INFO: ESP_LOGI
+    //  - DEBUG: ESP_LOGD
+    //  - VERBOSE: ESP_LOGV
+    //  - VERY_VERBOSE: ESP_LOGVV
+
+    ESP_LOGD("custom", "The value of sensor is: %f", this->state);
+
+See :ref:`display-printf` for learning about how to use formatting in log strings.
+
+.. note::
+
+    On ESP8266s you need to disable storing strings in flash to use logging in custom code.
+
+    .. code-block:: yaml
+
+        logger:
+          level: DEBUG
+          esp8266_store_log_strings_in_flash: False
 
 See Also
 --------

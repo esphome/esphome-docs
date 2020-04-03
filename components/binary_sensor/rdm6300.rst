@@ -46,7 +46,29 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a tag is read. See :ref:`rdm6300-on_tag`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
+
+.. _rdm6300-on_tag:
+
+``on_tag``
+----------
+
+This automation will be triggered when the RDM6300 module responds with a tag.
+
+The parameter ``x`` this trigger provides is of type ``uint32_t`` and is the tag UID as a 32-bit
+unsigned integer.
+
+.. code-block:: yaml
+
+    rdm6300:
+      # ...
+      on_tag:
+        then:
+          - mqtt.publish:
+              topic: rdm6300/tag
+              payload: !lambda 'return uint32_to_string(x);'
 
 .. _rdm6300-tag:
 
@@ -104,5 +126,5 @@ See Also
 
 - :doc:`pn532`
 - :doc:`/components/binary_sensor/index`
-- :apiref:`binary_sensor/rdm6300_component.h`
+- :apiref:`rdm6300/rdm6300.h`
 - :ghedit:`Edit`

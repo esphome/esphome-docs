@@ -45,25 +45,19 @@ for f in sorted(Path('.').glob('**/*.rst')):
 
     lines = content.splitlines(keepends=False)
 
-    # Check whitespace at end of line
-    for i, line in enumerate(lines):
-        if line.rstrip() != line:
-            errors.append("Lines must not contain spaces at the end of the line. Please "
-                          "remove spaces at the end of {}:{}".format(f, i+1))
-
-    for i, line in enumerate(lines):
-        if i == 0:
-            continue
-
-        if not section_regex.match(line):
-            continue
-        line_above = lines[i - 1]
-        if len(line_above) != len(line):
-            errors.append("The title length must match the bar length below it. See {}:{}"
-                          "".format(f, i+1))
-        if i + 1 < len(lines) and lines[i + 1]:
-            errors.append("Empty line after heading is missing. Please insert an "
-                          "empty line. See {}:{}".format(f, i+1))
+    # for i, line in enumerate(lines):
+    #     if i == 0:
+    #         continue
+    #
+    #     if not section_regex.match(line):
+    #         continue
+    #     line_above = lines[i - 1]
+    #     if len(line_above) != len(line):
+    #         errors.append("The title length must match the bar length below it. See {}:{}"
+    #                       "".format(f, i+1))
+    #     if i + 1 < len(lines) and lines[i + 1]:
+    #         errors.append("Empty line after heading is missing. Please insert an "
+    #                       "empty line. See {}:{}".format(f, i+1))
 
     for i, line in enumerate(lines):
         m = directive_regex.match(line)
@@ -102,14 +96,6 @@ for f in sorted(Path('.').glob('**/*.rst')):
                 errors.append("Directive '{}' must be indented with 4 spaces, not {}. See "
                               "{}:{}".format(directive_name, num_indent, f, j+1))
                 break
-
-    # Check line length
-    for i, line in enumerate(lines):
-        max_line_length = 160
-        if len(line) > max_line_length:
-            errors.append("Lines must not be longer than {} characters. Line {}:{} is {} "
-                          "characters long. Please insert newlines."
-                          "".format(max_line_length, f, i+1, len(line)))
 
     for i, line in enumerate(lines):
         if esphome_io_regex.search(line):

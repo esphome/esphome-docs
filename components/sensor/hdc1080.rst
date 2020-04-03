@@ -33,7 +33,7 @@ required to be set up in your configuration for this sensor to work.
         temperature:
           name: "Living Room Temperature"
         humidity:
-          name: "Living Room Pressure"
+          name: "Living Room Humidity"
         update_interval: 60s
 
 Configuration variables:
@@ -66,6 +66,6 @@ See Also
 - :doc:`dht12`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`sensor/hdc1080_component.h`
+- :apiref:`hdc1080/hdc1080.h`
 - `HDC1080 Library <https://github.com/closedcube/ClosedCube_HDC1080_Arduino>`__ by `ClosedCube <https://www.tindie.com/stores/closedcube/>`__
 - :ghedit:`Edit`

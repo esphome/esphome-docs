@@ -38,5 +38,5 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`display/nextion.h`
+- :apiref:`nextion/nextion.h`
 - :ghedit:`Edit`

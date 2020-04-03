@@ -46,6 +46,7 @@ Configuration variables:
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
 - **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
 - **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
+- **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
 
 .. _uart-hardware_uarts:
@@ -68,9 +69,31 @@ The ESP8266 has two UARTs; the second of which is TX-only. Only a limited set of
 use either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``, or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``. ``UART1`` must
 use ``tx_pin: GPIO2``. Any other combination of pins will result in use of a software UART.
 
+.. _uart-write_action:
+
+``uart.write`` Action
+---------------------
+
+This :ref:`Action <config-action>` sends a defined UART signal to the given UART bus.
+
+.. code-block:: yaml
+
+    on_...:
+      - uart.write: 'Hello World'
+
+      # For escape characters, you must use double quotes!
+      - uart.write: 'Hello World\r\n'
+
+      # Raw data
+      - uart.write: [0x00, 0x20, 0x42]
+
+      # Templated, return type is std::vector<uint8_t>
+      - uart.write: !lambda
+          return {0x00, 0x20, 0x42};
+
 See Also
 --------
 
 - :doc:`/components/logger`
-- :apiref:`uart_component.h`
+- :apiref:`uart/uart.h`
 - :ghedit:`Edit`

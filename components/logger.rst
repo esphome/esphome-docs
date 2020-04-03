@@ -21,17 +21,22 @@ Configuration variables:
 
 -  **baud_rate** (*Optional*, int): The baud rate to use for the serial
    UART port. Defaults to ``115200``. Set to ``0`` to disable logging via UART.
--  **tx_buffer_size** (*Optional*, int): The size of the buffer used
-   for log messages. Decrease this if you’re having memory problems.
-   Defaults to ``512``.
--  **hardware_uart** (*Optional*, string): The Hardware UART to use for logging.
-   Defaults to ``UART0``.
 -  **level** (*Optional*, string): The global log level. Any log message
    with a lower severity will not be shown. Defaults to ``DEBUG``.
 -  **logs** (*Optional*, mapping): Manually set the log level for a
    specific component or tag. See :ref:`Manual Log Levels for more
    information <logger-manual_tag_specific_levels>`.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+Advanced settings:
+
+-  **tx_buffer_size** (*Optional*, int): The size of the buffer used
+   for log messages. Decrease this if you’re having memory problems.
+   Defaults to ``512``.
+-  **hardware_uart** (*Optional*, string): The Hardware UART to use for logging.
+   Defaults to ``UART0``.
+-  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
+   log strings in the flash section of the device (uses more memory). Defaults to true.
 
 .. _logger-hardware_uarts:
 
@@ -49,8 +54,8 @@ Possible Hardware UART configurations:
 - ``UART0`` - TX: GPIO1, RX: GPIO3
 - ``UART0_SWAP`` - TX: GPIO15, RX: GPIO13  (Only on ESP8266)
 - ``UART1`` - TX: GPIO2, RX: None  (Only on ESP8266)
-- ``UART1`` - TX: GPIO9, RX: GPIO10  (Only on ESP832)
-- ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP832)
+- ``UART1`` - TX: GPIO9, RX: GPIO10  (Only on ESP32)
+- ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP32)
 
 .. _logger-log_levels:
 
@@ -89,7 +94,8 @@ Possible log levels are (sorted by severity):
 -  ``VERY_VERBOSE``
 
   - All internal messages are logged. Including all the data flowing through data buses like
-    i2c, spi or uart. Color: white
+    i2c, spi or uart. Warning: May cause the device to slow down and have trouble staying
+    connecting due to amount of generated messages. Color: white
 
 .. _logger-manual_tag_specific_levels:
 
@@ -157,5 +163,5 @@ See Also
 --------
 
 - :doc:`/components/uart`
-- :apiref:`log_component.h`
+- :apiref:`logger/logger.h`
 - :ghedit:`Edit`

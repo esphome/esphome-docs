@@ -38,14 +38,28 @@ Configuration variables:
   to https://esphome.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
 - **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
   to https://esphome.io/_static/webserver-v1.min.js.
+- **auth** (*Optional*): Enables basic authentication with username and password.
+
+  - **username** (**Required**, string): The username to use for authentication.
+  - **password** (**Required**, string): The password to check for authentication.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. note::
 
-    Starting with version 1.9.0, you can also upload firmware files OTA with the web server.
+    Example web_server configuration using HTTP authentication:
+
+    .. code-block:: yaml
+
+        # Example configuration entry
+        web_server:
+          port: 80
+          auth:
+            username: admin
+            password: !secret web_server_password
 
 See Also
 --------
 
-- :apiref:`web_server.h`
+- :apiref:`web_server/web_server.h`
 - :ghedit:`Edit`

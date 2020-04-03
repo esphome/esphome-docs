@@ -33,6 +33,9 @@ Configuration variables:
 
 - **address** (**Required**, int): The i²c address of the sensor.
   See :ref:`I²C Addresses <ads1115_i2c_addresses>` for more information.
+- **continuous_mode** (*Optional*, boolean): Set if the ADS1115 should continuously measure voltages or
+  only measure them when an update is called. Please enable this for the :doc:`ct_clamp` integration.
+  Defaults to ``off``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ADS1115 Hub. Use this if you
   want to use multiple ADS1115 hubs at once.
 
@@ -119,6 +122,6 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`adc`
 - :doc:`max6675`
-- :apiref:`sensor/ads1115_component.h`
+- :apiref:`ads1115/ads1115.h`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`
