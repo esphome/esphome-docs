@@ -11,7 +11,7 @@ Usage
 -----
 
 The ``pcd8544`` display platform allows you to use
-PCD1325 (`Adafruit <https://www.adafruit.com/product/338>`__)
+PCD8544 (`Adafruit <https://www.adafruit.com/product/338>`__)
 displays with ESPHome. Connection to this display is made using the 4-Wire :ref:`SPI bus <spi>`.
 
 It's a monochrome LCD display was used in old Nokia 5110/3310 cell phones.
