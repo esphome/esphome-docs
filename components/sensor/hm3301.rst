@@ -35,6 +35,37 @@ Configuration variables:
 - **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
   All options from :ref:`Sensor <config-sensor>`.
 
+Air Quality Sensor:
+-------------------
+
+There is also sensors which calculates quality of air based on PM 2.5 and PM 10.0 values.
+There are two implementations:
+
+- AQI: USA air quality standard
+- CAQI: Europe air quality standard
+
+.. code-block:: yaml
+
+    i2c:
+
+    sensor:
+      - platform: hm3301
+        pm_1_0:
+          name: "PM1.0"
+        pm_2_5:
+          name: "PM2.5"
+        pm_10_0:
+          name: "PM10.0"
+        aqi:
+          name: "AQI"
+          type: "CAQI"
+
+- **aqi** (**Required**): AQI sensor.
+
+  - **name** (**Required**, string): The name for the humidity sensor.
+  - **type** (**Required**, string): There are two types: ``AQI``, ``CAQI``.
+
+
 See Also
 --------
 
