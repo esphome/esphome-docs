@@ -200,6 +200,7 @@ Output Components
     Slow PWM, components/output/slow_pwm, pwm.png
     GPIO Output, components/output/gpio, pin.svg
     ESP32 LEDC, components/output/ledc, pwm.png
+    AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
@@ -335,6 +336,8 @@ Misc Components
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
+
+
 
 Additional Custom Components
 ----------------------------
