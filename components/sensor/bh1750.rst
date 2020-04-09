@@ -7,7 +7,7 @@ BH1750 Ambient Light Sensor
     :keywords: BH1750
 
 The ``bh1750`` sensor platform allows you to use your BH1750
-(`datasheet <http://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf>`__, `Adafruit`_, `mklec`_)
+(`datasheet <http://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf>`__)
 ambient light sensor with ESPHome. The :ref:`I²C bus <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
@@ -16,9 +16,6 @@ your configuration for this sensor to work.
     :width: 50.0%
 
     BH1750 Ambient Light Sensor.
-
-.. _Adafruit: https://www.adafruit.com/product/1603
-.. _mklec: http://mklec.com/modules/micro-controller-modules/bh1750-bh1750fvi-digital-light-sensor-module
 
 .. figure:: images/bh1750-ui.png
     :align: center
