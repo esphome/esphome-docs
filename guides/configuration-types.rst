@@ -173,6 +173,12 @@ validating your configuration, ESPHome will automatically replace all occurrence
 by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
 ``${substitution_key}`` (same).
 
+You can also add or override substitutions from the command line by adding e.g. ``-s devicename mydevice``
+which overrides the ``devicename`` substitution and gives it value ``mydevice``.
+Command line substitutions take precedence over the ones in your configuration file.
+This can also be used to create more generic 'template' configuration files which can be used for multiple devices,
+based on substitutions which are provided on the command line.
+
 Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
 of nodes inherit:
 
