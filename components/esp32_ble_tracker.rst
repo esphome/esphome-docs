@@ -25,7 +25,7 @@ for information on how you can find out the MAC address of a device and track it
       - platform: ble_rssi
         mac_address: AC:37:43:77:5F:4C
         name: "BLE Google Home Mini RSSI value"
-      - platform: xiaomi_miflora
+      - platform: xiaomi_hhccjcy01
         mac_address: 94:2B:FF:5C:91:61
         temperature:
           name: "Xiaomi MiFlora Temperature"
