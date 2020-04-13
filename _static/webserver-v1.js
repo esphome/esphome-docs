@@ -23,14 +23,18 @@ source.addEventListener('log', function (e) {
 
 source.addEventListener('state', function (e) {
     const data = JSON.parse(e.data);
-    document.getElementById(data.id).children[1].innerText = data.state;
+    console.log('got state', e);
+    const f = (x) => document.getElementById(x.id).children[1].innerText = x.state;
+    if (Array.isArray(data))
+        data.forEach(d => f(d));
+    else f(data);
 });
 
 const states = document.getElementById("states");
 let i = 0, row;
 for (; row = states.rows[i]; i++) {
     if (row.classList.contains("switch")) {
-        (function(id) {
+        (function (id) {
             row.children[2].children[0].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/switch/' + id.substr(7) + '/toggle', true);
@@ -39,7 +43,7 @@ for (; row = states.rows[i]; i++) {
         })(row.id);
     }
     if (row.classList.contains("fan")) {
-        (function(id) {
+        (function (id) {
             row.children[2].children[0].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/fan/' + id.substr(4) + '/toggle', true);
@@ -48,7 +52,7 @@ for (; row = states.rows[i]; i++) {
         })(row.id);
     }
     if (row.classList.contains("light")) {
-        (function(id) {
+        (function (id) {
             row.children[2].children[0].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/light/' + id.substr(6) + '/toggle', true);
@@ -57,7 +61,7 @@ for (; row = states.rows[i]; i++) {
         })(row.id);
     }
     if (row.classList.contains("cover")) {
-        (function(id) {
+        (function (id) {
             row.children[2].children[0].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/cover/' + id.substr(6) + '/open', true);
