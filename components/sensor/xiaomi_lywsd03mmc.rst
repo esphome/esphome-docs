@@ -19,7 +19,7 @@ the bindkey for each LYWSD03MMC device first and give it as an required option i
 
     Xiaomi Temperature and Humidity Sensor over BLE.
 
-.. figure:: images/xiaomi_lywsd03mmc-ui.png
+.. figure:: images/xiaomi_lywsd03mmc-ui.jpg
     :align: center
     :width: 80.0%
 
@@ -78,11 +78,19 @@ iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/s
 in combination with Wireshark. A tutorial on how to setup the Remote PCAP packet sniffer can be found 
 `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__. More info including some instructions for the iPhone are 
 `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. 
-Alternatively, there are efforts to generate a bind key with a python `script <https://github.com/danielkucera/mi-standardauth>`__ 
-and to upload the key into the device without the need for the Mi Home app.
+Once the traffic between the Mi Home app and the Xiaomi could has been recorded, the bind key will show in clear text
 
-To find the MAC Address so that ESPHome can identify the device a simple configuration without any ``xiaomi_lywsd03mmc`` 
-entries can be created like so:
+.. code-block:: yaml
+
+    packet: POST /app/device/bltbind
+
+    "data" = "{"did":"blt.3.129q4nasgeg00","token":"20c665a7ff82a5bfb5eefc36","props":[{"type":"prop","key":"bind_key","value":"dc06a798095b178767c0b74185275352"},   {"type":"prop","key":"smac","value":"A4:C1:38:BF:54:5D"}]}"
+
+The ``bind_key`` is the 32 digits "value" item in the above output which needs to be inserted into the config file. Alternatively, there are efforts 
+to generate a bind key with a python `script <https://github.com/danielkucera/mi-standardauth>`__  without the need for the Mi Home app.
+
+To find the MAC Address so that ESPHome can identify the device, create a simple configuration without any ``xiaomi_lywsd03mmc`` 
+entries:
 
 .. code-block:: yaml
 
