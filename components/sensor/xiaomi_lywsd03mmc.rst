@@ -10,7 +10,8 @@ The ``xiaomi_lywsd03mmc`` sensor platform lets you track the output of Xiaomi LY
 devices using the :doc:`/components/esp32_ble_tracker`. This component will track the
 temperature, humidity and optionally the battery level of the device every time the sensor
 sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many
-LYWSD03MMC devices at once as you want.
+as eight LYWSD03MMC devices at once. As the payload in the BLE advertisement is encrypted, you need to obtain
+the bindkey for each LYWSD03MMC device first and give it as an required option in the config file.  
 
 .. figure:: images/xiaomi_lywsd03mmc-full.jpg
     :align: center
@@ -66,18 +67,19 @@ Setting Up Devices
 ------------------
 
 To set up a Xiaomi LYWSD03MMC device you first need to obain the bind key. This sensor component is
-not able to automatically generate a bind key and upload it to the device, so you need to use the 
-original Mi Home app to add the sensor once. While adding the device, a new key is generated and uploaded 
-into the Xiaomi cloud (currently a chinese server needs to be selected. The rest of
+not able to automatically generate a bind key, so you need to use the original Mi Home app to add the sensor once. 
+While adding the device, a new key is generated and uploaded into the Xiaomi cloud (currently a chinese server needs to be selected. The rest of
 the world doesn't support the LYWSD03MMC type yet.) and to the device itself. Once generated, it will not
 change again until the device is removed and re-added in the Xiaomi app (it will be kept even after removal
-of the battery). 
+of the battery).
 
 In order to obtain the bind key, a SSL packet sniffer needs to be setup on either an Android phone or the
 iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ app
 in combination with Wireshark. A tutorial on how to setup the Remote PCAP packet sniffer can be found 
 `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__. More info including some instructions for the iPhone are 
-`here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__.
+`here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. 
+Alternatively, there are efforts to generate a bind key with a python `script <https://github.com/danielkucera/mi-standardauth>`__ 
+and to upload the key into the device without the need for the Mi Home app.
 
 To find the MAC Address so that ESPHome can identify the device a simple configuration without any ``xiaomi_lywsd03mmc`` 
 entries can be created like so:
@@ -110,8 +112,8 @@ See Also
 - :doc:`/components/sensor/xiaomi_hhccjcy01`
 - :doc:`/components/sensor/index`
 - :apiref:`xiaomi_lywsd03mmc/xiaomi_lywsd03mmc.h`
-- `Xiaomi Home Assistant mitemp_bt custom component <https://github.com/custom-components/sensor.mitemp_bt>`__
+- `Xiaomi Home Assistant mitemp_bt custom component `<https://github.com/custom-components/sensor.mitemp_bt>`__
   by `@Magalex2x14 <https://github.com/Magalex2x14>`__
-- Xiaomi LYWSD03MMC passive sensor readout <https://github.com/ahpohl/xiaomi_lywsd03mmc>`__ by `@ahpohl <https://github.com/ahpohl>`__
-- Instructions on how to obtain the bind key <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__
+- Xiaomi LYWSD03MMC passive sensor readout `<https://github.com/ahpohl/xiaomi_lywsd03mmc>`__ by `@ahpohl <https://github.com/ahpohl>`__
+- Instructions on how to obtain the bind key `<https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__
 - :ghedit:`Edit`
