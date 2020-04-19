@@ -6,8 +6,7 @@ Xiaomi LYWSD03MMC BLE Sensor
     :image: xiaomi_lywsd03mmc.jpg
     :keywords: Xiaomi, Mi Jia, BLE, Bluetooth, LYWSD03MMC
 
-The ``xiaomi_lywsd03mmc`` sensor platform lets you track the output of Xiaomi LYWSD03MMC Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track the temperature, humidity and optionally the battery level of the device every time the sensor sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many as eight LYWSD03MMC devices at once. As the payload in the BLE advertisement is encrypted, you need to obtain
-the bindkey for each LYWSD03MMC device first and give it as an required option in the config file.  
+The ``xiaomi_lywsd03mmc`` sensor platform lets you track the output of Xiaomi LYWSD03MMC Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track the temperature, humidity and optionally the battery level of the device every time the sensor sends out a BLE broadcast. Note that contrary to other implementations, ESPHome has been tested to track as many as eight LYWSD03MMC devices at once (limited only by how many the ESP can handle). As the payload in the LYWSD03MMC BLE advertisement is encrypted, you need to obtain the bindkey first for each device and give it as an required option in the config file.
 
 .. figure:: images/xiaomi_lywsd03mmc-full.jpg
     :align: center
