@@ -34,7 +34,7 @@ massively long wires, work fine in most cases) between ``3.3V`` and the data pin
       - platform: dallas
         address: 0x1c0000031edd2a28
         name: "Livingroom Temperature"
-                
+
 Configuration variables:
 ************************
 
@@ -48,7 +48,7 @@ Configuration variables:
 - **sensor_name_template** (*Optional*, string): Automatically generated sensors will dynamically receive 
   a ``name`` formatted through this format string ( See c std library ``printf`` for syntax).
   The internal hub code provides 2 arguments to the printf expression: the node name and the sensor hex address.
-  Deafults to '%s.%s'
+  Defaults to '%s.%s'
 - **resolution** (*Optional*, int): An optional resolution for automatically generated sensors. 
   Defaults to the maximum for most Dallas temperature sensors: 12.
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
