@@ -61,7 +61,7 @@ Configuration variables:
 Setting Up Devices
 ------------------
 
-To set up a Xiaomi LYWSD03MMC device you first need to obain the bind key. This sensor component is not able to automatically generate a bind key, so you need to use the original Mi Home app to add the sensor once. While adding the device, a new key is generated and uploaded into the Xiaomi cloud (currently a chinese server needs to be selected. The rest of the world doesn't support the LYWSD03MMC type yet.) and to the device itself. Once generated, it will not change again until the device is removed and re-added in the Xiaomi app (it will be kept even after removal of the battery).
+To set up a Xiaomi LYWSD03MMC device you first need to obain the bind key. This sensor component is not able to automatically generate a bind key, so you need to use the original Mi Home app to add the sensor once (although there are `efforts <https://github.com/danielkucera/mi-standardauth>`__ to get the bind key without the Mi Home App, this approch is not fully developed yet). While adding the device, a new key is generated and uploaded into the Xiaomi cloud and to the device itself. Note that currently a chinese server needs to be selected as the rest of the world doesn't support the LYWSD03MMC type yet. Once generated, it will not change again until the device is removed and re-added in the Xiaomi app.
 
 In order to obtain the bind key, a SSL packet sniffer needs to be setup on either an Android phone or the
 iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ app in combination with Wireshark. A tutorial on how to setup the Remote PCAP packet sniffer can be found `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__. More info including some instructions for the iPhone are `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. Once the traffic between the Mi Home app and the Xiaomi has been recorded, the bind key will show in clear text:
@@ -72,9 +72,7 @@ iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/s
 
     "data" = "{"did":"blt.3.129q4nasgeg00","token":"20c665a7ff82a5bfb5eefc36","props":[{"type":"prop","key":"bind_key","value":"cfc7cc892f4e32f7a733086cf3443cb0"},   {"type":"prop","key":"smac","value":"A4:C1:38:8C:34:B7"}]}"
 
-The ``bind_key`` is the 32 digits "value" item in the above output which needs to be inserted into the config file. Alternatively, there are efforts to generate a bind key with a python `script <https://github.com/danielkucera/mi-standardauth>`__  without the need for the Mi Home app.
-
-To find the MAC Address so that ESPHome can identify the device, you can create a simple configuration without any ``xiaomi_lywsd03mmc`` entries:
+The ``bind_key`` is the 32 digits "value" item in the above output which needs to be inserted into the config file. To find the MAC Address so that ESPHome can identify the device, you can create a simple configuration without any ``xiaomi_lywsd03mmc`` entries:
 
 .. code-block:: yaml
 
@@ -89,9 +87,7 @@ it detects these sensors, it will automatically parse the BLE message print a me
       Address Type: PUBLIC
       Name: 'LYWSD03MMC'
 
-Note that it can sometimes take some time for the first BLE broadcast to be received.
-
-Once the device has been found copy the address (``A4:C1:38:8C:34:B7``) into a new ``sensor.xiaomi_lywsd03mmc`` platform entry like shown in the configuration example above.
+It can sometimes take some time for the first BLE broadcast to be received. Once the device has been found copy the address (``A4:C1:38:8C:34:B7``) into a new ``sensor.xiaomi_lywsd03mmc`` platform entry like shown in the configuration example above.
 
 .. note::
 
