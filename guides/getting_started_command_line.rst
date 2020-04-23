@@ -175,6 +175,11 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
     # On Docker, host networking mode is required for online status indicators
     docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome
 
+    # On Docker with MacOS, the host networking option doesn't work as expected. An
+    # alternative is to use the following command if you are a MacOS user.
+    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
+
+
 After that, you will be able to access the dashboard through ``localhost:6052``.
 
 .. figure:: images/dashboard.png

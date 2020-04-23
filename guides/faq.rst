@@ -261,8 +261,12 @@ Command reference:
     # Map /dev/ttyUSB0 into container
     docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
 
-    # Start dashboard on port 6052
+    # Start dashboard on port 6052 (general command)
+    # Warning: this command is currently not working with Docker on MacOS. (see note below)
     docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
+
+    # Start dashboard on port 5062 (MacOS specific command)
+    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
 
     # Setup a bash alias:
     alias esphome='docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome'
@@ -287,6 +291,10 @@ And a docker compose file looks like this:
 
     ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
     to work you need to enable host networking mode
+
+    On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
+    another way to launch the dashboard with a port mapping option and use alternative to mDNS
+    to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
     If your router supports Avahi, you are able to get mDNS working over different subnets.
