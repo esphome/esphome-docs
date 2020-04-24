@@ -10,7 +10,7 @@ channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/per
 of the ESP32 as an output component.
 
 The frequency range of LEDC is from 10Hz to 40MHz - however, higher frequencies require a smaller
-bit_depth which means the output is not that accurate for frequencies above ~300kHz.
+bit depth which means the output is not that accurate for frequencies above ~300kHz.
 
 .. code-block:: yaml
 
@@ -33,8 +33,6 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **frequency** (*Optional*, float): At which frequency to run the LEDC
   channel’s timer. Defaults to 1000Hz.
-- **bit_depth** (*Optional*, int): The bit depth to use for the LEDC channel. Defaults to the
-  highest possible for the configured frequency.
 - All other options from :ref:`Output <config-output>`.
 
 Advanced options:
@@ -42,6 +40,33 @@ Advanced options:
 - **channel** (*Optional*, int): Manually set the `LEDC
   channel <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel>`__
   to use. Two adjacent channels share the same timer. Defaults to an automatic selection.
+
+Recommended frequencies
+-----------------------
+
+To get the highest available frequency while still getting the same bit depth it is
+recommended to pick one of the following frequencies.
+
+Higher bit depth means that the light has more steps available to change from one
+value to another. This is especially noteable when the light is below 10% and take
+a long transition. eg. turning slowly off.
+
+================================== =================================== ===================================
+**Frequency**                      **Bit depth**                       **Available steps for transitions**
+---------------------------------- ----------------------------------- -----------------------------------
+1220hz                             16                                  65536
+---------------------------------- ----------------------------------- -----------------------------------
+2441hz                             15                                  32768
+---------------------------------- ----------------------------------- -----------------------------------
+4882hz                             14                                  16384
+---------------------------------- ----------------------------------- -----------------------------------
+9765hz                             13                                  8192
+---------------------------------- ----------------------------------- -----------------------------------
+19531hz                            12                                  4096
+================================== =================================== ===================================
+
+The ESP8266 for instance has *usually* a frequency of 1000hz with a resolution of 10 bits.
+This means that there are only 4 steps between each value.
 
 .. _output-ledc-set_frequency_action:
 
