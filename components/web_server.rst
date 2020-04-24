@@ -48,10 +48,10 @@ The list of available metrics can be found by directly browsing your node under 
 
     .. code-block:: yaml
 
-      scrape_configs:
-        - job_name: esphome
-          static_configs:
-            - targets: [<ip or node_name.local>]
+        scrape_configs:
+          - job_name: esphome
+            static_configs:
+              - targets: [<ip or node_name.local>]
 
 
 Configuration variables:
@@ -60,7 +60,7 @@ Configuration variables:
 - **port** (*Optional*, int): The port the web server should open its socket on.
 - **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults
   to https://esphome.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc). Can be set to empty string.
-- **css_include** (*Optional*, local file): Path to local file to be included in web server index page. 
+- **css_include** (*Optional*, local file): Path to local file to be included in web server index page.
   Contents of this file will be served as ``/0.css`` and used as CSS stylesheet by internal webserver.
   Useful when building device without internet access, where you want to use built-in AP and webserver.
 - **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
