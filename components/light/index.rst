@@ -41,6 +41,11 @@ Configuration variables:
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
+- **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the light is turned on. See :ref:`light-on_turn_on_off_trigger`.
+- **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the light is turned off. See :ref:`light-on_turn_on_off_trigger`.
+
 Additional Configuration variables for addressable lights:
 
 - **color_correct** (*Optional*, list of float): Apply a color correction to each color channel.
@@ -59,7 +64,7 @@ Advanced options:
 .. _light-toggle_action:
 
 ``light.toggle`` Action
------------------------
+***********************
 
 This action toggles a light with the given ID when executed.
 
@@ -91,7 +96,7 @@ Configuration options:
 .. _light-turn_on_action:
 
 ``light.turn_on`` Action
-------------------------
+************************
 
 This action turns a light with the given ID on when executed.
 
@@ -160,7 +165,7 @@ Configuration options:
 .. _light-turn_off_action:
 
 ``light.turn_off`` Action
--------------------------
+*************************
 
 This action turns a light with the given ID off when executed.
 
@@ -195,7 +200,7 @@ Configuration options:
 .. _light-control_action:
 
 ``light.control`` Action
-------------------------
+************************
 
 This :ref:`Action <config-action>` is a generic call to change the state of a light - it
 is essentially just a combination of the turn_on and turn_off calls.
@@ -218,7 +223,7 @@ Configuration options:
 .. _light-dim_relative_action:
 
 ``light.dim_relative`` Action
------------------------------
+*****************************
 
 This :ref:`Action <config-action>` allows you to dim a light that supports brightness
 by a relative amount.
@@ -263,7 +268,7 @@ Configuration options:
 .. _light-addressable_set_action:
 
 ``light.addressable_set`` Action
---------------------------------
+********************************
 
 This :ref:`Action <config-action>` allows you to manually set a range of LEDs on an addressable light
 to a specific color.
@@ -313,6 +318,25 @@ that the light is completely OFF, and ON means that the light is emitting at lea
         condition:
           # Same syntax for is_off
           light.is_on: my_light
+
+
+.. _light-on_turn_on_off_trigger:
+
+``light.on_turn_on`` / ``light.on_turn_off`` Trigger
+****************************************************
+
+This trigger is activated each time the light is turned on or off. It is consistent
+with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
+
+.. code-block:: yaml
+
+    light:
+      - platform: binary # or any other platform
+        # ...
+        on_turn_on:
+        - logger.log: "Light Turned On!"
+        on_turn_off:
+        - logger.log: "Light Turned Off!"
 
 .. _light-effects:
 
