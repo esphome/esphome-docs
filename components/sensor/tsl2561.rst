@@ -37,7 +37,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name for the sensor.
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x39``.
+- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x39``.
 - **integration_time** (*Optional*, :ref:`config-time`):
   The time the sensor will take for each measurement. Longer means more accurate values. One of
   ``14ms``, ``101ms``, ``402ms``. Defaults to ``402ms``.
@@ -57,6 +57,6 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`bh1750`
 - :doc:`adc`
-- `SparkFun TSL2561 Arduino Library <https://github.com/sparkfun/SparkFun_TSL2561_Arduino_Library>`__ by `Sparkfun <https://sparkfun.com/>`__
+- `SparkFun TSL2561 Arduino Library <https://github.com/sparkfun/SparkFun_TSL2561_Arduino_Library>`__ by `SparkFun <https://sparkfun.com/>`__
 - :apiref:`tsl2561/tsl2561.h`
 - :ghedit:`Edit`

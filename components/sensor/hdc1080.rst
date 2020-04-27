@@ -8,7 +8,7 @@ HDC1080 Temperature+Humidity Sensor
 
 The HDC1080 Temperature+Humidity sensor allows you to use your HDC1080
 (`datasheet <http://www.ti.com/lit/ds/symlink/hdc1080.pdf>`__,
-`adafruit <https://www.adafruit.com/product/2635>`__) sensors with
+`Adafruit <https://www.adafruit.com/product/2635>`__) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 

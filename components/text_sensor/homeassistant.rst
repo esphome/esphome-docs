@@ -1,8 +1,8 @@
-Homeassistant Text Sensor
-=========================
+Home Assistant Text Sensor
+==========================
 
 .. seo::
-    :description: Instructions for setting up homeassistant text sensors with ESPHome that import states from your homeassistant instance.
+    :description: Instructions for setting up Home Assistant text sensors with ESPHome that import states from your Home Assistant instance.
     :image: home-assistant.png
 
 The ``homeassistant`` text sensor platform allows you to create a sensors that import

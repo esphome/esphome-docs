@@ -17,7 +17,7 @@ The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain
 ESPHome. Communication is done with two GPIO pins (DI and DCKI) and multiple
 driver chips can be chained. There are two models with different number of
 output channels (MY9291 with 4 channels and MY9231 with 3 channels). They are
-popular driver chips used in smart light blubs:
+popular driver chips used in smart light bulbs:
 
 - Sonoff B1 (MY9231)
 - Ai-Thinker AiLight WiFi light bulb (MY9291)
@@ -60,7 +60,7 @@ Configuration variables:
 Sonoff B1 configuration example
 -------------------------------
 
-This component can be used with a Sonoff B1 smart light blub. To flash
+This component can be used with a Sonoff B1 smart light bulb. To flash
 the Sonoff B1, open the plastic cover and connect/solder wires to the
 PCB pads (3.3V, RX, TX, GND, GPIO0). If you connect GPIO0 to GND
 during power up, the device enters flash mode. For more information

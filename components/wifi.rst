@@ -45,7 +45,7 @@ Configuration variables:
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
 - **use_address** (*Optional*, string): Manually override what address to use to connect
-  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previusly configured IP address.
+  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previously configured IP address.
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
@@ -82,7 +82,7 @@ ESPHome has an optional "Access Point Mode". If you include ``ap:``
 in your wifi configuration, ESPHome will automatically set up an access point that you
 can connect to. Additionally, you can specify both a "normal" station mode and AP mode at the
 same time. This will cause ESPHome to only enable the access point when no connection
-to the wifi router can be made.
+to the WiFi router can be made.
 
 .. _wifi-manual_ip:
 

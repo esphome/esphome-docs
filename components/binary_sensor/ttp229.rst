@@ -47,7 +47,7 @@ Base Configuration:
 Binary Sensor Configuration:
 
 - **name** (**Required**, string): The name of the binary sensor.
-- **channel** (**Required**, integer): The channel number at the ttp229 the touchkey is connected to.
+- **channel** (**Required**, integer): The channel number at the TTP229 the touchkey is connected to.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
@@ -82,7 +82,7 @@ Base Configuration:
 Binary Sensor Configuration:
 
 - **name** (**Required**, string): The name of the binary sensor.
-- **channel** (**Required**, integer): The channel number at the ttp229 the touchkey is connected to.
+- **channel** (**Required**, integer): The channel number at the TTP229 the touchkey is connected to.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 

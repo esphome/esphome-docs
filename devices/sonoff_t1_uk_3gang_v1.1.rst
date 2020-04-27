@@ -69,7 +69,7 @@ supplied with the Sonoff T1 UK 3 Gang before doing this step.
     plugged in before doing this step.
 
 While the device is not plugged in, turn the device face down and put a narrow flat screwdriver into the slot at the bottom.
-With careful twisting motion detatch the face plate.
+With careful twisting motion detach the face plate.
 
 .. figure:: images/sonoff_t1_uk_3g_back_v1.1.jpg
     :align: center
@@ -185,7 +185,7 @@ you will be able to use all of ESPHome's great features with your Sonoff T1 UK 3
 .. note::
 
     While now your T1 will start up and connect to your WiFi network if you power it up from UART it will not behave normally,
-    it may flash random LEDs, turn on anf off touchpads' backlight and not react on touching touchpads. This will all be fixed once you re-assemble your T1
+    it may flash random LEDs, turn on and off touchpads' backlight and not react on touching touchpads. This will all be fixed once you re-assemble your T1
     and power it up from the mains power once safe to do so.
 
 If above step does, however, not work, here are some steps that can help:
@@ -289,9 +289,9 @@ of the basic functions.
         output: blue_led
 
 
-Above example also showcases an important concept of esphome: IDs and linking. In order
-to make all components in esphome as much "plug and play" as possible, you can use IDs to define
-them in one area, and simply pass that ID later on. For example, above you can see an PWM (dimmer)
+Above example also showcases an important concept of ESPHome: IDs and linking. In order
+to make all components in ESPHome as "plug and play" as possible, you can use IDs to define
+them in one area, and simply pass that ID later on. For example, above you can see a PWM (dimmer)
 output being created with the ID ``blue_led`` for the blue LED. Later on it is then transformed
 into a :doc:`monochromatic light </components/light/monochromatic>`.
 If you additionally want the buttons to control the relays, look at `the complete Sonoff T1 UK 3 Gang
@@ -303,7 +303,7 @@ Step 6: Finishing Up
 If you're sure everything is done with the T1 UK 3 Gang and have double checked there's nothing that could cause a short
 in the case, you can put the T1 back together.
 
-Now triple or even quadruple check the UART bridge is not connected to the T1 UK 3 Gang, then comes the time when you can
+Now triple- or even quadruple-check the UART bridge is not connected to the T1 UK 3 Gang, then comes the time when you can
 connect it.
 
 Happy hacking!

@@ -35,7 +35,7 @@ Configuration variables:
 Connection Options:
 
 - **data_pins** (**Required**, list of pins): The data lanes of the camera, this must be a list
-  of 8 gpio pins.
+  of 8 GPIO pins.
 - **vsync_pin** (**Required**, pin): The pin the VSYNC line of the camera is connected to.
 - **href_pin** (**Required**, pin): The pin the HREF line of the camera is connected to.
 - **pixel_clock_pin** (**Required**, pin): The pin the pixel clock line of the camera is connected to.
@@ -45,10 +45,10 @@ Connection Options:
   - **frequency** (*Optional*, float): The frequency of the external clock, must be either 20MHz
     or 10MHz. Defaults to ``20MHz``.
 
-- **i2c_pins** (**Required**): The i2c control pins of the camera.
+- **i2c_pins** (**Required**): The I^2C control pins of the camera.
 
-  - **sda** (**Required**, pin): The SDA pin of the i2c interface. Also called ``SIOD``.
-  - **scl** (**Required**, pin): The SCL pin of the i2c interface. Also called ``SIOC``.
+  - **sda** (**Required**, pin): The SDA pin of the I^2C interface. Also called ``SIOD``.
+  - **scl** (**Required**, pin): The SCL pin of the I^2C interface. Also called ``SIOC``.
 
 - **reset_pin** (*Optional*, pin): The ESP pin the reset pin of the camera is connected to.
   If set, this will reset the camera before the ESP boots.

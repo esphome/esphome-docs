@@ -6,7 +6,7 @@ AMS AS3935 Franklin Lightning Sensor
     :image: images/as3935.jpg
     :keywords: as3935
 
-The ``as3935`` sensor platform allows you to use your as3935 sensor
+The ``as3935`` sensor platform allows you to use your AS3935 sensor
 (`AliExpress`_, `AMS_AS3935`_)
 in order to get notified when a thunderstorm is getting close.
 
@@ -14,27 +14,27 @@ The AS3935 can detect the presence of lightning activity and provide an estimati
 on the distance to the head of the storm. The chip issues a notification through an interrupt
 pin.
 
-The AS3935 can be configured to use either the SPI **or** I2C protocol for data communication.
+The AS3935 can be configured to use either the SPI **or** I^2C protocol for data communication.
 First choose which communication method you want to use for the sensor, set the SI pin for the appropriate
-level and set up the esphome integration for the chosen communication method.
+level and set up the ESPhome integration for the chosen communication method.
 
 Module Pins
 -----------
 
 ============  ===============================================================
- Module Pin   Description                                                   
+ Module Pin   Description
 ============  ===============================================================
-VCC/VDD       Positive supply voltage                                       
-GND           Ground                                                        
-SCL           I²C clock bus or SPI clock bus (according to SI setting)      
-MOSI          I²C data bus or SPI data input bus (according to SI setting)  
-MISO          SPI data output bus                                           
-CS            Chip Select (active low)                                     
-SI            Select Interface (GND → SPI or VDD → I²C)                     
-IRQ           Interrupt (out)                                               
-EN_V          Voltage Regulator Enable                                      
-A0            I²C address selection LSB                                     
-A1            I²C address selection MSB                                     
+VCC/VDD       Positive supply voltage
+GND           Ground
+SCL           I²C clock bus or SPI clock bus (according to SI setting)
+MOSI          I²C data bus or SPI data input bus (according to SI setting)
+MISO          SPI data output bus
+CS            Chip Select (active low)
+SI            Select Interface (GND → SPI or VDD → I²C)
+IRQ           Interrupt (out)
+EN_V          Voltage Regulator Enable
+A0            I²C address selection LSB
+A1            I²C address selection MSB
 ============  ===============================================================
 
 .. figure:: images/as3935.jpg
@@ -96,12 +96,12 @@ Configuration variables (shared):
 
 Sensor entries:
 
-- **lightning_energy** (*Optional*): Lightning energy value. According to the datasheet this is only a pure value that doesn't have any physical meaning. 
+- **lightning_energy** (*Optional*): Lightning energy value. According to the datasheet this is only a pure value that doesn't have any physical meaning.
 
   - **name** (**Required**, string): The name for the lightning energy sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
-- **distance** (*Optional*): Distance in km to the front of the storm and not the distance to a lightning strike. 
+- **distance** (*Optional*): Distance in km to the front of the storm and not the distance to a lightning strike.
 
   - **name** (**Required**, string): The name for the distance sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
@@ -114,10 +114,10 @@ Sensor entries:
      the ID used for code generation.
   -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-Configuration variables (i^2c):
+Configuration variables (I^2C):
 -------------------------------
 
-Use this if you want to use your AS3935 in i^2c mode.
+Use this if you want to use your AS3935 in I^2C mode.
 
 .. code-block:: yaml
 
@@ -135,11 +135,11 @@ Use this if you want to use your AS3935 in i^2c mode.
       - platform: as3935
         name: "Storm Alert"
 
-- **address** (*Optional*, int): Manually specify the i^2c address of
+- **address** (*Optional*, int): Manually specify the I^2C address of
   the sensor. Defaults to ``0x03`` (``A0` and ``A1`` pins pulled low).
   Another address can be ``0x02``.
 
-Configuration variables (spi):
+Configuration variables (SPI):
 ------------------------------
 
 Use this if you want to use your AS3935 in SPI mode.
@@ -172,5 +172,5 @@ See Also
 - `Data Sheet <https://www.embeddedadventures.com/datasheets/AS3935_Datasheet_EN_v2.pdf>`__
 - `Little Arduino Projects <https://github.com/tardate/LittleArduinoProjects/tree/master/playground/AS3935>`__
 - `AMS AS3935 <https://ams.com/as3935>`__
-- `Sparkfun Library <https://github.com/sparkfun/SparkFun_AS3935_Lightning_Detector_Arduino_Library>`__
+- `SparkFun Library <https://github.com/sparkfun/SparkFun_AS3935_Lightning_Detector_Arduino_Library>`__
 - :ghedit:`Edit`

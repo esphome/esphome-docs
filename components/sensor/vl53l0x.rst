@@ -48,7 +48,7 @@ Configuration variables:
   for it to report a valid reading. Setting a lower value may increase the range of the sensor
   but also increases the chance of getting inaccurate readings. Defaults to ``0.25``.
 - All other options from :ref:`Sensor <config-sensor>`.
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x29``.
+- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x29``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also
