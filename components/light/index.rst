@@ -714,8 +714,11 @@ Addressable Lambda Effect
 
 This effect allows you to access each LED individually in a custom light effect.
 
-You're passed in one variable: ``it`` - an :apiclass:`AddressableLight <light::AddressableLight>`
-instance (see API reference for more info).
+Available variables in the lambda:
+
+- **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
+- **current_color**  - :apiclass:`ESPColor ` <light::ESPColor>` instance (see API reference for more info).
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
 
 .. code-block:: yaml
 
@@ -742,6 +745,33 @@ instance (see API reference for more info).
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
               it.range(0, 50) = ESPColor::BLACK;
               it.all().fade_to_black(10);
+
+.. code-block:: yaml
+
+    light:
+    - platform: ...
+      effects:
+        - addressable_lambda:
+            name: "My Custom Effect"
+            update_interval: 16ms
+            lambda: |-
+              // Static variables keep their value even when
+              // stopping and starting the effect again
+              static uint16_t progress = 0;
+
+              // normal variables lost their value after each
+              // execution - basically after each update_interval
+              uint16_t changes = 0;
+            
+              // To reset static when stopping and starting the effect
+              // again you can use the initial_run variables
+              if (initial_run) {
+                progress = 0;
+                it.all() = ESPColor::BLACK;
+                // optionally do a return so nothing happens until the next update_interval
+                return;
+              }
+
 
 Examples of this API can be found here:
 https://github.com/esphome/esphome/blob/dev/esphome/components/light/addressable_light_effect.h
