@@ -82,7 +82,6 @@ I also needed this procedure to flash M5Stack ATOM Lite and ATOM Matrix modules,
 .. figure:: images/leak-detector-m5stickC_atom_matrix.jpg
 
 .. figure:: images/leak-detector-m5stickC_atom_lite.jpg
-    :align: right
 
 Calibration & Testing
 =====================
