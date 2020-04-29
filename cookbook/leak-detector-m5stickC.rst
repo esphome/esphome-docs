@@ -80,6 +80,7 @@ You must provide the ESP32 bootloader during the initial flash over USB.  Compil
 I also needed this procedure to flash M5Stack ATOM Lite and ATOM Matrix modules, which you also might consider using for this project.  Both are smaller and more cost-effective than the M5stickC, and a generation newer -- though they lack the TFT display.
 
 .. figure:: images/leak-detector-m5stickC_atom_matrix.jpg
+
 .. figure:: images/leak-detector-m5stickC_atom_lite.jpg
     :align: right
 
@@ -108,8 +109,10 @@ Installed Project
 .. figure:: images/leak-detector-m5stickC_overview1.jpg
     :align: center
 
+
 .. note::
     Not shown: Probe is placed on the floor in the corner, out of the way, in the lowest part of the room
+
 
 ------------
 
