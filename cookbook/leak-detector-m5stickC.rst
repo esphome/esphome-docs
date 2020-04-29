@@ -109,10 +109,7 @@ Installed Project
 .. figure:: images/leak-detector-m5stickC_overview1.jpg
     :align: center
 
-
-.. note::
-    Not shown: Probe is placed on the floor in the corner, out of the way, in the lowest part of the room
-
+Not shown: Probe is placed on the floor in the corner, out of the way, in the lowest part of the room
 
 ------------
 
