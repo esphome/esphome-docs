@@ -3,12 +3,12 @@ MAX31856 Thermocouple Temperature Sensor
 
 .. seo::
     :description: Instructions for setting up MAX31856 Thermocouple temperature sensors.
-    :image: MAX31856.jpg
+    :image: max31865.png
 
 The ``MAX31856`` temperature sensor allows you to use your MAX31856 Thermocouple
 temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf>`__) with ESPHome
 
-.. figure:: images/MAX31856-full.jpg
+.. figure:: images/max31865-full.jpg
     :align: center
     :width: 50.0%
 
