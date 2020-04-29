@@ -64,7 +64,7 @@ Assembled Components
 Display Font
 ============
 
-You'll need to place the `OpenSans-Regular <https://fonts.google.com/specimen/Open+Sans>`__ font (or another of your choosing) alongside your ESPhome yaml file.  See :doc:`display component </components/display>`.
+You'll need to place the `OpenSans-Regular <https://fonts.google.com/specimen/Open+Sans>`__ font (or another of your choosing) alongside your ESPhome yaml file.  See - :doc:`/components/display/index`.
 
 Flashing
 ========
@@ -86,7 +86,7 @@ I also needed this procedure to flash M5Stack ATOM Lite and ATOM Matrix modules,
 Calibration & Testing
 =====================
 
-Once everything is hooked up and flashed, enable ``esp32_touch:`` ``setup_mode: True`` and proceed to adjust the threshold setting on the touch-sensitive binary sensor (GPIO33) to find the proper value for your particular moisture sensor and cabling situation.  Grab a glass of water for testing, another for yourself, and dip away while watching the logs.  Your goal is to find a threshold value that is sufficient to trigger the binary sensor in water, but not otherwise.  See :doc:`esp32_touch component </components/binary_sensor/esp32_touch>` for more information.
+Once everything is hooked up and flashed, enable ``esp32_touch:`` ``setup_mode: True`` and proceed to adjust the threshold setting on the touch-sensitive binary sensor (GPIO33) to find the proper value for your particular moisture sensor and cabling situation.  Grab a glass of water for testing, another for yourself, and dip away while watching the logs.  Your goal is to find a threshold value that is sufficient to trigger the binary sensor in water, but not otherwise.  See :ref:`ESP32 Touch Pad <esp32-touch-binary-sensor>` for more information.
 
 ------------
 
@@ -311,6 +311,6 @@ Enjoy your locally-controlled leak detector with push notification!
 See Also
 ========
 
-- :doc:`/components/display`
+- :doc:`/components/display/index`
 - :doc:`/components/binary_sensor/esp32_touch`
 - :ghedit:`Edit`
