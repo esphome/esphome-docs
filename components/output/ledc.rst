@@ -12,8 +12,8 @@ of the ESP32 as an output component.
 The frequency range of LEDC is from 10Hz to 40MHz - however, higher frequencies require a smaller
 bit depth which means the output is not that accurate for frequencies above ~300kHz.
 
-Example usage for a light:
---------------------------
+Example Usage For a Light
+*************************
 
 .. code-block:: yaml
 
@@ -29,8 +29,8 @@ Example usage for a light:
         output: gpio_19
         name: "Kitchen Light"
 
-Example usage for a piezo buzzer:
----------------------------------
+Example Usage For a Piezo Buzzer
+********************************
 
 .. code-block:: yaml
 
