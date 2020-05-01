@@ -156,6 +156,7 @@ Sensor Components
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
     Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
     Xiaomi LYWSD003MMC, components/sensor/xiaomi_lywsd03mmc, xiaomi_lywsd03mmc.jpg
+    Xiaomi CGD1, components/sensor/xiaomi_cgd1, xiaomi_cgd1.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
