@@ -105,9 +105,12 @@ segment of the previous position will be enabled.
           it.strftime("%H.%M.%S");
           // Result for 10:06:42 -> "10.06.42  "
 
+          // Change the display intnsity based on another id.
+          // Value should be from 0-15.
+          it.set_intensity(id(my_brightness));
+
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
-
 
 .. _display-max7219_characters:
 
