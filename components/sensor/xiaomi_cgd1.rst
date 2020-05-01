@@ -6,7 +6,7 @@ Xiaomi LYWSD03MMC BLE Sensor
     :image: xiaomi_cgd1.jpg
     :keywords: Xiaomi, Mi Jia, BLE, Bluetooth, CGD1, Qingping, ClearGrass, alarm clock
 
-The ``xiaomi_cgd1`` sensor platform lets you track the output of Xiaomi CGD1 ClearGrass Qingping alarm clock using the :doc:`/components/esp32_ble_tracker`. This component will track the temperature, humidity and optionally the battery level of the device every time the sensor sends out a BLE broadcast. The packets are like in the LYWSD03MMC platform encrypted. Hence you need to obtain the bindkey first for each device and give it as an required option in the config file.
+The ``xiaomi_cgd1`` sensor platform lets you track the output of Xiaomi CGD1 ClearGrass Qingping alarm clock using the :doc:`/components/esp32_ble_tracker`. This component will track the temperature, humidity and optionally the battery level of the device every time the sensor sends out a BLE broadcast. The packets are like in the :doc:`/components/sensor/xiaomi_lywsd03mmc` platform encrypted. Hence you need to obtain the bindkey first for each device and give it as an required option in the config file.
 
 .. figure:: images/xiaomi_cgd1-full.jpg
     :align: center
@@ -63,16 +63,15 @@ The procedure to obtain the bindkey for setting up the CGD1 alarm clock is ident
 
     esp32_ble_tracker:
 
-After uploading the ESP32 will immediately try to scan for BLE devices such as the Xiaomi LYWSD03MMC. When
-it detects these sensors, it will automatically parse the BLE message print a message like this one:
+After uploading the ESP32 will immediately try to scan for BLE devices. When it detects a CGD1 sensor, it will automatically parse the BLE message and print a message like this one:
 
 .. code::
 
-    Found device A4:C1:38:4E:16:78 RSSI=-92
+    Found device A4:C1:38:D1:61:7D RSSI=-92
       Address Type: PUBLIC
       Name: 'CGD1'
 
-It can sometimes take some time for the first BLE broadcast to be received. Once the device has been found, copy the address (``A4:C1:38:8C:34:B7``) into a new ``sensor.xiaomi_cgd1`` platform entry like shown in the configuration example above.
+It can sometimes take some time for the first BLE broadcast to be received. Once the device has been found, copy the address (``A4:C1:38:D1:61:7D``) into a new ``sensor.xiaomi_cgd1`` platform entry like shown in the configuration example above.
 
 .. note::
 
