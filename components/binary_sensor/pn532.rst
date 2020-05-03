@@ -88,6 +88,25 @@ The parameter ``x`` this trigger provides is of type ``std::string`` and is the 
 
 .. _pn532-tag:
 
+Alternatively you could also send the value directly to Home-Assistant via a text-sensor template 
+
+.. code-block:: yaml
+
+    pn532:
+      cs_pin: 21
+      update_interval: 1s
+      on_tag:
+        then:
+        - text_sensor.template.publish:
+            id: rfid_tag
+            state: !lambda 'return x;'
+
+    text_sensor:
+      - platform: template
+        name: "RFID Tag"
+        id: rfid_tag
+.. _pn532-tag:
+
 NFC/RFID Tag
 ------------
 
