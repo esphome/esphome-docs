@@ -321,6 +321,7 @@ All Triggers
 - :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
   :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
+- :ref:`logger.on_message <logger-on_message>`
 - :ref:`time.on_time <time-on_time>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
@@ -330,6 +331,7 @@ All Triggers
 - :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
 - :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
+- :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
 
 All Actions
 -----------
@@ -367,6 +369,9 @@ All Actions
 - :ref:`sim800l.send_sms <sim800l-send_sms_action>`
 - :ref:`mhz19.calibrate_zero <mhz19-calibrate_zero_action>` / :ref:`mhz19.abc_enable <mhz19-abc_enable_action>` / :ref:`mhz19.abc_disable <mhz19-abc_disable_action>`
 - :ref:`sensor.rotary_encoder.set_value <sensor-rotary_encoder-set_value_action>`
+- :ref:`http_request.get <http_request-get_action>` / :ref:`http_request.post <http_request-post_action>` / :ref:`http_request.send <http_request-send_action>`
+- :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
+- :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 
 .. _config-condition:
 

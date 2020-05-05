@@ -4,5 +4,11 @@ _build
 __pycache__/
 *.py[cod]
 *$py.class
+<<<<<<< HEAD
 *.DS_Store
 /.idea/
+=======
+
+.idea
+venv
+>>>>>>> 9e030b0bf750a3270343b7b6c4be96b326a4d159

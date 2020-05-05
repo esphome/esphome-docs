@@ -35,8 +35,13 @@ to some pins on your board and the baud rate set to 9600.
 
     # Example configuration entry
     uart:
+<<<<<<< HEAD
       rx_pin: D1
       tx_pin: D2
+=======
+      tx_pin: D1
+      rx_pin: D2
+>>>>>>> 9e030b0bf750a3270343b7b6c4be96b326a4d159
       baud_rate: 9600
       stop_bits: 2
 
@@ -46,6 +51,8 @@ to some pins on your board and the baud rate set to 9600.
           name: "PZEM-004T V3 Current"
         voltage:
           name: "PZEM-004T V3 Voltage"
+        energy:
+          name: "PZEM-004T V3 Energy"
         power:
           name: "PZEM-004T V3 Power"
         frequency:
@@ -58,6 +65,8 @@ Configuration variables:
 ------------------------
 
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
+  :ref:`Sensor <config-sensor>`.
+- **energy** (*Optional*): Use the (active) energy value of the sensor in watt*hours. All options from
   :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
   :ref:`Sensor <config-sensor>`.
