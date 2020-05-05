@@ -275,12 +275,19 @@ More About Color
 ****************
 
 You might be wondering, "How exactly do I define the colors? What's going on with that?"
+
+If you're reasonably experienced with C and/or C++ and are comfortable with boolean
+and bitwise/bit-shift operators, a glance at the first nifty ASCII diagram a few paragraphs
+down will probably tell you all you need to know. If you're less experienced and/or are just
+plain curious, please read on.
+
 This display has three different color modes (in other words, methods for describing the color
 of the pixels); we are using the 65K "5-6-5" color mode, which is the "middle" of the three
-options, allowing us to describe 65,536 colors for any given pixel. In this mode, we get five
-bits to describe the intensity of the red component of each pixel, five bits to describe the
-intensity of blue, and six bits to describe the intensity of green. 5 + 6 + 5 conveniently adds
-up to 16, which happens to be the number of bits in two bytes (also known as a "word").
+options it offers, allowing us to describe 65,536 colors for any given pixel. In this mode,
+we get five bits to describe the intensity of the red component of each pixel, five bits to
+describe the intensity of blue, and six bits to describe the intensity of green. 5 + 6 + 5
+conveniently adds up to 16, which happens to be the number of bits in two bytes (also known
+as a "word").
 
 Now take a deep breath, that was the easy part. This next part gets a little...tricky.
 
