@@ -93,7 +93,7 @@ Display Definition
 
 Now setup the communication to the display and start fill the screen with live data!
 
-The ``reset_pin`` was not used in my hardware configuration as the display didn't had that pin exposed.
+The ``reset_pin`` was not used in my hardware configuration as the display didn't have that pin exposed.
 
 Note your ``address`` and ``model`` might be different, use the scan option to find the address of your display.
 
