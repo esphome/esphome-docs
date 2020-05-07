@@ -83,6 +83,19 @@ or closes the gate. The relay simulates the button press for 500ms.
         - switch.turn_on: relay
         - delay: 500ms
         - switch.turn_off: relay
+.. code-block:: yaml
+
+    # Example 2 (Use "on_turn_on" instead of template) configuration entry
+    switch:
+      - platform: gpio
+        pin: 25
+        id: relay
+        name: "Gate Remote"
+        icon: "mdi:gate"
+        on_turn_on:
+          - switch.turn_on: relay
+          - delay: 500ms
+          - switch.turn_off: relay
 
 .. figure:: images/gate-remote-ui.png
     :align: center
