@@ -207,6 +207,93 @@ of nodes inherit:
     - Place them in a subdirectory (dashboard only shows files in top-level dir)
     - Prepend a dot to the filename, like ``.base.yaml``
 
+.. _config-packages:
+
+Packages
+--------
+
+Another way to modularize and reuse your configuration is to use packages. This feature allows
+you to put common pieces of configuration in separate files and keep only unique pieces of your
+config in the main yaml file. All definitions from packages will be merged with your main
+config in non-destructive way so you could always override some bits and pieces of package
+configuration.
+
+Consider the following example where author put common pieces of configuration like WiFi,
+I2C into base files and extends it with some devices specific configurations in the main config.
+
+Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
+merged with the services definitions from main config file.
+
+.. code-block:: yaml
+
+    # In config.yaml
+    substitutions:
+      node_name: mydevice
+      device_verbose_name: "My Device"
+
+    packages:
+      wifi: !include common/wifi.yaml
+      device_base: !include common/device_base.yaml
+
+    api:
+      services:
+        - service: start_laundry
+          then:
+            - switch.turn_on: relay
+            - delay: 3h
+            - switch.turn_off: relay
+
+    sensor:
+      - platform: mhz19
+        co2:
+          name: "CO2"
+        temperature:
+          name: "Temperature"
+        update_interval: 60s
+        automatic_baseline_calibration: false
+
+.. code-block:: yaml
+
+    # In wifi.yaml
+    wifi:
+      ssid: "your_ssid"
+      password: !secret wifi_password
+      domain: .yourdomain.lan
+      fast_connect: true
+
+.. code-block:: yaml
+
+    # In device_base.yaml
+    esphome:
+      name: ${node_name}
+      platform: ESP32
+      board: wemos_d1_mini32
+      build_path: ./build/${node_name}
+
+    # I2C Bus
+    i2c:
+      sda: GPIO21
+      scl: GPIO22
+      scan: True
+      frequency: 100kHz
+
+    # Enable logging
+    logger:
+      level: ${log_level}
+
+    api:
+      password: !secret hass_api_key
+      reboot_timeout: 1h
+
+    sensor:
+      - <<: !include common/sensor/uptime.config.yaml
+      - <<: !include common/sensor/wifi_signal.config.yaml
+    binary_sensor:
+      - <<: !include common/binary_sensor/connection_status.config.yaml
+
+    switch:
+      - !include common/switch/restart_switch.config.yaml
+
 See Also
 --------
 
