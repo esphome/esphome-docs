@@ -48,13 +48,13 @@ Configuration variables:
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
   0 (least intense) to 15 (the default).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
-  See :ref:`display-max7219_lambda` for more information.
+  See :ref:`display-max7219digit_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-.. _display-max7219_lambda:
+.. _display-max7219digit_lambda:
 
 Rendering Lambda
 ----------------
