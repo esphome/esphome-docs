@@ -1,5 +1,5 @@
 MAX7219 Digit Display
-=========================
+=====================
 
 .. seo::
     :description: Instructions for setting up MAX7219 Digit displays.
