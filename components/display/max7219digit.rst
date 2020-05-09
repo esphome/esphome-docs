@@ -65,24 +65,24 @@ as with all other displays. Some "Special" commands have been added to the basic
 
 .. code-block:: yaml
 
-   display:
-     - platform: max7219digit
-       cs_pin: D8
-       num_chips: 4
-       lambda: |-
-         it.strftime(0, 0, id(digit_font), "%H:%M", id(hass_time).now());
-         it.image(24, 0, id(my_image));
-         it.line(1,8,21,8);
-    font:
-      - file: "pixelmix.ttf"
-        id: digit_font
-        size: 6
-    time:
-      - platform: homeassistant
-        id: hass_time
-    image:
-      - file: "smile.png"
-        id: my_image
+    display:
+      - platform: max7219digit
+        cs_pin: D8
+        num_chips: 4
+        lambda: |-
+          it.strftime(0, 0, id(digit_font), "%H:%M", id(hass_time).now());
+          it.image(24, 0, id(my_image));
+          it.line(1,8,21,8);
+     font:
+       - file: "pixelmix.ttf"
+         id: digit_font
+         size: 6
+     time:
+       - platform: homeassistant
+         id: hass_time
+     image:
+       - file: "smile.png"
+         id: my_image
 
 This is roughly the code used to display the MAX7219 display at the image.
 
