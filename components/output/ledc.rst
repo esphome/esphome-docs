@@ -48,24 +48,24 @@ To get the highest available frequency while still getting the same bit depth it
 recommended to pick one of the following frequencies.
 
 Higher bit depth means that the light has more steps available to change from one
-value to another. This is especially noteable when the light is below 10% and take
-a long transition. eg. turning slowly off.
+value to another. This is especially noticeable when the light is below 10% and takes
+a long transition, e.g. turning slowly off.
 
 ================================== =================================== ===================================
 **Frequency**                      **Bit depth**                       **Available steps for transitions**
 ---------------------------------- ----------------------------------- -----------------------------------
-1220hz                             16                                  65536
+1220Hz                             16                                  65536
 ---------------------------------- ----------------------------------- -----------------------------------
-2441hz                             15                                  32768
+2441Hz                             15                                  32768
 ---------------------------------- ----------------------------------- -----------------------------------
-4882hz                             14                                  16384
+4882Hz                             14                                  16384
 ---------------------------------- ----------------------------------- -----------------------------------
-9765hz                             13                                  8192
+9765Hz                             13                                  8192
 ---------------------------------- ----------------------------------- -----------------------------------
-19531hz                            12                                  4096
+19531Hz                            12                                  4096
 ================================== =================================== ===================================
 
-The ESP8266 for instance has *usually* a frequency of 1000hz with a resolution of 10 bits.
+The ESP8266 for instance has *usually* a frequency of 1000Hz with a resolution of 10 bits.
 This means that there are only 4 steps between each value.
 
 .. _output-ledc-set_frequency_action:

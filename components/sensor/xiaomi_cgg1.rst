@@ -2,7 +2,7 @@ Xiaomi CGG1 BLE Sensor
 ======================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi ClearGrass CGG1 E-Ink bluetooth-based temperature and humidity sensors in ESPHome.
+    :description: Instructions for setting up Xiaomi ClearGrass CGG1 E-Ink Bluetooth-based temperature and humidity sensors in ESPHome.
     :image: xiaomi_cgg1.jpg
     :keywords: Xiaomi, ClearGrass, BLE, E-Ink, Bluetooth, CGG1
 
@@ -80,14 +80,14 @@ message like this one:
     Got Xiaomi CGG1 7A:80:8E:19:36:BA Got temperature=23.4°C, humidity=65.0%
 
 Note that it can sometimes take some time for the first BLE broadcast to be received. You can speed
-up the process by pressing the grey bluetooth button on the back of the device.
+up the process by pressing the grey Bluetooth button on the back of the device.
 
 Then just copy the address (``7A:80:8E:19:36:BA``) into a new ``sensor.xiaomi_cgg1`` platform
 entry like in the configuration example at the top.
 
 .. note::
 
-    The ESPHome Xiaomi integration listens passively to packets the xiaomi device sends by itself.
+    The ESPHome Xiaomi integration listens passively to packets the Xiaomi device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also

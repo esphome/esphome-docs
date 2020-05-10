@@ -94,7 +94,7 @@ Possible log levels are (sorted by severity):
 -  ``VERY_VERBOSE``
 
   - All internal messages are logged. Including all the data flowing through data buses like
-    i2c, spi or uart. Warning: May cause the device to slow down and have trouble staying
+    I2C, SPI or UART. Warning: May cause the device to slow down and have trouble staying
     connecting due to amount of generated messages. Color: white
 
 .. _logger-manual_tag_specific_levels:

@@ -23,7 +23,7 @@ the config and it will list the possible devices for you in the config log.
 .. code-block:: yaml
 
     # Example configuration entry
-    # Make sure your wifi will connect
+    # Make sure your WiFi will connect
     wifi:
       ssid: "ssid"
       password: "password"
