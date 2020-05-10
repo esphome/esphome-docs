@@ -12,6 +12,9 @@ of the ESP32 as an output component.
 The frequency range of LEDC is from 10Hz to 40MHz - however, higher frequencies require a smaller
 bit depth which means the output is not that accurate for frequencies above ~300kHz.
 
+Example Usage For a Light
+*************************
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -25,6 +28,40 @@ bit depth which means the output is not that accurate for frequencies above ~300
       - platform: monochromatic
         output: gpio_19
         name: "Kitchen Light"
+
+Example Usage For a Piezo Buzzer
+********************************
+
+.. code-block:: yaml
+
+    # Configure the output
+    output:
+      - platform: ledc
+        ######################################################
+        # One buzzer leg connected to GPIO12, the other to GND
+        ######################################################
+        pin: GPIO12
+        id: buzzer
+
+    # Example usage in an automation
+    on_press:
+        then:
+        ######################################################
+        # Must be turned on before setting frequency & level
+        ######################################################
+        - output.turn_on: buzzer
+        ######################################################
+        # Frequency sets the wave size
+        ######################################################
+        - output.ledc.set_frequency:
+            id: buzzer
+            frequency: "1000Hz"
+        ######################################################
+        # level sets the %age time the PWM is on
+        ######################################################
+        - output.set_level:
+            id: buzzer
+            level: "50%"
 
 Configuration variables:
 ------------------------
