@@ -282,7 +282,7 @@ Configuration variables:
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
 -  **retain_commands** (*Optional*, boolean): If the discovery
    configuration should include the retain option so that MQTT commands
-   are retained.
+   are retained. Defaults to ``False``.
 
 .. note::
 
