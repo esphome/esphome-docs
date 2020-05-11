@@ -286,16 +286,16 @@ Configuration variables:
 
    .. note::
 
-   Note that retain_commands is potentially dangerous if this single
-   MQTT command isn't the only thing used to control the component.
-   However when nothing else is controlling this component, it can because
-   useful to restore the state from the MQTT server rather than storing
-   the value in the limited flash (especially for esp8266). Retaining
-   commands is also useful for creating a switch to control deep sleep.
-   Use this option at your own risk, and if your component is cycling
-   through multiple states, try disabling this option and using
-   ``>> esphome <my_file>.yaml clean-mqtt`` to remove all retained
-   MQTT messages.
+    Note that retain_commands is potentially dangerous if this single
+    MQTT command isn't the only thing used to control the component.
+    However when nothing else is controlling this component, it can because
+    useful to restore the state from the MQTT server rather than storing
+    the value in the limited flash (especially for esp8266). Retaining
+    commands is also useful for creating a switch to control deep sleep.
+    Use this option at your own risk, and if your component is cycling
+    through multiple states, try disabling this option and using
+    ``>> esphome <my_file>.yaml clean-mqtt`` to remove all retained
+    MQTT messages.
 
 .. warning::
 
