@@ -284,7 +284,7 @@ Configuration variables:
    configuration should include the retain option so that MQTT commands
    are retained.
 
-   .. note::
+.. note::
 
     Note that retain_commands is potentially dangerous if this single
     MQTT command isn't the only thing used to control the component.
