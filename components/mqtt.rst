@@ -282,7 +282,11 @@ Configuration variables:
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
 -  **retain_commands** (*Optional*, boolean): If the discovery
    configuration should include the retain option so that MQTT commands
-   are retained. Note that this is potentially dangerous if this single
+   are retained.
+
+   .. note::
+
+   Note that retain_commands is potentially dangerous if this single
    MQTT command isn't the only thing used to control the component.
    However when nothing else is controlling this component, it can because
    useful to restore the state from the MQTT server rather than storing
