@@ -261,6 +261,7 @@ MQTT can have some overrides for specific options.
       payload_not_available: offline
     state_topic: livingroom/custom_state_topic
     command_topic: livingroom/custom_command_topic
+    retain_commands: False
 
 Configuration variables:
 
@@ -279,6 +280,18 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+-  **retain_commands** (*Optional*, boolean): If the discovery
+   configuration should include the retain option so that MQTT commands
+   are retained. Note that this is potentially dangerous if this single
+   MQTT command isn't the only thing used to control the component.
+   However when nothing else is controlling this component, it can because
+   useful to restore the state from the MQTT server rather than storing
+   the value in the limited flash (especially for esp8266). Retaining
+   commands is also useful for creating a switch to control deep sleep.
+   Use this option at your own risk, and if your component is cycling
+   through multiple states, try disabling this option and using
+   ``>> esphome <my_file>.yaml clean-mqtt`` to remove all retained
+   MQTT messages.
 
 .. warning::
 
