@@ -28,6 +28,15 @@ remote signals.
       pin: GPIO32
       carrier_duty_percent: 50%
 
+    # Example multiple transmitter configuration entry
+    remote_transmitter:
+      - id: transmitter_1
+        pin: GPIO32
+        carrier_duty_percent: 50%
+      - id: transmitter_2
+        pin: GPIO16
+        carrier_duty_percent: 100%
+
     # Individual switches
     switch:
       - platform: remote_transmitter
