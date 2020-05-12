@@ -22,6 +22,15 @@ which will trigger when they hear their own configured signal.
     remote_receiver:
       pin: GPIO32
       dump: all
+      
+    # Example multiple receiver configuration entry
+    remote_receiver:
+      - id: receiver_1
+        pin: GPIO32
+        dump: all
+      - id: receiver_2
+        pin: GPIO16
+        dump: all
 
 Configuration variables:
 ------------------------
