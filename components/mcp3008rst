@@ -1,0 +1,70 @@
+MCP3008 I/O Expander
+=====================
+
+.. seo::
+    :description: Instructions for setting up MCP3008 10 Bit Analog to Digital Converter in ESPHome.
+    :image: mcp3008.png
+
+The Microchip Technology Inc. MCP3008
+devices are successive approximation 10-bit Analogto-Digital (A/D) converters with on-board sample and
+hold circuitry
+
+MCP3008
+--------
+
+The MCP3008 component allows you to use MCP3008 8-Channel 10-Bit A/D Converter
+(`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf>`__,
+`Adafruit <https://www.adafruit.com/product/856>`__) in ESPHome.
+It uses the :ref:`SPI Bus <spi>` for communication.
+
+Once configured, you can use any of the 8 pins as
+sensors for your projects. 
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    MCP3008:
+      - id: 'MCP3008_hub'
+        cs_pin: D8
+
+    # Individual outputs
+    sensor:
+      - platform: mcp3008
+        update_interval: 1s
+        mcp3008: 'mcp3008_hub'
+        id: freezer_temp_source
+        name: "Freezer Temp"
+        number: 0
+      - platform: mcp3008
+        update_interval: 1s
+        mcp3008: 'mcp3008_hub'
+        name: "FridgeTmep"
+        number: 1
+      - platform: resistance
+        id: resistance_sensor
+        sensor: freezer_temp_source
+        configuration: DOWNSTREAM
+        resistor: 10kOhm
+        name: Resistance Sensor
+      - platform: ntc
+        id: freezer_temp
+        sensor: resistance_sensor
+        calibration:
+          b_constant: 3950
+          reference_temperature: 25°C
+          reference_resistance: 10kOhm
+        name: NTC Temperature
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
+- **cs_pin** (*Optional*, int): The SPI cable select pin to use  
+
+See Also
+--------
+
+- :ref:`spi`
+- :apiref:`MCP3008/MCP3008.h`
+- :ghedit:`Edit`
+
