@@ -64,24 +64,32 @@ or when the respective fan mode or swing mode is changed.**
         idle_action:
           - switch.turn_off: heater
 
-Important Terminology:
-----------------------
+Important Terminology
+---------------------
 
-It is important to understand the subtle difference between these two terms as they *are not the same thing*:
+Before we get into more configuration detail, let's take a step back and talk about the word "action"; we
+need to carefully consider the context of the word in the upcoming section, as it has a double meaning and
+will otherwise lead to some ambiguity.
 
-- **Action**: What the climate device is actively doing
-- **Mode**: What the climate device should (or should not) do
+- **ESPHome Action**: A task the ESPHome application performs as requested, such as
+  turning on a switch. See :ref:`Action <config-action>`.
+- **Climate Action**: What the climate device is actively doing
+- **Climate Mode**: What the climate device should (or should not) do
+
+We'll call out which definition "action" we are referring to as we describe them below -- read carefully!
+
+With respect to climate control, it is important to understand the subtle difference between the terms
+"action" and "mode" as they *are not the same thing*:
 
 Examples:
 
 - **Heat Mode**: The climate device may heat but may **not** cool.
 - **Heat Action**: The climate device is *actively distributing heated air* into the dwelling.
 
-Note that, despite that it is used as a part of the parameter name (as outlined below), fan and swing modes
-do not have "actions", only "modes".
+Got all that? Great. Let's take a closer look at some configuration.
 
-Configuration variables:
-------------------------
+Configuration variables
+-----------------------
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
 - **default_target_temperature_low** (**Required**, float): The default low target temperature for
@@ -89,10 +97,12 @@ Configuration variables:
 - **default_target_temperature_high** (**Required**, float): The default high target temperature for
   the control algorithm. This can be dynamically set in the frontend later.
 
-Basic heating and cooling actions:
-**********************************
+Basic heating and cooling actions
+*********************************
 
-These are triggered when the climate control **action** is changed by the bang bang controller.
+These are triggered when the climate control **action** is changed by the bang bang controller. Here,
+"action" takes on both meanings described above, as these are both climate actions *and* ESPHome
+:ref:`actions <config-action>`.
 
 - **idle_action** (**Required**, :ref:`Action <config-action>`): The action to call when
   the climate device should enter its idle state (not cooling, not heating).
@@ -110,10 +120,14 @@ These are triggered when the climate control **action** is changed by the bang b
 
 **At least one of** ``heat_action`` **and** ``cool_action`` **must be specified.**
 
-Basic heating and cooling modes:
-********************************
+Basic heating and cooling modes
+*******************************
 
-These are triggered when the climate control **mode** is changed.
+These are triggered when the climate control **mode** is changed. Note the absence of "action" in the
+parameter name here -- these are still ESPHome :ref:`actions <config-action>`, however they are *not*
+climate actions. Instead, they are climate *modes*. These :ref:`actions <config-action>` are useful
+in that they could be used, for example, to toggle a group of LEDs on and/or off to provide a visual
+indication of the current climate mode.
 
 - **auto_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device is placed into "auto" mode (it may both cool and heat as required).
@@ -128,10 +142,10 @@ These are triggered when the climate control **mode** is changed.
 - **fan_only_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device is placed into fan only mode (it may not heat or cool).
 
-Fan mode actions:
-*****************
+Fan mode actions
+****************
 
-These are triggered when the climate control fan mode is changed.
+These are triggered when the climate control fan mode is changed. These are ESPHome :ref:`actions <config-action>`.
 
 - **fan_mode_auto_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
   should be set to "auto" mode (the fan is controlled by the climate control system as required).
@@ -152,10 +166,10 @@ These are triggered when the climate control fan mode is changed.
 - **fan_mode_diffuse_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
   should direct its airflow over a broad area.
 
-Swing mode actions:
-*******************
+Swing mode actions
+******************
 
-These are triggered when the climate control swing mode is changed.
+These are triggered when the climate control swing mode is changed. These are ESPHome :ref:`actions <config-action>`.
 
 - **swing_off_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan should
   remain in a stationary position.
@@ -166,8 +180,8 @@ These are triggered when the climate control swing mode is changed.
 - **swing_both_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
   should oscillate in horizontal and vertical directions.
 
-Advanced options:
-*****************
+Advanced options
+****************
 
 - **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
   an action (heating or cooling) is engaged or disengaged. Defaults to 0.5 °C.
@@ -192,5 +206,6 @@ See Also
 
 - :doc:`/components/binary_sensor/index`
 - :ref:`config-pin_schema`
+- :ref:`config-action`
 - :apiref:`gpio/binary_sensor/gpio_binary_sensor.h`
 - :ghedit:`Edit`
