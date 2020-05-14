@@ -88,7 +88,7 @@ Examples:
 
 Got all that? Great. Let's take a closer look at some configuration.
 
-Configuration variables
+Configuration Variables
 -----------------------
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
@@ -97,7 +97,7 @@ Configuration variables
 - **default_target_temperature_high** (**Required**, float): The default high target temperature for
   the control algorithm. This can be dynamically set in the frontend later.
 
-Basic heating and cooling actions
+Basic Heating and Cooling Actions
 *********************************
 
 These are triggered when the climate control **action** is changed by the bang bang controller. Here,
@@ -120,7 +120,7 @@ These are triggered when the climate control **action** is changed by the bang b
 
 **At least one of** ``heat_action`` **and** ``cool_action`` **must be specified.**
 
-Basic heating and cooling modes
+Basic Heating and Cooling Modes
 *******************************
 
 These are triggered when the climate control **mode** is changed. Note the absence of "action" in the
@@ -142,7 +142,7 @@ indication of the current climate mode.
 - **fan_only_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device is placed into fan only mode (it may not heat or cool).
 
-Fan mode actions
+Fan Mode Actions
 ****************
 
 These are triggered when the climate control fan mode is changed. These are ESPHome :ref:`actions <config-action>`.
@@ -166,7 +166,7 @@ These are triggered when the climate control fan mode is changed. These are ESPH
 - **fan_mode_diffuse_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
   should direct its airflow over a broad area.
 
-Swing mode actions
+Swing Mode Actions
 ******************
 
 These are triggered when the climate control swing mode is changed. These are ESPHome :ref:`actions <config-action>`.
@@ -180,7 +180,7 @@ These are triggered when the climate control swing mode is changed. These are ES
 - **swing_both_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
   should oscillate in horizontal and vertical directions.
 
-Advanced options
+Advanced Options
 ****************
 
 - **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
