@@ -40,8 +40,9 @@ There are three types of bang bang controllers this platform can represent:
   - When the current temperature is above the higher target temperature, ``cool_action`` is called.
 
 In addition to simple heating and/or cooling, a number of fan control modes are built into the
-climate/thermostat interface in Home Assistant; this component may also be configured to trigger actions
-based on the entire range of fan modes that Home Assistant offers (at the time this document was written).
+climate/thermostat interface in Home Assistant; this component may also be configured to trigger
+:ref:`actions <config-action>` based on the entire range of fan modes that Home Assistant offers
+(at the time this document was written).
 
 **Note that actions are only called when the current temperature leaves the target temperature range
 or when the respective fan mode or swing mode is changed.**
@@ -115,7 +116,8 @@ These are triggered when the climate control **action** is changed by the bang b
   controller does not trigger this action; it is invoked by ``dry_mode`` (see below).
 - **fan_only_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device should activate its fan only (but does not heat or cool). The bang bang
-  controller does not trigger this action; it is invoked by ``fan_only_mode`` (see below).
+  controller triggers this action based on the upper target temperature when set to
+  ``fan_only_mode`` (see below).
 - All other options from :ref:`Climate <config-climate>`.
 
 **At least one of** ``heat_action`` **and** ``cool_action`` **must be specified.**
@@ -140,7 +142,8 @@ indication of the current climate mode.
 - **dry_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device is placed into dry mode (for dehumidification).
 - **fan_only_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
-  the climate device is placed into fan only mode (it may not heat or cool).
+  the climate device is placed into fan only mode (it may not heat or cool, but will activate
+  its fan as needed based on the upper target temperature value).
 
 Fan Mode Actions
 ****************
