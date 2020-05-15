@@ -305,11 +305,11 @@ range we have to work with, specific bits for each of the specific color compone
 
 .. code-block:: text
 
-         Bit: 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
-    Controls:  R  R  R  R  R  G  G  G  G  G  G  B  B  B  B  B
-         Red:  1  1  1  1  1  0  0  0  0  0  0  0  0  0  0  0
-       Green:  0  0  0  0  0  1  1  1  1  1  1  0  0  0  0  0
-        Blue:  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1  1
+    Bit Number: 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+      Controls:  R  R  R  R  R  G  G  G  G  G  G  B  B  B  B  B
+           Red:  1  1  1  1  1  0  0  0  0  0  0  0  0  0  0  0
+         Green:  0  0  0  0  0  1  1  1  1  1  1  0  0  0  0  0
+          Blue:  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1  1
 
 A picture is worth a thousand...pixels? Maybe this is slowly starting to make some sense?
 
