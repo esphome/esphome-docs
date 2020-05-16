@@ -22,7 +22,11 @@ displays with ESPHome. Note that this component is for displays that are connect
     SSD1325 OLED Display
 
 Connect CLK, DIN, CS, DC, and RST to pins on your ESP. For power, connect
-VCC to 3.3V and GND to GND.
+VCC to 3.3V and GND to GND. Note that two jumper resistors on the back of the
+display PCB may need to be moved to put the display into SPI mode.
+`Adafruit <https://www.adafruit.com/product/2674>`__ has a
+`guide <https://learn.adafruit.com/2-7-monochrome-128x64-oled-display-module/assembly>`__
+that explains how to do this, if necessary.
 
 .. code-block:: yaml
 
@@ -40,8 +44,8 @@ VCC to 3.3V and GND to GND.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
-Configuration variables:
-************************
+Configuration Variables
+***********************
 
 - **model** (**Required**): The model of the display. Options are:
 
@@ -59,6 +63,27 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+Grayscale Support
+*****************
+
+This display module supports four bits of grayscale -- that is, sixteen shades of gray, 0 through 15.
+A larger value means (a) brighter pixel(s). Add the desired pixel intensity to the function call that
+draws the object/text in your lambda. The examples below should help to get you started.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ssd1325_spi
+        model: "SSD1325 128x64"
+        reset_pin: D0
+        cs_pin: D8
+        dc_pin: D1
+        lambda: |-
+          # Dark gray box around the perimeter of the display; last argument is the intensity of the pixels.
+          it.rectangle(0, 0, it.get_width(), it.get_height(), 1);
+          # Text in medium-gray; pixel intensity goes between the font and TextAlign arguments.
+          it.print(2, 2, id(font), 8, TextAlign::TOP_LEFT, "Hello, Gray World!");
 
 See Also
 --------
