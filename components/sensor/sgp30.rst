@@ -6,7 +6,7 @@ SGP30 CO₂ and Volatile Organic Compound Sensor
     :image: sgp30.png
 
 The ``sgp30`` sensor platform  allows you to use your Sensiron SGP30 multi-pixel gas
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Gas/Sensirion_Gas_Sensors_SGP30_Datasheet.pdf>`__) sensors or the SVM30 breakout-boards  (`product page <https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/>`__) with ESPHome.
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Datasheets/Sensirion_Gas_Sensors_SGP30_Datasheet.pdf>`__) sensors or the SVM30 breakout-boards  (`product page <https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/>`__) with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/eco2-tvoc.png
