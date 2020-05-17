@@ -27,7 +27,6 @@ Blog Posts & Videos
 - `Smart $2 doorbell <https://frenck.dev/diy-smart-doorbell-for-just-2-dollar/>`__ by `Frenck <https://frenck.dev>`__
 - `Cheap Car Presence Detection <https://adonno.com/car-presence-position-detection/>`__ by `Adonno <https://adonno.com>`__
 - `Calibrating Power Sensors <https://frenck.dev/calibrating-an-esphome-flashed-power-plug/>`__ by `Frenck <https://frenck.dev>`__
-- `Count Water Bottles <https://vigonotion.com/blog/monitor-remainding-water-bottles/>`__ by `vigonotion <https://vigonotion.com>`__
 - `ESPHome Weather Station with Nextion display <https://github.com/bruxy70/Home-Assistant-ESPHome-Weather-Station>`__ by :ghuser:`bruxy70`
 - `ESPHome Wall Mount with Nextion Display <https://github.com/Andoramb/Nextion-wall-mount>`__ by :ghuser:`Andoramb` (`video <https://www.youtube.com/watch?v=TL8wZNnS4jI>`__)
 - `Sonoff 4CH Irrigation Controller with Nextion Display <https://github.com/bruxy70/Irrigation-with-display>`__ by :ghuser:`bruxy70`
