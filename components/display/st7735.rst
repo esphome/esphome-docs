@@ -1,5 +1,5 @@
 ST7735 I/O Expander
-=====================
+===================
 
 .. seo::
     :description: Instructions for setting up a ST7735 OLED display drivers.
@@ -8,7 +8,7 @@ ST7735 I/O Expander
 OLED ST7735 Display Driver. 
 
 Usage
---------
+-----
 
 The ST7735 component allows you to use a ST7735 OLED display
 (`datasheet and information <https://learn.adafruit.com/1-8-tft-display/downloads>`__,
@@ -42,6 +42,7 @@ There are numerous board types out there. Some initialize differntly as well. Th
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
+
 - **model** (**Required**, "See Models Below"): This the model to use. INITR_BLACKTAB is the default
 - **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
@@ -53,14 +54,16 @@ Configuration variables:
 - **eightbitcolor** (*Optional*, "True/False" ): 8bit mode. Default is False. This saves 50% of the buffer required for the display. 
 
 Memory notes:
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+
 - 8Bit color saves 50% of the buffer required.
 - eightbitcolor: True 160x128 = 20480 *Important for memory constrained devices*
 - eightbitcolor: False 160x128x2 = 40960 
 
 
 Models:
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
+
 - INITR_GREENTAB
 - INITR_REDTAB
 - INITR_BLACKTAB
