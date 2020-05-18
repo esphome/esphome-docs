@@ -358,6 +358,7 @@ Misc Components
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg
     MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
+    MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg    
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg
