@@ -6,6 +6,8 @@ ESPHome IR HiFi amplifier control
     :image: ESPHome-IR-amplifier-control.jpg
     :keywords: IR servo mqtt ESPHome
 
+The goal is to remote control the volume, a standard knob managing a potentiometer, and also switch the HiFi amplifier on and off.
+
 The project is based on an ESP32 and ESPHome, to receive and decode the IR from a remote control. It can use any remote with a few minor adjustements.
 
 .. figure:: images/ESPHome-IR-amplifier-control.jpg
