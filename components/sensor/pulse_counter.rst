@@ -8,9 +8,7 @@ Pulse Counter Sensor
 The pulse counter sensor allows you to count the number of pulses and the frequency of a signal
 on any pin.
 
-On the ESP32, this sensor can use the highly accurate `pulse counter
-peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`.
-However, a maximum of 8 pulse counter peripheral channels are possible!
+On the ESP32 this sonsor can use the highly accurate hardware `pulse counter peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>` on up to 8 channels.
 
 .. figure:: images/pulse-counter.png
     :align: center
@@ -23,7 +21,7 @@ However, a maximum of 8 pulse counter peripheral channels are possible!
       - platform: pulse_counter
         pin: 12
         name: "Pulse Counter"
-        slow: False
+        hardware_pulsecounter: True
 
 Configuration variables:
 ------------------------
@@ -40,8 +38,6 @@ Configuration variables:
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
 
-- **slow** (*Optional*, bool): Don't use the hardware pulse-counter. On ESP8266 it defaults to ``True``, as it has no pulse-counter periferal.
-  On ESP32 it defaults to ``False``, however only 8 non-slow pulse-counters are possible.
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. If **slow** is ``False``,
   this value can not be higher than ``13us``, else you can use larger intervals too.
@@ -53,6 +49,11 @@ Configuration variables:
 
 - **total** (*Optional*): Report the total number of pulses
   All options from :ref:`Sensor <config-sensor>`.
+
+- **hardware_pulsecounter** (*Optional*, bool): Only valid on ESP32! 
+  This option activates the highly accurate hardware `pulse counter peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`.
+  Due to hardware limidations a maximum of 8 hardware pulse-counters can be used, however a mix of hardware and software pulse-counters is possible. 
+  Defaults to `FALSE` on ESP8266 and to `TRUE` on ESP32.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
