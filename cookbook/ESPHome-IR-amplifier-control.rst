@@ -20,12 +20,14 @@ For the ON/OFF the project uses a Shelly Plug S managed via web from Node-RED. O
 The servo and the board are fixed with double sided tape, so everything is removable.
 
 .. figure:: images/apple_remote.jpg
+
     :align: left
     :width: 100.0%
     
 The remote used
 
 .. figure:: images/servo_pulley.jpg
+
     :align: left
     :width: 100.0%
     
