@@ -15,7 +15,7 @@ The servo and the board are fixed with double sided tape, so everything is remov
 
 For the ON/OFF the project uses a Shelly Plug S managed via web from Node-RED. One of the keys of the remote is decoded and triggers a MQTT message that Node-RED can capture and convert to a relay toggle order for the Shelly Plug. Of course any other smart plug can be used if it accepts commands via web.
 
-.. figure:: images/images/Apple_remote.jpg
+.. figure:: images/images/apple_remote.jpg
     :align: left
     :width: 100.0%
     
