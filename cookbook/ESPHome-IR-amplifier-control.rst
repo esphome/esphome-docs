@@ -42,6 +42,8 @@ Infrastructure:
 - ESPHome running (in my case Hassio version)
 - Node-RED running (in my case Hassio version)
 
+
+irreceiver.yaml:
 .. code-block:: yaml
 
     substitutions:
