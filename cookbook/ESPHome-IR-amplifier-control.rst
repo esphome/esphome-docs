@@ -43,7 +43,7 @@ Infrastructure:
 - Node-RED running (in my case Hassio version)
 
 
-irreceiver.yaml:
+irreceiver.yaml: (`irreceiver.yaml <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/irreceiver.yaml>`__
 
 .. code-block:: yaml
 
