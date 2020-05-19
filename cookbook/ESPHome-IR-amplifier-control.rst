@@ -199,7 +199,7 @@ This is the yaml code: (`Download irreceiver.yaml from here <https://github.com/
 See Also
 --------
 
-- :doc:`/components/remote_receiver.rst`
-- :doc:`/components/servo.rst`
-- :doc:`/components/mqtt.rst`
+- :doc:`/components/remote_receiver`
+- :doc:`/components/servo`
+- :doc:`/components/mqtt`
 - :ghedit:`Edit`
