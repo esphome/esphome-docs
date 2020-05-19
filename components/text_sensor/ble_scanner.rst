@@ -1,5 +1,5 @@
 ESP32 Bluetooth Low Energy Scanner
-======================================
+==================================
 
 .. seo::
     :description: Instructions for setting up BLE text sensors for the ESP32.
