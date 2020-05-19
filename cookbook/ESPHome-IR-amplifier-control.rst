@@ -193,3 +193,10 @@ This is the yaml code: (`Download irreceiver.yaml from here <https://github.com/
         pin: 12               # adapt to your needs
         frequency: 50 Hz
 
+See Also
+--------
+
+- :doc:`/components/remote_receiver.rst`
+- :doc:`/components/servo.rst`
+- :doc:`/components/mqtt.rst`
+- :ghedit:`Edit`
