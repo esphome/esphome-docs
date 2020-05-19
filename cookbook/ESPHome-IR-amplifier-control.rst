@@ -44,27 +44,27 @@ Infrastructure:
 
 .. code-block:: yaml
 
-substitutions:
-  devicename: irreceiver
-  uper_devicename: IR Receiver
-  device_ip: 192.168.1.33
-
-esphome:
-  name: $devicename
-  platform: ESP32
-  board: esp-wrover-kit
-
-  on_boot:
-    priority: -10
-    then:
-      - servo.write:
-          id: my_servo
-          level: 0                   # put the servo in neutral (stoped)
-      - delay: 100ms
-      - servo.detach: my_servo       # always detach the servo to ensure it stops completely
-      - lambda: 'id(my_global_timer) = millis();'
-
-  on_loop:
+    substitutions:
+      devicename: irreceiver
+      uper_devicename: IR Receiver
+      device_ip: 192.168.1.33
+    
+    esphome:
+      name: $devicename
+      platform: ESP32
+      board: esp-wrover-kit
+    
+      on_boot:
+        priority: -10
+        then:
+          - servo.write:
+              id: my_servo
+              level: 0                   # put the servo in neutral (stoped)
+          - delay: 100ms
+          - servo.detach: my_servo       # always detach the servo to ensure it stops completely
+          - lambda: 'id(my_global_timer) = millis();'
+    
+      on_loop:
     then:
       - if:
           condition:                 # this stops de servo after 300ms from a received order
