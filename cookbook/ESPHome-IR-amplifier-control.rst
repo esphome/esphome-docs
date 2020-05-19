@@ -43,6 +43,7 @@ Infrastructure:
 - Node-RED running (in my case Hassio version)
 
 .. code-block:: yaml
+
 substitutions:
   devicename: irreceiver
   uper_devicename: IR Receiver
