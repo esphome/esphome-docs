@@ -40,7 +40,7 @@ Infrastructure:
 
 - WiFi network
 - ESPHome running (in my case Hassio version)
-- Node-RED running (in my case Hassio version) (`Download node here <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/ir_amplifier_control.ndr>`__))
+- Node-RED running (in my case Hassio version) (`Download node here in JSON to import to Node-RED <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/ir_amplifier_control.ndr>`__)
 
 
 irreceiver.yaml: (`irreceiver.yaml <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/irreceiver.yaml>`__)
