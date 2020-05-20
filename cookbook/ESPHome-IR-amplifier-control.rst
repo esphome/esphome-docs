@@ -28,7 +28,7 @@ The remote used
     :align: left
     :width: 100.0%
 
-and the servo pulley (`servo_pulley.stl <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/irreceiver.yaml>`__)
+and the servo pulley (`servo_pulley.stl <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/servo_pulley.stl>`__)
 
 So, the project needs:
 
