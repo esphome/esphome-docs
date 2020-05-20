@@ -1,4 +1,4 @@
-MCP3008 I/O Expander
+~MCP3008 I/O Expander
 =====================
 
 .. seo::
@@ -7,7 +7,7 @@ MCP3008 I/O Expander
 
 The Microchip Technology Inc. MCP3008
 devices are successive approximation 10-bit Analogto-Digital (A/D) converters with on-board sample and
-hold circuitry
+hold circuitry. Each pin will respond with a 0-1023 result depending on the voltage it is reading
 
 MCP3008
 --------
@@ -27,39 +27,36 @@ sensors for your projects.
       - id: 'MCP3008_hub'
         cs_pin: D8
 
-    # Individual outputs
+    # Example config of sensors. 
+    # This is a NTCB3950 10K thermocoupler attached to pin 0
+    # of the MCP3008 with a 10K resistor as a voltage divider. 
+    # See `resistance` and `ntc` platorms for other options
     sensor:
-      - platform: mcp3008
+      - platform: mcp3008             # Attached to pin 0 of the MCP3008. The result will be a reading from 0-1023
         update_interval: 1s
         mcp3008: 'mcp3008_hub'
-        id: freezer_temp_source
-        name: "Freezer Temp"
-        number: 0
-      - platform: mcp3008
-        update_interval: 1s
-        mcp3008: 'mcp3008_hub'
-        name: "FridgeTmep"
-        number: 1
+        id: freezer_temp_source       
+        number: 0                     # pin number
       - platform: resistance
-        id: resistance_sensor
+        id: freezer_resistance_sensor 
         sensor: freezer_temp_source
         configuration: DOWNSTREAM
         resistor: 10kOhm
         name: Resistance Sensor
       - platform: ntc
         id: freezer_temp
-        sensor: resistance_sensor
+        sensor: freezer_resistance_sensor
         calibration:
           b_constant: 3950
           reference_temperature: 25°C
           reference_resistance: 10kOhm
-        name: NTC Temperature
+        name: Freezer Temperature
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
-- **cs_pin** (*Optional*, int): The SPI cable select pin to use  
+- **cs_pin** (**Required**, int): The SPI cable select pin to use  
 
 See Also
 --------
