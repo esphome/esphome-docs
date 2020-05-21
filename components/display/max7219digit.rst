@@ -46,9 +46,9 @@ Configuration variables:
   ``4``.
 - **rotate_chip** (*Optional*, integer): The configuration of how the chips are aligned can be changed. Range is from 0 (the default) to 4. Each step is rotating the chip display by 90 degrees.
 - **scroll_enable** (*Optional*, boolean): Turn scroll mode on (True).
-- **scroll_speed** (*Optional*, boolean): Set scroll speed in ms. The default is (250 ms)
-- **scroll_delay** (*Optional*, boolean): Set delay of scroll at start of the string in ms. The default is (1000 ms)
-- **scroll_dwell** (*Optional*, boolean): Set the delay of scroll at the end of the string in ms. The default is (1000 ms). This is only used in mode 1.
+- **scroll_speed** (*Optional*, integer): Set scroll speed in ms. The default is (250 ms)
+- **scroll_delay** (*Optional*, integer): Set delay of scroll at start of the string in ms. The default is (1000 ms)
+- **scroll_dwell** (*Optional*, integer): Set the delay of scroll at the end of the string in ms. The default is (1000 ms). This is only used in mode 1.
 - **scroll_mode** (*Optional*, boolean): Set the scroll mode. 0 = contineously and 1 = stop and reset at end.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
   0 (least intense) to 15 (the default).
