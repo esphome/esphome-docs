@@ -125,22 +125,9 @@ By default the MAX7219Digit display has scroll enabled. The paramaters can be se
           // OR
           it.scroll(true);
 
-.. note::
+.. note:: The screen does not scroll if the text fits within the screen.
 
-    This is a note.
-
-.. warning::
-
-    This is a warning.
-
-
-.. note::
-
-    The screen does not scroll if the text fits within the screen.
-
-.. warning::
-
-    Printdigit("XXXXXXXXX") and printfdigit("XXXXXX") the alternative way of displaying text does not scroll
+.. warning:: Printdigit("XXXXXXXXX") and printfdigit("XXXXXX") the alternative way of displaying text does not scroll
 
 .. code-block:: yaml
 
