@@ -112,7 +112,7 @@ Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23S17 component.
-- **cs_pin** (*Required*, int): The SPI chip select pin to use 
+- **cs_pin** (*Required*, int): The SPI chip select pin to use.
 - **deviceaddress** (*Optional*, int): The address of the chip.
   Defaults to ``0``.
 
