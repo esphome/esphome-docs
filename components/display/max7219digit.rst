@@ -127,6 +127,15 @@ By default the MAX7219Digit display has scroll enabled. The paramaters can be se
 
 .. note::
 
+    This is a note.
+
+.. warning::
+
+    This is a warning.
+
+
+.. note::
+
     The screen does not scroll if the text fits within the screen.
 
 .. warning::
