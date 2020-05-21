@@ -44,7 +44,12 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
 - **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
   ``4``.
-- **offset** (*Optional*, integer): The number of extra virtual chips to buffer text. (Can be used when scrolling text)
+- **rotate_chip** (*Optional*, integer): The configuration of how the chips are aligned can be changed. Range is from 0 (the default) to 4. Each step is rotating the chip display by 90 degrees.
+- **scroll_enable** (*Optional*, boolean): Turn scroll mode on (True).
+- **scroll_speed** (*Optional*, boolean): Set scroll speed in ms. The default is (250 ms)
+- **scroll_delay** (*Optional*, boolean): Set delay of scroll at start of the string in ms. The default is (1000 ms)
+- **scroll_dwell** (*Optional*, boolean): Set the delay of scroll at the end of the string in ms. The default is (1000 ms). This is only used in mode 1.
+- **scroll_mode** (*Optional*, boolean): Set the scroll mode. 0 = contineously and 1 = stop and reset at end.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
   0 (least intense) to 15 (the default).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
@@ -96,9 +101,31 @@ Some special MAX7219 digit code can be added as follows:
         lambda: |-
           // Print 0 at position 0 (left)
           it.print(0,0, id(digit_font), "Hello!");
-          it.scroll_left(1);
+          it.scroll(true,0,100,5000,1500);
 
-The text on the display will scroll left 1 step per update in a contineaous loop. If extra display space is reserved by adding offset = for example 2, "hidden" text will appear in time on more text can be displayed.
+By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file. They can also be changed in the Lambda by adding the following command: it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL). 
+ON/OFF -> switch scrolling on or off
+MODE -> 0 = Contineous scrolling
+        1 = Stop at end and reset
+SPEED -> Set speed of scrolling (ms for every step of one dot)
+DELAY -> pauze at start of scrolling
+DWELL -> pauze at end of scrolling (only in mode 1)
+
+.. code-block:: yaml
+
+    display:
+      - platform: max7219digit
+        # ...
+        lambda: |-
+          # ...
+          it.scroll(true,0,100,5000,1500); 
+          // OR
+          it.scroll(true,0,); 
+          // OR
+          it.scroll(true);
+
+The screen does not scroll if the text fits within the screen.
+Printdigit("XXXXXXXXX") and printfdigit("XXXXXX") does not scroll
 
 .. code-block:: yaml
 
