@@ -104,6 +104,7 @@ Some special MAX7219 digit code can be added as follows:
           it.scroll(true,0,100,5000,1500);
 
 By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file. They can also be changed in the Lambda by adding the following command: it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL). 
+
 - ON/OFF -> switch scrolling on or off
 - MODE -> 0 = Contineous scrolling
 -         1 = Stop at end and reset
