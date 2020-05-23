@@ -414,7 +414,7 @@ by the integration developer.
 .. note::
 
     Additionally, ESPHome has a ``custom_components`` mechanism like
-    `Home Assistant does <https://developers.home-assistant.io/docs/en/creating_component_loading.html>`__.
+    `Home Assistant does <https://developers.home-assistant.io/docs/creating_component_index>`__.
     So for testing you can also create a new ``custom_components`` folder inside of your ESPHome
     config folder and create new integrations in there.
 
