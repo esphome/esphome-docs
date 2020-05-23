@@ -150,7 +150,8 @@ These are triggered when the climate control **action** is changed by the bang b
   ``fan_only_mode`` (see below).
 - All other options from :ref:`Climate <config-climate>`.
 
-**Exactly one of** ``heat_action`` **and** ``cool_action`` **must be specified in single-point mode.**
+**Exactly one of** ``cool_action``, ``fan_only_action``, ``heat_action``, **and** ``dry_action``
+**must be specified in single-point mode.**
 
 **Both** ``heat_action`` **and** ``cool_action`` **must be specified in dual-point mode.**
 
