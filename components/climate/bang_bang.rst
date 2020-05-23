@@ -227,18 +227,20 @@ Advanced Options
   an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. Defaults to 0.5 °C.
 - **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
-  away or during nighttime)
+  away or sleeping/at night).
 
-  - **default_target_temperature_low** (**Required**, float): The default low target temperature for
-    the control algorithm during away mode.
-  - **default_target_temperature_high** (**Required**, float): The default high target temperature for
-    the control algorithm during away mode.
+  - **default_target_temperature** (**Required**, float, single-point mode only): The default target
+    temperature for the control algorithm when Away mode is selected. This can be dynamically set in the frontend later.
+  - **default_target_temperature_low** (**Required**, float, dual-point mode only): The default low target
+    temperature for the control algorithm when Away mode is selected. This can be dynamically set in the frontend later.
+  - **default_target_temperature_high** (**Required**, float, dual-point mode only): The default high target
+    temperature for the control algorithm when Away mode is selected. This can be dynamically set in the frontend later.
   - **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
     an :ref:`action <config-action>` (cooling, heating, etc.) is triggered in away mode. Defaults to 0.5 °C.
 
 .. note::
 
-    While this platform uses the term temperature everywhere, it can also be used for other values.
+    While this platform uses the term temperature everywhere, it can also be used to regulate other values.
     For example, controlling humidity is also possible with this platform.
 
 See Also
