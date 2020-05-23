@@ -81,6 +81,6 @@ See Also
 - :apiref:`tx20/tx20.h`
 - `Amazon Tx20 <https://www.amazon.de/Technoline-Tx-20/dp/B01HXZ3KLA>`__
 - `La Crosse Tx23 <https://www.lacrossetechnology.com/tx23-wind-sensor>`__
-- `Datagram Tx20 <http://www.sdpro.eu/jm/images/allegati/Tx20_Documentazione.pdf>`__
+- `Datagram Tx20 <http://www.sdpro.eu/jm/images/allegati/TX20_Documentazione.pdf>`__
 - `Datagram Tx23 <https://www.lacrossetechnology.com/tx23-wind-sensor>`__-
 - :ghedit:`Edit`
