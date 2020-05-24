@@ -2,8 +2,8 @@ ESP32 DAC
 =========
 
 .. seo::
-    :description: Instructions for setting up ESP8266 software-based PWMs.
-    :image: pwm.png
+    :description: Instructions for setting up ESP32 digital-to-analog converter.
+    :image: dac.svg
 
 The ESP32 DAC platform allows you to output arbitrary voltages using the 8-bit DAC on the ESP32. Two pins are supported: GPIO25 (Channel 1) and GPIO26 (Channel 2).
 
