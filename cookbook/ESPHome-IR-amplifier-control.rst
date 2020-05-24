@@ -20,13 +20,13 @@ The servo and the board are fixed with double sided tape, so everything is remov
 
 .. figure:: images/apple_remote.jpg
     :align: center
-    :width: 50.0%
+    :width: 20.0%
 
 The remote used
 
 .. figure:: images/servo_pulley.jpg
     :align: center
-    :width: 100.0%
+    :width: 10.0%
 
 and the servo pulley (`servo_pulley.stl <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/irreceiver.yaml>`__)
 
