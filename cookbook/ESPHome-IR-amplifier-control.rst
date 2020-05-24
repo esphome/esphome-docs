@@ -14,18 +14,18 @@ For the ON/OFF the project uses a Shelly Plug S managed via web from Node-RED. O
 
 .. figure:: images/ESPHome-IR-amplifier-control.jpg
     :align: center
-    :width: 50.0%
+    :width: 90.0%
 
 The servo and the board are fixed with double sided tape, so everything is removable.
 
 .. figure:: images/apple_remote.jpg
-    :align: left
-    :width: 100.0%
+    :align: center
+    :width: 50.0%
 
 The remote used
 
 .. figure:: images/servo_pulley.jpg
-    :align: left
+    :align: center
     :width: 100.0%
 
 and the servo pulley (`servo_pulley.stl <https://github.com/deltazerorsan/ESPHome-IR-HiFi-amplifier-control/blob/master/ESPHome_yaml/irreceiver.yaml>`__)
@@ -55,7 +55,7 @@ This is the yaml code: (`Download irreceiver.yaml from here <https://github.com/
     substitutions:
       devicename: irreceiver
       uper_devicename: IR Receiver
-      device_ip: 192.168.1.33
+      device_ip: 192.168.1.33            # use your own
     
     esphome:
       name: $devicename
