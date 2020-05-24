@@ -199,6 +199,7 @@ Output Components
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
     Slow PWM, components/output/slow_pwm, pwm.png
     GPIO Output, components/output/gpio, pin.svg
+    ESP32 DAC, components/output/esp32_dac, dac.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
