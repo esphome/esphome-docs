@@ -5,9 +5,11 @@ ESP32 DAC
     :description: Instructions for setting up ESP32 digital-to-analog converter.
     :image: dac.svg
 
-The ESP32 DAC platform allows you to output arbitrary voltages using the 8-bit DAC on the ESP32. Two pins are supported: GPIO25 (Channel 1) and GPIO26 (Channel 2).
+The ESP32 DAC platform allows you to output analog voltages using the 8-bit digital-to-analog converter of the ESP32. Unlike the :doc:`/components/output/ledc`, the hardware DAC can output a *real* analog signal with no need for additional filtering. 
 
-The output level is a percentage of VCC (3.3V).
+The DAC spans across two pins, each on its own channel: GPIO25 (Channel 1) and GPIO26 (Channel 2).
+
+The output level is a percentage of the board supply voltage (VDD_A) - generally this will be 3.3V.
 
 
 .. code-block:: yaml
