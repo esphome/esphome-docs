@@ -125,6 +125,7 @@ Sensor Components
     HTU21D, components/sensor/htu21d, htu21d.jpg
     HM3301, components/sensor/hm3301, hm3301.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
+    MAX31856, components/sensor/max31856, max31856.jpg
     MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
