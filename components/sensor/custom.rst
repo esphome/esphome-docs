@@ -89,7 +89,7 @@ the latest values.
 However, there's a small problem with that approach: ``loop()`` gets called very often (about 60 times per second).
 If we would publish a new state each time that method is called we would quickly make the node unresponsive.
 
-So this fix this, we will use an alternative class to :apiclass:`Component`: :apiclass:`PollingComponent`.
+So lets fix this, we will use an alternative class to :apiclass:`Component`: :apiclass:`PollingComponent`.
 This class is for situations where you have something that should get called repeatedly with some **update interval**.
 In the code above, we can simply replace :apiclass:`Component` by :apiclass:`PollingComponent` and
 ``loop()`` by a special method ``update()`` which will be called with an interval we can specify.
