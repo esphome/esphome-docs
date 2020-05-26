@@ -10,7 +10,7 @@ devices are successive approximation 10-bit Analogto-Digital (A/D) converters wi
 hold circuitry. Each pin will respond with a 0-1023 result depending on the voltage it is reading
 
 MCP3008
---------
+-------
 
 The MCP3008 component allows you to use MCP3008 8-Channel 10-Bit A/D Converter
 (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf>`__,
