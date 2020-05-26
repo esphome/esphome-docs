@@ -10,22 +10,26 @@ The ``bang_bang`` climate platform allows you to regulate a value with a
 
 If you are looking to create your own climate control device (aka thermostat), this is the component for you.
 
-The operation principle of a bang-bang controller is quite simple. First, you specify an observable
+The principle of operation of a bang-bang controller is quite simple. First, you specify an observable
 value (for example, the temperature of a room). The controller will try to keep this observed value
-within a defined range. To do this, the controller can activate devices like a heating unit to change
-the observed value.
+within a defined range. To do this, the controller can activate devices like a heating unit and/or a cooling unit
+to change the observed value.
 
 The bang-bang controller as implemented in this component can operate in one of two ways:
 
-- **Single-point**: A single threshold (setpoint) is defined; cooling may be activated when the observed temperature
-  exceeds the setpoint **or** heating may be activated when the observed temperature drops below the setpoint.
+- **Single-point**: A single threshold (set point) is defined; cooling may be activated when the observed temperature
+  exceeds the set point **or** heating may be activated when the observed temperature drops below the set point; that is,
+  the controller can only raise the temperature or lower the temperature. It cannot do both in this mode.
 
-- **Dual-point**: Two thresholds (setpoints) are defined; cooling is activated when the observed temperature exceeds the
-  upper setpoint while heating is activated when the observed temperature drops below the lower setpoint.
+- **Dual-point**: Two thresholds (set points) are defined; cooling is activated when the observed temperature exceeds the
+  upper set point while heating is activated when the observed temperature drops below the lower set point; in other words,
+  the controller is able to both raise and lower the temperature as required.
 
-The setpoint(s) may be adjusted through the front-end user interface. In single-point mode, ``target_temperature``
-defines the setpoint, while in dual-point mode ``target_temperature_low`` and ``target_temperature_high`` define
-the setpoints. The screenshot below illustrates a bang-bang controller in dual-point mode.
+The controller automatically determines which mode it should operate in based on what :ref:`actions <config-action>` are
+configured -- more on this in a moment. The set point(s) may be adjusted through the front-end user interface. Two
+parameters define the set points; they are ``target_temperature_low`` and ``target_temperature_high``. In single-point mode,
+however, only one is used. The screenshot below illustrates a bang-bang controller in dual-point mode, where two set points
+are available.
 
 .. figure:: images/climate-ui.png
     :align: center
@@ -34,14 +38,13 @@ the setpoints. The screenshot below illustrates a bang-bang controller in dual-p
     Dual-setpoint climate UI
 
 This component works by triggering a number of :ref:`actions <config-action>` as required to keep the observed
-temperature above/below/within the target range as defined by the setpoint(s). When the observed temperature drops
-below either ``target_temperature`` (single-point mode configured for heating) or ``target_temperature_low`` (dual-point
-mode) ``heat_action`` is called to activate heating. When the observed temperature exceeds either either
-``target_temperature`` (single-point mode configured for cooling) or ``target_temperature_high`` (dual-point mode)
-``cool_action`` is called to activate cooling. When the temperature has reached a point above/below/within the desired
-range, ``idle_action`` is called to stop heating/cooling.
+temperature above/below/within the target range as defined by the set point(s). When the observed temperature drops
+below ``target_temperature_low`` the controller will trigger the ``heat_action`` to activate heating. When the
+observed temperature exceeds ``target_temperature_high``  the controller will trigger the ``cool_action`` to activate
+cooling. When the temperature has reached a point within the desired range, the controller will trigger the
+``idle_action`` to stop heating/cooling.
 
-In addition to the setpoints, a hysteresis value determines how far the temperature may vary from the setpoint value(s)
+In addition to the set points, a hysteresis value determines how far the temperature may vary from the set point value(s)
 before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. It defaults to 0.5 °C.
 
 A number of fan control modes are built into the climate/thermostat interface in Home Assistant; this component may
@@ -57,29 +60,27 @@ or when the respective fan mode or swing mode is changed.**
     climate:
       - platform: bang_bang
         sensor: my_temperature_sensor
-        dual_target_temperature:
-          default_target_temperature_low: 20 °C
-          default_target_temperature_high: 22 °C
-          cool_action:
-            - switch.turn_on: air_cond
-          heat_action:
-            - switch.turn_on: heater
-          idle_action:
-            - switch.turn_off: air_cond
-            - switch.turn_off: heater
+        default_target_temperature_low: 20 °C
+        default_target_temperature_high: 22 °C
+        cool_action:
+          - switch.turn_on: air_cond
+        heat_action:
+          - switch.turn_on: heater
+        idle_action:
+          - switch.turn_off: air_cond
+          - switch.turn_off: heater
 
 .. code-block:: yaml
 
-    # Example single-point configuration entry
+    # Example single-point configuration entry (for heat only)
     climate:
       - platform: bang_bang
         sensor: my_temperature_sensor
-        single_target_temperature:
-          default_target_temperature: 20 °C
-          heat_action:
-            - switch.turn_on: heater
-          idle_action:
-            - switch.turn_off: heater
+        default_target_temperature: 20 °C
+        heat_action:
+          - switch.turn_on: heater
+        idle_action:
+          - switch.turn_off: heater
 
 
 Important Terminology
@@ -109,24 +110,22 @@ Got all that? Great. Let's take a closer look at some configuration.
 Configuration Variables
 -----------------------
 
+The bang-bang controller uses the sensor to determine whether it should heat or cool.
+
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
-
-- **dual_target_temperature** (*Optional*, dictionary): Configures the controller for dual-point mode.
-- **single_target_temperature** (*Optional*, dictionary): Configures the controller for single-point mode.
-
-**Exactly one of** ``dual_target_temperature`` **and** ``single_target_temperature`` **must be specified.**
 
 Default Target Temperatures
 ***************************
 
 These temperatures are used when the device first starts up.
 
-- **default_target_temperature** (**Required**, float, single-point mode only): The default target
+- **default_target_temperature_low** (*Optional*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
-- **default_target_temperature_low** (**Required**, float, dual-point mode only): The default low target
+- **default_target_temperature_high** (*Optional*, float): The default high target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
-- **default_target_temperature_high** (**Required**, float, dual-point mode only): The default high target
-  temperature for the control algorithm. This can be dynamically set in the frontend later.
+
+**At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
+**must be specified.**
 
 Basic Heating and Cooling Actions
 *********************************
@@ -150,10 +149,11 @@ These are triggered when the climate control **action** is changed by the bang b
   ``fan_only_mode`` (see below).
 - All other options from :ref:`Climate <config-climate>`.
 
-**Exactly one of** ``cool_action``, ``fan_only_action``, ``heat_action``, **and** ``dry_action``
-**must be specified in single-point mode.**
+**At least one of** ``cool_action``, ``fan_only_action``, ``heat_action``, **and** ``dry_action``
+**must be specified.**
 
-**Both** ``heat_action`` **and** ``cool_action`` **must be specified in dual-point mode.**
+If only one of ``cool_action``, ``fan_only_action``, ``heat_action``, and ``dry_action`` is specified,
+the controller will configure itself to operate in single-point mode.
 
 Basic Heating and Cooling Modes
 *******************************
@@ -230,14 +230,13 @@ Advanced Options
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
 
-  - **default_target_temperature** (**Required**, float, single-point mode only): The default target
-    temperature for the control algorithm when Away mode is selected. This can be dynamically set in the frontend later.
-  - **default_target_temperature_low** (**Required**, float, dual-point mode only): The default low target
-    temperature for the control algorithm when Away mode is selected. This can be dynamically set in the frontend later.
-  - **default_target_temperature_high** (**Required**, float, dual-point mode only): The default high target
-    temperature for the control algorithm when Away mode is selected. This can be dynamically set in the frontend later.
-  - **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
-    an :ref:`action <config-action>` (cooling, heating, etc.) is triggered in away mode. Defaults to 0.5 °C.
+  - **default_target_temperature_low** (*Optional*, float): The default low target temperature for the control
+    algorithm when Away mode is selected. This can be dynamically set in the frontend later.
+  - **default_target_temperature_high** (*Optional*, float): The default high target temperature for the control
+    algorithm when Away mode is selected. This can be dynamically set in the frontend later.
+
+**If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
+**must be specified in the away mode configuration.**
 
 .. note::
 
