@@ -40,9 +40,9 @@ are available.
 This component works by triggering a number of :ref:`actions <config-action>` as required to keep the observed
 temperature above/below/within the target range as defined by the set point(s). When the observed temperature drops
 below ``target_temperature_low`` the controller will trigger the ``heat_action`` to activate heating. When the
-observed temperature exceeds ``target_temperature_high``  the controller will trigger the ``cool_action`` to activate
-cooling. When the temperature has reached a point within the desired range, the controller will trigger the
-``idle_action`` to stop heating/cooling.
+observed temperature exceeds ``target_temperature_high``  the controller will trigger the ``cool_action`` or the
+``fan_only_action`` (as determined by the climate mode) to activate cooling. When the temperature has reached a
+point within the desired range, the controller will trigger the ``idle_action`` to stop heating/cooling.
 
 In addition to the set points, a hysteresis value determines how far the temperature may vary from the set point value(s)
 before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. It defaults to 0.5 °C.
