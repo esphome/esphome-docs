@@ -205,6 +205,7 @@ Output Components
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
+    74HC595/74HC595, components/output/sn74hc595, sn74hc595.jpg
     Custom Output, components/output/custom, language-cpp.svg
 
 Light Components

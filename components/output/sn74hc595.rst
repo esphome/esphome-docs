@@ -1,0 +1,51 @@
+74HC595 8-Bit Shift Register
+============================
+
+.. seo::
+    :description: Instructions for setting up 74HC595 8-Bit Shift Register in ESPHome.
+    :image: 74hc595.png
+
+The 74HC595 8-Bit Shift Registers bus applications. Gives 8 OUTPUT only GPIO pins
+
+**Supported Variants :**
+
+- :ref:`74hc595-label`
+
+.. _74hc595-label:
+
+74HC595
+-------
+
+The 74HC595 component (`datasheet <http://www.ti.com/lit/ds/symlink/sn74hc595.pdf>`__,
+`Adafruit <https://www.adafruit.com/product/590>`__) has 8 GPIOs that can be configured independently.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sn74hc595:
+      - id: 'sn74hc595_hub'
+        cs_pin: D3
+
+    # Individual outputs
+    switch:
+      - platform: gpio
+        name: "Sump Relay"
+        id: mainswitch
+        pin:
+          sn74hc595: sn74hc595_hub
+          number: 0
+          inverted: False      
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this MCP23008 component.
+- **cs_pin** (*Required*, int): The SPI chip select pin.  
+
+
+See Also
+--------
+
+- :ref:`spi`
+- :apiref:`API Reference (SN74HC595) <sn74hc595/sn74hc595.h>`
+- :ghedit:`Edit`
