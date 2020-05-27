@@ -263,6 +263,7 @@ Display Components
     Display Core, components/display/index, folder-open.svg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
