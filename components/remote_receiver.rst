@@ -63,7 +63,7 @@ Automations:
   NEC remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::NECData`
   is passed to the automation for use in lambdas.
 - **on_sony** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  NEC remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::SonyData`
+  Sony remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::SonyData`
   is passed to the automation for use in lambdas.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   raw remote code has been decoded. A variable ``x`` of type ``std::vector<int>``
