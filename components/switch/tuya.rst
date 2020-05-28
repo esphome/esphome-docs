@@ -1,5 +1,5 @@
 Tuya Switch
-========
+===========
 
 .. seo::
     :description: Instructions for setting up a Tuya device switch.
