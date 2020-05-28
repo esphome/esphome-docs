@@ -243,6 +243,7 @@ Switch Components
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
+    Tuya Switch, components/switch/tuya, upload.svg
 
 Fan Components
 --------------
