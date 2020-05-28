@@ -25,10 +25,10 @@ The bang-bang controller as implemented in this component can operate in one of 
   upper set point while heating is activated when the observed temperature drops below the lower set point; in other words,
   the controller is able to both raise and lower the temperature as required.
 
-The controller automatically determines which mode it should operate in based on what :ref:`actions <config-action>` are
-configured -- more on this in a moment. The set point(s) may be adjusted through the front-end user interface. Two
-parameters define the set points; they are ``target_temperature_low`` and ``target_temperature_high``. In single-point mode,
-however, only one is used. The screenshot below illustrates a bang-bang controller in dual-point mode, where two set points
+This component/controller automatically determines which mode it should operate in based on what :ref:`actions <config-action>`
+are configured -- more on this in a moment. Two parameters define the set points; they are ``target_temperature_low`` and
+``target_temperature_high``. In single-point mode, however, only one is used. The set point(s) may be adjusted through the
+front-end user interface. The screenshot below illustrates a bang-bang controller in dual-point mode, where two set points
 are available.
 
 .. figure:: images/climate-ui.png
@@ -38,21 +38,18 @@ are available.
     Dual-setpoint climate UI
 
 This component works by triggering a number of :ref:`actions <config-action>` as required to keep the observed
-temperature above/below/within the target range as defined by the set point(s). When the observed temperature drops
-below ``target_temperature_low`` the controller will trigger the ``heat_action`` to activate heating. When the
-observed temperature exceeds ``target_temperature_high``  the controller will trigger the ``cool_action`` or the
-``fan_only_action`` (as determined by the climate mode) to activate cooling. When the temperature has reached a
-point within the desired range, the controller will trigger the ``idle_action`` to stop heating/cooling.
+temperature above/below/within the target range as defined by the set point(s). In general, when the observed temperature
+drops below ``target_temperature_low`` the controller will trigger the ``heat_action`` to activate heating. When the observed
+temperature exceeds ``target_temperature_high``  the controller will trigger the ``cool_action`` or the ``fan_only_action``
+(as determined by the climate mode) to activate cooling. When the temperature has reached a point within the desired range, the
+controller will trigger the ``idle_action`` to stop heating/cooling. Please see the next section for more detail.
 
-In addition to the set points, a hysteresis value determines how far the temperature may vary from the set point value(s)
-before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. It defaults to 0.5 °C.
+A number of fan control modes are built into the climate/thermostat interface in Home Assistant; this component may also be
+configured to trigger :ref:`actions <config-action>` based on the entire range (at the time this document was written) of fan
+modes that Home Assistant offers.
 
-A number of fan control modes are built into the climate/thermostat interface in Home Assistant; this component may
-also be configured to trigger :ref:`actions <config-action>` based on the entire range (at the time this document was
-written) of fan modes that Home Assistant offers.
-
-**Note that actions are only called when the current temperature leaves the target temperature range
-or when the respective fan mode or swing mode is changed.**
+**Note that actions are only called when the current temperature leaves the target temperature range or when the respective
+fan mode or swing mode is changed.**
 
 .. code-block:: yaml
 
@@ -82,6 +79,28 @@ or when the respective fan mode or swing mode is changed.**
         idle_action:
           - switch.turn_off: heater
 
+
+Controller Behavior and Hysteresis
+----------------------------------
+
+In addition to the set points, a hysteresis value determines how far the temperature may vary from the set point value(s)
+before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. It defaults to 0.5 °C.
+
+A question that often surfaces about this component is, "What is the expected behavior?" Let's quickly discuss
+*exactly when* the configured actions are called by the controller.
+
+Consider the low set point (the one that typically activates heating) for a moment, and assume it is set to a common room
+temperature of 21 °C. As mentioned above, the controller uses a default hysteresis value of 0.5 °C, so we'll use that value here,
+as well. The bang-bang controller as implemented in this component will allow the temperature to drop as low as the set point's
+value (21 °C) *minus* the hysteresis value (0.5 °C), or 20.5 °C, before calling ``heat_action`` to activate heating.
+
+After heating has been activated, it will remain active until the observed temperature reaches the set point (21 °C) *plus*
+the hysteresis value (0.5 °C), or 21.5 °C. Once this temperature is reached, ``idle_action`` will be called to deactivate
+heating.
+
+The same behavior applies to the high set point, although the behavior is reversed in a sense; given an upper set point of
+22 °C, ``cool_action`` would be called at 22.5 °C and ``idle_action`` would not be called until the temperature is reduced
+to 21.5 °C.
 
 Important Terminology
 ---------------------
