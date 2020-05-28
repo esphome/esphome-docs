@@ -81,6 +81,8 @@ Configuration variables:
   higher target temperature of a climate device with a two-point target temperature.
 - **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
   of the climate device.
+- **eco_mode** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set eco mode
+  of the climate device.
 - **fan_mode** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
   ``FOCUS``, ``DIFFUSE``.
@@ -111,6 +113,8 @@ advanced stuff.
       id(my_climate).target_temperature_high
       // Away mode, type: bool
       id(my_climate).away
+      // Eco mode, type: bool
+      id(my_climate).eco_mode
       // Fan mode, type: FanMode (enum)
       id(my_climate).fan_mode
       // Swing mode, type: SwingMode (enum)
