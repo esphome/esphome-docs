@@ -167,7 +167,7 @@ Configuration variables:
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
     to translate the truetype files into an internal format. If you're running this as a Hass.io add-on or with
     the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
-    ``pip2 install pillow``.
+    ``pip install pillow``.
 
 
 Then, in your display code just reference the font like so:
@@ -315,7 +315,7 @@ Displaying Time
 With ESPHome you can also display the current time using the NTP protocol. Please see the example :ref:`here <strftime>`.
 
 Images
-^^^^^^
+******
 
 .. code-block:: yaml
 
@@ -336,7 +336,7 @@ Configuration variables:
 
     To use images you will need to have the python ``pillow`` package installed.
     If you're running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
-    installed. Otherwise you need to install it using ``pip2 install pillow``.
+    installed. Otherwise you need to install it using ``pip install pillow``.
 
 And then later in code:
 
@@ -374,13 +374,13 @@ different content, and switch between them on a timer.
 
 You can then switch between these with three different actions:
 
-**show_next** / **show_prev**: Shows the next or previous page, wraps around at the end.
+**show_next** / **show_previous**: Shows the next or previous page, wraps around at the end.
 
 .. code-block:: yaml
 
     on_...:
       - display.page.show_next: my_display
-      - display.page.show_prev: my_display
+      - display.page.show_previous: my_display
 
     # For example cycle through pages on a timer
     interval:
@@ -421,7 +421,7 @@ You can then switch between these with three different actions:
 See Also
 --------
 
-- :apiref:`display/display.h`
+- :apiref:`display/display_buffer.h`
 - :ghedit:`Edit`
 
 .. toctree::

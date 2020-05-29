@@ -1,6 +1,8 @@
 import csv
 from itertools import zip_longest
 import os
+import re
+import string
 
 from docutils import nodes, utils
 from docutils.parsers.rst import directives
@@ -31,11 +33,48 @@ def ghuser_role(name, rawtext, text, lineno, inliner, options=None,
     return [make_link_node(rawtext, '@{}'.format(text), ref, options)], []
 
 
+value_re = re.compile(r'^(.*)\s*<(.*)>$')
+DOXYGEN_LOOKUP = {}
+for s in string.ascii_lowercase + string.digits:
+    DOXYGEN_LOOKUP[s] = s
+for s in string.ascii_uppercase:
+    DOXYGEN_LOOKUP[s] = '_{}'.format(s)
+DOXYGEN_LOOKUP[':'] = '_1'
+DOXYGEN_LOOKUP['_'] = '__'
+DOXYGEN_LOOKUP['.'] = '_8'
+
+
+def split_text_value(value):
+    match = value_re.match(value)
+    if match is None:
+        return None, value
+    return match.group(1), match.group(2)
+
+
+def encode_doxygen(value):
+    value = value.split('/')[-1]
+    try:
+        return ''.join(DOXYGEN_LOOKUP[s] for s in value)
+    except KeyError:
+        raise ValueError("Unknown character in doxygen string! '{}'".format(value))
+
+
 def apiref_role(name, rawtext, text, lineno, inliner, options=None,
                 content=None):
-    text = text.split('/')[-1].replace('_', '__').replace('.', '_8')
-    ref = '/api/{}.html'.format(text)
-    return [make_link_node(rawtext, 'API Reference', ref, options)], []
+    text, value = split_text_value(text)
+    if text is None:
+        text = 'API Reference'
+    ref = '/api/{}.html'.format(encode_doxygen(value))
+    return [make_link_node(rawtext, text, ref, options)], []
+
+
+def apiclass_role(name, rawtext, text, lineno, inliner, options=None,
+                  content=None):
+    text, value = split_text_value(text)
+    if text is None:
+        text = value
+    ref = '/api/classesphome_1_1{}.html'.format(encode_doxygen(value))
+    return [make_link_node(rawtext, text, ref, options)], []
 
 
 def ghedit_role(name, rawtext, text, lineno, inliner, options=None,
@@ -65,10 +104,13 @@ def grouper(n, iterable, fillvalue=None):
 # Based on https://www.slideshare.net/doughellmann/better-documentation-through-automation-creating-docutils-sphinx-extensions
 class ImageTableDirective(Table):
 
-    option_spec = {}
+    option_spec = {
+        'columns': directives.positive_int,
+    }
 
     def run(self):
         env = self.state.document.settings.env
+        cols = self.options.get('columns', 3)
 
         items = []
 
@@ -78,23 +120,26 @@ class ImageTableDirective(Table):
                 continue
             name, page, image = row
             link = page.strip()
-            if not link.startswith('http') and not link.startswith('/'):
-                link = '/{}'.format(link)
-            if '.html' not in link:
-                link += '.html'
+            if link.startswith('http'):
+                pass
+            else:
+                if not link.startswith('/'):
+                    link = '/{}'.format(link)
+                if '.html' not in link:
+                    link += '.html'
             items.append({
                 'name': name.strip(),
                 'link': link,
                 'image': '/images/{}'.format(image.strip()),
             })
 
-        col_widths = self.get_column_widths(3)
+        col_widths = self.get_column_widths(cols)
         title, messages = self.make_title()
         table = nodes.table()
         table['classes'].append('table-center')
 
         # Set up column specifications based on widths
-        tgroup = nodes.tgroup(cols=3)
+        tgroup = nodes.tgroup(cols=cols)
         table += tgroup
         tgroup.extend(
             nodes.colspec(colwidth=col_width)
@@ -104,7 +149,7 @@ class ImageTableDirective(Table):
         tbody = nodes.tbody()
         tgroup += tbody
         rows = []
-        for value in grouper(3, items):
+        for value in grouper(cols, items):
             trow = nodes.row()
             for cell in value:
                 entry = nodes.entry()
@@ -222,6 +267,10 @@ def setup(app):
     app.add_role('docspr', docspr_role)
     app.add_role('ghuser', ghuser_role)
     app.add_role('apiref', apiref_role)
+    app.add_role('apiclass', apiclass_role)
     app.add_role('ghedit', ghedit_role)
     app.add_directive('imgtable', ImageTableDirective)
     app.add_directive('pintable', PinTableDirective)
+    return {"version": "1.0.0",
+            "parallel_read_safe": True,
+            "parallel_write_safe": True}

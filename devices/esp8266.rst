@@ -31,7 +31,7 @@ Some notes on the pins:
 - ``GPIO6`` - ``GPIO11``, ``GPIO0``, ``GPIO2`` and ``GPIO15`` are often already used by the internal
   flash interface and boot mode detection. So it's best to avoid using these pins.
 - ``GPIO17`` additionally has an ADC connected to it. See the :doc:`/components/sensor/adc`
-  to read out voltages (in the range from 0 to 1.0V) on this pin.
+  to read voltages (in the range from 0 to 1.0V) on this pin.
 
 
 .. code-block:: yaml
@@ -139,7 +139,7 @@ in the ``boot mode:`` line tells you what mode was selected
     ets Jan  8 2013,rst cause:4, boot mode:(3,6)
 
 The first lines when viewing the UART logs might have unrecognized characters. This is
-because the ESP8266 bootloader uses a baudrate of 76800, whereas the use program uses 115200.
+because the ESP8266 bootloader uses a baudrate of 76800, whereas the program uses 115200.
 
 Reset Causes
 ------------

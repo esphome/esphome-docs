@@ -43,5 +43,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`status_led.h`
+- :apiref:`status_led/status_led.h`
 - :ghedit:`Edit`

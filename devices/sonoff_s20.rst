@@ -16,12 +16,12 @@ front and a blue and green LED light.
     Sonoff S20 Smart Socket.
 
 This guide will step you through setting up your Sonoff S20 and flashing the first ESPHome firmware
-with the serial interface. After that, you will be able to upload all future firmwares with the remote
+with the serial interface. After that, you will be able to upload all future firmware with the remote
 Over-The-Air update process.
 
 .. note::
 
-    If you've previously installed Sonoff-Tasmota on your Sonoff S20, you're in luck 😀
+    If you've previously installed Sonoff-Tasmota on your Sonoff S20, you're in luck 😀.
     ESPHome can generate a firmware binary which you can then upload via the
     Tasmota web interface. To see how to create this binary, skip to :ref:`sonoff_s20-creating-firmware`.
 
@@ -43,12 +43,12 @@ interface.
 
 For this guide you will need:
 
--  Sonoff S20 😉
--  An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
+-  Sonoff S20 😉.
+-  A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
    Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your S20.
--  Computer running ESPHome Hass.io add-on.
--  Screwdriver to open up the S20.
--  Soldering iron and a few header pins to connect the UART interface.
+-  A computer running Home Assistant with the ESPHome Hass.io add-on.
+-  A screwdriver to open up the S20.
+-  A soldering iron and a few header pins to connect the UART interface.
 
 Have everything? Great! Then you can start.
 
@@ -65,7 +65,7 @@ supplied with the Sonoff S20 before doing this step.
     plugged in before doing this step.
 
 While the device is not plugged in, turn the back side so it's facing you and unscrew the three
-black screws holding the back of the case together with the front.
+black screws that hold the case together.
 
 .. figure:: images/sonoff_s20_screws.jpg
     :align: center
@@ -83,7 +83,7 @@ Step 2: Connecting UART
 -----------------------
 
 We're interested in the main part of the S20 with the green PCB. On the bottom of the PCB, you will
-find four unpopulated holes. These pins have the UART interface used to flash firmwares onto the device
+find four unpopulated holes. These pins expose the UART interface used to flash firmware onto the device
 and debug issues.
 
 .. figure:: images/sonoff_s20_pcb.jpg
@@ -94,8 +94,8 @@ and debug issues.
 So, in order to flash our own custom firmware, we're going to need to somehow connect the UART to USB
 bridge to these pins. The only way to make a good connection here is by using a soldering iron and soldering
 on some pin headers. On older models of the Sonoff S20, you were able to get the whole PCB out. Newer versions,
-however, glue the PCB onto the case to avoid people flashing custom firmwares. If the latter is the case,
-you will need to just solder the pin headers from above - it's a bit difficult, but possible.
+however, glue the PCB onto the case to avoid people flashing custom firmware. If the latter is the case,
+you will just need to solder the pin headers from above - it's a bit difficult, but possible.
 
 When you're done, it should look something like this:
 
@@ -109,7 +109,7 @@ It's best to just use a multimeter and double check if it's unclear.
 .. note::
 
     On some older S20s, the ``RX`` and ``TX`` pins are swapped (sometimes even the written silkscreen is
-    wrong). If your upload fails with a ``error: espcomm_upload_mem failed`` message it's most likely due
+    wrong). If your upload fails with an ``error: espcomm_upload_mem failed`` message it's most likely due
     to the pins being swapped. In that case, just swap ``RX`` and ``TX`` and try again - you won't break
     anything if they're swapped.
 
@@ -153,10 +153,10 @@ Step 4: Uploading Firmware
 --------------------------
 
 In order to upload the firmware, you're first going to need to get the chip into a flash mode, otherwise
-the device will start up without accepting any firmware flash attempts. To do this, while the device is UART
-bridge is not connected to your USB port, start pressing the small push button in the middle of the PCB.
-Then plug in the UART bridge into your computer and just keep holding the button pressed for 2-4 seconds.
-The S20 should now be in a flash mode and should not blink with any LED.
+the device will start up without accepting any firmware flash attempts. To do this, while the UART
+bridge is not connected to your USB port, press and hold the small push button in the middle of the PCB.
+Then plug the UART bridge into your computer and keep holding the button for 2-4 seconds.
+The S20 should now be in a flash mode and should not blink any LED.
 
 Now you can finally run the upload command:
 
@@ -169,12 +169,12 @@ If successful, you should see something like this:
 .. figure:: images/sonoff_s20_upload.png
     :align: center
 
-Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your Sonoff S20. And in a moment,
+Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your Sonoff S20. And, in a moment,
 you will be able to use all of ESPHome's great features with your Sonoff S20.
 
-If above step does, however, not work, here are some steps that can help:
+If above step don't work, however, here are some steps that can help:
 
--  Sometimes the UART bridge cannot supply enough current to the chip to operate, in this
+-  Sometimes the UART bridge cannot supply enough current to the chip to operate. In this
    case use a 3.3V supply you have lying around. A nice hack is to use the power supply of
    NodeMCU boards. Simply connect 3.3V to VCC and GND to GND on the pins. **Do not attempt
    to plug the device into a socket to overcome this problem while troubleshooting.**
@@ -249,7 +249,7 @@ of the basic functions.
         output: s20_green_led
 
 
-Above example also showcases an important concept of esphome: IDs and linking. In order
+The above example also showcases an important concept of esphome: IDs and linking. In order
 to make all components in ESPHome as much "plug and play" as possible, you can use IDs to define
 them in one area, and simply pass that ID later on. For example, above you can see an PWM (dimmer)
 output being created with the ID ``s20_green_led`` for the green LED. Later on it is then transformed
@@ -294,7 +294,7 @@ Step 6: Finishing Up
 --------------------
 
 Now you're pretty much done with setting up the Sonoff S20. The only steps left are to
-remove any cables within the housing and make sure everything in there is clean. If, for
+remove any cables that you added within the housing and make sure everything in there is clean. If, for
 example, you used wires to connect the UART console, you should definitely remove them to avoid
 a short with mains.
 

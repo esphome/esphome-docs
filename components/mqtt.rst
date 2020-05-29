@@ -60,7 +60,7 @@ Configuration variables:
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
   for more information.
 - **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
-  MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``5min``.
+  MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
   WiFi traffic with more pings. Defaults to 15 seconds.
@@ -144,6 +144,12 @@ retained messages for you:
 .. code-block:: bash
 
     esphome configuration.yaml clean-mqtt
+
+With Docker:
+
+.. code-block:: bash
+
+    docker run --rm -v "${PWD}":/config -it esphome/esphome configuration.yaml clean-mqtt
 
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
@@ -499,9 +505,25 @@ Configuration options:
           root["something"] = id(my_sensor).state;
         });
 
+.. _mqtt-connected_condition:
+
+``mqtt.connected`` Condition
+----------------------------
+
+This :ref:`Condition <config-condition>` checks if the MQTT client is currently connected to
+the MQTT broker.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          mqtt.connected:
+        then:
+          - logger.log: MQTT is connected!
 
 See Also
 --------
 
-- :apiref:`mqtt/mqtt_client_component.h`
+- :apiref:`mqtt/mqtt_client.h`
 - :ghedit:`Edit`

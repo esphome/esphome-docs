@@ -49,6 +49,11 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. note::
+
+    See :doc:`integration sensor </components/sensor/integration>` for summing up pulse counter
+    values over time.
+
 Converting units
 ----------------
 
@@ -74,5 +79,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`rotary_encoder`
 - `esp-idf Pulse Counter API <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__.
-- :apiref:`sensor/pulse_counter.h`
+- :apiref:`pulse_counter/pulse_counter_sensor.h`
 - :ghedit:`Edit`

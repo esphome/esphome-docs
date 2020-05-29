@@ -10,9 +10,7 @@ ESP8266/ESP32 after a certain amount of time. This is especially useful with nod
 on batteries and therefore need to conserve as much energy as possible.
 
 To use ``deep_sleep`` first specify how long the node should be active, i.e. how long it should
-check sensor values and report them, using the ``run_duration`` options. If you
-use both in your configuration, any time either one of them is finished, the node will go into deep
-sleep mode.
+check sensor values and report them, using the ``run_duration`` option.
 
 Next, tell the node how it should wakeup. On the ESP8266, you can only put the node into deep sleep
 for a duration using ``sleep_duration``, note that on the ESP8266 ``GPIO16`` must be connected to
@@ -51,6 +49,10 @@ Advanced features:
   - **pins** (**Required**, list of pin numbers): The pins to wake up on.
   - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
+
+.. note::
+
+    Only one deep sleep component may be configured.
 
 .. _deep_sleep-esp32_wakeup_pin_mode:
 
@@ -105,11 +107,11 @@ Useful for
 
     You can use this automation to automatically prevent deep sleep when a MQTT message on the topic
     ``livingroom/ota_mode`` is received. Then, to do the OTA update, just
-    use a MQTT client to publish a retained MQTT message described above. When the node wakes up again
+    use a MQTT client to publish a retained MQTT message described below. When the node wakes up again
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
-    ``OFF``.
+    ``OFF``. Note that the device won't enter deep sleep again until the next reboot.
 
     .. code-block:: yaml
 
@@ -120,6 +122,7 @@ Useful for
           # ...
           on_message:
             topic: livingroom/ota_mode
+            payload: 'ON'
             then:
               - deep_sleep.prevent: deep_sleep_1
 
@@ -128,5 +131,5 @@ See Also
 
 - :doc:`switch/shutdown`
 - :ref:`automation`
-- :apiref:`deep_sleep_component.h`
+- :apiref:`deep_sleep/deep_sleep_component.h`
 - :ghedit:`Edit`

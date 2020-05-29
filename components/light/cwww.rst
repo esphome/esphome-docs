@@ -19,6 +19,7 @@ channels will be mixed using the color temperature configuration options.
         warm_white: output_component2
         cold_white_color_temperature: 6536 K
         warm_white_color_temperature: 2000 K
+        constant_brightness: true
 
 Configuration variables:
 ------------------------
@@ -30,18 +31,10 @@ Configuration variables:
   of the cold white channel.
 - **warm_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
   of the warm white channel.
-- **gamma_correct** (*Optional*, float): The `gamma correction
-  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the light. Defaults to ``2.8``.
-- **default_transition_length** (*Optional*, :ref:`config-time`): The length of
-  the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
+- **constant_brightness** (*Optional*, boolean): When enabled, this will keep the overall brightness of the cold and warm white channels constant by limiting the combined output to 100% of a single channel. This reduces the possible overall brightness but is necessary for some power supplies that are not able to run both channels at full brightness at once. Defaults to ``false``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-
-- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
-  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
-  a ``name`` will implicitly set this to true.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
-
+- All other options from :ref:`Light <config-light>`.
 
 See Also
 --------
@@ -54,5 +47,6 @@ See Also
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/pca9685`
-- :apiref:`light/light_state.h`
+- :doc:`/components/output/tlc59208f`
+- :apiref:`cwww/cww_light_output.h`
 - :ghedit:`Edit`

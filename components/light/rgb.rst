@@ -42,16 +42,9 @@ Configuration variables:
 - **red** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the red channel.
 - **green** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the green channel.
 - **blue** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the blue channel.
-- **gamma_correct** (*Optional*, float): The `gamma correction
-  factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ for the light. Defaults to ``2.8``.
-- **default_transition_length** (*Optional*, :ref:`config-time`): The length of
-  the transition if no transition parameter is provided by Home Assistant. Defaults to ``1s``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
-  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
-  a ``name`` will implicitly set this to true.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- All other options from :ref:`Light <config-light>`.
 
 See Also
 --------
@@ -67,6 +60,8 @@ See Also
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/pca9685`
+- :doc:`/components/output/tlc59208f`
 - :doc:`/components/output/my9231`
-- :apiref:`light/light_state.h`
+- :doc:`/components/output/sm16716`
+- :apiref:`rgb/rgb_light_output.h`
 - :ghedit:`Edit`

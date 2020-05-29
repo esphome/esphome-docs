@@ -39,6 +39,9 @@ Configuration variables:
 
 - **interlock** (*Optional*, list): A list of other GPIO switches in an interlock group. See
   :ref:`switch-gpio-interlocking`.
+- **interlock_wait_time** (*Optional*, :ref:`config-time`): For interlocking mode, set how long
+  to wait after other items in an interlock group have been disabled before re-activating.
+  Useful for motors where immediately turning on in the other direction could cause problems.
 
 - All other options from :ref:`Switch <config-switch>`.
 
@@ -136,6 +139,9 @@ Or with some YAML anchors you can further simplify the config:
     So it is **highly** recommended to use hardware interlocks (like SPDT-type relays) that ensure
     that two GPIOs are never active at the same time.
 
+See also ``interlock_wait_time`` to make interlocks group wait some amount of time before activating
+a switch.
+
 See Also
 --------
 
@@ -143,5 +149,5 @@ See Also
 - :doc:`/components/output/gpio`
 - :doc:`/components/cover/template`
 - :doc:`/cookbook/garage-door`
-- :apiref:`switch_/gpio_switch.h`
+- :apiref:`gpio/switch/gpio_switch.h`
 - :ghedit:`Edit`

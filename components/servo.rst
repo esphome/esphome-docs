@@ -30,6 +30,7 @@ only operate in this frequency range.
         output: pwm_output
 
     # Example output platform
+    # On ESP32, use ledc output
     output:
       - platform: esp8266_pwm
         id: pwm_output
@@ -39,7 +40,8 @@ only operate in this frequency range.
 Configuration variables:
 ------------------------
 
-- **output** (**Required**, :ref:`config-id`): The ID of the output component to use for this servo.
+- **output** (**Required**, :ref:`config-id`): The ID of the :doc:`output component </components/output/index>`
+  to use for this servo.
 - **id** (**Required**, :ref:`config-id`): The ID of this servo so that it can be controlled.
 
 Advanced Options:
@@ -50,6 +52,9 @@ Advanced Options:
   to. This is also the state of the servo at startup. Defaults to ``7.5%``.
 - **max_level** (*Optional*, percentage): The PWM duty cycle the maximum value (100%) will map
   to. Defaults to ``12.0%``.
+- **restore** (*Optional*, boolean): Whether to restore the state of the servo motor at startup.
+  This is useful if you have an absolute servo motor and it goes back to its 0 position at startup.
+  Defaults to ``false``.
 
 .. note::
 
@@ -106,6 +111,28 @@ Configuration options:
 
         id(my_servo).write(1.0);
 
+.. _servo-detach_action:
+
+``servo.detach`` Action
+-----------------------
+
+This :ref:`Action <config-action>` allows you to disable the output on a servo motor -
+this will make the servo motor stop immediately and disable its active control.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+      - servo.detach: my_servo
+
+.. note::
+
+    This action can also be expressed as a :ref:`lambda <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(my_servo).detach();
+
 .. _servo-ha-config:
 
 Home Assistant Configuration
@@ -161,5 +188,5 @@ be able to control the servo from the frontend.
 See Also
 --------
 
-- :apiref:`servo.h`
+- :apiref:`servo/servo.h`
 - :ghedit:`Edit`

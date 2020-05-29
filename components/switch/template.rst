@@ -101,5 +101,5 @@ See Also
 - :doc:`/guides/automations`
 - :doc:`/components/switch/index`
 - :doc:`/components/binary_sensor/index`
-- :apiref:`switch_/template_switch.h`
+- :apiref:`template/switch/template_switch.h`
 - :ghedit:`Edit`

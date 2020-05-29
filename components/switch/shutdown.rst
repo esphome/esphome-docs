@@ -33,5 +33,5 @@ See Also
 
 - :doc:`restart`
 - :doc:`template`
-- :apiref:`switch_/shutdown_switch.h`
+- :apiref:`shutdown/shutdown_switch.h`
 - :ghedit:`Edit`

@@ -151,20 +151,9 @@ Configuration options:
             - stepper.report_position:
                 id: my_stepper
                 position: 0
-            - stepper:set_target:
+            - stepper.set_target:
                 id: my_stepper
                 target: 150
-
-.. note::
-
-    This action can also be expressed as a :ref:`lambda <config-lambda>`:
-
-    .. code-block:: cpp
-
-        id(my_stepper).set_target(250);
-
-        // Get the currently set target position:
-        int target = id(my_stepper).target_position;
 
 .. _stepper-report_position_action:
 
@@ -206,16 +195,25 @@ Configuration options:
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
 
-.. note::
+.. _stepper-set_speed_action:
 
-    This action can also be expressed as a :ref:`lambda <config-lambda>`:
+``stepper.set_speed`` Action
+----------------------------
 
-    .. code-block:: cpp
+This :ref:`Action <config-action>` allows you to set the speed of a stepper at runtime.
 
-        id(my_stepper).report_position(250);
+.. code-block:: yaml
 
-        // Get the current position:
-        int pos = id(my_stepper).current_position;
+    on_...:
+      - stepper.set_speed:
+          id: my_stepper
+          speed: 250 steps/s
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **speed** (**Required**, :ref:`templatable <config-templatable>`, float): The speed
+  in ``steps/s`` (steps per seconds) to drive the stepper at.
 
 .. _stepper-ha-config:
 
@@ -268,6 +266,41 @@ be able to control the stepper from the frontend.
         # [...] stepper config
         id: my_stepper
 
+.. _stepper-lambda_calls:
+
+lambda calls
+------------
+
+From :ref:`lambdas <config-lambda>`, you can call several methods on stepper motors to do some
+advanced stuff (see the full API Reference for more info).
+
+- ``set_target``: Set the target position of the motor as an integer.
+
+    .. code-block:: cpp
+
+        // Argument is integer (signed int)
+        // Set the (absolute) target position to 250 steps
+        id(my_stepper).set_target(250);
+
+- ``report_position``: Report the current position as an integer.
+
+    .. code-block:: cpp
+
+        // Report the (absolute) current position as 250 steps
+        id(my_stepper).report_position(250);
+
+- ``current_position``: Get the current position of the stepper as an integer.
+
+    .. code-block:: cpp
+
+        int pos = id(my_stepper).current_position;
+
+
+- ``target_position``: Get the set target position of the stepper  as an integer.
+
+    .. code-block:: cpp
+
+        int pos = id(my_stepper).target_position;
 
 See Also
 --------

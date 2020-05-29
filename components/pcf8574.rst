@@ -42,7 +42,7 @@ not work.
           pcf8574: pcf8574_hub
           # Use pin number 0
           number: 0
-          # One of INPUT, INPUT_PULLUP or OUTPUT
+          # One of INPUT or OUTPUT
           mode: OUTPUT
           inverted: False
 
@@ -61,5 +61,5 @@ See Also
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
 - `PCF8574 Arduino Library <https://github.com/skywodd/pcf8574_arduino_library>`__ by `Fabien Batteix <https://github.com/skywodd>`__
-- :apiref:`io/pcf8574_component.h`
+- :apiref:`pcf8574/pcf8574.h`
 - :ghedit:`Edit`

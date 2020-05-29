@@ -64,7 +64,9 @@ Binary Sensor Filters
 ---------------------
 
 With binary sensor filters you can customize how ESPHome handles your binary sensor values even more.
-They are similar to :ref:`Sensor Filters <sensor-filters>`.
+They are similar to :ref:`Sensor Filters <sensor-filters>`. All filters are processed in a pipeline.
+This means all binary sensor filters are processed in the order given in the configuration (so order
+of these entries matters!)
 
 .. code-block:: yaml
 
@@ -75,6 +77,7 @@ They are similar to :ref:`Sensor Filters <sensor-filters>`.
           - invert:
           - delayed_on: 100ms
           - delayed_off: 100ms
+          - delayed_on_off: 100ms
           - lambda: |-
               if (id(other_binary_sensor).state) {
                 return x;
@@ -93,6 +96,9 @@ Supported filters:
   an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
   Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
   **Useful for debouncing push buttons**.
+- **delayed_on_off**: Only send an ON or OFF value if the binary sensor has stayed in the same state
+  for at least the specified time period.
+  **Useful for debouncing binary switches**.
 - **lambda**: Specify any :ref:`lambda <config-lambda>` for more complex filters. The input value from
   the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
   the filter chain.
@@ -300,10 +306,7 @@ This :ref:`Condition <config-condition>` checks if the given binary sensor is ON
           # Same syntax for is_off
           binary_sensor.is_on: my_binary_sensor
 
-          # With duration, true if has been on for at least 5s
-          binary_sensor.is_on:
-            id: my_binary_sensor
-            for: 5s
+.. _binary_sensor-lambda_calls:
 
 lambda calls
 ************
