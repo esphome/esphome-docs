@@ -7,7 +7,7 @@ Etekcity Voltson (ESW01-EU)
     :keywords: Etekcity, Voltson, ESW01, ESW01-EU, HLW8012, Home Assistant, ESPHome
 
 
-The Etekcity Voltson brings a 10A relay, two LEDs (blue and yellow), a push button and a `HWL8012 power sensor <https://esphome.io/components/sensor/hlw8012.html>`_
+The Etekcity Voltson brings a 10A relay, two LEDs (blue and yellow), a push button and a :doc:`/components/sensor/hlw8012`
 in a very small package and at a reasonable price.
 
 .. note::
@@ -36,7 +36,7 @@ Configuration
 -------------
 
 As the Voltson has its SEL pin permanently pulled high, we are unable to switch from voltage measurement to current measurement.
-This will be circumvented by `defining the initial mode to be voltage measurement <https://esphome.io/components/sensor/hlw8012.html#permanent-sel-pin>`_
+This will be circumvented by defining the initial mode to be voltage measurement (see :doc:`/components/sensor/hlw8012` documentation)
 and calculating the current with `Ohm's law <https://en.wikipedia.org/wiki/Ohm%27s_law>`_: ``P (watts) = V (volts) x I (amps)``
 
 .. code-block:: yaml
