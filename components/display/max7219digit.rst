@@ -33,7 +33,6 @@ use a logic level converted.
       - platform: max7219digit
         cs_pin: D2
         num_chips: 4
-        offset: 2
         intensity: 15
         lambda: |-
           it.print(0, 0, id(digit_font), "HELLO!");
@@ -44,12 +43,12 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
 - **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
   ``4``.
-- **rotate_chip** (*Optional*, integer): The configuration of how the chips are aligned can be changed. Range is from 0 (the default) to 4. Each step is rotating the chip display by 90 degrees.
+- **rotate_chip** (*Optional*, enum): The configuration of how the chips are aligned can be changed. Range is from 0 (the default), 90, 180 up to 270. Each step is rotating the chip display by 90 degrees.
 - **scroll_enable** (*Optional*, boolean): Turn scroll mode on (True).
-- **scroll_speed** (*Optional*, integer): Set scroll speed in ms. The default is (250 ms)
-- **scroll_delay** (*Optional*, integer): Set delay of scroll at start of the string in ms. The default is (1000 ms)
-- **scroll_dwell** (*Optional*, integer): Set the delay of scroll at the end of the string in ms. The default is (1000 ms). This is only used in mode 1.
-- **scroll_mode** (*Optional*, boolean): Set the scroll mode. 0 = contineously and 1 = stop and reset at end.
+- **scroll_speed** (*Optional*, :ref:`config-time`): Set scroll speed in ms. The default is (250 ms)
+- **scroll_delay** (*Optional*, :ref:`config-time`): Set delay of scroll at start of the string in ms. The default is (1000 ms)
+- **scroll_dwell** (*Optional*, :ref:`config-time`): Set the delay of scroll at the end of the string in ms. The default is (1000 ms). This is only used in mode 'STOP'.
+- **scroll_mode** (*Optional*, ): Set the scroll mode. 'CONT' = contineously and 'STOP' = stop and reset at end.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
   0 (least intense) to 15 (the default).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
