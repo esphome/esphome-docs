@@ -73,10 +73,11 @@ Configuration variables:
   - ``1.54in``
   - ``2.13in`` (not tested)
   - ``2.13in-ttgo`` (T5_V2.3 tested)
-  - ``2.70in`` (not tested)
+  - ``2.70in``
   - ``2.90in``
   - ``4.20in``
   - ``7.50in``
+  - ``7.50inV2``
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
