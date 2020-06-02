@@ -304,6 +304,7 @@ Climate Components
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    Tuya Climate, components/climate/tuya, air-conditioner.svg
 
 Misc Components
 ---------------
