@@ -62,6 +62,7 @@ Custom Components & Code
 - `Custom ESPHome for Wofea V10 Alarm <https://github.com/nbergont/wofea_v10_hack>`__ by :ghuser:`nbergont`
 - `Custom Smart meter P1 port reader <https://github.com/nldroid/CustomP1UartComponent>`__ by :ghuser:`nldroid`
 - `Custom Mitsubishi HVAC HeatPump control using UART <https://github.com/geoffdavis/esphome-mitsubishiheatpump>`__ by :ghuser:`geoffdavis`
+- `Custom Jura Impressa J6 coffee machine component <https://github.com/ryanalden/esphome-jura-component>`__ by :ghuser:`ryanalden`
 
 Sample Configurations
 ---------------------
