@@ -35,7 +35,7 @@ Software configuration
 Getting Time
 ************
 
-Get the time from Home Assistant to sync the onboard real-time-clock.
+Get the time from Home Assistant to sync the onboard real-time clock.
 
 .. code-block:: yaml
 
@@ -69,7 +69,7 @@ Define the Fonts
 ****************
 
 - TrueType fonts are used. If you ever worked with fonts on microcontrollers you will love this!
-- Save font files in ``/config/esphome`` folder where your esphome configuration is stored.
+- Save font files in ``/config/esphome`` folder where your ESPHome configuration is stored.
 - The ``.ttf`` suffix must be lowercase and of course match your filename.
 - Selection of fonts can be a little bit tricky for small sizes to look good. Experiment and share your findings in the comments below!
 
@@ -93,7 +93,7 @@ Display Definition
 
 Now setup the communication to the display and start fill the screen with live data!
 
-The ``reset_pin`` was not used in my hardware configuration as the display didn't had that pin exposed.
+The ``reset_pin`` was not used in my hardware configuration as the display didn't have that pin exposed.
 
 Note your ``address`` and ``model`` might be different, use the scan option to find the address of your display.
 

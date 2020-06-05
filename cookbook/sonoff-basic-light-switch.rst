@@ -15,23 +15,23 @@ DIY Light switch using a Sonoff Basic
     from following this guide.
 
     In some countries you may need specific qualifications before you can carry out such work in
-    a residentaial property.
+    a residential property.
 
 Background
 ----------
 
 Moving your entire house to smart lighting can end up being very expense, for instance if you have a
-light fitting with 5 lamps in it thats 5 expensive smart bulbs to buy just for one room! Smart bulbs
+light fitting with 5 lamps in it that's 5 expensive smart bulbs to buy just for one room! Smart bulbs
 clearly have some great advantages, dimmable, colour temperature or even full colour changing. What
 if all you're after is a cost effective way to turn them on and off?
 
 The ideal solution would be to replace the light switch with one that can be controlled by home
 assistant, whilst retaining the ease of use of a standard light that would also continue to work if
-the network went down, or home assistant failed etc.
+the network went down, or Home Assistant failed etc.
 
 It turns out Sonoff do exactly this product, it called a T1-UK (other country options available),
 however you soon found the touch aspect of them might not 'feel right' and certainly might not get the
-approval of other members of your household. However if this solution apeals to you, check out the
+approval of other members of your household. However if this solution appeals to you, check out the
 :doc:`Cookbook guide for T1/T2/T3</cookbook/sonoff-t1-3>`
 
 The other option to consider is a standard '2 way' light switch (like you might have on an upstairs
@@ -43,7 +43,7 @@ The Solution
 
 Use a 'retractive' style light switch. That is one that is spring loaded and so always returns to the
 'off' position. It's effectively a push button, that looks like a light switch. Combining this with a
-Sonoff Basic gives you the ideal solution for somewhere around £5. Thats much cheaper than buying lots
+Sonoff Basic gives you the ideal solution for somewhere around £5. That's much cheaper than buying lots
 of expensive smart bulbs, but of course you only get on / off control.
 
 You will have several potential hurdles to overcome:
@@ -51,7 +51,7 @@ You will have several potential hurdles to overcome:
 1. The first is that you do need to have a neutral at the location of the Sonoff. Many houses will not have
    this as standard at the light switch.
 
-2. You need enough space to accomodate your Sonoff Basic at your chosen location.
+2. You need enough space to accommodate your Sonoff Basic at your chosen location.
 
 If you're lucky most of the locations will have plasterboard walls, and you will be able to simply drop a neutral
 wire down the inside of the wall to the lights switch (where you locate the Sonoff).
@@ -61,7 +61,7 @@ This can come in useful because if you remove the PCB from the plastic case it a
 
 .. warning::
 
-    If you plan to take the pcb out of the plastic case you need to make sure its properly insulated, and that the back
+    If you plan to take the PCB out of the plastic case you need to make sure it's properly insulated, and that the back
     box is deep enough to hold the PCB as well as the switch. You should also insulate the PCB, for instance by dropping it
     in a heavy duty glue lined heat shrink sleeve.
 
@@ -73,7 +73,7 @@ and use the cable that ran from the light to the switch as a low voltage cable t
 
 .. warning::
 
-    If you are going to reuse existing wiring to connect to the GPIO, you must make sure its connected directly to the switch
+    If you are going to reuse existing wiring to connect to the GPIO, you must make sure it's connected directly to the switch
     and does not have mains voltage on it from another circuit.
 
 Implementation
@@ -85,16 +85,16 @@ Please make sure you have read up about :doc:`the Sonoff Basic and how to flash 
 As that won't be covered here.Also make sure you know your way around a soldering iron and can find the relevant information
 about the location of the GPIO pins on the Sonoff Basic if you need to.
 
-If you have a Sonoff Basic V1 devices GPIO14 is alredy presented on a pin header on the PCB next to the programing pins.
+If you have a Sonoff Basic V1 devices GPIO14 is already presented on a pin header on the PCB next to the programming pins.
 On the V2 and V3 PCBs, there is a solder pad underneath the PCB that will let you get at this GPIO.
 
 You have 2 choices when it comes to picking which GPIO to use. GPIO0 or GPIO14. GPIO0 is used by the push button switch on the
 the PCB so you will need to locate the right pin on the switch and solder a wire onto it if you're going to use that one. Whichever
-one you pick, you will also need to use the ground or 0v pin for the other side of the switch. Once you have soldered your wires
+one you pick, you will also need to use the ground or 0V pin for the other side of the switch. Once you have soldered your wires
 into place, a handy tip is to add a drop of glue over the wire, a little way away from the solder joint, so give some strain relief
 to the joint.
 
-Now you have a pair of wires from the GPIO and 0v to your retractive switch lets look at the code.
+Now you have a pair of wires from the GPIO and 0V to your retractive switch lets look at the code.
 
 .. code-block:: yaml
 
@@ -143,21 +143,21 @@ Now you have a pair of wires from the GPIO and 0v to your retractive switch lets
         number: GPIO13
         inverted: yes
 
-In the above code block, there is a *secrets.yaml* file so that you have just one place to change wifi
+In the above code block, there is a *secrets.yaml* file so that you have just one place to change WiFi
 details for all your devices.
 
 Although not visible day to day, there is also the status LED configured so that it can be used when setting
-up / debugging. Also a configured binary sensor to give status incase you want to perform an action / alert
+up / debugging. Also a configured binary sensor to give status in case you want to perform an action / alert
 if the light switch disconnects for any reason.
 
 .. note::
 
     If you wanted to use a pull cord switch (in a bathroom for instance) that works like a standard switch and
     changes state each pull (as opposed to a retractive switch that you press and let go) then you can change
-    a single line *on_press:* to *on_state:* which will trigger the light toggle everytime the state of the
+    a single line *on_press:* to *on_state:* which will trigger the light toggle every time the state of the
     switch changes.
 
-    If you do this its important that you do not use GPIO0, otherwise if the device reboots and the switch happens
+    If you do this it's important that you do not use GPIO0, otherwise if the device reboots and the switch happens
     to be in the closed state the Sonoff will boot into flash mode and not work.
 
 

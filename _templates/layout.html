@@ -32,8 +32,6 @@
     A new version has been release since you last visited this page: {{ release }} 🎉
     <a id="upgrade-footer-changelog" href="/changelog/v{{ version }}.0.html">View Changelog</a>
   </div>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113203480-2"></script>
-  <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-113203480-2', {'anonymize_ip': true});</script>
   <script>
     var old = window.localStorage.getItem("version");
     if (old === null) { window.localStorage.setItem("version", "{{ version }}");

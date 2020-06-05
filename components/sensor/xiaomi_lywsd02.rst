@@ -2,7 +2,7 @@ Xiaomi LYWSD02 BLE Sensor
 =========================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi LYWSD02 bluetooth-based temperature and humidity sensors in ESPHome.
+    :description: Instructions for setting up Xiaomi LYWSD02 Bluetooth-based temperature and humidity sensors in ESPHome.
     :image: xiaomi_lywsd02.jpg
     :keywords: Xiaomi, LYWSD02, BLE, Bluetooth
 
@@ -69,14 +69,14 @@ it detects these sensors, it will automatically parse the BLE message print a me
     Got Xiaomi LYWSD02 (3F:5B:7D:82:58:4E): Temperature: 26.9°C
 
 Note that it can sometimes take some time for the first BLE broadcast to be received. You can speed up
-the process by pressing the grey bluetooth button on the back of the device.
+the process by pressing the grey Bluetooth button on the back of the device.
 
 Then just copy the address (``3F:5B:7D:82:58:4E``) into a new ``sensor.xiaomi_lywsd02`` platform entry like
 in the configuration example at the top.
 
 .. note::
 
-    The ESPHome Xiaomi integration listens passively to packets the xiaomi device sends by itself.
+    The ESPHome Xiaomi integration listens passively to packets the Xiaomi device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also

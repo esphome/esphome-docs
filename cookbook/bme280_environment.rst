@@ -40,6 +40,7 @@ After validating the sensor is working, we can proceed and add some formulas.
           return ((id(bme280_temperature).state + 273.15) / 0.0065) *
             (powf((STANDARD_SEA_LEVEL_PRESSURE / id(bme280_pressure).state), 0.190234) - 1); // in meter
         update_interval: 15s
+        unit_of_measurement: 'm'
       - platform: template
         name: "Absolute Humidity"
         lambda: |-
@@ -50,6 +51,7 @@ After validating the sensor is working, we can proceed and add some formulas.
             ((273.15 + id(bme280_temperature).state) * r); // in grams/m^3
         accuracy_decimals: 2
         update_interval: 15s
+        unit_of_measurement: 'g/m³'
 
 Altitude and absolute humidity:
 -------------------------------
@@ -98,6 +100,7 @@ Calculating the sea level pressure with a statically mounted sensor can be be us
           return id(bme280_pressure).state / powf(1 - ((0.0065 * STANDARD_ALTITUDE) /
             (id(bme280_temperature).state + (0.0065 * STANDARD_ALTITUDE) + 273.15)), 5.257); // in hPa
         update_interval: 15s
+        unit_of_measurement: 'hPa'
 
 .. note::
 

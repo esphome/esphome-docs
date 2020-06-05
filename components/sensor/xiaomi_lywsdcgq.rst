@@ -2,7 +2,7 @@ Xiaomi LYWSDCGQ BLE Sensor
 ==========================
 
 .. seo::
-    :description: Instructions for setting up Xiaomi Mi Jia LYWSDCGQ bluetooth-based temperature and humidity sensors in ESPHome.
+    :description: Instructions for setting up Xiaomi Mi Jia LYWSDCGQ Bluetooth-based temperature and humidity sensors in ESPHome.
     :image: xiaomi_lywsdcgq.jpg
     :keywords: Xiaomi, Mi Jia, BLE, Bluetooth, LYWSDCGQ
 
@@ -78,14 +78,14 @@ it detects these sensors, it will automatically parse the BLE message print a me
     Got Xiaomi LYWSDCGQ 7A:80:8E:19:36:BA Got temperature=23.4°C, humidity=65.0%
 
 Note that it can sometimes take some time for the first BLE broadcast to be received. You can speed up
-the process by pressing the grey bluetooth button on the back of the device.
+the process by pressing the grey Bluetooth button on the back of the device.
 
 Then just copy the address (``7A:80:8E:19:36:BA``) into a new ``sensor.xiaomi_lywsdcgq`` platform entry like
 in the configuration example at the top.
 
 .. note::
 
-    The ESPHome Xiaomi integration listens passively to packets the xiaomi device sends by itself.
+    The ESPHome Xiaomi integration listens passively to packets the Xiaomi device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also

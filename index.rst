@@ -146,7 +146,7 @@ Sensor Components
     Template Sensor, components/sensor/template, description.svg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
-    Tx20, components/sensor/tx20, tx20.jpg
+    TX20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
     VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
@@ -290,7 +290,7 @@ Climate Components
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
     Coolix IR Remote, components/climate/coolix, air-conditioner.svg
-    Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
+    TCL112 IR Remote, components/climate/tcl112, air-conditioner.svg
     Yashima IR Remote, components/climate/yashima, air-conditioner.svg
 
 Misc Components
@@ -328,7 +328,7 @@ Additional Custom Components
 .. imgtable::
 
     Generic Custom Component, custom/custom_component, language-cpp.svg
-    Custom I2C Component, custom/i2c, language-cpp.svg
+    Custom I²C Component, custom/i2c, language-cpp.svg
     Custom SPI Component, custom/spi, language-cpp.svg
     Custom UART Component, custom/uart, language-cpp.svg
 

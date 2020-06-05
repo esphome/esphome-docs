@@ -37,6 +37,7 @@ Blog Posts & Videos
 - `Detecting Sound with ESP8266 <https://thibmaek.com/post/detecting-sound-level-using-esp8266-and-esphome>`__ by `Thibault Maekelbergh <https://thibmaek.com>`__
 - `SW420 Vibration Sensor with Remote Notifications <https://github.com/rmooreID/Home-Assistant-Appliance-Monitor/>`__ by :ghuser:`rmooreID`
 - `DIY Irrigation Controller (with Internal Scheduler + Lovelace UI) <https://brianhanifin.com/posts/diy-irrigation-controller-esphome-home-assistant/>`__ by :ghuser:`BrianHanifin`
+- `Smart Intercom <https://frog32.ch/smart-intercom.html>`__ by `Marc Egli <https://frog32.ch/>`__ 
 
 Custom Components & Code
 ------------------------

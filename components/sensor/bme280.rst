@@ -63,7 +63,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the i^2c address of
+- **address** (*Optional*, int): Manually specify the I^2C address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
   ``OFF``, ``2x``, ``4x``, ``16x``. Defaults to ``OFF``.
@@ -93,5 +93,5 @@ See Also
 - :doc:`bmp085`
 - :apiref:`bme280/bme280.h`
 - `Adafruit BME280 Library <https://github.com/adafruit/Adafruit_BME280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
-- `Sparkfun BME280 Library <https://github.com/sparkfun/SparkFun_BME280_Arduino_Library>`__ by `Sparkfun <https://www.sparkfun.com/>`__
+- `SparkFun BME280 Library <https://github.com/sparkfun/SparkFun_BME280_Arduino_Library>`__ by `SparkFun <https://www.sparkfun.com/>`__
 - :ghedit:`Edit`

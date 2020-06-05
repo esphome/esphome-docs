@@ -12,7 +12,7 @@ Component/Hub
 -------------
 
 The ``pn532`` component allows you to use PN532 NFC/RFID controllers
-(`datasheet <https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf>`__, `adafruit <https://www.adafruit.com/product/364>`__)
+(`datasheet <https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf>`__, `Adafruit <https://www.adafruit.com/product/364>`__)
 with ESPHome. This component is a global hub that establishes the connection to the PN532 via :ref:`SPI <spi>` and
 outputs its data. Using the :ref:`PN532 binary sensors <pn532-tag>` you can then
 create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.
@@ -25,7 +25,7 @@ See :ref:`pn532-setting_up_tags` for information on how to setup individual bina
 
 As the communication with the PN532 is done using SPI for this integration, you need to set the two switches on
 the board to the SPI mode (usually by setting the first one to OFF and the second one to ON). Additionally, you need
-to have an :ref:`spi bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
+to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
 
 .. code-block:: yaml
 
@@ -126,7 +126,7 @@ Setting Up Tags
 ---------------
 
 To set up binary sensors for specific NFC tags you first have to know their unique IDs. To obtain this
-id, first set up a simple pn532 configuration without any binary sensors like above.
+id, first set up a simple PN532 configuration without any binary sensors like above.
 
 When your code is running and you approach the PN532 with an NFC Tag, you should see a message like this:
 

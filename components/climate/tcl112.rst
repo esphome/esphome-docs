@@ -1,11 +1,11 @@
-Tcl112 Remote Climate
+TCL112 Remote Climate
 =====================
 
 .. seo::
-    :description: Controls a Tcl112 compatible Climate via IR
+    :description: Controls a TCL112-compatible Climate via IR
     :image: air-conditioner.png
 
-The ``tcl112`` climate platform allows you to control a TCL112 compatible AC unit by sending IR signals
+The ``tcl112`` climate platform allows you to control a TCL112-compatible AC unit by sending IR signals
 as your remote unit would do.
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
