@@ -19,8 +19,7 @@ Peacefair PZEM-004T V3 and PZEM-014/PZEM-016 Energy Monitor
     :align: center
     :width: 50.0%
     
-    PZEM-016 connected to a Wemos D1 mini.
-
+    
 The ``pzemac`` sensor platform allows you to use PZEM-004T V3 and PZEM-014/PZEM-016 energy monitors
 (`website <https://innovatorsguru.com/pzem-004t-v3/>`__,
 `datasheet <https://innovatorsguru.com/wp-content/uploads/2019/06/PZEM-004T-V3.0-Datasheet-User-Manual.pdf>`__)
