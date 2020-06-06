@@ -1,5 +1,5 @@
 Peacefair PZEM-004T V3 and PZEM-014/PZEM-016 Energy Monitor
-=====================================
+============================================================
 
 .. seo::
     :description: Instructions for setting up PZEM-004T power monitors.
