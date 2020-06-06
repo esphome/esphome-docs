@@ -3,7 +3,7 @@ Peacefair PZEM-004T V3 and PZEM-014/PZEM-016 Energy Monitor
 
 .. seo::
     :description: Instructions for setting up PZEM-004T power monitors.
-    :image: pzemac.png
+    :image: ESPHome-wemos-d1-pzem016_bb.png
     :keywords: PZEM-004T V3
 
 .. note::
@@ -13,6 +13,12 @@ Peacefair PZEM-004T V3 and PZEM-014/PZEM-016 Energy Monitor
 
       - An image for the front page.
       - Images/screenshots/example configs of this device being used in action.
+
+.. figure:: images/ESPHome-wemos-d1-pzem016_bb.png
+    :align: center
+    :width: 20.0%
+    
+    PZEM-016 connected to a Wemos D1 mini
 
 The ``pzemac`` sensor platform allows you to use PZEM-004T V3 and PZEM-014/PZEM-016 energy monitors
 (`website <https://innovatorsguru.com/pzem-004t-v3/>`__,
