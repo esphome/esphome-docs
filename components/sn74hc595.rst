@@ -13,6 +13,12 @@ to provide more pins, without using more GPIO pins on the controller.
 
 Use of the OE pin is optional. If used, the pin should be pulled up externally.
 
+.. figure:: images/sn74hc595.jpg
+    :align: center
+    :width: 80.0%
+
+    SN74HC595 I/O Expander (shift register).
+
 .. _SparkFun: https://www.sparkfun.com/products/13699
 
 .. code-block:: yaml
