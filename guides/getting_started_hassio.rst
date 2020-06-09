@@ -1,5 +1,5 @@
-Getting Started with ESPHome through Home Assistant
-===================================================
+Getting Started with ESPHome and Home Assistant
+===============================================
 
 .. seo::
     :description: Getting Started guide for installing ESPHome as a Home Assistant add-on and creating a basic configuration.
