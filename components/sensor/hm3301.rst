@@ -63,7 +63,7 @@ There are two implementations:
 - **aqi** (**Required**): AQI sensor.
 
   - **name** (**Required**, string): The name for the humidity sensor.
-  - **type** (**Required**, string): There are two types: ``AQI``, ``CAQI``.
+  - **type** (**Required**): One of: ``AQI`` or ``CAQI``.
 
 
 See Also
