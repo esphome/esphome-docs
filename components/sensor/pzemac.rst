@@ -14,7 +14,7 @@ Peacefair PZEM-004T V3 and PZEM-014/PZEM-016 Energy Monitor
       - An image for the front page.
       - Images/screenshots/example configs of this device being used in action.
 
-.. figure:: images/ESPHome-wemos-d1-pzem016_bb.png
+.. figure:: images/ESPHome-wemos-d1-pzem016_bb.jpg
     :align: center
     :width: 50.0%
 
