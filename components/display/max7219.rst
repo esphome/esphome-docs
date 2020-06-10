@@ -41,6 +41,7 @@ use a logic level converted.
 
 Configuration variables:
 ------------------------
+
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
   The CS line can be connected to GND if this is the only device on the SPI bus.
 - **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
