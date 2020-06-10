@@ -50,8 +50,6 @@ There are two implementations:
 
     sensor:
       - platform: hm3301
-        pm_1_0:
-          name: "PM1.0"
         pm_2_5:
           name: "PM2.5"
         pm_10_0:
