@@ -60,9 +60,9 @@ There are two implementations:
           name: "AQI"
           type: "CAQI"
 
-- **aqi** (**Required**): AQI sensor.
+- **aqi** (*Optional*): AQI sensor.
+  All options from :ref:`Sensor <config-sensor>`.
 
-  - **name** (**Required**, string): The name for the humidity sensor.
   - **type** (**Required**): One of: ``AQI`` or ``CAQI``.
 
 
