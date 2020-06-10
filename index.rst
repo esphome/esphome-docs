@@ -29,7 +29,7 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
     FAQ and Tips, guides/faq, question_answer.svg
 
     Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
