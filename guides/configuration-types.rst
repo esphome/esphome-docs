@@ -190,30 +190,30 @@ so e.g. with the following ``example.yaml`` file:
 
 and the following command:
 
-.. code-block:: sh
+.. code-block:: bash
 
-  esphome -s name device01 -s board esp01_1m example.yaml config
+    esphome -s name device01 -s board esp01_1m example.yaml config
   
 You will get something like the following output (please note the unchanged ``platform``,
 added ``board``, and overridden ``name`` substitutions):
 
 .. code-block:: yaml
 
-  substitutions:
-    name: device01
-    platform: ESP8266
-    board: esp01_1m
-  esphome:
-    name: device01
-    platform: ESP8266
-    board: esp01_1m
-    includes: []
-    board_flash_mode: dout
-    libraries: []
-    esp8266_restore_from_flash: false
-    build_path: device01
-    platformio_options: {}
-    arduino_version: espressif8266@2.2.3
+    substitutions:
+      name: device01
+      platform: ESP8266
+      board: esp01_1m
+    esphome:
+      name: device01
+      platform: ESP8266
+      board: esp01_1m
+      includes: []
+      board_flash_mode: dout
+      libraries: []
+      esp8266_restore_from_flash: false
+      build_path: device01
+      platformio_options: {}
+      arduino_version: espressif8266@2.2.3
 
 We can observe here that command line substitutions take precedence over the ones in
 your configuration file. This can be used to create generic 'template' configuration
