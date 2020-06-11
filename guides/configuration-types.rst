@@ -173,11 +173,52 @@ validating your configuration, ESPHome will automatically replace all occurrence
 by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
 ``${substitution_key}`` (same).
 
-You can also add or override substitutions from the command line by adding e.g. ``-s devicename mydevice``
-which overrides the ``devicename`` substitution and gives it value ``mydevice``.
-Command line substitutions take precedence over the ones in your configuration file.
-This can also be used to create more generic 'template' configuration files which can be used for multiple devices,
-based on substitutions which are provided on the command line.
+You can also define or override substitutions from the command line by adding e.g. ``-s devicename mydevice``
+which overrides the ``devicename`` substitution and gives it value ``mydevice``. This can be issued multiple times,
+so e.g. with the following ``example.yaml`` file:
+
+.. code-block:: yaml
+
+    substitutions:
+      name: default
+      platform: ESP8266
+
+    esphome:
+      name: $name
+      platform: $platform
+      board: $board
+
+and the following command:
+
+.. code-block:: sh
+
+  esphome -s name device01 -s board esp01_1m example.yaml config
+  
+You will get something like the following output (please note the unchanged ``platform``,
+added ``board``, and overridden ``name`` substitutions):
+
+.. code-block:: yaml
+
+  substitutions:
+    name: device01
+    platform: ESP8266
+    board: esp01_1m
+  esphome:
+    name: device01
+    platform: ESP8266
+    board: esp01_1m
+    includes: []
+    board_flash_mode: dout
+    libraries: []
+    esp8266_restore_from_flash: false
+    build_path: device01
+    platformio_options: {}
+    arduino_version: espressif8266@2.2.3
+
+We can observe here that command line substitutions take precedence over the ones in
+your configuration file. This can be used to create generic 'template' configuration
+files (like the ``example.yaml`` above) which can be used for multiple devices,
+using substitutions which are provided on the command line.
 
 Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
 of nodes inherit:
