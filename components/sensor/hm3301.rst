@@ -24,29 +24,48 @@ The sensor communicate with board by ``I2C`` protocol, and requires 3.3v.
           name: "PM2.5"
         pm_10_0:
           name: "PM10.0"
+        aqi:
+          name: "AQI"
+          type: "CAQI"
 
 Configuration variables:
 ------------------------
 
 - **pm_1_0** (*Optional*): Use the concentration of particulates of size less than 1.0µm in µg per cubic meter.
-  All options from :ref:`Sensor <config-sensor>`.
+
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 - **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter.
-  All options from :ref:`Sensor <config-sensor>`.
+
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 - **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
-  All options from :ref:`Sensor <config-sensor>`.
+
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **aqi** (*Optional*): AQI sensor. Requires the ``pm_2_5`` and ``pm_10_0`` sensors defined. See below.
+
+  - **type** (**Required**): One of: ``AQI`` or ``CAQI``.
+  - **name** (**Required**, string): The name for the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 Air Quality Sensor:
 -------------------
 
-There is also sensors which calculates quality of air based on PM 2.5 and PM 10.0 values.
+There is a sensor which calculates quality of air based on PM 2.5 and PM 10.0 values.
 There are two implementations:
 
 - AQI: USA air quality standard
 - CAQI: Europe air quality standard
 
 .. code-block:: yaml
-
-    i2c:
 
     sensor:
       - platform: hm3301
@@ -57,11 +76,6 @@ There are two implementations:
         aqi:
           name: "AQI"
           type: "CAQI"
-
-- **aqi** (*Optional*): AQI sensor.
-  All options from :ref:`Sensor <config-sensor>`.
-
-  - **type** (**Required**): One of: ``AQI`` or ``CAQI``.
 
 
 See Also
