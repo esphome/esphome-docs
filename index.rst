@@ -92,6 +92,7 @@ Sensor Components
     ADC, components/sensor/adc, flash.svg
     ADE7953, components/sensor/ade7953, ade7953.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
+    AHT10, components/sensor/aht10, aht10.jpg
     AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
@@ -114,6 +115,7 @@ Sensor Components
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
+    QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
@@ -121,7 +123,9 @@ Sensor Components
     INA3221, components/sensor/ina3221, ina3221.jpg
     Integration, components/sensor/integration, sigma.svg
     HTU21D, components/sensor/htu21d, htu21d.jpg
+    HM3301, components/sensor/hm3301, hm3301.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
+    MAX31856, components/sensor/max31856, max31856.jpg
     MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
@@ -143,10 +147,12 @@ Sensor Components
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
+    TMP117, components/sensor/tmp117, tmp117.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Tx20, components/sensor/tx20, tx20.jpg
@@ -154,10 +160,7 @@ Sensor Components
     Uptime Sensor, components/sensor/uptime, timer.svg
     VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-    Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
-    Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
-    Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
-    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
+    Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
@@ -192,8 +195,11 @@ Output Components
 
     Output Core, components/output/index, folder-open.svg
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
+    Slow PWM, components/output/slow_pwm, pwm.png
     GPIO Output, components/output/gpio, pin.svg
+    ESP32 DAC, components/output/esp32_dac, dac.svg
     ESP32 LEDC, components/output/ledc, pwm.png
+    AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
@@ -246,6 +252,7 @@ Fan Components
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
     Speed Fan, components/fan/speed, fan.svg
+    Tuya Fan, components/fan/tuya, fan.svg
 
 Display Components
 ------------------
@@ -255,10 +262,12 @@ Display Components
     Display Core, components/display/index, folder-open.svg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
+    TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
+    PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
 ----------------
@@ -281,8 +290,10 @@ Text Sensor Components
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
+    BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
 
 Climate Components
 ------------------
@@ -297,6 +308,7 @@ Climate Components
     Tcl112 IR Remote, components/climate/tcl112, air-conditioner.svg
     Yashima IR Remote, components/climate/yashima, air-conditioner.svg
     Fujitsu General IR Remote, components/climate/fujitsu_general, air-conditioner.svg
+    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
 
 Misc Components
 ---------------
@@ -327,6 +339,8 @@ Misc Components
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
+    TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
+    RF Bridge, components/rf_bridge, rf_bridge.jpg
 
 Additional Custom Components
 ----------------------------
