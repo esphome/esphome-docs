@@ -762,7 +762,7 @@ Available variables in the lambda:
               // normal variables lost their value after each
               // execution - basically after each update_interval
               uint16_t changes = 0;
-            
+
               // To reset static when stopping and starting the effect
               // again you can use the initial_run variables
               if (initial_run) {
@@ -827,8 +827,7 @@ JINX_ can be used to control E1.31_ enabled ESPHome.
 .. code-block:: yaml
 
     e131:
-      # method: multicast # default: register E1.31 to Multicast group
-      # method: unicast # use unicast
+      method: multicast # default: register E1.31 to Multicast group
 
     light:
       - platform: neopixelbus
@@ -836,16 +835,14 @@ JINX_ can be used to control E1.31_ enabled ESPHome.
         effects:
           - e131:
               universe: 1
-              # channels: MONO
-              # channels: RGB
-              # channels: RGBW
+              channels: RGB
 
 Configuration variables:
 
-- **method** (*Optional*, string): A method of listening for data. Defaults to ``multicast``.
+- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
 - **universe** (*Required*, integer): The value of universe, between 1 to 512.
-- **channels** (*Optional*, integer): The type of data. This is used to specify if it is a MONO,
-  RGB or RGBW light and in which order the colors are. Defaults to `RGB`.
+- **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
+  ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
 There are three modes of operation:
 
