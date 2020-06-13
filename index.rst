@@ -196,6 +196,7 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
+    Template Output, components/output/template, description.svg
 
 Light Components
 ----------------
