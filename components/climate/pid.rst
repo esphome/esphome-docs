@@ -89,29 +89,29 @@ To autotune the control parameters:
 
 1. Set up the PID controller with all control parameters set to zero:
 
-   .. code-block:: yaml
+  .. code-block:: yaml
 
-        climate:
-          - platform: pid
-            id: pid_climate
-            name: "PID Climate Controller"
-            sensor: temperature_sensor
-            default_target_temperature: 21°C
-            heat_output: heater
-            control_parameters:
-              kp: 0.0
-              ki: 0.0
-              kd: 0.0
+      climate:
+        - platform: pid
+          id: pid_climate
+          name: "PID Climate Controller"
+          sensor: temperature_sensor
+          default_target_temperature: 21°C
+          heat_output: heater
+          control_parameters:
+            kp: 0.0
+            ki: 0.0
+            kd: 0.0
 
 2. Create a :doc:`template switch </components/switch/template>` to start autotuning later:
 
-   .. code-block:: yaml
+  .. code-block:: yaml
 
-        switch:
-          - platform: template
-            name: "PID Climate Autotune"
-            turn_on_action:
-              - climate.pid.autotune: pid_climate
+      switch:
+        - platform: template
+          name: "PID Climate Autotune"
+          turn_on_action:
+            - climate.pid.autotune: pid_climate
 
 3. Compile & Upload the new firmware.
 
