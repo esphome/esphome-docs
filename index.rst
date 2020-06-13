@@ -358,6 +358,7 @@ Cookbook
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
+    ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
