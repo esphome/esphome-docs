@@ -47,6 +47,7 @@ Do note that the actions are only called when the current temperature leaves the
     # Example configuration entry
     climate:
       - platform: bang_bang
+        name: "Bang Bang Climate Controller"
         sensor: my_temperature_sensor
         default_target_temperature_low: 20 °C
         default_target_temperature_high: 22 °C
@@ -92,7 +93,6 @@ Advanced options:
 See Also
 --------
 
-- :doc:`/components/binary_sensor/index`
-- :ref:`config-pin_schema`
-- :apiref:`gpio/binary_sensor/gpio_binary_sensor.h`
+- :doc:`/components/climate/index`
+- :apiref:`bang_bang/bang_bang_climate.h`
 - :ghedit:`Edit`
