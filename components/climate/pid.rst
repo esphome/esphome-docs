@@ -57,6 +57,7 @@ Configuration variables:
 - All other options from :ref:`Climate <config-climate>`.
 
 .. _pid-setup:
+
 PID Controller Setup
 --------------------
 
@@ -75,6 +76,7 @@ To set up a PID climate controller, you need a couple of components:
     interval of the sensor. Set a short ``update_interval`` like ``1s`` on the sensor.
 
 .. _pid-autotune:
+
 Autotuning
 ----------
 
@@ -101,7 +103,7 @@ To autotune the control parameters:
               ki: 0.0
               kd: 0.0
 
-2. Create a :doc:`template switch </components/template/switch>` to start autotuning later:
+2. Create a :doc:`template switch </components/switch/template>` to start autotuning later:
 
    .. code-block:: yaml
 
