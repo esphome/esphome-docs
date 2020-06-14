@@ -5,7 +5,8 @@ MAX7219 Digit Display
     :description: Instructions for setting up MAX7219 Digit displays.
     :image: max7219digit.png
 
-The ``max7219`` display platform allows you to use MAX7219 digit with ESPHome. Please note that this integration is *only* for the digit "matrix" display, the 7 segment display can be used with the other library.
+The ``max7219`` display platform allows you to use MAX7219 digit with ESPHome. Please note that this integration
+is *only* for the digit "matrix" display, for the 7 segment display see :doc:`max7219`.
 
 .. figure:: images/max7219digit.png
     :align: center
@@ -43,16 +44,20 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
 - **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
   ``4``.
-- **rotate_chip** (*Optional*, enum): The configuration of how the chips are aligned can be changed. Range is from 0 (the default), 90, 180 up to 270. Each step is rotating the chip display by 90 degrees.
+- **rotate_chip** (*Optional*, enum): The configuration of how the chips are aligned can be changed. Range
+  is from 0 (the default), 90, 180 up to 270. Each step is rotating the chip display by 90 degrees.
 - **scroll_enable** (*Optional*, boolean): Turn scroll mode on (True).
 - **scroll_speed** (*Optional*, :ref:`config-time`): Set scroll speed in ms. The default is (250 ms)
-- **scroll_delay** (*Optional*, :ref:`config-time`): Set delay of scroll at start of the string in ms. The default is (1000 ms)
-- **scroll_dwell** (*Optional*, :ref:`config-time`): Set the delay of scroll at the end of the string in ms. The default is (1000 ms). This is only used in mode 'STOP'.
-- **scroll_mode** (*Optional*, ): Set the scroll mode. 'CONTINUOUS' = continuously and 'STOP' = stop and reset at end.
-- **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
-  0 (least intense) to 15 (the default).
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
-  See :ref:`display-max7219digit_lambda` for more information.
+- **scroll_delay** (*Optional*, :ref:`config-time`): Set delay of scroll at start of the string in ms.
+  The default is (1000 ms)
+- **scroll_dwell** (*Optional*, :ref:`config-time`): Set the delay of scroll at the end of the string in ms.
+  The default is (1000 ms). This is only used in mode 'STOP'.
+- **scroll_mode** (*Optional*, ): Set the scroll mode. 'CONTINUOUS' = continuously and 'STOP' = stop and reset
+  at end.
+- **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is
+  from 0 (least intense) to 15 (the default).
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the
+  MAX7219. See :ref:`display-max7219digit_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
@@ -63,9 +68,9 @@ Configuration variables:
 Rendering Lambda
 ----------------
 
-The MAX7219 digit is based on the fully fledged :ref:`display-engine`, as it has a concept of individual pixels 8 X 8 per max7219 chip. 
-In the lambda you're passed a variable called ``it``
-as with all other displays. Some "Special" commands have been added to the basic display set.
+The MAX7219 digit is based on the fully fledged :ref:`display-engine`, as it has a concept of individual pixels 8 X 8
+per max7219 chip. In the lambda you're passed a variable called ``it`` as with all other displays. Some "Special"
+commands have been added to the basic display set.
 
 .. code-block:: yaml
 
@@ -76,19 +81,21 @@ as with all other displays. Some "Special" commands have been added to the basic
         lambda: |-
           it.strftime(0, 0, id(digit_font), "%H:%M", id(hass_time).now());
           it.image(24, 0, id(my_image));
-          it.line(1,8,21,8);
-     font:
-       - file: "pixelmix.ttf"
-         id: digit_font
-         size: 6
-     time:
-       - platform: homeassistant
-         id: hass_time
-     image:
-       - file: "smile.png"
-         id: my_image
+          it.line(1, 7, 21, 7);
+    font:
+      - file: "pixelmix.ttf"
+        id: digit_font
+        size: 6
 
-This is roughly the code used to display the MAX7219 display at the image.
+    time:
+      - platform: homeassistant
+        id: hass_time
+
+    image:
+      - file: "smile.png"
+        id: my_image
+
+This is roughly the code used to display the MAX7219 pictured in the image.
 
 Some special MAX7219 digit code can be added as follows:
 
@@ -102,7 +109,9 @@ Some special MAX7219 digit code can be added as follows:
           it.print(0,0, id(digit_font), "Hello!");
           it.scroll(true,0,100,5000,1500);
 
-By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file. They can also be changed in the Lambda by adding the following command: it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL). 
+By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file.
+They can also be changed in the Lambda by adding the following command:
+it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL).
 
 - ON/OFF -> switch scrolling on or off
 - MODE -> 0 = Contineous scrolling
@@ -118,12 +127,12 @@ By default the MAX7219Digit display has scroll enabled. The paramaters can be se
         # ...
         lambda: |-
           # ...
-          it.scroll(true,0,100,5000,1500); 
+          it.scroll(true,0,100,5000,1500);
           // OR
-          it.scroll(true,0,); 
+          it.scroll(true,0,);
           // OR
           it.scroll(true);
-          
+
 - The screen does not scroll if the text fits within the screen.
 - Printdigit("XXXXXXXXX") and printfdigit("XXXXXX") the alternative way of displaying text does not scroll
 
@@ -136,9 +145,12 @@ By default the MAX7219Digit display has scroll enabled. The paramaters can be se
           it.invert_on_off(true);
           // Print Hello at position 0 (left)
           it.print(0,0, id(digit_font), "Hello!");
-           
-The function it.invert_on_off(true); will inverst the display. So background pixels are on and texts pixels are off. it.invert_on_off(false); sets the display back to normal. In case no argument is used: it.inverst_on_off(); the inversion will toggle from on to off or visa versa. This will happen every time the display is updated. So a blinking effect is created.
-The background pixels are only set at the next update, the pixels drawn in the various function like print, line, etc. are directly influenced by the invert command.
+
+The function it.invert_on_off(true); will invert the display. So background pixels are on and texts pixels are
+off. it.invert_on_off(false); sets the display back to normal. In case no argument is used: it.inverst_on_off();
+the inversion will toggle from on to off or visa versa. This will happen every time the display is updated.
+So a blinking effect is created. The background pixels are only set at the next update, the pixels drawn in
+the various function like print, line, etc. are directly influenced by the invert command.
 
 .. code-block:: yaml
 
@@ -154,7 +166,7 @@ The background pixels are only set at the next update, the pixels drawn in the v
 
 This code will only effect the line drawn on the screen. The line will wipe the pixels from top left to right bottom. The background is not effected as the Lambda is closed with an Invert_on_of(false) code.
 
-For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods (``printdigit``, ``printfdigit`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to display a single character. So not very space efficient. 
+For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods (``printdigit``, ``printfdigit`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to display a single character. So not very space efficient.
 The format of the command is: ``it.printdigit("1234");`` or ``it.printfdigit("%S","1234")``;
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
