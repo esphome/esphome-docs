@@ -48,7 +48,7 @@ Configuration variables:
 - **scroll_speed** (*Optional*, :ref:`config-time`): Set scroll speed in ms. The default is (250 ms)
 - **scroll_delay** (*Optional*, :ref:`config-time`): Set delay of scroll at start of the string in ms. The default is (1000 ms)
 - **scroll_dwell** (*Optional*, :ref:`config-time`): Set the delay of scroll at the end of the string in ms. The default is (1000 ms). This is only used in mode 'STOP'.
-- **scroll_mode** (*Optional*, ): Set the scroll mode. 'CONT' = contineously and 'STOP' = stop and reset at end.
+- **scroll_mode** (*Optional*, ): Set the scroll mode. 'CONTINUOUS' = continuously and 'STOP' = stop and reset at end.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
   0 (least intense) to 15 (the default).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
