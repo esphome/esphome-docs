@@ -1,9 +1,18 @@
-~MCP3008 I/O Expander
-=====================
+MCP3008 I/O Expander
+====================
 
 .. seo::
     :description: Instructions for setting up MCP3008 10 Bit Analog to Digital Converter in ESPHome.
     :image: mcp3008.png
+
+.. note::
+
+    This page is incomplete and could some work. If you want to contribute, please read the
+    :doc:`contributing guide </guides/contributing>`. This page is missing:
+
+      - An image for the front page.
+      - Formal documentation of the mcp3008 sensor entry (parent, update_interval, number, etc.)
+      - See Dallas sensor for reference model
 
 The Microchip Technology Inc. MCP3008
 devices are successive approximation 10-bit Analogto-Digital (A/D) converters with on-board sample and
@@ -18,31 +27,29 @@ The MCP3008 component allows you to use MCP3008 8-Channel 10-Bit A/D Converter
 It uses the :ref:`SPI Bus <spi>` for communication.
 
 Once configured, you can use any of the 8 pins as
-sensors for your projects. 
+sensors for your projects.
 
 .. code-block:: yaml
 
     # Example configuration entry
-    MCP3008:
-      - id: 'MCP3008_hub'
-        cs_pin: D8
+    mcp3008:
+      cs_pin: D8
 
-    # Example config of sensors. 
+    # Example config of sensors.
     # This is a NTCB3950 10K thermocoupler attached to pin 0
-    # of the MCP3008 with a 10K resistor as a voltage divider. 
+    # of the MCP3008 with a 10K resistor as a voltage divider.
     # See `resistance` and `ntc` platorms for other options
     sensor:
-      - platform: mcp3008             # Attached to pin 0 of the MCP3008. The result will be a reading from 0-1023
+      - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+                                      # The result will be a reading from 0-1023
         update_interval: 1s
-        mcp3008: 'mcp3008_hub'
-        id: freezer_temp_source       
+        id: freezer_temp_source
         number: 0                     # pin number
       - platform: resistance
-        id: freezer_resistance_sensor 
+        id: freezer_resistance_sensor
         sensor: freezer_temp_source
         configuration: DOWNSTREAM
         resistor: 10kOhm
-        name: Resistance Sensor
       - platform: ntc
         id: freezer_temp
         sensor: freezer_resistance_sensor
@@ -56,12 +63,12 @@ Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
-- **cs_pin** (**Required**, int): The SPI cable select pin to use  
+- **cs_pin** (**Required**, int): The SPI cable select pin to use
 
 See Also
 --------
 
 - :ref:`spi`
-- :apiref:`MCP3008/MCP3008.h`
+- :apiref:`mcp3008/mcp3008.h`
 - :ghedit:`Edit`
 
