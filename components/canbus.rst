@@ -169,28 +169,20 @@ Configuration variables:
 
 .. note::
 
-    You can even specify multiple ``on_message`` triggers by using a YAML list:
+    You can even specify multiple ``on_frame`` triggers by using a YAML list:
 
     .. code-block:: yaml
 
-        mqtt:
-          on_message:
-             - topic: some/topic
-               then:
-                 - # ...
-             - topic: some/other/topic
-               then:
-                 - # ...
-
-.. note::
-
-    This action can also be used in :ref:`lambdas <config-lambda>`:
-
-    .. code-block:: cpp
-
-        App.get_mqtt_client()->subscribe("the/topic", [=](const std::string &payload) {
-            // do something with payload
-        });
+        canbus:
+          - platform: mcp2515
+            on_frame:
+              - can_id: ...
+                then:
+                  - # ...
+            on_frame:
+              - can_id: ...
+                then:
+                  - # ...
 
 See Also
 --------
