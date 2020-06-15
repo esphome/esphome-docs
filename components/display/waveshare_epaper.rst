@@ -66,7 +66,8 @@ configuration.
 Configuration variables:
 ------------------------
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
+  The CS line can be connected to GND if this is the only device on the SPI bus.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **model** (**Required**): The model of the E-Paper display. Options are:
 
@@ -77,6 +78,7 @@ Configuration variables:
   - ``2.90in``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
+  - ``5.83in``
   - ``7.50in``
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.

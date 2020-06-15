@@ -46,6 +46,8 @@ to some pins on your board and the baud rate set to 9600.
           name: "PZEM-004T V3 Current"
         voltage:
           name: "PZEM-004T V3 Voltage"
+        energy:
+          name: "PZEM-004T V3 Energy"
         power:
           name: "PZEM-004T V3 Power"
         frequency:
@@ -58,6 +60,8 @@ Configuration variables:
 ------------------------
 
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
+  :ref:`Sensor <config-sensor>`.
+- **energy** (*Optional*): Use the (active) energy value of the sensor in watt*hours. All options from
   :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
   :ref:`Sensor <config-sensor>`.
