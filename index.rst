@@ -73,6 +73,7 @@ Core Components
 
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
+    CAN Bus, components/canbus, canbus.svg
     UART Bus, components/uart, uart.svg
 
     OTA Updates, components/ota, system-update.svg
