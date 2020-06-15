@@ -27,25 +27,27 @@ The CAN bus is then configured as follows;
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **sender_id** (**Required**, numeric id): numeric id to be able to determine the sender.
 - **bit_rate** (*Optional*, one of the supported bitrates): defaults to 125KBPS.
-  - 5KBPS
-  - 10KBPS
-  - 20KBPS
-  - 31K25BPS
-  - 33KBPS
-  - 40KBPS
-  - 50KBPS
-  - 80KBPS
-  - 83K3BPS
-  - 95KBPS
-  - 100KBPS
-  - 125KBPS
-  - 200KBPS
-  - 250KBPS
-  - 500KBPS
-  - 1000KBPS
+
+- 5KBPS
+- 10KBPS
+- 20KBPS
+- 31K25BPS
+- 33KBPS
+- 40KBPS
+- 50KBPS
+- 80KBPS
+- 83K3BPS
+- 95KBPS
+- 100KBPS
+- 125KBPS
+- 200KBPS
+- 250KBPS
+- 500KBPS
+- 1000KBPS
 
 MCP2515
 -------
+
 The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device when it should listen for data on the SPI bus. Each device has an individual CS line. Sometimes also called ``SS``.
