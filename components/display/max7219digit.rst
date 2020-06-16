@@ -97,18 +97,6 @@ commands have been added to the basic display set.
 
 This is roughly the code used to display the MAX7219 pictured in the image.
 
-Some special MAX7219 digit code can be added as follows:
-
-.. code-block:: yaml
-
-    display:
-      - platform: max7219digit
-        # ...
-        lambda: |-
-          // Print 0 at position 0 (left)
-          it.print(0,0, id(digit_font), "Hello!");
-          it.scroll(true,0,100,5000,1500);
-
 By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file.
 They can also be changed in the Lambda by adding the following command:
 it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL).
