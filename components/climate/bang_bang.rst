@@ -1,4 +1,4 @@
-Bang Bang Climate Controller
+Bang-Bang Climate Controller
 ============================
 
 .. seo::
@@ -8,91 +8,263 @@ Bang Bang Climate Controller
 The ``bang_bang`` climate platform allows you to regulate a value with a
 `bang-bang controller <https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control>`__ (also called hysteresis controller).
 
-The operation principle of a bang_bang controller is quite simple. First, you specify an observable
-value (for example the temperature of a room). The controller will try to keep this observed value
-in a defined range. To do this, the controller can activate objects like a heating unit to change
-the observed value.
+If you are looking to create your own climate control device (aka thermostat), this is the component for you.
 
-The range that the controller will try to keep the observed value in can be controlled through the
-front-end with the ``target_temperature_low`` and ``target_temperature_high`` values (see screenshot below).
-As soon as the observed temperature dips below or above this range it will activate one of the
-defined actions ``cool_action``, ``heat_action`` and ``idle_action``.
+The principle of operation of a bang-bang controller is quite simple. First, you specify an observable
+value (for example, the temperature of a room). The controller will try to keep this observed value
+within a defined range. To do this, the controller can activate devices like a heating unit and/or a cooling unit
+to change the observed value.
 
-There are three types of bang bang controllers this platform can represent:
+The bang-bang controller as implemented in this component can operate in one of two ways:
 
-- **Heaters**: For devices where the observed temperature can only be increased.
+- **Single-point**: A single threshold (set point) is defined; cooling may be activated when the observed temperature
+  exceeds the set point **or** heating may be activated when the observed temperature drops below the set point; that is,
+  the controller can only raise the temperature or lower the temperature. It cannot do both in this mode.
 
-  - As soon as the temperature goes below the lower target temperature, ``heat_action`` will be called.
-  - When the temperature goes above the higher temperature, ``idle_action`` will be called.
+- **Dual-point**: Two thresholds (set points) are defined; cooling is activated when the observed temperature exceeds the
+  upper set point while heating is activated when the observed temperature drops below the lower set point; in other words,
+  the controller is able to both raise and lower the temperature as required.
 
-- **Coolers**: For devices where the observed temperature can only be decreased.
-
-  - As soon as the temperature goes above the higher target temperature, ``cool_action`` will be called.
-  - When the temperature goes below the lower temperature, ``idle_action`` will be called.
-
-- **Heater+Cooler**: For devices where the temperature can both actively be increased and decreased.
-
-  - When the current temperature is below the lower target temperature, ``heat_action`` is called.
-  - When the current temperature is within the target temperature range, ``idle_action`` is called.
-  - When the current temperature is above the higher target temperature, ``cool_action`` is called.
-
-Do note that the actions are only called when the current temperature leaves the target temperature range.
+This component/controller automatically determines which mode it should operate in based on what :ref:`actions <config-action>`
+are configured -- more on this in a moment. Two parameters define the set points; they are ``target_temperature_low`` and
+``target_temperature_high``. In single-point mode, however, only one is used. The set point(s) may be adjusted through the
+front-end user interface. The screenshot below illustrates a bang-bang controller in dual-point mode, where two set points
+are available.
 
 .. figure:: images/climate-ui.png
     :align: center
     :width: 60.0%
 
+    Dual-setpoint climate UI
+
+This component works by triggering a number of :ref:`actions <config-action>` as required to keep the observed
+temperature above/below/within the target range as defined by the set point(s). In general, when the observed temperature
+drops below ``target_temperature_low`` the controller will trigger the ``heat_action`` to activate heating. When the observed
+temperature exceeds ``target_temperature_high``  the controller will trigger the ``cool_action`` or the ``fan_only_action``
+(as determined by the climate mode) to activate cooling. When the temperature has reached a point within the desired range, the
+controller will trigger the ``idle_action`` to stop heating/cooling. Please see the next section for more detail.
+
+A number of fan control modes are built into the climate/thermostat interface in Home Assistant; this component may also be
+configured to trigger :ref:`actions <config-action>` based on the entire range (at the time this document was written) of fan
+modes that Home Assistant offers.
+
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example dual-point configuration entry
     climate:
       - platform: bang_bang
         name: "Bang Bang Climate Controller"
         sensor: my_temperature_sensor
         default_target_temperature_low: 20 °C
         default_target_temperature_high: 22 °C
+        cool_action:
+          - switch.turn_on: air_cond
+        heat_action:
+          - switch.turn_on: heater
+        idle_action:
+          - switch.turn_off: air_cond
+          - switch.turn_off: heater
 
+.. code-block:: yaml
+
+    # Example single-point configuration entry (for heat only)
+    climate:
+      - platform: bang_bang
+        sensor: my_temperature_sensor
+        default_target_temperature: 20 °C
         heat_action:
           - switch.turn_on: heater
         idle_action:
           - switch.turn_off: heater
 
-Configuration variables:
-------------------------
+
+Controller Behavior and Hysteresis
+----------------------------------
+
+In addition to the set points, a hysteresis value determines how far the temperature may vary from the set point value(s)
+before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. It defaults to 0.5 °C.
+
+A question that often surfaces about this component is, "What is the expected behavior?" Let's quickly discuss
+*exactly when* the configured actions are called by the controller.
+
+Consider the low set point (the one that typically activates heating) for a moment, and assume it is set to a common room
+temperature of 21 °C. As mentioned above, the controller uses a default hysteresis value of 0.5 °C, so we'll use that value here,
+as well. The bang-bang controller as implemented in this component will allow the temperature to drop as low as the set point's
+value (21 °C) *minus* the hysteresis value (0.5 °C), or 20.5 °C, before calling ``heat_action`` to activate heating.
+
+After heating has been activated, it will remain active until the observed temperature reaches the set point (21 °C) *plus*
+the hysteresis value (0.5 °C), or 21.5 °C. Once this temperature is reached, ``idle_action`` will be called to deactivate
+heating.
+
+The same behavior applies to the high set point, although the behavior is reversed in a sense; given an upper set point of
+22 °C, ``cool_action`` would be called at 22.5 °C and ``idle_action`` would not be called until the temperature is reduced
+to 21.5 °C.
+
+Important Terminology
+---------------------
+
+Before we get into more configuration detail, let's take a step back and talk about the word "action"; we
+need to carefully consider the context of the word in the upcoming section, as it has a double meaning and
+will otherwise lead to some ambiguity.
+
+- **ESPHome Action**: A task the ESPHome application performs as requested, such as
+  turning on a switch. See :ref:`Action <config-action>`.
+- **Climate Action**: What the climate device is actively doing
+- **Climate Mode**: What the climate device should (or should not) do
+
+We'll call out which definition "action" we are referring to as we describe them below -- read carefully!
+
+With respect to climate control, it is important to understand the subtle difference between the terms
+"action" and "mode" as they *are not the same thing*:
+
+Examples:
+
+- **Heat Mode**: The climate device may heat but may **not** cool.
+- **Heat Action**: The climate device is *actively distributing heated air* into the dwelling.
+
+Got all that? Great. Let's take a closer look at some configuration.
+
+Configuration Variables
+-----------------------
+
+The bang-bang controller uses the sensor to determine whether it should heat or cool.
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
-- **default_target_temperature_low** (**Required**, float): The default low target temperature for
-  the control algorithm. This can be dynamically set in the frontend later.
-- **default_target_temperature_high** (**Required**, float): The default high target temperature for
-  the control algorithm. This can be dynamically set in the frontend later.
+
+Default Target Temperatures
+***************************
+
+These temperatures are used when the device first starts up.
+
+- **default_target_temperature_low** (*Optional*, float): The default low target
+  temperature for the control algorithm. This can be dynamically set in the frontend later.
+- **default_target_temperature_high** (*Optional*, float): The default high target
+  temperature for the control algorithm. This can be dynamically set in the frontend later.
+
+**At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
+**must be specified.**
+
+Heating and Cooling Actions
+***************************
+
+These are triggered when the climate control **action** is changed by the bang bang controller. Here,
+"action" takes on both meanings described above, as these are both climate actions *and* ESPHome
+:ref:`actions <config-action>`. These should be used to activate heating, cooling, etc. devices.
+
 - **idle_action** (**Required**, :ref:`Action <config-action>`): The action to call when
-  the climate device wants to enter idle mode.
+  the climate device should enter its idle state (not cooling, not heating).
 - **heat_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
-  the climate device wants to heating mode and increase the current temperature. At least one
-  of ``heat_action`` and ``cool_action`` need to be specified.
+  the climate device should enter heating mode to increase the current temperature.
 - **cool_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
-  the climate device wants to cooling mode and decrease the current temperature.
+  the climate device should enter cooling mode to decrease the current temperature.
+- **dry_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device should perform its drying (dehumidification) action. The bang bang
+  controller does not trigger this action; it is invoked by ``dry_mode`` (see below).
+- **fan_only_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device should activate its fan only (but does not heat or cool). The bang bang
+  controller triggers this action based on the upper target temperature when set to
+  ``fan_only_mode`` (see below).
 - All other options from :ref:`Climate <config-climate>`.
 
-Advanced options:
+**At least one of** ``cool_action``, ``fan_only_action``, ``heat_action``, **and** ``dry_action``
+**must be specified.**
 
+If only one of ``cool_action``, ``fan_only_action``, ``heat_action``, and ``dry_action`` is specified,
+the controller will configure itself to operate in single-point mode and, as such, Home Assistant will
+display the single-point climate user interface for the device.
+
+Heating and Cooling Modes
+*************************
+
+These are triggered when the climate control **mode** is changed. Note the absence of "action" in the
+parameter name here -- these are still ESPHome :ref:`actions <config-action>`, however they are *not*
+climate actions. Instead, they are climate *modes*. These :ref:`actions <config-action>` are useful
+in that they could be used, for example, to toggle a group of LEDs on and/or off to provide a visual
+indication of the current climate mode.
+
+- **auto_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device is placed into "auto" mode (it may both cool and heat as required).
+- **off_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device is placed into "off" mode (it is completely disabled).
+- **heat_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device is placed into heat mode (it may heat as required, but not cool).
+- **cool_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device is placed into cool mode (it may cool as required, but not heat).
+- **dry_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device is placed into dry mode (for dehumidification).
+- **fan_only_mode** (*Optional*, :ref:`Action <config-action>`): The action to call when
+  the climate device is placed into fan only mode (it may not heat or cool, but will activate
+  its fan as needed based on the upper target temperature value).
+
+**The above actions are not to be used to activate cooling or heating devices!**
+See the previous section for those.
+
+Fan Mode Actions
+****************
+
+These are triggered when the climate control fan mode is changed. These are ESPHome :ref:`actions <config-action>`.
+These should be used to control the fan only, if available.
+
+- **fan_mode_auto_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should be set to "auto" mode (the fan is controlled by the climate control system as required).
+- **fan_mode_on_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should run continuously.
+- **fan_mode_off_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should never run.
+- **fan_mode_low_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should run at its minimum speed.
+- **fan_mode_medium_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should run at an intermediate speed.
+- **fan_mode_high_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should run at its maximum speed.
+- **fan_mode_middle_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should direct its airflow at an intermediate area.
+- **fan_mode_focus_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should direct its airflow at a specific area.
+- **fan_mode_diffuse_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should direct its airflow over a broad area.
+
+Swing Mode Actions
+******************
+
+These are triggered when the climate control swing mode is changed. These are ESPHome :ref:`actions <config-action>`.
+These should be used to control the fan only, if available.
+
+- **swing_off_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan should
+  remain in a stationary position.
+- **swing_horizontal_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should oscillate in a horizontal direction.
+- **swing_vertical_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should oscillate in a vertical direction.
+- **swing_both_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
+  should oscillate in horizontal and vertical directions.
+
+Advanced Options
+****************
+
+- **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
+  an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. Defaults to 0.5 °C.
 - **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
-  Away mode can be used to have a second set of target temperatures (for example while the user is
-  away or during nighttime)
+  Away mode can be used to have a second set of target temperatures (for example, while the user is
+  away or sleeping/at night).
 
-  - **default_target_temperature_low** (**Required**, float): The default low target temperature for
-    the control algorithm during away mode.
-  - **default_target_temperature_high** (**Required**, float): The default high target temperature for
-    the control algorithm during away mode.
+  - **default_target_temperature_low** (*Optional*, float): The default low target temperature for the control
+    algorithm when Away mode is selected. This can be dynamically set in the frontend later.
+  - **default_target_temperature_high** (*Optional*, float): The default high target temperature for the control
+    algorithm when Away mode is selected. This can be dynamically set in the frontend later.
+
+**If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
+**must be specified in the away mode configuration.**
 
 .. note::
 
-    While this platform uses the term temperature everywhere, it can also be used for other values.
+    While this platform uses the term temperature everywhere, it can also be used to regulate other values.
     For example, controlling humidity is also possible with this platform.
 
 See Also
 --------
 
 - :doc:`/components/climate/index`
-- :apiref:`bang_bang/bang_bang_climate.h`
+- :doc:`/components/sensor/index`
+- :ref:`config-action`
 - :ghedit:`Edit`
