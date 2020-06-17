@@ -125,6 +125,7 @@ Sensor Components
     HTU21D, components/sensor/htu21d, htu21d.jpg
     HM3301, components/sensor/hm3301, hm3301.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
+    MAX31856, components/sensor/max31856, max31856.jpg
     MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
@@ -159,10 +160,7 @@ Sensor Components
     Uptime Sensor, components/sensor/uptime, timer.svg
     VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-    Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
-    Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
-    Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
-    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
+    Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
@@ -199,6 +197,7 @@ Output Components
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
     Slow PWM, components/output/slow_pwm, pwm.png
     GPIO Output, components/output/gpio, pin.svg
+    ESP32 DAC, components/output/esp32_dac, dac.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
@@ -291,6 +290,7 @@ Text Sensor Components
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
+    BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
@@ -303,6 +303,7 @@ Climate Components
     Climate Core, components/climate/index, folder-open.svg
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
+    PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
 
 Misc Components
@@ -329,6 +330,7 @@ Misc Components
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg
+    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
@@ -369,6 +371,7 @@ Cookbook
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
     Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
+    Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
 

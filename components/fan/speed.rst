@@ -28,6 +28,8 @@ Configuration variables:
 - **name** (**Required**, string): The name for this fan.
 - **oscillation_output** (*Optional*, :ref:`config-id`): The id of the
   :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
+- **direction_output** (*Optional*, :ref:`config-id`): The id of the
+  :ref:`output <output>` to use for the direction state of the fan. Default is empty.
 - **speed** (*Optional*): Set the float values for each speed setting:
 
   - **low** (*Required*, float): Set the value for the low speed

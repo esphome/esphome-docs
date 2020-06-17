@@ -53,6 +53,7 @@ modes that Home Assistant offers.
     # Example dual-point configuration entry
     climate:
       - platform: bang_bang
+        name: "Bang Bang Climate Controller"
         sensor: my_temperature_sensor
         default_target_temperature_low: 20 °C
         default_target_temperature_high: 22 °C
