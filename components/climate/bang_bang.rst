@@ -48,9 +48,6 @@ A number of fan control modes are built into the climate/thermostat interface in
 configured to trigger :ref:`actions <config-action>` based on the entire range (at the time this document was written) of fan
 modes that Home Assistant offers.
 
-**Note that actions are only called when the current temperature leaves the target temperature range or when the respective
-fan mode or swing mode is changed.**
-
 .. code-block:: yaml
 
     # Example dual-point configuration entry
@@ -146,8 +143,8 @@ These temperatures are used when the device first starts up.
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
 
-Basic Heating and Cooling Actions
-*********************************
+Heating and Cooling Actions
+***************************
 
 These are triggered when the climate control **action** is changed by the bang bang controller. Here,
 "action" takes on both meanings described above, as these are both climate actions *and* ESPHome
@@ -172,10 +169,11 @@ These are triggered when the climate control **action** is changed by the bang b
 **must be specified.**
 
 If only one of ``cool_action``, ``fan_only_action``, ``heat_action``, and ``dry_action`` is specified,
-the controller will configure itself to operate in single-point mode.
+the controller will configure itself to operate in single-point mode and, as such, Home Assistant will
+display the single-point climate user interface for the device.
 
-Basic Heating and Cooling Modes
-*******************************
+Heating and Cooling Modes
+*************************
 
 These are triggered when the climate control **mode** is changed. Note the absence of "action" in the
 parameter name here -- these are still ESPHome :ref:`actions <config-action>`, however they are *not*
@@ -197,7 +195,7 @@ indication of the current climate mode.
   the climate device is placed into fan only mode (it may not heat or cool, but will activate
   its fan as needed based on the upper target temperature value).
 
-**Note that the above actions are not to be used to activate cooling or heating devices!**
+**The above actions are not to be used to activate cooling or heating devices!**
 See the previous section for those.
 
 Fan Mode Actions
@@ -265,8 +263,7 @@ Advanced Options
 See Also
 --------
 
-- :doc:`/components/binary_sensor/index`
-- :ref:`config-pin_schema`
+- :doc:`/components/climate/index`
+- :doc:`/components/sensor/index`
 - :ref:`config-action`
-- :apiref:`gpio/binary_sensor/gpio_binary_sensor.h`
 - :ghedit:`Edit`

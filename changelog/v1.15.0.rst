@@ -1,0 +1,79 @@
+Changelog - Version 1.15.0 - Release Date TBD
+=============================================
+
+.. seo::
+    :description: Changelog for ESPHome version 1.15.0.
+    :image: /_static/changelog-1.15.0.png
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
+.. imgtable::
+    :columns: 5
+
+    Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
+
+*This is currently a draft document.*
+
+...Intro text...
+
+New Components
+**************
+
+...Text...
+
+Updated Components
+******************
+
+...More text...
+
+Last but not least, thanks to all contributors, bug reporters and patrons! Without you this would not
+be possible!
+
+Release 1.15 - Release TBD
+--------------------------
+
+- Item 1
+
+- Item 2
+
+Breaking Changes
+----------------
+
+- Bang Bang Controller behavior modified outside of "auto" mode
+
+  - When Heat, Cool, or Fan-only (new!) modes are selected, heating, cooling, or fanning actions activate
+    only as necessary. (In the previous versions, it ran continuously.)
+  - Set point +/- hysteresis (new!) value determines when actions are called -- see component documentation for details
+
+- More
+- To
+- Come
+
+Notable Changes & New Features
+------------------------------
+
+- Dashboard Interface Revamped
+- Bang Bang Controller now implements ESPHome actions for all available Home Assistant climate actions,
+  climate modes, fan modes, and fan swing modes
+
+All changes
+-----------
+
+- Tons
+- Of
+- Stuff
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
