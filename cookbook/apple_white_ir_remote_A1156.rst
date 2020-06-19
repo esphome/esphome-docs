@@ -3,10 +3,10 @@ Apple IR Remote (A156) to control an iPod Dock
 
 .. seo::
     :description: Instructions for setting up an infrared transmitter with ESPhome to control an iPod dock with Home Assistant
-    :image: ir_remote_ipod_dock.jpg
+    :image: apple_ir_remote_ipod_dock.jpg
     :keywords: infrared IR remote
 
-.. figure:: images/ir_remote_ipod_dock.jpg
+.. figure:: images/apple_ir_remote_ipod_dock.jpg
     :align: left
     :width: 75.0%
 
