@@ -12,11 +12,12 @@ Apple IR Remote (A1156) to control an iPod Dock
 
 
 In this example I have used a Wemos D1 Mini and an infrared sheild to control an iPod dock from Home Assistant. 
-I enjoy listening to `Soulection Radio <https://soundcloud.com/soulection>`__. They are two hour shows released weekly on Soundcloud on Fridays.
-I download the shows and have them in the background while I work -- it's nice to automate things with Home Assistant that don't have an internet connection, like an iPod.
+
+I enjoy listening to `Soulection Radio <https://soundcloud.com/soulection>`__ on my iPod as background music while I work. 
+Each show is two hours, so it's nice to not think about what songs to play next like on spotify and also automate things with Home Assistant that don't have an internet connection, like an iPod.
 
 
-I've added this to the cookbook because the iPod remote codes were getting hard to find and wanted to document this use-case.
+I've added this to the cookbook because the iPod remote codes were getting hard to find and wanted to document this use-case for others to enjoy.
 
 This is the Apple White Remote model A1156 that we are replacing:
 ----------------------
@@ -38,6 +39,8 @@ Only four connections are needed:
 - ``GND`` - Ground
 - ``D3`` - GPIO for Receiver
 - ``D4`` - GPIO for Transmitter
+
+I bought the Wemos D1 Mini IR Shield by searching on Aliexpress and eBay for <$4 USD. I couldn't find any links on Amazon but I'm sure it's always chainging. 
 
 
 Software configuration
@@ -111,7 +114,7 @@ The Configuration
 
 Fast Forward and Rewind
 ---------
-Fast Forward and Rewind aren't available yet but maybe someone can add it.
+Fast Forward and Rewind (by holding the Next/Previous buttons on the remote) aren't available in this configuration yet but maybe someone can add it by adding in a button press duration.
 
 
 
