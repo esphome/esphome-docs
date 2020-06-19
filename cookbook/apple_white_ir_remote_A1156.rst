@@ -40,6 +40,9 @@ Only four connections are needed:
 - ``D3`` - GPIO for Receiver
 - ``D4`` - GPIO for Transmitter
 
+
+Hardware Procurement
+******************
 I bought the Wemos D1 Mini IR Shield by searching on Aliexpress and eBay for <$4 USD. I couldn't find any links on Amazon but I'm sure it's always chainging. 
 
 
