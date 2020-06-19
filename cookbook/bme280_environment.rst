@@ -76,7 +76,7 @@ converts the currently measured temperature and relative humidity to absolute hu
 Equivalent sea level pressure:
 ------------------------------
 
-Calculating the sea level pressure with a statically mounted sensor can be be used as reference for moving sensors as mentioned in the note above.
+Calculating the sea level pressure with a statically mounted sensor can be used as reference for moving sensors as mentioned in the note above.
 
 .. code-block:: yaml
 
