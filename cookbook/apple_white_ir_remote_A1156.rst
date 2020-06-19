@@ -1,4 +1,4 @@
-Apple IR Remote (A156) to control an iPod Dock
+Apple IR Remote (A1156) to control an iPod Dock
 ==================================
 
 .. seo::
@@ -16,7 +16,14 @@ I enjoy listening to `Soulection Radio <https://soundcloud.com/soulection>`__. T
 I download the shows and have them in the background while I work. But it's nice to automate things with Home Assistant that don't have an internet connection.
 
 
-I've added this to the cookbook because the iPod remote codes were getting hard to find
+I've added this to the cookbook because the iPod remote codes were getting hard to find and wanted to document this use-case.
+
+This is the Apple White Remote model A1156 that we are replacing:
+----------------------
+
+.. figure:: images/apple_ir_remote.jpg
+    :align: left
+    :width: 75.0%
 
 
 
