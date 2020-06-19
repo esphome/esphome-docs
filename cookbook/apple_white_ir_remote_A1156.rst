@@ -13,7 +13,7 @@ Apple IR Remote (A1156) to control an iPod Dock
 
 In this example I have used a Wemos D1 Mini and an infrared sheild to control an iPod dock from Home Assistant. 
 I enjoy listening to `Soulection Radio <https://soundcloud.com/soulection>`__. They are two hour shows released weekly on Soundcloud on Fridays.
-I download the shows and have them in the background while I work. But it's nice to automate things with Home Assistant that don't have an internet connection.
+I download the shows and have them in the background while I work -- it's nice to automate things with Home Assistant that don't have an internet connection, like an iPod.
 
 
 I've added this to the cookbook because the iPod remote codes were getting hard to find and wanted to document this use-case.
