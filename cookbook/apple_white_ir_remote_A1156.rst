@@ -71,48 +71,48 @@ The Configuration
 .. code-block:: yaml
 
 
-        remote_transmitter:
-          pin: D3
-          # Infrared remotes use a 50% carrier signal
-          carrier_duty_percent: 50%
-          
-        switch:
-          - platform: template
-            name: Apple Remote Volume Up Button
-            turn_on_action:
-              - remote_transmitter.transmit_nec:
-                  address: 0x77E1
-                  command: 0xD04E
-          - platform: template
-            name: Apple Remote Volume Down Button
-            turn_on_action:
-              - remote_transmitter.transmit_nec:
-                  address: 0x77E1
-                  command: 0xB04E
-          - platform: template
-            name: Apple Remote Previous Button
-            turn_on_action:
-              - remote_transmitter.transmit_nec:
-                  address: 0x77E1
-                  command: 0x104E
-          - platform: template
-            name: Apple Remote Next Button
-            turn_on_action:
-              - remote_transmitter.transmit_nec:
-                  address: 0x77E1
-                  command: 0xE04E
-          - platform: template
-            name: Apple Remote Play/Pause Button
-            turn_on_action:
-              - remote_transmitter.transmit_nec:
-                  address: 0x77E1
-                  command: 0x2000
-          - platform: template
-            name: Apple Remote Menu Button
-            turn_on_action:
-              - remote_transmitter.transmit_nec:
-                  address: 0x77E1
-                  command: 0x404E
+    remote_transmitter:
+      pin: D3
+      # Infrared remotes use a 50% carrier signal
+      carrier_duty_percent: 50%
+      
+    switch:
+      - platform: template
+        name: Apple Remote Volume Up Button
+        turn_on_action:
+          - remote_transmitter.transmit_nec:
+              address: 0x77E1
+              command: 0xD04E
+      - platform: template
+        name: Apple Remote Volume Down Button
+        turn_on_action:
+          - remote_transmitter.transmit_nec:
+              address: 0x77E1
+              command: 0xB04E
+      - platform: template
+        name: Apple Remote Previous Button
+        turn_on_action:
+          - remote_transmitter.transmit_nec:
+              address: 0x77E1
+              command: 0x104E
+      - platform: template
+        name: Apple Remote Next Button
+        turn_on_action:
+          - remote_transmitter.transmit_nec:
+              address: 0x77E1
+              command: 0xE04E
+      - platform: template
+        name: Apple Remote Play/Pause Button
+        turn_on_action:
+          - remote_transmitter.transmit_nec:
+              address: 0x77E1
+              command: 0x2000
+      - platform: template
+        name: Apple Remote Menu Button
+        turn_on_action:
+          - remote_transmitter.transmit_nec:
+              address: 0x77E1
+              command: 0x404E
 
 
 Fast Forward and Rewind
@@ -124,67 +124,67 @@ Lovelace Button Card Configuration
 ----------------------------------
 .. code-block:: yaml
 
-        cards:
-          - cards:
-              - action: toggle
-                color: 'rgb(253,216,53)'
-                color_off: 'rgb(68,115,158)'
-                entity: switch.apple_remote_previous_button
-                icon: 'mdi:skip-previous'
-                name: Previous
-                show_state: false
-                size: 80%
-                type: 'custom:button-card'
-              - action: toggle
-                color: 'rgb(253,216,53)'
-                color_off: 'rgb(68,115,158)'
-                entity: switch.apple_remote_play_pause_button
-                icon: 'mdi:play-pause'
-                name: Play/Pause
-                show_state: false
-                size: 80%
-                type: 'custom:button-card'
-              - action: toggle
-                color: 'rgb(253,216,53)'
-                color_off: 'rgb(68,115,158)'
-                entity: switch.apple_remote_next_button
-                icon: 'mdi:skip-next'
-                name: Next
-                show_state: false
-                size: 80%
-                type: 'custom:button-card'
-            type: horizontal-stack
-          - cards:
-              - action: toggle
-                color: 'rgb(253,216,53)'
-                color_off: 'rgb(68,115,158)'
-                entity: switch.apple_remote_volume_down_button
-                icon: 'mdi:minus'
-                name: Volume Down
-                show_state: false
-                size: 80%
-                type: 'custom:button-card'
-              - action: toggle
-                color: 'rgb(253,216,53)'
-                color_off: 'rgb(68,115,158)'
-                entity: switch.apple_remote_menu_button
-                icon: 'mdi:dots-horizontal-circle-outline'
-                name: Menu
-                show_state: false
-                size: 80%
-                type: 'custom:button-card'
-              - action: toggle
-                color: 'rgb(253,216,53)'
-                color_off: 'rgb(68,115,158)'
-                entity: switch.apple_remote_volume_up_button
-                icon: 'mdi:plus'
-                name: Volume Up
-                show_state: false
-                size: 80%
-                type: 'custom:button-card'
-            type: horizontal-stack
-        type: vertical-stack
-        title: iPod IR Remote
+    cards:
+      - cards:
+          - action: toggle
+            color: 'rgb(253,216,53)'
+            color_off: 'rgb(68,115,158)'
+            entity: switch.apple_remote_previous_button
+            icon: 'mdi:skip-previous'
+            name: Previous
+            show_state: false
+            size: 80%
+            type: 'custom:button-card'
+          - action: toggle
+            color: 'rgb(253,216,53)'
+            color_off: 'rgb(68,115,158)'
+            entity: switch.apple_remote_play_pause_button
+            icon: 'mdi:play-pause'
+            name: Play/Pause
+            show_state: false
+            size: 80%
+            type: 'custom:button-card'
+          - action: toggle
+            color: 'rgb(253,216,53)'
+            color_off: 'rgb(68,115,158)'
+            entity: switch.apple_remote_next_button
+            icon: 'mdi:skip-next'
+            name: Next
+            show_state: false
+            size: 80%
+            type: 'custom:button-card'
+        type: horizontal-stack
+      - cards:
+          - action: toggle
+            color: 'rgb(253,216,53)'
+            color_off: 'rgb(68,115,158)'
+            entity: switch.apple_remote_volume_down_button
+            icon: 'mdi:minus'
+            name: Volume Down
+            show_state: false
+            size: 80%
+            type: 'custom:button-card'
+          - action: toggle
+            color: 'rgb(253,216,53)'
+            color_off: 'rgb(68,115,158)'
+            entity: switch.apple_remote_menu_button
+            icon: 'mdi:dots-horizontal-circle-outline'
+            name: Menu
+            show_state: false
+            size: 80%
+            type: 'custom:button-card'
+          - action: toggle
+            color: 'rgb(253,216,53)'
+            color_off: 'rgb(68,115,158)'
+            entity: switch.apple_remote_volume_up_button
+            icon: 'mdi:plus'
+            name: Volume Up
+            show_state: false
+            size: 80%
+            type: 'custom:button-card'
+        type: horizontal-stack
+    type: vertical-stack
+    title: iPod IR Remote
 
 
 
