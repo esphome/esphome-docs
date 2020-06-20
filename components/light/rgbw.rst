@@ -17,7 +17,7 @@ The ``rgbw`` light platform creates an RGBW light from 4 :ref:`float output comp
         green: output_component2
         blue: output_component3
         white: output_component4
-        color_interlock: True
+        color_interlock: true
 
 Color Interlock
 ----------------
@@ -42,7 +42,7 @@ allows the brightness parameter to control the intensity of the white leds.
         green: output_component2
         blue: output_component3
         white: output_component4
-        color_interlock: True
+        color_interlock: true
 
 Configuration variables:
 ------------------------

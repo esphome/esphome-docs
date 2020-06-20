@@ -23,7 +23,7 @@ and warm white channels will be mixed using the color temperature configuration 
         cold_white_color_temperature: 6536 K
         warm_white_color_temperature: 2000 K
         constant_brightness: true
-        color_interlock: True
+        color_interlock: true
 
 Color Interlock
 ----------------
@@ -48,7 +48,7 @@ allows the brightness parameter to control the intensity of the white leds.
         green: output_component2
         blue: output_component3
         white: output_component4
-        color_interlock: True
+        color_interlock: true
 
 Configuration variables:
 ------------------------
