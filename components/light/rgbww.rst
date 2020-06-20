@@ -26,7 +26,7 @@ and warm white channels will be mixed using the color temperature configuration 
         color_interlock: true
 
 Color Interlock
-----------------
+---------------
 
 With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will 
 have a undesired hue affect. Additionally, the brightness command may not work as expected 

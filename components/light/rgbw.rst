@@ -20,7 +20,7 @@ The ``rgbw`` light platform creates an RGBW light from 4 :ref:`float output comp
         color_interlock: true
 
 Color Interlock
-----------------
+---------------
 
 With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will 
 have a undesired hue affect. Additionally, the brightness command may not work as expected 
