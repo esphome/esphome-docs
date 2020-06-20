@@ -59,10 +59,10 @@ This is only required if you want to add other codes for other remotes.
 
 .. code-block:: yaml
 
-        ### This is only needed to dump other remote codes.
-         remote_receiver:
-           pin: D4
-           dump: all
+    ### This is only needed to dump other remote codes.
+     remote_receiver:
+       pin: D4
+       dump: all
 
 The Configuration
 ******************
