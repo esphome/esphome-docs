@@ -122,6 +122,12 @@ Fast Forward and Rewind (by holding the Next/Previous buttons on the remote) are
 
 Lovelace Button Card Configuration
 ----------------------------------
+
+.. figure:: images/apple_ir_remote_lovelace.png
+    :align: left
+    :width: 75.0%
+
+
 .. code-block:: yaml
 
     cards:
