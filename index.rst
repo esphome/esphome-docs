@@ -293,6 +293,7 @@ Climate Components
     Coolix IR Remote, components/climate/coolix, air-conditioner.svg
     TCL112 IR Remote, components/climate/tcl112, air-conditioner.svg
     Yashima IR Remote, components/climate/yashima, air-conditioner.svg
+    LG IR Remote, components/climate/climate_ir_lg, air-conditioner.svg
 
 Misc Components
 ---------------
