@@ -43,7 +43,7 @@ Only four connections are needed:
 
 Hardware Procurement
 ********************
-I bought the Wemos D1 Mini IR Shield by searching on Aliexpress and eBay for <$4 USD. I couldn't find any links on Amazon but I'm sure it's always chainging. 
+I bought the Wemos D1 Mini IR Shield by searching on Aliexpress and eBay for <$4 USD. I couldn't find any links on Amazon but I'm sure it's always changing. 
 
 
 Software configuration
