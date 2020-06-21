@@ -23,21 +23,21 @@ ESPHome's command line interface always has the following format
         esphome livingroom.yaml kitchen.yaml run
 
 ``--verbose`` Option
---------------
+--------------------
 
 .. option:: -v|--verbose
 
     Enable verbose esphome logs.
 
 ``--quiet`` Option
---------------
+------------------
 
 .. option:: -q|--quiet
 
     Disable all esphome logs.
 
 ``--substitution`` Option
---------------
+-------------------------
 
 *(can be issued multiple times)*
 
