@@ -173,8 +173,47 @@ validating your configuration, ESPHome will automatically replace all occurrence
 by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
 ``${substitution_key}`` (same).
 
-You can also define or override substitutions from the command line by adding e.g. ``-s devicename mydevice``
-which overrides the ``devicename`` substitution and gives it value ``mydevice``. This can be issued multiple times,
+Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
+of nodes inherit:
+
+.. code-block:: yaml
+
+    # In common.yaml
+    esphome:
+      name: $devicename
+      # ...
+
+    sensor:
+    - platform: dht
+      # ...
+      temperature:
+        name: ${upper_devicename} Temperature
+      humidity:
+        name: ${upper_devicename} Humidity
+
+.. code-block:: yaml
+
+    # In nodemcu1.yaml
+    substitutions:
+      devicename: nodemcu1
+      upper_devicename: NodeMCU 1
+
+    <<: !include common.yaml
+
+.. tip::
+
+    To hide these base files from the dashboard, you can
+
+    - Place them in a subdirectory (dashboard only shows files in top-level dir)
+    - Prepend a dot to the filename, like ``.base.yaml``
+
+.. _command-line-substitutions:
+
+Command line substitutions
+**************************
+
+You can define or override substitutions from the command line by adding e.g. ``-s KEY VALUE``
+which overrides substitution KEY and gives it value VALUE. This can be issued multiple times,
 so e.g. with the following ``example.yaml`` file:
 
 .. code-block:: yaml
@@ -219,40 +258,6 @@ We can observe here that command line substitutions take precedence over the one
 your configuration file. This can be used to create generic 'template' configuration
 files (like the ``example.yaml`` above) which can be used for multiple devices,
 using substitutions which are provided on the command line.
-
-Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
-of nodes inherit:
-
-.. code-block:: yaml
-
-    # In common.yaml
-    esphome:
-      name: $devicename
-      # ...
-
-    sensor:
-    - platform: dht
-      # ...
-      temperature:
-        name: ${upper_devicename} Temperature
-      humidity:
-        name: ${upper_devicename} Humidity
-
-.. code-block:: yaml
-
-    # In nodemcu1.yaml
-    substitutions:
-      devicename: nodemcu1
-      upper_devicename: NodeMCU 1
-
-    <<: !include common.yaml
-
-.. tip::
-
-    To hide these base files from the dashboard, you can
-
-    - Place them in a subdirectory (dashboard only shows files in top-level dir)
-    - Prepend a dot to the filename, like ``.base.yaml``
 
 See Also
 --------
