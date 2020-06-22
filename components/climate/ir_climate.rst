@@ -33,6 +33,8 @@ request so it will be added (see FAQ).
 +------------------------+---------------------+----------------------+------------------------------------+
 | Whirlpool              | ``whirlpool``       | yes                  | :ref:`more info<model_whirlpool>`  |
 +------------------------+---------------------+----------------------+------------------------------------+
+| LG                     | ``climate_ir_lg``   | yes                  |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
 
@@ -129,4 +131,5 @@ See Also
   :apiref:`tcl112.h <tcl112/tcl112.h>`,
   :apiref:`yashima.h <yashima/yashima.h>`
   :apiref:`whirlpool.h <whirlpool/whirlpool.h>`
+  :apiref:`climate_ir_lg.h <climate_ir_lg/climate_ir_lg.h>`
 - :ghedit:`Edit`
