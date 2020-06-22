@@ -25,30 +25,6 @@ and warm white channels will be mixed using the color temperature configuration 
         constant_brightness: true
         color_interlock: true
 
-Color Interlock
----------------
-
-With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will 
-have a undesired hue affect. Additionally, the brightness command may not work as expected 
-depending upon configuration, leaving users to adjust the white component level separately. 
-For these cases a new configration variable has been added: color_interlock. 
-
-Setting this variable to True will turn off RGB leds when white value is above 0 (or if they
-are to 255,255,255) and turn off white leds if color is not set to 255,255,255. This also 
-allows the brightness parameter to control the intensity of the white leds.
-
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    light:
-      - platform: rgbw
-        name: "Livingroom Lights"
-        red: output_component1
-        green: output_component2
-        blue: output_component3
-        white: output_component4
-        color_interlock: true
 
 Configuration variables:
 ------------------------
@@ -57,14 +33,20 @@ Configuration variables:
 - **red** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the red channel.
 - **green** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the green channel.
 - **blue** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the blue channel.
-- **cold_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the cold white channel.
-- **warm_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the warm white channel.
-- **cold_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the cold white channel.
-- **warm_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the warm white channel.
-- **constant_brightness** (*Optional*, boolean): When enabled, this will keep the overall brightness of the cold and warm white channels constant by limiting the combined output to 100% of a single channel. This reduces the possible overall brightness but is necessary for some power supplies that are not able to run both channels at full brightness at once. Defaults to ``false``.
-- **color_interlock** (*Optional*, boolean): When enabled, this will prevent white leds being on at the same time as RGB leds. Defaults to ``false``.
+- **cold_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the cold
+  white channel.
+- **warm_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the warm
+  white channel.
+- **cold_white_color_temperature** (**Required**, float): The color temperate (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
+- **warm_white_color_temperature** (**Required**, float): The color temperate (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
+- **constant_brightness** (*Optional*, boolean): When enabled, this will keep the overall brightness of the
+  cold and warm white channels constant by limiting the combined output to 100% of a single channel. This
+  reduces the possible overall brightness but is necessary for some power supplies that are not able to run
+  both channels at full brightness at once. Defaults to ``false``.
+- **color_interlock** (*Optional*, boolean): When enabled, this will prevent white leds being on at the same
+  time as RGB leds. See :ref:`rgbw_color_interlock` for more information. Defaults to ``false``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.
