@@ -350,6 +350,95 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
         on_turn_off:
           - switch.turn_on: green_led
 
+3.5 NEO Coolcam wifi smart plug
+*******************************
+
+.. code-block:: yaml
+
+    substitutions:
+      plug_name: coolcam_plug1
+      # Higher value gives lower watt readout
+      current_res: "0.00221"
+      # Lower value gives lower voltage readout
+      voltage_div: "800"
+
+    esphome:
+      name: ${plug_name}
+      platform: ESP8266
+      board: esp8285
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+    logger:
+
+    api:
+
+    ota:
+
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: GPIO0
+          inverted: True
+        name: "${plug_name}_button"
+        on_press:
+          - switch.toggle: relay
+
+    switch:
+      - platform: gpio
+        name: "${plug_name}_LED_Red"
+        pin: GPIO13
+        inverted: True
+        restore_mode: ALWAYS_OFF
+        id: red_led
+
+      - platform: gpio
+        name: "${plug_name}_Relay"
+        pin: GPIO14
+        restore_mode: ALWAYS_ON
+        id: relay    
+
+        on_turn_on:
+          - switch.turn_on: red_led    
+
+        on_turn_off:
+          - switch.turn_off: red_led      
+
+    sensor:
+      - platform: hlw8012
+        sel_pin:
+          number: GPIO12
+          inverted: True
+        cf_pin: GPIO04
+        cf1_pin: GPIO05
+        current_resistor: ${current_res}
+        voltage_divider: ${voltage_div}
+        current:
+          name: "${plug_name}_Amperage"
+          unit_of_measurement: A
+        voltage:
+          name: "${plug_name}_Voltage"
+          unit_of_measurement: V
+        power:
+          name: "${plug_name}_Wattage"
+          unit_of_measurement: W
+          id: "${plug_name}_Wattage"
+        change_mode_every: 8
+        update_interval: 10s
+      - platform: total_daily_energy
+        name: "${plug_name}_Total Daily Energy"
+        power_id: "${plug_name}_Wattage"
+        filters:
+            # Multiplication factor from W to kW is 0.001
+            - multiply: 0.001
+        unit_of_measurement: kWh
+
+    # Extra sensor to keep track of plug uptime
+      - platform: uptime
+        name: ${plug_name}_Uptime SensorPreformatted text
+
 4. Adding to Home Assistant
 ---------------------------
 

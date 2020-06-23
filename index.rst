@@ -29,7 +29,7 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
     FAQ and Tips, guides/faq, question_answer.svg
 
     Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
@@ -196,6 +196,7 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
+    Template Output, components/output/template, description.svg
 
 Light Components
 ----------------
@@ -359,6 +360,7 @@ Cookbook
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     IR HiFi amplifiar control, cookbook/ESPHome-IR-amplifier-control, ESPHome-IR-amplifier-control.jpg
+    ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

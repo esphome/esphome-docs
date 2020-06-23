@@ -37,6 +37,10 @@ Blog Posts & Videos
 - `Detecting Sound with ESP8266 <https://thibmaek.com/post/detecting-sound-level-using-esp8266-and-esphome>`__ by `Thibault Maekelbergh <https://thibmaek.com>`__
 - `SW420 Vibration Sensor with Remote Notifications <https://github.com/rmooreID/Home-Assistant-Appliance-Monitor/>`__ by :ghuser:`rmooreID`
 - `DIY Irrigation Controller (with Internal Scheduler + Lovelace UI) <https://brianhanifin.com/posts/diy-irrigation-controller-esphome-home-assistant/>`__ by :ghuser:`BrianHanifin`
+- `Smart Intercom <https://frog32.ch/smart-intercom.html>`__ by `Marc Egli <https://frog32.ch/>`__ 
+- `Esp32 six shutters controller <https://github.com/Gio-dot/Six-shutters-ESP32-controller>`__ by `Gio-dot <https://github.com/Gio-dot>`__ 
+- `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__ 
+
 
 Custom Components & Code
 ------------------------
@@ -61,6 +65,7 @@ Custom Components & Code
 - `Custom ESPHome for Wofea V10 Alarm <https://github.com/nbergont/wofea_v10_hack>`__ by :ghuser:`nbergont`
 - `Custom Smart meter P1 port reader <https://github.com/nldroid/CustomP1UartComponent>`__ by :ghuser:`nldroid`
 - `Custom Mitsubishi HVAC HeatPump control using UART <https://github.com/geoffdavis/esphome-mitsubishiheatpump>`__ by :ghuser:`geoffdavis`
+- `Jura Impressa J6 coffee machine custom component <https://github.com/ryanalden/esphome-jura-component>`__ by :ghuser:`ryanalden`
 
 Sample Configurations
 ---------------------
