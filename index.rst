@@ -151,6 +151,7 @@ Sensor Components
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
+    Teleinfo, components/sensor/teleinfo, teleinfo.jpg
     Template Sensor, components/sensor/template, description.svg
     TMP117, components/sensor/tmp117, tmp117.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
