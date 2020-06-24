@@ -108,6 +108,33 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
 
+.. _config-color:
+
+Color
+-----
+
+When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
+A "colors" component exists for just this purpose:
+
+.. code-block:: yaml
+
+    colors:
+      - id: my_light_red
+        red: 100%
+        green: 20%
+        blue: 25%
+        white: 0%
+
+RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
+may use all four color elements depending on their capabilities.
+
+A number of predefined colors are also defined; see the :apiref:`core/color.h` for more detail.
+
+.. note::
+
+    The ``colors:`` section must be included in your YAML configuration to use any of the predefined colors,
+    although most RGB(W) components will include it by default.
+
 .. _config-time:
 
 Time
