@@ -130,11 +130,6 @@ may use all four color elements depending on their capabilities.
 
 A number of predefined colors are also defined; see the :apiref:`core/color.h` for more detail.
 
-.. note::
-
-    The ``colors:`` section must be included in your YAML configuration to use any of the predefined colors,
-    although most RGB(W) components will include it by default.
-
 .. _config-time:
 
 Time
