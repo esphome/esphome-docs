@@ -44,18 +44,21 @@ Configuration variables:
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
 - **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
   ``4``.
-- **rotate_chip** (*Optional*, enum): The configuration of how the chips are aligned can be changed. Range
-  is from 0 (the default), 90, 180 up to 270. Each step is rotating the chip display by 90 degrees.
-- **scroll_enable** (*Optional*, boolean): Turn scroll mode on (True).
-- **scroll_speed** (*Optional*, :ref:`config-time`): Set scroll speed in ms. The default is (250 ms)
-- **scroll_delay** (*Optional*, :ref:`config-time`): Set delay of scroll at start of the string in ms.
-  The default is (1000 ms)
-- **scroll_dwell** (*Optional*, :ref:`config-time`): Set the delay of scroll at the end of the string in ms.
-  The default is (1000 ms). This is only used in mode 'STOP'.
-- **scroll_mode** (*Optional*, ): Set the scroll mode. 'CONTINUOUS' = continuously and 'STOP' = stop and reset
-  at end.
+- **rotate_chip** (*Optional*): Rotates every 8x8 chip. Valid values are ``0``, ``90``, ``180`` and ``270``.
+  Defaults to ``0``.
+- **scroll_enable** (*Optional*, boolean): Turn scroll mode on when content does not fit. Defaults to ``True``.
+- **scroll_mode** (*Optional*): Set the scroll mode. One of ``CONTINUOUS`` or ``STOP``. Defaults to ``CONTINUOUS``
+
+    - ``CONTINUOUS``: Always scrolls and the text repeats continuously, you might need to add some
+      separation at the end.
+    - ``STOP``: When text is over it waits the ``scroll_dwell`` time and scroll is set back to the start.
+
+- **scroll_speed** (*Optional*, :ref:`config-time`): Set scroll speed. Defaults to ``250ms``
+- **scroll_delay** (*Optional*, :ref:`config-time`): Set delay time before scroll starts. Defaults to ``1s``.
+- **scroll_dwell** (*Optional*, :ref:`config-time`): Sets the wait time at the end of the scroll before starting
+  over. This is only used in mode ``STOP``. Defaults to ``1s``.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is
-  from 0 (least intense) to 15 (the default).
+  from ``0``, least intense to ``15`` the brightest. Defaults to ``15``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the
   MAX7219. See :ref:`display-max7219digit_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
@@ -97,16 +100,22 @@ commands have been added to the basic display set.
 
 This is roughly the code used to display the MAX7219 pictured in the image.
 
+Scrolling
+**********
+
 By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file.
 They can also be changed in the Lambda by adding the following command:
-it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL).
 
-- ON/OFF -> switch scrolling on or off
-- MODE -> 0 = Contineous scrolling
--         1 = Stop at end and reset
-- SPEED -> Set speed of scrolling (ms for every step of one dot)
-- DELAY -> pauze at start of scrolling
-- DWELL -> pauze at end of scrolling (only in mode 1)
+.. code-block:: cpp
+
+  it.scroll(<on/off>, <mode>, <speed>, <delay>, <dwell>);
+
+
+- **on/off** -> switch scrolling on or off, use true or false
+- **mode** -> 0 = Continuous scrolling, 1 = Stop at end and reset
+- **speed** -> Set speed of scrolling (ms for every step of one dot)
+- **delay** -> pause time at start of scrolling
+- **dwell** -> pause at end of scrolling (only in mode 1)
 
 .. code-block:: yaml
 
@@ -115,14 +124,17 @@ it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL).
         # ...
         lambda: |-
           # ...
-          it.scroll(true,0,100,5000,1500);
+          it.scroll(true, 0, 100, 5000, 1500);
           // OR
-          it.scroll(true,0,);
+          it.scroll(true, 0);
           // OR
           it.scroll(true);
 
 - The screen does not scroll if the text fits within the screen.
-- Printdigit("XXXXXXXXX") and printfdigit("XXXXXX") the alternative way of displaying text does not scroll
+- ``printdigit("...")`` and ``printdigitf("...")`` the alternative way of displaying text does not scroll
+
+Screen inversion
+****************
 
 .. code-block:: yaml
 
@@ -134,8 +146,8 @@ it.scroll(ON/OFF,MODE,SPEED,DELAY,DWELL).
           // Print Hello at position 0 (left)
           it.print(0,0, id(digit_font), "Hello!");
 
-The function it.invert_on_off(true); will invert the display. So background pixels are on and texts pixels are
-off. it.invert_on_off(false); sets the display back to normal. In case no argument is used: it.inverst_on_off();
+The function ``it.invert_on_off(true);`` will invert the display. So background pixels are on and texts pixels are
+off. ``it.invert_on_off(false);`` sets the display back to normal. In case no argument is used: ``it.inverst_on_off();``
 the inversion will toggle from on to off or visa versa. This will happen every time the display is updated.
 So a blinking effect is created. The background pixels are only set at the next update, the pixels drawn in
 the various function like print, line, etc. are directly influenced by the invert command.
@@ -152,10 +164,13 @@ the various function like print, line, etc. are directly influenced by the inver
           it.line(0,0,32,8);
           it.invert_on_off(false);
 
-This code will only effect the line drawn on the screen. The line will wipe the pixels from top left to right bottom. The background is not effected as the Lambda is closed with an Invert_on_of(false) code.
+This code will only affect the line drawn on the screen. The line will wipe the pixels from top left to right bottom.
+The background is not affected as the Lambda is closed with an ``invert_on_of(false)`` code.
 
-For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods (``printdigit``, ``printfdigit`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to display a single character. So not very space efficient.
-The format of the command is: ``it.printdigit("1234");`` or ``it.printfdigit("%S","1234")``;
+For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods
+(``printdigit``, ``printdigitf`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to
+display a single character. So not very space efficient. The format of the command is: ``it.printdigit("1234");`` or
+``it.printdigitf("%s","1234")``;
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
