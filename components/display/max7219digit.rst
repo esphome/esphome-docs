@@ -160,12 +160,10 @@ the various function like print, line, etc. are directly influenced by the inver
         lambda: |-
           // Print Hello at position 0 (left)
           it.print(0,0, id(digit_font), "Hello!");
-          it.invert_on_off(true);
-          it.line(0,0,32,8);
-          it.invert_on_off(false);
+          it.line(0, 0, 31, 7, COLOR_OFF);
 
 This code will only affect the line drawn on the screen. The line will wipe the pixels from top left to right bottom.
-The background is not affected as the Lambda is closed with an ``invert_on_of(false)`` code.
+The background is not affected.
 
 For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods
 (``printdigit``, ``printdigitf`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to
