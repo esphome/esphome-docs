@@ -85,12 +85,8 @@ To use colors in your lambada:
     display:
         ...
         lambda: |-
-          // predefined:
-          auto gray = GRAY.to_rgb_565();
-          // custom:
-          auto red = id(my_red).to_rgb_565();
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red);
 
-The ``to_rgb_565()`` method puts the color data into the format required for this display.
 
 To bring in color images:
 
@@ -119,7 +115,7 @@ Wi-Fi, API, and OTA configuration. It defines:
 - a ``binary_sensor`` that indicates the state of connectivity to the API
 - a ``binary_sensor`` for each of the two buttons on the TTGO module
 - a ``switch``, allowing control of the backlight from HA
-- uses several predefined colors
+- several colors
 - a color image to be shown on the display
 - time, for display...on the display
 - the SPI configuration for communicating with the display
@@ -163,6 +159,28 @@ appropriate lines of C code in the lambada to hide or show the image or text as 
 
     ota:
       password: "some_ota_password"
+
+    colors:
+      - id: my_red
+        red: 100%
+        green: 0%
+        blue: 0%
+      - id: my_yellow
+        red: 100%
+        green: 100%
+        blue: 0%
+      - id: my_green
+        red: 0%
+        green: 100%
+        blue: 0%
+      - id: my_blue
+        red: 0%
+        green: 0%
+        blue: 100%
+      - id: my_gray
+        red: 50%
+        green: 50%
+        blue: 50%
 
     font:
       - file: "Helvetica.ttf"
@@ -221,27 +239,21 @@ appropriate lines of C code in the lambada to hide or show the image or text as 
         reset_pin: GPIO23
         rotation: 270
         lambda: |-
-          auto red = RED.to_rgb_565();
-          auto yellow = YELLOW.to_rgb_565();
-          auto green = GREEN.to_rgb_565();
-          auto blue = BLUE.to_rgb_565();
-          auto gray = GRAY.to_rgb_565();
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_blue));
+          it.rectangle(0, 20, it.get_width(), it.get_height(), id(my_blue));   // header bar
 
-          it.rectangle(0,  0, it.get_width(), it.get_height(), blue);
-          it.rectangle(0, 20, it.get_width(), it.get_height(), blue);   // header bar
-
-          it.strftime((240 / 2), (140 / 3) * 1 + 5, id(helvetica_24), gray, TextAlign::CENTER, "%Y-%m-%d", id(esptime).now());
-          it.strftime((240 / 2), (140 / 3) * 2 + 5, id(helvetica_48), gray, TextAlign::CENTER, "%H:%M:%S", id(esptime).now());
-          it.print(5, 5, id(helvetica_12), yellow, TextAlign::TOP_LEFT, "ESPHome");
+          it.strftime((240 / 2), (140 / 3) * 1 + 5, id(helvetica_24), id(my_gray), TextAlign::CENTER, "%Y-%m-%d", id(esptime).now());
+          it.strftime((240 / 2), (140 / 3) * 2 + 5, id(helvetica_48), id(my_gray), TextAlign::CENTER, "%H:%M:%S", id(esptime).now());
+          it.print(5, 5, id(helvetica_12), id(my_yellow), TextAlign::TOP_LEFT, "ESPHome");
 
           // Comment out the above lines to see the image without text overlaid
           // it.image(0, 0, id(my_image));
           
           if (id(system_status).state) {
-            it.print(235, 5, id(helvetica_12), green, TextAlign::TOP_RIGHT, "Online");
+            it.print(235, 5, id(helvetica_12), id(my_green), TextAlign::TOP_RIGHT, "Online");
           }
           else {
-            it.print(235, 5, id(helvetica_12), red, TextAlign::TOP_RIGHT, "Offline");
+            it.print(235, 5, id(helvetica_12), id(my_red), TextAlign::TOP_RIGHT, "Offline");
           }
 
 See Also

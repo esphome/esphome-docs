@@ -128,8 +128,6 @@ A "colors" component exists for just this purpose:
 RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
 may use all four color elements depending on their capabilities.
 
-A number of predefined colors are also defined; see the :apiref:`core/color.h` for more detail.
-
 .. _config-time:
 
 Time
