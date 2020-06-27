@@ -169,7 +169,7 @@ The background is not affected.
 Screen intensity
 ****************
 
-The intensity of the screen can be set "dynamically" within the lambda code with the following command: it.intensity(``0``..``15``).
+The intensity of the screen can be set "dynamically" within the lambda code with the following command: it.intensity(``0`` .. ``15``).
 
 .. code-block:: yaml
 
