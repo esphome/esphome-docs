@@ -158,12 +158,39 @@ the various function like print, line, etc. are directly influenced by the inver
       - platform: max7219digit
         # ...
         lambda: |-
+          it.invert_on_off(true);
           // Print Hello at position 0 (left)
           it.print(0,0, id(digit_font), "Hello!");
           it.line(0, 0, 31, 7, COLOR_OFF);
 
 This code will only affect the line drawn on the screen. The line will wipe the pixels from top left to right bottom.
 The background is not affected.
+
+Screen intensity
+****************
+
+The intensity of the screen can be set "dynamically" within the lambda code with the following command: it.intensity(``0``..``15``).
+
+.. code-block:: yaml
+
+    display:
+      - platform: max7219digit
+        # ...
+        lambda: |-
+          it.intensity(10);
+
+Screen ON/OFF
+*************
+
+The display can be switched on and off "dynamically" within the lambda code with the following command: it.turn_on_off(true or false).
+
+.. code-block:: yaml
+
+    display:
+      - platform: max7219digit
+        # ...
+        lambda: |-
+          it.turn_on_off(true);
 
 For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods
 (``printdigit``, ``printdigitf`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to
