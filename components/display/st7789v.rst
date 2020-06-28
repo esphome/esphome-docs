@@ -67,14 +67,14 @@ Configuration examples
 **********************
 
 As of version 1.15, ESPHome supports color displays. To utilize the color capabilities of this display
-module, you'll likely want to add a ``colors:`` section to your YAML configuration; please see
+module, you'll likely want to add a ``color:`` section to your YAML configuration; please see
 :ref:`color <config-color>` for more detail on this configuration section.
 
 To use colors in your lambada:
 
 .. code-block:: yaml
 
-    colors:
+    color:
       - id: my_red
         red: 100%
         green: 3%
@@ -160,7 +160,7 @@ appropriate lines of C code in the lambada to hide or show the image or text as 
     ota:
       password: "some_ota_password"
 
-    colors:
+    color:
       - id: my_red
         red: 100%
         green: 0%
@@ -216,7 +216,7 @@ appropriate lines of C code in the lambada to hide or show the image or text as 
         pin: GPIO4
         name: "Backlight"
         id: backlight
-    
+
     image:
       - file: "image.png"
         id: my_image
@@ -248,7 +248,7 @@ appropriate lines of C code in the lambada to hide or show the image or text as 
 
           // Comment out the above lines to see the image without text overlaid
           // it.image(0, 0, id(my_image));
-          
+
           if (id(system_status).state) {
             it.print(235, 5, id(helvetica_12), id(my_green), TextAlign::TOP_RIGHT, "Online");
           }

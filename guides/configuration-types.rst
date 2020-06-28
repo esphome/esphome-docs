@@ -114,11 +114,11 @@ Color
 -----
 
 When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
-A "colors" component exists for just this purpose:
+A ``color`` component exists for just this purpose:
 
 .. code-block:: yaml
 
-    colors:
+    color:
       - id: my_light_red
         red: 100%
         green: 20%
@@ -252,7 +252,7 @@ and the following command:
 .. code-block:: bash
 
     esphome -s name device01 -s board esp01_1m example.yaml config
-  
+
 You will get something like the following output (please note the unchanged ``platform``,
 added ``board``, and overridden ``name`` substitutions):
 
