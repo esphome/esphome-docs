@@ -54,7 +54,8 @@ Notable Changes & New Features
 
 - Dashboard Interface Revamped
 - Bang Bang Controller now implements ESPHome actions for all available Home Assistant climate actions,
-  climate modes, fan modes, and fan swing modes
+  climate modes, fan modes, and fan swing modes (#1061)
+- Color (and grayscale) display support! (#1050)
 
 All changes
 -----------
