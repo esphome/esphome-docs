@@ -45,6 +45,11 @@ Breaking Changes
     only as necessary. (In the previous versions, it ran continuously.)
   - Set point +/- hysteresis (new!) value determines when actions are called -- see component documentation for details
 
+- Scripts
+
+  - ``script.stop: script_id`` now stops the script itself and next actions will not be executed.
+    `(#1004) <https://github.com/esphome/esphome/pull/1004>`__
+
 - More
 - To
 - Come
