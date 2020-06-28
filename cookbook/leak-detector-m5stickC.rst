@@ -15,6 +15,9 @@ Using the ESP32's capacitive touch GPIOs, it's relatively easy to build a water 
 Things you'll need
 ==================
 
+- M5Stick esphome components
+    https://github.com/airy10/esphome-m5stickC/issues/4
+
 - M5StickC ESP32 development kit
     `M5Stack Link <https://m5stack.com/collections/m5-core/products/stick-c>`__
 
