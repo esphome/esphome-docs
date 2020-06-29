@@ -5,40 +5,8 @@ Tuya Switch
     :description: Instructions for setting up a Tuya device switch.
     :image: upload.svg
 
-The ``tuya`` switch platform creates a switch a
-tuya serial component.
-
-There are two components, the Tuya bus and the switch that uses it.  The ``tuya``
-component requires a :ref:`UART bus <uart>` to be configured.  Put the ``tuya`` component in
-the config and it will list the possible devices for you in the config log.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    # Make sure your wifi will connect
-    wifi:
-      ssid: "ssid"
-      password: "password"
-
-    # Make sure logging is not using the serial port
-    logger:
-      baud_rate: 0
-
-    # Enable Home Assistant API
-    api:
-
-    # Make sure you can upload new firmware OTA
-    ota:
-
-    uart:
-      rx_pin: GPIO3
-      tx_pin: GPIO1
-      baud_rate: 9600
-
-    # Register the Tuya MCU connection
-    tuya:
-
-Here is an example output for a Tuya heater:
+The ``tuya`` switch platform creates a sensor from a tuya serial component
+and requires :doc:`/components/tuya` to be configured.
 
 .. code-block:: text
 
