@@ -5,7 +5,7 @@ Tuya Binary Sensor
     :description: Instructions for setting up a Tuya device binary sensor.
 
 The ``tuya`` binary sensor platform creates a binary sensor from a
-tuya serial component and requires :doc:`/components/tuya` to be configured.
+tuya component and requires :doc:`/components/tuya` to be configured.
 
 You can create the binary sensor as follows:
 
@@ -28,6 +28,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/tuya`
 - :doc:`/components/binary_sensor/index`
 - :apiref:`tuya/switch/tuya_binary_sensor.h`
 - :ghedit:`Edit`
