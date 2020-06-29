@@ -212,6 +212,23 @@ Configuration variables:
 - **negative_output** (*Optional*, float): The positive output power to drive the cool output at.
   Defaults to ``-1.0``.
 
+
+``climate.pid.reset_integral_term`` Action
+------------------------------------------
+
+This action resets the integral term of the PID controller to 0. This might be necessary under certain
+to avoid the control loop to overshoot (or undershoot) a target.
+
+.. code-block:: yaml
+
+    on_...:
+      # Basic
+      - climate.pid.reset_integral_term: pid_climate     
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): ID of the PID Climate to start autotuning for.
+
 PID Climate Sensor
 ------------------
 
