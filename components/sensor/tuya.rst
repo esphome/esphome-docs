@@ -5,7 +5,7 @@ Tuya Sensor
     :description: Instructions for setting up a Tuya device sensor.
     :image: upload.svg
 
-The ``tuya`` sensor platform creates a sensor from a tuya serial component
+The ``tuya`` sensor platform creates a sensor from a tuya component
 and requires :doc:`/components/tuya` to be configured.
 
 .. code-block:: text
@@ -43,6 +43,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/tuya`
 - :doc:`/components/sensor/index`
 - :apiref:`tuya/switch/tuya_sensor.h`
 - :ghedit:`Edit`
