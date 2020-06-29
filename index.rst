@@ -186,6 +186,7 @@ Binary Sensor Components
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
+    Tuya, components/binary_sensor/tuya, tuya.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
