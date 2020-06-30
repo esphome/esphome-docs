@@ -53,6 +53,7 @@ Configuration Variables
   - ``SSD1325 128x64``
   - ``SSD1325 96x16``
   - ``SSD1325 64x48``
+  - ``SSD1327 128x128`` **# Note the number seven!**
 
 - **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
@@ -64,26 +65,67 @@ Configuration Variables
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-Grayscale Support
-*****************
+Configuration examples
+**********************
 
-This display module supports four bits of grayscale -- that is, sixteen shades of gray, 0 through 15.
-A larger value means (a) brighter pixel(s). Add the desired pixel intensity to the function call that
-draws the object/text in your lambda. The examples below should help to get you started.
+As of version 1.15, ESPHome supports grayscale (and color) displays. To utilize the grayscale capabilities
+of this display module, you'll likely want to add a ``color:`` section to your YAML configuration; please see
+:ref:`color <config-color>` for more detail on this configuration section. As this is a grayscale display, it
+only uses the white color element (as opposed to red, green, and/or blue).
+
+To use grayscale in your lambada:
 
 .. code-block:: yaml
 
+    color:
+      - id: medium_gray
+        white: 50%
+
+    ...
+
     display:
-      - platform: ssd1325_spi
-        model: "SSD1325 128x64"
-        reset_pin: D0
-        cs_pin: D8
-        dc_pin: D1
+        ...
         lambda: |-
-          # Dark gray box around the perimeter of the display; last argument is the intensity of the pixels.
-          it.rectangle(0, 0, it.get_width(), it.get_height(), 1);
-          # Text in medium-gray; pixel intensity goes between the font and TextAlign arguments.
-          it.print(2, 2, id(font), 8, TextAlign::TOP_LEFT, "Hello, Gray World!");
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(medium_gray));
+
+
+To bring in grayscale images:
+
+.. code-block:: yaml
+
+    image:
+      - file: "image.jpg"
+        id: my_image
+        resize: 120x120
+        type: GRAYSCALE
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.image(0, 0, id(my_image));
+
+In this case, the image will be converted to grayscale and rendered as such when drawn on the display.
+
+Note that if ``type: GRAYSCALE`` is omitted, the image will render as a binary image (no grayscale); in this
+case, a color attribute may be passed to the ``image()`` method as follows:
+
+.. code-block:: yaml
+
+    image:
+      - file: "image.jpg"
+        id: my_image
+        resize: 120x120
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.image(0, 0, id(medium_gray), id(my_image));
+
+This will draw the complete image with the given shade of gray.
 
 See Also
 --------
