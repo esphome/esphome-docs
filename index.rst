@@ -267,6 +267,7 @@ Display Components
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
+    SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
@@ -377,6 +378,7 @@ Cookbook
     Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
+    Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
