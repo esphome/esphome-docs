@@ -39,12 +39,6 @@ Release 1.15 - Release TBD
 Breaking Changes
 ----------------
 
-- Bang Bang Controller behavior modified outside of "auto" mode
-
-  - When Heat, Cool, or Fan-only (new!) modes are selected, heating, cooling, or fanning actions activate
-    only as necessary. (In the previous versions, it ran continuously.)
-  - Set point +/- hysteresis (new!) value determines when actions are called -- see component documentation for details
-
 - Scripts
 
   - ``script.stop: script_id`` now stops the script itself and next actions will not be executed.
@@ -58,7 +52,7 @@ Notable Changes & New Features
 ------------------------------
 
 - Dashboard Interface Revamped
-- Bang Bang Controller now implements ESPHome actions for all available Home Assistant climate actions,
+- New Thermostat Controller implements ESPHome actions for all available Home Assistant climate actions,
   climate modes, fan modes, and fan swing modes (#1061)
 - Color (and grayscale) display support! (#1050)
 
