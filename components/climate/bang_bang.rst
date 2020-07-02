@@ -8,7 +8,15 @@ Bang Bang Climate Controller
 The ``bang_bang`` climate platform allows you to regulate a value with a
 `bang-bang controller <https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control>`__ (also called hysteresis controller).
 
-The operation principle of a bang_bang controller is quite simple. First, you specify an observable
+.. note::
+
+    While the bang-bang controller is considered a climate component, most users will find that the
+    :doc:`thermostat <thermostat>` component behaves in a way more consistent with most climate control
+    devices. Despite that the bang-bang controller provides two set points, it is **not recommended**
+    for systems that both heat *and* cool; it also does not use the user interface in Home Assistant
+    in a way that most users will expect.
+
+The bang-bang controller's principle of operation is quite simple. First, you specify an observable
 value (for example the temperature of a room). The controller will try to keep this observed value
 in a defined range. To do this, the controller can activate objects like a heating unit to change
 the observed value.
