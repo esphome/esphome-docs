@@ -144,8 +144,8 @@ hysteresis window is normal; so, while it may seem unlikely, this situation is a
 The :doc:`thermostat <thermostat>` component differs in that there is hysteresis around *each* set point. For example,
 if the ``target_temperature_low`` set point is 20 °C, and the (default) hysteresis value of 0.5 °C is used,
 ``heat_action`` is called at a temperature of 19.5 °C and ``idle_action`` is called at 20.5 °C. If cooling, as defined
-by ``target_temperature_high``, is set to 22 °C, ``cool_action`` is called at 21.5 °C and ``idle_action`` would be
-called at 22.5 °C. Again, it is essentially two bang-bang controllers in one.
+by ``target_temperature_high``, is set to 22 °C, ``cool_action`` would be called at 22.5 °C and ``idle_action`` called
+at 21.5 °C. Again, it is essentially two bang-bang controllers in one.
 
 Great. But what if you do not have a dual-function system?
 
