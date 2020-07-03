@@ -10,11 +10,10 @@ The ``bang_bang`` climate platform allows you to regulate a value with a
 
 .. note::
 
-    While the bang-bang controller is considered a climate component, most users will find that the
-    :doc:`thermostat <thermostat>` component behaves in a way more consistent with most climate control
-    devices. Despite that the bang-bang controller provides two set points, it is **not recommended**
-    for systems that both heat *and* cool; it also does not use the user interface in Home Assistant
-    in a way that most users will expect.
+    A number of people have asked about the behavior of the bang-bang controller. In version 1.15, a
+    :doc:`thermostat <thermostat>` component was added which behaves more like a common thermostat; it is
+    essentially two bang-bang controllers in one. Please see the :ref:`Bang-bang vs. Thermostat` section below
+    if you are not sure which is appropriate for your application.
 
 The bang-bang controller's principle of operation is quite simple. First, you specify an observable
 value (for example the temperature of a room). The controller will try to keep this observed value
@@ -65,8 +64,8 @@ Do note that the actions are only called when the current temperature leaves the
         idle_action:
           - switch.turn_off: heater
 
-Configuration variables:
-------------------------
+Configuration variables
+-----------------------
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
 - **default_target_temperature_low** (**Required**, float): The default low target temperature for
@@ -97,6 +96,80 @@ Advanced options:
 
     While this platform uses the term temperature everywhere, it can also be used for other values.
     For example, controlling humidity is also possible with this platform.
+
+Bang-bang vs. Thermostat
+------------------------
+
+The behavior of the bang-bang controller is a topic that has surfaced on the ESPHome Discord server
+countless times -- many people have been confused by what it does. While they are similar, there are
+two key differences between the bang-bang component and the :doc:`thermostat <thermostat>` component:
+
+- When actions are triggered
+- How the set points are used by the controller
+
+Now is a good time to ensure you understand exactly how a bang-bang controller should behave; if you do not have
+a clear understanding of this, be sure to check out the
+`Wikipedia article <https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control>`__.
+
+The Problem with Dual-Function Systems
+**************************************
+
+If you are not attempting to operate a system that can both heat and cool, you'll likely want to skip to the next
+section about user interface.
+
+As outlined above, in general:
+
+- As soon as the temperature goes below the *lower* target temperature, ``heat_action`` is called to activate heating.
+- Heating will continue until the temperature reaches the *upper* target temperature, at which point ``idle_action`` is called to stop heating.
+- As soon as the temperature goes above the *upper* target temperature, ``cool_action`` is called to activate cooling.
+- Cooling will continue until the temperature reaches the *lower* target temperature, at which point ``idle_action`` is called to stop cooling.
+
+A single bang-bang controller may work well for systems that only heat or only cool, as the temperature is essentially
+guaranteed to always be between the two set points; however, it begins to break down when applied to systems that may
+both heat *and* cool. This is simply because both actions are tied to both set points -- that is, the point at which
+heating stops *is also the point at which cooling begins*. The reverse is also true: the point at which cooling stops
+*is also the point at which heating begins*. Let's look at an example:
+
+Consider a system that both heats and cools. The ``target_temperature_low`` set point is 20 °C while the
+``target_temperature_high`` set point is 22 °C. The sensor reports that the temperature is 19.75 °C, so the controller
+calls ``heat_action`` to activate heating. Heating continues until the temperature reaches ``target_temperature_high``
+(22 °C in this case). Once this temperature is achieved, ``idle_action`` is called to stop heating. *However*, should
+temperature drift even slightly above ``target_temperature_high``--even just a fraction of a degree for a fraction of
+a second--the controller will call ``cool_action`` to begin cooling. Now, cooling will continue until
+``target_temperature_low`` is reached again, but, as before, should the temperature drift even slightly below
+``target_temperature_low`` for even a fraction of a second, ``heat_action`` will be invoked again, and the cycle will
+repeat. It will "ping-pong" between the two set points, potentially forever. Some oscillation at the "edges" of the
+hysteresis window is normal; so, while it may seem unlikely, this situation is actually quite common.
+
+Great. But what if you do not have a dual-function system?
+
+User Interface
+**************
+
+The interaction with this component via the Home Assistant user interface is also different than what is seen on most
+common residential thermostats. Generally speaking, most thermostats allow either one or two set points -- one of them
+is associated with heating while the other with cooling. If you set the "heat" set point to 20 °C, most people assume
+this means the temperature will be kept as close to 20 °C as possible. The same is true for the upper set point, for
+cooling: if you set a temperature of 22 °C, most people assume the system will keep the temperature as close to 22 °C
+as possible.
+
+The bang-bang controller does not use the set points this way. If you set the lower set point to 20 °C and set the
+upper set point to 22 °C, then *the temperature will be brought as high as 22 °C but go no lower than 20 °C.*
+
+The behavior is not difficult to understand, but, as we've learned from many discussions on the Discord server, it
+departs from what most people seem to expect.
+
+Which is Right for Me?
+**********************
+
+It comes down to two items:
+
+- If you have a dual-function system (both heating and cooling), you'll almost certainly want to use the
+  :doc:`thermostat <thermostat>` component.
+- If you have a single-function system *and* have a specific need or desire to manually control both the upper and
+  lower bounds for hysteresis, use the bang-bang controller.
+
+In all other situations, the :doc:`thermostat <thermostat>` component is probably best.
 
 See Also
 --------
