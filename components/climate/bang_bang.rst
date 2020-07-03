@@ -12,7 +12,7 @@ The ``bang_bang`` climate platform allows you to regulate a value with a
 
     A number of people have asked about the behavior of the bang-bang controller. In version 1.15, a
     :doc:`thermostat <thermostat>` component was added which behaves more like a common thermostat; it is
-    essentially two bang-bang controllers in one. Please see the :ref:`Bang-bang vs. Thermostat` section below
+    essentially two bang-bang controllers in one. Please see the `Bang-bang vs. Thermostat`_ section below
     if you are not sure which is appropriate for your application.
 
 The bang-bang controller's principle of operation is quite simple. First, you specify an observable
@@ -141,6 +141,12 @@ a second--the controller will call ``cool_action`` to begin cooling. Now, coolin
 repeat. It will "ping-pong" between the two set points, potentially forever. Some oscillation at the "edges" of the
 hysteresis window is normal; so, while it may seem unlikely, this situation is actually quite common.
 
+The :doc:`thermostat <thermostat>` component differs in that there is hysteresis around *each* set point. For example,
+if the ``target_temperature_low`` set point is 20 °C, and the (default) hysteresis value of 0.5 °C is used,
+``heat_action`` is called at a temperature of 19.5 °C and ``idle_action`` is called at 20.5 °C. If cooling, as defined
+by ``target_temperature_high``, is set to 22 °C, ``cool_action`` is called at 21.5 °C and ``idle_action`` would be
+called at 22.5 °C. Again, it is essentially two bang-bang controllers in one.
+
 Great. But what if you do not have a dual-function system?
 
 User Interface
@@ -148,10 +154,10 @@ User Interface
 
 The interaction with this component via the Home Assistant user interface is also different than what is seen on most
 common residential thermostats. Generally speaking, most thermostats allow either one or two set points -- one of them
-is associated with heating while the other with cooling. If you set the "heat" set point to 20 °C, most people assume
-this means the temperature will be kept as close to 20 °C as possible. The same is true for the upper set point, for
-cooling: if you set a temperature of 22 °C, most people assume the system will keep the temperature as close to 22 °C
-as possible.
+is associated with heating while the other with cooling, and this is exactly how the :doc:`thermostat <thermostat>`
+component uses them. If you set the "heat" set point to 20 °C, most people assume this means the temperature will be
+kept as close to 20 °C as possible. The same is true for the upper set point, for cooling: if you set a temperature of
+22 °C, most people assume the system will keep the temperature as close to 22 °C as possible.
 
 The bang-bang controller does not use the set points this way. If you set the lower set point to 20 °C and set the
 upper set point to 22 °C, then *the temperature will be brought as high as 22 °C but go no lower than 20 °C.*
@@ -162,7 +168,7 @@ departs from what most people seem to expect.
 Which is Right for Me?
 **********************
 
-It comes down to two items:
+It comes down to two points:
 
 - If you have a dual-function system (both heating and cooling), you'll almost certainly want to use the
   :doc:`thermostat <thermostat>` component.
