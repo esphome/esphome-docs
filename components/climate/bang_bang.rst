@@ -124,11 +124,10 @@ As outlined above, in general:
 - As soon as the temperature goes above the *upper* target temperature, ``cool_action`` is called to activate cooling.
 - Cooling will continue until the temperature reaches the *lower* target temperature, at which point ``idle_action`` is called to stop cooling.
 
-A single bang-bang controller may work well for systems that only heat or only cool, as the temperature is essentially
-guaranteed to always be between the two set points; however, it begins to break down when applied to systems that may
-both heat *and* cool. This is simply because both actions are tied to both set points -- that is, the point at which
-heating stops *is also the point at which cooling begins*. The reverse is also true: the point at which cooling stops
-*is also the point at which heating begins*. Let's look at an example:
+A single bang-bang controller may work well for systems that only heat or only cool; however, it begins to break down
+when applied to systems that may both heat *and* cool. This is simply because both actions are tied to both set
+points -- that is, the point at which heating stops *is also the point at which cooling begins*. The reverse is also
+true: the point at which cooling stops *is also the point at which heating begins*. Let's look at an example:
 
 Consider a system that both heats and cools. The ``target_temperature_low`` set point is 20 °C while the
 ``target_temperature_high`` set point is 22 °C. The sensor reports that the temperature is 19.75 °C, so the controller
@@ -138,8 +137,10 @@ temperature drift even slightly above ``target_temperature_high``--even just a f
 a second--the controller will call ``cool_action`` to begin cooling. Now, cooling will continue until
 ``target_temperature_low`` is reached again, but, as before, should the temperature drift even slightly below
 ``target_temperature_low`` for even a fraction of a second, ``heat_action`` will be invoked again, and the cycle will
-repeat. It will "ping-pong" between the two set points, potentially forever. Some oscillation at the "edges" of the
-hysteresis window is normal; so, while it may seem unlikely, this situation is actually quite common.
+repeat. It will "ping-pong" between the two set points, potentially forever. Oscillation at the "edges" of the
+hysteresis window, or going past the set point in either direction, should be expected; consider, for example, a heater
+that is turned off after it reaches its set point. The heating element will remain hot (potentially for quite a while),
+and as such will continue to heat the air until the element fully cools down to match the ambient air/room temperature.
 
 The :doc:`thermostat <thermostat>` component differs in that there is hysteresis around *each* set point. For example,
 if the ``target_temperature_low`` set point is 20 °C, and the (default) hysteresis value of 0.5 °C is used,
@@ -155,9 +156,9 @@ User Interface
 The interaction with this component via the Home Assistant user interface is also different than what is seen on most
 common residential thermostats. Generally speaking, most thermostats allow either one or two set points -- one of them
 is associated with heating while the other with cooling, and this is exactly how the :doc:`thermostat <thermostat>`
-component uses them. If you set the "heat" set point to 20 °C, most people assume this means the temperature will be
-kept as close to 20 °C as possible. The same is true for the upper set point, for cooling: if you set a temperature of
-22 °C, most people assume the system will keep the temperature as close to 22 °C as possible.
+component uses them. If you set the "heat" set point to 20 °C, most people assume this means the heating system will
+keep the temperature as close to 20 °C as possible. The same is true for the upper set point, for cooling: if you set
+a temperature of 22 °C, most people assume the cooling system will keep the temperature as close to 22 °C as possible.
 
 The bang-bang controller does not use the set points this way. If you set the lower set point to 20 °C and set the
 upper set point to 22 °C, then *the temperature will be brought as high as 22 °C but go no lower than 20 °C.*
