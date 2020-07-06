@@ -62,8 +62,8 @@ Configuration variables:
 
 .. note::
 
-    If your ethernet board is not designed with an ESP32 built in, changes are you are going
-    to use flying leads, dupont wires, etc. to connect the Ethernet to the ESP32. This is 
+    If your ethernet board is not designed with an ESP32 built in, chances are that you are going
+    to use flying leads, dupont wires, etc. to connect the ethernet to the ESP32. This is 
     probably to fail as the ethernet interface uses a high frequency clock signal. For more 
     information and wiring details refer to the the link in the *See also* section.
     
