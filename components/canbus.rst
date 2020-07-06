@@ -8,7 +8,8 @@ CAN bus
     :image: canbus.png
     :keywords: CAN
 
-Controller Area Network (CAN bus) is a serial bus protocol to connect individual systems and sensors as an alternative to conventional multi-wire looms.
+Controller Area Network (CAN bus) is a serial bus protocol to connect individual systems and sensors
+as an alternative to conventional multi-wire looms.
 It allows automotive components to communicate on a single or dual-wire networked data bus up to 1Mbps.
 CAN is an International Standardization Organization (ISO) defined serial communications bus originally
 developed for the automotive industry to replace the complex wiring harness with a two-wire bus. The
@@ -16,61 +17,152 @@ specification calls for high immunity to electrical interference and the ability
 data errors. These features have led to CAN’s popularity in a variety of industries including building
 automation, medical, and manufacturing.
 
-The current ESPHome implementation supports single frame data transfer. In this way you may send and receive data up to 8 bits.
+The current ESPHome implementation supports single frame data transfer. In this way you may send and
+receive data frames up to 8 bytes.
 With this you can transmit the press of a button or the feedback from a sensor on the bus.
-All other devices on the bus will be able to get this data to switch on/off a light or display the transmitted data.
+All other devices on the bus will be able to get this data to switch on/off a light or display the
+transmitted data.
 
-The CAN bus itself has only two wires. For the ESPHome CAN bus to work you need to select the device that has the physical CAN bus implemented.
+The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
+CAN bus to work you need to select the device that has the physical CAN bus implemented.
 At this moment only the MCP2515 driver is supported. You can configure multiple busses.
 
-The CAN bus is then configured as follows;
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **sender_id** (**Required**, numeric id): numeric id to be able to determine the sender.
-- **bit_rate** (*Optional*, one of the supported bitrates): defaults to 125KBPS.
+Any can bus node can transmit data at any time, and any node can send any ``can_id`` value and any
+node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can
+bus network where each node has a can id which will use to broadcast data about itself, if a node
+should, e.g. turn on a light, it can listen for can messages with the can id assigned to it.
+So you can have several nodes being able to control a light in e.g. node 20.
 
-- 5KBPS
-- 10KBPS
-- 20KBPS
-- 31K25BPS
-- 33KBPS
-- 40KBPS
-- 50KBPS
-- 80KBPS
-- 83K3BPS
-- 95KBPS
-- 100KBPS
-- 125KBPS
-- 200KBPS
-- 250KBPS
-- 500KBPS
-- 1000KBPS
+Base CAN Bus Configuration
+--------------------------
+
+Each canbus platform extends this configuration schema.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    canbus:
+      - platform: ...
+        can_id: 4
+        bit_rate: 50KBPS
+        on_frame:
+        - can_id: 500
+          then:
+          - lambda: |-
+              std::string b(x.begin(), x.end());
+              ESP_LOGD("can id 500", "%s", &b[0] );
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **can_id** (**Required**, integer): default *can id* used for transmitting frames.
+- **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
+
+    - 5KBPS
+    - 10KBPS
+    - 20KBPS
+    - 31K25BPS
+    - 33KBPS
+    - 40KBPS
+    - 50KBPS
+    - 80KBPS
+    - 83K3BPS
+    - 95KBPS
+    - 100KBPS
+    - 125KBPS
+    - 200KBPS
+    - 250KBPS
+    - 500KBPS
+    - 1000KBPS
+
+Automations:
+
+- **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
+  CAN Frame is received. See below.
+
+
+.. _canbus-on-frame:
+
+``on_frame``
+************
+
+This automation will be triggered when a can frame is  received. A variable ``x`` of type
+``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    canbus:
+      - platform: ...
+        on_frame:
+        - can_id: 43 # the remote sender can_id
+          then:
+            - if:
+                condition:
+                  lambda: 'return x[0] == 0x11;'
+                then:
+                  light.toggle: light1
+
+
+Transmit Frame Action
+*********************
+
+The can bus can transmit frames by means of the ``canbus.send`` action.
+There are several forms to use it:
+
+.. code-block:: yaml
+
+    on_...:
+      - canbus.send:
+          data: [ 0x10, 0x20, 0x30 ]
+          canbus_id: my_mcp2515 # optional if you only have 1 canbus device
+          can_id: 23 # override the can_id configured in the can bus
+
+    on_...:
+      - canbus.send: [ 0x11, 0x22, 0x33 ]
+
+      - canbus.send: 'hello'
+
+      # Templated, return type is std::vector<uint8_t>
+      - canbus.send: !lambda
+          return {0x00, 0x20, 0x42};
+
+
+Configuration variables:
+
+- **data** (*Required*, binary data): Data to transmit, up to 8 bytes or
+  characters are supported by can bus per frame.
+- **canbus_id** (*Optional*): Optionally set the can bus id to use for transmitting
+  the frame. Not needed if you are using only 1 can bus.
+- **can_id** (*Optional*, int): Allows to override the can id configured in
+  the can bus device.
 
 MCP2515
 -------
 
 The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
+You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device when it should listen for data on the SPI bus. Each device has an individual CS line. Sometimes also called ``SS``.
-- **clock** (*Optional*, one of the supported values): clock christal used on the MCP2515 device; defaults to 8MHZ. valid values:
-  - 20MHZ
-  - 16MHZ
-  - 8MHZ
-- **mode** (*Optional*, Operation mode for the MCP2515 device):
+TODO: Wiring VCC GND and advising 3.3V???
+
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
+  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
+  Sometimes also called ``SS``.
+- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
+  Defaults to ``8MHZ``.
+- **mode** (*Optional*): Operation mode. Default ot ``NORMAL``
+
   - NORMAL: Normal operation
-  - LOOPBACK: Loopback mode can be used to just test you spi connectiens to the device
+  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
   - LISTENONLY: only receive data
 
 .. code-block:: yaml
 
     # Example configuration entry
     canbus:
-    - platform: mcp2515
-        id: first_canbus
-        sender_id: 10
-        cs_pin: 15
-        bit_rate: 125KBPS
-        clock: 8MHZ
-        mode: NORMAL
+      - platform: mcp2515
+        cs_pin: D5
+        can_id: 4
+        bit_rate: 50kbps
         on_frame:
         - can_id: 500
             then:
