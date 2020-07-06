@@ -83,6 +83,18 @@ Configuration for Olimex ESP32-POE
       clk_mode: GPIO17_OUT
       phy_addr: 0
       power_pin: GPIO12
+      
+Configuration for OpenHacks LAN8720
+-----------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      phy_addr: 1
+
 
 See Also
 --------
