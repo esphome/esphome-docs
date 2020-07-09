@@ -68,10 +68,9 @@ Configuration Variables
 Configuration examples
 **********************
 
-As of version 1.15, ESPHome supports grayscale (and color) displays. To utilize the grayscale capabilities
-of this display module, you'll likely want to add a ``color:`` section to your YAML configuration; please see
-:ref:`color <config-color>` for more detail on this configuration section. As this is a grayscale display, it
-only uses the white color element (as opposed to red, green, and/or blue).
+To utilize the grayscale capabilities of this display module, add a ``color:`` section to your YAML configuration;
+please see :ref:`color <config-color>` for more details. As this is a grayscale display, it only uses the white color
+element as shown below.
 
 To use grayscale in your lambada:
 
@@ -106,7 +105,9 @@ To bring in grayscale images:
         lambda: |-
           it.image(0, 0, id(my_image));
 
-In this case, the image will be converted to grayscale and rendered as such when drawn on the display.
+In this case, the image will be converted to grayscale (regardless of its original format) and rendered as such
+when drawn on the display. Note that the original image may require some adjustment as not all images immediately
+convert nicely to the 4-bit grayscale format this display supports.
 
 Note that if ``type: GRAYSCALE`` is omitted, the image will render as a binary image (no grayscale); in this
 case, a color attribute may be passed to the ``image()`` method as follows:
@@ -126,6 +127,20 @@ case, a color attribute may be passed to the ``image()`` method as follows:
           it.image(0, 0, id(medium_gray), id(my_image));
 
 This will draw the complete image with the given shade of gray.
+
+To create a new color as needed in code:
+
+.. code-block:: yaml
+
+    display:
+        ...
+        lambda: |-
+          float white_intensity = 0.5;
+          Color variable_gray(0, 0, 0, white_intensity);
+          it.rectangle(0,  0, it.get_width(), it.get_height(), variable_gray);
+
+The last argument of the ``Color`` constructor is the intensity of the white element; it is a percentage
+(value of range 0 to 1). It may be defined by another variable so it is adjustable in code.
 
 See Also
 --------

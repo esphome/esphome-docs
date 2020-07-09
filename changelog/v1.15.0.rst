@@ -82,6 +82,7 @@ Notable Changes & New Features
 - New Thermostat Controller implements ESPHome actions for all available Home Assistant climate actions,
   climate modes, fan modes, and fan swing modes (#1061)
 - Color (and grayscale) display support! (#1050)
+- SSD1325 component updated to facilitate use of grayscale
 
 All changes
 -----------
