@@ -53,7 +53,7 @@ Configuration variables:
 MCP23008
 --------
 
-The configuration is essentially the same with the MCP23008 component
+The configuration is essentially the same with the MCP23017 component
 (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/21919e.pdf>`__,
 `Adafruit <https://www.adafruit.com/product/593>`__):
 
