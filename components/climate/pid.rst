@@ -215,7 +215,9 @@ Configuration variables:
 ``climate.pid.set_control_parameters`` Action
 -------------------------------
 
-This action sets new values for the control parameters of the PID controller.
+This action sets new values for the control parameters of the PID controller. This can be 
+used to manually tune the PID controller. Make sure to take update the values you want on 
+the YAML file! They will reset on the next reboot.
 
 .. code-block:: yaml
 
