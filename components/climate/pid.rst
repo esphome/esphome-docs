@@ -217,7 +217,7 @@ Configuration variables:
 ------------------------------------------
 
 This action resets the integral term of the PID controller to 0. This might be necessary under certain
-to avoid the control loop to overshoot (or undershoot) a target.
+conditions to avoid the control loop to overshoot (or undershoot) a target.
 
 .. code-block:: yaml
 
@@ -227,7 +227,7 @@ to avoid the control loop to overshoot (or undershoot) a target.
 
 Configuration variables:
 
-- **id** (**Required**, :ref:`config-id`): ID of the PID Climate to start autotuning for.
+- **id** (**Required**, :ref:`config-id`): ID of the PID Climate being reset.
 
 PID Climate Sensor
 ------------------
