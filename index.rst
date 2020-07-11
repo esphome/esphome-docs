@@ -310,6 +310,7 @@ Climate Components
     Custom Climate, components/climate/custom, language-cpp.svg
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    Tuya Climate, components/climate/tuya, tuya.png
 
 Misc Components
 ---------------
