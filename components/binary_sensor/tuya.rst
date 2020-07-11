@@ -30,5 +30,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/binary_sensor/index`
-- :apiref:`tuya/switch/tuya_binary_sensor.h`
+- :apiref:`tuya/binary_sensor/tuya_binary_sensor.h`
 - :ghedit:`Edit`
