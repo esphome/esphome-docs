@@ -224,7 +224,7 @@ Light Components
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
 
     Light Partition, components/light/partition, color_lens.svg
-    Tuya Dimmer, components/light/tuya, brightness-medium.svg
+    Tuya Dimmer, components/light/tuya, tuya.png
     Custom Light, components/light/custom, language-cpp.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
@@ -243,6 +243,7 @@ Switch Components
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
+    Tuya Switch, components/switch/tuya, tuya.png
 
 Fan Components
 --------------
@@ -252,7 +253,7 @@ Fan Components
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
     Speed Fan, components/fan/speed, fan.svg
-    Tuya Fan, components/fan/tuya, fan.svg
+    Tuya Fan, components/fan/tuya, tuya.png
 
 Display Components
 ------------------
