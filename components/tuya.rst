@@ -3,11 +3,11 @@ Tuya MCU
 
 .. seo::
     :description: Instructions for setting up the Tuya component.
-    :image: tuya.jpg
+    :image: tuya.png
 
 The ``tuya`` component creates a serial connection to the Tuya MCU for platforms to use.
 
-.. figure:: /images/tuya.jpg
+.. figure:: /images/tuya.png
     :align: center
     :width: 40%
 

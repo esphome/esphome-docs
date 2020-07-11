@@ -336,7 +336,7 @@ Misc Components
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
-    Tuya MCU, components/tuya, tuya.jpg
+    Tuya MCU, components/tuya, tuya.png
 
 Additional Custom Components
 ----------------------------
