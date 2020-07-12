@@ -213,7 +213,7 @@ Configuration variables:
   Defaults to ``-1.0``.
 
 ``climate.pid.set_control_parameters`` Action
--------------------------------
+---------------------------------------------
 
 This action sets new values for the control parameters of the PID controller. This can be 
 used to manually tune the PID controller. Make sure to take update the values you want on 
