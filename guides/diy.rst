@@ -66,6 +66,7 @@ Custom Components & Code
 - `Custom Smart meter P1 port reader <https://github.com/nldroid/CustomP1UartComponent>`__ by :ghuser:`nldroid`
 - `Custom Mitsubishi HVAC HeatPump control using UART <https://github.com/geoffdavis/esphome-mitsubishiheatpump>`__ by :ghuser:`geoffdavis`
 - `Jura Impressa J6 coffee machine custom component <https://github.com/ryanalden/esphome-jura-component>`__ by :ghuser:`ryanalden`
+- `Paradox alarm system sensors custom component <https://github.com/Margriko/Paradox-ESPHome>`__ by :ghuser:`Margriko`
 
 Sample Configurations
 ---------------------
