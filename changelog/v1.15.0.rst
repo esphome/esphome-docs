@@ -1,0 +1,107 @@
+Changelog - Version 1.15.0 - Release Date TBD
+=============================================
+
+.. seo::
+    :description: Changelog for ESPHome version 1.15.0.
+    :image: /_static/changelog-1.15.0.png
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
+.. imgtable::
+    :columns: 5
+
+    AHT10, components/sensor/aht10, aht10.jpg
+    QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg
+    INA226, components/sensor/ina226, ina226.jpg
+    HM3301, components/sensor/hm3301, hm3301.jpg
+    MAX31856, components/sensor/max31856, max31856.jpg
+    MAX31865, components/sensor/max31865, max31865.jpg
+    RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
+    SPS30, components/sensor/sps30, sps30.jpg
+    TMP117, components/sensor/tmp117, tmp117.jpg
+    Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
+    Slow PWM, components/output/slow_pwm, pwm.png
+    ESP32 DAC, components/output/esp32_dac, dac.svg
+    AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
+    Tuya Fan, components/fan/tuya, fan.svg
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
+    TM1637, components/display/tm1637, tm1637.jpg
+    ST7789V, components/display/st7789v, st7789v.jpg
+    PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
+    BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
+    Thermostat Controller, components/climate/thermostat, air-conditioner.svg
+    PID Controller, components/climate/pid, function.svg
+    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    HTTP Request, components/http_request, connection.svg
+    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
+    SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
+    TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
+    RF Bridge, components/rf_bridge, rf_bridge.jpg
+
+*This is currently a draft document.*
+
+...Intro text...
+
+New Components
+**************
+
+...Text...
+
+Updated Components
+******************
+
+...More text...
+
+Last but not least, thanks to all contributors, bug reporters and patrons! Without you this would not
+be possible!
+
+Release 1.15 - Release TBD
+--------------------------
+
+- Item 1
+
+- Item 2
+
+Breaking Changes
+----------------
+
+- Scripts
+
+  - ``script.stop: script_id`` now stops the script itself and next actions will not be executed.
+    `(#1004) <https://github.com/esphome/esphome/pull/1004>`__
+
+- More
+- To
+- Come
+
+Notable Changes & New Features
+------------------------------
+
+- Dashboard Interface Revamped
+- New Thermostat Controller implements ESPHome actions for all available Home Assistant climate actions,
+  climate modes, fan modes, and fan swing modes (#1061)
+- Color (and grayscale) display support! (#1050)
+- SSD1325 component updated to facilitate use of grayscale
+
+All changes
+-----------
+
+- Tons
+- Of
+- Stuff
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0

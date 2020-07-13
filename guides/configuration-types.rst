@@ -108,6 +108,26 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
 
+.. _config-color:
+
+Color
+-----
+
+When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
+A ``color`` component exists for just this purpose:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red: 100%
+        green: 20%
+        blue: 25%
+        white: 0%
+
+RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
+may use all four color elements depending on their capabilities.
+
 .. _config-time:
 
 Time
@@ -206,6 +226,58 @@ of nodes inherit:
 
     - Place them in a subdirectory (dashboard only shows files in top-level dir)
     - Prepend a dot to the filename, like ``.base.yaml``
+
+.. _command-line-substitutions:
+
+Command line substitutions
+**************************
+
+You can define or override substitutions from the command line by adding e.g. ``-s KEY VALUE``
+which overrides substitution KEY and gives it value VALUE. This can be issued multiple times,
+so e.g. with the following ``example.yaml`` file:
+
+.. code-block:: yaml
+
+    substitutions:
+      name: default
+      platform: ESP8266
+
+    esphome:
+      name: $name
+      platform: $platform
+      board: $board
+
+and the following command:
+
+.. code-block:: bash
+
+    esphome -s name device01 -s board esp01_1m example.yaml config
+
+You will get something like the following output (please note the unchanged ``platform``,
+added ``board``, and overridden ``name`` substitutions):
+
+.. code-block:: yaml
+
+    substitutions:
+      name: device01
+      platform: ESP8266
+      board: esp01_1m
+    esphome:
+      name: device01
+      platform: ESP8266
+      board: esp01_1m
+      includes: []
+      board_flash_mode: dout
+      libraries: []
+      esp8266_restore_from_flash: false
+      build_path: device01
+      platformio_options: {}
+      arduino_version: espressif8266@2.2.3
+
+We can observe here that command line substitutions take precedence over the ones in
+your configuration file. This can be used to create generic 'template' configuration
+files (like the ``example.yaml`` above) which can be used for multiple devices,
+using substitutions which are provided on the command line.
 
 .. _config-packages:
 

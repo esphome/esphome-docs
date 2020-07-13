@@ -16,36 +16,7 @@ tuya serial component.
     The dimmer switch I got would hang if the logger was configured to use the serial port
     which meant it was bricked until I cut it open.
 
-There are two components, the Tuya bus and the dimmer that uses it.  The ``tuya``
-component requires a :ref:`UART bus <uart>` to be configured.  Put the ``tuya`` component in
-the config and it will list the possible devices for you in the config log.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    # Make sure your wifi will connect
-    wifi:
-      ssid: "ssid"
-      password: "password"
-
-    # Make sure logging is not using the serial port
-    logger:
-      baud_rate: 0
-
-    # Enable Home Assistant API
-    api:
-
-    # Make sure you can upload new firmware OTA
-    ota:
-
-    # My dimmer used the hardware serial port on the alternate pins
-    uart:
-      rx_pin: GPIO13
-      tx_pin: GPIO15
-      baud_rate: 9600
-
-    # Register the Tuya MCU connection
-    tuya:
+The Tuya dimmer requires a :doc:`/components/tuya` to be configured.
 
 Here is an example output for a Tuya dimmer:
 
@@ -92,6 +63,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/tuya`
 - :doc:`/components/light/index`
 - :apiref:`tuya/light/tuya_light.h`
 - :ghedit:`Edit`
