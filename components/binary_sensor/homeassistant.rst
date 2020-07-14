@@ -1,8 +1,8 @@
-Homeassistant Binary Sensor
-===========================
+Home Assistant Binary Sensor
+============================
 
 .. seo::
-    :description: Instructions for setting up homeassistant binary sensors with ESPHome that import states from your homeassistant instance.
+    :description: Instructions for setting up Home Assistant binary sensors with ESPHome that import states from your Home Assistant instance.
     :image: home-assistant.png
 
 The ``homeassistant`` binary sensor platform allows you to create binary sensors that **import**

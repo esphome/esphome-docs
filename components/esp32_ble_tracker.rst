@@ -17,15 +17,15 @@ for information on how you can find out the MAC address of a device and track it
     esp32_ble_tracker:
 
     binary_sensor:
-      - platform: esp32_ble_tracker
+      - platform: ble_presence
         mac_address: AC:37:43:77:5F:4C
-        name: "ESP32 BLE Tracker Google Home Mini"
+        name: "ESP32 BLE Presence Google Home Mini"
 
     sensor:
       - platform: ble_rssi
         mac_address: AC:37:43:77:5F:4C
         name: "BLE Google Home Mini RSSI value"
-      - platform: xiaomi_miflora
+      - platform: xiaomi_hhccjcy01
         mac_address: 94:2B:FF:5C:91:61
         temperature:
           name: "Xiaomi MiFlora Temperature"
@@ -37,7 +37,7 @@ for information on how you can find out the MAC address of a device and track it
           name: "Xiaomi MiFlora Soil Conductivity"
         battery_level:
           name: "Xiaomi MiFlora Battery Level"
-      - platform: xiaomi_mijia
+      - platform: xiaomi_lywsdcgq
         mac_address: 7A:80:8E:19:36:BA
         temperature:
           name: "Xiaomi MiJia Temperature"
@@ -59,7 +59,7 @@ Configuration variables:
 
 
 - **scan_parameters** (*Optional*): Advanced parameters for configuring the scan behavior of the ESP32.
-  See also `this guide by Texax Instruments <http://dev.ti.com/tirex/content/simplelink_academy_cc2640r2sdk_1_12_01_16/modules/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning>`__
+  See also `this guide by Texas Instruments <http://dev.ti.com/tirex/content/simplelink_academy_cc2640r2sdk_1_12_01_16/modules/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning>`__
   for reference.
 
   - **interval** (*Optional*, :ref:`config-time`): The interval between each consecutive scan window.

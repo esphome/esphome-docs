@@ -45,7 +45,7 @@ Configuration variables:
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
 - **use_address** (*Optional*, string): Manually override what address to use to connect
-  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previusly configured IP address.
+  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previously configured IP address.
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
@@ -67,7 +67,8 @@ Configuration variables:
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
-
+  
+- **output_power** (*Optional*, string): The amount of TX power for the WiFi interface from 10dB to 20.5dB. Default for ESP8266 is 20dB, 20.5dB might cause unexpected restarts.
 - **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
@@ -82,7 +83,7 @@ ESPHome has an optional "Access Point Mode". If you include ``ap:``
 in your wifi configuration, ESPHome will automatically set up an access point that you
 can connect to. Additionally, you can specify both a "normal" station mode and AP mode at the
 same time. This will cause ESPHome to only enable the access point when no connection
-to the wifi router can be made.
+to the WiFi router can be made.
 
 .. _wifi-manual_ip:
 

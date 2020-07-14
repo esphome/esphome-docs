@@ -41,7 +41,13 @@ two methods (:apiclass:`Climate <climate::Climate>`):
           // Send target temp to climate
           // ...
         }
-
+      }
+      ClimateTraits traits() override {
+        // The capabilities of the climate device
+        auto traits = climate::ClimateTraits();
+        traits.set_supports_current_temperature(true);
+        traits.set_supports_auto_mode(true);
+        return traits;
       }
     };
 

@@ -6,14 +6,6 @@ VL53L0X Time Of Flight Distance Sensor
     :image: vl53l0x.jpg
     :keywords: VL53L0X
 
-.. note::
-
-    This page is incomplete and could some work. If you want to contribute, please read the
-    :doc:`contributing guide </guides/contributing>`. This page is missing:
-
-      - An image for the front page.
-      - Images/screenshots/example configs of this device being used in action.
-
 The ``vl53l0x`` sensor platform allows you to use VL53L0X optical time of flight
 (`datasheet <https://www.st.com/resource/en/datasheet/vl53l0x.pdf>`__,
 `ST <https://www.st.com/resource/en/datasheet/vl53l0x.pdf>`__) with ESPHome
@@ -27,6 +19,16 @@ well enough (see also section 5 of datasheet).
 
 The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
+
+.. figure:: images/vl53l0x-full.jpg
+    :align: center
+    :width: 50.0%
+
+    VL53L0X Time Of Flight Distance Sensor.
+
+.. figure:: images/vl53l0x-ui.png
+    :align: center
+    :width: 80.0%
 
 .. code-block:: yaml
 
@@ -51,7 +53,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>`.
 - **long_range** (*Optional*, bool): Set the sensor in long range mode. The signal_rate_limit is overruled
   to ``0.1``. Defaults to false.
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x29``.
+- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x29``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also

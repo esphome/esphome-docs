@@ -32,7 +32,7 @@ Syntax
 ******
 
 In my opinion, Markdown would have been the much better choice in hindsight, but at the time
-I was setting up the documentation good doxygen integration was key to me. Anyway, here's a quick
+I was setting up the documentation good Doxygen integration was key to me. Anyway, here's a quick
 RST primer:
 
 - **Headers**: You can write titles like this:
@@ -250,7 +250,7 @@ Notes
 
 Some notes about the docs:
 
-- Use the english language (duh...)
+- Use the English language (duh...)
 - An image tells a thousand words, please use them wherever possible. But also don't forget to shrink them, for example
   I often use https://tinypng.com/
 - Try to use examples as often as possible (also while it's great to use highly accurate,
@@ -273,19 +273,19 @@ This is only possible for ``pip`` installs.
     git clone https://github.com/esphome/esphome.git
     git clone https://github.com/esphome/esphome-docs.git
 
-    # Install esphome
+    # Install ESPHome
     cd esphome/
     script/setup
     # Start a new feature branch
     git checkout -b my-new-feature
     cd ..
 
-Now you can open esphome in your IDE of choice (mine is CLion) with the platformio
-addons (see platformio docs for more info). Then develop the new feature with the
+Now you can open ESPHome in your IDE of choice (mine is CLion) with the PlatformIO
+addons (see PlatformIO docs for more info). Then develop the new feature with the
 guidelines below.
 
 All PRs are automatically checked for some basic formatting/code mistakes with Travis.
-These checks *must* pass for your PR to be mergable.
+These checks *must* pass for your PR to be mergeable.
 
 Setting Up Git Environment
 --------------------------
@@ -331,7 +331,7 @@ mark it as a draft PR in the dropdown of the green "create PR" button.
 **Review Process:** ESPHome's code base tries to have a high code standard. At the bottom
 of the Pull Request you will be able to see the "Travis" continuous integration check which
 will automatically go through your patch and try to spot errors. If the CI check fails,
-please see the travis log and fix all errors that appear there. Only PRs that pass the automated
+please see the Travis log and fix all errors that appear there. Only PRs that pass the automated
 checks can be merged!
 
 **Catching up with reality**: Sometimes other commits have been made to the same files
@@ -407,14 +407,14 @@ look at the ``esphome/components/hello1/__init__.py`` file and the second entry 
 
 Let's leave what's written in those files for (2.), but for now you should also know that
 whenever a component is loaded, all the C++ source files in the folder of the component
-are automatically copied into the generated platformio project. So you just need to add the C++
+are automatically copied into the generated PlatformIO project. So you just need to add the C++
 source files in the folder and the ESPHome core will copy them with no additional code required
 by the integration developer.
 
 .. note::
 
     Additionally, ESPHome has a ``custom_components`` mechanism like
-    `Home Assistant does <https://developers.home-assistant.io/docs/en/creating_component_loading.html>`__.
+    `Home Assistant does <https://developers.home-assistant.io/docs/creating_component_index>`__.
     So for testing you can also create a new ``custom_components`` folder inside of your ESPHome
     config folder and create new integrations in there.
 
@@ -447,7 +447,7 @@ at examples of how similar integrations validate user input.
 
 A few point on validation:
 
-- ESPHome ts a lot of effort in **strict validation** - If possible, all validation methods should be as strict
+- ESPHome puts a lot of effort into **strict validation** - If possible, all validation methods should be as strict
   as possible and detect wrong user input at the validation stage (and not later).
 - All default values should be defined in the schema (and not in C++ codebase or other code parts).
 - Config keys should be descriptive - If the meaning of a key is not immediately obvious you should
@@ -491,7 +491,7 @@ for a variable to be declared first, ``yield`` will wait until that variable has
 After that, ``yield`` returns and the method will execute on the next line.
 
 Next, there's a special method - ``cg.add`` - that you will often use. ``cg.add()`` does a very simple
-thing: Any C++ declared in the paranetheses of ``cg.add()`` will be added to the generated code.
+thing: Any C++ declared in the parentheses of ``cg.add()`` will be added to the generated code.
 If you do not call "add" a piece of code explicitly, it will not be added to the main.cpp file!
 
 4. Runtime
@@ -546,7 +546,7 @@ loader. These are:
 - ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
   has one of them in the config, a validation error will be generated.
 
-- ``ESP_PLATFORMS``: Provide a whitelist of ESP types this integration works with.
+- ``ESP_PLATFORMS``: Provide a list of allowed ESP types this integration works with.
 
 Codebase Standards
 ------------------
@@ -570,14 +570,14 @@ Standard for the esphome-core codebase:
 - New components should dump their configuration using ``ESP_LOGCONFIG``
   at startup in ``dump_config()``
 - ESPHome uses a unified formatting tool for all source files (but this tool can be difficult to install).
-  When creating a new PR in GitHub, see the travis-ci output to see what formatting needs to be changed
+  When creating a new PR in GitHub, see the Travis CI output to see what formatting needs to be changed
   and what potential problems are detected.
 
 - The number of external libraries should be kept to a minimum. If the component you're developing has a simple
   communication interface, please consider implementing the library natively in ESPHome.
 
   - This depends on the communication interface of course - if the library is directly working
-    with pins or doesn't do any I/O itself, it's ok. However if it's something like i2c, then ESPHome's
+    with pins or doesn't do any I/O itself, it's ok. However if it's something like I^2C, then ESPHome's
     own communication abstractions should be used. Especially if the library accesses a global variable/state
     like ``Wire`` there's a problem because then the component may not modular (i.e. not possible
     to create two instances of a component on one ESP)
@@ -592,7 +592,7 @@ Standard for the esphome-core codebase:
 
 .. note::
 
-    You can also run the lint and travis checks through a docker image:
+    You can also run the lint and Travis checks through a docker image:
 
     .. code-block:: bash
 

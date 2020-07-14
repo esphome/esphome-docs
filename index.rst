@@ -29,7 +29,7 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
     FAQ and Tips, guides/faq, question_answer.svg
 
     Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
@@ -39,6 +39,8 @@ Guides
     Changelog, changelog/index, new-box.svg
     Supporters, guides/supporters, heart.svg
     DIY Examples, guides/diy, earth.svg
+
+    Configuration types, guides/configuration-types, puzzle.svg
 
 .. _devices:
 
@@ -156,10 +158,10 @@ Sensor Components
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Tuya Sensor, components/sensor/tuya, tuya.png
-    Tx20, components/sensor/tx20, tx20.jpg
+    TX20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
@@ -207,6 +209,7 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
+    Template Output, components/output/template, description.svg
 
 Light Components
 ----------------
@@ -310,6 +313,9 @@ Climate Components
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
+    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
+    TCL112 IR Remote, components/climate/tcl112, air-conditioner.svg
+    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
@@ -356,7 +362,7 @@ Additional Custom Components
 .. imgtable::
 
     Generic Custom Component, custom/custom_component, language-cpp.svg
-    Custom I2C Component, custom/i2c, language-cpp.svg
+    Custom I²C Component, custom/i2c, language-cpp.svg
     Custom SPI Component, custom/spi, language-cpp.svg
     Custom UART Component, custom/uart, language-cpp.svg
 
@@ -383,8 +389,11 @@ Cookbook
     Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
     Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
+    Sonoff iFan02, cookbook/ifan02, fan.svg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
+    Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
+    ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

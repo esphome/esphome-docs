@@ -34,7 +34,6 @@ to some pins on your board and the baud rate set to 9600.
       tx_pin: D1
       rx_pin: D2
       baud_rate: 9600
-      stop_bits: 2
 
     sensor:
       - platform: pzem004t

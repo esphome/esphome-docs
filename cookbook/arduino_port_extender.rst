@@ -58,7 +58,7 @@ individual IOs.
           auto ape_component = new ArduinoPortExpander(i2c_component, 0x08);
           return {ape_component};
 
-By default the I²C address is ``0x08`` but you can change it on the arduino sketch so you can have more slaves
+By default the I²C address is ``0x08`` but you can change it on the Arduino sketch so you can have more devices
 on the same bus.
 
 Now it is time to add the ports.
@@ -103,7 +103,7 @@ Sensor
 ------
 
 Sensors allows for reading the analog value of an analog pin, those are from ``A0`` to ``A7`` except for
-``A4`` and ``A5``. The value returned goes from 0 to 1023 (the value returned by the arduino ``analogRead``
+``A4`` and ``A5``. The value returned goes from 0 to 1023 (the value returned by the Arduino ``analogRead``
 function).
 
 Arduino analog inputs measures voltage. By default the sketch is configured to use the Arduino internal VREF

@@ -207,7 +207,7 @@ or else evaluate the second block. ``return ...;`` makes the code block give bac
 we're either *returning* ``COVER_OPEN`` or ``COVER_CLOSED`` to indicate that the cover is closed or open.
 
 Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
-somewhere else, like ``top_end_stop```) and let's you call any of ESPHome's many APIs directly. For example, here
+somewhere else, like ``top_end_stop```) and lets you call any of ESPHome's many APIs directly. For example, here
 we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::

@@ -8,9 +8,9 @@ BMP085 Temperature+Pressure Sensor
 
 The BMP085 sensor platform allows you to use your BMP085
 (`datasheet <https://www.sparkfun.com/datasheets/Components/General/BST-BMP085-DS000-05.pdf>`__,
-`adafruit <https://www.adafruit.com/product/391>`__) and BMP180
+`Adafruit <https://www.adafruit.com/product/391>`__) and BMP180
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf>`__,
-`adafruit <https://www.adafruit.com/product/1603>`__) temperature and
+`Adafruit <https://www.adafruit.com/product/1603>`__) temperature and
 pressure sensors with ESPHome. The :ref:`I²C <i2c>` is required to be set up in
 your configuration for this sensor to work.
 
