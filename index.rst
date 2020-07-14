@@ -348,6 +348,7 @@ Misc Components
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
     Tuya MCU, components/tuya, tuya.png
+    Exposure Notifications, components/exposure_notifications, exposure_notifications.png
 
 Additional Custom Components
 ----------------------------
