@@ -1,12 +1,12 @@
-BLE Exposure Notification Listener
-==================================
+Exposure Notification Listener
+==============================
 
 .. seo::
     :description: Instructions for setting up exposure notification listeners for ESPHome.
     :image: exposure_notifications.png
 
 The ``exposure_notifications`` component uses the :doc:`/components/esp32_ble_tracker` to discover
-nearby COVID-19 exposure notification bluetooth messages sent by phone's running the
+nearby COVID-19 exposure notification bluetooth messages sent by phones running the
 `Google/Apple Exposure Notification service <https://www.google.com/covid19/exposurenotifications/>`__.
 
 .. code-block:: yaml
@@ -26,10 +26,18 @@ Configuration variables:
 ------------------------
 
 - **on_exposure_notification** (*Optional*, :ref:`Automation <automation>`): An automation
-  to run when a exposure notification bluetooth message it received.
+  to run when an exposure notification bluetooth message is received.
 
-  A variable ``x`` of type ``exposure_notifications::ExposureNotification`` is passed to the automation.
-  See the API Reference in the See Also section for more information.
+  A variable ``x`` of type :apistruct:`exposure_notifications::ExposureNotification` is passed to the automation.
+
+An exposure notification payload contains:
+
+  - Rolling proximity identifier (RPI): A 16-byte long value used to identify a given device in a 10-minute window.
+  - Associated encrypted metadata (AEM): Additional encrypted metadata, like transmit power.
+
+Because the GAEN framework is designed to prevent tracking an individual, this data can essentially
+only be used to check whether a device with enabled exposure notifications is nearby (and to limited degree
+also count them).
 
 Indicator of device with exposure notifications
 -----------------------------------------------
