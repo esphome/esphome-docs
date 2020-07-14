@@ -17,7 +17,6 @@ The ``rgbw`` light platform creates an RGBW light from 4 :ref:`float output comp
         green: output_component2
         blue: output_component3
         white: output_component4
-        color_interlock: true
 
 Configuration variables:
 ------------------------

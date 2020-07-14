@@ -22,8 +22,6 @@ and warm white channels will be mixed using the color temperature configuration 
         warm_white: output_component5
         cold_white_color_temperature: 6536 K
         warm_white_color_temperature: 2000 K
-        constant_brightness: true
-        color_interlock: true
 
 
 Configuration variables:
