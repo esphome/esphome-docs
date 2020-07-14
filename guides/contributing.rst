@@ -546,7 +546,7 @@ loader. These are:
 - ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
   has one of them in the config, a validation error will be generated.
 
-- ``ESP_PLATFORMS``: Provide a whitelist of ESP types this integration works with.
+- ``ESP_PLATFORMS``: Provide a list of allowed ESP types this integration works with.
 
 Codebase Standards
 ------------------

@@ -58,7 +58,7 @@ individual IOs.
           auto ape_component = new ArduinoPortExpander(i2c_component, 0x08);
           return {ape_component};
 
-By default the I²C address is ``0x08`` but you can change it on the Arduino sketch so you can have more slaves
+By default the I²C address is ``0x08`` but you can change it on the Arduino sketch so you can have more devices
 on the same bus.
 
 Now it is time to add the ports.
