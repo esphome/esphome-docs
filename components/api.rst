@@ -80,19 +80,19 @@ the parameters in plain format.
 
 .. code-block:: yaml
 
-  # Home Assistant Configuration
-  script:
-    ...
-    set_light_rgb:
-      alias: 'ESPHome RGB light set'
-      sequence:
-      - service: light.turn_on
-        data_template:
-          entity_id: '{{ light_name }}'
-          rgb_color:
-          - '{{ red }}'
-          - '{{ green }}'
-          - '{{ blue }}'
+    # Home Assistant Configuration
+    script:
+      ...
+      set_light_rgb:
+        alias: 'ESPHome RGB light set'
+        sequence:
+        - service: light.turn_on
+          data_template:
+            entity_id: '{{ light_name }}'
+            rgb_color:
+            - '{{ red }}'
+            - '{{ green }}'
+            - '{{ blue }}'
 
 Then in ESPHome
 
