@@ -152,6 +152,7 @@ Sensor Components
     SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
+    T6613/15, components/sensor/t6615, t6615.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Template Sensor, components/sensor/template, description.svg
     TMP117, components/sensor/tmp117, tmp117.jpg
