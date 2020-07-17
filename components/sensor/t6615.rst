@@ -27,7 +27,7 @@ Additionally, the T6613/15 sensors require 5V power, while most ESP platforms on
 regulator, so you may need some additional components to power up the sensor.
 
 .. code-block:: yaml
-u
+
     # Example configuration entry
     uart:
       rx_pin: D0
