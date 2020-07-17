@@ -631,8 +631,8 @@ Configuration options:
   invoked while it is still running from one or more previous invocations, default to ``single``.
 
     - ``single``: Do not start a new run. Issue a warning.
-    - ``restart``:	Start a new run after first stopping previous run.
-    - ``queued``:	Start a new run after previous runs complete.
+    - ``restart``: Start a new run after first stopping previous run.
+    - ``queued``: Start a new run after previous runs complete.
     - ``parallel``: Start a new, independent run in parallel with previous runs.
 
 - **max_runs** (*Optional*, integer): Controls maximum number of runs executing and/or
