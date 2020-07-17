@@ -29,7 +29,7 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
     FAQ and Tips, guides/faq, question_answer.svg
 
     Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
@@ -39,6 +39,8 @@ Guides
     Changelog, changelog/index, new-box.svg
     Supporters, guides/supporters, heart.svg
     DIY Examples, guides/diy, earth.svg
+
+    Configuration types, guides/configuration-types, puzzle.svg
 
 .. _devices:
 
@@ -155,7 +157,8 @@ Sensor Components
     TMP117, components/sensor/tmp117, tmp117.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
-    Tx20, components/sensor/tx20, tx20.jpg
+    Tuya Sensor, components/sensor/tuya, tuya.png
+    TX20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
     VL53L0x, components/sensor/vl53l0x, vl53l0x.png
@@ -186,6 +189,7 @@ Binary Sensor Components
     PN532, components/binary_sensor/pn532, pn532.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
+    Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -205,6 +209,7 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
+    Template Output, components/output/template, description.svg
 
 Light Components
 ----------------
@@ -224,7 +229,7 @@ Light Components
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
 
     Light Partition, components/light/partition, color_lens.svg
-    Tuya Dimmer, components/light/tuya, brightness-medium.svg
+    Tuya Dimmer, components/light/tuya, tuya.png
     Custom Light, components/light/custom, language-cpp.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
@@ -243,6 +248,7 @@ Switch Components
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
+    Tuya Switch, components/switch/tuya, tuya.png
 
 Fan Components
 --------------
@@ -252,7 +258,7 @@ Fan Components
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
     Speed Fan, components/fan/speed, fan.svg
-    Tuya Fan, components/fan/tuya, fan.svg
+    Tuya Fan, components/fan/tuya, tuya.png
 
 Display Components
 ------------------
@@ -307,8 +313,12 @@ Climate Components
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
+    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
+    TCL112 IR Remote, components/climate/tcl112, air-conditioner.svg
+    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    Tuya Climate, components/climate/tuya, tuya.png
 
 Misc Components
 ---------------
@@ -343,6 +353,8 @@ Misc Components
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
+    Tuya MCU, components/tuya, tuya.png
+    Exposure Notifications, components/exposure_notifications, exposure_notifications.png
 
 Additional Custom Components
 ----------------------------
@@ -350,7 +362,7 @@ Additional Custom Components
 .. imgtable::
 
     Generic Custom Component, custom/custom_component, language-cpp.svg
-    Custom I2C Component, custom/i2c, language-cpp.svg
+    Custom I²C Component, custom/i2c, language-cpp.svg
     Custom SPI Component, custom/spi, language-cpp.svg
     Custom UART Component, custom/uart, language-cpp.svg
 
@@ -377,8 +389,11 @@ Cookbook
     Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
     Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
+    Sonoff iFan02, cookbook/ifan02, fan.svg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
+    Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
+    ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

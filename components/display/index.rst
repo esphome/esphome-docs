@@ -129,8 +129,8 @@ Drawing Static Text
 *******************
 
 The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
-Whereas in most arduino display projects you have to use one of a few pre-defined fonts in very
-specific sizes, with ESPHome you have the option to use **any** truetype (``.ttf``) font file
+Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
+specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
 at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
@@ -149,7 +149,7 @@ a ``.ttf`` file from somewhere on the Internet and create a ``font:`` section in
 
 Configuration variables:
 
-- **file** (**Required**, string): The path (relative to where the .yaml file is) of the truetype font
+- **file** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font
   file.
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
@@ -165,7 +165,7 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the truetype files into an internal format. If you're running this as a Hass.io add-on or with
+    to translate the TrueType files into an internal format. If you're running this as a Hass.io add-on or with
     the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
     ``pip install pillow``.
 

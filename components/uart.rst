@@ -57,8 +57,8 @@ Configuration variables:
 Hardware UARTs
 --------------
 
-Whenever possible, esphome will use the Hardware UART unit on the processor for fast and accurate communication.
-When the hardware UARTs are all occupied, esphome will fall back to a software implementation that may not
+Whenever possible, ESPHome will use the hardware UART unit on the processor for fast and accurate communication.
+When the hardware UARTs are all occupied, ESPHome will fall back to a software implementation that may not
 be accurate at higher baud rates.
 
 ``UART0`` is (by default) used by the :doc:`logger component </components/logger>`, using ``tx_pin: GPIO1`` and

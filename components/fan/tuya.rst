@@ -6,7 +6,7 @@ Tuya Fan
     :image: fan.svg
 
 The ``tuya`` fan platform creates a variable speed fan from a
-tuya serial component.
+tuya component.
 
 .. figure:: images/tuyafan.jpg
     :align: center
@@ -14,35 +14,7 @@ tuya serial component.
 
     A Tuya based fan controller wall plate.
 
-There are two components, the Tuya bus and the fan that uses it.  The ``tuya``
-component requires a :ref:`UART bus <uart>` to be configured.  Put the ``tuya`` component in
-the config and it will list the possible devices for you in the config log.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    # Make sure your wifi will connect
-    wifi:
-      ssid: "ssid"
-      password: "password"
-
-    # Make sure logging is not using the serial port
-    logger:
-      baud_rate: 0
-
-    # Enable Home Assistant API
-    api:
-
-    # Make sure you can upload new firmware OTA
-    ota:
-
-    uart:
-      rx_pin: GPIO3
-      tx_pin: GPIO1
-      baud_rate: 9600
-
-    # Register the Tuya MCU connection
-    tuya:
+The Tuya fan requires a :doc:`/components/tuya` to be configured.
 
 Here is an example output for a Tuya fan controller:
 
@@ -93,6 +65,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/tuya`
 - :doc:`/components/fan/index`
 - :apiref:`tuya/fan/tuya_fan.h`
 - :ghedit:`Edit`

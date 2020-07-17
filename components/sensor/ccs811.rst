@@ -45,7 +45,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **tvoc** (**Required**): The information for the total volatile organic compound sensor in
-  parts per billion (ppm).
+  parts per billion (ppb).
 
   - **name** (**Required**, string): The name for the tvoc sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.

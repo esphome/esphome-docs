@@ -107,7 +107,7 @@ For me to fix the issue quickly, there are some things that would be really help
     help given just that information?
 2.  A snippet of the code/configuration file used is always great to reproduce this issue.
     Please read `How to create a Minimal, Complete, and Verifiable example <https://stackoverflow.com/help/mcve>`__.
-3.  If it's an i2c or hardware communication issue please also try setting the
+3.  If it's an I^2C or hardware communication issue please also try setting the
     :ref:`log level <logger-log_levels>` to ``VERY_VERBOSE`` as it provides helpful information
     about what is going on.
 4.  Please also include what you've already tried and didn't work as that can help us track down the issue.
@@ -133,8 +133,8 @@ How do I update to the latest beta release?
 -------------------------------------------
 
 ESPHome has a beta release cycle so that new releases can easily be tested before
-the changes are deployed to the stable channel. You can help test esphome (and use new features)
-by installing the esphome beta:
+the changes are deployed to the stable channel. You can help test ESPHome (and use new features)
+by installing the tested beta:
 
 .. code-block:: bash
 
@@ -224,6 +224,12 @@ Some steps that can help with the issue:
   in other it can make things worse). See :ref:`wifi-power_save_mode`.
 - The issue seems to happen with cheap boards more frequently. Especially the "cheap" NodeMCU
   boards from eBay which sometimes have quite bad antennas.
+- ESPHome reboots on purpose when something is not going right, e.g.
+  :doc:`wifi connetion cannot be made </components/wifi>` or
+  :doc:`api connetion is lost </components/api>` or
+  :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
+  to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
+
 
 Docker Reference
 ----------------

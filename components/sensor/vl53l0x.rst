@@ -32,6 +32,16 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 
 
 
+.. figure:: images/vl53l0x-full.jpg
+    :align: center
+    :width: 50.0%
+
+    VL53L0X Time Of Flight Distance Sensor.
+
+.. figure:: images/vl53l0x-ui.png
+    :align: center
+    :width: 80.0%
+
 .. code-block:: yaml
 
     # Simple configuration entry example

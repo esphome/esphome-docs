@@ -58,12 +58,13 @@ change the UUID to something unique. For example, you can copy this randomly gen
 Then, just compile and flash the ESP32.
 
 When everything is set up correctly, you should see a show up using your iBeacon scanner of choice. On iPhones,
-this should already work from the bluetooth screen (not tested), on Android, you will need to use an app like
+this should already work from the Bluetooth screen (not tested), on Android, you will need to use an app like
 `"Beacon Scanner" <https://play.google.com/store/apps/details?id=com.bridou_n.beaconscanner>`__ by Nicolas Bridoux.
 
 For using these beacons to track the location of your phone, you will need to use another app. For example, I used
 `this guide by the owntracks <https://owntracks.org/booklet/features/beacons/>`__ app to let my Home Automation system
-know when I'm home or away.
+know when I'm home or away. Another nice Android app is `Beacon MQTT <https://turbo-lab.github.io/android-beacon-mqtt/>`__.
+It can work with multiple beacons simultaneously.
 
 .. figure:: images/esp32_ble_beacon-ibeacon.png
     :align: center
