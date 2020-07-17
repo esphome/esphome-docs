@@ -62,8 +62,7 @@ Configuration variables:
 - **enable_pin** (*Optional*/**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to XSHUT 
   on vl53l0x to enable/disable sensor. **Required** if not using address ``0x29`` which is the cause if you
   have multiple VL53L0X on the same i2c bus.
-- **timeout** (*Optional*, :ref:`config-time`): Setup timeout. Default is 0 (no timeout). 
-  Warning: With no timeout, if the sensor is not found, startup of ESP can fail.
+- **timeout** (*Optional*, :ref:`config-time`): Sensor setup timeout. Default is 10ms. 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 
