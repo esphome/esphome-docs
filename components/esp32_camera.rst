@@ -193,6 +193,24 @@ Configuration for TTGO T-Camera V05
       name: My Camera
       # ...
 
+Configuration for TTGO T-Camera V162
+-----------------------------------
+`Source <https://github.com/lewisxhe/esp32-camera-series/blob/master/docs/T_CarmerV162.md>`
+.. code-block:: yaml
+    esp32_camera:
+      external_clock:
+        pin: GPIO4
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO18
+        scl: GPIO23
+      data_pins: [GPIO34, GPIO13, GPIO14, GPIO35, GPIO39, GPIO38, GPIO37, GPIO36]
+      vsync_pin: GPIO5
+      href_pin: GPIO27
+      pixel_clock_pin: GPIO25
+      jpeg_quality: 10
+      vertical_flip: true
+      horizontal_mirror: false
 
 Configuration for TTGO T-Camera V17
 -----------------------------------
