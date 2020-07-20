@@ -23,6 +23,15 @@ but merely manages connections to them for use by other components.
     This component does not (yet) support devices that require
     security settings (eg connecting with a PIN).
 
+    Currently, devices connected with the client cannot be
+    supported by other components based on :doc:`/components/esp32_ble_tracker`
+    as they listen to advertisements which are only sent by devices
+    without an active connection.
+
+Despite the last point above, the ``ble_client`` component requires
+the ``esp32_ble_tracker`` component in order to discover available
+client devices.
+
 .. code-block:: yaml
 
   esp32_ble_tracker:
@@ -34,8 +43,7 @@ but merely manages connections to them for use by other components.
 Configuration variables:
 ------------------------
 
-- **mac_address** (*Required*, MAC Address): The MAC address of the
-    BLE device to connect to.
+- **mac_address** (*Required*, MAC Address): The MAC address of the BLE device to connect to.
 - **id** (*Required*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 
 BLE Overview
