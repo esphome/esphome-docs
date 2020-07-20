@@ -194,7 +194,7 @@ Configuration for TTGO T-Camera V05
       # ...
 
 Configuration for TTGO T-Camera V162
------------------------------------
+------------------------------------
 
 .. code-block:: yaml
 
