@@ -110,7 +110,7 @@ Configuration variables:
 Inline Keyboard
 ***************
 
-`Telegram Inline Keyboard Documentation <https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating>`__.
+`Telegram Inline Keyboard Documentation <https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating>`__
 
 .. code-block:: yaml
 
