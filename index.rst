@@ -182,8 +182,6 @@ Binary Sensor Components
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
-    BLE iTag button, components/binary_sensor/ble_button, esp32_ble_itag.png
-    ESP32 BLE Client State, components/binary_sensor/ble_state, bluetooth.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
@@ -398,6 +396,7 @@ Cookbook
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.png
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

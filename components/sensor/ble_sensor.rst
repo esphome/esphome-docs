@@ -35,8 +35,28 @@ Configuration variables:
 - **service_uuid** (**Required**, UUID): UUID of the service on the device.
 - **char_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
 - **descr_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
+- **notify** (*Optional*, boolean): Instruct the server to send notifications for this
+  characteristic.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
 - All other options from :ref:`Sensor <config-sensor>`.
+
+Automations:
+
+- **on_notify** (*Optional*, :ref:`Automation <automation>`): An automation to
+  perform when a notify message is received from the device. See :ref:`ble_sensor-on_notify`.
+
+BLE Sensor Automation
+---------------------
+
+.. _ble_sensor-on_notify:
+
+``on_notify``
+*************
+
+This automation is triggered when the device/server sends a notify message for
+a characteristic. The config variable *notify* must be true or this will have
+no effect.
+A variable ``x`` of type ``float`` is passed to the automation for use in lambdas.
 
 Example UUIDs
 -------------

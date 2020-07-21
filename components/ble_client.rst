@@ -46,6 +46,46 @@ Configuration variables:
 - **mac_address** (*Required*, MAC Address): The MAC address of the BLE device to connect to.
 - **id** (*Required*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 
+Automations:
+
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the client connects to a device. See :ref:`ble_client-on_connect`.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the client disconnects from a device. See :ref:`ble_client-on_disconnect`.
+
+BLE Client Automation
+---------------------
+
+.. _ble_client-on_connect:
+
+``on_connect``
+**************
+
+This automation is triggered when the client connects to the BLE device.
+
+.. code-block:: yaml
+
+  ble_client:
+    - mac_address: 11:22:33:44:55:66
+      then:
+        - lambda: |-
+          ESP_LOGD("ble_client_lambda", "Connected to BLE device");
+
+.. _ble_client-on_disconnect:
+
+``on_disconnect``
+**************
+
+This automation is triggered when the client disconnects from a BLE device.
+
+.. code-block:: yaml
+
+  ble_client:
+    - mac_address: 11:22:33:44:55:66
+      then:
+        - lambda: |-
+          ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
+
 BLE Overview
 ------------
 This section gives a brief overview of the Bluetooth LE architecture
@@ -164,7 +204,7 @@ keychain button events, used by the :doc:`/components/binary_sensor/ble_button` 
 See Also
 --------
 
-- :doc:`/components/binary_sensor/ble_state`
 - :doc:`/components/sensor/ble_sensor`
+- :ref:`Automation <automation>`
 - :apiref:`ble_client/ble_client.h`
 - :ghedit:`Edit`
