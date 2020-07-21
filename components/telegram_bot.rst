@@ -126,7 +126,7 @@ Inline Keyboard
 Configuration variables:
 
 - **text** (**Required**, string): Text for keyboard button.
-- **url** (*Optional*, string): Url to navigate this button.
+- **url** (*Optional*, string): URL to navigate this button.
 - **callback_data** (*Optional*, string): Command to send to bot by this button. See :ref:`telegram_bot-on_message`.
 
 .. _telegram_bot-answer_callback_query:
