@@ -355,6 +355,7 @@ Misc Components
     RF Bridge, components/rf_bridge, rf_bridge.jpg
     Tuya MCU, components/tuya, tuya.png
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
+    Telegram Bot, components/telegram_bot, telegram_bot.png
 
 Additional Custom Components
 ----------------------------
