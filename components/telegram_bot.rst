@@ -120,8 +120,8 @@ Inline Keyboard
           inline_keyboard:
             - text: Toggle Light
               callback_data: '/light'
-            - text: Readme
-              url: 'https://esphome.io/'
+            - text: Google
+              url: 'https://google.com/'
 
 Configuration variables:
 
