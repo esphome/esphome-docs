@@ -75,7 +75,7 @@ This automation is triggered when the client connects to the BLE device.
 .. _ble_client-on_disconnect:
 
 ``on_disconnect``
-**************
+*****************
 
 This automation is triggered when the client disconnects from a BLE device.
 
