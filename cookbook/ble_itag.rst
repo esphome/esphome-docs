@@ -35,50 +35,50 @@ Configuration example:
 
 .. code-block:: yaml
 
-  esp32_ble_tracker:
+    esp32_ble_tracker:
 
-  ble_client:
-    # Replace with the MAC address of your device.
-    - mac_address: FF:FF:20:00:0F:15
-      id: itag_black
+    ble_client:
+      # Replace with the MAC address of your device.
+      - mac_address: FF:FF:20:00:0F:15
+        id: itag_black
 
-  binary_sensor:
-    - platform: template
-      id: black_button
-      name: "Black iTag Button"
-      filters:
-        delayed_off: 200ms
+    binary_sensor:
+      - platform: template
+        id: black_button
+        name: "Black iTag Button"
+        filters:
+          delayed_off: 200ms
 
-  sensor:
-  # This entry registers and awaits notifications for the
-  # characteristic that signals button presses. Each time
-  # a notification is received, the corresponding binary_sensor
-  # is briefly toggled.
-    - platform: ble_client
-      ble_client_id: itag_black
-      name: "Black iTag btn"
-      service_uuid: 'ffe0'
-      char_uuid: 'ffe1'
-      notify: true
-      update_interval: never
-      on_notify:
-        then:
-          - binary_sensor.template.publish:
-            id: black_button
-            state: ON
-          - binary_sensor.template.publish:
-            id: black_button
-            state: OFF
-  # This entry queries the battery level. Some tags may not
-  # support this characteristic, you will see 'Unknown' in the
-  # HA frontent.
-    - platform: ble_client
-      ble_client_id: itag_black
-      name: "Black iTag Battery"
-      service_uuid: '180f'
-      char_uuid: '2a19'
-      icon: 'mdi:battery'
-      unit_of_measurement: '%'
+    sensor:
+    # This entry registers and awaits notifications for the
+    # characteristic that signals button presses. Each time
+    # a notification is received, the corresponding binary_sensor
+    # is briefly toggled.
+      - platform: ble_client
+        ble_client_id: itag_black
+        name: "Black iTag btn"
+        service_uuid: 'ffe0'
+        char_uuid: 'ffe1'
+        notify: true
+        update_interval: never
+        on_notify:
+          then:
+            - binary_sensor.template.publish:
+              id: black_button
+              state: ON
+            - binary_sensor.template.publish:
+              id: black_button
+              state: OFF
+    # This entry queries the battery level. Some tags may not
+    # support this characteristic, you will see 'Unknown' in the
+    # HA frontent.
+      - platform: ble_client
+        ble_client_id: itag_black
+        name: "Black iTag Battery"
+        service_uuid: '180f'
+        char_uuid: '2a19'
+        icon: 'mdi:battery'
+        unit_of_measurement: '%'
 
 Explanation
 -----------

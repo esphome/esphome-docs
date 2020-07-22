@@ -11,6 +11,7 @@ component does not expose any sensors or output components itself,
 but merely manages connections to them for use by other components.
 
 .. note::
+
     The BLE software stack on the ESP32 consumes a significant
     amount of RAM on the device. As such, you may experience
     frequent crashes due to out-of-memory if you enable many
@@ -34,11 +35,11 @@ client devices.
 
 .. code-block:: yaml
 
-  esp32_ble_tracker:
+    esp32_ble_tracker:
 
-  ble_client:
-    - mac_address: FF:FF:20:00:0F:15
-      id: itag_black
+    ble_client:
+      - mac_address: FF:FF:20:00:0F:15
+        id: itag_black
 
 Configuration variables:
 ------------------------
@@ -65,11 +66,11 @@ This automation is triggered when the client connects to the BLE device.
 
 .. code-block:: yaml
 
-  ble_client:
-    - mac_address: 11:22:33:44:55:66
-      then:
-        - lambda: |-
-          ESP_LOGD("ble_client_lambda", "Connected to BLE device");
+    ble_client:
+      - mac_address: 11:22:33:44:55:66
+        then:
+          - lambda: |-
+            ESP_LOGD("ble_client_lambda", "Connected to BLE device");
 
 .. _ble_client-on_disconnect:
 
@@ -80,11 +81,11 @@ This automation is triggered when the client disconnects from a BLE device.
 
 .. code-block:: yaml
 
-  ble_client:
-    - mac_address: 11:22:33:44:55:66
-      then:
-        - lambda: |-
-          ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
+    ble_client:
+      - mac_address: 11:22:33:44:55:66
+        then:
+          - lambda: |-
+            ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
 
 BLE Overview
 ------------
@@ -160,41 +161,41 @@ display them in the log:
 
 .. code-block:: text
 
- [18:24:56][D][ble_client:043]: Found device at MAC address [FC:58:FA:B1:F8:93]
- [18:24:56][I][ble_client:072]: Attempting BLE connection to fc:58:fa:b1:f8:93
- [18:24:56][I][ble_client:097]: [fc:58:fa:b1:f8:93] ESP_GATTC_OPEN_EVT
- [18:24:57][I][ble_client:143]: Service UUID: 0x1800
- [18:24:57][I][ble_client:144]:   start_handle: 0x1  end_handle: 0x5
- [18:24:57][I][ble_client:305]:  characteristic 0x2A00, handle 0x3, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A01, handle 0x5, properties 0x2
- [18:24:57][I][ble_client:143]: Service UUID: 0x1801
- [18:24:57][I][ble_client:144]:   start_handle: 0x6  end_handle: 0x6
- [18:24:57][I][ble_client:143]: Service UUID: 0x180A
- [18:24:57][I][ble_client:144]:   start_handle: 0x7  end_handle: 0x19
- [18:24:57][I][ble_client:305]:  characteristic 0x2A29, handle 0x9, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A24, handle 0xb, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A25, handle 0xd, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A27, handle 0xf, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A26, handle 0x11, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A28, handle 0x13, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A23, handle 0x15, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A2A, handle 0x17, properties 0x2
- [18:24:57][I][ble_client:305]:  characteristic 0x2A50, handle 0x19, properties 0x2
- [18:24:57][I][ble_client:143]: Service UUID: F000FFC0045140-00B0-0000-0000-000000
- [18:24:57][I][ble_client:144]:   start_handle: 0x1a  end_handle: 0x22
- [18:24:57][I][ble_client:305]:  characteristic F000FFC1045140-00B0-0000-0000-000000, handle 0x1c, properties 0x1c
- [18:24:57][I][ble_client:343]:    descriptor 0x2902, handle 0x1d
- [18:24:57][I][ble_client:343]:    descriptor 0x2901, handle 0x1e
- [18:24:57][I][ble_client:305]:  characteristic F000FFC2045140-00B0-0000-0000-000000, handle 0x20, properties 0x1c
- [18:24:57][I][ble_client:343]:    descriptor 0x2902, handle 0x21
- [18:24:57][I][ble_client:343]:    descriptor 0x2901, handle 0x22
- [18:24:57][I][ble_client:143]: Service UUID: 0xFFE0
- [18:24:57][I][ble_client:144]:   start_handle: 0x23  end_handle: 0x26
- [18:24:57][I][ble_client:305]:  characteristic 0xFFE1, handle 0x25, properties 0x10
- [18:24:57][I][ble_client:343]:    descriptor 0x2902, handle 0x26
- [18:24:57][I][ble_client:143]: Service UUID: 0x1802
- [18:24:57][I][ble_client:144]:   start_handle: 0x27  end_handle: 0x29
- [18:24:57][I][ble_client:305]:  characteristic 0x2A06, handle 0x29, properties 0x4
+    [18:24:56][D][ble_client:043]: Found device at MAC address [FC:58:FA:B1:F8:93]
+    [18:24:56][I][ble_client:072]: Attempting BLE connection to fc:58:fa:b1:f8:93
+    [18:24:56][I][ble_client:097]: [fc:58:fa:b1:f8:93] ESP_GATTC_OPEN_EVT
+    [18:24:57][I][ble_client:143]: Service UUID: 0x1800
+    [18:24:57][I][ble_client:144]:   start_handle: 0x1  end_handle: 0x5
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A00, handle 0x3, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A01, handle 0x5, properties 0x2
+    [18:24:57][I][ble_client:143]: Service UUID: 0x1801
+    [18:24:57][I][ble_client:144]:   start_handle: 0x6  end_handle: 0x6
+    [18:24:57][I][ble_client:143]: Service UUID: 0x180A
+    [18:24:57][I][ble_client:144]:   start_handle: 0x7  end_handle: 0x19
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A29, handle 0x9, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A24, handle 0xb, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A25, handle 0xd, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A27, handle 0xf, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A26, handle 0x11, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A28, handle 0x13, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A23, handle 0x15, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A2A, handle 0x17, properties 0x2
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A50, handle 0x19, properties 0x2
+    [18:24:57][I][ble_client:143]: Service UUID: F000FFC0045140-00B0-0000-0000-000000
+    [18:24:57][I][ble_client:144]:   start_handle: 0x1a  end_handle: 0x22
+    [18:24:57][I][ble_client:305]:  characteristic F000FFC1045140-00B0-0000-0000-000000, handle 0x1c, properties 0x1c
+    [18:24:57][I][ble_client:343]:    descriptor 0x2902, handle 0x1d
+    [18:24:57][I][ble_client:343]:    descriptor 0x2901, handle 0x1e
+    [18:24:57][I][ble_client:305]:  characteristic F000FFC2045140-00B0-0000-0000-000000, handle 0x20, properties 0x1c
+    [18:24:57][I][ble_client:343]:    descriptor 0x2902, handle 0x21
+    [18:24:57][I][ble_client:343]:    descriptor 0x2901, handle 0x22
+    [18:24:57][I][ble_client:143]: Service UUID: 0xFFE0
+    [18:24:57][I][ble_client:144]:   start_handle: 0x23  end_handle: 0x26
+    [18:24:57][I][ble_client:305]:  characteristic 0xFFE1, handle 0x25, properties 0x10
+    [18:24:57][I][ble_client:343]:    descriptor 0x2902, handle 0x26
+    [18:24:57][I][ble_client:143]: Service UUID: 0x1802
+    [18:24:57][I][ble_client:144]:   start_handle: 0x27  end_handle: 0x29
+    [18:24:57][I][ble_client:305]:  characteristic 0x2A06, handle 0x29, properties 0x4
 
 
 The discovered services can then be used to enable and configure other

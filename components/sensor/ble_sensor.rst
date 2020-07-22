@@ -13,19 +13,19 @@ For more information on BLE services and characteristics, see
 
 .. code-block:: yaml
 
-  esp32_ble_tracker:
+    esp32_ble_tracker:
 
-  ble_client:
-    - mac_address: FF:FF:20:00:0F:15
-      id: itag_black
+    ble_client:
+      - mac_address: FF:FF:20:00:0F:15
+        id: itag_black
 
-  sensor:
-    ble_client_id: itag_black
-    name: "iTag battery level"
-    service_uuid: '180f'
-    char_uuid: '2a19'
-    icon: 'mdi:battery'
-    unit_of_measurement: '%'
+    sensor:
+      ble_client_id: itag_black
+      name: "iTag battery level"
+      service_uuid: '180f'
+      char_uuid: '2a19'
+      icon: 'mdi:battery'
+      unit_of_measurement: '%'
 
 Configuration variables:
 ------------------------
