@@ -142,8 +142,7 @@ Setting Up Devices
 
 Whilst the component can connect to most BLE devices (that do not
 require authentication/pin), useful functionality is only obtained
-through dependent components, such as :doc:`/components/sensor/ble_sensor` or
-:doc:`/components/binary_sensor/ble_button`.
+through dependent components, such as :doc:`/components/sensor/ble_sensor`.
 See the documentation for these components for details on setting up
 specific devices.
 
