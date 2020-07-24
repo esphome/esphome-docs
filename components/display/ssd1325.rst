@@ -58,7 +58,8 @@ Configuration Variables
   - ``SSD1327 128x128`` **# Note the number seven!**
 
 - **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
+  The CS line can be connected to GND if this is the only device on the SPI bus.
 - **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
