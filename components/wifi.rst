@@ -67,7 +67,7 @@ Configuration variables:
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
-  
+
 - **output_power** (*Optional*, string): The amount of TX power for the WiFi interface from 10dB to 20.5dB. Default for ESP8266 is 20dB, 20.5dB might cause unexpected restarts.
 - **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
@@ -198,18 +198,9 @@ These are advanced settings and you will usually need to consult your enterprise
           password: VerySafePassword
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
-          certificate_authority: |
-            -----BEGIN CERTIFICATE-----
-            ...
-            -----END CERTIFICATE-----
-          certificate: |
-            -----BEGIN CERTIFICATE-----
-            ...
-            -----END CERTIFICATE-----
-          key: |
-            -----BEGIN PRIVATE KEY-----
-            ...
-            -----END PRIVATE KEY-----
+          certificate_authority: ca_cert.pem
+          certificate: cert.pem
+          key: key.pem
 
 Configuration variables:
 
@@ -218,9 +209,9 @@ Configuration variables:
 - **username** (*Optional*, string): The username to present to the authenticating server.
 - **password** (*Optional*, string): The password to present to the authentication server.
   For EAP-TLS this password may be set to decrypt to private key instead.
-- **certificate_authority** (*Optional*, block): A PEM encoded certificate to use when validating the authentication server.
-- **certificate** (*Optional*, block): A PEM encoded certificate to use for EAP-TLS authentication.
-- **key** (*Optional*, block): A PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
+- **certificate_authority** (*Optional*, string): Path to a PEM encoded certificate to use when validating the authentication server.
+- **certificate** (*Optional*, string): Path to a PEM encoded certificate to use for EAP-TLS authentication.
+- **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
   Optionally encrypted with ``password``.
 
 .. _wifi-connected_condition:
