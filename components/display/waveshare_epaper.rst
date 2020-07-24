@@ -66,8 +66,7 @@ configuration.
 Configuration variables:
 ------------------------
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
-  The CS line can be connected to GND if this is the only device on the SPI bus.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **model** (**Required**): The model of the E-Paper display. Options are:
 
