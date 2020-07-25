@@ -313,9 +313,6 @@ Climate Components
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
-    Coolix IR Remote, components/climate/coolix, air-conditioner.svg
-    TCL112 IR Remote, components/climate/tcl112, air-conditioner.svg
-    Yashima IR Remote, components/climate/yashima, air-conditioner.svg
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
