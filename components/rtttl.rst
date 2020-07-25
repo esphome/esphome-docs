@@ -23,8 +23,7 @@ a passive one and this library will not work properly.
 
 The tone generator needs a PWM capable output to work with, currently only the
 :doc:`ESP8266 Software PWM Output<output/esp8266_pwm>` and
-:doc:`ESP32 LEDC Output <output/ledc>` are supported, i.e. outputs from port expanders boards like the
-:doc:`PCA9685 <output/pca9685>` are not supported for this component.
+:doc:`ESP32 LEDC Output <output/ledc>` are supported.
 
 .. code-block:: yaml
 
