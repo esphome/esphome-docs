@@ -792,7 +792,7 @@ using script modes ``single`` and ``restart`` respectively.
                         # the latest time the script is executed
       then:
         - light.turn_on: hallway_light
-        - dealy: 1 min
+        - delay: 1 min
         - light.turn_off: hallway_light
 
     ...
