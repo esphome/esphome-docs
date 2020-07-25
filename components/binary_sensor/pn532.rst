@@ -47,8 +47,8 @@ to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin**
 Configuration variables:
 ************************
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
-  The CS line can be connected to GND if this is the only device on the SPI bus.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
+  is connected to.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the PN532. This affects the
   duration that the individual binary sensors stay active when they're found.
   If a device is not found within this time window, it will be marked as not present. Defaults to 1s.
