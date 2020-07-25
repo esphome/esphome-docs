@@ -635,8 +635,8 @@ Configuration options:
     - ``queued``: Start a new run after previous runs complete.
     - ``parallel``: Start a new, independent run in parallel with previous runs.
 
-- **max_runs** (*Optional*, integer): Controls maximum number of runs executing and/or
-  queued up to run at a time. Only valid with modes ``queued`` and ``parallel``. Defaults to ``10``.
+- **max_runs** (*Optional*, integer): Allows limiting the maxiumun number of runs when using script
+  modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
 - **then** (**Required**, :ref:`config-action`): The action to perform.
 
 
