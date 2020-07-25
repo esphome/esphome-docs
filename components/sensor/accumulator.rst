@@ -58,12 +58,12 @@ the amount of writes to the flash memory.
 
 .. code-block:: yaml
 
-  - platform: accumelator
-    name: "Total Energy"
-    sensor: my_energy_meter
-    min_time_interval: 30s
-    max_value_interval: 100
-    max_time_interval: 20min
+    - platform: accumelator
+      name: "Total Energy"
+      sensor: my_energy_meter
+      min_time_interval: 30s
+      max_value_interval: 100
+      max_time_interval: 20min
 
 
 In the example abve, the current value is saved to the flash memory when it has changed by at least 
