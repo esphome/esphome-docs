@@ -787,7 +787,7 @@ using script modes ``single`` and ``restart`` respectively.
 .. code-block:: yaml
 
     script:
-      id: hallway_light_script
+    - id: hallway_light_script
       mode: restart     # Light will be kept on during 1 minute since
                         # the latest time the script is executed
       then:
