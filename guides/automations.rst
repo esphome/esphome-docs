@@ -627,8 +627,8 @@ Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the script. Use this
   to interact with the script using the script actions.
-- **mode** (*Optional*, string): Controls what happens when script is
-  invoked while it is still running from one or more previous invocations, default to ``single``.
+- **mode** (*Optional*, string): Controls what happens when a script is
+  invoked while it is still running from one or more previous invocations. Default to ``single``.
 
     - ``single``: Do not start a new run. Issue a warning.
     - ``restart``: Start a new run after first stopping previous run.
