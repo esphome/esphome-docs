@@ -9,8 +9,10 @@ The ``partition`` light platform allows you to combine multiple addressable ligh
 (like :doc:`fastled` or :doc:`neopixelbus`) into a single addressable light.
 This platform also allows splitting up an addressable lights into multiple segments, so that
 segments can be individually controlled.
-
 Similarly, a single light strip can be partitioned into multiple partitions with this integration.
+
+
+Combining multiple led stripes into one with segments:
 
 .. code-block:: yaml
 
@@ -27,11 +29,46 @@ Similarly, a single light strip can be partitioned into multiple partitions with
           - id: light2
             from: 1
             to: 10
-
+            
+      # Example for light segment source
+      - platform: fastled_clockless
+        id: light1
+        # Other settings
+      
       # Example for light segment source
       - platform: fastled_clockless
         id: light2
         # Other settings
+
+
+
+Spliting one Led Stripe into multiple partitions:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    light:
+      - platform: partition
+        name: "Partition Light"
+        segments:
+          # Use first LED from the light with ID light1
+          - id: light1
+            from: 0
+            to: 10
+      - platform: partition
+        name: "Partition Light"
+        segments:
+          # Use first LED from the light with ID light1
+          - id: light1
+            from: 10
+            to: 20
+ 
+
+      # Example for light segment source
+      - platform: fastled_clockless
+        id: light1
+        # Other settings
+
 
 Configuration variables:
 ------------------------
