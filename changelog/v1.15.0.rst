@@ -260,7 +260,7 @@ All changes
 - docs: web_server - css_include and js_include: add new options and example :docspr:`459` by :ghuser:`Elkropac`
 - docs: Add new action for TM1651 :docspr:`442` by :ghuser:`freekode`
 - docs: Added equal symbol for MAX7219 7-segment display :docspr:`503` by :ghuser:`egeltje`
-- esphome:  	Added equal symbol for MAX7219 7-segment display :esphomepr:`986` by :ghuser:`egeltje`
+- esphome: Added equal symbol for MAX7219 7-segment display :esphomepr:`986` by :ghuser:`egeltje`
 - esphome: Output from platformio idedata command does not need to be decoded :esphomepr:`953` by :ghuser:`brandond`
 - esphome: Allow custom lights to be addressable :esphomepr:`954` by :ghuser:`brandond`
 - esphome: Fix esphome/issues#947 - RGBW(W) white brightness :esphomepr:`925` by :ghuser:`pauln`
