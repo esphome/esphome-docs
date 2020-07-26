@@ -148,7 +148,7 @@ if the ``target_temperature_low`` set point is 20 °C, and the (default) hystere
 by ``target_temperature_high``, is set to 22 °C, ``cool_action`` would be called at 22.5 °C and ``idle_action`` called
 at 21.5 °C. Again, it is essentially two bang-bang controllers in one.
 
-Great. But what if you do not have a dual-function system?
+Behavioral differences aside, there is another important difference between these two components: user interface.
 
 User Interface
 **************
