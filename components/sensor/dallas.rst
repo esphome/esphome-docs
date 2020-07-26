@@ -42,23 +42,6 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **auto_setup_sensors** (*Optional*, boolean): Instruct the hub component to automatically setup and 
-  configure discovered Dallas sensors. See :ref:`dallas-auto_setup_sensors`.
-  Defaults to ``False``
-- **sensor_name_template** (*Optional*, string): Automatically generated sensors will dynamically receive 
-  a ``name`` formatted through this format string ( See c std library ``printf`` for syntax).
-  The internal hub code provides 2 arguments to the printf expression: the node name and the sensor hex address.
-  Defaults to '%s.%s'
-- **resolution** (*Optional*, int): An optional resolution for automatically generated sensors. 
-  Defaults to the maximum for most Dallas temperature sensors: 12.
-- **unit_of_measurement** (*Optional*, string): Manually set the unit
-  of measurement the automatically generated sensor should advertise its values with. This does
-  not actually do any maths (conversion between units).
-  Defaults to '°C'
-- **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
-  Defaults to 'mdi:thermometer'
-- **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
-  Defaults to 1
 
 .. _dallas-sensor:
 
@@ -160,43 +143,6 @@ Next, individually warm up or cool down the sensors and observe the log again.
 You will see the outputted sensor values changing when they're being warmed.
 When you're finished mapping each address to a name, just change the ``Temperature #1``
 to your assigned names and you should be ready.
-
-.. _dallas-auto_setup_sensors:
-
-Automatic Sensors Setup
-***********************
-
-You would normally setup your sensors by explicitly declaring them with their `address`
-according to the :ref:`dallas-sensor` section. This way you have to know the
-specific sensor address to configure beforehand (or by using the debug log exposed by the 
-`dallas` hub - See :ref:`dallas-getting-ids`). The option to use the sensor `index` too 
-is not reliable as stated in the section.
-With automatic sensor setup instead you will not need any address information beforehand since
-the dallas hub component will automatically instantiate every sensor attached to the bus during 
-the initial discovery process. This way you can attach any sensor to the bus and see it inside 
-the fontend as soon as the node initializes itself (during boot then - no hot-plug here!).
-The sensors generated through this model will receive a default setup as configured 
-in :ref:`dallas-component`. The relevant option here is `sensor_name_template` which allows for a
-dynamically generated sensor name according to the format string provided. The formatting function
-receives two string arguments (c code here): the `device_name` of the EspHome node and 
-the hex `address` of the discovered sensor
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    dallas:
-      - pin: GPIO1
-        auto_setup_sensors: true
-        sensor_name_template: '%s.Temperature %s'
-        resolution: 9
-
-This code block example shows how to provide a basic configuration. Every sensor here will
-be set to a 9 bit resolution and the name following the example would be something like
-'my_awesome_node.Temperature BE0316838979FF28'.
-Automatically detected sensors will not conflict with static ones configured in 
-:ref:`Sensor <dallas-sensor>`. If during initialization any sensor address matches a 
-configured one through :ref:`Sensor <dallas-sensor>` the latter configuration will prevail. This way
-you can still provide custom settings (i.e. filters or so) for very specific sensors.
 
 See Also
 --------
