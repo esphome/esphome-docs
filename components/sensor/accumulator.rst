@@ -17,7 +17,7 @@ to value of the source sensor and reported as the value of the accumelator.
 
     # Example configuration entry
     sensor:
-      - platform: accumelator
+      - platform: accumulator
         name: "Total Energy"
         sensor: my_energy_meter
 
