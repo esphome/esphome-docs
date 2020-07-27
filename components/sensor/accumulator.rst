@@ -10,7 +10,7 @@ This can for example be useful to keep track of the total amount of consumed ene
 over a power cycle or reboot.
 
 The last reported value of this sensor is continuously stored on the device. After a reboot this value is added 
-to value of the source sensor and reported as the value of the accumelator.
+to value of the source sensor and reported as the value of the accumulator.
 
 
 .. code-block:: yaml
