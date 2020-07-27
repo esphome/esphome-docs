@@ -5,11 +5,11 @@ Accumulator Sensor
     :description: Instructions for setting up sensors that Accumelates values.
     :image: sigma.png
 
-The ``accumelator`` sensor is a helper sensor that can accumelator values from other sensors.
-This can for example be useful to keep track of the total consumed energy or water, even
+The ``accumelator`` sensor is a helper sensor that can accumelate values from other sensors.
+This can for example be useful to keep track of the total amount of consumed energy or water, even
 over a power cycle or reboot.
 
-The last reorted value is continuously stored on the device. After a reboot this value is added 
+The last reported value of this sensor is continuously stored on the device. After a reboot this value is added 
 to value of the source sensor and reported as the value of the accumelator.
 
 
@@ -35,10 +35,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the accumelator sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-- **reset** (*Optional*, boolean): Forces the sensor to be reset to ``reset_value`` when the module start. 
-  This can be used to re-syncronize the counter when needed. Defaults to ``false``.
-- **reset_value** (*Optional*, float): The value to reset the sensor to.
-
+- **reset_value** (*Optional*, float): If set, the stored value will be reset to this value when the device starts.
 
 - **min_time_interval** (*Optional*): The minimum time between two saves
 - **max_value_interval** (*Optional*): The maximum interval the value is allowed to change 
@@ -50,10 +47,10 @@ Configuration variables:
 .. _sensor-accumelator-reset_action:
 
 
-Throttele saving to flash
--------------------------
+Throttel saving to flash
+------------------------
 
-To prevent the flash memory from wearing out to fast the accumelator can be configured to limit
+To prevent the flash memory from wearing out to fast, the accumelator can be configured to limit
 the amount of writes to the flash memory.
 
 .. code-block:: yaml
@@ -66,8 +63,8 @@ the amount of writes to the flash memory.
       max_time_interval: 20min
 
 
-In the example abve, the current value is saved to the flash memory when it has changed by at least 
-100 since the last save AND 30 seconds have passed. It will also be saved at least every 20 minutes (if changed).
+In the example above, the current value is saved to the flash memory when it has changed by at least 
+100 since the last save AND at least 30 seconds have passed. It will also be saved at least every 20 minutes (if changed).
 
 
 ``sensor.accumelator.reset`` Action
