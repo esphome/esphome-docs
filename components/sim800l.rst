@@ -40,6 +40,9 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
 
+    logger:
+      baud_rate: 0 # disable uart logger on esp 8266
+
 Configuration variables:
 ------------------------
 

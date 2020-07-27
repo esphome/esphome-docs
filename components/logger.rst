@@ -159,6 +159,35 @@ Configuration options:
 -  **tag** (*Optional*, string): The tag (seen in front of the message in the logs) to print the message
    with. Defaults to ``main``.
 
+Logger Automation
+-----------------
+
+.. _logger-on_message:
+
+``on_message``
+**************
+
+This automation will be triggered when a new message is added to the log.
+In :ref:`lambdas <config-lambda>` you can get the message, log level and tag from the trigger
+using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const char *``).
+
+.. code-block:: yaml
+
+    logger:
+      # ...
+      on_message:
+        level: ERROR
+        then:
+          - mqtt.publish:
+              topic: some/topic
+              payload: !lambda |-
+                return "Triggered on_message with level " + std::to_string(level) + ", tag " + tag + " and message " + message;
+
+.. note::
+
+    Logging will not work in the ``on_message`` trigger. You can't use the :ref:`logger.log <logger-log_action>` action  
+    and the ``ESP_LOGx`` logging macros in this automation.
+
 See Also
 --------
 

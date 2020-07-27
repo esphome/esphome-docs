@@ -43,6 +43,8 @@ to some pins on your board and the baud rate set to 9600.
           name: "PZEM-004T Voltage"
         power:
           name: "PZEM-004T Power"
+        energy:
+          name: "PZEM-004T Energy"
         update_interval: 60s
 
 Configuration variables:

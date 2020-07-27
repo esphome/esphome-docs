@@ -39,6 +39,8 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`UART bus <uart>` you wish to use for this display.
   Use this if you want to use multiple UART buses at once.
+- **brightness** (*Optional*, percentage): Set the screen brightness. Must be in range
+  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to ``100%``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the nextion display.
   See :ref:`display-nextion_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to call the lambda to update the display.

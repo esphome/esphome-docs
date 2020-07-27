@@ -57,7 +57,7 @@ def write_version(version: Version):
     sub(
         'Makefile',
         r'ESPHOME_REF = .*',
-        f'ESPHOME_REF = v{version}'
+        f'ESPHOME_REF = v{version}' if not version.dev else f'ESPHOME_REF = dev'
     )
     # PROJECT_NUMBER         = 1.14.4
     sub(

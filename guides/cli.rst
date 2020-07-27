@@ -11,7 +11,7 @@ ESPHome's command line interface always has the following format
 
 .. code-block:: console
 
-    esphome <CONFIGURATION...> <COMMAND> [ARGUMENTS]
+    esphome [OPTIONS] <CONFIGURATION...> <COMMAND> [ARGUMENTS]
 
 .. note::
 
@@ -22,6 +22,30 @@ ESPHome's command line interface always has the following format
 
         esphome livingroom.yaml kitchen.yaml run
 
+``--verbose`` Option
+--------------------
+
+.. option:: -v|--verbose
+
+    Enable verbose esphome logs.
+
+``--quiet`` Option
+------------------
+
+.. option:: -q|--quiet
+
+    Disable all esphome logs.
+
+``--substitution`` Option
+-------------------------
+
+*(can be issued multiple times)*
+
+.. option:: -s|--substitution KEY VALUE
+
+    Defines or overrides substitution KEY with value VALUE.
+
+Please see :ref:`command line substitutions <command-line-substitutions>` for details.
 
 ``run`` Command
 ---------------
