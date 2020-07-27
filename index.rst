@@ -353,6 +353,7 @@ Misc Components
     Tuya MCU, components/tuya, tuya.png
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
+    Prometheus, components/prometheus, prometheus.svg
 
 Additional Custom Components
 ----------------------------

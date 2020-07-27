@@ -50,7 +50,6 @@ Configuration variables:
   - **username** (**Required**, string): The username to use for authentication.
   - **password** (**Required**, string): The password to check for authentication.
 
-- **prometheus** (*Optional*, boolean): Enable the prometheus-endpoint. See :ref:`prometheus-exporter`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. note::
@@ -65,7 +64,6 @@ Configuration variables:
           auth:
             username: admin
             password: !secret web_server_password
-          prometheus: true
 
     Example web_server configuration with CSS and JS included from esphome-docs.
     CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
@@ -80,36 +78,9 @@ Configuration variables:
           js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
           js_url: ""
 
-
-.. _prometheus-exporter:
-
-Prometheus Exporter:
---------------------
-
-The webserver can provide an `Prometheus <https://prometheus.io/>`__-Exporter under ``/metrics``.
-
-This can be used to scrape data directly into your Prometheus-based monitoring and alerting-system,
-without the need of any other software.
-
-The prometheus-endpoint is activated by setting ``prometheus: true`` in the ``web_server``-area of
-the configuration.
-
-The list of available metrics can be found by directly browsing your node under
-``<ip or node_name.local>/metrics``, and may be increased in the future.
-
-.. note::
-
-    Example integration into the configuration of your prometheus:
-
-    .. code-block:: yaml
-
-        scrape_configs:
-          - job_name: esphome
-            static_configs:
-              - targets: [<ip or node_name.local>]
-
 See Also
 --------
 
 - :apiref:`web_server/web_server.h`
+- :doc:`prometheus`
 - :ghedit:`Edit`
