@@ -91,7 +91,7 @@ Sensor Components
 .. imgtable::
 
     Sensor Core, components/sensor/index, folder-open.svg
-    Accumelator, components/sensor/accumulator, sigma.svg
+    Accumulator, components/sensor/accumulator, sigma.svg
     ADC, components/sensor/adc, flash.svg
     ADE7953, components/sensor/ade7953, ade7953.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg

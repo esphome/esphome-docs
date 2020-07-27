@@ -2,7 +2,7 @@ Accumulator Sensor
 ==================
 
 .. seo::
-    :description: Instructions for setting up sensors that Accumelates values.
+    :description: Instructions for setting up sensors that Accumulates values.
     :image: sigma.png
 
 The ``accumulator`` sensor is a helper sensor that can accumulate values from other sensors.
@@ -32,7 +32,7 @@ Configuration variables:
 ------------------------
 
 - **sensor** (**Required**, :ref:`config-id`): The ID of the sensor to monitor.
-- **name** (**Required**, string): The name of the accumelator sensor.
+- **name** (**Required**, string): The name of the accumulator sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 - **reset_value** (*Optional*, float): If set, the stored value will be reset to this value when the device starts.
@@ -44,18 +44,18 @@ Configuration variables:
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
-.. _sensor-accumelator-reset_action:
+.. _sensor-accumulator-reset_action:
 
 
-Throttel saving to flash
+Throttle saving to flash
 ------------------------
 
-To prevent the flash memory from wearing out to fast, the accumelator can be configured to limit
+To prevent the flash memory from wearing out too fast, the accumulator can be configured to limit
 the amount of writes to the flash memory.
 
 .. code-block:: yaml
 
-    - platform: accumelator
+    - platform: accumulator
       name: "Total Energy"
       sensor: my_energy_meter
       min_time_interval: 30s
@@ -67,21 +67,21 @@ In the example above, the current value is saved to the flash memory when it has
 100 since the last save AND at least 30 seconds have passed. It will also be saved at least every 20 minutes (if changed).
 
 
-``sensor.accumelator.reset`` Action
+``sensor.accumulator.reset`` Action
 -----------------------------------
 
-This :ref:`Action <config-action>` allows you to reset the value of the accumelator sensor
-to zero. For example this can be used to reset the accumelator sensor to zero at midnight with
+This :ref:`Action <config-action>` allows you to reset the value of the accumulator sensor
+to zero. For example this can be used to reset the accumulator sensor to zero at midnight with
 a time-based automation.
 
 .. code-block:: yaml
 
     on_...:
-      - sensor.accumelator.reset:  my_accumelator_sensor
+      - sensor.accumulator.reset:  my_accumulator_sensor
 
 See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`accumelator/accumelatorsensor.h`
+- :apiref:`accumulator/accumulator_sensor.h`
 - :ghedit:`Edit`
