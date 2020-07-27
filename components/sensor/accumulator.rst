@@ -5,7 +5,7 @@ Accumulator Sensor
     :description: Instructions for setting up sensors that Accumelates values.
     :image: sigma.png
 
-The ``accumelator`` sensor is a helper sensor that can accumelate values from other sensors.
+The ``accumulator`` sensor is a helper sensor that can accumulate values from other sensors.
 This can for example be useful to keep track of the total amount of consumed energy or water, even
 over a power cycle or reboot.
 
