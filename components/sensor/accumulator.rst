@@ -37,10 +37,10 @@ Configuration variables:
 
 - **reset_value** (*Optional*, float): If set, the stored value will be reset to this value when the device starts.
 
-- **min_time_interval** (*Optional*): The minimum time between two saves
-- **max_value_interval** (*Optional*): The maximum interval the value is allowed to change 
-  before it is saved at the ``next min_time_interval``
-- **max_time_interval** (*Optional*): The maximum time between saves
+- **save_on_value_delta** (*Optional*, float): The maximum amount the value is allowed to change 
+  before it is saved after at least ``save_min_interval``
+- **save_min_interval** (*Optional*): The minimum time between two saves
+- **save_max_interval** (*Optional*): The maximum time between saves
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -58,13 +58,14 @@ the amount of writes to the flash memory.
     - platform: accumulator
       name: "Total Energy"
       sensor: my_energy_meter
-      min_time_interval: 30s
-      max_value_interval: 100
-      max_time_interval: 20min
+      save_on_value_delta: 100
+      save_min_interval: 30s
+      save_max_interval: 20min
 
 
 In the example above, the current value is saved to the flash memory when it has changed by at least 
-100 since the last save AND at least 30 seconds have passed. It will also be saved at least every 20 minutes (if changed).
+100 since the last save AND at least 30 seconds have passed. It will also be saved at least every 
+20 minutes (if changed).
 
 
 ``sensor.accumulator.reset`` Action
