@@ -23,7 +23,11 @@ Changelog - Version 1.15.0 - Release Date TBD
     Slow PWM, components/output/slow_pwm, pwm.png
     ESP32 DAC, components/output/esp32_dac, dac.svg
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
-    Tuya Fan, components/fan/tuya, fan.svg
+    Tuya Fan, components/fan/tuya, tuya.png
+    Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
+    Tuya Sensor, components/sensor/tuya, tuya.png
+    Tuya Switch, components/switch/tuya, tuya.png
+    Tuya Climate, components/climate/tuya, tuya.png
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
     TM1637, components/display/tm1637, tm1637.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
@@ -92,6 +96,19 @@ New Integrations
 - esphome: Adding support for MAX31856 Thermocouple Temperature Sensor (feature #700) :esphomepr:`1039` by :ghuser:`declanshanaghy` (new-integration)
 - esphome: Add E1.31 support :esphomepr:`950` by :ghuser:`ayufan` (new-integration)
 - esphome: add support for SN74HC595 shift register :esphomepr:`1083` by :ghuser:`phjr` (new-integration)
+
+Beta Fixes
+----------
+
+- esphome: Mitigate CVE-2020-12638 WiFi WPA Downgrade :esphomepr:`1207`
+- esphome: ESP8266 change recommended framework version to 2.7.2 :esphomepr:`1208`
+- esphome: Fix base config should override packages config :esphomepr:`1209`
+- docs: ESP8266 change recommended framework version to 2.7.2 :docspr:`714`
+- esphome: Fix AS3935 sensor configuration issues :esphomepr:`1210` by :ghuser:`trylika`
+- esphome: Fix prometheus has wrong setup priority :esphomepr:`1211`
+- esphome: Downgrade FastLED to 3.3.2 :esphomepr:`1212`
+- docs: Fix old screenshots :docspr:`716` by :ghuser:`glmnet`
+- docs: Add tuya platforms to changelog table :docspr:`715` by :ghuser:`jesserockz`
 
 TODO: Merge with below
 
