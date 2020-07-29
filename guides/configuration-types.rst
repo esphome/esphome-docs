@@ -28,7 +28,7 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 
 -  … must start with a letter and can end with numbers.
 -  … must not have a space in the name.
--  … can not have special characters except the underscore (“_“).
+-  … can not have special characters except underscore (“_“) and hyphen ("-").
 -  … must not be a keyword.
 
 .. _config-pin:
