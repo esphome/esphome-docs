@@ -3,7 +3,7 @@ ILI9341 TFT LCD
 
 .. seo::
     :description: Instructions for setting up ILI9341 TFT LCD display drivers.
-    :image: 24_ili9341-full.jpg
+    :image: 24-ili9341-full.jpg
 
 .. _ili9341:
 
@@ -17,7 +17,7 @@ displays with ESPHome. Note that this display controller uses a lot of pins even
 is not used. So it's better to used it with an EPS32 though esp8266 might be suitable
 too (with some SPI flash changes). 
 
-.. figure:: images/24_ili9341-full.jpg
+.. figure:: images/24-ili9341-full.jpg
     :align: center
     :width: 75.0%
 
