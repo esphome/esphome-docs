@@ -33,7 +33,7 @@ Changelog - Version 1.15.0 - Release Date TBD
     TM1637, components/display/tm1637, tm1637.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
-    ILI9341, components/display/ili9341, 24_ili9341.jpg
+    ILI9341, components/display/ili9341, 24-ili9341.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
