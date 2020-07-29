@@ -114,6 +114,15 @@ Beta Fixes
 - esphome: Downgrade FastLED to 3.3.2 :esphomepr:`1212`
 - docs: Fix old screenshots :docspr:`716` by :ghuser:`glmnet`
 - docs: Add tuya platforms to changelog table :docspr:`715` by :ghuser:`jesserockz`
+- esphome: Fix sdist missing requirements.txt :esphomepr:`1214`
+- docs: Include new v1.15 components  from diff :docspr:`718` by :ghuser:`glmnet`
+- esphome: renamed icon molecule co2 :esphomepr:`1217` by :ghuser:`glmnet`
+- esphome: Add job to update HassIO addon repo :esphomepr:`1218`
+- esphome: Stop infinite loop in light on_turn_on :esphomepr:`1219` by :ghuser:`WizKid`
+- esphome: Bump ESPAsyncWebServer-esphome to v1.2.7 :esphomepr:`1221`
+- docs: Added hint that not the subsensor id is meant. :docspr:`720` by :ghuser:`ei-ke`
+- esphome: wpa2 enterprise fixes: also copy eap parameters, don't require psk password to be set :esphomepr:`1215` by :ghuser:`dr-oblivium`
+- esphome: Bump base image to 2.4.1 :esphomepr:`1224`
 
 TODO: Merge with below
 
