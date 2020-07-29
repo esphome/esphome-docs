@@ -1,0 +1,123 @@
+ILI9341 TFT LCD
+===============
+
+.. seo::
+    :description: Instructions for setting up ILI9341 TFT LCD display drivers.
+    :image: 24_ili9341-full.jpg
+
+.. _ili9341:
+
+Usage
+-----
+
+The ``ili9341`` display platform allows you to use
+ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
+`Ali model used <https://s.click.aliexpress.com/e/_dTKH6Mt>`__)
+displays with ESPHome. Note that this display controller uses a lot of pins even if touch
+is not used. So it's better to used it with an EPS32 though esp8266 might be suitable
+too (with some SPI flash changes). 
+
+.. figure:: images/24_ili9341-full.jpg
+    :align: center
+    :width: 75.0%
+
+    ILI9341 common display
+
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry
+    display:
+      - platform: ili9341
+        model: TFT_2.4
+        cs_pin: 14
+        dc_pin: 27
+        # led_pin: 32 // you may use it with a constant brightness but there is a better way
+        reset_pin: 33
+        rotation: 0
+        
+        lambda: |-
+          it.fill(ili9341::BLACK);
+          it.print(0, 0, id(font), "Hello World!");
+    
+Configuration variables
+***********************
+
+- **led_pin** (:ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
+- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
+  by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
+  See :ref:`display-engine` for more information.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
+- **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+Configuration examples
+**********************
+
+As of version 1.15, ESPHome supports color displays. To utilize the color capabilities of this display
+module, you'll likely want to add a ``color:`` section to your YAML configuration; please see
+:ref:`color <config-color>` for more detail on this configuration section.
+
+To use colors in your lambada:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 3%
+        blue: 5%
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red);
+
+
+To bring in color images:
+
+.. code-block:: yaml
+
+    image:
+      - file: "image.jpg"
+        id: my_image
+        resize: 200x200
+        type: RGB565
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.image(0, 0, id(my_image));
+
+
+To use a dimmable backlight:
+
+.. code-block:: yaml
+
+    output:
+      - platform: ledc
+        pin: 32
+        id: gpio_32
+
+    # Example of using dimmable backlight
+    light:
+      - platform: monochromatic
+        output: gpio_32
+        name: "Backlight Light"
+        id: bk_light
+        restore_mode: ALWAYS_ON 
+
+See Also
+--------
+
+- :doc:`index`
+- :apiref:`st7789v_base/st7789v_base.h`
+- :ghedit:`Edit`
