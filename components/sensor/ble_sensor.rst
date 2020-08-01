@@ -23,7 +23,7 @@ For more information on BLE services and characteristics, see
       ble_client_id: itag_black
       name: "iTag battery level"
       service_uuid: '180f'
-      char_uuid: '2a19'
+      characteristic_uuid: '2a19'
       icon: 'mdi:battery'
       unit_of_measurement: '%'
 
@@ -33,8 +33,8 @@ Configuration variables:
 - **ble_client_id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
 - **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 - **service_uuid** (**Required**, UUID): UUID of the service on the device.
-- **char_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
-- **descr_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
+- **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
+- **descriptor_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
 - **notify** (*Optional*, boolean): Instruct the server to send notifications for this
   characteristic.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
@@ -66,13 +66,13 @@ device logs for those that are found on the device.
 
 Some common ones:
 
-+----------+--------+-----------------------+
-| Service  | Char   | Description           |
-+==========+========+=======================+
-| 180F     | 2A19   | Battery level         |
-+----------+--------+-----------------------+
-| 181A     | 2A6F   | Humidity              |
-+----------+--------+-----------------------+
++----------+------------------+-----------------------+
+| Service  | Characteristic   | Description           |
++==========+==================+=======================+
+| 180F     | 2A19             | Battery level         |
++----------+------------------+-----------------------+
+| 181A     | 2A6F             | Humidity              |
++----------+------------------+-----------------------+
 
 
 See Also

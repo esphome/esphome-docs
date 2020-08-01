@@ -68,6 +68,7 @@ This automation is triggered when the client connects to the BLE device.
 
     ble_client:
       - mac_address: 11:22:33:44:55:66
+        id: ble_itag
         then:
           - lambda: |-
             ESP_LOGD("ble_client_lambda", "Connected to BLE device");
@@ -83,6 +84,7 @@ This automation is triggered when the client disconnects from a BLE device.
 
     ble_client:
       - mac_address: 11:22:33:44:55:66
+        id: ble_itag
         then:
           - lambda: |-
             ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
