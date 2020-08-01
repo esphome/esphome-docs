@@ -201,7 +201,7 @@ display them in the log:
 
 The discovered services can then be used to enable and configure other
 ESPHome components, for example Service UUID 0xFFE0 is used for iTag style
-keychain button events, used by the :doc:`/components/binary_sensor/ble_button` component.
+keychain button events, used by the :doc:`/components/sensor/ble_sensor` component.
 
 See Also
 --------
