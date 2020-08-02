@@ -6,7 +6,7 @@ ESP32 Bluetooth Low Energy Device
     :image: bluetooth.png
 
 The ``ble_presence`` binary sensor platform lets you track the presence of a
-bluetooth low energy device.
+Bluetooth Low Energy device.
 
 .. figure:: images/esp32_ble-ui.png
     :align: center

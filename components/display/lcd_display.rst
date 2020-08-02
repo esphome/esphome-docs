@@ -165,8 +165,8 @@ The backlight can draw more power than the microcontroller output pins can suppl
 a transistor as a switch to control the power for the backlight pins.
 
 With the ``lcd_pcf8574`` the backlight can be turned on by ``it.backlight()`` and off by ``it.no_backlight()`` in the
-display lamdba definition. The jumper on the PCF8574 board needs to be closed for the backlight control to work.
-Keep in mind that the display lamda runs for every ``update_interval``, so if the backlight is turned on/off there,
+display lambda definition. The jumper on the PCF8574 board needs to be closed for the backlight control to work.
+Keep in mind that the display lambda runs for every ``update_interval``, so if the backlight is turned on/off there,
 it cannot be overridden from other parts.
 
 Here is one solution for a typical use-case where the backlight is turned on after a motion sensor activates and

@@ -14,11 +14,15 @@ and shipping from China takes a long time, I've only set up dedicated guides for
     esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
-      board: esp01_1m
+      board: esp8285
+      arduino_version: 2.4.2
+
+The selected board and arduino_version are required in v1.14.3 (and probably later), see
+https://github.com/esphome/issues/issues/931 for details.
 
 After that use the following list of pin to function mappings to set up your Sonoff device.
 This list has been compiled from the Sonoff Tasmota pin source file which can be found here:
-https://github.com/arendst/Sonoff-Tasmota/blob/development/sonoff/sonoff_template.h ❤️
+https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h ❤️
 
 Sonoff RF
 ---------
@@ -61,6 +65,7 @@ Sonoff TH10/TH16
     GPIO3, UART RX pin (for external sensors)
     GPIO4, Optional sensor
     GPIO14, Optional sensor
+    GPIO2, Optional Pin EXP-LOG (TH16 Ver 2.1 2019)
 
 Sonoff Dual R1
 --------------
@@ -84,6 +89,18 @@ Sonoff Dual R2
     GPIO13, Blue LED (inverted),
     GPIO4, Optional sensor
     GPIO14, Optional sensor
+
+Sonoff Dual R2 v1.4
+-------------------
+
+.. pintable::
+
+    GPIO00, Button #0(inside header board v1.4),
+    GPIO09, Button #1(inside header board v1.4),
+    GPIO12, Relay #1,
+    GPIO5, Relay #2,
+    GPIO10, Button on the case,    
+    GPIO13, Blue LED (inverted)
 
 Sonoff Pow R1
 -------------
@@ -290,6 +307,18 @@ Sonoff S31
     GPIO13, Green LED (inverted),
 
 See :doc:`/components/sensor/cse7766` for measuring power
+
+Sonoff S55
+----------
+
+.. pintable::
+
+    GPIO0, Button (inverted),
+    GPIO12, Relay and Red LED,
+    GPIO13, Blue LED (inverted),
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
+
 
 Sonoff Mini
 -----------

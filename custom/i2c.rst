@@ -1,7 +1,7 @@
 Custom I²C Device
 =================
 
-Lots of devices communicate using the i2c protocol. If you want to integrate
+Lots of devices communicate using the I²C protocol. If you want to integrate
 a device into ESPHome that uses this protocol you can pretty much use almost
 all Arduino-based code because the ``Wire`` library is also available in ESPHome.
 

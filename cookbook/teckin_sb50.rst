@@ -11,7 +11,7 @@ TECKIN SB50 LED Bulb
     :width: 50.0%
 
 The Teckin SB50 Bulb's are a great option for lighting that can be flashed with tuya-convert. More details can be found at tuya-convert `github page <https://github.com/ct-Open-Source/tuya-convert>`__.
-Below is the esphome configuration file that will get you up and running. This assumes you have a secret.yaml with ssid,password, api_password and ota_password keys.
+Below is the ESPHome configuration file that will get you up and running. This assumes you have a secret.yaml with ssid, password, api_password and ota_password keys.
 
 .. code-block:: yaml
 

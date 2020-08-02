@@ -1,7 +1,7 @@
 H801 RGBW LED controller
 ========================
 
-The H801 is pretty afordable and easy to hack and adapt to your needs. It can be found on `Aliexpress <https://s.click.aliexpress.com/e/bbnUDBZW>`__
+The H801 is pretty affordable and easy to hack and adapt to your needs. It can be found on `AliExpress <https://s.click.aliexpress.com/e/bbnUDBZW>`__
 `Here <http://tinkerman.cat/closer-look-h801-led-wifi-controller/>`__ is an article about the
 hardware for those who have an interest for more details about the board.
 It can be used as a RGB, RGBW, RGB dual white or even control 5 individual monochromatic strips if you want or combinations of these.
@@ -60,7 +60,7 @@ and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` comp
         white: pwm_w
 
 
-Make your node in the esphome dashboard and compile/upload it.
+Make your node in the ESPHome dashboard and compile/upload it.
 (if it fails OTA it must be uploaded manually with your favorite ESP flasher,
 e.g. :ref:`esphome-flasher <esphome-flasher>`)
 
@@ -86,14 +86,37 @@ This LED strip can be used with the sketch as-is
     :align: center
     :width: 80.0%
 
-For this type of led strip you have to swap the white and blue gpio numbers in the sketch
+For this type of led strip you have to swap the white and blue GPIO numbers in the sketch.
 
-You will need to solder pins to the board inside the h801 (fortunately its pretty roomy and
-not a lot of components or stuff in the way part from the 2 wires on the back)
+You will need to solder pins to the board inside the H801 (fortunately it's pretty roomy and
+not a lot of components or stuff in the way apart from the 2 wires on the back).
 
-3.3v, GND, TX and RX (RX to RX and TX to TX) needs to be connected to your serial adapter, the
+3.3V, GND, TX and RX (RX to RX and TX to TX) needs to be connected to your serial adapter, the
 two other pins must be shorted throughout the flashing process by a jumper or a breadboard cable.
 (Remember to remove it after flashing)
+
+Add A PIR(Motion) Sensor
+------------------------
+
+It's possible to use the header that was soldered on for flashing as an input.
+The example below uses the TX pin as a PIR motion sensor input:
+
+.. figure:: images/h801-pir_sensor.jpg
+    :align: center
+    :width: 80.0%
+
+H801 shown with PIR connedted to header pins
+
+The following can be appended to the YAML file for your H801 to configure the TX pin as a motion 
+sensor input. 
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        pin: GPIO3
+        name: "GPIO3-TX Motion"
+        device_class: motion
 
 See Also
 --------

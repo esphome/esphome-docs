@@ -35,7 +35,7 @@ Configuration variables:
 Connection Options:
 
 - **data_pins** (**Required**, list of pins): The data lanes of the camera, this must be a list
-  of 8 gpio pins.
+  of 8 GPIO pins.
 - **vsync_pin** (**Required**, pin): The pin the VSYNC line of the camera is connected to.
 - **href_pin** (**Required**, pin): The pin the HREF line of the camera is connected to.
 - **pixel_clock_pin** (**Required**, pin): The pin the pixel clock line of the camera is connected to.
@@ -45,10 +45,10 @@ Connection Options:
   - **frequency** (*Optional*, float): The frequency of the external clock, must be either 20MHz
     or 10MHz. Defaults to ``20MHz``.
 
-- **i2c_pins** (**Required**): The i2c control pins of the camera.
+- **i2c_pins** (**Required**): The I^2C control pins of the camera.
 
-  - **sda** (**Required**, pin): The SDA pin of the i2c interface. Also called ``SIOD``.
-  - **scl** (**Required**, pin): The SCL pin of the i2c interface. Also called ``SIOC``.
+  - **sda** (**Required**, pin): The SDA pin of the I^2C interface. Also called ``SIOD``.
+  - **scl** (**Required**, pin): The SCL pin of the I^2C interface. Also called ``SIOC``.
 
 - **reset_pin** (*Optional*, pin): The ESP pin the reset pin of the camera is connected to.
   If set, this will reset the camera before the ESP boots.
@@ -193,6 +193,26 @@ Configuration for TTGO T-Camera V05
       name: My Camera
       # ...
 
+Configuration for TTGO T-Camera V162
+------------------------------------
+
+.. code-block:: yaml
+
+    esp32_camera:
+      external_clock:
+        pin: GPIO4
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO18
+        scl: GPIO23
+      data_pins: [GPIO34, GPIO13, GPIO14, GPIO35, GPIO39, GPIO38, GPIO37, GPIO36]
+      vsync_pin: GPIO5
+      href_pin: GPIO27
+      pixel_clock_pin: GPIO25
+      jpeg_quality: 10
+      vertical_flip: true
+      horizontal_mirror: false
+      # ...
 
 Configuration for TTGO T-Camera V17
 -----------------------------------
@@ -236,6 +256,32 @@ Configuration for TTGO T-Journal
       vsync_pin: GPIO22
       href_pin: GPIO26
       pixel_clock_pin: GPIO21
+
+
+      # Image settings
+      name: My Camera
+      # ...
+      
+      
+Configuration for TTGO-Camera Plus
+----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO4
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO18
+        scl: GPIO23
+      data_pins: [GPIO34, GPIO13, GPIO26, GPIO35, GPIO39, GPIO38, GPIO37, GPIO36]
+      vsync_pin: GPIO5
+      href_pin: GPIO27
+      pixel_clock_pin: GPIO25
+      vertical_flip: false
+      horizontal_mirror: false
 
 
       # Image settings

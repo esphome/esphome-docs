@@ -13,15 +13,15 @@ Installation
 ------------
 
 Installing ESPHome is very easy. All you need to do is have `Python
-<https://www.python.org/>`__ installed and install the console script script through
-``pip``.
+<https://www.python.org/>`__ installed and install the console script through
+``pip3``.
 
 .. code-block:: bash
 
-    pip install esphome
+    pip3 install esphome
 
 Alternatively, there’s also a Docker image available for easy
-installation (the Docker hub image is only available for amd64 right now; if you have
+installation (the Docker hub image is only available for AMD64 right now; if you have
 an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <getting_started_hassio>`:
 
 .. code-block:: bash
@@ -85,7 +85,7 @@ the device via USB and type the following command (replacing
 You should see ESPHome validating the configuration and telling you
 about potential problems. Then ESPHome will proceed to compile and
 upload the custom firmware. You will also see that ESPHome created a
-new folder with the name of your node. This is a new platformio project
+new folder with the name of your node. This is a new PlatformIO project
 that you can modify afterwards and play around with.
 
 If you are running docker on Linux you can add ``--device=/dev/ttyUSB0``
