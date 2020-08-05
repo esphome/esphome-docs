@@ -14,11 +14,11 @@ Installation
 
 Installing ESPHome is very easy. All you need to do is have `Python
 <https://www.python.org/>`__ installed and install the console script through
-``pip``.
+``pip3``.
 
 .. code-block:: bash
 
-    pip install esphome
+    pip3 install esphome
 
 Alternatively, there’s also a Docker image available for easy
 installation (the Docker hub image is only available for AMD64 right now; if you have

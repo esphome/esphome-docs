@@ -94,9 +94,9 @@ If your SSD1306 or SH1106 is connected via the :ref:`I²C Bus <i2c>`, see :ref:`
     SSD1306 OLED Display
 
 Connect D0 to the CLK pin you chose for the :ref:`SPI bus <spi>`, connect D1 to the MOSI pin and ``DC`` and ``CS``
-to some GPIO pins on the ESP. If this is the only device on the SPI bus, the ``CS`` pin can be connected to GND.
-For power, connect VCC to 3.3V and GND to GND.
-Optionally you can also connect the ``RESET`` pin to a pin on the ESP which may improve reliability.
+to some GPIO pins on the ESP. For power, connect
+VCC to 3.3V and GND to GND. Optionally you can also connect the ``RESET`` pin to a pin on the ESP which may
+improve reliability.
 
 .. code-block:: yaml
 
@@ -128,8 +128,7 @@ Configuration variables:
   - ``SH1106 96x16``
   - ``SH1106 64x48``
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
-  The CS line can be connected to GND if this is the only device on the SPI bus.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
