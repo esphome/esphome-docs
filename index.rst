@@ -96,6 +96,7 @@ Sensor Components
     ADS1115, components/sensor/ads1115, ads1115.jpg
     AHT10, components/sensor/aht10, aht10.jpg
     AM2320, components/sensor/am2320, am2320.jpg
+    AM43, components/sensor/am43, am43.png
     APDS9960, components/sensor/apds9960, apds9960.jpg
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
     AS3935, components/sensor/as3935, as3935.jpg
@@ -289,6 +290,7 @@ Cover Components
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
+    AM43 Cover, components/cover/am43, am43.png
 
 Text Sensor Components
 ----------------------
