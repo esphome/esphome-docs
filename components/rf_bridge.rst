@@ -104,7 +104,7 @@ Configuration options:
 .. _rf_bridge-send_raw_action:
 
 ``rf_bridge.send_raw`` Action
-------------------------------
+-----------------------------
 
 Send a raw RF code using this action in automations.
 
@@ -165,7 +165,7 @@ ESPHome is able to receive the extra protocols that can be decoded as well as ac
 .. _rf_bridge-send_advanced_code_action:
 
 ``rf_bridge.send_advanced_code`` Action
-------------------------------
+---------------------------------------
 
 Send an  RF code using this action in automations.
 
@@ -197,7 +197,7 @@ Configuration options:
 .. _rf_bridge-start_advanced_sniffing_action:
 
 ``rf_bridge.start_advanced_sniffing`` Action
---------------------------
+--------------------------------------------
 
 Tell the RF Bridge to listen for the advanced/extra protocols defined in the portisch firmware.
 The decoded codes with length and protocol will be returned to :ref:`rf_bridge-on_advanced_code_received`
@@ -224,7 +224,7 @@ Configuration options:
 .. _rf_bridge-stop_advanced_sniffing_action:
 
 ``rf_bridge.stop_advanced_sniffing`` Action
---------------------------
+-------------------------------------------
 
 Tell the RF Bridge to stop listening for the advanced/extra protocols defined in the portisch firmware.
 
