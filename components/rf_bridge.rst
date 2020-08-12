@@ -168,10 +168,9 @@ ESPHome is able to receive the extra protocols that can be decoded as well as ac
 ``on_advanced_code_received`` Trigger
 -------------------------------------
 
-Similar to :ref:`rf_bridge-on_code_received`, this trigger receives the codes after
-:ref:`_rf_bridge-start_advanced_sniffing_action`. To use the code, use a :ref:`lambda <config-lambda>`
-template, the code and the corresponding protocol and length are available inside that lambda under the
-variables named ``code``, ``protocol`` and ``length``.
+Similar to :ref:`rf_bridge-on_code_received`, this trigger receives the codes after advanced sniffing is started.
+To use the code, use a :ref:`lambda <config-lambda>` template, the code and the corresponding protocol and length
+are available inside that lambda under the variables named ``code``, ``protocol`` and ``length``.
 
 .. code-block:: yaml
 
