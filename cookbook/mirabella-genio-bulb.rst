@@ -11,6 +11,7 @@ Originally intended to be used with their companion app once flashed using `tuya
 firmware can be uploaded allowing you to control the bulbs via Home Assistant.
 
 .. note::
+
     Please note that the new version of this bulb that comes in a cardboard box are using the TYLC5 module which does not work via tuya-convert.
     These bulbs are also using the SM2135 chipset and not PWM anymore.
 
