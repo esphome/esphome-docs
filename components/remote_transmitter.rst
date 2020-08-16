@@ -432,6 +432,7 @@ earlier, create a new template switch that sends the infrared code when triggere
         name: Raw Code Power Button
         turn_on_action:
           - remote_transmitter.transmit_raw:
+              carrier_frequency: 38kHz
               code: [4088, -1542, 1019, -510, 513, -1019, 510, -509, 511, -510, 1020,
                      -1020, 1022, -1019, 510, -509, 511, -510, 511, -509, 511, -510,
                      1020, -1019, 510, -511, 1020, -510, 512, -508, 510, -1020, 1022]
