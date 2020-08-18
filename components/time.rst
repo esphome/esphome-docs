@@ -61,6 +61,10 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+.. note::
+
+    If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
+    
 GPS Time Source
 ---------------
 
