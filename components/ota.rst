@@ -48,17 +48,17 @@ Updating the password:
 
 Since the password is used both for compiling and uploading the regular ``esphome <file> run``
 won't work of course. This issue can be worked around by executing the operations separately
-through an ``on_boot`` trigger:
+through an ``on_boot`` trigger. Just make XXX whatever you like (but not ota, which will fail to compile):
 
 .. code-block:: yaml
 
     esphome:
       on_boot:
         - lambda: |-
-            id(ota).set_auth_password("New password");
+            id(XXX).set_auth_password("New password");
     ota:
       password: "Old password"
-      id: ota
+      id: XXX
 
 See Also
 --------
