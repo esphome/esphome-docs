@@ -30,8 +30,8 @@ monitors with ESPHome.
     # Example configuration entry
     sensor:
       - platform: zyaura
-        clock_pin: D1
-        data_pin: D2
+        clock_pin: D2
+        data_pin: D1
         co2:
           name: "ZyAura CO2"
         temperature:
