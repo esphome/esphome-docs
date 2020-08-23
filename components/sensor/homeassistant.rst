@@ -23,7 +23,7 @@ states from your Home Assistant instance using the :doc:`native API </components
     
     Albeit you might not plan to __export__ states from the node and you do not need an entity of the node
     in Home Assistant, this component still requires you to register the node under Home Assistant. See:
-    :doc: `Getting started with Hassio </guides/getting_started_hassio>
+    :doc:`Getting started with Hassio </guides/getting_started_hassio>`
 
     Importing attributes is currently not supported, but you can create template sensors in Home Assistant
     that return the attribute of a sensor and then import the template sensor here.
