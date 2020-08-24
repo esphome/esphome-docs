@@ -144,9 +144,12 @@ by installing the tested beta:
     # For docker-based installs
     docker run [...] -it esphome/esphome:beta livingroom.yaml run
 
-And for Hass.io, you will see a "ESPHome Beta" Add-On for the beta channel.
+For Home Assistant supervised installs add the community addons beta repository by
+adding
+`https://github.com/hassio-addons/repository-beta <https://github.com/hassio-addons/repository-beta>`__
+in Add-on store -> Repositories.
 
-The beta docs can be viewed at `beta.esphome.io <https://beta.esphome.io>`__
+The beta docs are available at `beta.esphome.io <https://beta.esphome.io>`__
 
 How do I use the latest bleeding edge version?
 ----------------------------------------------
@@ -156,22 +159,14 @@ If you find some, please do however report them if you have time :)
 
 To install the dev version of ESPHome:
 
-- In Hass.io: In the ESPHome add-on repository there's also a second add-on called ``ESPHome Dev``.
-  Install that and stop the stable version (both can't run at the same time without port collisions).
+- In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
+  in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
-- From docker, you need to build the docker image yourself (automated dev builds are not possible
-  due to docker hubs limited build quota)
+- From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
 
   .. code-block:: bash
 
-      git clone https://github.com/esphome/esphome.git
-      cd esphome
-      docker build -t esphome-dev -f docker/Dockerfile .
-      docker run [...] -it esphome-dev livingroom.yaml compile
-
-      # Update image and rebuild
-      git pull
-      docker build -t esphome-dev -f docker/Dockerfile .
+      docker run [...] -it esphome:dev livingroom.yaml compile
 
 The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
