@@ -123,6 +123,23 @@ Beta Fixes
 - docs: Added hint that not the subsensor id is meant. :docspr:`720` by :ghuser:`ei-ke`
 - esphome: wpa2 enterprise fixes: also copy eap parameters, don't require psk password to be set :esphomepr:`1215` by :ghuser:`dr-oblivium`
 - esphome: Bump base image to 2.4.1 :esphomepr:`1224`
+- esphome: Fix release.yml invalid bash syntax :esphomepr:`1226`
+- esphome: Bump ESP8266 Arduino framework from 2.7.2 to 2.7.3 :esphomepr:`1229`
+- docs: Update docs for community Hass.io add-ons :docspr:`721`
+- esphome: Bump ESPAsyncTCP from 1.2.2 to 1.2.3 :esphomepr:`1227`
+- esphome: Fix ESP8266 core has a broken settimeofday implementation :esphomepr:`1231`
+- docs: Cookbook: BME280 Environment added dew point calculations :docspr:`629` by :ghuser:`rradar`
+- esphome: Fix tuya.cpp compile warning :esphomepr:`1232`
+- esphome: Script mode fix :esphomepr:`1238` by :ghuser:`jesserockz`
+- esphome: make powered on assume public :esphomepr:`1240` by :ghuser:`glmnet`
+- esphome: Bump docker base image to 2.6.0 :esphomepr:`1245`
+- esphome: Image bit dephts :esphomepr:`1241` by :ghuser:`glmnet`
+- docs: add image type :docspr:`730` by :ghuser:`glmnet`
+- esphome: fixes deg symbol not shown :esphomepr:`1248` by :ghuser:`glmnet`
+- docs: Update diy.rst :docspr:`736` by :ghuser:`emorydunn`
+- docs: Add a note about setting dns in manual ip mode :docspr:`735` by :ghuser:`martgras`
+- docs: Change example ota id  :docspr:`737` by :ghuser:`jesserockz`
+- esphome: Fix SSD1306 post-setup brightness control :esphomepr:`1090` by :ghuser:`kbx81`
 
 TODO: Merge with below
 
