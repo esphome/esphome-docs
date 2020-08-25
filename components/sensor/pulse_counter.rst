@@ -8,9 +8,9 @@ Pulse Counter Sensor
 The pulse counter sensor allows you to count the number of pulses and the frequency of a signal
 on any pin.
 
-On the ESP32, this sensor is even highly accurate because it's using the hardware `pulse counter
-peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__
-on the ESP32. However, due to the use of the pulse counter peripheral, a maximum of 8 channels can be used! 
+On the ESP32, this sensor can use the highly accurate `pulse counter
+peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`.
+However, a maximum of 8 pulse counter peripheral channels are possible!
 
 .. figure:: images/pulse-counter.png
     :align: center
@@ -23,6 +23,7 @@ on the ESP32. However, due to the use of the pulse counter peripheral, a maximum
       - platform: pulse_counter
         pin: 12
         name: "Pulse Counter"
+        slow: False
 
 Configuration variables:
 ------------------------
@@ -39,9 +40,11 @@ Configuration variables:
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
 
+- **slow** (*Optional*, bool): Don't use the hardware pulse-counter. On ESP8266 it defaults to ``True``, as it has no pulse-counter periferal.
+  On ESP32 it defaults to ``False``, however only 8 non-slow pulse-counters are possible.
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
-  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32,
-  this value can not be higher than ``13us``, for the ESP8266 you can use larger intervals too.
+  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. If **slow** is ``False``,
+  this value can not be higher than ``13us``, else you can use larger intervals too.
   If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
