@@ -7,7 +7,7 @@ ATM90E32 Power Sensor
     :keywords: ATM90E32, CircuitSetup, Split Single Phase Real Time Whole House Energy Meter, Expandable 6 Channel ESP32 Energy Meter Main Board
 
 The ``atm90e32`` sensor platform allows you to use your ATM90E32 voltage/current and power sensors
-(`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf>`__) sensors with
+(`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf>`__) with
 ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy meters.
 
 Communication with the device is done via an :ref:`SPI bus <spi>`, so you need to have an ``spi:`` entry in your configuration
@@ -83,6 +83,10 @@ Configuration variables:
     Defaults to ``41820``.
   - **gain_ct** (*Optional*, int): CT clamp calibration for this phase.
     Defaults to ``25498``.
+  - **forward_active_energy** (*Optional*): Use the forward active energy value on this phase in watt-hours.
+    All options from :ref:`Sensor <config-sensor>`.
+  - **reverse_active_energy** (*Optional*): Use the reverse active energy value on this phase in watt-hours.
+    All options from :ref:`Sensor <config-sensor>`.
 
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as 1st phase.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
@@ -125,6 +129,37 @@ It is possible that the two identical CT current sensors will have different
 **gain_ct** numbers due to variances in manufacturing although it will be
 small. The current calibration can be done once and used on all sensors or
 repeated for each one.
+
+Active Energy
+^^^^^^^
+
+The ATM90E32 chip has a high-precision built-in ability to count the amount of consumed energy on a per-phase basis.
+For each phase both the Forward and Reverse active energy is counted in watt-hours.
+Forward Active Energy is used to count consumed energy, whereas Reverse Active Energy is used to count exported energy
+(e.g. with solar pv installations).
+The counters are reset every time a given active energy value is read from the ATM90E32 chip.
+
+Current implementation targets users who retrieve the energy values with a regular interval and store them in
+a time-series-database, e.g. InfluxDB.
+
+**Example:**
+
+.. code-block:: yaml
+
+  sensor:
+  #IC1 Main
+    - platform: atm90e32
+      cs_pin: 5
+      phase_a:
+        forward_active_energy:
+          name: ${disp_name} ct1 FAWattHours
+          id: ct1FAWattHours
+          state_topic: ${disp_name}/ct1/forward_active_energy
+        reverse_active_energy:
+          name: ${disp_name} ct1 RAWattHours
+          id: ct1RAWattHours
+          state_topic: ${disp_name}/ct1/reverse_active_energy
+
 
 Additional Examples
 -------------------
