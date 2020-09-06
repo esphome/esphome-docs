@@ -77,6 +77,10 @@ where you want to shut down the chip if the voltage is low when using a battery.
 
 To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is connected to the ``A0`` pin.
 
+.. note::
+
+    To avoid confusion: It measures the voltage at the chip, and not at the VCC pin of the board. It is usually static at 2.91V.
+    
 .. code-block:: yaml
 
     sensor:
