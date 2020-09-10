@@ -266,6 +266,7 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg
+    Addressable Light Display, components/display/addressable_light_display, addressable_light_display.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
