@@ -51,6 +51,8 @@ Configuration variables:
 - **temperature_multiplier** (**Optional**, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
 - All other options from :ref:`Climate <config-climate>`.
 
+.. _temperature-multiplier:
+
 Temperature multiplier
 ----------------------
 
