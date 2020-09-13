@@ -30,14 +30,21 @@ interface are hosted by esphome.io. If you want to use your own service, use the
     web_server:
       port: 80
 
+
 Configuration variables:
 ------------------------
 
 - **port** (*Optional*, int): The port the web server should open its socket on.
 - **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults
-  to https://esphome.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
+  to https://esphome.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc). Can be set to empty string.
+- **css_include** (*Optional*, local file): Path to local file to be included in web server index page.
+  Contents of this file will be served as ``/0.css`` and used as CSS stylesheet by internal webserver.
+  Useful when building device without internet access, where you want to use built-in AP and webserver.
 - **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
-  to https://esphome.io/_static/webserver-v1.min.js.
+  to https://esphome.io/_static/webserver-v1.min.js. Can be set to empty string.
+- **js_include** (*Optional*, local file): Path to local file to be included in web server index page.
+  Contents of this file will be served as ``/0.js`` and used as JS script by internal webserver.
+  Useful when building device without internet access, where you want to use built-in AP and webserver.
 - **auth** (*Optional*): Enables basic authentication with username and password.
 
   - **username** (**Required**, string): The username to use for authentication.
@@ -58,8 +65,22 @@ Configuration variables:
             username: admin
             password: !secret web_server_password
 
+    Example web_server configuration with CSS and JS included from esphome-docs.
+    CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
+
+    .. code-block:: yaml
+
+        # Example configuration entry
+        web_server:
+          port: 80
+          css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
+          css_url: ""
+          js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
+          js_url: ""
+
 See Also
 --------
 
 - :apiref:`web_server/web_server.h`
+- :doc:`prometheus`
 - :ghedit:`Edit`
