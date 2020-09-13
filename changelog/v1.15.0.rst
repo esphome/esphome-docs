@@ -1,5 +1,5 @@
-Changelog - Version 1.15.0 - Release Date TBD
-=============================================
+Changelog - Version 1.15.0 - September 13, 2020
+===============================================
 
 .. seo::
     :description: Changelog for ESPHome version 1.15.0.
@@ -48,59 +48,115 @@ Changelog - Version 1.15.0 - Release Date TBD
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
 
-*This is currently a draft document.*
 
-...Intro text...
+Stop! this is not Otto Winter, but Guillermo Ruffino (:ghuser:`glmnet`). So Hi there!
 
-New Components
-**************
-
-...Text...
-
-Updated Components
-******************
-
-...More text...
-
-Last but not least, thanks to all contributors, bug reporters and patrons! Without you this would not
-be possible!
-
-Breaking Changes
-----------------
-
-- Scripts
-
-  - ``script.stop: script_id`` now stops the script itself and next actions will not be executed.
-    `(#1004) <https://github.com/esphome/esphome/pull/1004>`__
-
-- esphome: Fix SGP30 incorrect baseline reading/writing :esphomepr:`936` by :ghuser:`panuruj` (breaking-change)
-- esphome: fix servo bug restoring state and starting servo detached :esphomepr:`1008` by :ghuser:`glmnet` (breaking-change)
-- esphome: fix shunt voltage / current / power reading in INA3221 :esphomepr:`1101` by :ghuser:`Vxider` (breaking-change)
-- esphome: Fix: Component script not stopped in certain situations :esphomepr:`1004` by :ghuser:`balrog-kun` (breaking-change)
-- esphome: New script modes POC :esphomepr:`1168` (breaking-change)
+Latest feature release was 10 months ago already, however development and support did not stop. We have
+lots of contributions here, the list above with integrations images is the longest to date and the changelog
+is bigger too!
 
 Notable Changes & New Features
 ------------------------------
 
-- Dashboard Interface Revamped
-- New Thermostat Controller implements ESPHome actions for all available Home Assistant climate actions,
-  climate modes, fan modes, and fan swing modes (:esphomepr:`1105`)
-- Color (and grayscale) display support! (#1050)
-- SSD1325 component updated to facilitate use of grayscale
+ESPHome add on is now also available at the Home Assistant community add ons!  (:ghuser:`OttoWinter` and
+:ghuser:`frenck` of course)
 
-- esphome: Add AC Dimmer support :esphomepr:`880` (new-feature)
-- esphome: Uart improvments :esphomepr:`1024` by :ghuser:`0hax` (notable-change)
-- esphome: Add support for additional Xiaomi BLE sensors :esphomepr:`1027` by :ghuser:`ahpohl` (notable-change)
-- esphome: Packages feature :esphomepr:`1052` by :ghuser:`corvis` (notable-change)
+The dashboard got a visual revamp! Now more nodes are visible at the same time. :ghuser:`jonathanadams` also
+took a few bugs with it too.
+
+Lots new sensors, port expanders, displays... and :ghuser:`kbx81` came up with color displays too!
+There are new climates like the Thermostat, PID and more IR based devices too. And can't wait to see DIY
+projects with the RTTTL buzzer.
+
+Scripts are more stable, and also were updated to follow new Home Assistant script options, like ``single``,
+``queued``, etc.
+
+Also if you don't like repeating stuff in yaml, the new packages options :ghuser:`corvis` added are very handy.
+
+I did a terrible job tagging contributions and now I'm paying for that, hope nobody gets angry.
+
+I've updated the contributors list in an attepmpt of giving people credit, many really deserve to be listed
+here not only for their code contributions but also for their support on the community, bug fixing etc., thanks!
+
+This release is possible not only because all the contributions this project receives, but also for the
+latest contributions from Otto itself, he did a great job automating GitHub with actions and also building
+scripts which takes cares of 90% of the release process, so hopefully new versions will come along at a better pace.
+If you don't see somebody credited by somthing, thats because Otto did it.
+
+From myself special thanks to :ghuser:`ssieb`, :ghuser:`rradar`, :ghuser:`jesserockz`, :ghuser:`kbx81`, and many others
+specially :ghuser:`OttoWinter` for all this.
+
+Still many new features and fixes are pending to be included in this release, but we had to left them aside
+for a while so we can focus better. So let's ship this and keep going on new stuff!!
+
+Last but not least, thanks to all contributors, bug reporters and patrons! Without you this would not
+be possible!
+
+New Features
+------------
+
+- esphome: Dashboard Updates :esphomepr:`1025` by :ghuser:`jonathanadams` (new-feature) (notable-change)
+- esphome: Ble scanner :esphomepr:`976` by :ghuser:`TheKuko` (new-feature)
+- esphome: Add Prometheus /metrics-Endpoint :esphomepr:`1032` by :ghuser:`margau` (new-feature)
+- esphome: Add support for command-line substitutions :esphomepr:`1014` by :ghuser:`AlexMekkering` (new-feature)
+- esphome: Packages feature :esphomepr:`1052` by :ghuser:`corvis` (new-feature) (notable-change)
+- esphome: WPA2 Enterprise Attempt 2 :esphomepr:`1158` (new-feature)
+- esphome: New script modes POC :esphomepr:`1168` (breaking-change) (new-feature)
 
 New Integrations
 ----------------
 
+- esphome: implemented ruuvi_ble and ruuvitag with RAWv1 and RAWv2 protocol :esphomepr:`810` by :ghuser:`Alex9779` (new-integration)
+- esphome: http_request component :esphomepr:`719` by :ghuser:`Anonym-tsk` (new-integration)
+- esphome: Add support for Sensirion SPS30 Particulate Matter sensors :esphomepr:`891` by :ghuser:`valordk` (new-integration)
+- esphome: Add TM1561 support :esphomepr:`893` by :ghuser:`freekode` (new-integration)
+- esphome: Add slow_pwm output component :esphomepr:`894` by :ghuser:`nickw444` (new-integration)
+- esphome: Add RFBridge component :esphomepr:`896` by :ghuser:`jesserockz` (new-integration)
+- esphome: Climate Mitsubishi :esphomepr:`725` by :ghuser:`glmnet` (new-integration)
+- esphome: PID Climate :esphomepr:`885` (new-integration)
+- esphome: Display tm1637 :esphomepr:`946` by :ghuser:`glmnet` (new-integration)
+- esphome: Daikin climate ir component :esphomepr:`964` by :ghuser:`hectorgimenez` (new-integration)
+- esphome: Add TMP117 component :esphomepr:`992` by :ghuser:`Azimath` (new-integration)
+- esphome: Support for AHT10 temperature and humidity sensor :esphomepr:`949` by :ghuser:`gmasse` (new-integration)
 - esphome: Add HM3301 laser dust detection sensor :esphomepr:`963` by :ghuser:`freekode` (new-integration)
+- esphome: Add AC Dimmer support :esphomepr:`880` (new-integration)
+- esphome: feat: Add support for MCP23016 IO Expander :esphomepr:`1012` by :ghuser:`reidprojects` (new-integration)
 - esphome: Climate whirlpool :esphomepr:`1029` by :ghuser:`glmnet` (new-integration)
+- esphome: Add support for ESP32 DAC :esphomepr:`1071` by :ghuser:`napieraj` (new-integration)
 - esphome: Adding support for MAX31856 Thermocouple Temperature Sensor (feature #700) :esphomepr:`1039` by :ghuser:`declanshanaghy` (new-integration)
+- esphome: Add support for additional Xiaomi BLE sensors :esphomepr:`1027` by :ghuser:`ahpohl` (new-integration) (notable-change)
 - esphome: Add E1.31 support :esphomepr:`950` by :ghuser:`ayufan` (new-integration)
+- esphome: Add `adalight` light effect :esphomepr:`956` by :ghuser:`ayufan` (new-integration)
+- esphome: Add WLED support :esphomepr:`1092` by :ghuser:`ayufan` (new-integration)
+- esphome: Add LG Climate IR :esphomepr:`1097` by :ghuser:`square99` (new-integration)
 - esphome: add support for SN74HC595 shift register :esphomepr:`1083` by :ghuser:`phjr` (new-integration)
+- esphome: Thermostat component :esphomepr:`1105` by :ghuser:`kbx81` (new-integration)
+- esphome: Add SSD1351 OLED display support :esphomepr:`1100` by :ghuser:`kbx81` (new-integration)
+- esphome: Add support for Tuya Switches :esphomepr:`1074` by :ghuser:`jesserockz` (new-integration)
+- esphome: Add support for Tuya Climate devices :esphomepr:`1076` by :ghuser:`jesserockz` (new-integration)
+- esphome: Add support for Tuya Sensors :esphomepr:`1088` by :ghuser:`jesserockz` (new-integration)
+- esphome: Add support for Tuya Binary Sensors :esphomepr:`1089` by :ghuser:`jesserockz` (new-integration)
+- esphome: Add support for Toshiba heat pumps :esphomepr:`1121` by :ghuser:`JoppyFurr` (new-integration)
+- esphome: Add exposure notifications :esphomepr:`1135` (new-integration)
+- esphome:  rtttl player :esphomepr:`1171` by :ghuser:`glmnet` (new-integration)
+
+Breaking Changes
+----------------
+
+- esphome: Drop Python 2 Support :esphomepr:`793` (breaking-change)
+- esphome: Fix SGP30 incorrect baseline reading/writing :esphomepr:`936` by :ghuser:`panuruj` (breaking-change)
+- esphome: fix servo bug restoring state and starting servo detached :esphomepr:`1008` by :ghuser:`glmnet` (breaking-change)
+- esphome: fix shunt voltage / current / power reading in INA3221 :esphomepr:`1101` by :ghuser:`Vxider` (breaking-change)
+- esphome: Fix: Component script not stopped in certain situations :esphomepr:`1004` by :ghuser:`balrog-kun` (breaking-change)
+- esphome: New script modes POC :esphomepr:`1168` (breaking-change) (new-feature)
+
+Notable Changes
+---------------
+
+- esphome: Dashboard Updates :esphomepr:`1025` by :ghuser:`jonathanadams` (new-feature) (notable-change)
+- esphome: Uart improvments :esphomepr:`1024` by :ghuser:`0hax` (notable-change)
+- esphome: Add support for additional Xiaomi BLE sensors :esphomepr:`1027` by :ghuser:`ahpohl` (new-integration) (notable-change)
+- esphome: Packages feature :esphomepr:`1052` by :ghuser:`corvis` (new-feature) (notable-change)
 
 Beta Fixes
 ----------
@@ -140,76 +196,11 @@ Beta Fixes
 - docs: Add a note about setting dns in manual ip mode :docspr:`735` by :ghuser:`martgras`
 - docs: Change example ota id  :docspr:`737` by :ghuser:`jesserockz`
 - esphome: Fix SSD1306 post-setup brightness control :esphomepr:`1090` by :ghuser:`kbx81`
-
-TODO: Merge with below
-
-New Features
-------------
-
-- esphome: Add AC Dimmer support :esphomepr:`880` (new-feature) (new-integration)
-- esphome: add lights on off triggers :esphomepr:`1037` by :ghuser:`glmnet` (new-feature)
-- esphome: Dashboard Updates :esphomepr:`1025` by :ghuser:`jonathanadams` (new-feature) (notable-change)
-- esphome: Ble scanner :esphomepr:`976` by :ghuser:`TheKuko` (new-feature)
-- esphome: Add Prometheus /metrics-Endpoint :esphomepr:`1032` by :ghuser:`margau` (new-feature)
-- esphome: Add support for command-line substitutions :esphomepr:`1014` by :ghuser:`AlexMekkering` (new-feature)
-- esphome: Packages feature :esphomepr:`1052` by :ghuser:`corvis` (new-feature) (notable-change)
-- esphome: WPA2 Enterprise Attempt 2 :esphomepr:`1158` (new-feature)
-- esphome: New script modes POC :esphomepr:`1168` (breaking-change) (new-feature)
-
-New Integrations
-----------------
-
-- esphome: implemented ruuvi_ble and ruuvitag with RAWv1 and RAWv2 protocol :esphomepr:`810` by :ghuser:`Alex9779` (new-integration)
-- esphome: http_request component :esphomepr:`719` by :ghuser:`Anonym-tsk` (new-integration)
-- esphome: Add support for Sensirion SPS30 Particulate Matter sensors :esphomepr:`891` by :ghuser:`valordk` (new-integration)
-- esphome: Add TM1561 support :esphomepr:`893` by :ghuser:`freekode` (new-integration)
-- esphome: Add slow_pwm output component :esphomepr:`894` by :ghuser:`nickw444` (new-integration)
-- esphome: Add RFBridge component :esphomepr:`896` by :ghuser:`jesserockz` (new-integration)
-- esphome: Climate Mitsubishi :esphomepr:`725` by :ghuser:`glmnet` (new-integration)
-- esphome: PID Climate :esphomepr:`885` (new-integration)
-- esphome: Display tm1637 :esphomepr:`946` by :ghuser:`glmnet` (new-integration)
-- esphome: Daikin climate ir component :esphomepr:`964` by :ghuser:`hectorgimenez` (new-integration)
-- esphome: Add TMP117 component :esphomepr:`992` by :ghuser:`Azimath` (new-integration)
-- esphome: Support for AHT10 temperature and humidity sensor :esphomepr:`949` by :ghuser:`gmasse` (new-integration)
-- esphome: Add HM3301 laser dust detection sensor :esphomepr:`963` by :ghuser:`freekode` (new-integration)
-- esphome: Add AC Dimmer support :esphomepr:`880` (new-feature) (new-integration)
-- esphome: feat: Add support for MCP23016 IO Expander :esphomepr:`1012` by :ghuser:`reidprojects` (new-integration)
-- esphome: Climate whirlpool :esphomepr:`1029` by :ghuser:`glmnet` (new-integration)
-- esphome: Add support for ESP32 DAC :esphomepr:`1071` by :ghuser:`napieraj` (new-integration)
-- esphome: Adding support for MAX31856 Thermocouple Temperature Sensor (feature #700) :esphomepr:`1039` by :ghuser:`declanshanaghy` (new-integration)
-- esphome: Add support for additional Xiaomi BLE sensors :esphomepr:`1027` by :ghuser:`ahpohl` (new-integration) (notable-change)
-- esphome: Add E1.31 support :esphomepr:`950` by :ghuser:`ayufan` (new-integration)
-- esphome: Add `adalight` light effect :esphomepr:`956` by :ghuser:`ayufan` (new-integration)
-- esphome: Add WLED support :esphomepr:`1092` by :ghuser:`ayufan` (new-integration)
-- esphome: Add LG Climate IR :esphomepr:`1097` by :ghuser:`square99` (new-integration)
-- esphome: add support for SN74HC595 shift register :esphomepr:`1083` by :ghuser:`phjr` (new-integration)
-- esphome: Thermostat component :esphomepr:`1105` by :ghuser:`kbx81` (new-integration)
-- esphome: Add SSD1351 OLED display support :esphomepr:`1100` by :ghuser:`kbx81` (new-integration)
-- esphome: Add support for Tuya Switches :esphomepr:`1074` by :ghuser:`jesserockz` (new-integration)
-- esphome: Add support for Tuya Climate devices :esphomepr:`1076` by :ghuser:`jesserockz` (new-integration)
-- esphome: Add support for Tuya Sensors :esphomepr:`1088` by :ghuser:`jesserockz` (new-integration)
-- esphome: Add support for Tuya Binary Sensors :esphomepr:`1089` by :ghuser:`jesserockz` (new-integration)
-- esphome: Add support for Toshiba heat pumps :esphomepr:`1121` by :ghuser:`JoppyFurr` (new-integration)
-- esphome: Add exposure notifications :esphomepr:`1135` (new-integration)
-- esphome:  rtttl player :esphomepr:`1171` by :ghuser:`glmnet` (new-integration)
-
-Breaking Changes
-----------------
-
-- esphome: Drop Python 2 Support :esphomepr:`793` (breaking-change)
-- esphome: Fix SGP30 incorrect baseline reading/writing :esphomepr:`936` by :ghuser:`panuruj` (breaking-change)
-- esphome: fix servo bug restoring state and starting servo detached :esphomepr:`1008` by :ghuser:`glmnet` (breaking-change)
-- esphome: fix shunt voltage / current / power reading in INA3221 :esphomepr:`1101` by :ghuser:`Vxider` (breaking-change)
-- esphome: Fix: Component script not stopped in certain situations :esphomepr:`1004` by :ghuser:`balrog-kun` (breaking-change)
-- esphome: New script modes POC :esphomepr:`1168` (breaking-change) (new-feature)
-
-Notable Changes
----------------
-
-- esphome: Dashboard Updates :esphomepr:`1025` by :ghuser:`jonathanadams` (new-feature) (notable-change)
-- esphome: Uart improvments :esphomepr:`1024` by :ghuser:`0hax` (notable-change)
-- esphome: Add support for additional Xiaomi BLE sensors :esphomepr:`1027` by :ghuser:`ahpohl` (new-integration) (notable-change)
-- esphome: Packages feature :esphomepr:`1052` by :ghuser:`corvis` (new-feature) (notable-change)
+- esphome: Fix esp8266_restore_from_flash :esphomepr:`638`
+- esphome: Fix stack trace decode for latest platformio :esphomepr:`830`
+- docs: Update diy.rst :docspr:`748` by :ghuser:`galagaking`
+- docs: Add carrier_frequency for IR device example :docspr:`734` by :ghuser:`abmantis`
+- docs: Added Arlec Grid Connect Smart Plug :docspr:`749` by :ghuser:`freerangeeggs`
 
 All changes
 -----------
