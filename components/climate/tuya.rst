@@ -48,7 +48,14 @@ Configuration variables:
 - **switch_datapoint** (**Required**, int): The datapoint id number of the climate switch.
 - **target_temperature_datapoint** (**Required**, int): The datapoint id number of the target temperature.
 - **current_temperature_datapoint** (**Required**, int): The datapoint id number of the current temperature.
+- **temperature_multiplier** (**Optional**, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
 - All other options from :ref:`Climate <config-climate>`.
+
+Temperature multiplier
+----------------------
+
+Some Tuya climate devices report the temperature with a multiplied factor. This is because the MCU only utlizes
+integers for data reporting and to get a .5 temperature you need to divide by 2 on the ESPHome side.
 
 See Also
 --------
