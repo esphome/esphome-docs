@@ -42,7 +42,6 @@ Blog Posts & Videos
 - `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__ 
 - `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-home-assistant/>`__ by :ghuser:`emorydunn`
 
-
 Custom Components & Code
 ------------------------
 
@@ -91,3 +90,4 @@ Sample Configurations
 - `ESPHome Home Assistant Cheap Cat Feeder <https://github.com/rubengargar/diy-cheap-cat-feeder>`__ by :ghuser:`rubengargar`
 - `ESPHome configs <https://github.com/nuttytree/ESPHome-Devices>`__ by :ghuser:`nuttytree`
 - `ESPHome Home Assistant stepper motor blinds/curtain <https://github.com/icarome/esphome/blob/master/cortina.yaml>`__ by :ghuser:`icarome`
+- `ESPHome AXA Remote 2 control <https://github.com/galagaking/espaxa/>`__ by :ghuser:`galagaking`
