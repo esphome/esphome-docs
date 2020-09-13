@@ -100,6 +100,7 @@ Contributors
 ************
 
 (in alphabetical order)
+
 - `0hax (@0hax) <https://github.com/0hax>`__ - 1 contribution
 - `2016for (@2016for) <https://github.com/2016for>`__ - 1 contribution
 - `Pavel Golovin (@31337Ghost) <https://github.com/31337Ghost>`__ - 1 contribution
@@ -215,7 +216,7 @@ Contributors
 - `Giovanni (@Gio-dot) <https://github.com/Gio-dot>`__ - 2 contributions
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 14 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
-- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 116 contributions
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 117 contributions
 - `Giorgos Logiotatidis (@glogiotatidis) <https://github.com/glogiotatidis>`__ - 1 contribution
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__ - 1 contribution
 - `Jelle Raaijmakers (@GMTA) <https://github.com/GMTA>`__ - 1 contribution
@@ -433,4 +434,4 @@ Contributors
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__ - 1 contribution
 
-*This page was last updated Thu Dec 12 11:02:59 2019 UTC.*
+*This page was last updated September 13, 2020.*
