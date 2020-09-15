@@ -564,6 +564,14 @@ All changes
 - docs:  Revert "Dallas autosetup (#551)"  :docspr:`709`
 - esphome: Revert "Added auto discovery and setup to Dallas Platform (#1028)" :esphomepr:`1189`
 
+Release 1.15.1 - September 14
+-----------------------------
+
+- esphome: fix sntp timezone :esphomepr:`1266` by :ghuser:`glmnet`
+- esphome: Fix for Ruuvi voltage parsing of RAWv2 format :esphomepr:`1267` by :ghuser:`akoivist`
+- docs: Adds Tuya Climate temperature multiplier :docspr:`756` by :ghuser:`jesserockz`
+- esphome: Adds support for Tuya Climate temperature multiplier :esphomepr:`1276` by :ghuser:`jesserockz`
+
 Past Changelogs
 ---------------
 
