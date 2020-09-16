@@ -208,6 +208,26 @@ Configuration options:
 - **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
   Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
 
+
+.. _api-homeassistant_tag_scanned_action:
+
+``homeassistant.tag_scanned`` Action
+------------------------------------
+
+When using the native API with Home Assistant, you can push tag_scanned to Home Assistant
+straight from ESPHome :ref:`Automations <automation>`.
+
+.. code-block:: yaml
+
+    # In some trigger
+    on_...:
+      # Simple
+      - homeassistant.tag_scanned: some-tag
+
+Configuration options:
+
+- **tag** (**Required**, :ref:`templatable <config-templatable>`, string): The id of the scanned tag
+
 See Also
 --------
 
