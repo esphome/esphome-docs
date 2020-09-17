@@ -94,6 +94,11 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
       - uart.write: !lambda
           return {0x00, 0x20, 0x42};
 
+      # in case you need to specify the uart id
+      - uart.write:
+          id: my_second_uart
+          data: 'other data'
+
 See Also
 --------
 
