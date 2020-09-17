@@ -6,7 +6,6 @@ Remote Transmitter
     :image: remote.png
     :keywords: Infrared, IR, RF, Remote, TX
 
-
 The ``remote_transmitter`` component lets you send digital packets to control
 devices in your home. For example this includes infrared data or 433MHz RF signals.
 
@@ -225,6 +224,35 @@ Configuration variables:
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+``remote_transmitter.transmit_pioneer`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Pioneer infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_pioneer:
+          rc_code_1: 0xA556
+          rc_code_2: 0xA506
+          repeat:
+            times: 2
+
+Configuration variables:
+
+- **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
+- **rc_code_2** (**Optional**, int): The secondary remote control code to send; some codes are sent in
+  two parts.
+- Note that ``repeat`` is still optional, however **Pioneer devices may require that a given code is
+  received multiple times before they will act on it.** Add this if your device does not respond to
+  commands sent with this action.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+At the time this action was created, Pioneer maintained listings of IR codes used for their devices
+`here <https://www.pioneerelectronics.com/PUSA/Support/Home-Entertainment-Custom-Install/IR+Codes>`__.
+If unable to find your specific device in the documentation, find a device in the same class; the codes
+are largely shared among devices within a given class.
+
 ``remote_transmitter.transmit_rc_switch_raw`` Action
 ****************************************************
 
@@ -432,6 +460,7 @@ earlier, create a new template switch that sends the infrared code when triggere
         name: Raw Code Power Button
         turn_on_action:
           - remote_transmitter.transmit_raw:
+              carrier_frequency: 38kHz
               code: [4088, -1542, 1019, -510, 513, -1019, 510, -509, 511, -510, 1020,
                      -1020, 1022, -1019, 510, -509, 511, -510, 511, -509, 511, -510,
                      1020, -1019, 510, -511, 1020, -510, 512, -508, 510, -1020, 1022]
