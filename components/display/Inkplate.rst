@@ -1,0 +1,177 @@
+Inkplate 6
+==========
+
+.. seo::
+    :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
+    :image: Inkplate.jpg
+
+All-in-one e-paper display  ``Inkplate 6``
+Inkplate 6 is a powerful, Wi-Fi enabled ESP32 based six-inch e-paper display – recycled from a Kindle e-reader. Its main feature is simplicity.
+Learn more at `our website <https://inkplate.io/>`__
+
+.. figure:: images/Inkplate.jpg
+    :align: center
+    :width: 75.0%
+
+    Inkplate 6
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esphome:
+      name: inkplate
+      platform: ESP32
+      board: esp-wrover-kit
+
+    logger:
+
+    wifi:
+      ssid: <YOUR WIFI SSID>
+      password: <YOUR WIFI PASSWORD>
+      ap:
+        ssid: Inkplate-AP
+        password: '12345678'
+
+    captive_portal:
+
+    ota:
+
+    api:
+
+    switch:
+      - platform: restart
+        name: "Inkplate Reboot"
+        id: reboot
+
+      - platform: gpio
+        id: battery_read_mosfet
+        pin:
+          mcp23017: mcp23017_hub
+          number: 9
+
+      - platform: template
+        name: "Inkplate Greyscale mode"
+        lambda: return id(inkplate_display).get_greyscale();
+        turn_on_action:
+          - lambda: id(inkplate_display).set_greyscale(true);
+        turn_off_action:
+          - lambda: id(inkplate_display).set_greyscale(false);
+
+      - platform: template
+        name: "Inkplate Partial Updating"
+        lambda: return id(inkplate_display).get_partial_updating();
+        turn_on_action:
+          - lambda: id(inkplate_display).set_partial_updating(true);
+        turn_off_action:
+          - lambda: id(inkplate_display).set_partial_updating(false);
+
+    sensor:
+      - platform: adc
+        id: battery_voltage
+        update_interval: never
+        attenuation: 11db
+        pin: 35
+      - platform: template
+        name: "Inkplate Battery Voltage"
+        lambda: |-
+          id(battery_read_mosfet).turn_on();
+          delay(1);
+          id(battery_voltage).update();
+          int adc = id(battery_voltage).state;
+          id(battery_read_mosfet).turn_off();
+          return adc;
+        filters:
+          - multiply: 2
+
+    i2c:
+
+    mcp23017:
+      - id: mcp23017_hub
+        address: 0x20
+
+    binary_sensor:
+      - platform: status
+        name: "Inkplate Status"
+        id: system_status
+
+      - platform: gpio
+        name: "Inkplate Touch Pad 1"
+        pin:
+          mcp23017: mcp23017_hub
+          number: 10
+      - platform: gpio
+        name: "Inkplate Touch Pad 2"
+        pin:
+          mcp23017: mcp23017_hub
+          number: 11
+      - platform: gpio
+        name: "Inkplate Touch Pad 3"
+        pin:
+          mcp23017: mcp23017_hub
+          number: 12
+
+    time:
+      - platform: sntp
+        id: esptime
+
+    font:
+      - file: "Helvetica.ttf"
+        id: helvetica_96
+        size: 96
+      - file: "Helvetica.ttf"
+        id: helvetica_48
+        size: 48
+
+
+    display:
+    - platform: inkplate
+      id: inkplate_display
+      greyscale: false
+      partial_updating: false
+      update_interval: 60s
+
+      ckv_pin: 32
+      sph_pin: 33
+      gmod_pin:
+        mcp23017: mcp23017_hub
+        number: 1
+      gpio0_enable_pin:
+        mcp23017: mcp23017_hub
+        number: 8
+      oe_pin:
+        mcp23017: mcp23017_hub
+        number: 0
+      spv_pin:
+        mcp23017: mcp23017_hub
+        number: 2
+      powerup_pin:
+        mcp23017: mcp23017_hub
+        number: 4
+      wakeup_pin:
+        mcp23017: mcp23017_hub
+        number: 3
+      vcom_pin:
+        mcp23017: mcp23017_hub
+        number: 5
+
+      lambda: |-
+        it.fill(COLOR_ON);
+
+        it.print(100, 100, id(helvetica_48), COLOR_OFF, TextAlign::TOP_LEFT, "ESPHome");
+
+        it.strftime(400, 300, id(helvetica_48), COLOR_OFF, TextAlign::CENTER, "%Y-%m-%d", id(esptime).now());
+        it.strftime(400, 400, id(helvetica_96), COLOR_OFF, TextAlign::CENTER, "%H:%M", id(esptime).now());
+
+        if (id(system_status).state) {
+          it.print(700, 100, id(helvetica_48), COLOR_OFF, TextAlign::TOP_RIGHT, "Online");
+        } else {
+          it.print(700, 100, id(helvetica_48), COLOR_OFF, TextAlign::TOP_RIGHT, "Offline");
+        }
+
+See Also
+--------
+
+- :doc:`index`
+- `Arduino Inkplate 6 library <https://github.com/e-radionicacom/Inkplate-6-Arduino-library>`__ by `E-radionica.com <https://e-radionica.com/>`__
+- :ghedit:`Edit`
