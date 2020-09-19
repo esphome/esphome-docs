@@ -85,9 +85,8 @@ Configuration variables:
 
 .. note::
 
-    The MCU on the Tuya dimmer handles transitions and gamma correction on its own.
-    Therefore the ``gamma_correct`` setting default is ``1.0`` and the the
-    ``default_transition_length`` parameter is ``0s`` by default.
+    The MCU on the Tuya dimmer handles transitions on its own.
+    Therefore the ``default_transition_length`` parameter is ``0s`` by default.
 
 See Also
 --------
