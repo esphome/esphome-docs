@@ -154,19 +154,21 @@ Configuration example:
 LYWSD03MMC
 **********
 
-Hygro thermometer, small square body, segment LCD, encrypted, broadcasts temperature, humidity and battery status. There are the following possibilities to operate this sensor:
-
-* Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
-* Device flashed with `ATC MiThermometer <https://atc1441.github.io/TelinkFlasher.html>`__custom firmware
-    
-  * "Mi Like advertisement format (dummy bindkey required)
-  * "Custom" advertisement format (no bindkey required)
+Hygro thermometer, small square body, segment LCD, encrypted, broadcasts temperature, humidity and battery status.
 
 .. figure:: images/xiaomi_lywsd03mmc.jpg
     :align: center
     :width: 30.0%
 
-Configuration example (Xiaomi stock firmware and ATC MiThermometer firmware with "Mi Like" advertisement):
+There are the following possibilities to operate this sensor:
+
+1. Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
+2. Device flashed with `ATC MiThermometer <https://github.com/atc1441/ATC_MiThermometer>`__ custom firmware
+    
+   - "Mi Like" advertisement (dummy bindkey required)
+   - "Custom" advertisement (no bindkey required)
+
+Configuration example for Xiaomi stock firmware or ATC MiThermometer firmware set to "Mi Like" advertisement:
 
 .. code-block:: yaml
 
@@ -181,7 +183,7 @@ Configuration example (Xiaomi stock firmware and ATC MiThermometer firmware with
         battery_level:
           name: "LYWSD03MMC Battery Level"
           
-Configuration example (ATC MiThermometer firmware with "Custom" advertisement):
+Configuration example for ATC MiThermometer firmware set to "Custom" advertisement:
 
 .. code-block:: yaml
 
@@ -360,14 +362,18 @@ To set up an encrypted device such as the LYWSD03MMC (with Xiaomi stock firmware
 LYWSD03MMC
 **********
 
-If the LYWSD03MMC sensor is operated with the Xiaomi stock firmware, you can use the `TeLink flasher application <https://atc1441.github.io/TelinkFlasher.html>`__ to easily generate a new bind key and upload the key to the device without the need to flash a new firmware. For this, you load the flasher application into a `supported browser https://github.com/WebBluetoothCG/web-bluetooth/blob/master/implementation-status.md>`__ and connect the device by pressing "Connect". After the connection established, you press the "Do Activation" button and the new key will be printed in the application interface. The key can be copied directly into the sensor YAML configuration. Be aware, the new key will work with ESPHome, but the Mi Home app will not recognise the sensor anymore until the device is removed and the re-added to the Xiaomi Mi Home app.  
+If the LYWSD03MMC sensor is operated with the Xiaomi stock firmware, you can use the `TeLink flasher application <https://atc1441.github.io/TelinkFlasher.html>`__ to easily generate a new bind key and upload the key to the device without the need to flash a new firmware. For this, you load the flasher `webpage <https://atc1441.github.io/TelinkFlasher.html>`__ with a `supported browser <https://github.com/WebBluetoothCG/web-bluetooth/blob/master/implementation-status.md>`__ and connect the device by pressing "Connect". After the connection is established, you press the "Do Activation" button and the new key will be shown in the "Mi Bind Key" field. The key can be copied directly into the sensor YAML configuration.
+
+.. warning::
+
+   The new bind key will work with ESPHome, but the Mi Home app will not recognise the sensor anymore once the device has been activated by the TeLink flasher application. To use the sensor again with the Xiaomi Mi Home app, the device needs to be removed and then re-added inside the Mi Home app.  
 
 Other encrypted devices
 ***********************
 
-For other encrypted devices such as the CGD1 you still need to use the original Mi Home app to add the sensor once. While adding the device, a new key is generated and uploaded into the Xiaomi cloud and to the device itself. Currently a chinese server needs to be selected as the rest of the world doesn't support most of these devices yet. Once generated, the key will not change again until the device is removed and re-added in the Xiaomi app.
+For other encrypted devices such as the CGD1, you still need to use the original Mi Home app to add the sensor once. While adding the device, a new key is generated and uploaded into the Xiaomi cloud and to the device itself. Currently a chinese server needs to be selected as the rest of the world doesn't support most of these devices yet. Once generated, the key will not change again until the device is removed and re-added in the Xiaomi app.
 
-In order to obtain the bind key, a SSL packet sniffer needs to be setup on either an Android phone or the iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ in combination with `Wireshark <https://www.wireshark.org/>`__. A tutorial on how to setup the Remote PCAP packet sniffer can be found `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__. Instructions how to obtain the key using an iPhone are `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. Once the traffic between the Mi Home app and the Xiaomi has been recorded, the bind key will show in clear text:
+In order to obtain the bind key, a SSL packet sniffer needs to be setup on either an Android phone or the iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ in combination with `Wireshark <https://www.wireshark.org/>`__. A tutorial on how to setup the Remote PCAP packet sniffer can be found `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__ and `here <https://github.com/ahpohl/xiaomi_lywsd03mmc>`__. Instructions how to obtain the key using an iPhone are `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. Once the traffic between the Mi Home app and the Xiaomi servers has been recorded, the bind key will show in clear text:
 
 .. code-block:: yaml
 
