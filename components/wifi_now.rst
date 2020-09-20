@@ -2,54 +2,58 @@ WiFi Now Component
 ==================
 
 .. seo::
-    :description: Instructions for setting up the WiFi Now (a ESP-Now implementation) configuration for your ESP node in ESPHome.
+    :description: Instructions for setting up the WiFi Now (an ESP-Now implementation) configuration
+    for your ESP nodes in ESPHome.
     :image: wifi-now.png
     :keywords: Wifi-Now, ESP-Now, WiFi, ESP8266, ESP32
 
-This ESPHome component allows direct communication between ESP8266 and ESP32.
-There is no need for a connection to a Wifi access point.
-Also battery powered devices can benifit by save power compared to Wifi because there
-is no delay for connecting to an access point after startup.
+The ``wifi_now`` component allows you to directly communicate between your ESP devices.
+This means you'll no longer need an access point for your ESPhome units to start communicating
+and doing work.
+
+Also, battery powered devices can save power compared to when using always on Wifi because there is
+no delay when connecting to an access point after startup.
 
 .. note::
 
-  In the current version this component is not save for any application that is security
-  critical like open doorlocks or grant access to your home. (A future release will mitigate
-  this by adding authentication to the communication as an option)
+  Currently, this component is not safe for any application that is security critical as it does not
+  include authentication.
+  An example would be for the use in door locks, or other entry systems.
+  A future release will mitigate this.
 
 .. note::
 
   This is the very first implementation, this version is ment to be used for simple applications.
-  In future releases basic stuff like longer packets and security, and later the some kind
-  of a stream mode is planned do a "proxy" ap (need to add a port number for the api in the 
-  home assistant code) and "proxy" ota.
+  In future releases basic stuff like longer packets and security features, and some kind
+  of a stream mode is planned do a "proxy" ap (need to add a port number for the api in the home
+  assistant code) and "proxy" ota.
 
 **Restrictions (by ESP-Now)**:
 
-- Maximum of 20 unencrypted peers (a hard limit by ESP-Now)
-- Maximum of 6 different cryptographic keys (a hard limit by ESP-Now) (will be mitigated by a 
+- Maximum of 20 un-encrypted peers (a hard limit by ESP-Now)
+- Maximum of 6 different cryptographic keys (a hard limit by ESP-Now) (will be mitigated in a
   future release)
-- Maximum payload size is currently 242 bytes (250 - 8 byte service key) (will be mitigated by a
+- Maximum payload size is currently 242 bytes (250 - 8 byte service key) (will be mitigated in a
   future release)
-- Cryptography crypts the data on Unicast, but revieved data is not authenticated, the data is 
-  authenticated by WPA when sended encrypted but the wifi_now component can not determine the data
-  was send encrypted or not. (will be mitigated by a future release)
-- Multicasts are allways unencrypted (will be mitigated by a future release)
-- Wifi channel of WLAN connected devices must be fixed to a specific channel (will be mitigated 
-  by a future release)
-- Each peer must be defined locally, there is only a Multicast, no Broadcast
+- Encrypts the data on Unicast, but received data is not authenticated, the data is 
+  authenticated by WPA when sent encrypted but the ``wifi_now`` component can not determine
+  if the data was send encrypted or not. (will be mitigated in a future release)
+- Multicasts are always un-encrypted (will be mitigated in a future release)
+- Wifi channel of WLAN connected devices must be fixed to a specific channel (will be mitigated
+in a future release)
+- Each peer must be defined locally, this is only when Multicasting, not during a Broadcast.
 
-Preparation
------------
+Configuration examples
+----------------------
 
-Use a tool to get the BSSID aka **station** MAC from devices that should communicate. BSSID is the
-only address for a peer used by wifi_now there is no translation from a name except the local id
-provided in the peer entry. Optional create a 16 byte master key or master password. Optional
-create for each two devices a communication key or communication password.
+Use a tool to get the BSSID aka **station** MAC from devices that should be able to talk together.
+BSSID is the only address needed for a peer used by ``wifi_now``, there is no translation from a name
+except the local id provided in the peer entry. Optionally, create a 16 byte master key or
+password. Optionally, for each device, a communication key or password.
 
-Example for basic configuration of three devices, 
-see :ref:`Configuration Variables <_wifi-now_configuration_variables>` for details:
+For more details see see :ref:`Configuration Variables <_wifi-now_configuration_variables>`.
 
+Example configuration for three devices: 
 .. code-block:: yaml
 
   # Device A
@@ -92,7 +96,7 @@ see :ref:`Configuration Variables <_wifi-now_configuration_variables>` for detai
           bssid: <Mac ID Device B>
           password: "<communication B between C password>"
 
-For basic communication you add a on_receive even on the receiving device, 
+To accomplish basic communication, add an `on_receive` event on the receiving device, 
 see :ref:`on_receive <_wifi-now_on_receive>` for details:
 
 .. code-block:: yaml
@@ -109,7 +113,7 @@ see :ref:`on_receive <_wifi-now_on_receive>` for details:
               id: sensor_a
               state: !lambda 'return id(sensor_a_payload)->get_value();'
 
-And a wifi_now.send action to send the data on the sending device:
+On the sending device, add a wifi_now.send action to send the data to the receiving device:
 
 .. code-block:: yaml
 
@@ -138,7 +142,7 @@ And a wifi_now.send action to send the data on the sending device:
 
 This is just a basic example, in the case of a binary sensor use the 
 `wifi_now.inject action < _wifi-now_inject_action>`
-to trigger an event to avoid issues with timing and packet loos.
+to trigger an event to avoid issues with timing and packet loss.
 
 .. _wifi-now_configuration_variables:
 
@@ -147,35 +151,36 @@ Configuration variables
 
 - **channel** (*optional*, integer from 1 to 12):
   Channel set on startup.
-  wifi_now component will never adjust the channel when other components like Wifi changes channel
-  (current version) if not set the wifi_now depends on other component setting the channel.
+  The ``wifi_now`` component will never adjust the channel when other components like when Wifi changes
+  the channel (current version). if not set, ``wifi_now`` depends on other the component to set the channel.
 
 - **password** (*optional*, string):
-  master password, wifi_now derives the master aes key by using the first 16 bytes of md5sum
+  This is the master password. ``wifi_now`` derives the master aes key by using the first 16 bytes of the md5sum
+  of the password.
 
 - **aeskey** (*optional*, 16 bytes in the form xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx):
-  master aes key, needs to be the same an all devices.
-  password and aeskey are exclusive.
-  if not set by aeskey or password the ESP-Now default key is used.
+  This is the master aes key, needs to be the same an all devices.
+  Password and aeskey are exclusive.
+  If not set by aeskey or password the ESP-Now default key is used.
 
 - **peers** (*required*, list of peer):
-  All peers this device can communicate with
+  A list of all peers this device can communicate with.
   
   - **id** (*required*, identifier):
-    local id of the peer, this is used as a reference for wifi_now.send action
+    Local id of the peer, this is used as a reference in the wifi_now.send action.
 
-  - **bssid** (*required*, mac addressm 6 bytes in the form xx:xx:xx:xx:xx:xx)
+  - **bssid** (*required*, mac address 6 bytes in the form xx:xx:xx:xx:xx:xx)
     Basic Service Set Identification aka. Station Mac Address of the peer
 
   - **password** (*optional*, string):
-    communication password, wifi_now derives the communication aes key by using the first 
-    16 bytes of md5sum
+    This is the communication password, ``wifi_now`` derives the communication aes key by using the first 
+    16 bytes of the md5sum.
 
   - **aeskey** (*optional*, 16 bytes in the form xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx):
-    communication aes key, needs to be the same on the peer device.
-    password and aeskey are exclusive.
-    if not set by aeskey or password communication will not be crypted.
-    you can use 6 different aes keys on a device, behaiviour is undefined if more than 6 keys used.
+    This is the communication aes key. It needs to be the same on the peer devices.
+    Password and aeskey are exclusive.
+    If not set by aeskey or password communication will not be encrypted.
+    You can use 6 different aes keys on a device, behavior is undefined if more than 6 keys are used.
 
 Automations
 -----------
@@ -185,16 +190,16 @@ Automations
 ``on_receive``
 **************
 
-This automation is triggered when a packet is received by wifi now.
+This automation is triggered when a packet is received by ``wifi_now``.
 
 Configuration Variables:
 
 - **peerid** (*optional*, identifier):
-  If set the automation is only executed when the packet is send from the peer
+  If set, the automation is only executed when the packet is sent from this peer.
 
 - **service** (*optional*, string): service name,
-  if set the automation is only executed when the packet contains the service key.
-  wifi-now derives the service by using the first 8 Bytes of servive name md5sum
+  If set the automation is only executed when the packet contains the service key.
+  wifi-now derives the service by using the first 8 Bytes of the service name md5sum.
 
 - **servicekey** (*optional*, 8 bytes in the form XX:XX:XX:XX:XX:XX:XX:XX):
   Service key, if set the automation is only executed when the packet contains the
@@ -231,7 +236,7 @@ Example:
       payloads:
         - bool: BinarySensor1Value
       then:
-        - binara_sensor_template.publish:
+        - binary_sensor_template.publish:
             id: binarysenosor1
             state !lambda return BinarySensor1Value->get_value();
   ...
@@ -246,18 +251,18 @@ Automation Actions:
 
 An automation action to send a packet to a peer or all peers.
 
-Like the if action this action as two flow branches called on_fail and on_success.
+Like the if action, this action as two flow branches called on_fail and on_success.
 
 Configuration Variables:
 - **peerid** (*optional*, identifier): Id of the destination peer
-  If set the payload is send only to the peer otherwist to all configured peer.
+  If set the payload is send only to this peer otherwise to all configured peers.
 
-- **service** (*optional*, string): Servive name.
-  wifi-now derives the service by using the first 8 Bytes of service name md5sum
+- **service** (*optional*, string): Service name.
+  ``wifi_now`` derives the service by using the first 8 Bytes of the service name md5sum.
 
 - **servicekey** (*optional*, 8 bytes in the form XX:XX:XX:XX:XX:XX:XX:XX):
-  if set the packet is filtered by the service key
-  service and servicekey are exclusive.
+  if set the packet is filtered by the service key.
+  `service` and `servicekey` are exclusive.
 
 - **payloads** (*optional*, list of payload type and name)
 
@@ -269,9 +274,9 @@ Configuration Variables:
 - bool: boolean (boolean lambda or boolean value)
   transfers a 32 bit unsigned integer with the value 0 if lamba returns 0 and 1 on
   all values > 0 when received this value can be used with the wifi_now.inject
-  action to set the sensor state instead executing a automation.
+  action to set the sensor state instead executing an automation.
 
-- float: float (fload lambda or float value)
+- float: float (float lambda or float value)
 
 - int: integer (integer lambda or integer value)
 
@@ -283,7 +288,7 @@ Configuration Variables:
   :ref:`wifi_now.inject action <_wifi-now_inject_action>`
 
 .. note::
-   combined payload must be below 242 char otherwise the send will fail, on esp32 
+   combined payload must be below 242 char otherwise the send will fail, on an esp32 
    this means a restart!
 
 Example:
@@ -309,18 +314,17 @@ Example:
 ``wifi_now.retry``
 *****************
 
-An automation action to retry send a packet.
+An automation action retry sending a packet.
 
-**This action can only be used the on_fail branch of the send action**!
+**This action can only be used in the `on_fail` branch of the send action**!
 
 This action changes the flow of the automation back to the send action.
 
-if max. retrys is reached the next action is executed.
+If max retries is reached the next action is executed.
 
 Configuration Variables:
 
-- **max_retrys** (*optional*, unsigned integer, default 2): maximum 
-  number of retrys to perform
+- **max_retries** (*optional*, unsigned integer, default 2): maximum number of retries to perform
 
 Example: 
 
@@ -337,7 +341,7 @@ Example:
             - bool: !lambda x
           on_fail:
             - wifi_now.retry_send:
-            # this is only executed after 2 retrys!
+            # this is only executed after 2 retries!
             - wifi_now.abort:
       ...
 
@@ -346,7 +350,7 @@ Example:
 
 An automation action to abort (or stop) the current automation.
 
-**This action can only be used the on_fail or on_success branch of the send action**!
+**This action can only be used in the on_fail or on_success branch of the send action**!
 
 Example:
 
@@ -373,7 +377,7 @@ Example:
 ``wifi_now.inject``
 *****************
 
-An automation to inject a event into a binary_sensor aka calls the autormation trigger of a
+An automation to inject an event into a binary_sensor, calls the automation trigger of a
 binary_sensor.
 
 This automation was created to avoid problems with timing of the multi click handling and to
@@ -381,11 +385,11 @@ mitigates problems with lost packets.
 
 Configuration Variables:
 
-- **Sensor_id** (*required*, id): id of the binary sensor
+- **sensor_id** (*required*, id): id of the binary sensor
 
 - **payload_id** (*required*, id): id of payload setter
 
-Values of the payload setter and the exection:
+Values of the payload setter and the execution:
 
 +--------+---------------+-----------------------------------------------------+
 | binary | enumeration   | performed action                                    |
@@ -443,7 +447,7 @@ Values of the payload setter and the exection:
 | 25     | MULTI_CLICK20 |                                                     |
 +--------+---------------+-----------------------------------------------------+
   
-enumeration is one of the WifiNowBinarySensorEvent values
+`enumeration` is one of the WifiNowBinarySensorEvent values
 
 Example:
 
