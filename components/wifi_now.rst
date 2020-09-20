@@ -209,7 +209,7 @@ Configuration Variables:
 
   - **<payload type>**: id
 
-<payload type> can be one off, see :ref:`wifi_now.send action <_wifi-now_sent_action>`
+<payload type> can be one off, see :ref:`wifi_now.send action <wifi-now_sent_action>`
 for details:
 
 - bool: boolean (32 Bit)
@@ -223,7 +223,7 @@ for details:
 - vector: variable length binary (std:vector)
 
 - binary_sensor_event: special value for 
-  :ref:`wifi_now.inject action <_wifi-now_inject_action>`
+  :ref:`wifi_now.inject action <wifi-now_inject_action>`
 
 Example:
 
@@ -286,7 +286,7 @@ Configuration Variables:
 - vector: variable length binary (std:vector lambda)
 
 - binary_sensor_event: special value for 
-  :ref:`wifi_now.inject action <_wifi-now_inject_action>`
+  :ref:`wifi_now.inject action <wifi-now_inject_action>`
 
 .. note::
 
