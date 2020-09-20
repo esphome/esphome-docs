@@ -548,7 +548,7 @@ See Also
 - :apiref:`esp_now/component.h`
 - `Esspresif Esp-Now Userguide (ESP8266) <https://www.espressif.com/sites/default/files/documentation/esp-now_user_guide_en.pdf>`__.
 - `Esspresif Esp Non-OS SDK (ESP8266) <https://www.espressif.com/sites/default/files/documentation/2c-esp8266_non_os_sdk_api_reference_en.pdf>`__.
-- `Esspresif Esp-Now API (ESP23) <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_now.html>`__.
+- `Esspresif Esp-Now API (ESP32) <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_now.html>`__.
 - :ghedit:`Edit`
 
 .. toctree::
