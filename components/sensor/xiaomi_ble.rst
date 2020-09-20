@@ -362,7 +362,13 @@ To set up an encrypted device such as the LYWSD03MMC (with Xiaomi stock firmware
 LYWSD03MMC
 **********
 
-If the LYWSD03MMC sensor is operated with the Xiaomi stock firmware, you can use the `TeLink flasher application <https://atc1441.github.io/TelinkFlasher.html>`__ to easily generate a new bind key and upload the key to the device without the need to flash a new firmware. For this, you load the flasher `webpage <https://atc1441.github.io/TelinkFlasher.html>`__ with a `supported browser <https://github.com/WebBluetoothCG/web-bluetooth/blob/master/implementation-status.md>`__ and connect the device by pressing "Connect". After the connection is established, you press the "Do Activation" button and the new key will be shown in the "Mi Bind Key" field. The key can be copied directly into the sensor YAML configuration.
+If the LYWSD03MMC sensor is operated with the Xiaomi stock firmware, you can use the `TeLink flasher application <https://atc1441.github.io/TelinkFlasher.html>`__ to easily generate a new bind key and upload the key to the device without the need to flash a new firmware (see figure). For this, you load the flasher `webpage <https://atc1441.github.io/TelinkFlasher.html>`__ with a `supported browser <https://github.com/WebBluetoothCG/web-bluetooth/blob/master/implementation-status.md>`__ and connect the device by pressing "Connect". After the connection is established, you press the "Do Activation" button and the new key will be shown in the "Mi Bind Key" field. The key can be copied directly into the sensor YAML configuration.
+
+.. figure:: images/telink_flasher.jpg
+    :align: center
+    :width: 100.0%
+
+    Telink flasher application.
 
 .. warning::
 
