@@ -254,6 +254,7 @@ An automation action to send a packet to a peer or all peers.
 Like the if action, this action as two flow branches called on_fail and on_success.
 
 Configuration Variables:
+
 - **peerid** (*optional*, identifier): Id of the destination peer
   If set the payload is send only to this peer otherwise to all configured peers.
 
