@@ -155,10 +155,12 @@ LYWSD03MMC
 **********
 
 Hygro thermometer, small square body, segment LCD, encrypted, broadcasts temperature, humidity and battery status. There are the following possibilities to operate this sensor:
-  - Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
-  - Device flashed with `ATC MiThermometer <https://atc1441.github.io/TelinkFlasher.html>`__custom firmware
-    - "Mi Like advertisement format (dummy bindkey required)
-    - "Custom" advertisement format (no bindkey required)
+
+* Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
+* Device flashed with `ATC MiThermometer <https://atc1441.github.io/TelinkFlasher.html>`__custom firmware
+    
+  * "Mi Like advertisement format (dummy bindkey required)
+  * "Custom" advertisement format (no bindkey required)
 
 .. figure:: images/xiaomi_lywsd03mmc.jpg
     :align: center
