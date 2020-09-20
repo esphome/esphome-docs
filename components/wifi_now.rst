@@ -348,7 +348,7 @@ Example:
         ...
 
 ``wifi_now.abort``
-*****************
+******************
 
 An automation action to abort (or stop) the current automation.
 
@@ -377,7 +377,7 @@ Example:
 .. _wifi-now_inject_action:
 
 ``wifi_now.inject``
-*****************
+*******************
 
 An automation to inject an event into a binary_sensor, calls the automation trigger of a
 binary_sensor.
