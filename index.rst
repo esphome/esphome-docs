@@ -354,7 +354,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
-    Wifi Now, component/wifi_now, wifi_now.svg
+    Wifi Now, components/wifi_now, wifi_now.svg
 
 Additional Custom Components
 ----------------------------
