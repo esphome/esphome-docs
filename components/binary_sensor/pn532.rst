@@ -86,6 +86,17 @@ The parameter ``x`` this trigger provides is of type ``std::string`` and is the 
               topic: pn532/tag
               payload: !lambda 'return x;'
 
+A tag scanned event can also be sent to the Home Assistant tag component
+using :ref:`api-homeassistant_tag_scanned_action`.
+
+.. code-block:: yaml
+
+    pn532:
+      # ...
+      on_tag:
+        then:
+          - homeassistant.tag_scanned: !lambda 'return x;'
+
 .. _pn532-tag:
 
 NFC/RFID Tag
