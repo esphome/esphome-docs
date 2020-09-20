@@ -572,6 +572,18 @@ Release 1.15.1 - September 14
 - docs: Adds Tuya Climate temperature multiplier :docspr:`756` by :ghuser:`jesserockz`
 - esphome: Adds support for Tuya Climate temperature multiplier :esphomepr:`1276` by :ghuser:`jesserockz`
 
+Release 1.15.2 - September 20
+-----------------------------
+
+- docs: Light triggers referenced in the "automation" guide. :docspr:`746` by :ghuser:`demikl`
+- docs: specific MacOS Docker command to launch dashboard :docspr:`553` by :ghuser:`oncleben31`
+- docs: Update index.rst :docspr:`757` by :ghuser:`3ative`
+- esphome: Adds new homeassistant.tag_scanned action :esphomepr:`1281` by :ghuser:`jesserockz`
+- docs: add custom uart id usage :docspr:`765` by :ghuser:`glmnet`
+- esphome: Readds the battery level for xiaomi_hhccjcy01 :esphomepr:`1288` by :ghuser:`jesserockz`
+- esphome: fix(remote_receiver): Add missing pin setup for ESP32 :esphomepr:`1252` by :ghuser:`lwfitzgerald`
+- docs: Add docs for homeassistant.tag_scanned action :docspr:`763` by :ghuser:`jesserockz`
+
 Past Changelogs
 ---------------
 
