@@ -16,17 +16,17 @@ no delay when connecting to an access point after startup.
 
 .. note::
 
-  Currently, this component is not safe for any application that is security critical as it does not
-  include authentication.
-  An example would be for the use in door locks, or other entry systems.
-  A future release will mitigate this.
+    Currently, this component is not safe for any application that is security critical as it does not
+    include authentication.
+    An example would be for the use in door locks, or other entry systems.
+    A future release will mitigate this.
 
 .. note::
 
-  This is the very first implementation, this version is ment to be used for simple applications.
-  In future releases basic stuff like longer packets and security features, and some kind
-  of a stream mode is planned do a "proxy" ap (need to add a port number for the api in the home
-  assistant code) and "proxy" ota.
+    This is the very first implementation, this version is ment to be used for simple applications.
+    In future releases basic stuff like longer packets and security features, and some kind
+    of a stream mode is planned do a "proxy" ap (need to add a port number for the api in the home
+    assistant code) and "proxy" ota.
 
 **Restrictions (by ESP-Now)**:
 
@@ -56,17 +56,17 @@ For more details see see :ref:`Configuration Variables <_wifi-now_configuration_
 Example configuration for three devices: 
 .. code-block:: yaml
 
-  # Device A
-  wifi_now:
-    channel: 2
-    password: "<master password>"
-    peers:
-      - id: device_b
-        bssid: <Mac ID Device B>
-        password: "<communication A between B password>"
-      - id: device_c
-        bssid: <Mac ID Device C>
-        password: "<communication A between C password>"
+    # Device A
+    wifi_now:
+      channel: 2
+      password: "<master password>"
+      peers:
+        - id: device_b
+          bssid: <Mac ID Device B>
+          password: "<communication A between B password>"
+        - id: device_c
+          bssid: <Mac ID Device C>
+          password: "<communication A between C password>"
 
 .. code-block:: yaml
 
@@ -229,17 +229,17 @@ Example:
 
 .. code-block:: yaml
 
-  ...
-  on_receive:
-    - peerid: device_a
-    - service: Binary Sensor 1
-      payloads:
-        - bool: BinarySensor1Value
-      then:
-        - binary_sensor_template.publish:
-            id: binarysenosor1
-            state !lambda return BinarySensor1Value->get_value();
-  ...
+    ...
+    on_receive:
+      - peerid: device_a
+      - service: Binary Sensor 1
+        payloads:
+          - bool: BinarySensor1Value
+        then:
+          - binary_sensor_template.publish:
+              id: binarysenosor1
+              state !lambda return BinarySensor1Value->get_value();
+    ...
 
 Automation Actions:
 -------------------
@@ -288,28 +288,29 @@ Configuration Variables:
   :ref:`wifi_now.inject action <_wifi-now_inject_action>`
 
 .. note::
-   combined payload must be below 242 char otherwise the send will fail, on an esp32 
-   this means a restart!
+
+    combined payload must be below 242 char otherwise the send will fail, on an esp32 
+    this means a restart!
 
 Example:
 
 .. code-block:: yaml
 
-  ...
-  - on_state
-    - then
-      ...
-      - wifi_now.send:
-          peerid: device_b
-          service: Binary Sensor 1
-          payloads:
-            - bool: !lambda x
-          on_fail:
-            - wifi_now.retry_send:
-            - wifi_now.abort:
-          on_success:
-            - logger.log: Success
-      ...
+    ...
+    - on_state
+      - then
+        ...
+        - wifi_now.send:
+            peerid: device_b
+            service: Binary Sensor 1
+            payloads:
+              - bool: !lambda x
+            on_fail:
+              - wifi_now.retry_send:
+              - wifi_now.abort:
+            on_success:
+              - logger.log: Success
+        ...
 
 ``wifi_now.retry``
 *****************
@@ -330,20 +331,20 @@ Example:
 
 .. code-block:: yaml
 
-  ...
-  - on_state
-    - then
-      ...
-      - wifi_now.send:
-          peerid: device_b
-          service: Binary Sensor 1
-          payloads:
-            - bool: !lambda x
-          on_fail:
-            - wifi_now.retry_send:
-            # this is only executed after 2 retries!
-            - wifi_now.abort:
-      ...
+    ...
+    - on_state
+      - then
+        ...
+        - wifi_now.send:
+            peerid: device_b
+            service: Binary Sensor 1
+            payloads:
+              - bool: !lambda x
+            on_fail:
+              - wifi_now.retry_send:
+              # this is only executed after 2 retries!
+              - wifi_now.abort:
+        ...
 
 ``wifi_now.abort``
 *****************
@@ -356,20 +357,20 @@ Example:
 
 .. code-block:: yaml
 
-  - on_state
-    - then
-      ...
-      - wifi_now.send:
-          peerid: device_b
-          service: Binary Sensor 1
-          payloads:
-            - bool: !lambda x
-          on_fail:
-            - wifi_now.retry_send:
-            # this aborts the automation after 2 retrys!
-            - wifi_now.abort:
-      - logger.log this is only executed on success
-      ...
+    - on_state
+      - then
+        ...
+        - wifi_now.send:
+            peerid: device_b
+            service: Binary Sensor 1
+            payloads:
+              - bool: !lambda x
+            on_fail:
+              - wifi_now.retry_send:
+              # this aborts the automation after 2 retrys!
+              - wifi_now.abort:
+        - logger.log this is only executed on success
+        ...
 
 
 .. _wifi-now_inject_action:
@@ -452,87 +453,88 @@ Values of the payload setter and the execution:
 Example:
 
 .. code-block:: yaml
-  # device A
-  binary_sensor:
-  ...
-  - platform: gpio
-    id: BinarySensor1
-    name: Some fancy name
-    pin: 2
-    on_multi_click:
-      - timing:
-          - ON for at most 2s
-        then:
-          - logger.log: Multi click 1
-      - timing:
-          - ON for at most 4s
-        then:
-          - logger.log: Multi click 2
-      - timing:
-          - ON for at most 6s
-        then:
-          - logger.log: Multi click 3
-      - timing:
-          - ON for at most 8s
-        then:
-          - logger.log: Multi click 4
-  ...
+
+    # device A
+    binary_sensor:
+    ...
+    - platform: gpio
+      id: BinarySensor1
+      name: Some fancy name
+      pin: 2
+      on_multi_click:
+        - timing:
+            - ON for at most 2s
+          then:
+            - logger.log: Multi click 1
+        - timing:
+            - ON for at most 4s
+          then:
+            - logger.log: Multi click 2
+        - timing:
+            - ON for at most 6s
+          then:
+            - logger.log: Multi click 3
+        - timing:
+            - ON for at most 8s
+          then:
+            - logger.log: Multi click 4
+    ...
 
 .. code-block:: yaml
 
-  # device B
-  wifi_now:
+    # device B
+    wifi_now:
+      ...
+      on_receive:
+      - service: Binary Sensor 1
+        payloads:
+          - binary_sensor_event: BinarySensor1EventValue
+        then:
+          - logger.log: revieved for BinarySensor1
+          - wifi_now.inject:
+              sensor_id: BinarySensor1
+              payload_id: BinarySensor1EventValue
+      ...
+    binary_sensor:
     ...
-    on_receive:
-    - service: Binary Sensor 1
-      payloads:
-        - binary_sensor_event: BinarySensor1EventValue
-      then:
-        - logger.log: revieved for BinarySensor1
-        - wifi_now.inject:
-            sensor_id: BinarySensor1
-            payload_id: BinarySensor1EventValue
+    - platform: gpio
+      id: BinarySensor1
+      name: Some fancy name
+      pin: 2
+      on_multi_click:
+        - timing:
+            - ON for at most 1s
+          then:
+            - wifi_now.send:
+                peerid: device_b
+                service: Binary Sensor 1
+                payloads:
+                  - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK1
+        - timing:
+            - ON for at most 2s
+          then:
+            - wifi_now.send:
+                peerid: device_b
+                service: Binary Sensor 1
+                payloads:
+                  - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK2
+        - timing:
+            - ON for at most 3s
+          then:
+            - wifi_now.send:
+                peerid: device_b
+                service: Binary Sensor 1
+                payloads:
+                  - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK3
+        - timing:
+            - ON for at most 4s
+          then:
+            - wifi_now.send:
+                peerid: device_b
+                service: Binary Sensor 1
+                payloads:
+                  - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK4
     ...
-  binary_sensor:
-  ...
-  - platform: gpio
-    id: BinarySensor1
-    name: Some fancy name
-    pin: 2
-    on_multi_click:
-      - timing:
-          - ON for at most 1s
-        then:
-          - wifi_now.send:
-              peerid: device_b
-              service: Binary Sensor 1
-              payloads:
-                - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK1
-      - timing:
-          - ON for at most 2s
-        then:
-          - wifi_now.send:
-              peerid: device_b
-              service: Binary Sensor 1
-              payloads:
-                - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK2
-      - timing:
-          - ON for at most 3s
-        then:
-          - wifi_now.send:
-              peerid: device_b
-              service: Binary Sensor 1
-              payloads:
-                - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK3
-      - timing:
-          - ON for at most 4s
-        then:
-          - wifi_now.send:
-              peerid: device_b
-              service: Binary Sensor 1
-              payloads:
-                - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK4
-  ...
 
 The example maps the multiclick Events of device_b to a binary sensor on device_b:
 
