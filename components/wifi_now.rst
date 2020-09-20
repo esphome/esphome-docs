@@ -97,7 +97,7 @@ Example configuration for three devices:
           password: "<communication B between C password>"
 
 To accomplish basic communication, add an `on_receive` event on the receiving device, 
-see :ref:`on_receive <_wifi-now_on_receive>` for details:
+see :ref:`on_receive <wifi-now_on_receive>` for details:
 
 .. code-block:: yaml
 
