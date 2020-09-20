@@ -209,7 +209,7 @@ Configuration Variables:
 
   - **<payload type>**: id
 
-<payload type> can be one off, see :ref:`wifi_now.send action <wifi-now_sent_action>`
+<payload type> can be one of, see :ref:`wifi_now.send action <wifi-now_sent_action>`
 for details:
 
 - bool: boolean (32 Bit)
@@ -456,6 +456,18 @@ Example:
 .. code-block:: yaml
 
     # device A
+    wifi_now:
+      ...
+      on_receive:
+      - service: Binary Sensor 1
+        payloads:
+          - binary_sensor_event: BinarySensor1EventValue
+        then:
+          - logger.log: revieved for BinarySensor1
+          - wifi_now.inject:
+              sensor_id: BinarySensor1
+              payload_id: BinarySensor1EventValue
+    ...
     binary_sensor:
     ...
     - platform: gpio
@@ -484,18 +496,6 @@ Example:
 .. code-block:: yaml
 
     # device B
-    wifi_now:
-      ...
-      on_receive:
-      - service: Binary Sensor 1
-        payloads:
-          - binary_sensor_event: BinarySensor1EventValue
-        then:
-          - logger.log: revieved for BinarySensor1
-          - wifi_now.inject:
-              sensor_id: BinarySensor1
-              payload_id: BinarySensor1EventValue
-      ...
     binary_sensor:
     ...
     - platform: gpio
@@ -507,7 +507,7 @@ Example:
             - ON for at most 1s
           then:
             - wifi_now.send:
-                peerid: device_b
+                peerid: device_a
                 service: Binary Sensor 1
                 payloads:
                   - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK1
@@ -515,7 +515,7 @@ Example:
             - ON for at most 2s
           then:
             - wifi_now.send:
-                peerid: device_b
+                peerid: device_a
                 service: Binary Sensor 1
                 payloads:
                   - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK2
@@ -523,7 +523,7 @@ Example:
             - ON for at most 3s
           then:
             - wifi_now.send:
-                peerid: device_b
+                peerid: device_a
                 service: Binary Sensor 1
                 payloads:
                   - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK3
@@ -531,13 +531,13 @@ Example:
             - ON for at most 4s
           then:
             - wifi_now.send:
-                peerid: device_b
+                peerid: device_a
                 service: Binary Sensor 1
                 payloads:
                   - binary_sensor_event: !lambda wifi_now::WifiNowBinarySensorEvent::MULTI_CLICK4
     ...
 
-The example maps the multiclick Events of device_b to a binary sensor on device_b:
+The example maps the multiclick Events of abinary sensor on device_b to a binary sensor on device_a:
 
 Note that the devices use different timings for the sensor.
 
