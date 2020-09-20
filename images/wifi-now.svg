@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="wifi-now.svg"
+   id="svg8"
+   version="1.1"
+   width="24"
+   height="24">
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg8"
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:cy="16.16724"
+     inkscape:cx="13.402352"
+     inkscape:zoom="35.416667"
+     showgrid="false"
+     id="namedview10"
+     inkscape:window-height="942"
+     inkscape:window-width="1291"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <path
+     id="path2"
+     fill-opacity=".3"
+     d="M12.01 21.49L23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7l11.63 14.49.01.01.01-.01z" />
+  <path
+     id="path4"
+     fill="none"
+     d="M0 0h24v24H0z" />
+  <path
+     id="path6"
+     d="M3.53 10.95l8.46 10.54.01.01.01-.01 8.46-10.54C20.04 10.62 16.81 8 12 8c-4.81 0-8.04 2.62-8.47 2.95z" />
+  <text
+     id="text22"
+     y="13.505883"
+     x="5.2705879"
+     style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1"
+     xml:space="preserve"><tspan
+       style="font-size:5.33333px;fill:#ffffff;fill-opacity:1"
+       y="13.505883"
+       x="5.2705879"
+       id="tspan20"
+       sodipodi:role="line">Now!</tspan></text>
+</svg>
