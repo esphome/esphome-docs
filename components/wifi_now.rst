@@ -39,7 +39,7 @@ no delay when connecting to an access point after startup.
   if the data was send encrypted or not. (will be mitigated in a future release)
 - Multicasts are always un-encrypted (will be mitigated in a future release)
 - Wifi channel of WLAN connected devices must be fixed to a specific channel (will be mitigated
-in a future release)
+  in a future release)
 - Each peer must be defined locally, this is only when Multicasting, not during a Broadcast.
 
 Configuration examples
