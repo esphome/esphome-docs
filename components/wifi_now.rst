@@ -50,7 +50,7 @@ BSSID is the only address needed for a peer used by ``wifi_now``, there is no tr
 except the local id provided in the peer entry. Optionally, create a 16 byte master key or
 password. Optionally, for each device, a communication key or password.
 
-For more details see see :ref:`Configuration Variables <_wifi-now_configuration_variables>`.
+For more details see see :ref:`Configuration Variables <wifi-now_configuration_variables>`.
 
 Example configuration for three devices:
 
