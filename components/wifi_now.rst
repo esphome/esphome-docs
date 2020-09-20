@@ -67,6 +67,7 @@ Example configuration for three devices:
           bssid: <Mac ID Device C>
           password: "<communication A between C password>"
 
+
 .. code-block:: yaml
 
     # Device B
