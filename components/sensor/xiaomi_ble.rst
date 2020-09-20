@@ -366,7 +366,7 @@ If the LYWSD03MMC sensor is operated with the Xiaomi stock firmware, you can use
 
 .. warning::
 
-   The new bind key will work with ESPHome, but the Mi Home app will not recognise the sensor anymore once the device has been activated by the TeLink flasher application. To use the sensor again with the Xiaomi Mi Home app, the device needs to be removed and then re-added inside the Mi Home app.  
+    The new bind key will work with ESPHome, but the Mi Home app will not recognise the sensor anymore once the device has been activated by the TeLink flasher application. To use the sensor again with the Xiaomi Mi Home app, the device needs to be removed and then re-added inside the Mi Home app.  
 
 Other encrypted devices
 ***********************
