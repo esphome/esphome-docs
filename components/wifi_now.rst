@@ -314,7 +314,7 @@ Example:
         ...
 
 ``wifi_now.retry``
-*****************
+******************
 
 An automation action retry sending a packet.
 
