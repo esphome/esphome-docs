@@ -52,7 +52,8 @@ password. Optionally, for each device, a communication key or password.
 
 For more details see see :ref:`Configuration Variables <_wifi-now_configuration_variables>`.
 
-Example configuration for three devices: 
+Example configuration for three devices:
+
 .. code-block:: yaml
 
     # Device A
@@ -66,7 +67,6 @@ Example configuration for three devices:
         - id: device_c
           bssid: <Mac ID Device C>
           password: "<communication A between C password>"
-
 
 .. code-block:: yaml
 
