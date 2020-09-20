@@ -2,8 +2,7 @@ WiFi Now Component
 ==================
 
 .. seo::
-    :description: Instructions for setting up the WiFi Now (an ESP-Now implementation) configuration
-    for your ESP nodes in ESPHome.
+    :description: Instructions for setting up the WiFi Now (an ESP-Now implementation) configuration for your ESP nodes in ESPHome.
     :image: wifi_now.png
     :keywords: Wifi-Now, ESP-Now, WiFi, ESP8266, ESP32
 
