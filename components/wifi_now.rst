@@ -203,7 +203,7 @@ Configuration Variables:
 
 - **servicekey** (*optional*, 8 bytes in the form XX:XX:XX:XX:XX:XX:XX:XX):
   Service key, if set the automation is only executed when the packet contains the
-   service key.
+  service key.
   
 - **payloads** (*optional*, list of payload type and name)
 
