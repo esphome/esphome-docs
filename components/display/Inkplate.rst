@@ -62,8 +62,8 @@ Learn more at `our website <https://inkplate.io/>`__
 
 .. warning::
 
-  Inkplate module cannot perform partial update if 3 bit mode is on.
-  It just ignores the function call in that case.
+    Inkplate module cannot perform partial update if 3 bit mode is on.
+    It just ignores the function call in that case.
 
 
 Configuration variables
