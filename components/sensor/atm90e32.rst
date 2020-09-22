@@ -13,7 +13,7 @@ ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy me
 Communication with the device is done via an :ref:`SPI bus <spi>`, so you need to have an ``spi:`` entry in your configuration
 with both ``mosi_pin`` and ``miso_pin`` set.
 
-The atm90e32 IC can measure up to three AC voltages. Although, typically, only one
+The ATM90E32 IC can measure up to three AC voltages although typically only one
 voltage measurement would be used for the mains electricity phase of a
 household. Three current measurements are read via CT clamps.
 
@@ -25,7 +25,7 @@ The `CircuitSetup Split Single Phase Energy Meter <https://circuitsetup.us/index
 
     CircuitSetup Split Single Phase Real Time Whole House Energy Meter.
 
-The `CircuitSetup Expandable 6 Channel Energy Meter <https://circuitsetup.us/index.php/product/expandable-6-channel-esp32-energy-meter/>`__ can read 6 current channels and 2 voltage channels at a time. This board has 2 atm90e32 ICs and requires 2 sensors to be configured in ESPHome.
+The `CircuitSetup 6-Channel Energy Monitor <https://circuitsetup.us/index.php/product/expandable-6-channel-esp32-energy-meter/>`__ can read 6 current channels and 2 voltage channels at a time, this board has two ATM90E32 ICs and requires two sensors to be configured in ESPHome.
 
 .. figure:: images/atm90e32-cs-6chan-full.jpg
     :align: center
@@ -72,7 +72,10 @@ Configuration variables:
 Calibration
 -----------
 
-This sensor needs calibration to show correct values. The default gain configuration is set to use the `SCT-013-000 <https://amzn.to/2E0KVvo>` current transformers with gain_pga set to 2X, and the `Jameco Reliapro 9v 120V AC transformer <https://amzn.to/2XcWJjI>` to measure voltage and supply power to the meter boards. A load which uses a known amount of current can be used to calibrate. For a more accurate calibration use a `Kill-A-Watt <https://amzn.to/2TXT7jx>` meter or similar. Mains voltages can fluctuate depending on grid load.
+This sensor needs calibration to show correct values. The default gain configuration is set to use the `SCT-013-000 <https://amzn.to/2E0KVvo>`__
+current transformers, and the `Jameco Reliapro 9v AC transformer <https://amzn.to/2XcWJjI>`__.
+A load which uses a known amount of current can be used to calibrate. For for a more accurate calibration use a
+`Kill-A-Watt <https://amzn.to/2TXT7jx>`__ meter or similar, mains voltages can fluctuate depending on grid load.
 
 Voltage
 ^^^^^^^

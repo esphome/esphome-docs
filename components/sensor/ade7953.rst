@@ -42,7 +42,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor. Defaults to ``0x38``.
+- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x38``.
 - **voltage** (*Optional*): Use the voltage value of the sensor in volt. All options from
   :ref:`Sensor <config-sensor>`.
 - **current_a** (*Optional*): Use the current value of the A channel in amperes. All options from

@@ -46,6 +46,9 @@ Configuration variables:
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
 - **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
 - **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
+- **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use integration that needs to read big payloads from UART. Defaults to ``256``.
+- **data_bits** (*Optional*, int): The number of data bits used on the UART bus. Options: 5 to 8. Defaults to 8.
+- **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
 
@@ -54,8 +57,8 @@ Configuration variables:
 Hardware UARTs
 --------------
 
-Whenever possible, esphome will use the Hardware UART unit on the processor for fast and accurate communication.
-When the hardware UARTs are all occupied, esphome will fall back to a software implementation that may not
+Whenever possible, ESPHome will use the hardware UART unit on the processor for fast and accurate communication.
+When the hardware UARTs are all occupied, ESPHome will fall back to a software implementation that may not
 be accurate at higher baud rates.
 
 ``UART0`` is (by default) used by the :doc:`logger component </components/logger>`, using ``tx_pin: GPIO1`` and
@@ -90,6 +93,11 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
       # Templated, return type is std::vector<uint8_t>
       - uart.write: !lambda
           return {0x00, 0x20, 0x42};
+
+      # in case you need to specify the uart id
+      - uart.write:
+          id: my_second_uart
+          data: 'other data'
 
 See Also
 --------

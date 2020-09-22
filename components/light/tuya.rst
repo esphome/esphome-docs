@@ -16,14 +16,14 @@ tuya serial component.
     The dimmer switch I got would hang if the logger was configured to use the serial port
     which meant it was bricked until I cut it open.
 
-There are two components, the Tuya bus and the dimmer that uses it.  The ``tuya``
+There are two components, the Tuya bus and the dimmer that uses it.  The :doc:`/components/tuya`
 component requires a :ref:`UART bus <uart>` to be configured.  Put the ``tuya`` component in
 the config and it will list the possible devices for you in the config log.
 
 .. code-block:: yaml
 
     # Example configuration entry
-    # Make sure your wifi will connect
+    # Make sure your WiFi will connect
     wifi:
       ssid: "ssid"
       password: "password"
@@ -92,6 +92,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/tuya`
 - :doc:`/components/light/index`
 - :apiref:`tuya/light/tuya_light.h`
 - :ghedit:`Edit`

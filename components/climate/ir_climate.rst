@@ -15,31 +15,37 @@ as your remote unit would do.
 There is a growing list of compatible units. If your unit is not listed below you can fill a feature
 request so it will be added (see FAQ).
 
-+------------------------+---------------------+----------------------+
-| Name                   | Platform name       |  Supports receiver   |
-|                        |                     |                      +
-+========================+=====================+======================+
-| Coolix                 | ``coolix``          | yes                  |
-+------------------------+---------------------+----------------------+
-| Daikin                 | ``daikin``          | no                   |
-+------------------------+---------------------+----------------------+
-| Fujitsu General        | ``fujitsu_general`` | no                   |
-+------------------------+---------------------+----------------------+
-| Mitsubishi             | ``mitsubishi``      | no                   |
-+------------------------+---------------------+----------------------+
-| TCL112, Fuego          | ``tcl112``          | yes                  |
-+------------------------+---------------------+----------------------+
-| Yashima                | ``yashima``         | no                   |
-+------------------------+---------------------+----------------------+
++------------------------+---------------------+----------------------+------------------------------------+
+| Name                   | Platform name       |  Supports receiver   |                                    |
+|                        |                     |                      |                                    |
++========================+=====================+======================+====================================+
+| Coolix                 | ``coolix``          | yes                  |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
+| Daikin                 | ``daikin``          | yes                  |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
+| Fujitsu General        | ``fujitsu_general`` |                      |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
+| Mitsubishi             | ``mitsubishi``      |                      |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
+| TCL112, Fuego          | ``tcl112``          | yes                  |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
+| Toshiba                | ``toshiba``         | yes                  |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
+| Yashima                | ``yashima``         |                      |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
+| Whirlpool              | ``whirlpool``       | yes                  | :ref:`more info<model_whirlpool>`  |
++------------------------+---------------------+----------------------+------------------------------------+
+| LG                     | ``climate_ir_lg``   | yes                  |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
 
 Due to the unidirectional nature of IR remote controllers, this component cannot determine the
 actual state of the device, and will assume the state of the device is the latest state requested.
 
-However, when receiver is supported, you can optionally you can add a
-:doc:`/components/remote_receiver` component so the climate state will be tracked when it is operated
-with the original remote controller unit.
+However, when receiver is supported, you can optionally add a :doc:`/components/remote_receiver`
+component so the climate state will be tracked when it is operated with the original remote
+controller unit.
 
 .. code-block:: yaml
 
@@ -94,12 +100,26 @@ IR receiver.
         number: GPIO14
         inverted: True
         mode: INPUT_PULLUP
-      tolerance: 55%  # high 55% tolerance is recommended for some remote control units
+      # high 55% tolerance is recommended for some remote control units
+      tolerance: 55%
 
     climate:
       - platform: coolix
         name: "Living Room AC"
         receiver_id: rcvr
+
+.. _model_whirlpool:
+
+Whirlpool
+---------
+
+Additional configuration is available for this model
+
+- **model** (*Optional*, string): There are two valid models
+
+  * ``MODEL_DG11J1_3A``: Temperature range is from 18 to 32 (default)
+  * ``MODEL_DG11J1_91``: Temperature range is from 16 to 30
+
 
 See Also
 --------
@@ -112,4 +132,6 @@ See Also
   :apiref:`mitsubishi.h <mitsubishi/mitsubishi.h>`,
   :apiref:`tcl112.h <tcl112/tcl112.h>`,
   :apiref:`yashima.h <yashima/yashima.h>`
+  :apiref:`whirlpool.h <whirlpool/whirlpool.h>`
+  :apiref:`climate_ir_lg.h <climate_ir_lg/climate_ir_lg.h>`
 - :ghedit:`Edit`
