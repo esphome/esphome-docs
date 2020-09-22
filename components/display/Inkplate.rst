@@ -18,6 +18,61 @@ Learn more at `our website <https://inkplate.io/>`__
 
 .. code-block:: yaml
 
+    # Example minimal configuration entry
+
+    mcp23017:
+      - id: mcp23017_hub
+        address: 0x20
+
+    display:
+    - platform: inkplate
+      id: inkplate_display
+      greyscale: false
+      partial_updating: false
+      update_interval: 60s
+
+      ckv_pin: 32
+      sph_pin: 33
+      gmod_pin:
+        mcp23017: mcp23017_hub
+        number: 1
+      gpio0_enable_pin:
+        mcp23017: mcp23017_hub
+        number: 8
+      oe_pin:
+        mcp23017: mcp23017_hub
+        number: 0
+      spv_pin:
+        mcp23017: mcp23017_hub
+        number: 2
+      powerup_pin:
+        mcp23017: mcp23017_hub
+        number: 4
+      wakeup_pin:
+        mcp23017: mcp23017_hub
+        number: 3
+      vcom_pin:
+        mcp23017: mcp23017_hub
+        number: 5
+
+.. warning::
+
+    When using the Inkplate epaper module, the GPIO pin numbers above *cannot be changed* as they are
+    hardwired within the module/PCB.
+
+
+Configuration variables
+***********************
+
+
+Complete example
+****************
+
+The following is a complete example YAML configuration that does a few things beyond the usual
+Wi-Fi, API, and OTA configuration.
+
+.. code-block:: yaml
+
     # Example configuration entry
     esphome:
       name: inkplate
@@ -168,6 +223,7 @@ Learn more at `our website <https://inkplate.io/>`__
         } else {
           it.print(700, 100, id(helvetica_48), COLOR_OFF, TextAlign::TOP_RIGHT, "Offline");
         }
+
 
 See Also
 --------
