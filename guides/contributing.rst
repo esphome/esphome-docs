@@ -222,9 +222,9 @@ Build
 
     .. code-block:: bash
 
-        docker run --rm -v "${PWD}/":/data -p 8000:8000 -it esphome/esphome-docs
+        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
 
-    And then go to ``<CONTAINER_IP>:8000`` in your browser.
+    With ``PWD`` refering to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
 
     This way, you don't have to install the dependencies to build the documentation.
 
