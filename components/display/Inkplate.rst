@@ -60,6 +60,11 @@ Learn more at `our website <https://inkplate.io/>`__
     When using the Inkplate epaper module, the GPIO pin numbers above *cannot be changed* as they are
     hardwired within the module/PCB.
 
+.. warning::
+
+  Inkplate module cannot perform partial update if 3 bit mode is on.
+  It just ignores the function call in that case.
+
 
 Configuration variables
 ***********************
