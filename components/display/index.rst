@@ -118,7 +118,7 @@ Additionally, you have access to two helper methods which will fetch the width a
         # ...
         lambda: |-
           // Draw a circle in the middle of the display
-          it.filled_circle(it.get_width() / 2, it.get_height() / 2);
+          it.filled_circle(it.get_width() / 2, it.get_height() / 2, 20);
 
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
