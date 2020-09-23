@@ -70,6 +70,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         cold_white: output_cold_white
         cold_white_color_temperature: 6200 K
         warm_white_color_temperature: 2800 K
+        color_interlock: true # avoids simultaneous RGB and W/W
 
 
 See Also
