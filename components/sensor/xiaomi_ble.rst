@@ -294,6 +294,8 @@ Configuration example:
           name: "MJYD02YL-A Light Status"
         battery_level:
           name: "MJYD02YL-A Battery Level"
+        illuminance:
+          name: "MJYD02YL-A Illuminance"
 
 Setting Up Devices
 ------------------
