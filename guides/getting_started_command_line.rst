@@ -21,8 +21,8 @@ Installing ESPHome is very easy. All you need to do is have `Python
     pip3 install esphome
 
 Alternatively, there’s also a Docker image available for easy
-installation (the Docker hub image is only available for AMD64 right now; if you have
-an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <getting_started_hassio>`:
+installation (the Docker hub image is available for AMD64, ARM and ARM64(AARCH64) right now; if you have
+another architecture, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <getting_started_hassio>`:
 
 .. code-block:: bash
 
