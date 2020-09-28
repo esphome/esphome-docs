@@ -69,6 +69,7 @@ Custom Components & Code
 - `Paradox alarm system sensors custom component <https://github.com/Margriko/Paradox-ESPHome>`__ by :ghuser:`Margriko`
 - `DSC POWER832 (PC5010) alarm system custom component <https://github.com/Dilbert66/esphome-dsckeybus>`__ by :ghuser:`Dilbert66`
 - `Custom UART component for WS3 weather station and air particulate matter sensor <https://github.com/kquinsland/ws3-to-esphome-bridge>`__ by :ghuser:`kquinsland`
+- `ADEMCO/VISTA/Honeywell alarm system custom component <https://github.com/Dilbert66/esphome-vistaECP>`__ by :ghuser:`Dilbert66`
 
 Sample Configurations
 ---------------------
