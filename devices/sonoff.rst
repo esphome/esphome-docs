@@ -326,7 +326,7 @@ Sonoff Mini
 .. pintable::
 
     GPIO0, Button (inverted),
-    GPIO4, SW Input,
+    GPIO4, SW Input (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
     GPIO16, Optional sensor
