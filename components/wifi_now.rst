@@ -315,13 +315,13 @@ Example:
         ...
 
 ``wifi_now.retry_send``
-******************
+***********************
 
 An automation action retry sending a packet.
 
 **This action can only be used in the `on_fail` branch of the send action**!
 
-**you must use a delay action to avoid immediate retry**
+**A delay action must be used to avoid immediate retry**
 
 This action changes the flow of the automation back to the send action.
 
