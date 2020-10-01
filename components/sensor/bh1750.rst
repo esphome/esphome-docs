@@ -59,6 +59,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`tsl2561`
-- :apiref:`bh7150/bh7150.h`
 - `BH1750 Library <https://github.com/claws/BH1750>`__ by `@claws <https://github.com/claws>`__
 - :ghedit:`Edit`
