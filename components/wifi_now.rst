@@ -24,8 +24,12 @@ no delay when connecting to an access point after startup.
 
     This is the very first implementation, this version is ment to be used for simple applications.
     In future releases basic stuff like longer packets and security features, and some kind
-    of a stream mode is planned do a "proxy" ap (need to add a port number for the api in the home
-    assistant code) and "proxy" ota.
+    of a stream mode is planned to do a "proxy" ap and "proxy" ota.
+    
+.. note::
+
+    Due to a some wired resource problem it is not possible to use and ESP32 with WIFI enabled to
+    communicate with a ESP8266 and vice versa.
 
 **Restrictions (by ESP-Now)**:
 
