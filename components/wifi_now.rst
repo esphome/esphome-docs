@@ -307,18 +307,21 @@ Example:
             payloads:
               - bool: !lambda x
             on_fail:
+              - delay: 100ms
               - wifi_now.retry_send:
               - wifi_now.abort:
             on_success:
               - logger.log: Success
         ...
 
-``wifi_now.retry``
+``wifi_now.retry_send``
 ******************
 
 An automation action retry sending a packet.
 
 **This action can only be used in the `on_fail` branch of the send action**!
+
+**you must use a delay action to avoid immediate retry**
 
 This action changes the flow of the automation back to the send action.
 
@@ -342,6 +345,7 @@ Example:
             payloads:
               - bool: !lambda x
             on_fail:
+              - delay: 100ms
               - wifi_now.retry_send:
               # this is only executed after 2 retries!
               - wifi_now.abort:
@@ -367,6 +371,7 @@ Example:
             payloads:
               - bool: !lambda x
             on_fail:
+              - delay: 100ms
               - wifi_now.retry_send:
               # this aborts the automation after 2 retrys!
               - wifi_now.abort:
