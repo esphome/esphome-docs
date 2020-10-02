@@ -28,7 +28,7 @@ no delay when connecting to an access point after startup.
     
 .. note::
 
-    Due to a some wired resource problem it is not possible to use and ESP32 with WIFI enabled to
+    Due to a some weird resource problem it is not possible to use and ESP32 with WIFI enabled to
     communicate with a ESP8266 and vice versa.
 
 **Restrictions (by ESP-Now)**:
