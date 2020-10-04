@@ -38,6 +38,10 @@ Configuration example:
         battery_level:
           name: "Xiaomi HHCCJCY01 Battery Level"
 
+.. warning::
+
+    Recent firmware versions (>3.2.1) do not report ``battery_level`` values.
+
 GCLS002
 *******
 
@@ -358,5 +362,6 @@ See Also
   by `@Magalex2x14 <https://github.com/Magalex2x14>`__
 - Xiaomi LYWSD03MMC passive sensor readout `<https://github.com/ahpohl/xiaomi_lywsd03mmc>`__ by `@ahpohl <https://github.com/ahpohl>`__
 - Mi-standardauth `<https://github.com/danielkucera/mi-standardauth>`__
+- HHCCJCY01 not reporting battery_level values `<https://github.com/esphome/issues/issues/107#issuecomment-510403045>`__
 
 - :ghedit:`Edit`
