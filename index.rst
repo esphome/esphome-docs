@@ -123,7 +123,7 @@ Sensor Components
     INA219, components/sensor/ina219, ina219.jpg
     INA226, components/sensor/ina226, ina226.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
-    Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.png
+    Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg
     Integration, components/sensor/integration, sigma.svg
     HTU21D, components/sensor/htu21d, htu21d.jpg
     HM3301, components/sensor/hm3301, hm3301.jpg
