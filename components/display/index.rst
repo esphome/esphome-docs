@@ -338,6 +338,12 @@ Configuration variables:
   - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
 
+- **dither** (*Optional*): Specifies which dither method used to process the image, only used in GREYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it
+`here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
+
+  - ``NONE``: Every pixel convert to its nearest color.
+  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
+
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
