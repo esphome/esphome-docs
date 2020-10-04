@@ -19,7 +19,7 @@ with ESPHome. Please note that this integration is *only* for 7-segment display,
 As the communication with the MAX7219 is done using SPI for this integration, you need
 to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** set (miso_pin is not required).
 Connect VCC to 3.3V (the manufacturer recommends 4+ V, but 3.3V seems to work fine), DIN to your ``mosi_pin`` and
-CS to your set ``cs_pin`` (or to GND if this is the only device on the SPI bus) and finally GND to GND.
+CS to your set ``cs_pin`` and finally GND to GND.
 
 You can even daisy-chain multiple MAX7219s by connecting the DOUT of the previous chip in the chain to the
 next DIN. With more than ~3 chips the 3.3V will probably not be enough, so then you will have to potentially
@@ -42,8 +42,7 @@ use a logic level converted.
 Configuration variables:
 ------------------------
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
-  The CS line can be connected to GND if this is the only device on the SPI bus.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
 - **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
   ``1``.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
@@ -222,6 +221,8 @@ All 7-Segment Characters
 |max72191D|                    ``o``
 ------------------------------ ------------------------------
 |max72191C|                    ``u``, ``v``
+------------------------------ ------------------------------
+|max72198E|                    ``~``
 ============================== ==============================
 
 .. |max721900| image:: images/max7219/seg00.svg
@@ -325,6 +326,8 @@ All 7-Segment Characters
 .. |max72191D| image:: images/max7219/seg1D.svg
     :class: component-image
 .. |max72191C| image:: images/max7219/seg1C.svg
+    :class: component-image
+.. |max72198E| image:: images/max7219/seg8E.svg
     :class: component-image
 
 .. note::

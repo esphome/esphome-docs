@@ -13,7 +13,7 @@ ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy me
 Communication with the device is done via an :ref:`SPI bus <spi>`, so you need to have an ``spi:`` entry in your configuration
 with both ``mosi_pin`` and ``miso_pin`` set.
 
-The atm90e32 IC can measure up to three AC voltages. Although, typically, only one
+The ATM90E32 IC can measure up to three AC voltages although typically only one
 voltage measurement would be used for the mains electricity phase of a
 household. Three current measurements are read via CT clamps.
 
@@ -25,7 +25,7 @@ The `CircuitSetup Split Single Phase Energy Meter <https://circuitsetup.us/index
 
     CircuitSetup Split Single Phase Real Time Whole House Energy Meter.
 
-The `CircuitSetup Expandable 6 Channel Energy Meter <https://circuitsetup.us/index.php/product/expandable-6-channel-esp32-energy-meter/>`__ can read 6 current channels and 2 voltage channels at a time. This board has 2 atm90e32 ICs and requires 2 sensors to be configured in ESPHome.
+The `CircuitSetup 6-Channel Energy Monitor <https://circuitsetup.us/index.php/product/expandable-6-channel-esp32-energy-meter/>`__ can read 6 current channels and 2 voltage channels at a time, this board has two ATM90E32 ICs and requires two sensors to be configured in ESPHome.
 
 .. figure:: images/atm90e32-cs-6chan-full.jpg
     :align: center
@@ -36,9 +36,7 @@ The `CircuitSetup Expandable 6 Channel Energy Meter <https://circuitsetup.us/ind
 Configuration variables:
 ------------------------
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin CS is connected to. For the 6 channel
-  meter main board, this will always be 5 and 4. For the add-on boards a jumper can be selected for each CS pin,
-  but default to 0 and 16.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin CS is connected to. For the 6 channel meter main board, this will always be 5 and 4. For the add-on boards a jumper can be selected for each CS pin, but default to 0 and 16.
 - **line_frequency** (**Required**, string): The AC line frequency of the supply voltage. One of ``50Hz``, ``60Hz``.
 - **phase_a** (*Optional*): The configuration options for the 1st phase.
 
@@ -48,9 +46,9 @@ Configuration variables:
     :ref:`Sensor <config-sensor>`.
   - **power** (*Optional*): Use the power value on this phase in watts. All options from
     :ref:`Sensor <config-sensor>`.
-  - **reactive_power** (*Optional*): Use the reactive power value on this phase. All options from
+  - **reactive_power** (*Optional*): Use the reactive power value on this phase. All options from 
     :ref:`Sensor <config-sensor>`.
-  - **power_factor** (*Optional*): Use the power factor value on this phase. All options from
+  - **power_factor** (*Optional*): Use the power factor value on this phase. All options from 
     :ref:`Sensor <config-sensor>`.
   - **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power pack to household mains feed.
     Defaults to ``7305``.
@@ -59,9 +57,9 @@ Configuration variables:
 
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as 1st phase.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
-- **frequency** (*Optional*): Use the frequenycy value calculated by the meter. All options from
+- **frequency** (*Optional*): Use the frequenycy value calculated by the meter. All options from 
   :ref:`Sensor <config-sensor>`.
-- **chip_temperature** (*Optional*): Use the chip temperature value. All options from
+- **chip_temperature** (*Optional*): Use the chip temperature value. All options from 
   :ref:`Sensor <config-sensor>`.
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
   Defaults to ``2X`` which is suitable for the popular SCT-013-000 clamp.
@@ -74,12 +72,15 @@ Configuration variables:
 Calibration
 -----------
 
-This sensor needs calibration to show correct values. The default gain configuration is set to use the `SCT-013-000 <https://amzn.to/2E0KVvo>` current transformers with gain_pga set to 2X, and the `Jameco Reliapro 9v 120V AC transformer <https://amzn.to/2XcWJjI>` to measure voltage and supply power to the meter boards. A load which uses a known amount of current can be used to calibrate. For a more accurate calibration use a `Kill-A-Watt <https://amzn.to/2TXT7jx>` meter or similar. Mains voltages can fluctuate depending on grid load.
+This sensor needs calibration to show correct values. The default gain configuration is set to use the `SCT-013-000 <https://amzn.to/2E0KVvo>`__
+current transformers, and the `Jameco Reliapro 9v AC transformer <https://amzn.to/2XcWJjI>`__.
+A load which uses a known amount of current can be used to calibrate. For for a more accurate calibration use a
+`Kill-A-Watt <https://amzn.to/2TXT7jx>`__ meter or similar, mains voltages can fluctuate depending on grid load.
 
 Voltage
 ^^^^^^^
 
-Use the expected mains voltage for your region 110V/230V or plug in the Kill-A-Watt and select voltage. See what
+Use the expected mains voltage for your region 110V/230V or plug in the Kill-A-Watt and select voltage. See what 
 value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calculation:
 
 ``New gain_voltage = (your voltage reading / ESPHome voltage reading) * existing gain_voltage value``
@@ -155,7 +156,7 @@ Additional Examples
             name: "EMON CT1 Current"
           power:
             name: "EMON Active Power CT1"
-          reactive_power:
+          reactive_power: 
             name: "EMON Reactive Power CT1"
           power_factor:
             name: "EMON Power Factor CT1"
@@ -166,7 +167,7 @@ Additional Examples
             name: "EMON CT2 Current"
           power:
             name: "EMON Active Power CT2"
-          reactive_power:
+          reactive_power: 
             name: "EMON Reactive Power CT2"
           power_factor:
             name: "EMON Power Factor CT2"
@@ -247,18 +248,18 @@ Additional Examples
         current_phases: 3
         gain_pga: 1X
         update_interval: 60s
-
+        
 
 .. code-block:: yaml
 
     # Example CircuitSetup 6-channel without jumpers jp9-jp11 joined or < meter v1.4
     # power is calculated in a template
-
+    
     substitutions:
       disp_name: 6C
       update_time: 10s
       current_cal: '27961'
-
+  
     spi:
       clk_pin: 18
       miso_pin: 19
@@ -320,7 +321,7 @@ Additional Examples
         current_phases: 3
         gain_pga: 1X
         update_interval: ${update_time}
-
+    
     #Watts per channel
       - platform: template
         name: ${disp_name} CT1 Watts
@@ -329,7 +330,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}
+        update_interval: ${update_time}         
       - platform: template
         name: ${disp_name} CT2 Watts
         id: ct2Watts
@@ -337,7 +338,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}
+        update_interval: ${update_time}         
       - platform: template
         name: ${disp_name} CT3 Watts
         id: ct3Watts
@@ -345,7 +346,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}
+        update_interval: ${update_time}         
       - platform: template
         name: ${disp_name} CT4 Watts
         id: ct4Watts
@@ -353,7 +354,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}
+        update_interval: ${update_time}         
       - platform: template
         name: ${disp_name} CT5 Watts
         id: ct5Watts
@@ -361,7 +362,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}
+        update_interval: ${update_time}         
       - platform: template
         name: ${disp_name} CT6 Watts
         id: ct6Watts
@@ -369,8 +370,8 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}
-    #Total Amps
+        update_interval: ${update_time}         
+    #Total Amps   
       - platform: template
         name: ${disp_name} Total Amps
         id: totalAmps
@@ -378,7 +379,7 @@ Additional Examples
         accuracy_decimals: 2
         unit_of_measurement: A
         icon: "mdi:flash"
-        update_interval: ${update_time}
+        update_interval: ${update_time}         
     #Total Watts
       - platform: template
         name: ${disp_name} Total Watts

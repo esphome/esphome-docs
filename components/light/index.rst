@@ -136,6 +136,7 @@ Configuration options:
   ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing blue channel.
 - **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The white channel value of RGBW lights. Must be in range
   ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing white value.
+- **color_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): The white color temperature value (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) for CWWW / RGBWW lights. Defaults to not changing the color temperature value.
 - **flash_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): If set, will flash the given color
   for this period of time and then go back to the previous state.
 - **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): If set, will attempt to
@@ -737,10 +738,10 @@ Available variables in the lambda:
               // it[num].get();
 
               // Example: Simple color wipe
-              for (int i = 1; i < it.size(); i++) {
+              for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = ESPColor::random_color();
+              it[0] = ESPColor::random_color();              
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
               it.range(0, 50) = ESPColor::BLACK;

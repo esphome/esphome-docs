@@ -1,8 +1,8 @@
-Homeassistant Sensor
-====================
+Home Assistant Sensor
+=====================
 
 .. seo::
-    :description: Instructions for setting up homeassistant sensors with ESPHome that import states from your homeassistant instance.
+    :description: Instructions for setting up Home Assistant sensors with ESPHome that import states from your Home Assistant instance.
     :image: home-assistant.png
 
 The ``homeassistant`` sensor platform allows you to create sensors that import

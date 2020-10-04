@@ -57,8 +57,8 @@ Configuration variables:
 Hardware UARTs
 --------------
 
-Whenever possible, esphome will use the Hardware UART unit on the processor for fast and accurate communication.
-When the hardware UARTs are all occupied, esphome will fall back to a software implementation that may not
+Whenever possible, ESPHome will use the hardware UART unit on the processor for fast and accurate communication.
+When the hardware UARTs are all occupied, ESPHome will fall back to a software implementation that may not
 be accurate at higher baud rates.
 
 ``UART0`` is (by default) used by the :doc:`logger component </components/logger>`, using ``tx_pin: GPIO1`` and
@@ -93,6 +93,11 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
       # Templated, return type is std::vector<uint8_t>
       - uart.write: !lambda
           return {0x00, 0x20, 0x42};
+
+      # in case you need to specify the uart id
+      - uart.write:
+          id: my_second_uart
+          data: 'other data'
 
 See Also
 --------

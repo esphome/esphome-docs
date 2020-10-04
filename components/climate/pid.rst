@@ -212,6 +212,47 @@ Configuration variables:
 - **negative_output** (*Optional*, float): The positive output power to drive the cool output at.
   Defaults to ``-1.0``.
 
+``climate.pid.set_control_parameters`` Action
+---------------------------------------------
+
+This action sets new values for the control parameters of the PID controller. This can be 
+used to manually tune the PID controller. Make sure to take update the values you want on 
+the YAML file! They will reset on the next reboot.
+
+.. code-block:: yaml
+
+    on_...:
+      - climate.pid.set_control_parameters:
+          id: pid_climate
+          kp: 0.0
+          ki: 0.0
+          kd: 0.0
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): ID of the PID Climate to start autotuning for.
+- **kp** (**Required**, float): The factor for the proportional term of the PID controller.
+- **ki** (*Optional*, float): The factor for the integral term of the PID controller.
+  Defaults to ``0``.
+- **kd** (*Optional*, float): The factor for the derivative term of the PID controller.
+  Defaults to ``0``.
+
+``climate.pid.reset_integral_term`` Action
+------------------------------------------
+
+This action resets the integral term of the PID controller to 0. This might be necessary under certain
+conditions to avoid the control loop to overshoot (or undershoot) a target.
+
+.. code-block:: yaml
+
+    on_...:
+      # Basic
+      - climate.pid.reset_integral_term: pid_climate     
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): ID of the PID Climate being reset.
+
 PID Climate Sensor
 ------------------
 
@@ -237,6 +278,9 @@ Configuration variables:
   - ``DERIVATIVE`` - The derivative term of the PID controller.
   - ``HEAT`` - The resulting heating power to the supplied to the ``heat_output``.
   - ``COOL`` - The resulting cooling power to the supplied to the ``cool_output``.
+  - ``KP`` - The current factor for the proportional term of the PID controller.
+  - ``KI`` - The current factor for the integral term of the PID controller.
+  - ``KD`` - The current factor for the differential term of the PID controller.
 
 Advanced options:
 

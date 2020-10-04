@@ -20,7 +20,7 @@ In this guide, we will go through creating a custom sensor component for the
 `BMP180 <https://www.adafruit.com/product/1603>`__ pressure sensor (we will only do the pressure part,
 temperature is more or less the same). During this guide, you will learn how to 1. define a custom sensor
 ESPHome can use 2. go over how to register the sensor so that it will be shown inside Home Assistant and
-3. leverage an existing arduino library for the BMP180 with ESPHome.
+3. leverage an existing Arduino library for the BMP180 with ESPHome.
 
 .. note::
 
@@ -51,7 +51,7 @@ What does this mean? Well if you've coded in Arduino before you might know the t
 very often and this is where you can do things like read out sensors etc.
 
 Components have something similar to that: They also have ``setup()`` and ``loop()`` methods which will be
-called by the application kind of like the arduino functions.
+called by the application kind of like the Arduino functions.
 
 So, let's now take a look at some code: This is an example of a custom component class (called ``MyCustomSensor`` here):
 
@@ -89,7 +89,7 @@ the latest values.
 However, there's a small problem with that approach: ``loop()`` gets called very often (about 60 times per second).
 If we would publish a new state each time that method is called we would quickly make the node unresponsive.
 
-So this fix this, we will use an alternative class to :apiclass:`Component`: :apiclass:`PollingComponent`.
+So lets fix this, we will use an alternative class to :apiclass:`Component`: :apiclass:`PollingComponent`.
 This class is for situations where you have something that should get called repeatedly with some **update interval**.
 In the code above, we can simply replace :apiclass:`Component` by :apiclass:`PollingComponent` and
 ``loop()`` by a special method ``update()`` which will be called with an interval we can specify.
@@ -191,11 +191,11 @@ Step 3: BMP180 support
 Let's finally make this custom sensor useful by adding the BMP180 aspect into it! Sure, printing ``42`` is a nice number
 but it won't help with home automation :D
 
-A great feature of ESPHome is that you don't need to code everything yourself. You can use any existing arduino
+A great feature of ESPHome is that you don't need to code everything yourself. You can use any existing Arduino
 library to do the work for you! Now for this example we'll
 use the `Adafruit BMP085 Library <https://platformio.org/lib/show/525/Adafruit%20BMP085%20Library>`__
 library to implement support for the BMP085 sensor. But you can find other libraries too on the
-`platformio library index <https://platformio.org/lib>`__
+`PlatformIO library index <https://platformio.org/lib>`__
 
 First we'll need to add the library to our project dependencies. To do so, put ``Adafruit BMP085 Library``
 in your global ``libraries``:
@@ -242,7 +242,7 @@ Then update the sensor for BMP180 support:
     // ...
 
 There's not too much going on there. First, we define the variable ``bmp`` of type ``Adafruit_BMP085``
-inside our class as a class member. This is the object the adafruit library exposes and through which
+inside our class as a class member. This is the object the Adafruit library exposes and through which
 we will communicate with the sensor.
 
 In our custom ``setup()`` function we're *initializing* the library (using ``.begin()``) and in

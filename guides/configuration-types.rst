@@ -108,6 +108,26 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
 
+.. _config-color:
+
+Color
+-----
+
+When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
+A ``color`` component exists for just this purpose:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red: 100%
+        green: 20%
+        blue: 25%
+        white: 0%
+
+RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
+may use all four color elements depending on their capabilities.
+
 .. _config-time:
 
 Time
@@ -232,7 +252,7 @@ and the following command:
 .. code-block:: bash
 
     esphome -s name device01 -s board esp01_1m example.yaml config
-  
+
 You will get something like the following output (please note the unchanged ``platform``,
 added ``board``, and overridden ``name`` substitutions):
 
@@ -258,6 +278,93 @@ We can observe here that command line substitutions take precedence over the one
 your configuration file. This can be used to create generic 'template' configuration
 files (like the ``example.yaml`` above) which can be used for multiple devices,
 using substitutions which are provided on the command line.
+
+.. _config-packages:
+
+Packages
+--------
+
+Another way to modularize and reuse your configuration is to use packages. This feature allows
+you to put common pieces of configuration in separate files and keep only unique pieces of your
+config in the main yaml file. All definitions from packages will be merged with your main
+config in non-destructive way so you could always override some bits and pieces of package
+configuration.
+
+Consider the following example where author put common pieces of configuration like WiFi,
+I2C into base files and extends it with some devices specific configurations in the main config.
+
+Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
+merged with the services definitions from main config file.
+
+.. code-block:: yaml
+
+    # In config.yaml
+    substitutions:
+      node_name: mydevice
+      device_verbose_name: "My Device"
+
+    packages:
+      wifi: !include common/wifi.yaml
+      device_base: !include common/device_base.yaml
+
+    api:
+      services:
+        - service: start_laundry
+          then:
+            - switch.turn_on: relay
+            - delay: 3h
+            - switch.turn_off: relay
+
+    sensor:
+      - platform: mhz19
+        co2:
+          name: "CO2"
+        temperature:
+          name: "Temperature"
+        update_interval: 60s
+        automatic_baseline_calibration: false
+
+.. code-block:: yaml
+
+    # In wifi.yaml
+    wifi:
+      ssid: "your_ssid"
+      password: !secret wifi_password
+      domain: .yourdomain.lan
+      fast_connect: true
+
+.. code-block:: yaml
+
+    # In device_base.yaml
+    esphome:
+      name: ${node_name}
+      platform: ESP32
+      board: wemos_d1_mini32
+      build_path: ./build/${node_name}
+
+    # I2C Bus
+    i2c:
+      sda: GPIO21
+      scl: GPIO22
+      scan: True
+      frequency: 100kHz
+
+    # Enable logging
+    logger:
+      level: ${log_level}
+
+    api:
+      password: !secret hass_api_key
+      reboot_timeout: 1h
+
+    sensor:
+      - <<: !include common/sensor/uptime.config.yaml
+      - <<: !include common/sensor/wifi_signal.config.yaml
+    binary_sensor:
+      - <<: !include common/binary_sensor/connection_status.config.yaml
+
+    switch:
+      - !include common/switch/restart_switch.config.yaml
 
 See Also
 --------
