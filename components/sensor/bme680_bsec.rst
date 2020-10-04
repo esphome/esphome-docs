@@ -15,7 +15,8 @@ Volatile Organic Compounds (VOC) equivalent measurements.
 .. note::
 
     The Bosch BSEC library is only available for use after accepting its software license agreement. By enabling this component,
-    you are explicitly agreeing to the terms of the `BSEC license agreement`_.
+    you are explicitly agreeing to the terms of the `BSEC license agreement`_. You must not distribute any compiled firmware
+    binaries that include this component.
 
 The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
 
