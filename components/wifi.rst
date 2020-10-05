@@ -84,6 +84,12 @@ in your wifi configuration, ESPHome will automatically set up an access point th
 can connect to. Additionally, you can specify both a "normal" station mode and AP mode at the
 same time. This will cause ESPHome to only enable the access point when no connection
 to the WiFi router can be made.
+.. code-block:: yaml
+
+    wifi:
+      ap:
+        ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
 
 .. _wifi-manual_ip:
 
