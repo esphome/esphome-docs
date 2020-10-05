@@ -38,6 +38,11 @@ Configuration example:
         battery_level:
           name: "Xiaomi HHCCJCY01 Battery Level"
 
+.. note::
+
+    Newer versions of HHCCJCY01 ship with firmware 3.2.1, and they
+    `don't send the battery level data anymore <https://github.com/esphome/esphome/pull/1288#issuecomment-695809481>`__.
+
 GCLS002
 *******
 
