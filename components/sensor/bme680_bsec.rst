@@ -77,8 +77,8 @@ Hub Configuration:
 - **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for mobile applications (e.g. fixed indoor devices).
   Can be ``mobile`` for mobile applications (e.g. carry-on devices).
 
-- **state_save_interval** (*Optional*, :ref:`config-time`): The interval at which to save BSEC algorithm state to flash so that
-  calibration does have to start from zero on device restart. Defaults to ``6h``.
+- **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
+  flash so that calibration does have to start from zero on device restart. Defaults to ``6h``.
 
 Sensor Configuration:
 
@@ -179,8 +179,8 @@ of the following values:
 - ``Calibrating``: BSEC found new calibration data and is currently calibrating.
 - ``Calibrated``: BSEC calibrated successfully.
 
-Once calibration is achieved, and every ``state_save_interval`` thereafter, the current algorithm state is saved to flash so that
-the process does not have to start from zero on device restart.
+Every ``state_save_interval``, or as soon thereafter as full calibration is reached, the current algorithm state is saved to flash
+so that the process does not have to start from zero on device restart.
 
 See Also
 --------
