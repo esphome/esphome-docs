@@ -1,15 +1,16 @@
-MCP230xx I/O Expander
+MCP23xxx I/O Expander
 =====================
 
 .. seo::
-    :description: Instructions for setting up MCP23008, MCP23016 or MCP23017 digital port expander in ESPHome.
+    :description: Instructions for setting up MCP23008, MCP23S08, MCP23016 or MCP23017 digital port expander in ESPHome.
     :image: mcp230xx.png
 
-The Microchip MCP230xx series of general purpose, parallel I/O expansion for I²C bus applications.
+The Microchip MCP23xxx series of general purpose, parallel I/O expansion for I²C and SPI bus applications.
 
 **Supported Variants :**
 
 - :ref:`mcp23008-label`
+- :ref:`mcp23S08-label`
 - :ref:`mcp23016-label`
 - :ref:`mcp23017-label`
 
@@ -58,6 +59,54 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23008 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
+
+
+.. _mcp23s08-label:
+
+MCP23S08
+--------
+
+This is the "S" version of the MCP23008 component, and uses SPI instead of I²C (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/MCP23008-MCP23S08-Data-Sheet-20001919F.pdf>`__). An address, as if it was an I²C device, can be configured as with the I²C version. The address used depends on the setting of the A0/A1 pins of the device. The default address of 0x40 corresponds with A0/A1 being pulled low
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    mcp23s08:
+      - id: 'mcp23s08_hub'
+        address: 0x40
+
+    # Individual outputs
+    switch:
+      - platform: gpio
+        name: "MCP23S08 Pin #0"
+        pin:
+          mcp23s08: mcp23s08_hub
+          # Use pin number 0
+          number: 0
+          # One of INPUT, INPUT_PULLUP or OUTPUT
+          mode: INPUT_PULLUP
+          inverted: False
+
+    # Individual inputs
+    binary_sensor:
+      - platform: gpio
+        name: "MCP23S08 Pin #1"
+        pin:
+          mcp23s08: mcp23s08_hub
+          # Use pin number 1
+          number: 1
+          # One of INPUT or INPUT_PULLUP
+          mode: INPUT
+          inverted: False
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this MCP23S08 component.
+- **address** (*Optional*, int): The address of the driver.
+  Defaults to ``0x40``.
+
 
 .. _mcp23016-label:
 
@@ -165,9 +214,11 @@ See Also
 --------
 
 - :ref:`i2c`
+- :ref:`spi`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
 - :apiref:`API Reference (MCP23008) <mcp23008/mcp23008.h>`
+- :apiref:`API Reference (MCP23S08) <mcp23s08/mcp23s08.h>`
 - :apiref:`API Reference (MCP23016) <mcp23016/mcp23016.h>`
 - :apiref:`API Reference (MCP23017) <mcp23017/mcp23017.h>`
 - :ghedit:`Edit`
