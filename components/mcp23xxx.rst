@@ -74,6 +74,7 @@ This is the "S" version of the MCP23008 component, and uses SPI instead of I²C 
     # Example configuration entry
     mcp23s08:
       - id: 'mcp23s08_hub'
+        cs_pin: GPIO32
         address: 0x40
 
     # Individual outputs
