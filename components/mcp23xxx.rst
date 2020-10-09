@@ -105,6 +105,7 @@ Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23S08 component.
+- **cs_pin** (**Required**, :ref:`config-pin`): The pin for the chip select line of the SPI bus.
 - **address** (*Optional*, int): The address of the driver.
   Defaults to ``0x40``.
 
