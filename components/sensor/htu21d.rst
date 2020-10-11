@@ -7,7 +7,7 @@ HTU21D Temperature+Humidity Sensor
     :keywords: HTU21D
 
 The HTU21D Temperature+Humidity sensor allows you to use your HTU21D
-(`adafruit <https://www.adafruit.com/product/1899>`__) sensors with
+(`Adafruit <https://www.adafruit.com/product/1899>`__) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 

@@ -7,7 +7,7 @@ APDS9960 Sensor
 
 The ``apds9960`` sensor platform allows you to use your APDS9960 RGB and gesture sensors
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf>`__,
-`Sparkfun`_) with ESPHome.
+`SparkFun`_) with ESPHome.
 The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
@@ -15,7 +15,7 @@ required to be set up in your configuration for this sensor to work.
     :align: center
     :width: 80.0%
 
-    Image by `Sparkfun`_.
+    Image by `SparkFun`_.
 
 .. code-block:: yaml
 
@@ -35,7 +35,7 @@ required to be set up in your configuration for this sensor to work.
         name: "APDS960 Up Movement"
       # Repeat for each direction
 
-.. _Sparkfun: https://www.sparkfun.com/products/12787
+.. _SparkFun: https://www.sparkfun.com/products/12787
 
 Configuration variables:
 ------------------------
@@ -45,7 +45,7 @@ and direction binary sensors.
 
 Base Configuration:
 
-- **address** (*Optional*, integer): The i2c address of the sensor. Defaults to ``0x39``.
+- **address** (*Optional*, integer): The I2C address of the sensor. Defaults to ``0x39``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 

@@ -196,6 +196,27 @@ Configuration variables:
 - **max_length** (*Optional*, :ref:`config-time`): The maximum duration the click should last. Defaults to ``350ms``.
 - See :ref:`Automation <automation>`.
 
+.. note::
+
+    Multiple ``on_click`` entries can be defined like this (see also :ref:`binary_sensor-on_multi_click`
+    for more complex matching):
+
+    .. code-block:: yaml
+
+        binary_sensor:
+          - platform: gpio
+            # ...
+            on_click:
+            - min_length: 50ms
+              max_length: 350ms
+              then:
+                - switch.turn_off: relay_1
+            - min_length: 500ms
+              max_length: 1000ms
+              then:
+                - switch.turn_on: relay_1
+
+
 .. _binary_sensor-on_double_click:
 
 ``on_double_click``

@@ -8,7 +8,7 @@ Captive Portal
 The captive portal component in ESPHome is a fallback mechanism for when connecting to the
 configured :doc:`WiFi <wifi>` fails.
 
-After 1 minute of unsuccesful wifi connection attempts, the ESP will start a WiFi hotspot
+After 1 minute of unsuccessful WiFi connection attempts, the ESP will start a WiFi hotspot
 (with the credentials from your configuration)
 
 .. figure:: images/captive_portal-ui.png

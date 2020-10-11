@@ -20,6 +20,7 @@ As the communication with the MAX31865 is done using SPI, you need
 to have an :ref:`spi bus <spi>` in your configuration with both **miso_pin** and **mosi_pin** set.
 
 - ``VIN`` connects to 5V (``3V3`` will output 3.3V), or directly connect ``3V3`` to 3.3V
+- ``3Vo`` is not used by ESPHome
 - ``GND`` connects to ground
 - ``CLK`` connects to the SPI **clk_pin**
 - ``SDO`` connects to the SPI **miso_pin**
@@ -65,6 +66,7 @@ See Also
 - :doc:`adc`
 - :doc:`max6675`
 - :doc:`max31855`
+- :doc:`max31856`
 - `MAX31865 Library <https://github.com/adafruit/Adafruit_MAX31865>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :apiref:`max31865/max31865.h`
 - :ghedit:`Edit`

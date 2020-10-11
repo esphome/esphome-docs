@@ -52,7 +52,7 @@ And in YAML:
     # Example configuration entry
     esphome:
       includes:
-        - my_cover.h
+        - my_light.h
 
     light:
     - platform: custom
