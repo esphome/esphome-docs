@@ -191,13 +191,13 @@ Configuration example for ATC MiThermometer firmware set to "Custom" advertiseme
       - platform: atc_mithermometer
         mac_address: "A4:C1:38:B1:CD:7F"
         temperature:
-          name: "LYWSD03MMC Temperature"
+          name: "ATC Temperature"
         humidity:
-          name: "LYWSD03MMC Humidity"
+          name: "ATC Humidity"
         battery_level:
-          name: "LYWSD03MMC Battery Level"
-        battery_level:
-          name: "LYWSD03MMC Battery Voltage"
+          name: "ATC Battery-Level"
+        battery_voltage:
+          name: "ATC Battery-Voltage"
 
 CGD1
 ****
