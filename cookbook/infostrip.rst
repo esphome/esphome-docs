@@ -122,7 +122,7 @@ The automation to show the CO2 warning light (e.g. red if CO2 > 1000 ppm) is don
       action:
       - service: light.turn_on
           data:
-          color: red
+          color_name: red
           entity_id: light.pl2
       mode: single
     - id: '1601241280016'
