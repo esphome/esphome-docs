@@ -388,6 +388,7 @@ All Conditions
 - :ref:`sensor.in_range <sensor-in_range_condition>`
 - :ref:`wifi.connected <wifi-connected_condition>` / :ref:`api.connected <api-connected_condition>`
   / :ref:`mqtt.connected <mqtt-connected_condition>`
+- :ref:`time.has_time <time-has_time_condition>`
 - :ref:`script.is_running <script-is_running_condition>`
 - :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
 - :ref:`text_sensor.state <text_sensor-state_condition>`

@@ -334,6 +334,21 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
                 then:
                   - switch.toggle: my_switch
 
+.. _time-has_time_condition:
+
+``time.has_time`` Condition
+----------------------------
+
+This :ref:`Condition <config-condition>` checks if time has been set and is valid.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          time.has_time:
+        then:
+          - logger.log: Time has been set and is valid!
 
 See Also
 --------
