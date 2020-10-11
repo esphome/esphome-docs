@@ -122,7 +122,7 @@ automation:
   - service: light.turn_on
     data:
       color: red
-    entity_id: light.pl10
+    entity_id: light.pl2
   mode: single
 - id: '1601241280016'
   alias: Light CO2 Off
@@ -134,9 +134,9 @@ automation:
   condition: []
   action:
   - service: light.turn_off
-    entity_id: light.pl10
+    entity_id: light.pl2
   mode: single
-  - alias: "Corona Ampel"
+  - alias: "State Light Mapping"
     trigger:
       platform: time_pattern
       # You can also match on interval. This will match every 5 minutes
@@ -144,7 +144,7 @@ automation:
     action:
       - service: light.turn_on
         data_template:
-          entity_id: light.pl13
+          entity_id: light.pl1
           brightness_pct: 30
           color_name: >
             {% set map = {'on': 'green', 'off': 'red'} %}
