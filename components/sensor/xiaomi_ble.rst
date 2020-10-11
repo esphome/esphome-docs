@@ -196,6 +196,8 @@ Configuration example for ATC MiThermometer firmware set to "Custom" advertiseme
           name: "LYWSD03MMC Humidity"
         battery_level:
           name: "LYWSD03MMC Battery Level"
+        battery_level:
+          name: "LYWSD03MMC Battery Voltage"
 
 CGD1
 ****
