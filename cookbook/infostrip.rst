@@ -34,7 +34,6 @@ esphome config:
 
     # TODO -> add your personal wifi, logging, api, ota settings here 
 
-    # Example configuration entry
     uart:
     rx_pin: 4
     tx_pin: 5
@@ -55,108 +54,110 @@ esphome config:
 
     # configure each pixle as a single light (attention memory consuming)
     light:
-    - platform: fastled_clockless
+      - platform: fastled_clockless
         chipset: WS2812B 
         id: light_fastled
         pin: D4
         num_leds: 4
         rgb_order: GRB
-        name: "InfoStripe"   
+        name: "Infostrip"   
         effects:
-        - strobe:
-        - random:
-    - platform: partition
+          - strobe:
+          - random:
+      - platform: partition
         name: "PL0"
         segments:
-        - id: light_fastled
-            from: 0
-            to: 0
+          - id: light_fastled
+              from: 0
+              to: 0
         effects:
-        - strobe:
-    - platform: partition
+          - strobe:
+      - platform: partition
         name: "PL1"
         segments:
-        - id: light_fastled
-            from: 1
-            to: 1
+          - id: light_fastled
+              from: 1
+              to: 1
         effects:
-        - strobe:
-    - platform: partition
+          - strobe:
+      - platform: partition
         name: "PL2"
         segments:
-        - id: light_fastled
-            from: 2
-            to: 2
+          - id: light_fastled
+              from: 2
+              to: 2
         effects:
-        - strobe:
-    - platform: partition
+          - strobe:
+      - platform: partition
         name: "PL3"
         segments:
-        - id: light_fastled
-            from: 3
-            to: 3
+          - id: light_fastled
+              from: 3
+              to: 3
         effects:
-        - strobe:
+          - strobe:
   
 .. warning::
 
     Consider the warning in :doc:`/components/light/partition` regarging the increased memory usage. 
 
-homeassistant config:
+Home Assistant config:
 ----------------------
 
-The automation to show the CO2 warning light (e.g. red CO2 > 1000 ppm) is done in homeassistant, but could also be implemented using esphome automations.
+The automation to show the CO2 warning light (e.g. red if CO2 > 1000 ppm) is done in homeassistant, but could also be implemented using esphome automations.
+
 
 .. code-block:: yaml
-# turn on a light with the related color
-automation:
-- id: '1601241280015'
-  alias: Light CO2 On
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.mh_z19_co2_value
-    above: 1000
-  condition: []
-  action:
-  - service: light.turn_on
-    data:
-      color: red
-    entity_id: light.pl2
-  mode: single
-- id: '1601241280016'
-  alias: Light CO2 Off
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.mh_z19_co2_value
-    below: 800
-  condition: []
-  action:
-  - service: light.turn_off
-    entity_id: light.pl2
-  mode: single
-  - alias: "State Light Mapping"
-    trigger:
+
+    # turn on a light with the related color
+    automation:
+    - id: '1601241280015'
+      alias: Light CO2 On
+      description: ''
+      trigger:
+      - platform: numeric_state
+          entity_id: sensor.mh_z19_co2_value
+          above: 1000
+      condition: []
+      action:
+      - service: light.turn_on
+          data:
+          color: red
+          entity_id: light.pl2
+      mode: single
+    - id: '1601241280016'
+      alias: Light CO2 Off
+      description: ''
+      trigger:
+      - platform: numeric_state
+          entity_id: sensor.mh_z19_co2_value
+          below: 800
+      condition: []
+      action:
+      - service: light.turn_off
+          entity_id: light.pl2
+          mode: single
+    - alias: "State Light Mapping"
+      trigger:
       platform: time_pattern
       # You can also match on interval. This will match every 5 minutes
       minutes: "/5"
-    action:
+      action:
       - service: light.turn_on
-        data_template:
+          data_template:
           entity_id: light.pl1
           brightness_pct: 30
           color_name: >
-            {% set map = {'on': 'green', 'off': 'red'} %}
-            {% set state = states('binary_sensor.bad_status') %}
-            {{ map[state] if state in map else 'white' }}
+              {% set map = {'on': 'green', 'off': 'red'} %}
+              {% set state = states('binary_sensor.bad_status') %}
+              {{ map[state] if state in map else 'white' }}
 
 
 .. figure:: images/infostrip-lights-ui.png
     :align: center
     :width: 50.0%
 
-    Each pixel is used like an RGB light.
+    Each pixel is used as a light entity.
 
 
 
