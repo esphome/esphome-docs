@@ -316,6 +316,7 @@ Climate Components
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
+    Midea Air Conditioner, components/climate/midea_ac, midea.svg
 
 Misc Components
 ---------------
@@ -354,6 +355,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
+    Midea Dongle, components/midea_dongle, midea.svg
 
 Additional Custom Components
 ----------------------------
