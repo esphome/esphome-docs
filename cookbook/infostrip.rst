@@ -1,0 +1,169 @@
+Infostripe
+=======================
+
+.. seo::
+    :description: Simple visualisation of homeassistant states using a neopixel stripe
+    :image: infostrip-detai.jpg
+    :keywords: Neopixel
+
+Showing the current status of sensor states using a neopixel strip is a simple way to communicate states to the user.
+Compared to a dashboard screen the infostrip can only communicate information binary_sensor
+
+- color (e.g. red = error/warning, orange = waring, green = ok, blue = active)
+- intensity (off, scaled brightness)
+- mode (continouse vs. flashing*)
+- light position on stripe
+
+(*) flashing (strobe) is not recommened, because that can realy make you crazy.
+
+.. figure:: images/infostrip-detail.jpg
+    :align: center
+    :width: 75.0%
+
+    Wemos D1 mini, neopixel, CO2 sensor on a blackboard, pixel meanings are described by chalk drawn icons.
+
+
+esphome config:
+---------------
+.. code-block:: yaml
+
+    esphome:
+    name: esp_infostrip
+    platform: ESP8266
+    board: d1_mini
+
+    # TODO -> add your personal wifi, logging, api, ota settings here 
+
+    # Example configuration entry
+    uart:
+    rx_pin: 4
+    tx_pin: 5
+    baud_rate: 9600
+
+    sensor:
+    - platform: mhz19
+        co2:
+        name: "MH-Z19 CO2 Value"
+        temperature:
+        name: "MH-Z19 Temperature"
+        update_interval: 30s
+
+    # monitor the wifi connection status 
+    binary_sensor:
+    - platform: status
+        name: "Infostrip Status"
+
+    # configure each pixle as a single light (attention memory consuming)
+    light:
+    - platform: fastled_clockless
+        chipset: WS2812B 
+        id: light_fastled
+        pin: D4
+        num_leds: 4
+        rgb_order: GRB
+        name: "InfoStripe"   
+        effects:
+        - strobe:
+        - random:
+    - platform: partition
+        name: "PL0"
+        segments:
+        - id: light_fastled
+            from: 0
+            to: 0
+        effects:
+        - strobe:
+    - platform: partition
+        name: "PL1"
+        segments:
+        - id: light_fastled
+            from: 1
+            to: 1
+        effects:
+        - strobe:
+    - platform: partition
+        name: "PL2"
+        segments:
+        - id: light_fastled
+            from: 2
+            to: 2
+        effects:
+        - strobe:
+    - platform: partition
+        name: "PL3"
+        segments:
+        - id: light_fastled
+            from: 3
+            to: 3
+        effects:
+        - strobe:
+  
+.. warning::
+
+    Consider the warning in :doc:`/components/light/partition` regarging the increased memory usage. 
+
+homeassistant config:
+----------------------
+
+The automation to show the CO2 warning light (e.g. red CO2 > 1000 ppm) is done in homeassistant, but could also be implemented using esphome automations.
+
+.. code-block:: yaml
+# turn on a light with the related color
+automation:
+- id: '1601241280015'
+  alias: Light CO2 On
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.mh_z19_co2_value
+    above: 1000
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      color: red
+    entity_id: light.pl10
+  mode: single
+- id: '1601241280016'
+  alias: Light CO2 Off
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.mh_z19_co2_value
+    below: 800
+  condition: []
+  action:
+  - service: light.turn_off
+    entity_id: light.pl10
+  mode: single
+  - alias: "Corona Ampel"
+    trigger:
+      platform: time_pattern
+      # You can also match on interval. This will match every 5 minutes
+      minutes: "/5"
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.pl13
+          brightness_pct: 30
+          color_name: >
+            {% set map = {'on': 'green', 'off': 'red'} %}
+            {% set state = states('binary_sensor.bad_status') %}
+            {{ map[state] if state in map else 'white' }}
+
+
+.. figure:: images/infostrip-lights-ui.png
+    :align: center
+    :width: 50.0%
+
+    Each pixel is used like an RGB light.
+
+
+
+See Also
+--------
+
+- :doc:`/components/light/fastled`
+- :doc:`/components/light/partition`
+- :doc:`/components/sensor/mhz19`
+- :ghedit:`Edit`
