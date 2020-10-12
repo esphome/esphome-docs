@@ -60,9 +60,9 @@ Configuration variables:
 - **max_value** (*Optional*, int): The maximum value this rotary encoder will go to, turning
   the knob further will not increase the number. Defaults to no maximum.
 - **on_clockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when
-  the knob is turned clockwise. See :ref:`_sensor-rotary_encoder-triggers_`.
+  the knob is turned clockwise. See :ref:`_sensor-rotary_encoder-triggers`.
 - **on_anticlockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when
-  the knob is turned anticlockwise. See :ref:`_sensor-rotary_encoder-triggers_`.
+  the knob is turned anticlockwise. See :ref:`_sensor-rotary_encoder-triggers`.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. _sensor-rotary_encoder-set_value_action:
@@ -99,7 +99,7 @@ Configuration options:
 - **value** (**Required**, int, :ref:`templatable <config-templatable>`):
   The value to set the internal counter to.
 
-.. _sensor-rotary_encoder-triggers_:
+.. _sensor-rotary_encoder-triggers:
 
 ``on_clockwise`` and ``on_anticlockwise`` Triggers
 --------------------------------------------------
