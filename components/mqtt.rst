@@ -547,7 +547,7 @@ the MQTT broker.
     .. code-block:: cpp
 
         if (id(mqtt_client)->is_connected()) {
-	  // do something if MQTT is connected
+          // do something if MQTT is connected
         }
 
 See Also
