@@ -78,6 +78,36 @@ Configuration variables
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 
+- **ckv_pin** (**Required**, :ref:`config-pin`): The CKV pin for the Inkplate display.
+- **gmod_pin** (**Required**, :ref:`config-pin`): The GMOD pin for the Inkplate display.
+- **gpio0_enable_pin** (**Required**, :ref:`config-pin`): The GPIO0 Enable pin for the Inkplate display.
+- **oe_pin** (**Required**, :ref:`config-pin`): The OE pin for the Inkplate display.
+- **powerup_pin** (**Required**, :ref:`config-pin`): The Powerup pin for the Inkplate display.
+- **sph_pin** (**Required**, :ref:`config-pin`): The SPH pin for the Inkplate display.
+- **spv_pin** (**Required**, :ref:`config-pin`): The SPV pin for the Inkplate display.
+- **vcom_pin** (**Required**, :ref:`config-pin`): The VCOM pin for the Inkplate display.
+- **cl_pin** (*Optional*, :ref:`config-pin`): The CL pin for the Inkplate display.
+  Defaults to GPIO0.
+- **le_pin** (*Optional*, :ref:`config-pin`): The LE pin for the Inkplate display.
+  Defaults to GPIO2.
+
+- **display_data_0_pin** (*Optional*, :ref:`config-pin`): The Data 0 pin for the Inkplate display.
+  Defaults to GPIO4.
+- **display_data_1_pin** (*Optional*, :ref:`config-pin`): The Data 1 pin for the Inkplate display.
+  Defaults to GPIO5.
+- **display_data_2_pin** (*Optional*, :ref:`config-pin`): The Data 2 pin for the Inkplate display.
+  Defaults to GPIO18.
+- **display_data_3_pin** (*Optional*, :ref:`config-pin`): The Data 3 pin for the Inkplate display.
+  Defaults to GPIO19.
+- **display_data_4_pin** (*Optional*, :ref:`config-pin`): The Data 4 pin for the Inkplate display.
+  Defaults to GPIO23.
+- **display_data_5_pin** (*Optional*, :ref:`config-pin`): The Data 5 pin for the Inkplate display.
+  Defaults to GPIO25.
+- **display_data_6_pin** (*Optional*, :ref:`config-pin`): The Data 6 pin for the Inkplate display.
+  Defaults to GPIO26.
+- **display_data_7_pin** (*Optional*, :ref:`config-pin`): The Data 7 pin for the Inkplate display.
+  Defaults to GPIO27.
+
 
 Complete example
 ****************
