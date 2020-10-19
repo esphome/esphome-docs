@@ -9,7 +9,7 @@ Midea Dongle
 The ``midea_dongle`` component creates a serial connection to the Midea climate devices for platforms to use.
 
 As the communication with Midea devices done using UART, you need
-to have an :ref:`UART bus <uart>` in your configuration.
+to have an :doc:`uart` in your configuration.
 Additionally, you need to set the baud rate to 9600.
 
 .. code-block:: yaml
@@ -32,18 +32,19 @@ Additionally, you need to set the baud rate to 9600.
 
 .. note::
 
-    The configuration above should work for Midea air conditioner.
+    The configuration above should work for :doc:`climate/midea_ac`.
 
 Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`uart` if you want
   to use multiple UART buses.
+- **wifi_signal_id** (*Optional*, :ref:`config-id`): Specify the ID of the :doc:`sensor/wifi_signal` if your device
+  have signal stretched icon and you want to use this feature. By default, on connected state, icon show maximum signal quality.
 
 See Also
 --------
 
-- :ref:`sensor-filters`
-- :apiref:`cse7766/cse7766.h`
+- :apiref:`midea_dongle/midea_dongle.h`
 - :ghedit:`Edit`

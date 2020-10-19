@@ -33,7 +33,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **midea_dongle_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`/components/midea_dongle` if you want to use multiple devices.
 - **name** (**Required**, string): The name of the climate device.
-- **beeper** (*Optional*, bool): Enable beeper feedback.
+- **beeper** (*Optional*, bool, default: **false**): Beeper feedback on command.
 - All other options from :ref:`Climate <config-climate>`.
 
 See Also
@@ -41,5 +41,5 @@ See Also
 
 - :doc:`/components/midea_dongle`
 - :doc:`/components/climate/index`
-- :apiref:`tuya/climate/tuya_climate.h`
+- :apiref:`climate/midea_ac.h`
 - :ghedit:`Edit`
