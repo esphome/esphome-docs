@@ -9,6 +9,8 @@ The ``midea_ac`` component creates a air conditioner climate device.
 
 This component requires a :doc:`/components/midea_dongle` to be configured.
 
+Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
+
 .. code-block:: yaml
 
     # Example configuration entry

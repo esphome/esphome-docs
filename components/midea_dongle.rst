@@ -6,7 +6,9 @@ Midea Dongle
     :image: midea.svg
     :keywords: midea
 
-The ``midea_dongle`` component creates a serial connection to the Midea climate devices for platforms to use.
+The ``midea_dongle`` component creates a serial connection to the Midea climate devices for others components to use.
+
+Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
 
 As the communication with Midea devices done using UART, you need
 to have an :doc:`uart` in your configuration.
