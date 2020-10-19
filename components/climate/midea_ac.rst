@@ -5,11 +5,21 @@ Midea Air Conditioner
     :description: Instructions for setting up a Midea climate device
     :image: air-conditioner.png
 
-The ``midea_ac`` component creates a air conditioner climate device.
+The ``midea_ac`` component creates a Midea air conditioner climate device.
 
 This component requires a :doc:`/components/midea_dongle` to be configured.
 
-Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
+.. note::
+
+  This protocol also used by some vendors:
+
+    - `Electrolux <https://www.electrolux.ru/>`_
+    - `Qlima <https://www.qlima.com/>`_
+    - `Artel <https://www.artelgroup.com/>`_
+    - `Carrier <https://www.carrier.com/>`_
+    - and maybe others
+  
+  Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
 
 .. code-block:: yaml
 

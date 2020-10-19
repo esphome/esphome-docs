@@ -8,7 +8,17 @@ Midea Dongle
 
 The ``midea_dongle`` component creates a serial connection to the Midea climate devices for others components to use.
 
-Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
+.. note::
+
+  This protocol also used by some vendors:
+
+    - `Electrolux <https://www.electrolux.ru/>`_
+    - `Qlima <https://www.qlima.com/>`_
+    - `Artel <https://www.artelgroup.com/>`_
+    - `Carrier <https://www.carrier.com/>`_
+    - and maybe others
+  
+  Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
 
 As the communication with Midea devices done using UART, you need
 to have an :doc:`uart` in your configuration.
