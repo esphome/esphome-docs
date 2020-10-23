@@ -142,25 +142,25 @@ Where HARDWARE can be any of:
 
 .. code-block:: cpp
 
-        /// For communication buses like i2c/spi
-        extern const float BUS;
-        /// For components that represent GPIO pins like PCF8573
-        extern const float IO;
-        /// For components that deal with hardware and are very important like GPIO switch
-        extern const float HARDWARE;
-        /// For components that import data from directly connected sensors like DHT.
-        extern const float DATA;
-        /// Alias for DATA (here for compatability reasons)
-        extern const float HARDWARE_LATE;
-        /// For components that use data from sensors like displays
-        extern const float PROCESSOR;
-        extern const float WIFI;
-        /// For components that should be initialized after WiFi is connected.
-        extern const float AFTER_WIFI;
-        /// For components that should be initialized after a data connection (API/MQTT) is connected.
-        extern const float AFTER_CONNECTION;
-        /// For components that should be initialized at the very end of the setup process.
-        extern const float LATE;
+    /// For communication buses like i2c/spi
+    extern const float BUS;
+    /// For components that represent GPIO pins like PCF8573
+    extern const float IO;
+    /// For components that deal with hardware and are very important like GPIO switch
+    extern const float HARDWARE;
+    /// For components that import data from directly connected sensors like DHT.
+    extern const float DATA;
+    /// Alias for DATA (here for compatability reasons)
+    extern const float HARDWARE_LATE;
+    /// For components that use data from sensors like displays
+    extern const float PROCESSOR;
+    extern const float WIFI;
+    /// For components that should be initialized after WiFi is connected.
+    extern const float AFTER_WIFI;
+    /// For components that should be initialized after a data connection (API/MQTT) is connected.
+    extern const float AFTER_CONNECTION;
+    /// For components that should be initialized at the very end of the setup process.
+    extern const float LATE;
         
 Now don't let the wording confuse you. The ``get_setup_priority()`` method is an override. Instead of fetching the setup priority setup for us, it instead fetches the setup priority for esphome, while being defined by us. The BMP180 would for instance need to be setup with a priority of IO or lower. A serial streaming (TCP) server would require a working WIFI setup and therefore get AFTER_WIFI.
 
