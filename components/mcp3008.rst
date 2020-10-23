@@ -88,6 +88,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
 - **cs_pin** (**Required**, int): The SPI cable select pin to use
 - **reference_voltage** (*Optional*, float): The reference voltage. Defaults to ``3.3V``.
+
 =======
 
 See Also
