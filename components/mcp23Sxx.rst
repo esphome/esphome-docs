@@ -24,8 +24,8 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
 .. code-block:: yaml
 
     # Example configuration entry
-    mcp23S08:
-      - id: 'mcp23S08_hub'
+    mcp23s08:
+      - id: 'mcp23s08_hub'
         cs_pin: D8
         deviceaddress: 0
 
@@ -34,7 +34,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
       - platform: gpio
         name: "MCP23S08 Pin #0"
         pin:
-          mcp23S08: mcp23S08_hub
+          mcp23s08_id: mcp23s08_hub
           # Use pin number 0
           number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
@@ -46,7 +46,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
       - platform: gpio
         name: "MCP23S08 Pin #1"
         pin:
-          mcp23S08: mcp23S08_hub
+          mcp23s08_id: mcp23s08_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
@@ -80,8 +80,8 @@ binary sensor or GPIO switch.
 .. code-block:: yaml
 
     # Example configuration entry
-    mcp23S17:
-      - id: 'mcp23S17_hub'
+    mcp23s17:
+      - id: 'mcp23s17_hub'
         cs_pin: D8
         deviceaddress: 0
 
@@ -90,7 +90,7 @@ binary sensor or GPIO switch.
       - platform: gpio
         name: "MCP23S17 Pin #0"
         pin:
-          mcp23S17: mcp23S17_hub
+          mcp23s17_id: mcp23s17_hub
           # Use pin number 0
           number: 0
           mode: OUTPUT
@@ -101,7 +101,7 @@ binary sensor or GPIO switch.
       - platform: gpio
         name: "MCP23S17 Pin #1"
         pin:
-          mcp23S17: mcp23S17_hub
+          mcp23s17_id: mcp23s17_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
