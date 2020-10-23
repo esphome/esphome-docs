@@ -115,8 +115,8 @@ Contributors
 - `Alexander Pohl (@ahpohl) <https://github.com/ahpohl>`__ - 2 contributions
 - `Airy André (@airy10) <https://github.com/airy10>`__ - 1 contribution
 - `akoivist (@akoivist) <https://github.com/akoivist>`__ - 1 contribution
-- `Andrej Komelj (@akomelj) <https://github.com/akomelj>`__ - 2 contributions
-- `Alexander Leisentritt (@Alex9779) <https://github.com/Alex9779>`__ - 8 contributions
+- `Andrej Komelj (@akomelj) <https://github.com/akomelj>`__ - 3 contributions
+- `Alexander Leisentritt (@Alex9779) <https://github.com/Alex9779>`__ - 9 contributions
 - `Alexandre Danault (@AlexDanault) <https://github.com/AlexDanault>`__ - 1 contribution
 - `Alex Mekkering (@AlexMekkering) <https://github.com/AlexMekkering>`__ - 3 contributions
 - `Amish Vishwakarma (@amishv) <https://github.com/amishv>`__ - 3 contributions
@@ -127,7 +127,9 @@ Contributors
 - `Nikolay Vasilchuk (@Anonym-tsk) <https://github.com/Anonym-tsk>`__ - 33 contributions
 - `Adriaan Peeters (@apeeters) <https://github.com/apeeters>`__ - 4 contributions
 - `Darius Ratkevičius (@aphex008) <https://github.com/aphex008>`__ - 1 contribution
+- `Ash McKenzie (@ashmckenzie) <https://github.com/ashmckenzie>`__ - 1 contribution
 - `Pavel Pletenev (@ASMfreaK) <https://github.com/ASMfreaK>`__ - 1 contribution
+- `Achilleas Pipinellis (@axilleas) <https://github.com/axilleas>`__ - 1 contribution
 - `Kamil Trzciński (@ayufan) <https://github.com/ayufan>`__ - 7 contributions
 - `Nicholas Peters (@Azimath) <https://github.com/Azimath>`__ - 2 contributions
 - `Florian Mösch (@badbadc0ffee) <https://github.com/badbadc0ffee>`__ - 4 contributions
@@ -145,10 +147,12 @@ Contributors
 - `Brad Davidson (@brandond) <https://github.com/brandond>`__ - 19 contributions
 - `Brian Hanifin (@brianhanifin) <https://github.com/brianhanifin>`__ - 1 contribution
 - `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__ - 1 contribution
-- `buxtronix (@buxtronix) <https://github.com/buxtronix>`__ - 6 contributions
+- `buxtronix (@buxtronix) <https://github.com/buxtronix>`__ - 7 contributions
 - `bwente (@bwente) <https://github.com/bwente>`__ - 1 contribution
 - `Carlos Gustavo Sarmiento (@carlos-sarmiento) <https://github.com/carlos-sarmiento>`__ - 4 contributions
+- `Carlos Garcia Saura (@CarlosGS) <https://github.com/CarlosGS>`__ - 1 contribution
 - `cbialobos (@cbialobos) <https://github.com/cbialobos>`__ - 1 contribution
+- `Marco (@cdrfun) <https://github.com/cdrfun>`__ - 1 contribution
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__ - 1 contribution
 - `John (@CircuitSetup) <https://github.com/CircuitSetup>`__ - 5 contributions
 - `Chris Debenham (@cjd) <https://github.com/cjd>`__ - 1 contribution
@@ -160,27 +164,32 @@ Contributors
 - `Alex Solomaha (@CyanoFresh) <https://github.com/CyanoFresh>`__ - 1 contribution
 - `Luar Roji (@cyberplant) <https://github.com/cyberplant>`__ - 2 contributions
 - `Dale Higgs (@dale3h) <https://github.com/dale3h>`__ - 1 contribution
+- `damanti-me (@damanti-me) <https://github.com/damanti-me>`__ - 1 contribution
 - `Daniel Bjørnbakk (@danibjor) <https://github.com/danibjor>`__ - 1 contribution
 - `Daniel Kucera (@danielkucera) <https://github.com/danielkucera>`__ - 1 contribution
 - `Danny Sauer (@dannysauer) <https://github.com/dannysauer>`__ - 1 contribution
 - `DAVe3283 (@DAVe3283) <https://github.com/DAVe3283>`__ - 3 contributions
 - `Dave Richer (@davericher) <https://github.com/davericher>`__ - 3 contributions
+- `Dave Wongillies (@davewongillies) <https://github.com/davewongillies>`__ - 1 contribution
 - `David De Sloovere (@DavidDeSloovere) <https://github.com/DavidDeSloovere>`__ - 3 contributions
 - `David Beitey (@davidjb) <https://github.com/davidjb>`__ - 1 contribution
+- `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__ - 1 contribution
 - `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__ - 3 contributions
 - `deftdawg (@deftdawg) <https://github.com/deftdawg>`__ - 1 contribution
 - `Rsan (@deltazerorsan) <https://github.com/deltazerorsan>`__ - 1 contribution
-- `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__ - 24 contributions
+- `Mickaël Le Baillif (@demikl) <https://github.com/demikl>`__ - 2 contributions
+- `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__ - 26 contributions
 - `Destix (@Destix) <https://github.com/Destix>`__ - 1 contribution
-- `Alain Turbide (@Dilbert66) <https://github.com/Dilbert66>`__ - 1 contribution
+- `Alain Turbide (@Dilbert66) <https://github.com/Dilbert66>`__ - 2 contributions
 - `Mark  (@Diramu) <https://github.com/Diramu>`__ - 1 contribution
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__ - 1 contribution
 - `dmkif (@dmkif) <https://github.com/dmkif>`__ - 1 contribution
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
-- `Daniel Hyles (@DotNetDann) <https://github.com/DotNetDann>`__ - 1 contribution
+- `Daniel Hyles (@DotNetDann) <https://github.com/DotNetDann>`__ - 2 contributions
 - `dr-oblivium (@dr-oblivium) <https://github.com/dr-oblivium>`__ - 2 contributions
 - `Drew Perttula (@drewp) <https://github.com/drewp>`__ - 2 contributions
+- `dubit0 (@dubit0) <https://github.com/dubit0>`__ - 1 contribution
 - `Ermanno Baschiera (@ebaschiera) <https://github.com/ebaschiera>`__ - 1 contribution
 - `Niclas Larsson (@edge90) <https://github.com/edge90>`__ - 1 contribution
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__ - 1 contribution
@@ -197,15 +206,15 @@ Contributors
 - `erazor666 (@erazor666) <https://github.com/erazor666>`__ - 1 contribution
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__ - 1 contribution
 - `escoand (@escoand) <https://github.com/escoand>`__ - 7 contributions
-- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 3 contributions
+- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 4 contributions
 - `Evan Coleman (@evandcoleman) <https://github.com/evandcoleman>`__ - 3 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 24 contributions
 - `C W (@fake-name) <https://github.com/fake-name>`__ - 2 contributions
 - `Christian Ferbar (@ferbar) <https://github.com/ferbar>`__ - 1 contribution
-- `Rich Foley (@foley803) <https://github.com/foley803>`__ - 1 contribution
 - `Francisk0 (@Francisk0) <https://github.com/Francisk0>`__ - 1 contribution
 - `Frank Bakker (@FrankBakkerNl) <https://github.com/FrankBakkerNl>`__ - 1 contribution
+- `Frankster-NL (@Frankster-NL) <https://github.com/Frankster-NL>`__ - 1 contribution
 - `Fredrik Erlandsson (@fredrike) <https://github.com/fredrike>`__ - 1 contribution
 - `Evgeny (@freekode) <https://github.com/freekode>`__ - 8 contributions
 - `Brett McKenzie (@freerangeeggs) <https://github.com/freerangeeggs>`__ - 1 contribution
@@ -218,7 +227,7 @@ Contributors
 - `Giovanni (@Gio-dot) <https://github.com/Gio-dot>`__ - 2 contributions
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 15 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
-- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 162 contributions
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 171 contributions
 - `Giorgos Logiotatidis (@glogiotatidis) <https://github.com/glogiotatidis>`__ - 1 contribution
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__ - 2 contributions
 - `Jelle Raaijmakers (@GMTA) <https://github.com/GMTA>`__ - 1 contribution
@@ -235,23 +244,28 @@ Contributors
 - `Ian Leeder (@ianleeder) <https://github.com/ianleeder>`__ - 2 contributions
 - `icarome (@icarome) <https://github.com/icarome>`__ - 1 contribution
 - `igg (@igg) <https://github.com/igg>`__ - 5 contributions
+- `ikatkov (@ikatkov) <https://github.com/ikatkov>`__ - 1 contribution
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__ - 1 contribution
 - `Ivan Shvedunov (@ivan4th) <https://github.com/ivan4th>`__ - 1 contribution
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
+- `Ivo-tje (@Ivo-tje) <https://github.com/Ivo-tje>`__ - 1 contribution
+- `James Gao (@jamesgao) <https://github.com/jamesgao>`__ - 1 contribution
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__ - 2 contributions
 - `Jason-nz (@Jason-nz) <https://github.com/Jason-nz>`__ - 1 contribution
 - `Jason Hines (@jasonehines) <https://github.com/jasonehines>`__ - 1 contribution
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__ - 2 contributions
-- `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__ - 8 contributions
-- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 41 contributions
+- `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__ - 10 contributions
+- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 44 contributions
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__ - 1 contribution
 - `Jeppe Ladefoged (@jladefoged) <https://github.com/jladefoged>`__ - 2 contributions
 - `Jonathan Martens (@jmartens) <https://github.com/jmartens>`__ - 1 contribution
+- `Johan van der Kuijl (@johanvanderkuijl) <https://github.com/johanvanderkuijl>`__ - 1 contribution
 - `Johboh (@Johboh) <https://github.com/Johboh>`__ - 2 contributions
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__ - 1 contribution
 - `Jonathan Adams (@jonathanadams) <https://github.com/jonathanadams>`__ - 2 contributions
+- `Jonathan Treffler (@JonathanTreffler) <https://github.com/JonathanTreffler>`__ - 1 contribution
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__ - 2 contributions
 - `Joppy (@JoppyFurr) <https://github.com/JoppyFurr>`__ - 2 contributions
 - `junnikokuki (@junnikokuki) <https://github.com/junnikokuki>`__ - 1 contribution
@@ -268,9 +282,11 @@ Contributors
 - `Klaas Schoute (@klaasnicolaas) <https://github.com/klaasnicolaas>`__ - 1 contribution
 - `Kevin Lewis (@kll) <https://github.com/kll>`__ - 1 contribution
 - `korellas (@korellas) <https://github.com/korellas>`__ - 1 contribution
+- `Kevin Pelzel (@kpelzel) <https://github.com/kpelzel>`__ - 1 contribution
 - `krahabb (@krahabb) <https://github.com/krahabb>`__ - 2 contributions
 - `KristopherMackowiak (@KristopherMackowiak) <https://github.com/KristopherMackowiak>`__ - 1 contribution
 - `kroimon (@kroimon) <https://github.com/kroimon>`__ - 2 contributions
+- `Kendell R (@KTibow) <https://github.com/KTibow>`__ - 1 contribution
 - `kvvoff (@kvvoff) <https://github.com/kvvoff>`__ - 1 contribution
 - `Ken Davidson (@kwdavidson) <https://github.com/kwdavidson>`__ - 1 contribution
 - `Stefan Lässer (@Laess3r) <https://github.com/Laess3r>`__ - 1 contribution
@@ -287,12 +303,13 @@ Contributors
 - `Magnus Øverli (@magnusoverli) <https://github.com/magnusoverli>`__ - 1 contribution
 - `Major Péter (@majorpeter) <https://github.com/majorpeter>`__ - 2 contributions
 - `Marcel van der Veldt (@marcelveldt) <https://github.com/marcelveldt>`__ - 2 contributions
-- `Marvin Gaube (@margau) <https://github.com/margau>`__ - 2 contributions
+- `Marvin Gaube (@margau) <https://github.com/margau>`__ - 3 contributions
 - `Martynas Griškonis (@Margriko) <https://github.com/Margriko>`__ - 1 contribution
 - `Mario (@mario-tux) <https://github.com/mario-tux>`__ - 3 contributions
 - `Matthew Harrold (@marrold) <https://github.com/marrold>`__ - 1 contribution
 - `Martin (@martgras) <https://github.com/martgras>`__ - 1 contribution
 - `Martin Hjelmare (@MartinHjelmare) <https://github.com/MartinHjelmare>`__ - 1 contribution
+- `MartinWelsch (@MartinWelsch) <https://github.com/MartinWelsch>`__ - 1 contribution
 - `MasterTim17 (@MasterTim17) <https://github.com/MasterTim17>`__ - 1 contribution
 - `mbo18 (@mbo18) <https://github.com/mbo18>`__ - 1 contribution
 - `Joseph Mearman (@Mearman) <https://github.com/Mearman>`__ - 1 contribution
@@ -300,6 +317,7 @@ Contributors
 - `MeIchthys (@meichthys) <https://github.com/meichthys>`__ - 1 contribution
 - `meijerwynand (@meijerwynand) <https://github.com/meijerwynand>`__ - 2 contributions
 - `Marco  (@Melkor82) <https://github.com/Melkor82>`__ - 2 contributions
+- `micw (@micw) <https://github.com/micw>`__ - 1 contribution
 - `Pauline Middelink (@middelink) <https://github.com/middelink>`__ - 2 contributions
 - `Matthew Edwards (@mje-nz) <https://github.com/mje-nz>`__ - 1 contribution
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
@@ -315,7 +333,7 @@ Contributors
 - `Niels Ulrik Andersen (@myplacedk) <https://github.com/myplacedk>`__ - 1 contribution
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__ - 1 contribution
 - `Erik Näsström (@Naesstrom) <https://github.com/Naesstrom>`__ - 1 contribution
-- `Oskar Napieraj (@napieraj) <https://github.com/napieraj>`__ - 4 contributions
+- `Oskar Napieraj (@napieraj) <https://github.com/napieraj>`__ - 6 contributions
 - `Bergont Nicolas (@nbergont) <https://github.com/nbergont>`__ - 1 contribution
 - `Nebula (@nebula-it) <https://github.com/nebula-it>`__ - 1 contribution
 - `nepozs (@nepozs) <https://github.com/nepozs>`__ - 1 contribution
@@ -340,6 +358,7 @@ Contributors
 - `perjury (@perjury) <https://github.com/perjury>`__ - 1 contribution
 - `Philip Rosenberg-Watt (@PhilRW) <https://github.com/PhilRW>`__ - 1 contribution
 - `phjr (@phjr) <https://github.com/phjr>`__ - 2 contributions
+- `pille (@pille) <https://github.com/pille>`__ - 1 contribution
 - `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__ - 1 contribution
 - `Peter Kuehne (@pkuehne) <https://github.com/pkuehne>`__ - 5 contributions
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__ - 2 contributions
@@ -356,7 +375,9 @@ Contributors
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__ - 1 contribution
 - `Florian Ragwitz (@rafl) <https://github.com/rafl>`__ - 1 contribution
 - `Robert Cambridge (@rcambrj) <https://github.com/rcambrj>`__ - 1 contribution
+- `Ronald Dehuysser (@rdehuyss) <https://github.com/rdehuyss>`__ - 1 contribution
 - `Alex Reid (@reidprojects) <https://github.com/reidprojects>`__ - 2 contributions
+- `Rich Foley (@RichFoley) <https://github.com/RichFoley>`__ - 1 contribution
 - `Richard Lewis (@richrd) <https://github.com/richrd>`__ - 3 contributions
 - `rlowens (@rlowens) <https://github.com/rlowens>`__ - 3 contributions
 - `LMR (@rmooreID) <https://github.com/rmooreID>`__ - 1 contribution
@@ -366,7 +387,7 @@ Contributors
 - `Jérôme W. (@RomRider) <https://github.com/RomRider>`__ - 1 contribution
 - `Robbie Page (@rorpage) <https://github.com/rorpage>`__ - 1 contribution
 - `rradar (@rradar) <https://github.com/rradar>`__ - 4 contributions
-- `rspaargaren (@rspaargaren) <https://github.com/rspaargaren>`__ - 4 contributions
+- `rspaargaren (@rspaargaren) <https://github.com/rspaargaren>`__ - 5 contributions
 - `Rubén G. (@rubengargar) <https://github.com/rubengargar>`__ - 1 contribution
 - `rudgr (@rudgr) <https://github.com/rudgr>`__ - 1 contribution
 - `ryanalden (@ryanalden) <https://github.com/ryanalden>`__ - 2 contributions
@@ -380,6 +401,7 @@ Contributors
 - `sethcohn (@sethcohn) <https://github.com/sethcohn>`__ - 1 contribution
 - `Emanuele Tessore (@setola) <https://github.com/setola>`__ - 1 contribution
 - `Abdelkader Boudih (@seuros) <https://github.com/seuros>`__ - 1 contribution
+- `shaeed (@shaeed) <https://github.com/shaeed>`__ - 1 contribution
 - `shbatm (@shbatm) <https://github.com/shbatm>`__ - 1 contribution
 - `sherbang (@sherbang) <https://github.com/sherbang>`__ - 4 contributions
 - `SiliconAvatar (@SiliconAvatar) <https://github.com/SiliconAvatar>`__ - 1 contribution
@@ -391,7 +413,8 @@ Contributors
 - `Paul Krischer (@SqyD) <https://github.com/SqyD>`__ - 1 contribution
 - `sredfern (@sredfern) <https://github.com/sredfern>`__ - 2 contributions
 - `srg74 (@srg74) <https://github.com/srg74>`__ - 1 contribution
-- `Samuel Sieb (@ssieb) <https://github.com/ssieb>`__ - 9 contributions
+- `Samuel Sieb (@ssieb) <https://github.com/ssieb>`__ - 10 contributions
+- `Jordan Vohwinkel (@sublime93) <https://github.com/sublime93>`__ - 1 contribution
 - `Teemu Mikkonen (@T3m3z) <https://github.com/T3m3z>`__ - 2 contributions
 - `Taigar2015 (@Taigar2015) <https://github.com/Taigar2015>`__ - 2 contributions
 - `Levente Tamas (@tamisoft) <https://github.com/tamisoft>`__ - 2 contributions
@@ -399,10 +422,11 @@ Contributors
 - `Team Super Panda (@teamsuperpanda) <https://github.com/teamsuperpanda>`__ - 1 contribution
 - `Thomas Eckerstorfer (@TheEggi) <https://github.com/TheEggi>`__ - 5 contributions
 - `Spencer Hachmeister (@TheHackmeister) <https://github.com/TheHackmeister>`__ - 1 contribution
+- `thejonesyboy (@thejonesyboy) <https://github.com/thejonesyboy>`__ - 1 contribution
 - `TheJulianJES (@TheJulianJES) <https://github.com/TheJulianJES>`__ - 3 contributions
 - `Jozef Zuzelka (@TheKuko) <https://github.com/TheKuko>`__ - 2 contributions
 - `Andrew Quested (@thenameiwantedwastaken) <https://github.com/thenameiwantedwastaken>`__ - 1 contribution
-- `Florian Gareis (@TheZoker) <https://github.com/TheZoker>`__ - 7 contributions
+- `Florian Gareis (@TheZoker) <https://github.com/TheZoker>`__ - 8 contributions
 - `Thomas Klingbeil (@thomasklingbeil) <https://github.com/thomasklingbeil>`__ - 3 contributions
 - `Andrew Thompson (@thompsa) <https://github.com/thompsa>`__ - 2 contributions
 - `thubot (@thubot) <https://github.com/thubot>`__ - 1 contribution
@@ -412,11 +436,12 @@ Contributors
 - `Tom Brien (@TomBrien) <https://github.com/TomBrien>`__ - 1 contribution
 - `TomFahey (@TomFahey) <https://github.com/TomFahey>`__ - 2 contributions
 - `Tommy Kihlstrøm (@tomludd) <https://github.com/tomludd>`__ - 1 contribution
-- `tomlut (@tomlut) <https://github.com/tomlut>`__ - 1 contribution
+- `tomlut (@tomlut) <https://github.com/tomlut>`__ - 2 contributions
 - `Tom Price (@tomtom5152) <https://github.com/tomtom5152>`__ - 2 contributions
 - `Felix Eckhofer (@tribut) <https://github.com/tribut>`__ - 1 contribution
 - `Troon (@Troon) <https://github.com/Troon>`__ - 1 contribution
 - `truglodite (@truglodite) <https://github.com/truglodite>`__ - 1 contribution
+- `Trevor North (@trvrnrth) <https://github.com/trvrnrth>`__ - 2 contributions
 - `Gediminas Šaltenis (@trylika) <https://github.com/trylika>`__ - 2 contributions
 - `tubalainen (@tubalainen) <https://github.com/tubalainen>`__ - 3 contributions
 - `Tuckie (@Tuckie) <https://github.com/Tuckie>`__ - 1 contribution
@@ -441,4 +466,4 @@ Contributors
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__ - 1 contribution
 
-*This page was last updated September 20, 2020.*
+*This page was last updated October 22, 2020.*
