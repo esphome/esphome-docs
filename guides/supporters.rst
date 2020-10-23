@@ -177,7 +177,8 @@ Contributors
 - `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__ - 3 contributions
 - `deftdawg (@deftdawg) <https://github.com/deftdawg>`__ - 1 contribution
 - `Rsan (@deltazerorsan) <https://github.com/deltazerorsan>`__ - 1 contribution
-- `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__ - 24 contributions
+- `Mickaël Le Baillif (@demikl) <https://github.com/demikl>`__ - 2 contributions
+- `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__ - 26 contributions
 - `Destix (@Destix) <https://github.com/Destix>`__ - 1 contribution
 - `Alain Turbide (@Dilbert66) <https://github.com/Dilbert66>`__ - 2 contributions
 - `Mark  (@Diramu) <https://github.com/Diramu>`__ - 1 contribution
@@ -205,7 +206,7 @@ Contributors
 - `erazor666 (@erazor666) <https://github.com/erazor666>`__ - 1 contribution
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__ - 1 contribution
 - `escoand (@escoand) <https://github.com/escoand>`__ - 7 contributions
-- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 3 contributions
+- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 4 contributions
 - `Evan Coleman (@evandcoleman) <https://github.com/evandcoleman>`__ - 3 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 24 contributions
@@ -226,7 +227,7 @@ Contributors
 - `Giovanni (@Gio-dot) <https://github.com/Gio-dot>`__ - 2 contributions
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 15 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
-- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 162 contributions
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 171 contributions
 - `Giorgos Logiotatidis (@glogiotatidis) <https://github.com/glogiotatidis>`__ - 1 contribution
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__ - 2 contributions
 - `Jelle Raaijmakers (@GMTA) <https://github.com/GMTA>`__ - 1 contribution
@@ -255,8 +256,8 @@ Contributors
 - `JbLb (@jblb) <https://github.com/jblb>`__ - 1 contribution
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__ - 2 contributions
-- `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__ - 8 contributions
-- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 41 contributions
+- `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__ - 10 contributions
+- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 44 contributions
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__ - 1 contribution
 - `Jeppe Ladefoged (@jladefoged) <https://github.com/jladefoged>`__ - 2 contributions
 - `Jonathan Martens (@jmartens) <https://github.com/jmartens>`__ - 1 contribution
@@ -465,4 +466,4 @@ Contributors
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__ - 1 contribution
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__ - 1 contribution
 
-*This page was last updated September 20, 2020.*
+*This page was last updated October 22, 2020.*
