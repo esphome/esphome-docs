@@ -42,13 +42,13 @@ sensors for your projects.
     sensor:
   - platform: mcp3008
     update_interval: 1s
-    mcp3008: 'mcp3008_hub'
+    mcp3008_id: 'mcp3008_hub'
     id: freezer_temp_source
     reference_voltage: 3.19
     number: 0
   - platform: mcp3008
     update_interval: 1s
-    mcp3008: 'mcp3008_hub'
+    mcp3008_id: 'mcp3008_hub'
     id: fridge_temp_source
     reference_voltage: 3.19
     number: 1
