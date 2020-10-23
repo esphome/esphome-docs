@@ -40,6 +40,7 @@ sensors for your projects.
     # of the MCP3008 with a 10K resistor as a voltage divider.
     # See `resistance` and `ntc` platorms for other options
     sensor:
+
   - platform: mcp3008
     update_interval: 1s
     mcp3008_id: 'mcp3008_hub'
@@ -80,13 +81,14 @@ sensors for your projects.
       reference_temperature: 25°C
       reference_resistance: 10kOhm
     name: Garage Fridge Temperature
-    
+ 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
 - **cs_pin** (**Required**, int): The SPI cable select pin to use
 - **reference_voltage** (*Optional*, float): The reference voltage. Defaults to ``3.3V``.
+=======
 
 See Also
 --------

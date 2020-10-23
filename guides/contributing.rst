@@ -222,9 +222,9 @@ Build
 
     .. code-block:: bash
 
-        docker run --rm -v "${PWD}/":/data -p 8000:8000 -it esphome/esphome-docs
+        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
 
-    And then go to ``<CONTAINER_IP>:8000`` in your browser.
+    With ``PWD`` refering to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
 
     This way, you don't have to install the dependencies to build the documentation.
 
@@ -547,6 +547,9 @@ loader. These are:
   has one of them in the config, a validation error will be generated.
 
 - ``ESP_PLATFORMS``: Provide a list of allowed ESP types this integration works with.
+- ``CODEOWNERS``: GitHub usernames or team names of people that are responsible for this integration. 
+  You should add at least your GitHub username here, as well as anyone who helped you to write code 
+  that is being included.
 
 Codebase Standards
 ------------------

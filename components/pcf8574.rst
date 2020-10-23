@@ -42,7 +42,7 @@ not work.
           pcf8574: pcf8574_hub
           # Use pin number 0
           number: 0
-          # One of INPUT, INPUT_PULLUP or OUTPUT
+          # One of INPUT or OUTPUT
           mode: OUTPUT
           inverted: False
 

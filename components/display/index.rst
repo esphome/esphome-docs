@@ -118,7 +118,7 @@ Additionally, you have access to two helper methods which will fetch the width a
         # ...
         lambda: |-
           // Draw a circle in the middle of the display
-          it.filled_circle(it.get_width() / 2, it.get_height() / 2);
+          it.filled_circle(it.get_width() / 2, it.get_height() / 2, 20);
 
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
@@ -331,6 +331,12 @@ Configuration variables:
   in your display code.
 - **resize** (*Optional*, int): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
+- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
+
+  - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
+    per pixel, 8 pixels per byte.
+  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
 
 .. note::
 
@@ -348,6 +354,22 @@ And then later in code:
         lambda: |-
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
+
+For binary images the ``image`` method accepts two additional color parameters which can
+be supplied to modify the color used to represent the on and off bits respectively. e.g.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Draw the image my_image at position [x=0,y=0]
+          // with front color red and back color blue
+          it.image(0, 0, id(my_image), id(red), id(blue));
+
+You can also use this to invert images in two colors display, use ``COLOR_OFF`` then ``COLOR_ON``
+as the additional parameters.
 
 .. _display-pages:
 

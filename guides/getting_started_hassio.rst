@@ -50,7 +50,7 @@ Dashboard Interface
 Assuming you created your first configuration file with the wizard, let's take a quick
 tour of the ESPHome dashboard interface.
 
-.. figure:: images/hassio_interface.png
+.. figure:: images/dashboard.png
     :align: center
     :width: 95.0%
 
