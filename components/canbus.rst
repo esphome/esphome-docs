@@ -142,7 +142,7 @@ MCP2515
 The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
-TODO: Wiring VCC GND and advising 3.3V???
+For wireing up the MSP2515 please refer to the section below.
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
   when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
@@ -180,6 +180,24 @@ TODO: Wiring VCC GND and advising 3.3V???
             - light.turn_on:
                 id: light_1
                 brightness: !lambda "return (float) x[0]/255;"
+
+Wireing options
+---------------
+Easiest approach is to just use fully assembled boards and just add one resistor in the MISO line.
+This runs MOSI, SCK and CS out of specification which is nearly never a problem.
+
+.. figure:: images/canbus_mcp2515_resistor.png
+    :align: center
+    :target: ../_images/canbus_mcp2515_resistor.png
+
+A more advanced option is to fully convert the 5V and 3.3V logic levels with a level shifter.
+This schematic should work but is currently untested.
+
+.. figure:: images/canbus_mcp2515_txs0108e.png
+    :align: center
+    :target: ../_images/canbus_mcp2515_txs0108e.png
+
+
 
 See Also
 --------
