@@ -210,7 +210,7 @@ Then you need to set it up with yaml.
         pin: GPIO15
         id: relay_fan3
 
-        fan:
+    fan:
       - platform: speed
         output: fanoutput
         id: ifan03_fan
