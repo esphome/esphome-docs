@@ -53,14 +53,14 @@ Then you need to set it up with yaml.
 .. code-block:: yaml
 
     esphome:
-  name: fan_ifan03
-  platform: ESP8266
-  board: esp8285
-  includes:
-    - ifan03.h
+      name: fan_ifan03
+      platform: ESP8266
+      board: esp8285
+      includes:
+        - ifan03.h
     wifi:
-  ssid: <YOUR_SSID>
-  password: <YOUR_PASSWORD>
+      ssid: <YOUR_SSID>
+      password: <YOUR_PASSWORD>
 
     captive_portal:
 
@@ -71,150 +71,150 @@ Then you need to set it up with yaml.
     ota:
 
     remote_receiver:
-  pin: GPIO3
+      pin: GPIO3
 
     binary_sensor:
-  - platform: gpio
-    id: button
-    pin:
-      number: GPIO0
-    on_press:
-      then:
-        - light.toggle: ifan03_light
+      - platform: gpio
+        id: button
+        pin:
+          number: GPIO0
+        on_press:
+          then:
+            - light.toggle: ifan03_light
 
-  - platform: remote_receiver
-    name: "Fan 0"
-    id: remote_0
-    raw:
-      code: [-207, 104, -103, 104, -104, 103, -104, 207, -104, 103, -104, 104, -103, 104, -104, 103, -104, 105, -102, 104, -725, 104, -311, 103, -518, 104, -933, 103, -104, 104, -725, 104, -932, 104, -207, 207, -519]
-    on_release:
-      then:
-        - fan.turn_off: ifan03_fan
-    internal: true
-  - platform: remote_receiver
-    id: remote_fan1
-    raw:
-      code: [-207, 104, -104, 103, -104, 104, -103, 207, -104, 104, -103, 104, -104, 103, -104, 104, -103, 104, -104, 103, -726, 103, -312, 103, -518, 104, -933, 103, -104, 104, -725, 104, -103, 104, -726, 103, -104, 311, -518]
-    on_release:
-      then:
-        - fan.turn_on:
-              id: ifan03_fan
-              speed: LOW
-    internal: true
-  - platform: remote_receiver
-    id: remote_fan2
-    raw:
-      code: [-208, 103, -104, 104, -103, 104, -103, 208, -103, 104, -104, 103, -104, 104, -103, 104, -104, 103, -104, 103, -726, 104, -310, 104, -518, 104, -933, 103, -104, 104, -725, 104, -207, 104, -622, 103, -416, 102, -415]
-    on_release:
-      then:
-        - fan.turn_on:
-              id: ifan03_fan
-              speed: MEDIUM
-    internal: true
-  - platform: remote_receiver
-    id: remote_fan3
-    raw:
-      code: [-207, 104, -104, 103, -104, 104, -103, 208, -103, 104, -104, 103, -104, 104, -103, 104, -104, 103, -104, 103, -726, 104, -311, 104, -518, 103, -934, 103, -103, 104, -726, 103, -104, 207, -622, 104, -103, 104, -207, 104, -415]
-    on_release:
-      then:
-        - fan.turn_on:
-              id: ifan03_fan
-              speed: HIGH
-    internal: true
-
-  - platform: remote_receiver
-    id: remote_light
-    raw:
-      code: [-207, 104, -103, 104, -104, 103, -104, 207, -104, 103, -104, 104, -103, 104, -103, 104, -104, 103, -104, 104, -725, 104, -311, 103, -518, 104, -933, 103, -104, 103, -726, 103, -311, 104, -518, 104, -207, 104, -103, 104, -414]
-    on_release:
-      then:
-        - light.toggle: ifan03_light
-
-    output:
-  - platform: custom
-    type: float
-    outputs:
-      id: fanoutput
-    lambda: |-
-      auto ifan03_fan = new IFan03Output();
-      App.register_component(ifan03_fan);
-      return {ifan03_fan};
-
-  - platform: gpio
-    pin: GPIO9
-    id: relay_light
-    inverted: true
-
-    light:
-  - platform: binary
-    name: "iFan03 Light"
-    output: relay_light
-    id: ifan03_light
-
-    switch:
-  - platform: template
-    id: update_fan_speed
-    optimistic: True
-    turn_on_action:
-      then:
-        - delay: 200ms
-        - if:
-            condition:
-              and:
-                - switch.is_off: relay_fan1
-                - switch.is_off: relay_fan2
-                - switch.is_off: relay_fan3
-            then:
-              - fan.turn_off: ifan03_fan
-        - if:
-            condition:
-              and:
-                - switch.is_on: relay_fan1
-                - switch.is_off: relay_fan2
-                - switch.is_off: relay_fan3
-            then:
-              - fan.turn_on:
+      - platform: remote_receiver
+        name: "Fan 0"
+        id: remote_0
+        raw:
+          code: [-207, 104, -103, 104, -104, 103, -104, 207, -104, 103, -104, 104, -103, 104, -104, 103, -104, 105, -102, 104, -725, 104, -311, 103, -518, 104, -933, 103, -104, 104, -725, 104, -932, 104, -207, 207, -519]
+        on_release:
+          then:
+            - fan.turn_off: ifan03_fan
+        internal: true
+      - platform: remote_receiver
+        id: remote_fan1
+        raw:
+          code: [-207, 104, -104, 103, -104, 104, -103, 207, -104, 104, -103, 104, -104, 103, -104, 104, -103, 104, -104, 103, -726, 103, -312, 103, -518, 104, -933, 103, -104, 104, -725, 104, -103, 104, -726, 103, -104, 311, -518]
+        on_release:
+          then:
+            - fan.turn_on:
                   id: ifan03_fan
                   speed: LOW
-        - if:
-            condition:
-              and:
-                - switch.is_off: relay_fan1
-                - switch.is_on: relay_fan2
-                - switch.is_off: relay_fan3
-            then:
-              - fan.turn_on:
+        internal: true
+      - platform: remote_receiver
+        id: remote_fan2
+        raw:
+          code: [-208, 103, -104, 104, -103, 104, -103, 208, -103, 104, -104, 103, -104, 104, -103, 104, -104, 103, -104, 103, -726, 104, -310, 104, -518, 104, -933, 103, -104, 104, -725, 104, -207, 104, -622, 103, -416, 102, -415]
+        on_release:
+          then:
+            - fan.turn_on:
                   id: ifan03_fan
                   speed: MEDIUM
-        - if:
-            condition:
-              and:
-                - switch.is_off: relay_fan1
-                - switch.is_off: relay_fan2
-                - switch.is_on: relay_fan3
-            then:
-              - fan.turn_on:
+        internal: true
+      - platform: remote_receiver
+        id: remote_fan3
+        raw:
+          code: [-207, 104, -104, 103, -104, 104, -103, 208, -103, 104, -104, 103, -104, 104, -103, 104, -104, 103, -104, 103, -726, 104, -311, 104, -518, 103, -934, 103, -103, 104, -726, 103, -104, 207, -622, 104, -103, 104, -207, 104, -415]
+        on_release:
+          then:
+            - fan.turn_on:
                   id: ifan03_fan
                   speed: HIGH
-        - switch.turn_off: update_fan_speed
+        internal: true
 
-  - platform: gpio
-    pin: GPIO14
-    id: relay_fan1
+      - platform: remote_receiver
+        id: remote_light
+        raw:
+          code: [-207, 104, -103, 104, -104, 103, -104, 207, -104, 103, -104, 104, -103, 104, -103, 104, -104, 103, -104, 104, -725, 104, -311, 103, -518, 104, -933, 103, -104, 103, -726, 103, -311, 104, -518, 104, -207, 104, -103, 104, -414]
+        on_release:
+          then:
+            - light.toggle: ifan03_light
 
-  - platform: gpio
-    pin: GPIO12
-    id: relay_fan2
+    output:
+      - platform: custom
+        type: float
+        outputs:
+          id: fanoutput
+        lambda: |-
+          auto ifan03_fan = new IFan03Output();
+          App.register_component(ifan03_fan);
+          return {ifan03_fan};
 
-  - platform: gpio
-    pin: GPIO15
-    id: relay_fan3
+      - platform: gpio
+        pin: GPIO9
+        id: relay_light
+        inverted: true
 
-    fan:
-  - platform: speed
-    output: fanoutput
-    id: ifan03_fan
-    name: "iFan03 Fan"
+    light:
+      - platform: binary
+        name: "iFan03 Light"
+        output: relay_light
+        id: ifan03_light
+
+    switch:
+      - platform: template
+        id: update_fan_speed
+        optimistic: True
+        turn_on_action:
+          then:
+            - delay: 200ms
+            - if:
+                condition:
+                  and:
+                    - switch.is_off: relay_fan1
+                    - switch.is_off: relay_fan2
+                    - switch.is_off: relay_fan3
+                then:
+                  - fan.turn_off: ifan03_fan
+            - if:
+                condition:
+                  and:
+                    - switch.is_on: relay_fan1
+                    - switch.is_off: relay_fan2
+                    - switch.is_off: relay_fan3
+                then:
+                  - fan.turn_on:
+                      id: ifan03_fan
+                      speed: LOW
+            - if:
+                condition:
+                  and:
+                    - switch.is_off: relay_fan1
+                    - switch.is_on: relay_fan2
+                    - switch.is_off: relay_fan3
+                then:
+                  - fan.turn_on:
+                      id: ifan03_fan
+                      speed: MEDIUM
+            - if:
+                condition:
+                  and:
+                    - switch.is_off: relay_fan1
+                    - switch.is_off: relay_fan2
+                    - switch.is_on: relay_fan3
+                then:
+                  - fan.turn_on:
+                      id: ifan03_fan
+                      speed: HIGH
+            - switch.turn_off: update_fan_speed
+
+      - platform: gpio
+        pin: GPIO14
+        id: relay_fan1
+
+      - platform: gpio
+        pin: GPIO12
+        id: relay_fan2
+
+      - platform: gpio
+        pin: GPIO15
+        id: relay_fan3
+
+        fan:
+      - platform: speed
+        output: fanoutput
+        id: ifan03_fan
+        name: "iFan03 Fan"
 
 See Also
 --------
