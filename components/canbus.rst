@@ -198,6 +198,84 @@ This schematic should work but is currently untested.
     :target: ../_images/canbus_mcp2515_txs0108e.png
 
 
+Cover Example
+-------------
+Example for following application:
+Buttons are connected on the CAN-Node and also the motor is connected via CAN.
+
+.. epigraph::
+
+  | **Button 1:** ID 0x50B - 1 byte payload 
+  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+  | **Button 2:** ID 0x50C - 1 byte payload 
+  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+  | **Motor:** ID 0x51A - 1 byte payload 
+  | (0: off, 1: open, 2: close)
+
+
+
+.. code-block:: yaml
+
+    spi:
+      id: McpSpi
+      clk_pin: GPIO16
+      mosi_pin: GPIO5
+      miso_pin: GPIO4
+
+    canbus:
+      - platform: mcp2515
+        id: my_mcp2515
+        spi_id: McpSpi
+        cs_pin: GPIO14
+        can_id: 4
+        bit_rate: 125kbps
+        on_frame:
+        - can_id: 0x50c
+          then:
+            - lambda: |-
+                auto call = id(TestCover).make_call();
+                switch(x[0]) {
+                  case 0x2: call.set_command_open(); call.perform(); break; // long pressed
+                  case 0x1:                                                 // button down
+                  case 0x3: call.set_command_stop(); call.perform(); break; // long released
+                  case 0x4: call.set_position(100.0); call.perform(); break;// double click
+                }
+        - can_id: 0x50b
+          then:
+            - lambda: |-
+                auto call = id(TestCover).make_call();
+                switch(x[0]) {
+                  case 0x2: call.set_command_close(); call.perform(); break; // long pressed
+                  case 0x1:                                                  // button down
+                  case 0x3: call.set_command_stop(); call.perform(); break;  // long released
+                  case 0x4: call.set_position(0.0); call.perform(); break;   // double click
+                }
+
+
+    cover:
+      - platform: time_based
+        name: "MyCanbusTestCover"
+        id: TestCover
+        device_class: shutter
+        has_built_in_endstop: true
+        open_action:
+          - canbus.send:
+              data: [ 0x01 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+        open_duration: 2min
+        close_action:
+          - canbus.send:
+              data: [ 0x02 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+        close_duration: 2min
+        stop_action:
+          - canbus.send:
+              data: [ 0x00 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+
 
 See Also
 --------
