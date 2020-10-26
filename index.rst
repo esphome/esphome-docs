@@ -389,6 +389,7 @@ Cookbook
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
     Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
     Sonoff iFan02, cookbook/ifan02, fan.svg
+    Sonoff iFan03, cookbook/ifan03, fan.svg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
