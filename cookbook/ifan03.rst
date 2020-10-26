@@ -58,22 +58,22 @@ Then you need to set it up with yaml.
   board: esp8285
   includes:
     - ifan03.h
-wifi:
+    wifi:
   ssid: <YOUR_SSID>
   password: <YOUR_PASSWORD>
 
-captive_portal:
+    captive_portal:
 
-logger:
+    logger:
 
-api:
+    api:
 
-ota:
+    ota:
 
-remote_receiver:
+    remote_receiver:
   pin: GPIO3
 
-binary_sensor:
+    binary_sensor:
   - platform: gpio
     id: button
     pin:
@@ -130,7 +130,7 @@ binary_sensor:
       then:
         - light.toggle: ifan03_light
 
-output:
+    output:
   - platform: custom
     type: float
     outputs:
@@ -145,13 +145,13 @@ output:
     id: relay_light
     inverted: true
 
-light:
+    light:
   - platform: binary
     name: "iFan03 Light"
     output: relay_light
     id: ifan03_light
 
-switch:
+    switch:
   - platform: template
     id: update_fan_speed
     optimistic: True
@@ -210,7 +210,7 @@ switch:
     pin: GPIO15
     id: relay_fan3
 
-fan:
+    fan:
   - platform: speed
     output: fanoutput
     id: ifan03_fan
