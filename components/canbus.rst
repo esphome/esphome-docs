@@ -238,7 +238,7 @@ Buttons are connected on the CAN-Node and also the motor is connected via CAN.
                   case 0x2: call.set_command_open(); call.perform(); break; // long pressed
                   case 0x1:                                                 // button down
                   case 0x3: call.set_command_stop(); call.perform(); break; // long released
-                  case 0x4: call.set_position(100.0); call.perform(); break;// double click
+                  case 0x4: call.set_position(1.0); call.perform(); break;  // double click
                 }
         - can_id: 0x50b
           then:
