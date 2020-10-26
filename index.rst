@@ -189,6 +189,7 @@ Binary Sensor Components
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
+    RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
