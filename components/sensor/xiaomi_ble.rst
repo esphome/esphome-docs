@@ -110,7 +110,7 @@ Configuration example:
 LYWSD02
 *******
 
-Hygro thermometer, rectangular body, e-ink display, broadcasts temperature and humidity values, no battery status
+Hygro thermometer, rectangular body, e-ink display, broadcasts temperature, humidity and battery level.
 
 .. figure:: images/xiaomi_lywsd02.jpg
     :align: center
@@ -127,6 +127,8 @@ Configuration example:
           name: "LYWSD02 Temperature"
         humidity:
           name: "LYWSD02 Humidity"
+        battery_level:
+          name: "LYWSD02 Battery Level"
 
 CGG1
 ****
