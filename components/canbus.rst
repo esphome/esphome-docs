@@ -142,7 +142,7 @@ MCP2515
 The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
-TODO: Wiring VCC GND and advising 3.3V???
+For wireing up the MSP2515 please refer to the section below.
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
   when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
@@ -180,6 +180,102 @@ TODO: Wiring VCC GND and advising 3.3V???
             - light.turn_on:
                 id: light_1
                 brightness: !lambda "return (float) x[0]/255;"
+
+Wireing options
+---------------
+Easiest approach is to just use fully assembled boards and just add one resistor in the MISO line.
+This runs MOSI, SCK and CS out of specification which is nearly never a problem.
+
+.. figure:: images/canbus_mcp2515_resistor.png
+    :align: center
+    :target: ../_images/canbus_mcp2515_resistor.png
+
+A more advanced option is to fully convert the 5V and 3.3V logic levels with a level shifter.
+This schematic should work but is currently untested.
+
+.. figure:: images/canbus_mcp2515_txs0108e.png
+    :align: center
+    :target: ../_images/canbus_mcp2515_txs0108e.png
+
+
+Cover Example
+-------------
+Example for following application:
+Buttons are connected on the CAN-Node and also the motor is connected via CAN.
+
+.. epigraph::
+
+  | **Button 1:** ID 0x50B - 1 byte payload 
+  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+  | **Button 2:** ID 0x50C - 1 byte payload 
+  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+  | **Motor:** ID 0x51A - 1 byte payload 
+  | (0: off, 1: open, 2: close)
+
+
+
+.. code-block:: yaml
+
+    spi:
+      id: McpSpi
+      clk_pin: GPIO16
+      mosi_pin: GPIO5
+      miso_pin: GPIO4
+
+    canbus:
+      - platform: mcp2515
+        id: my_mcp2515
+        spi_id: McpSpi
+        cs_pin: GPIO14
+        can_id: 4
+        bit_rate: 125kbps
+        on_frame:
+        - can_id: 0x50c
+          then:
+            - lambda: |-
+                auto call = id(TestCover).make_call();
+                switch(x[0]) {
+                  case 0x2: call.set_command_open(); call.perform(); break; // long pressed
+                  case 0x1:                                                 // button down
+                  case 0x3: call.set_command_stop(); call.perform(); break; // long released
+                  case 0x4: call.set_position(1.0); call.perform(); break;  // double click
+                }
+        - can_id: 0x50b
+          then:
+            - lambda: |-
+                auto call = id(TestCover).make_call();
+                switch(x[0]) {
+                  case 0x2: call.set_command_close(); call.perform(); break; // long pressed
+                  case 0x1:                                                  // button down
+                  case 0x3: call.set_command_stop(); call.perform(); break;  // long released
+                  case 0x4: call.set_position(0.0); call.perform(); break;   // double click
+                }
+
+
+    cover:
+      - platform: time_based
+        name: "MyCanbusTestCover"
+        id: TestCover
+        device_class: shutter
+        has_built_in_endstop: true
+        open_action:
+          - canbus.send:
+              data: [ 0x01 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+        open_duration: 2min
+        close_action:
+          - canbus.send:
+              data: [ 0x02 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+        close_duration: 2min
+        stop_action:
+          - canbus.send:
+              data: [ 0x00 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+
 
 See Also
 --------
