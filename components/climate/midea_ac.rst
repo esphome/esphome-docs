@@ -50,6 +50,15 @@ Configuration variables:
 - **beeper** (*Optional*, bool, default: **false**): Beeper feedback on command.
 - All other options from :ref:`Climate <config-climate>`.
 
+Acknowledgments:
+----------------
+
+Thanks to the following people for their contributions to reverse engineering the UART protocol and source code in the following repositories:
+
+* `Mac Zhou <https://github.com/mac-zhou/midea-msmart>`_
+* `NeoAcheron <https://github.com/NeoAcheron/midea-ac-py>`_
+* `Rene Klootwijk <https://github.com/reneklootwijk/node-mideahvac>`_
+
 See Also
 --------
 

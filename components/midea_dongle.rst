@@ -57,6 +57,15 @@ Configuration variables:
 - **stratched_icon** (*Optional*, bool, default: **false**): Set if your device have signal stretched icon
   and you want to use this feature. By default, on connected state, icon show maximum signal quality.
 
+Acknowledgments:
+----------------
+
+Thanks to the following people for their contributions to reverse engineering the UART protocol and source code in the following repositories:
+
+* `Mac Zhou <https://github.com/mac-zhou/midea-msmart>`_
+* `NeoAcheron <https://github.com/NeoAcheron/midea-ac-py>`_
+* `Rene Klootwijk <https://github.com/reneklootwijk/node-mideahvac>`_
+
 See Also
 --------
 
