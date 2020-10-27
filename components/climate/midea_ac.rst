@@ -17,6 +17,8 @@ This component requires a :doc:`/components/midea_dongle` to be configured.
         - `Qlima <https://www.qlima.com/>`_
         - `Artel <https://www.artelgroup.com/>`_
         - `Carrier <https://www.carrier.com/>`_
+        - `Comfee <http://www.comfee-russia.ru/>`_
+        - `Inventor <https://www.inventorairconditioner.com/>`_
         - and maybe others
 
     Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.

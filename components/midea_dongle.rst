@@ -16,6 +16,8 @@ The ``midea_dongle`` component creates a serial connection to the Midea climate 
         - `Qlima <https://www.qlima.com/>`_
         - `Artel <https://www.artelgroup.com/>`_
         - `Carrier <https://www.carrier.com/>`_
+        - `Comfee <http://www.comfee-russia.ru/>`_
+        - `Inventor <https://www.inventorairconditioner.com/>`_
         - and maybe others
 
     Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
@@ -52,8 +54,8 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`uart` if you want
   to use multiple UART buses.
-- **wifi_signal_id** (*Optional*, :ref:`config-id`): Specify the ID of the :doc:`sensor/wifi_signal` if your device
-  have signal stretched icon and you want to use this feature. By default, on connected state, icon show maximum signal quality.
+- **stratched_icon** (*Optional*, bool, default: **false**): Set if your device have signal stretched icon
+  and you want to use this feature. By default, on connected state, icon show maximum signal quality.
 
 See Also
 --------
