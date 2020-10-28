@@ -8,87 +8,161 @@ CAN bus
     :image: canbus.png
     :keywords: CAN
 
-Controller Area Network (CAN bus) is a serial bus protocol that allows components to communicate on a single or dual-wire networked data bus up to 1Mbps.
+Controller Area Network (CAN bus) is a serial bus protocol to connect individual systems and sensors
+as an alternative to conventional multi-wire looms.
+It allows automotive components to communicate on a single or dual-wire networked data bus up to 1Mbps.
+CAN is an International Standardization Organization (ISO) defined serial communications bus originally
+developed for the automotive industry to replace the complex wiring harness with a two-wire bus. The
+specification calls for high immunity to electrical interference and the ability to self-diagnose and repair
+data errors. These features have led to CAN’s popularity in a variety of industries including building
+automation, medical, and manufacturing.
 
-The current ESPHome CAN bus implementation supports single frame data transfer. In this way you may send and receive data up to 8 bits.
-With this you can transmit the state of a button or the feedback from a sensor on the bus.
-All other devices on the bus will be able to get this data to switch on/off a light or display the transmitted data.
+The current ESPHome implementation supports single frame data transfer. In this way you may send and
+receive data frames up to 8 bytes.
+With this you can transmit the press of a button or the feedback from a sensor on the bus.
+All other devices on the bus will be able to get this data to switch on/off a light or display the
+transmitted data.
 
-You may add multiple busses to you configuration. At this moment only the MCP2515 hardware driver is supported. 
+The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
+CAN bus to work you need to select the device that has the physical CAN bus implemented.
+At this moment only the MCP2515 driver is supported. You can configure multiple busses.
 
-CAN bus Configuration;
+Any can bus node can transmit data at any time, and any node can send any ``can_id`` value and any
+node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can
+bus network where each node has a can id which will use to broadcast data about itself, if a node
+should, e.g. turn on a light, it can listen for can messages with the can id assigned to it.
+So you can have several nodes being able to control a light in e.g. node 20.
+
+Base CAN Bus Configuration
+--------------------------
+
+Each canbus platform extends this configuration schema.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    canbus:
+      - platform: ...
+        can_id: 4
+        bit_rate: 50KBPS
+        on_frame:
+        - can_id: 500
+          then:
+          - lambda: |-
+              std::string b(x.begin(), x.end());
+              ESP_LOGD("can id 500", "%s", &b[0] );
+
+Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **sender_id** (**Required**, numeric id): With this numeric id we are able to determine the sender.
-- **bit_rate** (*Optional*, choose one of the supported CAN bus bitrates): this defaults to 125KBPS.
+- **can_id** (**Required**, integer): default *can id* used for transmitting frames.
+- **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
 
-  - 5KBPS
-  - 10KBPS
-  - 20KBPS
-  - 31K25BPS
-  - 33KBPS
-  - 40KBPS
-  - 50KBPS
-  - 80KBPS
-  - 83K3BPS
-  - 95KBPS
-  - 100KBPS
-  - 125KBPS
-  - 200KBPS
-  - 250KBPS
-  - 500KBPS
-  - 1000KBPS
+    - 5KBPS
+    - 10KBPS
+    - 20KBPS
+    - 31K25BPS
+    - 33KBPS
+    - 40KBPS
+    - 50KBPS
+    - 80KBPS
+    - 83K3BPS
+    - 95KBPS
+    - 100KBPS
+    - 125KBPS
+    - 200KBPS
+    - 250KBPS
+    - 500KBPS
+    - 1000KBPS
+
+Automations:
+
+- **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
+  CAN Frame is received. See below.
+
+
+.. _canbus-on-frame:
+
+``on_frame``
+************
+
+This automation will be triggered when a can frame is  received. A variable ``x`` of type
+``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    canbus:
+      - platform: ...
+        on_frame:
+        - can_id: 43 # the remote sender can_id
+          then:
+            - if:
+                condition:
+                  lambda: 'return x[0] == 0x11;'
+                then:
+                  light.toggle: light1
+
+
+Transmit Frame Action
+*********************
+
+The can bus can transmit frames by means of the ``canbus.send`` action.
+There are several forms to use it:
+
+.. code-block:: yaml
+
+    on_...:
+      - canbus.send:
+          data: [ 0x10, 0x20, 0x30 ]
+          canbus_id: my_mcp2515 # optional if you only have 1 canbus device
+          can_id: 23 # override the can_id configured in the can bus
+
+    on_...:
+      - canbus.send: [ 0x11, 0x22, 0x33 ]
+
+      - canbus.send: 'hello'
+
+      # Templated, return type is std::vector<uint8_t>
+      - canbus.send: !lambda
+          return {0x00, 0x20, 0x42};
+
+
+Configuration variables:
+
+- **data** (*Required*, binary data): Data to transmit, up to 8 bytes or
+  characters are supported by can bus per frame.
+- **canbus_id** (*Optional*): Optionally set the can bus id to use for transmitting
+  the frame. Not needed if you are using only 1 can bus.
+- **can_id** (*Optional*, int): Allows to override the can id configured in
+  the can bus device.
 
 MCP2515
 -------
 
-.. warning::
+The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
+You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
-    The cheap MCP2515 devices have a 5V transceiver chip that will not work with 3.3V.
+For wireing up the MSP2515 please refer to the section below.
 
-The MCP2515 is a spi device :ref:`SPI Bus <spi>`, so you need to have
-a ``spi:`` section in your config for this integration to work.
-
-.. code-block:: yaml
-
-    # example esp8266 spi configuration
-    spi:
-        clk_pin: D5 #gpio14
-        mosi_pin: D7 #gpio13
-        miso_pin: D6 #gpio12
-
-
-MCP2515 Configuration.
-
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device when it should listen for data on the SPI bus. Each device has an individual CS line. Sometimes also called ``SS``.
-- **clock** (*Optional*, one of the supported values): clock christal used on the MCP2515 device; defaults to 8MHZ. valid values are:
-
-  - 20MHZ
-  - 16MHZ
-  - 8MHZ
-- **mode** (*Optional*, Operation mode for the MCP2515 device):
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
+  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
+  Sometimes also called ``SS``.
+- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
+  Defaults to ``8MHZ``.
+- **mode** (*Optional*): Operation mode. Default ot ``NORMAL``
 
   - NORMAL: Normal operation
-  - LOOPBACK: Loopback mode can be used to just test you spi connection to the device
+  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
   - LISTENONLY: only receive data
 
 .. code-block:: yaml
 
-    # example esp8266 spi configuration
-    spi:
-        clk_pin: D5 #gpio14
-        mosi_pin: D7 #gpio13
-        miso_pin: D6 #gpio12
-    
     # Example configuration entry
     canbus:
-    - platform: mcp2515
-        id: first_canbus
-        sender_id: 10
-        cs_pin: 15
-        bit_rate: 125KBPS
-        clock: 8MHZ
-        mode: NORMAL
+      - platform: mcp2515
+        cs_pin: D5
+        can_id: 4
+        bit_rate: 50kbps
         on_frame:
         - can_id: 500
             then:
@@ -107,82 +181,101 @@ MCP2515 Configuration.
                 id: light_1
                 brightness: !lambda "return (float) x[0]/255;"
 
-    binary_sensor:
-    - platform: gpio
-        id: button
-        name: button
-        pin: 
-        number: 0
-        inverted: True
-        on_press:
-        then:
-            - canbus.send:
-                canbus_id: first_canbus
-                can_id: 401
-                data: !lambda
-                return {100, id(button).state};
-        on_release:
-        then:
-            - canbus.send:
-                canbus_id: first_canbus
-                can_id: 402
-                data: !lambda
-                return {255, id(button).state};
-        on_click:
-        then:
-            - canbus.send:
-                canbus_id: first_canbus
-                can_id: 400
-                data: "sender  "
+Wireing options
+---------------
+Easiest approach is to just use fully assembled boards and just add one resistor in the MISO line.
+This runs MOSI, SCK and CS out of specification which is nearly never a problem.
 
-.. _canbus-on_frame:
+.. figure:: images/canbus_mcp2515_resistor.png
+    :align: center
+    :target: ../_images/canbus_mcp2515_resistor.png
 
-``on_frame`` Trigger
-----------------------
+A more advanced option is to fully convert the 5V and 3.3V logic levels with a level shifter.
+This schematic should work but is currently untested.
 
-With this configuration option you can write complex automations whenever a CAN bus
-message on a specific canid is received. To use the frame content, use a :ref:`lambda <config-lambda>`
-template, the frame data is available under the name ``x`` inside that lambda.
+.. figure:: images/canbus_mcp2515_txs0108e.png
+    :align: center
+    :target: ../_images/canbus_mcp2515_txs0108e.png
+
+
+Cover Example
+-------------
+Example for following application:
+Buttons are connected on the CAN-Node and also the motor is connected via CAN.
+
+.. epigraph::
+
+  | **Button 1:** ID 0x50B - 1 byte payload 
+  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+  | **Button 2:** ID 0x50C - 1 byte payload 
+  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+  | **Motor:** ID 0x51A - 1 byte payload 
+  | (0: off, 1: open, 2: close)
+
+
 
 .. code-block:: yaml
 
+    spi:
+      id: McpSpi
+      clk_pin: GPIO16
+      mosi_pin: GPIO5
+      miso_pin: GPIO4
+
     canbus:
       - platform: mcp2515
-        # ...
+        id: my_mcp2515
+        spi_id: McpSpi
+        cs_pin: GPIO14
+        can_id: 4
+        bit_rate: 125kbps
         on_frame:
-          - can_id: 500
-            then:
-              - lambda: |-
-                  std::string b(x.begin(), x.end());
-                  ESP_LOGD("canid 500", "%s", &b[0] );
-              - light.turn_off: light_1
-        on_frame:
-          - can_id: 501
-            then:
-              - light.turn_on:
-                  id: light_1
-                  brightness: !lambda "return (float) x[0]/255;"
+        - can_id: 0x50c
+          then:
+            - lambda: |-
+                auto call = id(TestCover).make_call();
+                switch(x[0]) {
+                  case 0x2: call.set_command_open(); call.perform(); break; // long pressed
+                  case 0x1:                                                 // button down
+                  case 0x3: call.set_command_stop(); call.perform(); break; // long released
+                  case 0x4: call.set_position(1.0); call.perform(); break;  // double click
+                }
+        - can_id: 0x50b
+          then:
+            - lambda: |-
+                auto call = id(TestCover).make_call();
+                switch(x[0]) {
+                  case 0x2: call.set_command_close(); call.perform(); break; // long pressed
+                  case 0x1:                                                  // button down
+                  case 0x3: call.set_command_stop(); call.perform(); break;  // long released
+                  case 0x4: call.set_position(0.0); call.perform(); break;   // double click
+                }
 
-Configuration variables:
 
-- **can_id** (**Required**, integer): The CAN bus id to listen for. Every time a frame with **this exact id** is received, the automation will trigger.
+    cover:
+      - platform: time_based
+        name: "MyCanbusTestCover"
+        id: TestCover
+        device_class: shutter
+        has_built_in_endstop: true
+        open_action:
+          - canbus.send:
+              data: [ 0x01 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+        open_duration: 2min
+        close_action:
+          - canbus.send:
+              data: [ 0x02 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
+        close_duration: 2min
+        stop_action:
+          - canbus.send:
+              data: [ 0x00 ]
+              canbus_id: my_mcp2515
+              can_id: 0x51A
 
-.. note::
-
-    You can even specify multiple ``on_frame`` triggers by using a YAML list:
-
-    .. code-block:: yaml
-
-        canbus:
-          - platform: mcp2515
-            on_frame:
-              - can_id: ...
-                then:
-                  - # ...
-            on_frame:
-              - can_id: ...
-                then:
-                  - # ...
 
 See Also
 --------
