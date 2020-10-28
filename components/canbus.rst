@@ -205,12 +205,12 @@ Buttons are connected on the CAN-Node and also the motor is connected via CAN.
 
 .. epigraph::
 
-  | **Button 1:** ID 0x50B - 1 byte payload 
-  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
-  | **Button 2:** ID 0x50C - 1 byte payload 
-  | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
-  | **Motor:** ID 0x51A - 1 byte payload 
-  | (0: off, 1: open, 2: close)
+    | **Button 1:** ID 0x50B - 1 byte payload 
+    | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+    | **Button 2:** ID 0x50C - 1 byte payload 
+    | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
+    | **Motor:** ID 0x51A - 1 byte payload 
+    | (0: off, 1: open, 2: close)
 
 
 
