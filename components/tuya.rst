@@ -53,6 +53,13 @@ Here is an example output for a Tuya fan controller:
     [12:39:45][C][tuya:046]:   Product: '{"p":"hqq73kftvzh8c92u","v":"1.0.0","m":0}'
 
 
+Configuration variables:
+------------------------
+
+- **clock** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome. 
+  Specify the ID of the :ref:`Time Component <time>` which will be used.
+
+
 See Also
 --------
 
