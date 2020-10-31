@@ -212,7 +212,7 @@ Remote code selection (exactly one of these has to be included):
           pin: 5
           carrier_duty_percent: 100%
           
- .. note::
+.. note::
 
     To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use `INPUT_PULLUP`:
 
