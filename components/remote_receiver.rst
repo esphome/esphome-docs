@@ -211,6 +211,20 @@ Remote code selection (exactly one of these has to be included):
         remote_transmitter:
           pin: 5
           carrier_duty_percent: 100%
+          
+ .. note::
+
+    To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use `INPUT_PULLUP`:
+
+    .. code-block:: yaml
+
+        remote_receiver:
+          pin:
+            number: D4
+            inverted: True
+            mode: INPUT_PULLUP
+          dump: all
+
 
 See Also
 --------
