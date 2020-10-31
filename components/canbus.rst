@@ -205,32 +205,32 @@ Button is connected on a can node which sends an A message on ID 0x100 with payl
 
 .. code-block:: yaml
 
-spi:
-  id: McpSpi
-  clk_pin: GPIO16
-  mosi_pin: GPIO5
-  miso_pin: GPIO4
+    spi:
+      id: McpSpi
+      clk_pin: GPIO16
+      mosi_pin: GPIO5
+      miso_pin: GPIO4
 
-binary_sensor:
-  - platform: template
-    name: "CAN Bus Button"
-    id: "can_bus_button"
+    binary_sensor:
+      - platform: template
+        name: "CAN Bus Button"
+        id: "can_bus_button"
 
-canbus:
-  - platform: mcp2515
-    id: my_mcp2515
-    spi_id: McpSpi
-    cs_pin: GPIO14
-    can_id: 4
-    bit_rate: 125kbps
-    on_frame:
-    - can_id: ${0x100}
-      then:
-        - lambda: |-
-            switch(x[0]) {
-              case 0x0: id(can_bus_button).publish_state(false); break; // button release
-              case 0x1: id(can_bus_button).publish_state(true); break;  // button down
-            }
+    canbus:
+      - platform: mcp2515
+        id: my_mcp2515
+        spi_id: McpSpi
+        cs_pin: GPIO14
+        can_id: 4
+        bit_rate: 125kbps
+        on_frame:
+        - can_id: ${0x100}
+          then:
+            - lambda: |-
+                switch(x[0]) {
+                  case 0x0: id(can_bus_button).publish_state(false); break; // button release
+                  case 0x1: id(can_bus_button).publish_state(true); break;  // button down
+                }
 
 
 
