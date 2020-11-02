@@ -39,7 +39,7 @@ VCC to 3.3V and GND to GND.
         reset_pin: D0
         cs_pin: D8
         dc_pin: D1
-        contrast: 60
+        contrast: 0x7f
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
