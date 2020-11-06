@@ -148,6 +148,7 @@ Wi-Fi, API, and OTA configuration.
         pin:
           mcp23017: mcp23017_hub
           number: 9
+          inverted: true
 
       - platform: template
         name: "Inkplate Greyscale mode"
@@ -176,8 +177,7 @@ Wi-Fi, API, and OTA configuration.
         lambda: |-
           id(battery_read_mosfet).turn_on();
           delay(1);
-          id(battery_voltage).update();
-          int adc = id(battery_voltage).state;
+          float adc = id(battery_voltage).sample();
           id(battery_read_mosfet).turn_off();
           return adc;
         filters:
