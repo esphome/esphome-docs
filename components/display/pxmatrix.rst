@@ -60,6 +60,21 @@ Any GPIO              ``pin_oe``
       pin_e: 0
       pin_oe: 2
       id: my_display
+      lambda: |-
+        it.strftime(0, 0, id(font), "Test");
+
+    interval:
+    - interval: 4s
+      then:
+      - display.page.show_next: my_display
+      - lambda: |-
+          id(my_display).display();
+
+Limitations:
+------------
+Because of limitations in the PxMatrix library the lambda has do be called from an External source.
+This is only needed to what is on the Screen.
+
 
 Configuration variables:
 ------------------------
