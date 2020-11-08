@@ -75,7 +75,7 @@ Configuration variables:
   - ``2.13in`` (not tested)
   - ``2.13in-ttgo`` (T5_V2.3 tested)
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
-  - ``2.70in``
+  - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
