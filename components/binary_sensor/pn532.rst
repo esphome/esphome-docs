@@ -13,7 +13,7 @@ Component/Hub
 
 The ``pn532`` component allows you to use PN532 NFC/RFID controllers
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf>`__, `Adafruit <https://www.adafruit.com/product/364>`__)
-with ESPHome. This component is a global hub that establishes the connection to the PN532 via :ref:`SPI <spi>` or :ref:`I^2C <i2c>` and
+with ESPHome. This component is a global hub that establishes the connection to the PN532 via :ref:`SPI <spi>` or :ref:`I²C <i2c>` and
 outputs its data. Using the :ref:`PN532 binary sensors <pn532-tag>` you can then
 create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.
 
@@ -23,10 +23,10 @@ create individual binary sensors that track if an NFC/RFID tag is currently dete
 
 See :ref:`pn532-setting_up_tags` for information on how to setup individual binary sensors for this component.
 
-The PN532 can be configured to use either the SPI **or** I^2C protocol for data communication.
+The PN532 can be configured to use either the SPI **or** I²C protocol for data communication.
 You will need to switch the dip switches located on the module according to the table printed on the board.
-SPI is usually switch 1 OFF and switch 2 ON and I^2C is usually switch 1 ON and switch 2 OFF.
-You will need to have the :ref:`SPI Bus <spi>` or the :ref:`I^2C Bus <i2c>` configured depending on your choice.
+SPI is usually switch 1 OFF and switch 2 ON and I²C is usually switch 1 ON and switch 2 OFF.
+You will need to have the :ref:`SPI Bus <spi>` or the :ref:`I²C Bus <i2c>` configured depending on your choice.
 
 .. code-block:: yaml
 
@@ -56,8 +56,8 @@ Configuration variables:
   when a tag is read. See :ref:`pn532-on_tag`.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
-- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I^2C Component <spi>` if you want
-  to use multiple I^2C buses.
+- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <spi>` if you want
+  to use multiple I²C buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
 
 .. figure:: images/pn532-spi.jpg

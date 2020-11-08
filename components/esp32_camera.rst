@@ -45,10 +45,10 @@ Connection Options:
   - **frequency** (*Optional*, float): The frequency of the external clock, must be either 20MHz
     or 10MHz. Defaults to ``20MHz``.
 
-- **i2c_pins** (**Required**): The I^2C control pins of the camera.
+- **i2c_pins** (**Required**): The I²C control pins of the camera.
 
-  - **sda** (**Required**, pin): The SDA pin of the I^2C interface. Also called ``SIOD``.
-  - **scl** (**Required**, pin): The SCL pin of the I^2C interface. Also called ``SIOC``.
+  - **sda** (**Required**, pin): The SDA pin of the I²C interface. Also called ``SIOD``.
+  - **scl** (**Required**, pin): The SCL pin of the I²C interface. Also called ``SIOC``.
 
 - **reset_pin** (*Optional*, pin): The ESP pin the reset pin of the camera is connected to.
   If set, this will reset the camera before the ESP boots.
@@ -261,8 +261,8 @@ Configuration for TTGO T-Journal
       # Image settings
       name: My Camera
       # ...
-      
-      
+
+
 Configuration for TTGO-Camera Plus
 ----------------------------------
 
