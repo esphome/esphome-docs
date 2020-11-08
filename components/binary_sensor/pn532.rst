@@ -28,6 +28,11 @@ You will need to switch the dip switches located on the module according to the 
 SPI is usually switch 1 OFF and switch 2 ON and I^2C is usually switch 1 ON and switch 2 OFF.
 You will need to have the :ref:`SPI Bus <spi>` or the :ref:`I^2C Bus <i2c>` configured depending on your choice.
 
+.. warning::
+
+    ``pn532`` as a config key has been removed in favour of ``pn532_spi`` and ``pn532_i2c`` depending on the protocol
+    you choose to use.
+
 .. code-block:: yaml
 
     # Example configuration for SPI (choose which one!)
