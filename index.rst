@@ -235,6 +235,8 @@ Light Components
     Tuya Dimmer, components/light/tuya, tuya.png
     Custom Light, components/light/custom, language-cpp.svg
 
+    H-bridge Light, components/light/hbridge, brightness-medium.svg
+
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
 
