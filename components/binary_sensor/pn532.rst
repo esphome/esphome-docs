@@ -30,7 +30,7 @@ You will need to have the :ref:`SPI Bus <spi>` or the :ref:`I^2C Bus <i2c>` conf
 
 .. warning::
 
-    ``pn532`` as a config key has been removed in favour of ``pn532_spi`` and ``pn532_i2c`` depending on the protocol
+    Starting in 1.16.0 ``pn532`` as a config key has been removed in favour of ``pn532_spi`` and ``pn532_i2c`` depending on the protocol
     you choose to use.
 
 .. code-block:: yaml
