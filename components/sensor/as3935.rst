@@ -52,7 +52,7 @@ A1            I²C address selection MSB
     as3935_spi:
       cs_pin: GPIO12
       irq_pin: GPIO13
-    # Example configuration for I2C (decide for one!)
+    # Example configuration for I²C (decide for one!)
     as3935_i2c:
       irq_pin: GPIO12
 
@@ -121,7 +121,7 @@ Use this if you want to use your AS3935 in I²C mode.
 
 .. code-block:: yaml
 
-    # Example configuration for I2C (decide for one!)
+    # Example configuration for I²C (decide for one!)
     as3935_i2c:
       irq_pin: GPIO12
     # Example shared configuration

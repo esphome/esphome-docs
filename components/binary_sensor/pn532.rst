@@ -35,7 +35,7 @@ You will need to have the :ref:`SPI Bus <spi>` or the :ref:`I²C Bus <i2c>` conf
       cs_pin: D3
       update_interval: 1s
 
-    # Example configuration for I2C (choose which one!)
+    # Example configuration for I²C (choose which one!)
     pn532_i2c:
       update_interval: 1s
 
