@@ -282,7 +282,8 @@ Display Components
     ST7789V, components/display/st7789v, st7789v.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
-
+    PxMatrix , components/display/pxmatrix, PxMatrixPanelFront.jpg
+    
 Cover Components
 ----------------
 
