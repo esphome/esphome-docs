@@ -17,7 +17,7 @@ The SX1509 can do much more than just simple digital pin control. It can produce
 And, with a built-in keypad engine, it can interface with up to 64 buttons set up in an 8x8 matrix.
 
 Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more
-complicated components that use the pin schema will not work. For example the I2C or SPI pins.
+complicated components that use the pin schema will not work. For example the I²C or SPI pins.
 
 .. figure:: images/sx1509-full.jpg
     :align: center
