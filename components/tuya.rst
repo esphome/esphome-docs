@@ -56,7 +56,7 @@ Here is an example output for a Tuya fan controller:
 Configuration variables:
 ------------------------
 
-- **clock** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome. 
+- **time_id** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome. 
   Specify the ID of the :ref:`Time Component <time>` which will be used.
 
 
