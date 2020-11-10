@@ -48,6 +48,7 @@ Configuration variables:
 - **switch_datapoint** (**Required**, int): The datapoint id number of the climate switch.
 - **target_temperature_datapoint** (**Required**, int): The datapoint id number of the target temperature.
 - **current_temperature_datapoint** (**Required**, int): The datapoint id number of the current temperature.
+- **temperature_multiplier** (**Optional**, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
 - **current_temperature_multiplier** (**Optional**, float): A multiplier to modify the current temperature value - :ref:`see below <temperature-multiplier>`.
 - **target_temperature_multiplier** (**Optional**, float): A multiplier to modify the target temperature value - :ref:`see below <temperature-multiplier>`.
 - All other options from :ref:`Climate <config-climate>`.
