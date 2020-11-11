@@ -119,5 +119,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`api/ili9341_8h.html`
+- :apiref:`ili9341/ili9341.h`
 - :ghedit:`Edit`
