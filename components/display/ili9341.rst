@@ -43,10 +43,10 @@ too (with some SPI flash changes).
 Configuration variables
 ***********************
 
-- **led_pin** (:ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
-- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **led_pin** (**Required**:ref:`Pin Schema <config-pin_schema>`): The display's backlight pin. It may be connected through a 3.3K resistor to +3V rail this way we can save one pin on ESP
+- **cs_pin** (**Required**:ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required**:ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required**:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
@@ -119,5 +119,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`st7789v_base/st7789v_base.h`
+- :apiref:`api/ili9341_8h.html`
 - :ghedit:`Edit`
