@@ -41,7 +41,7 @@ YAML configuration is about 700 lines and can be downloaded from here: `iaq_boar
     :width: 100.0%
 
 .. raw:: html
-    
+
     <iframe width="560" height="315" src="https://www.youtube.com/embed/X75OGs2TTT8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 See Also
