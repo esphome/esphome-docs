@@ -1,11 +1,11 @@
-Rxxx Fingerprint Reader
+Grow Fingerprint Reader
 =======================
 
 .. seo::
-    :description: Instructions for setting up Rxxx Fingerprint Reader integration in ESPHome.
+    :description: Instructions for setting up Grow Fingerprint Reader integration in ESPHome.
     :image: fingerprint.png
 
-The ``rxxx`` component allows you to use your R307, R503, ZFM-20, ... fingerprint sensors with ESPHome.
+The ``fingerprint_grow`` component allows you to use your R307, R503, ZFM-20, ... fingerprint sensors with ESPHome.
 
 .. figure:: images/r307-full.jpg
     :align: center
@@ -34,38 +34,38 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
       tx_pin: GPIO15
       baud_rate: 57600
 
-    # Declare Rxxx Fingerprint Reader
-    rxxx:
+    # Declare Grow Fingerprint Reader
+    fingerprint_grow:
       sensing_pin: GPIO12
       on_finger_scan_matched:
         - text_sensor.template.publish:
-            id: rxxx_state
+            id: fingerprint_state
             state: "Authorized finger"
         - switch.turn_on: gate
         - delay: 500ms
         - switch.turn_off: gate
       on_finger_scan_unmatched:
         - text_sensor.template.publish:
-            id: rxxx_state
+            id: fingerprint_state
             state: "Unauthorized finger"
       on_enrollment_scan:
         - text_sensor.template.publish:
-            id: rxxx_state
+            id: fingerprint_state
             state: "Finger scanned"
       on_enrollment_done:
         - text_sensor.template.publish:
-            id: rxxx_state
+            id: fingerprint_state
             state: "Enrolled fingerprint"
       on_enrollment_failed:
         - text_sensor.template.publish:
-            id: rxxx_state
+            id: fingerprint_state
             state: "Failed to enroll fingerprint"
     
     # Optional template text sensor for visual feedback
     text_sensor:
       - platform: template
-        id: rxxx_state
-        name: "Rxxx State"
+        id: fingerprint_state
+        name: "Fingerprint State"
     
     # Optional component (GPIO switch, lock etc.) to control in on_finger_scan_matched trigger
     switch:
@@ -75,24 +75,24 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
     
     # Optional sensors
     binary_sensor:
-      - platform: rxxx
-        id: rxxx_enrolling
-        name: "Rxxx Enrolling"
+      - platform: fingerprint_grow
+        id: fingerprint_enrolling
+        name: "Fingerprint Enrolling"
     
     sensor:
-      - platform: rxxx
+      - platform: fingerprint_grow
         fingerprint_count:
-          name: "Rxxx Fingerprint Count"
+          name: "Fingerprint Count"
         last_finger_id:
-          name: "Rxxx Last Finger ID"
+          name: "Fingerprint Last Finger ID"
         last_confidence:
-          name: "Rxxx Last Confidence"
+          name: "Fingerprint Last Confidence"
         status:
-          name: "Rxxx Status"
+          name: "Fingerprint Status"
         capacity:
-          name: "Rxxx Capacity"
+          name: "Fingerprint Capacity"
         security_level:
-          name: "Rxxx Security Level"
+          name: "Fingerprint Security Level"
 
 
 Configuration variables:
@@ -106,12 +106,12 @@ Base Configuration:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **sensing_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to the reader's finger detection signal (WAKEUP) output.
 - **password** (*Optional*, int): Password to use for authentication. Defaults to ``0x00``.
-- **set_password** (*Optional*, int): Sets a new password to use for authentication. See :ref:`rxxx-set_new_password` for more information.
-- **on_finger_scan_matched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an enrolled fingerprint is scanned. See :ref:`rxxx-on_finger_scan_matched`.
-- **on_finger_scan_unmatched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an unknown fingerprint is scanned. See :ref:`rxxx-on_finger_scan_unmatched`.
-- **on_enrollment_scan** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is scanned during enrollment. See :ref:`rxxx-on_enrollment_scan`.
-- **on_enrollment_done** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is enrolled. See :ref:`rxxx-on_enrollment_done`.
-- **on_enrollment_failed** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint enrollment failed. See :ref:`rxxx-on_enrollment_failed`.
+- **set_password** (*Optional*, int): Sets a new password to use for authentication. See :ref:`fingerprint_grow-set_new_password` for more information.
+- **on_finger_scan_matched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an enrolled fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_matched`.
+- **on_finger_scan_unmatched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an unknown fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_unmatched`.
+- **on_enrollment_scan** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is scanned during enrollment. See :ref:`fingerprint_grow-on_enrollment_scan`.
+- **on_enrollment_done** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is enrolled. See :ref:`fingerprint_grow-on_enrollment_done`.
+- **on_enrollment_failed** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint enrollment failed. See :ref:`fingerprint_grow-on_enrollment_failed`.
 
 Optional Binary Sensor Configuration:
 
@@ -129,13 +129,13 @@ Available sensors:
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **last_finger_id**: The last matched enrolled fingerprint as set by :ref:`rxxx-on_finger_scan_matched`.
+- **last_finger_id**: The last matched enrolled fingerprint as set by :ref:`fingerprint_grow-on_finger_scan_matched`.
 
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **last_confidence**: The last matched confidence as set by :ref:`rxxx-on_finger_scan_matched`.
+- **last_confidence**: The last matched confidence as set by :ref:`fingerprint_grow-on_finger_scan_matched`.
 
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -160,7 +160,7 @@ Available sensors:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 
-.. _rxxx-set_new_password:
+.. _fingerprint_grow-set_new_password:
 
 Setting a New Password
 ----------------------
@@ -173,7 +173,7 @@ You can set a new password for your fingerprint reader using the ``set_password:
 
 .. code-block:: yaml
 
-    rxxx:
+    fingerprint_grow:
       password: 0x275FE3D2      # Existing password, can be omitted if it's the default of 0x00
       set_password: 0x72AB96CD  # New password
 
@@ -181,11 +181,11 @@ The ``set_password:`` configuration option is meant to be compiled, flashed to t
 
 .. code-block:: yaml
 
-    rxxx:
+    fingerprint_grow:
       password: 0x72AB96CD      # Update the existing password with the new one
 
 
-.. _rxxx-on_finger_scan_matched:
+.. _fingerprint_grow-on_finger_scan_matched:
 
 ``on_finger_scan_matched`` Trigger
 ----------------------------------
@@ -197,7 +197,7 @@ To use the variables, use a :ref:`lambda <config-lambda>` template, the matched 
 
     on_finger_scan_matched:
       - text_sensor.template.publish:
-          id: rxxx_state
+          id: fingerprint_state
           state: !lambda 'return "Authorized finger " + to_string(finger_id) + ", confidence " + tostring(confidence);'
       # Pushing a tag_scanned event based on finger_id only if confidence is greater than 50
       - if:
@@ -215,7 +215,7 @@ To use the variables, use a :ref:`lambda <config-lambda>` template, the matched 
                     return "person_unknown";
                 }
 
-.. _rxxx-on_finger_scan_unmatched:
+.. _fingerprint_grow-on_finger_scan_unmatched:
 
 ``on_finger_scan_unmatched`` Trigger
 ------------------------------------
@@ -226,10 +226,10 @@ With this configuration option you can write complex automations whenever an unk
 
     on_finger_scan_unmatched:
       - text_sensor.template.publish:
-          id: rxxx_state
+          id: fingerprint_state
           state: "Unauthorized finger"
 
-.. _rxxx-on_enrollment_scan:
+.. _fingerprint_grow-on_enrollment_scan:
 
 ``on_enrollment_scan`` Trigger
 ------------------------------
@@ -241,10 +241,10 @@ To use the variables, use a :ref:`lambda <config-lambda>` template, the scan num
 
     on_enrollment_scan:
       - text_sensor.template.publish:
-          id: rxxx_state
+          id: fingerprint_state
           state: !lambda 'return "Enrolling into slot " + to_string(finger_id) + ", scanned " + to_string(scan_num) + " time(s)";'
 
-.. _rxxx-on_enrollment_done:
+.. _fingerprint_grow-on_enrollment_done:
 
 ``on_enrollment_done`` Trigger
 ------------------------------
@@ -256,10 +256,10 @@ To use the variables, use a :ref:`lambda <config-lambda>` template, the slot num
 
     on_enrollment_done:
       - text_sensor.template.publish:
-          id: rxxx_state
+          id: fingerprint_state
           state: !lambda 'return "Enrolled into slot " + to_string(finger_id);'
 
-.. _rxxx-on_enrollment_failed:
+.. _fingerprint_grow-on_enrollment_failed:
 
 ``on_enrollment_failed`` Trigger
 --------------------------------
@@ -271,19 +271,19 @@ To use the variables, use a :ref:`lambda <config-lambda>` template, the slot num
 
     on_enrollment_failed:
       - text_sensor.template.publish:
-          id: rxxx_state
+          id: fingerprint_state
           state: !lambda 'return "Failed to enroll into slot " + to_string(finger_id);'
       # Retry enrollment into the same slot
       - delay: 3s
       - text_sensor.template.publish:
-          id: rxxx_state
+          id: fingerprint_state
           state: !lambda 'return "Retrying enrollment into slot " + to_string(finger_id) + " in 3 seconds...";'
       - delay: 3s
-      - rxxx.enroll: !lambda 'return finger_id;'
+      - fingerprint_grow.enroll: !lambda 'return finger_id;'
 
 
-``rxxx.enroll`` Action
-----------------------
+``fingerprint_grow.enroll`` Action
+----------------------------------
 
 Starts the fingerprint enrollment process on the slot number defined.
 
@@ -291,14 +291,14 @@ Starts the fingerprint enrollment process on the slot number defined.
 
     on_...:
       then:
-        - rxxx.enroll:
+        - fingerprint_grow.enroll:
             finger_id: 0
             num_scans: 2
         # Shorthand
-        - rxxx.enroll: 0
+        - fingerprint_grow.enroll: 0
         # Update the template text sensor for visual feedback
         - text_sensor.template.publish:
-            id: rxxx_state
+            id: fingerprint_state
             state: "Place a finger on the reader"
 
 Configuration options:
@@ -306,8 +306,8 @@ Configuration options:
 - **finger_id** (**Required**, int, :ref:`templatable <config-templatable>`): The slot number to enroll the new fingerprint into. Limited to the fingerprint capacity available on the reader.
 - **num_scans** (*Optional*, int, :ref:`templatable <config-templatable>`): Number of times to scan the finger to be enrolled. Limited to the number of character buffers available on the reader. Defaults to 2.
 
-``rxxx.cancel_enroll`` Action
------------------------------
+``fingerprint_grow.cancel_enroll`` Action
+-----------------------------------------
 
 Cancels the current fingerprint enrollment process. Triggers the ``on_enrollment_failed`` trigger.
 
@@ -315,10 +315,10 @@ Cancels the current fingerprint enrollment process. Triggers the ``on_enrollment
 
     on_...:
       then:
-        - rxxx.cancel_enroll:
+        - fingerprint_grow.cancel_enroll:
 
-``rxxx.delete`` Action
-----------------------
+``fingerprint_grow.delete`` Action
+----------------------------------
 
 Removes the enrolled fingerprint from the slot number defined.
 
@@ -326,17 +326,17 @@ Removes the enrolled fingerprint from the slot number defined.
 
     on_...:
       then:
-        - rxxx.delete:
+        - fingerprint_grow.delete:
             finger_id: 0
         # Shorthand
-        - rxxx.delete: 0
+        - fingerprint_grow.delete: 0
 
 Configuration options:
 
 - **finger_id** (**Required**, int, :ref:`templatable <config-templatable>`): The slot number of the enrolled fingerprint to delete.
 
-``rxxx.delete_all`` Action
---------------------------
+``fingerprint_grow.delete_all`` Action
+--------------------------------------
 
 Removes all enrolled fingerprints.
 
@@ -344,30 +344,30 @@ Removes all enrolled fingerprints.
 
     on_...:
       then:
-        - rxxx.delete_all:
+        - fingerprint_grow.delete_all:
 
-``rxxx.led_control`` Action
----------------------------
+``fingerprint_grow.led_control`` Action
+---------------------------------------
 
-Turns on or off the LED on the reader. Only available on select models. If you have the R503 use :ref:`rxxx-aura_led_control` instead.
+Turns on or off the LED on the reader. Only available on select models. If you have the R503 use :ref:`fingerprint_grow-aura_led_control` instead.
 
 .. code-block:: yaml
 
     on_...:
       then:
-        - rxxx.led_control:
+        - fingerprint_grow.led_control:
             state: ON
         # Shorthand
-        - rxxx.led_control: ON
+        - fingerprint_grow.led_control: ON
 
 Configuration options:
 
 - **state** (**Required**, boolean, :ref:`templatable <config-templatable>`): The state to set the LED.
 
-.. _rxxx-aura_led_control:
+.. _fingerprint_grow-aura_led_control:
 
-``rxxx.aura_led_control`` Action
---------------------------------
+``fingerprint_grow.aura_led_control`` Action
+--------------------------------------------
 
 Controls the Aura LED on the reader. Only available on select models.
 
@@ -375,52 +375,52 @@ Controls the Aura LED on the reader. Only available on select models.
 
     on_...:
       then:
-        - rxxx.aura_led_control:
+        - fingerprint_grow.aura_led_control:
             state: BREATHING
             speed: 100
             color: BLUE
             count: 2
     # Sample Aura LED config for all reader triggers
-    rxxx:
+    fingerprint_grow:
       on_finger_scan_matched:
-        - rxxx.aura_led_control:
+        - fingerprint_grow.aura_led_control:
             state: BREATHING
             speed: 200
             color: BLUE
             count: 1
       on_finger_scan_unmatched:
-        - rxxx.aura_led_control:
+        - fingerprint_grow.aura_led_control:
             state: FLASHING
             speed: 25
             color: RED
             count: 2
       on_enrollment_scan:
-        - rxxx.aura_led_control:
+        - fingerprint_grow.aura_led_control:
             state: FLASHING
             speed: 25
             color: BLUE
             count: 2
-        - rxxx.aura_led_control:
+        - fingerprint_grow.aura_led_control:
             state: ALWAYS_ON
             speed: 0
             color: PURPLE
             count: 0
       on_enrollment_done:
-        - rxxx.aura_led_control:
+        - fingerprint_grow.aura_led_control:
             state: BREATHING
             speed: 100
             color: BLUE
             count: 2
       on_enrollment_failed:
-        - rxxx.aura_led_control:
+        - fingerprint_grow.aura_led_control:
             state: FLASHING
             speed: 25
             color: RED
             count: 4
     on...:
       then:
-        - rxxx.enroll: ...
-        - rxxx.aura_led_control:
+        - fingerprint_grow.enroll: ...
+        - fingerprint_grow.aura_led_control:
             state: ALWAYS_ON
             speed: 0
             color: PURPLE
@@ -436,14 +436,14 @@ Configuration options:
 All actions
 -----------
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Rxxx reader if you have multiple components.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Grow fingerprint reader if you have multiple components.
 
 
 Test setup
 ----------
 
 With the following code you can quickly setup a node and use Home Assistant's service in the developer tools.
-E.g. for calling ``rxxx.enroll`` select the service ``esphome.test_node_enroll`` and in service data enter
+E.g. for calling ``fingerprint_grow.enroll`` select the service ``esphome.test_node_enroll`` and in service data enter
 
 .. code-block:: json
 
@@ -470,7 +470,7 @@ Sample code
       tx_pin: GPIO15
       baud_rate: 57600
 
-    rxxx:
+    fingerprint_grow:
       sensing_pin: GPIO12
       on_finger_scan_matched:
         - homeassistant.event:
@@ -505,26 +505,26 @@ Sample code
           finger_id: int
           num_scans: int
         then:
-          - rxxx.enroll:
+          - fingerprint_grow.enroll:
               finger_id: !lambda 'return finger_id;'
               num_scans: !lambda 'return num_scans;'
       - service: cancel_enroll
         then:
-          - rxxx.cancel_enroll:
+          - fingerprint_grow.cancel_enroll:
       - service: delete
         variables:
           finger_id: int
         then:
-          - rxxx.delete:
+          - fingerprint_grow.delete:
               finger_id: !lambda 'return finger_id;'
       - service: delete_all
         then:
-          - rxxx.delete_all:
+          - fingerprint_grow.delete_all:
 
 See Also
 --------
 
-- :apiref:`rxxx/rxxx.h`
+- :apiref:`fingerprint_grow/fingerprint_grow.h`
 - `Tutorial from Adafruit <https://learn.adafruit.com/adafruit-optical-fingerprint-sensor>`__
 - `Adafruit Fingerprint Sensor Library <https://github.com/adafruit/Adafruit-Fingerprint-Sensor-Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

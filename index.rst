@@ -357,7 +357,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
-    Rxxx Fingerprint Reader, components/rxxx, fingerprint.svg
+    Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
 
 Additional Custom Components
 ----------------------------
