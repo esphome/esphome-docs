@@ -36,8 +36,7 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           mcp23008: mcp23008_hub
           # Use pin number 0
           number: 0
-          # One of INPUT, INPUT_PULLUP or OUTPUT
-          mode: INPUT_PULLUP
+          mode: OUTPUT
           inverted: False
 
     # Individual inputs
