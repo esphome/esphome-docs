@@ -3,7 +3,7 @@ Teleinformation from Linky electrical counter.
 
 .. seo::
     :description: Instructions for setting up French Teleinformation
-    :image: mhz19.jpg
+    :image: teleinfo.jpg
     :keywords: teleinfo
 
 The ``teleinfo`` component allows you to retrieve data from a 
