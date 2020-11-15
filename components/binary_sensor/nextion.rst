@@ -33,6 +33,23 @@ Configuration variables:
 - **nextion_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Nextion display.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
+Dual State Push Button:
+-----------------------
+
+To enable to use the Dual State Push Button some code has to be added in the Nextion editor. In the configuration above only the push on
+the screen is registered. So touching the object is on and releasing the object is off. This works well with a push button but not with a Dual 
+state push button.
+
+The following code can be added in the Nextion Editor to the configuration of the Dual State Push button:
+
+.. code-block:: c
+
+    printh 65 // 65 is the ID to register the PRESS / RELEASE of a item  
+    printh 00 // Page ID
+    printh 03 // ITEM ID could be replaced with prints ID.val,1
+    prints bt0.val,1 // Where bt0 the id of the button is = equal to id in configuration
+    printh FF FF FF
+
 See Also
 --------
 
