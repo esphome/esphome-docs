@@ -114,6 +114,7 @@ Sensor Components
     DHT12, components/sensor/dht12, dht12.jpg
     Duty Cycle, components/sensor/duty_cycle, percent.svg
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
+    EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
