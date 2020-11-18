@@ -11,6 +11,9 @@ This platform also allows splitting up an addressable lights into multiple segme
 segments can be individually controlled.
 
 Similarly, a single light strip can be partitioned into multiple partitions with this integration.
+If you want to do this, you may run into strange behavior - the original light entity (f.e. ``fastled_clockless``)
+may be conflicting with the partition. For better control over which fragments of the strip will overlap each other,
+mark the original ``light`` as ``internal: true``.
 
 .. code-block:: yaml
 
@@ -31,6 +34,8 @@ Similarly, a single light strip can be partitioned into multiple partitions with
       # Example for light segment source
       - platform: fastled_clockless
         id: light2
+        # You may want (but don't need) to do this:
+        internal: true
         # Other settings
 
 Configuration variables:
