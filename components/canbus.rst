@@ -44,9 +44,11 @@ Each canbus platform extends this configuration schema.
     canbus:
       - platform: ...
         can_id: 4
+        can_ext_id: False
         bit_rate: 50KBPS
         on_frame:
         - can_id: 500
+          can_ext_id: False
           then:
           - lambda: |-
               std::string b(x.begin(), x.end());
@@ -56,6 +58,8 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
+- **can_ext_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
+  *False*: Standard 7 Bit IDs, *True*: Extended 29Bit ID
 - **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
 
     - 5KBPS
@@ -135,6 +139,8 @@ Configuration variables:
   the frame. Not needed if you are using only 1 can bus.
 - **can_id** (*Optional*, int): Allows to override the can id configured in
   the can bus device.
+- **can_ext_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
+  *False*: Standard 7 Bit IDs, *True*: Extended 29Bit ID
 
 MCP2515
 -------
@@ -191,17 +197,65 @@ This runs MOSI, SCK and CS out of specification which is nearly never a problem.
     :target: ../_images/canbus_mcp2515_resistor.png
 
 A more advanced option is to fully convert the 5V and 3.3V logic levels with a level shifter.
-This schematic should work but is currently untested.
 
 .. figure:: images/canbus_mcp2515_txs0108e.png
     :align: center
     :target: ../_images/canbus_mcp2515_txs0108e.png
 
 
+Standard vs. Extended ID
+------------------------
+| Standard IDs and Extended IDs can coexist on the same segment.
+| It is important to know that for example Std. 0x123 and Ext. 0x123 are different addesses.
+| This example shows how the different ID types are used in the configuration for transmission and receiving.
+| For the IDs decimal or hexadecimal notation is possible:
+| 0x000 - 0x1ff / 0-511 for Standard IDs only.
+| 0x00000000 - 0x1fffffff / 0-536870911 for Extended IDs.
+
+.. code-block:: yaml
+
+    # Transmission of extended and standard ID 0x100 every second
+    time:
+      - platform: sntp
+        on_time:
+          - seconds: /1
+            then:
+              - canbus.send:
+                  # Extended ID explicit 
+                  can_ext_id: True
+                  can_id: 0x100
+                  data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
+              - canbus.send:
+                  # Extended ID by default
+                  can_id: 0y100
+                  data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
+
+    canbus:
+      - platform: mcp2515
+        id: my_mcp2515
+        spi_id: McpSpi
+        cs_pin: GPIO14
+        can_id: 0x1fff
+        can_ext_id: True
+        bit_rate: 125kbps
+        on_frame:
+        - can_id: 0x123
+          can_ext_id: True
+          then:
+          - lambda: |-
+              std::string b(x.begin(), x.end());
+              ESP_LOGD("can extended id 0x123", "%s", &b[0] );
+        - can_id: 0x123
+          then:
+          - lambda: |-
+              std::string b(x.begin(), x.end());
+              ESP_LOGD("can standard id 0x123", "%s", &b[0] );
+
+
 Binary Sensor Example
 ---------------------
-Example for the following application:
-Button is connected on a can node which sends an A message on ID 0x100 with payload 0x01 for contact closed and 0x00 for contact open.
+| Example for the following application:
+| Button is connected on a can node which sends an A message on ID 0x100 with payload 0x01 for contact closed and 0x00 for contact open.
 
 .. code-block:: yaml
 
@@ -236,8 +290,8 @@ Button is connected on a can node which sends an A message on ID 0x100 with payl
 
 Cover Example
 -------------
-Example for following application:
-Buttons are connected on the CAN-Node and also the motor is connected via CAN.
+| Example for following application:
+| Buttons are connected on the CAN-Node and also the motor is connected via CAN.
 
 .. epigraph::
 
