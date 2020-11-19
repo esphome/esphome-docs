@@ -2,7 +2,7 @@ Nextion Switch Component
 ========================
 
 .. seo::
-    :description: Instructions for setting up Nextion switch.
+    :description: Instructions for setting up Nextion sensors.
     :image: nextion.jpg
 
 The ``nextion`` switch lets you track when a component on the display is
@@ -18,12 +18,11 @@ See :doc:`/components/display/nextion` for setting up the display
       - platform: nextion
         # ...
 
-    switch:
+    sensor:
       - platform: nextion
         page_id: 0
-        component_id: 2
-        name: "Nextion Component Switch"
-        button_id: "bt0"
+        component_id: 5
+        name: "Nextion Sensor"
 
 Configuration variables:
 ------------------------
@@ -31,23 +30,20 @@ Configuration variables:
 - **name** (**Required**, string): The name of the binary sensor.
 - **page_id** (**Required**, int): The ID of the page the component is on. Use ``0`` for the default page.
 - **component_id** (**Required**, int): The ID (the number, not name!) of the component to track.
-- **button_id** (**Required**, string): The ID of button within the Nextion Configuration.
 - **nextion_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Nextion display.
-- All other options from :ref:`Switch <config-switch>`.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Required Nextion Code:
 ----------------------
 
-To enable to use the Dual State Push Button (Switch) some code has to be added in the Nextion editor. 
-
-The following code can has to be added in the Nextion Editor to the configuration of the Dual State Push button acting as a switch:
+The following code can has to be added in the Nextion Editor to the configuration of the item (for example slider) you want to usa as the input for the sensor:
 
 .. code-block:: c
 
-    printh 90 # 90 is a special code, created to register feedback from switch 
+    printh 91 # 91 is special code I created to register feedback from value change (for example slider) 
     printh 00 # Page ID
     printh 03 # ITEM ID could be replaced with prints ID.val,1
-    prints bt0.val,1 # Where bt0 the id of the button is = equal to id in configuration
+    prints ht0.val,1 # Where ht0 the id of the slider
     printh FF FF FF
 
 See Also
@@ -55,7 +51,7 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`/components/binary_sensor/nextion`
-- :doc:`/components/sensor/nextion`
+- :doc:`/components/switch/nextion`
 - :doc:`index`
 - :apiref:`nextion/nextion.h`
 - :ghedit:`Edit`

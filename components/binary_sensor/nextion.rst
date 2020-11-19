@@ -54,6 +54,8 @@ See Also
 --------
 
 - :doc:`/components/display/nextion`
+- :doc:`/components/sensor/nextion`
+- :doc:`/components/switch/nextion`
 - :doc:`index`
 - :apiref:`nextion/nextion.h`
 - :ghedit:`Edit`
