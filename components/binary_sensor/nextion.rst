@@ -44,11 +44,17 @@ The following code can be added in the Nextion Editor to the configuration of th
 
 .. code-block:: c
 
-    printh 65 // 65 is the ID to register the PRESS / RELEASE of a item  
-    printh 00 // Page ID
-    printh 03 // ITEM ID could be replaced with prints ID.val,1
-    prints bt0.val,1 // Where bt0 the id of the button is = equal to id in configuration
+    printh 65
+    printh 00
+    printh 03
+    prints bt0.val,1
     printh FF FF FF
+
+- **printh 65** (**Required**): 65 is the ID to register the PRESS / RELEASE of a item
+- **printh 00** (**Required**): The ID of the page the component is on.
+- **printh 03** (**Required**): ITEM ID could be replaced with prints ID.val,1
+- **prints bt0.val,1** (**Required**): Where bt0 the id of the button is = equal to id in configuration
+- **printh FF FF FF** (**Required**): To close the string
 
 See Also
 --------

@@ -44,11 +44,17 @@ The following code can has to be added in the Nextion Editor to the configuratio
 
 .. code-block:: c
 
-    printh 90 # 90 is a special code, created to register feedback from switch 
-    printh 00 # Page ID
-    printh 03 # ITEM ID could be replaced with prints ID.val,1
-    prints bt0.val,1 # Where bt0 the id of the button is = equal to id in configuration
+    printh 90
+    printh 00
+    printh 03
+    prints bt0.val,1
     printh FF FF FF
+
+- **printh 90** (**Required**): 90 is a special code, created to register feedback from switch
+- **printh 00** (**Required**): The ID of the page the component is on.
+- **printh 03** (**Required**): ITEM ID could be replaced with prints ID.val,1
+- **prints bt0.val,1** (**Required**): Where bt0 the id of the button is = equal to id in configuration
+- **printh FF FF FF** (**Required**): To close the string
 
 See Also
 --------
