@@ -59,7 +59,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
 - **can_ext_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
-  *False*: Standard 7 Bit IDs, *True*: Extended 29Bit ID
+  *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
 - **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
 
     - 5KBPS
@@ -140,7 +140,7 @@ Configuration variables:
 - **can_id** (*Optional*, int): Allows to override the can id configured in
   the can bus device.
 - **can_ext_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
-  *False*: Standard 7 Bit IDs, *True*: Extended 29Bit ID
+  *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
 
 MCP2515
 -------
@@ -209,7 +209,7 @@ Standard vs. Extended ID
 | It is important to know that for example Std. 0x123 and Ext. 0x123 are different addesses.
 | This example shows how the different ID types are used in the configuration for transmission and receiving.
 | For the IDs decimal or hexadecimal notation is possible:
-| 0x000 - 0x1ff / 0-511 for Standard IDs only.
+| 0x000 - 0x7ff / 0-2047 for Standard IDs only.
 | 0x00000000 - 0x1fffffff / 0-536870911 for Extended IDs.
 
 .. code-block:: yaml
