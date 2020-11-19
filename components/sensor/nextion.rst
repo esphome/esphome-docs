@@ -38,7 +38,7 @@ Required Nextion Code:
 
 The following code can has to be added in the Nextion Editor to the configuration of the item (for example slider) you want to usa as the input for the sensor:
 
-.. code-block:: cpp
+.. code-block:: c#
 
     printh 91  
     printh 00
