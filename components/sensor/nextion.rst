@@ -40,11 +40,20 @@ The following code can has to be added in the Nextion Editor to the configuratio
 
 .. code-block:: c
 
-    printh 91 // 91 is special code I created to register feedback from value change (for example slider) 
-    printh 00 // Page ID
-    printh 03 // ITEM ID could be replaced with prints ID.val,1
-    prints ht0.val,1 // Where ht0 the id of the slider
+    printh 91  
+    printh 00
+    printh 03
+    prints ht0.val,1
     printh FF FF FF
+    
+Configuration variables:
+------------------------
+
+- **printh 91** (**Required**): 91 is special code I created to register feedback from value change (for example slider)
+- **printh 00** (**Required**): The ID of the page the component is on.
+- **printh 03** (**Required**): ITEM ID could be replaced with prints ID.val,1
+- **prints ht0.val,1** (**Required**): Where ht0 the id of the slider
+- **printh FF FF FF** (**Required**): To close the string
 
 See Also
 --------
