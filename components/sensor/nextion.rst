@@ -38,14 +38,14 @@ Required Nextion Code:
 
 The following code can has to be added in the Nextion Editor to the configuration of the item (for example slider) you want to usa as the input for the sensor:
 
-.. code-block:: c
+.. code-block:: cpp
 
     printh 91  
     printh 00
     printh 03
     prints ht0.val,1
     printh FF FF FF
-    
+
 Configuration variables:
 ------------------------
 
