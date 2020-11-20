@@ -20,7 +20,7 @@ This type of cover also provides current-based obstacle detection with automatic
 .. warning::
 
     Take in mind that depending of the type of motor and cover you are controlling, current-based obstacle detection could
-    not work and cover can be damaged if blocked. Use it at your own risk.
+    not work and cover may be damaged if blocked. Use it at your own risk.
 
 .. figure:: images/more-info-ui.png
     :align: center
