@@ -86,6 +86,8 @@ Arduino-HeatpumpIR
 
 The ``heatpumpir`` platform supports dozens of manufacturers and hundreds of AC units by utilising the `Arduino-HeatpumpIR library <https://github.com/ToniA/arduino-heatpumpir>`__.
 
+No support can be provided for Arduino-HeatpumpIR, because it is a third party library.
+
 This platform utilises the library's generic one-size-fits-all API, which might not line up perfectly with all of the supported AC units. For example, some AC units have more fan speed options than what the generic API supports.
 
 Additional configuration must be specified for this platform:
