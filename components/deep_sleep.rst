@@ -123,14 +123,14 @@ Useful for
         mqtt:
           # ...
           on_message:
-            - topic: livingroom/ota_mode
-              payload: 'ON'
-              then:
-                - deep_sleep.prevent: deep_sleep_1
-            - topic: livingroom/sleep_mode
-              payload: 'ON'
-              then:
-                - deep_sleep.enter: deep_sleep_1
+            topic: livingroom/ota_mode
+            payload: 'ON'
+            then:
+              - deep_sleep.prevent: deep_sleep_1
+            topic: livingroom/sleep_mode
+            payload: 'ON'
+            then:
+              - deep_sleep.enter: deep_sleep_1
 
 See Also
 --------
