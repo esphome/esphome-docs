@@ -97,6 +97,18 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
+.. note::
+
+    On ESP8266, the logging via UART must be disabled to avoid crashes leading to boot loop :
+    
+    .. code-block:: yaml
+    
+    logger:     
+      baud_rate: 0   # disable logging via UART, help to avoid numerous crash with ESP_LOGD
+      level: INFO   # INFO for less log, put DEBUG to view all the linky's "étiquettes" received  in the logs
+      esp8266_store_log_strings_in_flash: False     # recommanded for ESP8266 https://esphome.io/components/sensor/custom.html
+    
+
 See Also
 --------
 
