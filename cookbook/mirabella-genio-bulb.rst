@@ -239,8 +239,54 @@ variable ``output_component1``.
 
         # Ensure the light turns on by default if the physical switch is actuated.
         restore_mode: ALWAYS_ON
+3.4 CWWW Mirabella Genio Downlights
+********************
+Kmart also sell a downlight option, which works quite well however the PWM method that is used is different to the way the cwww in ESPHome works.
 
+https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331
 
+A project by ssieb, resolves this using a custom component.
+
+https://github.com/ssieb/custom_components/tree/master/cwww2
+
+.. code-block:: yaml
+
+    esphome:
+      name: rgbw_e27_01
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+    logger:
+
+    api:
+
+    ota:
+
+    output:
+      - platform: esp8266_pwm
+        id: output1
+        pin: GPIO14
+      - platform: esp8266_pwm
+        id: output2
+        pin: GPIO12
+
+    light:
+      - platform: cwww2
+        id: LED
+        name: "Downlight"
+        color_temperature: output2
+        brightness: output1
+        cold_white_color_temperature: 6500 K
+        warm_white_color_temperature: 2700 K
+
+        # Ensure the light turns on by default if the physical switch is actuated.
+        restore_mode: ALWAYS_ON
+        
+        
 4. Adding to Home Assistant
 ---------------------------
 
