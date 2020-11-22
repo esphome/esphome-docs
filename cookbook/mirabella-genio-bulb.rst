@@ -239,6 +239,7 @@ variable ``output_component1``.
 
         # Ensure the light turns on by default if the physical switch is actuated.
         restore_mode: ALWAYS_ON
+
 3.4 CWWW Mirabella Genio Downlights
 
 ********************
