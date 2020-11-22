@@ -26,7 +26,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
     BME680 Temperature, Pressure, Humidity & Gas Sensor.
 
-.. _BSEC license agreement: https://ae-bst.resource.bosch.com/media/_tech/media/bsec/2017-07-17_ClickThrough_License_Terms_Environmentalib_SW_CLEAN.pdf
+.. _BSEC license agreement: https://www.bosch-sensortec.com/media/boschsensortec/downloads/bsec/2017-07-17_clickthrough_license_terms_environmentalib_sw_clean.pdf
 
 .. _Adafruit: https://www.adafruit.com/product/3660
 
@@ -189,5 +189,5 @@ See Also
 - :doc:`bme680`
 - :apiref:`bme680_bsec/bme680_bsec.h`
 - `BSEC Arduino Library <https://github.com/BoschSensortec/BSEC-Arduino-library>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
-- `Bosch Sensortec Community <https://community.bosch-sensortec.com/t5/Bosch-Sensortec-Community/ct-p/bst_community>`__
+- `Bosch Sensortec Community <https://community.bosch-sensortec.com/>`__
 - :ghedit:`Edit`
