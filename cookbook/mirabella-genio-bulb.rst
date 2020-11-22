@@ -241,7 +241,7 @@ variable ``output_component1``.
         restore_mode: ALWAYS_ON
 
 3.4 CWWW Mirabella Genio Downlights
-********************
+***********************************
 Kmart also sell a downlight option, which works quite well however the PWM method that is used is different to the way the cwww in ESPHome works.
 
 https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331
