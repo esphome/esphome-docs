@@ -107,7 +107,8 @@ Configuration variables:
     logger:     
       baud_rate: 0   # disable logging via UART, help to avoid numerous crash with ESP_LOGD
       level: INFO   # INFO for less log, put DEBUG to view all the linky's "étiquettes" received  in the logs
-      esp8266_store_log_strings_in_flash: False     # recommanded for ESP8266 https://esphome.io/components/sensor/custom.html
+      esp8266_store_log_strings_in_flash: False     #  :doc:`recommanded for ESP8266 </components/sensor/custom>`
+      
     
 
 See Also
