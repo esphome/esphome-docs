@@ -240,6 +240,7 @@ variable ``output_component1``.
         # Ensure the light turns on by default if the physical switch is actuated.
         restore_mode: ALWAYS_ON
 3.4 CWWW Mirabella Genio Downlights
+
 ********************
 Kmart also sell a downlight option, which works quite well however the PWM method that is used is different to the way the cwww in ESPHome works.
 
