@@ -47,6 +47,12 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **midea_dongle_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`/components/midea_dongle` if you want to use multiple devices.
 - **name** (**Required**, string): The name of the climate device.
+- **outdoor_temperature** (*Optional*): The information for the outdoor temperature
+  sensor.
+
+  - **name** (**Required**, string): The name of the sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
 - **beeper** (*Optional*, bool, default: **false**): Beeper feedback on command.
 - All other options from :ref:`Climate <config-climate>`.
 
