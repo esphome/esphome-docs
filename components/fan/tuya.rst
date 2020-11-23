@@ -45,6 +45,9 @@ Based on this, you can create the fan as follows:
         name: "MyFan"
         switch_datapoint: 1
         speed_datapoint: 3
+        speed_value_low: 0
+        speed_value_medium: 1
+        speed_value_high: 2
 
 Configuration variables:
 ------------------------
@@ -55,6 +58,9 @@ Configuration variables:
 - **switch_datapoint** (**Required**, int): The datapoint id number of the fan switch.
 - **oscillation_datapoint** (**Optional**, int): The datapoint id number of the oscillation
   switch. Probably not supported on any Tuya controllers currently, but it's there if need be.
+  **speed_value_low** (**Optional**, int): The value for the low fan speed.  Default 0.  Used to set the low speed to 1.
+  **speed_value_medium** (**Optional**, int): The value for the medium fan speed. Default 1.  Used to set the medium speed to 2.
+  **speed_value_high** (**Optional**, int): The value for the high fan speed. Default 2. Used to set the high speed to 2.
 - All other options from :ref:`Fan <config-fan>`.
 
 .. note::
