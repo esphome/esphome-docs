@@ -284,7 +284,7 @@ Now you can open ESPHome in your IDE of choice (mine is CLion) with the Platform
 addons (see PlatformIO docs for more info). Then develop the new feature with the
 guidelines below.
 
-All PRs are automatically checked for some basic formatting/code mistakes with Travis.
+All PRs are automatically checked for some basic formatting/code mistakes with Github Actions.
 These checks *must* pass for your PR to be mergeable.
 
 Setting Up Git Environment
@@ -329,9 +329,9 @@ Pull Request template outlining your changes; if your PR is not ready to merge y
 mark it as a draft PR in the dropdown of the green "create PR" button.
 
 **Review Process:** ESPHome's code base tries to have a high code standard. At the bottom
-of the Pull Request you will be able to see the "Travis" continuous integration check which
+of the Pull Request you will be able to see the "Github Actions" continuous integration check which
 will automatically go through your patch and try to spot errors. If the CI check fails,
-please see the Travis log and fix all errors that appear there. Only PRs that pass the automated
+please see the Github Actions log and fix all errors that appear there. Only PRs that pass the automated
 checks can be merged!
 
 **Catching up with reality**: Sometimes other commits have been made to the same files
@@ -573,7 +573,7 @@ Standard for the esphome-core codebase:
 - New components should dump their configuration using ``ESP_LOGCONFIG``
   at startup in ``dump_config()``
 - ESPHome uses a unified formatting tool for all source files (but this tool can be difficult to install).
-  When creating a new PR in GitHub, see the Travis CI output to see what formatting needs to be changed
+  When creating a new PR in GitHub, see the Github Actions output to see what formatting needs to be changed
   and what potential problems are detected.
 
 - The number of external libraries should be kept to a minimum. If the component you're developing has a simple
@@ -595,7 +595,7 @@ Standard for the esphome-core codebase:
 
 .. note::
 
-    You can also run the lint and Travis checks through a docker image:
+    You can also run the lint and Github Actions checks through a docker image:
 
     .. code-block:: bash
 
