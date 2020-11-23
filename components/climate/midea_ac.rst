@@ -39,6 +39,8 @@ This component requires a :doc:`/components/midea_dongle` to be configured.
 
     midea_ac:
       name: "Midea AC"
+      outdoor_temperature:
+        name: "outdoor"
       beeper: true
 
 Configuration variables:
