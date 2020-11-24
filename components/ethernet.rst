@@ -59,6 +59,14 @@ Configuration variables:
   Defaults to ``.local``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+
+.. note::
+
+    If your ethernet board is not designed with an ESP32 built in, chances are that you are going
+    to use flying leads, dupont wires, etc. to connect the ethernet to the ESP32. This is 
+    probably to fail as the ethernet interface uses a high frequency clock signal. For more 
+    information and wiring details refer to the the link in the *See also* section.
+    
 Configuration for wESP32 board
 ------------------------------
 
@@ -83,9 +91,25 @@ Configuration for Olimex ESP32-POE
       clk_mode: GPIO17_OUT
       phy_addr: 0
       power_pin: GPIO12
+      
+Configuration for OpenHacks LAN8720
+-----------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      phy_addr: 1
+      
+Note: This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure you are monitoring the
+serial output and reboot the device several times to see if it boots into the program properly.
+
 
 See Also
 --------
 
 - :apiref:`ethernet/ethernet_component.h`
+- `ESP32 Ethernet PHY connection info <https://pcbartists.com/design/embedded/esp32-ethernet-phy-schematic-design/>`__
 - :ghedit:`Edit`

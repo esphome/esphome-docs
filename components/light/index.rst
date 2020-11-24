@@ -136,6 +136,7 @@ Configuration options:
   ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing blue channel.
 - **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The white channel value of RGBW lights. Must be in range
   ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing white value.
+- **color_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): The white color temperature value (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) for CWWW / RGBWW lights. Defaults to not changing the color temperature value.
 - **flash_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): If set, will flash the given color
   for this period of time and then go back to the previous state.
 - **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): If set, will attempt to
@@ -737,10 +738,10 @@ Available variables in the lambda:
               // it[num].get();
 
               // Example: Simple color wipe
-              for (int i = 1; i < it.size(); i++) {
+              for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = ESPColor::random_color();
+              it[0] = ESPColor::random_color();              
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
               it.range(0, 50) = ESPColor::BLACK;
@@ -762,7 +763,7 @@ Available variables in the lambda:
               // normal variables lost their value after each
               // execution - basically after each update_interval
               uint16_t changes = 0;
-            
+
               // To reset static when stopping and starting the effect
               // again you can use the initial_run variables
               if (initial_run) {
@@ -815,6 +816,119 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect.
 - **sequence** (*Optional*, :ref:`Action <config-action>`): The actions to perform in sequence
   until the effect is stopped.
+
+E1.31
+*****
+
+This effect enables controlling addressable lights using UDP-based
+E1.31_ protocol.
+
+JINX_ can be used to control E1.31_ enabled ESPHome.
+
+.. code-block:: yaml
+
+    e131:
+      method: multicast # default: register E1.31 to Multicast group
+
+    light:
+      - platform: neopixelbus
+        num_leds: 189
+        effects:
+          - e131:
+              universe: 1
+              channels: RGB
+
+Configuration variables:
+
+- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
+- **universe** (*Required*, integer): The value of universe, between 1 to 512.
+- **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
+  ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
+
+There are three modes of operation:
+
+- `MONO`: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
+- `RGB`: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
+- `RGBW`: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
+
+If there's more LEDs than allowed per-universe, additional universe will be used.
+In the above example of 189 LEDs, first 170 LEDs will be assigned to 1 universe,
+the rest of 19 LEDs will be automatically assigned to 2 universe.
+
+It is possible to enable multiple light platforms to listen to the same universe concurrently,
+allowing to replicate the behaviour on multiple strips.
+
+.. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
+.. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
+
+Adalight
+********
+
+This effect enables controlling addressable lights using UART-based
+Adalight_ protocol, allowing to create realtime ambient lighting effects.
+
+Prismatik_ can be used to control addressable lights via Adalight_ protocol
+on ESPHome.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    # Disable logging over USB
+    logger:
+      baud_rate: 0
+
+    # Adalight requires higher RX buffer size
+    # to operate without flickering
+    uart:
+      rx_buffer_size: 1024
+
+    adalight:
+
+    light:
+      - platform: neopixelbus
+        ...
+        effects:
+          - adalight:
+              # uart_id: additional_uart
+
+Configuration variables:
+
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
+.. _Adalight: https://learn.adafruit.com/adalight-diy-ambient-tv-lighting
+.. _Prismatik: https://github.com/psieg/Lightpack
+
+WLED
+****
+
+This effect enables controlling addressable lights using UDP-based
+`UDP Realtime Control`_ protocol used by WLED_, allowing to create realtime ambient
+lighting effects.
+
+Prismatik_ can be used to control addressable lights over network on ESPHome.
+
+.. code-block:: yaml
+
+    wled:
+
+    light:
+      - platform: neopixelbus
+        ...
+        effects:
+          - wled:
+              # port: 21324
+
+Configuration variables:
+
+- **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+
+Currently the following realtime protocols are supported:
+WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.
+
+.. _UDP Realtime Control: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
+.. _WLED: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
+.. _Prismatik: https://github.com/psieg/Lightpack
 
 See Also
 --------

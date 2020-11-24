@@ -6,7 +6,7 @@ Migrating from ESPurna
     :image: espurna.png
 
 Migrating from previous ESPurna setups is very easy. You just need to have
-esphome create a binary for you and then upload that in the ESPurna web interface.
+ESPHome create a binary for you and then upload that in the ESPurna web interface.
 
 Getting Binary
 --------------

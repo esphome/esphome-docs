@@ -42,7 +42,7 @@ for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **address** (*Optional*, int): Manually specify the  I²c address of the sensor. Defaults to ``0x1E``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x1E``.
 - **field_strength_x** (*Optional*): The field strength in microtesla along the X-Axis. All options from
   :ref:`Sensor <config-sensor>`.
 - **field_strength_y** (*Optional*): The field strength in microtesla along the Y-Axis. All options from
@@ -54,6 +54,12 @@ Configuration variables:
 - **oversampling** (*Optional*): The oversampling parameter for the sensor.
 - **range** (*Optional*): The range parameter for the sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- **oversampling** (*Optional*): Number of readings to average over for each sample. One of ``1x``, ``2x``,
+  ``4x``, ``8x``. Defaults to ``1x``.
+- **range** (*Optional*): Select a range / gain preset. This does not affect the scale of the values published
+  but allows one to avoid overflows at the cost of reading resolution. Supported values are 88µT, 130µT, 190µT,
+  250µT, 400µT, 470µT, 560µT, 810µT. Default range is ±130µT.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Oversampling Options

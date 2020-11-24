@@ -35,6 +35,32 @@ The ``rgb`` light platform creates an RGB light from 3 :ref:`float output compon
         pin: D1
       # Repeat for green and blue output
 
+Color Correction
+----------------
+
+It is often favourable to calibrate/correct the color produced by an LED strip light as the
+perceived intensity of different colors will generally vary. This can be done by using
+:ref:`max_power <config-output>` on individual output channels:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    light:
+      - platform: rgb
+        name: "Living Room Lights"
+        red: output_component1
+        green: output_component2
+        blue: output_component3
+
+    # Example output entry
+    output:
+      - platform: esp8266_pwm
+        id: output_component1
+        pin: D1
+        max_power: 80%
+      # Repeat for green and blue output
+
+
 Configuration variables:
 ------------------------
 

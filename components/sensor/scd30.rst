@@ -5,8 +5,8 @@ SCD30 CO₂, Temperature and Relative Humidty Sensor
     :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidty Sensor
     :image: scd30.jpg
 
-The ``scd30`` sensor platform  allows you to use your Sensiron SCD30 CO₂  
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/CO2/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf>`__) sensors with ESPHome. 
+The ``scd30`` sensor platform  allows you to use your Sensiron SCD30 CO₂
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.5_CO2/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/scd30.jpg
@@ -29,7 +29,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
           accuracy_decimals: 1
         address: 0x61
         update_interval: 5s
-        
+
 
 Configuration variables:
 ------------------------
@@ -53,7 +53,18 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
+- **automatic_self_calibration** (*Optional*, bool): Whether to enable
+  automatic self calibration (ASC). Defaults to ``true``.
+
+- **ambient_pressure_compensation** (*Optional*, int): Enable compensation
+  of measured CO₂ values based on given ambient pressure in mBar.
+
+- **altitude_compensation** (*Optional*, int): Enable compensating
+  deviations due to current altitude (in metres). Notice: setting
+  *altitude_compensation* is ignored if *ambient_pressure_compensation*
+  is set.
+
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x61``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the

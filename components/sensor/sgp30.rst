@@ -5,8 +5,8 @@ SGP30 CO₂ and Volatile Organic Compound Sensor
     :description: Instructions for setting up SGP30 CO₂eq and Volatile Organic Compound sensor
     :image: sgp30.png
 
-The ``sgp30`` sensor platform  allows you to use your Sensiron SGP30 multi-pixel gas 
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Gas/Sensirion_Gas_Sensors_SGP30_Datasheet.pdf>`__) sensors or the SVM30 breakout-boards  (`product page <https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/>`__) with ESPHome. 
+The ``sgp30`` sensor platform  allows you to use your Sensiron SGP30 multi-pixel gas
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Datasheets/Sensirion_Gas_Sensors_SGP30_Datasheet.pdf>`__) sensors or the SVM30 breakout-boards  (`product page <https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/>`__) with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/eco2-tvoc.png
@@ -43,7 +43,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x58``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
@@ -96,7 +96,7 @@ via the logs:
 The next time you upload the code, the SGP30 will be continue its operation with this baseline and you will get consistent values.
 
 Please note that Sensirion recommends that after around 7 days, the baseline will need to be
-re-calibrated because the internal sensor has a slight value drift over time. 
+re-calibrated because the internal sensor has a slight value drift over time.
 
 See Also
 --------

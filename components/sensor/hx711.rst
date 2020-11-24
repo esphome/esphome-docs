@@ -8,16 +8,16 @@ HX711 Load Cell Amplifier
 
 The ``hx711`` sensor platform allows you to use your HX711
 load cell amplifier
-(`datasheet <https://www.mouser.com/ds/2/813/hx711_english-1022875.pdf>`__, `Sparkfun`_) with ESPHome
+(`datasheet <https://www.mouser.com/ds/2/813/hx711_english-1022875.pdf>`__, `SparkFun`_) with ESPHome
 
 .. figure:: images/hx711-full.jpg
     :align: center
-    :target: `Sparkfun`_
+    :target: `SparkFun`_
     :width: 60.0%
 
-    HX711 Load Cell Amplifier. Image by `Sparkfun`_ licensed and re-distributed under `CC BY 2.0 <https://creativecommons.org/licenses/by/2.0/>`__.
+    HX711 Load Cell Amplifier. Image by `SparkFun`_ licensed and re-distributed under `CC BY 2.0 <https://creativecommons.org/licenses/by/2.0/>`__.
 
-.. _Sparkfun: https://www.sparkfun.com/products/13879
+.. _SparkFun: https://www.sparkfun.com/products/13879
 
 Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or ``SO`` for short),
 ``CS`` and ``CLOCK`` (or ``SCK``) to free GPIO pins.

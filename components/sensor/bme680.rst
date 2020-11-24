@@ -55,7 +55,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **humidity** (**Required**): The information for the pressure sensor.
+- **humidity** (**Required**): The information for the humidity sensor.
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
@@ -69,7 +69,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the i^2c address of
+- **address** (*Optional*, int): Manually specify the I²C address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
   ``OFF``, ``1x``, ``3x``, ``7x``, ``15x``, ``31x``, ``63x`` and ``127x``. Defaults to ``OFF``.
@@ -96,7 +96,7 @@ Oversampling Options
 By default, the BME680 sensor measures each value 16 times when requesting a new value. You can, however,
 configure this amount. Possible oversampling values:
 
--  ``NONE``
+-  ``NONE`` (value is skipped)
 -  ``1x``
 -  ``2x``
 -  ``4x``

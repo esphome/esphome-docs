@@ -29,7 +29,7 @@ Guides
 .. imgtable::
 
     Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started through Hass.io Add-On, guides/getting_started_hassio, home-assistant.svg
+    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
     FAQ and Tips, guides/faq, question_answer.svg
 
     Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
@@ -39,6 +39,8 @@ Guides
     Changelog, changelog/index, new-box.svg
     Supporters, guides/supporters, heart.svg
     DIY Examples, guides/diy, earth.svg
+
+    Configuration types, guides/configuration-types, puzzle.svg
 
 .. _devices:
 
@@ -112,6 +114,7 @@ Sensor Components
     DHT12, components/sensor/dht12, dht12.jpg
     Duty Cycle, components/sensor/duty_cycle, percent.svg
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
+    EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
@@ -125,8 +128,10 @@ Sensor Components
     HTU21D, components/sensor/htu21d, htu21d.jpg
     HM3301, components/sensor/hm3301, hm3301.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
+    MAX31856, components/sensor/max31856, max31856.jpg
     MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
+    MCP9808, components/sensor/mcp9808, mcp9808.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
@@ -150,19 +155,19 @@ Sensor Components
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
+    Teleinfo, components/sensor/teleinfo, teleinfo.jpg
     Template Sensor, components/sensor/template, description.svg
+    TMP102, components/sensor/tmp102, tmp102.jpg
     TMP117, components/sensor/tmp117, tmp117.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
-    Tx20, components/sensor/tx20, tx20.jpg
+    Tuya Sensor, components/sensor/tuya, tuya.png
+    TX20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-    Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
-    Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
-    Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
-    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
+    Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
@@ -186,8 +191,10 @@ Binary Sensor Components
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
+    RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
+    Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -199,6 +206,7 @@ Output Components
     ESP8266 Software PWM, components/output/esp8266_pwm, pwm.png
     Slow PWM, components/output/slow_pwm, pwm.png
     GPIO Output, components/output/gpio, pin.svg
+    ESP32 DAC, components/output/esp32_dac, dac.svg
     ESP32 LEDC, components/output/ledc, pwm.png
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
@@ -206,6 +214,7 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     Custom Output, components/output/custom, language-cpp.svg
+    Template Output, components/output/template, description.svg
 
 Light Components
 ----------------
@@ -225,8 +234,10 @@ Light Components
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
 
     Light Partition, components/light/partition, color_lens.svg
-    Tuya Dimmer, components/light/tuya, brightness-medium.svg
+    Tuya Dimmer, components/light/tuya, tuya.png
     Custom Light, components/light/custom, language-cpp.svg
+
+    H-bridge Light, components/light/hbridge, brightness-medium.svg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
@@ -244,6 +255,7 @@ Switch Components
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
+    Tuya Switch, components/switch/tuya, tuya.png
 
 Fan Components
 --------------
@@ -253,7 +265,7 @@ Fan Components
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
     Speed Fan, components/fan/speed, fan.svg
-    Tuya Fan, components/fan/tuya, fan.svg
+    Tuya Fan, components/fan/tuya, tuya.png
 
 Display Components
 ------------------
@@ -263,10 +275,14 @@ Display Components
     Display Core, components/display/index, folder-open.svg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
+    SSD1331, components/display/ssd1331, ssd1331.jpg
+    SSD1351, components/display/ssd1351, ssd1351.jpg
+    ST7789V, components/display/st7789v, st7789v.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
@@ -303,8 +319,11 @@ Climate Components
 
     Climate Core, components/climate/index, folder-open.svg
     Bang Bang Controller, components/climate/bang_bang, air-conditioner.svg
+    Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
+    PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    Tuya Climate, components/climate/tuya, tuya.png
 
 Misc Components
 ---------------
@@ -331,13 +350,19 @@ Misc Components
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
+    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
+    SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
+    Tuya MCU, components/tuya, tuya.png
+    Exposure Notifications, components/exposure_notifications, exposure_notifications.png
+    RTTTL Buzzer, components/rtttl, buzzer.jpg
+    Prometheus, components/prometheus, prometheus.svg
 
 Additional Custom Components
 ----------------------------
@@ -345,7 +370,7 @@ Additional Custom Components
 .. imgtable::
 
     Generic Custom Component, custom/custom_component, language-cpp.svg
-    Custom I2C Component, custom/i2c, language-cpp.svg
+    Custom I²C Component, custom/i2c, language-cpp.svg
     Custom SPI Component, custom/spi, language-cpp.svg
     Custom UART Component, custom/uart, language-cpp.svg
 
@@ -371,8 +396,12 @@ Cookbook
     Mirabella Genio Bulb, cookbook/mirabella-genio-bulb, cookbook-mirabella-genio-b22-rgbw.jpg
     Garage Door, cookbook/garage-door, window-open.svg
     Brilliant / Mirabella Genio Smart Plugs, cookbook/brilliant-mirabella-genio-smart-plugs, cookbook-brilliant-mirabella-genio-smart-plugs.jpg
+    Etekcity Voltson (ESW01-EU) , cookbook/esw01-eu, esw01-eu.jpg
+    Sonoff iFan02, cookbook/ifan02, fan.svg
     Zemismart RGBW Downlights, cookbook/zemismart-rgbw-downlights, cookbook-zemismart-rgbw-downlight.jpg
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
+    Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
+    ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

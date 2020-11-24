@@ -2,8 +2,8 @@ Dallas Temperature Sensor
 =========================
 
 .. seo::
-    :description: Instructions for setting up dallas temperature sensor hubs that can
-      expose many temperature sensors on a single pin using the one wire protocol.
+    :description: Instructions for setting up Dallas temperature sensor hubs that can
+      expose many temperature sensors on a single pin using the 1-Wire protocol.
     :image: dallas.jpg
     :keywords: Dallas, ds18b20, onewire
 
@@ -15,7 +15,7 @@ Component/Hub
 The ``dallas`` component allows you to use your
 `DS18b20 <https://www.adafruit.com/product/374>`__
 (`datasheet <https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf>`__)
-and similar One-Wire temperature sensors.
+and similar 1-Wire temperature sensors.
 
 To use your :ref:`dallas sensor <dallas-sensor>`, first define a dallas “hub” with a pin and
 id, which you will later use to create the sensors. The 1-Wire bus the
@@ -48,9 +48,9 @@ Configuration variables:
 Sensors
 -------
 
-The ``dallas`` sensor allows you to use ds18b20 and similar sensors.
+The ``dallas`` sensor allows you to use DS18B20 and similar sensors.
 First, you need to define a :ref:`dallas sensor component <dallas-component>`.
-The dallas sensor component (or "hub") is an internal model that defines which pins the ds18b20
+The dallas sensor component (or "hub") is an internal model that defines which pins the DS18B20
 sensors are connected to. This is because with these sensors you can actually connect multiple
 sensors to a single pin and use them all at once.
 
@@ -60,7 +60,7 @@ To initialize a sensor, first supply either ``address`` **or** ``index`` to iden
     :align: center
     :width: 50.0%
 
-    Wired Version of the DS18b20 One-Wire Temperature Sensor.
+    Wired Version of the DS18B20 1-Wire Temperature Sensor.
 
 .. _Adafruit: https://www.adafruit.com/product/374
 
@@ -89,7 +89,7 @@ Configuration variables:
   So the first sensor will for example have index 0. :ref:`It’s recommended
   to use address instead <dallas-getting-ids>`.
 - **resolution** (*Optional*, int): An optional resolution from 8 to
-  12. Higher means more accurate. Defaults to the maximum for most dallas temperature sensors: 12.
+  12. Higher means more accurate. Defaults to the maximum for most Dallas temperature sensors: 12.
 - **dallas_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`dallas hub <dallas-component>`.
   Use this if you have multiple dallas hubs.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
