@@ -75,7 +75,7 @@ count the light pulses on a power meter, you can do the following:
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
-          - multiply: 0.06
+          - multiply: 0.06  # (60s/1000 pulses per kWh)
 
 
 Counting total pulses
@@ -94,13 +94,13 @@ measure the total consumed energy in kWh.
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
-          - multiply: 0.06
+          - multiply: 0.06  # (60s/1000 pulses per kWh)
 
         total:
           unit_of_measurement: 'kWh'
           name: 'Energy Meter House'
           filters:
-            - multiply: 0.001
+            - multiply: 0.001  # (1/1000 pulses per kWh)
 
 See Also
 --------
