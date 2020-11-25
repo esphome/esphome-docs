@@ -23,8 +23,6 @@ Logging+WiFi+OTA are initialized, so that you can upload a new binary.
     ota:
       safe_mode: True
       password: VERYSECURE
-      reboot_timeout: 5min
-      num_attempts: 10
 
 Configuration variables:
 ------------------------
