@@ -41,6 +41,9 @@ And in YAML:
 .. code-block:: yaml
 
     # Example configuration entry
+    mqtt:
+      broker: localhost
+    
     esphome:
       includes:
         - my_custom_component.h
