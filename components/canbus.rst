@@ -226,7 +226,7 @@ Standard vs. Extended ID
                   can_id: 0x100
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
               - canbus.send:
-                  # Extended ID by default
+                  # Standard ID by default
                   can_id: 0y100
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
 
