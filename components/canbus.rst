@@ -44,11 +44,11 @@ Each canbus platform extends this configuration schema.
     canbus:
       - platform: ...
         can_id: 4
-        can_ext_id: False
+        use_extended_id: False
         bit_rate: 50KBPS
         on_frame:
         - can_id: 500
-          can_ext_id: False
+          use_extended_id: False
           then:
           - lambda: |-
               std::string b(x.begin(), x.end());
@@ -58,7 +58,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
-- **can_ext_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
+- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
   *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
 - **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
 
@@ -139,7 +139,7 @@ Configuration variables:
   the frame. Not needed if you are using only 1 can bus.
 - **can_id** (*Optional*, int): Allows to override the can id configured in
   the can bus device.
-- **can_ext_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
+- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
   *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
 
 MCP2515
@@ -206,7 +206,7 @@ A more advanced option is to fully convert the 5V and 3.3V logic levels with a l
 Standard vs. Extended ID
 ------------------------
 | Standard IDs and Extended IDs can coexist on the same segment.
-| It is important to know that for example Std. 0x123 and Ext. 0x123 are different addesses.
+| It is important to know that for example Standard 0x123 and Extended 0x123 are different addesses.
 | This example shows how the different ID types are used in the configuration for transmission and receiving.
 | For the IDs decimal or hexadecimal notation is possible:
 | 0x000 - 0x7ff / 0-2047 for Standard IDs only.
@@ -222,7 +222,7 @@ Standard vs. Extended ID
             then:
               - canbus.send:
                   # Extended ID explicit 
-                  can_ext_id: True
+                  use_extended_id: True
                   can_id: 0x100
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
               - canbus.send:
@@ -236,11 +236,11 @@ Standard vs. Extended ID
         spi_id: McpSpi
         cs_pin: GPIO14
         can_id: 0x1fff
-        can_ext_id: True
+        use_extended_id: True
         bit_rate: 125kbps
         on_frame:
         - can_id: 0x123
-          can_ext_id: True
+          use_extended_id: True
           then:
           - lambda: |-
               std::string b(x.begin(), x.end());
