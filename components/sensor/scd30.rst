@@ -71,6 +71,35 @@ Configuration variables:
   sensor. Defaults to ``60s``.
 
 
+.. _scd30-set_forced_recalibration_value_action:
+
+``scd30.set_forced_recalibration_value`` Action
+-----------------------------------------------
+
+Triggers the SCD30's forced recalibration feature with the supplied calibration
+value.
+
+More details can be found on page 14 of `the interface description <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.5_CO2/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf>`__.
+
+When using this feature, self-calibration should be disabled in the
+configuration, otherwise the forced calibration will be overridden next time
+the device is restarted.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - scd30.set_forced_recalibration_value:
+            id: scd30_1
+            forced_recalibration_value: 410
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the SCD30.
+- **forced_recalibration_value** (**Required**, int, :ref:`templatable <config-templatable>`):
+  The CO₂ reference concentration in PPM.
+
+
 
 See Also
 --------
