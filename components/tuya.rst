@@ -55,14 +55,10 @@ Here is an example output for a Tuya fan controller:
 Configuration variables:
 ------------------------
 
-- **ignore_mcu_update_on_datapoints** (*Optional*, list): A list of datapoints to ignore MCU updates for.  Useful for certain broken/erratic hardware and debugging.
-
-Configuration variables:
-------------------------
-
 - **time_id** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome. 
   Specify the ID of the :ref:`Time Component <time>` which will be used.
 
+- **ignore_mcu_update_on_datapoints** (*Optional*, list): A list of datapoints to ignore MCU updates for.  Useful for certain broken/erratic hardware and debugging.
 
 See Also
 --------
