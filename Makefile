@@ -1,4 +1,5 @@
 ESPHOME_PATH = ../esphome
+
 ESPHOME_REF = dev
 
 .PHONY: html html-strict cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png
