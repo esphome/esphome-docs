@@ -27,6 +27,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
         humidity:
           name: "Workshop Humidity"
           accuracy_decimals: 1
+        temperature_offset: 1.5 °C
         address: 0x61
         update_interval: 5s
 
@@ -52,6 +53,11 @@ Configuration variables:
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
+
+- **temperature_offset** (*Optional*, float): Temperature and humidity
+  offsets may occur when operating the sensor in end-customer
+  devices. This variable allows the compensation of those effects by
+  setting a temperature offset.
 
 - **automatic_self_calibration** (*Optional*, bool): Whether to enable
   automatic self calibration (ASC). Defaults to ``true``.
