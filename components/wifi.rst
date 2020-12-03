@@ -189,7 +189,7 @@ Configuration variables:
 Enterprise Authentication
 -------------------------
 
-WPA2_EAP Enterprise Authentication is supported on ESP32s.
+WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s.
 In order to configure this feature you must use the :ref:`wifi-networks` style configuration.
 The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS.
 These are advanced settings and you will usually need to consult your enterprise network administrator.

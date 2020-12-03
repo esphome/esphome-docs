@@ -580,7 +580,7 @@ Standard for the esphome-core codebase:
   communication interface, please consider implementing the library natively in ESPHome.
 
   - This depends on the communication interface of course - if the library is directly working
-    with pins or doesn't do any I/O itself, it's ok. However if it's something like I^2C, then ESPHome's
+    with pins or doesn't do any I/O itself, it's ok. However if it's something like I²C, then ESPHome's
     own communication abstractions should be used. Especially if the library accesses a global variable/state
     like ``Wire`` there's a problem because then the component may not modular (i.e. not possible
     to create two instances of a component on one ESP)

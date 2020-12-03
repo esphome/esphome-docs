@@ -53,7 +53,18 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor.
+- **automatic_self_calibration** (*Optional*, bool): Whether to enable
+  automatic self calibration (ASC). Defaults to ``true``.
+
+- **ambient_pressure_compensation** (*Optional*, int): Enable compensation
+  of measured CO₂ values based on given ambient pressure in mBar.
+
+- **altitude_compensation** (*Optional*, int): Enable compensating
+  deviations due to current altitude (in metres). Notice: setting
+  *altitude_compensation* is ignored if *ambient_pressure_compensation*
+  is set.
+
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x61``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
