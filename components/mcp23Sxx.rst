@@ -70,7 +70,7 @@ MCP23S17
 The MCP23S17 component allows you to use MCP23S17 I/O expanders
 (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf>`__,
 `Digi-Key <https://www.digikey.com/product-detail/en/microchip-technology/MCP23S17-E-SP/MCP23S17-E-SP-ND/894276>`__) in ESPHome.
-It uses the :ref:`SPI Bus <i2c>` for communication.
+It uses the :ref:`SPI Bus <spi>` for communication.
 
 Once configured, you can use any of the 16 pins as
 pins for your projects. Within ESPHome they emulate a real internal GPIO pin
@@ -126,4 +126,3 @@ See Also
 - :apiref:`API Reference (MCP23S08) <mcp23S08/mcp23S08.h>`
 - :apiref:`API Reference (MCP23S17) <mcp23S17/mcp23S17.h>`
 - :ghedit:`Edit`
-
