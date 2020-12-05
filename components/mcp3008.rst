@@ -40,30 +40,56 @@ sensors for your projects.
     # of the MCP3008 with a 10K resistor as a voltage divider.
     # See `resistance` and `ntc` platorms for other options
     sensor:
-      - platform: mcp3008             # Attached to pin 0 of the MCP3008.
-                                      # The result will be a reading from 0-1023
-        update_interval: 1s
-        id: freezer_temp_source
-        number: 0                     # pin number
-      - platform: resistance
-        id: freezer_resistance_sensor
-        sensor: freezer_temp_source
-        configuration: DOWNSTREAM
-        resistor: 10kOhm
-      - platform: ntc
-        id: freezer_temp
-        sensor: freezer_resistance_sensor
-        calibration:
-          b_constant: 3950
-          reference_temperature: 25°C
-          reference_resistance: 10kOhm
-        name: Freezer Temperature
 
+  - platform: mcp3008
+    update_interval: 1s
+    mcp3008_id: 'mcp3008_hub'
+    id: freezer_temp_source
+    reference_voltage: 3.19
+    number: 0
+  - platform: mcp3008
+    update_interval: 1s
+    mcp3008_id: 'mcp3008_hub'
+    id: fridge_temp_source
+    reference_voltage: 3.19
+    number: 1
+  - platform: resistance
+    id: freezer_resistance_sensor
+    sensor: freezer_temp_source
+    configuration: UPSTREAM
+    resistor: 10kOhm
+    reference_voltage: 3.19
+  - platform: resistance
+    id: fridge_resistance_sensor
+    sensor: fridge_temp_source
+    configuration: UPSTREAM
+    resistor: 10kOhm
+    reference_voltage: 3.19
+  - platform: ntc
+    id: freezer_temp
+    sensor: freezer_resistance_sensor
+    calibration:
+      b_constant: 3950
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
+    name: Garage Freezer Temperature
+  - platform: ntc
+    id: fridge_temp
+    sensor: fridge_resistance_sensor
+    calibration:
+      b_constant: 3950
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
+    name: Garage Fridge Temperature
+ 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
 - **cs_pin** (**Required**, int): The SPI cable select pin to use
+- **reference_voltage** (*Optional*, float): The reference voltage. Defaults to ``3.3V``.
+
+=======
 
 See Also
 --------
@@ -71,4 +97,3 @@ See Also
 - :ref:`spi`
 - :apiref:`mcp3008/mcp3008.h`
 - :ghedit:`Edit`
-
