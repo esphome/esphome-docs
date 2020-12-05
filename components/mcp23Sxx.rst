@@ -38,7 +38,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
           # Use pin number 0
           number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
-          mode: INPUT_PULLUP
+          mode: OUTPUT
           inverted: False
 
     # Individual inputs
