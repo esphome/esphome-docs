@@ -36,7 +36,7 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
         
         lambda: |-
           it.fill(COLOR_BLACK);
-          it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_CENTER, "Hello World!");
+          it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_RIGHT, "Hello World!");
     
 Configuration variables
 ***********************
