@@ -63,11 +63,11 @@ Configuration variables:
          
     If a I²C multiplexer is used all I²C devices can be additionally configured like:
     sensor:
-	  - platform: bmp280
-	    multiplexer:
-	      id: multiplex0
-	      channel: 0
-		  ...
+      - platform: bmp280
+        multiplexer:
+          id: multiplex0
+          channel: 0
+          ...
 
 See Also
 --------

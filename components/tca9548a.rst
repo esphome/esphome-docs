@@ -23,19 +23,19 @@ Once configured, you can use any of the 8 channels (TCA9548A) as seperated chann
 .. code-block:: yaml
 
     # Example configuration entry
-	tca9548a:
-	  - address: 0x70
-	    id: multiplex0
-	    i2c_id: i2c0
-	    scan: True
+    tca9548a:
+      - address: 0x70
+        id: multiplex0
+        i2c_id: i2c0
+        scan: True
 
     # Individual I2C Devices
     sensor:
-	  - platform: bmp280
-	    multiplexer:
-	      id: multiplex0
-	      channel: 0
-		  ...
+      - platform: bmp280
+        multiplexer:
+          id: multiplex0
+          channel: 0
+          ...
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
