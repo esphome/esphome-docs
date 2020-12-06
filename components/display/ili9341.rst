@@ -33,11 +33,10 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
         dc_pin: 27
         led_pin: 32  ### see note below ###
         reset_pin: 33
-        rotation: 0
         
         lambda: |-
-          it.fill(ili9341::COLOR_BLACK);
-          it.print(0, 0, id(font), "Hello World!");
+          it.fill(COLOR_BLACK);
+          it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_CENTER, "Hello World!");
     
 Configuration variables
 ***********************
