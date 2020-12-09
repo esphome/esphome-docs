@@ -55,6 +55,9 @@ Advanced Options:
 - **restore** (*Optional*, boolean): Whether to restore the state of the servo motor at startup.
   This is useful if you have an absolute servo motor and it goes back to its 0 position at startup.
   Defaults to ``false``.
+- **keep_on_time** (*Optional*, ms): The time after reaching the target value when the servo will be detached.
+- **run_duration** (*Optional*, ms): The needed for a full movement (-1.0 to 1.0).
+This can slow down the servo to avoid loud noises or just make the movement not jerking.
 
 .. note::
 
