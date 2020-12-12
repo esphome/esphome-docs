@@ -37,11 +37,12 @@ Blog Posts & Videos
 - `Detecting Sound with ESP8266 <https://thibmaek.com/post/detecting-sound-level-using-esp8266-and-esphome>`__ by `Thibault Maekelbergh <https://thibmaek.com>`__
 - `SW420 Vibration Sensor with Remote Notifications <https://github.com/rmooreID/Home-Assistant-Appliance-Monitor/>`__ by :ghuser:`rmooreID`
 - `DIY Irrigation Controller (with Internal Scheduler + Lovelace UI) <https://brianhanifin.com/posts/diy-irrigation-controller-esphome-home-assistant/>`__ by :ghuser:`BrianHanifin`
-- `Smart Intercom <https://frog32.ch/smart-intercom.html>`__ by `Marc Egli <https://frog32.ch/>`__ 
-- `Esp32 six shutters controller <https://github.com/Gio-dot/Six-shutters-ESP32-controller>`__ by `Gio-dot <https://github.com/Gio-dot>`__ 
-- `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__ 
+- `Smart Intercom <https://frog32.ch/smart-intercom.html>`__ by `Marc Egli <https://frog32.ch/>`__
+- `Esp32 six shutters controller <https://github.com/Gio-dot/Six-shutters-ESP32-controller>`__ by `Gio-dot <https://github.com/Gio-dot>`__
+- `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__
 - `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-home-assistant/>`__ by :ghuser:`emorydunn`
-- `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__ 
+- `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__
+- `Preparing Ubuntu 20.04 for debugging ESP32 on ESPHome <https://damnedfinesoftware.blogspot.com/2020/12/preparing-to-get-debug-tools-for-esp32.html>`__by :ghuser:`sean.true`
 
 Custom Components & Code
 ------------------------
@@ -95,4 +96,3 @@ Sample Configurations
 - `ESPHome Home Assistant stepper motor blinds/curtain <https://github.com/icarome/esphome/blob/master/cortina.yaml>`__ by :ghuser:`icarome`
 - `ESPHome AXA Remote 2 control <https://github.com/galagaking/espaxa/>`__ by :ghuser:`galagaking`
 - `ESPHome WF-DS01 TuyaMCU based dimmable bedside touch lamp <https://github.com/davet2001/miscellaneous/blob/master/tuyamcu_ws-df01_touchlamp.yaml>`__ by :ghuser:`davet2001`
-
