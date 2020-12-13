@@ -97,6 +97,24 @@ using :ref:`api-homeassistant_tag_scanned_action`.
         then:
           - homeassistant.tag_scanned: !lambda 'return x;'
 
+Alternatively you could also send the value directly to Home Assistant via a
+:doc:`template sensor </components/sensor/template>`.
+
+.. code-block:: yaml
+
+    pn532:
+      # ...
+      on_tag:
+        then:
+        - text_sensor.template.publish:
+            id: rfid_tag
+            state: !lambda 'return x;'
+
+    text_sensor:
+      - platform: template
+        name: "RFID Tag"
+        id: rfid_tag
+
 .. _pn532-tag:
 
 NFC/RFID Tag
