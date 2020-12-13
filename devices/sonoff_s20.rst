@@ -103,7 +103,7 @@ When you're done, it should look something like this:
     :align: center
 
 Now go ahead and connect the pins to your UART bridge, making sure the S20 is not plugged in as before.
-Also beware that some UART to USB bridges supply 5V on the VCC pin if it's not explicitly labeled 3.3V.
+Also beware that some UART to USB bridges supply 5V on the VCC pin if it's not explicitly labelled 3.3V.
 It's best to just use a multimeter and double check if it's unclear.
 
 .. note::
@@ -209,7 +209,7 @@ of the basic functions.
       platform: ESP8266
       board: esp8285
       arduino_version: 2.4.2
-      
+
     wifi:
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
@@ -251,9 +251,9 @@ of the basic functions.
         output: s20_green_led
 
 
-The above example also showcases an important concept of esphome: IDs and linking. In order
-to make all components in ESPHome as much "plug and play" as possible, you can use IDs to define
-them in one area, and simply pass that ID later on. For example, above you can see an PWM (dimmer)
+The above example also showcases an important concept of ESPHome: IDs and linking. In order
+to make all components in ESPHome as "plug and play" as possible, you can use IDs to define
+them in one area, and simply pass that ID later on. For example, above you can see a PWM (dimmer)
 output being created with the ID ``s20_green_led`` for the green LED. Later on it is then transformed
 into a :doc:`monochromatic light </components/light/monochromatic>`.
 
@@ -308,7 +308,7 @@ enter an OTA-only safe mode).
 If you're sure everything is done with the S20 and have double checked there's nothing that could cause a short
 in the case, you can put the front cover with the button on the base again and screw everything together.
 
-Now triple or even quadruple check the UART bridge is not connected to the S20, then comes the time when you can
+Now triple- or even quadruple-check the UART bridge is not connected to the S20, then comes the time when you can
 plug it into the socket.
 
 Happy hacking!

@@ -362,7 +362,7 @@ Please note that it's a good idea to check if the key exists in the Json Object 
       # ...
       on_json_message:
         topic: the/topic
-          then:
+        then:
           - light.turn_on:
               id: living_room_lights
 

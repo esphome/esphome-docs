@@ -40,6 +40,7 @@ After validating the sensor is working, we can proceed and add some formulas.
           return ((id(bme280_temperature).state + 273.15) / 0.0065) *
             (powf((STANDARD_SEA_LEVEL_PRESSURE / id(bme280_pressure).state), 0.190234) - 1); // in meter
         update_interval: 15s
+        icon: 'mdi:signal'
         unit_of_measurement: 'm'
       - platform: template
         name: "Absolute Humidity"
@@ -51,7 +52,15 @@ After validating the sensor is working, we can proceed and add some formulas.
             ((273.15 + id(bme280_temperature).state) * r); // in grams/m^3
         accuracy_decimals: 2
         update_interval: 15s
+        icon: 'mdi:water'
         unit_of_measurement: 'g/m³'
+      - platform: template
+        name: "Dew Point"
+        lambda: return (243.5*(log(id(bme280_humidity).state/100)+((17.67*id(bme280_temperature).state)/
+        (243.5+id(bme280_temperature).state)))/(17.67-log(id(bme280_humidity).state/100)-
+        ((17.67*id(bme280_temperature).state)/(243.5+id(bme280_temperature).state))));
+        unit_of_measurement: °C
+        icon: 'mdi:thermometer-alert'
 
 Altitude and absolute humidity:
 -------------------------------
@@ -76,7 +85,7 @@ converts the currently measured temperature and relative humidity to absolute hu
 Equivalent sea level pressure:
 ------------------------------
 
-Calculating the sea level pressure with a statically mounted sensor can be be used as reference for moving sensors as mentioned in the note above.
+Calculating the sea level pressure with a statically mounted sensor can be used as reference for moving sensors as mentioned in the note above.
 
 .. code-block:: yaml
 
@@ -112,6 +121,7 @@ Formula explanation
 
 - `Relative humidity calculations <https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/>`__
 - `Altitude calculation <https://en.wikipedia.org/wiki/Atmospheric_pressure#Altitude_variation>`__
+- `Dew Point calculation <https://carnotcycle.wordpress.com/2017/08/01/compute-dewpoint-temperature-from-rh-t/>`__
 
 See Also
 --------

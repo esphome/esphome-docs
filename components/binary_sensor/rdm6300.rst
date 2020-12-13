@@ -70,6 +70,17 @@ unsigned integer.
               topic: rdm6300/tag
               payload: !lambda 'return uint32_to_string(x);'
 
+A tag scanned event can also be sent to the Home Assistant tag component
+using :ref:`api-homeassistant_tag_scanned_action`.
+
+.. code-block:: yaml
+
+    rdm6300:
+      # ...
+      on_tag:
+        then:
+          - homeassistant.tag_scanned: !lambda 'return uint32_to_string(x);'
+
 .. _rdm6300-tag:
 
 NFC/RFID Tag

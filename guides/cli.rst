@@ -11,7 +11,7 @@ ESPHome's command line interface always has the following format
 
 .. code-block:: console
 
-    esphome <CONFIGURATION...> <COMMAND> [ARGUMENTS]
+    esphome [OPTIONS] <CONFIGURATION...> <COMMAND> [ARGUMENTS]
 
 .. note::
 
@@ -22,6 +22,30 @@ ESPHome's command line interface always has the following format
 
         esphome livingroom.yaml kitchen.yaml run
 
+``--verbose`` Option
+--------------------
+
+.. option:: -v|--verbose
+
+    Enable verbose esphome logs.
+
+``--quiet`` Option
+------------------
+
+.. option:: -q|--quiet
+
+    Disable all esphome logs.
+
+``--substitution`` Option
+-------------------------
+
+*(can be issued multiple times)*
+
+.. option:: -s|--substitution KEY VALUE
+
+    Defines or overrides substitution KEY with value VALUE.
+
+Please see :ref:`command line substitutions <command-line-substitutions>` for details.
 
 ``run`` Command
 ---------------
@@ -91,7 +115,7 @@ The ``esphome <CONFIG> upload`` validates the configuration and uploads the most
 
 .. option:: --upload-port UPLOAD_PORT
 
-    Manually specify the upload port/ip to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
 
 .. option:: --host-port HOST_PORT
 
@@ -127,7 +151,7 @@ See :ref:`mqtt-using_with_home_assistant`.
 
 .. program:: esphome wizard
 
-The ``esphome <CONFIG> wizard`` command starts the esphome configuration creation wizard.
+The ``esphome <CONFIG> wizard`` command starts the ESPHome configuration creation wizard.
 
 ``mqtt-fingerprint`` Command
 ----------------------------
@@ -164,7 +188,7 @@ node configuration file. This is useful if you're not using MQTT discovery.
 
 .. program:: esphome dashboard
 
-The ``esphome <CONFIG> dashboard`` command starts the esphome dashboard server for using esphome
+The ``esphome <CONFIG> dashboard`` command starts the ESPHome dashboard server for using ESPHome
 through a graphical user interface.
 
 .. option:: --port PORT

@@ -17,7 +17,7 @@ The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain
 ESPHome. Communication is done with two GPIO pins (DI and DCKI) and multiple
 driver chips can be chained. There are two models with different number of
 output channels (MY9291 with 4 channels and MY9231 with 3 channels). They are
-popular driver chips used in smart light blubs:
+popular driver chips used in smart light bulbs:
 
 - Sonoff B1 (MY9231)
 - Ai-Thinker AiLight WiFi light bulb (MY9291)
@@ -60,7 +60,7 @@ Configuration variables:
 Sonoff B1 configuration example
 -------------------------------
 
-This component can be used with a Sonoff B1 smart light blub. To flash
+This component can be used with a Sonoff B1 smart light bulb. To flash
 the Sonoff B1, open the plastic cover and connect/solder wires to the
 PCB pads (3.3V, RX, TX, GND, GPIO0). If you connect GPIO0 to GND
 during power up, the device enters flash mode. For more information
@@ -121,6 +121,56 @@ complete configuration for a Sonoff B1 looks like:
         warm_white: output_warm_white
         cold_white_color_temperature: 6500 K
         warm_white_color_temperature: 2800 K
+
+And here is a complete configuration for the AiThinker AiLight:
+
+.. code-block:: yaml
+
+    esphome:
+      name: <NAME_OF_NODE>
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: <YOUR_SSID>
+      password: <YOUR_WIFI_PASSPHRASE>
+
+    api:
+
+    logger:
+
+    ota:
+      password: <YOUR_OTA_PASSWORD>
+
+    my9231:
+      data_pin: GPIO13
+      clock_pin: GPIO15
+      num_channels: 4
+      num_chips: 1
+      bit_depth: 8
+
+    output:
+      - platform: my9231
+        id: output_red
+        channel: 3
+      - platform: my9231
+        id: output_green
+        channel: 2
+      - platform: my9231
+        id: output_blue
+        channel: 1
+      - platform: my9231
+        id: output_cold_white
+        channel: 0
+
+    light:
+      - platform: rgbw
+        name: <LIGHT_NAME>
+        red: output_red
+        green: output_green
+        blue: output_blue
+        white: output_cold_white
+
 
 .. _my9231-output:
 

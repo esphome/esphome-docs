@@ -9,7 +9,7 @@ Ultrasonic Distance Sensor
 The ultrasonic distance sensor allows you to use simple ultrasonic
 sensors like the HC-SR04
 (`datasheet <https://www.electroschematics.com/wp-content/uploads/2013/07/HC-SR04-datasheet-version-2.pdf>`__,
-`sparkfun <https://www.sparkfun.com/products/13959>`__) with ESPHome
+`SparkFun <https://www.sparkfun.com/products/13959>`__) with ESPHome
 to measure distances. These sensors usually can’t measure anything more
 than about two meters and may sometimes make some annoying clicking
 sounds.
