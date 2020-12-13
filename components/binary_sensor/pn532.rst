@@ -86,8 +86,6 @@ The parameter ``x`` this trigger provides is of type ``std::string`` and is the 
               topic: pn532/tag
               payload: !lambda 'return x;'
 
-.. _pn532-tag:
-
 Alternatively you could also send the value directly to Home Assistant via a :doc:`template sensor </components/sensor/template>`.
 
 .. code-block:: yaml
