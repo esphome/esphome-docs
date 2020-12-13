@@ -396,7 +396,12 @@ It can sometimes take some time for the first BLE broadcast to be received. Once
 Obtaining The Bindkey
 ---------------------
 
-To set up an encrypted device such as the LYWSD03MMC (with Xiaomi stock firmware) and CGD1, you first need to obtain the bind key. The ``xiaomi_ble`` sensor component is not able to automatically generate a bind key so other workarounds are necessary.
+To set up an encrypted device such as the LYWSD03MMC or CGD1, you first need to obain the bind key. The ``xiaomi_ble`` sensor component is not able to automatically generate a bind key, so you need a different option. 
+
+The easiest method (confirmed to work for LYWSD03MMC) is to use the `Telink flasher method <https://github.com/atc1441/ATC_MiThermometer>`__. The accompanying `video
+<https://www.youtube.com/watch?v=NXKzFG61lNs>`_ shows how to wirelessly flash a LYWSD03MMC, or how to obtain the bind key of the stock firmware (watch till around 13:10). The custom firmware allows you to change several settings of the device, including the smiley and the advertising interval. Keep in mind that when flashing the custom firmware, you need to enable the 'Advertising Type' to be 'Mi Like' and to give ESPHome a dummy bind key, as it still expects one even though the custom firmware does not encrypt the data.
+
+The other option is to use the original Mi Home app to add the sensor once. While adding the device, a new key is generated and uploaded into the Xiaomi cloud and to the device itself. Currently a chinese server needs to be selected as the rest of the world doesn't support most of these devices yet. Once generated, the key will not change again until the device is removed and re-added in the Xiaomi app.
 
 LYWSD03MMC
 **********
