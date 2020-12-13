@@ -59,7 +59,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
 - **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
-  *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
+  *False*: Standard 11 bits IDs, *True*: Extended 29 bits ID
 - **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
 
     - 5KBPS
