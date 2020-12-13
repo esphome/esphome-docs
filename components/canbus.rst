@@ -187,7 +187,7 @@ For wireing up the MSP2515 please refer to the section below.
                 id: light_1
                 brightness: !lambda "return (float) x[0]/255;"
 
-Wireing options
+Wiring options
 ---------------
 Easiest approach is to just use fully assembled boards and just add one resistor in the MISO line.
 This runs MOSI, SCK and CS out of specification which is nearly never a problem.
