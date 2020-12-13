@@ -18,11 +18,11 @@ and ULN2003 (`datasheet <http://www.ti.com/lit/ds/symlink/uln2003a.pdf>`__) are 
 
 A4988 Configuration
 -------------------
-(Put this code into the configuration file on ESPhome for this device)
+
+Put this code into the configuration file on ESPhome for this device.
 
 .. code-block:: yaml
 
-    # Example esphome device configuration entry
     stepper:
       - platform: a4988
         id: my_stepper
@@ -69,7 +69,8 @@ Configuration variables:
 
 ULN2003 Configuration
 ---------------------
-(Put this code into the configuration file on ESPHome for this device)
+
+Put this code into the configuration file on ESPHome for this device.
 
 .. code-block:: yaml
 
