@@ -10,7 +10,7 @@ TECKIN SB50 LED Bulb
     :align: center
     :width: 50.0%
 
-.. waring::
+.. warning::
 
     It is not currently possible to flash these bulbs with ``tuya-convert`` due to shipping with an updated/patched firmware.
     Please check `this issue <https://github.com/ct-Open-Source/tuya-convert/issues/483>`__ for details and progress on a workaround.
