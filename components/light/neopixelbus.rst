@@ -65,6 +65,7 @@ Configuration variables:
   - ``BIT_BANG`` (can flicker a bit)
 
 - **num_leds** (**Required**, int): The number of LEDs attached.
+- **invert** (*Optional*, boolean): Invert data output, for use with n-type transistor. Defaults to ``no``.  
 
 **Pin Options:** Some chipsets have two data pins to connect, others only have one.
 If you have one line, only specify ``pin``, otherwise specify both ``clock_pin`` and ``data_pin``.

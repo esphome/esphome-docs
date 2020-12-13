@@ -95,6 +95,29 @@ not a lot of components or stuff in the way apart from the 2 wires on the back).
 two other pins must be shorted throughout the flashing process by a jumper or a breadboard cable.
 (Remember to remove it after flashing)
 
+Add A PIR(Motion) Sensor
+------------------------
+
+It's possible to use the header that was soldered on for flashing as an input.
+The example below uses the TX pin as a PIR motion sensor input:
+
+.. figure:: images/h801-pir_sensor.jpg
+    :align: center
+    :width: 80.0%
+
+H801 shown with PIR connected to header pins
+
+The following can be appended to the YAML file for your H801 to configure the TX pin as a motion 
+sensor input. 
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        pin: GPIO3
+        name: "GPIO3-TX Motion"
+        device_class: motion
+
 See Also
 --------
 

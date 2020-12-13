@@ -61,6 +61,10 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+.. note::
+
+    If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
+    
 GPS Time Source
 ---------------
 
@@ -252,7 +256,7 @@ Configuration variables:
 - **hours** (*Optional*, string): Specify for which hours of the day the automation will trigger.
   Defaults to ``*`` (all hours). Range is from 0 to 23.
 - **days_of_month** (*Optional*, string): Specify for which days of the month the automation will trigger.
-  Defaults to ``*`` (all hours). Range is from 1 to 31.
+  Defaults to ``*`` (all days). Range is from 1 to 31.
 - **months** (*Optional*, string): Specify for which months of the year to trigger.
   Defaults to ``*`` (all months). The month names JAN to DEC are automatically substituted.
   Range is from 1 (January) to 12 (December).

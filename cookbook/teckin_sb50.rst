@@ -10,8 +10,13 @@ TECKIN SB50 LED Bulb
     :align: center
     :width: 50.0%
 
-The Teckin SB50 Bulb's are a great option for lighting that can be flashed with tuya-convert. More details can be found at tuya-convert `github page <https://github.com/ct-Open-Source/tuya-convert>`__.
-Below is the ESPHome configuration file that will get you up and running. This assumes you have a secret.yaml with ssid, password, api_password and ota_password keys.
+.. warning::
+
+    It is not currently possible to flash these bulbs with ``tuya-convert`` due to shipping with an updated/patched firmware.
+    Please check `this issue <https://github.com/ct-Open-Source/tuya-convert/issues/483>`__ for details and progress on a workaround.
+
+The Teckin SB50 Bulb's are a great option for lighting that could previously be flashed with tuya-convert. More details can be found at tuya-convert `github page <https://github.com/ct-Open-Source/tuya-convert>`__.
+Below is the ESPHome configuration file that will get you up and running. This assumes you have a ``secret.yaml`` with ssid, password, api_password and ota_password keys.
 
 .. code-block:: yaml
 
@@ -70,6 +75,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         cold_white: output_cold_white
         cold_white_color_temperature: 6200 K
         warm_white_color_temperature: 2800 K
+        color_interlock: true # avoids simultaneous RGB and W/W
 
 
 See Also

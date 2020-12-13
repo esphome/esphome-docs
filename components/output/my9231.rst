@@ -122,6 +122,56 @@ complete configuration for a Sonoff B1 looks like:
         cold_white_color_temperature: 6500 K
         warm_white_color_temperature: 2800 K
 
+And here is a complete configuration for the AiThinker AiLight:
+
+.. code-block:: yaml
+
+    esphome:
+      name: <NAME_OF_NODE>
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: <YOUR_SSID>
+      password: <YOUR_WIFI_PASSPHRASE>
+
+    api:
+
+    logger:
+
+    ota:
+      password: <YOUR_OTA_PASSWORD>
+
+    my9231:
+      data_pin: GPIO13
+      clock_pin: GPIO15
+      num_channels: 4
+      num_chips: 1
+      bit_depth: 8
+
+    output:
+      - platform: my9231
+        id: output_red
+        channel: 3
+      - platform: my9231
+        id: output_green
+        channel: 2
+      - platform: my9231
+        id: output_blue
+        channel: 1
+      - platform: my9231
+        id: output_cold_white
+        channel: 0
+
+    light:
+      - platform: rgbw
+        name: <LIGHT_NAME>
+        red: output_red
+        green: output_green
+        blue: output_blue
+        white: output_cold_white
+
+
 .. _my9231-output:
 
 Driver Output
