@@ -2,24 +2,24 @@ Sim800L Component
 =================
 
 .. seo::
-    :description: Instructions for setting up the SIM800L gsm module to send and receive SMS in ESPHome.
+    :description: Instructions for setting up the SIM800L GSM module to send and receive SMS in ESPHome.
     :image: sim800l.jpg
     :keywords: SMS SIM800L GSM
 
 The ``SIM800L`` Component provides the ability to send and receive SMS text messages. The device must be
-connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line. 
-The uart bus must be configured at the same speed of the module which is by default 9600bps. 
+connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line.
+The UART bus must be configured at the same speed of the module which is by default 9600bps.
 The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
 
 .. warning::
 
     If you are using the :doc:`logger` make sure you are not using the same pins for ``TX`` and ``RX`` or
-    otherwise disable the uart logging with the ``baud_rate: 0`` option.
+    otherwise disable the UART logging with the ``baud_rate: 0`` option.
 
 .. note::
 
     This module requires a power supply between 3.8V and 4.2V that can handle current spikes up
-    to 2 amps, it will not work by powering from the same 3.3v power source of the ESP. However you can
+    to 2 amps, it will not work by powering from the same 3.3V power source of the ESP. However you can
     connect ``TX`` and ``RX`` lines directly without any level shifter.
 
 .. figure:: images/sim800l-full.jpg
@@ -40,20 +40,23 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
 
+    logger:
+      baud_rate: 0 # disable uart logger on esp 8266
+
 Configuration variables:
 ------------------------
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **on_sms_received** (*Optional*, :ref:`Automation <automation>`): An action to be
-  performed when a sms is received. See :ref:`sim800l-on_sms_received`.
+  performed when an SMS is received. See :ref:`sim800l-on_sms_received`.
 
 .. _sim800l-on_sms_received:
 
 ``on_sms_received`` Trigger
 ---------------------------
 
-With this configuration option you can write complex automations whenever a sms message
+With this configuration option you can write complex automations whenever an SMS message
 is received. To use the message content, use a :ref:`lambda <config-lambda>`
 template, the message content and the sender phone number are available inside that lambda
 under the variables named ``message`` and ``sender`` respectively.
@@ -94,7 +97,7 @@ Configuration options:
 - **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The message recipient.
   number.
 - **message** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Sim800L if you have multiple components.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
 
 .. note::
 
@@ -108,8 +111,8 @@ Configuration options:
 Getting started with Home Assistant
 -----------------------------------
 
-The following code will get you up and running with a configuration updating received messages 
-on Home Assistant and will also setup a service so you can send messages with your Sim800L.
+The following code will get you up and running with a configuration updating received messages
+on Home Assistant and will also setup a service so you can send messages with your SIM800L.
 
 .. code-block:: yaml
 
@@ -143,7 +146,7 @@ on Home Assistant and will also setup a service so you can send messages with yo
           id(sms_sender).publish_state(sender);
           id(sms_message).publish_state(message);
 
-Now your latest received sms and sender number will be displayed by the text sensors.
+Now your latest received SMS and sender number will be displayed by the text sensors.
 
 To trigger the automation from Home Assistant you can invoke the service with this code:
 

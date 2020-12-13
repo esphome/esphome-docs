@@ -12,6 +12,10 @@ segments can be individually controlled.
 
 Similarly, a single light strip can be partitioned into multiple partitions with this integration.
 
+If you want to do this, you may run into strange behavior like that the original light entity (e.g., ``fastled_clockless``)
+may be conflicting with the partition. For better control over which segments of the strip will overlap each other,
+mark the original ``light`` as ``internal: true``.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -31,6 +35,8 @@ Similarly, a single light strip can be partitioned into multiple partitions with
       # Example for light segment source
       - platform: fastled_clockless
         id: light2
+        # You may want (but don't need) this
+        internal: true
         # Other settings
 
 Configuration variables:

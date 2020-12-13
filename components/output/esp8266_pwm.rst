@@ -7,7 +7,7 @@ ESP8266 Software PWM Output
 
 The ESP8266 Software PWM platform allows you to use a software PWM on
 the pins GPIO0-GPIO16 on your ESP8266. Note that this is a software PWM,
-so there can be some flickering during periods of high wifi activity. Hardware PWMs
+so there can be some flickering during periods of high WiFi activity. Hardware PWMs
 like the one on the ESP32 (see :doc:`ledc`) are preferred.
 
 .. code-block:: yaml

@@ -23,12 +23,12 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): This is the name of the node. It
-  should always be unique in your esphome network. May only contain lowercase
+  should always be unique in your ESPhome network. May only contain lowercase
   characters, digits and underscores. See :ref:`esphome-changing_node_name`.
 - **platform** (**Required**, string): The platform your board is on,
   either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
 - **board** (**Required**, string): The board ESPHome should
-  specify for platformio. For the ESP32, choose the appropriate one
+  specify for PlatformIO. For the ESP32, choose the appropriate one
   from `this list <http://docs.platformio.org/en/latest/platforms/espressif32.html#boards>`__
   and use `this list <http://docs.platformio.org/en/latest/platforms/espressif8266.html#boards>`__
   for ESP8266-based boards. *This only affects pin aliases and some internal settings*, if unsure
@@ -36,15 +36,13 @@ Configuration variables:
 
 Advanced options:
 
-- **arduino_version** (*Optional*): The version of the arduino framework to link the project against.
+- **arduino_version** (*Optional*): The version of the Arduino framework to link the project against.
   See :ref:`esphome-arduino_version`.
 - **build_path** (*Optional*, string): Customize where ESPHome will store the build files
-  for your node. By default, ESPHome puts all platformio project files under a folder ``<NODE_NAME>/``,
+  for your node. By default, ESPHome puts all PlatformIO project files under a folder ``<NODE_NAME>/``,
   but you can customize this behavior using this option.
-- **platformio_options** (*Optional*, mapping): Additional options to pass over to platformio in the
+- **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
-- **use_custom_code** (*Optional*, boolean): Whether to configure the project for writing custom components.
-  This sets up some flags so that custom code should compile correctly
 - **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
   is in. Should have file extension ``.h`` - See :ref:`esphome-includes` for more info.
@@ -71,10 +69,10 @@ Automations:
 ``arduino_version``
 -------------------
 
-ESPHome uses the arduino framework internally to handle all low-level interactions like
-initializing the WiFi driver and so on. Unfortunately, every arduino framework version often
+ESPHome uses the Arduino framework internally to handle all low-level interactions like
+initializing the WiFi driver and so on. Unfortunately, every Arduino framework version often
 has its own quirks and bugs, especially concerning WiFi performance. With the ``arduino_version``
-option you can tell ESPHome which arduino framework to use for compiling.
+option you can tell ESPHome which Arduino framework to use for compiling.
 
 .. code-block:: yaml
 
@@ -94,21 +92,29 @@ option you can tell ESPHome which arduino framework to use for compiling.
       # Use a specific version
       arduino_version: 2.3.0
 
-For the ESP8266, you currently can manually pin the arduino version to these values (see the full
-list of arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
+For the ESP8266, you currently can manually pin the Arduino version to these values (see the full
+list of Arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
+* `2.7.2 <https://github.com/esp8266/Arduino/releases/tag/2.7.2>`__ (default)
+* `2.7.1 <https://github.com/esp8266/Arduino/releases/tag/2.7.1>`__
+* `2.7.0 <https://github.com/esp8266/Arduino/releases/tag/2.7.0>`__
+* `2.6.3 <https://github.com/esp8266/Arduino/releases/tag/2.6.3>`__
+* `2.6.2 <https://github.com/esp8266/Arduino/releases/tag/2.6.2>`__
+* `2.6.1 <https://github.com/esp8266/Arduino/releases/tag/2.6.1>`__
 * `2.5.2 <https://github.com/esp8266/Arduino/releases/tag/2.5.2>`__
 * `2.5.1 <https://github.com/esp8266/Arduino/releases/tag/2.5.1>`__
 * `2.5.0 <https://github.com/esp8266/Arduino/releases/tag/2.5.0>`__
-* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (default)
+* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__
 * `2.4.1 <https://github.com/esp8266/Arduino/releases/tag/2.4.1>`__
 * `2.4.0 <https://github.com/esp8266/Arduino/releases/tag/2.4.0>`__
-* `2.3.0 <https://github.com/esp8266/Arduino/releases/tag/2.3.0>`__ (used by Tasmota etc)
+* `2.3.0 <https://github.com/esp8266/Arduino/releases/tag/2.3.0>`__
 
-For the ESP32, there are these arduino `framework versions <https://github.com/espressif/arduino-esp32/releases>`__:
+For the ESP32, there are these Arduino `framework versions <https://github.com/espressif/arduino-esp32/releases>`__:
 
+- `1.0.4 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.4>`__ (default)
+- `1.0.3 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.3>`__
 - `1.0.2 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.2>`__
-- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default)
+- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__
 - `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__
 
 .. _esphome-esp8266_restore_from_flash:
@@ -153,7 +159,7 @@ is already set up. You can however change this using the ``priority`` parameter.
 Configuration variables:
 
 - **priority** (*Optional*, float): The priority to execute your custom initialization code. A higher value
-  means a high priority and thus also your code being executed earlier. Please note this is an esphome-internal
+  means a high priority and thus also your code being executed earlier. Please note this is an ESPhome-internal
   value and any change will not be marked as a breaking change. Defaults to ``-10``. Priorities (you can use any value between them too):
 
   - ``800.0``: This is where all hardware initialization of vital components is executed. For example setting switches
@@ -208,11 +214,11 @@ This automation will be triggered on every ``loop()`` iteration (usually around 
 ``platformio_options``
 ----------------------
 
-Platformio supports a number of options in its ``platformio.ini`` file. With the ``platformio_options``
-parameter you can tell ESPHome what options to pass into the ``env`` section of the platformio file
+PlatformIO supports a number of options in its ``platformio.ini`` file. With the ``platformio_options``
+parameter you can tell ESPHome what options to pass into the ``env`` section of the PlatformIO file
 (Note you can also do this by editing the ``platformio.ini`` file manually).
 
-You can view a full list of platformio options here: https://docs.platformio.org/en/latest/projectconf/section_env.html
+You can view a full list of PlatformIO options here: https://docs.platformio.org/en/latest/projectconf/section_env.html
 
 .. code-block:: yaml
 
@@ -228,10 +234,10 @@ You can view a full list of platformio options here: https://docs.platformio.org
 ``includes``
 ------------
 
-With ``includes`` you can include source files in the generated platformio project.
+With ``includes`` you can include source files in the generated PlatformIO project.
 All files declared with this option are copied to the project each time it is compiled.
 
-You can always look at the generated platformio project (``<CONFIG_DIR>/<NODENAME>``) to see what
+You can always look at the generated PlatformIO project (``<CONFIG_DIR>/<NODENAME>``) to see what
 is happening - and if you want you can even copy the include files directly into the ``src/`` folder.
 The ``includes`` option is only a helper option that does that for you.
 

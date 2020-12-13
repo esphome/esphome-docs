@@ -45,7 +45,7 @@ Configuration variables:
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
 - **use_address** (*Optional*, string): Manually override what address to use to connect
-  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previusly configured IP address.
+  to the ESP. Defaults to auto-generated value. Example, if you have changed your static IP and want to flash OTA to the previously configured IP address.
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
@@ -68,6 +68,7 @@ Configuration variables:
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
 
+- **output_power** (*Optional*, string): The amount of TX power for the WiFi interface from 10dB to 20.5dB. Default for ESP8266 is 20dB, 20.5dB might cause unexpected restarts.
 - **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
@@ -82,7 +83,14 @@ ESPHome has an optional "Access Point Mode". If you include ``ap:``
 in your wifi configuration, ESPHome will automatically set up an access point that you
 can connect to. Additionally, you can specify both a "normal" station mode and AP mode at the
 same time. This will cause ESPHome to only enable the access point when no connection
-to the wifi router can be made.
+to the WiFi router can be made.
+
+.. code-block:: yaml
+
+    wifi:
+      ap:
+        ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
 
 .. _wifi-manual_ip:
 
@@ -165,6 +173,7 @@ Configuration variables:
 
 - **ssid** (*Optional*, string): The SSID or WiFi network name.
 - **password** (*Optional*, string): The password to use for authentication. Leave empty for no password.
+- **eap** (*Optional*): See :ref:`eap`.
 - **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.
 - **bssid** (*Optional*, string): Optionally define a BSSID (MAC-Address) of the network to connect to.
@@ -174,6 +183,44 @@ Configuration variables:
 - **priority** (*Optional*, float): The priority of this network. After each time, the network with
   the highest priority is chosen. If the connection fails, the priority is decreased by one.
   Defaults to ``0``.
+
+.. _eap:
+
+Enterprise Authentication
+-------------------------
+
+WPA2_EAP Enterprise Authentication is supported on ESP32s.
+In order to configure this feature you must use the :ref:`wifi-networks` style configuration.
+The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS.
+These are advanced settings and you will usually need to consult your enterprise network administrator.
+
+.. code-block:: yaml
+
+    # Example EAP configuration
+    wifi:
+      networks:
+      - ssid: EAP-TTLS_EnterpriseNetwork
+        eap:
+          username: bob
+          password: VerySafePassword
+      - ssid: EAP-TLS_EnterpriseNetwork
+        eap:
+          identity: bob
+          certificate_authority: ca_cert.pem
+          certificate: cert.pem
+          key: key.pem
+
+Configuration variables:
+
+- **identity** (*Optional*, string): The outer identity to pass to the EAP authentication server.
+  This is required for EAP-TLS.
+- **username** (*Optional*, string): The username to present to the authenticating server.
+- **password** (*Optional*, string): The password to present to the authentication server.
+  For EAP-TLS this password may be set to decrypt to private key instead.
+- **certificate_authority** (*Optional*, string): Path to a PEM encoded certificate to use when validating the authentication server.
+- **certificate** (*Optional*, string): Path to a PEM encoded certificate to use for EAP-TLS authentication.
+- **key** (*Optional*, string): Path to a PEM encoded private key matching ``certificate`` for EAP-TLS authentication.
+  Optionally encrypted with ``password``.
 
 .. _wifi-connected_condition:
 

@@ -308,13 +308,25 @@ Sonoff S31
 
 See :doc:`/components/sensor/cse7766` for measuring power
 
+Sonoff S55
+----------
+
+.. pintable::
+
+    GPIO0, Button (inverted),
+    GPIO12, Relay and Red LED,
+    GPIO13, Blue LED (inverted),
+    GPIO1, UART TX pin (for external sensors)
+    GPIO3, UART RX pin (for external sensors)
+
+
 Sonoff Mini
 -----------
 
 .. pintable::
 
     GPIO0, Button (inverted),
-    GPIO4, SW Input,
+    GPIO4, SW Input (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
     GPIO16, Optional sensor

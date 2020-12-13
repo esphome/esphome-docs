@@ -10,7 +10,7 @@ Time
 
 The ``time`` component allows you to set up real time clock time sources for ESPHome.
 You can then get the current time in :ref:`lambdas <config-lambda>`.
-Currently only sntp (internet-based), homeassistant time and GPS sources are supported.
+Currently only SNTP (internet-based), Home Assistant and GPS time sources are supported.
 
 Home Assistant Time Source
 --------------------------
@@ -29,10 +29,10 @@ to Home Assistant will be used to periodically synchronize the current time.
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
-- **timezone** (*Optional*, string): Manually tell ESPHome what timezone to use with `this format
+- **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
   or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
-  <Region>/<City>. ESPHome tries to automatically infer the timezone string based on the timezone of the computer
+  <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
   that is running ESPHome, but this might not always be accurate.
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
@@ -50,17 +50,21 @@ SNTP Configuration
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
-- **timezone** (*Optional*, string): Manually tell ESPHome what timezone to use with `this format
+- **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the
   format is quite complicated) or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__
   in the form <Region>/<City>.
-  ESPHome tries to automatically infer the timezone string based on the timezone of the computer that is running
+  ESPHome tries to automatically infer the time zone string based on the time zone of the computer that is running
   ESPHome, but this might not always be accurate.
 - **servers** (*Optional*, list of strings): Choose up to 3 NTP servers that are used for the clock source.
   Defaults to ``0.pool.ntp.org``, ``1.pool.ntp.org`` and ``2.pool.ntp.org``
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+.. note::
+
+    If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
+    
 GPS Time Source
 ---------------
 
@@ -76,10 +80,10 @@ You first need to set up the :doc:`GPS </components/gps>` component.
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
-- **timezone** (*Optional*, string): Manually tell ESPHome what timezone to use with `this format
+- **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
   <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
   or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
-  <Region>/<City>. ESPHome tries to automatically infer the timezone string based on the timezone of the computer
+  <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
   that is running ESPHome, but this might not always be accurate.
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
@@ -87,7 +91,7 @@ Configuration variables:
 Use In Lambdas
 --------------
 
-To get the current local time with the timezone applied
+To get the current local time with the time zone applied
 in :ref:`lambdas <config-lambda>`, just call the ``.now()`` method like so:
 
 .. code-block:: cpp
@@ -252,7 +256,7 @@ Configuration variables:
 - **hours** (*Optional*, string): Specify for which hours of the day the automation will trigger.
   Defaults to ``*`` (all hours). Range is from 0 to 23.
 - **days_of_month** (*Optional*, string): Specify for which days of the month the automation will trigger.
-  Defaults to ``*`` (all hours). Range is from 1 to 31.
+  Defaults to ``*`` (all days). Range is from 1 to 31.
 - **months** (*Optional*, string): Specify for which months of the year to trigger.
   Defaults to ``*`` (all months). The month names JAN to DEC are automatically substituted.
   Range is from 1 (January) to 12 (December).

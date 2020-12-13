@@ -13,7 +13,8 @@ SPI is a very common high-speed protocol for a lot of devices. The SPI bus usual
 - **CLK**: Is used to tell the receiving device when to read data. All devices on the bus can
   share this line. Sometimes also called ``SCK``.
 - **CS** (chip select): Is used to tell the receiving device when it should listen for data. Each device has
-  an individual CS line. Sometimes also called ``SS``.
+  an individual CS line. Sometimes also called ``SS``. If the SPI bus has a single device, its CS pin
+  can somtimes be connected to ground to tell it that it is allways selected.
 - **MOSI** (also DIN): Is used to send data from the master (the ESP) to the receiving device. All devices on the bus can
   share this line.
 - **MISO** (also DOUT): Is used to receive data. All devices on the bus can
@@ -38,8 +39,8 @@ Configuration variables:
 ------------------------
 
 - **clk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for the clock line of the SPI bus.
-- **mosi_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the mosi line of the SPI bus.
-- **miso_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the miso line of the SPI bus.
+- **mosi_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MOSI line of the SPI bus.
+- **miso_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the MISO line of the SPI bus.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this SPI hub if you need multiple SPI hubs.
 
 See Also

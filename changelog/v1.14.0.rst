@@ -185,6 +185,86 @@ Release 1.14.3 - November 17
 - esphome: Revert ESP32 BLE Tracker defaults :esphomepr:`863`
 - esphome: Change ESP8266 default wifi output power :esphomepr:`862`
 
+Release 1.14.4 - June 5
+-----------------------
+
+- docs: Added Android Beacon MQTT app :docspr:`417` by :ghuser:`turbo-lab`
+- esphome: fix the problem of missing part of advertising packet when activ… :esphomepr:`868` by :ghuser:`warpzone`
+- docs: dfplayer updates :docspr:`421` by :ghuser:`glmnet`
+- docs: Fix time id conflict :docspr:`418` by :ghuser:`guiguid`
+- docs: Cookbook for Sonoff Light Switches :docspr:`407` by :ghuser:`bensuffolk`
+- esphome: fix climate_ir on receive optional :esphomepr:`897` by :ghuser:`glmnet`
+- esphome: Fix MQTT logs Int or String expected Python 3 :esphomepr:`898`
+- esphome: web_server call setup_controller :esphomepr:`899`
+- esphome: Ignore ESP32 Camera unknown framesizes :esphomepr:`901`
+- esphome: Update ESP32 BLE ADV parse to match BLE spec :esphomepr:`904`
+- esphome: Add ESP8266 core v2.6.2 :esphomepr:`905`
+- docs: Add doc for color correction of rgb* lights :docspr:`431` by :ghuser:`nickw444`
+- docs: Use .timestamp instead of .time in time docs :docspr:`435` by :ghuser:`davidjb`
+- docs: DIY Examples : Added SW420 Vibration Sensor with Remote Notifications :docspr:`436` by :ghuser:`rmooreID`
+- docs: Fix broken link :docspr:`437` by :ghuser:`richrd`
+- docs: Update getting_started_command_line.rst :docspr:`461` by :ghuser:`CyanoFresh`
+- docs: Added degree symbol output on ~ for MAX7219 :docspr:`376` by :ghuser:`cyberplant`
+- docs: change "tracker" to "presence" :docspr:`465` by :ghuser:`spattinson`
+- docs: On_sunrise was listed twice in description. :docspr:`464` by :ghuser:`Mechotronic`
+- docs: Patch 3 :docspr:`460` by :ghuser:`Valcob`
+- docs: fixed non working example :docspr:`381` by :ghuser:`danibjor`
+- docs: Added my custom component, now with correct syntax :docspr:`454` by :ghuser:`nldroid`
+- docs: faq reboot_timeout :docspr:`472` by :ghuser:`glmnet`
+- docs: my9231->bit_depth: parameter name and sonoff B1 :docspr:`489` by :ghuser:`anduchs`
+- docs: New DIY project about Cat Feeder :docspr:`439` by :ghuser:`rubengargar`
+- docs: Update diy.rst :docspr:`493` by :ghuser:`brianhanifin`
+- docs: Add my ESPHome configs :docspr:`492` by :ghuser:`nuttytree`
+- docs: Brightness feature not included in doc. :docspr:`445` by :ghuser:`tubalainen`
+- docs: remove apostrophe :docspr:`504` by :ghuser:`perjury`
+- docs: Add UART-based Mitsibishi HeatPump Component :docspr:`506` by :ghuser:`geoffdavis`
+- docs: Update pzemac.rst :docspr:`495` by :ghuser:`Francisk0`
+- docs: Fix link syntax :docspr:`507` by :ghuser:`geoffdavis`
+- docs: Typo fix :docspr:`498` by :ghuser:`napieraj`
+- docs: Fix some typos in Sonoff basic light switch :docspr:`480` by :ghuser:`kaykayehnn`
+- docs: Wrong IC :docspr:`499` by :ghuser:`Tuckie`
+- docs: small mistype fix :docspr:`477` by :ghuser:`trylika`
+- docs: Update sonoff.rst :docspr:`470` by :ghuser:`TBobsin`
+- docs: Update sonoff-t1-3.rst :docspr:`497` by :ghuser:`RockBomber`
+- docs: remove uppercase allowed in names :docspr:`487` by :ghuser:`truglodite`
+- docs: Update ssd1306.rst :docspr:`481` by :ghuser:`Valcob`
+- docs: Update board for Sonoff and link to Tasmota :docspr:`484` by :ghuser:`sillyfrog`
+- docs: Update migrate_sonoff_tasmota.rst :docspr:`483` by :ghuser:`jasonehines`
+- docs: added rgbww light using pwm driver :docspr:`482` by :ghuser:`morph027`
+- docs: add a note about the log level of dump: all :docspr:`475` by :ghuser:`drewp`
+- docs: ifan02 cookbook :docspr:`218` by :ghuser:`quazzie`
+- docs: Add documentation for cwww and rgbww constant_brightness variables. :docspr:`530` by :ghuser:`kroimon`
+- docs: remove link to Adafruit :docspr:`531` by :ghuser:`ebaschiera`
+- docs: Revert "Add documentation for cwww and rgbww constant_brightness vari… :docspr:`539` by :ghuser:`glmnet`
+- docs: Add Stepper Motor blinds to diy examples :docspr:`534` by :ghuser:`icarome`
+- docs: Update sonoff.rst :docspr:`549` by :ghuser:`MrZetor`
+- docs: Improve LEDC documentation :docspr:`557` by :ghuser:`Skaronator`
+- docs: Update wifi.rst :docspr:`562` by :ghuser:`kbouchard111`
+- docs: Add unit_of_measurement to make graphing happens :docspr:`569` by :ghuser:`deftdawg`
+- docs: Simple grammar change. :docspr:`578` by :ghuser:`mnaz`
+- docs: Fix typos :docspr:`561` by :ghuser:`mje-nz`
+- docs: Adding example of how to use a buzzer :docspr:`570` by :ghuser:`declanshanaghy`
+- docs: Deleted Warning because the component is already tested :docspr:`615` by :ghuser:`deltazerorsan`
+- docs: Update datasheet URL on SHTCX page :docspr:`598` by :ghuser:`JeffResc`
+- docs: Update datagram URL on TX20 page :docspr:`599` by :ghuser:`JeffResc`
+- docs: Update datasheet URL on SCD30 page :docspr:`600` by :ghuser:`JeffResc`
+- docs: Update datasheet URL on STS3X page :docspr:`602` by :ghuser:`JeffResc`
+- docs: Update datasheet URL on SGP30 page :docspr:`601` by :ghuser:`JeffResc`
+- docs: Update Home Assistant custom component URL on contributing guide page :docspr:`603` by :ghuser:`JeffResc`
+- docs: Update WaveShare E-Paper URL on WaveShare E-Paper page :docspr:`597` by :ghuser:`JeffResc`
+- docs: Fix copy/paste error :docspr:`574` by :ghuser:`mniess`
+- docs: Update pulse_counter.rst :docspr:`609` by :ghuser:`m1ch`
+- docs: Add smart intercom blogpost :docspr:`621` by :ghuser:`frog32`
+- docs: Minor spelling :docspr:`622` by :ghuser:`AalianKhan`
+- docs: Added NEO Coolcam :docspr:`496` by :ghuser:`nldroid`
+- docs: pzemac energy support :docspr:`514` by :ghuser:`rradar`
+- docs: Revert "pzemac energy support" :docspr:`623` by :ghuser:`glmnet`
+- docs: Changed miflora platforms :docspr:`586` by :ghuser:`Guyohms`
+- docs: Update docs to reflect ssd1327 support :docspr:`500` by :ghuser:`igg`
+- docs: Typo: NEC -> Sony :docspr:`624` by :ghuser:`gitolicious`
+- docs: Not every nodeMCU board supports 12V :docspr:`626` by :ghuser:`Laess3r`
+- docs: Revert "Update docs to reflect ssd1327 support" :docspr:`634` by :ghuser:`glmnet`
+
 Notable Changes & New Features
 ------------------------------
 
@@ -226,7 +306,7 @@ Notable Changes & New Features
 - Add configurable ignore bits to rc_switch_raw codes (:esphomepr:`650` by :ghuser:`mtl010957`,
   :doc:`docs </components/remote_receiver>`).
 - New ``restore`` option has been added to :doc:`servos </components/servo>` (:esphomepr:`829`).
-- Add IR receiver support for coolix climate devices (:esphomepr:`645` by :ghuser:`glmnet`, :doc:`docs </components/climate/coolix>`).
+- Add IR receiver support for coolix climate devices (:esphomepr:`645` by :ghuser:`glmnet`, :doc:`docs </components/climate/ir_climate>`).
 - Add :ref:`calibrate_polynomial <sensor-calibrate_polynomial>` sensor filter (:esphomepr:`642`).
 - Allow setting the initial mode of HLW8012 sensors (:esphomepr:`611` by :ghuser:`brandond`, :doc:`docs </components/sensor/hlw8012>`).
 - Add tilt actions to :doc:`template cover </components/cover/template>` (:esphomepr:`577` by :ghuser:`mtl010957`).

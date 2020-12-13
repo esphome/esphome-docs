@@ -39,7 +39,7 @@ your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **temperature** (**Required**): The information for the temperature sensor.
+- **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
@@ -47,7 +47,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pressure** (**Required**): The information for the pressure sensor.
+- **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
@@ -55,7 +55,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **humidity** (**Required**): The information for the pressure sensor.
+- **humidity** (*Optional*): The information for the humidity sensor.
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.
@@ -63,14 +63,14 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **gas_resistance** (**Required**): The information for the gas sensor.
+- **gas_resistance** (*Optional*): The information for the gas sensor.
 
   - **name** (**Required**, string): The name for the gas resistance sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the i^2c address of
-  the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
+- **address** (*Optional*, int): Manually specify the I^2C address of
+  the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
   ``OFF``, ``1x``, ``3x``, ``7x``, ``15x``, ``31x``, ``63x`` and ``127x``. Defaults to ``OFF``.
 - **heater** (*Optional*): The settings for the internal heater for the gas sensor. Set this

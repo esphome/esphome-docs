@@ -15,12 +15,12 @@ DIY Light switch using a Sonoff Dual
     from following this guide.
 
     In some countries you may need specific qualifications before you can carry out such work in
-    a residentaial property.
+    a residential property.
 
 Please read up on :doc:`/cookbook/sonoff-basic-light-switch` to get the background and principals of
-the this project. Its all basically the same, but with a double switch.
+the this project. It's all basically the same, but with a double switch.
 
-So we will be using GPIO4 and GPIO14 for the two retractive switches, again they will both short to 0v
+So we will be using GPIO4 and GPIO14 for the two retractive switches, again they will both short to 0V
 when the switch is clicked.
 
 R1
@@ -159,21 +159,21 @@ The R1 version of the Dual controls the relays via the UART, so the code gets a 
         output: out_2
 
 
-In the above code block, there is a *secrets.yaml* file so that you have just one place to change wifi
+In the above code block, there is a *secrets.yaml* file so that you have just one place to change WiFi
 details for all your devices.
 
 The logger baud_rate: 0 is required to make sure the logged does not send any data over the UART or it would
 mess with the relays.
 
 Although not visible day to day, there is also the status LED configured so that it can be used when setting
-up / debugging. Also a configured binary sensor to give status incase you want to perform an action / alert
+up / debugging. Also a configured binary sensor to give status in case you want to perform an action / alert
 if the light switch disconnects for any reason.
 
 R2
 --
 
 This one is a lot simpler as it uses real GPIO for its relays. Please note this is untested, but should work!
-Its basically the same as the :doc:`T2 </cookbook/sonoff-t1-3>`
+It's basically the same as the :doc:`T2 </cookbook/sonoff-t1-3>`
 
 .. code-block:: yaml
 

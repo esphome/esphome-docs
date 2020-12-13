@@ -7,9 +7,9 @@ SX1509 16 channel I/O Expander with LED driver and keypad engine
 
 The SX1509 component allows you to expand your I/O capabilities:
 (`datasheet <https://www.semtech.com/uploads/documents/sx1509_evk_users_guide.pdf>`__,
-`Sparkfun`_) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
+`SparkFun`_) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
 
-Once configured, you can use any of the 16 pins as pins for your projects. 
+Once configured, you can use any of the 16 pins as pins for your projects.
 Within ESPHome they emulate a real internal GPIO pin
 and can therefore be used with many of ESPHome's components such as the GPIO
 binary sensor or GPIO switch.
@@ -25,7 +25,7 @@ complicated components that use the pin schema will not work. For example the I2
 
     SX1509 16 channel I/O Expander.
 
-.. _Sparkfun: https://learn.sparkfun.com/tutorials/sx1509-io-expander-breakout-hookup-guide/all
+.. _SparkFun: https://learn.sparkfun.com/tutorials/sx1509-io-expander-breakout-hookup-guide/all
 
 .. code-block:: yaml
 
@@ -59,7 +59,7 @@ up to 8x8 matrix (i.e. 64 keys).
     So a value of 4 enables pins 8,9,10,11 to be used as the columns for the keypad matrix. This value must be between 1 and 8.
   - **sleep_time** (*Optional*, int): No key press within this time will set keypad engine to sleep.
   - **scan_time** (*Optional*, int): Scan time per row (must be set above debounce time).
-  - **debounce_time** (*Optional*, int): The debounce time is common to all IOs. 
+  - **debounce_time** (*Optional*, int): The debounce time is common to all IOs.
 
 .. figure:: images/sx1509-keypad.jpg
     :align: center
@@ -73,7 +73,7 @@ Attention should be paid to the capabilities of the I/O pins.
 |  #  |  pin function    |    Keypad    |
 |     |                  |              +
 +=====+==================+=====+========+
-| I/O | input output pwm | Row | Column |
+| I/O | input output PWM | Row | Column |
 +-----+------------------+-----+--------+
 | 0   |    ✓             |  ✓  |        |
 +-----+------------------+-----+--------+
@@ -132,7 +132,7 @@ Configuration variables for the SX1509 keypad keys:
 - **col** (**Required**, int): The column number for this key on the keypad.
 
 With the following configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
-The outputs can in turn be used to add pwm enabled lights like the monochromatic light.
+The outputs can in turn be used to add PWM-enabled lights like the monochromatic light.
 
 .. code-block:: yaml
 
@@ -142,7 +142,7 @@ The outputs can in turn be used to add pwm enabled lights like the monochromatic
         name: "SX1509 Pin #0"
         pin:
           sx1509: sx1509_hub1
-          # Use pin number 0 on the sx1509
+          # Use pin number 0 on the SX1509
           number: 0
           mode: INPUT_PULLUP
           inverted: True
@@ -153,7 +153,7 @@ The outputs can in turn be used to add pwm enabled lights like the monochromatic
         name: "SX1509 Pin #1"
         pin:
           sx1509: sx1509_hub1
-          # Use pin number 1 on the sx1509
+          # Use pin number 1 on the SX1509
           number: 1
           # use as output for switch
           mode: OUTPUT
@@ -164,7 +164,7 @@ The outputs can in turn be used to add pwm enabled lights like the monochromatic
       - platform: sx1509
         sx1509_id: sx1509_hub1
         id: 'sx1509_output'
-        # Use pin number 2 on the sx1509
+        # Use pin number 2 on the SX1509
         pin: 2
 
     # lights can then use the configured output

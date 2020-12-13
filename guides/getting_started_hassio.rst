@@ -1,13 +1,13 @@
-Getting Started with ESPHome through Hass.io
-============================================
+Getting Started with ESPHome and Home Assistant
+===============================================
 
 .. seo::
-    :description: Getting Started guide for installing ESPHome as a Hass.io Add-on and creating a basic configuration.
+    :description: Getting Started guide for installing ESPHome as a Home Assistant add-on and creating a basic configuration.
     :image: home-assistant.png
 
 ESPHome is the perfect solution for creating custom firmware for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
-basic "node" by use of the Hass.io add-on.
+basic "node" by use of the Home Assistant add-on.
 
 But first, here's a very quick introduction to how ESPHome works:
 ESPHome is a *tool* which reads in a YAML configuration file (just like Home Assistant)
@@ -19,18 +19,19 @@ Assistant's UI.
 Installation
 ------------
 
-Installing the ESPHome Hass.io add-on is easy. Just navigate to the Hass.io
-panel in your Home Assistant frontend and add the ESPHome add-on repository:
-https://github.com/esphome/hassio
+Installing the ESPHome Home Assistant add-on is easy. Navigate to the Supervisor
+panel in your Home Assistant frontend, then enter ``ESPHome`` in the searchbar of the "Add-on Store"
+tab.
 
 .. figure:: images/hassio_repo.png
 
-Then, scroll down and locate the ESPHome Hass.io Add-Ons section. Click on ESPHome, then INSTALL.
+Click on ESPHome, then INSTALL.
 
 .. figure:: images/hassio_addons_section.png
 
 After that, wait a bit until the add-on is installed (this can take a while) and
-go to the add-on page. Start the add-on and then click "Open Web UI".
+go to the add-on page. Start the add-on and then click "Open Web UI". If you see "502: Bad Gateway" the
+addon is currently starting, and you can refresh the page after a couple of seconds.
 
 .. figure:: images/hassio_addon.png
     :align: center
@@ -49,7 +50,7 @@ Dashboard Interface
 Assuming you created your first configuration file with the wizard, let's take a quick
 tour of the ESPHome dashboard interface.
 
-.. figure:: images/hassio_interface.png
+.. figure:: images/dashboard.png
     :align: center
     :width: 95.0%
 
@@ -61,8 +62,8 @@ there are three basic actions you can perform:
 
   .. warning::
 
-      The Hass.io Add-On is currently not capable of discovering new USB ports after the add-on
-      has started due to some docker restrictions. Please go to the add-on details page
+      The Home Assistant add-on is currently not capable of discovering new USB ports after the
+      add-on has started due to some docker restrictions. Please go to the add-on details page
       and restart the add-on if a new USB device is not automatically found. If the USB device
       is still not found, try changing the USB cable and restarting the add-on.
 

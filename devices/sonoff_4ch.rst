@@ -152,14 +152,14 @@ Step 4: Uploading Firmware
 
 In order to upload the firmware, you're first going to need to get the chip into a flash mode, otherwise
 the device will start up without accepting any firmware flash attempts. To do this, while the UART
-bridge is not connected to your USB port, press and hold the bottom-left push button labeled ``FW/IO0``
+bridge is not connected to your USB port, press and hold the bottom-left push button labelled ``FW/IO0``
 and continue to do so while plugging in the UART bridge into your computer. Keep holding the button for
 another 2-4 seconds. The 4CH should now be in a flash mode and should not blink any LED.
 
 .. figure:: images/sonoff_4ch_buttons.jpg
     :align: center
 
-    You need to press the button labeled ``FW/IO0`` during startup.
+    You need to press the button labelled ``FW/IO0`` during startup.
 
 Now you can finally run the upload command:
 
@@ -291,9 +291,9 @@ of the basic functions.
         output: blue_led
 
 
-Above example also showcases an important concept of esphome: IDs and linking. In order
-to make all components in esphome as much "plug and play" as possible, you can use IDs to define
-them in one area, and simply pass that ID later on. For example, above you can see an PWM (dimmer)
+Above example also showcases an important concept of ESPHome: IDs and linking. In order
+to make all components in ESPHome as "plug and play" as possible, you can use IDs to define
+them in one area, and simply pass that ID later on. For example, above you can see a PWM (dimmer)
 output being created with the ID ``blue_led`` for the blue LED. Later on it is then transformed
 into a :doc:`monochromatic light </components/light/monochromatic>`.
 If you additionally want the buttons to control the relays, look at `the complete Sonoff 4CH
@@ -309,7 +309,7 @@ Step 6: Finishing Up
 If you're sure everything is done with the 4CH and have double checked there's nothing that could cause a short
 in the case, you can put the front cover back on and screw everything together.
 
-Now triple or even quadruple check the UART bridge is not connected to the 4CH, then comes the time when you can
+Now triple- or even quadruple-check the UART bridge is not connected to the 4CH, then comes the time when you can
 connect it.
 
 Happy hacking!
