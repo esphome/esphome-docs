@@ -242,13 +242,10 @@ variable ``output_component1``.
 
 3.4 CWWW Mirabella Genio Downlights
 ***********************************
-Kmart also sell a downlight option, which works quite well however the PWM method that is used is different to the way the cwww in ESPHome works.
 
-https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331
+Kmart also sell a `downlight option <https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331>`__, which works quite well however the PWM method that is used is different to the way the CWWW lights in ESPHome works.
 
-A project by ssieb, resolves this using a custom component.
-
-https://github.com/ssieb/custom_components/tree/master/cwww2
+A `project by ssieb <https://github.com/ssieb/custom_components/tree/master/cwww2>`__ resolves this using a custom component.
 
 .. code-block:: yaml
 
