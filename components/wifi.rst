@@ -205,6 +205,7 @@ These are advanced settings and you will usually need to consult your enterprise
           password: VerySafePassword
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
+          identity: bob
           certificate_authority: ca_cert.pem
           certificate: cert.pem
           key: key.pem
