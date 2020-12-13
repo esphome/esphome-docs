@@ -1,30 +1,29 @@
 Infostripe
-=======================
+==========
 
 .. seo::
-    :description: Simple visualisation of homeassistant states using a neopixel stripe
+    :description: Simple visualisation of Home Assistant states using a Neopixel stripe
     :image: infostrip-detai.jpg
     :keywords: Neopixel
 
-Showing the current status of sensor states using a neopixel strip is a simple way to communicate states to the user.
-Compared to a dashboard screen the infostrip can only communicate information binary_sensor
+Showing the current status of sensor states using a Neopixel (WS2812B) strip is a simple way to communicate states to the user.
+Compared to a dashboard screen the infostrip can only communicate the information like a binary sensor.
 
-- color (e.g. red = error/warning, orange = waring, green = ok, blue = active)
+- color (e.g., red = error/warning, orange = waring, green = ok, blue = active)
 - intensity (off, scaled brightness)
-- mode (continouse vs. flashing*)
+- mode (continous vs. flashing, flashing or strobe is not recommened)
 - light position on stripe
-
-(*) flashing (strobe) is not recommened, because that can realy make you crazy.
 
 .. figure:: images/infostrip-detail.jpg
     :align: center
     :width: 75.0%
 
-    Wemos D1 mini, neopixel, CO2 sensor on a blackboard, pixel meanings are described by chalk drawn icons.
+    Wemos D1 mini, Neopixel, CO2 sensor on a blackboard, pixel meanings are described by the chalk drawn icons.
 
 
-esphome config:
----------------
+ESPHome configuration
+---------------------
+
 .. code-block:: yaml
 
     esphome:
@@ -32,7 +31,7 @@ esphome config:
     platform: ESP8266
     board: d1_mini
 
-    # TODO -> add your personal wifi, logging, api, ota settings here 
+    # TODO -> add your personal wifi, logging, api, ota settings here
 
     uart:
     rx_pin: 4
@@ -40,19 +39,19 @@ esphome config:
     baud_rate: 9600
 
     sensor:
-    - platform: mhz19
+      - platform: mhz19
         co2:
-        name: "MH-Z19 CO2 Value"
+          name: "MH-Z19 CO2 Value"
         temperature:
-        name: "MH-Z19 Temperature"
+          name: "MH-Z19 Temperature"
         update_interval: 30s
 
-    # monitor the wifi connection status 
+    # Monitor the Wifi connection status 
     binary_sensor:
-    - platform: status
+      - platform: status
         name: "Infostrip Status"
 
-    # configure each pixle as a single light (attention memory consuming)
+    # Configure each pixel as a single light (attention memory consuming)
     light:
       - platform: fastled_clockless
         chipset: WS2812B 
@@ -101,26 +100,25 @@ esphome config:
 
     Consider the warning in :doc:`/components/light/partition` regarging the increased memory usage. 
 
-Home Assistant config:
-----------------------
+Home Assistant configuration
+----------------------------
 
-The automation to show the CO2 warning light (e.g. red if CO2 > 1000 ppm) is done in homeassistant, but could also be implemented using esphome automations.
-
+The automation to show the CO2 warning light (e.g. red if CO2 > 1000 ppm) is done in Home Assistant, but could also be implemented using ESPHome :ref:`Automations <automation>`.
 
 .. code-block:: yaml
 
-    # turn on a light with the related color
+    # Turn on a light with the related color
     automation:
     - id: '1601241280015'
       alias: Light CO2 On
       description: ''
       trigger:
-      - platform: numeric_state
+        - platform: numeric_state
           entity_id: sensor.mh_z19_co2_value
           above: 1000
       condition: []
       action:
-      - service: light.turn_on
+        - service: light.turn_on
           data:
           color_name: red
           entity_id: light.pl2
@@ -129,12 +127,12 @@ The automation to show the CO2 warning light (e.g. red if CO2 > 1000 ppm) is don
       alias: Light CO2 Off
       description: ''
       trigger:
-      - platform: numeric_state
+        - platform: numeric_state
           entity_id: sensor.mh_z19_co2_value
           below: 800
       condition: []
       action:
-      - service: light.turn_off
+        - service: light.turn_off
           entity_id: light.pl2
           mode: single
     - alias: "State Light Mapping"
@@ -143,7 +141,7 @@ The automation to show the CO2 warning light (e.g. red if CO2 > 1000 ppm) is don
       # You can also match on interval. This will match every 5 minutes
       minutes: "/5"
       action:
-      - service: light.turn_on
+        - service: light.turn_on
           data_template:
           entity_id: light.pl1
           brightness_pct: 30
@@ -152,14 +150,11 @@ The automation to show the CO2 warning light (e.g. red if CO2 > 1000 ppm) is don
               {% set state = states('binary_sensor.bad_status') %}
               {{ map[state] if state in map else 'white' }}
 
-
 .. figure:: images/infostrip-lights-ui.png
     :align: center
     :width: 50.0%
 
     Each pixel is used as a light entity.
-
-
 
 See Also
 --------
