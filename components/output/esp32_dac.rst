@@ -29,6 +29,14 @@ The output level is a percentage of the board supply voltage (VDD_A) - generally
         - output.set_level:
             id: dac_output
             level: 50%
+            
+    # Use the DAC output as a light
+    light:
+      - platform: monochromatic
+        output: dac_output
+        gamma_correct: 1.4
+        id: dac_output
+
 
 
 Configuration variables:
@@ -48,6 +56,7 @@ Use Cases
 - Driving a bar graph or large amount of LEDs using an analog-controlled LED driver like the LM3914
   (`datasheet <https://www.ti.com/lit/ds/symlink/lm3914.pdf>`__); this can allow you to make tank
   level indicators, temperature gauges, and so on from a single output pin
+- Generating 0-10V for a dimmable light (Opamp required)
 
 See Also
 --------
