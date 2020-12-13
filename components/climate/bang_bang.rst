@@ -37,7 +37,7 @@ There are three types of bang bang controllers this platform can represent:
 
   - As soon as the temperature goes above the higher target temperature, ``cool_action`` will be called.
   - When the temperature goes below the lower temperature, ``idle_action`` will be called.
-   - If you change operating mode (manual mode). And it is between high and low temperature. It does not wait to get to high temperature, it starts working until it gets to low temperature.
+  - If you change operating mode (manual mode). And it is between high and low temperature. It does not wait to get to high temperature, it starts working until it gets to low temperature.
 
 - **Heater+Cooler**: For devices where the temperature can both actively be increased and decreased.
 
