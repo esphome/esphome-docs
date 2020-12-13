@@ -8,7 +8,7 @@ Bang Bang Climate Controller
 The ``bang_bang`` climate platform allows you to regulate a value with a
 `bang-bang controller <https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control>`__ (also called hysteresis controller).
 
-The operation principle of a bang_bang controller is quite simple. First, you specify an observable
+The operation principle of a ``bang_bang`` controller is quite simple. First, you specify an observable
 value (for example the temperature of a room). The controller will try to keep this observed value
 in a defined range. To do this, the controller can activate objects like a heating unit to change
 the observed value.
