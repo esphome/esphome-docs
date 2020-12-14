@@ -92,7 +92,7 @@ This automation will be triggered when a can frame is  received. A variable ``x`
 
 .. note::
 
-   Messeges this node sends to te same ID will not show up as reveived messages.
+    Messeges this node sends to te same ID will not show up as reveived messages.
 
 .. code-block:: yaml
 
