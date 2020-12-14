@@ -389,18 +389,33 @@ It adds an additional method to change the shown picture of a gif.
         id: my_animation
         resize: 100x100
 
-The animation can be rendered just like the image component with the image() function of the display component.
+The animation can be rendered just like the image component with the ``image()`` function of the display component.
 
 To show the next frame of the animation call ``id(my_animation).next_frame()``
-This can be combined with all automation:
+This can be combined with all Lambdas:
 
 .. code-block:: yaml
 
-    interval:
-      - interval: 500ms
-        then:
-          lambda: |-
-            id(my_animation).next_frame();
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          //Ingress shown animation Frame.
+          id(my_animation).next_frame();
+          // Draw the animation my_animation at position [x=0,y=0]
+          it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);
+
+.. note::
+
+    To draw the next animation independent of Display draw cycle use an interval:
+
+    .. code-block:: yaml
+
+        interval:
+          - interval: 5s
+              then:
+                lambda: |-
+                  id(my_animation).next_frame();
 
 .. _display-pages:
 
