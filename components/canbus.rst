@@ -91,6 +91,7 @@ This automation will be triggered when a can frame is  received. A variable ``x`
 ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
 
 .. note::
+
    Messeges this node sends to te same ID will not show up as reveived messages.
 
 .. code-block:: yaml
@@ -200,6 +201,7 @@ Extended ID
 Standard IDs and Extended IDs can coexist on the same segment.
 
 .. note::
+
     It is important to know that for example Standard 0x123 and Extended 0x123 are different addesses.
     This example shows how the different ID types are used in the configuration for transmission and receiving.
     For the IDs decimal or hexadecimal notation is possible:
