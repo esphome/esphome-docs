@@ -22,7 +22,7 @@ unless it's truly exceptional, etc.
 
 Blog Posts & Videos
 -------------------
-
+- `Make your fireplace smart (blog series) <http://www.pieterbrinkman.com/category/home-automation/make-your-bellfire-fireplace-smart/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Ultrasonic Salt Level Sensor <https://adonno.com/salt-level-sensor/>`__ by `Adonno <https://adonno.com>`__
 - `Smart $2 doorbell <https://frenck.dev/diy-smart-doorbell-for-just-2-dollar/>`__ by `Frenck <https://frenck.dev>`__
 - `Cheap Car Presence Detection <https://adonno.com/car-presence-position-detection/>`__ by `Adonno <https://adonno.com>`__
