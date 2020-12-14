@@ -119,7 +119,7 @@ Note: This board has an issue that might cause the ESP32 to boot in program mode
 serial output and reboot the device several times to see if it boots into the program properly.
 
 Configuration for Wireless Tag WT32-ETH01
-----------------------------------
+-----------------------------------------
 
 .. code-block:: yaml
 
