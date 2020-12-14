@@ -44,8 +44,6 @@ Each canbus platform extends this configuration schema.
     canbus:
       - platform: ...
         can_id: 4
-        use_extended_id: False
-        bit_rate: 50KBPS
         on_frame:
         - can_id: 500
           use_extended_id: False
@@ -84,7 +82,6 @@ Automations:
 - **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
   CAN Frame is received. See below.
 
-
 .. _canbus-on-frame:
 
 ``on_frame``
@@ -93,19 +90,21 @@ Automations:
 This automation will be triggered when a can frame is  received. A variable ``x`` of type
 ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
 
+.. note::
+   Messeges this node sends to te same ID will not show up as reveived messages.
+
 .. code-block:: yaml
 
     canbus:
       - platform: ...
         on_frame:
-        - can_id: 43 # the remote sender can_id
+        - can_id: 43 # the received can_id
           then:
             - if:
                 condition:
-                  lambda: 'return x[0] == 0x11;'
+                  lambda: 'return (x.size() > 0) ? x[0] == 0x11 : false;'
                 then:
                   light.toggle: light1
-
 
 Transmit Frame Action
 *********************
@@ -129,7 +128,6 @@ There are several forms to use it:
       # Templated, return type is std::vector<uint8_t>
       - canbus.send: !lambda
           return {0x00, 0x20, 0x42};
-
 
 Configuration variables:
 
@@ -180,12 +178,7 @@ For wireing up the MSP2515 please refer to the section below.
             then:
             - light.turn_on:
                 id: light_1
-                brightness: !lambda "return (float) x[0]/255;"
-        - can_id: 502
-            then:
-            - light.turn_on:
-                id: light_1
-                brightness: !lambda "return (float) x[0]/255;"
+                brightness: !lambda "return (x.size() > 0) ? (float) x[0]/255 : 0;"
 
 Wiring options
 ---------------
@@ -202,15 +195,16 @@ A more advanced option is to fully convert the 5V and 3.3V logic levels with a l
     :align: center
     :target: ../_images/canbus_mcp2515_txs0108e.png
 
+Extended ID
+-----------
+Standard IDs and Extended IDs can coexist on the same segment.
 
-Standard vs. Extended ID
-------------------------
-| Standard IDs and Extended IDs can coexist on the same segment.
-| It is important to know that for example Standard 0x123 and Extended 0x123 are different addesses.
-| This example shows how the different ID types are used in the configuration for transmission and receiving.
-| For the IDs decimal or hexadecimal notation is possible:
-| 0x000 - 0x7ff / 0-2047 for Standard IDs only.
-| 0x00000000 - 0x1fffffff / 0-536870911 for Extended IDs.
+.. note::
+    It is important to know that for example Standard 0x123 and Extended 0x123 are different addesses.
+    This example shows how the different ID types are used in the configuration for transmission and receiving.
+    For the IDs decimal or hexadecimal notation is possible:
+    0x000 - 0x7ff / 0-2047 for Standard IDs only.
+    0x00000000 - 0x1fffffff / 0-536870911 for Extended IDs.
 
 .. code-block:: yaml
 
@@ -251,11 +245,10 @@ Standard vs. Extended ID
               std::string b(x.begin(), x.end());
               ESP_LOGD("can standard id 0x123", "%s", &b[0] );
 
-
 Binary Sensor Example
 ---------------------
-| Example for the following application:
-| Button is connected on a can node which sends an A message on ID 0x100 with payload 0x01 for contact closed and 0x00 for contact open.
+Example for the following application:
+Button is connected on a can node which sends an A message on ID 0x100 with payload 0x01 for contact closed and 0x00 for contact open.
 
 .. code-block:: yaml
 
@@ -281,17 +274,17 @@ Binary Sensor Example
         - can_id: ${0x100}
           then:
             - lambda: |-
-                switch(x[0]) {
-                  case 0x0: id(can_bus_button).publish_state(false); break; // button release
-                  case 0x1: id(can_bus_button).publish_state(true); break;  // button down
+                if(x.size() > 0) {
+                  switch(x[0]) {
+                    case 0x0: id(can_bus_button).publish_state(false); break; // button release
+                    case 0x1: id(can_bus_button).publish_state(true); break;  // button down
+                  }
                 }
-
-
 
 Cover Example
 -------------
-| Example for following application:
-| Buttons are connected on the CAN-Node and also the motor is connected via CAN.
+Example for following application:
+Buttons are connected on the CAN-Node and also the motor is connected via CAN.
 
 .. epigraph::
 
@@ -301,8 +294,6 @@ Cover Example
     | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
     | **Motor:** ID 0x51A - 1 byte payload 
     | (0: off, 1: open, 2: close)
-
-
 
 .. code-block:: yaml
 
@@ -323,24 +314,27 @@ Cover Example
         - can_id: 0x50c
           then:
             - lambda: |-
-                auto call = id(TestCover).make_call();
-                switch(x[0]) {
-                  case 0x2: call.set_command_open(); call.perform(); break; // long pressed
-                  case 0x1:                                                 // button down
-                  case 0x3: call.set_command_stop(); call.perform(); break; // long released
-                  case 0x4: call.set_position(1.0); call.perform(); break;  // double click
+                if(x.size() > 0) {
+                  auto call = id(TestCover).make_call();
+                  switch(x[0]) {
+                    case 0x2: call.set_command_open(); call.perform(); break; // long pressed
+                    case 0x1:                                                 // button down
+                    case 0x3: call.set_command_stop(); call.perform(); break; // long released
+                    case 0x4: call.set_position(1.0); call.perform(); break;  // double click
+                  }
                 }
         - can_id: 0x50b
           then:
             - lambda: |-
-                auto call = id(TestCover).make_call();
-                switch(x[0]) {
-                  case 0x2: call.set_command_close(); call.perform(); break; // long pressed
-                  case 0x1:                                                  // button down
-                  case 0x3: call.set_command_stop(); call.perform(); break;  // long released
-                  case 0x4: call.set_position(0.0); call.perform(); break;   // double click
+                if(x.size() > 0) {
+                  auto call = id(TestCover).make_call();
+                  switch(x[0]) {
+                    case 0x2: call.set_command_close(); call.perform(); break; // long pressed
+                    case 0x1:                                                  // button down
+                    case 0x3: call.set_command_stop(); call.perform(); break;  // long released
+                    case 0x4: call.set_position(0.0); call.perform(); break;   // double click
+                  }
                 }
-
 
     cover:
       - platform: time_based
@@ -365,7 +359,6 @@ Cover Example
               data: [ 0x00 ]
               canbus_id: my_mcp2515
               can_id: 0x51A
-
 
 See Also
 --------
