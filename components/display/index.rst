@@ -376,6 +376,47 @@ be supplied to modify the color used to represent the on and off bits respective
 You can also use this to invert images in two colors display, use ``COLOR_OFF`` then ``COLOR_ON``
 as the additional parameters.
 
+Animation
+*********
+
+Animation inherits all options from the image component.
+It adds an additional method to change the shown picture of a gif.   
+
+.. code-block:: yaml
+
+    animation:
+      - file: "animation.gif"
+        id: my_animation
+        resize: 100x100
+
+The animation can be rendered just like the image component with the ``image()`` function of the display component.
+
+To show the next frame of the animation call ``id(my_animation).next_frame()``
+This can be combined with all Lambdas:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          //Ingress shown animation Frame.
+          id(my_animation).next_frame();
+          // Draw the animation my_animation at position [x=0,y=0]
+          it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);
+
+.. note::
+
+    To draw the next animation independent of Display draw cycle use an interval:
+
+    .. code-block:: yaml
+
+        interval:
+          - interval: 5s
+              then:
+                lambda: |-
+                  id(my_animation).next_frame();
+
 .. _display-pages:
 
 Display Pages
