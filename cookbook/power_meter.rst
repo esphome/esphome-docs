@@ -24,6 +24,18 @@ And... that should already be it :)
     :align: center
     :width: 80.0%
 
+.. note::
+
+    Some energy meters have an exposed S0 port (which essentially just is a switch that closes), if 
+    that is the case the photo diode can be replaced with the following connection.
+
+    .. code-block::
+
+    S0 ------------ VCC
+    S0 --+-- 10k -- GND
+         |
+         +--------- GPIO12
+
 For ESPHome, you can then use the
 :doc:`pulse counter sensor </components/sensor/pulse_counter>` using below configuration:
 
