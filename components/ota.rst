@@ -33,7 +33,7 @@ Configuration variables:
   -  **num_attempts** (*Optional*, int): The number of attempts to wait before entering safe mode.
      Defaults to ``10``.
   -  **store_bootloops_in_flash_and_brick** (*Optional*, boolean): Whether to store unhandled bootloops in flash
-     and become bricked in safe mode once the `num_attempts` have been reached. Once in safe mode, the device will
+     and become bricked in safe mode once the ``num_attempts`` have been reached. Once in safe mode, the device will
      become unusable until the next OTA. This allows you to forcibly induce a safe mode by manually power cycling
      the device. Useful in situations where you are unable to serial flash and the device freezes during run.
      Defaults to ``False``.
