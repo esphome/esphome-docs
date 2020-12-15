@@ -22,6 +22,7 @@ unless it's truly exceptional, etc.
 
 Blog Posts & Videos
 -------------------
+- `Collecting Temperature Data from ELA Bluetooth Puck with ESPHome <https://blog.weinreich.org/posts/2020/2020-12-14-esphome-ble-ela/>`__ by `lairsdragon <https://www.weinreich.org/>` 
 - `Make your fireplace smart (blog series) <http://www.pieterbrinkman.com/category/home-automation/make-your-bellfire-fireplace-smart/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Ultrasonic Salt Level Sensor <https://adonno.com/salt-level-sensor/>`__ by `Adonno <https://adonno.com>`__
 - `Smart $2 doorbell <https://frenck.dev/diy-smart-doorbell-for-just-2-dollar/>`__ by `Frenck <https://frenck.dev>`__
