@@ -29,6 +29,7 @@ Configuration variables:
 
 -  **safe_mode** (*Optional*, boolean): Whether to enable safe mode.
    Defaults to ``True``.
+
   -  **num_attempts** (*Optional*, int): The number of attempts to wait before entering safe mode.
     Defaults to ``10``.
   -  **store_bootloops_in_flash_and_brick** (*Optional*, boolean): Whether to store unhandled bootloops in flash
@@ -37,6 +38,7 @@ Configuration variables:
     the device. Useful in situations where you are unable to serial flash and the device freezes during run.
     Defaults to ``False``.
     Warning: This has the same cavets as :ref:`_esphome-esp8266_restore_from_flash`.
+
 -  **password** (*Optional*, string): The password to use for updates.
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
