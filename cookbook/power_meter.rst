@@ -31,10 +31,10 @@ And... that should already be it :)
 
     .. code-block::
 
-    S0 ------------ VCC
-    S0 --+-- 10k -- GND
-         |
-         +--------- GPIO12
+      S0 ------------ VCC
+      S0 --+-- 10k -- GND
+          |
+          +--------- GPIO12
 
 For ESPHome, you can then use the
 :doc:`pulse counter sensor </components/sensor/pulse_counter>` using below configuration:
