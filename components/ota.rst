@@ -37,7 +37,7 @@ Configuration variables:
     become unusable until the next OTA. This allows you to forcibly induce a safe mode by manually power cycling
     the device. Useful in situations where you are unable to serial flash and the device freezes during run.
     Defaults to ``False``.
-    Warning: This has the same cavets as :ref:`_esphome-esp8266_restore_from_flash`.
+    Warning: This has the same cavets as :ref:`esphome-esp8266_restore_from_flash`.
 
 -  **password** (*Optional*, string): The password to use for updates.
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults
