@@ -60,13 +60,11 @@ exposes all of the basic functions.
       ssid: <YOUR_SSID>
       password: <YOUR_PASSWORD>
 
+    api:
+    
     logger:
 
-    api:
-      password: "<YOUR_PASSWORD>"
-
     ota:
-      password: "<YOUR_PASSWORD>"
 
     binary_sensor:
       - platform: gpio
