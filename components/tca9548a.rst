@@ -36,6 +36,7 @@ Once configured, you can use any of the 8 channels (TCA9548A) as seperated chann
           id: multiplex0
           channel: 0
           ...
+
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -45,6 +46,7 @@ Configuration variables:
 - **i2c_id** (*Optional*): The I²C Bus ID
 - **scan** (*Optional*, bool): if the channel should be scanned 
   Defaults to ``false`` 
+
 See Also
 --------
 
