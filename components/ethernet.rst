@@ -91,7 +91,19 @@ Configuration for Olimex ESP32-POE
       clk_mode: GPIO17_OUT
       phy_addr: 0
       power_pin: GPIO12
-      
+
+Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
+----------------------------------------------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO17_OUT
+      phy_addr: 0
+
 Configuration for OpenHacks LAN8720
 -----------------------------------
 
@@ -106,6 +118,18 @@ Configuration for OpenHacks LAN8720
 Note: This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure you are monitoring the
 serial output and reboot the device several times to see if it boots into the program properly.
 
+Configuration for Wireless Tag WT32-ETH01
+-----------------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 1
+      power_pin: GPIO16
 
 See Also
 --------

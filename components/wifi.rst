@@ -85,6 +85,13 @@ can connect to. Additionally, you can specify both a "normal" station mode and A
 same time. This will cause ESPHome to only enable the access point when no connection
 to the WiFi router can be made.
 
+.. code-block:: yaml
+
+    wifi:
+      ap:
+        ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
+
 .. _wifi-manual_ip:
 
 Manual IPs
@@ -198,6 +205,7 @@ These are advanced settings and you will usually need to consult your enterprise
           password: VerySafePassword
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
+          identity: bob
           certificate_authority: ca_cert.pem
           certificate: cert.pem
           key: key.pem

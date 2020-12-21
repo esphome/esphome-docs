@@ -99,7 +99,7 @@ Sonoff Dual R2 v1.4
     GPIO09, Button #1(inside header board v1.4),
     GPIO12, Relay #1,
     GPIO5, Relay #2,
-    GPIO10, Button on the case,    
+    GPIO10, Button on the case,
     GPIO13, Blue LED (inverted)
 
 Sonoff Pow R1
@@ -210,8 +210,8 @@ Sonoff B1, Ai-Thinker AiLight
 
 See :doc:`/components/output/my9231`.
 
-Sonoff T1 1CH, 2CH, 3CH
------------------------
+Sonoff T1, Sonoff T3 (1CH, 2CH, 3CH)
+------------------------------------
 
 .. pintable::
 
@@ -222,6 +222,7 @@ Sonoff T1 1CH, 2CH, 3CH
     GPIO10, Button 3 (inverted),
     GPIO4, Relay 3 and Blue LED,
     GPIO13, Blue LED (inverted),
+
     GPIO1, UART TX pin (for external sensors)
     GPIO3, UART RX pin (for external sensors)
 
@@ -326,7 +327,7 @@ Sonoff Mini
 .. pintable::
 
     GPIO0, Button (inverted),
-    GPIO4, SW Input,
+    GPIO4, SW Input (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
     GPIO16, Optional sensor

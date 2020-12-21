@@ -10,7 +10,10 @@ The Mirabella Genio is a Tuya-based smart bulb sold by Kmart in Australia.
 Originally intended to be used with their companion app once flashed using `tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ ESPHome generated
 firmware can be uploaded allowing you to control the bulbs via Home Assistant.
 
-Please note that the new version of this bulb that comes in a cardboard box does NOT have an ESP chipset inside and cannot be flashed.
+.. note::
+
+    Please note that the new version of this bulb that comes in a cardboard box are using the TYLC5 module which does not work via tuya-convert.
+    These bulbs are also using the SM2135 chipset and not PWM anymore.
 
 1. Create the ESPHome Firmware
 ------------------------------
@@ -237,7 +240,51 @@ variable ``output_component1``.
         # Ensure the light turns on by default if the physical switch is actuated.
         restore_mode: ALWAYS_ON
 
+3.4 CWWW Mirabella Genio Downlights
+***********************************
 
+Kmart also sell a `downlight option <https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331>`__, which works quite well however the PWM method that is used is different to the way the CWWW lights in ESPHome works.
+
+A `project by ssieb <https://github.com/ssieb/custom_components/tree/master/cwww2>`__ resolves this using a custom component.
+
+.. code-block:: yaml
+
+    esphome:
+      name: rgbw_e27_01
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+    logger:
+
+    api:
+
+    ota:
+
+    output:
+      - platform: esp8266_pwm
+        id: output1
+        pin: GPIO14
+      - platform: esp8266_pwm
+        id: output2
+        pin: GPIO12
+
+    light:
+      - platform: cwww2
+        id: LED
+        name: "Downlight"
+        color_temperature: output2
+        brightness: output1
+        cold_white_color_temperature: 6500 K
+        warm_white_color_temperature: 2700 K
+
+        # Ensure the light turns on by default if the physical switch is actuated.
+        restore_mode: ALWAYS_ON
+        
+        
 4. Adding to Home Assistant
 ---------------------------
 

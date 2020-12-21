@@ -292,6 +292,7 @@ Configuration options:
   ``int`` (for integers), ``float`` (for decimal numbers), ``int[50]`` for an array of 50 integers, etc.
 - **restore_value** (*Optional*, boolean): Whether to try to restore the state on boot up.
   Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
+  This will use storage in "RTC memory", so it won't survive a power-cycle unless you use the ``esp8266_restore_from_flash`` option to save to flash. See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).

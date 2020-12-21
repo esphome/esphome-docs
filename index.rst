@@ -63,6 +63,7 @@ Technically, all ESP8266/ESP32 devices are supported by ESPHome.
     Generic Sonoff, devices/sonoff, sonoff.svg
     Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
     Sonoff T1 UK 3 Gang V1.1, devices/sonoff_t1_uk_3gang_v1.1, sonoff_t1_uk_3g_v1.1.jpg
+    Sonoff T3 EU 3 Gang V1.0, devices/sonoff_t3_eu_3gang_v1.0, sonoff_t3_eu_3g_v1.0.jpg
 
 Core Components
 ---------------
@@ -403,6 +404,7 @@ Cookbook
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
