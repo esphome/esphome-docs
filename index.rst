@@ -352,6 +352,7 @@ Misc Components
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
+    TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
