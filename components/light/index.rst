@@ -718,7 +718,7 @@ This effect allows you to access each LED individually in a custom light effect.
 Available variables in the lambda:
 
 - **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
-- **current_color**  - :apiclass:`ESPColor ` <light::ESPColor>` instance (see API reference for more info).
+- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
 - **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
 
 .. code-block:: yaml
