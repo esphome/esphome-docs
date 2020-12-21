@@ -1,5 +1,5 @@
 TCA9548A I²C Multiplexer
-====================
+========================
 
 .. seo::
     :description: Instructions for setting up TCA9548A I²C multiplexer in ESPHome.
