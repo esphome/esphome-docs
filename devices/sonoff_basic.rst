@@ -61,7 +61,7 @@ exposes all of the basic functions.
       password: <YOUR_PASSWORD>
 
     api:
-    
+
     logger:
 
     ota:
