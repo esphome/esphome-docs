@@ -85,6 +85,13 @@ can connect to. Additionally, you can specify both a "normal" station mode and A
 same time. This will cause ESPHome to only enable the access point when no connection
 to the WiFi router can be made.
 
+.. code-block:: yaml
+
+    wifi:
+      ap:
+        ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
+
 .. _wifi-manual_ip:
 
 Manual IPs
@@ -182,7 +189,7 @@ Configuration variables:
 Enterprise Authentication
 -------------------------
 
-WPA2_EAP Enterprise Authentication is supported on ESP32s.
+WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s.
 In order to configure this feature you must use the :ref:`wifi-networks` style configuration.
 The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS.
 These are advanced settings and you will usually need to consult your enterprise network administrator.
@@ -198,6 +205,7 @@ These are advanced settings and you will usually need to consult your enterprise
           password: VerySafePassword
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
+          identity: bob
           certificate_authority: ca_cert.pem
           certificate: cert.pem
           key: key.pem

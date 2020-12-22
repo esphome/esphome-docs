@@ -74,6 +74,9 @@ Automations:
 - **on_rc5** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RC5 remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::RC5Data`
   is passed to the automation for use in lambdas.
+- **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  RCSwitch RF code has been decoded. A variable ``x`` of type :apiclass:`remote_base::RCSwitchData`
+  is passed to the automation for use in lambdas.
 - **on_samsung** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Samsung remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::SamsungData`
   is passed to the automation for use in lambdas.
@@ -208,6 +211,20 @@ Remote code selection (exactly one of these has to be included):
         remote_transmitter:
           pin: 5
           carrier_duty_percent: 100%
+          
+.. note::
+
+    To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use `INPUT_PULLUP`:
+
+    .. code-block:: yaml
+
+        remote_receiver:
+          pin:
+            number: D4
+            inverted: True
+            mode: INPUT_PULLUP
+          dump: all
+
 
 See Also
 --------

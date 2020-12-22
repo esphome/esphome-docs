@@ -292,6 +292,7 @@ Configuration options:
   ``int`` (for integers), ``float`` (for decimal numbers), ``int[50]`` for an array of 50 integers, etc.
 - **restore_value** (*Optional*, boolean): Whether to try to restore the state on boot up.
   Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
+  This will use storage in "RTC memory", so it won't survive a power-cycle unless you use the ``esp8266_restore_from_flash`` option to save to flash. See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).
@@ -321,6 +322,7 @@ All Triggers
 - :ref:`binary_sensor.on_click <binary_sensor-on_click>` / :ref:`binary_sensor.on_double_click <binary_sensor-on_double_click>` /
   :ref:`binary_sensor.on_multi_click <binary_sensor-on_multi_click>`
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
+- :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
 - :ref:`time.on_time <time-on_time>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
@@ -386,6 +388,7 @@ All Conditions
 - :ref:`sensor.in_range <sensor-in_range_condition>`
 - :ref:`wifi.connected <wifi-connected_condition>` / :ref:`api.connected <api-connected_condition>`
   / :ref:`mqtt.connected <mqtt-connected_condition>`
+- :ref:`time.has_time <time-has_time_condition>`
 - :ref:`script.is_running <script-is_running_condition>`
 - :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
 - :ref:`text_sensor.state <text_sensor-state_condition>`

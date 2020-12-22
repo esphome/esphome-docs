@@ -9,7 +9,7 @@ The ``HM3301`` sensor platform allows you to use your HM3301 particulate matter 
 (`more info <http://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301>`__)
 sensors with ESPHome.
 
-The sensor communicate with board by ``I2C`` protocol, and requires 3.3v.
+The sensor communicate with board by :ref:`I²C <i2c>` protocol, and requires 3.3v.
 
 .. code-block:: yaml
 
@@ -26,7 +26,7 @@ The sensor communicate with board by ``I2C`` protocol, and requires 3.3v.
           name: "PM10.0"
         aqi:
           name: "AQI"
-          type: "CAQI"
+          calculation_type: "CAQI"
 
 Configuration variables:
 ------------------------
@@ -51,7 +51,7 @@ Configuration variables:
 
 - **aqi** (*Optional*): AQI sensor. Requires the ``pm_2_5`` and ``pm_10_0`` sensors defined. See below.
 
-  - **type** (**Required**): One of: ``AQI`` or ``CAQI``.
+  - **calculation_type** (**Required**): One of: ``AQI`` or ``CAQI``.
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
@@ -75,7 +75,7 @@ There are two implementations:
           name: "PM10.0"
         aqi:
           name: "AQI"
-          type: "CAQI"
+          calculation_type: "CAQI"
 
 
 See Also

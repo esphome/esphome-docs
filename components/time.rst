@@ -61,6 +61,10 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+.. note::
+
+    If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
+    
 GPS Time Source
 ---------------
 
@@ -330,6 +334,21 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
                 then:
                   - switch.toggle: my_switch
 
+.. _time-has_time_condition:
+
+``time.has_time`` Condition
+----------------------------
+
+This :ref:`Condition <config-condition>` checks if time has been set and is valid.
+
+.. code-block:: yaml
+
+    on_...:
+      if:
+        condition:
+          time.has_time:
+        then:
+          - logger.log: Time has been set and is valid!
 
 See Also
 --------

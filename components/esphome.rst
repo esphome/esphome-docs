@@ -24,7 +24,7 @@ Configuration variables:
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPhome network. May only contain lowercase
-  characters, digits and underscores. See :ref:`esphome-changing_node_name`.
+  characters, digits, underscores and hyphens. See :ref:`esphome-changing_node_name`.
 - **platform** (**Required**, string): The platform your board is on,
   either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
 - **board** (**Required**, string): The board ESPHome should
@@ -43,8 +43,6 @@ Advanced options:
   but you can customize this behavior using this option.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
-- **use_custom_code** (*Optional*, boolean): Whether to configure the project for writing custom components.
-  This sets up some flags so that custom code should compile correctly
 - **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
   is in. Should have file extension ``.h`` - See :ref:`esphome-includes` for more info.
