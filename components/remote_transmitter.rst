@@ -71,6 +71,7 @@ Configuration variables:
 
   - **times** (int): The number of times to repeat the code.
   - **wait_time** (:ref:`config-time`): The time to wait between repeats.
+    (Between the end of the data and before next sync). Default 25ms.
 
 - **transmitter_id** (*Optional*, :ref:`config-id`): The remote transmitter to send the
   remote code with. Defaults to the first one defined in the configuration.
@@ -286,7 +287,8 @@ All RC Switch ``protocol`` settings have these settings:
 
   - **pulse_length** (**Required**, int): The pulse length of the protocol - how many microseconds
     one pulse should last for.
-  - **sync** (*Optional*): The number of high/low pulses for the sync header, defaults to ``[1, 31]``
+  - **sync** (*Optional*): The number of high/low pulses for the sync header (before the data), 
+    defaults to ``[1, 31]``
   - **zero** (*Optional*): The number of high/low pulses for a zero bit, defaults to ``[1, 3]``
   - **one** (*Optional*): The number of high/low pulses for a one bit, defaults to ``[3, 1]``
   - **inverted** (*Optional*, boolean): If this protocol is inverted. Defaults to ``false``.
