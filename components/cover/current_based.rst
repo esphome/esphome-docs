@@ -19,12 +19,14 @@ Open and close durations can be specified to allow ESPHome to approximate the cu
     :align: center
     :width: 75.0%
 
-This type of cover also provides current-based obstacle detection with automatic configurable rollback. 
+This type of cover also provides safety features like current-based obstacle detection with automatic configurable 
+rollback as well as relay malfunction detection: operation cancels if there's a current flowing in the opposite 
+operation circuit (typically caused by welded relays).  
 
 .. warning::
 
     Depending on the cover and motor type, obstacles can physically damage the cover before being detectable. 
-    Verify your setup to ensure the current consumption will increase enough to be detectable before cause 
+    Verify your setup to ensure the current consumption will increase enough to be detectable before causing 
     any physical damage. Use it at your own risk.
 
 .. code-block:: yaml
@@ -68,10 +70,9 @@ Configuration variables:
 - **open_duration** (**Required**, :ref:`config-time`): The amount of time it takes the cover
   to open up from the fully-closed state.
 - **open_moving_current_threshold** (*Required*, float): The amount of current in Amps the motor 
-  should drain to consider the cover is opening.
+  should drain to consider the cover is opening. 
 - **open_obstacle_current_threshold** (*Required*, float): The amount of current in Amps the motor 
   should drain to consider the cover is blocked during opening.
-
 - **close_sensor** (**Required**, :ref:`config-id`): The close current sensor.
 - **close_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed.
@@ -81,10 +82,8 @@ Configuration variables:
   should drain to consider the cover is closing.
 - **close_obstacle_current_threshold** (*Required*, float): The amount of current in Amps the motor 
   should drain to consider the cover is blocked during closing.
-
 - **stop_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed to stop the cover.
-
 - **max_duration** (*Optional*, :ref:`config-time`): The maximum duration the cover should be opening
   or closing. Useful for protecting from dysfunctional motor integrated endstops.
 - **start_sensing_delay** (*Optional*, :ref:`config-time`): The amount of time the current sensing will be 
@@ -93,6 +92,10 @@ Configuration variables:
   Defaults to ``500ms``.
 - **obstacle_rollback** (*Optional*, percentage): The percentage of rollback the cover will perform in case of 
   obstacle detection. Defaults to ``10%``.
+- **malfunction_detection** (*Optional*, boolean): Enable to detect malfunction detection (Tipically welded realys). Defaults to ``True``.
+- **malfunction_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when relay malfunction is detected. Malfunction may require device servicing. You can use this action 
+  to notify other systems about this situation
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
@@ -238,6 +241,10 @@ Configuration example:
           - switch.turn_off: open_relay
         obstacle_rollback: 30%
         start_sensing_delay: 0.8s
+        malfunction_detection: true
+        malfunction_action:
+          then:
+            - logger.log: "Malfunction detected. Relay welded."    
           
 
 
