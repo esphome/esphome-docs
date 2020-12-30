@@ -210,7 +210,7 @@ Configuration variables:
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_samsung36`` Action
-**********************************************
+************************************************
 
 This :ref:`action <config-action>` sends a Samsung36 infrared remote code to a remote transmitter.
 
