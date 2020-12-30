@@ -12,9 +12,8 @@ Usage
 
 The ``ssd1325_spi`` display platform allows you to use
 SSD1325 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1325.pdf>`__,
-`Adafruit <https://www.adafruit.com/product/2674>`__) and SSD1327 (`datasheet <https://www.waveshare.com/w/upload/a/ac/SSD1327-datasheet.pdf>`__,
-`Waveshare <https://www.waveshare.com/1.5inch-oled-module.htm>`__)
-displays with ESPHome. Note that this component is for displays that are connected via the 4-Wire :ref:`SPI bus <spi>`.
+`Adafruit <https://www.adafruit.com/product/2674>`__) displays with ESPHome. Note that this
+component is for displays that are connected via the 4-Wire :ref:`SPI bus <spi>`.
 
 .. figure:: images/ssd1325-full.jpg
     :align: center
@@ -52,10 +51,8 @@ Configuration Variables
 
   - ``SSD1325 128x32`` (SSD1325 with 128 columns and 32 rows)
   - ``SSD1325 128x64``
-  - ``SSD1327 128x128`` (note SSD1327 instead of SSD1325)
   - ``SSD1325 96x16``
   - ``SSD1325 64x48``
-  - ``SSD1327 128x128`` **# Note the number seven!**
 
 - **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
