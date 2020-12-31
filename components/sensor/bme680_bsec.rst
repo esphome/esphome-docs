@@ -74,7 +74,7 @@ Hub Configuration:
 - **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high.
   Defaults to ``0``.
 
-- **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for mobile applications (e.g. fixed indoor devices).
+- **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for static applications (e.g. fixed indoor devices).
   Can be ``mobile`` for mobile applications (e.g. carry-on devices).
 
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
@@ -173,7 +173,7 @@ IAQ Accuracy and Calibration
 The BSEC algorithm automatically gathers data in order to calibrate the IAQ measurements. The IAQ Accuracy sensor will give one
 of the following values:
 
-- ``Stabilizing``: The devie has just started, and the sensor is stabilizing (this typically lasts 5 minutes)
+- ``Stabilizing``: The device has just started, and the sensor is stabilizing (this typically lasts 5 minutes)
 - ``Uncertain``: The background history of BSEC is uncertain. This typically means the gas sensor data was too
   stable for BSEC to clearly define its reference.
 - ``Calibrating``: BSEC found new calibration data and is currently calibrating.
