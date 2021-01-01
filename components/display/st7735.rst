@@ -2,15 +2,16 @@ ST7735 Display
 ==============
 
 .. seo::
-    :description: Instructions for setting up a ST7735 OLED display drivers.
+    :description: Instructions for setting up a ST7735 display drivers.
+    :keywords: ST7735
     :image: ST7735.png
 
-OLED ST7735 Display Driver. 
+ST7735 Display Driver. 
 
 Usage
 -----
 
-The ST7735 component allows you to use a ST7735 OLED display
+The ST7735 component allows you to use a ST7735 display
 (`datasheet and information <https://learn.adafruit.com/1-8-tft-display/downloads>`__,
 `Adafruit <https://www.adafruit.com/product/358>`__) in ESPHome.
 It uses the :ref:`SPI Bus <spi>` for communication.
@@ -19,7 +20,7 @@ It uses the :ref:`SPI Bus <spi>` for communication.
     :align: center
     :width: 75.0%
 
-    ST7735 OLED Display
+    ST7735 Display
 
 There are numerous board types out there. Some initialize differntly as well. This driver will take a few options to narrow down the right settings.
 
