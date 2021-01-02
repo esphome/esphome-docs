@@ -17,19 +17,25 @@ with ESPHome.
 
 As the communication with the Nextion LCD display is done using UART, you need to have an :ref:`UART bus <uart>`
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
-Additionally, you need to set the baud rate to 9600.
+By default the baud rate is 9600. To change that to something else (115200) add ``baud=115200``
+in your program.s before the page line. This will set the nextion to listen on 115200 which is highly recommended.
+
+The below example configures a UART for the Nextion display to use
 
 .. code-block:: yaml
 
     # Example configuration entry
     uart:
-      rx_pin: D0
-      tx_pin: D1
-      baud_rate: 9600
+      id: uart_2
+      rx_pin: GPIO16
+      tx_pin: GPIO17
+      baud_rate: 115200
 
 
     display:
       - platform: nextion
+        id: nextion1
+        uart_id: uart_2      
         lambda: |-
           it.set_component_value("gauge", 50);
           it.set_component_text("textview", "Hello World!");
@@ -45,9 +51,14 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to call the lambda to update the display.
   Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **tft_url** (*Optional*, string): The URL to download the TFT file from for updates. See :ref:`nextion_upload_tft`.
+- **on_sleep** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the Nextion goes to sleep. See :ref:`nextion_on_sleep_on_wake`.
+- **on_wake** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the Nextion wakes up. See :ref:`nextion_on_sleep_on_wake`.
 
 .. _display-nextion_lambda:
-
+ 
 Rendering Lambda
 ----------------
 
@@ -78,12 +89,60 @@ you can call to populate data on the display:
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
 
+lambda calls
+************
+
+From :ref:`lambdas <config-lambda>`, you can call several methods do some
+advanced stuff (see the full API Reference for more info).
+
+.. _nextion_upload_tft:
+
+- ``upload_tft``: Start the upload process. This will download the file from
+              the tft_url and will transfer it over the UART to the Nextion
+              Once completed both the MCU and Nextion will reboot.
+              During this process esphome will be unresponsive and no logging
+              will take place. This is slow on an ESP32 @115200 baud expect around
+              10kB/sec
+
+  .. code-block:: yaml
+
+      // Template switch. When turned on it will start the upload proccess
+      - platform: template
+        name: "Upgrade TFT File"
+        turn_on_action:
+          - lambda: |-
+            id(n1)->upload_tft();      
+
+.. _nextion_on_sleep_on_wake:
+
+- ``on_sleep``/``on_wake``: Retrieve the current state of the switch.
+
+  .. code-block:: yaml
+
+      // Within lambda
+      on_sleep:
+        then:
+          lambda: 'ESP_LOGD("display","Display went to sleep");'
+      on_wake:
+        then:
+          lambda: 'ESP_LOGD("display","Display woke up");'
+
+Components
+----------
+This library supports a few different components allowing communication back and forth from HA <-> MCU <-> Nextion.
+Except for the - :doc:`../binary_sensor/nextion` the below handles polling data from the Nextion as well as the Nextion
+sending updates via the - :doc:`../binary_sensor/nextion` or from a custom protocol that needs to be added to the Nextion
+components. Refer to the below for more information.
+
+- :doc:`../binary_sensor/nextion`
+- :ref:`nextion_sensor`
 
 See Also
 --------
 
 - :doc:`index`
-- :doc:`/components/binary_sensor/nextion`
+- :doc:`/components/binary_sensor/nextion`.
+- :doc:`/components/sensor/nextion`.
 - :apiref:`nextion/nextion.h`
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__
 - `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <https://www.itead.cc/>`__

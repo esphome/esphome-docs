@@ -1,3 +1,5 @@
+.. _nextion_touch:
+
 Nextion Touch Component
 =======================
 
