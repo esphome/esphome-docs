@@ -88,6 +88,30 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+DS1307 Time Source
+------------------
+
+You first need to set up the :doc:`I2C </components/i2c>` component.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: ds1307
+        id: ds1307_time
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
+- **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to ``0x68``.
+- **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
+  or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
+  <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
+  that is running ESPHome, but this might not always be accurate.
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
+  a cron-like syntax. See :ref:`time-on_time`.
+
 Use In Lambdas
 --------------
 
