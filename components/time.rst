@@ -214,7 +214,7 @@ created based on a given format. If you want to get the current time attributes,
 .. _strftime:
 
 strftime
-^^^^^^^^
+********
 
 The second way to use the time object is to directly transform it into a string like ``2018-08-16 16:31``.
 This is directly done using C's `strftime <http://www.cplusplus.com/reference/ctime/strftime/>`__ function which
