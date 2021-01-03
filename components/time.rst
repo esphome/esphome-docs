@@ -112,6 +112,47 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+.. _ds1307-sync_to_rtc_action:
+
+``ds1307.sync_to_rtc`` Action
+-----------------------------
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
+
+.. note::
+
+    The DS1307 component will *not* write the RTC clock if not triggered *explicitely* by this action.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds1307.sync_to_rtc
+
+      # in case you need to specify the DS1307 id
+      - ds1307.sync_to_rtc:
+          id: ds1307_time
+
+.. _ds1307-sync_from_rtc_action:
+
+``ds1307.sync_from_rtc`` Action
+-------------------------------
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
+
+.. note::
+
+    The DS1307 component will automatically read the RTC clock every 15 minutes and synchronize the system clock
+    when a valid timestamp was read from the RTC. This can be used to trigger *additional* synchronizations.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds1307.sync_from_rtc
+
+      # in case you need to specify the DS1307 id
+      - ds1307.sync_from_rtc:
+          id: ds1307_time
+
 Use In Lambdas
 --------------
 
