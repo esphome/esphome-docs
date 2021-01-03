@@ -112,10 +112,16 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+DS1307 Actions
+--------------
+
+The DS1307 component supports :ref:`actions <config-action>` that can be used to synchronize the RTC hardware and
+the system clock.
+
 .. _ds1307-write_action:
 
 ``ds1307.write`` Action
------------------------
+***********************
 
 This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
 
@@ -135,7 +141,7 @@ This :ref:`Action <config-action>` triggers a synchronization of the current sys
 .. _ds1307-read_action:
 
 ``ds1307.read`` Action
-----------------------
+**********************
 
 This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
 
