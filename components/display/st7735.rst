@@ -22,7 +22,7 @@ It uses the :ref:`SPI Bus <spi>` for communication.
 
     ST7735 Display
 
-There are numerous board types out there. Some initialize differntly as well. This driver will take a few options to narrow down the right settings.
+There are numerous board types out there. Some initialize differently as well. This driver will take a few options to narrow down the right settings.
 
 .. code-block:: yaml
 
