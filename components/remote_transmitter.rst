@@ -75,10 +75,8 @@ Configuration variables:
 - **transmitter_id** (*Optional*, :ref:`config-id`): The remote transmitter to send the
   remote code with. Defaults to the first one defined in the configuration.
   
-.. note::
-
-    If you're looking for the same functionality as is default in the rpi-rf component in
-    Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
+If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
+Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
 .. _remote_transmitter-transmit_raw:
 
