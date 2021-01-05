@@ -17,8 +17,10 @@ with ESPHome.
 
 As the communication with the Nextion LCD display is done using UART, you need to have an :ref:`UART bus <uart>`
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
-By default the baud rate is 9600. To change that to something else (115200) add ``baud=115200``
-in your program.s before the page line. This will set the nextion to listen on 115200 which is highly recommended.
+The Nextion uses a baud rate of 9600 by default. It may be configured to use a faster speed by adding (for
+example) ``baud=115200`` to the ``program.s`` source file (in the Nextion Editor) before the ``page`` line.
+This permits faster communication with the Nextion display and it is highly recommended.
+
 
 The below example configures a UART for the Nextion display to use
 
@@ -89,11 +91,11 @@ you can call to populate data on the display:
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
 
-lambda calls
+Lambda Calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods do some
-advanced stuff (see the full API Reference for more info).
+Several methods are available for use within :ref:`lambdas <config-lambda>`; these permit advanced functionality beyond simple
+display updates. See the full :apiref:`nextion/nextion.h` for more info. 
 
 .. _nextion_upload_tft:
 
@@ -104,14 +106,14 @@ advanced stuff (see the full API Reference for more info).
               will take place. This is slow on an ESP32 @115200 baud expect around
               10kB/sec
 
+The developer tools in Home Assitant can be used to trigger the update. The below code block is an example on how to set this up.
   .. code-block:: yaml
 
-      // Template switch. When turned on it will start the upload proccess
-      - platform: template
-        name: "Upgrade TFT File"
-        turn_on_action:
-          - lambda: |-
-            id(n1)->upload_tft();      
+      api:
+        services:
+          - service: update_nextion
+            then:
+              - lambda: 'main_lcd->upload_tft();' 
 
 .. _nextion_on_sleep_on_wake:
 
@@ -130,9 +132,12 @@ advanced stuff (see the full API Reference for more info).
 Components
 ----------
 This library supports a few different components allowing communication back and forth from HA <-> MCU <-> Nextion.
-Except for the - :doc:`../binary_sensor/nextion` the below handles polling data from the Nextion as well as the Nextion
-sending updates via the - :doc:`../binary_sensor/nextion` or from a custom protocol that needs to be added to the Nextion
-components. Refer to the below for more information.
+
+With the exception of the - :doc:`../binary_sensor/nextion`, the example below illustrates:
+ - Polling the Nextion for updates
+ - Dynamic updates sent from the Nextion to the ESP device
+
+Note that the latter requires a custom protocol to be included in the Nextion display's code/configuration. See the individual components for more detail.
 
 - :doc:`../binary_sensor/nextion`
 - :ref:`nextion_sensor`

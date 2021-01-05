@@ -7,7 +7,7 @@ Nextion Sensor Component
     :description: Instructions for setting up Nextion sensor.
     :image: nextion.jpg
 
-The ``nextion`` sensor platform supports intergers. It can be a component or variable in the Nextion display.
+The ``nextion`` sensor platform supports unsinged intergers. It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
 if the page is shown or not. 
 
