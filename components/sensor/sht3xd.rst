@@ -9,7 +9,7 @@ The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use you
 (`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,
 `Adafruit`_ ) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is
-required to be set up in your configuration for this sensor to work.
+required to be set up in your configuration for this sensor to work. The temperature and humidity values are acquired in high-repeatability mode.
 
 .. _Adafruit: https://www.adafruit.com/product/2857
 
