@@ -99,12 +99,7 @@ display updates. See the full :apiref:`nextion/nextion.h` for more info.
 
 .. _nextion_upload_tft:
 
-- ``upload_tft``: Start the upload process. This will download the file from
-              the tft_url and will transfer it over the UART to the Nextion
-              Once completed both the MCU and Nextion will reboot.
-              During this process esphome will be unresponsive and no logging
-              will take place. This is slow on an ESP32 @115200 baud expect around
-              10kB/sec
+- ``upload_tft``: Start the upload process. See :ref:`nextion_upload_tft_file`
 
 The developer tools in Home Assitant can be used to trigger the update. The below code block is an example on how to set this up.
   .. code-block:: yaml
@@ -129,6 +124,55 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
         then:
           lambda: 'ESP_LOGD("display","Display woke up");'
 
+.. _nextion_update_all_components:
+
+- ``update_all_components()``: All the components will publish their states.
+
+  .. code-block:: c++
+
+      id(nextion).update_all_components();
+
+
+.. _nextion_upload_tft_file:
+
+Uploading A TFT File
+--------------------
+This will download the file from the tft_url and will transfer it over the UART to the Nextion.
+Once completed both the MCU and Nextion will reboot. During this process esphome will be 
+unresponsive and no logging will take place. This is slow on an ESP32 @115200 baud expect around
+10kB/sec. If HTTPS/SSL is enabled it will be about 1kB/sec.
+
+To host the file you can use Home Assistant itself or any other web server.
+
+Home Assistant
+**************
+To host the tft file from Home Assistant create a www directory if it doesnt exit in your config 
+directory. You can create a subdirectory for those files as well.
+
+For example if the file is located
+under your configuration directory ``www/tft/default.tft`` the URL to access it will be
+``http(s)://your_home_assistant_url:port/local/tft/default.tft``
+
+NGINX
+*****
+
+`NGINX <https://www.nginx.com/>`__
+
+The below NGINX example configuration will server files out of /var/www/nextion directory.
+
+.. code-block:: conf
+
+  server {
+    listen 80;    
+    access_log  /var/log/nginx/nextion_access.log;    
+    error_log  /var/log/nginx/nextion_error.log;
+    root /var/www/nextion;
+    keepalive_timeout 1800;
+    send_timeout 1800;
+  }
+
+
+
 Components
 ----------
 This library supports a few different components allowing communication back and forth from HA <-> MCU <-> Nextion.
@@ -136,6 +180,24 @@ This library supports a few different components allowing communication back and
 With the exception of the - :doc:`../binary_sensor/nextion`, the example below illustrates:
  - Polling the Nextion for updates
  - Dynamic updates sent from the Nextion to the ESP device
+
+ .. code-block:: yaml
+
+      sensor:
+      - platform: nextion
+        nextion_id: n1
+        nextion_component:          
+          id: n0_sensor
+          name: "n0"
+          nextion_component_name: n0
+      - platform: nextion
+        nextion_id: n1
+        nextion_component:          
+          id: n1_sensor
+          name: "n1"
+          nextion_component_name: n1
+          update_interval: 10s
+
 
 Note that the latter requires a custom protocol to be included in the Nextion display's code/configuration. See the individual components for more detail.
 
