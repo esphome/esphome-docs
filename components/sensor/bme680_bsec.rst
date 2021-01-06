@@ -32,12 +32,10 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Minimal example configuration with common sensors
+    i2c:
+
     bme680_bsec:
-        address: 0x76
-        temperature_offset: 0
-        iaq_mode: static
-        state_save_interval: 6h
 
     sensor:
       - platform: bme680_bsec
@@ -47,8 +45,6 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
           name: "BME680 Pressure"
         humidity:
           name: "BME680 Humidity"
-        gas_resistance:
-          name: "BME680 Gas Resistance"
         iaq:
           name: "BME680 IAQ"
         co2_equivalent:
@@ -76,6 +72,9 @@ Hub Configuration:
 
 - **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for static applications (e.g. fixed indoor devices).
   Can be ``mobile`` for mobile applications (e.g. carry-on devices).
+
+- **sample_rate** (*Optional*, string): Sample rate. Default is ``lp`` for low power consumption, sampling every 3 seconds.
+  Can be ``ulp`` for ultra low power, sampling every 5 minutes.
 
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration does have to start from zero on device restart. Defaults to ``6h``.
@@ -112,6 +111,12 @@ Sensor Configuration:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **iaq_accuracy** (*Optional*): The information for the numeric IAQ accuracy sensor.
+
+  - **name** (**Required**, string): The name for the IAQ accuracy sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 - **co2_equivalent** (*Optional*): The information for the CO2 equivalent sensor.
 
   - **name** (**Required**, string): The name for the CO2 equivalent sensor.
@@ -135,6 +140,100 @@ Text Sensor Configuration:
 .. figure:: images/bme680-bsec-ui.png
     :align: center
     :width: 80.0%
+
+Advanced configuration
+----------------------
+
+The following configuration shows all the available sensors and optional settings for the component. It also includes an example of filtering to guard against
+outliers, limit the number of updates sent to home assistant and reduce storage requirements in other systems such as influxdb used to store historical data.
+
+For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`TextSensor <config-text_sensor>` are also available for filtering, automation and so on.
+
+.. code-block:: yaml
+
+    bme680_bsec:
+        # i2c address
+        # -----------
+        # Common values are:
+        # - 0x76
+        # - 0x77
+        # Default: 0x76
+        address: 0x76
+
+        # Temperature offset
+        # ------------------
+        # Useful if device is in enclosure and reads too high
+        # Default: 0
+        temperature_offset: 0
+
+        # IAQ calculation mode
+        # --------------------
+        # Available options:
+        # - static (for fixed position devices)
+        # - mobile (for on person or other moveable devices)
+        # Default: static
+        iaq_mode: static
+
+        # Sample rate
+        # -----------
+        # Available options:
+        # - lp (low power - samples every 3 seconds)
+        # - ulp (ultra low power - samples every 5 minutes)
+        # Default: lp
+        sample_rate: lp
+
+        # Interval at which to save BSEC state
+        # ------------------------------------
+        # Default: 6h
+        state_save_interval: 6h
+
+    sensor:
+      - platform: bme680_bsec
+        temperature:
+          # Temperature in °C
+          name: "BME680 Temperature"
+          filters:
+            - median
+        pressure:
+          # Pressure in hPa
+          name: "BME680 Pressure"
+          filters:
+            - median
+        humidity:
+          # Relative humidity %
+          name: "BME680 Humidity"
+          filters:
+            - median
+        gas_resistance:
+          # Gas resistance in Ω
+          name: "BME680 Gas Resistance"
+          filters:
+            - median
+        iaq:
+          # Indoor air quality value
+          name: "BME680 IAQ"
+          filters:
+            - median
+        iaq_accuracy:
+          # IAQ accuracy as a numeric value of 0, 1, 2, 3
+          name: "BME680 Numeric IAQ Accuracy"
+        co2_equivalent:
+          # CO2 equivalent estimate in ppm
+          name: "BME680 CO2 Equivalent"
+          filters:
+            - median
+        breath_voc_equivalent:
+          # Volatile organic compounds equivalent estimate in ppm
+          name: "BME680 Breath VOC Equivalent"
+          filters:
+            - median
+
+    text_sensor:
+      - platform: bme680_bsec
+        iaq_accuracy:
+          # IAQ accuracy as a text value of Stabilizing, Uncertain, Calibrating, Calibrated
+          name: "BME680 IAQ Accuracy"
+
 
 Multiple Sensors
 ----------------
