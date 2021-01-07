@@ -19,7 +19,7 @@ As the communication with the Nextion LCD display is done using UART, you need t
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
 The Nextion uses a baud rate of 9600 by default. It may be configured to use a faster speed by adding (for
 example) ``baud=115200`` to the ``program.s`` source file (in the Nextion Editor) before the ``page`` line.
-This permits faster communication with the Nextion display and it is highly recommended.
+This permits faster communication with the Nextion display and it is highly recommended when using :ref:`uart-hardware_uarts`.
 
 
 The below example configures a UART for the Nextion display to use
@@ -139,14 +139,19 @@ Uploading A TFT File
 --------------------
 This will download the file from the tft_url and will transfer it over the UART to the Nextion.
 Once completed both the MCU and Nextion will reboot. During this process esphome will be 
-unresponsive and no logging will take place. This is slow on an ESP32 @115200 baud expect around
+unresponsive and no logging will take place. At 115200 baud expect around
 10kB/sec. If HTTPS/SSL is enabled it will be about 1kB/sec.
 
-To host the file you can use Home Assistant itself or any other web server.
+.. warning::
+
+If :ref:`uart-hardware_uarts` are not available than inconsistant results can occur. Lowering the baud to 9600 baud my help.
+
+
+To host the TFT file you can use Home Assistant itself or any other web server. HTTPS while always recommened on any network will greatly reduce the upload speed.
 
 Home Assistant
 **************
-To host the tft file from Home Assistant create a www directory if it doesnt exit in your config 
+To host the TFT file from Home Assistant create a www directory if it doesnt exit in your config 
 directory. You can create a subdirectory for those files as well.
 
 For example if the file is located
@@ -208,8 +213,9 @@ See Also
 --------
 
 - :doc:`index`
-- :doc:`/components/binary_sensor/nextion`.
-- :doc:`/components/sensor/nextion`.
+- :doc:`../binary_sensor/nextion`
+- :doc:`../sensor/nextion`
+- :doc:`../uart`
 - :apiref:`nextion/nextion.h`
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__
 - `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <https://www.itead.cc/>`__
