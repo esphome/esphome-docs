@@ -208,6 +208,27 @@ with the current time representation of that format option.
 ``%%``        A literal ``%`` character                                      %
 ============= ============================================================== =========================
 
+.. _strptime:
+
+strptime
+^^^^^^^^
+
+You can update en ESPTime object based on a string representation like ``2018-08-16 16:31`` and a format
+specification as used by C's `strftime <http://www.cplusplus.com/reference/ctime/strftime/>`__ function.
+
+.. code-block:: cpp
+
+    # For example, to set a time object to the sixth of January, around lunch time:
+    ESPTime time {};
+    time.strptime("2021-01-06 12:34", ""%Y-%m-%d %H:%M")
+
+The strptime will parse the format string (second argument, here ``"%Y-%m-%d %H:%M"``) and match anything
+beginning with a percent sign ``%`` and a letter corresponding to one of the strftime formatting options.
+It will then interpret the given timne string (first argument) and update the corresponding time objects
+parameters accordingly. It will also implicitly recalculate the timestamp and consider if the time format
+contains the indicate the letter 'j' which indicates to do that based on the day of year instead of the
+month and day of month which would be the default.
+
 .. _time-on_time:
 
 ``on_time``
