@@ -1,21 +1,16 @@
-.. _nextion_sensor:
+.. _nextion_text_sensor:
 
-Nextion Sensor Component
-========================
+Nextion Text Sensor Component
+===============================
 
 .. seo::
-    :description: Instructions for setting up Nextion sensor.
+    :description: Instructions for setting up Nextion text sensor.
     :image: nextion.jpg
     :alt: nextion display
 
-The ``nextion`` sensor platform supports intergers. It can be a component or variable in the Nextion display.
+The ``nextion`` text sensor platform supports intergers. It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
 if the page is shown or not. 
-
-.. note::
-
-The Nextion can receive an interger but it can only send 3 bytes for a negative integer. The range if using the :ref:`nextion_custom_sensor_protocol` is:
-    -16777215 to 4294967295
 
 See :doc:`/components/display/nextion` for setting up the display
 
@@ -27,29 +22,27 @@ See :doc:`/components/display/nextion` for setting up the display
         id: nextion1
         # ...
 
-    sensor:
-      - platform: nextion        
-        name: "Current Humidity"
-        nextion_component_name: humidity # pageX.humidity for a global
-        update_interval: 4s
-      - platform: nextion
-        nextion_id: nextion1        
-        name: "Current Temperature"
-        nextion_variable_name: temperature
+    text_sensor:
+    - platform: nextion
+      nextion_id: nextion1
+      name: text0
+      id: text0
+      update_interval: 4s
+      nextion_component_name: text0
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the sensor.
-- **nextion_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Nextion display.
-- **nextion_component_name** (*Optional*, string): Manually specify the name of the Nextion component.
-- **nextion_variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
+- **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
+- **nextion_component_name** (*Optional*, string): The name of the Nextion component.
+- **nextion_variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- All other options from :ref:`Sensor <config-sensor>`.
+- All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 **Only one** *nextion_component_name* **or** *nextion_variable_name* **can be set**
 
-See :ref:`nextion_sensor_how_things_update` for additional information
+See :ref:`nextion_text_sensor_how_things_update` for additional information
 
 Globals
 *******
@@ -59,7 +52,7 @@ should be prefixed with the page name (page0/page1).
 
 *Example*
 
-  ``nextion_component_name: page0.humidity``
+  ``nextion_component_name: page0.text0``
 
 lambda calls
 ************
@@ -67,20 +60,21 @@ lambda calls
 From :ref:`lambdas <config-lambda>`, you can call several methods do some
 advanced stuff (see the full API Reference for more info).
 
-.. _nextion_sensor_set_state:
+.. _nextion_text_sensor_set_state:
 
-- ``set_state(int value)``: Set the state :ref:`sensor-lambda_calls`
+- ``set_state(std::string state)``: Set the state :ref:`sensor-lambda_calls`
 
-.. _nextion_sensor_update:
+.. _nextion_text_sensor_update:
 
 - ``update()``: Poll from the Nextion :ref:`sensor-lambda_calls`
 
-.. _nextion_sensor_how_things_update:
+
+.. _nextion_text_sensor_how_things_update:
 
 How things Update
 -----------------
 A Nextion component with and interger value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
-To have the Nextion send the data you can use the :ref:`nextion_custom_sensor_protocol` for this. Add the :ref:`nextion_custom_sensor_protocol` to the 
+To have the Nextion send the data you can use the :ref:`nextion_custom_text_sensor_protocol` for this. Add the :ref:`nextion_custom_text_sensor_protocol` to the 
 component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
 set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
 in the Nextion. 
@@ -90,16 +84,16 @@ in the Nextion.
 There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
 since this will be sending the real value to esphome.
 
+
 On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
 
-Using the above yaml example:
-  - "Current Humidity" will poll the Nextion for the ``humidity.val`` value and set the sensor accordingly.
-  - "Current Temperature" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_sensor_protocol` or use a lambda:
+Using the above yaml example:  
+  - "text0" will poll the Nextion for ``text0.txt`` value and set the state accordingly.  
 
-    - :ref:`nextion_sensor_set_state` 
-    - :ref:`nextion_sensor_update` 
+    - :ref:`nextion_text_sensor_set_state` 
+    - :ref:`nextion_text_sensor_update` 
 
-.. _nextion_custom_sensor_protocol:
+.. _nextion_custom_text_sensor_protocol:
 
 Nextion Custom Sensor Protocol
 ------------------------------
@@ -107,18 +101,20 @@ All lines are required
 
 .. code-block:: c++
 
-    printh 91
-    prints "temperature",0
+    printh 92
+    prints "text0",0
     printh 00
-    prints temperature.val,0
+    prints text0.txt,0
+    printh 00
     printh FF FF FF
 
 *Explanation*
 
-- ``printh 91`` Tells the library this is a sensor (int) data
-- ``prints "temperature",0`` Sends the name that matches **nextion_component_name** or **nextion_variable_name**
+- ``printh 92`` Tells the library this is text sensor
+- ``prints "text0",0`` Sends the name that matches **nextion_component_name** or **nextion_variable_name**
 - ``printh 00`` Sends a NULL
-- ``prints temperature.val,0`` The actual value to send. For a variable use the Nextion variable name ``temperature`` with out ``.val``
+- ``prints text0.txt,0`` The actual text to send. For a variable use the Nextion variable name ``text0`` with out ``.txt``
+- ``printh 00`` Sends a NULL
 - ``printh FF FF FF`` Nextion command ack
 
 
@@ -127,6 +123,6 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`nextion/nextion_sensor.h`
+- :apiref:`nextion/nextion_textsensor.h`
 - :ghedit:`Edit`
 

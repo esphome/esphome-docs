@@ -12,6 +12,7 @@ with ESPHome.
 .. figure:: images/nextion-full.jpg
     :align: center
     :width: 75.0%
+    :alt: nextion display
 
     Nextion LCD Display.
 
@@ -94,7 +95,7 @@ Please see :ref:`display-printf` for a quick introduction into the ``printf`` fo
 Lambda Calls
 ************
 
-Several methods are available for use within :ref:`lambdas <config-lambda>`; these permit advanced functionality beyond simple
+Several methods are available for use within :ref:`lambdas <config-lambda>` ; these permit advanced functionality beyond simple
 display updates. See the full :apiref:`nextion/nextion.h` for more info. 
 
 .. _nextion_upload_tft:
