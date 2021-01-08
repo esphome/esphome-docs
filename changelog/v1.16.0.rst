@@ -33,18 +33,6 @@ Breaking Changes
 - esphome: Float output: Fix min_power and max_power adjusting when output is inverted :esphomepr:`1250` by :ghuser:`dubit0` (breaking-change)
 - esphome: Pn532 upgrades :esphomepr:`1302` by :ghuser:`jesserockz` (breaking-change) (new-integration)
 
-Beta Fixes
-----------
-
-- esphome: fix chip_rotation: 180 :esphomepr:`1321` by :ghuser:`ssieb` (cherry-picked)
-- esphome: Fix Light Trigger :esphomepr:`1308` by :ghuser:`MartinWelsch` (cherry-picked)
-- esphome: Fix Xiaomi merged packet parsing :esphomepr:`1293` by :ghuser:`Alex9779` (cherry-picked)
-- esphome: Fix color_interlock behavior :esphomepr:`1325` by :ghuser:`margau` (cherry-picked)
-- esphome: Fix scheduler with too many cancelled timers :esphomepr:`1309` by :ghuser:`glmnet` (cherry-picked)
-- esphome: fix config check in OnlyWith configuration helper :esphomepr:`1304` by :ghuser:`akomelj` (cherry-picked)
-- esphome: fix: Incorrect time delay conversion breaks remote_transmitter_esp8266.cpp :esphomepr:`1322` by :ghuser:`thejonesyboy` (cherry-picked)
-- esphome: fix hm3301 AQICalculator is off by 1 :esphomepr:`1331` by :ghuser:`ikatkov` (cherry-picked)
-
 All changes
 -----------
 
@@ -80,16 +68,8 @@ All changes
 - esphome: Typo in the pm2.5 grid :esphomepr:`1311` by :ghuser:`jamesgao`
 - esphome: Float output: Fix min_power and max_power adjusting when output is inverted :esphomepr:`1250` by :ghuser:`dubit0` (breaking-change)
 - esphome: Add new time.has_time condition :esphomepr:`1255` by :ghuser:`ashmckenzie`
-- esphome: fix chip_rotation: 180 :esphomepr:`1321` by :ghuser:`ssieb` (cherry-picked)
 - docs: Add time.has_time documentation :docspr:`782` by :ghuser:`ashmckenzie`
-- esphome: Fix Light Trigger :esphomepr:`1308` by :ghuser:`MartinWelsch` (cherry-picked)
 - esphome: handle windows filenames :esphomepr:`1307` by :ghuser:`glmnet`
-- esphome: Fix Xiaomi merged packet parsing :esphomepr:`1293` by :ghuser:`Alex9779` (cherry-picked)
-- esphome: Fix color_interlock behavior :esphomepr:`1325` by :ghuser:`margau` (cherry-picked)
-- esphome: Fix scheduler with too many cancelled timers :esphomepr:`1309` by :ghuser:`glmnet` (cherry-picked)
-- esphome: fix config check in OnlyWith configuration helper :esphomepr:`1304` by :ghuser:`akomelj` (cherry-picked)
-- esphome: fix: Incorrect time delay conversion breaks remote_transmitter_esp8266.cpp :esphomepr:`1322` by :ghuser:`thejonesyboy` (cherry-picked)
-- esphome: fix hm3301 AQICalculator is off by 1 :esphomepr:`1331` by :ghuser:`ikatkov` (cherry-picked)
 - esphome: Bump flake8 from 3.8.3 to 3.8.4 :esphomepr:`1319` by :ghuser:`dependabot[bot]`
 - esphome: Bump pytest from 6.0.2 to 6.1.1 :esphomepr:`1320` by :ghuser:`dependabot[bot]`
 - esphome: Bump colorlog from 4.2.1 to 4.4.0 :esphomepr:`1323` by :ghuser:`dependabot[bot]`
@@ -248,3 +228,5 @@ All changes
 - docs: Add note about default settings in remote transmitter :docspr:`901` by :ghuser:`darthsebulba04`
 - docs: st7735 Docs :docspr:`608` by :ghuser:`SenexCrenshaw`
 - esphome: Bump platformio from 5.0.3 to 5.0.4 :esphomepr:`1444` by :ghuser:`dependabot[bot]`
+- esphome: Fix SN74HC595 with optional OE pin :esphomepr:`1454` by :ghuser:`rradar`
+- esphome: Fix stepper half half step mode :esphomepr:`1397` by :ghuser:`Fractal147`
