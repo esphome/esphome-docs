@@ -43,7 +43,7 @@ Blog Posts & Videos
 - `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__ 
 - `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-home-assistant/>`__ by :ghuser:`emorydunn`
 - `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__
-- `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPhome<https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
+- `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPhome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 
 Custom Components & Code
 ------------------------
