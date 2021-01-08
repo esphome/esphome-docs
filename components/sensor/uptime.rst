@@ -55,15 +55,12 @@ with human readable output.
                   seconds = seconds % 3600;
                   int minutes = seconds /  60;
                   seconds = seconds % 60;
-                  if ( days ) {
-                    return { (String(days) +"d " + String(hours) +"h " + String(minutes) +"m "+ String(seconds) +"s").c_str() };
-                  } else if ( hours ) {
-                    return { (String(hours) +"h " + String(minutes) +"m "+ String(seconds) +"s").c_str() };
-                  } else if ( minutes ) {
-                    return { (String(minutes) +"m "+ String(seconds) +"s").c_str() };
-                  } else {
-                    return { (String(seconds) +"s").c_str() };
-                  }
+                  return (
+                    (days ? String(days) + "d " : "") +
+                    (hours ? String(hours) + "h " : "") +
+                    (minutes ? String(minutes + "m " : "") +
+                    (String(seconds) + "s") 
+                  ).c_str();
 
 See Also
 --------
