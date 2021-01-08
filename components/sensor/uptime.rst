@@ -24,7 +24,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Human readable sensor
-----------------
+---------------------
 
 The sensor reports uptime in seconds which is good for automations
 but is hard to read for humans, this example creates a text sensor
