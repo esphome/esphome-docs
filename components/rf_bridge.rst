@@ -101,6 +101,34 @@ Configuration options:
         id(rf_bridge).send_code(0x700, 0x800, 0x1000, 0xABC123);
 
 
+.. _rf_bridge-send_raw_action:
+
+``rf_bridge.send_raw`` Action
+-----------------------------
+
+Send a raw RF code using this action in automations.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - rf_bridge.send_code:
+            raw: AAA5070008001000ABC12355
+
+Configuration options:
+
+- **raw** (**Required**, string, :ref:`templatable <config-templatable>`): RF raw string
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the RF Bridge if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(rf_bridge).send_raw("AAA5070008001000ABC12355");
+
+
 .. _rf_bridge-learn_action:
 
 ``rf_bridge.learn`` Action
@@ -126,6 +154,118 @@ Configuration options:
     .. code-block:: cpp
 
         id(rf_bridge).learn();
+
+
+Portisch firmware
+-----------------
+
+If you have flashed the secondary MCU with the `"Portisch firmware" <https://github.com/Portisch/RF-Bridge-EFM8BB1>`,
+ESPHome is able to receive the extra protocols that can be decoded as well as activate the other modes supported.
+
+
+.. _rf_bridge-on_advanced_code_received:
+
+``on_advanced_code_received`` Trigger
+-------------------------------------
+
+Similar to :ref:`rf_bridge-on_code_received`, this trigger receives the codes after advanced sniffing is started.
+To use the code, use a :ref:`lambda <config-lambda>` template, the code and the corresponding protocol and length
+are available inside that lambda under the variables named ``code``, ``protocol`` and ``length``.
+
+.. code-block:: yaml
+
+    on_advanced_code_received:
+      - homeassistant.event:
+          event: esphome.rf_advanced_code_received
+          data:
+            length: !lambda 'char buffer [10];return itoa(data.length,buffer,16);'
+            protocol: !lambda 'char buffer [10];return itoa(data.protocol,buffer,16);'
+            code: !lambda 'return data.code;'
+
+
+.. _rf_bridge-send_advanced_code_action:
+
+``rf_bridge.send_advanced_code`` Action
+---------------------------------------
+
+Send an  RF code using this action in automations.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - rf_bridge.send_advanced_code:
+            length: 0x04
+            protocol: 0x01
+            code: "ABC123"
+
+Configuration options:
+
+- **length** (**Required**, int, :ref:`templatable <config-templatable>`): Length of code plus protocol
+- **protocol** (**Required**, int, :ref:`templatable <config-templatable>`): RF Protocol
+- **code** (**Required**, string, :ref:`templatable <config-templatable>`): RF code
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the RF Bridge if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(rf_bridge).send_advanced_code(0x04, 0x01, "ABC123");
+
+
+.. _rf_bridge-start_advanced_sniffing_action:
+
+``rf_bridge.start_advanced_sniffing`` Action
+--------------------------------------------
+
+Tell the RF Bridge to listen for the advanced/extra protocols defined in the portisch firmware.
+The decoded codes with length and protocol will be returned to :ref:`rf_bridge-on_advanced_code_received`
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - rf_bridge.start_advanced_sniffing
+
+Configuration options:
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the RF Bridge if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(rf_bridge).start_advanced_sniffing();
+
+
+.. _rf_bridge-stop_advanced_sniffing_action:
+
+``rf_bridge.stop_advanced_sniffing`` Action
+-------------------------------------------
+
+Tell the RF Bridge to stop listening for the advanced/extra protocols defined in the portisch firmware.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - rf_bridge.stop_advanced_sniffing
+
+Configuration options:
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the RF Bridge if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(rf_bridge).stop_advanced_sniffing();
 
 
 Getting started with Home Assistant

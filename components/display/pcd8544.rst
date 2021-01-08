@@ -39,6 +39,7 @@ VCC to 3.3V and GND to GND.
         reset_pin: D0
         cs_pin: D8
         dc_pin: D1
+        contrast: 0x7f
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
@@ -60,6 +61,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **contrast** (*Optional*, int): Set screen contrast (0-255). Defaults to ``0x7f``.
 
 
 See Also

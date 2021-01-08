@@ -53,7 +53,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>`.
 - **long_range** (*Optional*, bool): Set the sensor in long range mode. The signal_rate_limit is overruled
   to ``0.1``. Defaults to false.
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x29``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x29``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 See Also
