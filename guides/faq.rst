@@ -159,7 +159,7 @@ If you find some, please do however report them if you have time :)
 
 To install the dev version of ESPHome:
 
-- In Hass.io: Add the ESPHome repository `https://github.com/esp  / :ref:`mqtt.connected <mqtt-connected_condition>`home/hassio <https://github.com/esphome/hassio>`
+- In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
