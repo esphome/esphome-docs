@@ -35,8 +35,8 @@ to some pins on your board and the baud rate set to 9600.
 
     # Example configuration entry
     uart:
-      rx_pin: D1
-      tx_pin: D2
+      rx_pin: GPIO3
+      tx_pin: GPIO1
       baud_rate: 9600
 
     sensor:
