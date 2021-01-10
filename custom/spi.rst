@@ -11,21 +11,23 @@ them publish values.
 Please refer to the SPI library docs for more information.
 
 .. code-block:: cpp
+#include "esphome.h"
 
-    #include "esphome.h"
 
-    class MyCustomComponent : public Component {
-     public:
-      void setup() override {
-        SPI.pins(SCK_PIN, MISO_PIN, MOSI_PIN, CS_PIN);
-        SPI.begin();
-      }
-      void loop() override {
-        SPI.beginTransaction(...)
-
-        SPI.write(0x42);
-      }
-    };
+class MyCustomComponent : public Component, public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW,
+                                                 spi::CLOCK_PHASE_LEADING, spi::DATA_RATE_2MHZ>{
+ public:
+  void setup() override {
+    
+    this->spi_setup();
+  }
+  void loop() override {
+    
+    this->enable();
+    //this->write_byte(....);
+    this->disable();
+  }
+};
 
 See Also
 --------
