@@ -235,3 +235,13 @@ All changes
 - docs: DS1307 real time clock component :docspr:`910` by :ghuser:`badbadc0ffee`
 - esphome: Add encode_uint32 method, similar to encode_uint16 :esphomepr:`1427` by :ghuser:`e28eta`
 - esphome: Rotary Encoder: Don't call callbacks in the isr :esphomepr:`1456` by :ghuser:`mknjc`
+- esphome: API: copy the data to send into the tcp internal buffer :esphomepr:`1455` by :ghuser:`mknjc`
+- esphome: Revert esptool to 2.8 :esphomepr:`1460` by :ghuser:`glmnet`
+- docs: fixed duplicate id in example for dac output :docspr:`909` by :ghuser:`dmannock`
+- docs: Add example for human readable uptime sensor :docspr:`923` by :ghuser:`fredrike`
+- docs: Update diy.rst :docspr:`922` by :ghuser:`omarghader`
+- docs: Spelling and grammar fixes :docspr:`928` by :ghuser:`scop`
+- docs: Fix duplicated "on_ble" in on_ble_service_data_advertise heading :docspr:`927` by :ghuser:`scop`
+- docs: Add hint for swapped data and clock pin :docspr:`914` by :ghuser:`DirkHeinke`
+- docs: Update nextion.rst :docspr:`912` by :ghuser:`wernight`
+- docs: Update mirabella-genio-bulb.rst to show potential use of GPIO14 instead of GPIO13 for specific monochromatic dimmable globes  :docspr:`911` by :ghuser:`imeekle`
