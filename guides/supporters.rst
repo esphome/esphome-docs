@@ -195,9 +195,11 @@ Contributors
 - `Destix (@Destix) <https://github.com/Destix>`__ - 1 contribution
 - `Alain Turbide (@Dilbert66) <https://github.com/Dilbert66>`__ - 2 contributions
 - `Mark  (@Diramu) <https://github.com/Diramu>`__ - 1 contribution
+- `Dirk Heinke (@DirkHeinke) <https://github.com/DirkHeinke>`__ - 1 contribution
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__ - 1 contribution
 - `djtef (@djtef) <https://github.com/djtef>`__ - 1 contribution
 - `Marcos Pérez Ferro (@djwmarcx) <https://github.com/djwmarcx>`__ - 1 contribution
+- `Dan Mannock (@dmannock) <https://github.com/dmannock>`__ - 1 contribution
 - `dmkif (@dmkif) <https://github.com/dmkif>`__ - 1 contribution
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__ - 1 contribution
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__ - 3 contributions
@@ -227,7 +229,7 @@ Contributors
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__ - 1 contribution
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__ - 1 contribution
 - `escoand (@escoand) <https://github.com/escoand>`__ - 7 contributions
-- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 6 contributions
+- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 7 contributions
 - `Evan Coleman (@evandcoleman) <https://github.com/evandcoleman>`__ - 3 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 28 contributions
@@ -238,7 +240,7 @@ Contributors
 - `Francisk0 (@Francisk0) <https://github.com/Francisk0>`__ - 1 contribution
 - `Frank Bakker (@FrankBakkerNl) <https://github.com/FrankBakkerNl>`__ - 2 contributions
 - `Frankster-NL (@Frankster-NL) <https://github.com/Frankster-NL>`__ - 1 contribution
-- `Fredrik Erlandsson (@fredrike) <https://github.com/fredrike>`__ - 1 contribution
+- `Fredrik Erlandsson (@fredrike) <https://github.com/fredrike>`__ - 2 contributions
 - `Evgeny (@freekode) <https://github.com/freekode>`__ - 8 contributions
 - `Brett McKenzie (@freerangeeggs) <https://github.com/freerangeeggs>`__ - 1 contribution
 - `Fritz Mueller (@fritzm) <https://github.com/fritzm>`__ - 1 contribution
@@ -250,7 +252,7 @@ Contributors
 - `Giovanni (@Gio-dot) <https://github.com/Gio-dot>`__ - 2 contributions
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 16 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
-- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 184 contributions
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 185 contributions
 - `Giorgos Logiotatidis (@glogiotatidis) <https://github.com/glogiotatidis>`__ - 1 contribution
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__ - 2 contributions
 - `Jelle Raaijmakers (@GMTA) <https://github.com/GMTA>`__ - 1 contribution
@@ -271,6 +273,7 @@ Contributors
 - `icarome (@icarome) <https://github.com/icarome>`__ - 1 contribution
 - `igg (@igg) <https://github.com/igg>`__ - 5 contributions
 - `ikatkov (@ikatkov) <https://github.com/ikatkov>`__ - 1 contribution
+- `Michael (@imeekle) <https://github.com/imeekle>`__ - 1 contribution
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__ - 1 contribution
 - `Ivan Shvedunov (@ivan4th) <https://github.com/ivan4th>`__ - 1 contribution
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__ - 1 contribution
@@ -361,7 +364,7 @@ Contributors
 - `Matthew Edwards (@mje-nz) <https://github.com/mje-nz>`__ - 1 contribution
 - `Maarten (@mjkl-gh) <https://github.com/mjkl-gh>`__ - 1 contribution
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__ - 2 contributions
-- `mknjc (@mknjc) <https://github.com/mknjc>`__ - 1 contribution
+- `mknjc (@mknjc) <https://github.com/mknjc>`__ - 2 contributions
 - `mnaz (@mnaz) <https://github.com/mnaz>`__ - 1 contribution
 - `Michael Nieß (@mniess) <https://github.com/mniess>`__ - 1 contribution
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__ - 1 contribution
@@ -391,6 +394,7 @@ Contributors
 - `Nuno Sousa (@nunofgs) <https://github.com/nunofgs>`__ - 1 contribution
 - `Chris Nussbaum (@nuttytree) <https://github.com/nuttytree>`__ - 1 contribution
 - `Olivér Falvai (@ofalvai) <https://github.com/ofalvai>`__ - 1 contribution
+- `Omar Ghader (@omarghader) <https://github.com/omarghader>`__ - 1 contribution
 - `Oncleben31 (@oncleben31) <https://github.com/oncleben31>`__ - 1 contribution
 - `Oscar Bolmsten (@oscar-b) <https://github.com/oscar-b>`__ - 4 contributions
 - `Pack3tL0ss (@Pack3tL0ss) <https://github.com/Pack3tL0ss>`__ - 1 contribution
@@ -444,7 +448,7 @@ Contributors
 - `ryanalden (@ryanalden) <https://github.com/ryanalden>`__ - 2 contributions
 - `Ryan Nazaretian (@ryannazaretian) <https://github.com/ryannazaretian>`__ - 1 contribution
 - `Nils Schulte (@Schnilz) <https://github.com/Schnilz>`__ - 1 contribution
-- `Ville Skyttä (@scop) <https://github.com/scop>`__ - 3 contributions
+- `Ville Skyttä (@scop) <https://github.com/scop>`__ - 5 contributions
 - `sekkr1 (@sekkr1) <https://github.com/sekkr1>`__ - 1 contribution
 - `SenexCrenshaw (@SenexCrenshaw) <https://github.com/SenexCrenshaw>`__ - 6 contributions
 - `Sergio (@sergio303) <https://github.com/sergio303>`__ - 2 contributions
@@ -515,6 +519,7 @@ Contributors
 - `warpzone (@warpzone) <https://github.com/warpzone>`__ - 1 contribution
 - `Wauter (@Wauter) <https://github.com/Wauter>`__ - 3 contributions
 - `Ian Wells (@wellsi) <https://github.com/wellsi>`__ - 1 contribution
+- `Werner Beroux (@wernight) <https://github.com/wernight>`__ - 1 contribution
 - `Wilmar den Ouden (@wilmardo) <https://github.com/wilmardo>`__ - 1 contribution
 - `Emil Hesslow (@WizKid) <https://github.com/WizKid>`__ - 1 contribution
 - `Artur 'Wodor' Wielogorski (@wodor) <https://github.com/wodor>`__ - 1 contribution
@@ -530,4 +535,4 @@ Contributors
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__ - 1 contribution
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__ - 1 contribution
 
-*This page was last updated January 11, 2021.*
+*This page was last updated January 12, 2021.*
