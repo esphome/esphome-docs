@@ -230,3 +230,8 @@ All changes
 - esphome: Bump platformio from 5.0.3 to 5.0.4 :esphomepr:`1444` by :ghuser:`dependabot[bot]`
 - esphome: Fix SN74HC595 with optional OE pin :esphomepr:`1454` by :ghuser:`rradar`
 - esphome: Fix stepper half half step mode :esphomepr:`1397` by :ghuser:`Fractal147`
+- esphome: fix safe_mode :esphomepr:`1421` by :ghuser:`alexyao2015`
+- esphome: DS1307 real time clock component :esphomepr:`1441` by :ghuser:`badbadc0ffee` (new-integration)
+- docs: DS1307 real time clock component :docspr:`910` by :ghuser:`badbadc0ffee`
+- esphome: Add encode_uint32 method, similar to encode_uint16 :esphomepr:`1427` by :ghuser:`e28eta`
+- esphome: Rotary Encoder: Don't call callbacks in the isr :esphomepr:`1456` by :ghuser:`mknjc`
