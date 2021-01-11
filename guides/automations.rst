@@ -800,7 +800,7 @@ using script modes ``single`` and ``restart`` respectively.
         - light.turn_off: hallway_light
 
     ...
-      on_...:           # can be called from diffrent wall switches
+      on_...:           # can be called from different wall switches
         - script.execute: hallway_light_script
 
 Sometimes you'll also need a timer which does not perform any action, that is ok too, just

@@ -719,7 +719,7 @@ Available variables in the lambda:
 
 - **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
 - **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
-- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
 
 .. code-block:: yaml
 
