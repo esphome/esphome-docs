@@ -48,7 +48,7 @@ interface.
 For this guide you will need:
 
 - Sonoff T1 UK 3 Gang 😉
-- An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
+- A USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins and to connect GPIO0 to the Ground.
 - Computer running ESPHome or Hass.io add-on.
