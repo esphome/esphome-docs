@@ -104,7 +104,7 @@ This is roughly the code used to display the MAX7219 pictured in the image.
 Scrolling
 *********
 
-By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file.
+By default the MAX7219Digit display has scroll enabled. The parameters can be set in the YAML file.
 They can also be changed in the Lambda by adding the following command:
 
 .. code-block:: cpp
