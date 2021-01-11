@@ -13,8 +13,8 @@ Component/Hub
 
 The ``rc522`` component allows you to use RC522 RFID controllers
 (`datasheet <hthttps://www.nxp.com/docs/en/data-sheet/MFRC522.pdff>`__, `Ali Express <https://es.aliexpress.com/item/1260729519.html>`__)
-with ESPHome. This component is a global hub that establishes the connection to the RC522 via :ref:`SPI <spi>` and
-outputs its data. Using the :ref:`RC522 binary sensors <rc522-tag>` you can then
+with ESPHome. This component is a global hub that establishes the connection to the RC522 via either :ref:`SPI <spi>` or
+:ref:`I²C <i2c>` and outputs its data. Using the :ref:`RC522 binary sensors <rc522-tag>` you can then
 create individual binary sensors that track if an RFID tag is currently detected by the RC522.
 
 .. figure:: images/rc522-full.jpg
@@ -23,20 +23,37 @@ create individual binary sensors that track if an RFID tag is currently detected
 
 See :ref:`rc522-setting_up_tags` for information on how to setup individual binary sensors for this component.
 
-As the communication with the RC522 is done using SPI you need to have an :ref:`SPI bus <spi>` in your configuration with both
-the **miso_pin** and **mosi_pin** set.
+The RC522 supports SPI, I²C and UART communication protocols, ESPHome can use either SPI or I²C.
+
+* If you have a module like the image above, it can only be used in SPI mode (`unless hacked <https://forum.arduino.cc/index.php?topic=442750.0>`__)
+  and you need to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
+
+* If you have a RC522 which communicates via I²C like in the M5 Stack then you need to have an :ref:`I²C <i2c>` bus configured.
+
+SPI Option
+**********
 
 .. code-block:: yaml
 
-    # Example configuration entry
     spi:
-      clk_pin: D0
-      miso_pin: D1
-      mosi_pin: D2
 
     rc522_spi:
-      cs_pin: D3
-      update_interval: 1s
+      cs_pin: GPIO15
+
+    binary_sensor:
+      - platform: rc522
+        uid: 74-10-37-94
+        name: "RC522 RFID Tag"
+
+I²C Option
+**********
+
+.. code-block:: yaml
+
+    i2c:
+
+    rc522_i2c:
+      cs_pin: GPIO2
 
     binary_sensor:
       - platform: rc522
@@ -46,18 +63,29 @@ the **miso_pin** and **mosi_pin** set.
 Configuration variables:
 ************************
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
-  is connected to.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the RST line. Some tests
   shows the RC522 working okay without this.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the RC522. This affects the
   duration that the individual binary sensors stay active when they're found.
-  If a device is not found within this time window, it will be marked as not present. Defaults to 1s.
-- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a tag is read. See :ref:`rc522-on_tag`.
+  If a device is not found within this time window, it will be marked as not present. Defaults to ``1s``.
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a tag is read. See
+  :ref:`rc522-on_tag`.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
+
+SPI Only:
+^^^^^^^^^
+
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
+  is connected to.
+
+I²C Only:
+^^^^^^^^^
+
+- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
+  to use multiple I²C buses.
+
 
 .. _rc522-on_tag:
 
@@ -73,7 +101,7 @@ The parameter ``x`` this trigger provides is of type ``std::string`` and is the 
 
 .. code-block:: yaml
 
-    rc522:
+    rc522_spi: # or rc522_i2c
       # ...
       on_tag:
         then:
@@ -86,7 +114,7 @@ using :ref:`api-homeassistant_tag_scanned_action`.
 
 .. code-block:: yaml
 
-    rc522:
+    rc522_spi: # or rc522_i2c
       # ...
       on_tag:
         then:
@@ -108,7 +136,7 @@ unique id (``uid``) is currently being detected by the RC522 or not.
       miso_pin: D1
       mosi_pin: D2
 
-    rc522_spi:
+    rc522_spi: # or rc522_i2c
       cs_pin: D3
       update_interval: 1s
 
@@ -149,5 +177,5 @@ See Also
 - :doc:`index`
 - :doc:`rdm6300`
 - :doc:`pn532`
-- :apiref:`rc522_spi/rc522_spi.h`
+- :apiref:`rc522/rc522.h`
 - :ghedit:`Edit`
