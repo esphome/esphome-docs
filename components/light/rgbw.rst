@@ -62,7 +62,7 @@ Configuration variables:
 Color Interlock
 ***************
 
-With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will have a undesired
+With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will have an undesired
 hue affect. Additionally, the brightness command may not work as expected depending upon configuration,
 leaving users to adjust the white component level separately. For these cases a new configration variable
 has been added: color_interlock.
