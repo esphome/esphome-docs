@@ -19,6 +19,7 @@ Base Time Configuration
 All time configuration schemas inherit these options.
 
 Configuration variables:
+************************
 
 - **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
 - **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
