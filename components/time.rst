@@ -88,6 +88,78 @@ Configuration variables:
 - **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
 
+DS1307 Time Source
+------------------
+
+You first need to set up the :doc:`I2C </components/i2c>` component.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: ds1307
+        id: ds1307_time
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
+- **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to ``0x68``.
+- **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
+  or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
+  <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
+  that is running ESPHome, but this might not always be accurate.
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
+  a cron-like syntax. See :ref:`time-on_time`.
+
+DS1307 Actions
+--------------
+
+The DS1307 component supports :ref:`actions <config-action>` that can be used to synchronize the RTC hardware and
+the system clock.
+
+.. _ds1307-write_action:
+
+``ds1307.write`` Action
+***********************
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
+
+.. note::
+
+    The DS1307 component will *not* write the RTC clock if not triggered *explicitely* by this action.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds1307.write
+
+      # in case you need to specify the DS1307 id
+      - ds1307.write:
+          id: ds1307_time
+
+.. _ds1307-read_action:
+
+``ds1307.read`` Action
+**********************
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
+
+.. note::
+
+    The DS1307 component will automatically read the RTC clock every 15 minutes by default and synchronize the
+    system clock when a valid timestamp was read from the RTC. (The ``update_interval`` can be changed.)
+    This action can be used to trigger *additional* synchronizations.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds1307.read
+
+      # in case you need to specify the DS1307 id
+      - ds1307.read:
+          id: ds1307_time
+
 Use In Lambdas
 --------------
 
@@ -142,7 +214,7 @@ created based on a given format. If you want to get the current time attributes,
 .. _strftime:
 
 strftime
-^^^^^^^^
+********
 
 The second way to use the time object is to directly transform it into a string like ``2018-08-16 16:31``.
 This is directly done using C's `strftime <http://www.cplusplus.com/reference/ctime/strftime/>`__ function which
