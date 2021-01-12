@@ -27,6 +27,7 @@ See :doc:`/components/display/nextion` for setting up the display
         name: "Radio 0 Switch"
         nextion_component_name: r0 # pageX.r0 for a global
         update_interval: 4s
+        hass_component_name: switch.downstairs
       - platform: nextion
         id: darkmode
         name: "Is Darkmode Set"
@@ -40,6 +41,7 @@ Configuration variables:
 - **nextion_component_name** (*Optional*, string): The name of the Nextion component.
 - **nextion_variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
+- **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
 - All other options from :ref:`Switch <config-switch>`.
 
 **Only one** *nextion_component_name* **or** *nextion_variable_name* **can be set**

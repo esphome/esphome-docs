@@ -183,7 +183,11 @@ Components
 ----------
 This library supports a few different components allowing communication back and forth from HA <-> MCU <-> Nextion.
 
-With the exception of the - :doc:`../binary_sensor/nextion`, the example below illustrates:
+.. note::
+
+    If the Nextion is sleeping it will not update its components even if updates are sent. After the Nextion wakes up all components will send their states to the Nextion to get around this.
+
+With the exception of the - :doc:`../binary_sensor/nextion` that has ``page_id``/``component_id``, the example below illustrates:
  - Polling the Nextion for updates
  - Dynamic updates sent from the Nextion to the ESP device
 
@@ -207,15 +211,14 @@ With the exception of the - :doc:`../binary_sensor/nextion`, the example below i
 
 Note that the latter requires a custom protocol to be included in the Nextion display's code/configuration. See the individual components for more detail.
 
-- :doc:`../binary_sensor/nextion`
-- :ref:`nextion_sensor`
-
 See Also
 --------
 
 - :doc:`index`
 - :doc:`../binary_sensor/nextion`
 - :doc:`../sensor/nextion`
+- :doc:`../switch/nextion`
+- :doc:`../text_sensor/nextion`
 - :doc:`../uart`
 - :apiref:`nextion/nextion.h`
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__

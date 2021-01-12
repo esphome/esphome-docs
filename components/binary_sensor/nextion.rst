@@ -31,6 +31,7 @@ See :doc:`/components/display/nextion` for setting up the display
         name: "Radio 0 Binary Sensor"
         nextion_component_name: r0 # pageX.r0 for a global
         update_interval: 4s
+        hass_component_name: switch.downstairs
       - platform: nextion
         id: darkmode
         name: "Is Darkmode Set"
@@ -46,6 +47,7 @@ Configuration variables:
 - **page_id** (*Optional*, string): The ID of the page the component is on. Use ``0`` for the default page.
 - **component_id** (*Optional*, string): The ID (the number, not name!) of the component to track.
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
+- **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 The Nextion will send a **page_id** and **component_id** when the *Send Component ID* check box is selected for the component. To enable 

@@ -31,11 +31,13 @@ See :doc:`/components/display/nextion` for setting up the display
       - platform: nextion        
         name: "Current Humidity"
         nextion_component_name: humidity # pageX.humidity for a global
+        nextion_precision: 1
         update_interval: 4s
       - platform: nextion
         nextion_id: nextion1        
         name: "Current Temperature"
         nextion_variable_name: temperature
+        hass_component_name: sensor.temperature
 
 Configuration variables:
 ------------------------
@@ -45,6 +47,9 @@ Configuration variables:
 - **nextion_component_name** (*Optional*, string): Manually specify the name of the Nextion component.
 - **nextion_variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
+- **nextion_precision** (*Optional*, :ref:`uint8_t`):  This is for Nextion float components. This sets 
+  the precision that the component is set to. This typically is the ``vvs1`` setting of the component.                                                         
+- **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 **Only one** *nextion_component_name* **or** *nextion_variable_name* **can be set**
