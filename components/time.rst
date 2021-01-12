@@ -178,7 +178,7 @@ In the ``seconds:``, ``minutes:``, ... fields you can use the following operator
 ``on_time_sync`` Trigger
 ************************
 
-This automation can be used to run synchronize several real time clocks.
+This automation is triggered after a time source successfully retrieves the current time.
 See the :ref:`DS1307 configuration example <ds1307-config_example>` for a scenario
 where a network time synchronization from a home assistant server trigger a write
 to an external hardware real time clock chip.
