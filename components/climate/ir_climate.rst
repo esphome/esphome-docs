@@ -120,6 +120,17 @@ Additional configuration is available for this model
   * ``MODEL_DG11J1_3A``: Temperature range is from 18 to 32 (default)
   * ``MODEL_DG11J1_91``: Temperature range is from 16 to 30
 
+LG
+---------
+
+Additional configuration is available for this platform
+
+- **header_high** (*Optional*, int): time in us for the high part of the header for the LG protocol. Defaults to 8000
+- **header_low** (*Optional*, int): time in us for the low part of the header for the LG protocol. Defaults to 4000
+- **bit_high** time in us for the high part of any bit in the LG protocol. Defaults to 600
+- **bit_one_low** time in us for the low part of a '1' bit in the LG protocol. Defaults to 1600
+- **bit_zero_low** time in us for the low part of a '0' bit in the LG protocol. Defaults to 550
+
 
 See Also
 --------
