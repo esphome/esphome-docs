@@ -260,10 +260,10 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to ``0x68``.
 - All other options from :ref:`base_time_config`.
 
-.. _ds1307-write_action:
+.. _ds1307-write_time_action:
 
-``ds1307.write`` Action
-***********************
+``ds1307.write_time`` Action
+****************************
 
 This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
 
@@ -274,16 +274,16 @@ This :ref:`Action <config-action>` triggers a synchronization of the current sys
 .. code-block:: yaml
 
     on_...:
-      - ds1307.write
+      - ds1307.write_time
 
       # in case you need to specify the DS1307 id
-      - ds1307.write:
+      - ds1307.write_time:
           id: ds1307_time
 
-.. _ds1307-read_action:
+.. _ds1307-read_time_action:
 
-``ds1307.read`` Action
-**********************
+``ds1307.read_time`` Action
+***************************
 
 This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
 
@@ -296,10 +296,10 @@ This :ref:`Action <config-action>` triggers a synchronization of the current sys
 .. code-block:: yaml
 
     on_...:
-      - ds1307.read
+      - ds1307.read_time
 
       # in case you need to specify the DS1307 id
-      - ds1307.read:
+      - ds1307.read_time:
           id: ds1307_time
 
 .. _ds1307-config_example:
@@ -319,7 +319,7 @@ When a synchronization to another time source was successfull, the RTC can be re
       on_boot:
         then:
           # read the RTC time once when the system boots
-          ds1307.read:
+          ds1307.read_time:
 
     time:
       - platform: ds1307
@@ -331,7 +331,7 @@ When a synchronization to another time source was successfull, the RTC can be re
         on_time_sync:
           then:
             # ... and update the RTC when the synchronization was successful
-            ds1307.write:
+            ds1307.write_time:
 
 Use In Lambdas
 --------------
