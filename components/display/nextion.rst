@@ -145,7 +145,7 @@ unresponsive and no logging will take place. At 115200 baud expect around
 
 .. warning::
 
-If :ref:`uart-hardware_uarts` are not available than inconsistant results can occur. Lowering the baud to 9600 baud my help.
+    If :ref:`uart-hardware_uarts` are not available than inconsistant results can occur. Lowering the baud to 9600 baud my help.
 
 
 To host the TFT file you can use Home Assistant itself or any other web server. HTTPS while always recommened on any network will greatly reduce the upload speed.
