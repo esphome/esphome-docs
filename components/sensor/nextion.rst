@@ -5,8 +5,7 @@ Nextion Sensor Component
 
 .. seo::
     :description: Instructions for setting up Nextion sensor.
-    :image: nextion.jpg
-    :alt: nextion display
+    :image: nextion.jpg    
 
 The ``nextion`` sensor platform supports intergers. It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
@@ -14,8 +13,8 @@ if the page is shown or not.
 
 .. note::
 
-The Nextion can receive an interger but it can only send 3 bytes for a negative integer. The range if using the :ref:`nextion_custom_sensor_protocol` is:
-    -16777215 to 4294967295
+    The Nextion can receive an interger but it can only send 3 bytes for a negative integer. The range if using the :ref:`nextion_custom_sensor_protocol` is:
+        -16777215 to 4294967295
 
 See :doc:`/components/display/nextion` for setting up the display
 
@@ -47,7 +46,7 @@ Configuration variables:
 - **nextion_component_name** (*Optional*, string): Manually specify the name of the Nextion component.
 - **nextion_variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- **nextion_precision** (*Optional*, :ref:`uint8_t`):  This is for Nextion float components. This sets 
+- **nextion_precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets 
   the precision that the component is set to. This typically is the ``vvs1`` setting of the component.                                                         
 - **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
 - All other options from :ref:`Sensor <config-sensor>`.
@@ -64,9 +63,11 @@ should be prefixed with the page name (page0/page1).
 
 *Example*
 
-  ``nextion_component_name: page0.humidity``
+``nextion_component_name: page0.humidity``
 
-lambda calls
+.. _nextion_sensor_lambda_calls:
+
+Lambda Calls
 ************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods do some
@@ -92,8 +93,8 @@ in the Nextion.
 
 .. note::
 
-There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
-since this will be sending the real value to esphome.
+    There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
+    since this will be sending the real value to esphome.
 
 On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
 
@@ -101,8 +102,7 @@ Using the above yaml example:
   - "Current Humidity" will poll the Nextion for the ``humidity.val`` value and set the sensor accordingly.
   - "Current Temperature" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_sensor_protocol` or use a lambda:
 
-    - :ref:`nextion_sensor_set_state` 
-    - :ref:`nextion_sensor_update` 
+    - :ref:`Lambda Calls <nextion_sensor_lambda_calls>`.  
 
 .. _nextion_custom_sensor_protocol:
 

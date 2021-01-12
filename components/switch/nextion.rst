@@ -5,8 +5,7 @@ Nextion Switch Component
 
 .. seo::
     :description: Instructions for setting up Nextion Switch.
-    :image: nextion.jpg
-    :alt: nextion display
+    :image: nextion.jpg    
 
 The ``nextion`` switch platform supports the many switched components in the Nextion as well as integer variables. It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not. 
@@ -58,7 +57,9 @@ should be prefixed with the page name (page0/page1).
 
 ``nextion_component_name: page0.r0``
 
-lambda calls
+.. _nextion_switch_lambda_calls:
+
+Lambda Calls
 ************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods do some
@@ -85,8 +86,8 @@ in the Nextion.
 
 .. note::
 
-There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
-since this will be sending the real value to esphome.
+    There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
+    since this will be sending the real value to esphome.
 
 
 On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
@@ -95,8 +96,7 @@ Using the above yaml example:
   - "Radio 0 switch" will poll the Nextion for the ``r0.val`` value and set the state accordingly.
   - "Is Darkmode Set" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_switch_protocol` or use a lambda:
 
-    - :ref:`nextion_switch_set_state` 
-    - :ref:`nextion_switch_update` 
+   - :ref:`Lambda Calls <nextion_switch_lambda_calls>`.  
 
 .. _nextion_custom_switch_protocol:
 

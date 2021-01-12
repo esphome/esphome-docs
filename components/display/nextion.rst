@@ -11,8 +11,7 @@ with ESPHome.
 
 .. figure:: images/nextion-full.jpg
     :align: center
-    :width: 75.0%
-    :alt: nextion display
+    :width: 75.0%    
 
     Nextion LCD Display.
 
@@ -54,11 +53,11 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to call the lambda to update the display.
   Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **tft_url** (*Optional*, string): The URL to download the TFT file from for updates. See :ref:`nextion_upload_tft`.
+- **tft_url** (*Optional*, string): The URL to download the TFT file from for updates. See :ref:`Nextion Upload <nextion_upload_tft>`.
 - **on_sleep** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the Nextion goes to sleep. See :ref:`nextion_on_sleep_on_wake`.
+  when the Nextion goes to sleep. See :ref:`Nextion On_Sleep/On_Wake <nextion_on_sleep_on_wake>`.
 - **on_wake** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the Nextion wakes up. See :ref:`nextion_on_sleep_on_wake`.
+  when the Nextion wakes up. See :ref:`Nextion On_Sleep/On_Wake <nextion_on_sleep_on_wake>`.
 
 .. _display-nextion_lambda:
  
@@ -166,7 +165,7 @@ NGINX
 
 The below NGINX example configuration will server files out of /var/www/nextion directory.
 
-.. code-block:: conf
+.. code-block:: nginx
 
     server {
       listen 80;    

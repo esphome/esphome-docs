@@ -5,8 +5,7 @@ Nextion Text Sensor Component
 
 .. seo::
     :description: Instructions for setting up Nextion text sensor.
-    :image: nextion.jpg
-    :alt: nextion display
+    :image: nextion.jpg    
 
 The ``nextion`` text sensor platform supports intergers. It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
@@ -54,9 +53,11 @@ should be prefixed with the page name (page0/page1).
 
 *Example*
 
-  ``nextion_component_name: page0.text0``
+``nextion_component_name: page0.text0``
 
-lambda calls
+.. _nextion_text_sensor_lambda_calls:
+
+Lambda Calls
 ************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods do some
@@ -83,8 +84,8 @@ in the Nextion.
 
 .. note::
 
-There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
-since this will be sending the real value to esphome.
+    There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
+    since this will be sending the real value to esphome.
 
 
 On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
@@ -92,8 +93,8 @@ On startup esphome will retrieve the value from the Nextion for any component ev
 Using the above yaml example:  
   - "text0" will poll the Nextion for ``text0.txt`` value and set the state accordingly.  
 
-    - :ref:`nextion_text_sensor_set_state` 
-    - :ref:`nextion_text_sensor_update` 
+    - :ref:`Lambda Calls <nextion_text_sensor_lambda_calls>`.  
+
 
 .. _nextion_custom_text_sensor_protocol:
 
