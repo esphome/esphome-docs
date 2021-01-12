@@ -168,14 +168,14 @@ The below NGINX example configuration will server files out of /var/www/nextion 
 
 .. code-block:: conf
 
-  server {
-    listen 80;    
-    access_log  /var/log/nginx/nextion_access.log;    
-    error_log  /var/log/nginx/nextion_error.log;
-    root /var/www/nextion;
-    keepalive_timeout 1800;
-    send_timeout 1800;
-  }
+    server {
+      listen 80;    
+      access_log  /var/log/nginx/nextion_access.log;    
+      error_log  /var/log/nginx/nextion_error.log;
+      root /var/www/nextion;
+      keepalive_timeout 1800;
+      send_timeout 1800;
+    }
 
 
 
@@ -193,20 +193,20 @@ With the exception of the - :doc:`../binary_sensor/nextion` that has ``page_id``
 
  .. code-block:: yaml
 
-      sensor:
-      - platform: nextion
-        nextion_id: n1
-        nextion_component:          
-          id: n0_sensor
-          name: "n0"
-          nextion_component_name: n0
-      - platform: nextion
-        nextion_id: n1
-        nextion_component:          
-          id: n1_sensor
-          name: "n1"
-          nextion_component_name: n1
-          update_interval: 10s
+     sensor:
+       - platform: nextion
+         nextion_id: n1
+         nextion_component:          
+           id: n0_sensor
+           name: "n0"
+           nextion_component_name: n0
+       - platform: nextion
+         nextion_id: n1
+         nextion_component:          
+           id: n1_sensor
+           name: "n1"
+           nextion_component_name: n1
+           update_interval: 10s
 
 
 Note that the latter requires a custom protocol to be included in the Nextion display's code/configuration. See the individual components for more detail.
