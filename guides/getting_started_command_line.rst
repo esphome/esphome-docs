@@ -187,6 +187,7 @@ After that, you will be able to access the dashboard through ``localhost:6052``.
 See Also
 --------
 
+- :doc:`cli`
 - :doc:`ESPHome index </index>`
 - :doc:`getting_started_hassio`
 - :ghedit:`Edit`
