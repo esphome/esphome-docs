@@ -5,7 +5,7 @@ Heartbeat LED
     :description: Instructions for setting up heartbeat LEDs in ESPHome to monitor an ESP.
     :image: led-on.png
 
-The ``heartbeat_led`` slowly blinks an LED to indicate the status of
+The ``heartbeat_led`` component slowly blinks an LED to indicate the status of
 the device. If it is blinking, it means the base loop is running.
 
 .. code-block:: yaml
