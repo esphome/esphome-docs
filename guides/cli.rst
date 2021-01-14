@@ -31,7 +31,7 @@ ESPHome's command line interface always has the following format
     Note: you can also use --help for any command to get arguments specific to that command.
 .. code-block:: console
 
-        esphome <some_command> --help
+    esphome <some_command> --help
 
 ``--verbose`` Option
 --------------------
