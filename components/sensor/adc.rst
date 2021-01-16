@@ -8,7 +8,7 @@ Analog To Digital Sensor
 The Analog To Digital (``adc``) Sensor allows you to use the built-in
 ADC in your device to measure a voltage on certain pins. On the ESP8266
 only pin A0 (GPIO17) supports this. On the ESP32 pins GPIO32 through
-GPIO39 can be used.
+GPIO39 can be used. 
 
 .. figure:: images/adc-ui.png
     :align: center
@@ -51,6 +51,8 @@ Configuration variables:
             filters:
               - multiply: 3.3
 
+
+
 .. _adc-esp32_attenuation:
 
 ESP32 Attenuation
@@ -87,6 +89,13 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
       - platform: adc
         pin: VCC
         name: "VCC Voltage"
+
+Multiple ADC Sensors
+---------------------
+
+You can only use as many ADC sensors as your device can support.  The Esp8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see below) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
+
+
 
 See Also
 --------
