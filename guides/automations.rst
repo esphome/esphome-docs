@@ -376,6 +376,7 @@ All Actions
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read <ds1307-read_action>`
 - :ref:`ds1307.write <ds1307-write_action>`
+- :ref:`cs5460a.restart <cs5460a-restart_action>`
 
 .. _config-condition:
 

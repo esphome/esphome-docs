@@ -110,6 +110,7 @@ Sensor Components
     BMP280, components/sensor/bmp280, bmp280.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
+    CS5460A, components/sensor/cs5460a, cs5460a.png
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
     Dallas, components/sensor/dallas, dallas.jpg
     DHT, components/sensor/dht, dht.jpg
