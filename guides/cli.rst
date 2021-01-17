@@ -20,7 +20,18 @@ ESPHome's command line interface always has the following format
 
     .. code-block:: console
 
-        esphome livingroom.yaml kitchen.yaml run
+    esphome livingroom.yaml kitchen.yaml run
+
+``--help`` Option
+--------------------
+
+.. option:: -h|--help
+
+    Output possible <commands> and [arguments].
+    Note: you can also use ``--help`` for any command to get arguments specific to that command.
+.. code-block:: console
+
+    esphome <some_command> --help
 
 ``--verbose`` Option
 --------------------
@@ -206,6 +217,5 @@ through a graphical user interface.
 .. option:: --open-ui
 
     If set, opens the dashboard UI in a browser once the server is up and running.
-
 
 
