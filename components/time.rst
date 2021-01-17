@@ -189,6 +189,14 @@ to an external hardware real time clock chip.
           then:
             - logger.log: "Synchronized system clock"
 
+.. note::
+
+    Components should trigger ``on_time_sync`` when they update the system clock. However, not all real time components
+    behave exactly the same. Components could e.g. decide to trigger only when a significant time change has been
+    observed, others could trigger whenever their time sync mechanism runs - even if that didn't effectively change
+    the system time. Some (such as SNTP) could even trigger when another real time component is responsigle for the
+    change in time.
+
 Home Assistant Time Source
 --------------------------
 
@@ -227,6 +235,13 @@ Configuration variables:
 
     If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
     
+.. warning::
+
+    Due to limitations of the SNTP implementation, this component will trigger ``on_time_sync`` only once when it detects that the
+    system clock has been set, even if the update was not done by the SNTP implementation!
+    This must be taken into consideration when SNTP is used together with other real time componnents, where another time source could
+    update the time before SNTP synchronizes.
+
 GPS Time Source
 ---------------
 
