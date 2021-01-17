@@ -125,12 +125,19 @@ Load the Tasmota binary when prompted, and you can upload the esphome firmware f
 4. Carefully remove the heat-shrink tubing around the two main PCBs.
 5. Like any ESP device, to flash this chip using serial you'll need 3V3, GND, RX, TX and GPIO0
 .. figure:: images/iwoole_rgbw_table_lamp_connections_top.jpg
-    :align: center
+    :align: left
     :width: 50.0%
 There are pads available for 3V3 and GPIO0 on the back. I have tried to find easier solder points on the front, marked in the image above.
 Be aware that VCC does not carry 3V3, but over 20 volts as far as I can tell.
 .. figure:: images/iwoole_rgbw_table_lamp_connections_bottom.jpg
-    :align: center
+    :align: left
+    :width: 50.0%
+I have made the following connections, I used the pad for GPIO0 because I did not know of the other connection point yet.
+.. figure:: images/iwoole_rgbw_table_lamp_wires_top.jpg
+    :align: left
+    :width: 50.0%
+.. figure:: images/iwoole_rgbw_table_lamp_wires_bottom.jpg
+    :align: left
     :width: 50.0%
 6. Flash the chip as you would with any other, using esphome-flasher or any other tool of your choosing. 
 While this is not meant as a tutorial on flashing ESP chips, some general hints:
