@@ -245,3 +245,16 @@ All changes
 - docs: Add hint for swapped data and clock pin :docspr:`914` by :ghuser:`DirkHeinke`
 - docs: Update nextion.rst :docspr:`912` by :ghuser:`wernight`
 - docs: Update mirabella-genio-bulb.rst to show potential use of GPIO14 instead of GPIO13 for specific monochromatic dimmable globes  :docspr:`911` by :ghuser:`imeekle`
+- esphome: Whirlpool ac :esphomepr:`1467` by :ghuser:`mmanza`
+- esphome: Bump pytest-mock from 3.3.1 to 3.5.1 :esphomepr:`1458` by :ghuser:`dependabot[bot]`
+- esphome: Add rc522 i2c :esphomepr:`1432` by :ghuser:`glmnet` (new-integration)
+- docs: add rc522 i2c config variant :docspr:`933` by :ghuser:`glmnet`
+- esphome: make time components polling components :esphomepr:`1443` by :ghuser:`badbadc0ffee`
+- docs: add cli link :docspr:`937` by :ghuser:`glmnet`
+- esphome: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :esphomepr:`1387` by :ghuser:`SenexCrenshaw` (breaking-change)
+- docs: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :docspr:`874` by :ghuser:`SenexCrenshaw`
+- docs: cli.rst add --help :docspr:`939` by :ghuser:`foxsam21`
+- esphome: Add NDEF reading and writing to PN532 :esphomepr:`1351` by :ghuser:`jesserockz` (new-integration)
+- docs: Add docs for pn532 NDEF functionality :docspr:`936` by :ghuser:`jesserockz`
+- esphome: Inkplate 6 support for ESPHome :esphomepr:`1283` by :ghuser:`davidzovko` (new-integration)
+- docs: Adding Inkplate 6 docs :docspr:`778` by :ghuser:`nitko12`
