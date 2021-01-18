@@ -324,7 +324,7 @@ All Triggers
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
 - :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
-- :ref:`time.on_time <time-on_time>`
+- :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
@@ -374,8 +374,7 @@ All Actions
 - :ref:`http_request.get <http_request-get_action>` / :ref:`http_request.post <http_request-post_action>` / :ref:`http_request.send <http_request-send_action>`
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
-- :ref:`ds1307.read <ds1307-read_action>`
-- :ref:`ds1307.write <ds1307-write_action>`
+- :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 
 .. _config-condition:
 
