@@ -48,7 +48,7 @@ The mosfets for the different color channels are connected as follows:
 ========================
 Since there is only one RGBW light to configure the .yaml file is fairly straightforward.
 Alternatively, you could configure each channel as a separate light if desired.
-I prefer to use the :ref:`rgbw-color-interlock` option along with the configuration below. 
+I prefer to use the :ref:`color-interlock <rgbw-color-interlock>` option along with the configuration below. 
 
 2.1 Example configuration
 -------------------------
@@ -136,14 +136,14 @@ Load the Tasmota binary when prompted, and you can upload the esphome firmware f
     :align: left
     :width: 60.0%
 
-  There are pads available for 3V3 and GPIO0 on the back. I have tried to find easier solder points on the front, marked in the image above.
-  Be aware that VCC does not carry 3V3, but over 20 volts as far as I can tell.
+There are pads available for 3V3 and GPIO0 on the back. I have tried to find easier solder points on the front, marked in the image above.
+Be aware that the pin labeled VCC does not carry 3V3, but 24V DC.
 
 .. figure:: images/iwoole_rgbw_table_lamp_connections_bottom.jpg
     :align: left
     :width: 60.0%
 
-  I have made the following connections, I used the pad for GPIO0 because I did not know of the other connection point yet.
+I have made the following connections, I used the pad for GPIO0 because I did not know of the other connection point yet.
 
 .. figure:: images/iwoole_rgbw_table_lamp_wires_top.jpg
     :align: left
