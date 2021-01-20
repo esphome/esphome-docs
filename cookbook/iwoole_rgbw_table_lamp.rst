@@ -137,7 +137,7 @@ Load the Tasmota binary when prompted, and you can upload the esphome firmware f
     :width: 60.0%
 
 There are pads available for 3V3 and GPIO0 on the back. I have tried to find easier solder points on the front, marked in the image above.
-Be aware that the pin labeled VCC does not carry 3V3, but 24V DC.
+Be aware that the pin labeled VCC does not carry 3V3, but 24V DC. If, for any reason, you wanted to connect any other sensor or component, the exposed pin for GPIO5 can be used, in addition to RX (GPIO3) and TX (GPIO1).
 
 .. figure:: images/iwoole_rgbw_table_lamp_connections_bottom.jpg
     :align: left
@@ -159,7 +159,7 @@ I have made the following connections, I used the pad for GPIO0 because I did no
 - Ensure GPIO0 is connected to ground to get the device into programming mode, but also don't forget to disconnect this when you expect the device to start in normal mode.
 - When working with a breadboard, an FTDI adapter and dupont or jumper cables, it is very easy for something to become disconnected. Try to use as few wires as possible.
 
-7. Re-apply some heat-shrink tubing or cover the PCBs in electrical tape. Re-connect the LEDs (see cable orientation in image above).
+7. Re-apply some heat-shrink tubing or cover the PCBs in electrical tape. Re-connect the LEDs (see cable orientation in one of the image above).
 
 8. Screw down the plate with LEDs and close the device.
 
