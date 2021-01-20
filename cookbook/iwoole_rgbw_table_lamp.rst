@@ -110,9 +110,9 @@ For both ways you will need to get the binary file with ESPHome's software by co
 
     According to `blakadder.com <https://templates.blakadder.com/iwoole_table_lamp.html>`__ recent versions of this device can't be flashed via this method anymore.
 
-The first device I bought could be flashed using tuya-convert. However, I still wanted to try and flash it via serial to see if it was possible. I messed this up and had to buy a new unit. This new unit could not be flashed using Tuya-convert.
+The first device I bought could be flashed using Tuya-convert. However, I still wanted to try and flash it via serial to see if it was possible. I messed this up and had to buy a new unit. This new unit could not be flashed using Tuya-convert.
 Unfortunately it looks like new devices are being shipped with new firmware preloaded. 
-If the device has older firmware but is connected to the tuya smart app, it might upgrade and lose it's ability to be flashed.
+If the device has older firmware but is connected to the Tuya Smart app, it might upgrade and lose it's ability to be flashed.
 
 For instructions on how to actually flash using `Tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ please see the linked GitHub page.
 
@@ -159,7 +159,7 @@ I have made the following connections, I used the pad for GPIO0 because I did no
 - Ensure GPIO0 is connected to ground to get the device into programming mode, but also don't forget to disconnect this when you expect the device to start in normal mode.
 - When working with a breadboard, an FTDI adapter and jumper wires, it is very easy for something to become disconnected. Try to use as few wires as possible.
 
-7. Re-apply some heat-shrink tubing or cover the PCBs in electrical tape. Re-connect the LEDs (see cable orientation in one of the images above).
+7. Re-apply some heat-shrink tubing or cover the PCBs in electrical tape. Make sure none of the traces or solder joints are exposed anymore. Re-connect the LEDs (see cable orientation in one of the images above).
 
 8. Screw down the plate with LEDs and close the device.
 
