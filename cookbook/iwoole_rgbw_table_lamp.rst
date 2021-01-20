@@ -35,11 +35,11 @@ The mosfets for the different color channels are connected as follows:
 .. figure:: images/iwoole_rgbw_table_lamp_internal_1.jpg
     :align: center
     :width: 30.0%
-    
+
 .. figure:: images/iwoole_rgbw_table_lamp_internal_2.jpg
     :align: center
     :width: 30.0%
-    
+
 .. figure:: images/iwoole_rgbw_table_lamp_internal_3.jpg
     :align: center
     :width: 30.0%
@@ -134,29 +134,29 @@ Load the Tasmota binary when prompted, and you can upload the esphome firmware f
 .. figure:: images/iwoole_rgbw_table_lamp_connections_top.jpg
     :align: left
     :width: 60.0%
-    
+
 There are pads available for 3V3 and GPIO0 on the back. I have tried to find easier solder points on the front, marked in the image above.
 Be aware that VCC does not carry 3V3, but over 20 volts as far as I can tell.
 
 .. figure:: images/iwoole_rgbw_table_lamp_connections_bottom.jpg
     :align: left
     :width: 60.0%
-    
+
 I have made the following connections, I used the pad for GPIO0 because I did not know of the other connection point yet.
 
 .. figure:: images/iwoole_rgbw_table_lamp_wires_top.jpg
     :align: left
     :width: 60.0%
-    
+
 .. figure:: images/iwoole_rgbw_table_lamp_wires_bottom.jpg
     :align: left
     :width: 60.0%
-    
+
 6. Flash the chip as you would with any other, using esphome-flasher or any other tool of your choosing. 
-While this is not meant as a tutorial on flashing ESP chips, some general hints:
-Always double check your connections, and don't change any when the ESP is powered. I fried one of these mood lights this way.
-Ensure GPIO0 is connected to ground to get the device into programming mode, but also don't forget to disconnect this when you expect the device to start.
-When working with a breadboard, an FTDI adapter and dupont or jumper cables, it is very easy for something to become disconnected. Try to use as few wires as possible.
+    While this is not meant as a tutorial on flashing ESP chips, some general hints:
+    Always double check your connections, and don't change any when the ESP is powered. I fried one of these mood lights this way.
+    Ensure GPIO0 is connected to ground to get the device into programming mode, but also don't forget to disconnect this when you expect the device to start.
+    When working with a breadboard, an FTDI adapter and dupont or jumper cables, it is very easy for something to become disconnected. Try to use as few wires as possible.
 
 7. Re-apply some heat-shrink tubing or cover the PCBs in electrical tape. Re-connect the LEDs (see cable orientation in image above).
 
