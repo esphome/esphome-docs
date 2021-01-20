@@ -48,7 +48,7 @@ The mosfets for the different color channels are connected as follows:
 ========================
 Since there is only one RGBW light to configure the .yaml file is fairly straightforward.
 Alternatively, you could configure each channel as a separate light if desired.
-I prefer to use the :ref:`color-interlock <rgbw-color-interlock>` option along with the configuration below. 
+I prefer to use the :ref:`color-interlock <rgbw_color_interlock>` option along with the configuration below. 
 
 2.1 Example configuration
 -------------------------
@@ -154,13 +154,13 @@ I have made the following connections, I used the pad for GPIO0 because I did no
     :width: 60.0%
 
 6. Flash the chip as you would with any other, using esphome-flasher or any other tool of your choosing. While this is not meant as a tutorial on flashing ESP chips, some general hints:
-  - Always double check your connections, and don't change any when the ESP is powered. I fried one of these mood lights this way.
-  - Ensure GPIO0 is connected to ground to get the device into programming mode, but also don't forget to disconnect this when you expect the device to start.
-  - When working with a breadboard, an FTDI adapter and dupont or jumper cables, it is very easy for something to become disconnected. Try to use as few wires as possible.
+   - Always double check your connections, and don't change any when the ESP is powered. I fried one of these mood lights this way.
+   - Ensure GPIO0 is connected to ground to get the device into programming mode, but also don't forget to disconnect this when you expect the device to start.
+   - When working with a breadboard, an FTDI adapter and dupont or jumper cables, it is very easy for something to become disconnected. Try to use as few wires as possible.
 
 7. Re-apply some heat-shrink tubing or cover the PCBs in electrical tape. Re-connect the LEDs (see cable orientation in image above).
 
-8. Screw down the LEDs and close the device.
+8. Screw down the plate with LEDs and close the device.
 
 See Also
 ========
