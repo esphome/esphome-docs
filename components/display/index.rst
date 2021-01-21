@@ -285,7 +285,7 @@ To display a text string from a ``text_sensor``, append ``.c_str()`` to the end 
       - platform: ...
         # ...
         lambda: |-
-          it.printf(0, 0, id(my_font), "Text to follow: ", id(template_text).state.c_str());
+          it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
           
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
