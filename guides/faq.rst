@@ -260,7 +260,7 @@ Command reference:
     # Warning: this command is currently not working with Docker on MacOS. (see note below)
     docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
 
-    # Start dashboard on port 5062 (MacOS specific command)
+    # Start dashboard on port 6052 (MacOS specific command)
     docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
 
     # Setup a bash alias:
