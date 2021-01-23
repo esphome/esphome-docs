@@ -4,7 +4,7 @@ Xiaomi Mijia BLE Sensors
 .. seo::
     :description: Instructions for setting up Xiaomi Mi Home (Mijia) bluetooth-based sensors in ESPHome.
     :image: xiaomi_mijia_logo.jpg
-    :keywords: Xiaomi, Mi Home, Mijia, BLE, Bluetooth, HHCCJCY01, GCLS002, HHCCPOT002, LYWSDCGQ, LYWSD02, CGG1, LYWSD03MMC, CGD1, JQJCY01YM, MUE4094RT, WX08ZM, MHO, C401, MMCv2
+    :keywords: Xiaomi, Mi Home, Mijia, BLE, Bluetooth, HHCCJCY01, GCLS002, HHCCPOT002, LYWSDCGQ, LYWSD02, CGG1, LYWSD03MMC, CGD1, JQJCY01YM, MUE4094RT, WX08ZM, MHO, C401, MHOC401
 
 The ``xiaomi_ble`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the temperature, humidity, moisture, conductivity, illuminance, formaldehyde, mosquito tablet and battery level of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_ble`` listense passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life.
 
@@ -121,7 +121,7 @@ Hygro thermometer, rectangular body, e-ink display, broadcasts temperature, humi
     :align: center
     :width: 30.0%
 
-- Battery Level needs last xiaomi firmware update.
+- Battery Level, needs xiaomi firmware 1.1.2_0085
 
 Configuration example:
 
@@ -217,8 +217,7 @@ Hygro thermometer, square body, e-ink display, encrypted, broadcasts temperature
     :align: center
     :width: 30.0%
 
-- Also known as MMCv2.
-- MHO-C201 don't have BT.
+( MHO-C201 don't have BT )
 
 Configuration example:
 
