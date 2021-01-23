@@ -122,6 +122,7 @@ Hygro thermometer, rectangular body, e-ink display, broadcasts temperature, humi
     :width: 30.0%
 
 - Battery Level needs last xiaomi firmware update.
+
 Configuration example:
 
 .. code-block:: yaml
