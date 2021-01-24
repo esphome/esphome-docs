@@ -58,7 +58,7 @@ with human readable output.
                   return (
                     (days ? String(days) + "d " : "") +
                     (hours ? String(hours) + "h " : "") +
-                    (minutes ? String(minutes + "m " : "") +
+                    (minutes ? String(minutes) + "m " : "") +
                     (String(seconds) + "s") 
                   ).c_str();
 
