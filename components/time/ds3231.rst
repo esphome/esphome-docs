@@ -1,0 +1,16 @@
+.. _time:
+
+DS3231
+======
+
+.. seo::
+    :description: RTC Clock DS3231
+    :image: clock-outline.png
+    :keywords: RTC
+
+DS3231 as Time Source
+---------------------
+
+
+DS3231 as Temperature Sensor
+----------------------------

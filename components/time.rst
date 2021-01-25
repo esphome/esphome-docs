@@ -64,7 +64,7 @@ Configuration variables:
 .. note::
 
     If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
-    
+
 GPS Time Source
 ---------------
 
@@ -76,6 +76,28 @@ You first need to set up the :doc:`GPS </components/gps>` component.
     time:
       - platform: gps
         id: gps_time
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): Specify the ID of the time for use in lambdas.
+- **timezone** (*Optional*, string): Manually tell ESPHome what time zone to use with `this format
+  <https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html>`__ (warning: the format is quite complicated)
+  or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
+  <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
+  that is running ESPHome, but this might not always be accurate.
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
+  a cron-like syntax. See :ref:`time-on_time`.
+
+RTC Time Source
+---------------
+
+The special ICs like DS1307 or :doc:`DS3231 <time/ds3231>` can be used as a time source.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: ds3231
 
 Configuration variables:
 
