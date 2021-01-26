@@ -258,3 +258,14 @@ All changes
 - docs: Add docs for pn532 NDEF functionality :docspr:`936` by :ghuser:`jesserockz`
 - esphome: Inkplate 6 support for ESPHome :esphomepr:`1283` by :ghuser:`davidzovko` (new-integration)
 - docs: Adding Inkplate 6 docs :docspr:`778` by :ghuser:`nitko12`
+- esphome: time sync notification :esphomepr:`1442` by :ghuser:`badbadc0ffee`
+- docs: update time (sync) documentation :docspr:`924` by :ghuser:`badbadc0ffee`
+- esphome: rename read/write to read/time/write_time :esphomepr:`1468` by :ghuser:`badbadc0ffee`
+- docs: Add directions for handling text strings :docspr:`955` by :ghuser:`poldim`
+- esphome: Improve ccs811 precision :esphomepr:`1428` by :ghuser:`TheNetAdmin`
+- esphome: make fade_to*, lighten, and darken const :esphomepr:`1450` by :ghuser:`toelke`
+- docs: fix typo 5062 => 6052 :docspr:`956` by :ghuser:`Scarbous`
+- docs: Fix of typo in documentation of SPS30 :docspr:`954` by :ghuser:`teffcz`
+- docs: Remove reference to measuring humidity :docspr:`953` by :ghuser:`tomlut`
+- docs: Fix human-readable uptime example so it compiles :docspr:`949` by :ghuser:`oddsockmachine`
+- esphome: SPI wasnt being disabled after display update :esphomepr:`1493` by :ghuser:`SenexCrenshaw`
