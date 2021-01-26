@@ -8,9 +8,49 @@ DS3231
     :image: clock-outline.png
     :keywords: RTC
 
+The DS3231 is a low-cost, extremely accurate I²C real-time clock (RTC) with an
+integrated temperature-compensated crystal oscillator (TCXO) and crystal.
+
+For this integration to work you need to have set up a :ref:`I²C Bus <i2c>`
+in your configuration.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    i2c:
+      sda: D1
+      scl: D2
+
 DS3231 as Time Source
 ---------------------
 
+To use DS3231 chip as time source define it as follows:
+
+.. code-block:: yaml
+
+    # DS3231 as time source
+    time:
+      - platform: ds3231
+
+
+See :doc:`time` for config options for the DS3231 time source.
 
 DS3231 as Temperature Sensor
 ----------------------------
+
+The DS3231 chip has built in thermometer for cyrstal oscillator compensation.
+To read temperature readings define the following sensor:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: ds3231
+        temperature:
+          name: "Living Room Temperature"
+
+
+See Also
+--------
+
+- :ghedit:`Edit`
