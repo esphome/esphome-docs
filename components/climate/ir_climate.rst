@@ -127,12 +127,21 @@ LG
 
 Additional configuration is available for this platform
 
-- **header_high** (*Optional*, int): time in us for the high part of the header for the LG protocol. Defaults to 8000
-- **header_low** (*Optional*, int): time in us for the low part of the header for the LG protocol. Defaults to 4000
-- **bit_high** time in us for the high part of any bit in the LG protocol. Defaults to 600
-- **bit_one_low** time in us for the low part of a '1' bit in the LG protocol. Defaults to 1600
-- **bit_zero_low** time in us for the low part of a '0' bit in the LG protocol. Defaults to 550
+- **header_high** (*Optional*, :ref:`config-time`): time for the high part of the header for the LG protocol. Defaults to ``8000us``
+- **header_low** (*Optional*, :ref:`config-time`): time for the low part of the header for the LG protocol. Defaults to ``4000us``
+- **bit_high** (*Optional*, :ref:`config-time`): time for the high part of any bit in the LG protocol. Defaults to ``600us``
+- **bit_one_low** (*Optional*, :ref:`config-time`): time for the low part of a '1' bit in the LG protocol. Defaults to ``1600us``
+- **bit_zero_low** (*Optional*, :ref:`config-time`): time for the low part of a '0' bit in the LG protocol. Defaults to ``550us``
 
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: climate_ir_lg
+        name: "AC"
+        sensor: room_temperature
+        header_high: 3265us # AC Units from LG in Brazil, for example use these timings
+        header_low: 9856us
 
 See Also
 --------
