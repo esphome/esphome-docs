@@ -15,4 +15,5 @@ Components
     display/index
     text_sensor/index
     stepper/index
+    rtc/index
     *
