@@ -61,21 +61,6 @@ I prefer to use the :ref:`color-interlock <rgbw_color_interlock>` option along w
       board: esp01_1m
 
 
-    # Standard configuration
-    wifi:
-      ssid: "yourwifinetwork"
-      password: "iamverysecure"
-      ap:
-        ssid: "IWOOLE Table Lamp Fallback Hotspot"
-        password: "safefallbackpassword"
-    captive_portal:
-    logger:
-    api:
-      password: "ialwaysforgetthisone"
-    ota:
-      password: "enteryourownpasswordhere"
-
-
     # Start of device specific configuration
     light:
       - platform: rgbw
