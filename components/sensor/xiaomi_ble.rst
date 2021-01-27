@@ -217,7 +217,7 @@ Hygro thermometer, square body, e-ink display, encrypted, broadcasts temperature
     :align: center
     :width: 30.0%
 
-( MHO-C201 don't have BT )
+( MHO-C201 doesn't have BT )
 
 Configuration example:
 
