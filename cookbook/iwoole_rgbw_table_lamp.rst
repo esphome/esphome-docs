@@ -60,8 +60,9 @@ I prefer to use the :ref:`color-interlock <rgbw_color_interlock>` option along w
       platform: ESP8266
       board: esp01_1m
 
+    # Insert wifi and api configuration here
 
-    # Start of device specific configuration
+    # Configuration for IWOOLE PWM light
     light:
       - platform: rgbw
         name: "Light"
