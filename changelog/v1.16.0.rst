@@ -269,3 +269,12 @@ All changes
 - docs: Remove reference to measuring humidity :docspr:`953` by :ghuser:`tomlut`
 - docs: Fix human-readable uptime example so it compiles :docspr:`949` by :ghuser:`oddsockmachine`
 - esphome: SPI wasnt being disabled after display update :esphomepr:`1493` by :ghuser:`SenexCrenshaw`
+- esphome: Add support for string-type Tuya datapoints :esphomepr:`1488` by :ghuser:`pauln`
+- esphome: Add healthcheck :esphomepr:`1492` by :ghuser:`Klarstein`
+- docs: Add link to baseboard thermostat by rjmurph2241 :docspr:`958` by :ghuser:`rjmurph2241`
+- docs: Document color_temp :docspr:`951` by :ghuser:`alexyao2015`
+- docs: Update tuya.rst :docspr:`950` by :ghuser:`ricovangenugten`
+- docs: Minor uptime docs fixes :docspr:`948` by :ghuser:`foxsam21`
+- esphome: Support for MHO-C401 (fix) :esphomepr:`1486` by :ghuser:`nikito7` (new-integration)
+- docs: Update image type for st7789 display :docspr:`945` by :ghuser:`gerard33`
+- docs: Add MHO-C401 :docspr:`957` by :ghuser:`nikito7`

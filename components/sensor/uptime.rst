@@ -41,14 +41,14 @@ with human readable output.
     sensor:
       - platform: uptime
         name: Uptime Sensor
-        id: uptime
+        id: uptime_sensor
         update_interval: 60s
         on_raw_value:
           then:
             - text_sensor.template.publish:
                 id: uptime_human
                 state: !lambda |-
-                  int seconds = round(id(uptime).raw_state);
+                  int seconds = round(id(uptime_sensor).raw_state);
                   int days = seconds / (24 * 3600);
                   seconds = seconds % (24 * 3600);
                   int hours = seconds / 3600;
