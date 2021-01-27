@@ -235,29 +235,6 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           name: "BME680 IAQ Accuracy"
 
 
-Multiple Sensors
-----------------
-
-It is possible to read from multiple sensors by configuring multiple instances of the platform hub as follows:
-
-.. code-block:: yaml
-
-    bme680_bsec:
-      - id: bme680_one
-        address: 0x76
-      - id: bme680_two
-        address: 0x77
-
-    sensor:
-      - platform: bme680_bsec
-        bme680_bsec_id: bme680_one
-        temperature:
-          name: "BME680 One Temperature"
-      - platform: bme680_bsec
-        bme680_bsec_id: bme680_two
-        temperature:
-          name: "BME680 Two Temperature"
-
 Indoor Air Quality (IAQ) Measurement
 ------------------------------------
 
