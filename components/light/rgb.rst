@@ -69,6 +69,11 @@ Configuration variables:
 - **green** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the green channel.
 - **blue** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the blue channel.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
+- **rgb_temperature_emulation** (*Optional*, : bool): Enables Color Temperature emulation using the RGB LEDs. Defaults to ``False``.
+- **cold_white_color_temperature** (*Optional*, : bool): When Color Temperature emulation enabled, sets the coldest color temperature (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin). Defaults to ``6700 K``.
+- **warm_white_color_temperature** (*Optional*, : bool): When Color Temperature emulation enabled, sets the warmest color temperature (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin). Defaults to ``2700 K``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.
 
