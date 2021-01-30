@@ -140,6 +140,7 @@ Sensor Components
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     MS5611, components/sensor/ms5611, ms5611.jpg
     NTC Thermistor, components/sensor/ntc, ntc.jpg
+    PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Pulse Width, components/sensor/pulse_width, pulse.svg
