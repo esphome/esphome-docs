@@ -395,6 +395,9 @@ Teckin SP25 (US)
     GPIO12, USB Relay,
     GPIO15, Plug Relay,
 
+Example config: `teckin_sp25_us.yaml <https://github.com/esphome/esphome-docs/blob/current/devices/teckin_sp25_us.yaml>`__
+
+
 TorchStar LED Controller (Nov 2018)
 -----------------------------------
 
