@@ -397,7 +397,6 @@ Teckin SP25 (US)
 
 Example config: `teckin_sp25_us.yaml <https://github.com/esphome/esphome-docs/blob/current/devices/teckin_sp25_us.yaml>`__
 
-
 TorchStar LED Controller (Nov 2018)
 -----------------------------------
 
