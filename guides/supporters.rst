@@ -230,7 +230,7 @@ Contributors
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__ - 1 contribution
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__ - 1 contribution
 - `escoand (@escoand) <https://github.com/escoand>`__ - 7 contributions
-- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 10 contributions
+- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 11 contributions
 - `Evan Coleman (@evandcoleman) <https://github.com/evandcoleman>`__ - 3 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 29 contributions
@@ -289,7 +289,7 @@ Contributors
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__ - 2 contributions
 - `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__ - 11 contributions
-- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 53 contributions
+- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 54 contributions
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__ - 1 contribution
 - `Jeppe Ladefoged (@jladefoged) <https://github.com/jladefoged>`__ - 2 contributions
 - `Jonathan Martens (@jmartens) <https://github.com/jmartens>`__ - 1 contribution
@@ -548,4 +548,4 @@ Contributors
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__ - 1 contribution
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__ - 1 contribution
 
-*This page was last updated January 27, 2021.*
+*This page was last updated February 1, 2021.*
