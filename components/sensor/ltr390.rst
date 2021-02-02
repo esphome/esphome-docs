@@ -17,12 +17,12 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 
 .. code-block:: yaml
 
-  sensor:
-    - platform: ltr390
-      uv:
-        name: "UV"
-      light:
-        name: "Light"
+    sensor:
+      - platform: ltr390
+        uv:
+          name: "UV"
+        light:
+          name: "Light"
 
 Configuration variables:
 ------------------------
