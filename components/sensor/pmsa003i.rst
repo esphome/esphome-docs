@@ -15,6 +15,8 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
     :align: center
     :width: 80.0%
 
+.. _Adafruit: https://www.adafruit.com/product/4632
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -64,7 +66,7 @@ Configuration variables:
 - **pmc_10_0** (**Optional**): Count of particles with diameter > 10 um in 0.1 L of air (#/0.1L).
   All options from :ref:`Sensor <config-sensor>`.
 - **standard_units** (*Optional*, bool): Whether to use standard units (`True`) or environmental units (`False`).
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x12``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
