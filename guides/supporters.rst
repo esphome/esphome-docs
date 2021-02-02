@@ -230,7 +230,7 @@ Contributors
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__ - 1 contribution
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__ - 1 contribution
 - `escoand (@escoand) <https://github.com/escoand>`__ - 7 contributions
-- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 11 contributions
+- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 12 contributions
 - `Evan Coleman (@evandcoleman) <https://github.com/evandcoleman>`__ - 3 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 29 contributions
@@ -254,7 +254,7 @@ Contributors
 - `Giovanni (@Gio-dot) <https://github.com/Gio-dot>`__ - 2 contributions
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__ - 16 contributions
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__ - 1 contribution
-- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 189 contributions
+- `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__ - 190 contributions
 - `Giorgos Logiotatidis (@glogiotatidis) <https://github.com/glogiotatidis>`__ - 1 contribution
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__ - 2 contributions
 - `Jelle Raaijmakers (@GMTA) <https://github.com/GMTA>`__ - 1 contribution
@@ -267,6 +267,7 @@ Contributors
 - `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__ - 4 contributions
 - `Gavin Mogan (@halkeye) <https://github.com/halkeye>`__ - 1 contribution
 - `Charles Thompson (@haryadoon) <https://github.com/haryadoon>`__ - 1 contribution
+- `hcoohb (@hcoohb) <https://github.com/hcoohb>`__ - 1 contribution
 - `Héctor Giménez (@hectorgimenez) <https://github.com/hectorgimenez>`__ - 2 contributions
 - `Jimmy Hedman (@HeMan) <https://github.com/HeMan>`__ - 5 contributions
 - `HepoH3 (@HepoH3) <https://github.com/HepoH3>`__ - 1 contribution
@@ -548,4 +549,4 @@ Contributors
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__ - 1 contribution
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__ - 1 contribution
 
-*This page was last updated February 1, 2021.*
+*This page was last updated February 3, 2021.*
