@@ -280,3 +280,5 @@ All changes
 - docs: Add MHO-C401 :docspr:`957` by :ghuser:`nikito7`
 - esphome: Allow SCD30 sensors to be optional :esphomepr:`1502` by :ghuser:`jesserockz`
 - docs: Update scd30 docs to show sensors are optional :docspr:`970` by :ghuser:`jesserockz`
+- esphome: fix esp8266 remote_transmitter using incorrect timings :esphomepr:`1465` by :ghuser:`hcoohb`
+- esphome: rc522 increased retry loop count :esphomepr:`1506` by :ghuser:`glmnet`
