@@ -1,3 +1,42 @@
+Changelog - Version 1.16.0 - February 3, 2021
+===============================================
+
+.. seo::
+    :description: Changelog for ESPHome version 1.16.0.
+    :image: /_static/changelog-1.16.0.png
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
+.. imgtable::
+    :columns: 5
+
+    TMP102, components/sensor/tmp102, tmp102.jpg
+    MCP9808, components/sensor/mcp9808, mcp9808.jpg
+    RC522, components/binary_sensor/rc522, rc522.jpg
+    H-bridge Light, components/light/hbridge, brightness-medium.svg
+    ILI9341, components/display/ili9341, ili9341.jpg
+    Teleinfo, components/sensor/teleinfo, teleinfo.jpg
+    EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
+    SSD1322, components/display/ssd1322, ssd1322.jpg
+    SSD1327, components/display/ssd1327, ssd1327.jpg
+    SSD1331, components/display/ssd1331, ssd1331.jpg
+    ST7735, components/display/st7735, st7735.jpg
+    MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
+    CAN Bus, components/canbus, canbus.svg
+    Inkplate 6, components/display/Inkplate, Inkplate.jpg
+
+Hello, hello. Jesse Hills (:ghuser:`jesserockz`) here. Yet another new name doing the next release.
+
+Hopefully from this point forward, we are looking at releasing monthly on the first Wednesday of each month,
+we got the idea from Home Assistant! Thanks guys!
+
+There are a few new components in this release, but there was a lot of bugfixing and improvements overall and
+we have a lot of PRs to go through for new features for next months release.
+
+Thank you to all contributors, bug reporters and patrons! Without you this project would not be possible!
+
+Until next month.
+
 New Features
 ------------
 
@@ -25,6 +64,11 @@ New Integrations
 - esphome: Canbus + MCP2515 including ExtID support :esphomepr:`1384` by :ghuser:`danielschramm` (new-integration)
 - esphome: Add full SSD1327 display support :esphomepr:`1406` by :ghuser:`kbx81` (new-integration)
 - esphome: SSD1322 display support :esphomepr:`1405` by :ghuser:`kbx81` (new-integration)
+- esphome: DS1307 real time clock component :esphomepr:`1441` by :ghuser:`badbadc0ffee` (cherry-picked) (new-integration)
+- esphome: Add rc522 i2c :esphomepr:`1432` by :ghuser:`glmnet` (cherry-picked) (new-integration)
+- esphome: Add NDEF reading and writing to PN532 :esphomepr:`1351` by :ghuser:`jesserockz` (cherry-picked) (new-integration)
+- esphome: Inkplate 6 support for ESPHome :esphomepr:`1283` by :ghuser:`davidzovko` (cherry-picked) (new-integration)
+- esphome: Support for MHO-C401 (fix) :esphomepr:`1486` by :ghuser:`nikito7` (cherry-picked) (new-integration)
 
 Breaking Changes
 ----------------
@@ -32,6 +76,43 @@ Breaking Changes
 - esphome: Replace CENTER_LEFT with TOP_LEFT to match other printf function :esphomepr:`1295` by :ghuser:`TheZoker` (breaking-change)
 - esphome: Float output: Fix min_power and max_power adjusting when output is inverted :esphomepr:`1250` by :ghuser:`dubit0` (breaking-change)
 - esphome: Pn532 upgrades :esphomepr:`1302` by :ghuser:`jesserockz` (breaking-change) (new-integration)
+- esphome: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :esphomepr:`1387` by :ghuser:`SenexCrenshaw` (breaking-change) (cherry-picked)
+
+Beta Fixes
+----------
+
+- esphome: fix safe_mode :esphomepr:`1421` by :ghuser:`alexyao2015` (cherry-picked)
+- esphome: DS1307 real time clock component :esphomepr:`1441` by :ghuser:`badbadc0ffee` (cherry-picked) (new-integration)
+- docs: DS1307 real time clock component :docspr:`910` by :ghuser:`badbadc0ffee` (cherry-picked)
+- esphome: Add encode_uint32 method, similar to encode_uint16 :esphomepr:`1427` by :ghuser:`e28eta` (cherry-picked)
+- esphome: Rotary Encoder: Don't call callbacks in the isr :esphomepr:`1456` by :ghuser:`mknjc` (cherry-picked)
+- esphome: API: copy the data to send into the tcp internal buffer :esphomepr:`1455` by :ghuser:`mknjc` (cherry-picked)
+- esphome: Revert esptool to 2.8 :esphomepr:`1460` by :ghuser:`glmnet` (cherry-picked)
+- esphome: Whirlpool ac :esphomepr:`1467` by :ghuser:`mmanza` (cherry-picked)
+- esphome: Bump pytest-mock from 3.3.1 to 3.5.1 :esphomepr:`1458` by :ghuser:`dependabot[bot]` (cherry-picked)
+- esphome: Add rc522 i2c :esphomepr:`1432` by :ghuser:`glmnet` (cherry-picked) (new-integration)
+- docs: add rc522 i2c config variant :docspr:`933` by :ghuser:`glmnet` (cherry-picked)
+- esphome: make time components polling components :esphomepr:`1443` by :ghuser:`badbadc0ffee` (cherry-picked)
+- esphome: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :esphomepr:`1387` by :ghuser:`SenexCrenshaw` (breaking-change) (cherry-picked)
+- docs: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :docspr:`874` by :ghuser:`SenexCrenshaw` (cherry-picked)
+- esphome: Add NDEF reading and writing to PN532 :esphomepr:`1351` by :ghuser:`jesserockz` (cherry-picked) (new-integration)
+- docs: Add docs for pn532 NDEF functionality :docspr:`936` by :ghuser:`jesserockz` (cherry-picked)
+- esphome: Inkplate 6 support for ESPHome :esphomepr:`1283` by :ghuser:`davidzovko` (cherry-picked) (new-integration)
+- docs: Adding Inkplate 6 docs :docspr:`778` by :ghuser:`nitko12` (cherry-picked)
+- esphome: time sync notification :esphomepr:`1442` by :ghuser:`badbadc0ffee` (cherry-picked)
+- docs: update time (sync) documentation :docspr:`924` by :ghuser:`badbadc0ffee` (cherry-picked)
+- esphome: rename read/write to read/time/write_time :esphomepr:`1468` by :ghuser:`badbadc0ffee` (cherry-picked)
+- esphome: Improve ccs811 precision :esphomepr:`1428` by :ghuser:`TheNetAdmin` (cherry-picked)
+- esphome: make fade_to*, lighten, and darken const :esphomepr:`1450` by :ghuser:`toelke` (cherry-picked)
+- esphome: SPI wasnt being disabled after display update :esphomepr:`1493` by :ghuser:`SenexCrenshaw` (cherry-picked)
+- esphome: Add support for string-type Tuya datapoints :esphomepr:`1488` by :ghuser:`pauln` (cherry-picked)
+- esphome: Add healthcheck :esphomepr:`1492` by :ghuser:`Klarstein` (cherry-picked)
+- esphome: Support for MHO-C401 (fix) :esphomepr:`1486` by :ghuser:`nikito7` (cherry-picked) (new-integration)
+- docs: Add MHO-C401 :docspr:`957` by :ghuser:`nikito7` (cherry-picked)
+- esphome: Allow SCD30 sensors to be optional :esphomepr:`1502` by :ghuser:`jesserockz` (cherry-picked)
+- docs: Update scd30 docs to show sensors are optional :docspr:`970` by :ghuser:`jesserockz` (cherry-picked)
+- esphome: fix esp8266 remote_transmitter using incorrect timings :esphomepr:`1465` by :ghuser:`hcoohb` (cherry-picked)
+- esphome: rc522 increased retry loop count :esphomepr:`1506` by :ghuser:`glmnet` (cherry-picked)
 
 All changes
 -----------
@@ -230,13 +311,13 @@ All changes
 - esphome: Bump platformio from 5.0.3 to 5.0.4 :esphomepr:`1444` by :ghuser:`dependabot[bot]`
 - esphome: Fix SN74HC595 with optional OE pin :esphomepr:`1454` by :ghuser:`rradar`
 - esphome: Fix stepper half half step mode :esphomepr:`1397` by :ghuser:`Fractal147`
-- esphome: fix safe_mode :esphomepr:`1421` by :ghuser:`alexyao2015`
-- esphome: DS1307 real time clock component :esphomepr:`1441` by :ghuser:`badbadc0ffee` (new-integration)
-- docs: DS1307 real time clock component :docspr:`910` by :ghuser:`badbadc0ffee`
-- esphome: Add encode_uint32 method, similar to encode_uint16 :esphomepr:`1427` by :ghuser:`e28eta`
-- esphome: Rotary Encoder: Don't call callbacks in the isr :esphomepr:`1456` by :ghuser:`mknjc`
-- esphome: API: copy the data to send into the tcp internal buffer :esphomepr:`1455` by :ghuser:`mknjc`
-- esphome: Revert esptool to 2.8 :esphomepr:`1460` by :ghuser:`glmnet`
+- esphome: fix safe_mode :esphomepr:`1421` by :ghuser:`alexyao2015` (cherry-picked)
+- esphome: DS1307 real time clock component :esphomepr:`1441` by :ghuser:`badbadc0ffee` (cherry-picked) (new-integration)
+- docs: DS1307 real time clock component :docspr:`910` by :ghuser:`badbadc0ffee` (cherry-picked)
+- esphome: Add encode_uint32 method, similar to encode_uint16 :esphomepr:`1427` by :ghuser:`e28eta` (cherry-picked)
+- esphome: Rotary Encoder: Don't call callbacks in the isr :esphomepr:`1456` by :ghuser:`mknjc` (cherry-picked)
+- esphome: API: copy the data to send into the tcp internal buffer :esphomepr:`1455` by :ghuser:`mknjc` (cherry-picked)
+- esphome: Revert esptool to 2.8 :esphomepr:`1460` by :ghuser:`glmnet` (cherry-picked)
 - docs: fixed duplicate id in example for dac output :docspr:`909` by :ghuser:`dmannock`
 - docs: Add example for human readable uptime sensor :docspr:`923` by :ghuser:`fredrike`
 - docs: Update diy.rst :docspr:`922` by :ghuser:`omarghader`
@@ -245,40 +326,40 @@ All changes
 - docs: Add hint for swapped data and clock pin :docspr:`914` by :ghuser:`DirkHeinke`
 - docs: Update nextion.rst :docspr:`912` by :ghuser:`wernight`
 - docs: Update mirabella-genio-bulb.rst to show potential use of GPIO14 instead of GPIO13 for specific monochromatic dimmable globes  :docspr:`911` by :ghuser:`imeekle`
-- esphome: Whirlpool ac :esphomepr:`1467` by :ghuser:`mmanza`
-- esphome: Bump pytest-mock from 3.3.1 to 3.5.1 :esphomepr:`1458` by :ghuser:`dependabot[bot]`
-- esphome: Add rc522 i2c :esphomepr:`1432` by :ghuser:`glmnet` (new-integration)
-- docs: add rc522 i2c config variant :docspr:`933` by :ghuser:`glmnet`
-- esphome: make time components polling components :esphomepr:`1443` by :ghuser:`badbadc0ffee`
+- esphome: Whirlpool ac :esphomepr:`1467` by :ghuser:`mmanza` (cherry-picked)
+- esphome: Bump pytest-mock from 3.3.1 to 3.5.1 :esphomepr:`1458` by :ghuser:`dependabot[bot]` (cherry-picked)
+- esphome: Add rc522 i2c :esphomepr:`1432` by :ghuser:`glmnet` (cherry-picked) (new-integration)
+- docs: add rc522 i2c config variant :docspr:`933` by :ghuser:`glmnet` (cherry-picked)
+- esphome: make time components polling components :esphomepr:`1443` by :ghuser:`badbadc0ffee` (cherry-picked)
 - docs: add cli link :docspr:`937` by :ghuser:`glmnet`
-- esphome: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :esphomepr:`1387` by :ghuser:`SenexCrenshaw` (breaking-change)
-- docs: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :docspr:`874` by :ghuser:`SenexCrenshaw`
+- esphome: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :esphomepr:`1387` by :ghuser:`SenexCrenshaw` (breaking-change) (cherry-picked)
+- docs: Updated Mcp3008 to support reference_voltage and voltage_sampler::VoltageSampler :docspr:`874` by :ghuser:`SenexCrenshaw` (cherry-picked)
 - docs: cli.rst add --help :docspr:`939` by :ghuser:`foxsam21`
-- esphome: Add NDEF reading and writing to PN532 :esphomepr:`1351` by :ghuser:`jesserockz` (new-integration)
-- docs: Add docs for pn532 NDEF functionality :docspr:`936` by :ghuser:`jesserockz`
-- esphome: Inkplate 6 support for ESPHome :esphomepr:`1283` by :ghuser:`davidzovko` (new-integration)
-- docs: Adding Inkplate 6 docs :docspr:`778` by :ghuser:`nitko12`
-- esphome: time sync notification :esphomepr:`1442` by :ghuser:`badbadc0ffee`
-- docs: update time (sync) documentation :docspr:`924` by :ghuser:`badbadc0ffee`
-- esphome: rename read/write to read/time/write_time :esphomepr:`1468` by :ghuser:`badbadc0ffee`
+- esphome: Add NDEF reading and writing to PN532 :esphomepr:`1351` by :ghuser:`jesserockz` (cherry-picked) (new-integration)
+- docs: Add docs for pn532 NDEF functionality :docspr:`936` by :ghuser:`jesserockz` (cherry-picked)
+- esphome: Inkplate 6 support for ESPHome :esphomepr:`1283` by :ghuser:`davidzovko` (cherry-picked) (new-integration)
+- docs: Adding Inkplate 6 docs :docspr:`778` by :ghuser:`nitko12` (cherry-picked)
+- esphome: time sync notification :esphomepr:`1442` by :ghuser:`badbadc0ffee` (cherry-picked)
+- docs: update time (sync) documentation :docspr:`924` by :ghuser:`badbadc0ffee` (cherry-picked)
+- esphome: rename read/write to read/time/write_time :esphomepr:`1468` by :ghuser:`badbadc0ffee` (cherry-picked)
 - docs: Add directions for handling text strings :docspr:`955` by :ghuser:`poldim`
-- esphome: Improve ccs811 precision :esphomepr:`1428` by :ghuser:`TheNetAdmin`
-- esphome: make fade_to*, lighten, and darken const :esphomepr:`1450` by :ghuser:`toelke`
+- esphome: Improve ccs811 precision :esphomepr:`1428` by :ghuser:`TheNetAdmin` (cherry-picked)
+- esphome: make fade_to*, lighten, and darken const :esphomepr:`1450` by :ghuser:`toelke` (cherry-picked)
 - docs: fix typo 5062 => 6052 :docspr:`956` by :ghuser:`Scarbous`
 - docs: Fix of typo in documentation of SPS30 :docspr:`954` by :ghuser:`teffcz`
 - docs: Remove reference to measuring humidity :docspr:`953` by :ghuser:`tomlut`
 - docs: Fix human-readable uptime example so it compiles :docspr:`949` by :ghuser:`oddsockmachine`
-- esphome: SPI wasnt being disabled after display update :esphomepr:`1493` by :ghuser:`SenexCrenshaw`
-- esphome: Add support for string-type Tuya datapoints :esphomepr:`1488` by :ghuser:`pauln`
-- esphome: Add healthcheck :esphomepr:`1492` by :ghuser:`Klarstein`
+- esphome: SPI wasnt being disabled after display update :esphomepr:`1493` by :ghuser:`SenexCrenshaw` (cherry-picked)
+- esphome: Add support for string-type Tuya datapoints :esphomepr:`1488` by :ghuser:`pauln` (cherry-picked)
+- esphome: Add healthcheck :esphomepr:`1492` by :ghuser:`Klarstein` (cherry-picked)
 - docs: Add link to baseboard thermostat by rjmurph2241 :docspr:`958` by :ghuser:`rjmurph2241`
 - docs: Document color_temp :docspr:`951` by :ghuser:`alexyao2015`
 - docs: Update tuya.rst :docspr:`950` by :ghuser:`ricovangenugten`
 - docs: Minor uptime docs fixes :docspr:`948` by :ghuser:`foxsam21`
-- esphome: Support for MHO-C401 (fix) :esphomepr:`1486` by :ghuser:`nikito7` (new-integration)
+- esphome: Support for MHO-C401 (fix) :esphomepr:`1486` by :ghuser:`nikito7` (cherry-picked) (new-integration)
 - docs: Update image type for st7789 display :docspr:`945` by :ghuser:`gerard33`
-- docs: Add MHO-C401 :docspr:`957` by :ghuser:`nikito7`
-- esphome: Allow SCD30 sensors to be optional :esphomepr:`1502` by :ghuser:`jesserockz`
-- docs: Update scd30 docs to show sensors are optional :docspr:`970` by :ghuser:`jesserockz`
-- esphome: fix esp8266 remote_transmitter using incorrect timings :esphomepr:`1465` by :ghuser:`hcoohb`
-- esphome: rc522 increased retry loop count :esphomepr:`1506` by :ghuser:`glmnet`
+- docs: Add MHO-C401 :docspr:`957` by :ghuser:`nikito7` (cherry-picked)
+- esphome: Allow SCD30 sensors to be optional :esphomepr:`1502` by :ghuser:`jesserockz` (cherry-picked)
+- docs: Update scd30 docs to show sensors are optional :docspr:`970` by :ghuser:`jesserockz` (cherry-picked)
+- esphome: fix esp8266 remote_transmitter using incorrect timings :esphomepr:`1465` by :ghuser:`hcoohb` (cherry-picked)
+- esphome: rc522 increased retry loop count :esphomepr:`1506` by :ghuser:`glmnet` (cherry-picked)
