@@ -77,6 +77,7 @@ Core Components
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
     UART Bus, components/uart, uart.svg
+    CAN Bus, components/canbus, canbus.svg
 
     OTA Updates, components/ota, system-update.svg
     Logger, components/logger, file-document-box.svg
@@ -115,6 +116,7 @@ Sensor Components
     DHT12, components/sensor/dht12, dht12.jpg
     Duty Cycle, components/sensor/duty_cycle, percent.svg
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
+    EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
@@ -131,6 +133,8 @@ Sensor Components
     MAX31856, components/sensor/max31856, max31856.jpg
     MAX31865, components/sensor/max31865, max31865.jpg
     MAX6675, components/sensor/max6675, max6675.jpg
+    MCP3008, components/sensor/mcp3008, mcp3008.jpg
+    MCP9808, components/sensor/mcp9808, mcp9808.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
@@ -154,7 +158,9 @@ Sensor Components
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
+    Teleinfo, components/sensor/teleinfo, teleinfo.jpg
     Template Sensor, components/sensor/template, description.svg
+    TMP102, components/sensor/tmp102, tmp102.jpg
     TMP117, components/sensor/tmp117, tmp117.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
@@ -188,6 +194,7 @@ Binary Sensor Components
     Nextion Touch, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
+    RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
@@ -233,6 +240,8 @@ Light Components
     Tuya Dimmer, components/light/tuya, tuya.png
     Custom Light, components/light/custom, language-cpp.svg
 
+    H-bridge Light, components/light/hbridge, brightness-medium.svg
+
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
 
@@ -273,10 +282,16 @@ Display Components
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
+    SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
+    SSD1327, components/display/ssd1327, ssd1327.jpg
+    SSD1331, components/display/ssd1331, ssd1331.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
+    ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
+    ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
+    Inkplate 6, components/display/Inkplate, Inkplate.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
@@ -341,8 +356,8 @@ Misc Components
     Servo, components/servo, servo.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
-    MCP230XX I/O Expander, components/mcp230xx, mcp230xx.svg
-    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
+    MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
+    MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg

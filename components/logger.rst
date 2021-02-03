@@ -94,7 +94,7 @@ Possible log levels are (sorted by severity):
 -  ``VERY_VERBOSE``
 
   - All internal messages are logged. Including all the data flowing through data buses like
-    I2C, SPI or UART. Warning: May cause the device to slow down and have trouble staying
+    I²C, SPI or UART. Warning: May cause the device to slow down and have trouble staying
     connecting due to amount of generated messages. Color: white
 
 .. _logger-manual_tag_specific_levels:
@@ -185,7 +185,7 @@ using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const c
 
 .. note::
 
-    Logging will not work in the ``on_message`` trigger. You can't use the :ref:`logger.log <logger-log_action>` action  
+    Logging will not work in the ``on_message`` trigger. You can't use the :ref:`logger.log <logger-log_action>` action
     and the ``ESP_LOGx`` logging macros in this automation.
 
 See Also

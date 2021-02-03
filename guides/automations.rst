@@ -324,7 +324,7 @@ All Triggers
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
 - :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
-- :ref:`time.on_time <time-on_time>`
+- :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
@@ -374,6 +374,7 @@ All Actions
 - :ref:`http_request.get <http_request-get_action>` / :ref:`http_request.post <http_request-post_action>` / :ref:`http_request.send <http_request-send_action>`
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
+- :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 
 .. _config-condition:
 
@@ -388,6 +389,7 @@ All Conditions
 - :ref:`sensor.in_range <sensor-in_range_condition>`
 - :ref:`wifi.connected <wifi-connected_condition>` / :ref:`api.connected <api-connected_condition>`
   / :ref:`mqtt.connected <mqtt-connected_condition>`
+- :ref:`time.has_time <time-has_time_condition>`
 - :ref:`script.is_running <script-is_running_condition>`
 - :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
 - :ref:`text_sensor.state <text_sensor-state_condition>`

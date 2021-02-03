@@ -14,7 +14,7 @@ The AS3935 can detect the presence of lightning activity and provide an estimati
 on the distance to the head of the storm. The chip issues a notification through an interrupt
 pin.
 
-The AS3935 can be configured to use either the SPI **or** I^2C protocol for data communication.
+The AS3935 can be configured to use either the SPI **or** I²C protocol for data communication.
 First choose which communication method you want to use for the sensor, set the SI pin for the appropriate
 level and set up the ESPhome integration for the chosen communication method.
 
@@ -52,7 +52,7 @@ A1            I²C address selection MSB
     as3935_spi:
       cs_pin: GPIO12
       irq_pin: GPIO13
-    # Example configuration for I2C (decide for one!)
+    # Example configuration for I²C (decide for one!)
     as3935_i2c:
       irq_pin: GPIO12
 
@@ -114,14 +114,14 @@ Sensor entries:
      the ID used for code generation.
   -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-Configuration variables (I^2C):
+Configuration variables (I²C):
 -------------------------------
 
-Use this if you want to use your AS3935 in I^2C mode.
+Use this if you want to use your AS3935 in I²C mode.
 
 .. code-block:: yaml
 
-    # Example configuration for I2C (decide for one!)
+    # Example configuration for I²C (decide for one!)
     as3935_i2c:
       irq_pin: GPIO12
     # Example shared configuration
@@ -135,7 +135,7 @@ Use this if you want to use your AS3935 in I^2C mode.
       - platform: as3935
         name: "Storm Alert"
 
-- **address** (*Optional*, int): Manually specify the I^2C address of
+- **address** (*Optional*, int): Manually specify the I²C address of
   the sensor. Defaults to ``0x03`` (``A0` and ``A1`` pins pulled low).
   Another address can be ``0x02``.
 

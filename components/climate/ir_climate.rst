@@ -37,6 +37,8 @@ request so it will be added (see FAQ).
 +------------------------+---------------------+----------------------+------------------------------------+
 | LG                     | ``climate_ir_lg``   | yes                  |                                    |
 +------------------------+---------------------+----------------------+------------------------------------+
+| Hitachi                | ``hitachi_ac344``   | yes                  |                                    |
++------------------------+---------------------+----------------------+------------------------------------+
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
 
@@ -129,6 +131,7 @@ See Also
 - :apiref:`coolix.h <coolix/coolix.h>`,
   :apiref:`daikin.h <daikin/daikin.h>`
   :apiref:`fujitsu_general.h <fujitsu_general/fujitsu_general.h>`,
+  :apiref:`hitachi_ac344.h <hitachi_ac344/hitachi_ac344.h>`,
   :apiref:`mitsubishi.h <mitsubishi/mitsubishi.h>`,
   :apiref:`tcl112.h <tcl112/tcl112.h>`,
   :apiref:`yashima.h <yashima/yashima.h>`

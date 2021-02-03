@@ -49,6 +49,10 @@ Configuration variables:
 - **target_temperature_datapoint** (**Required**, int): The datapoint id number of the target temperature.
 - **current_temperature_datapoint** (**Required**, int): The datapoint id number of the current temperature.
 - **temperature_multiplier** (**Optional**, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
+  If the device has different multipliers for current and target temperatures, **temperature_multiplier** can be replaced with both of:
+
+    - **current_temperature_multiplier** (**Optional**, float): A multiplier to modify the current temperature value.
+    - **target_temperature_multiplier** (**Optional**, float): A multiplier to modify the target temperature value.
 - All other options from :ref:`Climate <config-climate>`.
 
 .. _temperature-multiplier:

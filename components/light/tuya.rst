@@ -65,6 +65,7 @@ Now you can create the light.
       - platform: "tuya"
         name: "dim1"
         dimmer_datapoint: 3
+        min_value_datapoint: 2
         switch_datapoint: 1
 
 Configuration variables:
@@ -73,6 +74,8 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.
 - **dimmer_datapoint** (*Optional*, int): The datapoint id number of the dimmer value.
+- **min_value_datapoint** (*Optional*, int): The datapoint id number of the MCU minimum value
+  setting.  If this is set then ESPHome will sync the **min_value** to the MCU on startup.
 - **switch_datapoint** (*Optional*, int): The datapoint id number of the power switch.  My dimmer
   required this to be able to turn the light on and off.  Without this you would only be able to
   change the brightness and would have to toggle the light using the physical buttons.
