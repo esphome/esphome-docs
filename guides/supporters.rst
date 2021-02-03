@@ -230,7 +230,7 @@ Contributors
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__ - 1 contribution
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__ - 1 contribution
 - `escoand (@escoand) <https://github.com/escoand>`__ - 7 contributions
-- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 12 contributions
+- `esphomebot (@esphomebot) <https://github.com/esphomebot>`__ - 13 contributions
 - `Evan Coleman (@evandcoleman) <https://github.com/evandcoleman>`__ - 3 contributions
 - `Malte Franken (@exxamalte) <https://github.com/exxamalte>`__ - 2 contributions
 - `Fabian Affolter (@fabaff) <https://github.com/fabaff>`__ - 29 contributions
