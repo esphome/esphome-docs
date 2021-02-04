@@ -48,8 +48,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-- **total** (*Optional*): Report the total number of pulses
-  All options from :ref:`Sensor <config-sensor>`.
+- **total** (*Optional*): Report the total number of pulses.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
