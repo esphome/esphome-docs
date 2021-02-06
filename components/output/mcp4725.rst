@@ -5,8 +5,10 @@ MCP4725 Output
     :description: Instructions for setting up MCP4725 outputs on the ESP.
     :image: mcp4725.png
 
-The MCP4725 output component allows to use `12bit external DAC <https://learn.sparkfun.com/tutorials/mcp4725-digital-to-analog-converter-hookup-guide/all>`__
-in order to have analog output(s) on any board by using I2C.
+The MCP4725 output component allows to use `12bit external DAC
+<https://learn.sparkfun.com/tutorials/mcp4725-digital-to-analog-converter-hookup-guide/all>`__
+in order to have analog output(s) on any board by using I2C. Devices default address is ``0x60``
+and configurable alternative is ``0x61``.
 
 Example Usage with defaults
 ***************************
@@ -70,9 +72,11 @@ Configuration variables:
 Usage with voltages higher than 3.3v
 ------------------------------------
 
-In order to drive analog modules with voltages higher than 3.3v, use a `TTL bi-directionnal level converter <https://learn.sparkfun.com/tutorials/bi-directional-logic-level-converter-hookup-guide/all>`__
+In order to drive analog modules with voltages higher than 3.3v, use a `TTL bi-directionnal level
+converter <https://learn.sparkfun.com/tutorials/bi-directional-logic-level-converter-hookup-guide/all>`__
 
-Be careful about what converter you use, some of of them have channels labeled with `RX` and `TX`, in this case only `TX` channels are bi-directional (so you must use 2 `TX` channels for I2C to work).
+Be careful about what converter you use, some of of them have channels labeled with `RX` and `TX`,
+in this case only `TX` channels are bi-directional (so you must use 2 `TX` channels for I2C to work).
 
 See Also
 --------
