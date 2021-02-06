@@ -371,6 +371,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
+    Wiegand Reader, components/wiegand_reader, wiegand.png
 
 Additional Custom Components
 ----------------------------
