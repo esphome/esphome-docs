@@ -8,8 +8,6 @@ Pulse Counter Sensor
 The pulse counter sensor allows you to count the number of pulses and the frequency of a signal
 on any pin.
 
-On the ESP32 this sonsor can use the highly accurate hardware `pulse counter peripheral <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>` on up to 8 channels.
-
 .. figure:: images/pulse-counter.png
     :align: center
     :width: 80.0%
