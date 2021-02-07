@@ -290,6 +290,7 @@ Display Components
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
+    ILI9486, components/display/ili9486, ili9486_full.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate 6, components/display/Inkplate, Inkplate.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg

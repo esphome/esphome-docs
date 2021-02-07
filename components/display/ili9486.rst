@@ -17,7 +17,7 @@ displays with ESPHome. As this is a somewhat higher resolution display and may r
 beyond the typical SPI connections, it is only suited for use with the ESP32.
 The touch controller isnt implemented yet!
 
-.. figure:: images/ili9486_full.jpg
+.. figure:: images/ili9486.jpg
     :align: center
     :width: 75.0%
 
@@ -28,7 +28,7 @@ For pinout of this display refer to following image.
     :align: center
     :width: 75.0%
 
-    ILI9486 display
+    ILI9486 display pinout
 
 
 .. code-block:: yaml
