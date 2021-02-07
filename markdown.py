@@ -4,18 +4,16 @@
 import re
 import sys
 from docutils import core, nodes, writers
-
-
-def is_github_ref(node):
-    return re.match('https://github.com/.*/(issues|pull)/.*', node['refuri'])
+from urllib import parse
 
 
 class Translator(nodes.NodeVisitor):
-    def __init__(self, document):
+    def __init__(self, base_url, document):
         nodes.NodeVisitor.__init__(self, document)
         self.output = ''
         self.indent = 0
         self.preserve_newlines = False
+        self.base_url = base_url
 
     def write(self, text):
         self.output += text.replace('\n', '\n' + ' ' * self.indent)
@@ -73,12 +71,29 @@ class Translator(nodes.NodeVisitor):
         pass
 
     def visit_reference(self, node):
-        if not is_github_ref(node):
-            self.write('[')
+        # if not is_github_ref(node):
+        self.write('[')
 
     def depart_reference(self, node):
-        if not is_github_ref(node):
-            self.write('](' + node['refuri'] + ')')
+        # if not is_github_ref(node):
+        #    self.write('](' + node['refuri'] + ')')
+        refid = node.get('refid')
+        if refid:
+            self.write('](' + parse.urljoin(self.base_url, '#' + refid) + ')')
+        else:
+            refuri = node.get('refuri')
+            if refuri:
+                if refuri.startswith('../'):
+                    refuri = parse.urljoin(self.base_url, refuri)
+                self.write('](' + refuri + ')')
+
+    def visit_emphasis(self, node):
+        self.write('*')
+        pass
+
+    def depart_emphasis(self, node):
+        self.write('*')
+        pass
 
     def visit_target(self, node):
         pass
@@ -138,6 +153,14 @@ class Translator(nodes.NodeVisitor):
         raise nodes.SkipChildren
 
     def depart_table(self, node):
+        pass
+
+    def visit_strong(self, node):
+        self.write('**')
+        pass
+
+    def depart_strong(self, node):
+        self.write('**')
         pass
 
 

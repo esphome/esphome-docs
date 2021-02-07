@@ -22,36 +22,93 @@ def setup(app):
             "parallel_write_safe": True}
 
 
+def find_platform(jschema, component, platform):
+    ar = jschema["properties"][component]["items"]['allOf']
+    for p in ar:
+        if p["if"]["properties"]["platform"]["const"] == platform:
+            return p
+    raise ValueError("Cannot find {} platform {}".format(component, platform))
+
+
 def doctree_resolved(app, doctree, docname):
     try:
-        if docname.startswith('components/'):
-            component = docname[11:]
-            jc = app.jschema["definitions"].get("schema_" + component)
-            if jc:
-                handle_component(app, jc, doctree, docname)
-        print()
+        path = docname.split('/')
+        if path[0] == 'components':
+            if len(path) == 2:  # root component, e.g. dfplayer, logger
+                component = docname[11:]
+                jc = app.jschema["definitions"].get("schema_" + component)
+                if jc:
+                    # multi configuration schemas are in definitions, e.g.
+                    # i2c, dallas
+                    handle_component(app, jc, doctree, docname)
+                else:
+                    jc = app.jschema["properties"].get(component)
+                    if jc:
+                        # single config like logger, wifi
+                        handle_component(app, jc, doctree, docname)
+            else:  # sub component, e.g. output/esp8266_pwm
+                component = path[1]
+                platform = path[2]
+                if platform == 'index':
+                    # Handle subcomponent index, e.g. output, sensor
+                    return
+                jc = find_platform(app.jschema, component, platform)
+                handle_component(app, jc["then"], doctree, docname)
+
         print('doctree resolverd: ' + str(docname))
     except Exception as e:
         e = e
+        print(e)
+
+
+def find_props(jschema):
+    # find properties
+    props = jschema.get("properties")
+    if not props:
+        arr = jschema.get('anyOf', jschema.get('allOf'))
+        for x in arr:
+            props = x.get('properties')
+            if props:
+                break
+    if not props:
+        raise ValueError('Cannot find props')
+    return props
 
 
 def handle_component(app, jschema, doctree, docname):
     print('handling ' + docname)
-    props = jschema["properties"]
-    if props:
-        for section in doctree.traverse(nodes.section):
-            title = section.next_node(nodes.Titular)
-            if title and title.astext() == "Configuration variables:":
-                # html = publish_from_doctree(title, writer_name='html').decode()
-                # print(html)
-                for config in title.traverse(nodes.list_item, siblings=True):
-                    key = config.traverse(nodes.Text)[0].astext()
-                    if key in props:
-                        update_prop(app, docname, config, props)
+
+    jschema["markdownDescription"] = getMarkdown(
+        app, docname, doctree, doctree.traverse(nodes.paragraph)[0])
+
+    try:
+        props = find_props(jschema)
+    except:
+        raise ValueError('Cannot find props for ' + docname)
+
+    for section in doctree.traverse(nodes.section):
+        title = section.next_node(nodes.Titular)
+        if title and title.astext() == "Configuration variables:":
+            # html = publish_from_doctree(title, writer_name='html').decode()
+            # print(html)
+            for config in title.traverse(nodes.list_item, siblings=True):
+                key = config.traverse(nodes.Text)[0].astext()
+                if key in props:
+                    update_prop(app, doctree, docname, config, props)
 
 
-def update_prop(app, docname, node, jschema):
-    # There might be a better way to do this
+def getMarkdown(app, docname, doctree, node):
+    from urllib import parse
+    from markdown import Translator
+    t = Translator(parse.urljoin(
+        app.config.html_baseurl, docname + '.html'), doctree)
+    node.walkabout(t)
+    return t.output
+
+
+def update_prop(app, doctree, docname, node, jschema):
+
+    markdown = getMarkdown(app, docname, doctree, node)
 
     raw = node.rawsource  # this has the full raw rst code for this property
     sep_idx = raw.index(': ')
@@ -64,15 +121,27 @@ def update_prop(app, docname, node, jschema):
     # **name** (*Optional*): Long Description... Defaults to ``value``.
 
     ntr = re.search(
-        '(\*\*(\w*)\*\*)\s(\(((\*\*Required\*\*)|(\*Optional\*))(, ([\w\s]+))*)\)', name_type, re.IGNORECASE)
+        '\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s', markdown, re.IGNORECASE)
 
     if ntr:
-        prop_name = ntr.group(2)
-        req = ntr.group(4)
-        param_type = ntr.group(8)
+        prop_name = ntr.group(1)
+        req = ntr.group(3)
+        param_type = ntr.group(7)
+    else:
+        raise ValueError("Invalid property format: " +
+                         docname + ' - ' + node.rawsource)
+        prop_name = ''
 
     # todo check props valid, and prop in jschema
     jprop = jschema[str(prop_name)]
+
+    desc = markdown[markdown.index(': ') + 2:].strip()
+    if param_type:
+        desc = param_type + ': ' + desc
+
+    jprop["markdownDescription"] = desc
+
+    return
 
     description = raw[sep_idx + 2:]
     # remove whitespace
@@ -106,8 +175,19 @@ def add_html_link(app, pagename, templatename, context, doctree):
     print('add_html_link: ' + str(pagename))
 
 
+def check_missing(jschema, component):
+    props = find_props(jschema)
+
+    for key, val in props.items():
+        if not 'markdownDescription' in val:
+            print('In: {} cannot find markdown description for {}'.format(
+                component, key))
+
+
 def test_jschema(app, exception):
+    # create report of missing descriptions
+
+    check_missing(app.jschema["properties"]["wifi"], "wifi")
 
     f = open('../esphome_devices/schema.json', 'w', encoding="utf-8-sig")
-
     f.write(json.dumps(app.jschema))
