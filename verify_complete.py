@@ -61,17 +61,22 @@ def doctree_resolved(app, doctree, docname):
         print(e)
 
 
-def find_props(jschema):
+def get_ref(jschema, node):
+    ref = node.get('$ref')
+    if ref and ref.startswith('#/definitions/'):
+        return jschema["definitions"][ref[14:]]
+
+
+def find_props(node):
     # find properties
-    props = jschema.get("properties")
+    props = node.get("properties")
     if not props:
-        arr = jschema.get('anyOf', jschema.get('allOf'))
+        arr = node.get('anyOf', node.get('allOf'))
         for x in arr:
             props = x.get('properties')
             if props:
                 break
-    if not props:
-        raise ValueError('Cannot find props')
+
     return props
 
 
@@ -107,40 +112,44 @@ def getMarkdown(app, docname, doctree, node):
 
 
 def update_prop(app, doctree, docname, node, jschema):
+    try:
+        markdown = getMarkdown(app, docname, doctree, node)
 
-    markdown = getMarkdown(app, docname, doctree, node)
+        raw = node.rawsource  # this has the full raw rst code for this property
 
-    raw = node.rawsource  # this has the full raw rst code for this property
-    sep_idx = raw.index(': ')
-    # todo error
-    name_type = raw[:sep_idx]
+        sep_idx = raw.index(': ')
+        # todo error
+        name_type = raw[:sep_idx]
 
-    # Example properties formats are:
-    # **name** (**Required**, string): Long Description...
-    # **name** (*Optional*, string): Long Description... Defaults to ``value``.
-    # **name** (*Optional*): Long Description... Defaults to ``value``.
+        # Example properties formats are:
+        # **name** (**Required**, string): Long Description...
+        # **name** (*Optional*, string): Long Description... Defaults to ``value``.
+        # **name** (*Optional*): Long Description... Defaults to ``value``.
 
-    ntr = re.search(
-        '\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s', markdown, re.IGNORECASE)
+        ntr = re.search(
+            '\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s', markdown, re.IGNORECASE)
 
-    if ntr:
-        prop_name = ntr.group(1)
-        req = ntr.group(3)
-        param_type = ntr.group(7)
-    else:
-        raise ValueError("Invalid property format: " +
-                         docname + ' - ' + node.rawsource)
-        prop_name = ''
+        if ntr:
+            prop_name = ntr.group(1)
+            req = ntr.group(3)
+            param_type = ntr.group(7)
+        else:
+            raise ValueError("Invalid property format: " +
+                             docname + ' - ' + node.rawsource)
+            prop_name = ''
 
-    # todo check props valid, and prop in jschema
-    jprop = jschema[str(prop_name)]
+        # todo check props valid, and prop in jschema
+        jprop = jschema[str(prop_name)]
 
-    desc = markdown[markdown.index(': ') + 2:].strip()
-    if param_type:
-        desc = param_type + ': ' + desc
+        desc = markdown[markdown.index(': ') + 2:].strip()
+        if param_type:
+            desc = param_type + ': ' + desc
 
-    jprop["markdownDescription"] = desc
+        jprop["markdownDescription"] = desc
 
+    except Exception as e:
+        print("In {}: {} cannot update prop from source: {}".format(
+              docname, str(e), node.rawsource))
     return
 
     description = raw[sep_idx + 2:]
@@ -175,8 +184,19 @@ def add_html_link(app, pagename, templatename, context, doctree):
     print('add_html_link: ' + str(pagename))
 
 
-def check_missing(jschema, component):
+def check_missing(app, jschema, component):
     props = find_props(jschema)
+    if not props:
+        # check if this is multi component (an object or array of object)
+        arr = jschema.get('anyOf', [])
+        for a in arr:
+            ref = get_ref(app.jschema, a)
+            if ref:
+                props = find_props(ref)
+                if props:
+                    break
+    if not props:
+        print('In: {} cannot find properties'.format(component))
 
     for key, val in props.items():
         if not 'markdownDescription' in val:
@@ -187,7 +207,25 @@ def check_missing(jschema, component):
 def test_jschema(app, exception):
     # create report of missing descriptions
 
-    check_missing(app.jschema["properties"]["wifi"], "wifi")
+    try:
+
+        for key, val in app.jschema["properties"].items():
+            # multi components?
+            if '$ref' in val:
+                continue
+            # binary_sensor, sensor
+            if 'items' in val:
+                continue
+            try:
+                check_missing(app, val, key)
+            except Exception as e:
+                print('----')
+                print(e)
+                print('checking missing key {}: {}'.format(
+                    key, json.dumps(val)[:100]))
+
+    except Exception as e:
+        print(e)
 
     f = open('../esphome_devices/schema.json', 'w', encoding="utf-8-sig")
     f.write(json.dumps(app.jschema))
