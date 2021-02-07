@@ -57,9 +57,9 @@ Base Configuration:
 
 Binary Sensor Configuration:
 
-- **name** (**Optional**, string): The name for the binary sensor.
+- **name** (*Optional*, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **channel** (*Required*, integer): The channel number at the MPR121 the touchkey is connected to.
+- **channel** (**Required**, integer): The channel number at the MPR121 the touchkey is connected to.
 - **touch_threshold** (*Optional*, integer): A per-channel override of the global touch_threshold value. If not specified, uses the global value.
 - **release_threshold** (*Optional*, integer): A per-channel override of the global release_threshold value. If not specified, uses the global value.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.

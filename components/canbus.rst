@@ -56,7 +56,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
-- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
+- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
   *False*: Standard 11 bits IDs, *True*: Extended 29 bits ID
 - **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
 
@@ -132,13 +132,13 @@ There are several forms to use it:
 
 Configuration variables:
 
-- **data** (*Required*, binary data): Data to transmit, up to 8 bytes or
+- **data** (**Required**, binary data): Data to transmit, up to 8 bytes or
   characters are supported by can bus per frame.
 - **canbus_id** (*Optional*): Optionally set the can bus id to use for transmitting
   the frame. Not needed if you are using only 1 can bus.
 - **can_id** (*Optional*, int): Allows to override the can id configured in
   the can bus device.
-- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*: 
+- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
   *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
 
 MCP2515
@@ -217,7 +217,7 @@ Standard IDs and Extended IDs can coexist on the same segment.
           - seconds: /1
             then:
               - canbus.send:
-                  # Extended ID explicit 
+                  # Extended ID explicit
                   use_extended_id: True
                   can_id: 0x100
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
@@ -290,11 +290,11 @@ Buttons are connected on the CAN-Node and also the motor is connected via CAN.
 
 .. epigraph::
 
-    | **Button 1:** ID 0x50B - 1 byte payload 
+    | **Button 1:** ID 0x50B - 1 byte payload
     | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
-    | **Button 2:** ID 0x50C - 1 byte payload 
+    | **Button 2:** ID 0x50C - 1 byte payload
     | (0: Button release, 1: Button down, 2: long down, 3: long release, 4 double click)
-    | **Motor:** ID 0x51A - 1 byte payload 
+    | **Motor:** ID 0x51A - 1 byte payload
     | (0: off, 1: open, 2: close)
 
 .. code-block:: yaml
