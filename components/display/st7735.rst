@@ -28,18 +28,18 @@ There are numerous board types out there. Some initialize differently as well. T
 
     # Example configuration entry
     display:
-    - platform: st7735
-      model: "INITR_18BLACKTAB"
-      reset_pin: D4
-      cs_pin: D1
-      dc_pin: D2      
-      rotation: 0
-      devicewidth: 128
-      deviceheight: 160
-      colstart: 0
-      rowstart: 0
-      eightbitcolor: true
-      update_interval: 5s
+      - platform: st7735
+        model: "INITR_18BLACKTAB"
+        reset_pin: D4
+        cs_pin: D1
+        dc_pin: D2      
+        rotation: 0
+        devicewidth: 128
+        deviceheight: 160
+        colstart: 0
+        rowstart: 0
+        eightbitcolor: true
+        update_interval: 5s
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
