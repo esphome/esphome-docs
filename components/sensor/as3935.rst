@@ -161,7 +161,7 @@ Use this if you want to use your AS3935 in SPI mode.
       - platform: as3935
         name: "Storm Alert"
 
-- **cs_pin** (*Required*, :ref:`Pin Schema <config-pin_schema>`): The chip select pin.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The chip select pin.
 
 See Also
 --------

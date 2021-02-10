@@ -741,7 +741,7 @@ Available variables in the lambda:
               for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = ESPColor::random_color();              
+              it[0] = ESPColor::random_color();
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
               it.range(0, 50) = ESPColor::BLACK;
@@ -841,7 +841,7 @@ JINX_ can be used to control E1.31_ enabled ESPHome.
 Configuration variables:
 
 - **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
-- **universe** (*Required*, integer): The value of universe, between 1 to 512.
+- **universe** (**Required**, integer): The value of universe, between 1 to 512.
 - **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
   ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
