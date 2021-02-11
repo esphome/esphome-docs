@@ -171,8 +171,8 @@ Sensor Components
     VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
-	Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
-	Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
+    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
+    Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
