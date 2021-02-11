@@ -14,7 +14,7 @@ Supported Devices
 -----------------
 
 XMTZC02HM, XMTZC05HM
-*********
+********************
 
 Miscale2 measures weight and impedance.
 

@@ -14,7 +14,7 @@ Supported Devices
 -----------------
 
 XMTZC01HM, XMTZC04HM
-*********
+********************
 
 Miscale measures weight.
 
