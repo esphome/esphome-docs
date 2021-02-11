@@ -30,6 +30,63 @@ Configuration example:
         weight:
           name: "Xiaomi Mi Scale Weight"
 
+Configuration example with multiple users :
+
+You have to replace the numbers in the lambdas to determine your weight which is between X weight and X weight.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: xiaomi_miscale
+        mac_address: 'C8:47:8C:9F:7B:0A'
+        weight:
+          name: "Xiaomi Mi Scale Weight"
+          id: weight_miscale
+          on_value:
+            then:
+              - lambda: |-
+                  if (id(weight_miscale).state >= 69 && id(weight_miscale).state <= 74.49) { 
+                    return id(weight_user1).publish_state(x);}
+                  else if (id(weight_miscale).state >= 74.50 && id(weight_miscale).state <= 83) {
+                    return id(weight_user2).publish_state(x);}
+                  else if (id(weight_miscale).state >= 46 && id(weight_miscale).state <= 65) {
+                    return id(weight_user3).publish_state(x);}
+                  else if (id(weight_miscale).state >= 28 && id(weight_miscale).state <= 45) {
+                    return id(weight_user4).publish_state(x);}
+                  else if (id(weight_miscale).state >= 5 && id(weight_miscale).state <= 20) {
+                    return id(weight_user5).publish_state(x);}
+
+      - platform: template
+        name: Weight Aurélien
+        id: weight_user1
+        unit_of_measurement: 'kg'
+        icon: mdi:weight-kilogram
+        accuracy_decimals: 2
+      - platform: template
+        name: Weight Siham
+        id: weight_user2
+        unit_of_measurement: 'kg'
+        icon: mdi:weight-kilogram
+        accuracy_decimals: 2
+      - platform: template
+        name: Weight Théo
+        id: weight_user3
+        unit_of_measurement: 'kg'
+        icon: mdi:weight-kilogram
+        accuracy_decimals: 2
+      - platform: template
+        name: Weight Sacha
+        id: weight_user4
+        unit_of_measurement: 'kg'
+        icon: mdi:weight-kilogram
+        accuracy_decimals: 2
+      - platform: template
+        name: Weight Noham
+        id: weight_user5
+        unit_of_measurement: 'kg'
+        icon: mdi:weight-kilogram
+        accuracy_decimals: 2
+
 
 See Also
 --------
