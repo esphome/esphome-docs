@@ -14,7 +14,7 @@ Supported Devices
 XMTZC01HM, XMTZC04HM
 *********
 
-Micale measures weight.
+Miscale measures weight.
 
 .. figure:: images/xiaomi_miscale.jpg
     :align: center
