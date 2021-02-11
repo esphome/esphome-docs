@@ -29,7 +29,7 @@ Configuration example:
         mac_address: '5C:CA:D3:70:D4:A2'
         weight:
           name: "Xiaomi Mi Scale Weight"
-		impedance:
+        impedance:
           name: "Xiaomi Mi Scale Impedance"
 
 Configuration example with multiple users :
