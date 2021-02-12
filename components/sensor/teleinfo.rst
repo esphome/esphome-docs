@@ -100,10 +100,12 @@ Configuration variables:
 
 .. warning::
 	
-	UART hardware is recommanded for this sensor. The default Esphome's logger also use one hardware UART.
-    The ESP8266 only has two hardware UARTs, one of which is transmit-only (details in (`Logger Component section <https://esphome.io/components/logger.html#hardware-uarts>`__)
-	So to avoid crashes you can choose between these 2 recommandations :
-	 - Disable the logging via UART :
+UART hardware is recommanded for this sensor. The default Esphome's logger also use one hardware UART.
+The ESP8266 only has two hardware UARTs, one of which is transmit-only (details in (`Logger Component section <https://esphome.io/components/logger.html#hardware-uarts>`__).
+
+So to avoid crashes you can choose between these 2 recommandations :
+
+- Disable the logging via UART :
     
 .. code-block:: yaml
 
@@ -111,15 +113,15 @@ Configuration variables:
       baud_rate: 0   # disable logging via UART, help to avoid numerous crash with ESP_LOGD
       level: INFO   # INFO for less log, put DEBUG to view all the linky's "étiquettes" received in the logs
       esp8266_store_log_strings_in_flash: False     #  :doc:`recommanded for ESP8266 </components/sensor/custom>`
-      
-	 - Or change the logger UART port :
+
+- Or change the logger UART port :
 
 .. code-block:: yaml
+
 	logger:     
 	  level: INFO   # INFO for less log, put DEBUG to view all the linky's "étiquettes" received in the logs
 	  esp8266_store_log_strings_in_flash: False     # recommanded for ESP8266 https://esphome.io/components/sensor/custom.html
 	  hardware_uart: UART1
-
 
 
 See Also
