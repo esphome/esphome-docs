@@ -7,13 +7,16 @@ import json
 from docutils import nodes
 from docutils.core import publish_doctree, publish_file, publish_from_doctree
 
+SCHEMA_PATH = '../esphome_devices/schema.json'
+# SCHEMA_PATH = '../esphome-vscode/server/src/schema.json'
+
 
 def setup(app):
     """Setup connects events to the sitemap builder"""
     app.connect('html-page-context', add_html_link)
     app.connect('doctree-resolved', doctree_resolved)
     app.connect('build-finished', test_jschema)
-    f = open('../esphome_devices/schema.json', 'r', encoding="utf-8-sig")
+    f = open(SCHEMA_PATH, 'r', encoding="utf-8-sig")
     str = f.read()
     app.jschema = json.loads(str)
 
@@ -32,28 +35,40 @@ def find_platform(jschema, component, platform):
 
 def doctree_resolved(app, doctree, docname):
     try:
-        path = docname.split('/')
-        if path[0] == 'components':
-            if len(path) == 2:  # root component, e.g. dfplayer, logger
-                component = docname[11:]
-                jc = app.jschema["definitions"].get("schema_" + component)
-                if jc:
-                    # multi configuration schemas are in definitions, e.g.
-                    # i2c, dallas
-                    handle_component(app, jc, doctree, docname)
-                else:
-                    jc = app.jschema["properties"].get(component)
-                    if jc:
-                        # single config like logger, wifi
-                        handle_component(app, jc, doctree, docname)
-            else:  # sub component, e.g. output/esp8266_pwm
-                component = path[1]
-                platform = path[2]
-                if platform == 'index':
-                    # Handle subcomponent index, e.g. output, sensor
-                    return
-                jc = find_platform(app.jschema, component, platform)
-                handle_component(app, jc["then"], doctree, docname)
+        handle_component(app, doctree, docname)
+        # path = docname.split('/')
+        # if path[0] == 'components':
+        #     if len(path) == 2:  # root component, e.g. dfplayer, logger
+        #         component = docname[11:]
+        #         jc = app.jschema["definitions"].get("schema_" + component)
+        #         if jc:
+        #             # multi configuration schemas are in definitions, e.g.
+        #             # i2c, dallas
+        #             handle_component(app, jc, doctree, docname)
+        #         else:
+        #             jc = app.jschema["properties"].get(component)
+        #             if jc:
+        #                 # single config like logger, wifi
+        #                 handle_component(app, jc, doctree, docname)
+        #     else:  # sub component, e.g. output/esp8266_pwm
+
+        #         # components here might have a core / hub, eg. dallas, ads1115
+        #         # and then they can be a binary_sensor, sensor, etc.
+
+        #         component = path[1]
+        #         platform = path[2]
+        #         if platform == 'index':
+        #             # Handle subcomponent index, e.g. output, sensor
+        #             return
+
+        #         jc = app.jschema["properties"].get(platform)
+
+        #         jp = find_platform(app.jschema, component, platform)
+        #         if jc is not None:
+        #             handle_component_with_hub(
+        #                 app, jp["then"], doctree, docname, jc)
+        #         else:
+        #             handle_component(app, jp["then"], doctree, docname)
 
         print('doctree resolverd: ' + str(docname))
     except Exception as e:
@@ -67,20 +82,118 @@ def get_ref(jschema, node):
         return jschema["definitions"][ref[14:]]
 
 
-def find_props(node):
+def find_props(node, app):
     # find properties
+    if "then" in node:
+        node = node["then"]
     props = node.get("properties")
+    ref = None
     if not props:
         arr = node.get('anyOf', node.get('allOf'))
         for x in arr:
             props = x.get('properties')
+            if not ref:
+                ref = get_ref(app.jschema, x)
             if props:
                 break
+    if not props and ref:
+        return find_props(ref, app)
 
     return props
 
 
-def handle_component(app, jschema, doctree, docname):
+def handle_component(app, doctree, docname):
+
+    path = docname.split('/')
+    json_component = None
+    json_platform = None
+    if path[0] == 'components':
+        if len(path) == 2:  # root component, e.g. dfplayer, logger
+            component = docname[11:]
+            json_component = app.jschema["definitions"].get(
+                "schema_" + component)
+            if not json_component:
+                #     # multi configuration schemas are in definitions, e.g.
+                #     # i2c, dallas
+                #     handle_component(app, jc, doctree, docname)
+                # else:
+                json_component = app.jschema["properties"].get(component)
+            #     if jc:
+            #         # single config like logger, wifi
+            #         handle_component(app, jc, doctree, docname)
+        else:  # sub component, e.g. output/esp8266_pwm
+
+            # components here might have a core / hub, eg. dallas, ads1115
+            # and then they can be a binary_sensor, sensor, etc.
+
+            component = path[1]
+            platform = path[2]
+            if platform == 'index':
+                # Handle subcomponent index, e.g. output, sensor
+                return
+
+            json_component = app.jschema["properties"].get(platform)
+
+            json_platform = find_platform(app.jschema, component, platform)
+            # if json_component is not None:
+            #     handle_component_with_hub(
+            #         app, json_platform["then"], doctree, docname, json_component)
+            # else:
+            #     handle_component(app, json_platform["then"], doctree, docname)
+
+    # ESPHome page docs follows strict formating guidelines which allows
+    # for docs to be parsed directly into yaml schema
+
+    # Document first paragraph is description of this thing
+    description = getMarkdown(app, docname, doctree,
+                              doctree.traverse(nodes.paragraph)[0])
+    if json_component:
+        json_component["markdownDescription"] = description
+    else:
+        json_platform["markdownDescription"] = description
+
+    hub_found = False
+    component_found = False
+    props = None
+    for section in doctree.traverse(nodes.section):
+        # First title is the component title, e.g.
+        # components/ads1115.rst ADS115 Sensor
+        # Second title must be 'Component/Hub' for components with both
+        # json_component and json_schema, these are components with hub
+        title = section.next_node(nodes.Titular)
+        if not title:
+            continue
+        title_text = title.astext()
+        if title_text == 'Component/Hub':
+            hub_found = True
+            try:
+                props = find_props(json_component, app)
+            except:
+                raise ValueError('Cannot find hub props for ' + docname)
+        if title_text == "Configuration variables:":
+            if not props:
+                raise ValueError(
+                    'Found a Configuration variables title but dont kow to whic props to fill. ' + docname)
+            # This is a section of configuration, update props with this section
+            for config in title.traverse(nodes.list_item, siblings=True):
+                key = config.traverse(nodes.Text)[0].astext()
+                if key in props:
+                    update_prop(app, doctree, docname, config, props)
+        if title_text == 'Sensor':
+            # Now fill props for the platform element
+            try:
+                props = find_props(json_platform, app)
+            except:
+                raise ValueError('Cannot find platform props for ' + docname)
+        if title_text.endswith('Component'):
+            component_found = True
+            try:
+                props = find_props(json_component, app)
+            except:
+                raise ValueError('Cannot find component props for ' + docname)
+
+
+def handle_component_old(app, jschema, doctree, docname):
     print('handling ' + docname)
 
     jschema["markdownDescription"] = getMarkdown(
@@ -125,6 +238,9 @@ def update_prop(app, doctree, docname, node, jschema):
         # **name** (**Required**, string): Long Description...
         # **name** (*Optional*, string): Long Description... Defaults to ``value``.
         # **name** (*Optional*): Long Description... Defaults to ``value``.
+
+        if 'ads111' in docname:
+            docname = docname
 
         ntr = re.search(
             '\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s', markdown, re.IGNORECASE)
@@ -185,16 +301,7 @@ def add_html_link(app, pagename, templatename, context, doctree):
 
 
 def check_missing(app, jschema, component):
-    props = find_props(jschema)
-    if not props:
-        # check if this is multi component (an object or array of object)
-        arr = jschema.get('anyOf', [])
-        for a in arr:
-            ref = get_ref(app.jschema, a)
-            if ref:
-                props = find_props(ref)
-                if props:
-                    break
+    props = find_props(jschema, app)
     if not props:
         print('In: {} cannot find properties'.format(component))
 
@@ -227,5 +334,5 @@ def test_jschema(app, exception):
     except Exception as e:
         print(e)
 
-    f = open('../esphome_devices/schema.json', 'w', encoding="utf-8-sig")
+    f = open(SCHEMA_PATH, 'w', encoding="utf-8-sig")
     f.write(json.dumps(app.jschema))
