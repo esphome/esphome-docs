@@ -1,5 +1,5 @@
-Sun
-===
+Sun Component
+=============
 
 .. seo::
     :description: Instructions for setting up tracking the sun position in ESPHome.
@@ -78,6 +78,7 @@ Additionally, the sun component exposes its values over a sensor platform.
     :width: 80.0%
 
 Configuration variables:
+************************
 
 - **type** (**Required**, string): The type of value to track. One of ``elevation`` and
   ``azimuth``.
@@ -106,6 +107,7 @@ Other properties like the next sunset time can be read out with the sun text_sen
     :width: 80.0%
 
 Configuration variables:
+************************
 
 - **type** (**Required**, string): The type of value to track. One of ``sunrise`` and
   ``sunset``.
