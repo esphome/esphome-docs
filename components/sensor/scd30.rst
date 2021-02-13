@@ -1,8 +1,8 @@
-SCD30 CO₂, Temperature and Relative Humidty Sensor
-==================================================
+SCD30 CO₂, Temperature and Relative Humidity Sensor
+===================================================
 
 .. seo::
-    :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidty Sensor
+    :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidity Sensor
     :image: scd30.jpg
 
 The ``scd30`` sensor platform  allows you to use your Sensiron SCD30 CO₂
