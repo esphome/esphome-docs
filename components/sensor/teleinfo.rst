@@ -4,7 +4,7 @@ Teleinformation from Linky electrical counter.
 .. seo::
     :description: Instructions for setting up French Teleinformation
     :image: teleinfo.jpg
-    :keywords: teleinfo
+    :keywords: teleinfo, linky
 
 The ``teleinfo`` component allows you to retrieve data from a 
 French electrical counter using Teleinformation (`datasheet <https://www.enedis.fr/sites/default/files/Enedis-NOI-CPT_54E.pdf>`__). It works with Linky electrical
