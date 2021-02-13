@@ -101,7 +101,7 @@ Configuration variables:
 .. warning::
 
     UART hardware is recommanded for this sensor. The default Esphome's logger also use one hardware UART.
-    The ESP8266 only has two hardware UARTs, one of which is transmit-only (details in (`Logger Component section <components/logger>`__).
+    The ESP8266 only has two hardware UARTs, one of which is transmit-only (details in `Logger Component section <components/logger>`__).
 
 
 So to avoid crashes you can choose between these 2 recommandations :
