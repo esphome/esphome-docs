@@ -100,6 +100,7 @@ CUSTOM_DOCS = {
     'components/display/index': {
         'Images': 'image',
         'Drawing Static Text': 'font',
+        'Color': 'color',
         'Animation': 'animation'
     },
     'custom/custom_component': {
@@ -195,6 +196,8 @@ def handle_component(app, doctree, docname):
         previous_title = title_text
         title_text = title.astext()
 
+        if 'interval' in title_text:
+            title_text = title_text
         if custom_doc is not None and title_text in custom_doc:
             component_name = custom_doc[title_text]
             json_component = app.jschema["properties"][component_name]
@@ -215,8 +218,8 @@ def handle_component(app, doctree, docname):
         if title_text == "Configuration variables:":
             if not props:
                 raise ValueError(
-                    'In {} Found a Configuration variables: title after "{}". Unkown object.'.format(
-                        docname, previous_title))
+                    'Found a Configuration variables: title after "{}". Unkown object.'.format(
+                        previous_title))
             # This is a section of configuration, update props with this section
             for config in title.traverse(nodes.list_item, siblings=True):
                 key = list(config.traverse(nodes.Text))[0].astext()
@@ -319,6 +322,23 @@ def handle_component(app, doctree, docname):
                         raise ValueError(
                             'Cannot find props for platform {} component {}'.format(path[1], component_name))
                     continue
+        if title_text.endswith('Action') or title_text.endswith('Condition'):
+            # Document first paragraph is description of this thing
+            description = getMarkdownParagraph(app, docname, doctree, section)
+            split_text = title_text.split(' ')
+            if len(split_text) != 2:
+                continue
+            key = split_text[0]
+            if key == 'for':
+                key = key
+            registry_name = "automation.{}_REGISTRY".format(
+                split_text[1].upper())
+            registry = app.jschema["definitions"][registry_name]["anyOf"]
+            for action in registry:
+                if key in action["properties"]:
+                    action["properties"][key]["markdownDescription"] = description
+                    props = find_props(action["properties"][key], app)
+                    break
 
     if updated_props == 0 and 'No configuration variables.' not in doctree.astext():
         print('No updated props from ' + docname)
@@ -382,34 +402,6 @@ def update_prop(app, doctree, docname, node, jschema):
         print("In {}: {} cannot update prop from source: {}".format(
               docname, str(e), node.rawsource))
     return
-
-    description = raw[sep_idx + 2:]
-    # remove whitespace
-    description = ' '.join([x.strip() for x in description.split('\n')])
-    # convert full urls
-    description = re.sub(
-        pattern='`([\w\s]+)\s{1}<(((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}([a-zA-Z0-9\.\&\/\?\:@\-_=#])*)>`__',
-        repl='[\\1](\\2)',
-        string=description
-    )
-    # convert doc refs
-    description = re.sub(
-        pattern=':doc:`([\w\s]+)(<([/]\w*)*>)?`',
-        string=description,
-        repl=lambda r: ':doc:(' + str(r) + ')'
-    )
-    # local-refs
-    local_url = app.config.html_baseurl + '/' + docname + '.html#'
-
-    description = re.sub(
-        pattern=':ref:`([-\w\s]+)`',
-        string=description,
-        repl=lambda r: local_url + str(r.group(1)).replace('_', '-')
-    )
-    link_title = node.traverse()[8].astext()
-    x = type(node.traverse(nodes.reference)[0])
-    jprop["markdownDescription"] = description.strip()
-
 
 # def add_html_link(app, pagename, templatename, context, doctree):
 #     print('add_html_link: ' + str(pagename))
