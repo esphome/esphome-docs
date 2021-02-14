@@ -114,6 +114,17 @@ Beta Fixes
 - esphome: fix esp8266 remote_transmitter using incorrect timings :esphomepr:`1465` by :ghuser:`hcoohb` (cherry-picked)
 - esphome: rc522 increased retry loop count :esphomepr:`1506` by :ghuser:`glmnet` (cherry-picked)
 
+Release 1.16.1 - February 14
+----------------------------
+
+- esphome: Fix PN532 SPI communication :esphomepr:`1511` by :ghuser:`jesserockz`
+- esphome: Update Dockerfile :esphomepr:`1517` by :ghuser:`Klarstein`
+- esphome: Fixed transfer_byte to write_byte for 8266 :esphomepr:`1529` by :ghuser:`SenexCrenshaw`
+- esphome: Added Energy sensor to hlw8012 :esphomepr:`1198` by :ghuser:`FrankBakkerNl` (new-feature)
+- docs: Added Energy sensor to hlw8012 :docspr:`707` by :ghuser:`FrankBakkerNl`
+- esphome: MCP230xx open drain interrupt pins :esphomepr:`1243` by :ghuser:`kbx81`
+- docs: MCP230xx open drain interrupt pins :docspr:`728` by :ghuser:`kbx81`
+
 All changes
 -----------
 
