@@ -315,6 +315,35 @@ Displaying Time
 
 You can display current time using a time component. Please see the example :ref:`here <strftime>`.
 
+
+.. _config-color:
+
+Color
+*****
+
+When using RGB-capable displays in ESPHome you may wish to use custom colors.
+A ``color`` component exists for just this purpose:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red: 100%
+        green: 20%
+        blue: 25%
+        white: 0%
+
+
+Configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
+- **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
+- **blue** (*Optional*, percentage): The percentage of the blue component. Defaults to ``100%``.
+- **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
+
+RGB displays use red, green, and blue, while grayscale displays may use white.
+
 Images
 ******
 
@@ -421,8 +450,6 @@ This can be combined with all Lambdas:
                 lambda: |-
                   id(my_animation).next_frame();
 
-.. _display-pages:
-
 
 Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -446,6 +473,8 @@ Configuration variables:
   - ``NONE``: Every pixel convert to its nearest color.
   - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
 
+
+.. _display-pages:
 
 Display Pages
 -------------
@@ -513,6 +542,7 @@ You can then switch between these with three different actions:
             then:
               - display.page.show_next: my_display
               - component.update: my_display
+
 
 See Also
 --------

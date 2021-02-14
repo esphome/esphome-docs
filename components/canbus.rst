@@ -108,8 +108,8 @@ This automation will be triggered when a can frame is  received. A variable ``x`
                 then:
                   light.toggle: light1
 
-Transmit Frame Action
-*********************
+``canbus.send`` Action
+**********************
 
 The can bus can transmit frames by means of the ``canbus.send`` action.
 There are several forms to use it:

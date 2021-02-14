@@ -109,33 +109,6 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
 
-.. _config-color:
-
-Color
------
-
-When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
-A ``color`` component exists for just this purpose:
-
-.. code-block:: yaml
-
-    color:
-      - id: my_light_red
-        red: 100%
-        green: 20%
-        blue: 25%
-        white: 0%
-
-Configuration variables:
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-- **red** (*Optional*, percentage): The percentage that the red color should be on for RGB lights. Defaults to ``100%``.
-- **green** (*Optional*, percentage): The percentage that the green color should be on for RGB lights. Defaults to ``100%``.
-- **blue** (*Optional*, percentage): The percentage that the blue color should be on for RGB lights. Defaults to ``100%``.
-- **white** (*Optional*, percentage): The percentage that the white color should be on for RGBW lights. Defaults to ``100%``.
-
-RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
-may use all four color elements depending on their capabilities.
 
 .. _config-time:
 
