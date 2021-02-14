@@ -51,6 +51,7 @@ class Translator(nodes.NodeVisitor):
         pass
 
     def visit_bullet_list(self, node):
+        self.write('\n')
         pass
 
     def depart_bullet_list(self, node):
@@ -161,6 +162,12 @@ class Translator(nodes.NodeVisitor):
 
     def depart_strong(self, node):
         self.write('**')
+        pass
+
+    def visit_block_quote(self, node):
+        pass
+
+    def depart_block_quote(self, node):
         pass
 
 

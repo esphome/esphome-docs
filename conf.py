@@ -40,7 +40,7 @@ extensions = [
     "github",
     "seo",
     "sitemap",
-    "verify_complete",
+    "schema_doc",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
