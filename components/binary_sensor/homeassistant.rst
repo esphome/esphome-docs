@@ -6,7 +6,11 @@ Home Assistant Binary Sensor
     :image: home-assistant.png
 
 The ``homeassistant`` binary sensor platform allows you to create binary sensors that **import**
-states from your Home Assistant instance using the :doc:`native API </components/api>`.
+states from your Home Assistant instance using the :doc:`native API </components/api>`. 
+
+.. note::
+
+    It is recommended that you use the [Input Boolean](https://www.home-assistant.io/integrations/input_boolean/) entity (and not Home Assistant's [Binary Sensor](https://www.home-assistant.io/integrations/binary_sensor/), manipulating the values only with "off" and "on". 
 
 .. code-block:: yaml
 
