@@ -39,13 +39,13 @@ require 5 volts connected to their ``+`` pin. Connect the GND or G pin to ground
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
-Configuration variables
-***********************
+Configuration variables:
+************************
 
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
   The CS line can be connected to GND if this is the only device on the SPI bus.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.

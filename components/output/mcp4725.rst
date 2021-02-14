@@ -10,10 +10,9 @@ The MCP4725 output component allows to use `12bit external DAC
 in order to have analog output(s) on any board by using I2C. Devices default address is ``0x60``
 and configurable alternative is ``0x61``.
 
-Example Usage with defaults
-***************************
-
 .. code-block:: yaml
+
+    # Example configuration entry
 
     # Set a global i2c connection
     i2c:
@@ -32,34 +31,6 @@ Example Usage with defaults
             id: dac_output
             level: 100%
 
-Example Usage with a custom configuration
-*****************************************
-
-.. code-block:: yaml
-
-    # Set a custom i2c connection
-    i2c:
-      - id: bus_a
-        sda: 21
-        scl: 22
-        scan: True
-      - id: bus_b
-        sda: 23
-        scl: 25
-        scan: True
-
-    # Set the output
-    output:
-      - platform: mcp4725
-        id: dac_output
-        address: 0x61
-        i2c_id: bus_b
-
-    on_...:
-      then:
-        - output.set_level:
-            id: dac_output
-            level: 100%
 
 Configuration variables:
 ------------------------

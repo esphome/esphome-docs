@@ -33,10 +33,7 @@ in your configuration - only the RX pin should be necessary.
     time:
       - platform: gps
 
-Configuration variables:
-------------------------
-
-The component is split up in platforms.
+The component is split up in platforms. No configuration variables.
 
 First you need to define a global GPS module hub (as seen above).
 

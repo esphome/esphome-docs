@@ -71,6 +71,7 @@ And in YAML:
         - name: "My Custom Cover"
 
 Configuration variables:
+************************
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   cover(s).

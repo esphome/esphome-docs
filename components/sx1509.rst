@@ -41,8 +41,8 @@ complicated components that use the pin schema will not work. For example the I�
           scan_time: 2
           debounce_time: 1
 
-Configuration variables for the SX1509 device:
-----------------------------------------------
+Configuration variables:
+------------------------
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this SX1509 component.
 - **address** (*Optional*, int): The I²C address of the driver.
@@ -108,6 +108,9 @@ Attention should be paid to the capabilities of the I/O pins.
 | 15  |    ✓             |     |   ✓    |
 +-----+------------------+-----+--------+
 
+Binary Sensor
+-------------
+
 To use the individual keys on the keypad you need to add individual binary_sensor entries in the config.
 
 .. code-block:: yaml
@@ -125,8 +128,8 @@ To use the individual keys on the keypad you need to add individual binary_senso
         row: 0
         col: 1
 
-Configuration variables for the SX1509 keypad keys:
----------------------------------------------------
+Configuration variables:
+------------------------
 
 - **row** (**Required**, int): The row number for this key on the keypad.
 - **col** (**Required**, int): The column number for this key on the keypad.

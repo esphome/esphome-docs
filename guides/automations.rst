@@ -256,8 +256,8 @@ all of the usual lambda syntax.
 
 .. _config-globals:
 
-Bonus 2: Global Variables
-*************************
+Global Variables
+----------------
 
 In some cases you might require to share a global variable across multiple lambdas. For example,
 global variables can be used to store the state of a garage door.
@@ -284,7 +284,8 @@ global variables can be used to store the state of a garage door.
 
            ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
 
-Configuration options:
+Configuration variables:
+************************
 
 - **id** (**Required**, :ref:`config-id`): Give the global variable an ID so that you can refer
   to it later in :ref:`lambdas <config-lambda>`.
@@ -300,7 +301,7 @@ Configuration options:
 .. _automation-networkless:
 
 Do Automations Work Without a Network Connection
-************************************************
+------------------------------------------------
 
 YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
@@ -517,7 +518,8 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
         - light.turn_off: my_light
 
 
-Configuration options:
+Configuration variables:
+************************
 
 - **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
 - **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
@@ -545,7 +547,8 @@ a block until a given condition evaluates to false.
           - light.toggle: some_light
           - delay: 5s
 
-Configuration options:
+Configuration variables:
+************************
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
@@ -610,8 +613,8 @@ Configuration variables:
   variable to.
 
 
-``script``
-----------
+``script`` Component
+--------------------
 
 With the ``script:`` component you can define a list of steps in a central place, and then
 execute the script with a single call.
@@ -627,7 +630,8 @@ execute the script with a single call.
           - switch.turn_off: my_switch
 
 
-Configuration options:
+Configuration variables:
+************************
 
 - **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the script. Use this
   to interact with the script using the script actions.
@@ -751,6 +755,7 @@ true for at least a given amount of time.
           - logger.log: API has stayed connected for at least 5 minutes!
 
 Configuration variables:
+************************
 
 - **time** (**Required**, :ref:`templatable <config-templatable>`, :ref:`config-time`):
   The time for which the condition has to have been true.
@@ -759,8 +764,8 @@ Configuration variables:
 
 .. _interval:
 
-``interval``
-------------
+``interval`` Component
+----------------------
 
 This component allows you to run actions at fixed time intervals.
 For example if you want to toggle a switch every minute, you can use this component.
@@ -775,7 +780,8 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
-Configuration options:
+Configuration variables:
+************************
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
 - **then** (**Required**, :ref:`config-action`): The action to perform.

@@ -3,13 +3,13 @@ Inkplate 6
 
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
-    :image: Inkplate.jpg
+    :image: inkplate.jpg
 
 All-in-one e-paper display  ``Inkplate 6``
 Inkplate 6 is a powerful, Wi-Fi enabled ESP32 based six-inch e-paper display – recycled from a Kindle e-reader. Its main feature is simplicity.
 Learn more at `Inkplate's website <https://inkplate.io/>`__
 
-.. figure:: images/Inkplate.jpg
+.. figure:: images/inkplate.jpg
     :align: center
     :width: 75.0%
 
@@ -25,7 +25,7 @@ Learn more at `Inkplate's website <https://inkplate.io/>`__
         address: 0x20
 
     display:
-    - platform: inkplate
+    - platform: inkplate6
       id: inkplate_display
       greyscale: false
       partial_updating: false
@@ -66,8 +66,8 @@ Learn more at `Inkplate's website <https://inkplate.io/>`__
     It just ignores the function call in that case.
 
 
-Configuration variables
-***********************
+Configuration variables:
+************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **greyscale** (*Optional*, boolean): Makes the screen display 3 bit colors. Defaults to ``False``
@@ -224,7 +224,7 @@ Wi-Fi, API, and OTA configuration.
 
 
     display:
-    - platform: inkplate
+    - platform: inkplate6
       id: inkplate_display
       greyscale: false
       partial_updating: false

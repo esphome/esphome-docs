@@ -26,6 +26,7 @@ you can always override it.
         device_class: motion
 
 Configuration variables:
+************************
 
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/binary_sensor/

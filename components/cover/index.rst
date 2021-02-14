@@ -27,6 +27,7 @@ All cover config schemas inherit from this schema - you can set these keys for c
         device_class: garage
 
 Configuration variables:
+************************
 
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/cover/ for a list of available options.

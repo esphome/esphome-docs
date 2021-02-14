@@ -36,6 +36,7 @@ override them if you want to.
           send_every: 15
 
 Configuration variables:
+************************
 
 - **name** (**Required**, string): The name for the sensor.
 - **unit_of_measurement** (*Optional*, string): Manually set the unit

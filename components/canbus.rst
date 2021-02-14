@@ -53,12 +53,13 @@ Each canbus platform extends this configuration schema.
               ESP_LOGD("can id 500", "%s", &b[0] );
 
 Configuration variables:
+************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
 - **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
   *False*: Standard 11 bits IDs, *True*: Extended 29 bits ID
-- **bit_rate** (*Optional*, one of the supported bitrates= defaults to ``125KBPS``.
+- **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
 
     - 5KBPS
     - 10KBPS
@@ -80,7 +81,7 @@ Configuration variables:
 Automations:
 
 - **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
-  CAN Frame is received. See below.
+  CAN Frame is received. See :ref:`canbus-on-frame`.
 
 .. _canbus-on-frame:
 
@@ -131,6 +132,7 @@ There are several forms to use it:
           return {0x00, 0x20, 0x42};
 
 Configuration variables:
+************************
 
 - **data** (**Required**, binary data): Data to transmit, up to 8 bytes or
   characters are supported by can bus per frame.
@@ -141,13 +143,16 @@ Configuration variables:
 - **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
   *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
 
-MCP2515
--------
+MCP2515 Component
+-----------------
 
 The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
 For wireing up the MSP2515 please refer to the section below.
+
+Configuration variables:
+************************
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
   when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.

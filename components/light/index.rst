@@ -25,6 +25,7 @@ All light configuration schemas inherit these options.
 
 
 Configuration variables:
+************************
 
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
@@ -425,6 +426,7 @@ This effect cycles through a list of colors with specific durations.
                   duration: 500ms
 
 Configuration variables:
+************************
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Strobe``.
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.

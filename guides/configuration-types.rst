@@ -78,6 +78,7 @@ In some places, ESPHome also supports a more advanced “pin schema”.
         mode: INPUT_PULLUP
 
 Configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
@@ -124,6 +125,14 @@ A ``color`` component exists for just this purpose:
         green: 20%
         blue: 25%
         white: 0%
+
+Configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **red** (*Optional*, percentage): The percentage that the red color should be on for RGB lights. Defaults to ``100%``.
+- **green** (*Optional*, percentage): The percentage that the green color should be on for RGB lights. Defaults to ``100%``.
+- **blue** (*Optional*, percentage): The percentage that the blue color should be on for RGB lights. Defaults to ``100%``.
+- **white** (*Optional*, percentage): The percentage that the white color should be on for RGBW lights. Defaults to ``100%``.
 
 RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
 may use all four color elements depending on their capabilities.

@@ -15,8 +15,8 @@ The Microchip MCP230xx series of general purpose, parallel I/O expansion for I²
 
 .. _mcp23008-label:
 
-MCP23008
---------
+MCP23008 Component
+------------------
 
 The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/21919e.pdf>`__,
 `Adafruit <https://www.adafruit.com/product/593>`__) has 8 GPIOs that can be configured independently.
@@ -63,8 +63,8 @@ Configuration variables:
 
 .. _mcp23016-label:
 
-MCP23016
---------
+MCP23016 Component
+------------------
 
 The MCP23016 component (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/20090c.pdf>`__)
 has 16 GPIOs and can be configured the same way than the other variants.
@@ -112,8 +112,8 @@ Configuration variables:
 
 .. _mcp23017-label:
 
-MCP23017
---------
+MCP23017 Component
+------------------
 
 The MCP23017 component allows you to use MCP23017 I/O expanders
 (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf>`__,

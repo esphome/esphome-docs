@@ -23,6 +23,7 @@ Base Text Sensor Configuration
     icon: "mdi:water-percent"
 
 Configuration variables:
+************************
 
 - **name** (**Required**, string): The name for the sensor.
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.

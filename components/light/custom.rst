@@ -65,6 +65,7 @@ And in YAML:
         - name: "My Custom Light"
 
 Configuration variables:
+************************
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   light output(s).

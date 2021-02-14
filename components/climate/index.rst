@@ -32,6 +32,7 @@ All climate platforms in ESPHome inherit from the climate configuration schema.
           temperature_step: 0.1 °C
 
 Configuration variables:
+************************
 
 - **visual** (*Optional*): Visual settings for the climate device - these do not
   affect operation and are solely for controlling how the climate device shows up in the
