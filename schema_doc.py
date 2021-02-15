@@ -444,6 +444,18 @@ def test_jschema(app, exception):
             except Exception as e:
                 print('In: {} error: {}'.format(key, str(e)))
 
+        for key, val in app.jschema["definitions"].items():
+            # multi components?
+            if '$ref' in val:
+                continue
+            # binary_sensor, sensor
+            if 'items' in val:
+                continue
+            try:
+                check_missing(app, val, key)
+            except Exception as e:
+                print('In: {} error: {}'.format(key, str(e)))
+
     except Exception as e:
         print(e)
 
