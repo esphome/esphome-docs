@@ -27,6 +27,7 @@ override them if you want to.
     # Optional variables:
     unit_of_measurement: "°C"
     icon: "mdi:water-percent"
+    device_class: "temperature"
     accuracy_decimals: 1
     expire_after: 30s
     filters:
@@ -40,6 +41,9 @@ Configuration variables:
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
+- **device_class** (*Optional*, string): The device class for the
+  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
+  for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
 - **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
 - **filters** (*Optional*): Specify filters to use for some basic
