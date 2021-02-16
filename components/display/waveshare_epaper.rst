@@ -78,6 +78,7 @@ Configuration variables:
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
   - ``2.90in-b`` (B/W rendering only)
+  - ``2.90in-d``
   - ``4.20in``
   - ``5.83in``
   - ``7.50in``
