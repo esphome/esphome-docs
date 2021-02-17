@@ -94,8 +94,8 @@ Sensor Components
 
     Sensor Core, components/sensor/index, folder-open.svg
     ADC, components/sensor/adc, flash.svg
-    ADE7953, components/sensor/ade7953, ade7953.svg
-    ADS1115, components/sensor/ads1115, ads1115.jpg
+    ADE7953, components/sensor/ade7953, ade7953.svg, Power
+    ADS1115, components/sensor/ads1115, ads1115.jpg, ADC
     AHT10, components/sensor/aht10, aht10.jpg
     AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
@@ -104,14 +104,14 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
-    BME280, components/sensor/bme280, bme280.jpg
-    BME680, components/sensor/bme680, bme680.jpg
-    BMP085, components/sensor/bmp085, bmp180.jpg
-    BMP280, components/sensor/bmp280, bmp280.jpg
+    BME280, components/sensor/bme280, bme280.jpg, Environment
+    BME680, components/sensor/bme680, bme680.jpg, Environment
+    BMP085, components/sensor/bmp085, bmp180.jpg, Environment
+    BMP280, components/sensor/bmp280, bmp280.jpg, Environment
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
-    Dallas, components/sensor/dallas, dallas.jpg
+    Dallas, components/sensor/dallas, dallas.jpg, Temperature, 1-Wire
     DHT, components/sensor/dht, dht.jpg
     DHT12, components/sensor/dht12, dht12.jpg
     Duty Cycle, components/sensor/duty_cycle, percent.svg
