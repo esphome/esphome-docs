@@ -97,31 +97,8 @@ Configuration variables:
 - **capacitance** (*Optional*, integer): This setting will add capacitance to the series RLC antenna on the product
   to help tune its resonance. The datasheet specifies being within 3.5 percent of 500kHz to get optimal lightning
   detection and distance sensing. It's possible to add up to 120pF in steps of 8pF to the antenna. Defaults to ``0``.
-
 - **watchdog_threshold** (*Optional*, integer): Determines the threshold for events that trigger the IRQ pin.
   Defaults to ``2``.
-
-Sensor entries:
-
-- **lightning_energy** (*Optional*): Lightning energy value. According to the datasheet this is only a pure value that doesn't have any physical meaning.
-
-  - **name** (**Required**, string): The name for the lightning energy sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **distance** (*Optional*): Distance in km to the front of the storm and not the distance to a lightning strike.
-
-  - **name** (**Required**, string): The name for the distance sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
-
-- **binary sensor** (*Optional*): Binary sensor that indicates if a lightning strike was detected.
-
-  -  **name** (**Required**, string): The name of the binary sensor.
-  -  **id** (*Optional*,
-     :ref:`config-id`): Manually specify
-     the ID used for code generation.
-  -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
 Over I²C
@@ -173,11 +150,16 @@ Configuration variables:
 - **capacitance** (*Optional*, integer): This setting will add capacitance to the series RLC antenna on the product
   to help tune its resonance. The datasheet specifies being within 3.5 percent of 500kHz to get optimal lightning
   detection and distance sensing. It's possible to add up to 120pF in steps of 8pF to the antenna. Defaults to ``0``.
-
 - **watchdog_threshold** (*Optional*, integer): Determines the threshold for events that trigger the IRQ pin.
   Defaults to ``2``.
 
-Sensor entries:
+
+Sensor
+------
+
+A sensor platform to read lightning data
+
+Configuration variables:
 
 - **lightning_energy** (*Optional*): Lightning energy value. According to the datasheet this is only a pure value that doesn't have any physical meaning.
 
@@ -191,13 +173,19 @@ Sensor entries:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **binary sensor** (*Optional*): Binary sensor that indicates if a lightning strike was detected.
 
-  -  **name** (**Required**, string): The name of the binary sensor.
-  -  **id** (*Optional*,
-     :ref:`config-id`): Manually specify
-     the ID used for code generation.
-  -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+Binary Sensor
+-------------
+
+Binary sensor that indicates if a lightning strike was detected.
+
+Configuration variables:
+
+-  **name** (**Required**, string): The name of the binary sensor.
+-  **id** (*Optional*,
+    :ref:`config-id`): Manually specify
+    the ID used for code generation.
+-  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
 See Also

@@ -54,7 +54,7 @@ See :apiclass:`output::BinaryOutput` and :apiclass:`output::FloatOutput`.
 ``write_action`` Trigger
 ------------------------
 
-When the state for this output is updated, the `write_action` is triggered.
+When the state for this output is updated, the ``write_action`` is triggered.
 It is possible to access the state value inside Lambdas:
 
 .. code-block:: yaml
