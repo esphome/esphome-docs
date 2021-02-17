@@ -1,0 +1,107 @@
+XPT2046 Touch Screen Controller
+==================================
+
+.. seo::
+    :description: Instructions for setting up XPT2046 touchscreen controller with ESPHome
+    :image: xpt2046.jpg
+    :keywords: XPT2046
+
+The ``xpt2046`` sensor platform allows using the touchscreen controllers
+based on the XPT2046 chip
+(`datasheet <https://datasheetspdf.com/pdf-file/746665/XPTEK/XPT2046/1>`__,
+`AZ-Delivery`_) with ESPHome. Many cheap LCD displays contain this controller.
+The :ref:`SPI <spi>` is required to be set up in your configuration for this sensor to work.
+
+.. figure:: images/xpt2046-full.jpg
+    :align: center
+    :width: 50.0%
+
+    XPT2046 Touch Screen Controller
+
+.. _AZ-Delivery: https://www.az-delivery.de/en/products/2-4-tft-lcd-touch-display
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: xpt2046
+        cs_pin: 17
+        tirq_pin: 16
+        update_interval: 50ms
+        report_interval: 500ms
+        transform:
+          - invert_x
+        dim_x: 240
+        dim_y: 320
+        cal_x_min: 280
+        cal_x_max: 3860
+        cal_y_min: 340
+        cal_y_max: 3860
+
+
+        touched:
+          name: "touched"
+        coord_x:
+          name: "x"
+        coord_y:
+          name: "y"
+
+Configuration variables:
+------------------------
+
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The chip select pin.
+
+- **tirq_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin used for the
+  touch interrupt. Currently unused.
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``50ms``.
+
+- **report_interval** (*Optional*, :ref:`config-time`): The touch is reported immediately,
+  the subsequent changes in the position are sent not more often than this interval.
+  Use ``0s`` to fall back to the `update_interval` and something large to
+  only get the coordinates of the first touch. Defaults to ``1s``.
+
+- **transform** (*Optional*): A list of up to three transformations: ``swap_x_y``, ``invert_x``
+  and ``invert_y``. Allows to transform the raw coordinates reported from the sensor
+  to the orientation of the display and the wiring of the controller chip.
+  If `swap_x_y` is specified, first the x and y axes are swapped first. Then
+  the inversion is processed if specified. Defaults to no transformation.
+
+- **dim_x**, **dim_y** (*Optional*): The dimensions of the display in the x and y
+  direction. Usually in pixels but a percentage can be useful as well.
+  Defaults to ``100``.
+
+- **cal_x_min**, **cal_x_max**, **cal_y_min**, **cal_y_max** (*Optional*): Calibration
+  of the edges. These are raw sensor values corresponding to the edge pixels of the
+  display the touchscreen is used with. The raw values are 0 to 4095 and are
+  applied *before* any transformation. The best way to calibrate is to set the log
+  level to ``debug`` and carefully touch the edges with a stylus (or something
+  more precise than the finger) several times. Note the minimum and maximum
+  values and use them for the calibration. Dafaults to ``0`` and ``4095``.
+
+- **touched** (*Optional*): The information for the touch detection sensor.
+  The sensor will get a ``1`` if the controller detects a touch and ``0``
+  when the touch is released. Only the changes are reported. The coordinates
+  of the touch are updated *before* the touch is published.
+
+  - **name** (**Required**, string): The name for the touch detection
+    sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **coord_x**, **coord_y** (*Optional*): The X and Y coordinate of the touch.
+
+  - **name** (**Required**, string): The name for the coordinate
+    sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`xpt2046/xpt2046.h`
+- `XPT2046 Library <https://platformio.org/lib/show/542/XPT2046_Touchscreen>`__ by `Paul Stoffregen <https://github.com/PaulStoffregen>`__
+- :ghedit:`Edit`

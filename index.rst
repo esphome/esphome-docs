@@ -171,6 +171,7 @@ Sensor Components
     VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
+    XPT2046, components/sensor/xpt2046, xpt2046.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
