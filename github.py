@@ -119,7 +119,7 @@ class ImageTableDirective(Table):
 
     def run(self):
         env = self.state.document.settings.env
-        cols = self.options.get('columns', 3)
+        cols = self.options.get('columns', 4)
 
         items = []
 
@@ -127,7 +127,11 @@ class ImageTableDirective(Table):
         for row in data:
             if not row:
                 continue
-            name, page, image = row
+            name, page, image, *description = row
+            if description:
+                description=','.join(description)
+            else:
+                description=""
             link = page.strip()
             if link.startswith('http'):
                 pass
@@ -140,6 +144,7 @@ class ImageTableDirective(Table):
                 'name': name.strip(),
                 'link': link,
                 'image': '/images/{}'.format(image.strip()),
+                'description': description.strip()
             })
 
         col_widths = self.get_column_widths(cols)
@@ -192,6 +197,10 @@ class ImageTableDirective(Table):
                 para = nodes.paragraph()
                 para += ref
                 entry += para
+                if description is not "":
+                    para2 = nodes.paragraph()
+                    para2 += nodes.Text(description,description)
+                    entry += para2
                 trow += entry
             rows.append(trow)
         tbody.extend(rows)
