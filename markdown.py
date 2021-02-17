@@ -37,7 +37,8 @@ class Translator(nodes.NodeVisitor):
         raise nodes.SkipChildren
 
     def visit_title_reference(self, node):
-        raise Exception(node)
+        raise Exception(
+            'Improper format or not supported feature in ' + node.astext())
 
     def depart_title(self, node):
         pass
