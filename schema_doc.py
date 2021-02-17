@@ -1,3 +1,4 @@
+from typing import MutableMapping
 from sphinx.util import logging
 import re
 from types import TracebackType
@@ -62,7 +63,7 @@ def doctree_resolved(app, doctree, docname):
         logger = logging.getLogger(__name__)
         logger.warning(err_str)
 
-        # traceback.print_exc()
+        traceback.print_exc()
         # print(err_str)
 
 
@@ -465,14 +466,15 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
             # if this prop has a reference
             ref = self.get_ref(self.props[self.current_prop])
-            if not ref:
-                # nowhere put this props info...
-                raise nodes.SkipChildren
-
-            child_props = self.find_props(ref)
-            self.prop_stack.append(self.props)
-
-            self.props = child_props
+            if ref:
+                self.prop_stack.append(self.props)
+                self.props = self.find_props(ref)
+            elif 'properties' in self.props[self.current_prop]:
+                self.prop_stack.append(self.props)
+                self.props = self.props[self.current_prop]['properties']
+            # else:
+            #     # nowhere put this props info...
+            #     raise nodes.SkipChildren
 
         if not self.props and self.multi_component == None:
             raise nodes.SkipChildren
@@ -530,9 +532,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         markdown = self.getMarkdown(node)
 
-        sep_idx = raw.replace('\n', ' ').index(': ')
-        # todo error
-        name_type = raw[:sep_idx]
+        name_type = markdown[:markdown.index(': ') + 2]
 
         # Example properties formats are:
         # **name** (**Required**, string): Long Description...
@@ -543,15 +543,23 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.docname = self.docname
 
         ntr = re.search(
-            '\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s', markdown, re.IGNORECASE)
+            '\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s', name_type, re.IGNORECASE)
 
         if ntr:
             prop_name = ntr.group(1)
             req = ntr.group(3)
             param_type = ntr.group(7)
         else:
-            raise ValueError(f"Invalid property format: " + node.rawsource)
-            prop_name = ''
+            s2 = re.search(
+                '\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s', markdown, re.IGNORECASE)
+            if s2:
+                # this is e.g. when a property has a list inside, and the list inside are the options.
+                # just validate **prop_name**
+                s3 = re.search('\* \*\*(\w*)\*\*:\s', name_type)
+                prop_name = s3.group(1)
+                param_type = None
+            else:
+                raise ValueError(f"Invalid property format: " + node.rawsource)
 
         k = str(prop_name)
         jprop = props.get(k)
@@ -613,17 +621,101 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     self.app.jschema, path[1], path[2])
         return json_component
 
-    def find_props(self, node):
+    class Props(MutableMapping):
+        # Props are mostly a dict, however some constructs have two issues:
+        # - An update is intended on an element which does not own a property, but it is based
+        #   on an schema that does have the property, those cases can be handled
+        # - An update is done in a typed schema
+
+        def __init__(self, visitor, component):
+            self.visitor = visitor
+            self.component = component
+            self.store = self._get_props(component)
+            self.parent = None
+
+        def _get_props(self, component):
+            # find properties
+            if "then" in component:
+                component = component["then"]
+            props = component.get("properties")
+            ref = None
+            if not props:
+                arr = component.get('anyOf', component.get('allOf'))
+                if not arr:
+                    if '$ref' in component:
+                        return self._get_props(self.visitor.get_ref(component))
+                    return None
+                for x in arr:
+                    props = x.get('properties')
+                    if not ref:
+                        ref = self.visitor.get_ref(x)
+                    if props:
+                        break
+            if not props and ref:
+                props = self._get_props(ref)
+            return props
+
+        def __getitem__(self, key):
+            if key in self.store:
+                return self.store[key]
+
+            if "then" in self.component:
+                schemas = self.component["then"].get('allOf')
+
+                #
+
+                # check if it's typed
+                if isinstance(schemas, list) and 'properties' in schemas[0] and 'type' in schemas[0]['properties']:
+                    for s in schemas:
+                        if 'then' in s:
+                            props = self._get_props(s.get('then'))
+                            if key in props:
+                                return SetObservable(props[key], setitem_callback=self._update_typed, inner_key=key)
+                    return  # key not found
+
+        def _update_typed(self, inner_key, key, value):
+            # Make sure we update all types
+            if "then" in self.component:
+                schemas = self.component["then"].get('allOf')
+                assert 'type' in schemas[0].get('properties')
+                for s in schemas:
+                    if 'then' in s:
+                        props = self._get_props(s.get('then'))
+                        if inner_key in props:
+                            props[inner_key][key] = value
+
+        def __setitem__(self, key, value):
+            self.store[key] = value
+
+        def __delitem__(self, key):
+            self.store.pop(key)
+
+        def __iter__(self):
+            return iter(self.store)
+
+        def __len__(self):
+            return len(self.store) if self.store else 0
+
+    def find_props(self, component):
+        props = self.Props(self, component)
+
+        if props:
+            self.filled_props = False
+            self.accept_props = False
+            self.current_prop = None
+
+        return props
+        return
         # find properties
-        if "then" in node:
-            node = node["then"]
-        props = node.get("properties")
+        if "then" in component:
+            component = component["then"]
+        props = component.get("properties")
         ref = None
         if not props:
-            arr = node.get('anyOf', node.get('allOf'))
+            arr = component.get('anyOf', component.get('allOf'))
             if not arr:
-                if '$ref' in node:
-                    return self.find_props(self.get_ref(node))
+                if '$ref' in component:
+                    return self.find_props(self.get_ref(component))
                 return None
             for x in arr:
                 props = x.get('properties')
@@ -717,3 +809,22 @@ def build_finished(app, exception):
     print('----')
     print(
         f'Documented: {props_documented} verified: {props_verified} missing: {props_missing}')
+
+
+class SetObservable(dict):
+
+    """
+    a MyDict is like a dict except that when you set an item, before
+    doing so it will call a callback function that was passed in when the
+    MyDict instance was created
+    """
+
+    def __init__(self, value, setitem_callback=None, inner_key=None, *args, **kwargs):
+        super(SetObservable, self).__init__(value, *args, **kwargs)
+        self._setitem_callback = setitem_callback
+        self.inner_key = inner_key
+
+    def __setitem__(self, key, value):
+        if self._setitem_callback:
+            self._setitem_callback(self.inner_key, key, value)
+        super(SetObservable, self).__setitem__(key, value)

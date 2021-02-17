@@ -38,7 +38,7 @@ class Translator(nodes.NodeVisitor):
 
     def visit_title_reference(self, node):
         raise Exception(
-            'Improper format or not supported feature in ' + node.astext())
+            f'Markdown conversion: Improper format or not supported feature in "{node.parent.rawsource}". Check "`"')
 
     def depart_title(self, node):
         pass
