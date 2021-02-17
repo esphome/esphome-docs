@@ -52,7 +52,7 @@ create individual binary sensors that track if an NFC/RFID tag is currently dete
 Configuration variables:
 ************************
 
-- **cs_pin** (**Required for SPI**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
   is connected to.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the PN532. This affects the
   duration that the individual binary sensors stay active when they're found.

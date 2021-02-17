@@ -78,7 +78,7 @@ This action toggles a light with the given ID when executed.
         # Shorthand:
         - light.toggle: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -122,7 +122,7 @@ This action turns a light with the given ID on when executed.
         # Shorthand
         - light.turn_on: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -181,7 +181,7 @@ This action turns a light with the given ID off when executed.
         # Shorthand
         - light.turn_off: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -215,7 +215,7 @@ is essentially just a combination of the turn_on and turn_off calls.
             id: light_1
             state: on
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **state** (*Optional*, :ref:`templatable <config-templatable>`, boolean): Change the ON/OFF
@@ -239,10 +239,10 @@ by a relative amount.
             id: light_1
             relative_brightness: 5%
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
-- **relative_brightness** (**Required***, :ref:`templatable <config-templatable>`, percentage):
+- **relative_brightness** (**Required**, :ref:`templatable <config-templatable>`, percentage):
   The relative brightness to dim the light by.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
 
@@ -426,7 +426,6 @@ This effect cycles through a list of colors with specific durations.
                   duration: 500ms
 
 Configuration variables:
-************************
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Strobe``.
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.

@@ -38,7 +38,7 @@ Configuration variables:
   that is reachable will be connected to. See :ref:`wifi-networks`.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
-  - **static_ip** (**Required***, IPv4 address): The static IP of your node.
+  - **static_ip** (**Required**, IPv4 address): The static IP of your node.
   - **gateway** (**Required**, IPv4 address): The gateway of the local network.
   - **subnet** (**Required**, IPv4 address): The subnet of the local network.
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.

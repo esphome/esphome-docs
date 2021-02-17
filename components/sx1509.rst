@@ -53,7 +53,7 @@ up to 8x8 matrix (i.e. 64 keys).
 
 - **keypad** (*Optional*): Add this to enable the keypad.
 
-  - **key_row** (**Required**, int): The number of keypad rows to use. This enables any number of the first 7 pins.
+  - **key_rows** (**Required**, int): The number of keypad rows to use. This enables any number of the first 7 pins.
     So a value of 3 enables pins 0,1,2 to be used as the rows for the keypad matrix. This value must be between 1 and 8.
   - **key_columns** (**Required**, int): The number of keypad columns to use. This enables any number of the last 7 pins.
     So a value of 4 enables pins 8,9,10,11 to be used as the columns for the keypad matrix. This value must be between 1 and 8.

@@ -152,7 +152,7 @@ position (in steps). The stepper will always run towards the target position and
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
-- **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
+- **target** (**Required**, int, :ref:`templatable <config-templatable>`): The target position in steps.
 
 .. warning::
 
@@ -209,7 +209,7 @@ the target again.
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
-- **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
+- **position** (**Required**, int, :ref:`templatable <config-templatable>`): The position to report in steps.
 
 .. _stepper-set_speed_action:
 
