@@ -77,6 +77,7 @@ Configuration variables:
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
+  - ``2.90inv2``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
   - ``5.83in``
@@ -91,9 +92,9 @@ Configuration variables:
 - **full_update_every** (*Optional*, int): E-Paper displays have two modes of switching to the next image: A partial
   update that only changes the pixels that have changed and a full update mode that first clears the entire display
   and then re-draws the image. The former is much quicker and nicer, but every so often a full update needs to happen
-  because artifacts accumulate. On the ``1.54in``, ``2.13in`` and ``2.90in`` models you have the option to switch only
-  do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a full update for
-  all other models.
+  because artifacts accumulate. On the ``1.54in``, ``2.13in``, ``2.90in``, and ``2.90inv2`` models you have the option
+  to switch only do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a
+  full update for all other models.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``10s``.
