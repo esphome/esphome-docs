@@ -116,6 +116,9 @@ CUSTOM_DOCS = {
         'Clockless': 'properties/light/fastled_clockless',
         'SPI': 'properties/light/fastled_spi'
     },
+    'components/mqtt': {
+        'MQTT Component Base Configuration': 'definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA',
+    },
     'components/output/index': {
         'Base Output Configuration': 'definitions/output.FLOAT_OUTPUT_SCHEMA'
     },
@@ -201,6 +204,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         # Found a Configuration variables: heading, this is to increase docs consistency
         self.accept_props = False
+
+        self.props_level = 0
 
     def visit_document(self, node):
         # ESPHome page docs follows strict formating guidelines which allows
@@ -421,9 +426,9 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             key = split_text[0]
 
             # handles Time / on_time
-            if self.json_base_config:
-                trigger_schema = self.find_props(
-                    self.json_base_config).get(key)
+            c = self.json_base_config or self.json_component
+            if c:
+                trigger_schema = self.find_props(c).get(key)
                 self.props = self.find_props(trigger_schema)
 
     def depart_title(self, node):
@@ -435,8 +440,28 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.multi_component = None
         self.previous_title_text = node.astext()
 
+    def find_props_previous_title(self):
+        comp = self.json_component or self.json_platform_component
+        if comp:
+            props = self.find_props(comp)
+
+            if self.previous_title_text in props:
+                prop = props[self.previous_title_text]
+                if prop:
+                    self.props = self.find_props(prop)
+                else:
+                    # return fake dict so better errors are printed
+                    self.props = {'__': 'none'}
+
     def visit_Text(self, node):
+        if self.multi_component:
+            return
         if node.astext() == "Configuration variables:":
+            if not self.props:
+                self.find_props_previous_title()
+            if not self.props:
+                raise ValueError(
+                    f'Found a "Configuration variables:" entry for unknown object after {self.previous_title_text}')
             self.accept_props = True
         raise nodes.SkipChildren
 
@@ -445,6 +470,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def visit_paragraph(self, node):
         if node.astext() == "Configuration variables:":
+            if not self.props:
+                self.find_props_previous_title()
+            if not self.props:
+                raise ValueError(
+                    f'Found a "Configuration variables:" entry for unknown object after {self.previous_title_text}')
             self.accept_props = True
         raise nodes.SkipChildren
 
@@ -452,6 +482,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         pass
 
     def visit_bullet_list(self, node):
+        self.props_level = self.props_level + 1
         if self.current_prop and self.props:
 
             if '$ref' in self.props[self.current_prop]:
@@ -472,16 +503,27 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             elif 'properties' in self.props[self.current_prop]:
                 self.prop_stack.append(self.props)
                 self.props = self.props[self.current_prop]['properties']
-            # else:
-            #     # nowhere put this props info...
-            #     raise nodes.SkipChildren
+            elif 'anyOf' in self.props[self.current_prop] \
+                    and len(self.props[self.current_prop]['anyOf']) > 0 \
+                    and isinstance(self.get_ref(self.props[self.current_prop]['anyOf'][0]), dict) \
+                    and '$ref' in self.get_ref(self.props[self.current_prop]['anyOf'][0]):
+                ref = self.get_ref(self.props[self.current_prop]['anyOf'][0])
+                self.prop_stack.append(self.props)
+                self.props = self.find_props(ref)
+            else:
+                # nowhere put this props info...
+                # otherwise inner bullet list will be interpreted as property list
+                if self.props_level > 1:
+                    raise nodes.SkipChildren
 
         if not self.props and self.multi_component == None:
             raise nodes.SkipChildren
 
     def depart_bullet_list(self, node):
+        self.props_level = self.props_level - 1
         if len(self.prop_stack) > 0:
             self.props = self.prop_stack.pop()
+            self.filled_props = True
 
     def visit_list_item(self, node):
         if self.accept_props and self.props:
@@ -532,7 +574,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         markdown = self.getMarkdown(node)
 
-        name_type = markdown[:markdown.index(': ') + 2]
+        try:
+            name_type = markdown[:markdown.index(': ') + 2]
+        except:
+            raise ValueError(f'Property format error. Missing ": " in {raw}')
 
         # Example properties formats are:
         # **name** (**Required**, string): Long Description...
