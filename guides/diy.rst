@@ -45,6 +45,7 @@ Blog Posts & Videos
 - `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__
 - `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPhome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Baseboard (Line Voltage) Thermostat from Smart Switch <https://github.com/rjmurph2241/baseboard-heating-thermostat>`__ by :ghuser:`rjmurph2241`
+- `Office Doorbell <https://github.com/shish/esphome-projects/blob/master/office-doorbell.md>`__ by :ghuser:`shish`
 
 Custom Components & Code
 ------------------------
