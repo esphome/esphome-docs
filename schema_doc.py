@@ -1,19 +1,12 @@
-from typing import MutableMapping
-from sphinx.util import logging
 import re
-from types import TracebackType
-import docutils
-from markdown import MDWriter
-import os
 import xml.etree.ElementTree as ET
 import json
-import traceback
-from docutils import nodes
-from docutils.parsers.rst import Directive
-from docutils.core import publish_doctree, publish_file, publish_from_doctree
 
-SCHEMA_PATH = '../esphome_devices/schema.json'
-# SCHEMA_PATH = '../esphome-vscode/server/src/schema.json'
+from typing import MutableMapping
+from sphinx.util import logging
+from docutils import nodes
+
+SCHEMA_PATH = './schema.json'
 
 props_missing = 0
 props_verified = 0
@@ -23,8 +16,15 @@ props_documented = 0
 def setup(app):
     """Setup connects events to the sitemap builder"""
 
+    import os
+    if not os.path.isfile(SCHEMA_PATH):
+        logger = logging.getLogger(__name__)
+        logger.info(f'{SCHEMA_PATH} not found. Not documenting schema.')
+        return
+
     app.connect('doctree-resolved', doctree_resolved)
     app.connect('build-finished', build_finished)
+
     f = open(SCHEMA_PATH, 'r', encoding="utf-8-sig")
     str = f.read()
     app.jschema = json.loads(str)
@@ -57,14 +57,9 @@ def doctree_resolved(app, doctree, docname):
         handle_component(app, doctree, docname)
 
     except Exception as e:
-
         err_str = f'In {docname}: {str(e)}'
-
         logger = logging.getLogger(__name__)
         logger.warning(err_str)
-
-        traceback.print_exc()
-        # print(err_str)
 
 
 PLATFORMS_TITLES = {'Sensor': 'sensor',
@@ -829,71 +824,15 @@ def handle_component(app, doctree, docname):
     doctree.walkabout(v)
 
 
-NOT_DOCUMENTED = ['web_server_base']
-
-IGNORE_MISSING_KEYS = ['id', 'web_server_base_id', 'raw_data_id', 'time_id',
-                       'one_wire_id', 'trigger_id', 'then']
-
-
-def check_missing(app, jschema, component):
-    global props_missing, props_verified
-
-    if component in NOT_DOCUMENTED:
-        return
-    # props = find_props(jschema, app)
-    # if not props:
-    #     print(f'In: {component} cannot find properties')
-    #     return
-
-    # for key, val in props.items():
-    #     if not 'markdownDescription' in val and not key in IGNORE_MISSING_KEYS:
-    #         print(f'In: {component} cannot find markdown description for {key}')
-    #         props_missing = props_missing + 1
-    #     else:
-    #         props_verified = props_verified + 1
-
-
-def test_schema(app):
-    try:
-
-        for key, val in app.jschema["properties"].items():
-            # multi components?
-            if '$ref' in val:
-                continue
-            # binary_sensor, sensor
-            if 'items' in val:
-                continue
-            try:
-                check_missing(app, val, key)
-            except Exception as e:
-                print(f'In: properties/{key} error: {str(e)}')
-
-        for key, val in app.jschema["definitions"].items():
-            # multi components?
-            if '$ref' in val:
-                continue
-            # binary_sensor, sensor
-            if 'items' in val:
-                continue
-            try:
-                check_missing(app, val, key)
-            except Exception as e:
-                print(f'In: definitions/{key} error: {str(e)}')
-
-    except Exception as e:
-        print(e)
-
-
 def build_finished(app, exception):
-    # create report of missing descriptions
-    # test_schema(app)
+    # TODO: create report of missing descriptions
 
     f = open(SCHEMA_PATH, 'w')
     f.write(json.dumps(app.jschema))
 
-    print('----')
-    print(
-        f'Documented: {props_documented} verified: {props_verified} missing: {props_missing}')
+    str = f'Documented: {props_documented}'
+    logger = logging.getLogger(__name__)
+    logger.info(str)
 
 
 class SetObservable(dict):
