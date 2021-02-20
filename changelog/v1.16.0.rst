@@ -125,6 +125,19 @@ Release 1.16.1 - February 14
 - esphome: MCP230xx open drain interrupt pins :esphomepr:`1243` by :ghuser:`kbx81`
 - docs: MCP230xx open drain interrupt pins :docspr:`728` by :ghuser:`kbx81`
 
+Release 1.16.2 - February 20
+----------------------------
+
+- docs: Incomplete sentence :docspr:`1004` by :ghuser:`jkmaxwell`
+- esphome: auto_detect check was backwards :esphomepr:`1536` by :ghuser:`SenexCrenshaw`
+- docs: Make explicit examples for splitting and joining using partitions :docspr:`1008` by :ghuser:`jesserockz`
+- docs: Title for Connecting your device to Home Assistant :docspr:`1013` by :ghuser:`jesserockz`
+- esphome: Added Waveshare 2.90inch V2 e-ink display :esphomepr:`1538` by :ghuser:`K-r-i-s-t-i-a-n`
+- docs: Added documentation for Waveshare 2.90inch V2 e-ink display :docspr:`1010` by :ghuser:`K-r-i-s-t-i-a-n`
+- esphome: Add reverse_enable for max7219 :esphomepr:`1489` by :ghuser:`ssieb`
+- docs: Add reverse_enable for max7219 :docspr:`983` by :ghuser:`ssieb`
+- esphome: Fix safe mode ota flashing under certain configurations :esphomepr:`1534` by :ghuser:`jesserockz`
+
 All changes
 -----------
 
