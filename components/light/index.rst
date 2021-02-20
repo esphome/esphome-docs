@@ -818,8 +818,10 @@ Configuration variables:
 - **sequence** (*Optional*, :ref:`Action <config-action>`): The actions to perform in sequence
   until the effect is stopped.
 
-E1.31
-*****
+.. _e131-light-effect:
+
+E1.31 Effect
+************
 
 This effect enables controlling addressable lights using UDP-based
 E1.31_ protocol.
@@ -841,16 +843,15 @@ JINX_ can be used to control E1.31_ enabled ESPHome.
 
 Configuration variables:
 
-- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
 - **universe** (**Required**, integer): The value of universe, between 1 to 512.
 - **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
   ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
 There are three modes of operation:
 
-- `MONO`: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
-- `RGB`: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
-- `RGBW`: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
+- ``MONO``: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
+- ``RGB``: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
+- ``RGBW``: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
 
 If there's more LEDs than allowed per-universe, additional universe will be used.
 In the above example of 189 LEDs, first 170 LEDs will be assigned to 1 universe,
@@ -859,11 +860,21 @@ the rest of 19 LEDs will be automatically assigned to 2 universe.
 It is possible to enable multiple light platforms to listen to the same universe concurrently,
 allowing to replicate the behaviour on multiple strips.
 
+E1.31 Component
+^^^^^^^^^^^^^^^
+
+The :ref:`e131-light-effect` requires a component hub for the ``e131`` light effect.
+
+Configuration variables:
+
+- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
+
+
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
 
-Adalight
-********
+Adalight Effect
+***************
 
 This effect enables controlling addressable lights using UART-based
 Adalight_ protocol, allowing to create realtime ambient lighting effects.
@@ -900,8 +911,8 @@ Configuration variables:
 .. _Adalight: https://learn.adafruit.com/adalight-diy-ambient-tv-lighting
 .. _Prismatik: https://github.com/psieg/Lightpack
 
-WLED
-****
+WLED Effect
+***********
 
 This effect enables controlling addressable lights using UDP-based
 `UDP Realtime Control`_ protocol used by WLED_, allowing to create realtime ambient
