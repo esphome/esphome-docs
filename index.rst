@@ -126,7 +126,6 @@ Sensor Components
     INA219, components/sensor/ina219, ina219.jpg
     INA226, components/sensor/ina226, ina226.jpg
     INA3221, components/sensor/ina3221, ina3221.jpg
-    Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg
     Integration, components/sensor/integration, sigma.svg
     HTU21D, components/sensor/htu21d, htu21d.jpg
     HM3301, components/sensor/hm3301, hm3301.jpg
@@ -172,6 +171,8 @@ Sensor Components
     VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
+    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
+    Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
@@ -217,7 +218,6 @@ Output Components
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
-    MCP4725, components/output/mcp4725, mcp4725.jpg
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
 
