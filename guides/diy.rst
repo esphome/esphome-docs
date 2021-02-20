@@ -80,7 +80,7 @@ Custom Components & Code
 Sample Configurations
 ---------------------
 
-- `esphome-configs.io <https://esphome-configs.io/>`__ by :ghuser:`jonathanadams`
+- `esphome-devices.com <https://www.esphome-devices.com/>`__ by :ghuser:`jonathanadams`
 - `Ultrasonic Sensor for detecting if car in Garage <https://gist.github.com/Snipercaine/f3908a051fd79e6d7d7b765152666c2a>`__ by `DrZzs <http://drzzs.com/>`__
 - `Sonoff POW R2 Washing Machine Sensor <https://gist.github.com/frenck/1b4f0ea98f1f6d86d597c2d9636636db>`__ by `Frenck <https://frenck.dev>`__
 - `Sonoff iFan02 Custom Output Example <https://gist.github.com/quazzie/09ee3ef2c419ecbcf979a7410062481b>`__ by :ghuser:`quazzie`
