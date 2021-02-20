@@ -124,7 +124,7 @@ is automatically calculated.
 
 But this also means you **have to set the setpoint** of the climate controller to a value the
 device can reach. For example if the temperature of a room is to be controlled, the setpoint needs
-to be a bit of the ambient temperature. If the ambient temperature is 20°C, the setpoint of the
+to be above the ambient temperature. If the ambient temperature is 20°C, the setpoint of the
 climate device should be set to at least ~24°C so that an oscillation can be induced.
 
 4. Set an appropriate setpoint (see above).
