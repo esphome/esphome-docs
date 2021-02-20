@@ -215,8 +215,8 @@ Configuration variables:
 
 - All other from :ref:`base_time_config`.
 
-SNTP Configuration
-------------------
+SNTP Time Source
+----------------
 
 .. code-block:: yaml
 
@@ -234,7 +234,7 @@ Configuration variables:
 .. note::
 
     If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
-    
+
 .. warning::
 
     Due to limitations of the SNTP implementation, this component will trigger ``on_time_sync`` only once when it detects that the

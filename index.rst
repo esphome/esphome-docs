@@ -293,7 +293,7 @@ Display Components
     ST7789V, components/display/st7789v, st7789v.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate 6, components/display/Inkplate, Inkplate.jpg
+    Inkplate 6, components/display/inkplate, inkplate.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
@@ -320,7 +320,6 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
-    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
 
 Climate Components
 ------------------
@@ -412,6 +411,7 @@ Cookbook
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
+    Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

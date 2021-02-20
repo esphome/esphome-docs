@@ -15,8 +15,8 @@ This is exactly the same API as the MCP23SXX I/O Expander except talks on the SP
 
 .. _mcp23S08-label:
 
-MCP23S08
---------
+MCP23S08 Component
+------------------
 
 The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/MCP23008-MCP23S08-Data-Sheet-20001919F.pdf>`__,
 `Digi-Key <https://www.digikey.com/product-detail/en/microchip-technology/MCP23S08-E-P/MCP23S08-E-P-ND/735954>`__) has 8 GPIOs that can be configured independently.
@@ -64,8 +64,8 @@ Configuration variables:
 
 .. _mcp23S17-label:
 
-MCP23S17
---------
+MCP23S17 Component
+------------------
 
 The MCP23S17 component allows you to use MCP23S17 I/O expanders
 (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf>`__,
