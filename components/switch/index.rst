@@ -21,7 +21,6 @@ Base Switch Configuration
         icon: "mdi:restart"
 
 Configuration variables:
-************************
 
 - **name** (**Required**, string): The name of the switch.
 - **icon** (*Optional*, icon): Manually set the icon to use for the

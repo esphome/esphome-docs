@@ -24,7 +24,6 @@ Base Stepper Configuration
 All stepper configuration schemas inherit these options.
 
 Configuration variables:
-************************
 
 - **max_speed** (**Required**, float): The maximum speed in ``steps/s`` (steps per seconds) to drive the
   stepper at. Note most steppers can't step properly with speeds higher than 250 steps/s.
@@ -57,7 +56,6 @@ Put this code into the configuration file on ESPhome for this device.
 
 
 Configuration variables:
-************************
 
 - **id** (**Required**, :ref:`config-id`): Specify the ID of the stepper so that you can control it.
 - **step_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The ``STEP`` pin of the A4988
@@ -106,7 +104,6 @@ Put this code into the configuration file on ESPHome for this device.
 
 
 Configuration variables:
-************************
 
 - **id** (**Required**, :ref:`config-id`): Specify the ID of the stepper so that you can control it.
 - **pin_a** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin **a** of the stepper control board.
@@ -206,7 +203,7 @@ the target again.
               return -1000;
             }
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **position** (**Required**, int, :ref:`templatable <config-templatable>`): The position to report in steps.

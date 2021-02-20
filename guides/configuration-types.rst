@@ -78,7 +78,6 @@ In some places, ESPHome also supports a more advanced “pin schema”.
         mode: INPUT_PULLUP
 
 Configuration variables:
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values

@@ -134,7 +134,6 @@ Examples:
 Got all that? Great. Let's take a closer look at some configuration.
 
 Configuration Variables:
-------------------------
 
 The thermostat controller uses the sensor to determine whether it should heat or cool.
 

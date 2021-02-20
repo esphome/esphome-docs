@@ -55,7 +55,6 @@ And in YAML:
           name: "My Custom Binary Sensor"
 
 Configuration variables:
-************************
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   binary sensor(s).

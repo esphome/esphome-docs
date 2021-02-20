@@ -28,7 +28,6 @@ Base Fan Configuration
         name: ...
 
 Configuration variables:
-************************
 
 - **name** (**Required**, string): The name of the fan.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will

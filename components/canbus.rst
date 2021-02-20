@@ -53,7 +53,6 @@ Each canbus platform extends this configuration schema.
               ESP_LOGD("can id 500", "%s", &b[0] );
 
 Configuration variables:
-************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
@@ -132,7 +131,6 @@ There are several forms to use it:
           return {0x00, 0x20, 0x42};
 
 Configuration variables:
-************************
 
 - **data** (**Required**, binary data): Data to transmit, up to 8 bytes or
   characters are supported by can bus per frame.

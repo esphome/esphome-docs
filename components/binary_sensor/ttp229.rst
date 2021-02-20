@@ -46,7 +46,6 @@ The configuration is made up of two parts: The central component, and individual
 ----------------------------
 
 Configuration variables:
-************************
 
 - **name** (**Required**, string): The name of the binary sensor.
 - **channel** (**Required**, integer): The channel number at the TTP229 the touchkey is connected to.
@@ -85,7 +84,6 @@ Base Configuration:
 ----------------------------
 
 Configuration variables:
-************************
 
 - **name** (**Required**, string): The name of the binary sensor.
 - **channel** (**Required**, integer): The channel number at the TTP229 the touchkey is connected to.

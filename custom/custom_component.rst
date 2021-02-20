@@ -51,7 +51,6 @@ And in YAML:
         return {my_custom};
 
 Configuration variables:
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   binary sensor(s).

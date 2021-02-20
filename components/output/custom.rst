@@ -75,7 +75,6 @@ And in YAML:
         id: custom_binary
 
 Configuration variables:
-************************
 
 - **type** (**Required**, string): The type of output. One of ``binary`` and ``float``.
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the

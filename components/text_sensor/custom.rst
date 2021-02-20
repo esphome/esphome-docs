@@ -52,7 +52,6 @@ And in YAML:
         name: "My Custom Text Sensor"
 
 Configuration variables:
-************************
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   text sensor(s).

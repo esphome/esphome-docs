@@ -25,7 +25,6 @@ All light configuration schemas inherit these options.
 
 
 Configuration variables:
-************************
 
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction

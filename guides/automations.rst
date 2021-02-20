@@ -285,7 +285,6 @@ global variables can be used to store the state of a garage door.
            ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
 
 Configuration variables:
-************************
 
 - **id** (**Required**, :ref:`config-id`): Give the global variable an ID so that you can refer
   to it later in :ref:`lambdas <config-lambda>`.
@@ -519,7 +518,6 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 
 
 Configuration variables:
-************************
 
 - **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
 - **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
@@ -548,7 +546,6 @@ a block until a given condition evaluates to false.
           - delay: 5s
 
 Configuration variables:
-************************
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
@@ -631,7 +628,6 @@ execute the script with a single call.
 
 
 Configuration variables:
-************************
 
 - **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the script. Use this
   to interact with the script using the script actions.
@@ -755,7 +751,6 @@ true for at least a given amount of time.
           - logger.log: API has stayed connected for at least 5 minutes!
 
 Configuration variables:
-************************
 
 - **time** (**Required**, :ref:`templatable <config-templatable>`, :ref:`config-time`):
   The time for which the condition has to have been true.
@@ -781,7 +776,6 @@ trigger, but this technique is more light-weight and user-friendly.
           - switch.toggle: relay_1
 
 Configuration variables:
-************************
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
 - **then** (**Required**, :ref:`config-action`): The action to perform.

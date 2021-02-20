@@ -148,7 +148,6 @@ a ``.ttf`` file from somewhere on the Internet and create a ``font:`` section in
 
 
 Configuration variables:
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font
   file.
@@ -335,7 +334,6 @@ A ``color`` component exists for just this purpose:
 
 
 Configuration variables:
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
 - **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
@@ -357,7 +355,6 @@ Use this component to store graphical images on the device, you can then draw th
         resize: 100x100
 
 Configuration variables:
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later

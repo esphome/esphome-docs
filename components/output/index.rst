@@ -31,7 +31,6 @@ Each output platform extends this configuration schema.
         max_power: 0.75
 
 Configuration variables:
-************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **power_supply** (*Optional*, :ref:`config-id`): The :doc:`power
