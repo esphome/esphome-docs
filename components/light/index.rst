@@ -823,7 +823,7 @@ E1.31
 This effect enables controlling addressable lights using UDP-based
 E1.31_ protocol.
 
-JINX_ can be used to control E1.31_ enabled ESPHome.
+For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHome.
 
 .. code-block:: yaml
 
@@ -858,8 +858,11 @@ the rest of 19 LEDs will be automatically assigned to 2 universe.
 It is possible to enable multiple light platforms to listen to the same universe concurrently,
 allowing to replicate the behaviour on multiple strips.
 
+The udp port esphome is listenig on is 5568.
+
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
+.. _Hyperion.NG: https://github.com/hyperion-project/hyperion.ng
 
 Adalight
 ********
