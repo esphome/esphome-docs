@@ -122,6 +122,9 @@ CUSTOM_DOCS = {
     'components/output/index': {
         'Base Output Configuration': 'definitions/output.FLOAT_OUTPUT_SCHEMA'
     },
+    'components/remote_transmitter': {
+        'Remote Transmitter Actions':  'definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA'
+    },
     'components/time': {
         'Home Assistant Time Source': 'properties/time/homeassistant',
         'SNTP Time Source': 'properties/time/sntp',
@@ -376,7 +379,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if len(split_text) == 2:
                 # some components are several components in a single platform doc
                 # e.g. ttp229 binary_sensor has two different named components.
-                component_name = split_text[0].lower()
+                component_name = split_text[0].lower().replace('.', '')
                 if component_name.lower() == self.platform:
                     return
                 c = find_component(
@@ -431,6 +434,24 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 trigger_schema = self.find_props(c).get(key)
                 self.props = self.find_props(trigger_schema)
 
+        if self.docname == 'components/light/index' and title_text.endswith('Effect'):
+            # Document first paragraph is description of this thing
+
+            description = self.getMarkdownParagraph(node.parent)
+            name = title_text[:-len(' Effect')]
+            # accept Light Effect as ending (Automation Light Effect)
+            if name.endswith(' Light'):
+                name = name[:-len(' Light')]
+
+            key = name.replace(' ', '_').replace('.', '').lower()
+            registry = self.app.jschema["definitions"]["light.EFFECTS_REGISTRY"]["anyOf"]
+            for effect in registry:
+                if key in effect["properties"]:
+                    effect["properties"][key]["markdownDescription"] = description
+                    self.props = self.find_props(effect["properties"][key])
+                    return
+            raise ValueError('Cannot find Effect ' + title_text)
+
     def depart_title(self, node):
         if self.filled_props:
             self.filled_props = False
@@ -483,12 +504,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def visit_bullet_list(self, node):
         self.props_level = self.props_level + 1
-        if self.current_prop and self.props:
+        if self.current_prop and self.props and self.props_level > 1:
 
-            if '$ref' in self.props[self.current_prop]:
-                if self.props[self.current_prop]['$ref'].endswith('_SCHEMA'):
-                    # nowhere put this props info...
-                    raise nodes.SkipChildren
+            # if '$ref' in self.props[self.current_prop]:
+            #     if self.props[self.current_prop]['$ref'].endswith('_SCHEMA'):
+            # nowhere put this props info...
+            # raise nodes.SkipChildren
 
             # this can be list of values, list of subproperties
 
@@ -496,20 +517,26 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # e.g. wifi manual_ip, could also be a enum list
 
             # if this prop has a reference
-            ref = self.get_ref(self.props[self.current_prop])
-            if ref:
-                self.prop_stack.append(self.props)
-                self.props = self.find_props(ref)
-            elif 'properties' in self.props[self.current_prop]:
-                self.prop_stack.append(self.props)
-                self.props = self.props[self.current_prop]['properties']
-            elif 'anyOf' in self.props[self.current_prop] \
-                    and len(self.props[self.current_prop]['anyOf']) > 0 \
-                    and isinstance(self.get_ref(self.props[self.current_prop]['anyOf'][0]), dict) \
-                    and '$ref' in self.get_ref(self.props[self.current_prop]['anyOf'][0]):
-                ref = self.get_ref(self.props[self.current_prop]['anyOf'][0])
-                self.prop_stack.append(self.props)
-                self.props = self.find_props(ref)
+            prop = self.props[self.current_prop]
+            if isinstance(prop, dict):
+                if '$ref' in prop:
+                    ref = self.get_ref(prop)
+                    self.prop_stack.append(self.props)
+                    self.props = self.find_props(ref)
+                    self.accept_props = True
+                elif 'properties' in prop:
+                    self.prop_stack.append(self.props)
+                    self.props = prop['properties']
+                elif 'anyOf' in prop and len(prop['anyOf']) > 0 \
+                        and isinstance(self.get_ref(prop['anyOf'][0]), dict) \
+                        and '$ref' in self.get_ref(prop['anyOf'][0]):
+                    ref = self.get_ref(prop['anyOf'][0])
+                    self.prop_stack.append(self.props)
+                    self.props = self.find_props(ref)
+                # nowhere put this props info...
+                # otherwise inner bullet list will be interpreted as property list
+                if self.props_level > 1:
+                    raise nodes.SkipChildren
             else:
                 # nowhere put this props info...
                 # otherwise inner bullet list will be interpreted as property list
@@ -530,6 +557,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.filled_props = True
             try:
                 self.current_prop = self.update_prop(node, self.props)
+                # print(
+                #     f'{self.current_prop} updated from {node.rawsource[:40]}')
             except Exception as e:
                 raise ValueError(
                     f"In '{self.previous_title_text}' {str(e)}")
@@ -639,7 +668,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if param_type:
             desc = param_type + ': ' + desc
 
-        jprop["markdownDescription"] = desc
+        if '$ref' in jprop:
+            self.get_ref(jprop)["markdownDescription"] = desc
+        else:
+            jprop["markdownDescription"] = desc
         global props_documented
         props_documented = props_documented + 1
 
@@ -705,11 +737,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 return self.store[key]
 
             if "then" in self.component:
-                schemas = self.component["then"].get('allOf')
-
-                #
-
                 # check if it's typed
+                schemas = self.component["then"].get('allOf')
                 if isinstance(schemas, list) and 'properties' in schemas[0] and 'type' in schemas[0]['properties']:
                     for s in schemas:
                         if 'then' in s:
@@ -717,6 +746,17 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                             if key in props:
                                 return SetObservable(props[key], setitem_callback=self._update_typed, inner_key=key)
                     return  # key not found
+
+                # check if it's a registry and need to reset store
+                # e.g. remote_receiver binary sensor
+                if '$ref' in self.component["then"]:
+                    ref = self.visitor.get_ref(self.component["then"])
+                    prop_set = ref.get('anyOf')
+                    if isinstance(prop_set, list):
+                        for k in prop_set:
+                            if key in k['properties']:
+                                self.store = k['properties']
+                                return self.store[key]
 
         def _update_typed(self, inner_key, key, value):
             # Make sure we update all types
