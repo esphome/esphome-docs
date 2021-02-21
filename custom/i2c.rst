@@ -11,6 +11,7 @@ them publish values.
 .. code-block:: cpp
 
     #include "esphome.h"
+    #include "Wire.h"
 
     class MyCustomComponent : public Component {
      public:
