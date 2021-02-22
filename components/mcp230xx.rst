@@ -33,7 +33,7 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
       - platform: gpio
         name: "MCP23008 Pin #0"
         pin:
-          mcp23008: mcp23008_hub
+          mcp23xxx: mcp23008_hub
           # Use pin number 0
           number: 0
           mode: OUTPUT
@@ -44,7 +44,7 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
       - platform: gpio
         name: "MCP23008 Pin #1"
         pin:
-          mcp23008: mcp23008_hub
+          mcp23xxx: mcp23008_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
@@ -60,6 +60,14 @@ Configuration variables:
 - **open_drain_interrupt** (*Optional*, bool): Configure the interrupt pin to open-drain mode.
   Useful when the MCP23008's power supply is greater than 3.3 volts. Note that this pin
   will require a pull-up resistor (to 3.3 volts) when this mode is enabled.
+
+Pin Configuration Variables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23008 component.
+- **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
+- All other options from :ref:`Pin Schema <config-pin_schema>`
+
 
 .. _mcp23016-label:
 
@@ -110,6 +118,13 @@ Configuration variables:
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
 
+Pin Configuration Variables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **mcp23016** (**Required**, :ref:`config-id`): The id of the MCP23016 component.
+- All other options from :ref:`Pin Schema <config-pin_schema>`
+
+
 .. _mcp23017-label:
 
 MCP23017 Component
@@ -137,7 +152,7 @@ binary sensor or GPIO switch.
       - platform: gpio
         name: "MCP23017 Pin #0"
         pin:
-          mcp23017: mcp23017_hub
+          mcp23xxx: mcp23017_hub
           # Use pin number 0
           number: 0
           mode: OUTPUT
@@ -148,7 +163,7 @@ binary sensor or GPIO switch.
       - platform: gpio
         name: "MCP23017 Pin #1"
         pin:
-          mcp23017: mcp23017_hub
+          mcp23xxx: mcp23017_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
@@ -164,6 +179,13 @@ Configuration variables:
 - **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
   Useful when the MCP23017's power supply is greater than 3.3 volts. Note that these pins
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
+
+Pin Configuration Variables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23017 component.
+- **interrupt** (*Optional*): Set this pin to trigger the port INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
+- All other options from :ref:`Pin Schema <config-pin_schema>`
 
 
 See Also
