@@ -6,7 +6,7 @@ Xiaomi Miscale2 Sensors
     :image: xiaomi_miscale2.jpg
     :keywords: Xiaomi, BLE, Bluetooth, XMTZC02HM, XMTZC05HM
 
-The ``xiaomi_miscale2`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the weight and the impedance of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_miscale2`` listense passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life.
+The ``xiaomi_miscale2`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the weight and the impedance of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_miscale2`` listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life.
 
 To get the body scores using your weight, height, age and gender see the custom_components `<https://github.com/dckiller51/bodymiscale>`__
 
