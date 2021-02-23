@@ -27,33 +27,34 @@ See :doc:`/components/display/nextion` for setting up the display
       name: text0
       id: text0
       update_interval: 4s
-      hass_component_name: textoutput.txt
-      nextion_component_name: text0
+      component_name: text0
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
-- **nextion_component_name** (*Optional*, string): The name of the Nextion component.
-- **nextion_variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
-- **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
+- **component_name** (*Optional*, string): The name of the Nextion component.
+- **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
+- **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_text_sensor_protocol` this should not be used
+- **background_color** (*Optional*, :ref:`Color`):  The background color
+- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
+- **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
-**Only one** *nextion_component_name* **or** *nextion_variable_name* **can be set**
+**Only one** *component_name* **or** *variable_name* **can be set**
 
 See :ref:`nextion_text_sensor_how_things_update` for additional information
 
 Globals
 *******
-The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **nextion_component_name** does not exist on that page then
-nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **nextion_component_name**
+The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **component_name** does not exist on that page then
+nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **component_name**
 should be prefixed with the page name (page0/page1).
 
 *Example*
 
-``nextion_component_name: page0.text0``
+``component_name: page0.text0``
 
 .. _nextion_text_sensor_lambda_calls:
 
@@ -65,12 +66,17 @@ advanced stuff (see the full API Reference for more info).
 
 .. _nextion_text_sensor_set_state:
 
-- ``set_state(std::string state)``: Set the state :ref:`sensor-lambda_calls`
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to HASS. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_text_sensor_update:
 
-- ``update()``: Poll from the Nextion :ref:`sensor-lambda_calls`
+- ``update()``: Poll from the Nextion
 
+.. _nextion_text_sensor_settings:
+
+- ``set_background_color(Color color)``: Sets the background color to **Color**
+- ``set_foreground_color(Color color)``: Sets the background color to **Color**
+- ``set_visible(bool visible)`` : Sets visible or not. If set no updates will be sent to the component
 
 .. _nextion_text_sensor_how_things_update:
 
@@ -87,19 +93,19 @@ in the Nextion.
     There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
     since this will be sending the real value to esphome.
 
-
-On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
-
 Using the above yaml example:  
   - "text0" will poll the Nextion for ``text0.txt`` value and set the state accordingly.  
 
     - :ref:`Lambda Calls <nextion_text_sensor_lambda_calls>`.  
 
+.. note::
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+
 
 .. _nextion_custom_text_sensor_protocol:
 
-Nextion Custom Sensor Protocol
-------------------------------
+Nextion Custom Text Sensor Protocol
+-----------------------------------
 All lines are required
 
 .. code-block:: c++
@@ -114,7 +120,7 @@ All lines are required
 *Explanation*
 
 - ``printh 92`` Tells the library this is text sensor
-- ``prints "text0",0`` Sends the name that matches **nextion_component_name** or **nextion_variable_name**
+- ``prints "text0",0`` Sends the name that matches **component_name** or **variable_name**
 - ``printh 00`` Sends a NULL
 - ``prints text0.txt,0`` The actual text to send. For a variable use the Nextion variable name ``text0`` with out ``.txt``
 - ``printh 00`` Sends a NULL

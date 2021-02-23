@@ -7,7 +7,7 @@ Nextion Sensor Component
     :description: Instructions for setting up Nextion sensor.
     :image: nextion.jpg    
 
-The ``nextion`` sensor platform supports intergers. It can be a component or variable in the Nextion display.
+The ``nextion`` sensor platform supports intergers or floats (Xfloat). It can be a component, a variable or a waveform in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
 if the page is shown or not. 
 
@@ -29,41 +29,71 @@ See :doc:`/components/display/nextion` for setting up the display
     sensor:
       - platform: nextion        
         name: "Current Humidity"
-        nextion_component_name: humidity # pageX.humidity for a global
+        component_name: humidity # pageX.humidity for a global
         nextion_precision: 1
         update_interval: 4s
       - platform: nextion
         nextion_id: nextion1        
         name: "Current Temperature"
-        nextion_variable_name: temperature
+        variable_name: temperature
         hass_component_name: sensor.temperature
+      - platform: nextion
+        id: s01
+        component_id: 2
+        wave_channel_id: 0
+        wave_max_value: 100
+        waveform_send_last_value: "true"
+        wave_max_length: 400
+        update_interval: 1s
+      - platform: nextion
+        id: s02
+        component_id: 2
+        wave_channel_id: 1
+        wave_max_value: 100
+        update_interval: 1s
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Nextion display.
-- **nextion_component_name** (*Optional*, string): Manually specify the name of the Nextion component.
-- **nextion_variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
+- **component_name** (*Optional*, string): Manually specify the name of the Nextion component.
+- **variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
 - **nextion_precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets 
   the precision that the component is set to. This typically is the ``vvs1`` setting of the component.                                                         
-- **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
+- **background_color** (*Optional*, :ref:`Color`):  The background color
+- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
+- **visible** (*Optional*, boolean ):  Visible or not
+  
+Waveform Settings
+*****************
+- **wave_channel_id** (*Optional*, uint8_t): The waveform ID in a range of 0-3
+- **wave_max_value** (*Optional*, uint8_t): The max value. Set ``dis`` to the height of the component on the Nextion editor and this to the max value that will be sent. This will set up the proper scaling.
+- **waveform_send_last_value** (*Optional*, uint8_t): This will send the last value set during an update interval. Setting to true will give a timeseries style graph
+- **wave_max_length** (*Optional*, int): How many data points to store. Typically this is the width of the component in the Nextion
+- **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor. This typically should be set for waveforms to send periodic updates.
+  
 - All other options from :ref:`Sensor <config-sensor>`.
 
-**Only one** *nextion_component_name* **or** *nextion_variable_name* **can be set**
+**Only one** *component_name* **or** *variable_name* **can be set**
+
+.. note::
+  ``background_color`` , ``foreground_color`` and ``visible`` do not retain their state on page change. :ref:`nextion_binary_sensor_settings`
+  A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
+
 
 See :ref:`nextion_sensor_how_things_update` for additional information
 
 Globals
 *******
-The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **nextion_component_name** does not exist on that page then
-nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **nextion_component_name**
+The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **component_name** does not exist on that page then
+nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **component_name**
 should be prefixed with the page name (page0/page1).
 
 *Example*
 
-``nextion_component_name: page0.humidity``
+``component_name: page0.humidity``
 
 .. _nextion_sensor_lambda_calls:
 
@@ -75,11 +105,16 @@ advanced stuff (see the full API Reference for more info).
 
 .. _nextion_sensor_set_state:
 
-- ``set_state(int value)``: Set the state :ref:`sensor-lambda_calls`
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to HASS. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_sensor_update:
 
-- ``update()``: Poll from the Nextion :ref:`sensor-lambda_calls`
+- ``update()``: Poll from the Nextion
+
+- ``set_background_color(Color color)``: Sets the background color to **Color**
+- ``set_foreground_color(Color color)``: Sets the background color to **Color**
+- ``set_visible(bool visible)`` : Sets visible or not. If set no updates will be sent to the component
+
 
 .. _nextion_sensor_how_things_update:
 
@@ -96,13 +131,15 @@ in the Nextion.
     There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
     since this will be sending the real value to esphome.
 
-On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
-
 Using the above yaml example:
   - "Current Humidity" will poll the Nextion for the ``humidity.val`` value and set the sensor accordingly.
   - "Current Temperature" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_sensor_protocol` or use a lambda:
 
     - :ref:`Lambda Calls <nextion_sensor_lambda_calls>`.  
+
+.. note::
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+
 
 .. _nextion_custom_sensor_protocol:
 
@@ -121,7 +158,7 @@ All lines are required
 *Explanation*
 
 - ``printh 91`` Tells the library this is a sensor (int) data
-- ``prints "temperature",0`` Sends the name that matches **nextion_component_name** or **nextion_variable_name**
+- ``prints "temperature",0`` Sends the name that matches **component_name** or **variable_name**
 - ``printh 00`` Sends a NULL
 - ``prints temperature.val,0`` The actual value to send. For a variable use the Nextion variable name ``temperature`` with out ``.val``
 - ``printh FF FF FF`` Nextion command ack

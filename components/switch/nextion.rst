@@ -24,38 +24,41 @@ See :doc:`/components/display/nextion` for setting up the display
       - platform: nextion
         id: r0_switch
         name: "Radio 0 Switch"
-        nextion_component_name: r0 # pageX.r0 for a global
+        component_name: r0 # pageX.r0 for a global
         update_interval: 4s
-        hass_component_name: switch.downstairs
       - platform: nextion
         id: darkmode
         name: "Is Darkmode Set"
-        nextion_variable_name: darkmode
+        variable_name: darkmode
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
-- **nextion_component_name** (*Optional*, string): The name of the Nextion component.
-- **nextion_variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
-- **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
+- **component_name** (*Optional*, string): The name of the Nextion component.
+- **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
+- **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_switch_protocol` this should not be used
+- **background_color** (*Optional*, :ref:`Color`):  The background color
+- **background_pressed_color** (*Optional*, :ref:`Color`):  The background color when pressed
+- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
+- **foreground_pressed_color** (*Optional*, :ref:`Color`):  The foreground color when pressed
+- **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Switch <config-switch>`.
 
-**Only one** *nextion_component_name* **or** *nextion_variable_name* **can be set**
+**Only one** *component_name* **or** *variable_name* **can be set**
 
 See :ref:`nextion_switch_how_things_update` for additional information
 
 Globals
 *******
-The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **nextion_component_name** does not exist on that page then
-nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **nextion_component_name**
+The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **component_name** does not exist on that page then
+nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **component_name**
 should be prefixed with the page name (page0/page1).
 
 *Example*
 
-``nextion_component_name: page0.r0``
+``component_name: page0.r0``
 
 .. _nextion_switch_lambda_calls:
 
@@ -67,11 +70,19 @@ advanced stuff (see the full API Reference for more info).
 
 .. _nextion_switch_set_state:
 
-- ``set_state(bool value)``: Set the state :ref:`sensor-lambda_calls`
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to HASS. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_switch_update:
 
-- ``update()``: Poll from the Nextion :ref:`sensor-lambda_calls`
+- ``update()``: Poll from the Nextion
+
+.. _nextion_switch_settings:
+
+- ``set_background_color(Color color)``: Sets the background color to **Color**
+- ``set_background_pressed_color(Color color)``: Sets the background color to **Color**
+- ``set_foreground_color(Color color)``: Sets the background color to **Color**
+- ``set_foreground_pressed_color(Color color)``: Sets the background color to **Color**
+- ``set_visible(bool visible)`` : Sets visible or not. If set no updates will be sent to the component
 
 
 .. _nextion_switch_how_things_update:
@@ -89,18 +100,19 @@ in the Nextion.
     There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
     since this will be sending the real value to esphome.
 
-
-On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
-
 Using the above yaml example:  
   - "Radio 0 switch" will poll the Nextion for the ``r0.val`` value and set the state accordingly.
   - "Is Darkmode Set" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_switch_protocol` or use a lambda:
 
    - :ref:`Lambda Calls <nextion_switch_lambda_calls>`.  
 
+.. note::
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+
+
 .. _nextion_custom_switch_protocol:
 
-Nextion Custom Sensor Protocol
+Nextion Custom Switch Protocol
 ------------------------------
 All lines are required
 
@@ -115,7 +127,7 @@ All lines are required
 *Explanation*
 
 - ``printh 90`` Tells the library this is a switch bool/integer data
-- ``prints "r0",0`` Sends the name that matches **nextion_component_name** or **nextion_variable_name**
+- ``prints "r0",0`` Sends the name that matches **component_name** or **variable_name**
 - ``printh 00`` Sends a NULL
 - ``prints r0.val,0`` The actual value to send. For a variable use the Nextion variable name ``r0`` with out ``.val``
 - ``printh FF FF FF`` Nextion command ack

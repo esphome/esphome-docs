@@ -7,7 +7,7 @@ Nextion Binary Sensor Component
     :description: Instructions for setting up Nextion binary sensor.
     :image: nextion.jpg    
 
-The ``nextion`` binary sensor platform supports the many switched components in the Nextion as well as integer variables. It can be a component or variable in the Nextion display.
+The ``nextion`` binary sensor platform supports the many switched components in the Nextion as well as integer variables (>0== True). It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not. 
 
 See :doc:`/components/display/nextion` for setting up the display
@@ -24,35 +24,58 @@ See :doc:`/components/display/nextion` for setting up the display
       - platform: nextion
         page_id: 0
         component_id: 8
+        component_name: page0.mode # Only needed to support changing colors
         id: "mode"
       - platform: nextion
         id: r0_binary_sensor
         name: "Radio 0 Binary Sensor"
-        nextion_component_name: r0 # pageX.r0 for a global
+        component_name: page0.r0 # r0 is a global component in the Nextion Editor on page 0
         update_interval: 4s
-        hass_component_name: switch.downstairs
       - platform: nextion
         id: darkmode
         name: "Is Darkmode Set"
-        nextion_variable_name: darkmode
+        variable_name: darkmode
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
-- **nextion_component_name** (*Optional*, string): The name of the Nextion component.
-- **nextion_variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
+- **component_name** (*Optional*, string): The name of the Nextion component.
+- **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
 - **page_id** (*Optional*, string): The ID of the page the component is on. Use ``0`` for the default page.
 - **component_id** (*Optional*, string): The ID (the number, not name!) of the component to track.
-- **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- **hass_component_name** (*Optional*, :ref:`config-time`):  Sets the HASS name. It will watch for changes this HASS entity and update the Nextion sensor accordingly.
+- **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_binary_sensor_protocol` this should not be used
+- **background_color** (*Optional*, :ref:`Color`):  The background color
+- **background_pressed_color** (*Optional*, :ref:`Color`):  The background color when pressed
+- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
+- **foreground_pressed_color** (*Optional*, :ref:`Color`):  The foreground color when pressed
+- **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
+**Touch Sensor:**
 The Nextion will send a **page_id** and **component_id** when the *Send Component ID* check box is selected for the component. To enable 
-this native event **page_id** and **component_id** are required. No :ref:`nextion_custom_binary_sensor_protocol` is required
+this native event **page_id** and **component_id** are required. No :ref:`nextion_custom_binary_sensor_protocol` is required. If **page_id** and **component_id** are set then the component will only react to touch events from the Nextion. Setting **component_name** will allow setting options like forground color. 
 
-**Only one** *nextion_component_name* **or** *nextion_variable_name* **can be set** and can not be mixed with **page_id** or **component_id**
+.. note::
+  ``background_color(s)`` , ``foreground_color(s)`` and ``visible`` do not retain their state on page change. :ref:`nextion_binary_sensor_settings`
+  A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
+
+
+Example:
+
+.. code-block:: yaml
+
+  - platform: nextion
+    id: current_page
+    nextion_id: nextion1
+    name: current_page
+    variable_name: current_page
+    on_value:
+      lambda: |-
+        id(nextion1).updates_components_by_page_prefix("page"+x+".");
+
+  
 
 See :ref:`nextion_binary_sensor_how_things_update` for additional information
 
@@ -76,11 +99,19 @@ advanced stuff (see the full API Reference for more info).
 
 .. _nextion_binary_sensor_set_state:
 
-- ``set_state(bool value)``: Set the state :ref:`sensor-lambda_calls`
+- ``set_state(bool value, bool publish, bool send_to_nextion)``: Set the state to **value**. Publish the new state to HASS. Send_to_Nextion is to publish the state to the Nextion.
 
 .. _nextion_binary_sensor_update:
 
-- ``update()``: Poll from the Nextion :ref:`sensor-lambda_calls`
+- ``update()``: Poll from the Nextion
+
+.. _nextion_binary_sensor_settings:
+
+- ``set_background_color(Color color)``: Sets the background color to **Color**
+- ``set_background_pressed_color(Color color)``: Sets the background color to **Color**
+- ``set_foreground_color(Color color)``: Sets the background color to **Color**
+- ``set_foreground_pressed_color(Color color)``: Sets the background color to **Color**
+- ``set_visible(bool visible)`` : Sets visible or not. If set no updates will be sent to the component
 
 
 .. _nextion_binary_sensor_how_things_update:
@@ -99,8 +130,6 @@ in the Nextion.
     since this will be sending the real value to esphome.
 
 
-On startup esphome will retrieve the value from the Nextion for any component even if **update_interval** is set or not.
-
 Using the above yaml example:
   - "mode" is a touch sensor and will trigger when a user presess the component with ID ``8`` in page ``0``
   - "Radio 0 Binary Sensor" will poll the Nextion for the ``r0.val`` value and set the state accordingly.
@@ -108,10 +137,13 @@ Using the above yaml example:
 
     - :ref:`Lambda Calls <nextion_bindary_sensor_lambda_calls>`.    
 
+.. note::
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+
 .. _nextion_custom_binary_sensor_protocol:
 
-Nextion Custom Sensor Protocol
-------------------------------
+Nextion Custom Binary Sensor Protocol
+-------------------------------------
 All lines are required
 
 .. code-block:: c++

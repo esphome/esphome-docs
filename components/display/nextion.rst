@@ -49,7 +49,7 @@ Configuration variables:
   Use this if you want to use multiple UART buses at once.
 - **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the nextion display.
-  See :ref:`display-nextion_lambda` for more information.
+  See :ref:`display-nextion_lambda` for more information. This is typically empty. The individual components for the Nextion will handle almost all features needed for updating
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to call the lambda to update the display.
   Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -58,6 +58,11 @@ Configuration variables:
   when the Nextion goes to sleep. See :ref:`Nextion On_Sleep/On_Wake <nextion_on_sleep_on_wake>`.
 - **on_wake** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the Nextion wakes up. See :ref:`Nextion On_Sleep/On_Wake <nextion_on_sleep_on_wake>`.
+- **touch_sleep_timeout** (*Optional*, int): Sets internal No-touch-then-sleep timer in seconds.
+- **wake_up_page** (*Optional*, int): Sets the page to display after waking up
+- **touch_sleep_timeout** (*Optional*, int): Sets internal No-touch-then-sleep timer in seconds.
+- **auto_wake_on_touch** (*Optional*, boolean): Sets if Nextion should auto-wake from sleep when touch press occurs.
+  
 
 .. _display-nextion_lambda:
  
@@ -67,9 +72,9 @@ Rendering Lambda
 With Nextion displays, a dedicated chip on the display itself does the whole rendering. ESPHome can only
 send *instructions* to the display to tell it *how* to render something and *what* to render.
 
-First, you need to use the `Nextion Editor <https://nextion.tech/nextion-editor/>`__ to
-create a display file and insert it using the SD card slot. Then, in the rendering ``lambda``, you have 3 main methods
-you can call to populate data on the display:
+First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
+create a display file and insert it using the SD card slot. Then, in the rendering ``lambda``, you can use the various API calls
+to populate data on the display:
 
 .. code-block:: yaml
 
@@ -87,6 +92,8 @@ you can call to populate data on the display:
           // set the text of a component with formatting
           it.set_component_text_printf("textview", "The uptime is: %.1f", id(uptime_sensor).state);
 
+.. note::
+    Although you can use the rendering lambda most, if not all, updates to the Nextion can be handled by the individual Nextiom components. **See Below**
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
@@ -108,7 +115,7 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
         services:
           - service: update_nextion
             then:
-              - lambda: 'main_lcd->upload_tft();' 
+              - lambda: 'id(nextion1)->upload_tft();' 
 
 .. _nextion_on_sleep_on_wake:
 
@@ -130,8 +137,55 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
 
   .. code-block:: c++
 
-      id(nextion).update_all_components();
+      id(nextion1).update_all_components();
 
+.. _update_components_by_prefix:
+
+- ``update_components_by_prefix(std::string page)``: This will send the current state of any **component_name** matching the prefix. Some settings like background color need to be resent on page change. This is a good hook for that.
+
+  .. code-block:: c++
+
+      id(nextion1).update_components_by_prefix("page0.");
+
+.. _set_nextion_sensor_state:
+
+- ``set_nextion_sensor_state(NextionQueueType queue_type, std::string name, float state);`` : Sets the sensor state. See :ref:`Queue Types <nextion_queue_types>`
+- ``set_nextion_sensor_state(int queue_type, std::string name, float state);`` : Sets the sensor state. See :ref:`Queue Types <nextion_queue_types>`
+
+- ``set_nextion_text_state(std::string name, std::string state);`` : Sets the text sensor state
+
+.. note::
+  Below is a method for HASS to send updates to the Nextion by code.
+.. code-block:: yaml
+
+  # Enable Home Assistant API
+  api:
+    services:
+      - service: set_nextion_sensor
+        variables:
+          nextion_type: int
+          name: string
+          state: float
+        then:
+          - lambda: |-
+              id(nextion1).set_nextion_sensor_state(nextion_type,name,state);
+      - service: set_nextion_text
+        variables:
+          name: string
+          state: string
+        then:
+          - lambda: |-
+              id(nextion1).set_nextion_text_state(name,state);
+
+.. _nextion_queue_types:
+
+ Queue Types: 
+  - SENSOR            0
+  - BINARY_SENSOR     1
+  - SWITCH            2
+  - TEXT_SENSOR       3
+  - WAVEFORM_SENSOR   4
+  - NO_RESULT         5
 
 .. _nextion_upload_tft_file:
 
@@ -139,8 +193,7 @@ Uploading A TFT File
 --------------------
 This will download the file from the tft_url and will transfer it over the UART to the Nextion.
 Once completed both the MCU and Nextion will reboot. During this process esphome will be 
-unresponsive and no logging will take place. At 115200 baud expect around
-10kB/sec. If HTTPS/SSL is enabled it will be about 1kB/sec.
+unresponsive and no logging will take place. This uses the same protocol as the Nextion editor and only updates the changes of the TFT file. If HTTPS/SSL is enabled it will be about 1kB/sec.
 
 .. warning::
 
@@ -184,7 +237,7 @@ This library supports a few different components allowing communication back and
 
 .. note::
 
-    If the Nextion is sleeping it will not update its components even if updates are sent. After the Nextion wakes up all components will send their states to the Nextion to get around this.
+    If the Nextion is sleeping or if the componet was set to be hidden it will not update its components even if updates are sent. After the Nextion wakes up all components will send their states to the Nextion to get around this.
 
 With the exception of the - :doc:`../binary_sensor/nextion` that has ``page_id``/``component_id``, the example below illustrates:
  - Polling the Nextion for updates
@@ -194,21 +247,17 @@ With the exception of the - :doc:`../binary_sensor/nextion` that has ``page_id``
 
      sensor:
        - platform: nextion
-         nextion_id: n1
-         nextion_component:          
-           id: n0_sensor
-           name: "n0"
-           nextion_component_name: n0
+         nextion_id: nextion1
+         name: "n0"
+         component_name: n0
        - platform: nextion
-         nextion_id: n1
-         nextion_component:          
-           id: n1_sensor
-           name: "n1"
-           nextion_component_name: n1
-           update_interval: 10s
+         id: current_page
+         name: "current_page"
+         variable_name: dp
+         update_interval: 1s
 
 
-Note that the latter requires a custom protocol to be included in the Nextion display's code/configuration. See the individual components for more detail.
+Note that the first one requires a custom protocol to be included in the Nextion display's code/configuration. See the individual components for more detail.
 
 See Also
 --------
