@@ -93,6 +93,7 @@ to populate data on the display:
           it.set_component_text_printf("textview", "The uptime is: %.1f", id(uptime_sensor).state);
 
 .. note::
+
     Although you can use the rendering lambda most, if not all, updates to the Nextion can be handled by the individual Nextiom components. **See Below**
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
@@ -154,9 +155,10 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
 
 - ``set_nextion_text_state(std::string name, std::string state);`` : Sets the text sensor state
 
-.. note::
+  .. note::
+
   Below is a method for HASS to send updates to the Nextion by code.
-.. code-block:: yaml
+  .. code-block:: yaml
 
   # Enable Home Assistant API
   api:

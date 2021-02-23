@@ -78,7 +78,8 @@ Waveform Settings
 
 **Only one** *component_name* **or** *variable_name* **can be set**
 
-.. note::
+  .. note::
+
   ``background_color`` , ``foreground_color`` and ``visible`` do not retain their state on page change. :ref:`nextion_binary_sensor_settings`
   A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
 
@@ -138,6 +139,7 @@ Using the above yaml example:
     - :ref:`Lambda Calls <nextion_sensor_lambda_calls>`.  
 
 .. note::
+
     No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
 
 

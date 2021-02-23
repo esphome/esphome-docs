@@ -57,7 +57,8 @@ Configuration variables:
 The Nextion will send a **page_id** and **component_id** when the *Send Component ID* check box is selected for the component. To enable 
 this native event **page_id** and **component_id** are required. No :ref:`nextion_custom_binary_sensor_protocol` is required. If **page_id** and **component_id** are set then the component will only react to touch events from the Nextion. Setting **component_name** will allow setting options like forground color. 
 
-.. note::
+  .. note::
+
   ``background_color(s)`` , ``foreground_color(s)`` and ``visible`` do not retain their state on page change. :ref:`nextion_binary_sensor_settings`
   A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
 
@@ -66,14 +67,14 @@ Example:
 
 .. code-block:: yaml
 
-  - platform: nextion
-    id: current_page
-    nextion_id: nextion1
-    name: current_page
-    variable_name: current_page
-    on_value:
-      lambda: |-
-        id(nextion1).updates_components_by_page_prefix("page"+x+".");
+    - platform: nextion
+      id: current_page
+      nextion_id: nextion1
+      name: current_page
+      variable_name: current_page
+      on_value:
+        lambda: |-
+          id(nextion1).updates_components_by_page_prefix("page"+x+".");
 
   
 
@@ -138,6 +139,7 @@ Using the above yaml example:
     - :ref:`Lambda Calls <nextion_bindary_sensor_lambda_calls>`.    
 
 .. note::
+
     No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
 
 .. _nextion_custom_binary_sensor_protocol:

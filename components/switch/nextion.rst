@@ -107,6 +107,7 @@ Using the above yaml example:
    - :ref:`Lambda Calls <nextion_switch_lambda_calls>`.  
 
 .. note::
+
     No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
 
 
