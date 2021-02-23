@@ -20,21 +20,22 @@ For more information on BLE services and characteristics, see
         id: itag_black
 
     sensor:
-      ble_client_id: itag_black
-      name: "iTag battery level"
-      service_uuid: '180f'
-      characteristic_uuid: '2a19'
-      icon: 'mdi:battery'
-      unit_of_measurement: '%'
+      - platform: ble_client
+        ble_client_id: itag_black
+        name: "iTag battery level"
+        service_uuid: '180f'
+        characteristic_uuid: '2a19'
+        icon: 'mdi:battery'
+        unit_of_measurement: '%'
 
 Configuration variables:
 ------------------------
 
 - **ble_client_id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
-- **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 - **service_uuid** (**Required**, UUID): UUID of the service on the device.
 - **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
 - **descriptor_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
+- **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 - **notify** (*Optional*, boolean): Instruct the server to send notifications for this
   characteristic.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
