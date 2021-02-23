@@ -319,6 +319,7 @@ Climate Components
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
+    Anova Climate, components/climate/anova, anova.png
 
 Misc Components
 ---------------
