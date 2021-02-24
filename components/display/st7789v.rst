@@ -85,7 +85,7 @@ To use colors in your lambada:
     display:
         ...
         lambda: |-
-          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red);
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red));
 
 
 To bring in color images:
