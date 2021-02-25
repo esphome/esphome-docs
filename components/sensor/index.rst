@@ -27,6 +27,7 @@ override them if you want to.
     # Optional variables:
     unit_of_measurement: "°C"
     icon: "mdi:water-percent"
+    device_class: "temperature"
     accuracy_decimals: 1
     expire_after: 30s
     filters:
@@ -40,7 +41,11 @@ Configuration variables:
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
-- **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
+- **device_class** (*Optional*, string): The device class for the
+  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
+  for a list of available options. Set to ``""`` to remove the default device class of a sensor.
+- **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend. The icon set here
+  is ignored by Home Assistant, if a device class is already set.
 - **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
 - **filters** (*Optional*): Specify filters to use for some basic
   transforming of values. See :ref:`Sensor Filters <sensor-filters>` for more information.
@@ -493,7 +498,7 @@ advanced stuff (see the full API Reference for more info).
       ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
 
 - ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
-  Is ``NAN`` if no value if no value has been pushed by the sensor itself yet.
+  Is ``NAN`` if no value has been pushed by the sensor itself yet.
 
   .. code-block:: cpp
 

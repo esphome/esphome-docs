@@ -85,7 +85,7 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
       - uart.write: 'Hello World'
 
       # For escape characters, you must use double quotes!
-      - uart.write: 'Hello World\r\n'
+      - uart.write: "Hello World\r\n"
 
       # Raw data
       - uart.write: [0x00, 0x20, 0x42]
@@ -93,6 +93,11 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
       # Templated, return type is std::vector<uint8_t>
       - uart.write: !lambda
           return {0x00, 0x20, 0x42};
+
+      # in case you need to specify the uart id
+      - uart.write:
+          id: my_second_uart
+          data: 'other data'
 
 See Also
 --------

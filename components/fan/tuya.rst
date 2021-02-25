@@ -53,7 +53,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the fan.
 - **speed_datapoint** (**Required**, int): The datapoint id number of the fan speed.
 - **switch_datapoint** (**Required**, int): The datapoint id number of the fan switch.
-- **oscillation_datapoint** (**Optional**, int): The datapoint id number of the oscillation
+- **oscillation_datapoint** (*Optional*, int): The datapoint id number of the oscillation
   switch. Probably not supported on any Tuya controllers currently, but it's there if need be.
 - All other options from :ref:`Fan <config-fan>`.
 
