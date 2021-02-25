@@ -28,7 +28,8 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 - ``SCL`` connects I2C SCL (clock)
 - ``SDA`` connects I2C SDA (data)
 - ``GPIO1`` is not used by ESPHome
-- ``XSHUT`` connects to free GPIO pin. Enable/disable device. This is optional if only one VL53L0X sensor on i2c bus and the default 0x29 address is used. Otherwise this is required.
+- ``XSHUT`` connects to free GPIO pin. Enable/disable device. This is optional if there is only one
+  VL53L0X sensor on the I²C bus and the default ``0x29`` address is used. Otherwise this is required.
 
 
 
@@ -62,18 +63,18 @@ Configuration variables:
   (mega counts per second). This is the minimum signal amplitude detected by the sensor necessary
   for it to report a valid reading. Setting a lower value may increase the range of the sensor
   but also increases the chance of getting inaccurate readings. Defaults to ``0.25``.
-- All other options from :ref:`Sensor <config-sensor>`.
 - **long_range** (*Optional*, bool): Set the sensor in long range mode. The signal_rate_limit is overruled
-  to ``0.1``. Defaults to false.
+  to ``0.1``. Defaults to ``false``.
 - **address** (*Optional*, int): Manually specify the i2c address of the sensor. Defaults to ``0x29``.
   If an address other the ``0x29`` is specified, the sensor will be dynamically re-addressed at startup.
   A dynamic re-address of sensor requires the ``enable_pin`` configuration variable to be assigned.
   If more then one VL53L0X sensor is used on the same i2c bus, a unique address must be specified per sensor.
-- **enable_pin** (*Optional*/**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to XSHUT 
+- **enable_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to XSHUT
   on vl53l0x to enable/disable sensor. **Required** if not using address ``0x29`` which is the cause if you
-  have multiple VL53L0X on the same i2c bus.
-- **timeout** (*Optional*, :ref:`config-time`): Sensor setup timeout. Default is 10ms. 
+  have multiple VL53L0X on the same i2c bus. In this case you have to assign a different pin to each VL53L0X.
+- **timeout** (*Optional*, :ref:`config-time`): Sensor setup timeout. Default to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 
 .. code-block:: yaml
