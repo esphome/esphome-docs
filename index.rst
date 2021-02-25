@@ -169,7 +169,7 @@ Sensor Components
     TX20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.png
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
     Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
