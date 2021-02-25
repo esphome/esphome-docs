@@ -85,9 +85,10 @@ class Translator(nodes.NodeVisitor):
         else:
             refuri = node.get('refuri')
             if refuri:
-                if refuri.startswith('../'):
-                    refuri = parse.urljoin(self.base_url, refuri)
-                self.write('](' + refuri + ')')
+                # if refuri.startswith('../'):
+                #    refuri = parse.urljoin(self.base_url, refuri)
+                # self.write('](' + refuri + ')')
+                self.write('](' + parse.urljoin(self.base_url, refuri) + ')')
 
     def visit_emphasis(self, node):
         self.write('*')

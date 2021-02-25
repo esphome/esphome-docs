@@ -1,6 +1,7 @@
 import re
 import xml.etree.ElementTree as ET
 import json
+import urllib
 
 from typing import MutableMapping
 from sphinx.util import logging
@@ -149,6 +150,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.platform = None
         self.json_platform_component = None
         self.json_base_config = None
+        self.title_id = None
         if self.path[0] == 'components':
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
                 component = docname[11:]
@@ -297,6 +299,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             json_component = find_component(self.app.jschema, self.path[-1])
             if json_component:
                 self.props = self.find_props(json_component)
+
+                json_component["markdownDescription"] = self.getMarkdownParagraph(
+                    node.parent)
+
             # mark this to retrieve components instead of platforms
             self.is_component_hub = True
 
@@ -358,6 +364,9 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.app.jschema, platform_name, component_name.lower())
             if c:
                 self.json_platform_component = c
+
+                c["markdownDescription"] = self.getMarkdownParagraph(
+                    node.parent)
 
             # Now fill props for the platform element
             try:
@@ -455,6 +464,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.accept_props = False
             self.multi_component = None
         self.previous_title_text = node.astext()
+        self.title_id = node.parent['ids'][0]
 
     def find_props_previous_title(self):
         comp = self.json_component or self.json_platform_component
@@ -575,16 +585,22 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         pass
 
     def getMarkdown(self, node):
-        from urllib import parse
         from markdown import Translator
-        t = Translator(parse.urljoin(
+        t = Translator(urllib.parse.urljoin(
             self.app.config.html_baseurl, self.docname + '.html'), self.doctree)
         node.walkabout(t)
         return t.output
 
-    def getMarkdownParagraph(self, paragraph):
-        node = list(paragraph.traverse(nodes.paragraph))[0]
-        return self.getMarkdown(node)
+    def getMarkdownParagraph(self, node):
+        paragraph = list(node.traverse(nodes.paragraph))[0]
+        markdown = self.getMarkdown(paragraph)
+
+        title = list(node.traverse(nodes.title))[0]
+        if len(title) > 0:
+            url = urllib.parse.urljoin(
+                self.app.config.html_baseurl, self.docname + '.html#'+title.parent['ids'][0])
+            markdown += f"\n\n*See also: [{title.astext()}]({url})*"
+        return markdown
 
     def update_prop(self, node, props):
         prop_name = None
@@ -597,6 +613,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return None
 
         markdown = self.getMarkdown(node)
+
+        markdown += f"\n\n*See also: [{self.previous_title_text}]({urllib.parse.urljoin(self.app.config.html_baseurl, self.docname +'.html#'+self.title_id)})*"
 
         try:
             name_type = markdown[:markdown.index(': ') + 2]
@@ -663,10 +681,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if param_type:
             desc = param_type + ': ' + desc
 
-        if '$ref' in jprop:
-            self.get_ref(jprop)["markdownDescription"] = desc
-        else:
-            jprop["markdownDescription"] = desc
+        # if '$ref' in jprop:
+        #     self.get_ref(jprop)["markdownDescription"] = desc
+        # else:
+        jprop["markdownDescription"] = desc
         global props_documented
         props_documented = props_documented + 1
 
@@ -728,7 +746,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return props
 
         def __getitem__(self, key):
-            if key in self.store:
+            if self.store and key in self.store:
                 return self.store[key]
 
             if "then" in self.component:
