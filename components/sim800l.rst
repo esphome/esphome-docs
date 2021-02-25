@@ -107,17 +107,9 @@ Dial to a phone recipient using this action in automations.
         - sim800l.dial:
             recipient: '+15551234567'
 
-        # Templated:
-        - sim800l.dial:
-            recipient: !lambda |-
-              if (id(reed_switch).state) return "+15551234567";
-              else return "15551234568";
-
 Configuration options:
 
-- **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The message recipient.
-  number.
-- **message** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
+- **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The number to dial.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
 
 .. note::
@@ -126,7 +118,7 @@ Configuration options:
 
     .. code-block:: cpp
 
-        id(sim800l1).send_sms("+15551234567", "The message content");
+        id(sim800l1).dial("+15551234567");
 
 
 Getting started with Home Assistant
