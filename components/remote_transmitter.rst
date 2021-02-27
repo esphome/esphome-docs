@@ -209,6 +209,24 @@ Configuration variables:
 - **data** (**Required**, int): The data to send, see dumper output for more details.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+``remote_transmitter.transmit_samsung36`` Action
+************************************************
+
+This :ref:`action <config-action>` sends a Samsung36 infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_samsung36:
+          address: 0x0400
+          command: 0x000E00FF      
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send, see dumper output for more details.
+- **command** (**Required**, int): The Samsung36 command to send, see dumper output for more details.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 ``remote_transmitter.transmit_panasonic`` Action
 ************************************************
 
