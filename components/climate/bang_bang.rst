@@ -31,11 +31,13 @@ There are three types of bang bang controllers this platform can represent:
 
   - As soon as the temperature goes below the lower target temperature, ``heat_action`` will be called.
   - When the temperature goes above the higher temperature, ``idle_action`` will be called.
+  - If you change operating mode (manual mode). And it is between high and low temperature. It does not wait to get to low temperature, it starts working until it gets to high temperature.
 
 - **Coolers**: For devices where the observed temperature can only be decreased.
 
   - As soon as the temperature goes above the higher target temperature, ``cool_action`` will be called.
   - When the temperature goes below the lower temperature, ``idle_action`` will be called.
+  - If you change operating mode (manual mode). And it is between high and low temperature. It does not wait to get to high temperature, it starts working until it gets to low temperature.
 
 - **Heater+Cooler**: For devices where the temperature can both actively be increased and decreased.
 
@@ -64,8 +66,8 @@ Do note that the actions are only called when the current temperature leaves the
         idle_action:
           - switch.turn_off: heater
 
-Configuration variables
------------------------
+Configuration variables:
+------------------------
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
 - **default_target_temperature_low** (**Required**, float): The default low target temperature for

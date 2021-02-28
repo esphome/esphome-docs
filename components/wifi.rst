@@ -38,9 +38,9 @@ Configuration variables:
   that is reachable will be connected to. See :ref:`wifi-networks`.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
-  - **static_ip** (*Required*, IPv4 address): The static IP of your node.
-  - **gateway** (*Required*, IPv4 address): The gateway of the local network.
-  - **subnet** (*Required*, IPv4 address): The subnet of the local network.
+  - **static_ip** (**Required**, IPv4 address): The static IP of your node.
+  - **gateway** (**Required**, IPv4 address): The gateway of the local network.
+  - **subnet** (**Required**, IPv4 address): The subnet of the local network.
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
@@ -49,8 +49,8 @@ Configuration variables:
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
-  - **ssid** (*Required*, string): The name of the access point to create.
-  - **password** (*Optional* string): The password for the access point. Leave empty for
+  - **ssid** (**Required**, string): The name of the access point to create.
+  - **password** (*Optional*, string): The password for the access point. Leave empty for
     no password.
   - **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14.
     Defaults to 1.
@@ -84,6 +84,13 @@ in your wifi configuration, ESPHome will automatically set up an access point th
 can connect to. Additionally, you can specify both a "normal" station mode and AP mode at the
 same time. This will cause ESPHome to only enable the access point when no connection
 to the WiFi router can be made.
+
+.. code-block:: yaml
+
+    wifi:
+      ap:
+        ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
 
 .. _wifi-manual_ip:
 
@@ -182,7 +189,7 @@ Configuration variables:
 Enterprise Authentication
 -------------------------
 
-WPA2_EAP Enterprise Authentication is supported on ESP32s.
+WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s.
 In order to configure this feature you must use the :ref:`wifi-networks` style configuration.
 The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS.
 These are advanced settings and you will usually need to consult your enterprise network administrator.
@@ -198,6 +205,7 @@ These are advanced settings and you will usually need to consult your enterprise
           password: VerySafePassword
       - ssid: EAP-TLS_EnterpriseNetwork
         eap:
+          identity: bob
           certificate_authority: ca_cert.pem
           certificate: cert.pem
           key: key.pem

@@ -32,11 +32,11 @@ Configuration variables:
   :ref:`output <output>` to use for the direction state of the fan. Default is empty.
 - **speed** (*Optional*): Set the float values for each speed setting:
 
-  - **low** (*Required*, float): Set the value for the low speed
+  - **low** (**Required**, float): Set the value for the low speed
     setting. Must be in range 0 to 1. Defaults to 0.33.
-  - **medium** (*Required*, float): Set the value for the medium speed
+  - **medium** (**Required**, float): Set the value for the medium speed
     setting. Must be in range 0 to 1. Defaults to 0.66.
-  - **high** (*Required*, float): Set the value for the high speed
+  - **high** (**Required**, float): Set the value for the high speed
     setting. Must be in range 0 to 1. Defaults to 1.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

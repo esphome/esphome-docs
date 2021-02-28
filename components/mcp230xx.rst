@@ -15,8 +15,8 @@ The Microchip MCP230xx series of general purpose, parallel I/O expansion for I²
 
 .. _mcp23008-label:
 
-MCP23008
---------
+MCP23008 Component
+------------------
 
 The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/21919e.pdf>`__,
 `Adafruit <https://www.adafruit.com/product/593>`__) has 8 GPIOs that can be configured independently.
@@ -36,8 +36,7 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           mcp23008: mcp23008_hub
           # Use pin number 0
           number: 0
-          # One of INPUT, INPUT_PULLUP or OUTPUT
-          mode: INPUT_PULLUP
+          mode: OUTPUT
           inverted: False
 
     # Individual inputs
@@ -58,11 +57,14 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23008 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
+- **open_drain_interrupt** (*Optional*, bool): Configure the interrupt pin to open-drain mode.
+  Useful when the MCP23008's power supply is greater than 3.3 volts. Note that this pin
+  will require a pull-up resistor (to 3.3 volts) when this mode is enabled.
 
 .. _mcp23016-label:
 
-MCP23016
---------
+MCP23016 Component
+------------------
 
 The MCP23016 component (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/20090c.pdf>`__)
 has 16 GPIOs and can be configured the same way than the other variants.
@@ -110,8 +112,8 @@ Configuration variables:
 
 .. _mcp23017-label:
 
-MCP23017
---------
+MCP23017 Component
+------------------
 
 The MCP23017 component allows you to use MCP23017 I/O expanders
 (`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf>`__,
@@ -159,6 +161,9 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23017 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
+- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+  Useful when the MCP23017's power supply is greater than 3.3 volts. Note that these pins
+  will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 
 
 See Also
