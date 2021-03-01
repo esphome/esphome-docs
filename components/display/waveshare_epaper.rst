@@ -73,7 +73,7 @@ Configuration variables:
 
   - ``1.54in``
   - ``2.13in`` (not tested)
-  - ``2.13in-ttgo`` (T5_V2.3 tested)
+  - ``2.13in-ttgo`` (T5_V2.3 tested. Also works for Wemos D1 Mini ePaper Shield 2.13 1.0.0 "LOLIN")
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
