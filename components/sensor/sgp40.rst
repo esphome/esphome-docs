@@ -1,5 +1,5 @@
 SGP40 Volatile Organic Compound Sensor
-==============================================
+======================================
 
 .. seo::
     :description: Instructions for setting up SGP40 Volatile Organic Compound sensor
@@ -19,11 +19,6 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
     sensor:
       - platform: sgp40
         name: "Workshop VOC"
-        update_interval: 5s
-        store_baseline: "true"
-        compensation:
-          humidity_source: dht1_temp
-          temperature_source: dht1_hum    
 
 
 Configuration variables:
@@ -31,16 +26,16 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for the CO₂eq sensor.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-- **store_baseline** (*Optional*, boolean ): Stores and retrieves the baseline infortmation for quicker startups
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``
+- **store_baseline** (*Optional*, boolean ): Stores and retrieves the baseline infortmation for quicker startups. Defaults to ``True``
 
-- **compensation** (*Optional*): The block containing sensors used for compensation.
+- **compensation** (*Optional*): The block containing sensors used for compensation. If not set defaults will be used.
 
   - **temperature_source** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
-    here. This can improve the sensor's internal calculations.
+    here. This can improve the sensor's internal calculations. Defaults to ``25``
 
   - **humidity_source** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
-    here. This can improve the sensor's internal calculations.
+    here. This can improve the sensor's internal calculations. Defaults to ``50``
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
