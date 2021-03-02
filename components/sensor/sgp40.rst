@@ -39,6 +39,19 @@ Configuration variables:
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
+Example With Compensation
+-------------------------
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: sgp40
+        name: "Workshop VOC"
+        update_interval: 5s        
+        compensation:
+          humidity_source: dht1_temp
+          temperature_source: dht1_hum  
+          
 See Also
 --------
 
