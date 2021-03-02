@@ -718,8 +718,12 @@ This effect allows you to access each LED individually in a custom light effect.
 Available variables in the lambda:
 
 - **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
-- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
+- **current_color**  - :apistruct:`Color <Color>` instance (see API reference for more info).
 - **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
+
+  .. note::
+
+      ESPColor has been migrated to Color. See :apistruct:`Color <Color>` for more information.
 
 .. code-block:: yaml
 
@@ -733,18 +737,18 @@ Available variables in the lambda:
               // it.size() - Number of LEDs
               // it[num] - Access the LED at index num.
               // Set the LED at num to the given r, g, b values
-              // it[num] = ESPColor(r, g, b);
-              // Get the color at index num (ESPColor instance)
+              // it[num] = Color(r, g, b);
+              // Get the color at index num (Color instance)
               // it[num].get();
 
               // Example: Simple color wipe
               for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = ESPColor::random_color();
+              it[0] = Color::random_color();
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-              it.range(0, 50) = ESPColor::BLACK;
+              it.range(0, 50) = Color::BLACK;
               it.all().fade_to_black(10);
 
 .. code-block:: yaml
@@ -768,7 +772,7 @@ Available variables in the lambda:
               // again you can use the initial_run variables
               if (initial_run) {
                 progress = 0;
-                it.all() = ESPColor::BLACK;
+                it.all() = Color::BLACK;
                 // optionally do a return so nothing happens until the next update_interval
                 return;
               }
