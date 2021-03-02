@@ -723,7 +723,7 @@ Available variables in the lambda:
 
   .. note::
 
-  ESPColor has been migrated to Color. See :apistruct:`Color <Color>` for more information.
+      ESPColor has been migrated to Color. See :apistruct:`Color <Color>` for more information.
 
 .. code-block:: yaml
 
