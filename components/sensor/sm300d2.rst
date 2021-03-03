@@ -2,7 +2,7 @@ SM300D2 7-in-1 Air Quality Sensor
 =================================
 
 .. seo::
-    :description: Instructions for setting up SM300D2 sensor
+    :description: Instructions for setting up SM300D2 sensor to work with ESPHome
     :image: sm300d2-full.jpg
     :keywords: sm300d2
 
@@ -19,8 +19,10 @@ The ``sm300d2`` sensor platform allows you to use the SM300D2 7-in-1 Air Quality
     :width: 50.0%
 
 
-The SM300D2 sensor supports connections via UART or RS485. This platform only supports UART-connections. Make sure you have a :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the TX pin of the
-sensor. The sensor does not support receiving data, so the `tx_pin` does not need to be connected. The sensor expects the baud rate to be set at 9600.
+The SM300D2 sensor supports connections via UART or RS485. This platform only supports UART-connections.
+Make sure you have a :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the
+TX pin of the sensor. The sensor does not support receiving data, so the ``tx_pin`` does not need to be
+connected. The sensor expects the baud rate to be set at 9600.
 
 .. code-block:: yaml
 
@@ -35,7 +37,7 @@ sensor. The sensor does not support receiving data, so the `tx_pin` does not nee
         co2:
           name: "SM300D2 CO2 Value"
         formaldehyde:
-          name: "SM300D2 Formaldehyde Value"    
+          name: "SM300D2 Formaldehyde Value"
         tvoc:
           name: "SM300D2 TVOC Value"
         pm_2_5:
@@ -45,7 +47,7 @@ sensor. The sensor does not support receiving data, so the `tx_pin` does not nee
         temperature:
           name: "SM300D2 Temperature Value"
         humidity:
-          name: "SM300D2 Humidity Value"   
+          name: "SM300D2 Humidity Value"
         update_interval: 60s
 
 Configuration variables:
