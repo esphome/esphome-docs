@@ -47,6 +47,7 @@ Configuration variables:
 - **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
 - **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
 - **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use integration that needs to read big payloads from UART. Defaults to ``256``.
+- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``True`` or ``False``. Defaults to ``False``. Only for ESP32 hardware UART.
 - **data_bits** (*Optional*, int): The number of data bits used on the UART bus. Options: 5 to 8. Defaults to 8.
 - **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
