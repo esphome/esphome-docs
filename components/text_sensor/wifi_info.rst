@@ -21,6 +21,8 @@ via text sensors.
           name: ESP Connected BSSID
         mac_address:
           name: ESP Mac Wifi Address
+        networks:
+          name: ESP Wifi Networks
 
 Configuration variables:
 ------------------------
@@ -33,6 +35,16 @@ Configuration variables:
   :ref:`Text Sensor <config-text_sensor>`.
 - **mac_address** (*Optional*): Expose the Mac Address of the WiFi card. All options from
   :ref:`Text Sensor <config-text_sensor>`.
+- **networks** (*Optional*): Expose the list of WiFi networks found in the last WiFi scan. All options from
+  :ref:`Text Sensor <config-text_sensor>`.
+  A compact text format is used, and the string is limited to 255 chars, to conform to Home Assistant limits.
+  Each network is listed as: "SSID RSSI BSSID Channel State-Code Priority", networks are seperated with a "|".
+  State-Code is hexadecimal bit encoded:
+    bit 0 - The network is password protected
+    bit 1 - The network is hidden
+    bit 2 - The network matches an entry in ESPHome's WiFi network list
+    bit 3 - The network BSSID matches the active network BSSID
+  Priority is the current priority used by ESPHome to select a network.
 
 See Also
 --------
