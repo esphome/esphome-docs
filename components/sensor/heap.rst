@@ -30,7 +30,7 @@ Configuration variables:
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
-Requires ``arduino_version: 2.5.2`` or above defined in :ref:`esphome <arduino_version>`
+Requires ``arduino_version: 2.5.2`` or above see definition in :ref:`esphome'
 
 See Also
 --------
