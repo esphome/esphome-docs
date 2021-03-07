@@ -34,7 +34,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
       - platform: gpio
         name: "MCP23S08 Pin #0"
         pin:
-          mcp23s08_id: mcp23s08_hub
+          mcp23xxx: mcp23s08_hub
           # Use pin number 0
           number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
@@ -46,7 +46,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
       - platform: gpio
         name: "MCP23S08 Pin #1"
         pin:
-          mcp23s08_id: mcp23s08_hub
+          mcp23xxx: mcp23s08_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
@@ -60,6 +60,16 @@ Configuration variables:
 - **cs_pin** (**Required**, int): The SPI chip select pin to use
 - **deviceaddress** (*Optional*, int): The address of the chip.
   Defaults to ``0``.
+- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+  Useful when the MCP23S08's power supply is greater than 3.3 volts. Note that these pins
+  will require pull-up resistors (to 3.3 volts) when this mode is enabled.
+
+Pin Configuration Variables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23S08 component.
+- **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
+- All other options from :ref:`Pin Schema <config-pin_schema>`
 
 
 .. _mcp23S17-label:
@@ -90,7 +100,7 @@ binary sensor or GPIO switch.
       - platform: gpio
         name: "MCP23S17 Pin #0"
         pin:
-          mcp23s17_id: mcp23s17_hub
+          mcp23xxx: mcp23s17_hub
           # Use pin number 0
           number: 0
           mode: OUTPUT
@@ -101,7 +111,7 @@ binary sensor or GPIO switch.
       - platform: gpio
         name: "MCP23S17 Pin #1"
         pin:
-          mcp23s17_id: mcp23s17_hub
+          mcp23xxx: mcp23s17_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
@@ -115,6 +125,16 @@ Configuration variables:
 - **cs_pin** (**Required**, int): The SPI chip select pin to use.
 - **deviceaddress** (*Optional*, int): The address of the chip.
   Defaults to ``0``.
+- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+  Useful when the MCP23S17's power supply is greater than 3.3 volts. Note that these pins
+  will require pull-up resistors (to 3.3 volts) when this mode is enabled.
+
+Pin Configuration Variables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23S17 component.
+- **interrupt** (*Optional*): Set this pin to trigger the port INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
+- All other options from :ref:`Pin Schema <config-pin_schema>`
 
 
 See Also
