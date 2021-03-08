@@ -6,7 +6,9 @@ from typing import MutableMapping
 from sphinx.util import logging
 from docutils import nodes
 
-SCHEMA_PATH = "./schema.json"
+SCHEMA_PATH = "../esphome_devices/schema.json"
+CONFIGURATION_VARIABLES = "Configuration variables:"
+COMPONENT_HUB = "Component/Hub"
 
 props_missing = 0
 props_verified = 0
@@ -21,14 +23,13 @@ def setup(app):
     if not os.path.isfile(SCHEMA_PATH):
         logger = logging.getLogger(__name__)
         logger.info(f"{SCHEMA_PATH} not found. Not documenting schema.")
-        return
+    else:
+        app.connect("doctree-resolved", doctree_resolved)
+        app.connect("build-finished", build_finished)
 
-    app.connect("doctree-resolved", doctree_resolved)
-    app.connect("build-finished", build_finished)
-
-    f = open(SCHEMA_PATH, "r", encoding="utf-8-sig")
-    str = f.read()
-    app.jschema = json.loads(str)
+        f = open(SCHEMA_PATH, "r", encoding="utf-8-sig")
+        str = f.read()
+        app.jschema = json.loads(str)
 
     return {"version": "1.0.0", "parallel_read_safe": True, "parallel_write_safe": True}
 
@@ -148,6 +149,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.json_platform_component = None
         self.json_base_config = None
         self.title_id = None
+        self.props_section_title = None
         if self.path[0] == "components":
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
                 component = docname[11:]
@@ -278,6 +280,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def visit_title(self, node):
         title_text = node.astext()
+        if self.props_section_title is None:
+            self.props_section_title = title_text
 
         if "interval" in title_text:
             title_text = title_text
@@ -292,14 +296,15 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             json_component["markdownDescription"] = self.getMarkdownParagraph(
                 node.parent
             )
-
+            self.props_section_title = title_text
             self.props = self.find_props(json_component)
 
             return
 
-        if title_text == "Component/Hub":
+        if title_text == COMPONENT_HUB:
             # here comes docs for the component, make sure we have props of the component
             # Needed for e.g. ads1115
+            self.props_section_title = f"{self.path[-1]} {title_text}"
             json_component = find_component(self.app.jschema, self.path[-1])
             if json_component:
                 self.props = self.find_props(json_component)
@@ -311,7 +316,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # mark this to retrieve components instead of platforms
             self.is_component_hub = True
 
-        if title_text == "Configuration variables:":
+        if title_text == CONFIGURATION_VARIABLES:
             if not self.props and self.multi_component is None:
                 raise ValueError(
                     f"Found a Configuration variables: title after {self.previous_title_text}. Unkown object."
@@ -325,6 +330,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # and there are non platform components with the SPI/I2C versions,
             # like pn532, those need to be marked with the 'Component/Hub' title
             component = self.path[-1] + suffix
+
+            self.props_section_title = self.path[-1] + " " + title_text
 
             if self.platform is not None and not self.is_component_hub:
                 json_platform_component = find_platform_component(
@@ -369,6 +376,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # this omits the name of the component, but we know the platform
                 platform_name = PLATFORMS_TITLES[title_text]
                 component_name = self.path[-1]
+                self.props_section_title = self.path[-1] + " " + title_text
             else:
                 # title first word is the component name
                 component_name = title_text.split(" ")[0]
@@ -379,7 +387,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 if not platform_name:
                     # Some general title which does not locate a component directly
                     return
-
+                self.props_section_title = title_text
             c = find_platform_component(
                 self.app.jschema, platform_name, component_name.lower()
             )
@@ -399,6 +407,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             #     # skip platforms index, e.g. sensors/index
             #     continue
             split_text = title_text.split(" ")
+            self.props_section_title = title_text
             if len(split_text) == 2:
                 # some components are several components in a single platform doc
                 # e.g. ttp229 binary_sensor has two different named components.
@@ -443,6 +452,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     action["properties"][key]["markdownDescription"] = description
                     self.props = self.find_props(action["properties"][key])
                     break
+            self.props_section_title = title_text
 
         if title_text.endswith("Trigger"):
             # Document first paragraph is description of this thing
@@ -457,6 +467,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if c:
                 trigger_schema = self.find_props(c).get(key)
                 self.props = self.find_props(trigger_schema)
+            self.props_section_title = title_text
 
         if self.docname == "components/light/index" and title_text.endswith("Effect"):
             # Document first paragraph is description of this thing
@@ -471,6 +482,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             registry = self.app.jschema["definitions"]["light.EFFECTS_REGISTRY"][
                 "anyOf"
             ]
+            self.props_section_title = title_text
+
             for effect in registry:
                 if key in effect["properties"]:
                     effect["properties"][key]["markdownDescription"] = description
@@ -630,7 +643,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.app.config.html_baseurl,
                 self.docname + ".html#" + title.parent["ids"][0],
             )
-            markdown += f"\n\n*See also: [{title.astext()}]({url})*"
+            markdown += f"\n\n*See also: [{self.props_section_title}]({url})*"
         return markdown
 
     def update_prop(self, node, props):
@@ -645,7 +658,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         markdown = self.getMarkdown(node)
 
-        markdown += f"\n\n*See also: [{self.previous_title_text}]({urllib.parse.urljoin(self.app.config.html_baseurl, self.docname +'.html#'+self.title_id)})*"
+        markdown += f"\n\n*See also: [{self.props_section_title}]({urllib.parse.urljoin(self.app.config.html_baseurl, self.docname +'.html#'+self.title_id)})*"
 
         try:
             name_type = markdown[: markdown.index(": ") + 2]
