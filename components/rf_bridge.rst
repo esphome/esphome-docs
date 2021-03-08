@@ -112,7 +112,7 @@ Send a raw RF code using this action in automations.
 
     on_...:
       then:
-        - rf_bridge.send_code:
+        - rf_bridge.send_raw:
             raw: AAA5070008001000ABC12355
 
 Configuration options:
