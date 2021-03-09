@@ -109,7 +109,7 @@ Attention should be paid to the capabilities of the I/O pins.
 +-----+------------------+-----+--------+
 
 Binary Sensor
--------------
+=============
 
 To use the individual keys on the keypad you need to add individual binary_sensor entries in the config.
 
@@ -133,6 +133,10 @@ Configuration variables:
 
 - **row** (**Required**, int): The row number for this key on the keypad.
 - **col** (**Required**, int): The column number for this key on the keypad.
+
+
+Pin configuration variables:
+----------------------------
 
 With the following configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
 The outputs can in turn be used to add PWM-enabled lights like the monochromatic light.
@@ -177,7 +181,14 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
         name: "light0"
         output: sx1509_output
 
-- All other options from :ref:`Output <config-output>`.
+
+- **sx1509** (**Required**, :ref:`config-id`): The id of the SX1509 component of the pin.
+- **number** (**Required**, integer): The pin number.
+- **inverted** (*Optional*, boolean): If all read and written values
+  should be treated as inverted. Defaults to ``False``.
+- **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT``,
+  ``INPUT_PULLUP`` or ``OUTPUT``.
+
 
 And naturally you may use all automation functions with these SX1509 binary_sensors, switches and output (lights).
 

@@ -61,13 +61,15 @@ Configuration variables:
   Useful when the MCP23008's power supply is greater than 3.3 volts. Note that this pin
   will require a pull-up resistor (to 3.3 volts) when this mode is enabled.
 
-Pin Configuration Variables:
+Pin configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23008 component.
 - **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
-- All other options from :ref:`Pin Schema <config-pin_schema>`
-
+- **number** (**Required**, integer): The pin number.
+- **inverted** (*Optional*, boolean): If all read and written values
+  should be treated as inverted. Defaults to ``False``.
+- **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.
 
 .. _mcp23016-label:
 
@@ -118,10 +120,10 @@ Configuration variables:
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
 
-Pin Configuration Variables:
+Pin configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **mcp23016** (**Required**, :ref:`config-id`): The id of the MCP23016 component.
+- **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23016 component.
 - All other options from :ref:`Pin Schema <config-pin_schema>`
 
 
@@ -180,7 +182,7 @@ Configuration variables:
   Useful when the MCP23017's power supply is greater than 3.3 volts. Note that these pins
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 
-Pin Configuration Variables:
+Pin configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23017 component.

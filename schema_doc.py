@@ -8,6 +8,7 @@ from docutils import nodes
 
 SCHEMA_PATH = "../esphome_devices/schema.json"
 CONFIGURATION_VARIABLES = "Configuration variables:"
+PIN_CONFIGURATION_VARIABLES = "Pin configuration variables:"
 COMPONENT_HUB = "Component/Hub"
 
 props_missing = 0
@@ -77,7 +78,10 @@ CUSTOM_DOCS = {
     "guides/automations": {"Global Variables": "properties/globals"},
     "guides/configuration-types": {
         "Color": "properties/color",
-        "Pin Schema": "definitions/PIN.GPIO_FULL_INPUT_PIN_SCHEMA",
+        "Pin Schema": [
+            "definitions/PIN.INPUT_INTERNAL",
+            "definitions/PIN.OUTPUT_INTERNAL",
+        ],
     },
     "components/climate/ir_climate": {
         "IR Remote Climate": [
@@ -110,6 +114,12 @@ CUSTOM_DOCS = {
     "components/light/fastled": {
         "Clockless": "properties/light/fastled_clockless",
         "SPI": "properties/light/fastled_spi",
+    },
+    "components/mcp230xx": {
+        PIN_CONFIGURATION_VARIABLES: [
+            "definitions/PIN.INPUT_mcp23xxx",
+            "definitions/PIN.OUTPUT_mcp23xxx",
+        ]
     },
     "components/mqtt": {
         "MQTT Component Base Configuration": "definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA",
@@ -220,6 +230,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # this is empty, not much to do
             raise nodes.SkipChildren
 
+        self.props_section_title = list(node.traverse(nodes.title))[0].astext()
+
         # Document first paragraph is description of this thing
         description = self.getMarkdownParagraph(node)
 
@@ -280,15 +292,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def visit_title(self, node):
         title_text = node.astext()
-        if self.props_section_title is None:
-            self.props_section_title = title_text
 
         if "interval" in title_text:
             title_text = title_text
         if self.custom_doc is not None and title_text in self.custom_doc:
             if isinstance(self.custom_doc[title_text], list):
                 self.multi_component = self.custom_doc[title_text]
-
+                self.filled_props = False
+                self.props = None
                 # TODO: add same markdown description to each?
 
                 return
@@ -319,7 +330,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if title_text == CONFIGURATION_VARIABLES:
             if not self.props and self.multi_component is None:
                 raise ValueError(
-                    f"Found a Configuration variables: title after {self.previous_title_text}. Unkown object."
+                    f'Found a "{CONFIGURATION_VARIABLES}": title after {self.previous_title_text}. Unkown object.'
                 )
 
         if title_text == "Over SPI" or title_text == "Over I²C":
@@ -419,6 +430,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     self.json_component = c
                     try:
                         self.props = self.find_props(self.json_component)
+                        self.multi_component = None
                     except KeyError:
                         raise ValueError(
                             "Cannot find props for component " + component_name
@@ -491,6 +503,20 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     return
             raise ValueError("Cannot find Effect " + title_text)
 
+        if title_text == PIN_CONFIGURATION_VARIABLES:
+            self.multi_component = []
+            if self.app.jschema["definitions"].get(f"PIN.INPUT_{self.path[-1]}"):
+                self.multi_component.append(f"definitions/PIN.INPUT_{self.path[-1]}")
+            if self.app.jschema["definitions"].get(f"PIN.OUTPUT_{self.path[-1]}"):
+                self.multi_component.append(f"definitions/PIN.OUTPUT_{self.path[-1]}")
+            self.accept_props = True
+            self.filled_props = False
+            self.props = None
+            if len(self.multi_component) == 0:
+                raise ValueError(
+                    f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
+                )
+
     def depart_title(self, node):
         if self.filled_props:
             self.filled_props = False
@@ -517,28 +543,30 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def visit_Text(self, node):
         if self.multi_component:
             return
-        if node.astext() == "Configuration variables:":
+        if node.astext() == CONFIGURATION_VARIABLES:
             if not self.props:
                 self.find_props_previous_title()
             if not self.props:
                 raise ValueError(
-                    f'Found a "Configuration variables:" entry for unknown object after {self.previous_title_text}'
+                    f'Found a "{CONFIGURATION_VARIABLES}" entry for unknown object after {self.previous_title_text}'
                 )
             self.accept_props = True
+
         raise nodes.SkipChildren
 
     def depart_Text(self, node):
         pass
 
     def visit_paragraph(self, node):
-        if node.astext() == "Configuration variables:":
-            if not self.props:
+        if node.astext() == CONFIGURATION_VARIABLES:
+            if not self.props and not self.multi_component:
                 self.find_props_previous_title()
-            if not self.props:
+            if not self.props and not self.multi_component:
                 raise ValueError(
-                    f'Found a "Configuration variables:" entry for unknown object after {self.previous_title_text}'
+                    f'Found a "{CONFIGURATION_VARIABLES}" entry for unknown object after {self.previous_title_text}'
                 )
             self.accept_props = True
+
         raise nodes.SkipChildren
 
     def depart_paragraph(self, node):
@@ -602,8 +630,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.filled_props = True
             try:
                 self.current_prop = self.update_prop(node, self.props)
-                # print(
-                #     f'{self.current_prop} updated from {node.rawsource[:40]}')
             except Exception as e:
                 raise ValueError(f"In '{self.previous_title_text}' {str(e)}")
 
@@ -700,9 +726,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         k = str(prop_name)
         jprop = props.get(k)
         if not jprop:
-
-            # do not fail for common properties,
-            # however this should check prop is valid upstream
+            # Create docs for common properties when descriptions are overriden
+            # in the most specific component.
 
             if k in [
                 "id",
@@ -734,7 +759,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # climate
                 "receiver_id",
             ]:
-                return
+                jprop = props[k] = {}
             else:
                 raise ValueError(f"Cannot find property {k}")
 
@@ -742,9 +767,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if param_type:
             desc = param_type + ": " + desc
 
-        # if '$ref' in jprop:
-        #     self.get_ref(jprop)["markdownDescription"] = desc
-        # else:
         jprop["markdownDescription"] = desc
         global props_documented
         props_documented = props_documented + 1
