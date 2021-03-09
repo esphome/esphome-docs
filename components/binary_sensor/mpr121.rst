@@ -32,7 +32,6 @@ required to be set up in your configuration for this sensor to work.
 
     binary_sensor:
       - platform: mpr121
-        mpr121_id: mpr121_component
         id: touch_key0
         channel: 0
         name: "Touch Key 0"
