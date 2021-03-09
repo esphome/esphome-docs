@@ -30,18 +30,35 @@ improve reliability.
 
 .. code-block:: yaml
 
-    # Example configuration entry
-    i2c:
-      sda: D1
-      scl: D2
-
-    display:
-      - platform: ssd1306_i2c
-        model: "SSD1306 128x64"
-        reset_pin: D0
-        address: 0x3C
-        lambda: |-
-          it.print(0, 0, id(font), "Hello World!");
+   # Expample configuration for WeMos D1 with SSD1306 shield 
+   
+   # I2C configuration
+   # https://esphome.io/components/i2c.html
+   i2c:
+    - sda: GPIO4
+      scl: GPIO5
+      scan: true
+      id: bus_a
+      
+   # Font definition for SSD1306 display
+   # TrueType fonts are used, e.g. arial.ttf from Windows OS
+   # Save font files in /config/esphome folder 
+   # The font name should be lower case
+   # more at https://esphome.io/cookbook/display_time_temp_oled.html#define-the-fonts
+   font:
+    - file: "arial.ttf"
+      id: font1
+      size: 8
+         
+   # SSD1306 Shield
+   # Default address 0x3C, model SSD1306 64x48
+   display:
+     - platform: ssd1306_i2c
+       model: "SSD1306 64x48"
+       address: 0x3C
+       lambda: |-
+         // Print "Hello World"
+         it.printf(0, 0, id(font1), "Hello World");
 
 Configuration variables:
 ************************
@@ -150,4 +167,6 @@ See Also
 - :doc:`index`
 - :apiref:`ssd1306_base/ssd1306_base.h`
 - `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <https://www.adafruit.com/>`__
+- :doc:`/components/display/index`
+- :doc:`/cookbook/display_time_temp_oled`
 - :ghedit:`Edit`
