@@ -33,8 +33,7 @@ improve reliability.
     # Expample configuration for WeMos D1 with SSD1306 shield 
     
     # I2C configuration
-    # https://esphome.io/components/i2c.html
-    i2c:
+      i2c:
      - sda: GPIO4
        scl: GPIO5
        scan: true
@@ -44,7 +43,6 @@ improve reliability.
     # TrueType fonts are used, e.g. arial.ttf from Windows OS
     # Save font files in /config/esphome folder 
     # The font name should be lower case
-    # more at https://esphome.io/cookbook/display_time_temp_oled.html#define-the-fonts
     font:
      - file: "arial.ttf"
        id: font1
