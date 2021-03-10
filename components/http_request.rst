@@ -129,17 +129,17 @@ http response code in parameter ``x`` as an ``int``.
 
 .. code-block:: yaml
 
-  on_...
-    then:
-      - http_request.get:
-          url: https://esphome.io
-          verify_ssl: false
-          on_response:
-            then:
-              - logger.log:
-                  format: "Response status: %d"
-                  args:
-                    - x
+    on_...
+      then:
+        - http_request.get:
+            url: https://esphome.io
+            verify_ssl: false
+            on_response:
+              then:
+                - logger.log:
+                    format: "Response status: %d"
+                    args:
+                      - x
 
 
 .. _http_request-examples:
