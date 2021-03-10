@@ -119,8 +119,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
           // Print inside temperature (from homeassistant sensor)
           if (id(inside_temperature).has_state()) {
             it.printf(127, 23, id(font3), TextAlign::TOP_RIGHT , "%.1f°", id(inside_temperature).state);
-          }
-
+          
           // Print outside temperature (from homeassistant sensor)
           if (id(outside_temperature).has_state()) {
             it.printf(127, 60, id(font3), TextAlign::BASELINE_RIGHT , "%.1f°", id(outside_temperature).state);
