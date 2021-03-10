@@ -128,8 +128,8 @@ This automation will be triggered when the HTTP request is finished and will sup
 http response code in parameter ``x`` as an ``int``.
 
 .. code-block:: yaml
-...
-  on_
+
+  on_...
     then:
       - http_request.get:
           url: https://esphome.io
