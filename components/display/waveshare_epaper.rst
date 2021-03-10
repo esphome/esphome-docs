@@ -49,6 +49,11 @@ configuration.
 .. code-block:: yaml
 
     # Example configuration entry
+    font:
+      - file: 'some_font_file.ttf' # place the "some_font_file.ttf" in /config/esphome
+        id: font1
+        size: 8
+    
     spi:
       clk_pin: D0
       mosi_pin: D1
@@ -62,7 +67,7 @@ configuration.
         model: 2.90in
         full_update_every: 30
         lambda: |-
-          it.print(0, 0, id(font), "Hello World!");
+          it.print(0, 0, id(font1), "Hello World!");
 
 Configuration variables:
 ------------------------
