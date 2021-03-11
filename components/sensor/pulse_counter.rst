@@ -37,9 +37,10 @@ Configuration variables:
     Defaults to ``DISABLE``.
 
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
-  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. If **slow** is ``False``,
+  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. If **hardware_pulsecounter** is ``True``,
   this value can not be higher than ``13us``, else you can use larger intervals too.
-  If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge.
+  If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge. 
+  For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 

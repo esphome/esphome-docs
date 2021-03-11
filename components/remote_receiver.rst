@@ -33,8 +33,10 @@ Configuration variables:
   - **lg**: Decode and dump LG infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
+  - **pioneer**: Decode and dump Pioneer infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **samsung**: Decode and dump Samsung infrared codes.
+  - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **rc5**: Decode and dump RC5 IR codes.
@@ -44,12 +46,14 @@ Configuration variables:
   decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
+- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platfrom. Defaults to
+  ``3``.
 - **filter** (*Optional*, :ref:`time <config-time>`): Filter any pulses that are shorter than this. Useful for removing
   glitches from noisy signals. Defaults to ``10us``.
 - **idle** (*Optional*, :ref:`time <config-time>`): The amount of time that a signal should remain stable (i.e. not
   change) for it to be considered complete. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
-  multiple remote transmitters.
+  multiple remote receivers.
 
 Automations:
 
@@ -63,7 +67,7 @@ Automations:
   NEC remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::NECData`
   is passed to the automation for use in lambdas.
 - **on_sony** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  NEC remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::SonyData`
+  Sony remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::SonyData`
   is passed to the automation for use in lambdas.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   raw remote code has been decoded. A variable ``x`` of type ``std::vector<int>``
@@ -71,11 +75,20 @@ Automations:
 - **on_rc5** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RC5 remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::RC5Data`
   is passed to the automation for use in lambdas.
+- **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  RCSwitch RF code has been decoded. A variable ``x`` of type :apiclass:`remote_base::RCSwitchData`
+  is passed to the automation for use in lambdas.
 - **on_samsung** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Samsung remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::SamsungData`
   is passed to the automation for use in lambdas.
+- **on_samsung36** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Samsung36 remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::Samsung36Data`
+  is passed to the automation for use in lambdas.  
 - **on_panasonic** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Panasonic remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::PanasonicData`
+  is passed to the automation for use in lambdas.
+- **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  pioneer remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::PioneerData`
   is passed to the automation for use in lambdas.
 
 .. _remote-receiver-binary-sensor:
@@ -144,10 +157,19 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, int): The data to trigger on, see dumper output for more info.
 
+- **samsung36**: Trigger on a decoded Samsung36 remote code with the given data.
+
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The command.
+
 - **panasonic**: Trigger on a decoded Panasonic remote code with the given data.
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **command** (**Required**, int): The command.
+
+- **pioneer**: Trigger on a decoded Pioneer remote code with the given data.
+
+  - **rc_code_1** (**Required**, int): The remote control code trigger on, see dumper output for more details.
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
@@ -198,6 +220,20 @@ Remote code selection (exactly one of these has to be included):
         remote_transmitter:
           pin: 5
           carrier_duty_percent: 100%
+
+.. note::
+
+    To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use ``INPUT_PULLUP``:
+
+    .. code-block:: yaml
+
+        remote_receiver:
+          pin:
+            number: D4
+            inverted: True
+            mode: INPUT_PULLUP
+          dump: all
+
 
 See Also
 --------

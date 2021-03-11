@@ -6,10 +6,10 @@ Waveshare E-Paper Display
     :image: waveshare_epaper.jpg
 
 The ``waveshare_epaper`` display platform allows you to use
-some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/modules/oleds-lcds/e-paper.htm>`__
+some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/displays/e-paper.htm>`__
 with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board is supported as well.
-Similar modules sold by other vendors might also work but not have been tested yet. Currently only
-single-color E-Ink displays are implemented and of those only a few modules.
+Depending on your specific revision of the board you might need to try out the ``-b73`` version (see below).
+Similar modules sold by other vendors might also work but not have been tested yet.
 
 .. figure:: images/waveshare_epaper-full.jpg
     :align: center
@@ -73,10 +73,15 @@ Configuration variables:
   - ``1.54in``
   - ``2.13in`` (not tested)
   - ``2.13in-ttgo`` (T5_V2.3 tested)
-  - ``2.70in`` (not tested)
+  - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
+  - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
+  - ``2.90inv2``
+  - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
+  - ``5.83in``
   - ``7.50in``
+  - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
@@ -86,9 +91,9 @@ Configuration variables:
 - **full_update_every** (*Optional*, int): E-Paper displays have two modes of switching to the next image: A partial
   update that only changes the pixels that have changed and a full update mode that first clears the entire display
   and then re-draws the image. The former is much quicker and nicer, but every so often a full update needs to happen
-  because artifacts accumulate. On the ``1.54in``, ``2.13in`` and ``2.90in`` models you have the option to switch only
-  do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a full update for
-  all other models.
+  because artifacts accumulate. On the ``1.54in``, ``2.13in``, ``2.90in``, and ``2.90inv2`` models you have the option
+  to switch only do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a
+  full update for all other models.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``10s``.

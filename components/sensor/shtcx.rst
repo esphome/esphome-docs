@@ -6,10 +6,10 @@ SHTCx Temperature+Humidity Sensors
     :image: shtc3.jpg
 
 The ``shtcx`` sensor platform Temperature+Humidity sensor allows you to use your Sensiron SHTC1
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHTC1_Datasheet.pdf>`__,
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Datasheets/Sensirion_Humidity_Sensors_SHTC1_Datasheet.pdf>`__,
 `Sensirion STHC1 <https://www.sensirion.com/en/environmental-sensors/humidity-sensors/digital-humidity-sensor-for-consumer-electronics-and-iot/>`__) and
 the newer SHTC3
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHTC3_Datasheet.pdf>`__,
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Datasheets/Sensirion_Humidity_Sensors_SHTC3_Datasheet.pdf>`__,
 `SparkFun`_ ) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
@@ -47,7 +47,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x70``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.

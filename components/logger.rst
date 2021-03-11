@@ -37,6 +37,9 @@ Advanced settings:
    Defaults to ``UART0``.
 -  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
    log strings in the flash section of the device (uses more memory). Defaults to true.
+-  **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
+   performed when a message is to be looged. The vairables ``int level``, ``const char* tag`` and
+   ``const char* message`` are available for lambda processing.
 
 .. _logger-hardware_uarts:
 
@@ -94,7 +97,7 @@ Possible log levels are (sorted by severity):
 -  ``VERY_VERBOSE``
 
   - All internal messages are logged. Including all the data flowing through data buses like
-    I2C, SPI or UART. Warning: May cause the device to slow down and have trouble staying
+    I²C, SPI or UART. Warning: May cause the device to slow down and have trouble staying
     connecting due to amount of generated messages. Color: white
 
 .. _logger-manual_tag_specific_levels:
@@ -158,6 +161,35 @@ Configuration options:
    with. Defaults to ``DEBUG``.
 -  **tag** (*Optional*, string): The tag (seen in front of the message in the logs) to print the message
    with. Defaults to ``main``.
+
+Logger Automation
+-----------------
+
+.. _logger-on_message:
+
+``on_message``
+**************
+
+This automation will be triggered when a new message is added to the log.
+In :ref:`lambdas <config-lambda>` you can get the message, log level and tag from the trigger
+using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const char *``).
+
+.. code-block:: yaml
+
+    logger:
+      # ...
+      on_message:
+        level: ERROR
+        then:
+          - mqtt.publish:
+              topic: some/topic
+              payload: !lambda |-
+                return "Triggered on_message with level " + std::to_string(level) + ", tag " + tag + " and message " + message;
+
+.. note::
+
+    Logging will not work in the ``on_message`` trigger. You can't use the :ref:`logger.log <logger-log_action>` action
+    and the ``ESP_LOGx`` logging macros in this automation.
 
 See Also
 --------

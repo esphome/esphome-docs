@@ -37,7 +37,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name for the sensor.
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x39``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x39``.
 - **integration_time** (*Optional*, :ref:`config-time`):
   The time the sensor will take for each measurement. Longer means more accurate values. One of
   ``14ms``, ``101ms``, ``402ms``. Defaults to ``402ms``.
