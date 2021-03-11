@@ -21,6 +21,8 @@ via text sensors.
           name: ESP Connected BSSID
         mac_address:
           name: ESP Mac Wifi Address
+        scan_results:
+          name: ESP Latest Scan Results
 
 Configuration variables:
 ------------------------
@@ -32,6 +34,8 @@ Configuration variables:
 - **bssid** (*Optional*): Expose the BSSID of the currently connected WiFi network as a text sensor. All options from
   :ref:`Text Sensor <config-text_sensor>`.
 - **mac_address** (*Optional*): Expose the Mac Address of the WiFi card. All options from
+  :ref:`Text Sensor <config-text_sensor>`.
+- **scan_results** (*Optional*): Expose the latest networks found during the latest scan. All options from
   :ref:`Text Sensor <config-text_sensor>`.
 
 See Also
