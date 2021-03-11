@@ -19,17 +19,17 @@ ESP heap memory (free space, maximal free block and fragmentation level) and the
 
     # Example configuration entry
     debug:
-			update_interval: 5s
-			device:
-				name: Device Info
-			free:
-				name: Heap Free
-			fragmentation:
-				name: Heap Fragmentation
-			block:
-				name: Heap Max Block
-			loop_time:
-				name: Loop Time
+      update_interval: 5s
+      device:
+        name: Device Info
+      free:
+        name: Heap Free
+      fragmentation:
+        name: Heap Fragmentation
+      block:
+        name: Heap Max Block
+      loop_time:
+        name: Loop Time
 
     # Logger must be at least debug (default)
     logger:
@@ -40,23 +40,23 @@ Configuration variables:
 
 - **device** (*Optional*): reports the debug information text:
 
-	- ESPHome Version
-	- Free heap size at startup
-	- Flash chip size, speed and mode
-	- ESP32:
+  - ESPHome Version
+  - Free heap size at startup
+  - Flash chip size, speed and mode
+  - ESP32:
 
-		- Chip model, cores, revision
-		- Chip features (BLE / BT / WiFi_BGN / EMB_FLASH / ...)
-		- ESP-IDF version
-		- EFuse MAC
-		- Reset reason
-		- Wakeup reason
-	- ESP8266:
+    - Chip model, cores, revision
+    - Chip features (BLE / BT / WiFi_BGN / EMB_FLASH / ...)
+    - ESP-IDF version
+    - EFuse MAC
+    - Reset reason
+    - Wakeup reason
+  - ESP8266:
 
-		- Chip id, frequency
-		- Flash id
-		- SDK, Core & Boot versions
-		- Reset reason & information
+    - Chip id, frequency
+    - Flash id
+    - SDK, Core & Boot versions
+    - Reset reason & information
 
 - **free** (*Optional*): reports the free heap size in bytes.
 - **fragmentation** (*Optional*): reports the fragmentation metric
