@@ -132,8 +132,10 @@ for platforms with multiple sensors)
         - delta: 5.0
       - lambda: return x * (9.0/5.0) + 32.0;
 
-``offset`` / ``multiply``
-*************************
+``offset``
+**********
+
+Adds a constant value to each sensor value.
 
 .. code-block:: yaml
 
@@ -144,8 +146,10 @@ for platforms with multiple sensors)
         - offset: 2.0
         - multiply: 1.2
 
-Offset adds a constant value to each sensor value. Multiply multiplies each value
-by a constant value.
+``multiply``
+************
+
+Multiplies each value by a constant value.
 
 .. _sensor-filter-calibrate_linear:
 
@@ -205,7 +209,7 @@ degree with a least squares solver.
 ``filter_out``
 **************
 
-Filter out specific values to be displayed. For example to filter out the value ``85.0``
+(**Required**, number): Filter out specific values to be displayed. For example to filter out the value ``85.0``
 
 .. code-block:: yaml
 
@@ -218,8 +222,9 @@ Filter out specific values to be displayed. For example to filter out the value 
 ``median``
 **********
 
-Calculate moving median over the data. This can be used to filter outliers from the received
-sensor data. A large window size will make the filter slow to react to input changes.
+A `simple moving median <https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example>`__
+over the last few values. This can be used to filter outliers from the received sensor data. A large
+window size will make the filter slow to react to input changes.
 
 .. code-block:: yaml
 
@@ -232,27 +237,25 @@ sensor data. A large window size will make the filter slow to react to input cha
             send_every: 4
             send_first_at: 3
 
--  **median**: A `simple moving median
-   <https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example>`__
-   over the last few values.
+Configuration variables:
 
-   -  **window_size**: The number of values over which to calculate the median
-      when pushing out a value. This number should
-      be odd if you want an actual received value pushed out.
-      Defaults to ``5``.
-   -  **send_every**: How often a sensor value should be pushed out. For
-      example, in above configuration the median is calculated after every 4th
-      received sensor value, over the last 7 received values.
-      Defaults to ``5``.
-   -  **send_first_at**: By default, the very first raw value on boot is immediately
-      published. With this parameter you can specify when the very first value is to be sent.
-      Must be smaller than or equal to ``send_every``
-      Defaults to ``1``.
+- **window_size** (*Optional*, integer): The number of values over which to calculate the median
+  when pushing out a value. This number should
+  be odd if you want an actual received value pushed out.
+  Defaults to ``5``.
+- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+  example, in above configuration the median is calculated after every 4th
+  received sensor value, over the last 7 received values.
+  Defaults to ``5``.
+- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+  published. With this parameter you can specify when the very first value is to be sent.
+  Must be smaller than or equal to ``send_every``
+  Defaults to ``1``.
 
-``min`` / ``max``
-*****************
+``min``
+*******
 
-Calculate min/max over the data. A large window size will make the filter slow to
+A moving minimum over the last few values. A large window size will make the filter slow to
 react to input changes.
 
 .. code-block:: yaml
@@ -266,29 +269,46 @@ react to input changes.
             send_every: 4
             send_first_at: 3
 
--  **min**: A moving minimum over the last few values.
+Configuration variables:
 
--  **max**: A moving maximum over the last few values.
+- **window_size** (*Optional*, integer): The number of values over which to calculate the min/max when pushing out a
+  value. Defaults to ``5``.
+- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+  example, in above configuration the min is calculated after every 4th
+  received sensor value, over the last 7 received values.
+  Defaults to ``5``.
+- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+  published. With this parameter you can specify when the very first value is to be sent.
+  Must be smaller than or equal to ``send_every``
+  Defaults to ``1``.
 
--  Both accept the following parameters:
+``max``
+*******
 
-   -  **window_size**: The number of values over which to calculate the min/max
-      when pushing out a value.
-      Defaults to ``5``.
-   -  **send_every**: How often a sensor value should be pushed out. For
-      example, in above configuration the min is calculated after every 4th
-      received sensor value, over the last 7 received values.
-      Defaults to ``5``.
-   -  **send_first_at**: By default, the very first raw value on boot is immediately
-      published. With this parameter you can specify when the very first value is to be sent.
-      Must be smaller than or equal to ``send_every``
-      Defaults to ``1``.
+A moving maximum over the last few values. A large window size will make the filter slow to
+react to input changes.
 
-``sliding_window_moving_average`` / ``exponential_moving_average``
-******************************************************************
+Configuration variables:
 
-Two simple moving averages over the data. These can be used to have a short update interval
-on the sensor but only push out an average on a specific interval (thus increasing resolution).
+- **window_size** (*Optional*, integer): The number of values over which to calculate the min/max
+  when pushing out a value.
+  Defaults to ``5``.
+- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+  example, in above configuration the min is calculated after every 4th
+  received sensor value, over the last 7 received values.
+  Defaults to ``5``.
+- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+  published. With this parameter you can specify when the very first value is to be sent.
+  Must be smaller than or equal to ``send_every``
+  Defaults to ``1``.
+
+
+``sliding_window_moving_average``
+*********************************
+
+A `simple moving average <https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average>`__
+over the last few values. It can be used to have a short update interval on the sensor but only push
+out an average on a specific interval (thus increasing resolution).
 
 .. code-block:: yaml
 
@@ -300,28 +320,36 @@ on the sensor but only push out an average on a specific interval (thus increasi
             window_size: 15
             send_every: 15
 
--  **sliding_window_moving_average**: A `simple moving
-   average <https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average>`__
-   over the last few values.
+Configuration variables:
 
-   -  **window_size**: The number of values over which to perform an
-      average when pushing out a value.
-   -  **send_every**: How often a sensor value should be pushed out. For
-      example, in above configuration the weighted average is only
-      pushed out on every 15th received sensor value.
-   -  **send_first_at**: By default, the very first raw value on boot is immediately
-      published. With this parameter you can specify when the very first value is to be sent.
-      Defaults to ``1``.
+- **window_size** (*Optional*, integer): The number of values over which to perform an
+  average when pushing out a value.
+- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+  example, in above configuration the weighted average is only
+  pushed out on every 15th received sensor value.
+- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+  published. With this parameter you can specify when the very first value is to be sent.
+  Defaults to ``1``.
 
--  **exponential_moving_average**: A simple `exponential moving
-   average <https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__
-   over the last few values.
+``exponential_moving_average``
+******************************
 
-   -  **alpha**: The forget factor/alpha value of the filter.
-   -  **send_every**: How often a sensor value should be pushed out.
+A simple `exponential moving average
+<https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average>`__ over the last few
+values. It can be used to have a short update interval on the sensor but only push
+out an average on a specific interval (thus increasing resolution).
 
-``throttle`` / ``heartbeat`` / ``debounce`` / ``delta``
-*******************************************************
+Configuration variables:
+
+- **alpha** (*Optional*, float): The forget factor/alpha value of the filter. Defaults to ``0.1``.
+- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. Defaults to ``15``.
+
+``throttle``
+************
+
+Throttle the incoming values. When this filter gets an incoming value,
+it checks if the last incoming value is at least ``specified time period`` old.
+If it is not older than the configured value, the value is not passed forward.
 
 .. code-block:: yaml
 
@@ -333,27 +361,37 @@ on the sensor but only push out an average on a specific interval (thus increasi
       - delta: 5.0
       - lambda: return x * (9.0/5.0) + 32.0;
 
--  **throttle**: Throttle the incoming values. When this filter gets an incoming value,
-   it checks if the last incoming value is at least ``specified time period`` old.
-   If it is not older than the configured value, the value is not passed forward.
 
--  **heartbeat**: Send the last value that this sensor in the specified time interval.
-   So a value of ``10s`` will cause the filter to output values every 10s regardless
-   of the input values.
-
--  **debounce**: Only send values if the last incoming value is at least ``specified time period``
-   old. For example if two values come in at almost the same time, this filter will only output
-   the last value and only after the specified time period has passed without any new incoming
-   values.
-
--  **delta**: This filter stores the last value passed through this filter and only
-   passes incoming values through if the absolute difference is greater than the configured
-   value. For example if a value of 1.0 first comes in, it's passed on. If the delta filter
-   is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values
-   that are at least 6.0 big or -4.0.
-
-``or`` Filter
+``heartbeat``
 *************
+
+Send the last value that this sensor in the specified time interval.
+So a value of ``10s`` will cause the filter to output values every 10s regardless
+of the input values.
+
+``debounce``
+************
+
+Only send values if the last incoming value is at least ``specified time period``
+old. For example if two values come in at almost the same time, this filter will only output
+the last value and only after the specified time period has passed without any new incoming
+values.
+
+``delta``
+*********
+
+This filter stores the last value passed through this filter and only
+passes incoming values through if the absolute difference is greater than the configured
+value. For example if a value of 1.0 first comes in, it's passed on. If the delta filter
+is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values
+that are at least 6.0 big or -4.0.
+
+``or``
+******
+
+Pass forward a value with the first child filter that returns. Above example
+will only pass forward values that are *either* at least 1s old or are if the absolute
+difference is at least 5.0.
 
 .. code-block:: yaml
 
@@ -363,22 +401,18 @@ on the sensor but only push out an average on a specific interval (thus increasi
         - throttle: 1s
         - delta: 5.0
 
--  **or**: Pass forward a value with the first child filter that returns. Above example
-   will only pass forward values that are *either* at least 1s old or are if the absolute
-   difference is at least 5.0.
 
+``lambda``
+**********
 
-``lambda`` Filter
-*****************
+Perform a simple mathematical operation over the sensor values. The input value is ``x`` and
+the result of the lambda is used as the output (use ``return``).
 
 .. code-block:: yaml
 
     filters:
       - lambda: return x * (9.0/5.0) + 32.0;
 
-**lambda**: Perform a simple mathematical operation over the sensor
-values. The input value is ``x`` and the result of the lambda is used
-as the output (use ``return``).
 
 Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
 result in integers (not floating point values).

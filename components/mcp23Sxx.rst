@@ -54,7 +54,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
           inverted: False
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23S08 component.
 - **cs_pin** (**Required**, int): The SPI chip select pin to use
@@ -65,7 +65,7 @@ Configuration variables:
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 
 Pin Configuration Variables:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+****************************
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23S08 component.
 - **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
@@ -119,7 +119,7 @@ binary sensor or GPIO switch.
           inverted: False
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23S17 component.
 - **cs_pin** (**Required**, int): The SPI chip select pin to use.
@@ -130,7 +130,7 @@ Configuration variables:
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 
 Pin Configuration Variables:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+****************************
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23S17 component.
 - **interrupt** (*Optional*): Set this pin to trigger the port INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.

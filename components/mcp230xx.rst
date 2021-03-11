@@ -52,7 +52,7 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           inverted: False
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23008 component.
 - **address** (*Optional*, int): The I²C address of the driver.
@@ -62,7 +62,7 @@ Configuration variables:
   will require a pull-up resistor (to 3.3 volts) when this mode is enabled.
 
 Pin configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+****************************
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23008 component.
 - **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
@@ -114,14 +114,14 @@ has 16 GPIOs and can be configured the same way than the other variants.
 
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23016 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
 
 Pin configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+****************************
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23016 component.
 - All other options from :ref:`Pin Schema <config-pin_schema>`
@@ -173,7 +173,7 @@ binary sensor or GPIO switch.
           inverted: False
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23017 component.
 - **address** (*Optional*, int): The I²C address of the driver.
@@ -183,7 +183,7 @@ Configuration variables:
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 
 Pin configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+****************************
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23017 component.
 - **interrupt** (*Optional*): Set this pin to trigger the port INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.

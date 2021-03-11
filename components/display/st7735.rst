@@ -42,7 +42,7 @@ There are numerous board types out there. Some initialize differently as well. T
       update_interval: 5s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **model** (**Required**, "See Models Below"): This the model to use. INITR_BLACKTAB is the default
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
@@ -55,7 +55,7 @@ Configuration variables:
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 
 Memory notes:
-~~~~~~~~~~~~~
+*************
 
 - 8Bit color saves 50% of the buffer required.
 - eightbitcolor: True 160x128 = 20480 *Important for memory constrained devices*
@@ -63,7 +63,7 @@ Memory notes:
 
 
 Models:
-~~~~~~~
+*******
 
 - INITR_GREENTAB
 - INITR_REDTAB

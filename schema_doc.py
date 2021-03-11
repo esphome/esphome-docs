@@ -6,7 +6,7 @@ from typing import MutableMapping
 from sphinx.util import logging
 from docutils import nodes
 
-SCHEMA_PATH = "../esphome_devices/schema.json"
+SCHEMA_PATH = "schema.json"
 CONFIGURATION_VARIABLES = "Configuration variables:"
 PIN_CONFIGURATION_VARIABLES = "Pin configuration variables:"
 COMPONENT_HUB = "Component/Hub"
@@ -75,13 +75,18 @@ PLATFORMS_TITLES = {
 }
 
 CUSTOM_DOCS = {
-    "guides/automations": {"Global Variables": "properties/globals"},
+    "guides/automations": {
+        "Global Variables": "properties/globals",
+    },
     "guides/configuration-types": {
         "Color": "properties/color",
         "Pin Schema": [
             "definitions/PIN.INPUT_INTERNAL",
             "definitions/PIN.OUTPUT_INTERNAL",
         ],
+    },
+    "components/binary_sensor/index": {
+        "Binary Sensor Filters": "binary_sensor.FILTER_REGISTRY",
     },
     "components/climate/ir_climate": {
         "IR Remote Climate": [
@@ -109,7 +114,8 @@ CUSTOM_DOCS = {
             "definitions/light.BINARY_LIGHT_SCHEMA",
             "definitions/light.BRIGHTNESS_ONLY_LIGHT_SCHEMA",
             "definitions/light.LIGHT_SCHEMA",
-        ]
+        ],
+        "Light Effects": "light.EFFECTS_REGISTRY",
     },
     "components/light/fastled": {
         "Clockless": "properties/light/fastled_clockless",
@@ -125,10 +131,13 @@ CUSTOM_DOCS = {
         "MQTT Component Base Configuration": "definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA",
     },
     "components/output/index": {
-        "Base Output Configuration": "definitions/output.FLOAT_OUTPUT_SCHEMA"
+        "Base Output Configuration": "definitions/output.FLOAT_OUTPUT_SCHEMA",
     },
     "components/remote_transmitter": {
-        "Remote Transmitter Actions": "definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA"
+        "Remote Transmitter Actions": "definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA",
+    },
+    "components/sensor/index": {
+        "Sensor Filters": "sensor.FILTER_REGISTRY",
     },
     "components/time": {
         "Home Assistant Time Source": "properties/time/homeassistant",
@@ -146,6 +155,10 @@ CUSTOM_DOCS = {
 }
 
 
+def get_node_title(node):
+    return list(node.traverse(nodes.title))[0].astext()
+
+
 class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def __init__(self, app, doctree, docname):
         nodes.NodeVisitor.__init__(self, doctree)
@@ -160,6 +173,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.json_base_config = None
         self.title_id = None
         self.props_section_title = None
+        self.find_registry = None
+        self.section_level = 0
         if self.path[0] == "components":
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
                 component = docname[11:]
@@ -230,7 +245,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # this is empty, not much to do
             raise nodes.SkipChildren
 
-        self.props_section_title = list(node.traverse(nodes.title))[0].astext()
+        self.props_section_title = get_node_title(node)
 
         # Document first paragraph is description of this thing
         description = self.getMarkdownParagraph(node)
@@ -266,23 +281,23 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def depart_document(self, node):
         pass
 
-    def visit_SEONode(self, node):
-        pass
-
-    def depart_SEONode(self, node):
-        pass
-
-    def visit_literal_block(self, node):
-        pass
-
-    def depart_literal_block(self, node):
-        pass
-
     def visit_section(self, node):
-        pass
+        self.section_level += 1
+        section_title = get_node_title(node)
+        if self.custom_doc and section_title in self.custom_doc:
+            r = self.custom_doc[section_title]
+            if (
+                isinstance(r, list)
+                or r.startswith("properties")
+                or r.startswith("definitions")
+            ):
+                return
+            self.find_registry = r
 
     def depart_section(self, node):
-        pass
+        self.section_level -= 1
+        if self.section_level == 1:
+            self.find_registry = None
 
     def unknown_visit(self, node):
         pass
@@ -303,7 +318,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # TODO: add same markdown description to each?
 
                 return
+
             json_component = self.find_component(self.custom_doc[title_text])
+            if not json_component:
+                return
+
             json_component["markdownDescription"] = self.getMarkdownParagraph(
                 node.parent
             )
@@ -450,22 +469,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                         )
                     return
 
-        if title_text.endswith("Action") or title_text.endswith("Condition"):
-            # Document first paragraph is description of this thing
-            description = self.getMarkdownParagraph(node.parent)
-            split_text = title_text.split(" ")
-            if len(split_text) != 2:
-                return
-            key = split_text[0]
-            registry_name = f"automation.{split_text[1].upper()}_REGISTRY"
-            registry = self.app.jschema["definitions"][registry_name]["anyOf"]
-            for action in registry:
-                if key in action["properties"]:
-                    action["properties"][key]["markdownDescription"] = description
-                    self.props = self.find_props(action["properties"][key])
-                    break
-            self.props_section_title = title_text
-
         if title_text.endswith("Trigger"):
             # Document first paragraph is description of this thing
             description = self.getMarkdownParagraph(node.parent)
@@ -481,28 +484,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.props = self.find_props(trigger_schema)
             self.props_section_title = title_text
 
-        if self.docname == "components/light/index" and title_text.endswith("Effect"):
-            # Document first paragraph is description of this thing
-
-            description = self.getMarkdownParagraph(node.parent)
-            name = title_text[: -len(" Effect")]
-            # accept Light Effect as ending (Automation Light Effect)
-            if name.endswith(" Light"):
-                name = name[: -len(" Light")]
-
-            key = name.replace(" ", "_").replace(".", "").lower()
-            registry = self.app.jschema["definitions"]["light.EFFECTS_REGISTRY"][
-                "anyOf"
-            ]
-            self.props_section_title = title_text
-
-            for effect in registry:
-                if key in effect["properties"]:
-                    effect["properties"][key]["markdownDescription"] = description
-                    self.props = self.find_props(effect["properties"][key])
-                    return
-            raise ValueError("Cannot find Effect " + title_text)
-
         if title_text == PIN_CONFIGURATION_VARIABLES:
             self.multi_component = []
             if self.app.jschema["definitions"].get(f"PIN.INPUT_{self.path[-1]}"):
@@ -516,6 +497,46 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 raise ValueError(
                     f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
                 )
+
+        if title_text.endswith("Action") or title_text.endswith("Condition"):
+            # Document first paragraph is description of this thing
+            description = self.getMarkdownParagraph(node.parent)
+            split_text = title_text.split(" ")
+            if len(split_text) != 2:
+                return
+            key = split_text[0]
+
+            if self.props:
+                ref = self.props.get(key)
+                if ref:
+                    ref = self.get_ref(ref)
+                    if ref:
+                        self.props = self.find_props(ref)
+                        return
+
+            registry_name = f"automation.{split_text[1].upper()}_REGISTRY"
+            self.find_registry_prop(registry_name, key, description)
+
+        if self.section_level == 3 and self.find_registry:
+            name = title_text
+            if name.endswith(" Effect"):
+                name = title_text[: -len(" Effect")]
+            if name.endswith(" Light"):
+                name = name[: -len(" Light")]
+            key = name.replace(" ", "_").replace(".", "").lower()
+            description = self.getMarkdownParagraph(node.parent)
+            self.find_registry_prop(self.find_registry, key, description)
+            self.props_section_title = title_text
+
+    def find_registry_prop(self, registry_name, key, description):
+        registry = self.app.jschema["definitions"][registry_name]["anyOf"]
+        for item in registry:
+            if key in item["properties"]:
+                item["properties"][key]["markdownDescription"] = description
+                self.props = self.find_props(item["properties"][key])
+
+                return
+        raise ValueError(f"Cannot find {registry_name} {key}")
 
     def depart_title(self, node):
         if self.filled_props:
@@ -663,6 +684,25 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         paragraph = list(node.traverse(nodes.paragraph))[0]
         markdown = self.getMarkdown(paragraph)
 
+        param_type = None
+        # Check if there is type information for this item
+        try:
+            name_type = markdown[: markdown.index(": ") + 2]
+            ntr = re.search(
+                r"(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s",
+                name_type,
+                re.IGNORECASE,
+            )
+            if ntr:
+                param_type = ntr.group(6)
+                if param_type:
+                    markdown = (
+                        f"**{param_type}**: {markdown[markdown.index(': ') + 2 :]}"
+                    )
+        except ValueError:
+            # ': ' not found
+            pass
+
         title = list(node.traverse(nodes.title))[0]
         if len(title) > 0:
             url = urllib.parse.urljoin(
@@ -695,9 +735,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         # **name** (**Required**, string): Long Description...
         # **name** (*Optional*, string): Long Description... Defaults to ``value``.
         # **name** (*Optional*): Long Description... Defaults to ``value``.
-
-        if "ads111" in self.docname:
-            self.docname = self.docname
 
         ntr = re.search(
             r"\* \*\*(\w*)\*\*\s(\(((\*\*Required\*\*)|(\*Optional\*))(,\s(.*))*)\):\s",
@@ -765,7 +802,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         desc = markdown[markdown.index(": ") + 2 :].strip()
         if param_type:
-            desc = param_type + ": " + desc
+            desc = "**" + param_type + "**: " + desc
 
         jprop["markdownDescription"] = desc
         global props_documented
@@ -780,6 +817,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def find_component(self, component_path):
         path = component_path.split("/")
+        if path[0] not in ("properties", "definitions"):
+            return None
         json_component = self.app.jschema[path[0]][path[1]]
 
         if len(path) > 2:
@@ -896,32 +935,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.accept_props = False
             self.current_prop = None
 
-        return props
-        return
-        # find properties
-        if "then" in component:
-            component = component["then"]
-        props = component.get("properties")
-        ref = None
-        if not props:
-            arr = component.get("anyOf", component.get("allOf"))
-            if not arr:
-                if "$ref" in component:
-                    return self.find_props(self.get_ref(component))
-                return None
-            for x in arr:
-                props = x.get("properties")
-                if not ref:
-                    ref = self.get_ref(x)
-                if props:
-                    break
-        if not props and ref:
-            props = self.find_props(ref)
-
-        if props:
-            self.filled_props = False
-            self.accept_props = False
-            self.current_prop = None
         return props
 
 

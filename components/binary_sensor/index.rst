@@ -85,23 +85,40 @@ of these entries matters!)
                 return {};
               }
 
-Supported filters:
+``invert``
+**********
 
-- **invert**: Simple filter that just inverts every value from the binary sensor.
-- **delayed_on**: When a signal ON is received, wait for the specified time period until publishing
-  an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words:
-  Only send an ON value if the binary sensor has stayed ON for at least the specified time period.
-  **Useful for debouncing push buttons**.
-- **delayed_off**: When a signal OFF is received, wait for the specified time period until publishing
-  an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
-  Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
-  **Useful for debouncing push buttons**.
-- **delayed_on_off**: Only send an ON or OFF value if the binary sensor has stayed in the same state
-  for at least the specified time period.
-  **Useful for debouncing binary switches**.
-- **lambda**: Specify any :ref:`lambda <config-lambda>` for more complex filters. The input value from
-  the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
-  the filter chain.
+Simple filter that just inverts every value from the binary sensor.
+
+``delayed_on``
+**************
+
+(**Required**, :ref:`config-time`): When a signal ON is received, wait for the specified time period until publishing
+an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words:
+Only send an ON value if the binary sensor has stayed ON for at least the specified time period.
+**Useful for debouncing push buttons**.
+
+``delayed_off``
+***************
+
+(**Required**, :ref:`config-time`): When a signal OFF is received, wait for the specified time period until publishing
+an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words:
+Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period.
+**Useful for debouncing push buttons**.
+
+``delayed_on_off``
+******************
+
+(**Required**, :ref:`config-time`): Only send an ON or OFF value if the binary sensor has stayed in the same state
+for at least the specified time period.
+**Useful for debouncing binary switches**.
+
+``lambda``
+**********
+
+Specify any :ref:`lambda <config-lambda>` for more complex filters. The input value from
+the binary sensor is ``x`` and you can return ``true`` for ON, ``false`` for OFF, and ``{}`` to stop
+the filter chain.
 
 Binary Sensor Automation
 ------------------------
