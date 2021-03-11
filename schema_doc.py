@@ -528,6 +528,20 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.find_registry_prop(self.find_registry, key, description)
             self.props_section_title = title_text
 
+        if title_text == PIN_CONFIGURATION_VARIABLES:
+            self.multi_component = []
+            if self.app.jschema["definitions"].get(f"PIN.INPUT_{self.path[-1]}"):
+                self.multi_component.append(f"definitions/PIN.INPUT_{self.path[-1]}")
+            if self.app.jschema["definitions"].get(f"PIN.OUTPUT_{self.path[-1]}"):
+                self.multi_component.append(f"definitions/PIN.OUTPUT_{self.path[-1]}")
+            self.accept_props = True
+            self.filled_props = False
+            self.props = None
+            if len(self.multi_component) == 0:
+                raise ValueError(
+                    f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
+                )
+
     def find_registry_prop(self, registry_name, key, description):
         registry = self.app.jschema["definitions"][registry_name]["anyOf"]
         for item in registry:
