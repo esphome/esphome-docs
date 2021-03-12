@@ -42,6 +42,8 @@ This component requires a :doc:`/components/midea_dongle` to be configured.
       outdoor_temperature:
         name: "outdoor"
       beeper: true
+      swing_horizontal: true
+      swing_both: true
 
 Configuration variables:
 ------------------------
@@ -55,7 +57,15 @@ Configuration variables:
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
+- **humidity_setpoint** (*Optional*): The information for the humidity indoor
+  sensor (experimental).
+
+  - **name** (**Required**, string): The name of the sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
 - **beeper** (*Optional*, bool, default: **false**): Beeper feedback on command.
+- **swing_horizontal** (*Optional*, bool, default: **false**): Enable **swing horizontal** option.
+- **swing_both** (*Optional*, bool, default: **false**): Enable **swing both** option.
 - All other options from :ref:`Climate <config-climate>`.
 
 Acknowledgments:
