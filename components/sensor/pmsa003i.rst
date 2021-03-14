@@ -41,9 +41,6 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
           name: "PMC <5µm"
         pmc_10_0:
           name: "PMC <10µm"
-        address: 0x12
-        update_interval: 60s
-        standard_units: True
 
 Configuration variables:
 ------------------------
