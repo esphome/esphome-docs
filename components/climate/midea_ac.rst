@@ -57,6 +57,12 @@ Configuration variables:
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
+- **power_usage** (*Optional*): The information for the current power consumption
+  sensor.
+
+  - **name** (**Required**, string): The name of the sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
 - **humidity_setpoint** (*Optional*): The information for the humidity indoor
   sensor (experimental).
 
