@@ -153,6 +153,9 @@ These temperatures are used when the device first starts up.
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
 
+``min_temperature`` and ``max_temperature`` from the base climate component **will limit the range**
+of allowed temperature values in the thermostat component.  See :doc:`/components/climate/index`
+
 Heating and Cooling Actions
 ***************************
 
