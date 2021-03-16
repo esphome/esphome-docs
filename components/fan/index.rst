@@ -7,7 +7,7 @@ Fan Component
 
 With the ``fan`` domain you can create components that appear as fans in
 the Home Assistant frontend. A fan can be switched ON or OFF, optionally
-has a speed level (1..max_supported_speed_level) and can have an
+has a speed level between 1 and the maximum supported speed level of the fan, and can have an
 oscillate and direction output.
 
 This component restores its state on reboot/reset.
