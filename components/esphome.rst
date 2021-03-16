@@ -302,12 +302,13 @@ The same procedure can be done for changing the static IP of a device.
 
 .. _esphome-mac_suffix:
 
-Adding the MAC address as a suffic to the device name
+Adding the MAC address as a suffix to the device name
 -----------------------------------------------------
 
 Using ``name_add_mac_suffix`` allows the user to compile a single binary file to flash
-many of the same device. Note that you will still need to create an individual YAML config
-file if you want to OTA update the devices in the future.
+many of the same device and they will all have unique names/hostnames.
+Note that you will still need to create an individual YAML config file if you want to
+OTA update the devices in the future.
 
 See Also
 --------
