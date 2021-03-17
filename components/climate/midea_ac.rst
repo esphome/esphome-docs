@@ -39,7 +39,7 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
 
     # Optional (if you want modify settings)
     midea_dongle:
-      stretched_icon: true
+      strength_icon: true
     
     # Main settings
     climate:
@@ -94,7 +94,7 @@ Configuration variables of midea-dongle component:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
-- **stretched_icon** (*Optional*, boolean): Set if your device have signal stretched icon
+- **strength_icon** (*Optional*, boolean): Set if your device have signal strength icon
   and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to ``False``.
 
 
