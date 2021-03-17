@@ -355,7 +355,6 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
-    Midea Dongle, components/midea_dongle, midea.svg
 
 Additional Custom Components
 ----------------------------
