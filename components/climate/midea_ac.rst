@@ -92,7 +92,7 @@ Configuration variables of midea-dongle component:
 **************************************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`uart` if you want
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
 - **stretched_icon** (*Optional*, boolean): Set if your device have signal stretched icon
   and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to ``False``.
