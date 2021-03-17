@@ -53,7 +53,6 @@ I²C Option
     i2c:
 
     rc522_i2c:
-      cs_pin: GPIO2
 
     binary_sensor:
       - platform: rc522
@@ -84,7 +83,7 @@ SPI Only:
 I²C Only:
 ^^^^^^^^^
 
-- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x28``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x2C``.
 - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
   to use multiple I²C buses.
 
