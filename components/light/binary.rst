@@ -20,6 +20,11 @@ The ``binary`` light platform creates a simple ON/OFF-only light from a
         name: "Desk Lamp"
         output: output_component1
 
+    output:
+      - id: light_output
+        platform: gpio
+        pin: GPIO16
+
 Configuration variables:
 ------------------------
 
