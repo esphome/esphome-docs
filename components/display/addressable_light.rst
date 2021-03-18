@@ -63,7 +63,7 @@ Configuration variables:
 - **pixel_mapper** (*Optional*, :ref:`lambda <config-lambda>`): A lambda that returns the integer address of the LED
   given the supplied the ``x`` and ``y`` pixel coordinate. By default, a left-to-right direct pixel mapper is used. 
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
-  ``it`` will be an instance of :apiclass:`AddressableLightDisplay <addressable_light::AddressableLightDisplay>`.
+  ``it`` will be an instance of :apiclass:`DisplayBuffer <display::DisplayBuffer>`.
   See :ref:`display-engine` for more information. 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
