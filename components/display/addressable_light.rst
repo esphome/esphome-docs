@@ -1,17 +1,17 @@
-Addressable Light Display
-=========================
+Addressable Light
+=================
 
 .. seo::
-    :description: Instructions for setting up addressable light displays and LED matrix
-    :image: addressable_light_display.jpg
+    :description: Instructions for setting up displays using addressable lights and LED matrix
+    :image: addressable_light.jpg
 
-The ``addressable_light_display`` display platform allows to display text and graphics on an addressable
+The ``addressable_light`` display platform allows to display text and graphics on an addressable
 light that has been arranged in a display matrix.
 
 The display requires that an :apiclass:`AddressableLight <light::AddressableLight>` component, such as
 :doc:`/components/light/fastled` or :doc:`/components/light/neopixelbus`, be defined.
 
-.. figure:: images/addressable_light_display.jpg
+.. figure:: images/addressable_light.jpg
     :align: center
     :width: 75.0%
 
@@ -32,7 +32,7 @@ The display requires that an :apiclass:`AddressableLight <light::AddressableLigh
         restore_mode: ALWAYS_ON
 
     display:
-      - platform: addressable_light_display
+      - platform: addressable_light
         id: led_matrix_display
         addressable_light_id: led_matrix_light
         width: 8
@@ -63,7 +63,7 @@ Configuration variables:
 - **pixel_mapper** (*Optional*, :ref:`lambda <config-lambda>`): A lambda that returns the integer address of the LED
   given the supplied the ``x`` and ``y`` pixel coordinate. By default, a left-to-right direct pixel mapper is used. 
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
-  ``it`` will be an instance of :apiclass:`AddressableLightDisplay <addressable_light_display::AddressableLightDisplay>`.
+  ``it`` will be an instance of :apiclass:`AddressableLightDisplay <addressable_light::AddressableLightDisplay>`.
   See :ref:`display-engine` for more information. 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -97,7 +97,7 @@ Default
 The default pixel mapper assumes that the led matrix is addressed starting with the top left LED, moving to the right, and
 then starting with the left-most row of the next row.
 
-.. figure:: images/addressable_light_display_pixel_map_default.png
+.. figure:: images/addressable_light_pixel_map_default.png
     :align: center
     :width: 75.0%
 
@@ -109,7 +109,7 @@ BTF-Lighting 8x32 WS2812B Flexible LED Matrix
 
 The following image illustrates the path the addressable strip takes through the common the BTF-Lighting 8x32 matrix.
 
-.. figure:: images/addressable_light_display_pixel_map_8x32.png
+.. figure:: images/addressable_light_pixel_map_8x32.png
     :align: center
     :width: 75.0%
 
@@ -121,7 +121,7 @@ Below is a definition that includes a pixel_mapper suitable for these 8x32 matri
 .. code-block:: yaml
 
     display:
-      - platform: addressable_light_display
+      - platform: addressable_light
         id: led_matrix_32x8_display
         addressable_light_id: led_matrix_32x8
         width: 32
@@ -138,7 +138,7 @@ Below is a definition that includes a pixel_mapper suitable for these 8x32 matri
 See Also
 --------
 
-- :apiref:`addressable_light_display/addressable_light_display.h`
+- :apiref:`addressable_light/addressable_light_display.h`
 - :doc:`/components/light/index`
 - :doc:`/components/light/fastled`
 - :doc:`/components/light/neopixelbus`
