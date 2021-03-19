@@ -143,6 +143,7 @@ Sensor Components
     NTC Thermistor, components/sensor/ntc, ntc.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
+    Pulse Meter, components/sensor/pulse_meter, pulse.svg
     Pulse Width, components/sensor/pulse_width, pulse.svg
     PZEM004T, components/sensor/pzem004t, pzem004t.svg
     PZEM AC, components/sensor/pzemac, pzemac.svg
