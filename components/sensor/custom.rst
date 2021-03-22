@@ -150,7 +150,7 @@ Where HARDWARE can be any of:
     extern const float HARDWARE;
     /// For components that import data from directly connected sensors like DHT.
     extern const float DATA;
-    /// Alias for DATA (here for compatability reasons)
+    /// Alias for DATA (here for compatibility reasons)
     extern const float HARDWARE_LATE;
     /// For components that use data from sensors like displays
     extern const float PROCESSOR;

@@ -18,7 +18,7 @@ connecting the wires from each device back to the two I²C pins on the ESP.
 
 .. code-block:: yaml
 
-    # Example configuration entry
+    # Example configuration entry for ESP32
     i2c:
       sda: 21
       scl: 22

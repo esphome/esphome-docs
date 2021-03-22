@@ -76,7 +76,6 @@ an RFID tag is currently detected by the RC522.
     i2c:
 
     rc522_i2c:
-      cs_pin: GPIO2
 
     binary_sensor:
       - platform: rc522

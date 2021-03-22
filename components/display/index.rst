@@ -277,7 +277,16 @@ arguments after the format string in the right order.
           // %% - literal % sign
           it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).state, id(humidity).state);
 
+To display a text string from a ``text_sensor``, append ``.c_str()`` to the end of your variable.
 
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
+          
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to

@@ -829,7 +829,7 @@ E1.31 Effect
 This effect enables controlling addressable lights using UDP-based
 E1.31_ protocol.
 
-JINX_ can be used to control E1.31_ enabled ESPHome.
+For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHome.
 
 .. code-block:: yaml
 
@@ -875,6 +875,7 @@ Configuration variables:
 
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
+.. _Hyperion.NG: https://github.com/hyperion-project/hyperion.ng
 
 Adalight Effect
 ***************

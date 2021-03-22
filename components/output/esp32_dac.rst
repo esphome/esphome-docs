@@ -35,7 +35,7 @@ The output level is a percentage of the board supply voltage (VDD_A) - generally
       - platform: monochromatic
         output: dac_output
         gamma_correct: 1.4
-        id: dac_output
+        id: mono_light
 
 
 Configuration variables:
