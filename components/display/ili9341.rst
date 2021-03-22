@@ -65,7 +65,7 @@ Configuration examples
 To utilize the color capabilities of this display module, you'll likely want to add a ``color:`` section to your
 YAML configuration; please see :ref:`color <config-color>` for more detail on this configuration section.
 
-To use colors in your lambada:
+To use colors in your lambda:
 
 .. code-block:: yaml
 
