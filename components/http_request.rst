@@ -54,7 +54,7 @@ This :ref:`action <config-action>` sends a GET request.
               - logger.log:
                   format: 'Response status: %d'
                   args:
-                    - x
+                    - status_code
       # Short form
       - http_request.get: https://esphome.io
 
@@ -125,7 +125,7 @@ Configuration variables:
 -----------------------
 
 This automation will be triggered when the HTTP request is finished and will supply the
-http response code in parameter ``x`` as an ``int``.
+http response code in parameter ``status_code`` as an ``int``.
 
 .. code-block:: yaml
 
@@ -139,7 +139,7 @@ http response code in parameter ``x`` as an ``int``.
                 - logger.log:
                     format: "Response status: %d"
                     args:
-                      - x
+                      - status_code
 
 
 .. _http_request-examples:
