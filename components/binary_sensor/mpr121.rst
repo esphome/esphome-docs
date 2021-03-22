@@ -6,6 +6,11 @@ MPR121 Capacitive Touch Sensor
     :image: mpr121.jpg
     :keywords: MPR121
 
+.. _mpr121-component:
+
+Component/Hub
+-------------
+
 The ``mpr121`` sensor platform allows you to use your MPR121
 (`datasheet <https://cdn-learn.adafruit.com/downloads/pdf/adafruit-mpr121-12-key-capacitive-touch-sensor-breakout-tutorial.pdf>`__,
 `Adafruit`_) Capacitive Touch Sensor with ESPHome. The :ref:`I²C <i2c>` is
@@ -43,8 +48,6 @@ Configuration variables:
 
 The configuration is made up of two parts: The central component, and individual Binary sensors per channel.
 
-Base Configuration:
-
 - **address** (*Optional*, integer): The I²C address of the sensor. Defaults to ``0x5A``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
 - **touch_debounce** (*Optional*, integer): The minimum length before a touch is recognized. Range is from 0 to 7.
@@ -55,12 +58,21 @@ Base Configuration:
   and should be between 5 and 30 (lower = more sensitive). Defaults to 12. Typically the touch threshold is a little bigger than the release threshold.
 - **release_threshold** (*Optional*, integer): The release defines the sensitivity for touch detection and should be between 5 and 30. Defaults to 6.
 
-Binary Sensor Configuration:
+Binary Sensor
+-------------
 
-- **name** (**Optional**, string): The name for the binary sensor.
+The ``mpr121`` binary sensor allows you to use your MPR121 with ESPHome.
+First, setup a :ref:`mpr121-component` and then use this binary sensor platform to create individual
+binary sensors for each touch sensor.
+
+
+Configuration variables:
+
+
+- **name** (*Optional*, string): The name for the binary sensor.
 - **mpr121_id** (*Optional*, :ref:`config-id`): The ID of the MPR121 defined above. Useful for multiple MPR121's on the I²C bus
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **channel** (*Required*, integer): The channel number at the MPR121 the touchkey is connected to.
+- **channel** (**Required**, integer): The channel number at the MPR121 the touchkey is connected to.
 - **touch_threshold** (*Optional*, integer): A per-channel override of the global touch_threshold value. If not specified, uses the global value.
 - **release_threshold** (*Optional*, integer): A per-channel override of the global release_threshold value. If not specified, uses the global value.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.

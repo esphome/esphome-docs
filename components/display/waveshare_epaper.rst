@@ -8,7 +8,7 @@ Waveshare E-Paper Display
 The ``waveshare_epaper`` display platform allows you to use
 some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/displays/e-paper.htm>`__
 with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board is supported as well.
-Depending on your specific revision of the board you might need to try out the `-b73` version (see below).
+Depending on your specific revision of the board you might need to try out the `-b73` or `-b1` version (see below).
 Similar modules sold by other vendors might also work but not have been tested yet. Currently only
 single-color E-Ink displays are implemented and of those only a few modules.
 
@@ -75,6 +75,7 @@ Configuration variables:
   - ``2.13in`` (not tested)
   - ``2.13in-ttgo`` (T5_V2.3 tested)
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
+  - ``2.13in-ttgo-b1`` (T5_V2.3 with B1 display tested)
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
   - ``2.90inv2``

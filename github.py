@@ -9,39 +9,35 @@ from docutils.parsers.rst import directives
 from docutils.parsers.rst.directives.tables import Table
 
 
-def libpr_role(name, rawtext, text, lineno, inliner, options=None,
-               content=None):
-    ref = 'https://github.com/esphome/esphome-core/pull/{}'.format(text)
-    return [make_link_node(rawtext, 'core#{}'.format(text), ref, options)], []
+def libpr_role(name, rawtext, text, lineno, inliner, options=None, content=None):
+    ref = "https://github.com/esphome/esphome-core/pull/{}".format(text)
+    return [make_link_node(rawtext, "core#{}".format(text), ref, options)], []
 
 
-def yamlpr_role(name, rawtext, text, lineno, inliner, options=None,
-                content=None):
-    ref = 'https://github.com/esphome/esphome/pull/{}'.format(text)
-    return [make_link_node(rawtext, 'esphome#{}'.format(text), ref, options)], []
+def yamlpr_role(name, rawtext, text, lineno, inliner, options=None, content=None):
+    ref = "https://github.com/esphome/esphome/pull/{}".format(text)
+    return [make_link_node(rawtext, "esphome#{}".format(text), ref, options)], []
 
 
-def docspr_role(name, rawtext, text, lineno, inliner, options=None,
-                content=None):
-    ref = 'https://github.com/esphome/esphome-docs/pull/{}'.format(text)
-    return [make_link_node(rawtext, 'docs#{}'.format(text), ref, options)], []
+def docspr_role(name, rawtext, text, lineno, inliner, options=None, content=None):
+    ref = "https://github.com/esphome/esphome-docs/pull/{}".format(text)
+    return [make_link_node(rawtext, "docs#{}".format(text), ref, options)], []
 
 
-def ghuser_role(name, rawtext, text, lineno, inliner, options=None,
-                content=None):
-    ref = 'https://github.com/{}'.format(text)
-    return [make_link_node(rawtext, '@{}'.format(text), ref, options)], []
+def ghuser_role(name, rawtext, text, lineno, inliner, options=None, content=None):
+    ref = "https://github.com/{}".format(text)
+    return [make_link_node(rawtext, "@{}".format(text), ref, options)], []
 
 
-value_re = re.compile(r'^(.*)\s*<(.*)>$')
+value_re = re.compile(r"^(.*)\s*<(.*)>$")
 DOXYGEN_LOOKUP = {}
 for s in string.ascii_lowercase + string.digits:
     DOXYGEN_LOOKUP[s] = s
 for s in string.ascii_uppercase:
-    DOXYGEN_LOOKUP[s] = '_{}'.format(s.lower())
-DOXYGEN_LOOKUP[':'] = '_1'
-DOXYGEN_LOOKUP['_'] = '__'
-DOXYGEN_LOOKUP['.'] = '_8'
+    DOXYGEN_LOOKUP[s] = "_{}".format(s.lower())
+DOXYGEN_LOOKUP[":"] = "_1"
+DOXYGEN_LOOKUP["_"] = "__"
+DOXYGEN_LOOKUP["."] = "_8"
 
 
 def split_text_value(value):
@@ -52,60 +48,57 @@ def split_text_value(value):
 
 
 def encode_doxygen(value):
-    value = value.split('/')[-1]
+    value = value.split("/")[-1]
     try:
-        return ''.join(DOXYGEN_LOOKUP[s] for s in value)
+        return "".join(DOXYGEN_LOOKUP[s] for s in value)
     except KeyError:
         raise ValueError("Unknown character in doxygen string! '{}'".format(value))
 
 
-def apiref_role(name, rawtext, text, lineno, inliner, options=None,
-                content=None):
+def apiref_role(name, rawtext, text, lineno, inliner, options=None, content=None):
     text, value = split_text_value(text)
     if text is None:
-        text = 'API Reference'
-    ref = '/api/{}.html'.format(encode_doxygen(value))
+        text = "API Reference"
+    ref = "/api/{}.html".format(encode_doxygen(value))
     return [make_link_node(rawtext, text, ref, options)], []
 
 
-def apiclass_role(name, rawtext, text, lineno, inliner, options=None,
-                  content=None):
-    text, value = split_text_value(text)
-    if text is None:
-        text = value
-    ref = '/api/classesphome_1_1{}.html'.format(encode_doxygen(value))
-    return [make_link_node(rawtext, text, ref, options)], []
-
-
-def apistruct_role(name, rawtext, text, lineno, inliner, options=None,
-                  content=None):
+def apiclass_role(name, rawtext, text, lineno, inliner, options=None, content=None):
     text, value = split_text_value(text)
     if text is None:
         text = value
-    ref = '/api/structesphome_1_1{}.html'.format(encode_doxygen(value))
+    ref = "/api/classesphome_1_1{}.html".format(encode_doxygen(value))
     return [make_link_node(rawtext, text, ref, options)], []
 
 
-def ghedit_role(name, rawtext, text, lineno, inliner, options=None,
-                content=None):
-    path = os.path.relpath(inliner.document.current_source,
-                           inliner.document.settings.env.app.srcdir)
-    ref = 'https://github.com/esphome/esphome-docs/blob/current/{}'.format(path)
-    return [make_link_node(rawtext, 'Edit this page on GitHub', ref, options)], []
+def apistruct_role(name, rawtext, text, lineno, inliner, options=None, content=None):
+    text, value = split_text_value(text)
+    if text is None:
+        text = value
+    ref = "/api/structesphome_1_1{}.html".format(encode_doxygen(value))
+    return [make_link_node(rawtext, text, ref, options)], []
+
+
+def ghedit_role(name, rawtext, text, lineno, inliner, options=None, content=None):
+    path = os.path.relpath(
+        inliner.document.current_source, inliner.document.settings.env.app.srcdir
+    )
+    ref = "https://github.com/esphome/esphome-docs/blob/current/{}".format(path)
+    return [make_link_node(rawtext, "Edit this page on GitHub", ref, options)], []
 
 
 def make_link_node(rawtext, text, ref, options=None):
     options = options or {}
-    node = nodes.reference(rawtext,
-                           utils.unescape(text),
-                           refuri=ref,
-                           **options)
+    node = nodes.reference(rawtext, utils.unescape(text), refuri=ref, **options)
     return node
 
 
 # https://stackoverflow.com/a/3415150/8924614
 def grouper(n, iterable, fillvalue=None):
-    """grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx"""
+    """Pythonic way to iterate over sequence, 4 items at a time.
+
+    grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx
+    """
     args = [iter(iterable)] * n
     return zip_longest(fillvalue=fillvalue, *args)
 
@@ -114,12 +107,11 @@ def grouper(n, iterable, fillvalue=None):
 class ImageTableDirective(Table):
 
     option_spec = {
-        'columns': directives.positive_int,
+        "columns": directives.positive_int,
     }
 
     def run(self):
-        env = self.state.document.settings.env
-        cols = self.options.get('columns', 3)
+        cols = self.options.get("columns", 3)
 
         items = []
 
@@ -129,31 +121,30 @@ class ImageTableDirective(Table):
                 continue
             name, page, image = row
             link = page.strip()
-            if link.startswith('http'):
+            if link.startswith("http"):
                 pass
             else:
-                if not link.startswith('/'):
-                    link = '/{}'.format(link)
-                if '.html' not in link:
-                    link += '.html'
-            items.append({
-                'name': name.strip(),
-                'link': link,
-                'image': '/images/{}'.format(image.strip()),
-            })
+                if not link.startswith("/"):
+                    link = "/{}".format(link)
+                if ".html" not in link:
+                    link += ".html"
+            items.append(
+                {
+                    "name": name.strip(),
+                    "link": link,
+                    "image": "/images/{}".format(image.strip()),
+                }
+            )
 
         col_widths = self.get_column_widths(cols)
         title, messages = self.make_title()
         table = nodes.table()
-        table['classes'].append('table-center')
+        table["classes"].append("table-center")
 
         # Set up column specifications based on widths
         tgroup = nodes.tgroup(cols=cols)
         table += tgroup
-        tgroup.extend(
-            nodes.colspec(colwidth=col_width)
-            for col_width in col_widths
-        )
+        tgroup.extend(nodes.colspec(colwidth=col_width) for col_width in col_widths)
 
         tbody = nodes.tbody()
         tgroup += tbody
@@ -166,12 +157,12 @@ class ImageTableDirective(Table):
                     entry += nodes.paragraph()
                     trow += entry
                     continue
-                name = cell['name']
-                link = cell['link']
-                image = cell['image']
+                name = cell["name"]
+                link = cell["link"]
+                image = cell["image"]
                 reference_node = nodes.reference(refuri=link)
                 img = nodes.image(uri=directives.uri(image), alt=name)
-                img['classes'].append('component-image')
+                img["classes"].append("component-image")
                 reference_node += img
                 para = nodes.paragraph()
                 para += reference_node
@@ -186,8 +177,8 @@ class ImageTableDirective(Table):
                     entry += nodes.paragraph()
                     trow += entry
                     continue
-                name = cell['name']
-                link = cell['link']
+                name = cell["name"]
+                link = cell["link"]
                 ref = nodes.reference(name, name, refuri=link)
                 para = nodes.paragraph()
                 para += ref
@@ -207,8 +198,6 @@ class PinTableDirective(Table):
     option_spec = {}
 
     def run(self):
-        env = self.state.document.settings.env
-
         items = []
 
         data = list(csv.reader(self.content))
@@ -227,18 +216,14 @@ class PinTableDirective(Table):
         # Set up column specifications based on widths
         tgroup = nodes.tgroup(cols=2)
         table += tgroup
-        tgroup.extend(
-            nodes.colspec(colwidth=col_width)
-            for col_width in col_widths
-        )
+        tgroup.extend(nodes.colspec(colwidth=col_width) for col_width in col_widths)
 
         thead = nodes.thead()
         tgroup += thead
         trow = nodes.row()
         thead += trow
         trow.extend(
-            nodes.entry(h, nodes.paragraph(text=h))
-            for h in ('Pin', 'Function')
+            nodes.entry(h, nodes.paragraph(text=h)) for h in ("Pin", "Function")
         )
 
         tbody = nodes.tbody()
@@ -269,18 +254,16 @@ class PinTableDirective(Table):
 
 
 def setup(app):
-    app.add_role('libpr', libpr_role)
-    app.add_role('corepr', libpr_role)
-    app.add_role('yamlpr', yamlpr_role)
-    app.add_role('esphomepr', yamlpr_role)
-    app.add_role('docspr', docspr_role)
-    app.add_role('ghuser', ghuser_role)
-    app.add_role('apiref', apiref_role)
-    app.add_role('apiclass', apiclass_role)
-    app.add_role('apistruct', apistruct_role)
-    app.add_role('ghedit', ghedit_role)
-    app.add_directive('imgtable', ImageTableDirective)
-    app.add_directive('pintable', PinTableDirective)
-    return {"version": "1.0.0",
-            "parallel_read_safe": True,
-            "parallel_write_safe": True}
+    app.add_role("libpr", libpr_role)
+    app.add_role("corepr", libpr_role)
+    app.add_role("yamlpr", yamlpr_role)
+    app.add_role("esphomepr", yamlpr_role)
+    app.add_role("docspr", docspr_role)
+    app.add_role("ghuser", ghuser_role)
+    app.add_role("apiref", apiref_role)
+    app.add_role("apiclass", apiclass_role)
+    app.add_role("apistruct", apistruct_role)
+    app.add_role("ghedit", ghedit_role)
+    app.add_directive("imgtable", ImageTableDirective)
+    app.add_directive("pintable", PinTableDirective)
+    return {"version": "1.0.0", "parallel_read_safe": True, "parallel_write_safe": True}

@@ -66,8 +66,8 @@ Do note that the actions are only called when the current temperature leaves the
         idle_action:
           - switch.turn_off: heater
 
-Configuration variables
------------------------
+Configuration variables:
+------------------------
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
 - **default_target_temperature_low** (**Required**, float): The default low target temperature for
