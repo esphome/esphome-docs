@@ -10,7 +10,8 @@ some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/disp
 with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board is supported as well.
 Depending on your specific revision of the board you might need to try out the `-b73` or `-b1` version (see below).
 Similar modules sold by other vendors might also work but not have been tested yet. Currently only
-single-color E-Ink displays are implemented and of those only a few modules.
+single-color E-Ink displays are implemented (and of those, only a few modules). Waveshare 7-color ACEP displays are
+also supported (see below); an ESP32 is recommended due to the amount of memory required for the display buffer.
 
 .. figure:: images/waveshare_epaper-full.jpg
     :align: center
@@ -81,6 +82,7 @@ Configuration variables:
   - ``2.90inv2``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
+  - ``5.65in`` (ACEP 7-color display)
   - ``5.83in``
   - ``7.50in``
   - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)
@@ -103,6 +105,39 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+Advanced Color E-Paper (ACEP)
+-----------------------------
+Waveshare ACEP (Type F) displays are capable of displaying 7 colors.  The following constants are available for use in
+the color argument in the various rendering functions in your display lambdas (or pages):
+
+- ``esphome::waveshare_epaper::COLOR_F_BLACK``
+- ``esphome::waveshare_epaper::COLOR_F_WHITE``
+- ``esphome::waveshare_epaper::COLOR_F_GREEN``
+- ``esphome::waveshare_epaper::COLOR_F_BLUE``
+- ``esphome::waveshare_epaper::COLOR_F_RED``
+- ``esphome::waveshare_epaper::COLOR_F_YELLOW``
+- ``esphome::waveshare_epaper::COLOR_F_ORANGE``
+
+To render images, ensure that they have been converted to a 7-color palette with the following colors:
+
+========= ================= ===========
+**Color** **RGB**           **Hex**
+--------- ----------------- -----------
+Black     ``0, 0, 0``       ``#000000``
+--------- ----------------- -----------
+White     ``255, 255, 255`` ``#FFFFFF``
+--------- ----------------- -----------
+Green     ``0, 255, 255``   ``#00FFFF``
+--------- ----------------- -----------
+Blue      ``0, 0, 255``     ``#0000FF``
+--------- ----------------- -----------
+Red       ``255, 0, 0``     ``#FF0000``
+--------- ----------------- -----------
+Yellow    ``255, 255, 0``   ``#FFFF00``
+--------- ----------------- -----------
+Orange    ``255, 127, 0``   ``#FF7F00``
+========= ================= ===========
 
 See Also
 --------
