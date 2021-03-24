@@ -31,9 +31,9 @@ rarely be necessary, as the SPI bus can be shared by the devices).
 
     # Example configuration entry
     spi:
-      clk_pin: GPIO21
-      mosi_pin: GPIO22
-      miso_pin: GPIO23
+      clk_pin: GPIO14
+      mosi_pin: GPIO13
+      miso_pin: GPIO12
 
 Configuration variables:
 ------------------------
