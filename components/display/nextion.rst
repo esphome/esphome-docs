@@ -18,8 +18,17 @@ with ESPHome.
 As the communication with the Nextion LCD display is done using UART, you need to have an :ref:`UART bus <uart>`
 in your configuration with ``rx_pin`` both the ``tx_pin`` set to the respective pins on the display.
 The Nextion uses a baud rate of 9600 by default. It may be configured to use a faster speed by adding (for
-example) ``baud=115200`` to the ``program.s`` source file (in the Nextion Editor) before the ``page`` line.
-This permits faster communication with the Nextion display and it is highly recommended when using :ref:`uart-hardware_uarts`.
+example) 
+
+.. code-block:: c++
+
+    baud=115200   // Sets the baud rate to 115200
+    bkcmd=0       // Tells the Nextion to not send responses on commands. This is the current default but can be set just in case
+
+ 
+  
+to the ``program.s`` source file (in the Nextion Editor) before the ``page`` line.
+This permits faster communication with the Nextion display and it is highly recommended when using :ref:`uart-hardware_uarts`. Without a hardware uart make sure to set the baud rate to 9600.
 
 
 The below example configures a UART for the Nextion display to use
@@ -120,7 +129,7 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
 
 .. _nextion_on_sleep_on_wake:
 
-- ``on_sleep``/``on_wake``: Retrieve the current state of the switch.
+- ``on_sleep``/``on_wake``: Actions to perform when the Nextion goes in and out of sleep.
 
   .. code-block:: yaml
 
@@ -199,7 +208,7 @@ unresponsive and no logging will take place. This uses the same protocol as the 
 
 .. warning::
 
-    If :ref:`uart-hardware_uarts` are not available than inconsistant results can occur. Lowering the baud to 9600 baud my help.
+    If :ref:`uart-hardware_uarts` are not available than inconsistant results WILL occur. Lowering the baud to 9600 baud my help.
 
 
 To host the TFT file you can use Home Assistant itself or any other web server. HTTPS while always recommened on any network will greatly reduce the upload speed.
@@ -227,8 +236,6 @@ The below NGINX example configuration will server files out of /var/www/nextion 
       access_log  /var/log/nginx/nextion_access.log;    
       error_log  /var/log/nginx/nextion_error.log;
       root /var/www/nextion;
-      keepalive_timeout 1800;
-      send_timeout 1800;
     }
 
 
@@ -241,7 +248,7 @@ This library supports a few different components allowing communication back and
 
     If the Nextion is sleeping or if the componet was set to be hidden it will not update its components even if updates are sent. After the Nextion wakes up all components will send their states to the Nextion to get around this.
 
-With the exception of the - :doc:`../binary_sensor/nextion` that has ``page_id``/``component_id``, the example below illustrates:
+With the exception of the - :doc:`../binary_sensor/nextion` that has the ``page_id``/``component_id`` options configured, the example below illustrates:
  - Polling the Nextion for updates
  - Dynamic updates sent from the Nextion to the ESP device
 
