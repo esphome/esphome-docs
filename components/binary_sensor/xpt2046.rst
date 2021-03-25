@@ -130,10 +130,10 @@ produces
 
 .. code-block:: none
 
-  [20:17:37][I][main:065]: args x=145, y=261, touched=touch
-  [20:17:37][I][main:073]: member x=145, y=261, touched=1, x_raw=1686, y_raw=3218, z_raw=424
-  [20:17:37][I][main:065]: args x=145, y=261, touched=release
-  [20:17:37][I][main:073]: member x=145, y=261, touched=0, x_raw=0, y_raw=0, z_raw=0
+    [20:17:37][I][main:065]: args x=145, y=261, touched=touch
+    [20:17:37][I][main:073]: member x=145, y=261, touched=1, x_raw=1686, y_raw=3218, z_raw=424
+    [20:17:37][I][main:065]: args x=145, y=261, touched=release
+    [20:17:37][I][main:073]: member x=145, y=261, touched=0, x_raw=0, y_raw=0, z_raw=0
 
 Binary Sensor
 -------------
@@ -167,42 +167,42 @@ values nor ``swap_x_y``.
 
 .. code-block:: yaml
 
-  # Touchscreen
-  xpt2046:
-    id: touchscreen
-    cs_pin: 17
-    irq_pin: 16
-    dimension_x: 240
-    dimension_y: 320
-    on_state:
-      - lambda: |-
-          if (touched)
-            ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%d",
-                id(touchscreen).x,
-                id(touchscreen).y,
-                id(touchscreen).x_raw,
-                id(touchscreen).y_raw,
-                );
+    # Touchscreen
+    xpt2046:
+      id: touchscreen
+      cs_pin: 17
+      irq_pin: 16
+      dimension_x: 240
+      dimension_y: 320
+      on_state:
+        - lambda: |-
+            if (touched)
+              ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%d",
+                  id(touchscreen).x,
+                  id(touchscreen).y,
+                  id(touchscreen).x_raw,
+                  id(touchscreen).y_raw,
+                  );
 
 Get a stylus or a similar object, run the project and touch the corners of the screen at
 the edge pixels. Repeat several times and note minimum and maximum x and y raw values.
 
 .. code-block:: none
 
-  ... top left ...
-  [21:07:48][I][cal:071]: x=217, y=34, x_raw=3718, y_raw=445
-  [21:07:49][I][cal:071]: x=222, y=32, x_raw=3804, y_raw=419
-  ... top right ...
-  [21:07:52][I][cal:071]: x=19, y=36, x_raw=334, y_raw=370
-  [21:07:52][I][cal:071]: x=22, y=35, x_raw=386, y_raw=347
-  ... bottom left ...
-  [21:08:00][I][cal:071]: x=224, y=299, x_raw=3836, y_raw=3835
-  [21:08:00][I][cal:071]: x=225, y=303, x_raw=3848, y_raw=3878
-  [21:08:01][I][cal:071]: x=223, y=299, x_raw=3807, y_raw=3829
-  ... bottom right ...
-  [21:08:11][I][cal:071]: x=16, y=299, x_raw=281, y_raw=3839
-  [21:08:12][I][cal:071]: x=19, y=302, x_raw=328, y_raw=3866
-  [21:08:13][I][cal:071]: x=20, y=296, x_raw=358, y_raw=3799
+    ... top left ...
+    [21:07:48][I][cal:071]: x=217, y=34, x_raw=3718, y_raw=445
+    [21:07:49][I][cal:071]: x=222, y=32, x_raw=3804, y_raw=419
+    ... top right ...
+    [21:07:52][I][cal:071]: x=19, y=36, x_raw=334, y_raw=370
+    [21:07:52][I][cal:071]: x=22, y=35, x_raw=386, y_raw=347
+    ... bottom left ...
+    [21:08:00][I][cal:071]: x=224, y=299, x_raw=3836, y_raw=3835
+    [21:08:00][I][cal:071]: x=225, y=303, x_raw=3848, y_raw=3878
+    [21:08:01][I][cal:071]: x=223, y=299, x_raw=3807, y_raw=3829
+    ... bottom right ...
+    [21:08:11][I][cal:071]: x=16, y=299, x_raw=281, y_raw=3839
+    [21:08:12][I][cal:071]: x=19, y=302, x_raw=328, y_raw=3866
+    [21:08:13][I][cal:071]: x=20, y=296, x_raw=358, y_raw=3799
 
 That means that the minimum raw x is 281, maximum 3848, minimum y 347 and maximum 3878.
 
@@ -219,21 +219,21 @@ The vertical direction is fine. The configuration would thus be
 
 .. code-block:: yaml
 
-  xpt2046:
-    calibration_x_min: 3848
-    calibration_x_max: 281
-    calibration_y_min: 347
-    calibration_y_max: 3878
+    xpt2046:
+      calibration_x_min: 3848
+      calibration_x_max: 281
+      calibration_y_min: 347
+      calibration_y_max: 3878
 
 Compile, run and click on the edges again. The x and y should now match the coordinates
 of the display.
 
 .. code-block:: none
 
-  [21:32:34][I][cal:071]: x=7, y=6, x_raw=3755, y_raw=407
-  [21:32:37][I][cal:071]: x=237, y=4, x_raw=313, y_raw=385
-  [21:32:43][I][cal:071]: x=239, y=318, x_raw=284, y_raw=3845
-  [21:33:05][I][cal:071]: x=2, y=313, x_raw=3821, y_raw=3793
+    [21:32:34][I][cal:071]: x=7, y=6, x_raw=3755, y_raw=407
+    [21:32:37][I][cal:071]: x=237, y=4, x_raw=313, y_raw=385
+    [21:32:43][I][cal:071]: x=239, y=318, x_raw=284, y_raw=3845
+    [21:33:05][I][cal:071]: x=2, y=313, x_raw=3821, y_raw=3793
 
 Note that the touchscreen is not extremely precise and there might be nonlinearities
 or similar errors so don't expect a pixel-perfect precision. You can verify the touchpoint
@@ -241,12 +241,12 @@ using a display lambda similar to the following.
 
 .. code-block:: none
 
-  display:
-    - platform: ili9341
-      lambda: |-
-        it.fill(BLACK);
-        if (id(touchscreen).touched)
-          it.filled_circle(id(touchscreen).x, id(touchscreen).y, 10, RED);
+    display:
+      - platform: ili9341
+        lambda: |-
+          it.fill(BLACK);
+          if (id(touchscreen).touched)
+            it.filled_circle(id(touchscreen).x, id(touchscreen).y, 10, RED);
 
 To be exact, the component does the following
 
