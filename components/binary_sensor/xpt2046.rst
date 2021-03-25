@@ -27,32 +27,32 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
 
 .. code-block:: yaml
 
-  # Example configuration entry
-  xpt2046:
-    id: touchscreen
-    cs_pin: 17
-    irq_pin: 16
-    update_interval: 50ms
-    report_interval: 1s
-    threshold: 400
-    dimension_x: 240
-    dimension_y: 320
-    calibration_x_min: 3860
-    calibration_x_max: 280
-    calibration_y_min: 340
-    calibration_y_max: 3860
-    swap_x_y: False
+    # Example configuration entry
+    xpt2046:
+      id: touchscreen
+      cs_pin: 17
+      irq_pin: 16
+      update_interval: 50ms
+      report_interval: 1s
+      threshold: 400
+      dimension_x: 240
+      dimension_y: 320
+      calibration_x_min: 3860
+      calibration_x_max: 280
+      calibration_y_min: 340
+      calibration_y_max: 3860
+      swap_x_y: False
 
-  binary_sensor:
-    - platform: xpt2046
-      xpt2046_id: touchscreen
-      id: touch_key0
-      x_min: 80
-      x_max: 160
-      y_min: 106
-      y_max: 212
-      on_state:
-        - lambda: 'ESP_LOGI("main", "key0: %s", (x ? "touch" : "release"));'
+    binary_sensor:
+      - platform: xpt2046
+        xpt2046_id: touchscreen
+        id: touch_key0
+        x_min: 80
+        x_max: 160
+        y_min: 106
+        y_max: 212
+        on_state:
+          - lambda: 'ESP_LOGI("main", "key0: %s", (x ? "touch" : "release"));'
   
 
 Configuration variables:
