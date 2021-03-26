@@ -5,6 +5,10 @@ ESPHome is an open-source project, and everybody can contribute to it to make th
 project awesome. This list contains a list of people who have submitted patches
 that have made it into the `ESPHome organization's <https://github.com/esphome>`__ repositories.
 
+ESPHome is lead by `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__, who is funded to work on ESPHome full-time by `Nabu Casa <https://www.nabucasa.com>`__. To help fund development of ESPHome, subscribe to `Home Assistant Cloud by Nabu Casa <https://www.nabucasa.com>`__.
+
+ESPHome was originally founded by `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__.
+
 Contributors
 ************
 
@@ -200,7 +204,6 @@ Contributors
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__ - 2 contributions
 - `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__ - 11 contributions
-- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 119 contributions
 - `Jérémy JOURDIN (@JJK801) <https://github.com/JJK801>`__ - 1 contribution
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__ - 1 contribution
 - `Justin Maxwell (@jkmaxwell) <https://github.com/jkmaxwell>`__ - 1 contribution
@@ -302,7 +305,6 @@ Contributors
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__ - 1 contribution
 - `Erik Näsström (@Naesstrom) <https://github.com/Naesstrom>`__ - 1 contribution
 - `Oskar Napieraj (@napieraj) <https://github.com/napieraj>`__ - 7 contributions
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 2356 contributions
 - `Bergont Nicolas (@nbergont) <https://github.com/nbergont>`__ - 1 contribution
 - `Nebula (@nebula-it) <https://github.com/nebula-it>`__ - 1 contribution
 - `nepozs (@nepozs) <https://github.com/nepozs>`__ - 1 contribution
