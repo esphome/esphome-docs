@@ -71,8 +71,8 @@ Base Configuration:
   via SPI.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. Defaults to ``50ms``. If ``irq_pin`` is specified the touch will be detected
-  nearly instantaneously and this setting will be used only for the release detection. 
+  sensor. If ``irq_pin`` is specified the touch will be detected nearly instantaneously and this setting 
+  will be used only for the release detection. Defaults to ``50ms``.
 
 - **report_interval** (*Optional*, :ref:`config-time`): If not zero the component will
   report the coordinates periodically while the touchscreen is touched. Defaults to zero.
@@ -88,11 +88,11 @@ Base Configuration:
   the touchscreen is used with. See :ref:`xpt2046-calibration`
   for the process to calibrate the touchscreen. Defaults to ``0`` and ``4095``.
 
-- **swap_x_y** (*Optional*): If true the x and y axes are swapped, i.e. the raw sensor
+- **swap_x_y** (*Optional*, boolean): If true the x and y axes are swapped, i.e. the raw sensor. Defaults to ``false``.
   axis runs vertically and the y one horizontally. Defaults to no swap.
 
 - **on_state** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the touchscreen is pressed or released.
+  when the touchscreen is pressed or released. See :ref:`xpt2046-on_state`.
 
 .. _xpt2046-on_state:
 
@@ -106,7 +106,7 @@ This trigger provides three arguments: ``x`` and ``y`` are of the type int and s
 coordinates of the touch and a bool ``touched`` specifying whether a touch or release was
 detected.
 
-Additionally the coordinates, touch status and the raw values needed for the calibration
+Additionally to the coordinates, the touch status and the raw values needed for the calibration
 can be accessed as member variables.
 
 The following code
@@ -144,7 +144,7 @@ to create individual binary sensors for each virtual button.
 
 - **name** (*Optional*, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **xpt2046_id** (*Optional*, :ref:`config-id`): Specify the ID of the component the sensor is part of.
+- **xpt2046_id** (*Optional*, :ref:`config-id`): Specify the ID of the component the sensor is part of. Useful when you have more than one touch screen.
 - **x_min**, **x_max**, **y_min**, **y_min** (*Required*, integer): What area on the screen should
   be detected as the virtual button.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
