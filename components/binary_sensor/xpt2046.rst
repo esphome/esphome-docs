@@ -77,7 +77,7 @@ Base Configuration:
 - **report_interval** (*Optional*, :ref:`config-time`): If not zero the component will
   report the coordinates periodically while the touchscreen is touched. Defaults to zero.
 
-- **threshold** (*Optional*): The value to detect the touch or release. Defaults to 400.
+- **threshold** (*Optional*, integer): The value to detect the touch or release. Defaults to ``400``.
 
 - **dimension_x**, **dimension_y** (*Optional*): The dimensions of the display in the x and y
   direction. Usually in pixels but a percentage can be useful as well.
