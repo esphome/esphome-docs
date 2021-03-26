@@ -2,7 +2,7 @@ XPT2046 Touch Screen Controller
 ==================================
 
 .. seo::
-    :description: Instructions for setting up XPT2046 touchscreen controller with ESPHome
+    :description: Instructions for setting up XPT2046 touch screen controller with ESPHome
     :image: xpt2046.jpg
     :keywords: XPT2046
 
@@ -11,7 +11,7 @@ XPT2046 Touch Screen Controller
 Component/Hub
 -------------
 
-The ``xpt2046`` component allows using the touchscreen controllers
+The ``xpt2046`` component allows using the touch screen controllers
 based on the XPT2046 chip
 (`datasheet <https://datasheetspdf.com/pdf-file/746665/XPTEK/XPT2046/1>`__,
 `AZ-Delivery`_) with ESPHome. Many cheap LCD displays contain this controller.
@@ -57,7 +57,7 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
 
 Configuration variables:
 ------------------------
-The configuration is made up of two parts: The touchscreen component, and optional individual binary sensors.
+The configuration is made up of two parts: The touch screen component, and optional individual binary sensors.
 
 Base Configuration:
 
@@ -74,32 +74,41 @@ Base Configuration:
   sensor. If ``irq_pin`` is specified the touch will be detected nearly instantaneously and this setting 
   will be used only for the release detection. Defaults to ``50ms``.
 
-- **report_interval** (*Optional*, :ref:`config-time`): If not zero the component will
-  report the coordinates periodically while the touchscreen is touched. Defaults to zero.
+- **report_interval** (*Optional*, :ref:`config-time`): The interval to periodically
+  report the coordinates while the touch screen is touched. Defaults to ``never``.
 
 - **threshold** (*Optional*, integer): The value to detect the touch or release. Defaults to ``400``.
 
-- **dimension_x**, **dimension_y** (*Optional*): The dimensions of the display in the x and y
-  direction. Usually in pixels but a percentage can be useful as well.
-  Defaults to ``100``.
+- **dimension_x** (*Optional*, integer): The dimension of the display in the horizontal
+  direction. Usually in pixels but a percentage can be useful as well. Defaults to ``100``.
 
-- **calibration_x_min**, **calibration_x_max**, **calibration_y_min**, **calibration_y_max**
-  (*Optional*): These are raw values corresponding to the edge pixels of the display
-  the touchscreen is used with. See :ref:`xpt2046-calibration`
-  for the process to calibrate the touchscreen. Defaults to ``0`` and ``4095``.
+- **dimension_y** (*Optional*, integer): The dimension of the display in the vertical
+  direction. Usually in pixels but a percentage can be useful as well. Defaults to ``100``.
 
-- **swap_x_y** (*Optional*, boolean): If true the x and y axes are swapped, i.e. the raw sensor. Defaults to ``false``.
-  axis runs vertically and the y one horizontally. Defaults to no swap.
+- **calibration_x_min** (*Optional*, integer): The raw value corresponding to the left
+  (or top if ``swap_x_y`` is specified) edge of the display. See :ref:`xpt2046-calibration`
+  for the process to calibrate the touch screen. Defaults to ``0``.
+
+- **calibration_x_max** (*Optional*, integer): The raw value corresponding to the right
+  (or bottom if ``swap_x_y`` is specified) edge of the display. Defaults to ``4095``.
+
+- **calibration_y_min** (*Optional*, integer): The raw value corresponding to the top
+  (or left if ``swap_x_y`` is specified) edge of the display. Defaults to ``0``.
+
+- **calibration_y_max** (*Optional*, integer): The raw value corresponding to the bottom
+  (or right if ``swap_x_y`` is specified) edge of the display. Defaults to ``4095``.
+
+- **swap_x_y** (*Optional*, boolean): If true the x and y axes are swapped. Defaults to ``false``.
 
 - **on_state** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the touchscreen is pressed or released. See :ref:`xpt2046-on_state`.
+  when the touch screen is pressed or released. See :ref:`xpt2046-on_state`.
 
 .. _xpt2046-on_state:
 
 ``on_state`` Action
 -------------------
 
-This automation will be triggered when the XPT2046 touchscreen detects a touch, a release
+This automation will be triggered when the XPT2046 touch screen detects a touch, a release
 or periodically each ``report_interval`` while touched.
 
 This trigger provides three arguments: ``x`` and ``y`` are of the type int and specify the
@@ -138,15 +147,17 @@ produces
 Binary Sensor
 -------------
 
-The ``xpt2046`` binary sensor allows you to setup areas on the touchscreen as virtual
+The ``xpt2046`` binary sensor allows you to setup areas on the touch screen as virtual
 buttons. First, setup a :ref:`xpt2046-component` and then use this binary sensor platform
 to create individual binary sensors for each virtual button.
 
 - **name** (*Optional*, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **xpt2046_id** (*Optional*, :ref:`config-id`): Specify the ID of the component the sensor is part of. Useful when you have more than one touch screen.
-- **x_min**, **x_max**, **y_min**, **y_min** (*Required*, integer): What area on the screen should
-  be detected as the virtual button.
+- **x_min** (*Required*, integer): Left coordinate of the screen area to be detected as the virtual button.
+- **x_max** (*Required*, integer): Right coordinate of the screen area to be detected as the virtual button.
+- **y_min** (*Required*, integer): Top coordinate of the screen area to be detected as the virtual button.
+- **y_max** (*Required*, integer): Bottom coordinate of the screen area to be detected as the virtual button.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _xpt2046-calibration:
@@ -154,7 +165,7 @@ to create individual binary sensors for each virtual button.
 Calibration
 -----------
 
-To match the point of the touch to the display coordinates the touchscreen has to be calibrated.
+To match the point of the touch to the display coordinates the touch screen has to be calibrated.
 The XPT2046 component returns raw values in the 0 to 4095 range. Those raw values are available
 as the ``x_raw`` and ``y_raw`` member variables and for example write them out as in the example
 :ref:`xpt2046-on_state`. The goal of the calibration is to identify the raw values corresponding
@@ -235,7 +246,7 @@ of the display.
     [21:32:43][I][cal:071]: x=239, y=318, x_raw=284, y_raw=3845
     [21:33:05][I][cal:071]: x=2, y=313, x_raw=3821, y_raw=3793
 
-Note that the touchscreen is not extremely precise and there might be nonlinearities
+Note that the touch screen is not extremely precise and there might be nonlinearities
 or similar errors so don't expect a pixel-perfect precision. You can verify the touchpoint
 using a display lambda similar to the following.
 
