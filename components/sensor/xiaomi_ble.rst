@@ -140,7 +140,7 @@ Configuration example:
 CGG1
 ****
 
-Cleargrass (Qingping): hygro thermometer, round body, e-ink display.
+Hygro thermometer, round body, e-ink display.
 
 New firmware requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`), and stopped broadcasting battery level.
 
@@ -161,13 +161,6 @@ Configuration example:
           name: "CGG1 Humidity"
         battery_level:
           name: "CGG1 Battery Level"
-      - platform: xiaomi_cgg1
-        mac_address: "7A:80:8E:28:39:CD"
-        bindkey: "00112233445566778899aabbccddeeff"
-        temperature:
-          name: "CGG1 (New) Temperature"
-        humidity:
-          name: "CGG1 (New) Humidity"
 
 LYWSD03MMC
 **********
@@ -365,6 +358,33 @@ Configuration example:
         illuminance:
           name: "MJYD02YL-A Illuminance"
 
+MCCGQ02HL
+*********
+
+Xiaomi Mijia Window Door Sensor 2 broadcasts light on/off status, door open/closed and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`). Implemented as a hybrid sensor, needs both ``sensor`` and ``binary_sensor`` in config.
+
+.. figure:: images/xiaomi_mccgq02hl.png
+    :align: center
+    :width: 30.0%
+
+Configuration example:
+
+.. code-block:: yaml
+
+    sensor:
+
+    binary_sensor:
+      - platform: xiaomi_mccgq02hl
+        name: "MCCGQ02HL Door Sensor"
+        mac_address: 50:EC:50:CD:32:02
+        bindkey: "48403ebe2d385db8d0c187f81e62cb64"
+        battery_level:
+          name: "MCCGQ02HL Battery Level"
+        light:
+          name: "MCCGQ02HL Light"
+        opening:
+          name: "MCCGQ02HL Open"
+
 Setting Up Devices
 ------------------
 
@@ -430,7 +450,9 @@ The easiest method (confirmed to work for LYWSD03MMC) is to use the `Telink flas
 
 The other option is to use the original Mi Home app to add the sensor once. While adding the device, a new key is generated and uploaded into the Xiaomi cloud and to the device itself. Currently a chinese server needs to be selected as the rest of the world doesn't support most of these devices yet. Once generated, the key will not change again until the device is removed and re-added in the Xiaomi app.
 
-In order to obtain the bind key, a SSL packet sniffer needs to be setup on either an Android phone or the iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ in combination with `Wireshark <https://www.wireshark.org/>`__. A tutorial on how to setup the Remote PCAP packet sniffer can be found `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__ and `here <https://github.com/ahpohl/xiaomi_lywsd03mmc>`__. Instructions how to obtain the key using an iPhone are `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. Once the traffic between the Mi Home app and the Xiaomi servers has been recorded, the bind key will show in clear text:
+You can obtain all keys from the cloud servers using [this script](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor). If the script does not work, you can obtain the key during registration by tapping the network traffic.
+
+In order to obtain the bind key using network tapping, a SSL packet sniffer needs to be setup on either an Android phone or the iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ in combination with `Wireshark <https://www.wireshark.org/>`__. A tutorial on how to setup the Remote PCAP packet sniffer can be found `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__ and `here <https://github.com/ahpohl/xiaomi_lywsd03mmc>`__. Instructions how to obtain the key using an iPhone are `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. Once the traffic between the Mi Home app and the Xiaomi servers has been recorded, the bind key will show in clear text:
 
 .. code-block:: yaml
 
