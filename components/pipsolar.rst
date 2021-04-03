@@ -52,7 +52,7 @@ Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this pipsolar component.
-- **uart_id** (*Optional*): The I²C Bus ID
+- **uart_id** (*Optional*): The uart Bus ID
 
 
 
