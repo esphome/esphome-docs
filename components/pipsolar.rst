@@ -54,7 +54,33 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this pipsolar component.
 - **uart_id** (*Optional*): The uart Bus ID
 
+Sensors
+--------
+.. code-block:: yaml
 
+    # Example configuration entry
+    sensor:
+      - platform: pipsolar
+        pipsolar_id: inverter0
+        grid_rating_voltage:
+          id: inverter0_grid_rating_voltage
+          name: inverter0_grid_rating_voltage
+        grid_rating_current:
+          id: inverter0_grid_rating_current
+          name: inverter0_grid_rating_current
+        ac_output_apparent_power:
+          id: inverter0_ac_output_apparent_power
+          name: inverter0_ac_output_apparent_power
+        ac_output_active_power:
+          id: inverter0_ac_output_active_power
+          name: inverter0_ac_output_active_power
+
+Configuration variables:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+all sensors are normal sensors... so all sensor variables are working to.
+
+- **uart_id** (*Optional*): The uart Bus ID
 
 See Also
 --------
