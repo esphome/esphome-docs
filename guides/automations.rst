@@ -394,6 +394,7 @@ All Conditions
 - :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
 - :ref:`text_sensor.state <text_sensor-state_condition>`
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
+- :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 
 All Lambda Calls
 ----------------
