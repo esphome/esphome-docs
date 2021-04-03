@@ -97,6 +97,7 @@ Sensor Components
     ADE7953, components/sensor/ade7953, ade7953.svg
     ADS1115, components/sensor/ads1115, ads1115.jpg
     AHT10, components/sensor/aht10, aht10.jpg
+    AirThings BLE, components/sensor/airthings_ble, airthings_logo.png
     AM2320, components/sensor/am2320, am2320.jpg
     APDS9960, components/sensor/apds9960, apds9960.jpg
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
