@@ -210,6 +210,7 @@ Binary Sensor Components
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+    Touch GUI, components/binary_sensor/touch_gui, touch-gui.svg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
