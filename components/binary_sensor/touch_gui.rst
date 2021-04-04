@@ -179,7 +179,7 @@ Momentary button
 
 A momentary button reacts with a transition to an activated state when the touch is registered and a return to an inactive
 state a moment later. The common usage is executing actions using the button's
-:ref: `binary_sensor.on_press <binary_sensor-on_press>` automation.
+:ref:`binary_sensor.on_press <binary_sensor-on_press>` automation.
 
 .. code-block:: yaml
 
