@@ -77,7 +77,7 @@ Sensors
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
-all sensors are normal sensors... so all sensor variables are working to.
+All sensors are normal sensors... so all sensor variables are working to.
 
 - **grid_rating_voltage** (*Optional*): grid rating voltage
 - **grid_rating_current** (*Optional*): grid rating current
@@ -145,7 +145,7 @@ Binary Sensors
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
-all sensors are normal binary sensors... so all binary sensor variables are working to.
+All sensors are normal binary sensors... so all binary sensor variables are working to.
 
 - **add_sbu_priority_version** (*Optional*): add sbu priority version
 - **configuration_status** (*Optional*): configuration status
@@ -223,7 +223,7 @@ Text Sensors
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
-all sensors are normal text sensors... so all text sensor variables are working to.
+All sensors are normal text sensors... so all text sensor variables are working to.
 
 - **device_mode** (*Optional*): device mode response
 - **last_qpigs** (*Optional*): last qpigs reponse
@@ -236,7 +236,7 @@ all sensors are normal text sensors... so all text sensor variables are working 
 
 Switches
 --------------
-not all possible switches are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself. 
+Not all possible switches are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself. 
 
 .. code-block:: yaml
 
@@ -259,7 +259,7 @@ not all possible switches are exposed as they lead to the possibility to make se
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
-all sensors are normal text sensors... so all text sensor variables are working to.
+All sensors are normal text sensors... so all text sensor variables are working to.
 
 - **output_source_priority_utility** (*Optional*): output source priority utility
 - **output_source_priority_solar** (*Optional*): output source priority solar
@@ -270,7 +270,7 @@ all sensors are normal text sensors... so all text sensor variables are working 
 
 Outputs
 --------------
-not all possible outputs are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself. 
+Not all possible outputs are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself. 
 
 .. code-block:: yaml
 
@@ -283,7 +283,7 @@ not all possible outputs are exposed as they lead to the possibility to make ser
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
-all sensors are normal text sensors... so all text sensor variables are working to.
+All sensors are normal text sensors... so all text sensor variables are working to.
 
 - **battery_recharge_voltage** (*Optional*): battery recharge voltage;
 - **battery_under_voltage** (*Optional*): battery under voltage;
