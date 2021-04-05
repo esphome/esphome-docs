@@ -50,6 +50,10 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.
 
+.. Note::
+
+    On ESP8266 you should avoid using GPIO16 (D0 on Wemos D1 Mini Pro) to drive the data line of the LED.
+
 .. _fastled_clockless-chipsets:
 
 Supported Chipsets
