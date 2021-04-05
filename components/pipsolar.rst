@@ -286,14 +286,55 @@ Configuration variables:
 All sensors are normal text sensors... so all text sensor variables are working to.
 
 - **battery_recharge_voltage** (*Optional*): battery recharge voltage;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 44.0,45.0,46.0,47.0,48.0,49.0,50.0,51.0
 - **battery_under_voltage** (*Optional*): battery under voltage;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 40.0,40.1,42,43,44,45,46,47,48.0
 - **battery_float_voltage** (*Optional*): battery float voltage;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 48.0,49.0,50.0,51.0
 - **battery_type** (*Optional*): battery type;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 0,1,2
 - **current_max_ac_charging_current** (*Optional*): current max ac charging current;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 2,10,20
 - **current_max_charging_current** (*Optional*): current max charging current;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 10,20,30,40
 - **output_source_priority** (*Optional*): output source priority;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 0,1,2
 - **charger_source_priority** (*Optional*): charger source priority;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 0,1,2,3
 - **battery_redischarge_voltage** (*Optional*): battery redischarge voltage;
+
+  - **possible_values** (*Optional*,list): a list of possible values default: 00.0,48.0,49,50.0,51.0,52,53,54,55,56,57,58
+
+.. _Pipsolaroutput_set_level_action:
+
+``Pipsolaroutput.set_level`` Action
+----------------------
+
+To use your outputs in :ref:`automations <automation>` or templates, you can use this action to set the
+target level of the output.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+      - Pipsolaroutput.set_level:
+          id: my_pipsolar_output
+          level: 48.0
+
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the output.
+- **level** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The target level.
+
 
 See Also
 --------
