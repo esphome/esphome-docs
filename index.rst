@@ -108,6 +108,7 @@ Sensor Components
     BME680, components/sensor/bme680, bme680.jpg
     BMP085, components/sensor/bmp085, bmp180.jpg
     BMP280, components/sensor/bmp280, bmp280.jpg
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
