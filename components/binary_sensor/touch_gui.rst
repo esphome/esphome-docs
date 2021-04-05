@@ -33,7 +33,7 @@ of the virtual buttons accordingly.
         active_foreground: color_button_text
         border: color_button_text
       button_font: sans20
-      lambda: |-
+      button_lambda: |-
         if (it.get_type() != touch_gui::TOUCH_GUI_BUTTON_TYPE_AREA) {
           it.get_display()->circle(it.get_x_center(), it.get_y_center(), 20, it.get_border_color());
           it.get_display()->filled_circle(it.get_x_center(), it.get_y_center(), 19, it.get_background_color_to_use());
@@ -58,7 +58,7 @@ Configuration variables
 - **active_foreground** (*Optional*, :ref:`config-id`): ID of the foreground color of an active button. Defaults to ``COLOR_OFF``.
 - **border** (*Optional*, :ref:`config-id`): ID of the color ti draw the button's border with. Defaults to ``COLOR_ON``.
 - **button_font** (*Optional*, :ref:`config-id`): ID of the font to draw the button's text with. No default.
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): A custom lambda to draw the button. The lambda is passed an ``it`` parameter
+- **button_lambda** (*Optional*, :ref:`lambda <config-lambda>`): A custom lambda to draw the button. The lambda is passed an ``it`` parameter
   representing the button to draw. See the :apiref:`TouchGUIButton <touch_gui/gui.h>` and :apiref:`BinarySensor <binary_sensor/binary_sensor.h>`
   APIs for the list of member variables and methods. Defaults to an internal method drawing a simple rectangle with a border defined
   by the configured colors, font and text.
