@@ -84,7 +84,7 @@ Configuration variables:
 
 - **tags** (**Required**): Specify the tag you want to retrieve from the Teleinformation and select with what name to transmit it.
 
-  - **name** (**Required**, string): The name of the tag corresponding to what the electrical counter send.
+  - **tag_name** (**Required**, string): The name of the tag corresponding to what the electrical counter send.
   - **sensor** (**Required**, :ref:`Sensor <config-sensor>`): Associate a sensor with the tag. See options from :ref:`Sensor <config-sensor>`.
 
 - **historical_mode** (*Optional*): Wether to use historical mode or standard mode.
