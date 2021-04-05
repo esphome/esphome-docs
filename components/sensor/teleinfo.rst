@@ -60,17 +60,17 @@ simply press -/+ buttons on the counter and look for `Standard mode` or
     sensor:
       - platform: teleinfo
         tags:
-         - name: "HCHC"
+         - tag_name: "HCHC"
            sensor:
             name: "hchc"
             unit_of_measurement: "Wh"
             icon: mdi:flash
-         - name: "HCHP"
+         - tag_name: "HCHP"
            sensor:
             name: "hchp"
             unit_of_measurement: "Wh"
             icon: mdi:flash
-         - name: "PAPP"
+         - tag_name: "PAPP"
            sensor:
             name: "papp"
             unit_of_measurement: "VA"
