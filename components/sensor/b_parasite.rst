@@ -38,18 +38,22 @@ Configuration variables
 -----------------------
 
 - **mac_address** (**Required**): The MAC address of the device.
-- **temperature** (**Optional**): Air temperature in Celcius.
+- **temperature** (*Optional*): Air temperature in Celcius.
 
   - **name** (**Required**): Sensor name.
-- **humidity** (**Optional**): Relative air humidity in %.
+  - All other options from :ref:`Sensor <config-sensor>`.
+- **humidity** (*Optional*): Relative air humidity in %.
 
   - **name** (**Required**): Sensor name.
-- **moisture** (**Optional**): Soil moisture in %.
+  - All other options from :ref:`Sensor <config-sensor>`.
+- **moisture** (*Optional*): Soil moisture in %.
 
   - **name** (**Required**): Sensor name.
-- **battery_voltage** (**Optional**): Battery voltage in volts.
+  - All other options from :ref:`Sensor <config-sensor>`.
+- **battery_voltage** (*Optional*): Battery voltage in volts.
 
   - **name** (**Required**): Sensor name.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
