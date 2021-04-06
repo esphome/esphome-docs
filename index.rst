@@ -106,6 +106,7 @@ Sensor Components
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
+    BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
     BMP085, components/sensor/bmp085, bmp180.jpg
     BMP280, components/sensor/bmp280, bmp280.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
