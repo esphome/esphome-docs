@@ -202,7 +202,8 @@ state a moment later. The common usage is executing actions using the button's
 Configuration variables
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-- **touch_time** (*Optional*, :ref:`config-time`): The interval after which to release the button. Defaults to ``100ms``.
+- **touch_time** (*Optional*, :ref:`config-time`): The interval after which to release the button. The button is also released
+  if the touch is released or if the page shown changes. Defaults to ``100ms``.
 
 
 .. _touch_gui-toggle-button:
