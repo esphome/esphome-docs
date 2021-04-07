@@ -23,7 +23,7 @@ Full operational feedback and position control.
 Overview
 --------
 
-Use a RS485-UART/TTL converter with automatic flow control (just ``RX``/``TX`` pins, no ``DE``/``RE``) to connect to your ESP8266/ESP32. A good chip will be the SP485 or you can try your luck at the generic modules from AliExpress. As the communication is done using UART (baud rate of 9600), you need to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the converter's ``RX`` and the ``tx_pin`` connected to the converter's ``TX``.
+Use a RS485-UART/TTL converter with automatic flow control (e.g. SP485, it needs to just have ``RX``/``TX`` pins, no ``DE``/``RE``) to connect to your ESP8266/ESP32. As the communication is done using UART (baud rate of 9600), you need to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the converter's ``RX`` and the ``tx_pin`` connected to the converter's ``TX``.
 
 .. code-block:: yaml
 
@@ -53,4 +53,5 @@ See Also
 
 - :doc:`index`
 - :apiref:`cover/dooya.h`
+- `Dooya RS485 protocol specification <https://drive.google.com/file/d/1C2GRhmSnMZNEexg_YGczrKEE6p8-d9PT/view>`__
 - :ghedit:`Edit`

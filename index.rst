@@ -313,6 +313,7 @@ Cover Components
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
     Dooya Cover, components/cover/dooya, dooya.jpg
+    Chenyang Cover, components/cover/chenyang, chenyang.png
 
 Text Sensor Components
 ----------------------
