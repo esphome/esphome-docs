@@ -92,6 +92,18 @@ Configuration for Olimex ESP32-POE
       phy_addr: 0
       power_pin: GPIO12
 
+Configuration for Olimex ESP32-EVB
+----------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+
 Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
 ----------------------------------------------------------------------
 
