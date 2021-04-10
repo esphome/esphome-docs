@@ -10,6 +10,8 @@ The ``ezo`` sensor platform allows you to use your EZO sensor circuits with
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
+Data sheet: (`datasheet <https://atlas-scientific.com/files/pH_EZO_Datasheet.pdf>`__)
+
 .. figure:: images/ezo-ph-circuit.png
     :align: center
     :width: 80.0%
@@ -43,18 +45,112 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. _evo_lambda_calls:
+
 lambda calls
 ------------
 
-From :ref:`lambdas <config-lambda>`, you can set the temperature compensation for the
-sensors that support that option.
+From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in various ways. For any ``get`` command a trigger will be called with the information retrieved from the sensor. See :ref:`evo_callbacks`.
 
-- ``set_tempcomp_value()``: Send the given temperature to the sensor.
+- ``set_tempcomp_value(float temp)``: Send the given temperature to the sensor.
 
   .. code-block:: cpp
 
       // Within a lambda, set the temperature compensation value from the temperature sensor
       id(ph_ezo).set_tempcomp_value(id(rtd_ezo).state);
+
+
+- ``set_t(std::string value)``: Send the given temperature to the sensor.
+
+  .. code-block:: cpp
+
+      // Within a lambda, set the temperature (in celcius) compensation value from the temperature sensor.
+      id(ph_ezo).set_t("27.00");
+
+
+- ``get_t()``: Sensor retrieves temperature compensation value and triggers ``on_t:`` once done
+
+  .. code-block:: cpp
+
+      // Within a lambda, set the temperature (in celcius) compensation value from the temperature sensor.
+      id(ph_ezo).get_t();
+
+
+- ``set_i2c()``: Set I2C mode
+
+  .. code-block:: cpp
+
+      // Set I2C Mode
+      id(ph_ezo).set_i2c();
+
+
+- ``set_sleep()``:  Put the device to sleep
+
+  .. code-block:: cpp
+
+      // Put the device to sleep
+      id(ph_ezo).set_sleep();
+
+
+- ``get_calibration()``: Sensor retrieves calibration and triggers ``on_calibration:`` once done
+
+  .. code-block:: cpp
+
+      // Calibration      
+      id(ph_ezo).get_calibration();
+
+- ``set_calibration(std::string point, std::string value)``: Sets calibration. Point is one of "low,mid,high". Refer to the datasheet for more information
+
+  .. code-block:: cpp
+
+      id(ph_ezo).set_calibration("mid", "7.00");
+      
+
+- ``clear_calibration()``: Clears calibration
+
+  .. code-block:: cpp
+
+      id(ph_ezo).clear_calibration();
+
+
+- ``get_device_information()``: Sensor retrieves calibration and triggers ``on_device_information:`` once done
+
+  .. code-block:: cpp
+
+      id(ph_ezo).get_device_information();
+
+
+- ``get_slope()``: Sensor retrieves slope and triggers ``on_slope:`` once done
+
+  .. code-block:: cpp
+
+      id(ph_ezo).get_slope();
+
+
+- ``get_led_state()``: Sensor LED state and triggers ``on_led:`` once done
+
+  .. code-block:: cpp
+
+      id(ph_ezo).get_led_state();
+
+  
+- ``set_led_state(bool on)``: Sensor LED on or off
+
+  .. code-block:: cpp
+
+      id(ph_ezo).set_led_state(true);
+
+
+.. _evo_callbacks:
+
+Callbacks
+---------
+
+- **on_led:** : Triggered after ``get_led_state()`` is called
+- **on_device_information:** : Triggered after ``get_device_information()`` is called
+- **on_slope:** : Triggered after ``get_slope()`` is called
+- **on_calibration:** : Triggered after ``get_calibration()`` is called
+- **on_t:** : Triggered after ``get_t()`` is called
 
 
 See Also
