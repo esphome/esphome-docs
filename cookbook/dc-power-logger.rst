@@ -41,7 +41,8 @@ Below is the code defining this sensor, you have to create a "power_logger.h" in
 "esphome" folder that should be on your default config folder.
 
 .. code-block:: c++
-   
+
+
     #include "esphome.h"
     #include "SD.h"
     
@@ -187,6 +188,7 @@ is a bit tricky at first glance, but the comments are there to take care of some
 'gotchas'.
 
 .. code-block:: yaml
+
     
     # The IMPORTANT comments on the component IDs that are used and that cannot be omitted
    
