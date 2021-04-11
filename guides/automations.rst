@@ -334,6 +334,7 @@ All Triggers
 - :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
+- :ref:`display.on_page_change <display-on_page_change-trigger>`
 
 All Actions
 -----------

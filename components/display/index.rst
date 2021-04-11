@@ -573,6 +573,22 @@ You can then switch between these with three different actions:
           then:
             ...
 
+.. _display-on_page_change-trigger:
+
+**on_page_change**: This automation will be triggered when the page that is shown changes.
+The old page will be given as the variable ``from`` and the new one as the variable ``to``.
+
+.. code-block:: yaml
+
+    display:
+    - platform: ...
+      # ...
+      on_page_change:
+        then:
+          lambda: |-
+            if (from == id(page1) && to == id(page2))
+              ESP_LOGD("display", "Page changed from 1 to 2");
+
 
 See Also
 --------
