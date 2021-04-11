@@ -380,7 +380,7 @@ And here is an example of the logfile stored on the SDCard with all the measurem
 a Dt, which is the time difference from the last data point so you can build a nice graph
 even if the logger is not connected to the internet or to the Homeassistant API
 
-.. code-block:: csv
+.. code-block::
 
     Voltage,Current,Power,mAh,mWh,Dt
     12.340,-0.08448,-1.0424,-0.009,-0.111,379
