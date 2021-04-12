@@ -185,7 +185,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
 
     sensor:
       - platform: bme680_bsec
-        temperature:        
+        temperature:
           # Temperature in °C
           name: "BME680 Temperature"
           filters:
@@ -197,7 +197,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           # - ulp (ultra low power - samples every 5 minutes)
           # Default: lp
           sample_rate: lp
-        pressure:          
+        pressure:
           # Pressure in hPa
           name: "BME680 Pressure"
           filters:
@@ -209,7 +209,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           # - ulp (ultra low power - samples every 5 minutes)
           # Default: lp
           sample_rate: lp
-        humidity:         
+        humidity:
           # Relative humidity %
           name: "BME680 Humidity"
           filters:
@@ -221,7 +221,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           # - ulp (ultra low power - samples every 5 minutes)
           # Default: lp
           sample_rate: lp
-        gas_resistance:        
+        gas_resistance:
           # Gas resistance in Ω
           name: "BME680 Gas Resistance"
           filters:
@@ -233,7 +233,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           # - ulp (ultra low power - samples every 5 minutes)
           # Default: ulp
           sample_rate: ulp
-        iaq:          
+        iaq:
           # Indoor air quality value
           name: "BME680 IAQ"
           filters:
@@ -248,7 +248,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         iaq_accuracy:
           # IAQ accuracy as a numeric value of 0, 1, 2, 3
           name: "BME680 Numeric IAQ Accuracy"
-        co2_equivalent:         
+        co2_equivalent:
           # CO2 equivalent estimate in ppm
           name: "BME680 CO2 Equivalent"
           filters:
@@ -260,7 +260,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           # - ulp (ultra low power - samples every 5 minutes)
           # Default: ulp
           sample_rate: ulp
-        breath_voc_equivalent:         
+        breath_voc_equivalent:
           # Volatile organic compounds equivalent estimate in ppm
           name: "BME680 Breath VOC Equivalent"
           filters:
