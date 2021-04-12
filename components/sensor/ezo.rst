@@ -60,6 +60,14 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
       id(ph_ezo).set_tempcomp_value(id(rtd_ezo).state);
 
 
+- ``set_custom(const std::string &to_send)``: Runs a custom command. This sends exactly what is in ``to_send``
+
+  .. code-block:: cpp
+
+      // Run a custom command to turn on the LED
+      id(ph_ezo).set_custom("L,1");
+
+
 - ``set_t(std::string value)``: Send the given temperature to the sensor.
 
   .. code-block:: cpp
@@ -146,11 +154,12 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
 Callbacks
 ---------
 
-- **on_led:** : Triggered after ``get_led_state()`` is called
-- **on_device_information:** : Triggered after ``get_device_information()`` is called
-- **on_slope:** : Triggered after ``get_slope()`` is called
-- **on_calibration:** : Triggered after ``get_calibration()`` is called
-- **on_t:** : Triggered after ``get_t()`` is called
+- **on_led:** : Triggered when the result of ``get_led_state()`` is ready
+- **on_device_information:** : Triggered when the result of ``get_device_information()`` is ready
+- **on_slope:** : Triggered when the result of ``get_slope()`` is ready
+- **on_calibration:** : Triggered when the result of ``get_calibration()`` is ready
+- **on_t:** : Triggered when the result of ``get_t()`` is ready
+- **on_custom:** : Triggered when the result of ``get_custom()`` is ready
 
 
 See Also
