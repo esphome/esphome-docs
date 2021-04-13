@@ -15,7 +15,7 @@ Assistant configuration.
 .. warning::
 
     When enabling MQTT and you do *not* use the "native API" for Home Assistant, you must
-    remove the ``api:`` line from your ESPHome configuration, otherwise the ESP will
+    remove the ``api:`` line from your ESPHome configuration (.yaml file), otherwise the ESP will
     reboot every 5 minutes because no client connected to the native API.
 
 .. code-block:: yaml
