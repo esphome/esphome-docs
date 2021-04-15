@@ -31,8 +31,8 @@ The ESPHome documentation is built using `sphinx <http://www.sphinx-doc.org/>`__
 Syntax
 ******
 
-In my opinion, Markdown would have been the much better choice in hindsight, but at the time
-I was setting up the documentation good Doxygen integration was key to me. Anyway, here's a quick
+In hindsight, Markdown would have been the much better choice, but at the time we were
+setting up the documentation good Doxygen integration was key to us. Anyway, here's a quick
 RST primer:
 
 - **Headers**: You can write titles like this:
