@@ -347,11 +347,11 @@ Example: Converting Celsius to Fahrenheit
 -----------------------------------------
 
 While I personally don’t like the Fahrenheit temperature scale, I do
-understand that having temperature values appear in the fahrenheit unit
-is quite useful to some users. ESPHome uses the celsius temperature
+understand that having temperature values appear in the Fahrenheit unit
+is quite useful to some users. ESPHome uses the Celsius temperature
 unit internally, and I’m not planning on making converting between the
-two simple (😉), but you can use this filter to convert celsius values to
-fahrenheit.
+two simple (😉), but you can use this filter to convert Celsius values to
+Fahrenheit.
 
 .. code-block:: yaml
 
@@ -493,7 +493,7 @@ advanced stuff (see the full API Reference for more info).
       ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
 
 - ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
-  Is ``NAN`` if no value if no value has been pushed by the sensor itself yet.
+  Is ``NAN`` if no value has been pushed by the sensor itself yet.
 
   .. code-block:: cpp
 

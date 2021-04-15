@@ -2,7 +2,7 @@ Arduino Port Expander
 =====================
 
 .. seo::
-    :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of a ESPHome node
+    :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of an ESPHome node
     :image: arduino_pro_mini.jpg
     :keywords: Arduino port expander extender ESPHome
 
@@ -25,10 +25,11 @@ Currently it is supported:
     - reading analog inputs
     - writing digital outputs
 
-The Arduino sketch can be retrieved from `here <https://github.com/glmnet/esphome_devices/tree/master/ArduinoPortExpander/src>`__
+The Arduino sketch can be retrieved from `here <https://gist.github.com/glmnet/49ca3d6a9742fc3649f4fbdeaa4cdf5d#file-arduino_port_expander_sketch-ino>`__
 you can rename it to ``.ino`` and use the Arduino IDE to program it.
 
-You need to download `arduino_port_expander.h <https://github.com/glmnet/esphome_devices/blob/master/arduino_port_expander.h>`__ and include the ape.h in the ESPHome configuration.
+You need to download `arduino_port_expander.h <https://gist.github.com/glmnet/49ca3d6a9742fc3649f4fbdeaa4cdf5d#file-arduino_port_expander-h>`__ 
+and include the arduino_port_expander.h in the ESPHome configuration.
 
 .. code-block:: yaml
 
@@ -58,7 +59,7 @@ individual IOs.
           auto ape_component = new ArduinoPortExpander(i2c_component, 0x08);
           return {ape_component};
 
-By default the I²C address is ``0x08`` but you can change it on the arduino sketch so you can have more slaves
+By default the I²C address is ``0x08`` but you can change it on the Arduino sketch so you can have more devices
 on the same bus.
 
 Now it is time to add the ports.
@@ -103,7 +104,7 @@ Sensor
 ------
 
 Sensors allows for reading the analog value of an analog pin, those are from ``A0`` to ``A7`` except for
-``A4`` and ``A5``. The value returned goes from 0 to 1023 (the value returned by the arduino ``analogRead``
+``A4`` and ``A5``. The value returned goes from 0 to 1023 (the value returned by the Arduino ``analogRead``
 function).
 
 Arduino analog inputs measures voltage. By default the sketch is configured to use the Arduino internal VREF

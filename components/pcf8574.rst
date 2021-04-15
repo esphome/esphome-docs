@@ -7,7 +7,7 @@ PCF8574 I/O Expander
 
 The PCF8574 component allows you to use PCF8574 or PCF8575 I/O expanders
 (`datasheet <http://www.ti.com/lit/ds/symlink/pcf8574.pdf>`__,
-`Sparkfun`_) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
+`SparkFun`_) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
 
 Once configured, you can use any of the 8 pins (PCF8574) or 16 pins (PCF8575) as
 pins for your projects. Within ESPHome they emulate a real internal GPIO pin
@@ -24,7 +24,7 @@ not work.
 
     PCF8574 I/O Expander.
 
-.. _Sparkfun: https://www.sparkfun.com/products/retired/8130
+.. _SparkFun: https://www.sparkfun.com/products/retired/8130
 
 .. code-block:: yaml
 
@@ -42,7 +42,7 @@ not work.
           pcf8574: pcf8574_hub
           # Use pin number 0
           number: 0
-          # One of INPUT, INPUT_PULLUP or OUTPUT
+          # One of INPUT or OUTPUT
           mode: OUTPUT
           inverted: False
 

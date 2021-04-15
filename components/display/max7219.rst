@@ -53,6 +53,8 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **reverse_enable** (*Optional*, boolean): For some displays the order of the chips is reversed so you'll see "56781234" instead of "12345678". This option will adjust the output to compensate. Defaults to ``False``.
+
 
 .. _display-max7219_lambda:
 
@@ -105,9 +107,12 @@ segment of the previous position will be enabled.
           it.strftime("%H.%M.%S");
           // Result for 10:06:42 -> "10.06.42  "
 
+          // Change the display intnsity based on another id.
+          // Value should be from 0-15.
+          it.set_intensity(id(my_brightness));
+
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
-
 
 .. _display-max7219_characters:
 
@@ -206,6 +211,8 @@ All 7-Segment Characters
 |max721901|                    ``-``
 ------------------------------ ------------------------------
 |max721908|                    ``_``
+------------------------------ ------------------------------
+|max721909|                    ``=``
 ------------------------------ ------------------------------
 |max721906|                    ``|``
 ------------------------------ ------------------------------
@@ -309,6 +316,8 @@ All 7-Segment Characters
 .. |max721901| image:: images/max7219/seg01.svg
     :class: component-image
 .. |max721908| image:: images/max7219/seg08.svg
+    :class: component-image
+.. |max721909| image:: images/max7219/seg09.svg
     :class: component-image
 .. |max721906| image:: images/max7219/seg06.svg
     :class: component-image

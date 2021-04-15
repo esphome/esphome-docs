@@ -1,0 +1,265 @@
+ST7789V TFT LCD
+===============
+
+.. seo::
+    :description: Instructions for setting up ST7789V TFT LCD display drivers.
+    :image: st7789v-full.jpg
+
+.. _st7789v:
+
+Usage
+-----
+
+The ``st7789v`` display platform allows you to use
+ST7789V (`datasheet <https://github.com/Xinyuan-LilyGO/TTGO-T-Display>`__,
+`Tindie <https://www.tindie.com/products/ttgo/lilygor-ttgo-t-display/>`__)
+displays with ESPHome. Note that this component utilizes the 4-Wire :ref:`SPI bus <spi>`; the physical
+connection is already in place on the TTGO T-Display module as shown below.
+
+.. figure:: images/st7789v-full.jpg
+    :align: center
+    :width: 75.0%
+
+    ST7789V TFT LCD on TTGO T-Display module
+
+This module has a USB-C connector with an on-board serial adapter for programming. Simply connect to a
+USB-C port to get started! (Depending on your operating system of choice, you might need to install an
+appropriate driver.) It is also possible to power the module via the 5V and G (ground) pins along
+the edges of the module, or via a battery attached to the connector on the bottom of the board. The
+ESP32's UART pins are not brought out to the headers, so the on-board serial adapter must be used for
+hardwired programming. (OTA updates are of course possible after ESPHome is initially installed.)
+
+.. code-block:: yaml
+
+    # Example minimal configuration entry
+    spi:
+      clk_pin: GPIO18
+      mosi_pin: GPIO19
+
+    display:
+      - platform: st7789v
+        backlight_pin: GPIO4
+        cs_pin: GPIO5
+        dc_pin: GPIO16
+        reset_pin: GPIO23
+        lambda: |-
+          it.print(0, 0, id(font), "Hello World!");
+
+.. warning::
+
+    When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
+    hardwired within the module/PCB.
+
+Configuration variables
+***********************
+
+- **backlight_pin** (:ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
+- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
+  See :ref:`display-engine` for more information.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
+- **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+Configuration examples
+**********************
+
+As of version 1.15, ESPHome supports color displays. To utilize the color capabilities of this display
+module, you'll likely want to add a ``color:`` section to your YAML configuration; please see
+:ref:`color <config-color>` for more detail on this configuration section.
+
+To use colors in your lambda:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 3%
+        blue: 5%
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red));
+
+
+To bring in color images:
+
+.. code-block:: yaml
+
+    image:
+      - file: "image.jpg"
+        id: my_image
+        resize: 200x200
+        type: RGB565
+
+    ...
+
+    display:
+        ...
+        lambda: |-
+          it.image(0, 0, id(my_image));
+
+Complete example
+****************
+
+The following is a complete example YAML configuration that does a few things beyond the usual
+Wi-Fi, API, and OTA configuration. It defines:
+
+- three fonts (well, one font in three sizes)
+- a ``binary_sensor`` that indicates the state of connectivity to the API
+- a ``binary_sensor`` for each of the two buttons on the TTGO module
+- a ``switch``, allowing control of the backlight from HA
+- several colors
+- a color image to be shown on the display
+- time, for display...on the display
+- the SPI configuration for communicating with the display
+- the display component itself, for use on the TTGO module
+- a lambda which paints the screen as shown in the picture above:
+
+  - blue borders, with a sort of "title bar" along the top
+  - "ESPHome" in yellow in the top left corner
+  - the API connection status, "Online" in green when connected, "Offline" in red when not
+  - the time and date, more or less in the center of the display
+
+To use this example, you need only to provide the font file, "Helvetica.ttf" (or update it to
+a font of your choosing) and an image file, "image.png" (it may also be a ".jpg"). Place these
+into the same directory as the YAML configuration file itself. Comment/Uncomment/Modify the
+appropriate lines of C code in the lambda to hide or show the image or text as you wish.
+
+.. code-block:: yaml
+
+    esphome:
+      name: esp_tdisplay
+      platform: ESP32
+      board: featheresp32
+
+    wifi:
+      ssid: "ssid"
+      password: "password"
+
+      # Enable fallback hotspot (captive portal) in case wifi connection fails
+      ap:
+        ssid: "esp_tdisplay"
+        password: "some_password"
+
+    captive_portal:
+
+    # Enable logging
+    logger:
+
+    # Enable Home Assistant API
+    api:
+      password: "some_api_password"
+
+    ota:
+      password: "some_ota_password"
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 0%
+        blue: 0%
+      - id: my_yellow
+        red: 100%
+        green: 100%
+        blue: 0%
+      - id: my_green
+        red: 0%
+        green: 100%
+        blue: 0%
+      - id: my_blue
+        red: 0%
+        green: 0%
+        blue: 100%
+      - id: my_gray
+        red: 50%
+        green: 50%
+        blue: 50%
+
+    font:
+      - file: "Helvetica.ttf"
+        id: helvetica_48
+        size: 48
+      - file: "Helvetica.ttf"
+        id: helvetica_24
+        size: 24
+      - file: "Helvetica.ttf"
+        id: helvetica_12
+        size: 12
+
+    binary_sensor:
+      - platform: status
+        name: "Node Status"
+        id: system_status
+      - platform: gpio
+        pin:
+          number: GPIO0
+          inverted: true
+          mode: INPUT_PULLUP
+        name: "T-Display Button Input 0"
+        id: tdisplay_button_input_0
+      - platform: gpio
+        pin:
+          number: GPIO35
+          inverted: true
+        name: "T-Display Button Input 1"
+        id: tdisplay_button_input_1
+
+    # We can still control the backlight independently
+    switch:
+      - platform: gpio
+        pin: GPIO4
+        name: "Backlight"
+        id: backlight
+
+    image:
+      - file: "image.png"
+        id: my_image
+        resize: 200x200
+        type: RGB24
+
+    time:
+      - platform: homeassistant
+        id: esptime
+
+    spi:
+      clk_pin: GPIO18
+      mosi_pin: GPIO19
+
+    display:
+      - platform: st7789v
+        backlight_pin: GPIO4
+        cs_pin: GPIO5
+        dc_pin: GPIO16
+        reset_pin: GPIO23
+        rotation: 270
+        lambda: |-
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_blue));
+          it.rectangle(0, 20, it.get_width(), it.get_height(), id(my_blue));   // header bar
+
+          it.strftime((240 / 2), (140 / 3) * 1 + 5, id(helvetica_24), id(my_gray), TextAlign::CENTER, "%Y-%m-%d", id(esptime).now());
+          it.strftime((240 / 2), (140 / 3) * 2 + 5, id(helvetica_48), id(my_gray), TextAlign::CENTER, "%H:%M:%S", id(esptime).now());
+          it.print(5, 5, id(helvetica_12), id(my_yellow), TextAlign::TOP_LEFT, "ESPHome");
+
+          // Comment out the above lines to see the image without text overlaid
+          // it.image(0, 0, id(my_image));
+
+          if (id(system_status).state) {
+            it.print(235, 5, id(helvetica_12), id(my_green), TextAlign::TOP_RIGHT, "Online");
+          }
+          else {
+            it.print(235, 5, id(helvetica_12), id(my_red), TextAlign::TOP_RIGHT, "Offline");
+          }
+
+See Also
+--------
+
+- :doc:`index`
+- :apiref:`st7789v_base/st7789v_base.h`
+- :ghedit:`Edit`

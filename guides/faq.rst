@@ -107,7 +107,7 @@ For me to fix the issue quickly, there are some things that would be really help
     help given just that information?
 2.  A snippet of the code/configuration file used is always great to reproduce this issue.
     Please read `How to create a Minimal, Complete, and Verifiable example <https://stackoverflow.com/help/mcve>`__.
-3.  If it's an i2c or hardware communication issue please also try setting the
+3.  If it's an I²C or hardware communication issue please also try setting the
     :ref:`log level <logger-log_levels>` to ``VERY_VERBOSE`` as it provides helpful information
     about what is going on.
 4.  Please also include what you've already tried and didn't work as that can help us track down the issue.
@@ -133,8 +133,8 @@ How do I update to the latest beta release?
 -------------------------------------------
 
 ESPHome has a beta release cycle so that new releases can easily be tested before
-the changes are deployed to the stable channel. You can help test esphome (and use new features)
-by installing the esphome beta:
+the changes are deployed to the stable channel. You can help test ESPHome (and use new features)
+by installing the tested beta:
 
 .. code-block:: bash
 
@@ -144,9 +144,12 @@ by installing the esphome beta:
     # For docker-based installs
     docker run [...] -it esphome/esphome:beta livingroom.yaml run
 
-And for Hass.io, you will see a "ESPHome Beta" Add-On for the beta channel.
+For Home Assistant supervised installs add the community addons beta repository by
+adding
+`https://github.com/hassio-addons/repository-beta <https://github.com/hassio-addons/repository-beta>`__
+in Add-on store -> Repositories.
 
-The beta docs can be viewed at `beta.esphome.io <https://beta.esphome.io>`__
+The beta docs are available at `beta.esphome.io <https://beta.esphome.io>`__
 
 How do I use the latest bleeding edge version?
 ----------------------------------------------
@@ -156,22 +159,14 @@ If you find some, please do however report them if you have time :)
 
 To install the dev version of ESPHome:
 
-- In Hass.io: In the ESPHome add-on repository there's also a second add-on called ``ESPHome Dev``.
-  Install that and stop the stable version (both can't run at the same time without port collisions).
+- In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
+  in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
-- From docker, you need to build the docker image yourself (automated dev builds are not possible
-  due to docker hubs limited build quota)
+- From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
 
   .. code-block:: bash
 
-      git clone https://github.com/esphome/esphome.git
-      cd esphome
-      docker build -t esphome-dev -f docker/Dockerfile .
-      docker run [...] -it esphome-dev livingroom.yaml compile
-
-      # Update image and rebuild
-      git pull
-      docker build -t esphome-dev -f docker/Dockerfile .
+      docker run [...] -it esphome:dev livingroom.yaml compile
 
 The latest dev docs are here: `next.esphome.io <https://next.esphome.io/>`__
 
@@ -224,11 +219,11 @@ Some steps that can help with the issue:
   in other it can make things worse). See :ref:`wifi-power_save_mode`.
 - The issue seems to happen with cheap boards more frequently. Especially the "cheap" NodeMCU
   boards from eBay which sometimes have quite bad antennas.
-- ESPHome reboots on purpose when something is not going right, e.g. 
-  :doc:`wifi connetion cannot be made </components/wifi>` or 
-  :doc:`api connetion is lost </components/api>` or 
+- ESPHome reboots on purpose when something is not going right, e.g.
+  :doc:`wifi connection cannot be made </components/wifi>` or
+  :doc:`api connection is lost </components/api>` or
   :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
-  to explicitely set the ``reboot_timeout`` option to ``0s`` on the components being used.
+  to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
 
 
 Docker Reference
@@ -261,8 +256,12 @@ Command reference:
     # Map /dev/ttyUSB0 into container
     docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
 
-    # Start dashboard on port 6052
+    # Start dashboard on port 6052 (general command)
+    # Warning: this command is currently not working with Docker on MacOS. (see note below)
     docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
+
+    # Start dashboard on port 6052 (MacOS specific command)
+    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
 
     # Setup a bash alias:
     alias esphome='docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome'
@@ -287,6 +286,10 @@ And a docker compose file looks like this:
 
     ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
     to work you need to enable host networking mode
+
+    On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
+    another way to launch the dashboard with a port mapping option and use alternative to mDNS
+    to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
     If your router supports Avahi, you are able to get mDNS working over different subnets.

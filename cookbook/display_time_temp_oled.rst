@@ -35,7 +35,7 @@ Software configuration
 Getting Time
 ************
 
-Get the time from Home Assistant to sync the onboard real-time-clock.
+Get the time from Home Assistant to sync the onboard real-time clock.
 
 .. code-block:: yaml
 
@@ -69,7 +69,7 @@ Define the Fonts
 ****************
 
 - TrueType fonts are used. If you ever worked with fonts on microcontrollers you will love this!
-- Save font files in ``/config/esphome`` folder where your esphome configuration is stored.
+- Save font files in ``/config/esphome`` folder where your ESPHome configuration is stored.
 - The ``.ttf`` suffix must be lowercase and of course match your filename.
 - Selection of fonts can be a little bit tricky for small sizes to look good. Experiment and share your findings in the comments below!
 
@@ -129,7 +129,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
 Rendering
 ---------
 
-- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in :apiref:`display/display.h`.
+- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in :apiref:`display/display_buffer.h`.
 - The property ``has_state()`` on a sensor is useful as it can take some seconds to get the data from Home Assistant and you may not want to display ``Nan``
 - Refer to the rendering engine :ref:`display-engine` for more features (it can draw lines and circles too!)
 

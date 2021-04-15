@@ -39,6 +39,8 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`UART bus <uart>` you wish to use for this display.
   Use this if you want to use multiple UART buses at once.
+- **brightness** (*Optional*, percentage): Set the screen brightness. Must be in range
+  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to ``100%``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the nextion display.
   See :ref:`display-nextion_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to call the lambda to update the display.
@@ -82,6 +84,7 @@ See Also
 --------
 
 - :doc:`index`
+- :doc:`/components/binary_sensor/nextion`
 - :apiref:`nextion/nextion.h`
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__
 - `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <https://www.itead.cc/>`__

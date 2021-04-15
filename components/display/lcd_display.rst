@@ -15,7 +15,7 @@ The ``lcd_pcf8574`` display platform allows you to use standard character-based 
 with ESPHome. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
 and 2-4 rows), and not for LCD displays that can control each pixel individually.
 
-This version of the LCD integration is for LCD displays with an PCF8574 connected to all the data pins. This has
+This version of the LCD integration is for LCD displays with a PCF8574 connected to all the data pins. This has
 the benefit that you only need to connect two data wires to the ESP instead of the 6 or 10 with the :ref:`lcd-gpio`.
 As the communication with the :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`` section in your configuration.
 
@@ -165,8 +165,8 @@ The backlight can draw more power than the microcontroller output pins can suppl
 a transistor as a switch to control the power for the backlight pins.
 
 With the ``lcd_pcf8574`` the backlight can be turned on by ``it.backlight()`` and off by ``it.no_backlight()`` in the
-display lamdba definition. The jumper on the PCF8574 board needs to be closed for the backlight control to work.
-Keep in mind that the display lamda runs for every ``update_interval``, so if the backlight is turned on/off there,
+display lambda definition. The jumper on the PCF8574 board needs to be closed for the backlight control to work.
+Keep in mind that the display lambda runs for every ``update_interval``, so if the backlight is turned on/off there,
 it cannot be overridden from other parts.
 
 Here is one solution for a typical use-case where the backlight is turned on after a motion sensor activates and
