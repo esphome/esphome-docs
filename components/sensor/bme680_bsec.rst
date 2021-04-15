@@ -170,6 +170,14 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # Default: 0
         temperature_offset: 0
 
+        # Sample rate For iaq,gas resistance,co2 equivalent and breath voc equivalent sensors
+          # -----------
+          # Available options:
+          # - lp (low power - samples every 3 seconds)
+          # - ulp (ultra low power - samples every 5 minutes)
+          # Default: ulp
+        gas_sample_rate: ulp
+
         # IAQ calculation mode
         # --------------------
         # Available options:
@@ -226,25 +234,11 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           name: "BME680 Gas Resistance"
           filters:
             - median
-          # Sample rate
-          # -----------
-          # Available options:
-          # - lp (low power - samples every 3 seconds)
-          # - ulp (ultra low power - samples every 5 minutes)
-          # Default: ulp
-          sample_rate: ulp
         iaq:
           # Indoor air quality value
           name: "BME680 IAQ"
           filters:
             - median
-          # Sample rate
-          # -----------
-          # Available options:
-          # - lp (low power - samples every 3 seconds)
-          # - ulp (ultra low power - samples every 5 minutes)
-          # Default: ulp
-          sample_rate: ulp
         iaq_accuracy:
           # IAQ accuracy as a numeric value of 0, 1, 2, 3
           name: "BME680 Numeric IAQ Accuracy"
@@ -253,25 +247,11 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           name: "BME680 CO2 Equivalent"
           filters:
             - median
-          # Sample rate
-          # -----------
-          # Available options:
-          # - lp (low power - samples every 3 seconds)
-          # - ulp (ultra low power - samples every 5 minutes)
-          # Default: ulp
-          sample_rate: ulp
         breath_voc_equivalent:
           # Volatile organic compounds equivalent estimate in ppm
           name: "BME680 Breath VOC Equivalent"
           filters:
             - median
-          # Sample rate
-          # -----------
-          # Available options:
-          # - lp (low power - samples every 3 seconds)
-          # - ulp (ultra low power - samples every 5 minutes)
-          # Default: ulp
-          sample_rate: ulp
 
     text_sensor:
       - platform: bme680_bsec
