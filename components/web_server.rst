@@ -73,9 +73,9 @@ Configuration variables:
         # Example configuration entry
         web_server:
           port: 80
-          css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
+          css_include: "/config/esphome/webserver-v1.min.css"
           css_url: ""
-          js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
+          js_include: "/config/esphome/webserver-v1.min.js"
           js_url: ""
 
 See Also
