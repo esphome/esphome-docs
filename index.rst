@@ -86,6 +86,7 @@ Core Components
     Native API, components/api, server-network.svg
     Power Supply, components/power_supply, power.svg
     Deep Sleep, components/deep_sleep, hotel.svg
+    External Components, components/external_components, external_components.svg
 
 Sensor Components
 -----------------
