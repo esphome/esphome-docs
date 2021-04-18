@@ -88,10 +88,11 @@ A more verbose configuration is available which supports any git http source:
         url: http://repository_url/
         ref: branch_or_tag
 
-.. _external-components_refresh:
 
 Under the hood, during validation, ESPHome will copy or clone the files into the hidden ``.esphome``
 folder and components will then be loaded from this local cache.
+
+.. _external-components_refresh:
 
 Refresh
 *******
