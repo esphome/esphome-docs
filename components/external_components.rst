@@ -10,10 +10,17 @@ can be overriden using this feature.
 
 .. code-block:: yaml
 
-    # use rtttl from ESPHome's dev branch in GitHub
     external_components:
-      source: github://esphome/esphome@dev
-      components: [ rtttl ]
+      # use rtttl from ESPHome's dev branch in GitHub
+      - source:
+          type: git
+          url: https://github.com/esphome/esphome
+          ref: dev
+        components: [ rtttl ]
+
+      # equivalent shorthand for GitHub
+      - source: github://esphome/esphome@dev
+        components: [ rtttl ]
 
 Configuration variables:
 
@@ -48,13 +55,14 @@ control the origin of the files.
 
 .. code-block:: yaml
 
+    external_components:
+      source:
+        path: /copied_components
+
     # shrothand
     external_components:
       source: my_components
 
-    external_components:
-      source:
-        path: /copied_components
 
 Notice that relative paths are supported, so you can enter ``my_components`` as the source path and then
 ESPHome will load components from a ``my_components`` folder in the same folder where your YAML configuration
@@ -70,16 +78,6 @@ Retrieving components from git is the easiest way to use components not included
 The source components should be inside a ``components`` folder or inside a ``esphome/components``
 folder. The later makes sharing a component from a forked ESPHome repository easier.
 
-The source fields accepts a short hand **github://** resource:
-
-.. code-block:: yaml
-
-    external_components:
-      # shorthand
-      source: github://<user or org>/<repository name>[@<branch or tag>]
-
-A more verbose configuration is available which supports any git http source:
-
 .. code-block:: yaml
 
     external_components:
@@ -88,6 +86,13 @@ A more verbose configuration is available which supports any git http source:
         url: http://repository_url/
         ref: branch_or_tag
 
+The source fields accepts a short hand **github://** resource:
+
+.. code-block:: yaml
+
+    external_components:
+      # shorthand
+      source: github://<user or org>/<repository name>[@<branch or tag>]
 
 Under the hood, during validation, ESPHome will copy or clone the files into the hidden ``.esphome``
 folder and components will then be loaded from this local cache.
