@@ -3,7 +3,6 @@ External Components
 
 .. seo::
     :description: Instructions for setting up ESPHome External Components.
-    :image: server-network.png
     :keywords: External, Custom, Components, ESPHome
 
 You can easily import community components using the external components feature. Bundled components
@@ -25,7 +24,7 @@ Configuration variables:
 
   git options:
 
-  - **url** (**Required**, url): Http git repository url.
+  - **url** (**Required**, url): Http git repository url. See :ref:`external-components_git`.
   - **ref** (*Optional*, string): Git ref (branch or tag). If not specified the default branch is used.
 
   local options:
