@@ -162,6 +162,7 @@ Common configuration variables
 - **x_max** (**Required**, integer): The right x coordinate of the button's sensitive area.
 - **y_min** (**Required**, integer): The top y coordinate of the button's sensitive area.
 - **y_max** (**Required**, integer): The bottom y coordinate of the button's sensitive area.
+- **z_order** (*Optional*, integer): The z order of the button. Zero is farthest from the viewer, 255 nearest. Defaults to ``50``.
 - **pages** (*Optional*, , :ref:`config-id`): The list of pages the button should be displayed on. A single page can
   be also specified as a value of the ``pages`` variable on the same line. Defaults to all pages.
 - **colors** (*Optional*): Groups the colors of the button.
