@@ -74,7 +74,8 @@ Hub Configuration:
 
 - **sample_rate** (*Optional*, string): Sample rate. Default is ``lp`` for low power consumption, sampling every 3 seconds.
   Can be ``ulp`` for ultra low power, sampling every 5 minutes.
-  This controls the sampling rate for gas-dependant sensors and will govern the interval at which the sensor heater is operated. By default it rate will also be used for temperature, pressure and humidity sensors but these can be overridden on a per-sensor level if required.
+  This controls the sampling rate for gas-dependant sensors and will govern the interval at which the sensor heater is operated.
+  By default this rate will also be used for temperature, pressure and humidity sensors but these can be overridden on a per-sensor level if required.
 
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration does have to start from zero on device restart. Defaults to ``6h``.
