@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+div.document {
+  margin-bottom: 50px;
+}
+
 img.component-image {
   border: none;
   vertical-align: middle;
