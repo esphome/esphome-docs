@@ -1,5 +1,5 @@
 DDNS IP updater Component
-=====================
+=========================
 
 .. seo::
     :description: Instructions for setting up the DDNS IP updater in ESPHome.
