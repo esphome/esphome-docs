@@ -3,6 +3,7 @@ DDNS IP updater Component
 
 .. seo::
     :description: Instructions for setting up the DDNS IP updater in ESPHome.
+    :image: ddns.png
     :keywords: DDNS
 
 The DDNS IP updater Component sets up connection with your DDNS provider for update your public IP for a domain.
