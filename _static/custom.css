@@ -62,15 +62,18 @@ table.docutils {
   z-index: 9999;
   display: none
 }
-#upgrade-footer-changelog {
+.footer-button-container {
+  margin: 0 60px 0 10px;
+  float: right;
+}
+.footer-button {
   background-color: #b3b3b3;
   color: #4e4e4e;
   display: inline-block;
   border-radius: 5px;
   padding: 0 20px;
+  margin-left: 10px;
   cursor: pointer;
-  float: right;
-  margin: 0 60px 0 10px;
   text-decoration: none;
 }
 .not-hidden {
