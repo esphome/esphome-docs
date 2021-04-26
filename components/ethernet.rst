@@ -54,6 +54,7 @@ Configuration variables:
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
+- **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presense and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname. Defaults to ``true``.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
