@@ -158,6 +158,7 @@ Sensor Components
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SHT4X, components/sensor/sht4x, sht4x.jpg
     SM300D2, components/sensor/sm300d2, sm300d2.jpg
     SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
