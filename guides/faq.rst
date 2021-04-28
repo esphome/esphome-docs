@@ -303,6 +303,8 @@ And a docker compose file looks like this:
     with the Hass.io Addon ``"status_use_ping": true,`` option or with docker ``-e ESPHOME_DASHBOARD_USE_PING=true``
     See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
     
+.. _faq-notes_on_disabling_mdns:
+
 Notes on disabling mDNS
 ------------------------------------------------------------------------------
 Some of ESPHome's functionalities rely on mDNS, so naturally :ref:`disabling <wifi-configuration_variables>` it will cause these features to stop working.
