@@ -303,14 +303,16 @@ And a docker compose file looks like this:
     with the Hass.io Addon ``"status_use_ping": true,`` option or with docker ``-e ESPHOME_DASHBOARD_USE_PING=true``
     See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
     
-Notes on :ref:`disabling mDNS <wifi-configuration_variables>`
+Notes on disabling mDNS
 ------------------------------------------------------------------------------
-Some of ESPHome's functionalities rely on mDNS, so naturally disabling it will cause these features to stop working.
+Some of ESPHome's functionalities rely on mDNS, so naturally :ref:`disabling <wifi-configuration_variables>` it will cause these features to stop working.
 Generally speaking, disabling mDNS without setting a :ref:`static IP address <wifi-manual_ip>` (or a static DHCP lease) is bound to cause problems. This is due to the fact that mDNS is used to find the IP address of each ESPHome nodes.
 
-Automatic discovery in Hass.io when using :doc:`native API </components/api>` relies on mDNS broadcast messages to detect presense of new ESPHome nodes. If you need to use the native API with mDNS disabled, then you will have to use a static IP address AND manually add that IP address to Hass.io as an ESPHome integration.
+- You will not be able to use the node's hostname to ping, find it's IP address or connect to it.
 
-Online status detection in ESPHome's dashboard by default uses mDNS, so disabling mDNS will cause the ESPHome dashboard to show the status of the nodes created without mDNS support to be always offline. Currently, this does not affect any functionality, however if you want to see the online/offline status you could instruct ESPHome to ping each node by using the Hass.io Addon ``"status_use_ping": true,`` option or launching the docker container with ``-e ESPHOME_DASHBOARD_USE_PING=true``
+- Automatic discovery in Hass.io when using :doc:`native API </components/api>` relies on mDNS broadcast messages to detect presense of new ESPHome nodes. If you need to use the native API with mDNS disabled, then you will have to use a static IP address AND manually add that IP address to Hass.io as an ESPHome integration.
+
+- Online status detection in ESPHome's dashboard by default uses mDNS, so disabling mDNS will cause the ESPHome dashboard to show the status of the nodes created without mDNS support to be always offline. Currently, this does not affect any functionality, however if you want to see the online/offline status you could configure ESPHome to ping each node instead. See the notes on :ref:`docker-reference` for more information.
 
 Can Configuration Files Be Recovered From The Device?
 -----------------------------------------------------
