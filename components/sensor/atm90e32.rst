@@ -155,19 +155,19 @@ a time-series-database, e.g. InfluxDB.
 
 .. code-block:: yaml
 
-  sensor:
-  #IC1 Main
-    - platform: atm90e32
-      cs_pin: 5
-      phase_a:
-        forward_active_energy:
-          name: ${disp_name} ct1 FAWattHours
-          id: ct1FAWattHours
-          state_topic: ${disp_name}/ct1/forward_active_energy
-        reverse_active_energy:
-          name: ${disp_name} ct1 RAWattHours
-          id: ct1RAWattHours
-          state_topic: ${disp_name}/ct1/reverse_active_energy
+    sensor:
+    #IC1 Main
+      - platform: atm90e32
+        cs_pin: 5
+        phase_a:
+          forward_active_energy:
+            name: ${disp_name} ct1 FAWattHours
+            id: ct1FAWattHours
+            state_topic: ${disp_name}/ct1/forward_active_energy
+          reverse_active_energy:
+            name: ${disp_name} ct1 RAWattHours
+            id: ct1RAWattHours
+            state_topic: ${disp_name}/ct1/reverse_active_energy
 
 
 Additional Examples
