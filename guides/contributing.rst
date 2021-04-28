@@ -31,9 +31,10 @@ The ESPHome documentation is built using `sphinx <http://www.sphinx-doc.org/>`__
 Syntax
 ******
 
-In my opinion, Markdown would have been the much better choice in hindsight, but at the time
-I was setting up the documentation good Doxygen integration was key to me. Anyway, here's a quick
-RST primer:
+Here's a quick RST primer:
+
+Title hierarchy is based on order of occurence, not on type of character used to underline it. This
+documents establish the following character order for better consistency.
 
 - **Headers**: You can write titles like this:
 
@@ -547,8 +548,8 @@ loader. These are:
   has one of them in the config, a validation error will be generated.
 
 - ``ESP_PLATFORMS``: Provide a list of allowed ESP types this integration works with.
-- ``CODEOWNERS``: GitHub usernames or team names of people that are responsible for this integration. 
-  You should add at least your GitHub username here, as well as anyone who helped you to write code 
+- ``CODEOWNERS``: GitHub usernames or team names of people that are responsible for this integration.
+  You should add at least your GitHub username here, as well as anyone who helped you to write code
   that is being included.
 
 Codebase Standards

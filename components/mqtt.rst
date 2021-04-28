@@ -48,7 +48,7 @@ Configuration variables:
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
-- **log_topic** (*Optional*, :ref:`mqtt-message`) The topic to send MQTT log
+- **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
   messages to.
 - **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.

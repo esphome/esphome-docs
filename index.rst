@@ -106,8 +106,10 @@ Sensor Components
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
+    BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
     BMP085, components/sensor/bmp085, bmp180.jpg
     BMP280, components/sensor/bmp280, bmp280.jpg
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
@@ -143,6 +145,7 @@ Sensor Components
     NTC Thermistor, components/sensor/ntc, ntc.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
+    Pulse Meter, components/sensor/pulse_meter, pulse.svg
     Pulse Width, components/sensor/pulse_width, pulse.svg
     PZEM004T, components/sensor/pzem004t, pzem004t.svg
     PZEM AC, components/sensor/pzemac, pzemac.svg
@@ -156,9 +159,11 @@ Sensor Components
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     SHT4X, components/sensor/sht4x, sht4x.jpg
+    SM300D2, components/sensor/sm300d2, sm300d2.jpg
     SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
+    SGP40, components/sensor/sgp40, sgp40.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg
     Template Sensor, components/sensor/template, description.svg
@@ -170,9 +175,11 @@ Sensor Components
     TX20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
     Uptime Sensor, components/sensor/uptime, timer.svg
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.png
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
+    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
+    Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
     Custom Sensor, components/sensor/custom, language-cpp.svg
 
@@ -279,6 +286,7 @@ Display Components
 .. imgtable::
 
     Display Core, components/display/index, folder-open.svg
+    Addressable Light, components/display/addressable_light, addressable_light.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
@@ -294,7 +302,7 @@ Display Components
     ST7789V, components/display/st7789v, st7789v.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate 6, components/display/Inkplate, Inkplate.jpg
+    Inkplate 6, components/display/inkplate, inkplate.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
@@ -321,7 +329,6 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
-    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
 
 Climate Components
 ------------------
@@ -335,6 +342,7 @@ Climate Components
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
+    Midea Air Conditioner, components/climate/midea_ac, midea.svg
 
 Misc Components
 ---------------
@@ -360,6 +368,7 @@ Misc Components
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
+    TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
@@ -413,6 +422,7 @@ Cookbook
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
+    Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
