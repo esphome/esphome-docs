@@ -27,6 +27,7 @@ dramatically improve connection times.
         subnet: 255.255.255.0
 
 .. _wifi-configuration_variables:
+
 Configuration variables:
 ------------------------
 
