@@ -22,8 +22,9 @@ For more information on BLE services and characteristics, see
         id: itag_black
 
     switch:
-      ble_client_id: itag_black
-      name: "Enable iTag"
+      - platform: ble_client
+        ble_client_id: itag_black
+        name: "Enable iTag"
 
 Configuration variables:
 ------------------------
