@@ -104,6 +104,7 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
+    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
@@ -270,6 +271,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
+    BLE Switch, components/switch/ble, bluetooth.svg
 
 Fan Components
 --------------
@@ -359,6 +361,7 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
@@ -423,6 +426,7 @@ Cookbook
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
 
