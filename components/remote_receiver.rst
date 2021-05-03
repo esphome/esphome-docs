@@ -36,6 +36,7 @@ Configuration variables:
   - **pioneer**: Decode and dump Pioneer infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **samsung**: Decode and dump Samsung infrared codes.
+  - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **rc5**: Decode and dump RC5 IR codes.
@@ -80,6 +81,9 @@ Automations:
 - **on_samsung** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Samsung remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::SamsungData`
   is passed to the automation for use in lambdas.
+- **on_samsung36** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Samsung36 remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::Samsung36Data`
+  is passed to the automation for use in lambdas.  
 - **on_panasonic** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Panasonic remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::PanasonicData`
   is passed to the automation for use in lambdas.
@@ -153,6 +157,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, int): The data to trigger on, see dumper output for more info.
 
+- **samsung36**: Trigger on a decoded Samsung36 remote code with the given data.
+
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The command.
+
 - **panasonic**: Trigger on a decoded Panasonic remote code with the given data.
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
@@ -211,10 +220,10 @@ Remote code selection (exactly one of these has to be included):
         remote_transmitter:
           pin: 5
           carrier_duty_percent: 100%
-          
+
 .. note::
 
-    To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use `INPUT_PULLUP`:
+    To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use ``INPUT_PULLUP``:
 
     .. code-block:: yaml
 

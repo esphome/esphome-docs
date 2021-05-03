@@ -129,7 +129,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
   - Only available if RAWv2 protocol is used.
 
-- **movement_count** (*Optional*): The information for the movement count
+- **movement_counter** (*Optional*): The information for the movement count
   sensor
 
   - **name** (**Required**, string): The name for the movement count sensor.

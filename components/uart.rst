@@ -52,6 +52,10 @@ Configuration variables:
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
 
+ESP32 options:
+
+- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``True`` or ``False``. Defaults to ``False``.
+
 .. _uart-hardware_uarts:
 
 Hardware UARTs

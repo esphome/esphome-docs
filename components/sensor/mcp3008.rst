@@ -8,15 +8,17 @@ MCP3008 I/O Expander
 
 The Microchip Technology Inc. MCP3008
 devices are successive approximation 10-bit Analogto-Digital (A/D) converters with on-board sample and
-hold circuitry. 
+hold circuitry.
 
 .. figure:: images/mcp3008.jpg
     :align: center
     :width: 50.0%
 
 
-MCP3008
--------
+.. _mcp3008-component:
+
+Component/Hub
+-------------
 
 The MCP3008 component allows you to use MCP3008 8-Channel 10-Bit A/D Converter
 (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf>`__,
@@ -65,14 +67,19 @@ If you want just the scaled value you can use the read_data function
         name: Freezer Temperature
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
-MCP3008 Component
-*****************
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
 - **cs_pin** (**Required**, int): The SPI cable select pin to use
 
-MCP3008 Sensor Component
-************************
+
+Sensor
+------
+
+The ``mcp3008`` sensor allows you to use your MCP3008 10-Bit A/D Converter sensors with ESPHome.
+First, setup a :ref:`MCP3008 Hub <mcp3008-component>` for your MCP3008 sensor and then use this
+sensor platform to create individual sensors that will report the voltage to Home Assistant.
+
+Configuration variables:
+
 - **id** (**Required**, :ref:`config-id`): The id of the parent MCP3008 component.
 - **number** (**Required**, int): The pin number of the MCP3008
 - **reference_voltage** (*Optional*, float): The reference voltage. Defaults to ``3.3V``.
