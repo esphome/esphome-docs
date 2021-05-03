@@ -19,18 +19,19 @@ Assistant's UI.
 Installation
 ------------
 
-Installing the ESPHome Home Assistant add-on is easy. Just navigate to the Supervisor
-panel in your Home Assistant frontend and add the ESPHome add-on repository:
-https://github.com/esphome/hassio
+Installing the ESPHome Home Assistant add-on is easy. Navigate to the Supervisor
+panel in your Home Assistant frontend, then enter ``ESPHome`` in the searchbar of the "Add-on Store"
+tab.
 
 .. figure:: images/hassio_repo.png
 
-Then, scroll down and locate the ESPHome Home Assistant add-ons section. Click on ESPHome, then INSTALL.
+Click on ESPHome, then INSTALL.
 
 .. figure:: images/hassio_addons_section.png
 
 After that, wait a bit until the add-on is installed (this can take a while) and
-go to the add-on page. Start the add-on and then click "Open Web UI".
+go to the add-on page. Start the add-on and then click "Open Web UI". If you see "502: Bad Gateway" the
+addon is currently starting, and you can refresh the page after a couple of seconds.
 
 .. figure:: images/hassio_addon.png
     :align: center
@@ -49,7 +50,7 @@ Dashboard Interface
 Assuming you created your first configuration file with the wizard, let's take a quick
 tour of the ESPHome dashboard interface.
 
-.. figure:: images/hassio_interface.png
+.. figure:: images/dashboard.png
     :align: center
     :width: 95.0%
 

@@ -41,7 +41,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name for the sensor.
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x23`` (address if address pin is pulled low). If the address pin is pulled high,
   the address is ``0x5C``.
 - **measurement_time** (*Optional*, int): Manually specifiy the measurement time between ``31``
@@ -59,6 +59,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`tsl2561`
-- :apiref:`bh7150/bh7150.h`
+- :apiref:`bh1750/bh1750.h`
 - `BH1750 Library <https://github.com/claws/BH1750>`__ by `@claws <https://github.com/claws>`__
 - :ghedit:`Edit`

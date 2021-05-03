@@ -64,11 +64,11 @@ Configuration example:
         on_notify:
           then:
             - binary_sensor.template.publish:
-              id: black_button
-              state: ON
+                id: black_button
+                state: ON
             - binary_sensor.template.publish:
-              id: black_button
-              state: OFF
+                id: black_button
+                state: OFF
     # This entry queries the battery level. Some tags may not
     # support this characteristic, you will see 'Unknown' in the
     # HA frontent.

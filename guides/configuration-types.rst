@@ -108,25 +108,6 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
 
-.. _config-color:
-
-Color
------
-
-When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
-A ``color`` component exists for just this purpose:
-
-.. code-block:: yaml
-
-    color:
-      - id: my_light_red
-        red: 100%
-        green: 20%
-        blue: 25%
-        white: 0%
-
-RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
-may use all four color elements depending on their capabilities.
 
 .. _config-time:
 
@@ -291,7 +272,7 @@ config in non-destructive way so you could always override some bits and pieces 
 configuration.
 
 Consider the following example where author put common pieces of configuration like WiFi,
-I2C into base files and extends it with some devices specific configurations in the main config.
+I²C into base files and extends it with some devices specific configurations in the main config.
 
 Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
 merged with the services definitions from main config file.
@@ -342,7 +323,7 @@ merged with the services definitions from main config file.
       board: wemos_d1_mini32
       build_path: ./build/${node_name}
 
-    # I2C Bus
+    # I²C Bus
     i2c:
       sda: GPIO21
       scl: GPIO22

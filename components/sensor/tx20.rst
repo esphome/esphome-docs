@@ -62,7 +62,7 @@ Configuration variables:
 .. note::
 
     In order to create a text sensor to show the textual representation of the wind direction
-    the following config can be used. "tx20_id" needs to be replaced with the id of the TX20 sensor.
+    the following config can be used. "tx20_id" needs to be replaced with the id of the TX20 sensor (**not** with the id of the subsensors).
 
     .. code-block:: yaml
 

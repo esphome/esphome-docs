@@ -40,7 +40,7 @@ Configuration variables:
 -  **name** (**Required**, string): The name of the binary sensor.
 -  **mac_address** (*Optional*, MAC Address): The MAC address to track for this
    binary sensor. Either this or ``service_uuid`` has to be present.
--  **service_uuid** (*Optional*, string) 16 bit, 32 bit, or 128 bit BLE Service UUID
+-  **service_uuid** (*Optional*, string): 16 bit, 32 bit, or 128 bit BLE Service UUID
    which can be tracked if the device randomizes the MAC address. Either
    this or ``mac_address`` has to be present.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
