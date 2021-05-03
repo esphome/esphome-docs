@@ -1,9 +1,10 @@
-Changelog - Version 1.17.0 - TBD 2021
+Changelog - Version 1.17.0 - 4th May 2021
 ===============================================
 
 .. seo::
     :description: Changelog for ESPHome version 1.17.0.
     :image: /_static/changelog-1.17.0.png
+    :author: ESPHome
     :author_twitter: @esphome_
 
 .. imgtable::
@@ -17,7 +18,19 @@ Changelog - Version 1.17.0 - TBD 2021
     Addressable Light Display, components/display/addressable_light, addressable_light.jpg
     Pulse Meter, components/sensor/pulse_meter, pulse.svg
 
-RELEASE NOTES TO GO HERE
+
+So, ESPHome was acquired by Nabu Casa. That was big and unexpected, but awesome news for the project as now I have been hired
+by Nabu Casa full-time to work on ESPHome. I know I said this is the last release, but hopefully now that it is literally
+my job, the releases will move to a (yet to be defined) schedule.
+
+A lot of fixes and updates to exisitng components in this release, and a couple of new integrations and features too. Check them out
+if you have the hardware but could not use it before.
+
+Hopefully I can get some help and pointers from the Nabu Casa team to tidy up these release notes and make them all fancy and
+actually something to look forward to reading.
+
+Jesse
+
 
 New Features
 ------------
@@ -174,3 +187,13 @@ All changes
 - docs: SenseAir: background calibration & ABC commands :docspr:`1066` by :ghuser:`nmaggioni`
 - esphome: Add trigger for http actions to receive the status code :esphomepr:`1599` by :ghuser:`jesserockz` (new-feature)
 - docs: Add docs for http_request on_response trigger :docspr:`1049` by :ghuser:`jesserockz`
+- docs: Fix typo lambada -> lambda in multiple display compoments :docspr:`1071` by :ghuser:`rheinz`
+- docs: Consistent spelling of "ID" :docspr:`1068` by :ghuser:`spacegaier`
+- docs: Change GREYSCALE to GRAYSCALE :docspr:`1073` by :ghuser:`adrienbrault`
+- docs: SPI: fix Example :docspr:`1076` by :ghuser:`ferbar`
+- docs: Update diy.rst :docspr:`1106` by :ghuser:`electrofun-smart`
+- docs: Make changelog banner dismissable :docspr:`1113` by :ghuser:`manutenfruits`
+- docs: Correct typo: "between between" -> "between" :docspr:`1109` by :ghuser:`janosrusiczki`
+- docs: Update canbus.rst :docspr:`1115` by :ghuser:`meijerwynand`
+- docs: Update diy.rst :docspr:`1114` by :ghuser:`murilobaliego`
+- docs: Update email addresses :docspr:`1122` by :ghuser:`jesserockz`
