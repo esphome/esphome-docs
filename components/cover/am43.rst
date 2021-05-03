@@ -11,7 +11,7 @@ as Zemismart and A-OK. The platform connects to the device over the
 ESP32's BLE peripheral and both controls and fetchs the position
 and state of the motor.
 
-.. figure:: images/am43.png
+.. figure:: images/am43.jpg
     :align: right
 
 .. code-block:: yaml

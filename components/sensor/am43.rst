@@ -9,7 +9,7 @@ The ``am43`` sensor platform allows you to read the light and
 battery sensors on an AM43 BLE cover motor. The platform connects
 to the device over the ESP32's BLE peripheral.
 
-.. figure:: images/am43.png
+.. figure:: images/am43.jpg
     :align: right
 
 .. code-block:: yaml
