@@ -319,7 +319,7 @@ Cover Components
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
-    AM43 Cover, components/cover/am43, am43.png
+    AM43 Cover, components/cover/am43, am43.jpg
 
 Text Sensor Components
 ----------------------

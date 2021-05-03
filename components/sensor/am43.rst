@@ -9,6 +9,12 @@ The ``am43`` sensor platform allows you to read the light and
 battery sensors on an AM43 BLE cover motor. The platform connects
 to the device over the ESP32's BLE peripheral.
 
+.. note::
+
+  This component does NOT support Tuya-based versions of this device,
+  as the protocol is completely different. If your device is controlled
+  with the SmartLife app, then it will not work.
+
 .. figure:: images/am43.jpg
     :align: right
 
