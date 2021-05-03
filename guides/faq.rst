@@ -224,6 +224,11 @@ Some steps that can help with the issue:
   :doc:`api connection is lost </components/api>` or
   :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
   to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
+- If you see ``Error: Disconnecting <client name>`` in your logs, ESPHome is actively closing
+  the API client connection. Connect a serial console to inspect the reason, which is only
+  logged via serial. If you see ``ack timeout 4`` right before a disconnect, then set the
+  option ``ack_timeout_workaround`` to ``true`` in the ``api:`` config. This enables a
+  possible workaround for this issue, until a better fix is available.
 
 
 Docker Reference
