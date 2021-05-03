@@ -19,7 +19,6 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
     <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
     <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
-    <a href="/guides/supporters.html"><img src="/_images/shield-donate.svg" alt="Donate" class="index-shield"></a>
 
 .. _guides:
 
@@ -429,6 +428,7 @@ Cookbook
     ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
+    IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

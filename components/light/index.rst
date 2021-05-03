@@ -746,8 +746,8 @@ This effect allows you to access each LED individually in a custom light effect.
 Available variables in the lambda:
 
 - **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
-- **current_color**  - :apistruct:`Color <Color>` instance (see API reference for more info).
-- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
+- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
 
   .. note::
 
@@ -857,7 +857,7 @@ E1.31 Effect
 This effect enables controlling addressable lights using UDP-based
 E1.31_ protocol.
 
-JINX_ can be used to control E1.31_ enabled ESPHome.
+For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHome.
 
 .. code-block:: yaml
 
@@ -900,9 +900,11 @@ Configuration variables:
 
 - **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
 
+The udp port esphome is listening on is 5568.
 
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
+.. _Hyperion.NG: https://github.com/hyperion-project/hyperion.ng
 
 Adalight Effect
 ***************

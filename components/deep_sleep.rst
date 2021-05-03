@@ -96,7 +96,7 @@ Configuration options:
 -----------------------------
 
 This action prevents the given deep sleep component from entering deep sleep.
-Useful for
+Useful for keeping the ESP active during data transfer or OTA updating (See note below for more information).
 
 .. code-block:: yaml
 

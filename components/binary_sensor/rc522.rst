@@ -18,10 +18,11 @@ The RC522 supports SPI, I²C and UART communication protocols, ESPHome can use e
 Component/Hub
 -------------
 
-* If you have a module like the image above, it can only be used in SPI mode (`unless hacked <https://forum.arduino.cc/index.php?topic=442750.0>`__)
-  and you need to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
-
-* If you have a RC522 which communicates via I²C like in the M5 Stack then you need to have an :ref:`I²C <i2c>` bus configured.
+The ``rc522`` component allows you to use RC522 RFID controllers
+(`datasheet <https://www.nxp.com/docs/en/data-sheet/MFRC522.pdff>`__, `Ali Express <https://es.aliexpress.com/item/1260729519.html>`__)
+with ESPHome. This component is a global hub that establishes the connection to the RC522 via either :ref:`SPI <spi>` or
+:ref:`I²C <i2c>` and outputs its data. Using the :ref:`RC522 binary sensors <rc522-tag>` you can then
+create individual binary sensors that track if an RFID tag is currently detected by the RC522.
 
 .. figure:: images/rc522-full.jpg
     :align: center
@@ -30,10 +31,15 @@ Component/Hub
 Over SPI
 --------
 
-The ``rc522_spi`` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that
-establishes the connection to the RC522 via :ref:`SPI <spi>` (also avilable over I²C). Using the
-:ref:`RC522 binary sensors <rc522-tag>` you can then create individual binary sensors that track if
-an RFID tag is currently detected by the RC522.
+The RC522 supports SPI, I²C and UART communication protocols, ESPHome can use either SPI or I²C.
+
+* If you have a module like the image above, it can only be used in SPI mode (`unless hacked <https://forum.arduino.cc/index.php?topic=442750.0>`__)
+  and you need to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
+
+* If you have a RC522 which communicates via I²C like in the M5 Stack then you need to have an :ref:`I²C <i2c>` bus configured.
+
+SPI Option
+**********
 
 .. code-block:: yaml
 
@@ -47,36 +53,14 @@ an RFID tag is currently detected by the RC522.
         uid: 74-10-37-94
         name: "RC522 RFID Tag"
 
-Configuration variables:
-************************
-
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
-  is connected to.
-- **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
-  to use multiple SPI buses.
-- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a tag is read. See
-  :ref:`rc522-on_tag`.
-- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the RST line. Some tests
-  shows the RC522 working okay without this.
-- **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the RC522. This affects the
-  duration that the individual binary sensors stay active when they're found.
-  If a device is not found within this time window, it will be marked as not present. Defaults to ``1s``.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
-
-Over I²C
---------
-
-The ``rc522_i2c`` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that
-establishes the connection to the RC522 via :ref:`I²C <i2c>` (also avilable over SPI). Using the
-:ref:`RC522 binary sensors <rc522-tag>` you can then create individual binary sensors that track if
-an RFID tag is currently detected by the RC522.
+I²C Option
+**********
 
 .. code-block:: yaml
 
     i2c:
 
     rc522_i2c:
-      cs_pin: GPIO2
 
     binary_sensor:
       - platform: rc522
@@ -86,17 +70,31 @@ an RFID tag is currently detected by the RC522.
 Configuration variables:
 ************************
 
-- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x28``.
-- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
-  to use multiple I²C buses.
-- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a tag is read. See
-  :ref:`rc522-on_tag`.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the RST line. Some tests
   shows the RC522 working okay without this.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the RC522. This affects the
   duration that the individual binary sensors stay active when they're found.
   If a device is not found within this time window, it will be marked as not present. Defaults to ``1s``.
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a tag is read. See
+  :ref:`rc522-on_tag`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
+
+SPI Only:
+^^^^^^^^^
+
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
+  is connected to.
+- **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
+  to use multiple SPI buses.
+
+
+I²C Only:
+^^^^^^^^^
+
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x2C``.
+- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
+  to use multiple I²C buses.
+
 
 
 

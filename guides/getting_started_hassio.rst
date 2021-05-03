@@ -103,6 +103,9 @@ to the configuration like this:
 In above example, we're simply adding a switch that's called "Living Room Dehumidifier" (could control
 anything really, for example lights) and is connected to the pin ``GPIO5``.
 
+Connecting your device to Home Assistant
+----------------------------------------
+
 Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
 should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration

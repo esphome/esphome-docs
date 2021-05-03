@@ -46,7 +46,7 @@ Configuration variables:
   decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
-- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platfrom. Defaults to
+- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
   ``3``.
 - **filter** (*Optional*, :ref:`time <config-time>`): Filter any pulses that are shorter than this. Useful for removing
   glitches from noisy signals. Defaults to ``10us``.
