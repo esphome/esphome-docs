@@ -20,7 +20,7 @@ Changelog - Version 1.17.0 - 4th May 2021
 
 
 So, ESPHome was acquired by Nabu Casa. That was big and unexpected, but awesome news for the project as now I have been hired
-by Nabu Casa full-time to work on ESPHome. I know I said this is the last release, but hopefully now that it is literally
+by Nabu Casa full-time to work on ESPHome. I know I said this in the last release, but hopefully now that it is literally
 my job, the releases will move to a (yet to be defined) schedule.
 
 A lot of fixes and updates to exisitng components in this release, and a couple of new integrations and features too. Check them out
