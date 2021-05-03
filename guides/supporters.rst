@@ -1,100 +1,13 @@
-Supporters & Contributors
-=========================
-
-**Hi! I'm Otto Winter, the author and main developer of ESPHome.**
-
-Developing ESPHome takes a lot of time. There's a lot of things that go
-into developing and maintaining an open-source project: from developing new features, fixing bugs,
-answering questions to maintaining servers, preparing releases and moderating discussions.
-And of course all of the hardware for new features has to be bought too. I'm a student
-so I really appreciate donations :)
-
-**You can support ESPHome's development** by becoming a Patron or a one-time contribution
-with PayPal.
-
-.. raw:: html
-
-
-    <div class="supporters-row">
-        <div class="supporters-column">
-            <h3>Support Regularly 💫</h3>
-            <a href="https://www.patreon.com/ottowinter" target="_blank"><img src="/_images/donate-patreon.png" alt="Become A Patron"></a>
-            <p>
-              <strong>Become a patron for this project.</strong>
-            </p>
-        </div>
-        <div class="supporters-column">
-            <h3>One-Time Donation</h3>
-            <a href="https://www.paypal.me/ottowinter" target="_blank"><img src="/_images/donate-paypal.png" alt="Donate with PayPal"></a>
-            <p>
-              <strong>Make a one-time donation via PayPal.</strong>
-            </p>
-        </div>
-    </div>
-
-Patrons
--------
-
-People that support ESPHome's development over `Patreon <https://www.patreon.com/ottowinter>`__.
-You guys are awesome!
-
-- Alexander Leisentritt
-- Anders
-- Andrea Donno
-- Andrew Tierney
-- Book of the Future
-- Christer Frostmo
-- Christoph
-- Clayton
-- Daan Damhuis
-- Dattas Moonchaser
-- David Padbury
-- Dennis Münchgesang
-- Dmitriy Khazansky
-- DrZzs
-- fabi
-- Franck Nijhof
-- Gaiar Baimuratov
-- Intermittent Technology
-- Jung Ervin
-- Kenvase
-- Lazar Obradovic
-- Magnus Overli
-- minsuke
-- Nick Rout
-- Nigel Michki
-- Paul Krischer
-- Paul Morley
-- Paweł Kawa
-- Philippe Penochet
-- Radu Tizu
-- Roman Priesol
-- LMR
-- Ryan Bahm
-- Ryan Nazaretian
-- Sam Absalom
-- Sasha Mikhnov
-- Saulo Onze
-- Starwolf73
-- Thibault Maekelbergh
-- Thomas Hermine
-- Vincèn PUJOL
-- Wojciech Bederski
-- Yonatan Adest
-- Zoltán Jáki
-
-
 Contributors
-------------
+============
 
 ESPHome is an open-source project, and everybody can contribute to it to make this
 project awesome. This list contains a list of people who have submitted patches
 that have made it into the `ESPHome organization's <https://github.com/esphome>`__ repositories.
 
-Author & Main Developer
-***********************
+ESPHome is lead by `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__, who is funded to work on ESPHome full-time by `Nabu Casa <https://www.nabucasa.com>`__. To help fund development of ESPHome, subscribe to `Home Assistant Cloud by Nabu Casa <https://www.nabucasa.com>`__.
 
-- `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__ - 2361 contributions
+ESPHome was originally founded by `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__.
 
 Contributors
 ************
@@ -300,7 +213,6 @@ Contributors
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__ - 1 contribution
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__ - 2 contributions
 - `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__ - 11 contributions
-- `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__ - 133 contributions
 - `Jérémy JOURDIN (@JJK801) <https://github.com/JJK801>`__ - 1 contribution
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__ - 1 contribution
 - `Justin Maxwell (@jkmaxwell) <https://github.com/jkmaxwell>`__ - 1 contribution
