@@ -117,7 +117,12 @@ Configuration variables:
     The white LEDs are much brighter than the color LEDs and will fully overpower
     the set color when the white level is set even a little bit high. You will need
     to set the white level to 0 in order to get usable colors from this bulb.
-   
+
+.. note::
+
+    This driver does not support enabling of both the color and the white channels
+    at the same time. Therefore, the :ref:`rgbw_color_interlock` should be set to true
+    when using this driver.
 
 See Also
 --------
