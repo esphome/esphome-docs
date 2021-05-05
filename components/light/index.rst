@@ -900,7 +900,10 @@ Configuration variables:
 
 - **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
 
+<<<<<<< HEAD
 The udp port esphome is listening on is 5568.
+=======
+>>>>>>> current
 
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
