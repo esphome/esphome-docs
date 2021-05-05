@@ -1,8 +1,8 @@
-SCD30 CO₂, Temperature and Relative Humidty Sensor
-==================================================
+SCD30 CO₂, Temperature and Relative Humidity Sensor
+===================================================
 
 .. seo::
-    :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidty Sensor
+    :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidity Sensor
     :image: scd30.jpg
 
 The ``scd30`` sensor platform  allows you to use your Sensiron SCD30 CO₂
@@ -35,20 +35,20 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 Configuration variables:
 ------------------------
 
-- **co2** (**Required**): The information for the CO₂ sensor.
+- **co2** (*Optional*): The information for the CO₂ sensor.
 
   - **name** (**Required**, string): The name for the CO₂eq sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **temperature** (**Required**): The information for the Temperature sensor.
+- **temperature** (*Optional*): The information for the Temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 
-- **humidity** (**Required**): The information for the Humidity sensor.
+- **humidity** (*Optional*): The information for the Humidity sensor.
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.

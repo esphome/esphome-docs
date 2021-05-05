@@ -156,7 +156,9 @@ the state of a light, send a GET request to ``/light/<id>``, for example ``light
    -  **b**: The blue channel of this light. From 0 to 255.
 
 -  **effect**: The currently active effect, only if the light supports effects.
--  **white_value**: The white value of RGBW lights. From 0 to 255.
+-  **white_value**: The white value of RGBW lights. From 0 to 255. Only if the light supports white value.
+-  **color_temp**: The color temperature of the RGBWW light. Between minimum mireds and maximum mireds of the light.
+   Only if the light support color temperature. 
 
 Setting light state can happen through three POST method calls: ``turn_on``, ``turn_off`` and ``toggle``.
 Turn on and off have additional URL encoded parameters that can be used to set other properties. For example
@@ -192,7 +194,7 @@ GET request to ``/fan/<id>``.
       "id": "fan-living_room_fan",
       "state": "ON",
       "value": true,
-      "speed": "high",
+      "speed_level": 2,
       "oscillation": false
     }
 
@@ -200,11 +202,11 @@ GET request to ``/fan/<id>``.
 -  **id**: The id of the fan. Prefixed by ``fan-``.
 -  **state**: The text-based state of the fan as a string.
 -  **value**: The binary (``true``/``false``) state of the fan.
--  **speed**: The speed setting of the fan if it's supported. Either "off", "low", "medium" or "high".
+-  **speed_level**: The speed level of the fan if it's supported. Value is between 1 and the maximum supported by the fan.
 -  **oscillation**: Whether the oscillation setting of the fan is on. Only sent if the fan supports it.
 
 To control the state of the fan, send POST requests to ``/fan/<id>/turn_on``, ``/fan/<id>/turn_off``
 and ``/fan/<id>/toggle``. Turn on additionally supports these optional parameters:
 
--  **speed**: The new speed setting of the fan. Values as above.
+-  **speed_level**: The new speed level of the fan. Values as above.
 -  **oscillation**: The new oscillation setting of the fan. Values as above.

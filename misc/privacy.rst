@@ -126,4 +126,4 @@ when they are posted on this page.
 Contact Us
 ----------
 
-If you have any questions about this Privacy Policy, please contact us by email: contact@otto-winter.com
+If you have any questions about this Privacy Policy, please contact us by email: esphome@nabucasa.com

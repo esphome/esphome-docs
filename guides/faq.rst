@@ -220,8 +220,8 @@ Some steps that can help with the issue:
 - The issue seems to happen with cheap boards more frequently. Especially the "cheap" NodeMCU
   boards from eBay which sometimes have quite bad antennas.
 - ESPHome reboots on purpose when something is not going right, e.g.
-  :doc:`wifi connetion cannot be made </components/wifi>` or
-  :doc:`api connetion is lost </components/api>` or
+  :doc:`wifi connection cannot be made </components/wifi>` or
+  :doc:`api connection is lost </components/api>` or
   :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
   to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
 
@@ -260,7 +260,7 @@ Command reference:
     # Warning: this command is currently not working with Docker on MacOS. (see note below)
     docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
 
-    # Start dashboard on port 5062 (MacOS specific command)
+    # Start dashboard on port 6052 (MacOS specific command)
     docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
 
     # Setup a bash alias:

@@ -75,6 +75,39 @@ Configuration options:
 - **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
   Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
 
+Data structures are not possible, but you can create a script in Home Assistant and call with all
+the parameters in plain format.
+
+.. code-block:: yaml
+
+    # Home Assistant Configuration
+    script:
+      ...
+      set_light_rgb:
+        alias: 'ESPHome RGB light set'
+        sequence:
+        - service: light.turn_on
+          data_template:
+            entity_id: '{{ light_name }}'
+            rgb_color:
+            - '{{ red }}'
+            - '{{ green }}'
+            - '{{ blue }}'
+
+Then in ESPHome
+
+.. code-block:: yaml
+
+    # In some trigger
+    on_...:
+      - homeassistant.service:
+          service: script.set_light_rgb
+          data:
+            light_name: 'my_light'
+            red: '255'
+            green: '199'
+            blue: '71'
+
 .. _api-services:
 
 User-defined Services

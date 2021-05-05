@@ -77,7 +77,7 @@ This action toggles a light with the given ID when executed.
         # Shorthand:
         - light.toggle: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -121,7 +121,7 @@ This action turns a light with the given ID on when executed.
         # Shorthand
         - light.turn_on: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -180,7 +180,7 @@ This action turns a light with the given ID off when executed.
         # Shorthand
         - light.turn_off: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -214,7 +214,7 @@ is essentially just a combination of the turn_on and turn_off calls.
             id: light_1
             state: on
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **state** (*Optional*, :ref:`templatable <config-templatable>`, boolean): Change the ON/OFF
@@ -238,10 +238,10 @@ by a relative amount.
             id: light_1
             relative_brightness: 5%
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
-- **relative_brightness** (**Required***, :ref:`templatable <config-templatable>`, percentage):
+- **relative_brightness** (**Required**, :ref:`templatable <config-templatable>`, percentage):
   The relative brightness to dim the light by.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
 
@@ -369,6 +369,34 @@ entries with each having a unique name like so:
               name: "My Fast Random Effect"
               transition_length: 4s
               update_interval: 5s
+
+Pulse Effect
+************
+
+This effect makes a pulsating light. The period can be defined by ``update_interval``, the transition length with ``transition_length``. ``transition_length`` should be set to less than ``update_interval``, setting ``transition_length`` to ``1s`` and ``update_interval`` to ``2s`` will result in a transition from 0% to 100% lasting 1 second, 1 second full light, a transition from 100% to 0% for 1 second and off for 1 second.
+
+.. code-block:: yaml
+
+    light:
+      - platform: ...
+        # ...
+        effects:
+          - pulse:
+          - pulse:
+              name: "Fast Puse"
+              transition_length: 0.5s
+              update_interval: 0.5s
+          - pulse:
+              name: "Slow Puse"
+              # transition_length: 1s      # defaults to 1s
+              update_interval: 2s
+
+Configuration variables:
+
+- **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
+- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transistion is started. Defaults to ``1s``.
+
 
 Random Effect
 *************
@@ -718,8 +746,12 @@ This effect allows you to access each LED individually in a custom light effect.
 Available variables in the lambda:
 
 - **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
-- **current_color**  - :apiclass:`ESPColor ` <light::ESPColor>` instance (see API reference for more info).
-- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
+- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
+
+  .. note::
+
+      ESPColor has been migrated to Color. See :apistruct:`Color <Color>` for more information.
 
 .. code-block:: yaml
 
@@ -733,18 +765,18 @@ Available variables in the lambda:
               // it.size() - Number of LEDs
               // it[num] - Access the LED at index num.
               // Set the LED at num to the given r, g, b values
-              // it[num] = ESPColor(r, g, b);
-              // Get the color at index num (ESPColor instance)
+              // it[num] = Color(r, g, b);
+              // Get the color at index num (Color instance)
               // it[num].get();
 
               // Example: Simple color wipe
               for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = ESPColor::random_color();              
+              it[0] = Color::random_color();
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-              it.range(0, 50) = ESPColor::BLACK;
+              it.range(0, 50) = Color::BLACK;
               it.all().fade_to_black(10);
 
 .. code-block:: yaml
@@ -768,7 +800,7 @@ Available variables in the lambda:
               // again you can use the initial_run variables
               if (initial_run) {
                 progress = 0;
-                it.all() = ESPColor::BLACK;
+                it.all() = Color::BLACK;
                 // optionally do a return so nothing happens until the next update_interval
                 return;
               }
@@ -817,13 +849,15 @@ Configuration variables:
 - **sequence** (*Optional*, :ref:`Action <config-action>`): The actions to perform in sequence
   until the effect is stopped.
 
-E1.31
-*****
+.. _e131-light-effect:
+
+E1.31 Effect
+************
 
 This effect enables controlling addressable lights using UDP-based
 E1.31_ protocol.
 
-JINX_ can be used to control E1.31_ enabled ESPHome.
+For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHome.
 
 .. code-block:: yaml
 
@@ -840,16 +874,15 @@ JINX_ can be used to control E1.31_ enabled ESPHome.
 
 Configuration variables:
 
-- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
-- **universe** (*Required*, integer): The value of universe, between 1 to 512.
+- **universe** (**Required**, integer): The value of universe, between 1 to 512.
 - **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
   ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
 There are three modes of operation:
 
-- `MONO`: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
-- `RGB`: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
-- `RGBW`: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
+- ``MONO``: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
+- ``RGB``: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
+- ``RGBW``: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
 
 If there's more LEDs than allowed per-universe, additional universe will be used.
 In the above example of 189 LEDs, first 170 LEDs will be assigned to 1 universe,
@@ -858,11 +891,23 @@ the rest of 19 LEDs will be automatically assigned to 2 universe.
 It is possible to enable multiple light platforms to listen to the same universe concurrently,
 allowing to replicate the behaviour on multiple strips.
 
+E1.31 Component
+^^^^^^^^^^^^^^^
+
+The :ref:`e131-light-effect` requires a component hub for the ``e131`` light effect.
+
+Configuration variables:
+
+- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
+
+The udp port esphome is listening on is 5568.
+
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
+.. _Hyperion.NG: https://github.com/hyperion-project/hyperion.ng
 
-Adalight
-********
+Adalight Effect
+***************
 
 This effect enables controlling addressable lights using UART-based
 Adalight_ protocol, allowing to create realtime ambient lighting effects.
@@ -899,8 +944,8 @@ Configuration variables:
 .. _Adalight: https://learn.adafruit.com/adalight-diy-ambient-tv-lighting
 .. _Prismatik: https://github.com/psieg/Lightpack
 
-WLED
-****
+WLED Effect
+***********
 
 This effect enables controlling addressable lights using UDP-based
 `UDP Realtime Control`_ protocol used by WLED_, allowing to create realtime ambient
@@ -922,6 +967,11 @@ Prismatik_ can be used to control addressable lights over network on ESPHome.
 Configuration variables:
 
 - **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+
+.. note::
+
+    You can also set the ``port`` to ``19446`` for compatability with Hyperion Classic using a
+    UDP device with protocol 0.
 
 Currently the following realtime protocols are supported:
 WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.

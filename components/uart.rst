@@ -52,6 +52,10 @@ Configuration variables:
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
 
+ESP32 options:
+
+- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``True`` or ``False``. Defaults to ``False``.
+
 .. _uart-hardware_uarts:
 
 Hardware UARTs
@@ -85,7 +89,7 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
       - uart.write: 'Hello World'
 
       # For escape characters, you must use double quotes!
-      - uart.write: 'Hello World\r\n'
+      - uart.write: "Hello World\r\n"
 
       # Raw data
       - uart.write: [0x00, 0x20, 0x42]
