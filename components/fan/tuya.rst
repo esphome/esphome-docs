@@ -56,7 +56,7 @@ Configuration variables:
 - **oscillation_datapoint** (*Optional*, int): The datapoint id number of the oscillation
   switch. Probably not supported on any Tuya controllers currently, but it's there if need be.
 - **direction_datapoint** (**Optional**, int): The datapoint id number of the direction
-  switch. Supported by some Arlec ceiling fans.
+  switch. Supported by some ceiling fans.
 - **speed_count** (*Optional*, int): Set the number of supported discrete speed levels. Defaults to ``3``.
 - All other options from :ref:`Fan <config-fan>`.
 
