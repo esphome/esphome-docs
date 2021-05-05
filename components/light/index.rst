@@ -968,6 +968,11 @@ Configuration variables:
 
 - **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
 
+.. note::
+
+    You can also set the ``port`` to ``19446`` for compatability with Hyperion Classic using a
+    UDP device with protocol 0.
+
 Currently the following realtime protocols are supported:
 WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.
 
