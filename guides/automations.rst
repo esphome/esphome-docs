@@ -202,12 +202,12 @@ or just ``|`` or ``>``. There's a slight difference in how these different style
 purposes we can ignore that).
 
 With ``if (...) { ... } else { ... }`` we create a *condition*. What this effectively says that if the thing inside
-the first parentheses evaluates to ``true``` then execute the first block (in this case ``return COVER_OPEN;``,
+the first parentheses evaluates to ``true`` then execute the first block (in this case ``return COVER_OPEN;``,
 or else evaluate the second block. ``return ...;`` makes the code block give back a value to the template. In this case,
 we're either *returning* ``COVER_OPEN`` or ``COVER_CLOSED`` to indicate that the cover is closed or open.
 
 Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
-somewhere else, like ``top_end_stop```) and lets you call any of ESPHome's many APIs directly. For example, here
+somewhere else, like ``top_end_stop``) and lets you call any of ESPHome's many APIs directly. For example, here
 we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::
