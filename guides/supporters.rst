@@ -17,6 +17,7 @@ Contributors
 (in alphabetical order)
 
 - `0hax (@0hax) <https://github.com/0hax>`__
+- `0x0a11c0de (@0x0a11c0de) <https://github.com/0x0a11c0de>`__
 - `2016for (@2016for) <https://github.com/2016for>`__
 - `Pavel Golovin (@31337Ghost) <https://github.com/31337Ghost>`__
 - `David Martin (@3ative) <https://github.com/3ative>`__
@@ -35,6 +36,7 @@ Contributors
 - `Airy André (@airy10) <https://github.com/airy10>`__
 - `akoivist (@akoivist) <https://github.com/akoivist>`__
 - `Andrej Komelj (@akomelj) <https://github.com/akomelj>`__
+- `Alex Konradi (@akonradi) <https://github.com/akonradi>`__
 - `Alone (@al-one) <https://github.com/al-one>`__
 - `Alex (@alex-richards) <https://github.com/alex-richards>`__
 - `Alexander Leisentritt (@Alex9779) <https://github.com/Alex9779>`__
@@ -94,6 +96,7 @@ Contributors
 - `Chris Talkington (@ctalkington) <https://github.com/ctalkington>`__
 - `Alex Solomaha (@CyanoFresh) <https://github.com/CyanoFresh>`__
 - `Luar Roji (@cyberplant) <https://github.com/cyberplant>`__
+- `d-two (@d-two) <https://github.com/d-two>`__
 - `Dale Higgs (@dale3h) <https://github.com/dale3h>`__
 - `damanti-me (@damanti-me) <https://github.com/damanti-me>`__
 - `Daniel Bjørnbakk (@danibjor) <https://github.com/danibjor>`__
@@ -525,4 +528,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 4, 2021.*
+*This page was last updated May 5, 2021.*
