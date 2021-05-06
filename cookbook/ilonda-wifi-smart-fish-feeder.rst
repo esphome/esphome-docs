@@ -96,10 +96,7 @@ firmware can be uploaded allowing you to control the Wifi Smart Fish Feeder via 
 #. Type ``yes`` to accept the warning.
 #. Connect your alternative WiFi device (non iOS / Apple based) to the ``vtrust-flash`` SSID using ``flashmeifyoucan`` as the password. This is the network
    being broadcast by the Pi from the tuya flash script.
-#. If you haven't already, power on your fish feeder. After that:
-
-    * To connect the WiFi Smart Fish Feeder to your WiFi press and hold the switch for about 5 seconds until the blue light starts flashing rapidly. 
-
+#. If you haven't already, power on your fish feeder. After that, to connect the WiFi Smart Fish Feeder to your WiFi press and hold the switch for about 5 seconds until the blue light starts flashing rapidly.
 #. Press enter on your putty window to start the flash process and wait. If the connection is successful you should see a large amount of scrolling text, this
    is the script backing up the factory shipped firmware.
 #. Once the process is complete you can type ``curl http://10.42.42.42/flashURL?url=http://10.42.42.1/files/firmware.bin``
