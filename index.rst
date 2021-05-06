@@ -386,6 +386,7 @@ Misc Components
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    SimpleEVSE, components/simpleevse, fingerprint.svg
 
 Additional Custom Components
 ----------------------------
