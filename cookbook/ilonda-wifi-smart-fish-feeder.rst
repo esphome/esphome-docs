@@ -7,7 +7,7 @@ Ilonda Wifi Smart Fish Feeder (L88) is a Tuya-based device sold by Amazon (not o
     :align: center
     :width: 50.0%
 
-Originally intended to be used with their companion apps once flashed using `tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ ESPHome generated
+Originally intended to be used with its companion app, once flashed using `tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ ESPHome generated
 firmware can be uploaded allowing you to control the Wifi Smart Fish Feeder via Home Assistant.
 
 1. Create the ESPHome Firmware
