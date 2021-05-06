@@ -394,6 +394,7 @@ Cookbook
 
 .. imgtable::
 
+    Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     Endstop Cover, cookbook/endstop-cover, window-open.svg
     PIR Sensor, cookbook/pir, pir.jpg
