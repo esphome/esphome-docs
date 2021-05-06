@@ -133,8 +133,7 @@ Examples:
 
 Got all that? Great. Let's take a closer look at some configuration.
 
-Configuration Variables
------------------------
+Configuration Variables:
 
 The thermostat controller uses the sensor to determine whether it should heat or cool.
 
@@ -269,6 +268,11 @@ Advanced Options
 
     While this platform uses the term temperature everywhere, it can also be used to regulate other values.
     For example, controlling humidity is also possible with this platform.
+
+Bang-bang vs. Thermostat
+------------------------
+
+Please see the :doc:`Bang-bang <bang_bang>` component's documentation for a detailed comparison of these two components.
 
 See Also
 --------

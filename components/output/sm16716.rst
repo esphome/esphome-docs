@@ -8,8 +8,8 @@ SM16716 LED driver
 
 .. _sm16716-component:
 
-Component
----------
+Component/Hub
+-------------
 
 The SM16716 component represents a SM16716 LED diver chain
 (`SM16716 description <https://github.com/sowbug/sm16716/blob/master/SM16716%20Datasheet%20%5BChinese%5D.pdf>`__,
@@ -61,8 +61,8 @@ Configuration variables:
 
 .. _sm16716-output:
 
-Driver Output
--------------
+Output
+------
 
 The SM16716 output component exposes a SM16716 channel of a global
 :ref:`sm16716-component` as a float output.

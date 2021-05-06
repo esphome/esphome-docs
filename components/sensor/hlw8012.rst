@@ -31,6 +31,8 @@ be measured at the same exact points in time.
           name: "HLW8012 Voltage"
         power:
           name: "HLW8012 Power"
+        energy:
+          name: "HLW8012 Energy"
         update_interval: 60s
 
 .. note::
@@ -48,6 +50,8 @@ Configuration variables:
 - **power** (*Optional*): Use the (active) power value of the sensor in watts. All options from
   :ref:`Sensor <config-sensor>`.
 - **voltage** (*Optional*): Use the voltage value of the sensor in V (RMS).
+  All options from :ref:`Sensor <config-sensor>`.
+- **energy** (*Optional*): Use the total energy value of the sensor in Wh.
   All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 

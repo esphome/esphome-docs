@@ -5,8 +5,14 @@ APDS9960 Sensor
     :description: Instructions for setting up APDS9960 sensors.
     :image: apds9960.jpg
 
+
+.. _apds9960-component:
+
+Component/Hub
+-------------
+
 The ``apds9960`` sensor platform allows you to use your APDS9960 RGB and gesture sensors
-(`datasheet <https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf>`__,
+(`datasheet <https://cdn.sparkfun.com/datasheets/Sensors/Proximity/apds9960.pdf>`__,
 `SparkFun`_) with ESPHome.
 The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
@@ -45,11 +51,17 @@ and direction binary sensors.
 
 Base Configuration:
 
-- **address** (*Optional*, integer): The I2C address of the sensor. Defaults to ``0x39``.
+- **address** (*Optional*, integer): The I²C address of the sensor. Defaults to ``0x39``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 
-Sensor Configuration:
+Sensor
+------
+
+The ``apds9960`` sensor allows you to use your :doc:`apds9960` to perform different
+measurements.
+
+Configuration variables:
 
 - **name** (**Required**, string): The name for the sensor.
 - **type** (**Required**, string): The type of sensor measurement. One of
@@ -63,7 +75,13 @@ Sensor Configuration:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
-Binary Sensor Configuration:
+Binary Sensor
+-------------
+
+The ``apds9960`` binary sensor allows you to use your :doc:`apds9960` to perform different
+measurements.
+
+Configuration variables:
 
 - **name** (**Required**, string): The name for the binary sensor.
 - **direction** (**Required**, string): The direction to measure. One of:
@@ -75,6 +93,11 @@ Binary Sensor Configuration:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+Troubleshooting:
+----------------
+
+With some APDS9960 modules the VL pin needs to be supplied with 3.3V for gesture sensing to work.  The VL pin provides power for the infrared LED that is used to detect gestures.  There may be two pads on the module which, if shorted with a solder joint, cause the main VCC power pin to supply power for the infrared LED as well.  However, providing a separate power supply via the VL pin may help to isolate the rest of the circuit from noise created by pulsing the infrared LED at relatively high power.
 
 See Also
 --------

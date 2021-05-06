@@ -61,7 +61,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the :ref:`I²C <i2c>` address of the display. Defaults to 0x3C.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
-- **brightness** (*Optional*): Set the screen brightness in percents 0.0-1.0. Defaults to `1.0` that corresponds to 100%.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **external_vcc** (*Optional*, boolean): Set this to true if you have the VCC pin connected to an external power supply.
   Defaults to ``false``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
@@ -69,7 +69,6 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 .. note::
 
@@ -94,9 +93,9 @@ If your SSD1306 or SH1106 is connected via the :ref:`I²C Bus <i2c>`, see :ref:`
     SSD1306 OLED Display
 
 Connect D0 to the CLK pin you chose for the :ref:`SPI bus <spi>`, connect D1 to the MOSI pin and ``DC`` and ``CS``
-to some GPIO pins on the ESP. If this is the only device on the SPI bus, the ``CS`` pin can be connected to GND.
-For power, connect VCC to 3.3V and GND to GND.
-Optionally you can also connect the ``RESET`` pin to a pin on the ESP which may improve reliability.
+to some GPIO pins on the ESP. For power, connect
+VCC to 3.3V and GND to GND. Optionally you can also connect the ``RESET`` pin to a pin on the ESP which may
+improve reliability.
 
 .. code-block:: yaml
 
@@ -128,12 +127,12 @@ Configuration variables:
   - ``SH1106 96x16``
   - ``SH1106 64x48``
 
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
-  The CS line can be connected to GND if this is the only device on the SPI bus.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **external_vcc** (*Optional*, boolean): Set this to true if you have the VCC pin connected to an external power supply.
   Defaults to ``false``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
@@ -143,7 +142,6 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 See Also
 --------
