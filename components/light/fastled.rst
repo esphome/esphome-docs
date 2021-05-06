@@ -79,6 +79,7 @@ Supported Chipsets
 - ``UCS1903``
 - ``UCS1904``
 - ``UCS2903``
+- ``SM16703``
 
 .. _fastled-spi:
 
