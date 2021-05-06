@@ -1,9 +1,9 @@
-Anova Climate
+Anova Cooker
 =============
 
 .. seo::
     :description: Instructions for setting up an Anova sous-vide cooker.
-    :image: air-conditioner.png
+    :image: anova.png
 
 The ``anova`` climate platform creates a climate device which can be used
 to control a BLE Anova sous-vide stick. Whilst not strictly a climate
@@ -16,14 +16,14 @@ This component supports the following functionality:
 - Set the desired temperature
 - Show the current temperature
 
-The timer is not currently supported, you should use automations to achieve
+The timer is not currently supported, you can use automations to achieve
 similar functionality.
 
 This platform uses the BLE peripheral on an ESP32, so you also need to enable
 this component. Please see the BLE Client docs for how to discover the MAC
 address of your Anova device.
 You cannot use the Anova app over BLE whilst this component is connected, you
-should disconnect it first. To setup a switch, see :doc:`/components/switch/ble`.
+should disconnect it first. To setup a (dis-)connect switch, see :doc:`/components/switch/ble`.
 
 .. code-block:: yaml
 
