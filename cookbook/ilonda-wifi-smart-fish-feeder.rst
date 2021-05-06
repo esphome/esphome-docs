@@ -188,14 +188,6 @@ here's my working esphome configuration.
 
 You can now add your Wifi Smart Fish Feeder to Home Assistant via the configurations page, look for 'ESPHome' under the Integrations option and click 'Configure'.
 
-.. figure:: images/ilonda-wifi-smart-fish-feeder-relay-homeassistant.jpg
-    :align: center
-    :width: 50.0%
-
-.. figure:: images/ilonda-wifi-smart-fish-feeder-counter-homeassistant.jpg
-    :align: center
-    :width: 50.0%
-
 See Also
 --------
 
