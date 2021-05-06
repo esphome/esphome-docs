@@ -129,7 +129,7 @@ managed to build a fully working esphome configuration.
 
     ota:
 
-# Binary Sensor to allow relay to be switched when physical button is pressed
+    # Binary Sensor to allow relay to be switched when physical button is pressed
     binary_sensor:
       - platform: gpio
         id: button
@@ -145,7 +145,7 @@ managed to build a fully working esphome configuration.
         name: "Status"
 
     switch:
-# Switch to turn feeder on for 3 seconds/off and turn on/off LED
+    # Switch to turn feeder on for 3 seconds/off and turn on/off LED
       - platform: gpio
         name: 'Relay feeder'
         id: relay
@@ -158,7 +158,7 @@ managed to build a fully working esphome configuration.
         restore_mode: ALWAYS_OFF
 
     sensor:
-# Feeder counter
+    # Feeder counter
       - platform: pulse_meter
         pin: GPIO12
         name: 'Counter/min'
@@ -168,7 +168,7 @@ managed to build a fully working esphome configuration.
           unit_of_measurement: 'time(s)'
           name: 'Counter feeder'
 
-# To allow led to be controlled via GPIO
+    # To allow led to be controlled via GPIO
     output:
       - platform: esp8266_pwm
         id: blue_led
@@ -176,7 +176,7 @@ managed to build a fully working esphome configuration.
           number: GPIO5
           inverted: true
 
-# LED control
+    # LED control
     light:
       - platform: monochromatic
         output: blue_led
