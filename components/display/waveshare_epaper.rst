@@ -110,4 +110,6 @@ See Also
 - :doc:`index`
 - :apiref:`waveshare_epaper/waveshare_epaper.h`
 - `Arduino Waveshare E-Paper library <https://github.com/soonuse/epd-library-arduino>`__ by `Yehui (@soonuse) <https://github.com/soonuse>`__
+- `Waveshare ESP32 driver board example <https://gist.github.com/jamesfed/ee7df967e5ab7a77f979bc8226a1f0e2>`__ by `James Preston (@jamesfed) <https://gist.github.com/jamesfed>`__
+- `Waveshare ESP8266 driver board example <https://gist.github.com/jamesfed/cb9092b2108d794d75cabdbc24cd1cc7>`__ by `James Preston (@jamesfed) <https://gist.github.com/jamesfed>`__
 - :ghedit:`Edit`
