@@ -37,7 +37,11 @@ override them if you want to.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the sensor.
+- **name** (**Required**, string): The name for the sensor.  Caution in setting this name as it forms 
+  the basis for the unique id for the sensor item. It should only be constructed of the following characters
+  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_" and the space character.  Any other 
+  characters are deleted. For example, the following names are identical and will cause issues
+  in Home Assistant - "Sensor PM25" equals "Sensor PM2.5".
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
