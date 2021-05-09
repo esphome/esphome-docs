@@ -248,7 +248,6 @@ added ``board``, and overridden ``name`` substitutions):
       platform: ESP8266
       board: esp01_1m
       includes: []
-      board_flash_mode: dout
       libraries: []
       esp8266_restore_from_flash: false
       build_path: device01
