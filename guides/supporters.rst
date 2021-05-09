@@ -17,6 +17,7 @@ Contributors
 (in alphabetical order)
 
 - `0hax (@0hax) <https://github.com/0hax>`__
+- `Nikola (@0nikola1) <https://github.com/0nikola1>`__
 - `0x0a11c0de (@0x0a11c0de) <https://github.com/0x0a11c0de>`__
 - `2016for (@2016for) <https://github.com/2016for>`__
 - `Pavel Golovin (@31337Ghost) <https://github.com/31337Ghost>`__
@@ -529,4 +530,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 9, 2021.*
+*This page was last updated May 10, 2021.*
