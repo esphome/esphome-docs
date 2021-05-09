@@ -93,7 +93,7 @@ All changes
 - docs: Fix mcp3008 reference :docspr:`1131` by :ghuser:`jesserockz`
 - esphome: Add Hyperion Support :esphomepr:`1339` by :ghuser:`d-two`
 - docs: Add note about hyperion classic udp port :docspr:`1135` by :ghuser:`jesserockz`
-- esphome: Call Stepper::should_step_ every loop iteration :esphomepr:`1373` by :ghuser:`akonradi`
+- esphome: Call ``Stepper::should_step_`` every loop iteration :esphomepr:`1373` by :ghuser:`akonradi`
 - esphome: Add support for controlling Tuya fan direction :esphomepr:`1409` by :ghuser:`rmounce`
 - docs: Document Tuya fan direction datapoint :docspr:`877` by :ghuser:`rmounce`
 - esphome: Change wifi signal strength unit to dBm :esphomepr:`1734` by :ghuser:`mbo18` (breaking-change)
