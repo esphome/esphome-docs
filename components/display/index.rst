@@ -277,7 +277,16 @@ arguments after the format string in the right order.
           // %% - literal % sign
           it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).state, id(humidity).state);
 
+To display a text string from a ``text_sensor``, append ``.c_str()`` to the end of your variable.
 
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
+          
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to
@@ -365,10 +374,10 @@ Configuration variables:
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
 
-- **dither** (*Optional*): Specifies which dither method used to process the image, only used in GREYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
+- **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
   - ``NONE``: Every pixel convert to its nearest color.
   - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.

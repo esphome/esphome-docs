@@ -288,6 +288,30 @@ Configuration for TTGO-Camera Plus
       name: My Camera
       # ...
 
+Configuration for TTGO-Camera Mini
+----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO32
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO13 
+        scl: GPIO12
+      data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO37, GPIO38, GPIO36, GPIO39]
+      vsync_pin: GPIO27
+      href_pin: GPIO25
+      pixel_clock_pin: GPIO19
+
+
+
+      # Image settings
+      name: My Camera
+      # ...
+
 See Also
 --------
 

@@ -19,7 +19,6 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
     <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
     <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
     <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
-    <a href="/guides/supporters.html"><img src="/_images/shield-donate.svg" alt="Donate" class="index-shield"></a>
 
 .. _guides:
 
@@ -86,6 +85,7 @@ Core Components
     Native API, components/api, server-network.svg
     Power Supply, components/power_supply, power.svg
     Deep Sleep, components/deep_sleep, hotel.svg
+    External Components, components/external_components, external_components.svg
 
 Sensor Components
 -----------------
@@ -104,6 +104,7 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
+    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
@@ -158,6 +159,7 @@ Sensor Components
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SHT4X, components/sensor/sht4x, sht4x.jpg
     SM300D2, components/sensor/sm300d2, sm300d2.jpg
     SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
@@ -168,6 +170,7 @@ Sensor Components
     Template Sensor, components/sensor/template, description.svg
     TMP102, components/sensor/tmp102, tmp102.jpg
     TMP117, components/sensor/tmp117, tmp117.jpg
+    TOF10120, components/sensor/tof10120, tof10120.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Tuya Sensor, components/sensor/tuya, tuya.png
@@ -268,6 +271,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
+    BLE Switch, components/switch/ble, bluetooth.svg
 
 Fan Components
 --------------
@@ -357,6 +361,7 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
@@ -381,6 +386,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
+    Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
 
 Additional Custom Components
 ----------------------------
@@ -420,8 +426,10 @@ Cookbook
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
+    IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     Power Logger, cookbook/dc-power-logger, cookbook-plogger-index.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
