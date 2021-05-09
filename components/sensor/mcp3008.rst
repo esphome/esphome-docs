@@ -16,8 +16,6 @@ hold circuitry.
 
 .. _mcp3008-component:
 
-.. _mcp3008-component:
-
 Component/Hub
 -------------
 
