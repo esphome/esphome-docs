@@ -549,6 +549,27 @@ You can then switch between these with three different actions:
               - display.page.show_next: my_display
               - component.update: my_display
 
+.. _display-is_displaying_page-condition:
+
+**display.is_displaying_page**: This condition returns true while the specified page is being shown.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      - if:
+          condition:
+            display.is_displaying_page: page1
+          then:
+            ...
+      - if:
+          condition:
+            display.is_displaying_page:
+              id: my_display
+              page_id: page2
+          then:
+            ...
+
 
 See Also
 --------
