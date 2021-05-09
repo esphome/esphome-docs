@@ -24,7 +24,7 @@ Configuration variables:
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPhome network. May only contain lowercase
-  characters, digits, underscores and hyphens. See :ref:`esphome-changing_node_name`.
+  characters, digits and hyphens. See :ref:`esphome-changing_node_name`.
 - **platform** (**Required**, string): The platform your board is on,
   either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
 - **board** (**Required**, string): The board ESPHome should
@@ -49,8 +49,8 @@ Advanced options:
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
-- **name_add_mac_suffix** (*Optional*, boolean): Appends the last 6 bytes of the mac address of the device to 
-  the name in the form `<name>_aabbcc`. Defaults to ``False``.
+- **name_add_mac_suffix** (*Optional*, boolean): Appends the last 6 bytes of the mac address of the device to
+  the name in the form `<name>-aabbcc`. Defaults to ``False``.
   See :ref:`esphome-mac_suffix`.
 
 ESP8266 Options:

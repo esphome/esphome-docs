@@ -14,6 +14,7 @@ hold circuitry.
     :align: center
     :width: 50.0%
 
+.. _mcp3008-component:
 
 .. _mcp3008-component:
 
