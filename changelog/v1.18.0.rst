@@ -1,0 +1,105 @@
+Changelog - Version 1.18.0 - TBD
+===============================================
+
+.. seo::
+    :description: Changelog for ESPHome version 1.18.0.
+    :image: /_static/changelog-1.18.0.png
+    :author: ESPHome
+    :author_twitter: @esphome_
+
+.. imgtable::
+    :columns: 5
+
+    BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg
+    SGP40, components/sensor/sgp40, sgp40.jpg
+    SHT4X, components/sensor/sht4x, sht4x.jpg
+    TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
+
+    Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    TOF10120, components/sensor/tof10120, tof10120.jpg
+    ESP32 BLE Client, components/ble_client, bluetooth.svg
+    External Components, components/external_components, external_components.svg
+
+
+New Integrations
+----------------
+
+- esphome: Add I2CMultiplexer in general and the TCA9548A in special :esphomepr:`1410` by :ghuser:`andreashergert1984` (new-integration)
+- esphome: Add BME680 via BSEC integration :esphomepr:`1313` by :ghuser:`trvrnrth` (new-integration)
+- esphome: Adds support for b-parasite soil moisture sensor :esphomepr:`1666` by :ghuser:`rbaron` (new-integration)
+- esphome: Sgp40 :esphomepr:`1513` by :ghuser:`SenexCrenshaw` (new-integration)
+- esphome: Add support for SHT4X :esphomepr:`1512` by :ghuser:`sjtrny` (new-integration)
+- esphome: Add Grow Fingerprint Reader :esphomepr:`1356` by :ghuser:`loongyh` (new-integration)
+- esphome: Support for TOF10120 distance sensor :esphomepr:`1375` by :ghuser:`wstrzalka` (new-integration)
+- esphome: BLE client support on ESP32 :esphomepr:`1177` by :ghuser:`buxtronix` (new-integration)
+- esphome: Implement external custom components installing from YAML :esphomepr:`1630` (new-integration)
+
+Breaking Changes
+----------------
+
+- esphome: Raise minimum python version to 3.7 :esphomepr:`1673` (breaking-change)
+- esphome: Change wifi signal strength unit to dBm :esphomepr:`1734` by :ghuser:`mbo18` (breaking-change)
+
+All changes
+-----------
+
+- esphome: Add I2CMultiplexer in generel and the TCA9548A in special :esphomepr:`1410` by :ghuser:`andreashergert1984` (new-integration)
+- docs: Add i2c multiplexer :docspr:`897` by :ghuser:`andreashergert1984`
+- esphome: Add the display.is_displaying_page condition :esphomepr:`1646` by :ghuser:`numo68`
+- docs: Add documentation for the display.is_displaying_page condition :docspr:`1079` by :ghuser:`numo68`
+- esphome: Add BME680 via BSEC integration :esphomepr:`1313` by :ghuser:`trvrnrth` (new-integration)
+- docs: Add BME680 BSEC docs :docspr:`793` by :ghuser:`trvrnrth`
+- esphome: Fixed CustomComponentConstructor::get_component() :esphomepr:`1653` by :ghuser:`dataway`
+- esphome: Bump pytest from 6.2.2 to 6.2.3 :esphomepr:`1663` by :ghuser:`dependabot[bot]`
+- esphome: Bump protobuf from 3.15.6 to 3.15.7 :esphomepr:`1662` by :ghuser:`dependabot[bot]`
+- esphome: Rewrite sun component calculations :esphomepr:`1661`
+- esphome: Raise minimum python version to 3.7 :esphomepr:`1673` (breaking-change)
+- esphome: Adds support for b-parasite soil moisture sensor :esphomepr:`1666` by :ghuser:`rbaron` (new-integration)
+- docs: Adds docs for the b-parasite soil moisture sensor :docspr:`1086` by :ghuser:`rbaron`
+- esphome: mqtt_client: Added MQTTClientComponent::unsubscribe() :esphomepr:`1672` by :ghuser:`dataway`
+- esphome: Disallow _ in node name :esphomepr:`1632` by :ghuser:`pkuehne`
+- esphome: Receive long MQTT payload :esphomepr:`1590` by :ghuser:`gaco79`
+- esphome: Daylight Saving Time spelling fix :esphomepr:`1677` by :ghuser:`dashdrum`
+- esphome: Support custom build_flags for bme680_bsec :esphomepr:`1678` by :ghuser:`SenexCrenshaw`
+- esphome: Add Arduino ESP32 version mapping :esphomepr:`1679`
+- esphome: Automate building and publishing of esphome-lint docker image :esphomepr:`1680`
+- esphome: Sgp40 :esphomepr:`1513` by :ghuser:`SenexCrenshaw` (new-integration)
+- docs: sgp40 :docspr:`985` by :ghuser:`SenexCrenshaw`
+- esphome: Bump protobuf from 3.15.7 to 3.15.8 :esphomepr:`1682` by :ghuser:`dependabot[bot]`
+- esphome: Implementing the remainder of GPS data for the GPS component. :esphomepr:`1676` by :ghuser:`coogle`
+- docs: Updating docs for the gps component. :docspr:`1094` by :ghuser:`coogle`
+- esphome: Bump AsyncTCP-esphome to 1.2.1. :esphomepr:`1693` by :ghuser:`mmakaay`
+- esphome: Revert "Bump AsyncTCP-esphome to 1.2.1." :esphomepr:`1709` by :ghuser:`glmnet`
+- esphome: Fix name_add_mac_suffix using _ instead of - :esphomepr:`1702` by :ghuser:`glmnet`
+- docs: Update name_add_mac_suffix use dash :docspr:`1111` by :ghuser:`glmnet`
+- esphome: Add monochromatic effects: Pulse, Random :esphomepr:`1616` by :ghuser:`ferbar`
+- docs: Add 'pulse' effect doc :docspr:`1067` by :ghuser:`ferbar`
+- esphome: Add support for SHT4X :esphomepr:`1512` by :ghuser:`sjtrny` (new-integration)
+- docs: Add docs for SHT4X :docspr:`1002` by :ghuser:`sjtrny`
+- esphome: Addition of forward and reverse active energy counters to ATM90E32 sensor component :esphomepr:`1271` by :ghuser:`elyorkhakimov`
+- docs: Add Atm90e32 energy docs :docspr:`1120` by :ghuser:`jesserockz`
+- esphome: Add Grow Fingerprint Reader :esphomepr:`1356` by :ghuser:`loongyh` (new-integration)
+- docs: Add Grow fingerprint reader docs :docspr:`835` by :ghuser:`loongyh`
+- esphome: Support for TOF10120 distance sensor :esphomepr:`1375` by :ghuser:`wstrzalka` (new-integration)
+- docs: Documentation for TOF10120 support :docspr:`846` by :ghuser:`wstrzalka`
+- esphome: Swap fan and swing fields for Fujitu ACs :esphomepr:`1635` by :ghuser:`alex-richards`
+- esphome: BLE client support on ESP32 :esphomepr:`1177` by :ghuser:`buxtronix` (new-integration)
+- docs: Ble client docs :docspr:`702` by :ghuser:`buxtronix`
+- esphome: Update email addresses :esphomepr:`1733` by :ghuser:`jesserockz`
+- esphome: Ble client fixes :esphomepr:`1739` by :ghuser:`buxtronix`
+- esphome: Fix #1940: Implement speed_count in TuyaFan :esphomepr:`1654` by :ghuser:`0x0a11c0de`
+- docs: Add speed_count to tuya fan :docspr:`1080` by :ghuser:`0x0a11c0de`
+- docs: Fix mcp3008 reference :docspr:`1131` by :ghuser:`jesserockz`
+- esphome: Add Hyperion Support :esphomepr:`1339` by :ghuser:`d-two`
+- docs: Add note about hyperion classic udp port :docspr:`1135` by :ghuser:`jesserockz`
+- esphome: Call Stepper::should_step_ every loop iteration :esphomepr:`1373` by :ghuser:`akonradi`
+- esphome: Add support for controlling Tuya fan direction :esphomepr:`1409` by :ghuser:`rmounce`
+- docs: Document Tuya fan direction datapoint :docspr:`877` by :ghuser:`rmounce`
+- esphome: Change wifi signal strength unit to dBm :esphomepr:`1734` by :ghuser:`mbo18` (breaking-change)
+- docs: Change wifi signal strength unit to dBm :docspr:`1125` by :ghuser:`mbo18`
+- esphome: Added an option to disable mDNS :esphomepr:`1716` by :ghuser:`dnetguru`
+- docs: Added docs for enable_mdns option :docspr:`1118` by :ghuser:`dnetguru`
+- docs: add External components docs :docspr:`1107` by :ghuser:`glmnet`
+- esphome: Implement external custom components installing from YAML :esphomepr:`1630` (new-integration)
+- esphome: Update copyright year :esphomepr:`1760` by :ghuser:`bonanitech`
