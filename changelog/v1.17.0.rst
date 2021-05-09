@@ -62,6 +62,23 @@ Notable Changes
 - esphome: Add default device classes to sensor components :esphomepr:`1533` by :ghuser:`marecabo` (notable-change)
 - esphome: Add addressable_light display platform :esphomepr:`1272` by :ghuser:`justfalter` (new-integration) (notable-change)
 
+Release 1.17.1 - May 5
+----------------------
+
+- esphome: Fix BLE UUID matching :esphomepr:`1637` by :ghuser:`buxtronix`
+- esphome: Add optional bindkey support for CGG1. :esphomepr:`1407` by :ghuser:`Flameeyes`
+- docs: Update CGG1 documentation around bindkey :docspr:`876` by :ghuser:`Flameeyes`
+- esphome: buffer allocation and TRUEFALSE templates :esphomepr:`1644` by :ghuser:`SenexCrenshaw`
+- esphome: fix servo not reattaching with same target :esphomepr:`1649` by :ghuser:`glmnet`
+- esphome: Fix colorlog removing colors and refactor color code :esphomepr:`1671`
+- esphome: Fix servo detach chopped PWM :esphomepr:`1650` by :ghuser:`glmnet`
+- esphome: Fix sensor.sensor_schema interface changed :esphomepr:`1659`
+- esphome: Sensor Average Filter Fix Floating Pointer Error Accumulating :esphomepr:`1624`
+- esphome: Added / to default glyphs :esphomepr:`1691` by :ghuser:`richardklingler`
+- esphome: RC522 fixes :esphomepr:`1479` by :ghuser:`glmnet`
+- docs: Fixed typo in 1.17.0 changelogs :docspr:`1132` by :ghuser:`spacegaier`
+- esphome: Do not call component update on failed components :esphomepr:`1392` by :ghuser:`alexyao2015`
+
 All changes
 -----------
 
