@@ -48,7 +48,7 @@ Configuration variables:
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
-- **log_topic** (*Optional*, :ref:`mqtt-message`) The topic to send MQTT log
+- **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
   messages to.
 - **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
@@ -440,9 +440,9 @@ Publish an MQTT message on a topic using this action in automations.
 
 Configuration options:
 
--  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+-  **topic** (**Required**, string, :ref:`templatable <config-templatable>`):
    The MQTT topic to publish the message.
--  **payload** (*Required*, string, :ref:`templatable <config-templatable>`): The message content.
+-  **payload** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
 -  **qos** (*Optional*, int, :ref:`templatable <config-templatable>`): The `Quality of
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
@@ -491,9 +491,9 @@ as seen below.
 
 Configuration options:
 
--  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+-  **topic** (**Required**, string, :ref:`templatable <config-templatable>`):
    The MQTT topic to publish the message.
--  **payload** (*Required*, :ref:`lambda <config-lambda>`): The message content.
+-  **payload** (**Required**, :ref:`lambda <config-lambda>`): The message content.
 -  **qos** (*Optional*, int): The `Quality of
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.

@@ -47,6 +47,7 @@ Blog Posts & Videos
 - `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPhome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Baseboard (Line Voltage) Thermostat from Smart Switch <https://github.com/rjmurph2241/baseboard-heating-thermostat>`__ by :ghuser:`rjmurph2241`
 - `Office Doorbell <https://github.com/shish/esphome-projects/blob/master/office-doorbell.md>`__ by :ghuser:`shish`
+- `Display TM1637 with ESPHome and MQTT showing Youtube subscribers count and other info <https://youtu.be/27JZEky0h1Q>`__ by :ghuser:`electrofun-smart`
 
 Custom Components & Code
 ------------------------

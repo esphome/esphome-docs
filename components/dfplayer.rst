@@ -21,10 +21,10 @@ Overview
 --------
 
 The module can be powered by the 3.3V output of a NodeMCU. For communication you can connect only
-the ``tx_pin`` of the ``uart`` bus to the module's ``RX`` but if you need feedback of playback active 
+the ``tx_pin`` of the ``uart`` bus to the module's ``RX`` but if you need feedback of playback active
 you will also need to connect the ``rx_pin`` to the module's ``TX``.
 For best quality audio a powered stereo speaker can be connected to the modules ``DAC_R``,
-``DAC_I`` and ``GND``, alternatively the module features a built-in 3W audio amplifier, in that case 
+``DAC_L`` and ``GND``, alternatively the module features a built-in 3W audio amplifier, in that case
 the pins ``SPK_1`` and ``SPK_2`` should be connected to one passive speaker and a 5V 1A power supply
 will be required.
 
@@ -115,8 +115,8 @@ Configuration options:
 -------------------------------
 
 Plays files inside numbered folders, folders must be numbered from 1 and with leading
-zeros. Like `01`, `02`, ... etc. Files inside the folders must be numbered with two
-leading zeros, like `001.mp3`, `002.mp3`, ... etc.
+zeros. Like ``01``, ``02``, ... etc. Files inside the folders must be numbered with two
+leading zeros, like ``001.mp3``, ``002.mp3``, ... etc.
 Folder numbers can range from 1 to 99 and file name from 1 to 255 or folder number
 from 1 to 10 and file number from 1 to 1000.
 
@@ -178,7 +178,7 @@ Changes volume.
 Configuration options:
 
 - **volume** (**Required**, int, :ref:`templatable <config-templatable>`): The volume value.
-  Valid values goes from 0 to 30.
+  Valid values goes from ``0`` to ``30``.
 
 ``dfplayer.set_eq`` Action
 --------------------------

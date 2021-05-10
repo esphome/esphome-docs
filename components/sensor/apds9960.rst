@@ -5,6 +5,12 @@ APDS9960 Sensor
     :description: Instructions for setting up APDS9960 sensors.
     :image: apds9960.jpg
 
+
+.. _apds9960-component:
+
+Component/Hub
+-------------
+
 The ``apds9960`` sensor platform allows you to use your APDS9960 RGB and gesture sensors
 (`datasheet <https://cdn.sparkfun.com/datasheets/Sensors/Proximity/apds9960.pdf>`__,
 `SparkFun`_) with ESPHome.
@@ -49,7 +55,13 @@ Base Configuration:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 
-Sensor Configuration:
+Sensor
+------
+
+The ``apds9960`` sensor allows you to use your :doc:`apds9960` to perform different
+measurements.
+
+Configuration variables:
 
 - **name** (**Required**, string): The name for the sensor.
 - **type** (**Required**, string): The type of sensor measurement. One of
@@ -63,7 +75,13 @@ Sensor Configuration:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
-Binary Sensor Configuration:
+Binary Sensor
+-------------
+
+The ``apds9960`` binary sensor allows you to use your :doc:`apds9960` to perform different
+measurements.
+
+Configuration variables:
 
 - **name** (**Required**, string): The name for the binary sensor.
 - **direction** (**Required**, string): The direction to measure. One of:

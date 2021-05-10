@@ -45,8 +45,8 @@ Configuration variables:
 
 .. _dallas-sensor:
 
-Sensors
--------
+Sensor
+------
 
 The ``dallas`` sensor allows you to use DS18B20 and similar sensors.
 First, you need to define a :ref:`dallas sensor component <dallas-component>`.
