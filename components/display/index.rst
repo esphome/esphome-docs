@@ -134,7 +134,7 @@ specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf
 at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf`` file from somewhere on the internet and upload it to the ``config/esphome`` folder.
+a ``.ttf`` file from somewhere on the internet and upload it to the ESPHome root folder.
 Next, create a ``font:`` section in your configuration:
 
 .. code-block:: yaml
@@ -147,14 +147,14 @@ Next, create a ``font:`` section in your configuration:
     display:
       # ...
 
-
-If you created a ``fonts`` subfolder, reference the font file as follows:
+You can organise your fonts by using subfolders.
+I.e., if you created a ``_fonts`` subfolder, reference the font file as follows:
 
 
 .. code-block:: yaml
 
     font:
-      - file: "fonts/Comic Sans MS.ttf"
+      - file: "_fonts/Comic Sans MS.ttf"
         id: my_font
         size: 20
 
