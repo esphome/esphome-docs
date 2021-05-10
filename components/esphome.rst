@@ -49,6 +49,9 @@ Advanced options:
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
+- **name_add_mac_suffix** (*Optional*, boolean): Appends the last 6 bytes of the mac address of the device to 
+  the name in the form `<name>_aabbcc`. Defaults to ``False``.
+  See :ref:`esphome-mac_suffix`.
 
 ESP8266 Options:
 
@@ -296,6 +299,17 @@ Now upload the updated config to the device. As a second step, you now need to r
       # use_address: test8266.local
 
 The same procedure can be done for changing the static IP of a device.
+
+
+.. _esphome-mac_suffix:
+
+Adding the MAC address as a suffix to the device name
+-----------------------------------------------------
+
+Using ``name_add_mac_suffix`` allows the user to compile a single binary file to flash
+many of the same device and they will all have unique names/hostnames.
+Note that you will still need to create an individual YAML config file if you want to
+OTA update the devices in the future.
 
 See Also
 --------

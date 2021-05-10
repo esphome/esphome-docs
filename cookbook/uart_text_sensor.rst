@@ -49,8 +49,10 @@ With this you can use automations or lambda to set switch or sensor states.
       void loop() override {
         const int max_line_length = 80;
         static char buffer[max_line_length];
-        if (available() && readline(read(), buffer, max_line_length) > 0) {
-          publish_state(buffer);
+        while (available()) {
+          if(readline(read(), buffer, max_line_length) > 0) {
+            publish_state(buffer);
+          }
         }
       }
     };

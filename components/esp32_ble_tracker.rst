@@ -154,7 +154,7 @@ variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for 
 Configuration variables:
 
 - **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
-- **manufacturer_id** (**Required**, string) 16 bit, 32 bit, or 128 bit BLE Manufacturer ID.
+- **manufacturer_id** (**Required**, string): 16 bit, 32 bit, or 128 bit BLE Manufacturer ID.
 - See :ref:`Automation <automation>`.
 
 .. _esp32_ble_tracker-on_ble_service_data_advertise:
@@ -182,7 +182,7 @@ variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for 
 Configuration variables:
 
 - **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
-- **service_uuid** (**Required**, string) 16 bit, 32 bit, or 128 bit BLE Service UUID.
+- **service_uuid** (**Required**, string): 16 bit, 32 bit, or 128 bit BLE Service UUID.
 - See :ref:`Automation <automation>`.
 
 See Also

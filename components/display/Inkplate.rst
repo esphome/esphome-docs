@@ -25,7 +25,7 @@ Learn more at `Inkplate's website <https://inkplate.io/>`__
         address: 0x20
 
     display:
-    - platform: inkplate
+    - platform: inkplate6
       id: inkplate_display
       greyscale: false
       partial_updating: false
@@ -224,7 +224,7 @@ Wi-Fi, API, and OTA configuration.
 
 
     display:
-    - platform: inkplate
+    - platform: inkplate6
       id: inkplate_display
       greyscale: false
       partial_updating: false

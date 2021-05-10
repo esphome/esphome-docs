@@ -22,6 +22,7 @@ unless it's truly exceptional, etc.
 
 Blog Posts & Videos
 -------------------
+- `Build a cheap air quality sensor <https://www.pieterbrinkman.com/2021/02/03/build-a-cheap-air-quality-meter-using-esphome-home-assistant-and-a-particulate-matter-sensor/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Collecting Temperature Data from ELA Bluetooth Puck with ESPHome <https://blog.weinreich.org/posts/2020/2020-12-14-esphome-ble-ela/>`__ by `lairsdragon <https://www.weinreich.org/>`__
 - `Make your fireplace smart (blog series) <http://www.pieterbrinkman.com/category/home-automation/make-your-bellfire-fireplace-smart/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Ultrasonic Salt Level Sensor <https://adonno.com/salt-level-sensor/>`__ by `Adonno <https://adonno.com>`__
@@ -45,6 +46,8 @@ Blog Posts & Videos
 - `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__
 - `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPhome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Baseboard (Line Voltage) Thermostat from Smart Switch <https://github.com/rjmurph2241/baseboard-heating-thermostat>`__ by :ghuser:`rjmurph2241`
+- `Office Doorbell <https://github.com/shish/esphome-projects/blob/master/office-doorbell.md>`__ by :ghuser:`shish`
+- `Display TM1637 with ESPHome and MQTT showing Youtube subscribers count and other info <https://youtu.be/27JZEky0h1Q>`__ by :ghuser:`electrofun-smart`
 
 Custom Components & Code
 ------------------------
@@ -79,7 +82,7 @@ Custom Components & Code
 Sample Configurations
 ---------------------
 
-- `esphome-configs.io <https://esphome-configs.io/>`__ by :ghuser:`jonathanadams`
+- `esphome-devices.com <https://www.esphome-devices.com/>`__ by :ghuser:`jonathanadams`
 - `Ultrasonic Sensor for detecting if car in Garage <https://gist.github.com/Snipercaine/f3908a051fd79e6d7d7b765152666c2a>`__ by `DrZzs <http://drzzs.com/>`__
 - `Sonoff POW R2 Washing Machine Sensor <https://gist.github.com/frenck/1b4f0ea98f1f6d86d597c2d9636636db>`__ by `Frenck <https://frenck.dev>`__
 - `Sonoff iFan02 Custom Output Example <https://gist.github.com/quazzie/09ee3ef2c419ecbcf979a7410062481b>`__ by :ghuser:`quazzie`
