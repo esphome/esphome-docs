@@ -121,7 +121,7 @@ It's simple. Run:
 
 .. code-block:: bash
 
-    pip install -U esphome
+    pip3 install -U esphome
     # From docker:
     docker pull esphome/esphome:latest
 
@@ -139,7 +139,7 @@ by installing the tested beta:
 .. code-block:: bash
 
     # For pip-based installs
-    pip install --pre -U esphome
+    pip3 install --pre -U esphome
 
     # For docker-based installs
     docker run [...] -it esphome/esphome:beta livingroom.yaml run
@@ -161,7 +161,7 @@ To install the dev version of ESPHome:
 
 - In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
-- From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
+- From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
 
   .. code-block:: bash
