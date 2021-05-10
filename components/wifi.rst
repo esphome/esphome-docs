@@ -176,8 +176,8 @@ Configuration variables:
 - **eap** (*Optional*): See :ref:`eap`.
 - **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.
-- **bssid** (*Optional*, string): Optionally define a BSSID (MAC-Address) of the network to connect to.
-  This can be used to further restrict which networks to connect to.
+- **bssid** (*Optional*, string): The connection's BSSID (MAC address). BSSIDs must consist of six
+  two-digit hexadecimal values separated by colon characters ("``:``"). All letters must be in upper case.
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
 - **priority** (*Optional*, float): The priority of this network. After each time, the network with
