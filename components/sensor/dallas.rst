@@ -20,8 +20,9 @@ and similar 1-Wire temperature sensors.
 To use your :ref:`dallas sensor <dallas-sensor>`, first define a dallas “hub” with a pin and
 id, which you will later use to create the sensors. The 1-Wire bus the
 sensors are connected to should have an external pullup resistor of
-about 4.7KΩ. For this, connect a resistor of *about* 4.7KΩ (values around that like 1KΩ will work fine, if you don't have
-massively long wires, in most cases) between ``3.3V`` and the data pin.
+about 4.7KΩ. For this, connect a resistor of *about* 4.7KΩ between ``3.3V``
+and the data pin. Values +/- 1KΩ will, in most cases, work fine as well,
+if you don't have massively long wires.
 
 .. code-block:: yaml
 
