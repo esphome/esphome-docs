@@ -152,6 +152,9 @@ These temperatures are used when the device first starts up.
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
 
+``min_temperature`` and ``max_temperature`` from the base climate component **are used to define the range**
+of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`
+
 Heating and Cooling Actions
 ***************************
 
@@ -267,7 +270,9 @@ Advanced Options
 .. note::
 
     While this platform uses the term temperature everywhere, it can also be used to regulate other values.
-    For example, controlling humidity is also possible with this platform.
+    For example, controlling humidity is also possible with this platform. Note that ``min_temperature`` and
+    ``max_temperature`` from the base climate component are used the define the range of adjustability and the
+    defaults will probably not make sense for control of things like humidity. See :doc:`/components/climate/index`
 
 Bang-bang vs. Thermostat
 ------------------------
