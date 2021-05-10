@@ -120,7 +120,7 @@ Thanks to the `existing work <https://github.com/arendst/Sonoff-tasmota/wiki/Mir
 3.1 Monochromatic Bulbs
 ***********************
 
-So the brightness of the bulb can be controlled we use the ``esp8266_pwm`` output component connected to the light component using the id configuration
+The brightness of the bulb can be controlled using the ``esp8266_pwm`` output component connected to the light component using the id configuration
 variable ``output_component1``.
 
 .. code-block:: yaml
@@ -152,7 +152,9 @@ variable ``output_component1``.
     output:
       - platform: esp8266_pwm
         id: output_component1
+        # May need to use GPIO14 instead for certain globes
         pin: GPIO13
+        
 
 3.2 Cold + Warm White Bulbs
 ***************************

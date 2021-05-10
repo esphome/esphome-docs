@@ -20,7 +20,18 @@ ESPHome's command line interface always has the following format
 
     .. code-block:: console
 
-        esphome livingroom.yaml kitchen.yaml run
+    esphome livingroom.yaml kitchen.yaml run
+
+``--help`` Option
+--------------------
+
+.. option:: -h|--help
+
+    Output possible <commands> and [arguments].
+    Note: you can also use ``--help`` for any command to get arguments specific to that command.
+.. code-block:: console
+
+    esphome <some_command> --help
 
 ``--verbose`` Option
 --------------------
@@ -207,5 +218,30 @@ through a graphical user interface.
 
     If set, opens the dashboard UI in a browser once the server is up and running.
 
+``logs`` Command
+---------------------
 
+.. program:: esphome logs
+
+The ``esphome <CONFIG> logs`` command validates the configuration and shows all logs.
+
+.. option:: --topic TOPIC
+
+    Manually set the topic to subscribe to.
+
+.. option:: --username USERNAME
+
+    Manually set the username.
+
+.. option:: --password PASSWORD
+
+    Manually set the password.
+
+.. option:: --client-id CLIENT_ID
+
+    Manually set the client id.
+
+.. option:: --serial-port SERIAL_PORT
+
+    Manually specify a serial port to use. For example ``/dev/cu.SLAB_USBtoUART``.
 

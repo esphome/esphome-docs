@@ -4,7 +4,7 @@ Xiaomi Mijia BLE Sensors
 .. seo::
     :description: Instructions for setting up Xiaomi Mi Home (Mijia) bluetooth-based sensors in ESPHome.
     :image: xiaomi_mijia_logo.jpg
-    :keywords: Xiaomi, Mi Home, Mijia, BLE, Bluetooth, HHCCJCY01, GCLS002, HHCCPOT002, LYWSDCGQ, LYWSD02, CGG1, LYWSD03MMC, CGD1, JQJCY01YM, MUE4094RT, WX08ZM
+    :keywords: Xiaomi, Mi Home, Mijia, BLE, Bluetooth, HHCCJCY01, GCLS002, HHCCPOT002, LYWSDCGQ, LYWSD02, CGG1, LYWSD03MMC, CGD1, JQJCY01YM, MUE4094RT, WX08ZM, MHO, C401, MHOC401
 
 The ``xiaomi_ble`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the temperature, humidity, moisture, conductivity, illuminance, formaldehyde, mosquito tablet and battery level of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_ble`` listense passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life.
 
@@ -121,6 +121,8 @@ Hygro thermometer, rectangular body, e-ink display, broadcasts temperature, humi
     :align: center
     :width: 30.0%
 
+- Battery Level, needs xiaomi firmware 1.1.2_0085
+
 Configuration example:
 
 .. code-block:: yaml
@@ -138,7 +140,9 @@ Configuration example:
 CGG1
 ****
 
-Hygro thermometer, round body, e-ink display
+Cleargrass (Qingping): hygro thermometer, round body, e-ink display.
+
+New firmware requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`), and stopped broadcasting battery level.
 
 .. figure:: images/xiaomi_cgg1.jpg
     :align: center
@@ -157,6 +161,13 @@ Configuration example:
           name: "CGG1 Humidity"
         battery_level:
           name: "CGG1 Battery Level"
+      - platform: xiaomi_cgg1
+        mac_address: "7A:80:8E:28:39:CD"
+        bindkey: "00112233445566778899aabbccddeeff"
+        temperature:
+          name: "CGG1 (New) Temperature"
+        humidity:
+          name: "CGG1 (New) Humidity"
 
 LYWSD03MMC
 **********
@@ -205,6 +216,32 @@ Configuration example for ATC MiThermometer firmware set to "Custom" advertiseme
           name: "ATC Battery-Level"
         battery_voltage:
           name: "ATC Battery-Voltage"
+
+MHO-C401
+**********
+
+Hygro thermometer, square body, e-ink display, encrypted, broadcasts temperature, humidity and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
+
+.. figure:: images/xiaomi_mhoc401.jpg
+    :align: center
+    :width: 30.0%
+
+( MHO-C201 doesn't have BT )
+
+Configuration example:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: xiaomi_mhoc401
+        mac_address: "A4:C1:38:B1:CD:7F"
+        bindkey: "eef418daf699a0c188f3bfd17e4565d9"
+        temperature:
+          name: "MHOC401 Temperature"
+        humidity:
+          name: "MHOC401 Humidity"
+        battery_level:
+          name: "MHOC401 Battery Level"
 
 CGD1
 ****

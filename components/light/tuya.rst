@@ -81,8 +81,8 @@ Configuration variables:
   change the brightness and would have to toggle the light using the physical buttons.
 - **min_value** (*Optional*, int, default 0): The lowest dimmer value allowed.  My dimmer had a
   minimum of 25 and wouldn't even accept anything lower, but this option is available if necessary.
-- **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  My dimmer had a
-  maximum of 255 which seems like it would be the typical value.
+- **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  Most dimmers have a
+  maximum of 255, but dimmers with a maximum of 1000 can also be found. Try what works best.
 - All other options from :ref:`Light <config-light>`.
 - At least one of *dimmer_datapoint* or *switch_datapoint* must be provided.
 
