@@ -50,7 +50,7 @@ configuration.
 
     # Example configuration entry
     font:
-      - file: 'some_font_file.ttf' # place the "some_font_file.ttf" in /config/esphome
+      - file: 'fonts/Comic Sans MS.ttf'
         id: font1
         size: 8
     
