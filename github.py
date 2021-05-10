@@ -185,11 +185,12 @@ class ImageTableDirective(Table):
                     continue
                 name = cell["name"]
                 link = cell["link"]
+                description = cell["description"] 
                 ref = nodes.reference(name, name, refuri=link)
                 para = nodes.paragraph()
                 para += ref
                 entry += para
-                if description is not "":
+                if description != "":
                     para2 = nodes.paragraph()
                     para2 += nodes.Text(description,description)
                     entry += para2
