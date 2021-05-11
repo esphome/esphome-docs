@@ -19,6 +19,7 @@ states from your Home Assistant instance using the :doc:`native API </components
 With Home Assistant 2021.6 or newer, entity state attributes can also be imported.
 
 .. code-block:: yaml
+
     # Example configuration entry
     text_sensor:
       - platform: homeassistant
