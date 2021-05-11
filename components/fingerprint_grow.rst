@@ -106,7 +106,7 @@ Base Configuration:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **sensing_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to the reader's finger detection signal (WAKEUP) output.
 - **password** (*Optional*, int): Password to use for authentication. Defaults to ``0x00``.
-- **set_password** (*Optional*, int): Sets a new password to use for authentication. See :ref:`fingerprint_grow-set_new_password` for more information.
+- **new_password** (*Optional*, int): Sets a new password to use for authentication. See :ref:`fingerprint_grow-set_new_password` for more information.
 - **on_finger_scan_matched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an enrolled fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_matched`.
 - **on_finger_scan_unmatched** (*Optional*, :ref:`Automation <automation>`): An action to be performed when an unknown fingerprint is scanned. See :ref:`fingerprint_grow-on_finger_scan_unmatched`.
 - **on_enrollment_scan** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is scanned during enrollment. See :ref:`fingerprint_grow-on_enrollment_scan`.
@@ -169,15 +169,15 @@ Setting a New Password
 
     Forgetting the password will render your fingerprint reader unusable!
 
-You can set a new password for your fingerprint reader using the ``set_password:`` configuration option. The password is defined as a 32-bit unsigned integer.
+You can set a new password for your fingerprint reader using the ``new_password:`` configuration option. The password is defined as a 32-bit unsigned integer.
 
 .. code-block:: yaml
 
     fingerprint_grow:
       password: 0x275FE3D2      # Existing password, can be omitted if it's the default of 0x00
-      set_password: 0x72AB96CD  # New password
+      new_password: 0x72AB96CD  # New password
 
-The ``set_password:`` configuration option is meant to be compiled, flashed to the ESP device and run once, after which it's removed and the new password is defined in the ``password:`` configuration option to be compiled and flashed again.
+The ``new_password:`` configuration option is meant to be compiled, flashed to the ESP device and run once, after which it's removed and the new password is defined in the ``password:`` configuration option to be compiled and flashed again.
 
 .. code-block:: yaml
 
