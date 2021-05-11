@@ -82,8 +82,9 @@ This action makes the given deep sleep component enter deep sleep immediately.
 
     on_...:
       then:
-        - deep_sleep.enter: deep_sleep_1
-          sleep_duration: 20min
+        - deep_sleep.enter:
+            id: deep_sleep_1
+            sleep_duration: 20min
 
 Configuration options:
 

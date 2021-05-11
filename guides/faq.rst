@@ -96,12 +96,12 @@ That's no good. Here are some steps that resolve some problems:
 How to submit an issue report
 -----------------------------
 
-First of all, thank you very much to everybody submitting issue reports! While I try to test ESPHome/yaml as much as
-I can using my own hardware, I don't own every single device type and mostly only do tests with my own home automation
-system. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
-great way for me to track and (hopefully) fix issues, so thank you!
+First of all, thank you very much to everybody submitting issue reports! While we try to test ESPHome/YAML as much as
+we can using our available hardware, we don't own every single device type and rely on testing done by the community 
+and the contributors. When doing some changes in the core, it can quickly happen that something somewhere breaks. 
+Issue reports are a great way for us to track and (hopefully) fix issues, so thank you!
 
-For me to fix the issue quickly, there are some things that would be really helpful:
+For us to fix the issue quickly, there are some things that would be really helpful:
 
 1.  **Just writing "X doesn't work" or "X gives bug" is not helpful!!!** Seriously, how do you expect
     help given just that information?
@@ -121,7 +121,7 @@ It's simple. Run:
 
 .. code-block:: bash
 
-    pip install -U esphome
+    pip3 install -U esphome
     # From docker:
     docker pull esphome/esphome:latest
 
@@ -139,7 +139,7 @@ by installing the tested beta:
 .. code-block:: bash
 
     # For pip-based installs
-    pip install --pre -U esphome
+    pip3 install --pre -U esphome
 
     # For docker-based installs
     docker run [...] -it esphome/esphome:beta livingroom.yaml run
@@ -155,13 +155,13 @@ How do I use the latest bleeding edge version?
 ----------------------------------------------
 
 First, a fair warning that the latest bleeding edge version is not always stable and might have issues.
-If you find some, please do however report them if you have time :)
+If you find some, please do however report them.
 
 To install the dev version of ESPHome:
 
 - In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
-- From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
+- From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
 
   .. code-block:: bash
@@ -192,7 +192,7 @@ request in the `ESPHome feature request tracker <https://github.com/esphome/feat
 I have a question... How can I contact you?
 -------------------------------------------
 
-Sure! I'd be happy to help :) You can contact me here:
+Sure! We are be happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
 -  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
@@ -206,8 +206,8 @@ Sure! I'd be happy to help :) You can contact me here:
 My node keeps reconnecting randomly
 -----------------------------------
 
-Jep, that's a known issue. However, it seems to be very low-level and I don't really know
-how to solve it. I'm working on possible workarounds for the issue but currently I do
+Jep, that's a known issue. However, it seems to be very low-level and we don't really know
+how to solve it. We are working on possible workarounds for the issue but currently we do
 not have a real solution.
 
 Some steps that can help with the issue:

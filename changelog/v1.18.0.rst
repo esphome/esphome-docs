@@ -41,6 +41,13 @@ Breaking Changes
 - esphome: Raise minimum python version to 3.7 :esphomepr:`1673` (breaking-change)
 - esphome: Change wifi signal strength unit to dBm :esphomepr:`1734` by :ghuser:`mbo18` (breaking-change)
 
+Beta Fixes
+----------
+
+- docs: Update allowed characters for node names :docspr:`1072` by :ghuser:`pkuehne`
+- docs: Replaced set_password with new_password :docspr:`1157` by :ghuser:`PaulAntonDeen`
+- esphome: Fix build issues for idf 4.2 (Support ESP32-S2) :esphomepr:`1433` by :ghuser:`misery`
+
 All changes
 -----------
 
@@ -103,3 +110,21 @@ All changes
 - docs: add External components docs :docspr:`1107` by :ghuser:`glmnet`
 - esphome: Implement external custom components installing from YAML :esphomepr:`1630` (new-integration)
 - esphome: Update copyright year :esphomepr:`1760` by :ghuser:`bonanitech`
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.17.0
+    v1.16.0
+    v1.15.0
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
