@@ -221,3 +221,20 @@ All changes
 - docs: Update canbus.rst :docspr:`1115` by :ghuser:`meijerwynand`
 - docs: Update diy.rst :docspr:`1114` by :ghuser:`murilobaliego`
 - docs: Update email addresses :docspr:`1122` by :ghuser:`jesserockz`
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.16.0
+    v1.15.0
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
