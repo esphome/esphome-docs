@@ -26,8 +26,8 @@ And... that should already be it :)
 
 .. note::
 
-    Some energy meters have an exposed S0 port (which essentially just is a switch that closes), if 
-    that is the case the photo diode can be replaced with the following connection.
+    Some energy meters have an exposed S0 port (which essentially just is a switch that closes), if
+    that is the case the photodiode can be replaced with the following connection.
 
     .. code-block::
 
