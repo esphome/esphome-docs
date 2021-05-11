@@ -3,13 +3,13 @@ Inkplate 6
 
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
-    :image: inkplate.jpg
+    :image: inkplate6.jpg
 
 All-in-one e-paper display  ``Inkplate 6``
 Inkplate 6 is a powerful, Wi-Fi enabled ESP32 based six-inch e-paper display – recycled from a Kindle e-reader. Its main feature is simplicity.
 Learn more at `Inkplate's website <https://inkplate.io/>`__
 
-.. figure:: images/inkplate.jpg
+.. figure:: images/inkplate6.jpg
     :align: center
     :width: 75.0%
 
