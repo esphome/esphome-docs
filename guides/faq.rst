@@ -89,19 +89,19 @@ That's no good. Here are some steps that resolve some problems:
 -  **If you're having WiFi problems**: See :ref:`wifi-problems`.
 -  Enable verbose logs in the logger: section.
 -  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/esphome/issues>`__.
-   I will take a look at it as soon as I can. Thanks!
+   We will take a look at it as soon as we can. Thanks!
 
 .. _faq-bug_report:
 
 How to submit an issue report
 -----------------------------
 
-First of all, thank you very much to everybody submitting issue reports! While I try to test ESPHome/yaml as much as
-I can using my own hardware, I don't own every single device type and mostly only do tests with my own home automation
-system. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
-great way for me to track and (hopefully) fix issues, so thank you!
+First of all, thank you very much to everybody submitting issue reports! While we try to test ESPHome/yaml as much as
+we can using our own hardware, we don't own every single device type and mostly only do tests with our own home automation
+systems. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
+great way for us to track and (hopefully) fix issues, so thank you!
 
-For me to fix the issue quickly, there are some things that would be really helpful:
+For us to fix the issue quickly, there are some things that would be really helpful:
 
 1.  **Just writing "X doesn't work" or "X gives bug" is not helpful!!!** Seriously, how do you expect
     help given just that information?
@@ -186,13 +186,13 @@ Does ESPHome support [this device/feature]?
 -------------------------------------------
 
 If it's not in :doc:`the docs </index>`, it's probably not
-supported. However, I'm always trying to add support for new features, so feel free to create a feature
+supported. However, we are always trying to add support for new features, so feel free to create a feature
 request in the `ESPHome feature request tracker <https://github.com/esphome/feature-requests>`__. Thanks!
 
 I have a question... How can I contact you?
 -------------------------------------------
 
-Sure! I'd be happy to help :) You can contact me here:
+Sure! We'd be happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
 -  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
@@ -206,8 +206,8 @@ Sure! I'd be happy to help :) You can contact me here:
 My node keeps reconnecting randomly
 -----------------------------------
 
-Jep, that's a known issue. However, it seems to be very low-level and I don't really know
-how to solve it. I'm working on possible workarounds for the issue but currently I do
+Jep, that's a known issue. However, it seems to be very low-level and we don't really know
+how to solve it. We are working on possible workarounds for the issue, but currently we do
 not have a real solution.
 
 Some steps that can help with the issue:
@@ -224,12 +224,21 @@ Some steps that can help with the issue:
   :doc:`api connection is lost </components/api>` or
   :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
   to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
-- If you see ``Error: Disconnecting <client name>`` in your logs, ESPHome is actively closing
-  the API client connection. Connect a serial console to inspect the reason, which is only
-  logged via serial. If you see ``ack timeout 4`` right before a disconnect, then set the
-  option ``ack_timeout_workaround`` to ``true`` in the ``api:`` config. This enables a
-  possible workaround for this issue, until a better fix is available.
-
+- If you see ``Error: Disconnecting <NODE_NAME>`` in your logs, ESPHome is actively closing
+  the native API client connection. Connect a serial console to inspect the reason, which is only
+  logged via serial. If you see ``ack timeout 4`` right before a disconnect, this might be because
+  of a bug in the AsyncTCP library, for which a fix was included in ESPHome version 1.18.0.
+  If you are running an ESPHome version, prior to 1.18.0, then upgrade ESPHome and build fresh
+  firmware for your devices. 
+- We have seen an increase in disconnects while the log level was set to ``VERY_VERBOSE``,
+  especially on single core devices, where the logging code might be interfering with the operation
+  of the networking code. For this reason, we advise to use a lower log level for production
+  purposes.
+- Related to this, seems to be the number of clients that are simultaneously connected to the native
+  API server on the device. These might for example be Home Assistant (via the ESPHome integration) and
+  the log viewer on the web dashboard. In production, you will likely only have a single connection from
+  Home Assistant, making this less of an issue. But beware that attaching a log viewer might
+  have impact.
 
 Docker Reference
 ----------------
