@@ -91,7 +91,7 @@ of these entries matters!)
               } else {
                 return {};
               }
-      
+
 ``invert``
 **********
 
@@ -132,6 +132,9 @@ last description remains in use. Receiving an OFF signal stops the whole process
 
 The example thus waits one second with the output being ON, toggles it once per second for five seconds,
 then toggles twice per second until OFF is received.
+
+An ``autorepeat`` filter with no timing description is equivalent to one timing with all the parameters
+set to default values.
 
 Configuration variables:
 
