@@ -47,6 +47,13 @@ Beta Fixes
 - docs: Update allowed characters for node names :docspr:`1072` by :ghuser:`pkuehne`
 - docs: Replaced set_password with new_password :docspr:`1157` by :ghuser:`PaulAntonDeen`
 - esphome: Fix build issues for idf 4.2 (Support ESP32-S2) :esphomepr:`1433` by :ghuser:`misery`
+- esphome: Upgrade the version of AsyncTCP-esphome to v1.2.2 :esphomepr:`1762` by :ghuser:`glmnet`
+- esphome: Use core constants for sample duration on bh1750 :esphomepr:`1764` by :ghuser:`yuvalabou` (breaking-change)
+- docs: Fix docs for inkplate :docspr:`1158` by :ghuser:`NobodysNightmare`
+- docs: Fixed wrong link in i2c_id :docspr:`1163` by :ghuser:`petrepa`
+- docs: Explain where to upload .ttf font files :docspr:`1133` by :ghuser:`TheGroundZero`
+- esphome: Add sm2135 component :esphomepr:`1736` by :ghuser:`BoukeHaarsma23` (new-integration)
+- docs: Add sm2135 component :docspr:`1127` by :ghuser:`BoukeHaarsma23`
 
 All changes
 -----------

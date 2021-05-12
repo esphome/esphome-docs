@@ -227,6 +227,7 @@ Output Components
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
+    SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
@@ -305,7 +306,7 @@ Display Components
     ST7789V, components/display/st7789v, st7789v.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate 6, components/display/inkplate, inkplate.jpg
+    Inkplate 6, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components

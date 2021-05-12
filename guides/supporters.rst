@@ -75,6 +75,7 @@ Contributors
 - `Bob (@Bmooij) <https://github.com/Bmooij>`__
 - `Mauricio Bonani (@bonanitech) <https://github.com/bonanitech>`__
 - `boradwell (@boradwell) <https://github.com/boradwell>`__
+- `BoukeHaarsma23 (@BoukeHaarsma23) <https://github.com/BoukeHaarsma23>`__
 - `Patrik Hermansson (@bphermansson) <https://github.com/bphermansson>`__
 - `Bram Kragten (@bramkragten) <https://github.com/bramkragten>`__
 - `Brad Davidson (@brandond) <https://github.com/brandond>`__
@@ -281,6 +282,7 @@ Contributors
 - `krikk (@krikk) <https://github.com/krikk>`__
 - `KristopherMackowiak (@KristopherMackowiak) <https://github.com/KristopherMackowiak>`__
 - `kroimon (@kroimon) <https://github.com/kroimon>`__
+- `krunkel (@krunkel) <https://github.com/krunkel>`__
 - `Kendell R (@KTibow) <https://github.com/KTibow>`__
 - `Jakub Šimo (@kubik369) <https://github.com/kubik369>`__
 - `kvvoff (@kvvoff) <https://github.com/kvvoff>`__
@@ -372,6 +374,7 @@ Contributors
 - `nldroid (@nldroid) <https://github.com/nldroid>`__
 - `Niccolò Maggioni (@nmaggioni) <https://github.com/nmaggioni>`__
 - `Alex (@nnmalex) <https://github.com/nnmalex>`__
+- `Jan Sandbrink (@NobodysNightmare) <https://github.com/NobodysNightmare>`__
 - `ffabi (@norges) <https://github.com/norges>`__
 - `Greg Johnson (@notgwj) <https://github.com/notgwj>`__
 - `Stanislav Meduna (@numo68) <https://github.com/numo68>`__
@@ -382,6 +385,7 @@ Contributors
 - `Olivér Falvai (@ofalvai) <https://github.com/ofalvai>`__
 - `Omar Ghader (@omarghader) <https://github.com/omarghader>`__
 - `Oncleben31 (@oncleben31) <https://github.com/oncleben31>`__
+- `onde2rock (@onde2rock) <https://github.com/onde2rock>`__
 - `Oscar Bolmsten (@oscar-b) <https://github.com/oscar-b>`__
 - `Otamay (@Otamay) <https://github.com/Otamay>`__
 - `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__
@@ -393,6 +397,7 @@ Contributors
 - `peq123 (@peq123) <https://github.com/peq123>`__
 - `per1234 (@per1234) <https://github.com/per1234>`__
 - `perjury (@perjury) <https://github.com/perjury>`__
+- `Peter Remøy Paulsen (@petrepa) <https://github.com/petrepa>`__
 - `Philip Rosenberg-Watt (@PhilRW) <https://github.com/PhilRW>`__
 - `phjr (@phjr) <https://github.com/phjr>`__
 - `pieterbrink123 (@pieterbrink123) <https://github.com/pieterbrink123>`__
@@ -439,6 +444,7 @@ Contributors
 - `rradar (@rradar) <https://github.com/rradar>`__
 - `rspaargaren (@rspaargaren) <https://github.com/rspaargaren>`__
 - `Rubén G. (@rubengargar) <https://github.com/rubengargar>`__
+- `RubyBailey (@RubyBailey) <https://github.com/RubyBailey>`__
 - `rudgr (@rudgr) <https://github.com/rudgr>`__
 - `ryanalden (@ryanalden) <https://github.com/ryanalden>`__
 - `Ryan Nazaretian (@ryannazaretian) <https://github.com/ryannazaretian>`__
@@ -484,6 +490,7 @@ Contributors
 - `The Impaler (@the-impaler) <https://github.com/the-impaler>`__
 - `Nejc (@thedexboy) <https://github.com/thedexboy>`__
 - `Thomas Eckerstorfer (@TheEggi) <https://github.com/TheEggi>`__
+- `TheGroundZero (@TheGroundZero) <https://github.com/TheGroundZero>`__
 - `Spencer Hachmeister (@TheHackmeister) <https://github.com/TheHackmeister>`__
 - `thejonesyboy (@thejonesyboy) <https://github.com/thejonesyboy>`__
 - `TheJulianJES (@TheJulianJES) <https://github.com/TheJulianJES>`__
@@ -547,8 +554,9 @@ Contributors
 - `Atsuko Ito (@yottatsa) <https://github.com/yottatsa>`__
 - `Nico B (@youknow0) <https://github.com/youknow0>`__
 - `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__
+- `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 12, 2021.*
+*This page was last updated May 13, 2021.*
