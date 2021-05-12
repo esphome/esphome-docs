@@ -38,9 +38,9 @@ Configuration variables:
   that is reachable will be connected to. See :ref:`wifi-networks`.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
-  - **static_ip** (*Required*, IPv4 address): The static IP of your node.
-  - **gateway** (*Required*, IPv4 address): The gateway of the local network.
-  - **subnet** (*Required*, IPv4 address): The subnet of the local network.
+  - **static_ip** (**Required**, IPv4 address): The static IP of your node.
+  - **gateway** (**Required**, IPv4 address): The gateway of the local network.
+  - **subnet** (**Required**, IPv4 address): The subnet of the local network.
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
@@ -49,8 +49,8 @@ Configuration variables:
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
-  - **ssid** (*Required*, string): The name of the access point to create.
-  - **password** (*Optional* string): The password for the access point. Leave empty for
+  - **ssid** (**Required**, string): The name of the access point to create.
+  - **password** (*Optional*, string): The password for the access point. Leave empty for
     no password.
   - **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14.
     Defaults to 1.
@@ -176,8 +176,8 @@ Configuration variables:
 - **eap** (*Optional*): See :ref:`eap`.
 - **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.
-- **bssid** (*Optional*, string): Optionally define a BSSID (MAC-Address) of the network to connect to.
-  This can be used to further restrict which networks to connect to.
+- **bssid** (*Optional*, string): The connection's BSSID (MAC address). BSSIDs must consist of six
+  two-digit hexadecimal values separated by colon characters ("``:``"). All letters must be in upper case.
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
 - **priority** (*Optional*, float): The priority of this network. After each time, the network with

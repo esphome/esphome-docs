@@ -202,12 +202,12 @@ or just ``|`` or ``>``. There's a slight difference in how these different style
 purposes we can ignore that).
 
 With ``if (...) { ... } else { ... }`` we create a *condition*. What this effectively says that if the thing inside
-the first parentheses evaluates to ``true``` then execute the first block (in this case ``return COVER_OPEN;``,
+the first parentheses evaluates to ``true`` then execute the first block (in this case ``return COVER_OPEN;``,
 or else evaluate the second block. ``return ...;`` makes the code block give back a value to the template. In this case,
 we're either *returning* ``COVER_OPEN`` or ``COVER_CLOSED`` to indicate that the cover is closed or open.
 
 Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
-somewhere else, like ``top_end_stop```) and lets you call any of ESPHome's many APIs directly. For example, here
+somewhere else, like ``top_end_stop``) and lets you call any of ESPHome's many APIs directly. For example, here
 we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::
@@ -256,8 +256,8 @@ all of the usual lambda syntax.
 
 .. _config-globals:
 
-Bonus 2: Global Variables
-*************************
+Global Variables
+----------------
 
 In some cases you might require to share a global variable across multiple lambdas. For example,
 global variables can be used to store the state of a garage door.
@@ -284,7 +284,7 @@ global variables can be used to store the state of a garage door.
 
            ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): Give the global variable an ID so that you can refer
   to it later in :ref:`lambdas <config-lambda>`.
@@ -300,7 +300,7 @@ Configuration options:
 .. _automation-networkless:
 
 Do Automations Work Without a Network Connection
-************************************************
+------------------------------------------------
 
 YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
@@ -517,7 +517,7 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
         - light.turn_off: my_light
 
 
-Configuration options:
+Configuration variables:
 
 - **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
 - **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
@@ -545,7 +545,7 @@ a block until a given condition evaluates to false.
           - light.toggle: some_light
           - delay: 5s
 
-Configuration options:
+Configuration variables:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
@@ -610,8 +610,8 @@ Configuration variables:
   variable to.
 
 
-``script``
-----------
+``script`` Component
+--------------------
 
 With the ``script:`` component you can define a list of steps in a central place, and then
 execute the script with a single call.
@@ -627,7 +627,7 @@ execute the script with a single call.
           - switch.turn_off: my_switch
 
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the script. Use this
   to interact with the script using the script actions.
@@ -759,8 +759,8 @@ Configuration variables:
 
 .. _interval:
 
-``interval``
-------------
+``interval`` Component
+----------------------
 
 This component allows you to run actions at fixed time intervals.
 For example if you want to toggle a switch every minute, you can use this component.
@@ -775,7 +775,7 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
-Configuration options:
+Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
 - **then** (**Required**, :ref:`config-action`): The action to perform.

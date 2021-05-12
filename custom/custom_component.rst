@@ -54,6 +54,9 @@ Configuration variables:
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   binary sensor(s).
+- **components** (*Optional*, list): A list of components to initialize. The length here
+  must equal the number of items in the ``return`` statement of the ``lambda``. This is useful
+  if you need to give an ``id`` to the component you created.
 
 See also :apiclass:`Component`.
 
