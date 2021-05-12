@@ -135,7 +135,7 @@ at **any** size! Granted the reason for it is actually not having to worry about
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
 a ``.ttf`` file from somewhere on the internet and place it, for example,
-inside a `fonts` folder next to your configuration file.
+inside a ``fonts`` folder next to your configuration file.
 
 Next, create a ``font:`` section in your configuration:
 
