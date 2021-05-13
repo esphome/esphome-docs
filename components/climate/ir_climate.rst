@@ -29,7 +29,7 @@ request so it will be added (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | TCL112, Fuego                         | ``tcl112``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Toshiba                               | ``toshiba``         | yes                  |
+| :ref:`Toshiba<climate_ir_toshiba>`    | ``toshiba``         | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Yashima                               | ``yashima``         |                      |
 +---------------------------------------+---------------------+----------------------+
@@ -122,8 +122,8 @@ Configuration variables:
 
 - **model** (*Optional*, string): There are two valid models
 
- -* ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
- -* ``DG11J1-91``: Temperature range is from 16 to 30
+ - ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
+ - ``DG11J1-91``: Temperature range is from 16 to 30
 
 
 .. _climate_ir_lg:
@@ -151,6 +151,32 @@ Configuration variables:
         sensor: room_temperature
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
+
+.. _climate_ir_toshiba:
+
+``toshiba`` Climate
+-------------------
+
+Additional configuration is available for this model.
+
+Configuration variables:
+
+- **model** (*Optional*, string): There are two valid models. This only changes the swing mode codes, everything else is the same.
+
+  - ``MODEL_1``: Supports swing mode vertical and off (default)
+
+    - VERTICAL code 0x01
+    - OFF code 0x02
+
+  - ``MODEL_2``: Supports swing mode vertical, horizontal, both and off
+
+    - BOTH code 0x01
+    - OFF code 0x02
+    - HORIZONTAL code 0x05
+    - VERTICAL code 0x08
+
+Check the log output of the toshiba component to see which code your remote sends for
+the various swing modes (command=0x21).
 
 See Also
 --------
