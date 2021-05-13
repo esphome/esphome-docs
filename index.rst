@@ -140,6 +140,7 @@ Sensor Components
     MCP3008, components/sensor/mcp3008, mcp3008.jpg
     MCP9808, components/sensor/mcp9808, mcp9808.jpg
     MH-Z19, components/sensor/mhz19, mhz19.jpg
+    Modbus Sensor, components/sensor/modbus_sensor, modbus.png
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     MS5611, components/sensor/ms5611, ms5611.jpg
@@ -209,6 +210,7 @@ Binary Sensor Components
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
+    Modbus Binary Sensor, components/binary_sensor/modbus_binarysensor, modbus.png    
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -271,6 +273,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
+    Modbus Switch, components/switch/modbus_switch, modbus.png    
     BLE Switch, components/switch/ble, bluetooth.svg
 
 Fan Components
@@ -330,6 +333,7 @@ Text Sensor Components
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
+    Modbus Text Sensor, components/text_sensor/modbus_textsensor, modbus.png        
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
 
@@ -383,6 +387,7 @@ Misc Components
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
     Tuya MCU, components/tuya, tuya.png
+    Modbus Controller, components//modbus_controller, modbus.png        
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
