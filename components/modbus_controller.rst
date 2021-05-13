@@ -5,7 +5,7 @@ Modbus Controller (Modbus Master)
     :description: Instructions for setting up the Modbus Controller component.
     :image: modbus.png
 
-The ``modbus_controller`` component creates a RS485 connection to control a modbus slave
+The ``modbus_controller`` component creates a RS485 connection to control a modbus device
 
 .. warning::
 
@@ -35,17 +35,17 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the uart hub.
 
-- **address** (*Required*, :ref:`config-id`): The modbus address of the slave device
+- **address** (*Required*, :ref:`config-id`): The modbus address of the device device
   Specify the ID of the :ref:`Time Component <time>` which will be used.
 
 - **ctrl_pin**  (**Optional**, :ref:`Pin Schema <config-pin_schema>`): The pin used to enable DE/RE for your rs485 controller if it is not automatically switching between receive and transmit
-- **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the slave. Default is 0ms
-  Because some modbus slaves limit the rate of requests the interval between sending requests to the slave can be modified.
+- **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the device. Default is 0ms
+  Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
 
 
 Getting started with Home Assistant
 -----------------------------------
-The following code create a modbus_controller hub talking to a modbus slave at address 1 with 115200 bps
+The following code create a modbus_controller hub talking to a modbus device at address 1 with 115200 bps
 
 
 Modbus sensors can be directly defined (inline) under the modbus_controller hub or as standalone components
@@ -290,7 +290,7 @@ The response is mapped to the sensor based on register_count and offset in bytes
 +-----------+-----------------------------------------+
 | data      | description                             |
 +===========+=========================================+
-| 0x1  (01) | slave address                           |
+| 0x1  (01) | device address                           |
 +-----------+-----------------------------------------+
 | 0x4  (04) | function code 4 (Read Input Registers)  |
 +-----------+-----------------------------------------+
@@ -313,7 +313,7 @@ The response is mapped to the sensor based on register_count and offset in bytes
 +--------+------------+--------------------+--------------------------------------------+
 | offset | data       | value (type)       | description                                |
 +========+============+====================+============================================+
-|  H     | 0x1  (01)  |                    | slave address                              |
+|  H     | 0x1  (01)  |                    | device address                              |
 +--------+------------+--------------------+--------------------------------------------+
 |   H    | 0x4  (04)  |                    | function code                              |
 +--------+------------+--------------------+--------------------------------------------+
@@ -366,7 +366,7 @@ Note
 ----
 
 Write support is only implemented for switches.
-However the C++ code provides the required API to write to a modbus slave.
+However the C++ code provides the required API to write to a modbus device.
 
 These methods can be called from a lambda. 
 

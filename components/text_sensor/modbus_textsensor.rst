@@ -14,10 +14,10 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **modbus_functioncode** (**Required**): type of the modbus register.
-    - "read_coils": Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the slave.
-    - "read_discrete_inputs": Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the slave.
-    - "read_holding_registers": Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the slave.
-    - "read_input_registers": Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the slave.
+    - "read_coils": Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the device.
+    - "read_discrete_inputs": Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the device.
+    - "read_holding_registers": Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the device.
+    - "read_input_registers": Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device.
 
 
 - **address**: (**Required**, integer): start address of the first register in a range

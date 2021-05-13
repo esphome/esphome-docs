@@ -14,10 +14,10 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **modbus_functioncode** (**Required**): type of the modbus register.
-    - "read_coils": Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the slave.
-    - "read_discrete_inputs": Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the slave.
-    - "read_holding_registers": Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the slave.
-    - "read_input_registers": Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the slave.
+    - "read_coils": Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the device.
+    - "read_discrete_inputs": Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the device.
+    - "read_holding_registers": Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the device.
+    - "read_input_registers": Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device.
     - "write_single_coil": Function 05 (05hex) Write Single Coil - Writes a single coil to either ON or OFF.
     - "write_single_register": Function 06 (06hex) Write Single Register - Writes a value into a single holding register.
     - "write_multiple_coils": Function 15 (0Fhex) Write Multiple Coils - Writes each coil in a sequence of coils to either ON or OFF.
@@ -46,7 +46,7 @@ Configuration variables:
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
-This example will send 2 modbus commands (slave address 1 assumed)
+This example will send 2 modbus commands (device address 1 assumed)
 
 0x1 0x4 0x31 0x0 0x0 0x02 x7f 0x37 ( read 2 registers starting at 0x3100)
 
