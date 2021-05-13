@@ -22,7 +22,7 @@ It's a monochrome LCD graphic display.
 
     ST7920 LCD Graphic Display
 
-Connect D5 to the E pin you chose for the :ref:`SPI bus <spi>`, connect D7 to the R/W pin and ``RS`` to some GPIO pins one the ESP.
+Connect D5 to the E pin you chose for the :ref:`SPI bus <spi>`, connect D7 to the R/W pin and ``RS`` to some GPIO pins on the ESP.
 For SPI communication it's important to connect PSB on the LCD to GND.
 
 .. code-block:: yaml
