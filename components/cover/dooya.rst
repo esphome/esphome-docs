@@ -37,14 +37,12 @@ Use a RS485-UART/TTL converter with automatic flow control (e.g. SP485, it needs
       - platform: dooya
         name: "Dooya Cover"
         address: 0xFEFE
-        update_interval: 500ms
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the cover.
 - **address** (*Optional*, int): Address of the motor. Defaults to factory default ``0xFEFE``.
-- **update_interval** (*Optional*, :ref:`config-time`): How often to poll for operational status and position updates. Defaults to ``500ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 

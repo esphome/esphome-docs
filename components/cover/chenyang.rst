@@ -37,14 +37,12 @@ This component works for all Chenyang models with a RS485 interface. Use a RS485
       - platform: chenyang
         name: "Chenyang Cover"
         address: 0xFF
-        update_interval: 1s
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the cover.
 - **address** (*Optional*, int): Address of the window opener. Defaults to factory default ``0xFF``.
-- **update_interval** (*Optional*, :ref:`config-time`): How often to poll for operational status and position updates. Defaults to ``1s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 

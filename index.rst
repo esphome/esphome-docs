@@ -314,6 +314,7 @@ Cover Components
     Custom Cover, components/cover/custom, language-cpp.svg
     Dooya Cover, components/cover/dooya, dooya.jpg
     Chenyang Cover, components/cover/chenyang, chenyang.png
+    GM40 Cover, components/cover/gm40, gm40.jpg
 
 Text Sensor Components
 ----------------------
