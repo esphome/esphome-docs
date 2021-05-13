@@ -5,8 +5,8 @@ External Components
     :description: Instructions for setting up ESPHome External Components.
     :keywords: External, Custom, Components, ESPHome
 
-You can easily import community components using the external components feature. Bundled components
-can be overridden using this feature.
+You can easily import community or personal components using the external components feature.
+Bundled components can be overridden using this feature.
 
 .. code-block:: yaml
 
@@ -22,6 +22,11 @@ can be overridden using this feature.
       - source: github://esphome/esphome@dev
         components: [ rtttl ]
 
+      # use all components from a local folder
+      - source:
+          type: local
+          path: my_components
+
 Configuration variables:
 
 - **source**: The location of the components you want to retrieve. See :ref:`external-components_local`
@@ -31,15 +36,15 @@ Configuration variables:
 
   git options:
 
-  - **url** (**Required**, url): Http git repository url. See :ref:`external-components_git`.
+  - **url** (**Required**, url): HTTP git repository url. See :ref:`external-components_git`.
   - **ref** (*Optional*, string): Git ref (branch or tag). If not specified the default branch is used.
 
   local options:
 
   - **path** (**Required**):  Path to use when using local components. See :ref:`external-components_local`.
 
-- **components** (*Optional*, list): The list of components to retrieve from the external source.
-  Defaults to ``all``.
+- **components** (*Optional*, list): The list of components to use from the external source.
+  By default, all available components are used.
 
 - **refresh** (*Optional*, :ref:`time <config-time>`): The interval the source will be checked. Has no
   effect on ``local``. See :ref:`external-components_refresh`. for more info. Defaults to ``1day``.
@@ -50,26 +55,48 @@ Configuration variables:
 Local
 -----
 
-You can specify a local path for the external components, this is most useful if you want to manually
-control the origin of the files.
+You can specify a local path containing external components. This is most useful when developing a
+component or if you want to manually control the origin of the files.
 
 .. code-block:: yaml
 
     external_components:
-      source:
-        path: /copied_components
+      - source:
+          path: /copied_components
 
     # shorthand
     external_components:
-      source: my_components
+      - source: my_components
 
 
 Notice that relative paths are supported, so you can enter ``my_components`` as the source path and then
 ESPHome will load components from a ``my_components`` folder in the same folder where your YAML configuration
 is.
 
+Example of local components
+***************************
 
-.. _external-components_git:
+Given the above example of ``my_components``, the folder structure must look like:
+
+.. code-block:: text
+
+    <CONFIG_DIR>
+    ├── node1.yaml
+    ├── node2.yaml
+    └── my_components
+        ├── my_component1
+        │   ├── __init__.py
+        │   ├── component1.cpp
+        │   ├── component1.h
+        │   └── sensor.py
+        └── my_component2
+            ├── __init__.py
+            ├── component2.cpp
+            ├── component2.h
+            └── switch.py
+
+
+..   _external-components_git:
 
 Git
 ---
@@ -120,7 +147,7 @@ repository:
     │  ...
     ...
 
-Http git repositories in general are supported with this configuration:
+HTTP git repositories in general are supported with this configuration:
 
 .. code-block:: yaml
 
@@ -130,7 +157,7 @@ Http git repositories in general are supported with this configuration:
         url: http://repository_url/
         ref: branch_or_tag
 
-The source fields accepts a short hand **github://** resource:
+The source field accepts a short hand **github://** resource:
 
 .. code-block:: yaml
 
