@@ -231,8 +231,8 @@ Some steps that can help with the issue:
   If you are running an ESPHome version, prior to 1.18.0, then upgrade ESPHome and build fresh
   firmware for your devices. 
 - We have seen an increase in disconnects while the log level was set to ``VERY_VERBOSE``,
-  especially on single core devices, where the logging code might be interfering with the operation
-  of the networking code. For this reason, we advise to use a lower log level for production
+  especially on single-core devices, where the logging code might be interfering with the operation
+  of the networking code. For this reason, we advise using a lower log level for production
   purposes.
 - Related to this, seems to be the number of clients that are simultaneously connected to the native
   API server on the device. These might for example be Home Assistant (via the ESPHome integration) and
