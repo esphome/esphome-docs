@@ -63,7 +63,10 @@ There's also a simple REST API available which can be used to get and set the cu
 calls to this API follow the URL schema ``/<domain>/<id>[/<method>?<param>=<value>]``.
 The ``domain`` is the type of the component, for example ``sensor`` or ``light``. ``id`` refers
 to the id of the component - this ID is created by taking the name of the component, stripping out
-all non-alphanumeric characters, making everything lowercase and replacing all spaces by underscores.
+all non-alphanumeric characters, making everything lowercase and replacing all spaces by underscores. 
+To confirm the ``<id>`` to use, you can set the :doc:`logger level </components/logger.html#logger-log-levels>` 
+to ``VERY_VERBOSE`` and check the ``object_id:`` in the logs.
+
 
 By creating a simple GET request for a URL of the form ``/<domain>/<id>`` you will get a JSON payload
 describing the current state of the component. This payload is equivalent to the ones sent by the
