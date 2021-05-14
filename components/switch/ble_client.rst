@@ -1,12 +1,12 @@
-BLE Switch
-==========
+BLE Client Switch
+=================
 
 .. seo::
     :description: Control the state of BLE clients.
     :image: bluetooth.svg
 
-The ``ble_switch`` component is a switch platform that is used to enable
-and disable a ``ble_client``. This has several uses, such as minimising
+The ``ble_client`` component is a switch platform that is used to enable
+and disable a ``ble_client``. This has several uses, such as minimizing
 battery usage or for allowing other clients (Eg phone apps) to connect to
 the device.
 
@@ -30,7 +30,7 @@ Configuration variables:
 ------------------------
 
 - **ble_client_id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
-- **id** (**Optional**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
+- **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 - All other options from :ref:`Switch <config-switch>`.
 
 See Also

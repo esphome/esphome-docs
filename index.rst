@@ -272,7 +272,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
-    BLE Switch, components/switch/ble, bluetooth.svg
+    BLE Switch, components/switch/ble_client, bluetooth.svg
 
 Fan Components
 --------------

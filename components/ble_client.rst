@@ -44,8 +44,8 @@ client devices.
 Configuration variables:
 ------------------------
 
-- **mac_address** (*Required*, MAC Address): The MAC address of the BLE device to connect to.
-- **id** (*Required*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
+- **mac_address** (**Required**, MAC Address): The MAC address of the BLE device to connect to.
+- **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 
 Automations:
 

@@ -1,5 +1,5 @@
 SHT4X Temperature and Humidity Sensor
-==================================================
+=====================================
 
 .. seo::
     :description: Instructions for setting up SHT4X temperature and humidity sensor
@@ -28,15 +28,24 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 Configuration variables:
 ------------------------
 
-- **temperature** (**Optional**): Temperature. All other options from :ref:`Sensor <config-sensor>`.
-- **humidity** (**Optional**): Relative Humidity. All other options from :ref:`Sensor <config-sensor>`.
+- **temperature** (*Optional*): Temperature.
 
-- **precision** (**Optional**, string): The measurement precision, either ``"High"``, ``"Med"`` or ``"Low"``. Default is ``"High"``.
-- **heater_max_duty** (**Optional**, float): The maximum duty cycle of the heater (limited to ``0.05``). Default is ``0.0`` i.e. heater off.
-- **heater_power** (**Optional**, string): The heater power, either ``"High"``, ``"Med"`` or ``"Low"``. Default is ``"High"``.
-- **heater_time** (**Optional**, string):  The length of time to run the heater, either ``"Long"`` (``1000ms``) or ``"Short"`` (``100ms``). Default is ``"Long"``.
-- **address** (**Optional**, int): Manually specify the I²C address of the sensor. Default is ``0x44``.
-- **update_interval** (**Optional**, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+  - **name** (**Required**, string): The name of the sensor.
+  - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **humidity** (*Optional*): Relative Humidity.
+
+  - **name** (**Required**, string): The name of the sensor.
+  - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **precision** (*Optional*, string): The measurement precision, either ``High``, ``Med`` or ``Low``. Default is ``High``.
+- **heater_max_duty** (*Optional*, float): The maximum duty cycle of the heater (limited to ``0.05``). Default is ``0.0``, i.e. heater off.
+- **heater_power** (*Optional*, string): The heater power, either ``High``, ``Med`` or ``Low``. Default is ``High``.
+- **heater_time** (*Optional*, string):  The length of time to run the heater, either ``Long`` (1000ms) or ``Short`` (100ms). Default is ``Long``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is ``0x44``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 Heater Configuration:
 ---------------------
