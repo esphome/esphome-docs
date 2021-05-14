@@ -64,7 +64,7 @@ calls to this API follow the URL schema ``/<domain>/<id>[/<method>?<param>=<valu
 The ``domain`` is the type of the component, for example ``sensor`` or ``light``. ``id`` refers
 to the id of the component - this ID is created by taking the name of the component, stripping out
 all non-alphanumeric characters, making everything lowercase and replacing all spaces by underscores. 
-To confirm the ``<id>`` to use, you can set the :doc:`logger level </components/logger.html#logger-log-levels>` 
+To confirm the ``<id>`` to use, you can set the :doc:`logger level </components/logger.html>` 
 to ``VERY_VERBOSE`` and check the ``object_id:`` in the logs.
 
 
