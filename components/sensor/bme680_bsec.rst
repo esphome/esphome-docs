@@ -6,6 +6,9 @@ BME680 Temperature+Pressure+Humidity+Gas Sensor via BSEC
     :image: bme680.jpg
     :keywords: BME680
 
+Component/Hub
+-------------
+
 The ``bme680_bsec`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC)
@@ -58,11 +61,6 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
           name: "BME680 IAQ Accuracy"
 
 Configuration variables:
-------------------------
-
-The configuration is made up of three parts: The central hub, individual sensors, and accuracy text sensor.
-
-Hub Configuration:
 
 - **address** (*Optional*, int): Manually specify the I^2C address of
   the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
@@ -79,7 +77,10 @@ Hub Configuration:
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration does have to start from zero on device restart. Defaults to ``6h``.
 
-Sensor Configuration:
+Sensor
+------
+
+Configuration variables:
 
 - **temperature** (*Optional*): The information for the temperature sensor.
 
@@ -129,9 +130,15 @@ Sensor Configuration:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-Text Sensor Configuration:
+Text Sensor
+-----------
 
-- **iaq_accuracy** (*Optional*): The information for the IAQ accuracy sensor.
+Accuracy can be reported in text format.
+
+Configuration variables:
+
+- **iaq_accuracy** (*Optional*): The information for the IAQ accuracy sensor. Shows: Stabilizing,
+  Uncertain, Calibrating, Calibrated.
 
   - **name** (**Required**, string): The name for the IAQ accuracy sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.

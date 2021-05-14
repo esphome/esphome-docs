@@ -1,11 +1,11 @@
-BLE Sensor
-==========
+BLE Client Sensor
+=================
 
 .. seo::
     :description: Fetch numeric values from BLE devices.
     :image: bluetooth.svg
 
-The ``ble_sensor`` component is a sensor platform that can
+The ``ble_client`` component is a sensor platform that can
 query BLE devices for specific values of service characteristics.
 
 For more information on BLE services and characteristics, see

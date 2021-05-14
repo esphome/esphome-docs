@@ -110,5 +110,5 @@ See Also
 --------
 
 - :doc:`/components/ble_client`
-- :doc:`/components/sensor/ble_sensor`
+- :doc:`/components/sensor/ble_client`
 - :ghedit:`Edit`

@@ -104,7 +104,7 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
-    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
+    BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
@@ -272,7 +272,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
-    BLE Switch, components/switch/ble, bluetooth.svg
+    BLE Client Switch, components/switch/ble_client, bluetooth.svg
 
 Fan Components
 --------------
