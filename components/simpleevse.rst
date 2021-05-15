@@ -5,12 +5,12 @@ SimpleEVSE
     :description: Instructions for setting up the SimpleEVSE component in ESPHome.
     :keywords: SimpleEVSE EV
 
-`SimplEVSE <http://evracing.cz/simple-evse-wallbox>`__ is a popular DIY EV charger solution which can be connected to ESPHome using the :ref:`UART bus <uart>`.
+`SimpleEVSE <http://evracing.cz/simple-evse-wallbox>`__ is a popular DIY EV charger solution which can be connected to ESPHome using the :ref:`UART bus <uart>`.
 
 Overview
 --------
 
-The SimplEVSE controller must be connected to an UART of the ESPHome and switched to modbus mode (`manual <http://evracing.cz/evse/evse-wallbox/evse-wb-din_20210202.pdf>`__).
+The SimpleEVSE controller must be connected to an UART of the ESPHome and switched to modbus mode (`manual <http://evracing.cz/evse/evse-wallbox/evse-wb-din_20210202.pdf>`__).
 
 +---------------------------------------+---------+
 | Pin SimpleEVSE PROG (5 pin connector) | ESPHome |
@@ -24,7 +24,7 @@ The SimplEVSE controller must be connected to an UART of the ESPHome and switche
 
 .. warning::
 
-    The SimplEVSE seems to provide a 5V level uart while the ESPHome is working with 3.3V. A level shifter is therefore strongly recommended.
+    The SimpleEVSE seems to provide a 5V level uart while the ESPHome is working with 3.3V. A level shifter is therefore strongly recommended.
 
 This component will poll the status register and allows also to change the writable registers.
 
@@ -67,10 +67,10 @@ This component will poll the status register and allows also to change the writa
       - platform: simpleevse
         name: "Charge Enable"
 
-Simpleevse Configuration Variables:
+SimpleEVSE Configuration Variables:
 ***********************************
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the status. Defaults to 5s.
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specifiy which uart to use.
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify which uart to use.
 - **web_config** (*Optional*, bool): Determines if the web configuration should be enabled. Defaults to disable. The page can opened at the url path `/simpleevse` and allows also to change the writable registers.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **on_unplugged** (*Optional*, :ref:`Automation <automation>`): An automation to perform if a vehicle was unplugged.
@@ -79,13 +79,13 @@ Simpleevse Configuration Variables:
 Binary Sensor Configuration Variables:
 **************************************
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **simpleevse_id** (*Optiona*, :ref:`config-id`): Manually specifiy which simpleevse to use. 
+- **simpleevse_id** (*Optional*, :ref:`config-id`): Manually specify which simpleevse to use. 
 - **connected** (*Optional*): All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Sensor Configuration Variables:
 *******************************
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **simpleevse_id** (*Optiona*, :ref:`config-id`): Manually specifiy which simpleevse to use. 
+- **simpleevse_id** (*Optional*, :ref:`config-id`): Manually specify which simpleevse to use. 
 - **set_charge_current** (*Optional*): All options from :ref:`Sensor <config-sensor>`.
 - **actual_charge_current** (*Optional*): All options from :ref:`Sensor <config-sensor>`.
 - **max_current_limit** (*Optional*): All options from :ref:`Sensor <config-sensor>`.
@@ -94,27 +94,27 @@ Sensor Configuration Variables:
 Text Sensor Configuration Variables:
 ************************************
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **simpleevse_id** (*Optiona*, :ref:`config-id`): Manually specifiy which simpleevse to use. 
+- **simpleevse_id** (*Optional*, :ref:`config-id`): Manually specify which simpleevse to use. 
 - **vehicle_state** (*Optional*): All options from :ref:`Text Sensor <config-text_sensor>`.
 - **evse_state** (*Optional*): All options from :ref:`Text Sensor <config-text_sensor>`.
 
-The **vehicle_state** shows the state of the vehicle connected to the simpleevse:
+The **vehicle_state** shows the state of the vehicle connected to the SimpleEVSE:
 
-+---------------------------+----------------------------------------------------------+
-|value                      | description                                              |
-+===========================+==========================================================+
-|unknown                    | The state is unknown.                                    |
-+---------------------------+----------------------------------------------------------+
-|ready                      | SimpleEVSE is ready, but no vehicle is plugged in.       |
-+---------------------------+----------------------------------------------------------+
-|EV is present              | A vehicle is plugged in but is not charging.             |
-+---------------------------+----------------------------------------------------------+
-|charging                   | A vehicle is charging.                                   |
-+---------------------------+----------------------------------------------------------+
-|charging with ventilation  | Basically same as *chargin* but ventilation is required. |
-+---------------------------+----------------------------------------------------------+
-|?                          | An invalid state was received                            |
-+---------------------------+----------------------------------------------------------+
++---------------------------+-----------------------------------------------------------+
+|value                      | description                                               |
++===========================+===========================================================+
+|unknown                    | The state is unknown.                                     |
++---------------------------+-----------------------------------------------------------+
+|ready                      | SimpleEVSE is ready, but no vehicle is plugged in.        |
++---------------------------+-----------------------------------------------------------+
+|EV is present              | A vehicle is plugged in but is not charging.              |
++---------------------------+-----------------------------------------------------------+
+|charging                   | A vehicle is charging.                                    |
++---------------------------+-----------------------------------------------------------+
+|charging with ventilation  | Basically same as *charging* but ventilation is required. |
++---------------------------+-----------------------------------------------------------+
+|?                          | An invalid state was received                             |
++---------------------------+-----------------------------------------------------------+
 
 The **evse_state** shows the state of the CP pin of the type 2 plug:
 
@@ -135,7 +135,7 @@ The **evse_state** shows the state of the CP pin of the type 2 plug:
 Switch Configuration Variables:
 *******************************
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **simpleevse_id** (*Optiona*, :ref:`config-id`): Manually specifiy which simpleevse to use. 
+- **simpleevse_id** (*Optional*, :ref:`config-id`): Manually specify which simpleevse to use. 
 - All other options from :ref:`Switch <config-switch>`.
 
 ``is_plugged`` / ``is_unplugged`` Conditions
@@ -152,7 +152,7 @@ This :ref:`Condition <config-condition>` checks if a vehicle is plugged in or no
           # Same syntax for is_unplugged
           simpleevse.is_plugged
 
-``simplevse.set_charging_current`` Action
+``simpleevse.set_charging_current`` Action
 -----------------------------------------
 
 Sets the charging current to the given value.
@@ -169,7 +169,7 @@ Configuration options:
 - **current** (**Required**, int): The new charging current. 
 
 
-``simplevse.set_charging_enabled`` Action
+``simpleevse.set_charging_enabled`` Action
 -----------------------------------------
 
 Enables or disables charging.
@@ -205,7 +205,7 @@ To adjust the charging current within Home Assistant, the ``simpleevse_set_charg
                 condition:
                   switch.is_off: charge_override
                 then:
-                  - simplevse.set_charging_current:
+                  - simpleevse.set_charging_current:
                       current: !lambda 'return new_current;'
 
 Disable charging as soon as the vehicle is unplugged
@@ -217,7 +217,7 @@ The following configuration disables charging if the vehicle was unplugged. It m
 
     simpleevse:
       on_unplugged:
-        - simplevse.set_charging_enabled: 
+        - simpleevse.set_charging_enabled: 
             enable: false
 
 
