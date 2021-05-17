@@ -1,4 +1,6 @@
-FROM ubuntu:xenial
+FROM ubuntu:focal
+ENV TZ=UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
@@ -17,6 +19,7 @@ RUN pip3 install --no-cache-dir --no-binary :all: \
         sphinx
 
 EXPOSE 8000
-WORKDIR /data/esphome-docs
+WORKDIR /data/esphomedocs
 
 CMD ["make", "webserver"]
+
