@@ -32,6 +32,7 @@ Contributors
 - `Andrea Donno (@adonno) <https://github.com/adonno>`__
 - `Adrien Brault (@adrienbrault) <https://github.com/adrienbrault>`__
 - `Johan Bloemberg (@aequitas) <https://github.com/aequitas>`__
+- `Stefan Agner (@agners) <https://github.com/agners>`__
 - `Anders (@ahd71) <https://github.com/ahd71>`__
 - `Alexander Pohl (@ahpohl) <https://github.com/ahpohl>`__
 - `Airy André (@airy10) <https://github.com/airy10>`__
@@ -487,6 +488,7 @@ Contributors
 - `TBobsin (@TBobsin) <https://github.com/TBobsin>`__
 - `Team Super Panda (@teamsuperpanda) <https://github.com/teamsuperpanda>`__
 - `teffcz (@teffcz) <https://github.com/teffcz>`__
+- `testbughub (@testbughub) <https://github.com/testbughub>`__
 - `The Impaler (@the-impaler) <https://github.com/the-impaler>`__
 - `Nejc (@thedexboy) <https://github.com/thedexboy>`__
 - `Thomas Eckerstorfer (@TheEggi) <https://github.com/TheEggi>`__
@@ -559,4 +561,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 13, 2021.*
+*This page was last updated May 17, 2021.*
