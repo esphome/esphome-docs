@@ -133,8 +133,8 @@ This :ref:`action <config-action>` sends an LG infrared remote code to a remote 
 
     on_...:
       - remote_transmitter.transmit_lg:
-          data: 0x1234567
-          nbits: 28
+          data: 0x20DF10EF # power on/off
+          nbits: 32
 
 Configuration variables:
 
