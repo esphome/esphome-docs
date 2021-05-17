@@ -81,10 +81,17 @@ Configuration variables:
   higher target temperature of a climate device with a two-point target temperature.
 - **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
   of the climate device.
-- **fan_mode** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the fan mode
+- **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
+  of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``, 
+  ``ACTIVITY``.
+- **custom_preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the 
+  supported custom_presets of the climate device.
+- **fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
   ``FOCUS``, ``DIFFUSE``.
-- **swing_mode** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the swing mode
+- **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the 
+  supported custom_fan_modes of the climate device.
+- **swing_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the swing mode
   of the climate device. One of ``OFF``, ``BOTH``, ``VERTICAL``, ``HORIZONTAL``.
 
 .. _climate-lambda_calls:
