@@ -41,8 +41,8 @@ Breaking Changes
 - esphome: Raise minimum python version to 3.7 :esphomepr:`1673` (breaking-change)
 - esphome: Change wifi signal strength unit to dBm :esphomepr:`1734` by :ghuser:`mbo18` (breaking-change)
 
-Beta Fixes
-----------
+Beta Changes
+------------
 
 - docs: Update allowed characters for node names :docspr:`1072` by :ghuser:`pkuehne`
 - docs: Replaced set_password with new_password :docspr:`1157` by :ghuser:`PaulAntonDeen`
@@ -54,6 +54,9 @@ Beta Fixes
 - docs: Explain where to upload .ttf font files :docspr:`1133` by :ghuser:`TheGroundZero`
 - esphome: Add sm2135 component :esphomepr:`1736` by :ghuser:`BoukeHaarsma23` (new-integration)
 - docs: Add sm2135 component :docspr:`1127` by :ghuser:`BoukeHaarsma23`
+- docs: Some clarification added to external components. :docspr:`1165` by :ghuser:`mmakaay`
+- docs: Add new disconnect reasons to the FAQ. :docspr:`1129` by :ghuser:`mmakaay`
+- esphome: Allow RC522 components to have multiple configurations :esphomepr:`1782` by :ghuser:`jesserockz`
 
 All changes
 -----------

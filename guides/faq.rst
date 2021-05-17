@@ -89,7 +89,7 @@ That's no good. Here are some steps that resolve some problems:
 -  **If you're having WiFi problems**: See :ref:`wifi-problems`.
 -  Enable verbose logs in the logger: section.
 -  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/esphome/issues>`__.
-   I will take a look at it as soon as I can. Thanks!
+   We will take a look at it as soon as we can. Thanks!
 
 .. _faq-bug_report:
 
@@ -186,13 +186,13 @@ Does ESPHome support [this device/feature]?
 -------------------------------------------
 
 If it's not in :doc:`the docs </index>`, it's probably not
-supported. However, I'm always trying to add support for new features, so feel free to create a feature
+supported. However, we are always trying to add support for new features, so feel free to create a feature
 request in the `ESPHome feature request tracker <https://github.com/esphome/feature-requests>`__. Thanks!
 
 I have a question... How can I contact you?
 -------------------------------------------
 
-Sure! We are be happy to help :) You can contact us here:
+Sure! We are happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
 -  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
@@ -207,7 +207,7 @@ My node keeps reconnecting randomly
 -----------------------------------
 
 Jep, that's a known issue. However, it seems to be very low-level and we don't really know
-how to solve it. We are working on possible workarounds for the issue but currently we do
+how to solve it. We are working on possible workarounds for the issue, but currently we do
 not have a real solution.
 
 Some steps that can help with the issue:
@@ -224,7 +224,21 @@ Some steps that can help with the issue:
   :doc:`api connection is lost </components/api>` or
   :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
   to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
-
+- If you see ``Error: Disconnecting <NODE_NAME>`` in your logs, ESPHome is actively closing
+  the native API client connection. Connect a serial console to inspect the reason, which is only
+  logged via serial. If you see ``ack timeout 4`` right before a disconnect, this might be because
+  of a bug in the AsyncTCP library, for which a fix was included in ESPHome version 1.18.0.
+  If you are running an ESPHome version, prior to 1.18.0, then upgrade ESPHome and build fresh
+  firmware for your devices. 
+- We have seen an increase in disconnects while the log level was set to ``VERY_VERBOSE``,
+  especially on single-core devices, where the logging code might be interfering with the operation
+  of the networking code. For this reason, we advise using a lower log level for production
+  purposes.
+- Related to this, seems to be the number of clients that are simultaneously connected to the native
+  API server on the device. These might for example be Home Assistant (via the ESPHome integration) and
+  the log viewer on the web dashboard. In production, you will likely only have a single connection from
+  Home Assistant, making this less of an issue. But beware that attaching a log viewer might
+  have impact.
 
 Docker Reference
 ----------------
