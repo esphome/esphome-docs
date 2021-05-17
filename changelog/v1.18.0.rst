@@ -42,7 +42,7 @@ Breaking Changes
 - esphome: Change wifi signal strength unit to dBm :esphomepr:`1734` by :ghuser:`mbo18` (breaking-change)
 
 Beta Changes
-----------
+------------
 
 - docs: Update allowed characters for node names :docspr:`1072` by :ghuser:`pkuehne`
 - docs: Replaced set_password with new_password :docspr:`1157` by :ghuser:`PaulAntonDeen`
