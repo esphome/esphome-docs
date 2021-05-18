@@ -11,6 +11,10 @@ The ``cse7766`` sensor platform allows you to use your CSE7766 voltage/current a
 ESPHome. This sensor is commonly found in Sonoff POW R2. CSE7759B is similar to CSE7766
 and works with this integration.
 
+.. note::
+
+    SAFETY HAZARD: Some devices such as Sonoff POWs/Shelly/etc, have the digital GND connected directly to mains voltage so **the GPIOs become LIVE during normal operation**. Our advice is to mark these boards to prevent any use of the dangerous digital pins.
+
 As the communication with the CSE7766 done using UART, you need
 to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the CSE7766.
 Additionally, you need to set the baud rate to 4800.

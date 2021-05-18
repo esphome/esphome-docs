@@ -55,6 +55,9 @@ Configuration variables:
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
 - **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presense and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname which can break certain functionalities. Please see :ref:`notes on disabling mDNS <faq-notes_on_disabling_mdns>`. Defaults to ``true``.
+- **use_address** (*Optional*, string): Manually override what address to use to connect
+  to the ESP. Defaults to auto-generated value. For example, if you have changed your
+  static IP and want to flash OTA to the previously configured IP address.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
