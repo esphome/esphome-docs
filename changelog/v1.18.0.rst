@@ -8,32 +8,32 @@ Changelog - Version 1.18.0 - 19th May 2021
     :author_twitter: @esphome_
 
 .. imgtable::
-    :columns: 5
+    :columns: 4
 
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
     b-parasite, components/sensor/b_parasite, b_parasite.jpg
     SGP40, components/sensor/sgp40, sgp40.jpg
     SHT4X, components/sensor/sht4x, sht4x.jpg
-    TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
 
+    TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     TOF10120, components/sensor/tof10120, tof10120.jpg
-    ESP32 BLE Client, components/ble_client, bluetooth.svg
-    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
     SM2135, components/output/sm2135, sm2135.svg
 
+    ESP32 BLE Client, components/ble_client, bluetooth.svg
+    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
     External Components, components/external_components, external_components.svg
 
 
 It feels like I was just writing the release notes for 1.17 not long ago, so here's to getting ESPHome going on a regular schedule.
 
-Releases will be set for the 3rd Wednesday of each month, with a beta release starting 1 week earlier for thos who would like to test
+Releases will be set for the 3rd Wednesday of each month, with a beta release starting 1 week earlier for those who would like to test
 that and help make sure it is stable.
 
-Apart from a few new sensors, we now have built in support for :ref:`external_components`, check it out. Thanks :ghuser:`OttoWinter` and :ghuser:`glmnet`
+Apart from a few new sensors, we now have built in support for :doc:`/components/external_components`, check it out. Thanks :ghuser:`OttoWinter` and :ghuser:`glmnet`
 
-Also now, an ESPHome device is able to connect to other BLE devices and become a client, reading sensors and controlling switches etc.
-You can read basic sensor values using the :ref:`ble_sensor` component or use the data displayed in the logs to build a new native component
+Also now, an ESPHome device is able to connect to other BLE devices and become a :doc:`/components/ble_client`, reading sensors and controlling switches etc.
+You can read basic sensor values using the :doc:`/components/sensor/ble_sensor` component or use the data displayed in the logs to build a new native component
 that provides the sensors/switches/etc directly.
 
 Jesse
@@ -169,7 +169,7 @@ All changes
 - docs: Fix docker build failure :docspr:`1179` by :ghuser:`martgras`
 - docs: Update ifan02 example with new fan speed options :docspr:`1177` by :ghuser:`workingmanrob`
 - docs: Document missing use_address in Ethernet component :docspr:`1176` by :ghuser:`xsnoopy`
-- docs: Lambda over multiple lines. |- added :docspr:`1173` by :ghuser:`klenaers`
+- docs: Lambda over multiple lines. added :docspr:`1173` by :ghuser:`klenaers`
 - docs: changed LG example to existing, working code :docspr:`1171` by :ghuser:`qqgg231`
 - docs: GPIO Switch: simplify Momentary Switch example :docspr:`1121` by :ghuser:`ianchi`
 - docs: Added warning: GPIOs are LIVE in power measurement devices :docspr:`583` by :ghuser:`CarlosGS`
