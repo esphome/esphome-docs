@@ -186,14 +186,6 @@ The ``esphome <CONFIG> version`` command shows the current ESPHome version and e
 
 The ``esphome <CONFIG> clean`` command cleans all build files and can help with some build issues.
 
-``hass-config`` Command
------------------------
-
-.. program:: esphome hass-config
-
-The ``esphome <CONFIG> hass-config`` command shows an auto-generated Home Assistant configuration for the ESPHome
-node configuration file. This is useful if you're not using MQTT discovery.
-
 ``dashboard`` Command
 ---------------------
 
