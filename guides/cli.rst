@@ -70,9 +70,9 @@ The ``esphome <CONFIG> run`` command is the most common command for ESPHome. It
 
 .. program:: esphome run
 
-.. option:: --upload-port UPLOAD_PORT
+.. option:: --device UPLOAD_PORT
 
-    Manually specify the upload port/ip to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
 
 .. option:: --no-logs
 
@@ -124,7 +124,7 @@ The ``esphome <CONFIG> compile`` validates the configuration and compiles the fi
 
 The ``esphome <CONFIG> upload`` validates the configuration and uploads the most recent firmware build.
 
-.. option:: --upload-port UPLOAD_PORT
+.. option:: --device UPLOAD_PORT
 
     Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
 
@@ -233,7 +233,7 @@ The ``esphome <CONFIG> logs`` command validates the configuration and shows all 
 
     Manually set the client id.
 
-.. option:: --serial-port SERIAL_PORT
+.. option:: --device SERIAL_PORT
 
-    Manually specify a serial port to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    Manually specify a serial port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
 
