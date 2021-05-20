@@ -18,9 +18,17 @@ counter but also legacy EDF electrical counter.
 
 ..
 
-A simple electronic assembly with an optocoupler and a resistor could
+A simple electronic assembly with an optocoupler a MOSFET and some resistors could
 let you retrieve detailed power consumption or power production.
-There is plenty of example on the web.
+The following diagram shows an example of a tested circuit that works for both historical and standard mode:
+
+.. figure:: images/teleinfo-circuit.png
+    :align: center
+    :width: 70.0%
+
+    Circuit example to connect Linky to ESP MCU.
+
+..
 
 As the communication with the Teleinformation is done using UART, you need to
 have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin``
@@ -60,17 +68,17 @@ simply press -/+ buttons on the counter and look for `Standard mode` or
     sensor:
       - platform: teleinfo
         tags:
-         - name: "HCHC"
+         - tag_name: "HCHC"
            sensor:
             name: "hchc"
             unit_of_measurement: "Wh"
             icon: mdi:flash
-         - name: "HCHP"
+         - tag_name: "HCHP"
            sensor:
             name: "hchp"
             unit_of_measurement: "Wh"
             icon: mdi:flash
-         - name: "PAPP"
+         - tag_name: "PAPP"
            sensor:
             name: "papp"
             unit_of_measurement: "VA"
@@ -84,7 +92,7 @@ Configuration variables:
 
 - **tags** (**Required**): Specify the tag you want to retrieve from the Teleinformation and select with what name to transmit it.
 
-  - **name** (**Required**, string): The name of the tag corresponding to what the electrical counter send.
+  - **tag_name** (**Required**, string): The name of the tag corresponding to what the electrical counter send.
   - **sensor** (**Required**, :ref:`Sensor <config-sensor>`): Associate a sensor with the tag. See options from :ref:`Sensor <config-sensor>`.
 
 - **historical_mode** (*Optional*): Wether to use historical mode or standard mode.
