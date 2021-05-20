@@ -47,7 +47,7 @@ For this guide you will need:
 - A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins.
-- A computer running Home Assistant with the ESPHome Hass.io add-on.
+- A computer running Home Assistant with the ESPHome Home Assistant add-on.
 - A screwdriver to open up the Sonoff 4CH.
 
 Have everything? Great! Then you can start.
