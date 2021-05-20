@@ -51,10 +51,10 @@ and did not mount the ESP device into your container using ``--device=/dev/ttyUS
 Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
-First, you need to get the firmware file to flash. For Hass.io add-on based installs you can
-use the ``COMPILE`` button (click the overflow icon with the three dots) and then press
-``Download Binary``. For command line based installs you can access the file under
-``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
+First, you need to get the firmware file to flash. For the Home Assistant add-on based
+installs you can use the ``COMPILE`` button (click the overflow icon with the three dots)
+and then press ``Download Binary``. For command line based installs you can access the
+file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
 and downloading one of the pre-compiled binaries. Open up the application and select the serial port
@@ -125,7 +125,8 @@ It's simple. Run:
     # From docker:
     docker pull esphome/esphome:latest
 
-And in Hass.io, there's a simple UPDATE button when there's an update available as with all add-ons
+And in Home Assistant, there's a simple UPDATE button when there's an update
+available as with all add-ons.
 
 .. _faq-beta:
 
@@ -159,7 +160,7 @@ If you find some, please do however report them.
 
 To install the dev version of ESPHome:
 
-- In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
+- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
@@ -315,7 +316,8 @@ And a docker compose file looks like this:
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
     Alternatively, you can make esphome use ICMP pings to check the status of the device
-    with the Hass.io Addon ``"status_use_ping": true,`` option or with docker ``-e ESPHOME_DASHBOARD_USE_PING=true``
+    with the Home Assistant add-on ``"status_use_ping": true,`` option or with
+    Docker ``-e ESPHOME_DASHBOARD_USE_PING=true``.
     See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
     
 .. _faq-notes_on_disabling_mdns:
