@@ -47,7 +47,7 @@ VCC to 3.3V and GND to GND.
 Backlight
 *********
 
-To use a backlight LIGHT pin needs to be connected to ground. If connected to GPIO pin it can be controlled from EPSHome. See :doc:`/components/light/monochromatic`.
+To use a backlight LIGHT pin needs to be connected to ground. If connected to GPIO pin it can be controlled from ESPHome. See :doc:`/components/light/monochromatic`.
 
 
 Configuration variables:

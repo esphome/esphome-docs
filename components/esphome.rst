@@ -23,7 +23,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): This is the name of the node. It
-  should always be unique in your ESPhome network. May only contain lowercase
+  should always be unique in your ESPHome network. May only contain lowercase
   characters, digits and hyphens. See :ref:`esphome-changing_node_name`.
 - **platform** (**Required**, string): The platform your board is on,
   either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
@@ -162,7 +162,7 @@ is already set up. You can however change this using the ``priority`` parameter.
 Configuration variables:
 
 - **priority** (*Optional*, float): The priority to execute your custom initialization code. A higher value
-  means a high priority and thus also your code being executed earlier. Please note this is an ESPhome-internal
+  means a high priority and thus also your code being executed earlier. Please note this is an ESPHome-internal
   value and any change will not be marked as a breaking change. Defaults to ``-10``. Priorities (you can use any value between them too):
 
   - ``800.0``: This is where all hardware initialization of vital components is executed. For example setting switches
