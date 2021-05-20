@@ -3,11 +3,11 @@ ESP32 Water Leak Detector (with notification)
 =============================================
 
 .. seo::
-    :description: Water leak detector with ESPhome on an M5StickC ESP32
+    :description: Water leak detector with ESPHome on an M5StickC ESP32
     :image: images/leak-detector-m5stickC_dry.jpg
     :keywords: Leak Detector M5StickC M5Stack M5Atom
 
-Using the ESP32's capacitive touch GPIOs, it's relatively easy to build a water leak detector using ESPhome.  M5StickC was chosen as a platform due to the integrated Grove connector for clean connections and the fact it's well housed.  The built-in display is a bonus, but not strictly necessary.  Notifications are performed via HomeAssistant's 'alert' and 'notify' facilities, which send via Pushover to iOS & Android.
+Using the ESP32's capacitive touch GPIOs, it's relatively easy to build a water leak detector using ESPHome.  M5StickC was chosen as a platform due to the integrated Grove connector for clean connections and the fact it's well housed.  The built-in display is a bonus, but not strictly necessary.  Notifications are performed via HomeAssistant's 'alert' and 'notify' facilities, which send via Pushover to iOS & Android.
 
 .. figure:: images/leak-detector-m5stickC_LeakDetected.gif
     :align: center
@@ -67,14 +67,14 @@ Assembled Components
 Display Font
 ============
 
-You'll need to place the `OpenSans-Regular <https://fonts.google.com/specimen/Open+Sans>`__ font (or another of your choosing) alongside your ESPhome yaml file.  See - :doc:`/components/display/index`.
+You'll need to place the `OpenSans-Regular <https://fonts.google.com/specimen/Open+Sans>`__ font (or another of your choosing) alongside your ESPHome yaml file.  See - :doc:`/components/display/index`.
 
 Flashing
 ========
 
 I initially had trouble flashing the M5StickC; this is the procedure that I've found to work well with these devices.
 
-You must provide the ESP32 bootloader during the initial flash over USB.  Compile your ESPhome binary, and flash it along with the required bootloader (bootloader_dio_80m.bin), `available here <https://github.com/espressif/arduino-esp32/tree/master/tools/sdk/bin>`__, from the commandline (example under macos):
+You must provide the ESP32 bootloader during the initial flash over USB.  Compile your ESPHome binary, and flash it along with the required bootloader (bootloader_dio_80m.bin), `available here <https://github.com/espressif/arduino-esp32/tree/master/tools/sdk/bin>`__, from the commandline (example under macos):
 
 ``cd /Applications/ESPHome-Flasher-1.2.0-macOS.app/Contents/MacOS``
 
@@ -115,7 +115,7 @@ Not shown: Probe is placed on the floor in the corner, out of the way, in the lo
 
 ------------
 
-ESPhome configuration
+ESPHome configuration
 =====================
 
 .. code-block:: yaml
