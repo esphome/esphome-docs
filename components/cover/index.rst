@@ -110,7 +110,7 @@ This :ref:`action <config-action>` stops the cover with the given ID when execut
 .. _cover-toggle_action:
 
 ``cover.toggle`` Action
----------------------
+-----------------------
 
 This :ref:`action <config-action>` toggles the cover with the given ID when executed,
 cycling through the states close/stop/open/stop... This allows the cover to be controlled
