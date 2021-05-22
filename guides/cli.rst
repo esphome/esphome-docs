@@ -72,7 +72,8 @@ The ``esphome run <CONFIG>`` command is the most common command for ESPHome. It
 
 .. option:: --device UPLOAD_PORT
 
-    Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
+    to perform an OTA.
 
 .. option:: --no-logs
 
@@ -126,7 +127,8 @@ The ``esphome upload <CONFIG>`` validates the configuration and uploads the most
 
 .. option:: --device UPLOAD_PORT
 
-    Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    Manually specify the upload port/IP address to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
+    to perform an OTA.
 
 .. option:: --host-port HOST_PORT
 
@@ -177,7 +179,7 @@ for SSL MQTT connections. See :ref:`mqtt-ssl_fingerprints`.
 
 .. program:: esphome version
 
-The ``esphome version <CONFIG>`` command shows the current ESPHome version and exits.
+The ``esphome version`` command shows the current ESPHome version and exits.
 
 ``clean`` Command
 -----------------
@@ -192,7 +194,8 @@ The ``esphome clean <CONFIG>`` command cleans all build files and can help with 
 .. program:: esphome dashboard
 
 The ``esphome dashboard <CONFIG>`` command starts the ESPHome dashboard server for using ESPHome
-through a graphical user interface.
+through a graphical user interface. This command accepts a configuration directory instead of a
+single configuration file.
 
 .. option:: --port PORT
 
