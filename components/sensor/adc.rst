@@ -8,7 +8,7 @@ Analog To Digital Sensor
 The Analog To Digital (``adc``) Sensor allows you to use the built-in
 ADC in your device to measure a voltage on certain pins. On the ESP8266
 only pin A0 (GPIO17) supports this. On the ESP32 pins GPIO32 through
-GPIO39 can be used. 
+GPIO39 can be used.
 
 .. figure:: images/adc-ui.png
     :align: center
