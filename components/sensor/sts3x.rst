@@ -5,7 +5,7 @@ STS3X Temperature Sensor
     :description: Instructions for setting up STS3x-DIS temperature sensors
     :image: sts3x.jpg
 
-The ``sts3x`` sensor platform Temperature sensor allows you to use your Sensiron STS30-DIS, STS31-DIS or STS35-DIS
+The ``sts3x`` sensor platform Temperature sensor allows you to use your Sensirion STS30-DIS, STS31-DIS or STS35-DIS
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/3_Temperature_Sensors/Sensirion_Temperature_Sensors_Table_Overview.pdf>`__,
 `Sensirion STS3x <https://www.sensirion.com/sts3x/>`__) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is

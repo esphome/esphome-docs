@@ -44,7 +44,7 @@ Blog Posts & Videos
 - `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__
 - `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-home-assistant/>`__ by :ghuser:`emorydunn`
 - `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__
-- `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPhome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
+- `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPHome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Baseboard (Line Voltage) Thermostat from Smart Switch <https://github.com/rjmurph2241/baseboard-heating-thermostat>`__ by :ghuser:`rjmurph2241`
 - `Office Doorbell <https://github.com/shish/esphome-projects/blob/master/office-doorbell.md>`__ by :ghuser:`shish`
 - `Display TM1637 with ESPHome and MQTT showing Youtube subscribers count and other info <https://youtu.be/27JZEky0h1Q>`__ by :ghuser:`electrofun-smart`
@@ -78,6 +78,7 @@ Custom Components & Code
 - `Custom UART component for WS3 weather station and air particulate matter sensor <https://github.com/kquinsland/ws3-to-esphome-bridge>`__ by :ghuser:`kquinsland`
 - `ADEMCO/VISTA/Honeywell alarm system custom component <https://github.com/Dilbert66/esphome-vistaECP>`__ by :ghuser:`Dilbert66`
 - `Winsen ZE08-CH2O (Formaldehyde sensor) custom component <https://gist.github.com/cretep/f96606dc6a4eae0d85993d6085959220>`__ by :ghuser:`cretep`
+- `ZclMqttBridge custom component <https://github.com/HyperReap/zcl_mqtt_bridge>`__ by :ghuser:`HyperReap`
 
 Sample Configurations
 ---------------------

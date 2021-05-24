@@ -49,6 +49,11 @@ configuration.
 .. code-block:: yaml
 
     # Example configuration entry
+    font:
+      - file: 'fonts/Comic Sans MS.ttf'
+        id: font1
+        size: 8
+    
     spi:
       clk_pin: D0
       mosi_pin: D1
@@ -62,7 +67,7 @@ configuration.
         model: 2.90in
         full_update_every: 30
         lambda: |-
-          it.print(0, 0, id(font), "Hello World!");
+          it.print(0, 0, id(font1), "Hello World!");
 
 Configuration variables:
 ------------------------
@@ -73,7 +78,7 @@ Configuration variables:
 
   - ``1.54in``
   - ``2.13in`` (not tested)
-  - ``2.13in-ttgo`` (T5_V2.3 tested)
+  - ``2.13in-ttgo`` (T5_V2.3 tested. Also works for Wemos D1 Mini ePaper Shield 2.13 1.0.0 "LOLIN")
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
   - ``2.13in-ttgo-b1`` (T5_V2.3 with B1 display tested)
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)

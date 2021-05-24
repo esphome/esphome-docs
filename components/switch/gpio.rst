@@ -63,7 +63,7 @@ Momentary Switch
 ----------------
 
 To create momentary switches, for example switches that toggle a pin for a moment, you can use
-:doc:`template switches <template>`.
+`on_turn_on` trigger.
 
 An example that uses a single relay to activate a remote control button. The button can only
 start or stop the motor of the gate. In itself, the button or remote can not know if it opens
@@ -76,11 +76,9 @@ or closes the gate. The relay simulates the button press for 500ms.
       - platform: gpio
         pin: 25
         id: relay
-      - platform: template
         name: "Gate Remote"
         icon: "mdi:gate"
-        turn_on_action:
-        - switch.turn_on: relay
+        on_turn_on:
         - delay: 500ms
         - switch.turn_off: relay
 

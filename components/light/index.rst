@@ -370,6 +370,34 @@ entries with each having a unique name like so:
               transition_length: 4s
               update_interval: 5s
 
+Pulse Effect
+************
+
+This effect makes a pulsating light. The period can be defined by ``update_interval``, the transition length with ``transition_length``. ``transition_length`` should be set to less than ``update_interval``, setting ``transition_length`` to ``1s`` and ``update_interval`` to ``2s`` will result in a transition from 0% to 100% lasting 1 second, 1 second full light, a transition from 100% to 0% for 1 second and off for 1 second.
+
+.. code-block:: yaml
+
+    light:
+      - platform: ...
+        # ...
+        effects:
+          - pulse:
+          - pulse:
+              name: "Fast Puse"
+              transition_length: 0.5s
+              update_interval: 0.5s
+          - pulse:
+              name: "Slow Puse"
+              # transition_length: 1s      # defaults to 1s
+              update_interval: 2s
+
+Configuration variables:
+
+- **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
+- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transistion is started. Defaults to ``1s``.
+
+
 Random Effect
 *************
 
@@ -718,8 +746,8 @@ This effect allows you to access each LED individually in a custom light effect.
 Available variables in the lambda:
 
 - **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
-- **current_color**  - :apistruct:`Color <Color>` instance (see API reference for more info).
-- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
+- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
 
   .. note::
 
@@ -872,6 +900,7 @@ Configuration variables:
 
 - **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
 
+The udp port esphome is listening on is 5568.
 
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
@@ -938,6 +967,11 @@ Prismatik_ can be used to control addressable lights over network on ESPHome.
 Configuration variables:
 
 - **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+
+.. note::
+
+    You can also set the ``port`` to ``19446`` for compatability with Hyperion Classic using a
+    UDP device with protocol 0.
 
 Currently the following realtime protocols are supported:
 WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.

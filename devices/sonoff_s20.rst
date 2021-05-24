@@ -46,7 +46,7 @@ For this guide you will need:
 -  Sonoff S20 😉.
 -  A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
    Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your S20.
--  A computer running Home Assistant with the ESPHome Hass.io add-on.
+-  A computer running Home Assistant with the ESPHome Home Assistant add-on.
 -  A screwdriver to open up the S20.
 -  A soldering iron and a few header pins to connect the UART interface.
 
