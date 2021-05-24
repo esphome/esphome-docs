@@ -72,7 +72,7 @@ This automation is triggered when the client connects to the BLE device.
         on_connect:
           then:
             - lambda: |-
-              ESP_LOGD("ble_client_lambda", "Connected to BLE device");
+                ESP_LOGD("ble_client_lambda", "Connected to BLE device");
 
 .. _ble_client-on_disconnect:
 
@@ -89,7 +89,7 @@ This automation is triggered when the client disconnects from a BLE device.
         on_disconnect:
           then:
             - lambda: |-
-              ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
+                ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
 
 BLE Overview
 ------------
