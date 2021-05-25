@@ -28,6 +28,7 @@ override them if you want to.
     unit_of_measurement: "°C"
     icon: "mdi:water-percent"
     device_class: "temperature"
+    state_class: "measurement"
     accuracy_decimals: 1
     expire_after: 30s
     filters:
@@ -43,6 +44,9 @@ Configuration variables:
   not actually do any maths (conversion between units).
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
+  for a list of available options. Set to ``""`` to remove the default device class of a sensor.
+- **state_class** (*Optional*, string): The state class for the
+  sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
   for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend. The icon set here
   is ignored by Home Assistant, if a device class is already set.
