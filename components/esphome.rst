@@ -19,6 +19,8 @@ where you specify the **name** of the node, the **platform** and
         platform: ESP32
         board: nodemcu-32s
 
+.. _esphome-configuration_variables:
+
 Configuration variables:
 ------------------------
 
