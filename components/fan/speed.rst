@@ -30,15 +30,9 @@ Configuration variables:
   :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
 - **direction_output** (*Optional*, :ref:`config-id`): The id of the
   :ref:`output <output>` to use for the direction state of the fan. Default is empty.
-- **speed** (*Optional*): Set the float values for each speed setting:
-
-  - **low** (*Required*, float): Set the value for the low speed
-    setting. Must be in range 0 to 1. Defaults to 0.33.
-  - **medium** (*Required*, float): Set the value for the medium speed
-    setting. Must be in range 0 to 1. Defaults to 0.66.
-  - **high** (*Required*, float): Set the value for the high speed
-    setting. Must be in range 0 to 1. Defaults to 1.
-
+- **speed_count** (*Optional*, int): Set the number of supported discrete speed levels. The value is used
+  to calculate the percentages for each speed. E.g. ``2`` means that you have 50% and 100% while ``100``
+  will allow 1% increments in the output. Defaults to ``100``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Fan Component <config-fan>`.
 

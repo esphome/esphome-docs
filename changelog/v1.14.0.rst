@@ -29,7 +29,7 @@ Changelog - Version 1.14.0 - November 1
     SGP30, components/sensor/sgp30, sgp30.jpg
 
     Tx20, components/sensor/tx20, tx20.jpg
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.svg
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.png
     Xiaomi CGG1, components/sensor/xiaomi_cgg1, xiaomi_cgg1.jpg
     Xiaomi LYWSD02, components/sensor/xiaomi_lywsd02, xiaomi_lywsd02.jpg
     ZyAura, components/sensor/zyaura, zgm053.jpg
