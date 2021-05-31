@@ -374,8 +374,6 @@ All Actions
 - :ref:`http_request.get <http_request-get_action>` / :ref:`http_request.post <http_request-post_action>` / :ref:`http_request.send <http_request-send_action>`
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
-- :ref:`ds1307.read <ds1307-read_action>`
-- :ref:`ds1307.write <ds1307-write_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 
