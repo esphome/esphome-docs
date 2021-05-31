@@ -9,7 +9,7 @@ Modbus Component
 
 The Modbus protocol is used by many consumer and industrial devices for communication.
 This component allows components in ESPHome to communicate to those devices.
-Modbus requires a :ref:`UART Bus <uart> to communicate.
+Modbus requires a :ref:`UART Bus <uart>` to communicate.
 
 .. code-block:: yaml
 
