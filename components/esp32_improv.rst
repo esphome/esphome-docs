@@ -5,8 +5,8 @@ Improv
     :description: Instructions for setting up Improv WiFi in ESPHome.
     :image: wifi-strength-alert-outline.png
 
-The ``esp32_improv`` component in ESPHome implements the open Improv standard for configuring WiFi on
-a ESP32 device by using Bluetooth Low Energy to receive the credentials.
+The ``esp32_improv`` component in ESPHome implements the open Improv standard for configuring Wi-Fi on
+an ESP32 device by using Bluetooth Low Energy to receive the credentials.
 
 .. figure:: images/improv-example.png
     :align: center
