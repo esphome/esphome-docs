@@ -156,7 +156,7 @@ Sensor Components
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
-    SDM220M, components/sensor/sdm220m, sdm220m.png
+    SDM Meter, components/sensor/sdm_meter, sdm220m.png
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
