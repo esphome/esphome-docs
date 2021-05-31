@@ -36,6 +36,8 @@ Configuration variables:
 - **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
 - **descriptor_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
 - **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
+- **lambda** (*Optional*, :ref:`config-lambda`): The lambda to use for converting a raw data
+  reading to a sensor value. See :ref:`ble-sensor-lambda` for more information.
 - **notify** (*Optional*, boolean): Instruct the server to send notifications for this
   characteristic.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
@@ -45,6 +47,30 @@ Automations:
 
 - **on_notify** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a notify message is received from the device. See :ref:`ble_sensor-on_notify`.
+
+.. _ble-sensor-lambda:
+
+Raw Data Parsing Lambda
+-----------------------
+
+By default only the first byte of each message received on the service's characteristic is used
+for the sensor reading. For more complex messages, this behavior can be overridden by a custom
+lambda function to parse the raw data. The received data bytes are passed to the lambda as a
+variable ``x`` of type ``std::vector<uint8_t>``. The function must return a single ``float`` value.
+
+.. code-block:: yaml
+
+    ...
+
+    sensor:
+      - platform: ble_client
+        ble_client_id: t_sensor
+        name: "Temperature Sensor 32bit float"
+        ...
+        device_class: "temperature"
+        lambda: |-
+          return *((float*)(&x[0]));
+
 
 BLE Sensor Automation
 ---------------------
