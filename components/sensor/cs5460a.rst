@@ -130,7 +130,7 @@ Configuration variables:
 
 .. _cs5460a-restart_action:
 
-``sensor.cs5460a.restart`` Action
+``cs5460a.restart`` Action
 ---------------------------------
 
 This action can be used in automations to interrupt the current *computation cycle* and start a
