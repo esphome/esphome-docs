@@ -24,6 +24,10 @@ After that use the following list of pin to function mappings to set up your Son
 This list has been compiled from the Sonoff Tasmota pin source file which can be found here:
 https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h ❤️
 
+.. note::
+
+    SAFETY HAZARD: Some devices such as Sonoff POWs/Shelly/etc, have the digital GND connected directly to mains voltage so **the GPIOs become LIVE during normal operation**. Our advice is to mark these boards to prevent any use of the dangerous digital pins.
+
 Sonoff RF
 ---------
 
@@ -99,7 +103,7 @@ Sonoff Dual R2 v1.4
     GPIO09, Button #1(inside header board v1.4),
     GPIO12, Relay #1,
     GPIO5, Relay #2,
-    GPIO10, Button on the case,    
+    GPIO10, Button on the case,
     GPIO13, Blue LED (inverted)
 
 Sonoff Pow R1
@@ -210,8 +214,8 @@ Sonoff B1, Ai-Thinker AiLight
 
 See :doc:`/components/output/my9231`.
 
-Sonoff T1 1CH, 2CH, 3CH
------------------------
+Sonoff T1, Sonoff T3 (1CH, 2CH, 3CH)
+------------------------------------
 
 .. pintable::
 
@@ -222,6 +226,7 @@ Sonoff T1 1CH, 2CH, 3CH
     GPIO10, Button 3 (inverted),
     GPIO4, Relay 3 and Blue LED,
     GPIO13, Blue LED (inverted),
+
     GPIO1, UART TX pin (for external sensors)
     GPIO3, UART RX pin (for external sensors)
 
@@ -326,7 +331,7 @@ Sonoff Mini
 .. pintable::
 
     GPIO0, Button (inverted),
-    GPIO4, SW Input,
+    GPIO4, SW Input (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, Blue LED (inverted),
     GPIO16, Optional sensor

@@ -38,7 +38,7 @@ to have an :ref:`spi bus <spi>` in your configuration with both **miso_pin** and
       mosi_pin: GPIO23
 
     sensor:
-      - platform: MAX31856
+      - platform: max31856
         name: "BBQ Temperature"
         icon: "mdi:hamburger"
         cs_pin: GPIO17

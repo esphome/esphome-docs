@@ -21,8 +21,8 @@ Installing ESPHome is very easy. All you need to do is have `Python
     pip3 install esphome
 
 Alternatively, there’s also a Docker image available for easy
-installation (the Docker hub image is only available for AMD64 right now; if you have
-an RPi, please install ESPHome through ``pip`` or use :doc:`the Hass.io add-on <getting_started_hassio>`:
+installation (the Docker hub image is available for AMD64, ARM and ARM64(AARCH64) right now; if you have
+another architecture, please install ESPHome through ``pip`` or use :doc:`the Home Assistant add-on <getting_started_hassio>`:
 
 .. code-block:: bash
 
@@ -175,6 +175,11 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
     # On Docker, host networking mode is required for online status indicators
     docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome
 
+    # On Docker with MacOS, the host networking option doesn't work as expected. An
+    # alternative is to use the following command if you are a MacOS user.
+    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
+
+
 After that, you will be able to access the dashboard through ``localhost:6052``.
 
 .. figure:: images/dashboard.png
@@ -182,6 +187,7 @@ After that, you will be able to access the dashboard through ``localhost:6052``.
 See Also
 --------
 
+- :doc:`cli`
 - :doc:`ESPHome index </index>`
 - :doc:`getting_started_hassio`
 - :ghedit:`Edit`

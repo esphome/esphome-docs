@@ -109,7 +109,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the i^2c address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x69``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
@@ -118,7 +118,7 @@ Wiring:
 -------
 
 The sensor has a 5 pin JST ZHR type connector, with a 1.5mm pitch. (`Matching connector housing <https://octopart.com/zhr-5-jst-279203>`__, `datasheet <http://www.farnell.com/datasheets/1393424.pdf>`__)
-To force the force the sensor into I²C mode, the SEL pin (Interface Select pin no.5) should be shorted to ground (pin no.4)
+To force the sensor into I²C mode, the SEL pin (Interface Select pin no.5) should be shorted to ground (pin no.4)
 
 .. figure:: images/sps30-wiring.png
     :align: center

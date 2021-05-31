@@ -7,15 +7,15 @@ Character-Based LCD Display
 
 .. _lcd-pcf8574:
 
-PCF8574
--------
+lcd_pcf8574 Component
+---------------------
 
 The ``lcd_pcf8574`` display platform allows you to use standard character-based LCD displays like
 `this one <https://docs.labs.mediatek.com/resource/linkit7697-arduino/en/tutorial/driving-1602-lcd-with-pcf8574-pcf8574a>`__
 with ESPHome. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns
 and 2-4 rows), and not for LCD displays that can control each pixel individually.
 
-This version of the LCD integration is for LCD displays with an PCF8574 connected to all the data pins. This has
+This version of the LCD integration is for LCD displays with a PCF8574 connected to all the data pins. This has
 the benefit that you only need to connect two data wires to the ESP instead of the 6 or 10 with the :ref:`lcd-gpio`.
 As the communication with the :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`` section in your configuration.
 
@@ -56,8 +56,8 @@ Configuration variables:
 
 .. _lcd-gpio:
 
-GPIO
-----
+lcd_gpio Component
+------------------
 
 The ``lcd_gpio`` display platform allows you to use standard character-based LCD displays like `this one <https://www.adafruit.com/product/181>`__
 with ESPHome. This integration is only for LCD displays that display individual characters on a screen (usually 16-20 columns

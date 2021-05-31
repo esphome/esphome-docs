@@ -57,6 +57,7 @@ Configuration variables:
 - **scroll_delay** (*Optional*, :ref:`config-time`): Set delay time before scroll starts. Defaults to ``1s``.
 - **scroll_dwell** (*Optional*, :ref:`config-time`): Sets the wait time at the end of the scroll before starting
   over. This is only used in mode ``STOP``. Defaults to ``1s``.
+- **reverse_enable** (*Optional*, boolean): For some displays the order of the displays is reversed ("DCBA"). This option will reverse the display to ("ABCD") again. Defaults to  ``False``.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is
   from ``0``, least intense to ``15`` the brightest. Defaults to ``15``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the
@@ -103,7 +104,7 @@ This is roughly the code used to display the MAX7219 pictured in the image.
 Scrolling
 *********
 
-By default the MAX7219Digit display has scroll enabled. The paramaters can be set in the YAML file.
+By default the MAX7219Digit display has scroll enabled. The parameters can be set in the YAML file.
 They can also be changed in the Lambda by adding the following command:
 
 .. code-block:: cpp

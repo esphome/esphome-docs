@@ -64,7 +64,7 @@ Configuration variables:
   values are ``1x`` (default), ``4x``, ``16x``, ``60x`` (highest gain).
 - **integration_time** (*Optional*): The amount of time the light sensor is exposed. Valid values are
   ``2.4ms`` (default), ``24ms``, ``50ms``, ``101ms``, ``154ms``, ``700ms``.
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x29``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x29``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
