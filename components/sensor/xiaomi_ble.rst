@@ -234,7 +234,7 @@ CGDK2
 *****
 
 Cleargrass (Qingping) Temp & RH Lite, round body, segment LCD, encrypted, broadcasts temperature, humidity and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
-The measures are broadcast every 10-15 minutes.
+The measurements are broadcast every 10-15 minutes.
 
 .. figure:: images/xiaomi_cgdk2.jpg
     :align: center
