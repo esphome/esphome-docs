@@ -79,10 +79,18 @@ Configuration variables:
 - **switch_datapoint** (*Optional*, int): The datapoint id number of the power switch.  My dimmer
   required this to be able to turn the light on and off.  Without this you would only be able to
   change the brightness and would have to toggle the light using the physical buttons.
+- **color_temperature_datapoint** (*Optional*, int): The datapoint id number of the color
+  temperature value.
 - **min_value** (*Optional*, int, default 0): The lowest dimmer value allowed.  My dimmer had a
   minimum of 25 and wouldn't even accept anything lower, but this option is available if necessary.
 - **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  Most dimmers have a
   maximum of 255, but dimmers with a maximum of 1000 can also be found. Try what works best.
+- **color_temperature_max_value** (*Optional*, int, default 255): The highest color temperature
+  value allowed. Some ceiling fans have a value of 100 (also for `max_value`).
+- **cold_white_color_temperature** (**Optional**, float): The color temperate (in `mireds
+  <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
+- **warm_white_color_temperature** (**Optional**, float): The color temperate (in `mireds
+  <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
 - All other options from :ref:`Light <config-light>`.
 - At least one of *dimmer_datapoint* or *switch_datapoint* must be provided.
 
