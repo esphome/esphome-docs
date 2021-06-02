@@ -181,7 +181,7 @@ Configuration options:
   Valid values goes from ``0`` to ``30``.
 
 ``dfplayer.volume_up`` Action
---------------------------
+-----------------------------
 
 Turn volume up.
 
@@ -192,7 +192,7 @@ Turn volume up.
         - dfplayer.volume_up
 
 ``dfplayer.volume_down`` Action
---------------------------
+-------------------------------
 
 Turn volume down.
 
