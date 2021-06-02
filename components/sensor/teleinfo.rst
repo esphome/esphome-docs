@@ -53,30 +53,32 @@ simply press -/+ buttons on the counter and look for `Standard mode` or
       id: uart_bus
       rx_pin: GPIO3
       tx_pin: GPIO1
-      baud_rate: 1200
+      baud_rate: 1200 # 9600 for standard mode
       parity: EVEN
       data_bits: 7
+      stop_bits: 1
 
     sensor:
       - platform: teleinfo
+        update_interval: 60s
+        historical_mode: true
         tags:
-         - name: "HCHC"
+         - tag_name: "HCHC"
            sensor:
             name: "hchc"
             unit_of_measurement: "Wh"
             icon: mdi:flash
-         - name: "HCHP"
+         - tag_name: "HCHP"
            sensor:
             name: "hchp"
             unit_of_measurement: "Wh"
             icon: mdi:flash
-         - name: "PAPP"
+         - tag_name: "PAPP"
            sensor:
             name: "papp"
             unit_of_measurement: "VA"
             icon: mdi:flash
-        update_interval: 60s
-        historical_mode: true
+
 
 Configuration variables:
 ------------------------
