@@ -218,7 +218,7 @@ of the basic functions.
 ``GPIO2``                                ``IO2`` pin (for external sensors)
 ======================================== =========================================
 
-.. warning::
+.. note::
 
     The ESP8266 will be prevented from booting if the following pins are pulled LOW (connected to GND) on cold startup: ``GPIO0``, ``GPIO1``, ``GPIO2``. Be prepared if you want to use them for input sensors.
 
