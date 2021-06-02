@@ -211,12 +211,16 @@ of the basic functions.
 ---------------------------------------- -----------------------------------------
 ``GPIO13``                               Blue LED (inverted)
 ---------------------------------------- -----------------------------------------
-``GPIO1``                                ``RX`` pin (for external sensors)
+``GPIO1``                                ``TX`` pin (for external sensors)
 ---------------------------------------- -----------------------------------------
-``GPIO3``                                ``TX`` pin (for external sensors)
+``GPIO3``                                ``RX`` pin (for external sensors)
 ---------------------------------------- -----------------------------------------
 ``GPIO2``                                ``IO2`` pin (for external sensors)
 ======================================== =========================================
+
+.. note::
+
+    The ESP8266 will be prevented from booting if the following pins are pulled LOW (connected to GND) on cold startup: ``GPIO0``, ``GPIO1``, ``GPIO2``. Be prepared if you want to use them for input sensors.
 
 .. code-block:: yaml
 
