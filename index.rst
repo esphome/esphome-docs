@@ -85,6 +85,7 @@ Core Components
     Native API, components/api, server-network.svg
     Power Supply, components/power_supply, power.svg
     Deep Sleep, components/deep_sleep, hotel.svg
+    External Components, components/external_components, external_components.svg
 
 Sensor Components
 -----------------
@@ -103,10 +104,13 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
+    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
+    BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
     BMP085, components/sensor/bmp085, bmp180.jpg
     BMP280, components/sensor/bmp280, bmp280.jpg
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
@@ -155,15 +159,18 @@ Sensor Components
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SHT4X, components/sensor/sht4x, sht4x.jpg
     SM300D2, components/sensor/sm300d2, sm300d2.jpg
     SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
+    SGP40, components/sensor/sgp40, sgp40.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg
     Template Sensor, components/sensor/template, description.svg
     TMP102, components/sensor/tmp102, tmp102.jpg
     TMP117, components/sensor/tmp117, tmp117.jpg
+    TOF10120, components/sensor/tof10120, tof10120.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Tuya Sensor, components/sensor/tuya, tuya.png
@@ -221,6 +228,7 @@ Output Components
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
+    SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
@@ -265,6 +273,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
+    BLE Switch, components/switch/ble, bluetooth.svg
 
 Fan Components
 --------------
@@ -298,7 +307,7 @@ Display Components
     ST7789V, components/display/st7789v, st7789v.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate 6, components/display/inkplate, inkplate.jpg
+    Inkplate 6, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
@@ -354,6 +363,7 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
@@ -364,6 +374,7 @@ Misc Components
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
+    TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
@@ -377,6 +388,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
+    Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
 
 Additional Custom Components
 ----------------------------
@@ -416,6 +428,7 @@ Cookbook
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png

@@ -158,7 +158,7 @@ Then you need to set it up with yaml.
                 then:
                   - fan.turn_on:
                       id: ifan02_fan
-                      speed: LOW
+                      speed: 1
             - if:
                 condition:
                   and:
@@ -168,7 +168,7 @@ Then you need to set it up with yaml.
                 then:
                   - fan.turn_on:
                       id: ifan02_fan
-                      speed: MEDIUM
+                      speed: 2
             - if:
                 condition:
                   and:
@@ -178,7 +178,7 @@ Then you need to set it up with yaml.
                 then:
                   - fan.turn_on:
                       id: ifan02_fan
-                      speed: HIGH
+                      speed: 3
             - switch.turn_off: update_fan_speed
 
       - platform: gpio
@@ -197,6 +197,7 @@ Then you need to set it up with yaml.
       - platform: speed
         output: fanoutput
         id: ifan02_fan
+        speed_count: 3
         name: "iFan02 Fan"
 
 See Also

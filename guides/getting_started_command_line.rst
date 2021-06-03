@@ -160,7 +160,7 @@ Bonus: ESPHome dashboard
 
 ESPHome features a dashboard that you can use to easily manage your nodes
 from a nice web interface. It was primarily designed for
-:doc:`the Hass.io add-on <getting_started_hassio>`, but also works with a simple command on
+:doc:`the Home Assistant add-on <getting_started_hassio>`, but also works with a simple command on
 \*nix machines (sorry, no windows).
 
 To start the ESPHome dashboard, simply start ESPHome with the following command

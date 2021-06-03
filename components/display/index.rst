@@ -134,18 +134,20 @@ specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf
 at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf`` file from somewhere on the Internet and create a ``font:`` section in your configuration:
+a ``.ttf`` file from somewhere on the internet and place it, for example,
+inside a ``fonts`` folder next to your configuration file.
+
+Next, create a ``font:`` section in your configuration:
 
 .. code-block:: yaml
 
     font:
-      - file: "Comic Sans MS.ttf"
+      - file: "fonts/Comic Sans MS.ttf"
         id: my_font
         size: 20
 
     display:
       # ...
-
 
 Configuration variables:
 
@@ -165,8 +167,9 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Hass.io add-on or with
-    the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
+    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
+    to install it using
     ``pip install pillow``.
 
 
@@ -385,7 +388,7 @@ Configuration variables:
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
 
 And then later in code:
@@ -548,6 +551,27 @@ You can then switch between these with three different actions:
             then:
               - display.page.show_next: my_display
               - component.update: my_display
+
+.. _display-is_displaying_page-condition:
+
+**display.is_displaying_page**: This condition returns true while the specified page is being shown.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      - if:
+          condition:
+            display.is_displaying_page: page1
+          then:
+            ...
+      - if:
+          condition:
+            display.is_displaying_page:
+              id: my_display
+              page_id: page2
+          then:
+            ...
 
 
 See Also
