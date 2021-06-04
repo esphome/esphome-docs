@@ -318,6 +318,11 @@ connect it.
 
 Happy hacking!
 
+Known working hardware revisions
+--------------------------------
+
+- SONOFF 4CH R3 V1.1
+
 See Also
 --------
 
