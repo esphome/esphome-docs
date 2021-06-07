@@ -6,12 +6,8 @@ BLE Component
     :image: bluetooth.svg
 
 The ``esp32_ble`` component in ESPHome sets up a simple BLE GATT server that exposes the device name,
-manufacturer and board.
-
-.. figure:: images/ble-server-example.png
-    :align: center
-    :width: 70.0%
-
+manufacturer and board. This component allows other components to create their own services to expose
+data and control.
 
 .. code-block:: yaml
 
@@ -33,7 +29,6 @@ Configuration variables:
 See Also
 --------
 
-- :doc:`wifi`
-- :doc:`captive_portal`
-- :apiref:`esp32_improv/esp32_improv_component.h`
+- :doc:`esp32_improv`
+- :apiref:`esp32_ble/ble.h`
 - :ghedit:`Edit`
