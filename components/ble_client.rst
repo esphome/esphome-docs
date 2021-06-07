@@ -211,4 +211,5 @@ See Also
 - :doc:`/components/sensor/ble_sensor`
 - :ref:`Automation <automation>`
 - :apiref:`ble_client/ble_client.h`
+- Counter part: `Custom BLE controller (server) component <https://github.com/wifwucite/esphome-ble-controller>`__
 - :ghedit:`Edit`
