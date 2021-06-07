@@ -40,7 +40,7 @@ file called ``livingroom.yaml``:
 
     esphome livingroom.yaml wizard
     # On Docker:
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml wizard
+    docker run --rm -v "${PWD}":/config -it esphome/esphome wizard livingroom.yaml
 
 At the end of this step, you will have your first YAML configuration
 file ready. It doesn't do much yet and only makes your device connect to
@@ -80,7 +80,7 @@ the device via USB and type the following command (replacing
 
 .. code-block:: bash
 
-    esphome livingroom.yaml run
+    esphome run livingroom.yaml
 
 You should see ESPHome validating the configuration and telling you
 about potential problems. Then ESPHome will proceed to compile and
@@ -93,7 +93,7 @@ to your docker command to map a local USB device.
 
 .. code-block:: bash
 
-    docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome livingroom.yaml run
+    docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome run livingroom.yaml
 
 Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
 should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
@@ -137,7 +137,7 @@ for docker you need to supply an additional parameter:
 
     esphome livingroom.yaml run
     # On docker
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml run
+    docker run --rm -v "${PWD}":/config -it esphome/esphome run livingroom.yaml
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
 
@@ -170,7 +170,7 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
 
     # Install dashboard dependencies
     pip install tornado esptool
-    esphome config/ dashboard
+    esphome dashboard config/
 
     # On Docker, host networking mode is required for online status indicators
     docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome
