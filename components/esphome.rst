@@ -323,7 +323,7 @@ Note that you will still need to create an individual YAML config file if you wa
 OTA update the devices in the future.
 
 
-.. _esphome-creators_project
+.. _esphome-creators_project:
 
 Project information
 -------------------
