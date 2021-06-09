@@ -167,8 +167,9 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Hass.io add-on or with
-    the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
+    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
+    to install it using
     ``pip install pillow``.
 
 
@@ -387,7 +388,7 @@ Configuration variables:
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
 
 And then later in code:

@@ -34,7 +34,7 @@ With Home Assistant 2021.6 or newer, entity state attributes can also be importe
     
     Albeit you might not plan to __export__ states from the node and you do not need an entity of the node
     in Home Assistant, this component still requires you to register the node under Home Assistant. See:
-    :doc:`Getting started with Hassio </guides/getting_started_hassio>`
+    :doc:`Getting started with Home Assistant </guides/getting_started_hassio>`
 
 Configuration variables:
 ------------------------

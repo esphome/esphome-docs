@@ -385,11 +385,11 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
         effects:
           - pulse:
           - pulse:
-              name: "Fast Puse"
+              name: "Fast Pulse"
               transition_length: 0.5s
               update_interval: 0.5s
           - pulse:
-              name: "Slow Puse"
+              name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
               update_interval: 2s
 

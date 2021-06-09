@@ -99,8 +99,8 @@ Plays a track.
     on_...:
       then:
         - dfplayer.play:
-          file: 23
-          loop: false
+            file: 23
+            loop: false
         # Shorthand
         - dfplayer.play: 23
 

@@ -83,7 +83,7 @@ Turns the fan with the given ID off when executed.
 ``fan.turn_on`` Action
 ----------------------
 
-Turns the fan with the given ID off when executed.
+Turns the fan with the given ID on when executed.
 
 .. code-block:: yaml
 
