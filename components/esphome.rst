@@ -338,7 +338,7 @@ should be ``namespace.project_name``.
     esphome:
       ...
       project:
-        name: "esphome.my_project"
+        name: "jesse.leds_party"
         version: "1.0.0"
 
 
