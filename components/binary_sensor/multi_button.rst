@@ -5,7 +5,10 @@ GPIO Multi Button
     :description: Instructions for setting up a button connected to a GPIO with support for multiple presses and press&hold (or a combination).
     :image: pin.png
 
-The MultiButton component monitors a push-button connected to a GPIO and reports on simple button press(es) / sequences with simple codes.
+The multi_button component monitors a push-button connected to a GPIO and reports on simple button (long-)press(es) (sequences) with a simple code.
+It adds the convenience of easier automation by detecting multiple presses, press&hold and even a combination of the two.
+The detection (inc. debouncing) happens all inside esphome and the result is only published when a "press-sequence" is finished and ready for
+home assistand to take action upon.
 
 .. code-block:: yaml
 
@@ -42,9 +45,9 @@ The component will register as a normal Sensor in Home Assistant (even though it
 - If the button is pressed shortly once, the sensor state becomes 1 and then 0 again.
 - If the button is pressed shortly twice, the sensor state becomes 2 and then 0 again.
 - If the button is pressed shortly x times, the sensor state becomes x and then 0 again.
-- If the button is pressed and held, the sensor state becomes 101, 102, 103 and so on until the button is released, which resets it to 0 again.
-- If the button is pressed shortly once and then immediately pressed and held, the sensor state becomes 201, 202, 203 and so on until the button is released, which resets it to 0 again.
-- If the button is pressed shortly x times and then immediately pressed and held, the sensor state becomes 100x+1, 100x+2, 100x+3 and so on until the button is released, which resets it to 0 again.
+- If the button is pressed and held, the sensor state becomes 10001, 10002, 10003 and so on until the button is released, which resets it to 0 again.
+- If the button is pressed shortly once and then immediately pressed and held, the sensor state becomes 20001, 20002, 20003 and so on until the button is released, which resets it to 0 again.
+- If the button is pressed shortly x times and then immediately pressed and held, the sensor state becomes 10000x+1, 10000x+2, 10000x+3 and so on until the button is released, which resets it to 0 again.
 
 As an example you could add an automation in Home Assistant to trigger play/pause if the sensor's state changes to 1.
 Or increase the playback volume every time the sensor has a value between 101 and 199,
