@@ -78,6 +78,13 @@ of these entries matters!)
           - delayed_on: 100ms
           - delayed_off: 100ms
           - delayed_on_off: 100ms
+          - autorepeat:
+            - delay: 1s
+              time_off: 100ms
+              time_on: 900ms
+            - delay: 5s
+              time_off: 100ms
+              time_on: 400ms
           - lambda: |-
               if (id(other_binary_sensor).state) {
                 return x;
@@ -112,6 +119,28 @@ Only send an OFF value if the binary sensor has stayed OFF for at least the spec
 (**Required**, :ref:`config-time`): Only send an ON or OFF value if the binary sensor has stayed in the same state
 for at least the specified time period.
 **Useful for debouncing binary switches**.
+
+``autorepeat``
+**************
+
+A filter implementing the autorepeat behavior. The filter is parametrized by a list of timing descriptions.
+When a signal ON is received it is passed to the output and the first ``delay`` is started. When this
+interval expires the output is turned OFF and toggles using the ``time_off`` and ``time_on`` durations
+for the OFF and ON state respectively. At the same time the ``delay`` of the second timing description
+is started and the process is repeated until the list is exhausted, in which case the timing of the
+last description remains in use. Receiving an OFF signal stops the whole process and immediately outputs OFF.
+
+The example thus waits one second with the output being ON, toggles it once per second for five seconds,
+then toggles twice per second until OFF is received.
+
+An ``autorepeat`` filter with no timing description is equivalent to one timing with all the parameters
+set to default values.
+
+Configuration variables:
+
+- **delay** (*Optional*, :ref:`config-time`): Delay to proceed to the next timing. Defaults to ``1s``.
+- **time_off** (*Optional*, :ref:`config-time`): Interval to hold the output at OFF. Defaults to ``100ms``.
+- **time_on** (*Optional*, :ref:`config-time`): Interval to hold the output at ON. Defaults to ``900ms``.
 
 ``lambda``
 **********

@@ -50,6 +50,14 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
           max_temperature: 25 °C
           temperature_step: 0.1 °C
         beeper: true
+        custom_fan_modes:
+          - SILENT
+          - TURBO
+        preset_eco: true
+        preset_sleep: true
+        preset_boost: true
+        custom_presets:
+          - FREEZE_PROTECTION
         swing_horizontal: true
         swing_both: true
         outdoor_temperature:
@@ -84,6 +92,11 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 - **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
+- **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: SILENT, TURBO.
+- **preset_eco** (*Optional*, boolean): ECO preset support. Defaults to ``False``.
+- **preset_sleep** (*Optional*, boolean): SLEEP preset support. Defaults to ``False``.
+- **preset_boost** (*Optional*, boolean): BOOST preset support. Defaults to ``False``.
+- **custom_presets** (*Optional*, list): List of supported custom presets. Possible values are: FREEZE_PROTECTION.
 - **swing_horizontal** (*Optional*, boolean): Enable **swing horizontal** option. Defaults to ``False``.
 - **swing_both** (*Optional*, boolean): Enable **swing both** option. Defaults to ``False``.
 - All other options from :ref:`Climate <config-climate>`.

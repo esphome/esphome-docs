@@ -44,7 +44,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x23`` (address if address pin is pulled low). If the address pin is pulled high,
   the address is ``0x5C``.
-- **measurement_duration** (*Optional*, int): Manually specify the measurement time between ``31``
+- **measurement_duration** (*Optional*, int): Manually specify the measurement duration between ``31``
   and ``254``. Defaults to ``69``.
 - **resolution** (*Optional*, string): The resolution of the sensor in lx. One of ``4.0``,
   ``1.0``, ``0.5``. Defaults to ``0.5`` (the maximum resolution).

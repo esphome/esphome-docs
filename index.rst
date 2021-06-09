@@ -104,7 +104,7 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
-    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
+    BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
@@ -113,6 +113,7 @@ Sensor Components
     b-parasite, components/sensor/b_parasite, b_parasite.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
+    CS5460A, components/sensor/cs5460a, cs5460a.png
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
     Dallas, components/sensor/dallas, dallas.jpg
     DHT, components/sensor/dht, dht.jpg
@@ -156,6 +157,7 @@ Sensor Components
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
+    SDM Meter, components/sensor/sdm_meter, sdm220m.png
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
@@ -210,6 +212,7 @@ Binary Sensor Components
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
+    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -273,7 +276,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
-    BLE Switch, components/switch/ble, bluetooth.svg
+    BLE Client Switch, components/switch/ble_client, bluetooth.svg
 
 Fan Components
 --------------
@@ -381,6 +384,7 @@ Misc Components
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
+    Improv, components/esp32_improv, improv.svg
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg

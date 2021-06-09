@@ -7,8 +7,8 @@ SM2135 LED driver
 
 .. _sm2135-component:
 
-Component
----------
+Component/Hub
+-------------
 
 The SM2135 component represents a SM2135 LED diver chain
 (`SM2135 description <https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf>`__,
@@ -17,7 +17,7 @@ ESPHome. Communication is done with two GPIO pins (MOSI and SCLK).
 It is used in some smart light bulbs:
 
 - Calex Smart RGB Reflector LED lamp (GU10)
-- LSC Smart GU10 
+- LSC Smart GU10
 
 To use the channels of this components, you first need to setup the
 global ``sm2135`` hub and give it an id, and then define the
@@ -65,8 +65,8 @@ Configuration variables:
 
 .. _sm2135-output:
 
-Driver Output
--------------
+Output
+------
 
 The SM2135 output component exposes a SM2135 channel of a global
 :ref:`sm2135-component` as a float output.
@@ -114,7 +114,7 @@ Configuration variables:
 
 .. note::
 
-    The white LEDs are much brighter than the color LEDs. To get uniform brightness 
+    The white LEDs are much brighter than the color LEDs. To get uniform brightness
     for both color and white you will need to limit the white led power.
 
 .. note::
