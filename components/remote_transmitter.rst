@@ -432,9 +432,11 @@ remote_receiver instance:
 .. code-block:: yaml
 
     remote_receiver:
-      pin: D0
+      pin: 
+        number: D0
+        inverted: True
+        mode: INPUT_PULLUP
       dump: all
-
 Compile and upload the code. While viewing the log output from the ESP,
 press a button on an infrared remote you want to capture (one at a time).
 
