@@ -55,6 +55,11 @@ Advanced options:
   the name in the form ``<name>-aabbcc``. Defaults to ``False``.
   See :ref:`esphome-mac_suffix`.
 
+- **project** (*Optional*): ESPHome Creator's Project information. See :ref:`esphome-creators_project`.
+
+  - **name** (**Required**, string): Name of the project
+  - **version** (**Required**, string): Version of the project
+
 ESP8266 Options:
 
 - **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash on ESP8266s.
@@ -316,6 +321,16 @@ Using ``name_add_mac_suffix`` allows the user to compile a single binary file to
 many of the same device and they will all have unique names/hostnames.
 Note that you will still need to create an individual YAML config file if you want to
 OTA update the devices in the future.
+
+
+.. _esphome-creators_project:
+
+Project information
+-------------------
+
+This allows creators to add the project name and version to the compiled code. It is currently only
+exposed via the logger, mDNS and the device_info response via the native API. The format of the name
+should be ``namespace.project_name``.
 
 See Also
 --------
