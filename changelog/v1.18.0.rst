@@ -33,7 +33,7 @@ that and help make sure it is stable.
 Apart from a few new sensors, we now have built in support for :doc:`/components/external_components`, check it out. Thanks :ghuser:`OttoWinter` and :ghuser:`glmnet`
 
 Also now, an ESPHome device is able to connect to other BLE devices and become a :doc:`/components/ble_client`, reading sensors and controlling switches etc.
-You can read basic sensor values using the :doc:`/components/sensor/ble_sensor` component or use the data displayed in the logs to build a new native component
+You can read basic sensor values using the :doc:`/components/sensor/ble_client` component or use the data displayed in the logs to build a new native component
 that provides the sensors/switches/etc directly.
 
 Jesse
