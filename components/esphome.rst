@@ -330,7 +330,7 @@ Project information
 
 This allows creators to add the project name and version to the compiled code. It is currently only
 exposed via the logger, mDNS and the device_info response via the native API. The format of the name
-should be ``namespace.project_name``.
+should be ``author_name.project_name``.
 
 .. code-block:: yaml
 
