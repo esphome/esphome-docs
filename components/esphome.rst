@@ -332,6 +332,16 @@ This allows creators to add the project name and version to the compiled code. I
 exposed via the logger, mDNS and the device_info response via the native API. The format of the name
 should be ``namespace.project_name``.
 
+.. code-block:: yaml
+
+    # Example configuration
+    esphome:
+      ...
+      project:
+        name: "esphome.my_project"
+        version: "1.0.0"
+
+
 See Also
 --------
 
