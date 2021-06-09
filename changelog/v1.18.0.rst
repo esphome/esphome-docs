@@ -1,5 +1,5 @@
 Changelog - Version 1.18.0 - 19th May 2021
-===============================================
+==========================================
 
 .. seo::
     :description: Changelog for ESPHome version 1.18.0.
