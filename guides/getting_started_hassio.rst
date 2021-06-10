@@ -42,11 +42,11 @@ The wizard will guide you through creating your first configuration and, dependi
 
 .. note::
 
-    The most difficult part of a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to your computer. Once the initial installation is done, future updates can be applied wirelessly.
+    The most difficult part of a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to a computer. Once the initial installation is done, future updates can be applied wirelessly.
 
-    If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration via your browser onto your ESP device, saving you the hassle of connecting the ESP devices to the machine running Home Assistant.
+    If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome dashboard. If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome dashboard (your Home Assistant machine).
 
-    If the serial port is not showing up, you might not have the required drivers installed. ESPs usually ship with one of these two UART chips:
+    If the serial port is not showing up, you might not have the required drivers installed. The below drivers work for most ESP devices:
 
       * CP2102 (square chip): `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
       * CH341: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
