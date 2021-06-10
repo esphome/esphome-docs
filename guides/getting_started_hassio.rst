@@ -42,7 +42,7 @@ The wizard will guide you through creating your first configuration and, dependi
 
 .. note::
 
-    The most difficult part of setting a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to a computer. Later updates can be installed wirelessly.
+    The most difficult part of setting up a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to a computer. Later updates can be installed wirelessly.
 
     If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome dashboard. If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome dashboard (your Home Assistant machine).
 
