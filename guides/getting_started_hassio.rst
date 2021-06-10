@@ -46,7 +46,7 @@ The wizard will guide you through creating your first configuration and, dependi
 
     If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome dashboard. If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome dashboard (your Home Assistant machine).
 
-    If the serial port is not showing up, you might not have the required drivers installed. The below drivers work for most ESP devices:
+    If the serial port is not showing up, you might not have the required drivers installed. These drivers work for most ESP devices:
 
       * CP2102 (square chip): `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
       * CH341: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
