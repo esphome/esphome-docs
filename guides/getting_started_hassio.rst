@@ -10,7 +10,7 @@ your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
 basic "node" by use of the Home Assistant add-on.
 
 But first, here's a very quick introduction to how ESPHome works:
-ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file (just like Home Assistant) and creates a custom firmware binary which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
+ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file (just like Home Assistant) and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
 
 Installation
 ------------
@@ -40,7 +40,7 @@ The wizard will guide you through creating your first configuration and, dependi
 
   The most difficult part of a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to your computer. Once the initial installation is done, future updates can be applied wirelessly.
 
-  If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install your new configuration via your browser to your ESP device, saving you the hassle of connecting the ESP devices to the machine running Home Assistant.
+  If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration via your browser onto your ESP device, saving you the hassle of connecting the ESP devices to the machine running Home Assistant.
 
   If the serial port is not showing up, you might not have the required drivers installed. ESPs usually ship with one of these two UART chips:
 
@@ -105,8 +105,8 @@ Connecting your device to Home Assistant
 
 Once your configuration is installed on your ESP device and is online, it will be automatically discovered by Home Assistant and offered to set up on your integrations screen:
 
-.. image:: https://my.home-assistant.io/badges/integrations.svg
-   :target: https://my.home-assistant.io/redirect/integrations/
+.. image:: https://my.home-assistant.io/badges/config_flow_start.svg
+   :target: https://my.home-assistant.io/redirect/config_flow_start/?domain=esphome
 
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
 and entering "<NODE_NAME>.local" as the host.
