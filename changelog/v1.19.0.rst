@@ -33,7 +33,6 @@ New Integrations
 Breaking Changes
 ----------------
 
-- Use core constants for sample duration on bh1750 :esphomepr:`1764` by :ghuser:`yuvalabou` (breaking-change) (cherry-picked)
 - Drop 128x160 ESP-32 camera resolution :esphomepr:`1813` by :ghuser:`oxan` (breaking-change)
 - teleinfo: use text_sensor and sensor. :esphomepr:`1403` by :ghuser:`0hax` (breaking-change)
 - CLI user experience improvements :esphomepr:`1805` by :ghuser:`oxan` (breaking-change) (notable-change)
@@ -41,11 +40,9 @@ Breaking Changes
 Beta Fixes
 ----------
 
-- Upgrade the version of AsyncTCP-esphome to v1.2.2 :esphomepr:`1762` by :ghuser:`glmnet` (cherry-picked)
-- Fix build issues for idf 4.2 (Support ESP32-S2) :esphomepr:`1433` by :ghuser:`misery` (cherry-picked)
-- Use core constants for sample duration on bh1750 :esphomepr:`1764` by :ghuser:`yuvalabou` (breaking-change) (cherry-picked)
-- Add sm2135 component :esphomepr:`1736` by :ghuser:`BoukeHaarsma23` (cherry-picked) (new-integration)
-- Allow RC522 components to have multiple configurations :esphomepr:`1782` by :ghuser:`jesserockz` (cherry-picked)
+- Simplify LightCall validation :esphomepr:`1874` by :ghuser:`oxan`
+- BLE loop use :esphomepr:`1882` by :ghuser:`jesserockz`
+- Add support for waveshare_epaper 1.54v2 :esphomepr:`1843` by :ghuser:`geoffdavis`
 
 Notable Changes
 ---------------
@@ -58,23 +55,18 @@ All changes
 
 - Bump black from 20.8b1 to 21.5b0 :esphomepr:`1745` by :ghuser:`dependabot[bot]`
 - Bump pylint from 2.7.2 to 2.8.2 :esphomepr:`1729` by :ghuser:`dependabot[bot]`
-- Upgrade the version of AsyncTCP-esphome to v1.2.2 :esphomepr:`1762` by :ghuser:`glmnet` (cherry-picked)
 - Fix error when using %% in printf format. :esphomepr:`1713` by :ghuser:`mmakaay`
 - Update const.py :esphomepr:`1748` by :ghuser:`cciprian5`
 - Allow duration for deep_sleep.enter to be templatable :esphomepr:`1765` by :ghuser:`jesserockz`
-- Fix build issues for idf 4.2 (Support ESP32-S2) :esphomepr:`1433` by :ghuser:`misery` (cherry-picked)
-- Use core constants for sample duration on bh1750 :esphomepr:`1764` by :ghuser:`yuvalabou` (breaking-change) (cherry-picked)
 - Bump black from 21.5b0 to 21.5b1 :esphomepr:`1768` by :ghuser:`dependabot[bot]`
 - Bump flake8 from 3.9.0 to 3.9.2 :esphomepr:`1763` by :ghuser:`dependabot[bot]`
 - Bump pytest from 6.2.3 to 6.2.4 :esphomepr:`1769` by :ghuser:`dependabot[bot]`
 - Adding delay to aht10.cpp (issue  #1635) :esphomepr:`1498` by :ghuser:`krunkel`
 - Mitsubishi Heat Pump - Fixed default transmit_state to be generic instead of for a specific type of heat pump :esphomepr:`1414` by :ghuser:`RubyBailey`
 - Add function to set SDS011 sensor in sleeping mode :esphomepr:`1416` by :ghuser:`onde2rock`
-- Add sm2135 component :esphomepr:`1736` by :ghuser:`BoukeHaarsma23` (cherry-picked) (new-integration)
 - Autorepeat filter for the binary sensors :esphomepr:`1681` by :ghuser:`numo68`
 - Add action to set total pulses on pulse_meter :esphomepr:`1757` by :ghuser:`jesserockz`
 - Add more json schema generation features :esphomepr:`1690` by :ghuser:`glmnet`
-- Allow RC522 components to have multiple configurations :esphomepr:`1782` by :ghuser:`jesserockz` (cherry-picked)
 - Generate protobuf code closer to formatted files :esphomepr:`1790` by :ghuser:`jesserockz`
 - Add attribute support to Home Assistant sensors :esphomepr:`1770` by :ghuser:`frenck`
 - Bump Arduino SDK for ESP32 to 1.0.6 :esphomepr:`1789` by :ghuser:`agners`
