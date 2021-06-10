@@ -10,27 +10,17 @@ your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
 basic "node" by use of the Home Assistant add-on.
 
 But first, here's a very quick introduction to how ESPHome works:
-ESPHome is a *tool* which reads in a YAML configuration file (just like Home Assistant)
-and creates a custom firmware binary. The tool also has many helpers that simplify flashing devices (uploading the new binary file)
-and aim to make managing your ESP boards as simple as possible. Once you have added devices
-or sensors in ESPHome's configuration, they will even automatically show up in Home
-Assistant's UI.
+ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file (just like Home Assistant) and creates a custom firmware binary which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
 
 Installation
 ------------
 
-Installing the ESPHome Home Assistant add-on is easy. Navigate to the Supervisor
-panel in your Home Assistant frontend, then enter ``ESPHome`` in the searchbar of the "Add-on Store"
-tab.
+The ESPHome Home Assistant add-on can be found in the add-on store in the Supervisor panel. Open it using the following button then click on INSTALL:
 
-.. figure:: images/hassio_repo.png
+.. image:: https://my.home-assistant.io/badges/supervisor_addon.svg
+   :target: https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_esphome
 
-Click on ESPHome, then INSTALL.
-
-.. figure:: images/hassio_addons_section.png
-
-After that, wait a bit until the add-on is installed (this can take a while) and
-go to the add-on page. Start the add-on and then click "Open Web UI". If you see "502: Bad Gateway" the
+After that, wait a bit until the add-on is installed (this can take a while). Start the add-on and then click "Open Web UI". If you see "502: Bad Gateway" the
 addon is currently starting, and you can refresh the page after a couple of seconds.
 
 .. figure:: images/hassio_addon.png
@@ -43,6 +33,20 @@ creating your first configuration.
 .. figure:: images/hassio_start.png
     :align: center
     :width: 95.0%
+
+The wizard will guide you through creating your first configuration and, depending on your browser, install it on your device. You will need to name your configuration and enter your wireless network settings so that the ESP device can come online and can communicate with Home Assistant.
+
+.. note::
+
+  The most difficult part of a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to your computer. Once the initial installation is done, future updates can be applied wirelessly.
+
+  If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install your new configuration via your browser to your ESP device, saving you the hassle of connecting the ESP devices to the machine running Home Assistant.
+
+  If the serial port is not showing up, you might not have the required drivers installed. ESPs usually ship with one of these two UART chips:
+
+    * CP2102 (square chip): `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
+    * CH341: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
+
 
 Dashboard Interface
 -------------------
@@ -60,13 +64,6 @@ there are three basic actions you can perform:
 - **UPLOAD**: This compiles the firmware for your node and uploads it using any connected
   USB device or, if no USB devices are connected, over-the-air using the :doc:`/components/ota`.
 
-  .. warning::
-
-      The Home Assistant add-on is currently not capable of discovering new USB ports after the
-      add-on has started due to some docker restrictions. Please go to the add-on details page
-      and restart the add-on if a new USB device is not automatically found. If the USB device
-      is still not found, try changing the USB cable and restarting the add-on.
-
 - **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
   connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
 
@@ -75,7 +72,7 @@ there are three basic actions you can perform:
 
   .. note::
 
-      If you're having problems with flashing over USB, you can always download the firmware using the
+      If you're having problems with flashing from the add-on, you can always download the firmware using the
       ``COMPILE`` button and flash the firmware using :ref:`ESPHome-flasher <esphome-flasher>`.
 
 The configuration files for ESPHome can be found and edited under ``<HOME_ASSISTANT_CONFIG>/esphome/``.
@@ -106,8 +103,11 @@ anything really, for example lights) and is connected to the pin ``GPIO5``.
 Connecting your device to Home Assistant
 ----------------------------------------
 
-Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
-should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
+Once your configuration is installed on your ESP device and is online, it will be automatically discovered by Home Assistant and offered to set up on your integrations screen:
+
+.. image:: https://my.home-assistant.io/badges/integrations.svg
+   :target: https://my.home-assistant.io/redirect/integrations/
+
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
 and entering "<NODE_NAME>.local" as the host.
 
@@ -136,12 +136,8 @@ Sensor </components/binary_sensor/gpio>`.
           inverted: True
           mode: INPUT_PULLUP
 
-This is an advanced feature of ESPHome, almost all pins can
-optionally have a more complicated configuration schema with options for
-inversion and pinMode - the :ref:`Pin Schema <config-pin_schema>`.
-
 This time when uploading, you don’t need to have the device plugged in
-through USB again. The upload will magically happen :doc:`"over the air" </components/ota>`.
+through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota>`).
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
     :align: center
