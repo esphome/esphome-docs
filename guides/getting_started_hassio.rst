@@ -12,8 +12,8 @@ basic "node" by use of the Home Assistant add-on.
 But first, here's a very quick introduction to how ESPHome works:
 ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file (just like Home Assistant) and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
 
-Installation
-------------
+Installing the add-on
+-----------------------
 
 The ESPHome Home Assistant add-on can be found in the add-on store in the Supervisor panel. Open it using the following button then click on INSTALL:
 
@@ -34,7 +34,7 @@ creating your first configuration.
     :align: center
     :width: 95.0%
 
-The wizard will guide you through creating your first configuration and, depending on your browser, install it on your device. You will need to name your configuration and enter your wireless network settings so that the ESP device can come online and can communicate with Home Assistant.
+The wizard will guide you through creating your first configuration and, depending on your browser, install it on your ESP device. You will need to name your configuration and enter your wireless network settings so that the ESP device can come online and can communicate with Home Assistant.
 
 .. raw:: html
 
