@@ -64,8 +64,7 @@ tour of the ESPHome Dashboard interface.
 On the front page you will see all configurations for nodes you created. For each file,
 there are three basic actions you can perform:
 
-- **UPLOAD**: This compiles the firmware for your node and uploads it using any connected
-  USB device or, if no USB devices are connected, over-the-air using the :doc:`/components/ota`.
+- **INSTALL**: This compiles the firmware for your node and installs it. Installation happens wirelessy if you have enabled the :doc:`/components/ota` in your configuration. Alternatively you can install it from your browser or via a device connected to the machine running the ESPHome Dashboard.
 
 - **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
   connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
@@ -77,9 +76,7 @@ The configuration files for ESPHome can be found and edited under ``<HOME_ASSIST
 For example the configuration for the node in the picture above can be found
 in ``/config/esphome/livingroom.yaml``.
 
-Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration for the device you
-intend to flash an ESPHome firmware onto. Then proceed with uploading the first firmware using the
-upload button.
+Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration.
 
 Adding some (basic) features
 ----------------------------
@@ -113,9 +110,8 @@ and entering "<NODE_NAME>.local" as the host.
     :align: center
     :width: 75.0%
 
-After the first upload, you will probably never need to use the USB
+After the first installation, you will probably never need to use the USB
 cable again, as all features of ESPHome are enabled remotely as well.
-No more opening hidden boxes stowed in places hard to reach. Yay!
 
 Adding A Binary Sensor
 ----------------------
@@ -134,7 +130,7 @@ Sensor </components/binary_sensor/gpio>`.
           inverted: True
           mode: INPUT_PULLUP
 
-This time when uploading, you don’t need to have the device plugged in
+This time when installing, you don’t need to have the device plugged in
 through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota>`).
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
@@ -145,7 +141,7 @@ Where To Go Next
 ----------------
 
 Great 🎉! You’ve now successfully setup your first ESPHome project
-and uploaded your first ESPHome custom firmware to your node. You’ve
+and installed your first ESPHome custom firmware to your node. You’ve
 also learned how to enable some basic components via the configuration
 file.
 
