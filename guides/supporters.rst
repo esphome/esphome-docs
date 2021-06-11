@@ -393,6 +393,7 @@ Contributors
 - `Nuno Sousa (@nunofgs) <https://github.com/nunofgs>`__
 - `Chris Nussbaum (@nuttytree) <https://github.com/nuttytree>`__
 - `obrain17 (@obrain17) <https://github.com/obrain17>`__
+- `Ockert Marais (@OckertM) <https://github.com/OckertM>`__
 - `Dave Walker (@oddsockmachine) <https://github.com/oddsockmachine>`__
 - `Olivér Falvai (@ofalvai) <https://github.com/ofalvai>`__
 - `Omar Ghader (@omarghader) <https://github.com/omarghader>`__
@@ -585,4 +586,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 10, 2021.*
+*This page was last updated June 12, 2021.*
