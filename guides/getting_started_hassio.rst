@@ -17,8 +17,9 @@ Installing ESPHome Dashboard
 
 The ESPHome Dashboard can be installed as a Home Assistant add-on, which you can find in the add-on store in the Supervisor panel. Open it using the following button then click on INSTALL:
 
-.. image:: https://my.home-assistant.io/badges/supervisor_addon.svg
-   :target: https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_esphome
+.. raw:: html
+
+    <a href="https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_esphome" target="_blank"><img src="https://my.home-assistant.io/badges/supervisor_addon.svg" alt="Open your Home Assistant instance and show the dashboard of a Supervisor add-on." /></a>
 
 After that, wait a bit until it is installed (this can take a while). Click "Start" and then click "Open Web UI". If you see "502: Bad Gateway" it is currently starting, and you can refresh the page after a couple of seconds.
 
@@ -100,8 +101,9 @@ Connecting your device to Home Assistant
 
 Once your configuration is installed on your ESP device and is online, it will be automatically discovered by Home Assistant and offered to set up on your integrations screen:
 
-.. image:: https://my.home-assistant.io/badges/config_flow_start.svg
-   :target: https://my.home-assistant.io/redirect/config_flow_start/?domain=esphome
+.. raw:: html
+
+    <a href="https://my.home-assistant.io/redirect/config_flow_start/?domain=esphome" target="_blank"><img src="https://my.home-assistant.io/badges/config_flow_start.svg" alt="Open your Home Assistant instance and start setting up a new integration." /></a>
 
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
 and entering "<NODE_NAME>.local" as the host.
