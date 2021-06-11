@@ -43,6 +43,9 @@ Beta Fixes
 - Simplify LightCall validation :esphomepr:`1874` by :ghuser:`oxan`
 - BLE loop use :esphomepr:`1882` by :ghuser:`jesserockz`
 - Add support for waveshare_epaper 1.54v2 :esphomepr:`1843` by :ghuser:`geoffdavis`
+- Ensure wifi is in at least station mode before starting improv :esphomepr:`1899` by :ghuser:`jesserockz`
+- Move esp32_ble_server to its own component :esphomepr:`1898` by :ghuser:`jesserockz` (breaking-change) (new-integration)
+- Add new wizard + allow installing firmware over webserial :esphomepr:`1887` by :ghuser:`balloob`
 
 Notable Changes
 ---------------
