@@ -2,26 +2,25 @@ Getting Started with ESPHome and Home Assistant
 ===============================================
 
 .. seo::
-    :description: Getting Started guide for installing ESPHome as a Home Assistant add-on and creating a basic configuration.
+    :description: Getting Started guide for installing ESPHome Dashboard as a Home Assistant add-on and creating a basic configuration.
     :image: home-assistant.png
 
 ESPHome is the perfect solution for creating custom firmware for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
-basic "node" by use of the Home Assistant add-on.
+basic "node" using the ESPHome Dashboard, installed as a Home Assistant add-on.
 
 But first, here's a very quick introduction to how ESPHome works:
 ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file (just like Home Assistant) and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
 
-Installing the add-on
------------------------
+Installing ESPHome Dashboard
+----------------------------
 
-The ESPHome Home Assistant add-on can be found in the add-on store in the Supervisor panel. Open it using the following button then click on INSTALL:
+The ESPHome Dashboard can be installed as a Home Assistant add-on, which you can find in the add-on store in the Supervisor panel. Open it using the following button then click on INSTALL:
 
 .. image:: https://my.home-assistant.io/badges/supervisor_addon.svg
    :target: https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_esphome
 
-After that, wait a bit until the add-on is installed (this can take a while). Start the add-on and then click "Open Web UI". If you see "502: Bad Gateway" the
-addon is currently starting, and you can refresh the page after a couple of seconds.
+After that, wait a bit until it is installed (this can take a while). Click "Start" and then click "Open Web UI". If you see "502: Bad Gateway" it is currently starting, and you can refresh the page after a couple of seconds.
 
 .. figure:: images/hassio_addon.png
     :align: center
@@ -44,7 +43,7 @@ The wizard will guide you through creating your first configuration and, dependi
 
     The most difficult part of setting up a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to a computer. Later updates can be installed wirelessly.
 
-    If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome dashboard. If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome dashboard (your Home Assistant machine).
+    If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome Dashboard. If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome Dashboard and Home Assistant.
 
     If the serial port is not showing up, you might not have the required drivers installed. These drivers work for most ESP devices:
 
@@ -56,7 +55,7 @@ Dashboard Interface
 -------------------
 
 Assuming you created your first configuration file with the wizard, let's take a quick
-tour of the ESPHome dashboard interface.
+tour of the ESPHome Dashboard interface.
 
 .. figure:: images/dashboard.png
     :align: center
@@ -72,12 +71,7 @@ there are three basic actions you can perform:
   connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
 
 - **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
-  binary so that you can upload it yourself from your computer.
-
-  .. note::
-
-      If you're having problems with flashing from the add-on, you can always download the firmware using the
-      ``COMPILE`` button and flash the firmware using :ref:`ESPHome-flasher <esphome-flasher>`.
+  binary so that you can install it yourself from your computer using :ref:`ESPHome-flasher <esphome-flasher>`.
 
 The configuration files for ESPHome can be found and edited under ``<HOME_ASSISTANT_CONFIG>/esphome/``.
 For example the configuration for the node in the picture above can be found
