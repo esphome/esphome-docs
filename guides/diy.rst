@@ -42,7 +42,7 @@ Blog Posts & Videos
 - `Smart Intercom <https://frog32.ch/smart-intercom.html>`__ by `Marc Egli <https://frog32.ch/>`__
 - `Esp32 six shutters controller <https://github.com/Gio-dot/Six-shutters-ESP32-controller>`__ by `Gio-dot <https://github.com/Gio-dot>`__
 - `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__
-- `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-home-assistant/>`__ by :ghuser:`emorydunn`
+- `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-&-home-assistant/>`__ by :ghuser:`emorydunn`
 - `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__
 - `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPHome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Baseboard (Line Voltage) Thermostat from Smart Switch <https://github.com/rjmurph2241/baseboard-heating-thermostat>`__ by :ghuser:`rjmurph2241`
