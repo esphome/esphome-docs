@@ -368,6 +368,7 @@ Misc Components
     ESP32 Ethernet, components/ethernet, ethernet.svg
 
     ESP32 Camera, components/esp32_camera, camera.svg
+    RTSP Server, components/rtsp_server.rst, camera.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
 
