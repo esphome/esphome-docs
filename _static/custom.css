@@ -90,6 +90,12 @@ img.index-shield {
   margin-top: 10px;
 }
 
+div.index-shields {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 64px;
+}
+
 .supporters-row {
   display: flex;
 }
@@ -110,4 +116,55 @@ img.index-shield {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+.guide-container {
+  margin: 32px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.guide-card {
+  color: #004B6B;
+  display: block;
+  height: auto;
+  width: 300px;
+  background-color: #f3f6f6;
+  border-radius: 8px;
+  box-shadow: -10px 10px 32px -12px #000;
+  padding-bottom: 8px;
+}
+
+.guide-card:not(:first-child) {
+    margin-left: -40px;
+}
+
+.guide-card-title {
+  font-weight: 300;
+  margin: 16px !important;
+}
+
+.guide-code {
+  padding: 8px 16px;
+  margin: 8px;
+  color: black;
+  white-space: pre-line;
+}
+
+
+@media screen and (max-width: 870px) {
+  .guide-container  {
+    flex-direction: column;
+  }
+  .guide-card {
+    width: 100%;
+    margin: 8px 0;
+  }
+  .guide-card:not(:first-child) {
+    margin-left: 0;
+  }
+  .guide-card ul {
+    margin-left: 32px;
+  }
 }

@@ -12,34 +12,91 @@ ESPHome
 
 .. image:: /images/logo-text.svg
 
+.. raw:: html
+
+    <div class="index-shields">
+    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
+    <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
+    <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
+    </div>
+
 ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 .. raw:: html
 
-    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
-    <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
-    <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
-
-.. _guides:
-
-Guides
-------
-
-.. imgtable::
-
-    Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
-    FAQ and Tips, guides/faq, question_answer.svg
-
-    Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
-    Automations, guides/automations, auto-fix.svg
-    Contributing, guides/contributing, github-circle.svg
-
-    Changelog, changelog/index, new-box.svg
-    Supporters, guides/supporters, heart.svg
-    DIY Examples, guides/diy, earth.svg
-
-    Configuration types, guides/configuration-types, puzzle.svg
+    <div class="guide-container">
+        <div class="guide-card">
+            <h3 class="guide-card-title">Keeping up</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/changelog/index.html">
+                        Changelog
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/supporters.html">
+                        Supporters
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/contributing.html">
+                        Contributing
+                    </a>
+                </li>
+            </ul>
+            <pre class="guide-code">
+                esphome:
+                &nbsp;&nbsp;name: Awesome
+                &nbsp;&nbsp;platform: ESP32
+                &nbsp;&nbsp;board: nodemcu-32s
+            </pre>
+        </div>
+        <div class="guide-card">
+            <h3 class="guide-card-title">Next steps</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/guides/faq.html">
+                        FAQ and Tips
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/automations.html">
+                        Automations
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/diy.html">
+                        DIY Examples
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/configuration-types.html">
+                        Configuration types
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="guide-card">
+            <h3 class="guide-card-title">Getting started</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/guides/getting_started_command_line.html">
+                        Through Command Line
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/getting_started_hassio.html">
+                        With Home Assistant Add-on
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
+                        Migrating from Tasmota
+                    </a>
+                </li>              
+            </ul>
+        </div>
+    </div>
 
 .. _devices:
 
