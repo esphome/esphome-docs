@@ -8,7 +8,7 @@ RTSP Server Component
 The ``rtsp_server`` component allows you to stream video from ESP32-based camera boards in ESPHome to
 any RTSP-compatible application (VLC Media Player; GStreamer; etc).
 
-An ``esp32_camera`` configuration item is required to use this component.
+An :ref:`esp32_camera <esp32_camera>` configuration item is required to use this component.
 
 .. code-block:: yaml
     rtsp_server:
