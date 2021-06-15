@@ -17,18 +17,25 @@ Example configuration
       # Automatically add the mac address to the name
       # so you can use a single firmware for all devices
       name_add_mac_suffix: true
+
+      # This will allow for (future) project identification,
+      # configuration and updates.
       project:
         name: jesse.temperature_monitor
         version: "1.0"
 
     wifi:
-      networks: []
+      # Set up a wifi access point
       ap:
         ssid: jesses_temperature_monitor
         password: 12345678
 
+    # In combination with the `ap` this allows the user
+    # to provision wifi credentials to the device.
     captive_portal:
 
+    # Sets up Bluetooth LE (Only on ESP32) to allow the user
+    # to provision wifi credentials to the device.
     esp32_improv:
       authorizer: none
 
