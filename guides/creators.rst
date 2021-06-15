@@ -4,7 +4,7 @@ Using ESPHome for your Project
 .. seo::
     :description: Information for creators when using ESPHome firmware.
 
-There are a few configurtion options we have added to ESPHome to make it easier for creators
+We have added configuration options to ESPHome to make it easier for creators
 to create, configure, install and distribute devices running ESPHome.
 
 Example configuration
@@ -14,6 +14,8 @@ Example configuration
 
     esphome:
       ...
+      # Automatically add the mac address to the name
+      # so you can use a single firmware for all devices
       name_add_mac_suffix: true
       project:
         name: jesse.temperature_monitor
