@@ -46,12 +46,17 @@ Beta Fixes
 - Ensure wifi is in at least station mode before starting improv :esphomepr:`1899` by :ghuser:`jesserockz`
 - Move esp32_ble_server to its own component :esphomepr:`1898` by :ghuser:`jesserockz` (breaking-change) (new-integration)
 - Add new wizard + allow installing firmware over webserial :esphomepr:`1887` by :ghuser:`balloob`
+- Allow no networks or AP to be set. :esphomepr:`1908` by :ghuser:`jesserockz`
+- Validate that either networks, ap, or improv is set up :esphomepr:`1910` by :ghuser:`jesserockz`
+- Bump frontend to 20210614.0 :esphomepr:`1912` by :ghuser:`balloob`
+- fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet`
 
 Notable Changes
 ---------------
 
 - CLI user experience improvements :esphomepr:`1805` by :ghuser:`oxan` (breaking-change) (notable-change)
 - Improv - BLE WiFi provisioning :esphomepr:`1807` by :ghuser:`jesserockz` (new-integration) (notable-change)
+- Add attribute support to Home Assistant sensors :esphomepr:`1770` by :ghuser:`frenck` (notable-change)
 
 All changes
 -----------
