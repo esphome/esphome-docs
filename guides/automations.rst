@@ -793,13 +793,13 @@ using script modes ``single`` and ``restart`` respectively.
 .. code-block:: yaml
 
     script:
-    - id: hallway_light_script
-      mode: restart     # Light will be kept on during 1 minute since
-                        # the latest time the script is executed
-      then:
-        - light.turn_on: hallway_light
-        - delay: 1 min
-        - light.turn_off: hallway_light
+      - id: hallway_light_script
+        mode: restart     # Light will be kept on during 1 minute since
+                          # the latest time the script is executed
+        then:
+          - light.turn_on: hallway_light
+          - delay: 1 min
+          - light.turn_off: hallway_light
 
     ...
       on_...:           # can be called from different wall switches
