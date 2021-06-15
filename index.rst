@@ -1,6 +1,3 @@
-ESPHome
-=======
-
 .. meta::
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
