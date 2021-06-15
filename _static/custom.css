@@ -155,7 +155,7 @@ div.index-shields {
 
 @media screen and (max-width: 870px) {
   .guide-container  {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .guide-card {
     width: 100%;
