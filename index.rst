@@ -83,7 +83,7 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
                 </li>
                 <li>
                     <a class="reference" href="/guides/getting_started_hassio.html">
-                        With Home Assistant Add-on
+                        Home Assistant Add-on
                     </a>
                 </li>
                 <li>
