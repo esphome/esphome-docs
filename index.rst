@@ -40,6 +40,7 @@ Guides
     DIY Examples, guides/diy, earth.svg
 
     Configuration types, guides/configuration-types, puzzle.svg
+    Creating a Project, guides/creators, puzzle.svg
 
 .. _devices:
 
