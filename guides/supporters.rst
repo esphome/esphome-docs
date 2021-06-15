@@ -131,6 +131,7 @@ Contributors
 - `Christiaan Blom (@Deinara) <https://github.com/Deinara>`__
 - `Rsan (@deltazerorsan) <https://github.com/deltazerorsan>`__
 - `Mickaël Le Baillif (@demikl) <https://github.com/demikl>`__
+- `dentra (@dentra) <https://github.com/dentra>`__
 - `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__
 - `Destix (@Destix) <https://github.com/Destix>`__
 - `Dezorian (@Dezorian) <https://github.com/Dezorian>`__
@@ -586,4 +587,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 12, 2021.*
+*This page was last updated June 15, 2021.*
