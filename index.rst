@@ -71,13 +71,13 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <h3 class="guide-card-title">Getting started</h3>
             <ul>
                 <li>
-                    <a class="reference" href="/guides/getting_started_command_line.html">
-                        Through Command Line
+                    <a class="reference" href="/guides/getting_started_hassio.html">
+                        ESPHome Dashboard
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/getting_started_hassio.html">
-                        Home Assistant Add-on
+                    <a class="reference" href="/guides/getting_started_command_line.html">
+                        Command Line Interface
                     </a>
                 </li>
                 <li>
