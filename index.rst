@@ -17,27 +17,27 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
 
     <div class="guide-container">
         <div class="guide-card">
-            <h3 class="guide-card-title">Keeping up</h3>
+            <h3 class="guide-card-title">Getting started</h3>
             <ul>
                 <li>
-                    <a class="reference" href="/changelog/index.html">
-                        Changelog
+                    <a class="reference" href="/guides/getting_started_hassio.html">
+                        ESPHome Dashboard
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/supporters.html">
-                        Supporters
+                    <a class="reference" href="/guides/getting_started_command_line.html">
+                        Command Line Interface
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/contributing.html">
-                        Contributing
+                    <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
+                        Migrating from Tasmota
                     </a>
                 </li>
             </ul>
             <pre class="guide-code">
                 esphome:
-                &nbsp;&nbsp;name: Awesome
+                &nbsp;&nbsp;name: awesome
                 &nbsp;&nbsp;platform: ESP32
                 &nbsp;&nbsp;board: nodemcu-32s
             </pre>
@@ -68,23 +68,23 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             </ul>
         </div>
         <div class="guide-card">
-            <h3 class="guide-card-title">Getting started</h3>
+            <h3 class="guide-card-title">Keeping up</h3>
             <ul>
                 <li>
-                    <a class="reference" href="/guides/getting_started_hassio.html">
-                        ESPHome Dashboard
+                    <a class="reference" href="/changelog/index.html">
+                        Changelog
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/getting_started_command_line.html">
-                        Command Line Interface
+                    <a class="reference" href="/guides/supporters.html">
+                        Supporters
                     </a>
                 </li>
                 <li>
-                    <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
-                        Migrating from Tasmota
+                    <a class="reference" href="/guides/contributing.html">
+                        Contributing
                     </a>
-                </li>              
+                </li>
             </ul>
         </div>
     </div>
