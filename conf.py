@@ -147,6 +147,7 @@ html_sidebars = {
         # 'about.html',
         "searchbox.html",
         "localtoc.html",
+        "contact.html"
     ]
 }
 
