@@ -587,4 +587,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 16, 2021.*
+*This page was last updated June 17, 2021.*
