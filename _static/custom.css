@@ -9,6 +9,10 @@ div.document {
   margin-bottom: 50px;
 }
 
+div.body {
+  min-width: initial;
+}
+
 img.component-image {
   border: none;
   vertical-align: middle;
