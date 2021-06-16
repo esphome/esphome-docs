@@ -38,7 +38,7 @@ of a climate device. :ghuser:`frenck` decided to take a stab and as long as you 
 
     # Example configuration entry
     sensor:
-    - platform: homeassistant
+      - platform: homeassistant
         id: current_temperature
         entity_id: climate.living_room
         attribute: current_temperature
