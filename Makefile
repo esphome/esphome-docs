@@ -21,14 +21,16 @@ help:
 api:
 	mkdir -p _build/html/api
 	@if [ ! -d "$(ESPHOME_PATH)" ]; then \
-	  git clone --branch $(ESPHOME_REF) https://github.com/esphome/esphome.git $(ESPHOME_PATH); \
+	  git clone --branch $(ESPHOME_REF) https://github.com/esphome/esphome.git $(ESPHOME_PATH) || \
+	  git clone --branch beta https://github.com/esphome/esphome.git $(ESPHOME_PATH); \
 	fi
 	ESPHOME_PATH=$(ESPHOME_PATH) doxygen Doxygen
 
 netlify-api: netlify-dependencies
 	mkdir -p _build/html/api
 	@if [ ! -d "$(ESPHOME_PATH)" ]; then \
-	  git clone --branch $(ESPHOME_REF) https://github.com/esphome/esphome.git $(ESPHOME_PATH); \
+	  git clone --branch $(ESPHOME_REF) https://github.com/esphome/esphome.git $(ESPHOME_PATH) || \
+	  git clone --branch beta https://github.com/esphome/esphome.git $(ESPHOME_PATH); \
 	fi
 	ESPHOME_PATH=$(ESPHOME_PATH) ../doxybin/doxygen Doxygen
 
