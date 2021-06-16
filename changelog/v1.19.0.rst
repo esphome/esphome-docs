@@ -52,6 +52,7 @@ Beta Fixes
 - fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet`
 - Bump dashboard to 20210615.0 :esphomepr:`1918` by :ghuser:`balloob`
 - Shorten the ble name to prevent crash with long device names :esphomepr:`1920` by :ghuser:`jesserockz`
+- Fix update-all from dashboard :esphomepr:`1924` by :ghuser:`frenck`
 
 Notable Changes
 ---------------
@@ -142,6 +143,7 @@ All changes
 - Allow setting creator project name and version into code :esphomepr:`1872` by :ghuser:`jesserockz`
 - Add platform and board to mdns response when API is used :esphomepr:`1871` by :ghuser:`jesserockz`
 - Update ``total_pulses_`` at every detected pulse :esphomepr:`1875` by :ghuser:`rklomp`
+- Fix update-all from dashboard :esphomepr:`1924` by :ghuser:`frenck`
 
 Past Changelogs
 ---------------
