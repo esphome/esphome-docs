@@ -61,6 +61,13 @@ Because of these new tools, the ESPHome dashboard has gotten a slight makeover w
 You are now given the option to install directly via WebSerial to the ESP from the browser. No more plugging into the
 server/VM running ESPHome and restarting container etc. It just works. (Provided you are using Chrome or Edge).
 
+Command Line Interface
+----------------------
+
+Thanks to :ghuser:`oxan` for making some change to the ESPHome CLI. Instead of ``esphome config.yaml run``
+we now have ``esphome run config.yaml``. The old format is still accepted and will be removed in a future release,
+but there is a **breaking change** with this release which is the arguments ``--upload-port`` and ``--serial-port`` have been
+combined and changed to ``--device``.
 
 Full list of changes
 --------------------
