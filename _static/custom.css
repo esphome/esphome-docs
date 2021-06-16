@@ -138,7 +138,6 @@ div.index-shields {
   box-shadow: 4px 4px 8px -4px #00000075;
   padding-bottom: 8px;
   box-sizing: border-box;
-  transition: all 0.5s;
 }
 
 .guide-card-title {
@@ -164,11 +163,6 @@ div.index-shields {
   .guide-card:not(:first-child) {
     margin-left: -40px;
     padding-left: 40px;
-  }
-
-  .guide-card:not(:first-child):hover {
-    margin-left: -20px;
-    padding-left: 20px;
   }
 }
 
