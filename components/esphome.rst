@@ -19,6 +19,8 @@ where you specify the **name** of the node, the **platform** and
         platform: ESP32
         board: nodemcu-32s
 
+.. _esphome-configuration_variables:
+
 Configuration variables:
 ------------------------
 
@@ -50,8 +52,13 @@ Advanced options:
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 - **name_add_mac_suffix** (*Optional*, boolean): Appends the last 6 bytes of the mac address of the device to
-  the name in the form `<name>-aabbcc`. Defaults to ``False``.
+  the name in the form ``<name>-aabbcc``. Defaults to ``False``.
   See :ref:`esphome-mac_suffix`.
+
+- **project** (*Optional*): ESPHome Creator's Project information. See :ref:`esphome-creators_project`.
+
+  - **name** (**Required**, string): Name of the project
+  - **version** (**Required**, string): Version of the project
 
 ESP8266 Options:
 
@@ -98,7 +105,9 @@ option you can tell ESPHome which Arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the Arduino version to these values (see the full
 list of Arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
-* `2.7.2 <https://github.com/esp8266/Arduino/releases/tag/2.7.2>`__ (default)
+* `2.7.4 <https://github.com/esp8266/Arduino/releases/tag/2.7.4>`__ (default)
+* `2.7.3 <https://github.com/esp8266/Arduino/releases/tag/2.7.3>`__
+* `2.7.2 <https://github.com/esp8266/Arduino/releases/tag/2.7.2>`__
 * `2.7.1 <https://github.com/esp8266/Arduino/releases/tag/2.7.1>`__
 * `2.7.0 <https://github.com/esp8266/Arduino/releases/tag/2.7.0>`__
 * `2.6.3 <https://github.com/esp8266/Arduino/releases/tag/2.6.3>`__
@@ -114,7 +123,9 @@ list of Arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`_
 
 For the ESP32, there are these Arduino `framework versions <https://github.com/espressif/arduino-esp32/releases>`__:
 
-- `1.0.4 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.4>`__ (default)
+- `1.0.6 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.6>`__ (default)
+- `1.0.5 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.5>`__
+- `1.0.4 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.4>`__
 - `1.0.3 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.3>`__
 - `1.0.2 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.2>`__
 - `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__
@@ -310,6 +321,26 @@ Using ``name_add_mac_suffix`` allows the user to compile a single binary file to
 many of the same device and they will all have unique names/hostnames.
 Note that you will still need to create an individual YAML config file if you want to
 OTA update the devices in the future.
+
+
+.. _esphome-creators_project:
+
+Project information
+-------------------
+
+This allows creators to add the project name and version to the compiled code. It is currently only
+exposed via the logger, mDNS and the device_info response via the native API. The format of the name
+should be ``author_name.project_name``.
+
+.. code-block:: yaml
+
+    # Example configuration
+    esphome:
+      ...
+      project:
+        name: "jesse.leds_party"
+        version: "1.0.0"
+
 
 See Also
 --------

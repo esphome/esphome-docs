@@ -6,6 +6,9 @@ BME680 Temperature+Pressure+Humidity+Gas Sensor via BSEC
     :image: bme680.jpg
     :keywords: BME680
 
+Component/Hub
+-------------
+
 The ``bme680_bsec`` sensor platform allows you to use your BME680
 (`datasheet <https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf>`__,
 `Adafruit`_) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC)
@@ -58,14 +61,8 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
           name: "BME680 IAQ Accuracy"
 
 Configuration variables:
-------------------------
 
-The configuration is made up of three parts: The central hub, individual sensors, and accuracy text sensor.
-
-Hub Configuration:
-
-- **address** (*Optional*, int): Manually specify the I^2C address of
-  the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
+- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 
 - **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high.
   Defaults to ``0``.
@@ -75,28 +72,36 @@ Hub Configuration:
 
 - **sample_rate** (*Optional*, string): Sample rate. Default is ``lp`` for low power consumption, sampling every 3 seconds.
   Can be ``ulp`` for ultra low power, sampling every 5 minutes.
+  This controls the sampling rate for gas-dependant sensors and will govern the interval at which the sensor heater is operated.
+  By default this rate will also be used for temperature, pressure and humidity sensors but these can be overridden on a per-sensor level if required.
 
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration does have to start from zero on device restart. Defaults to ``6h``.
 
-Sensor Configuration:
+Sensor
+------
+
+Configuration variables:
 
 - **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra low power, sampling every 5 minutes.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra low power, sampling every 5 minutes.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **humidity** (*Optional*): The information for the humidity sensor.
 
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **sample_rate** (*Optional*, string): Optional sample rate override for this sensor. Can be ``lp`` for low power consumption, sampling every 3 seconds or ``ulp`` for ultra low power, sampling every 5 minutes.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **gas_resistance** (*Optional*): The information for the gas sensor.
@@ -129,9 +134,15 @@ Sensor Configuration:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-Text Sensor Configuration:
+Text Sensor
+-----------
 
-- **iaq_accuracy** (*Optional*): The information for the IAQ accuracy sensor.
+Accuracy can be reported in text format.
+
+Configuration variables:
+
+- **iaq_accuracy** (*Optional*): The information for the IAQ accuracy sensor. Shows: Stabilizing,
+  Uncertain, Calibrating, Calibrated.
 
   - **name** (**Required**, string): The name for the IAQ accuracy sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
@@ -180,7 +191,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # - lp (low power - samples every 3 seconds)
         # - ulp (ultra low power - samples every 5 minutes)
         # Default: lp
-        sample_rate: lp
+        sample_rate: ulp
 
         # Interval at which to save BSEC state
         # ------------------------------------
@@ -192,16 +203,19 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         temperature:
           # Temperature in °C
           name: "BME680 Temperature"
+          sample_rate: lp
           filters:
             - median
         pressure:
           # Pressure in hPa
           name: "BME680 Pressure"
+          sample_rate: lp
           filters:
             - median
         humidity:
           # Relative humidity %
           name: "BME680 Humidity"
+          sample_rate: lp
           filters:
             - median
         gas_resistance:
