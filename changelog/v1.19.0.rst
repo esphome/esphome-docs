@@ -29,7 +29,7 @@ Check out the website for more details at `improv-wifi.com <https://www.improv-w
 Home Assistant Sensor Attributes
 --------------------------------
 
-For a long time now one of the top requested features was to be able to read attrbutes from Home Assistant
+For a long time now one of the top requested features was to be able to read attributes from Home Assistant
 entities into a local sensor in ESPHome. For example the brightness of a light, or the current temperature
 of a climate device. :ghuser:`frenck` decided to take a stab and as long as you are running at least ESPHome
 1.19.0 and Home Assistant 2021.6 then you can do this. Thanks Frenck!
@@ -54,7 +54,7 @@ The Web Experience
 ------------------
 
 We have been working hard on some new tooling to make it easier for everyone to install ESPHome and other DIY
-firmwares onto their ESP based devices. To do this we have created the
+firmwares onto their ESP-based devices. To do this we have created the
 `ESP Web Tools <https://esphome.github.io/esp-web-tools/>`__. Big shoutout to :ghuser:`balloob` on most of that work!
 
 Because of these new tools, the ESPHome dashboard has gotten a slight makeover when you choose to install to a device.
