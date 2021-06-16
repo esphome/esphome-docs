@@ -51,6 +51,7 @@ Beta Fixes
 - Bump frontend to 20210614.0 :esphomepr:`1912` by :ghuser:`balloob`
 - fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet`
 - Bump dashboard to 20210615.0 :esphomepr:`1918` by :ghuser:`balloob`
+- Shorten the ble name to prevent crash with long device names :esphomepr:`1920` by :ghuser:`jesserockz`
 
 Notable Changes
 ---------------
