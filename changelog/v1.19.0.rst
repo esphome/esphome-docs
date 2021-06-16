@@ -16,12 +16,57 @@ Changelog - Version 1.19.0 - 16th June 2021
     SDM Meter, components/sensor/sdm_meter, sdm220m.png
     CS5460A, components/sensor/cs5460a, cs5460a.png
 
+Wow. Ok, so this release may not look big, but there are a number of new features that are not new components.
 
-Release notes yet to be written...
+Improv
+------
+
+:doc:`Improv Wi-Fi </components/esp32_improv>` is a new standard that stands for **Improved Provisioning of Wi-Fi
+Credentials**. What it does is allow you to provision Wi-Fi credentials to the device by using Bluetooth LE.
+Check out the website for more details at `improv-wifi.com <https://www.improv-wifi.com/>`__.
 
 
-New Integrations
+Home Assistant Sensor Attributes
+--------------------------------
+
+For a long time now one of the top requested features was to be able to read attrbutes from Home Assistant
+entities into a local sensor in ESPHome. For example the brightness of a light, or the current temperature
+of a climate device. :ghuser:`frenck` decided to take a stab and as long as you are running at least ESPHome
+1.19.0 and Home Assistant 2021.6 then you can do this. Thanks Frenck!
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+    - platform: homeassistant
+        id: current_temperature
+        entity_id: climate.living_room
+        attribute: current_temperature
+
+For the Creators
 ----------------
+
+There have been a few additions to the ESPHome codebase that make it easier for creators to make projects
+in ESPHome and distribute them pre-installed and ready to use. See the :doc:`new page here </guides/creators>`.
+
+
+The Web Experience
+------------------
+
+We have been working hard on some new tooling to make it easier for everyone to install ESPHome and other DIY
+firmwares onto their ESP based devices. To do this we have created the
+`ESP Web Tools <https://esphome.github.io/esp-web-tools/>`__. Big shoutout to :ghuser:`balloob` on most of that work!
+
+Because of these new tools, the ESPHome dashboard has gotten a slight makeover when you choose to install to a device.
+You are now given the option to install directly via WebSerial to the ESP from the browser. No more plugging into the
+server/VM running ESPHome and restarting container etc. It just works. (Provided you are using Chrome or Edge).
+
+
+Full list of changes
+--------------------
+
+New Components
+^^^^^^^^^^^^^^
 
 - Add sm2135 component :esphomepr:`1736` by :ghuser:`BoukeHaarsma23` (cherry-picked) (new-integration)
 - Add support for the XPT2046 touchscreen controller :esphomepr:`1542` by :ghuser:`numo68` (new-integration)
@@ -31,37 +76,52 @@ New Integrations
 - Improv - BLE WiFi provisioning :esphomepr:`1807` by :ghuser:`jesserockz` (new-integration) (notable-change)
 
 Breaking Changes
-----------------
+^^^^^^^^^^^^^^^^
 
 - Drop 128x160 ESP-32 camera resolution :esphomepr:`1813` by :ghuser:`oxan` (breaking-change)
 - teleinfo: use text_sensor and sensor. :esphomepr:`1403` by :ghuser:`0hax` (breaking-change)
 - CLI user experience improvements :esphomepr:`1805` by :ghuser:`oxan` (breaking-change) (notable-change)
 
-Beta Fixes
-----------
-
-- Simplify LightCall validation :esphomepr:`1874` by :ghuser:`oxan`
-- BLE loop use :esphomepr:`1882` by :ghuser:`jesserockz`
-- Add support for waveshare_epaper 1.54v2 :esphomepr:`1843` by :ghuser:`geoffdavis`
-- Ensure wifi is in at least station mode before starting improv :esphomepr:`1899` by :ghuser:`jesserockz`
-- Move esp32_ble_server to its own component :esphomepr:`1898` by :ghuser:`jesserockz` (breaking-change) (new-integration)
-- Add new wizard + allow installing firmware over webserial :esphomepr:`1887` by :ghuser:`balloob`
-- Allow no networks or AP to be set. :esphomepr:`1908` by :ghuser:`jesserockz`
-- Validate that either networks, ap, or improv is set up :esphomepr:`1910` by :ghuser:`jesserockz`
-- Bump frontend to 20210614.0 :esphomepr:`1912` by :ghuser:`balloob`
-- fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet`
-- Bump dashboard to 20210615.0 :esphomepr:`1918` by :ghuser:`balloob`
-- Shorten the ble name to prevent crash with long device names :esphomepr:`1920` by :ghuser:`jesserockz`
-
 Notable Changes
----------------
+^^^^^^^^^^^^^^^
 
+- Add attribute support to Home Assistant sensors :esphomepr:`1770` by :ghuser:`frenck` (notable-change)
 - CLI user experience improvements :esphomepr:`1805` by :ghuser:`oxan` (breaking-change) (notable-change)
 - Improv - BLE WiFi provisioning :esphomepr:`1807` by :ghuser:`jesserockz` (new-integration) (notable-change)
-- Add attribute support to Home Assistant sensors :esphomepr:`1770` by :ghuser:`frenck` (notable-change)
+
+Beta Fixes
+^^^^^^^^^^
+
+- Upgrade the version of AsyncTCP-esphome to v1.2.2 :esphomepr:`1762` by :ghuser:`glmnet` (cherry-picked)
+- Fix build issues for idf 4.2 (Support ESP32-S2) :esphomepr:`1433` by :ghuser:`misery` (cherry-picked)
+- Use core constants for sample duration on bh1750 :esphomepr:`1764` by :ghuser:`yuvalabou` (breaking-change) (cherry-picked)
+- Add sm2135 component :esphomepr:`1736` by :ghuser:`BoukeHaarsma23` (cherry-picked) (new-integration)
+- Allow RC522 components to have multiple configurations :esphomepr:`1782` by :ghuser:`jesserockz` (cherry-picked)
+- Simplify LightCall validation :esphomepr:`1874` by :ghuser:`oxan` (cherry-picked)
+- Simplify LightCall validation :esphomepr:`1874` by :ghuser:`oxan` (cherry-picked)
+- BLE loop use :esphomepr:`1882` by :ghuser:`jesserockz` (cherry-picked)
+- BLE loop use :esphomepr:`1882` by :ghuser:`jesserockz` (cherry-picked)
+- Add support for waveshare_epaper 1.54v2 :esphomepr:`1843` by :ghuser:`geoffdavis` (cherry-picked)
+- Add support for waveshare_epaper 1.54v2 :esphomepr:`1843` by :ghuser:`geoffdavis` (cherry-picked)
+- Ensure wifi is in at least station mode before starting improv :esphomepr:`1899` by :ghuser:`jesserockz` (cherry-picked)
+- Ensure wifi is in at least station mode before starting improv :esphomepr:`1899` by :ghuser:`jesserockz` (cherry-picked)
+- Move esp32_ble_server to its own component :esphomepr:`1898` by :ghuser:`jesserockz` (breaking-change) (cherry-picked) (new-integration)
+- Move esp32_ble_server to its own component :esphomepr:`1898` by :ghuser:`jesserockz` (breaking-change) (cherry-picked) (new-integration)
+- Add new wizard + allow installing firmware over webserial :esphomepr:`1887` by :ghuser:`balloob` (cherry-picked)
+- Add new wizard + allow installing firmware over webserial :esphomepr:`1887` by :ghuser:`balloob` (cherry-picked)
+- Allow no networks or AP to be set. :esphomepr:`1908` by :ghuser:`jesserockz` (cherry-picked)
+- Allow no networks or AP to be set. :esphomepr:`1908` by :ghuser:`jesserockz` (cherry-picked)
+- Validate that either networks, ap, or improv is set up :esphomepr:`1910` by :ghuser:`jesserockz` (cherry-picked)
+- Validate that either networks, ap, or improv is set up :esphomepr:`1910` by :ghuser:`jesserockz` (cherry-picked)
+- Bump frontend to 20210614.0 :esphomepr:`1912` by :ghuser:`balloob` (cherry-picked)
+- Bump frontend to 20210614.0 :esphomepr:`1912` by :ghuser:`balloob` (cherry-picked)
+- fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet` (cherry-picked)
+- fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet` (cherry-picked)
+- Bump dashboard to 20210615.0 :esphomepr:`1918` by :ghuser:`balloob` (cherry-picked)
+- Shorten the ble name to prevent crash with long device names :esphomepr:`1920` by :ghuser:`jesserockz` (cherry-picked)
 
 All changes
------------
+^^^^^^^^^^^
 
 - Bump black from 20.8b1 to 21.5b0 :esphomepr:`1745` by :ghuser:`dependabot[bot]`
 - Bump pylint from 2.7.2 to 2.8.2 :esphomepr:`1729` by :ghuser:`dependabot[bot]`
@@ -78,7 +138,7 @@ All changes
 - Add action to set total pulses on pulse_meter :esphomepr:`1757` by :ghuser:`jesserockz`
 - Add more json schema generation features :esphomepr:`1690` by :ghuser:`glmnet`
 - Generate protobuf code closer to formatted files :esphomepr:`1790` by :ghuser:`jesserockz`
-- Add attribute support to Home Assistant sensors :esphomepr:`1770` by :ghuser:`frenck`
+- Add attribute support to Home Assistant sensors :esphomepr:`1770` by :ghuser:`frenck` (notable-change)
 - Bump Arduino SDK for ESP32 to 1.0.6 :esphomepr:`1789` by :ghuser:`agners`
 - Added bottom segment to digit 9 :esphomepr:`1787` by :ghuser:`testbughub`
 - Add support for the XPT2046 touchscreen controller :esphomepr:`1542` by :ghuser:`numo68` (new-integration)
@@ -141,7 +201,39 @@ All changes
 - Fix Clang 11 finds :esphomepr:`1880` by :ghuser:`agners`
 - Allow setting creator project name and version into code :esphomepr:`1872` by :ghuser:`jesserockz`
 - Add platform and board to mdns response when API is used :esphomepr:`1871` by :ghuser:`jesserockz`
-- Update ``total_pulses_`` at every detected pulse :esphomepr:`1875` by :ghuser:`rklomp`
+- Update total_pulses at every detected pulse :esphomepr:`1875` by :ghuser:`rklomp`
+- Simplify LightCall validation :esphomepr:`1874` by :ghuser:`oxan` (cherry-picked)
+- Simplify LightCall validation :esphomepr:`1874` by :ghuser:`oxan` (cherry-picked)
+- BLE loop use :esphomepr:`1882` by :ghuser:`jesserockz` (cherry-picked)
+- BLE loop use :esphomepr:`1882` by :ghuser:`jesserockz` (cherry-picked)
+- Add support for waveshare_epaper 1.54v2 :esphomepr:`1843` by :ghuser:`geoffdavis` (cherry-picked)
+- Add support for waveshare_epaper 1.54v2 :esphomepr:`1843` by :ghuser:`geoffdavis` (cherry-picked)
+- Update ambiguous command :esphomepr:`1889` by :ghuser:`jesserockz`
+- Configure clang-format for consistent pointer alignment :esphomepr:`1890` by :ghuser:`OttoWinter`
+- Activate some clang-tidy checks :esphomepr:`1884` by :ghuser:`OttoWinter`
+- Avoid non-const globals and enable clang-tidy check :esphomepr:`1892` by :ghuser:`agners`
+- Convert st7735.cpp to use Unix line separators :esphomepr:`1894` by :ghuser:`oxan`
+- Ensure wifi is in at least station mode before starting improv :esphomepr:`1899` by :ghuser:`jesserockz` (cherry-picked)
+- Ensure wifi is in at least station mode before starting improv :esphomepr:`1899` by :ghuser:`jesserockz` (cherry-picked)
+- Move esp32_ble_server to its own component :esphomepr:`1898` by :ghuser:`jesserockz` (breaking-change) (cherry-picked) (new-integration)
+- Move esp32_ble_server to its own component :esphomepr:`1898` by :ghuser:`jesserockz` (breaking-change) (cherry-picked) (new-integration)
+- Add new wizard + allow installing firmware over webserial :esphomepr:`1887` by :ghuser:`balloob` (cherry-picked)
+- Add new wizard + allow installing firmware over webserial :esphomepr:`1887` by :ghuser:`balloob` (cherry-picked)
+- Split files in light component :esphomepr:`1893` by :ghuser:`oxan`
+- Fix CI by avoiding non-const global :esphomepr:`1907` by :ghuser:`oxan`
+- Adds support cpp to vscode :esphomepr:`1828` by :ghuser:`dentra`
+- Allow no networks or AP to be set. :esphomepr:`1908` by :ghuser:`jesserockz` (cherry-picked)
+- Allow no networks or AP to be set. :esphomepr:`1908` by :ghuser:`jesserockz` (cherry-picked)
+- Validate that either networks, ap, or improv is set up :esphomepr:`1910` by :ghuser:`jesserockz` (cherry-picked)
+- Validate that either networks, ap, or improv is set up :esphomepr:`1910` by :ghuser:`jesserockz` (cherry-picked)
+- Support ESP8266 Arduino 3.0.0 :esphomepr:`1897` by :ghuser:`agners`
+- Bump frontend to 20210614.0 :esphomepr:`1912` by :ghuser:`balloob` (cherry-picked)
+- Bump frontend to 20210614.0 :esphomepr:`1912` by :ghuser:`balloob` (cherry-picked)
+- Run script/setup in devcontainer instead of pip install :esphomepr:`1913` by :ghuser:`OttoWinter`
+- fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet` (cherry-picked)
+- fixes compatibility with esphome cfg vscode :esphomepr:`1911` by :ghuser:`glmnet` (cherry-picked)
+- Bump dashboard to 20210615.0 :esphomepr:`1918` by :ghuser:`balloob` (cherry-picked)
+- Shorten the ble name to prevent crash with long device names :esphomepr:`1920` by :ghuser:`jesserockz` (cherry-picked)
 
 Past Changelogs
 ---------------
