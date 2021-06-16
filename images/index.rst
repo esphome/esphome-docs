@@ -4,13 +4,9 @@ Images
 This is a dummy file to include images in the sphinx output
 that will only be used in raw HTML and thus not auto-included.
 
-.. image:: shield-discord.svg
-
-.. image:: shield-github.svg
-
 .. image:: shield-donate.svg
 
-.. image:: shield-twitter.svg
+.. image:: hero.png
 
 .. image:: logo.svg
 
