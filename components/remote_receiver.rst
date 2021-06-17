@@ -156,6 +156,7 @@ Remote code selection (exactly one of these has to be included):
 - **samsung**: Trigger on a decoded Samsung remote code with the given data.
 
   - **data** (**Required**, int): The data to trigger on, see dumper output for more info.
+  - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``32``.
 
 - **samsung36**: Trigger on a decoded Samsung36 remote code with the given data.
 
