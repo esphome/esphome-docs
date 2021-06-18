@@ -69,6 +69,14 @@ we now have ``esphome run config.yaml``. The old format is still accepted and wi
 but there is a **breaking change** with this release which is the arguments ``--upload-port`` and ``--serial-port`` have been
 combined and changed to ``--device``.
 
+Release 1.19.1 - June 18
+------------------------
+
+- Update dashboard to 20210617.0 :esphomepr:`1930` by :ghuser:`balloob`
+- Fix: midea_ac: fixed query status frame :esphomepr:`1922` by :ghuser:`dudanov`
+- Improve config final validation :esphomepr:`1917` by :ghuser:`OttoWinter`
+- Replace CLIMATE_MODE_AUTO with CLIMATE_MODE_HEAT_COOL in most cases :esphomepr:`1933` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
