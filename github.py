@@ -111,7 +111,7 @@ class ImageTableDirective(Table):
     }
 
     def run(self):
-        cols = self.options.get("columns", 4)
+        cols = self.options.get("columns", 3)
 
         items = []
 
