@@ -5,7 +5,7 @@ AM43 Cover
     :description: Setting up AM43/BLE covers in ESPHome.
     :image: am43.png
 
-The ``am43_cover`` cover platform allows you to control an AM43 based
+The ``am43`` cover platform allows you to control an AM43 based
 BLE cover motor. These devices are sold under various brands, such
 as Zemismart and A-OK. The platform connects to the device over the
 ESP32's BLE peripheral and both controls and fetchs the position
@@ -31,7 +31,7 @@ and state of the motor.
         id: am43_kitchen
 
     cover:
-      - platform: am43_cover
+      - platform: am43
         name: "Kitchen blinds"
         ble_client_id: am43_kitchen
 
@@ -72,5 +72,5 @@ See Also
 
 - :doc:`index`
 - :ref:`automation`
-- :apiref:`am43_cover/am43_cover.h`
+- :apiref:`am43/am43_cover.h`
 - :ghedit:`Edit`
