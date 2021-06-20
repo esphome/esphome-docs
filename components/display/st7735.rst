@@ -77,6 +77,6 @@ See Also
 --------
 
 - :ref:`spi`
-- :ref:`Display Component`
+- :doc:`/components/display/index`
 - :apiref:`st7735/st7735.h`
 - :ghedit:`Edit`
