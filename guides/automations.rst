@@ -334,6 +334,9 @@ All Triggers
 - :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
+- :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
+  :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
+  :ref:`ota.on_state_change <ota-on_state_change>`
 
 All Actions
 -----------
