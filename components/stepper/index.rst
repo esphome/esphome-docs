@@ -38,7 +38,7 @@ Configuration variables:
 A4988 Component
 ---------------
 
-Put this code into the configuration file on ESPhome for this device.
+Put this code into the configuration file on ESPHome for this device.
 
 .. code-block:: yaml
 

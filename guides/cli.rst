@@ -11,16 +11,27 @@ ESPHome's command line interface always has the following format
 
 .. code-block:: console
 
-    esphome [OPTIONS] <CONFIGURATION...> <COMMAND> [ARGUMENTS]
+    esphome [OPTIONS] <COMMAND> <CONFIGURATION...> [ARGUMENTS]
 
 .. note::
 
-    You can specify multiple configuration files in the command line interface,
-    just list all files in front of the <COMMAND> like so:
+    You can specify multiple configuration files in the command line interface for some commands,
+    just list all files after the <COMMAND> like so:
 
     .. code-block:: console
 
-        esphome livingroom.yaml kitchen.yaml run
+    esphome run livingroom.yaml kitchen.yaml
+
+``--help`` Option
+--------------------
+
+.. option:: -h|--help
+
+    Output possible <commands> and [arguments].
+    Note: you can also use ``--help`` for any command to get arguments specific to that command.
+.. code-block:: console
+
+    esphome <some_command> --help
 
 ``--verbose`` Option
 --------------------
@@ -50,7 +61,7 @@ Please see :ref:`command line substitutions <command-line-substitutions>` for de
 ``run`` Command
 ---------------
 
-The ``esphome <CONFIG> run`` command is the most common command for ESPHome. It
+The ``esphome run <CONFIG>`` command is the most common command for ESPHome. It
 
 * Validates the configuration
 * Compiles a firmware
@@ -59,9 +70,10 @@ The ``esphome <CONFIG> run`` command is the most common command for ESPHome. It
 
 .. program:: esphome run
 
-.. option:: --upload-port UPLOAD_PORT
+.. option:: --device UPLOAD_PORT
 
-    Manually specify the upload port/ip to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
+    to perform an OTA.
 
 .. option:: --no-logs
 
@@ -92,7 +104,7 @@ The ``esphome <CONFIG> run`` command is the most common command for ESPHome. It
 
 .. program:: esphome config
 
-The ``esphome <CONFIG> config`` validates the configuration and displays the validation result.
+The ``esphome config <CONFIG>`` validates the configuration and displays the validation result.
 
 
 ``compile`` Command
@@ -100,7 +112,7 @@ The ``esphome <CONFIG> config`` validates the configuration and displays the val
 
 .. program:: esphome compile
 
-The ``esphome <CONFIG> compile`` validates the configuration and compiles the firmware.
+The ``esphome compile <CONFIG>`` validates the configuration and compiles the firmware.
 
 .. option:: --only-generate
 
@@ -111,11 +123,12 @@ The ``esphome <CONFIG> compile`` validates the configuration and compiles the fi
 
 .. program:: esphome upload
 
-The ``esphome <CONFIG> upload`` validates the configuration and uploads the most recent firmware build.
+The ``esphome upload <CONFIG>`` validates the configuration and uploads the most recent firmware build.
 
-.. option:: --upload-port UPLOAD_PORT
+.. option:: --device UPLOAD_PORT
 
-    Manually specify the upload port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    Manually specify the upload port/IP address to use. For example ``/dev/cu.SLAB_USBtoUART``, or ``192.168.1.176``
+    to perform an OTA.
 
 .. option:: --host-port HOST_PORT
 
@@ -126,7 +139,7 @@ The ``esphome <CONFIG> upload`` validates the configuration and uploads the most
 
 .. program:: esphome clean-mqtt
 
-The ``esphome <CONFIG> clean-mqtt`` cleans retained MQTT discovery messages from the MQTT broker.
+The ``esphome clean-mqtt <CONFIG>`` cleans retained MQTT discovery messages from the MQTT broker.
 See :ref:`mqtt-using_with_home_assistant`.
 
 .. option:: --topic TOPIC
@@ -151,14 +164,14 @@ See :ref:`mqtt-using_with_home_assistant`.
 
 .. program:: esphome wizard
 
-The ``esphome <CONFIG> wizard`` command starts the ESPHome configuration creation wizard.
+The ``esphome wizard <CONFIG>`` command starts the ESPHome configuration creation wizard.
 
 ``mqtt-fingerprint`` Command
 ----------------------------
 
 .. program:: esphome mqtt-fingerprint
 
-The ``esphome <CONFIG> mqtt-fingerprint`` command shows the MQTT SSL fingerprints of the remote used
+The ``esphome mqtt-fingerprint <CONFIG>`` command shows the MQTT SSL fingerprints of the remote used
 for SSL MQTT connections. See :ref:`mqtt-ssl_fingerprints`.
 
 ``version`` Command
@@ -166,30 +179,23 @@ for SSL MQTT connections. See :ref:`mqtt-ssl_fingerprints`.
 
 .. program:: esphome version
 
-The ``esphome <CONFIG> version`` command shows the current ESPHome version and exits.
+The ``esphome version`` command shows the current ESPHome version and exits.
 
 ``clean`` Command
 -----------------
 
 .. program:: esphome clean
 
-The ``esphome <CONFIG> clean`` command cleans all build files and can help with some build issues.
-
-``hass-config`` Command
------------------------
-
-.. program:: esphome hass-config
-
-The ``esphome <CONFIG> hass-config`` command shows an auto-generated Home Assistant configuration for the ESPHome
-node configuration file. This is useful if you're not using MQTT discovery.
+The ``esphome clean <CONFIG>`` command cleans all build files and can help with some build issues.
 
 ``dashboard`` Command
 ---------------------
 
 .. program:: esphome dashboard
 
-The ``esphome <CONFIG> dashboard`` command starts the ESPHome dashboard server for using ESPHome
-through a graphical user interface.
+The ``esphome dashboard <CONFIG>`` command starts the ESPHome dashboard server for using ESPHome
+through a graphical user interface. This command accepts a configuration directory instead of a
+single configuration file.
 
 .. option:: --port PORT
 
@@ -207,5 +213,30 @@ through a graphical user interface.
 
     If set, opens the dashboard UI in a browser once the server is up and running.
 
+``logs`` Command
+---------------------
 
+.. program:: esphome logs
+
+The ``esphome logs <CONFIG>`` command validates the configuration and shows all logs.
+
+.. option:: --topic TOPIC
+
+    Manually set the topic to subscribe to.
+
+.. option:: --username USERNAME
+
+    Manually set the username.
+
+.. option:: --password PASSWORD
+
+    Manually set the password.
+
+.. option:: --client-id CLIENT_ID
+
+    Manually set the client id.
+
+.. option:: --device SERIAL_PORT
+
+    Manually specify a serial port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
 

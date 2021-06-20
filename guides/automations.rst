@@ -202,12 +202,12 @@ or just ``|`` or ``>``. There's a slight difference in how these different style
 purposes we can ignore that).
 
 With ``if (...) { ... } else { ... }`` we create a *condition*. What this effectively says that if the thing inside
-the first parentheses evaluates to ``true``` then execute the first block (in this case ``return COVER_OPEN;``,
+the first parentheses evaluates to ``true`` then execute the first block (in this case ``return COVER_OPEN;``,
 or else evaluate the second block. ``return ...;`` makes the code block give back a value to the template. In this case,
 we're either *returning* ``COVER_OPEN`` or ``COVER_CLOSED`` to indicate that the cover is closed or open.
 
 Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
-somewhere else, like ``top_end_stop```) and lets you call any of ESPHome's many APIs directly. For example, here
+somewhere else, like ``top_end_stop``) and lets you call any of ESPHome's many APIs directly. For example, here
 we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::
@@ -375,6 +375,7 @@ All Actions
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`cs5460a.restart <cs5460a-restart_action>`
 
 .. _config-condition:
 
@@ -792,16 +793,16 @@ using script modes ``single`` and ``restart`` respectively.
 .. code-block:: yaml
 
     script:
-    - id: hallway_light_script
-      mode: restart     # Light will be kept on during 1 minute since
-                        # the latest time the script is executed
-      then:
-        - light.turn_on: hallway_light
-        - delay: 1 min
-        - light.turn_off: hallway_light
+      - id: hallway_light_script
+        mode: restart     # Light will be kept on during 1 minute since
+                          # the latest time the script is executed
+        then:
+          - light.turn_on: hallway_light
+          - delay: 1 min
+          - light.turn_off: hallway_light
 
     ...
-      on_...:           # can be called from diffrent wall switches
+      on_...:           # can be called from different wall switches
         - script.execute: hallway_light_script
 
 Sometimes you'll also need a timer which does not perform any action, that is ok too, just

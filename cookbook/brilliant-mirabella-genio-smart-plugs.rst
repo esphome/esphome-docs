@@ -87,7 +87,7 @@ firmware can be uploaded allowing you to control the smart plugs via Home Assist
    via SSH and ensure your connection type is set to **SFTP**
 #. Browse to ``/root/tuya-convert/files``.
 #. Upload your compiled ``firmware.bin`` file to this directory. For command line based installs you can access the file under
-   ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin`` alternatively Hass.io users can download the file directly from the web ui.
+   ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin`` alternatively Home Assistant add-on users can download the file directly from the web ui.
 
 2.7 Use tuya-convert to install ESPHome Firmware
 ************************************************

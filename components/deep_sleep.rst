@@ -82,12 +82,13 @@ This action makes the given deep sleep component enter deep sleep immediately.
 
     on_...:
       then:
-        - deep_sleep.enter: deep_sleep_1
-          sleep_duration: 20min
+        - deep_sleep.enter:
+            id: deep_sleep_1
+            sleep_duration: 20min
 
 Configuration options:
 
-- **sleep_duration** (*Optional*, :ref:`config-time`): The time duration to stay in deep sleep mode.
+- **sleep_duration** (*Optional*, :ref:`templatable <config-templatable>`, :ref:`config-time`): The time duration to stay in deep sleep mode.
 
 
 .. _deep_sleep-prevent_action:
@@ -96,7 +97,7 @@ Configuration options:
 -----------------------------
 
 This action prevents the given deep sleep component from entering deep sleep.
-Useful for
+Useful for keeping the ESP active during data transfer or OTA updating (See note below for more information).
 
 .. code-block:: yaml
 

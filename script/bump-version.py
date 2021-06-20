@@ -60,9 +60,9 @@ def write_version(version: Version):
         "Doxygen", r"PROJECT_NUMBER         = .*", f"PROJECT_NUMBER         = {version}"
     )
     # version = '1.14'
-    sub("conf.py", r"version = '.*'", f"version = '{version.major}.{version.minor}'")
+    sub("conf.py", r'version = ".*"', f'version = "{version.major}.{version.minor}"')
     # release = '1.14.4'
-    sub("conf.py", r"release = '.*'", f"release = '{version}'")
+    sub("conf.py", r'release = ".*"', f'release = "{version}"')
     with open("_static/version", "wt") as fh:
         fh.write(str(version))
 

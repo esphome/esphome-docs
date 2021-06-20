@@ -127,7 +127,7 @@ Next, we can manually set the log levels in the configuration like this:
         mqtt.client: ERROR
 
 Please note that the global log level determines what log messages are
-saved in the binary. So for example a ``INFO`` global log message will
+saved in the binary. So for example an ``INFO`` global log message will
 purge all ``DEBUG`` log statements from the binary in order to conserve
 space. This however means that you cannot set tag-specific log levels
 that have a lower severity than the global log level.

@@ -38,6 +38,8 @@ Configuration variables:
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
@@ -383,11 +385,11 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
         effects:
           - pulse:
           - pulse:
-              name: "Fast Puse"
+              name: "Fast Pulse"
               transition_length: 0.5s
               update_interval: 0.5s
           - pulse:
-              name: "Slow Puse"
+              name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
               update_interval: 2s
 
@@ -746,8 +748,8 @@ This effect allows you to access each LED individually in a custom light effect.
 Available variables in the lambda:
 
 - **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
-- **current_color**  - :apistruct:`Color <Color>` instance (see API reference for more info).
-- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting a effect.
+- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
 
   .. note::
 
@@ -857,7 +859,7 @@ E1.31 Effect
 This effect enables controlling addressable lights using UDP-based
 E1.31_ protocol.
 
-JINX_ can be used to control E1.31_ enabled ESPHome.
+For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHome.
 
 .. code-block:: yaml
 
@@ -900,9 +902,11 @@ Configuration variables:
 
 - **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
 
+The udp port esphome is listening on is 5568.
 
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
+.. _Hyperion.NG: https://github.com/hyperion-project/hyperion.ng
 
 Adalight Effect
 ***************
@@ -965,6 +969,11 @@ Prismatik_ can be used to control addressable lights over network on ESPHome.
 Configuration variables:
 
 - **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+
+.. note::
+
+    You can also set the ``port`` to ``19446`` for compatability with Hyperion Classic using a
+    UDP device with protocol 0.
 
 Currently the following realtime protocols are supported:
 WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.

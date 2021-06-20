@@ -75,7 +75,7 @@ Configuration options:
 - **variables** (*Optional*, mapping): Optional variables that can be used in the ``data_template``.
   Values are :ref:`lambdas <config-lambda>` and will be evaluated before sending the request.
 
-Data structures are not possible, but you can create an script in Home Assistant and call with all
+Data structures are not possible, but you can create a script in Home Assistant and call with all
 the parameters in plain format.
 
 .. code-block:: yaml
