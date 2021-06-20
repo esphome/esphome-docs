@@ -200,6 +200,8 @@ of the basic functions.
 ``GPIO1``                                ``RX`` pin (for external sensors)
 ---------------------------------------- ----------------------------------------
 ``GPIO3``                                ``TX`` pin (for external sensors)
+---------------------------------------- ----------------------------------------
+``GPIO2``                                ``E-LOG`` pin (From PCB V2.1; for external sensors)
 ======================================== ========================================
 
 .. code-block:: yaml
@@ -207,8 +209,7 @@ of the basic functions.
     esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
-      board: esp8285
-      arduino_version: 2.4.2
+      board: esp01_1m
 
     wifi:
       ssid: <YOUR_SSID>
@@ -229,6 +230,9 @@ of the basic functions.
         name: "Sonoff S20 Button"
       - platform: status
         name: "Sonoff S20 Status"
+      - platform: gpio
+        pin: GPIO2
+        name: "Sonoff S20 Sensor"
 
 
     switch:

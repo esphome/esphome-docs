@@ -88,7 +88,7 @@ This action makes the given deep sleep component enter deep sleep immediately.
 
 Configuration options:
 
-- **sleep_duration** (*Optional*, :ref:`config-time`): The time duration to stay in deep sleep mode.
+- **sleep_duration** (*Optional*, :ref:`templatable <config-templatable>`, :ref:`config-time`): The time duration to stay in deep sleep mode.
 
 
 .. _deep_sleep-prevent_action:

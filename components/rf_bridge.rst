@@ -106,7 +106,11 @@ Configuration options:
 ``rf_bridge.send_raw`` Action
 -----------------------------
 
-Send a raw RF code using this action in automations.
+Send a raw command to the onboard EFM8BB1 chip.
+You can see a list of available commands and format in the `Portisch Wiki <https://github.com/Portisch/RF-Bridge-EFM8BB1/wiki/Commands>`__
+
+This can be used to send raw RF codes in automation's, mainly for protocols that are not supported.
+If you have *Portisch* firmware installed, these raw codes can be obtained with the help of :ref:`rf_bridge-start_bucket_sniffing_action`
 
 .. code-block:: yaml
 
@@ -267,7 +271,71 @@ Configuration options:
 
         id(rf_bridge).stop_advanced_sniffing();
 
+.. _rf_bridge-start_bucket_sniffing_action:
 
+``rf_bridge.start_bucket_sniffing`` Action
+------------------------------------------
+
+Tell the RF Bridge to dump raw sniffing data. Useful for getting codes for unsupported protocols.
+The raw data will be available in the log and can later be used with :ref:`rf_bridge-send_raw_action` action.
+
+.. note::
+
+    A conversion from *B1* (received) raw format to *B0* (send) raw command format should be applied.
+    For this, you can use the tool `BitBucket Converter <https://bbconv.hrbl.pl/>`__
+
+.. note::
+
+    There seems to be an overflow problem in Portisch firmware and after a short while, the bucket sniffing stops.
+    You should re-call the action to reset and start sniffing again.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - rf_bridge.start_bucket_sniffing
+
+Configuration options:
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the RF Bridge if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(rf_bridge).start_bucket_sniffing();
+
+
+.. _rf_bridge-beep_action:
+
+``rf_bridge.beep`` Action
+-------------------------------------------
+
+Activate the internal buzzer to make a beep.
+
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - rf_bridge.beep:
+            duration: 100 
+
+Configuration options:
+
+- **duration** (**Required**, string, :ref:`templatable <config-templatable>`): beep duration in milliseconds.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the RF Bridge if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(rf_bridge).beep(100);
+         
 Getting started with Home Assistant
 -----------------------------------
 

@@ -375,6 +375,7 @@ All Actions
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`cs5460a.restart <cs5460a-restart_action>`
 
 .. _config-condition:
 
@@ -792,13 +793,13 @@ using script modes ``single`` and ``restart`` respectively.
 .. code-block:: yaml
 
     script:
-    - id: hallway_light_script
-      mode: restart     # Light will be kept on during 1 minute since
-                        # the latest time the script is executed
-      then:
-        - light.turn_on: hallway_light
-        - delay: 1 min
-        - light.turn_off: hallway_light
+      - id: hallway_light_script
+        mode: restart     # Light will be kept on during 1 minute since
+                          # the latest time the script is executed
+        then:
+          - light.turn_on: hallway_light
+          - delay: 1 min
+          - light.turn_off: hallway_light
 
     ...
       on_...:           # can be called from different wall switches

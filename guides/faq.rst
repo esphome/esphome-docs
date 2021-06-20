@@ -19,13 +19,13 @@ Tips for using ESPHome
 
    .. code-block:: bash
 
-       esphome livingroom.yaml config
+       esphome config livingroom.yaml
 
 3. To view the logs from your node without uploading, run
 
    .. code-block:: bash
 
-       esphome livingroom.yaml logs
+       esphome logs livingroom.yaml
 
 4. You can always find the source ESPHome generates under ``<NODE_NAME>/src/``.
 
@@ -143,7 +143,7 @@ by installing the tested beta:
     pip3 install --pre -U esphome
 
     # For docker-based installs
-    docker run [...] -it esphome/esphome:beta livingroom.yaml run
+    docker run [...] -it esphome/esphome:beta run livingroom.yaml
 
 For Home Assistant supervised installs add the community addons beta repository by
 adding
@@ -260,13 +260,13 @@ Command reference:
 .. code-block:: bash
 
     # Start a new file wizard for file livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml wizard
+    docker run --rm -v "${PWD}":/config -it esphome/esphome wizard livingroom.yaml
 
     # Compile and upload livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml run
+    docker run --rm -v "${PWD}":/config -it esphome/esphome run livingroom.yaml
 
     # View logs
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml logs
+    docker run --rm -v "${PWD}":/config -it esphome/esphome logs livingroom.yaml
 
     # Map /dev/ttyUSB0 into container
     docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...

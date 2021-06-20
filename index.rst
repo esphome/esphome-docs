@@ -1,6 +1,3 @@
-ESPHome
-=======
-
 .. meta::
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
@@ -14,32 +11,83 @@ ESPHome
 
 ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
+.. image:: /images/hero.png
+
 .. raw:: html
 
-    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
-    <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
-    <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
-
-.. _guides:
-
-Guides
-------
-
-.. imgtable::
-
-    Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
-    FAQ and Tips, guides/faq, question_answer.svg
-
-    Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
-    Automations, guides/automations, auto-fix.svg
-    Contributing, guides/contributing, github-circle.svg
-
-    Changelog, changelog/index, new-box.svg
-    Supporters, guides/supporters, heart.svg
-    DIY Examples, guides/diy, earth.svg
-
-    Configuration types, guides/configuration-types, puzzle.svg
+    <div class="guide-container">
+        <div class="guide-card">
+            <h3 class="guide-card-title">Getting started</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/guides/getting_started_hassio.html">
+                        ESPHome Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/getting_started_command_line.html">
+                        Command Line Interface
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
+                        Migrating from Tasmota
+                    </a>
+                </li>
+            </ul>
+            <pre class="guide-code">
+                esphome:
+                &nbsp;&nbsp;name: awesome
+                &nbsp;&nbsp;platform: ESP32
+                &nbsp;&nbsp;board: nodemcu-32s
+            </pre>
+        </div>
+        <div class="guide-card">
+            <h3 class="guide-card-title">Next steps</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/guides/faq.html">
+                        FAQ and Tips
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/automations.html">
+                        Automations
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/diy.html">
+                        DIY Examples
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/configuration-types.html">
+                        Configuration types
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="guide-card">
+            <h3 class="guide-card-title">Keeping up</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/changelog/index.html">
+                        Changelog
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/supporters.html">
+                        Supporters
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/contributing.html">
+                        Contributing
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 .. _devices:
 
@@ -104,7 +152,7 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
-    BLE Sensor, components/sensor/ble_sensor, bluetooth.svg
+    BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg, Environment
     BME680, components/sensor/bme680, bme680.jpg, Environment
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Environment
@@ -113,6 +161,7 @@ Sensor Components
     b-parasite, components/sensor/b_parasite, b_parasite.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
+    CS5460A, components/sensor/cs5460a, cs5460a.png
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
     Dallas, components/sensor/dallas, dallas.jpg, Temperature, 1-Wire
     DHT, components/sensor/dht, dht.jpg
@@ -156,6 +205,7 @@ Sensor Components
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
+    SDM Meter, components/sensor/sdm_meter, sdm220m.png
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
@@ -209,6 +259,7 @@ Binary Sensor Components
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
+    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -272,7 +323,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
-    BLE Switch, components/switch/ble, bluetooth.svg
+    BLE Client Switch, components/switch/ble_client, bluetooth.svg
 
 Fan Components
 --------------
@@ -380,6 +431,7 @@ Misc Components
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
+    Improv, components/esp32_improv, improv.svg
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg

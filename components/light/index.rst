@@ -38,6 +38,8 @@ Configuration variables:
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
@@ -383,11 +385,11 @@ This effect makes a pulsating light. The period can be defined by ``update_inter
         effects:
           - pulse:
           - pulse:
-              name: "Fast Puse"
+              name: "Fast Pulse"
               transition_length: 0.5s
               update_interval: 0.5s
           - pulse:
-              name: "Slow Puse"
+              name: "Slow Pulse"
               # transition_length: 1s      # defaults to 1s
               update_interval: 2s
 

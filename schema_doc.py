@@ -481,7 +481,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             c = self.json_base_config or self.json_component
             if c:
                 trigger_schema = self.find_props(c).get(key)
-                self.props = self.find_props(trigger_schema)
+                if trigger_schema is not None:
+                    self.props = self.find_props(trigger_schema)
             self.props_section_title = title_text
 
         if title_text == PIN_CONFIGURATION_VARIABLES:
@@ -545,6 +546,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def find_registry_prop(self, registry_name, key, description):
         registry = self.app.jschema["definitions"][registry_name]["anyOf"]
         for item in registry:
+            if "$ref" in item:
+                item = self.get_ref(item)
             if key in item["properties"]:
                 item["properties"][key]["markdownDescription"] = description
                 self.props = self.find_props(item["properties"][key])
@@ -641,15 +644,33 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     ref = self.get_ref(prop["anyOf"][0])
                     self.prop_stack.append(self.props)
                     self.props = self.find_props(ref)
-                # nowhere put this props info...
-                # otherwise inner bullet list will be interpreted as property list
-                if self.props_level > 1:
+                else:
+                    # TODO: if the list items are formated like:
+                    #   - ``value`` <optional description>
+                    #   - ``other value`` <optional description>
+                    # then we could ensure these are enum values (or populate enum values double check.)
+                    # Currently some enum values are also in the **value** format.
+                    if (
+                        # most likely an enum, the values are most likely retrieved from ESPHome validation schema
+                        "enum" in prop
+                        # or custom components has list of sensors/binary sensors, etc.
+                        or (
+                            prop.get("markdownDescription", "").startswith("**list**")
+                            and self.docname.endswith("/custom")
+                        )
+                    ):
+                        raise nodes.SkipChildren
+                    # nowhere put this props info...
+                    # otherwise inner bullet list will be interpreted as property list
+                    logger = logging.getLogger(__name__)
+                    logger.info(
+                        f"In {self.docname} / {self.previous_title_text} property {self.current_prop} a unknown info sub bullet list."
+                    )
                     raise nodes.SkipChildren
             else:
                 # nowhere put this props info...
                 # otherwise inner bullet list will be interpreted as property list
-                if self.props_level > 1:
-                    raise nodes.SkipChildren
+                raise nodes.SkipChildren
 
         if not self.props and self.multi_component is None:
             raise nodes.SkipChildren
@@ -914,6 +935,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     prop_set = ref.get("anyOf")
                     if isinstance(prop_set, list):
                         for k in prop_set:
+                            if "$ref" in k:
+                                k = self.visitor.get_ref(k)
                             if key in k["properties"]:
                                 self.store = k["properties"]
                                 return self.store[key]
