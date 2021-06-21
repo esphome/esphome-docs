@@ -192,7 +192,7 @@ values nor ``swap_x_y``.
                   id(touchscreen).x,
                   id(touchscreen).y,
                   id(touchscreen).x_raw,
-                  id(touchscreen).y_raw,
+                  id(touchscreen).y_raw
                   );
 
 Get a stylus or a similar object, run the project and touch the corners of the screen at
