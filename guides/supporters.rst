@@ -145,6 +145,7 @@ Contributors
 - `dmkif (@dmkif) <https://github.com/dmkif>`__
 - `Farzad E. (@dnetguru) <https://github.com/dnetguru>`__
 - `DrZoid (@docteurzoidberg) <https://github.com/docteurzoidberg>`__
+- `Dominik (@DomiStyle) <https://github.com/DomiStyle>`__
 - `Jiang Sheng (@doskoi) <https://github.com/doskoi>`__
 - `Robert Schütz (@dotlambda) <https://github.com/dotlambda>`__
 - `Daniel Hyles (@DotNetDann) <https://github.com/DotNetDann>`__
@@ -206,8 +207,10 @@ Contributors
 - `Geoff Davis (@geoffdavis) <https://github.com/geoffdavis>`__
 - `Gerard (@gerard33) <https://github.com/gerard33>`__
 - `Giovanni (@Gio-dot) <https://github.com/Gio-dot>`__
+- `github-actions[bot] (@github-actions[bot]) <https://github.com/github-actions[bot]>`__
 - `gitolicious (@gitolicious) <https://github.com/gitolicious>`__
 - `The Gitter Badger (@gitter-badger) <https://github.com/gitter-badger>`__
+- `Frederik Gladhorn (@gladhorn) <https://github.com/gladhorn>`__
 - `Guillermo Ruffino (@glmnet) <https://github.com/glmnet>`__
 - `Giorgos Logiotatidis (@glogiotatidis) <https://github.com/glogiotatidis>`__
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__
@@ -588,4 +591,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 18, 2021.*
+*This page was last updated June 21, 2021.*
