@@ -94,6 +94,7 @@ Sample Configurations
 - `ESP32 Higrow Plant Moisture Sensor <https://gist.github.com/WoLpH/bc284ba9aeb5d1263f72d6294e239c1a>`__ by :ghuser:`WoLpH`
 - `Send push notification to phone when dryer cycle has finished <https://gist.github.com/jeffehobbs/93ab682705ec3bbba19887903e7ccdb9>`__ by :ghuser:`jeffehobbs`
 - `ESP8266 Smart Sprinkler Project <https://github.com/selfhostedhome/smart-sprinkler>`__ by `Self Hosted Home <https://selfhostedhome.com>`__
+:ghedit:`ESPHome Esp8266 lysignal Yunshan 7v-30v <https://gist.github.com/haade-administrator/ba9b6667ece8269cd37f64e34e908977/>`___ by :ghuser:`haade <https://www.haade.fr>`___
 - `LOHAS RGBW/CWWW Smart bulbs <https://www.youtube.com/watch?v=fTb6n6flJIw>`__ by `digiblurDIY <https://www.youtube.com/channel/UC5ZdPKE2ckcBhljTc2R_qNA>`__
 - `ESPHome with MakerLife Weather Station Kit <https://github.com/mkuoppa/esphomeweatherstation>`__ by :ghuser:`mkuoppa`
 - `ESPHome DIY Multisensor Cat Feeder <https://github.com/335iguy/diy-multisensor-cat-feeder>`__ by :ghuser:`335iguy`
