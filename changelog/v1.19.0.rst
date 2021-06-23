@@ -77,6 +77,14 @@ Release 1.19.1 - June 18
 - Improve config final validation :esphomepr:`1917` by :ghuser:`OttoWinter`
 - Replace CLIMATE_MODE_AUTO with CLIMATE_MODE_HEAT_COOL in most cases :esphomepr:`1933` by :ghuser:`jesserockz`
 
+Release 1.19.2 - June 21
+------------------------
+
+- Don't send Tuya commands while currently receiving a message :esphomepr:`1886` by :ghuser:`nuttytree`
+- Fix midea_ac query frame :esphomepr:`1940` by :ghuser:`dudanov`
+- Allow wifi setup to proceed when there is no sta or ap :esphomepr:`1931` by :ghuser:`jesserockz`
+- Fix bad climate control enum :esphomepr:`1942` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
