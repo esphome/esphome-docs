@@ -251,6 +251,7 @@ Contributors
 - `Jason Hines (@jasonehines) <https://github.com/jasonehines>`__
 - `JbLb (@jblb) <https://github.com/jblb>`__
 - `James Callaghan (@jcallaghan) <https://github.com/jcallaghan>`__
+- `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
 - `Joshua Dadswell (@jdads1) <https://github.com/jdads1>`__
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__
 - `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__
@@ -591,4 +592,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 21, 2021.*
+*This page was last updated June 23, 2021.*

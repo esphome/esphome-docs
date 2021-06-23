@@ -85,6 +85,11 @@ Release 1.19.2 - June 21
 - Allow wifi setup to proceed when there is no sta or ap :esphomepr:`1931` by :ghuser:`jesserockz`
 - Fix bad climate control enum :esphomepr:`1942` by :ghuser:`jesserockz`
 
+Release 1.19.3 - June 23
+------------------------
+
+- Bump esphome-dashboard to 20210622.0 :esphomepr:`1955` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
