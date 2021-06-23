@@ -7,7 +7,7 @@ Climate Component
 
 ESPHome has support for climate devices. Climate devices can represent different types of
 hardware, but the defining factor is that climate devices have a settable target temperature
-and can be put in different modes like HEAT, COOL, AUTO or OFF.
+and can be put in different modes like HEAT, COOL, HEAT_COOL or OFF.
 
 .. figure:: images/climate-ui.png
     :align: center
@@ -65,14 +65,14 @@ This is an :ref:`Action <config-action>` for setting parameters for climate devi
 
     - climate.control:
         id: my_climate
-        mode: AUTO
+        mode: HEAT_COOL
         target_temperature: 25°C
 
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the climate device to control.
 - **mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Put the climate device
-  in a specific mode. One of ``OFF``, ``AUTO``, ``COOL`` and ``HEAT``.
+  in a specific mode. One of ``OFF``, ``HEAT_COOL``, ``COOL`` and ``HEAT``.
 - **target_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   target temperature of a climate device.
 - **target_temperature_low** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
