@@ -1,0 +1,41 @@
+Changelog - Version 1.20.0 - ....
+===========================================
+
+changelog to be written...
+
+Light platform changes
+----------------------
+
+add intro about new features (hopefully we get support for the HA 2021.5 color modes done in time)
+
+Unfortunately, some breaking changes had to be made:
+
+* For addressable RGBW lights, the brightness now also applies to the white channel (this was already the case for
+  non-addressable RGBW lights). If you want to control only the brightness of the color channel, use the new
+  ``color_brightness`` option.
+* For RGBW lights, the white channel is no longer normalized by the color intensity in the ``light.turn_on`` and
+  ``light.control`` actions. In previous versions, if the red value was set to 60% and the white value to 30%, this
+  would result in the white channel being at 50% brightness. Starting with this version, this will result in the
+  white channel being set to 30%, as expected.
+
+
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.19.0
+    v1.18.0
+    v1.17.0
+    v1.16.0
+    v1.15.0
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
