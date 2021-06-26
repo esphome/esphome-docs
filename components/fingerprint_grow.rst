@@ -202,7 +202,7 @@ To use the variables, use a :ref:`lambda <config-lambda>` template, the matched 
     on_finger_scan_matched:
       - text_sensor.template.publish:
           id: fingerprint_state
-          state: !lambda 'return "Authorized finger " + to_string(finger_id) + ", confidence " + tostring(confidence);'
+          state: !lambda 'return "Authorized finger " + to_string(finger_id) + ", confidence " + to_string(confidence);'
       # Pushing a tag_scanned event based on finger_id only if confidence is greater than 50
       - if:
           condition:
