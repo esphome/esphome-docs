@@ -89,8 +89,7 @@ and circles:
           it.filled_circle(25, 25, 10);
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
-color to draw. Currently, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported because
-ESPHome only has implemented binary displays.
+color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
 .. code-block:: yaml
 
@@ -108,6 +107,23 @@ ESPHome only has implemented binary displays.
 
           // Turn off a whole display portion.
           it.rectangle(50, 50, 30, 42, COLOR_OFF);
+
+For color displays (e.g. TFT displays), you can use the Color class.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          auto red = Color(255, 0, 0);
+          auto green = Color(0, 255, 0);
+          auto blue = Color(0, 0, 255);
+          auto white = Color(255, 255, 255);
+          it.rectangle(20, 50, 30, 30, white);
+          it.rectangle(25, 55, 30, 30, red);
+          it.rectangle(30, 60, 30, 30, green);
+          it.rectangle(35, 65, 30, 30, blue);
 
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
