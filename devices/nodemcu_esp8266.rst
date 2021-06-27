@@ -28,7 +28,7 @@ the ESPHome wizard asks you for your platform and |nodemcuv2|_ as the board type
       board: nodemcuv2
 
 The NodeMCU's pin numbering as seen on the board (the ``D0`` etc pins) is different from
-the internal pin numbering. For example, the ``D8`` pin number maps to the internal
+the internal pin numbering. For example, the ``D3`` pin number maps to the internal
 ``GPIO0`` pin. Fortunately ESPHome knows the mapping from the on-board pin numbers
 to the internal pin numbering, but you need to prefix the pin numbers with ``D`` as in
 the image below in order for this automatic mapping to occur.

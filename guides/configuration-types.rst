@@ -13,15 +13,15 @@ page describes them.
 ID
 --
 
-Quite an important aspect of ESPHome are “ids”. They are used to
+Quite an important aspect of ESPHome are “IDs”. They are used to
 connect components from different domains. For example, you define an
-output component together with an id and then later specify that same id
+output component together with an ID and then later specify that same ID
 in the light component. IDs should always be unique within a
 configuration and ESPHome will warn you if you try to use the same
 ID twice.
 
 Because ESPHome converts your configuration into C++ code and the
-ids are in reality just C++ variable names, they must also adhere to
+IDs are in reality just C++ variable names, they must also adhere to
 C++’s naming conventions. `C++ Variable
 names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>`__
 …
@@ -108,25 +108,6 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
 
-.. _config-color:
-
-Color
------
-
-When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
-A ``color`` component exists for just this purpose:
-
-.. code-block:: yaml
-
-    color:
-      - id: my_light_red
-        red: 100%
-        green: 20%
-        blue: 25%
-        white: 0%
-
-RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
-may use all four color elements depending on their capabilities.
 
 .. _config-time:
 
@@ -224,7 +205,7 @@ of nodes inherit:
 
     To hide these base files from the dashboard, you can
 
-    - Place them in a subdirectory (dashboard only shows files in top-level dir)
+    - Place them in a subdirectory (dashboard only shows files in top-level directory)
     - Prepend a dot to the filename, like ``.base.yaml``
 
 .. _command-line-substitutions:
@@ -267,7 +248,6 @@ added ``board``, and overridden ``name`` substitutions):
       platform: ESP8266
       board: esp01_1m
       includes: []
-      board_flash_mode: dout
       libraries: []
       esp8266_restore_from_flash: false
       build_path: device01
@@ -290,8 +270,8 @@ config in the main yaml file. All definitions from packages will be merged with 
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
 
-Consider the following example where author put common pieces of configuration like WiFi,
-I2C into base files and extends it with some devices specific configurations in the main config.
+Consider the following example where the author put common pieces of configuration like WiFi and
+I²C into base files and extends it with some device specific configurations in the main config.
 
 Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
 merged with the services definitions from main config file.
@@ -342,7 +322,7 @@ merged with the services definitions from main config file.
       board: wemos_d1_mini32
       build_path: ./build/${node_name}
 
-    # I2C Bus
+    # I²C Bus
     i2c:
       sda: GPIO21
       scl: GPIO22

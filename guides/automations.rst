@@ -202,12 +202,12 @@ or just ``|`` or ``>``. There's a slight difference in how these different style
 purposes we can ignore that).
 
 With ``if (...) { ... } else { ... }`` we create a *condition*. What this effectively says that if the thing inside
-the first parentheses evaluates to ``true``` then execute the first block (in this case ``return COVER_OPEN;``,
+the first parentheses evaluates to ``true`` then execute the first block (in this case ``return COVER_OPEN;``,
 or else evaluate the second block. ``return ...;`` makes the code block give back a value to the template. In this case,
 we're either *returning* ``COVER_OPEN`` or ``COVER_CLOSED`` to indicate that the cover is closed or open.
 
 Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
-somewhere else, like ``top_end_stop```) and lets you call any of ESPHome's many APIs directly. For example, here
+somewhere else, like ``top_end_stop``) and lets you call any of ESPHome's many APIs directly. For example, here
 we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::
@@ -256,8 +256,8 @@ all of the usual lambda syntax.
 
 .. _config-globals:
 
-Bonus 2: Global Variables
-*************************
+Global Variables
+----------------
 
 In some cases you might require to share a global variable across multiple lambdas. For example,
 global variables can be used to store the state of a garage door.
@@ -284,7 +284,7 @@ global variables can be used to store the state of a garage door.
 
            ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): Give the global variable an ID so that you can refer
   to it later in :ref:`lambdas <config-lambda>`.
@@ -292,6 +292,7 @@ Configuration options:
   ``int`` (for integers), ``float`` (for decimal numbers), ``int[50]`` for an array of 50 integers, etc.
 - **restore_value** (*Optional*, boolean): Whether to try to restore the state on boot up.
   Be careful: on the ESP8266, you only have a total of 96 bytes available for this! Defaults to ``no``.
+  This will use storage in "RTC memory", so it won't survive a power-cycle unless you use the ``esp8266_restore_from_flash`` option to save to flash. See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
 - **initial_value** (*Optional*, string): The value with which to initialize this variable if the state
   can not be restored or if state restoration is not enabled. This needs to be wrapped in quotes! Defaults to
   the C++ default value for this type (for example ``0`` for integers).
@@ -299,7 +300,7 @@ Configuration options:
 .. _automation-networkless:
 
 Do Automations Work Without a Network Connection
-************************************************
+------------------------------------------------
 
 YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
@@ -323,7 +324,7 @@ All Triggers
 - :ref:`esphome.on_boot <esphome-on_boot>` / :ref:`esphome.on_shutdown <esphome-on_shutdown>` / :ref:`esphome.on_loop <esphome-on_loop>`
 - :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
-- :ref:`time.on_time <time-on_time>`
+- :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
 - :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
@@ -373,6 +374,8 @@ All Actions
 - :ref:`http_request.get <http_request-get_action>` / :ref:`http_request.post <http_request-post_action>` / :ref:`http_request.send <http_request-send_action>`
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
+- :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`cs5460a.restart <cs5460a-restart_action>`
 
 .. _config-condition:
 
@@ -387,10 +390,12 @@ All Conditions
 - :ref:`sensor.in_range <sensor-in_range_condition>`
 - :ref:`wifi.connected <wifi-connected_condition>` / :ref:`api.connected <api-connected_condition>`
   / :ref:`mqtt.connected <mqtt-connected_condition>`
+- :ref:`time.has_time <time-has_time_condition>`
 - :ref:`script.is_running <script-is_running_condition>`
 - :ref:`sun.is_above_horizon / sun.is_below_horizon <sun-is_above_below_horizon-condition>`
 - :ref:`text_sensor.state <text_sensor-state_condition>`
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
+- :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 
 All Lambda Calls
 ----------------
@@ -514,7 +519,7 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
         - light.turn_off: my_light
 
 
-Configuration options:
+Configuration variables:
 
 - **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
 - **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
@@ -542,7 +547,7 @@ a block until a given condition evaluates to false.
           - light.toggle: some_light
           - delay: 5s
 
-Configuration options:
+Configuration variables:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
@@ -607,8 +612,8 @@ Configuration variables:
   variable to.
 
 
-``script``
-----------
+``script`` Component
+--------------------
 
 With the ``script:`` component you can define a list of steps in a central place, and then
 execute the script with a single call.
@@ -624,7 +629,7 @@ execute the script with a single call.
           - switch.turn_off: my_switch
 
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The :ref:`config-id` of the script. Use this
   to interact with the script using the script actions.
@@ -756,8 +761,8 @@ Configuration variables:
 
 .. _interval:
 
-``interval``
-------------
+``interval`` Component
+----------------------
 
 This component allows you to run actions at fixed time intervals.
 For example if you want to toggle a switch every minute, you can use this component.
@@ -772,7 +777,7 @@ trigger, but this technique is more light-weight and user-friendly.
         then:
           - switch.toggle: relay_1
 
-Configuration options:
+Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
 - **then** (**Required**, :ref:`config-action`): The action to perform.
@@ -788,16 +793,16 @@ using script modes ``single`` and ``restart`` respectively.
 .. code-block:: yaml
 
     script:
-    - id: hallway_light_script
-      mode: restart     # Light will be kept on during 1 minute since
-                        # the latest time the script is executed
-      then:
-        - light.turn_on: hallway_light
-        - delay: 1 min
-        - light.turn_off: hallway_light
+      - id: hallway_light_script
+        mode: restart     # Light will be kept on during 1 minute since
+                          # the latest time the script is executed
+        then:
+          - light.turn_on: hallway_light
+          - delay: 1 min
+          - light.turn_off: hallway_light
 
     ...
-      on_...:           # can be called from diffrent wall switches
+      on_...:           # can be called from different wall switches
         - script.execute: hallway_light_script
 
 Sometimes you'll also need a timer which does not perform any action, that is ok too, just

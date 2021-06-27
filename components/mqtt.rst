@@ -48,7 +48,7 @@ Configuration variables:
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
-- **log_topic** (*Optional*, :ref:`mqtt-message`) The topic to send MQTT log
+- **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
   messages to.
 - **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
@@ -149,7 +149,7 @@ With Docker:
 
 .. code-block:: bash
 
-    docker run --rm -v "${PWD}":/config -it esphome/esphome configuration.yaml clean-mqtt
+    docker run --rm -v "${PWD}":/config -it esphome/esphome clean-mqtt configuration.yaml
 
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
@@ -334,9 +334,15 @@ Configuration variables:
 
     This action can also be used in :ref:`lambdas <config-lambda>`:
 
+    .. code-block:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
     .. code-block:: cpp
 
-        App.get_mqtt_client()->subscribe("the/topic", [=](const std::string &payload) {
+        id(mqtt_client).subscribe("the/topic", [=](const std::string &payload) {
             // do something with payload
         });
 
@@ -362,7 +368,7 @@ Please note that it's a good idea to check if the key exists in the Json Object 
       # ...
       on_json_message:
         topic: the/topic
-          then:
+        then:
           - light.turn_on:
               id: living_room_lights
 
@@ -397,9 +403,15 @@ Configuration variables:
 
     This action can also be used in :ref:`lambdas <config-lambda>`:
 
+    .. code-block:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
     .. code-block:: cpp
 
-        App.get_mqtt_client()->subscribe_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).subscribe_json("the/topic", [=](JsonObject &root) {
             // do something with JSON-decoded value root
         });
 
@@ -428,9 +440,9 @@ Publish an MQTT message on a topic using this action in automations.
 
 Configuration options:
 
--  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+-  **topic** (**Required**, string, :ref:`templatable <config-templatable>`):
    The MQTT topic to publish the message.
--  **payload** (*Required*, string, :ref:`templatable <config-templatable>`): The message content.
+-  **payload** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
 -  **qos** (*Optional*, int, :ref:`templatable <config-templatable>`): The `Quality of
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
@@ -479,9 +491,9 @@ as seen below.
 
 Configuration options:
 
--  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+-  **topic** (**Required**, string, :ref:`templatable <config-templatable>`):
    The MQTT topic to publish the message.
--  **payload** (*Required*, :ref:`lambda <config-lambda>`): The message content.
+-  **payload** (**Required**, :ref:`lambda <config-lambda>`): The message content.
 -  **qos** (*Optional*, int): The `Quality of
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
@@ -521,6 +533,22 @@ the MQTT broker.
           mqtt.connected:
         then:
           - logger.log: MQTT is connected!
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
+    .. code-block:: cpp
+
+        if (id(mqtt_client)->is_connected()) {
+          // do something if MQTT is connected
+        }
 
 See Also
 --------

@@ -5,7 +5,7 @@ SGP30 CO₂ and Volatile Organic Compound Sensor
     :description: Instructions for setting up SGP30 CO₂eq and Volatile Organic Compound sensor
     :image: sgp30.png
 
-The ``sgp30`` sensor platform  allows you to use your Sensiron SGP30 multi-pixel gas
+The ``sgp30`` sensor platform allows you to use your Sensirion SGP30 multi-pixel gas
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Datasheets/Sensirion_Gas_Sensors_SGP30_Datasheet.pdf>`__) sensors or the SVM30 breakout-boards  (`product page <https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/>`__) with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
@@ -27,7 +27,6 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
         address: 0x58
         update_interval: 5s
 
-
 Configuration variables:
 ------------------------
 
@@ -43,7 +42,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x58``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the

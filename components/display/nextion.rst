@@ -39,8 +39,7 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`UART bus <uart>` you wish to use for this display.
   Use this if you want to use multiple UART buses at once.
-- **brightness** (*Optional*, percentage): Set the screen brightness. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to ``100%``.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the nextion display.
   See :ref:`display-nextion_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to call the lambda to update the display.
@@ -55,7 +54,7 @@ Rendering Lambda
 With Nextion displays, a dedicated chip on the display itself does the whole rendering. ESPHome can only
 send *instructions* to the display to tell it *how* to render something and *what* to render.
 
-First, you need to use the `Nextion Editor <https://nextion.itead.cc/resources/download/nextion-editor/>`__ to
+First, you need to use the `Nextion Editor <https://nextion.tech/nextion-editor/>`__ to
 create a display file and insert it using the SD card slot. Then, in the rendering ``lambda``, you have 3 main methods
 you can call to populate data on the display:
 
@@ -84,6 +83,7 @@ See Also
 --------
 
 - :doc:`index`
+- :doc:`/components/binary_sensor/nextion`
 - :apiref:`nextion/nextion.h`
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__
 - `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <https://www.itead.cc/>`__
