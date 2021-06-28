@@ -39,7 +39,7 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
 
     # Optional (if you want modify settings)
     midea_dongle:
-      strength_icon: true   # for devices supporting indication of several levels of signal quality
+      strength_icon: true   # for devices that supporting indication of several levels of signal quality
     
     # Main settings
     climate:
@@ -122,6 +122,10 @@ component, as well as control the light of the LED display.
 
     # Example configuration entry
 
+    remote_transmitter:
+      pin: GPIO13                 # for midea-open-dongle hardware stick
+      carrier_duty_percent: 100%  # 50% for IR LED, 100% for direct connect to TSOP IR receiver output
+
     sensor:
       - platform: homeassistant
         id: fm_sensor
@@ -135,6 +139,16 @@ component, as well as control the light of the LED display.
               beeper: false   # may beep on every FM command (or not?)
               temperature: !lambda "return x;"
 
+    switch:
+      - platform: template
+        name: "Toggle Display"
+        icon: "mdi:theme-light-dark"
+        id: mlight
+        turn_on_action:
+          - remote_transmitter.transmit_midea_toggle_light:
+          - switch.turn_off: mlight
+
+
 Acknowledgments:
 ----------------
 
@@ -143,6 +157,8 @@ Thanks to the following people for their contributions to reverse engineering th
 * `Mac Zhou <https://github.com/mac-zhou/midea-msmart>`_
 * `NeoAcheron <https://github.com/NeoAcheron/midea-ac-py>`_
 * `Rene Klootwijk <https://github.com/reneklootwijk/node-mideahvac>`_
+
+Special thanks to the project `IRremoteESP8266 <https://github.com/crankyoldgit/IRremoteESP8266>`_ for describing the IR protocol.
 
 See Also
 --------
