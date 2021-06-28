@@ -33,23 +33,23 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
 
     # UART settings for Midea dongle (required)
     uart:
-      tx_pin: 1
-      rx_pin: 3
+      tx_pin: 1   # hardware dependant
+      rx_pin: 3   # hardware dependant
       baud_rate: 9600
 
     # Optional (if you want modify settings)
     midea_dongle:
-      strength_icon: true
+      strength_icon: true   # for devices supporting indication of several levels of signal quality
     
     # Main settings
     climate:
       - platform: midea_ac
-        name: "My Midea AC"
+        name: "Midea AC #1"   # use a unique name
         visual:
-          min_temperature: 18 °C
-          max_temperature: 25 °C
-          temperature_step: 0.1 °C
-        beeper: true
+          min_temperature: 17 °C    # min: 17
+          max_temperature: 30 °C    # max: 30
+          temperature_step: 0.5 °C  # min: 0.5
+        beeper: true  # beep on commands
         custom_fan_modes:
           - SILENT
           - TURBO
@@ -60,12 +60,12 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
           - FREEZE_PROTECTION
         swing_horizontal: true
         swing_both: true
-        outdoor_temperature:
-          name: "Temp"
-        power_usage:
-          name: "Power"
-        humidity_setpoint:
-          name: "Hum"
+        outdoor_temperature:  # create outdoor unit temperature sensor (may display incorrect values after long inactivity)
+          name: "Temp"        # sensor unique name
+        power_usage:          # create power usage sensor (only for devices that support this feature)
+          name: "Power"       # sensor unique name
+        humidity_setpoint:    # create indoor humidity sensor
+          name: "Hum"         # sensor unique name
 
 Configuration variables:
 ------------------------
