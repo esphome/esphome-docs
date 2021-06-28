@@ -139,6 +139,7 @@ component, as well as control the light of the LED display.
               beeper: false   # may beep on every FM command (or not?)
               temperature: !lambda "return x;"
 
+    # template momentary switch for sending display control command
     switch:
       - platform: template
         name: "Toggle Display"
