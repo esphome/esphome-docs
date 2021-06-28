@@ -78,9 +78,6 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
-If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
-Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
-
 .. _remote_transmitter-transmit_raw:
 
 ``remote_transmitter.transmit_raw`` Action
