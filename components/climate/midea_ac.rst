@@ -132,7 +132,7 @@ component, as well as control the light of the LED display.
         entity_id: sensor.room_sensor # sensor from HASS
         filters:
           - throttle: 10s
-          - heartbeat: 2min # minimum interval of FM commands
+          - heartbeat: 2min # maximum interval of FM commands
           - debounce: 1s
         on_value:
           - remote_transmitter.transmit_midea_follow_me:
