@@ -111,6 +111,30 @@ Configuration variables of midea-dongle component:
   and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to ``False``.
 
 
+Additional control options using IR commands
+--------------------------------------------
+
+It is possible to use the FollowMe function and some other features available only through IR commands.
+Below is an example of how to send FollowMe commands with the values of your sensor using the :doc:`../remote_transmitter`
+component, as well as control the light of the LED display.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+
+    sensor:
+      - platform: homeassistant
+        id: fm_sensor
+        entity_id: sensor.room_sensor # sensor from HASS
+        filters:
+          - throttle: 10s
+          - heartbeat: 2min # minimum interval of FM commands
+          - debounce: 1s
+        on_value:
+          - remote_transmitter.transmit_midea_follow_me:
+              beeper: false   # may beep on every FM command (or not?)
+              temperature: !lambda "return x;"
+
 Acknowledgments:
 ----------------
 
