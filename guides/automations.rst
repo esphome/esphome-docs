@@ -376,6 +376,7 @@ All Actions
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
+- :ref:`number.set <number-set_action>`
 
 .. _config-condition:
 
@@ -396,6 +397,7 @@ All Conditions
 - :ref:`text_sensor.state <text_sensor-state_condition>`
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
+- :ref:`number.in_range <number-in_range_condition>`
 
 All Lambda Calls
 ----------------
@@ -407,6 +409,7 @@ All Lambda Calls
 - :ref:`Cover <cover-lambda_calls>`
 - :ref:`Text Sensor <text_sensor-lambda_calls>`
 - :ref:`Stepper <stepper-lambda_calls>`
+- :ref:`Number <number-lambda_calls>`
 
 .. _delay_action:
 
