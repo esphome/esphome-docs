@@ -21,9 +21,14 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the number.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-  Lambda to be evaluated every update interval to get the new value of the number
+  Lambda to be evaluated every update interval to get the new value of the number.
+- **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+  be performed when the remote (like Home Assistant's frontend) requests to set the number value.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   number. Defaults to ``60s``.
+- **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
+  any command sent to the template number will immediately update the reported state.
+  Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-number>`.
 
