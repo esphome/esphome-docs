@@ -11,7 +11,7 @@ can be set by the user/frontend.
 
 .. note::
 
-    Home Assistant 2021.07 or higher is required for ESPHome number entities to work.
+    Home Assistant Core 2021.7 or higher is required for ESPHome number entities to work.
 
 .. _config-number:
 
