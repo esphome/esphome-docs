@@ -139,7 +139,7 @@ component, as well as control the light of the LED display.
               beeper: false   # may beep on every FM command (or not?)
               temperature: !lambda "return x;"
 
-    # template momentary switch for sending display control command
+    # template momentary switch for sending display control command and swing step actions
     switch:
       - platform: template
         name: "Toggle Display"
@@ -148,6 +148,13 @@ component, as well as control the light of the LED display.
         turn_on_action:
           - remote_transmitter.transmit_midea_toggle_light:
           - switch.turn_off: mlight
+      - platform: template
+        name: "Swing Step"
+        icon: "mdi:tailwind"
+        id: swing_step
+        turn_on_action:
+          - remote_transmitter.transmit_midea_swing_step:
+          - switch.turn_off: swing_step
 
 
 Acknowledgments:
