@@ -82,14 +82,14 @@ Configuration variables:
 - **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
   of the climate device.
 - **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
-  of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``, 
+  of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
   ``ACTIVITY``.
-- **custom_preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the 
+- **custom_preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
   supported custom_presets of the climate device.
 - **fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
   ``FOCUS``, ``DIFFUSE``.
-- **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the 
+- **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
   supported custom_fan_modes of the climate device.
 - **swing_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the swing mode
   of the climate device. One of ``OFF``, ``BOTH``, ``VERTICAL``, ``HORIZONTAL``.
@@ -104,7 +104,7 @@ advanced stuff.
 
 - Attributes: All climate devices have read-only attributes to get the current state of the device.
 
-  .. code-block:: yaml
+  .. code-block:: cpp
 
       // Current mode, type: ClimateMode (enum)
       id(my_climate).mode
@@ -125,7 +125,7 @@ advanced stuff.
 
 - ``.make_call``: Control the climate device
 
-  .. code-block:: yaml
+  .. code-block:: cpp
 
       auto call = id(my_climate).make_call();
       call.set_mode("OFF");
