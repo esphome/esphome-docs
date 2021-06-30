@@ -142,11 +142,11 @@ component, as well as control the light of the LED display.
     # template momentary switch for sending display control command and swing step actions
     switch:
       - platform: template
-        name: "Toggle Display"
+        name: "Display Toggle"
         icon: "mdi:theme-light-dark"
         id: mlight
         turn_on_action:
-          - remote_transmitter.transmit_midea_toggle_light:
+          - remote_transmitter.transmit_midea_display_toggle:
           - switch.turn_off: mlight
       - platform: template
         name: "Swing Step"
