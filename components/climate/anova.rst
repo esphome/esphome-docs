@@ -23,7 +23,7 @@ This platform uses the BLE peripheral on an ESP32, so you also need to enable
 this component. Please see the BLE Client docs for how to discover the MAC
 address of your Anova device.
 You cannot use the Anova app over BLE whilst this component is connected, you
-should disconnect it first. To setup a (dis-)connect switch, see :doc:`/components/switch/ble`.
+should disconnect it first. To setup a (dis-)connect switch, see :doc:`/components/switch/ble_client`.
 
 .. code-block:: yaml
 
