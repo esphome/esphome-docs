@@ -182,9 +182,11 @@ There are the following possibilities to operate this sensor:
 
 1. Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
 2. Device flashed with `ATC MiThermometer <https://github.com/atc1441/ATC_MiThermometer>`__ custom firmware
+3. Device flashed with `PVVX MiThermometer <https://github.com/pvvx/ATC_MiThermometer>`__ custom firmware
 
    - "Mi Like" advertisement (dummy bindkey required)
    - "Custom" advertisement (no bindkey required)
+   - "pvvx" custom advertisement (no bindkey required, only PVVX firmware)
 
 Configuration example for Xiaomi stock firmware or ATC MiThermometer firmware set to "Mi Like" advertisement:
 
@@ -216,6 +218,22 @@ Configuration example for ATC MiThermometer firmware set to "Custom" advertiseme
           name: "ATC Battery-Level"
         battery_voltage:
           name: "ATC Battery-Voltage"
+
+Configuration example for PVVX MiThermometer firmware set to "Custom" advertisement:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: pvvx_mithermometer
+        mac_address: "A4:C1:38:B1:CD:7F"
+        temperature:
+          name: "PVVX Temperature"
+        humidity:
+          name: "PVVX Humidity"
+        battery_level:
+          name: "PVVX Battery-Level"
+        battery_voltage:
+          name: "PVVX Battery-Voltage"
 
 MHO-C401
 **********
