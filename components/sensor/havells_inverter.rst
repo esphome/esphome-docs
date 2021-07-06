@@ -24,18 +24,18 @@ to some pins on your board and the baud rate set to 9600.
 
     # Example configuration entry
     uart:
-    - id: uart1
+      - id: uart1
         baud_rate: 9600
-        tx_pin: D8
-        rx_pin: D7
+        tx_pin: GPIO1
+        rx_pin: GPIO3
     
     
     modbus:
-    uart_id: uart1
-    flow_control_pin: D2
+      uart_id: uart1
+      flow_control_pin: GPIO4
     
     sensor:
-    - platform: havells_solar
+      - platform: havells_solar
         update_interval: 60s
         phase_a:
           voltage:
