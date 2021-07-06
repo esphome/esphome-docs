@@ -86,15 +86,15 @@ to some pins on your board and the baud rate set to 9600.
           name: "HAVELLS Inverter Inner Temp"
         inverter_bus_voltage:
           name: "HAVELLS Inverter BUS Voltage"
-        pv1_volt_sampled_by_slave_cpu:
+        pv1_voltage_sampled_by_slave_cpu:
           name: "HAVELLS PV1 Voltage Sampled By Slave CPU"
-        pv2_volt_sampled_by_slave_cpu:
+        pv2_voltage_sampled_by_slave_cpu:
           name: "HAVELLS PV2 Voltage Sampled By Slave CPU"
-        insulation_pv1_p_to_ground:
+        insulation_of_pv1_p_to_ground:
           name: "HAVELLS Insulation Of PV1+ To Ground"
-        insulation_pv2_p_to_ground:
+        insulation_of_pv2_p_to_ground:
           name: "HAVELLS Insulation Of PV2+ To Ground"
-        insulation_pv_n_to_ground:
+        insulation_of_pv_n_to_ground:
           name: "HAVELLS Insulation Of PV- To Ground"
         gfci_value:
           name: "HAVELLS GFCI Value"
@@ -158,15 +158,15 @@ Configuration variables:
   degree celcius. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_bus_voltage** (*Optional*): Use the inverter bus voltage value of the sensor in volts.
   All options from :ref:`Sensor <config-sensor>`.
-- **pv1_volt_sampled_by_slave_cpu** (*Optional*): Use the photo voltiac 1 voltage sampled by slave CPU
+- **pv1_voltage_sampled_by_slave_cpu** (*Optional*): Use the photo voltiac 1 voltage sampled by slave CPU
   value of the sensor in volts. All options from :ref:`Sensor <config-sensor>`.
-- **pv2_volt_sampled_by_slave_cpu** (*Optional*): Use the photo voltiac 2 voltage sampled by slave CPU
+- **pv2_voltage_sampled_by_slave_cpu** (*Optional*): Use the photo voltiac 2 voltage sampled by slave CPU
   value of the sensor in volts. All options from :ref:`Sensor <config-sensor>`.
-- **insulation_pv1_p_to_ground** (*Optional*): Use the insulation of photo voltiac 1's +ve terminal to
+- **insulation_of_pv1_p_to_ground** (*Optional*): Use the insulation of photo voltiac 1's +ve terminal to
   ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
-- **insulation_pv2_p_to_ground** (*Optional*): Use the insulation of photo voltiac 2's +ve terminal to
+- **insulation_of_pv2_p_to_ground** (*Optional*): Use the insulation of photo voltiac 2's +ve terminal to
   ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
-- **insulation_pv_n_to_ground** (*Optional*): Use the insulation  of  photo  voltiacs's 
+- **insulation_of_pv_n_to_ground** (*Optional*): Use the insulation  of  photo  voltiacs's 
   -ve terminal to ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
 - **gfci_value** (*Optional*): Use the GFCI value of the sensor.
   All options from :ref:`Sensor <config-sensor>`.
