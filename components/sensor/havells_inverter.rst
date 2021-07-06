@@ -1,5 +1,5 @@
 Havells Inverter
-==========================
+================
 
 .. seo::
     :description: Instructions for setting up Havells inverter reading on modbus.
