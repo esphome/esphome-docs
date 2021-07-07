@@ -52,20 +52,28 @@ to some pins on your board and the baud rate set to 9600.
               name: "HAVELLS Voltage Phase C"
           current:
               name: "HAVELLS Current Phase C"
-        pv_1:
+        pv1:
           voltage:
               name: "HAVELLS PV1 Voltage"
           current:
               name: "HAVELLS PV1 Current"
           active_power:
               name: "HAVELLS PV1 Active Power"
-        pv_2:
+          voltage_sampled_by_secondary_cpu:
+              name: "HAVELLS PV1 Voltage Sampled By Slave CPU"
+          insulation_of_p_to_ground:
+              name: "HAVELLS PV1 Insulation Of +VE To Ground"
+        pv2:
           voltage:
               name: "HAVELLS PV2 Voltage"
           current:
               name: "HAVELLS PV2 Current"
           active_power:
               name: "HAVELLS PV2 Active Power"
+          voltage_sampled_by_secondary_cpu:
+              name: "HAVELLS PV2 Voltage Sampled By Slave CPU"
+          insulation_of_p_to_ground:
+              name: "HAVELLS PV2 Insulation Of +VE To Ground"
         active_power:
           name: "HAVELLS Active Power"
         reactive_power:
@@ -86,14 +94,6 @@ to some pins on your board and the baud rate set to 9600.
           name: "HAVELLS Inverter Inner Temp"
         inverter_bus_voltage:
           name: "HAVELLS Inverter BUS Voltage"
-        pv1_voltage_sampled_by_slave_cpu:
-          name: "HAVELLS PV1 Voltage Sampled By Slave CPU"
-        pv2_voltage_sampled_by_slave_cpu:
-          name: "HAVELLS PV2 Voltage Sampled By Slave CPU"
-        insulation_of_pv1_p_to_ground:
-          name: "HAVELLS Insulation Of PV1+ To Ground"
-        insulation_of_pv2_p_to_ground:
-          name: "HAVELLS Insulation Of PV2+ To Ground"
         insulation_of_pv_n_to_ground:
           name: "HAVELLS Insulation Of PV- To Ground"
         gfci_value:
@@ -125,7 +125,7 @@ Configuration variables:
 
   - All options from **phase_a**
 
-- **pv_1** (*Optional*): The group of exposed sensors for Photo Voltaic 1.
+- **pv1** (*Optional*): The group of exposed sensors for Photo Voltaic 1.
 
   - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
     :ref:`Sensor <config-sensor>`.
@@ -133,10 +133,14 @@ Configuration variables:
     All options from :ref:`Sensor <config-sensor>`.
   - **active_power** (*Optional*): Use the (active) power value of the sensor in watts. All options
     from :ref:`Sensor <config-sensor>`.
+  - **voltage_sampled_by_secondary_cpu** (*Optional*): Use the photo voltiac's voltage sampled by
+    slave CPU value of the sensor in volts. All options from :ref:`Sensor <config-sensor>`.
+  - **insulation_of_p_to_ground** (*Optional*): Use the insulation of photo voltiac's +ve terminal to
+    ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
 
-- **pv_2** (*Optional*): The group of exposed sensors for Photo Voltaic 2.
+- **pv2** (*Optional*): The group of exposed sensors for Photo Voltaic 2.
 
-  - All options from **pv_1**
+  - All options from **pv1**
 
 - **active_power** (*Optional*): Use the (active) power value of the sensor in watts. All options
   from :ref:`Sensor <config-sensor>`.
@@ -158,14 +162,6 @@ Configuration variables:
   degree celcius. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_bus_voltage** (*Optional*): Use the inverter bus voltage value of the sensor in volts.
   All options from :ref:`Sensor <config-sensor>`.
-- **pv1_voltage_sampled_by_slave_cpu** (*Optional*): Use the photo voltiac 1 voltage sampled by slave CPU
-  value of the sensor in volts. All options from :ref:`Sensor <config-sensor>`.
-- **pv2_voltage_sampled_by_slave_cpu** (*Optional*): Use the photo voltiac 2 voltage sampled by slave CPU
-  value of the sensor in volts. All options from :ref:`Sensor <config-sensor>`.
-- **insulation_of_pv1_p_to_ground** (*Optional*): Use the insulation of photo voltiac 1's +ve terminal to
-  ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
-- **insulation_of_pv2_p_to_ground** (*Optional*): Use the insulation of photo voltiac 2's +ve terminal to
-  ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
 - **insulation_of_pv_n_to_ground** (*Optional*): Use the insulation  of  photo  voltiacs's 
   -ve terminal to ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
 - **gfci_value** (*Optional*): Use the GFCI value of the sensor.
