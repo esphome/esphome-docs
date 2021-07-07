@@ -13,6 +13,7 @@ sensor sends out a BLE broadcast. Note that contrary to other implementations, E
 many IBS-TH1 devices at once as you want.
 
 .. note::
+
     If an external temperature sensor is connected to the IBS-TH1, measurement from the internal sensor is not sent.
     Only one sensor will work at a time.
 
