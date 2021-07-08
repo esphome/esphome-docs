@@ -23,7 +23,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the number.
-- **min_value** (**Required**, float): The minumum value this number can be.
+- **min_value** (**Required**, float): The minimum value this number can be.
 - **max_value** (**Required**, float): The maximum value this number can be.
 - **step** (**Required**, float): The granularity with which the number can be set.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
