@@ -15,11 +15,17 @@ using :ref:`lambdas <config-lambda>`.
       - platform: template
         name: "Template number"
         update_interval: never
+        min_value: 0
+        max_value: 100
+        step: 1
 
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the number.
+- **min_value** (**Required**, float): The minumum value this number can be.
+- **max_value** (**Required**, float): The maximum value this number can be.
+- **step** (**Required**, float): The granularity with which the number can be set.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the number.
 - **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
