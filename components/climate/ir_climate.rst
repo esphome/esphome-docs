@@ -158,18 +158,18 @@ Configuration variables:
 
 .. note::
 
-  - While they are identified as separate models here, the ``RAC-PT1411HWRU-C`` and ``RAC-PT1411HWRU-C`` are
-    in fact the same physical model/unit. They are separated here only because different IR codes are used
-    depending on the desired unit of measurement. This only affects how temperature is displayed on the unit itself.
+    - While they are identified as separate models here, the ``RAC-PT1411HWRU-C`` and ``RAC-PT1411HWRU-C`` are
+      in fact the same physical model/unit. They are separated here only because different IR codes are used
+      depending on the desired unit of measurement. This only affects how temperature is displayed on the unit itself.
 
-  - The ``RAC-PT1411HWRU`` model supports a feature Toshiba calls "Comfort Sense". The handheld remote control
-    has a built-in temperature sensor and it will periodically transmit the temperature from this sensor to the
-    AC unit. If a ``sensor`` is provided in the configuration with this model, the sensor's temperature will be
-    transmitted to the ``RAC-PT1411HWRU`` in the same manner as the original remote controller. How often the
-    temperature is transmitted is determined by the ``update_interval`` assigned to the ``sensor``. Note that
-    ``update_interval`` must be less than seven minutes or the ``RAC-PT1411HWRU`` will revert to using its own
-    internal temperature sensor; a value of 30 seconds seems to work well. See :doc:`/components/sensor/index`
-    for more information.
+    - The ``RAC-PT1411HWRU`` model supports a feature Toshiba calls "Comfort Sense". The handheld remote control
+      has a built-in temperature sensor and it will periodically transmit the temperature from this sensor to the
+      AC unit. If a ``sensor`` is provided in the configuration with this model, the sensor's temperature will be
+      transmitted to the ``RAC-PT1411HWRU`` in the same manner as the original remote controller. How often the
+      temperature is transmitted is determined by the ``update_interval`` assigned to the ``sensor``. Note that
+      ``update_interval`` must be less than seven minutes or the ``RAC-PT1411HWRU`` will revert to using its own
+      internal temperature sensor; a value of 30 seconds seems to work well. See :doc:`/components/sensor/index`
+      for more information.
 
 
 .. _whirlpool:
