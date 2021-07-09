@@ -39,7 +39,7 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
 
     # Optional (if you want modify settings)
     midea_dongle:
-      strength_icon: true   # for devices that supporting indication of several levels of signal quality
+      strength_icon: true   # Optional. For devices that supporting indication of several levels of signal quality
     
     # Main settings
     climate:
@@ -60,12 +60,12 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
           - FREEZE_PROTECTION
         swing_horizontal: true
         swing_both: true
-        outdoor_temperature:  # create outdoor unit temperature sensor (may display incorrect values after long inactivity)
-          name: "Temp"        # sensor unique name
-        power_usage:          # create power usage sensor (only for devices that support this feature)
-          name: "Power"       # sensor unique name
-        humidity_setpoint:    # create indoor humidity sensor
-          name: "Hum"         # sensor unique name
+        outdoor_temperature:  # Optional. Create outdoor unit temperature sensor (may display incorrect values after long inactivity)
+          name: "Temp"        # Sensor unique name
+        power_usage:          # Optional. Create power usage sensor (only for devices that support this feature)
+          name: "Power"       # Sensor unique name
+        humidity_setpoint:    # Optional. Create indoor humidity sensor
+          name: "Hum"         # Sensor unique name
 
 Configuration variables:
 ------------------------
@@ -107,8 +107,60 @@ Configuration variables of midea-dongle component:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
+- **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
 - **strength_icon** (*Optional*, boolean): Set if your device have signal strength icon
   and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to ``False``.
+
+
+.. _midea_ac-follow_me_action:
+
+``midea_ac.follow_me`` Action
+*****************************
+
+This action transmit IR FollowMe command telling the air conditioner a more accurate
+room temperature value to be used instead of the internal indoor unit sensor.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.follow_me:
+            temperature: !lambda "return x + 0.5;"
+            beeper: false           # Optional. Beep on every FM command
+
+Configuration variables:
+
+- **temperature** (**Required**, uint8_t, :ref:`templatable <config-templatable>`): Set the
+  value of a internal temperature sensor.
+- **beeper** (*Optional*, bool, :ref:`templatable <config-templatable>`): set beep on update.
+
+
+.. _midea_ac-display_toggle_action:
+
+``midea_ac.display_toggle`` Action
+*****************************
+
+This action toggle ac screen.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.display_toggle:
+
+
+.. _midea_ac-swing_step_action:
+
+``midea_ac.swing_step`` Action
+*****************************
+
+This action adjust the louver by one step.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.swing_step:
 
 
 Additional control options using IR commands
@@ -123,21 +175,24 @@ component, as well as control the light of the LED display.
     # Example configuration entry
 
     remote_transmitter:
-      pin: GPIO13                 # for midea-open-dongle hardware stick
+      pin: GPIO13                 # For midea-open-dongle hardware stick
       carrier_duty_percent: 100%  # 50% for IR LED, 100% for direct connect to TSOP IR receiver output
+
+    midea_dongle:
+      transmitter_id:             # Add this option to use IR transmitter
 
     sensor:
       - platform: homeassistant
         id: fm_sensor
-        entity_id: sensor.room_sensor # sensor from HASS
+        entity_id: sensor.room_sensor # Sensor from HASS
         filters:
           - throttle: 10s
-          - heartbeat: 2min # maximum interval of FM commands
+          - heartbeat: 2min           # Maximum interval between FM commands
           - debounce: 1s
         on_value:
-          - remote_transmitter.transmit_midea_follow_me:
-              beeper: false   # may beep on every FM command (or not?)
-              temperature: !lambda "return x;"
+          - midea_ac.follow_me:
+              temperature: !lambda "return x + 0.5;"
+              beeper: false           # Optional. Beep on every FM command
 
     # template momentary switch for sending display control command and swing step actions
     switch:
@@ -146,14 +201,14 @@ component, as well as control the light of the LED display.
         icon: "mdi:theme-light-dark"
         id: mlight
         turn_on_action:
-          - remote_transmitter.transmit_midea_display_toggle:
+          - midea_ac.display_toggle:
           - switch.turn_off: mlight
       - platform: template
         name: "Swing Step"
         icon: "mdi:tailwind"
         id: swing_step
         turn_on_action:
-          - remote_transmitter.transmit_midea_swing_step:
+          - midea_ac.swing_step:
           - switch.turn_off: swing_step
 
 
