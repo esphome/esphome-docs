@@ -46,7 +46,7 @@ The wizard will guide you through creating your first configuration and, dependi
 
     If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome Dashboard.
     *You need to access the ESPHome Dashboard over HTTPS for this to work. This is a requirement of browsers to access your ESP device to ensure that we write the correct data.*
-    
+
     If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome Dashboard and Home Assistant.
 
     If the serial port is not showing up, you might not have the required drivers installed. These drivers work for most ESP devices:
