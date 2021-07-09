@@ -138,7 +138,7 @@ Configuration variables:
 .. _midea_ac-display_toggle_action:
 
 ``midea_ac.display_toggle`` Action
-*****************************
+**********************************
 
 This action toggle ac screen.
 
@@ -152,7 +152,7 @@ This action toggle ac screen.
 .. _midea_ac-swing_step_action:
 
 ``midea_ac.swing_step`` Action
-*****************************
+******************************
 
 This action adjust the louver by one step.
 
