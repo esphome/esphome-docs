@@ -90,7 +90,7 @@ should be prefixed with the page name (page0/page1).
 
 ``nextion_component_name: page0.r0``
 
-.. _nextion_bindary_sensor_lambda_calls:
+.. _nextion_binary_sensor_lambda_calls:
 
 Lambda Calls
 ************
