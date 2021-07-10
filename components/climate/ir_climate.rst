@@ -62,8 +62,8 @@ controller unit.
       - platform: coolix       # adjust to match your AC unit!
         name: "Living Room AC"
 
-Configuration Variables
------------------------
+Configuration Variables:
+------------------------
 
 - **name** (**Required**, string): The name for the climate device.
 - **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient
@@ -143,7 +143,7 @@ Configuration variables:
 .. _toshiba:
 
 ``toshiba`` Climate
----------------------
+-------------------
 
 Additional configuration is available for this model.
 
