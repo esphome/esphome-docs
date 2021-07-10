@@ -151,6 +151,7 @@ Sensor Components
     AS3935, components/sensor/as3935, as3935.jpg
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
+    BL0940, components/sensor/bl0940, bl0940.svg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg

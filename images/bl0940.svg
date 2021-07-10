@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="61.333">
+    <style>
+        .heavy { font: bold 50px sans-serif; }
+    </style>
+    <path d="M20.533 1.867h239.511c10.31 0 18.667 8.357 18.667 18.666V41.2c0 10.31-8.358 18.667-18.667 18.667H20.534c-10.31 0-18.667-8.358-18.667-18.667V20.533c0-10.309 8.357-18.666 18.666-18.666z"/>
+    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.333" d="M20.533 1.867h239.511c10.31 0 18.667 8.357 18.667 18.666V41.2c0 10.31-8.358 18.667-18.667 18.667H20.534c-10.31 0-18.667-8.358-18.667-18.667V20.533c0-10.309 8.357-18.666 18.666-18.666z"/>
+    <g fill="#fff">
+        <text x="35" y="50" class="heavy">BL0940</text>
+    </g>
+</svg>
