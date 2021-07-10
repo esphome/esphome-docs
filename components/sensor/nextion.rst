@@ -7,7 +7,7 @@ Nextion Sensor Component
     :description: Instructions for setting up Nextion sensor.
     :image: nextion.jpg    
 
-The ``nextion`` sensor platform supports intergers or floats (Xfloat). It can be a component, a variable or a waveform in the Nextion display.
+The ``nextion`` sensor platform supports integers or floats (Xfloat). It can be a component, a variable or a waveform in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
 if the page is shown or not. 
 
@@ -173,4 +173,3 @@ See Also
 - :doc:`index`
 - :apiref:`nextion/nextion_sensor.h`
 - :ghedit:`Edit`
-
