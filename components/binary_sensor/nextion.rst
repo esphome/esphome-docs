@@ -74,7 +74,7 @@ Example:
       variable_name: current_page
       on_value:
         lambda: |-
-          id(nextion1).updates_components_by_page_prefix("page"+x+".");
+          id(nextion1).update_components_by_page_prefix("page"+x+".");
 
   
 
@@ -172,4 +172,3 @@ See Also
 - :doc:`index`
 - :apiref:`nextion/nextion_binarysensor.h`
 - :ghedit:`Edit`
-
