@@ -37,8 +37,8 @@ Configuration variables:
 - **component_name** (*Optional*, string): The name of the Nextion component.
 - **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_text_sensor_protocol` this should not be used
-- **background_color** (*Optional*, :ref:`Color`):  The background color
-- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
+- **background_color** (*Optional*, ref:`config-color`):  The background color
+- **foreground_color** (*Optional*, ref:`config-color`):  The foreground color
 - **font_id** (*Optional*, uint8_t):  The font id for the component
 - **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Text Sensor <config-text_sensor>`.

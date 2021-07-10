@@ -164,29 +164,30 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
 
 - ``set_nextion_text_state(std::string name, std::string state);`` : Sets the text sensor state
 
-  .. note::
+.. note::
 
-  Below is a method for HASS to send updates to the Nextion by code.
-  .. code-block:: yaml
+    Below is a method for HASS to send updates to the Nextion by code.
 
-  # Enable Home Assistant API
-  api:
-    services:
-      - service: set_nextion_sensor
-        variables:
-          nextion_type: int
-          name: string
-          state: float
-        then:
-          - lambda: |-
-              id(nextion1).set_nextion_sensor_state(nextion_type,name,state);
-      - service: set_nextion_text
-        variables:
-          name: string
-          state: string
-        then:
-          - lambda: |-
-              id(nextion1).set_nextion_text_state(name,state);
+    .. code-block:: yaml
+
+        # Enable Home Assistant API
+        api:
+          services:
+            - service: set_nextion_sensor
+              variables:
+                nextion_type: int
+                name: string
+                state: float
+              then:
+                - lambda: |-
+                    id(nextion1).set_nextion_sensor_state(nextion_type,name,state);
+            - service: set_nextion_text
+              variables:
+                name: string
+                state: string
+              then:
+                - lambda: |-
+                    id(nextion1).set_nextion_text_state(name,state);
 
 .. _nextion_queue_types:
 

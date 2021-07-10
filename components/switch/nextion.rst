@@ -39,10 +39,10 @@ Configuration variables:
 - **component_name** (*Optional*, string): The name of the Nextion component.
 - **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_switch_protocol` this should not be used
-- **background_color** (*Optional*, :ref:`Color`):  The background color
-- **background_pressed_color** (*Optional*, :ref:`Color`):  The background color when pressed
-- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
-- **foreground_pressed_color** (*Optional*, :ref:`Color`):  The foreground color when pressed
+- **background_color** (*Optional*, ref:`config-color`):  The background color
+- **background_pressed_color** (*Optional*, ref:`config-color`):  The background color when pressed
+- **foreground_color** (*Optional*, ref:`config-color`):  The foreground color
+- **foreground_pressed_color** (*Optional*, ref:`config-color`):  The foreground color when pressed
 - **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Switch <config-switch>`.
 

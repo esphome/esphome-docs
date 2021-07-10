@@ -46,10 +46,10 @@ Configuration variables:
 - **page_id** (*Optional*, string): The ID of the page the component is on. Use ``0`` for the default page.
 - **component_id** (*Optional*, string): The ID (the number, not name!) of the component to track.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_binary_sensor_protocol` this should not be used
-- **background_color** (*Optional*, :ref:`Color`):  The background color
-- **background_pressed_color** (*Optional*, :ref:`Color`):  The background color when pressed
-- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
-- **foreground_pressed_color** (*Optional*, :ref:`Color`):  The foreground color when pressed
+- **background_color** (*Optional*, :ref:`config-color`):  The background color
+- **background_pressed_color** (*Optional*, :ref:`config-color`):  The background color when pressed
+- **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
+- **foreground_pressed_color** (*Optional*, :ref:`config-color`):  The foreground color when pressed
 - **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
@@ -59,8 +59,8 @@ this native event **page_id** and **component_id** are required. No :ref:`nextio
 
   .. note::
 
-  ``background_color(s)`` , ``foreground_color(s)`` and ``visible`` do not retain their state on page change. :ref:`nextion_binary_sensor_settings`
-  A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
+      ``background_color(s)`` , ``foreground_color(s)`` and ``visible`` do not retain their state on page change. :ref:`Binary Sensor Settings <nextion_binary_sensor_settings>`.
+      A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
 
 
 Example:
@@ -136,7 +136,7 @@ Using the above yaml example:
   - "Radio 0 Binary Sensor" will poll the Nextion for the ``r0.val`` value and set the state accordingly.
   - "Is Darkmode Set" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_binary_sensor_protocol` or use a lambda:
 
-    - :ref:`Lambda Calls <nextion_bindary_sensor_lambda_calls>`.    
+    - :ref:`Lambda Calls <nextion_binary_sensor_lambda_calls>`.    
 
 .. note::
 

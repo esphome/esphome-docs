@@ -62,8 +62,8 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
 - **nextion_precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets 
   the precision that the component is set to. This typically is the ``vvs1`` setting of the component.                                                         
-- **background_color** (*Optional*, :ref:`Color`):  The background color
-- **foreground_color** (*Optional*, :ref:`Color`):  The foreground color
+- **background_color** (*Optional*, ref:`config-color`):  The background color
+- **foreground_color** (*Optional*, ref:`config-color`):  The foreground color
 - **visible** (*Optional*, boolean ):  Visible or not
   
 Waveform Settings
@@ -80,8 +80,8 @@ Waveform Settings
 
   .. note::
 
-  ``background_color`` , ``foreground_color`` and ``visible`` do not retain their state on page change. :ref:`nextion_binary_sensor_settings`
-  A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
+      ``background_color`` , ``foreground_color`` and ``visible`` do not retain their state on page change. :ref:`Sensor Settings<nextion_sensor_settings>`. 
+      A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
 
 
 See :ref:`nextion_sensor_how_things_update` for additional information
@@ -111,6 +111,8 @@ advanced stuff (see the full API Reference for more info).
 .. _nextion_sensor_update:
 
 - ``update()``: Poll from the Nextion
+
+.. _nextion_sensor_settings:
 
 - ``set_background_color(Color color)``: Sets the background color to **Color**
 - ``set_foreground_color(Color color)``: Sets the background color to **Color**
