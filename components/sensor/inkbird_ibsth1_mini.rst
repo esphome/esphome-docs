@@ -37,7 +37,7 @@ many IBS-TH1 devices at once as you want.
         mac_address: 38:81:D7:0A:9C:11
         temperature:
           name: "Inkbird IBS-TH1 Temperature"
-        ext_temperature:
+        external_temperature:
           name: "Inkburd IBS-TH1 External Temperature"
         humidity:
           name: "Inkbird IBS-TH1 Humidity"
@@ -54,7 +54,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **ext_temperature** (*Optional*): The information for the external temperature sensor.
+- **external_temperature** (*Optional*): The information for the external temperature sensor.
 
   - **name** (**Required**, string): The name for the external temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
