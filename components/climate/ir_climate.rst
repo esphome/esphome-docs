@@ -160,7 +160,7 @@ Configuration variables:
 .. _climate_ir_panasonic:
 
 ``Panasonic`` Climate
----------------------------------
+---------------------
 
 Additional configuration is available for this platform
 
