@@ -106,3 +106,4 @@ Sample Configurations
 - `ESPHome AXA Remote 2 control <https://github.com/galagaking/espaxa/>`__ by :ghuser:`galagaking`
 - `ESPHome WF-DS01 TuyaMCU based dimmable bedside touch lamp <https://github.com/davet2001/miscellaneous/blob/master/tuyamcu_ws-df01_touchlamp.yaml>`__ by :ghuser:`davet2001`
 - `Universal menu system for devices with rotary encoder with push and SSD1306 I2C display <https://github.com/mikosoft83/pithy_screen_menu_system>`__ by :ghuser:`mikosoft83`
+- `Show heart rate sensor values sent over Bluetooth Low Energy on a display <https://github.com/koenvervloesem/ESPHome-Heart-Rate-Display>`__ by :ghuser:`koenvervloesem`
