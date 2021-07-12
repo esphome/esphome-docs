@@ -6,7 +6,7 @@ Selec Energy Monitor
     :image: images/selec_meter_em2m.jpg
     :keywords: EM2M
 
-The ``selec_meter`` sensor platform allows you to use Selec modbus energy monitors
+The ``selec_meter`` sensor platform allows you to use Selec Modbus energy monitors
 (`website <https://www.selec.com/product-details/energy-meter-direct-operated-em2m>`__)
 with ESPHome.
 
