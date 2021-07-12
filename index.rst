@@ -400,6 +400,14 @@ Climate Components
     Midea Air Conditioner, components/climate/midea_ac, midea.svg
     Anova Cooker, components/climate/anova, anova.png
 
+Number Components
+-----------------
+
+.. imgtable::
+
+    Number Core, components/number/index, folder-open.svg
+    Template Number, components/number/template, description.svg
+
 Misc Components
 ---------------
 
