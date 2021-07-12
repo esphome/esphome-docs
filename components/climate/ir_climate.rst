@@ -29,6 +29,8 @@ request so it will be added (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Mitsubishi                            | ``mitsubishi``      |                      |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Panasonic<climate_ir_panasonic>`| ``panasonic``       | yes                  |
++---------------------------------------+---------------------+----------------------+
 | TCL112, Fuego                         | ``tcl112``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Toshiba                               | ``toshiba``         | yes                  |
@@ -154,19 +156,44 @@ Configuration variables:
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
 
+
+.. _climate_ir_panasonic:
+
+``Panasonic`` Climate
+---------------------------------
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **supports_vertical_swing** (*Optional*, boolean): The AC's vanes can move vertically. Defaults to ``false``
+- **supports_horizontal_swing** (*Optional*, boolean): The AC's vanes can move horizontally. Defaults to ``false``
+- **supports_both_swing** (*Optional*, boolean): The AC's vanes can move both vertically and horizontally. Defaults to ``false``
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: panasonic
+        name: "AC"
+        supports_vertical_swing: true
+
+
 See Also
 --------
 
 - :doc:`/components/climate/index`
 - :doc:`/components/remote_transmitter`
-- :apiref:`ballu.h <ballu/ballu.h>`,
-- :apiref:`coolix.h <coolix/coolix.h>`,
-  :apiref:`daikin.h <daikin/daikin.h>`
-  :apiref:`fujitsu_general.h <fujitsu_general/fujitsu_general.h>`,
-  :apiref:`hitachi_ac344.h <hitachi_ac344/hitachi_ac344.h>`,
-  :apiref:`mitsubishi.h <mitsubishi/mitsubishi.h>`,
-  :apiref:`tcl112.h <tcl112/tcl112.h>`,
-  :apiref:`yashima.h <yashima/yashima.h>`
-  :apiref:`whirlpool.h <whirlpool/whirlpool.h>`
-  :apiref:`climate_ir_lg.h <climate_ir_lg/climate_ir_lg.h>`
+- :apiref:`ballu.h <ballu/ballu.h>`
+- :apiref:`coolix.h <coolix/coolix.h>`
+- :apiref:`daikin.h <daikin/daikin.h>`
+- :apiref:`fujitsu_general.h <fujitsu_general/fujitsu_general.h>`
+- :apiref:`hitachi_ac344.h <hitachi_ac344/hitachi_ac344.h>`
+- :apiref:`mitsubishi.h <mitsubishi/mitsubishi.h>`
+- :apiref:`panasonic.h <panasonic/panasonic.h>`
+- :apiref:`tcl112.h <tcl112/tcl112.h>`
+- :apiref:`yashima.h <yashima/yashima.h>`
+- :apiref:`whirlpool.h <whirlpool/whirlpool.h>`
+- :apiref:`climate_ir_lg.h <climate_ir_lg/climate_ir_lg.h>`
 - :ghedit:`Edit`
