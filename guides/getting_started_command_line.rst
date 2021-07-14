@@ -16,6 +16,11 @@ Installing ESPHome is very easy. All you need to do is have `Python
 <https://www.python.org/>`__ installed and install the console script through
 ``pip3``.
 
+.. note::
+
+    Python 3.7 or above is required to install ESPHome 1.18.0 or above.
+    
+
 .. code-block:: bash
 
     pip3 install esphome
