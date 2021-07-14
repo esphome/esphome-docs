@@ -38,7 +38,7 @@ Configuration variables:
 A4988 Component
 ---------------
 
-Put this code into the configuration file on ESPhome for this device.
+Put this code into the configuration file on ESPHome for this device.
 
 .. code-block:: yaml
 
@@ -227,6 +227,46 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
 - **speed** (**Required**, :ref:`templatable <config-templatable>`, float): The speed
   in ``steps/s`` (steps per seconds) to drive the stepper at.
+
+.. _stepper-set_acceleration_action:
+
+``stepper.set_acceleration`` Action
+-----------------------------------
+
+This :ref:`Action <config-action>` allows you to set the acceleration of a stepper at runtime.
+
+.. code-block:: yaml
+
+    on_...:
+      - stepper.set_acceleration:
+          id: my_stepper
+          speed: 250 steps/s^2
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **acceleration** (**Required**, :ref:`templatable <config-templatable>`, float): The acceleration
+  in ``steps/s^2`` (steps per seconds squared) to use when starting to move.
+
+.. _stepper-set_deceleration_action:
+
+``stepper.set_deceleration`` Action
+-----------------------------------
+
+This :ref:`Action <config-action>` allows you to set the deceleration of a stepper at runtime.
+
+.. code-block:: yaml
+
+    on_...:
+      - stepper.set_deceleration:
+          id: my_stepper
+          speed: 250 steps/s^2
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **deceleration** (**Required**, :ref:`templatable <config-templatable>`, float): The same as ``acceleration``,
+  but for when the motor is decelerating shortly before reaching the set position.
 
 .. _stepper-ha-config:
 

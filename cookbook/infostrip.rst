@@ -11,7 +11,7 @@ Compared to a dashboard screen the infostrip can only communicate the informatio
 
 - color (e.g., red = error/warning, orange = waring, green = ok, blue = active)
 - intensity (off, scaled brightness)
-- mode (continous vs. flashing, flashing or strobe is not recommened)
+- mode (continuous vs. flashing, flashing or strobe is not recommend)
 - light position on stripe
 
 .. figure:: images/infostrip-detail.jpg

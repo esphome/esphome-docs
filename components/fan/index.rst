@@ -45,6 +45,13 @@ MQTT options:
   speed commands on.
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
+Automation triggers:
+
+- **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the fan is turned on. See :ref:`fan-on_turn_on_off_trigger`.
+- **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the fan is turned off. See :ref:`fan-on_turn_on_off_trigger`.
+
 .. _fan-toggle_action:
 
 ``fan.toggle`` Action
@@ -76,7 +83,7 @@ Turns the fan with the given ID off when executed.
 ``fan.turn_on`` Action
 ----------------------
 
-Turns the fan with the given ID off when executed.
+Turns the fan with the given ID on when executed.
 
 .. code-block:: yaml
 
@@ -94,6 +101,24 @@ Configuration options:
   Set the oscillation state of the fan. Defaults to not affecting oscillation.
 - **speed** (*Optional*, int, :ref:`templatable <config-templatable>`):
   Set the speed level of the fan. Can be a number between 1 and the maximum speed level of the fan.
+
+.. _fan-on_turn_on_off_trigger:
+
+``fan.on_turn_on`` / ``fan.on_turn_off`` Trigger
+****************************************************
+
+This trigger is activated each time the fan is turned on or off. It does not fire
+if a command to turn the fan on or off already matches the current state.
+
+.. code-block:: yaml
+
+    fan:
+      - platform: speed # or any other platform
+        # ...
+        on_turn_on:
+        - logger.log: "Fan Turned On!"
+        on_turn_off:
+        - logger.log: "Fan Turned Off!"
 
 Full Fan Index
 --------------

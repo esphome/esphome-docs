@@ -57,35 +57,42 @@ simply press -/+ buttons on the counter and look for `Standard mode` or
       parity: EVEN
       data_bits: 7
 
+    teleinfo:
+      id: myteleinfo
+      update_interval: 60s
+      historical_mode: true
+
     sensor:
       - platform: teleinfo
-        tags:
-         - name: "HCHC"
-           sensor:
-            name: "hchc"
-            unit_of_measurement: "Wh"
-            icon: mdi:flash
-         - name: "HCHP"
-           sensor:
-            name: "hchp"
-            unit_of_measurement: "Wh"
-            icon: mdi:flash
-         - name: "PAPP"
-           sensor:
-            name: "papp"
-            unit_of_measurement: "VA"
-            icon: mdi:flash
-        update_interval: 60s
-        historical_mode: true
+        tag_name: "HCHC"
+        name: "hchc"
+        unit_of_measurement: "Wh"
+        icon: mdi:flash
+        teleinfo_id: myteleinfo
+      - platform: teleinfo
+        tag_name: "HCHP"
+        name: "hchp"
+        unit_of_measurement: "Wh"
+        icon: mdi:flash
+        teleinfo_id: myteleinfo
+      - platform: teleinfo
+        tag_name: "PAPP"
+        name: "papp"
+        unit_of_measurement: "VA"
+        icon: mdi:flash
+        teleinfo_id: myteleinfo
+
+    text_sensor:
+      - platform: teleinfo
+        tag_name: "OPTARIF"
+        name: "optarif"
+        teleinfo_id: myteleinfo
 
 Configuration variables:
 ------------------------
 
 
-- **tags** (**Required**): Specify the tag you want to retrieve from the Teleinformation and select with what name to transmit it.
-
-  - **name** (**Required**, string): The name of the tag corresponding to what the electrical counter send.
-  - **sensor** (**Required**, :ref:`Sensor <config-sensor>`): Associate a sensor with the tag. See options from :ref:`Sensor <config-sensor>`.
+In teleinfo platform:
 
 - **historical_mode** (*Optional*): Wether to use historical mode or standard mode.
   With historical mode, baudrate of 1200 must be used whereas 9600 must be used in
@@ -96,6 +103,21 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
+
+Sensor
+******
+
+- **tag_name** (**Required**, string): Specify the tag you want to retrieve from the Teleinformation.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Sensor <config-sensor>`.
+
+Text Sensor
+***********
+
+- **tag_name** (**Required**, string): Specify the tag you want to retrieve from the Teleinformation.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Text Sensor <config-text_sensor>`.
+
 
 See Also
 --------

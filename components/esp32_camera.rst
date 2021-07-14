@@ -67,7 +67,6 @@ Frame Settings:
   resolutions require more memory, if there's not enough memory you will see an error during startup.
 
     - ``160x120`` (QQVGA)
-    - ``128x160`` (QQVGA2)
     - ``176x144`` (QCIF)
     - ``240x176`` (HQVGA)
     - ``320x240`` (QVGA)
@@ -282,6 +281,30 @@ Configuration for TTGO-Camera Plus
       pixel_clock_pin: GPIO25
       vertical_flip: false
       horizontal_mirror: false
+
+
+      # Image settings
+      name: My Camera
+      # ...
+
+Configuration for TTGO-Camera Mini
+----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO32
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO13 
+        scl: GPIO12
+      data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO37, GPIO38, GPIO36, GPIO39]
+      vsync_pin: GPIO27
+      href_pin: GPIO25
+      pixel_clock_pin: GPIO19
+
 
 
       # Image settings

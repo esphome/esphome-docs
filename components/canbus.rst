@@ -92,7 +92,7 @@ This automation will be triggered when a can frame is  received. A variable ``x`
 
 .. note::
 
-    Messeges this node sends to te same ID will not show up as reveived messages.
+    Messages this node sends to the same ID will not show up as received messages.
 
 .. code-block:: yaml
 
@@ -144,10 +144,10 @@ Configuration variables:
 MCP2515 Component
 -----------------
 
-The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
+The MCP2515 is a spi device and therefore you must first add the configuration for the spi bus to your file.
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
-For wireing up the MSP2515 please refer to the section below.
+For wiring up the MSP2515 please refer to the section below.
 
 Configuration variables:
 ************************
@@ -157,7 +157,7 @@ Configuration variables:
   Sometimes also called ``SS``.
 - **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
   Defaults to ``8MHZ``.
-- **mode** (*Optional*): Operation mode. Default ot ``NORMAL``
+- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
 
   - NORMAL: Normal operation
   - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
@@ -205,7 +205,7 @@ Standard IDs and Extended IDs can coexist on the same segment.
 
 .. note::
 
-    It is important to know that for example Standard 0x123 and Extended 0x123 are different addesses.
+    It is important to know that for example Standard 0x123 and Extended 0x123 are different addresses.
     This example shows how the different ID types are used in the configuration for transmission and receiving.
     For the IDs decimal or hexadecimal notation is possible:
     0x000 - 0x7ff / 0-2047 for Standard IDs only.

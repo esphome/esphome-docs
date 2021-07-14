@@ -7,13 +7,12 @@ MCP3008 I/O Expander
     :image: images/mcp3008.jpg
 
 The Microchip Technology Inc. MCP3008
-devices are successive approximation 10-bit Analogto-Digital (A/D) converters with on-board sample and
+devices are successive approximation 10-bit Analog-to-Digital (A/D) converters with on-board sample and
 hold circuitry.
 
 .. figure:: images/mcp3008.jpg
     :align: center
     :width: 50.0%
-
 
 .. _mcp3008-component:
 
@@ -67,7 +66,6 @@ If you want just the scaled value you can use the read_data function
         name: Freezer Temperature
 
 Configuration variables:
-
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP3008 component.
 - **cs_pin** (**Required**, int): The SPI cable select pin to use
 

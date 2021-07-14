@@ -111,4 +111,5 @@ See Also
 - :doc:`bmp085`
 - :apiref:`bme680/bme680.h`
 - `BME680 Sensor API <https://github.com/BoschSensortec/BME680_driver>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
+- `Custom BME680 component with indoor air quality sensor <https://github.com/trvrnrth/esphome-bsec-bme680>`__
 - :ghedit:`Edit`
