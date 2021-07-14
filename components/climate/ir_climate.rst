@@ -19,6 +19,8 @@ request so it will be added (see FAQ).
 | Name                                  | Platform name       |  Supports receiver   |
 |                                       |                     |                      |
 +=======================================+=====================+======================+
+| Ballu                                 | ``ballu``           | yes                  |
++---------------------------------------+---------------------+----------------------+
 | Coolix                                | ``coolix``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Daikin                                | ``daikin``          | yes                  |
@@ -157,6 +159,7 @@ See Also
 
 - :doc:`/components/climate/index`
 - :doc:`/components/remote_transmitter`
+- :apiref:`ballu.h <ballu/ballu.h>`,
 - :apiref:`coolix.h <coolix/coolix.h>`,
   :apiref:`daikin.h <daikin/daikin.h>`
   :apiref:`fujitsu_general.h <fujitsu_general/fujitsu_general.h>`,

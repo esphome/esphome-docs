@@ -169,6 +169,7 @@ Sensor Components
     Duty Cycle, components/sensor/duty_cycle, percent.svg
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
+    Havells Inverter, components/sensor/havells_inverter, havellsgti5000d_s.jpg
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
@@ -398,6 +399,15 @@ Climate Components
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
     Midea Air Conditioner, components/climate/midea_ac, midea.svg
+    Anova Cooker, components/climate/anova, anova.png
+
+Number Components
+-----------------
+
+.. imgtable::
+
+    Number Core, components/number/index, folder-open.svg
+    Template Number, components/number/template, description.svg
 
 Misc Components
 ---------------
