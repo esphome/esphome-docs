@@ -1,4 +1,4 @@
-Changelog - Version 1.20.0 - 21th July 2021
+Changelog - Version 1.20.0 - 21st July 2021
 ===========================================
 
 .. seo::
