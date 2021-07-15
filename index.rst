@@ -193,6 +193,7 @@ Sensor Components
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     MS5611, components/sensor/ms5611, ms5611.jpg
+    Nextion, components/sensor/nextion, nextion.jpg
     NTC Thermistor, components/sensor/ntc, ntc.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
@@ -253,7 +254,7 @@ Binary Sensor Components
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
-    Nextion Touch, components/binary_sensor/nextion, nextion.jpg
+    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
@@ -325,6 +326,7 @@ Switch Components
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
+    Nextion Switch, components/switch/nextion, nextion.jpg
 
 Fan Components
 --------------
@@ -385,6 +387,8 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
+    Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
 
 Climate Components
 ------------------
