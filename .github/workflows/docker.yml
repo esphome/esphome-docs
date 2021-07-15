@@ -31,5 +31,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: true
-          tags: esphome/esphomedocs:latest
+          tags: esphome/esphome-docs:latest
+          cache-from: esphome/esphome-docs:latest
