@@ -39,10 +39,10 @@ Configuration variables:
 - **component_name** (*Optional*, string): The name of the Nextion component.
 - **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_switch_protocol` this should not be used
-- **background_color** (*Optional*, ref:`config-color`):  The background color
-- **background_pressed_color** (*Optional*, ref:`config-color`):  The background color when pressed
-- **foreground_color** (*Optional*, ref:`config-color`):  The foreground color
-- **foreground_pressed_color** (*Optional*, ref:`config-color`):  The foreground color when pressed
+- **background_color** (*Optional*, :ref:`config-color`):  The background color
+- **background_pressed_color** (*Optional*, :ref:`config-color`):  The background color when pressed
+- **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
+- **foreground_pressed_color** (*Optional*, :ref:`config-color`):  The foreground color when pressed
 - **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Switch <config-switch>`.
 
@@ -52,9 +52,9 @@ See :ref:`nextion_switch_how_things_update` for additional information
 
 Globals
 *******
-The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **component_name** does not exist on that page then
-nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **component_name**
-should be prefixed with the page name (page0/page1).
+The Nextion does not retain data on Nextion page changes. Additionally, if a page is changed and the **component_name** does not exist on that page then
+nothing will be updated. To get around this, the Nextion components can be changed to have a vscope of ``global``. If this is set then the **component_name**
+should be prefixed with the page name (page0/page1 or whatever you have changed it to).
 
 *Example*
 
@@ -65,8 +65,8 @@ should be prefixed with the page name (page0/page1).
 Lambda Calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods do some
-advanced stuff (see the full API Reference for more info).
+From :ref:`lambdas <config-lambda>`, you can call several methods to access
+some more advanced functions (see the full :apiref:`nextion/nextion_switch.h` for more info).
 
 .. _nextion_switch_set_state:
 
@@ -82,14 +82,14 @@ advanced stuff (see the full API Reference for more info).
 - ``set_background_pressed_color(Color color)``: Sets the background color to **Color**
 - ``set_foreground_color(Color color)``: Sets the background color to **Color**
 - ``set_foreground_pressed_color(Color color)``: Sets the background color to **Color**
-- ``set_visible(bool visible)`` : Sets visible or not. If set no updates will be sent to the component
+- ``set_visible(bool visible)`` : Sets visible or not. If set to false, no updates will be sent to the component
 
 
 .. _nextion_switch_how_things_update:
 
 How things Update
 -----------------
-A Nextion component with and interger value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
+A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
 To have the Nextion send the data you can use the :ref:`nextion_custom_switch_protocol` for this. Add the :ref:`nextion_custom_switch_protocol` to the 
 component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
 set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
@@ -108,7 +108,7 @@ Using the above yaml example:
 
 .. note::
 
-    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes, the components will be updated. If a component is invisible, :code:`visible(false)`, then it won't update until it is set to be visible.
 
 
 .. _nextion_custom_switch_protocol:
@@ -139,6 +139,5 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`nextion/nextion_switch.h`
+- :apiref:`nextion/switch/nextion_switch.h`
 - :ghedit:`Edit`
-

@@ -8,7 +8,7 @@ Nextion Sensor Component
     :image: nextion.jpg    
 
 The ``nextion`` sensor platform supports integers or floats (Xfloat). It can be a component, a variable or a waveform in the Nextion display.
-It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
+It is best to set the component's vscope to global in the Nextion Editor. This way the component will be available
 if the page is shown or not. 
 
 .. note::
@@ -62,14 +62,15 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
 - **nextion_precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets 
   the precision that the component is set to. This typically is the ``vvs1`` setting of the component.                                                         
-- **background_color** (*Optional*, ref:`config-color`):  The background color
-- **foreground_color** (*Optional*, ref:`config-color`):  The foreground color
+- **background_color** (*Optional*, :ref:`config-color`):  The background color
+- **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
 - **visible** (*Optional*, boolean ):  Visible or not
   
 Waveform Settings
 *****************
 - **wave_channel_id** (*Optional*, uint8_t): The waveform ID in a range of 0-3
-- **wave_max_value** (*Optional*, uint8_t): The max value. Set ``dis`` to the height of the component on the Nextion editor and this to the max value that will be sent. This will set up the proper scaling.
+- **wave_max_value** (*Optional*, uint8_t): The max value. Set ``dis`` to the height of the component in the Nextion editor
+and this to the max value that will be sent. This will set up the proper scaling.
 - **waveform_send_last_value** (*Optional*, uint8_t): This will send the last value set during an update interval. Setting to true will give a timeseries style graph
 - **wave_max_length** (*Optional*, int): How many data points to store. Typically this is the width of the component in the Nextion
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor. This typically should be set for waveforms to send periodic updates.
@@ -88,9 +89,9 @@ See :ref:`nextion_sensor_how_things_update` for additional information
 
 Globals
 *******
-The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **component_name** does not exist on that page then
+The Nextion does not retain data on Nextion page changes. Additionally if a page is changed and the **component_name** does not exist on that page then
 nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **component_name**
-should be prefixed with the page name (page0/page1).
+should be prefixed with the page name (page0/page1 or whatever you have changed it to).
 
 *Example*
 
@@ -101,8 +102,8 @@ should be prefixed with the page name (page0/page1).
 Lambda Calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods do some
-advanced stuff (see the full API Reference for more info).
+From :ref:`lambdas <config-lambda>`, you can call several methods to access
+some more advanced functions (see the full :apiref:`nextion/sensor/nextion_sensor.h` for more info).
 
 .. _nextion_sensor_set_state:
 
@@ -116,14 +117,14 @@ advanced stuff (see the full API Reference for more info).
 
 - ``set_background_color(Color color)``: Sets the background color to **Color**
 - ``set_foreground_color(Color color)``: Sets the background color to **Color**
-- ``set_visible(bool visible)`` : Sets visible or not. If set no updates will be sent to the component
+- ``set_visible(bool visible)`` : Sets visible or not. If set to false, no updates will be sent to the component
 
 
 .. _nextion_sensor_how_things_update:
 
 How things Update
 -----------------
-A Nextion component with and interger value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
+A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
 To have the Nextion send the data you can use the :ref:`nextion_custom_sensor_protocol` for this. Add the :ref:`nextion_custom_sensor_protocol` to the 
 component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
 set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
@@ -142,7 +143,7 @@ Using the above yaml example:
 
 .. note::
 
-    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes, the components will be updated. If a component is invisible, :code:`visible(false)`, then it won't update until it is set to be visible.
 
 
 .. _nextion_custom_sensor_protocol:
@@ -173,5 +174,5 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`nextion/nextion_sensor.h`
+- :apiref:`nextion/sensor/nextion_sensor.h`
 - :ghedit:`Edit`

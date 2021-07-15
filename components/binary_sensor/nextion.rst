@@ -5,9 +5,9 @@ Nextion Binary Sensor Component
 
 .. seo::
     :description: Instructions for setting up Nextion binary sensor.
-    :image: nextion.jpg    
+    :image: nextion.jpg
 
-The ``nextion`` binary sensor platform supports the many switched components in the Nextion as well as integer variables (>0== True). It can be a component or variable in the Nextion display.
+The ``nextion`` binary sensor platform supports the many switched components in the Nextion as well as integer variables (>0 == True). It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not. 
 
 See :doc:`/components/display/nextion` for setting up the display
@@ -25,7 +25,7 @@ See :doc:`/components/display/nextion` for setting up the display
         page_id: 0
         component_id: 8
         component_name: page0.mode # Only needed to support changing colors
-        id: "mode"
+        id: mode
       - platform: nextion
         id: r0_binary_sensor
         name: "Radio 0 Binary Sensor"
@@ -42,7 +42,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
 - **component_name** (*Optional*, string): The name of the Nextion component.
-- **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
+- **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considered to be **on**
 - **page_id** (*Optional*, string): The ID of the page the component is on. Use ``0`` for the default page.
 - **component_id** (*Optional*, string): The ID (the number, not name!) of the component to track.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_binary_sensor_protocol` this should not be used
@@ -82,7 +82,7 @@ See :ref:`nextion_binary_sensor_how_things_update` for additional information
 
 Globals
 *******
-The Nextion does not retain data on Nextion page changes. Additionaly if a page is changed and the **nextion_component_name** does not exist on that page then
+The Nextion does not retain data on Nextion page changes. Additionally if a page is changed and the **nextion_component_name** does not exist on that page then
 nothing will be updated. To get around this the Nextion components can be changed to have a vscope of ``global``. If this is set then the **nextion_component_name**
 should be prefixed with the page name (page0/page1).
 
@@ -95,8 +95,8 @@ should be prefixed with the page name (page0/page1).
 Lambda Calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods do some
-advanced stuff (see the full API Reference for more info).
+From :ref:`lambdas <config-lambda>`, you can call several methods to access some
+more advanced functions (see the full :apiref:`nextion/binary_sensor/nextion_binarysensor.h` for more info).
 
 .. _nextion_binary_sensor_set_state:
 
@@ -112,14 +112,14 @@ advanced stuff (see the full API Reference for more info).
 - ``set_background_pressed_color(Color color)``: Sets the background color to **Color**
 - ``set_foreground_color(Color color)``: Sets the background color to **Color**
 - ``set_foreground_pressed_color(Color color)``: Sets the background color to **Color**
-- ``set_visible(bool visible)`` : Sets visible or not. If set no updates will be sent to the component
+- ``set_visible(bool visible)`` : Sets visible or not. If set to false, no updates will be sent to the component
 
 
 .. _nextion_binary_sensor_how_things_update:
 
 How things Update
 -----------------
-A Nextion component with and interger value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
+A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
 To have the Nextion send the data you can use the :ref:`nextion_custom_binary_sensor_protocol` for this. Add the :ref:`nextion_custom_binary_sensor_protocol` to the 
 component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
 set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
@@ -128,7 +128,8 @@ in the Nextion.
 .. note::
 
     There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
-    since this will be sending the real value to esphome.
+    for an integer value component since this will be sending the real value to esphome, 
+    but make sure you have both checked for a touch sensor.
 
 
 Using the above yaml example:
@@ -170,5 +171,5 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`nextion/nextion_binarysensor.h`
+- :apiref:`nextion/binary_sensor/nextion_binarysensor.h`
 - :ghedit:`Edit`

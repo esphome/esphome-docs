@@ -11,7 +11,7 @@ with ESPHome.
 
 .. figure:: images/nextion-full.jpg
     :align: center
-    :width: 75.0%    
+    :width: 75.0%
 
     Nextion LCD Display.
 
@@ -63,18 +63,14 @@ Configuration variables:
   Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **tft_url** (*Optional*, string): The URL to download the TFT file from for updates. See :ref:`Nextion Upload <nextion_upload_tft>`.
-- **on_sleep** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the Nextion goes to sleep. See :ref:`Nextion On_Sleep/On_Wake <nextion_on_sleep_on_wake>`.
-- **on_wake** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the Nextion wakes up. See :ref:`Nextion On_Sleep/On_Wake <nextion_on_sleep_on_wake>`.
+- **on_sleep** (*Optional*, :ref:`Action <config-action>`): An automation to perform when the Nextion goes to sleep.
+- **on_wake** (*Optional*, :ref:`Action <config-action>`): An automation to perform when the Nextion wakes up.
 - **touch_sleep_timeout** (*Optional*, int): Sets internal No-touch-then-sleep timer in seconds.
 - **wake_up_page** (*Optional*, int): Sets the page to display after waking up
-- **touch_sleep_timeout** (*Optional*, int): Sets internal No-touch-then-sleep timer in seconds.
 - **auto_wake_on_touch** (*Optional*, boolean): Sets if Nextion should auto-wake from sleep when touch press occurs.
   
 
 .. _display-nextion_lambda:
- 
 Rendering Lambda
 ----------------
 
@@ -103,7 +99,7 @@ to populate data on the display:
 
 .. note::
 
-    Although you can use the rendering lambda most, if not all, updates to the Nextion can be handled by the individual Nextiom components. **See Below**
+    Although you can use the rendering lambda most, if not all, updates to the Nextion can be handled by the individual Nextion components. **See Below**
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
@@ -118,7 +114,7 @@ display updates. See the full :apiref:`nextion/nextion.h` for more info.
 
 - ``upload_tft``: Start the upload process. See :ref:`nextion_upload_tft_file`
 
-The developer tools in Home Assitant can be used to trigger the update. The below code block is an example on how to set this up.
+The developer tools in Home Assistant can be used to trigger the update. The below code block is an example on how to set this up.
   .. code-block:: yaml
 
       api:
@@ -126,20 +122,6 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
           - service: update_nextion
             then:
               - lambda: 'id(nextion1)->upload_tft();' 
-
-.. _nextion_on_sleep_on_wake:
-
-- ``on_sleep``/``on_wake``: Actions to perform when the Nextion goes in and out of sleep.
-
-  .. code-block:: yaml
-
-      // Within lambda
-      on_sleep:
-        then:
-          lambda: 'ESP_LOGD("display","Display went to sleep");'
-      on_wake:
-        then:
-          lambda: 'ESP_LOGD("display","Display woke up");'
 
 .. _nextion_update_all_components:
 
@@ -204,19 +186,20 @@ The developer tools in Home Assitant can be used to trigger the update. The belo
 Uploading A TFT File
 --------------------
 This will download the file from the tft_url and will transfer it over the UART to the Nextion.
-Once completed both the MCU and Nextion will reboot. During this process esphome will be 
-unresponsive and no logging will take place. This uses the same protocol as the Nextion editor and only updates the changes of the TFT file. If HTTPS/SSL is enabled it will be about 1kB/sec.
+Once completed both the ESP and Nextion will reboot. During the upload process esphome will be 
+unresponsive and no logging will take place. This uses the same protocol as the Nextion editor and
+only updates the changes of the TFT file. If HTTPS/SSL is enabled it will be about 1kB/sec.
 
 .. warning::
 
-    If :ref:`uart-hardware_uarts` are not available than inconsistant results WILL occur. Lowering the baud to 9600 baud my help.
+    If :ref:`uart-hardware_uarts` are not available then inconsistent results WILL occur. Lowering the speed to 9600 baud may help.
 
 
-To host the TFT file you can use Home Assistant itself or any other web server. HTTPS while always recommened on any network will greatly reduce the upload speed.
+To host the TFT file you can use Home Assistant itself or any other web server. HTTPS, while always recommended on any network, will greatly reduce the upload speed.
 
 Home Assistant
 **************
-To host the TFT file from Home Assistant create a www directory if it doesnt exit in your config 
+To host the TFT file from Home Assistant, create a www directory if it doesn't exist in your config 
 directory. You can create a subdirectory for those files as well.
 
 For example if the file is located
@@ -228,7 +211,7 @@ NGINX
 
 `NGINX <https://www.nginx.com/>`__
 
-The below NGINX example configuration will server files out of /var/www/nextion directory.
+The below NGINX example configuration will serve files out of the /var/www/nextion directory.
 
 .. code-block:: nginx
 
@@ -247,9 +230,10 @@ This library supports a few different components allowing communication back and
 
 .. note::
 
-    If the Nextion is sleeping or if the componet was set to be hidden it will not update its components even if updates are sent. After the Nextion wakes up all components will send their states to the Nextion to get around this.
+    If the Nextion is sleeping or if the component was set to be hidden, it will not update its components even if updates are sent.
+    After the Nextion wakes up, all components will send their states to the Nextion to get around this.
 
-With the exception of the - :doc:`../binary_sensor/nextion` that has the ``page_id``/``component_id`` options configured, the example below illustrates:
+With the exception of the :doc:`../binary_sensor/nextion` that has the ``page_id``/``component_id`` options configured, the example below illustrates:
  - Polling the Nextion for updates
  - Dynamic updates sent from the Nextion to the ESP device
 
