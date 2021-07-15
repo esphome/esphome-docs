@@ -433,16 +433,6 @@ functions for this.
 
 See :ref:`display-printf` for learning about how to use formatting in log strings.
 
-.. note::
-
-    On ESP8266s you need to disable storing strings in flash to use logging in custom code.
-
-    .. code-block:: yaml
-
-        logger:
-          level: DEBUG
-          esp8266_store_log_strings_in_flash: False
-
 See Also
 --------
 
