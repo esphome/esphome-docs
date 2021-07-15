@@ -49,6 +49,7 @@ New Features
 
 - Allow WiFi AP to use device name :esphomepr:`1990` by :ghuser:`jesserockz` (new-feature)
 - Add Number entities (from Home Assistant) :esphomepr:`1971` by :ghuser:`jesserockz` (new-feature) (new-integration) (notable-change)
+- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
 
 New Integrations
 ^^^^^^^^^^^^^^^^
@@ -70,6 +71,7 @@ Notable Changes
 ^^^^^^^^^^^^^^^
 
 - Add Number entities (from Home Assistant) :esphomepr:`1971` by :ghuser:`jesserockz` (new-feature) (new-integration) (notable-change)
+- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
 
 All changes
 ^^^^^^^^^^^
@@ -130,6 +132,7 @@ All changes
 - catch 0.0 in float set_level pre-adjustment :esphomepr:`2013` by :ghuser:`WeekendWarrior1` (breaking-change)
 - Introduce clamp as a template function :esphomepr:`1953` by :ghuser:`agners`
 - [Teleinfo] do not stop parsing frame if there is only a CRC error on … :esphomepr:`1999` by :ghuser:`St4n`
+- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
 
 Past Changelogs
 ---------------
