@@ -90,6 +90,16 @@ Release 1.19.3 - June 23
 
 - Bump esphome-dashboard to 20210622.0 :esphomepr:`1955` by :ghuser:`jesserockz`
 
+Release 1.19.4 - June 24
+------------------------
+
+- Rework climate traits :esphomepr:`1941` by :ghuser:`OttoWinter`
+- API raise minor version for climate changes :esphomepr:`1947` by :ghuser:`OttoWinter`
+- Disallow power_save_mode NONE if used together with BLE :esphomepr:`1950` by :ghuser:`OttoWinter`
+- Add climate preset NONE again :esphomepr:`1951` by :ghuser:`OttoWinter`
+- Compat argv parsing improvements :esphomepr:`1952` by :ghuser:`OttoWinter`
+- Bump dashboard to 20210623.0 :esphomepr:`1958` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 

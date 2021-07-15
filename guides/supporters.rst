@@ -222,6 +222,7 @@ Contributors
 - `guptamp (@guptamp) <https://github.com/guptamp>`__
 - `Guyohms (@Guyohms) <https://github.com/Guyohms>`__
 - `h0-- (@h0--) <https://github.com/h0-->`__
+- `haade (@haade-administrator) <https://github.com/haade-administrator>`__
 - `Boris Hajduk (@hajdbo) <https://github.com/hajdbo>`__
 - `Gavin Mogan (@halkeye) <https://github.com/halkeye>`__
 - `Charles Thompson (@haryadoon) <https://github.com/haryadoon>`__
@@ -432,7 +433,6 @@ Contributors
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__
 - `puuu (@puuu) <https://github.com/puuu>`__
-- `Karol Zlot (@qqgg231) <https://github.com/qqgg231>`__
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__
 - `Quinn Hosler (@quinnhosler) <https://github.com/quinnhosler>`__
 - `r-jordan (@r-jordan) <https://github.com/r-jordan>`__
@@ -592,4 +592,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 23, 2021.*
+*This page was last updated June 24, 2021.*
