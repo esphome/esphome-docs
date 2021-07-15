@@ -5,11 +5,11 @@ Nextion Sensor Component
 
 .. seo::
     :description: Instructions for setting up Nextion sensor.
-    :image: nextion.jpg    
+    :image: nextion.jpg
 
 The ``nextion`` sensor platform supports integers or floats (Xfloat). It can be a component, a variable or a waveform in the Nextion display.
 It is best to set the component's vscope to global in the Nextion Editor. This way the component will be available
-if the page is shown or not. 
+if the page is shown or not.
 
 .. note::
 
@@ -27,13 +27,13 @@ See :doc:`/components/display/nextion` for setting up the display
         # ...
 
     sensor:
-      - platform: nextion        
+      - platform: nextion
         name: "Current Humidity"
         component_name: humidity # pageX.humidity for a global
         nextion_precision: 1
         update_interval: 4s
       - platform: nextion
-        nextion_id: nextion1        
+        nextion_id: nextion1
         name: "Current Temperature"
         variable_name: temperature
         hass_component_name: sensor.temperature
@@ -60,28 +60,28 @@ Configuration variables:
 - **component_name** (*Optional*, string): Manually specify the name of the Nextion component.
 - **variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- **nextion_precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets 
-  the precision that the component is set to. This typically is the ``vvs1`` setting of the component.                                                         
+- **nextion_precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets
+  the precision that the component is set to. This typically is the ``vvs1`` setting of the component.
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
 - **visible** (*Optional*, boolean ):  Visible or not
-  
+
 Waveform Settings
 *****************
 - **wave_channel_id** (*Optional*, uint8_t): The waveform ID in a range of 0-3
 - **wave_max_value** (*Optional*, uint8_t): The max value. Set ``dis`` to the height of the component in the Nextion editor
-and this to the max value that will be sent. This will set up the proper scaling.
+  and this to the max value that will be sent. This will set up the proper scaling.
 - **waveform_send_last_value** (*Optional*, uint8_t): This will send the last value set during an update interval. Setting to true will give a timeseries style graph
 - **wave_max_length** (*Optional*, int): How many data points to store. Typically this is the width of the component in the Nextion
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor. This typically should be set for waveforms to send periodic updates.
-  
+
 - All other options from :ref:`Sensor <config-sensor>`.
 
 **Only one** *component_name* **or** *variable_name* **can be set**
 
   .. note::
 
-      ``background_color`` , ``foreground_color`` and ``visible`` do not retain their state on page change. :ref:`Sensor Settings<nextion_sensor_settings>`. 
+      ``background_color`` , ``foreground_color`` and ``visible`` do not retain their state on page change. :ref:`Sensor Settings<nextion_sensor_settings>`.
       A :ref:`Nextion Sensor <nextion_sensor>` with a custom protocol sending the current page can be used to execute the API call :ref:`Update Components By Prefix <update_components_by_prefix>` to update all the components for that page
 
 
@@ -125,10 +125,10 @@ some more advanced functions (see the full :apiref:`nextion/sensor/nextion_senso
 How things Update
 -----------------
 A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
-To have the Nextion send the data you can use the :ref:`nextion_custom_sensor_protocol` for this. Add the :ref:`nextion_custom_sensor_protocol` to the 
-component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
+To have the Nextion send the data you can use the :ref:`nextion_custom_sensor_protocol` for this. Add the :ref:`nextion_custom_sensor_protocol` to the
+component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it
 set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
-in the Nextion. 
+in the Nextion.
 
 .. note::
 
@@ -139,7 +139,7 @@ Using the above yaml example:
   - "Current Humidity" will poll the Nextion for the ``humidity.val`` value and set the sensor accordingly.
   - "Current Temperature" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_sensor_protocol` or use a lambda:
 
-    - :ref:`Lambda Calls <nextion_sensor_lambda_calls>`.  
+    - :ref:`Lambda Calls <nextion_sensor_lambda_calls>`.
 
 .. note::
 
