@@ -71,6 +71,7 @@ Configuration variables:
   
 
 .. _display-nextion_lambda:
+
 Rendering Lambda
 ----------------
 
