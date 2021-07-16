@@ -1,0 +1,64 @@
+MCP4728 Output
+==============
+
+.. seo::
+    :description: Instructions for setting up MCP4728 4-channel DAC on the ESP.
+    :image: mcp4728.jpg
+
+The MCP4728 is a 4-channel variant of the 1-channel :doc:`mcp4725`, which is a 12bit, I2C-driven, external DAC; commonly used as analog output.
+
+Default address is ``0x60`` and configurable alternative is ``0x61``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+
+    # Set a global i2c connection
+    i2c:
+      sda: 21
+      scl: 22
+      scan: True
+      id: i2c_0 # Optional if only one I2C bus is used.
+
+    # Initialize the MCP4728 "bus" component
+    mcp4728:
+      address: 0x60
+
+    # Set the output with default (address: 0x60 / global i2c)
+    output:
+    - platform: mcp4728
+      id: dac_A
+      channel: A
+    - platform: mcp4728
+      id: dac_B
+      channel: B
+    - platform: mcp4728
+      id: dac_C
+      channel: C
+    - platform: mcp4728
+      id: dac_D
+      channel: D
+
+
+Configuration variables:
+------------------------
+
+- **address** (*Optional*, int): Manually specify the I2C address of
+  the DAC. Defaults to ``0x60``.
+- All other options from :ref:`Output <config-output>`.
+
+Usage with voltages higher than 3.3v
+------------------------------------
+
+In order to drive analog modules with voltages higher than 3.3v, use a `TTL bi-directionnal level
+converter <https://learn.sparkfun.com/tutorials/bi-directional-logic-level-converter-hookup-guide/all>`__
+
+Be careful about what converter you use, some of of them have channels labeled with `RX` and `TX`,
+in this case only `TX` channels are bi-directional (so you must use 2 `TX` channels for I2C to work).
+
+See Also
+--------
+
+- :doc:`/components/output/esp32_dac`
+- :doc:`/components/output/esp8266_pwm`
+- :ghedit:`Edit`
