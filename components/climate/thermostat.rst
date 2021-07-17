@@ -139,10 +139,20 @@ The thermostat controller uses the sensor to determine whether it should heat or
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
 
-Default Target Temperatures
-***************************
+Default Target Temperatures and Mode
+************************************
 
 These temperatures are used when the device first starts up.
+
+- **default_mode** (*Optional*, climate mode): The default climate mode the controller should use if it 
+  is unable to restore it from memory. One of:
+
+  - ``auto_mode``
+  - ``off_mode``
+  - ``heat_mode``
+  - ``cool_mode``
+  - ``dry_mode``
+  - ``fan_only_mode``
 
 - **default_target_temperature_low** (*Optional*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
@@ -152,8 +162,8 @@ These temperatures are used when the device first starts up.
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
 
-``min_temperature`` and ``max_temperature`` from the base climate component **are used to define the range**
-of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`
+Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
+the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
 
 Heating and Cooling Actions
 ***************************
@@ -255,6 +265,8 @@ Advanced Options
 
 - **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
   an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. Defaults to 0.5 °C.
+- **target_temperature_change_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the
+  thermostat's target temperature(s) is/are changed.
 - **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
@@ -269,10 +281,11 @@ Advanced Options
 
 .. note::
 
-    While this platform uses the term temperature everywhere, it can also be used to regulate other values.
-    For example, controlling humidity is also possible with this platform. Note that ``min_temperature`` and
-    ``max_temperature`` from the base climate component are used the define the range of adjustability and the
-    defaults will probably not make sense for control of things like humidity. See :doc:`/components/climate/index`
+    - While this platform uses the term temperature everywhere, it can also be used to regulate other values.
+      For example, controlling humidity is also possible with this platform.
+    - ``min_temperature`` and ``max_temperature`` from the base climate component are used the define the range of 
+      adjustability and the defaults will probably not make sense for control of things like humidity. See
+      :doc:`/components/climate/index`.
 
 Bang-bang vs. Thermostat
 ------------------------
