@@ -106,6 +106,30 @@ Configuration variables:
   with for infrared signals. Defaults to ``0Hz``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+``remote_transmitter.transmit_nexa`` Action
+*******************************************
+
+This :ref:`action <config-action>` a Nexa RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.nexa:
+          device: 0x38DDB4A
+          state: 1
+          group: 0
+          channel: 15
+          level: 0
+
+Configuration variables:
+
+- **device** (**Required**, int): The Nexa device code to send, see dumper output for more info.
+- **state** (**Required**, int): The Nexa state code to send (0-OFF, 1-ON, 2-DIMMER LEVEL), see dumper output for more info.
+- **group** (**Required**, int): The Nexa group code to send, see dumper output for more info.
+- **channel** (**Required**, int): The Nexa channel code to send, see dumper output for more info.
+- **level** (**Required**, int): The Nexa level code to send, see dumper output for more info.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 ``remote_transmitter.transmit_jvc`` Action
 ******************************************
 

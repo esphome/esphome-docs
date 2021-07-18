@@ -30,6 +30,7 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
+  - **nexa**: Decode and dump Nexa (RF) codes.
   - **lg**: Decode and dump LG infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
@@ -57,6 +58,9 @@ Configuration variables:
 
 Automations:
 
+- **on_nexa** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Nexa RF code has been decoded. A variable ``x`` of type :apiclass:`remote_base::NexaData`
+  is passed to the automation for use in lambdas.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::JVCData`
   is passed to the automation for use in lambdas.
@@ -123,6 +127,14 @@ Configuration variables:
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Remote code selection (exactly one of these has to be included):
+
+- **nexa**: Trigger on a decoded Nexa RF code with the given data.
+
+  - **device** (**Required**, int): The Nexa device code to trigger on, see dumper output for more info.
+  - **group** (**Required**, int): The Nexa group code to trigger on, see dumper output for more info.
+  - **state** (**Required**, int): The Nexa state code to trigger on, see dumper output for more info.
+  - **channel** (**Required**, int): The Nexa channel code to trigger on, see dumper output for more info.
+  - **level** (**Required**, int): The Nexa level code to trigger on, see dumper output for more info.
 
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
