@@ -73,6 +73,15 @@ Notable Changes
 - Add Number entities (from Home Assistant) :esphomepr:`1971` by :ghuser:`jesserockz` (new-feature) (new-integration) (notable-change)
 - Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
 
+Beta fixes
+^^^^^^^^^^
+
+- Fix ethernet component hostname handling :esphomepr:`2010` by :ghuser:`flacjacket`
+- Refactor docker build system and workflows :esphomepr:`2023` by :ghuser:`OttoWinter`
+- GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter`
+- Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter`
+- Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter`
+
 All changes
 ^^^^^^^^^^^
 
@@ -133,6 +142,11 @@ All changes
 - Introduce clamp as a template function :esphomepr:`1953` by :ghuser:`agners`
 - [Teleinfo] do not stop parsing frame if there is only a CRC error on … :esphomepr:`1999` by :ghuser:`St4n`
 - Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
+- Fix ethernet component hostname handling :esphomepr:`2010` by :ghuser:`flacjacket`
+- Refactor docker build system and workflows :esphomepr:`2023` by :ghuser:`OttoWinter`
+- GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter`
+- Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter`
+- Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter`
 
 Past Changelogs
 ---------------
