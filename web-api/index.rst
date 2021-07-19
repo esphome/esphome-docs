@@ -217,10 +217,10 @@ and ``/fan/<id>/toggle``. Turn on additionally supports these optional parameter
 Cover
 *****
 
-Covers are again similar to switches who's two possible states are ``OPEN`` and ``CLOSED``.  They
+Covers are again similar to switches whose two possible states are ``OPEN`` and ``CLOSED``.  They
 can however be in an intermediate position, anywhere between **0.0** (fully closed) to **1.0**
-(fully open).  They usually take some time to move from one position to another and can also be
-stopped midway.  An example GET request for ``/cover/front_window_blinds`` might return:
+(fully open). They usually take some time to move from one position to another and can also be
+stopped midway. An example GET request for ``/cover/front_window_blinds`` might return:
 
 .. code-block:: json
 
@@ -232,17 +232,17 @@ stopped midway.  An example GET request for ``/cover/front_window_blinds`` might
       "tilt": 0.5
     }
 
--  **id**: The id of the cover prefixed by ``cover-``.
--  **state**: ``OPEN`` or ``CLOSED``.  Any position other than 0.0 is considered open.
+-  **id**: The ID of the cover, prefixed with ``cover-``.
+-  **state**: ``OPEN`` or ``CLOSED``. Any position other than 0.0 is considered open.
 -  **value**: Current cover position as a float number.
 -  **current_operation**: ``OPENING``, ``CLOSING`` or ``IDLE``.
 -  **tilt**: (only if supported by this cover component) tilt angle from 0.0 to 1.0.
 
 POST requests on the other hand allow performing actions on the cover, the available
-methods being ``open``, ``close``, ``stop`` and ``set``.  The following parameters
+methods being ``open``, ``close``, ``stop`` and ``set``. The following parameters
 can be used:
 
--  **position**: The target position for a ``set`` call.  The ``open`` method implies
+-  **position**: The target position for a ``set`` call. The ``open`` method implies
    a target position of 1.0, ``close`` implies a target position of 0.0.
 -  **tilt**: The tilt angle to set, if supported.
 
