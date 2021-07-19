@@ -200,6 +200,7 @@ Sensor Components
     MS5611, components/sensor/ms5611, ms5611.jpg
     Nextion, components/sensor/nextion, nextion.jpg
     NTC Thermistor, components/sensor/ntc, ntc.jpg
+    PM1006 Sensor, components/sensor/pm1006, pm1006.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Pulse Meter, components/sensor/pulse_meter, pulse.svg

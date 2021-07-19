@@ -1,0 +1,58 @@
+PM1006 Particulate Matter Sensor
+================================
+
+.. seo::
+    :description: Instructions for setting up PM1006 Particulate matter sensors, such as in the IKEA VINDRIKTNING
+    :image: pm1006.jpg
+    :keywords: pm1006, IKEA VINDRIKTNING
+
+The ``pm1006`` sensor platform allows you to use Cubic PM1006 particulate matter sensors (`datasheet <http://www.jdscompany.co.kr/download.asp?gubun=07&filename=PM1006_LED_PARTICLE_SENSOR_MODULE_SPECIFICATIONS.pdf>`__)
+with ESPHome.
+
+.. figure:: images/ikea-vindriktning.jpg
+    :align: center
+    :width: 50.0%
+
+    IKEA VINDRIKTNING Particulate Matter Sensor with PM1006 inside
+
+As the communication with the PM1006 is done using UART, you need to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the TX pin of the
+PM1006.
+This component is currently RX-only, as the IKEA VINDRIKTNING already sends commands to the PM1006.
+Additionally, you need to set the baud rate to 9600.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      rx_pin: D2
+      baud_rate: 9600
+
+    sensor:
+      - platform: pm1006
+        pm_2_5:
+          name: "Particulate Matter <2.5µm Concentration"
+
+Unlike some other sensors, there is no configurable update interval, as this is a 'passive' implementation that picks up whatever the VINDRIKTNING MCU has requested from the sensor.
+
+The implementation was inspired by https://github.com/Hypfer/esp8266-vindriktning-particle-sensor; you can also see the pinout there.
+
+Configuration variables:
+------------------------
+
+- **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter.
+  All options from :ref:`Sensor <config-sensor>`.
+
+- **rx_only** (*Optional*, boolean): Whether the sensor is connected **only by RX pin** to the UART bus.
+  Since the SDS011 can not be configured in RX-only mode, ``update_interval`` has no effect and the sensor must be
+  configured separately. Defaults to ``false``.
+
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
+See Also
+--------
+
+- :doc:`/components/sensor/pmsx003`
+- :ref:`sensor-filters`
+- :apiref:`pm1006/pm1006.h`
+- :ghedit:`Edit`
