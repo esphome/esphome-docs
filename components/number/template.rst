@@ -34,7 +34,9 @@ Configuration variables:
   number. Defaults to ``60s``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the template number will immediately update the reported state.
-  Defaults to ``false``.
+  Defaults to ``false``. Cannot be used with ``lambda``.
+- **initial_value** (*Optional*, float): The value to use if no ``lambda`` is used or no value
+  stored in RTC/flash at setup time.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-number>`.
 
