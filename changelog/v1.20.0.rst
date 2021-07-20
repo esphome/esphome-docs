@@ -48,7 +48,7 @@ ESPHome Dashboard
 Thanks :ghuser:`balloob` for making a small, but very significant change to the dashboard cards so now people who suffer from color-blindness
 will know whether or not the node is online.
 
-.. figure:: image/online-indicator.png
+.. figure:: images/online-indicator.png
     :align: center
     :width: 50.0%
 
