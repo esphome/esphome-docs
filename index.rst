@@ -65,6 +65,11 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
                         Configuration types
                     </a>
                 </li>
+                <li>
+                    <a class="reference" href="/guides/creators.html">
+                        Creating a Project
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="guide-card">
