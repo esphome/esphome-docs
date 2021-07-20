@@ -337,6 +337,7 @@ All Triggers
 - :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
   :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
   :ref:`ota.on_state_change <ota-on_state_change>`
+- :ref:`display.on_page_change <display-on_page_change-trigger>`
 
 All Actions
 -----------

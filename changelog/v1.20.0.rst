@@ -42,7 +42,7 @@ Unfortunately, some breaking changes had to be made:
   white channel being set to 30%, as expected.
 
 Full list of changes
---------------------
+--------------------s
 
 New Features
 ^^^^^^^^^^^^
@@ -81,6 +81,7 @@ Beta fixes
 - GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter`
 - Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter`
 - Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter`
+- Number and Template Number updates :esphomepr:`2036` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -147,6 +148,7 @@ All changes
 - GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter`
 - Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter`
 - Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter`
+- Number and Template Number updates :esphomepr:`2036` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
