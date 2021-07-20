@@ -53,6 +53,12 @@ will know whether or not the node is online.
     :width: 50.0%
 
 
+Nextion
+-------
+
+Need to write something about the nextion changes here...
+
+
 Full list of changes
 --------------------
 
@@ -62,6 +68,7 @@ New Features
 - Allow WiFi AP to use device name :esphomepr:`1990` by :ghuser:`jesserockz` (new-feature)
 - Add Number entities (from Home Assistant) :esphomepr:`1971` by :ghuser:`jesserockz` (new-feature) (new-integration) (notable-change)
 - Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
+- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (new-feature)
 
 New Integrations
 ^^^^^^^^^^^^^^^^
@@ -99,6 +106,9 @@ Beta fixes
 - Bump dashboard to 20210719.0 :esphomepr:`2043` by :ghuser:`balloob`
 - Correct ADS1115 handling of multiple sensors in continuous mode :esphomepr:`2016` by :ghuser:`flacjacket`
 - ESP32 ADC use esp-idf :esphomepr:`2024` by :ghuser:`OttoWinter`
+- Fix white value transition for addressable lights :esphomepr:`2045` by :ghuser:`oxan`
+- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (new-feature)
+- Remove superfluous polling on ADS1115 :esphomepr:`2015` by :ghuser:`flacjacket`
 
 All changes
 ^^^^^^^^^^^
@@ -171,6 +181,9 @@ All changes
 - Bump dashboard to 20210719.0 :esphomepr:`2043` by :ghuser:`balloob`
 - Correct ADS1115 handling of multiple sensors in continuous mode :esphomepr:`2016` by :ghuser:`flacjacket`
 - ESP32 ADC use esp-idf :esphomepr:`2024` by :ghuser:`OttoWinter`
+- Fix white value transition for addressable lights :esphomepr:`2045` by :ghuser:`oxan`
+- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (new-feature)
+- Remove superfluous polling on ADS1115 :esphomepr:`2015` by :ghuser:`flacjacket`
 
 Past Changelogs
 ---------------
