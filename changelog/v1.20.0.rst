@@ -15,7 +15,10 @@ Changelog - Version 1.20.0 - 21st July 2021
     Havells Inverter, components/sensor/havells_inverter, havellsgti5000d_s.jpg
     Anova Cooker, components/climate/anova, anova.png
 
-Write some more notes here....
+
+Here's to another timely release bringing a few new components and a whole bunch of changes under
+the hood to existing ones.
+
 
 Number Entities
 ---------------
@@ -56,7 +59,15 @@ will know whether or not the node is online.
 Nextion
 -------
 
-Need to write something about the nextion changes here...
+The Nextion component has had a major rewrite this release bringing many more features to those that use the displays.
+I am not sure how to describe the changes except for listing the main change points from the PR and linking to the docs
+for you to read yourself. :doc:`components/display/nextion`
+
+- Sensors/binary sensors/switch/text sensors and touch have all been added.
+- Over the air TFT file upload
+- Polling has been added to all the components
+- Display on_wake/on_sleep
+- Many API helpers (get_string/get_int) have been added
 
 
 Full list of changes
@@ -67,11 +78,11 @@ New Features
 
 - Allow WiFi AP to use device name :esphomepr:`1990` by :ghuser:`jesserockz` (new-feature)
 - Add Number entities (from Home Assistant) :esphomepr:`1971` by :ghuser:`jesserockz` (new-feature) (new-integration) (notable-change)
-- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
-- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (new-feature)
+- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (cherry-picked) (new-feature) (notable-change)
+- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (cherry-picked) (new-feature)
 
-New Integrations
-^^^^^^^^^^^^^^^^
+New Components
+^^^^^^^^^^^^^^
 
 - Climate component for Ballu air conditioners with remote model YKR-K/002E :esphomepr:`1939` by :ghuser:`bazuchan` (new-integration)
 - Anova ble component :esphomepr:`1752` by :ghuser:`buxtronix` (new-integration)
@@ -86,29 +97,30 @@ Breaking Changes
 - Remove a whole bunch of deprecated/removed stuff :esphomepr:`1981` by :ghuser:`jesserockz` (breaking-change)
 - catch 0.0 in float set_level pre-adjustment :esphomepr:`2013` by :ghuser:`WeekendWarrior1` (breaking-change)
 
+Beta Fixes
+^^^^^^^^^^
+
+- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (cherry-picked) (new-feature) (notable-change)
+- Fix ethernet component hostname handling :esphomepr:`2010` by :ghuser:`flacjacket` (cherry-picked)
+- Refactor docker build system and workflows :esphomepr:`2023` by :ghuser:`OttoWinter` (cherry-picked)
+- GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter` (cherry-picked)
+- Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter` (cherry-picked)
+- Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter` (cherry-picked)
+- Number and Template Number updates :esphomepr:`2036` by :ghuser:`jesserockz` (cherry-picked)
+- Add restore_value to template number :esphomepr:`2041` by :ghuser:`jesserockz` (cherry-picked)
+- midea_ac: Fix turbo boost mode. Preset PRESET_BOOST. :esphomepr:`2029` by :ghuser:`dudanov` (cherry-picked)
+- Bump dashboard to 20210719.0 :esphomepr:`2043` by :ghuser:`balloob` (cherry-picked)
+- Correct ADS1115 handling of multiple sensors in continuous mode :esphomepr:`2016` by :ghuser:`flacjacket` (cherry-picked)
+- ESP32 ADC use esp-idf :esphomepr:`2024` by :ghuser:`OttoWinter` (cherry-picked)
+- Fix white value transition for addressable lights :esphomepr:`2045` by :ghuser:`oxan` (cherry-picked)
+- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (cherry-picked) (new-feature)
+- Remove superfluous polling on ADS1115 :esphomepr:`2015` by :ghuser:`flacjacket` (cherry-picked)
+
 Notable Changes
 ^^^^^^^^^^^^^^^
 
 - Add Number entities (from Home Assistant) :esphomepr:`1971` by :ghuser:`jesserockz` (new-feature) (new-integration) (notable-change)
-- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
-
-Beta fixes
-^^^^^^^^^^
-
-- Fix ethernet component hostname handling :esphomepr:`2010` by :ghuser:`flacjacket`
-- Refactor docker build system and workflows :esphomepr:`2023` by :ghuser:`OttoWinter`
-- GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter`
-- Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter`
-- Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter`
-- Number and Template Number updates :esphomepr:`2036` by :ghuser:`jesserockz`
-- Add restore_value to template number :esphomepr:`2041` by :ghuser:`jesserockz`
-- midea_ac: Fix turbo boost mode. Preset PRESET_BOOST. :esphomepr:`2029` by :ghuser:`dudanov`
-- Bump dashboard to 20210719.0 :esphomepr:`2043` by :ghuser:`balloob`
-- Correct ADS1115 handling of multiple sensors in continuous mode :esphomepr:`2016` by :ghuser:`flacjacket`
-- ESP32 ADC use esp-idf :esphomepr:`2024` by :ghuser:`OttoWinter`
-- Fix white value transition for addressable lights :esphomepr:`2045` by :ghuser:`oxan`
-- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (new-feature)
-- Remove superfluous polling on ADS1115 :esphomepr:`2015` by :ghuser:`flacjacket`
+- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (cherry-picked) (new-feature) (notable-change)
 
 All changes
 ^^^^^^^^^^^
@@ -169,21 +181,21 @@ All changes
 - catch 0.0 in float set_level pre-adjustment :esphomepr:`2013` by :ghuser:`WeekendWarrior1` (breaking-change)
 - Introduce clamp as a template function :esphomepr:`1953` by :ghuser:`agners`
 - [Teleinfo] do not stop parsing frame if there is only a CRC error on … :esphomepr:`1999` by :ghuser:`St4n`
-- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (new-feature) (notable-change)
-- Fix ethernet component hostname handling :esphomepr:`2010` by :ghuser:`flacjacket`
-- Refactor docker build system and workflows :esphomepr:`2023` by :ghuser:`OttoWinter`
-- GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter`
-- Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter`
-- Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter`
-- Number and Template Number updates :esphomepr:`2036` by :ghuser:`jesserockz`
-- Add restore_value to template number :esphomepr:`2041` by :ghuser:`jesserockz`
-- midea_ac: Fix turbo boost mode. Preset PRESET_BOOST. :esphomepr:`2029` by :ghuser:`dudanov`
-- Bump dashboard to 20210719.0 :esphomepr:`2043` by :ghuser:`balloob`
-- Correct ADS1115 handling of multiple sensors in continuous mode :esphomepr:`2016` by :ghuser:`flacjacket`
-- ESP32 ADC use esp-idf :esphomepr:`2024` by :ghuser:`OttoWinter`
-- Fix white value transition for addressable lights :esphomepr:`2045` by :ghuser:`oxan`
-- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (new-feature)
-- Remove superfluous polling on ADS1115 :esphomepr:`2015` by :ghuser:`flacjacket`
+- Nextion upload and sensors :esphomepr:`1464` by :ghuser:`SenexCrenshaw` (cherry-picked) (new-feature) (notable-change)
+- Fix ethernet component hostname handling :esphomepr:`2010` by :ghuser:`flacjacket` (cherry-picked)
+- Refactor docker build system and workflows :esphomepr:`2023` by :ghuser:`OttoWinter` (cherry-picked)
+- GH Actions CI use GHCR :esphomepr:`2027` by :ghuser:`OttoWinter` (cherry-picked)
+- Dashboard disable assets caching :esphomepr:`2025` by :ghuser:`OttoWinter` (cherry-picked)
+- Improve external components error messages :esphomepr:`2026` by :ghuser:`OttoWinter` (cherry-picked)
+- Number and Template Number updates :esphomepr:`2036` by :ghuser:`jesserockz` (cherry-picked)
+- Add restore_value to template number :esphomepr:`2041` by :ghuser:`jesserockz` (cherry-picked)
+- midea_ac: Fix turbo boost mode. Preset PRESET_BOOST. :esphomepr:`2029` by :ghuser:`dudanov` (cherry-picked)
+- Bump dashboard to 20210719.0 :esphomepr:`2043` by :ghuser:`balloob` (cherry-picked)
+- Correct ADS1115 handling of multiple sensors in continuous mode :esphomepr:`2016` by :ghuser:`flacjacket` (cherry-picked)
+- ESP32 ADC use esp-idf :esphomepr:`2024` by :ghuser:`OttoWinter` (cherry-picked)
+- Fix white value transition for addressable lights :esphomepr:`2045` by :ghuser:`oxan` (cherry-picked)
+- Adding last_reset_type to sensors that should support it. :esphomepr:`2039` by :ghuser:`jesserockz` (cherry-picked) (new-feature)
+- Remove superfluous polling on ADS1115 :esphomepr:`2015` by :ghuser:`flacjacket` (cherry-picked)
 
 Past Changelogs
 ---------------
