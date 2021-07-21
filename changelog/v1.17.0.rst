@@ -79,6 +79,13 @@ Release 1.17.1 - May 5
 - docs: Fixed typo in 1.17.0 changelogs :docspr:`1132` by :ghuser:`spacegaier`
 - esphome: Do not call component update on failed components :esphomepr:`1392` by :ghuser:`alexyao2015`
 
+Release 1.17.2 - May 9
+----------------------
+
+- esphome: fixes #858 - esphome crashes with neolightbus and RMT :esphomepr:`1667` by :ghuser:`angelnu`
+- docs: Fix abundant apostrophes :docspr:`1137` by :ghuser:`jmartens`
+- docs: Add output part to binary light example :docspr:`1061` by :ghuser:`klaasnicolaas`
+
 All changes
 -----------
 
@@ -214,3 +221,20 @@ All changes
 - docs: Update canbus.rst :docspr:`1115` by :ghuser:`meijerwynand`
 - docs: Update diy.rst :docspr:`1114` by :ghuser:`murilobaliego`
 - docs: Update email addresses :docspr:`1122` by :ghuser:`jesserockz`
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.16.0
+    v1.15.0
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0

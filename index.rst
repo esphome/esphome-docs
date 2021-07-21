@@ -1,6 +1,3 @@
-ESPHome
-=======
-
 .. meta::
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
@@ -14,32 +11,88 @@ ESPHome
 
 ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
+.. image:: /images/hero.png
+
 .. raw:: html
 
-    <a href="https://github.com/esphome/esphome"><img src="/_images/shield-github.svg" alt="GitHub" class="index-shield"></a>
-    <a href="https://discord.gg/KhAMKrd"><img src="/_images/shield-discord.svg" alt="Discord" class="index-shield"></a>
-    <a href="https://twitter.com/esphome_"><img src="/_images/shield-twitter.svg" alt="Twitter" class="index-shield"></a>
-
-.. _guides:
-
-Guides
-------
-
-.. imgtable::
-
-    Getting Started through Command Line, guides/getting_started_command_line, console.svg
-    Getting Started with Home Assistant Add-on, guides/getting_started_hassio, home-assistant.svg
-    FAQ and Tips, guides/faq, question_answer.svg
-
-    Migrating from Tasmota, guides/migrate_sonoff_tasmota, tasmota.svg
-    Automations, guides/automations, auto-fix.svg
-    Contributing, guides/contributing, github-circle.svg
-
-    Changelog, changelog/index, new-box.svg
-    Supporters, guides/supporters, heart.svg
-    DIY Examples, guides/diy, earth.svg
-
-    Configuration types, guides/configuration-types, puzzle.svg
+    <div class="guide-container">
+        <div class="guide-card">
+            <h3 class="guide-card-title">Getting started</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/guides/getting_started_hassio.html">
+                        ESPHome Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/getting_started_command_line.html">
+                        Command Line Interface
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
+                        Migrating from Tasmota
+                    </a>
+                </li>
+            </ul>
+            <pre class="guide-code">
+                esphome:
+                &nbsp;&nbsp;name: awesome
+                &nbsp;&nbsp;platform: ESP32
+                &nbsp;&nbsp;board: nodemcu-32s
+            </pre>
+        </div>
+        <div class="guide-card">
+            <h3 class="guide-card-title">Next steps</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/guides/faq.html">
+                        FAQ and Tips
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/automations.html">
+                        Automations
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/diy.html">
+                        DIY Examples
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/configuration-types.html">
+                        Configuration types
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/creators.html">
+                        Creating a Project
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="guide-card">
+            <h3 class="guide-card-title">Keeping up</h3>
+            <ul>
+                <li>
+                    <a class="reference" href="/changelog/index.html">
+                        Changelog
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/supporters.html">
+                        Supporters
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="/guides/contributing.html">
+                        Contributing
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 .. _devices:
 
@@ -85,6 +138,7 @@ Core Components
     Native API, components/api, server-network.svg
     Power Supply, components/power_supply, power.svg
     Deep Sleep, components/deep_sleep, hotel.svg
+    External Components, components/external_components, external_components.svg
 
 Sensor Components
 -----------------
@@ -103,12 +157,16 @@ Sensor Components
     BH1750, components/sensor/bh1750, bh1750.jpg
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
+    BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BME280, components/sensor/bme280, bme280.jpg
     BME680, components/sensor/bme680, bme680.jpg
+    BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
     BMP085, components/sensor/bmp085, bmp180.jpg
     BMP280, components/sensor/bmp280, bmp280.jpg
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg
     CCS811, components/sensor/ccs811, ccs811.jpg
     CSE7766, components/sensor/cse7766, cse7766.svg
+    CS5460A, components/sensor/cs5460a, cs5460a.png
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
     Dallas, components/sensor/dallas, dallas.jpg
     DHT, components/sensor/dht, dht.jpg
@@ -116,6 +174,7 @@ Sensor Components
     Duty Cycle, components/sensor/duty_cycle, percent.svg
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
+    Havells Inverter, components/sensor/havells_inverter, havellsgti5000d_s.jpg
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
@@ -139,6 +198,7 @@ Sensor Components
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     MS5611, components/sensor/ms5611, ms5611.jpg
+    Nextion, components/sensor/nextion, nextion.jpg
     NTC Thermistor, components/sensor/ntc, ntc.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
@@ -152,18 +212,22 @@ Sensor Components
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
+    SDM Meter, components/sensor/sdm_meter, sdm220m.png
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
+    SHT4X, components/sensor/sht4x, sht4x.jpg
     SM300D2, components/sensor/sm300d2, sm300d2.jpg
     SPS30, components/sensor/sps30, sps30.jpg
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
+    SGP40, components/sensor/sgp40, sgp40.jpg
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg
     Template Sensor, components/sensor/template, description.svg
     TMP102, components/sensor/tmp102, tmp102.jpg
     TMP117, components/sensor/tmp117, tmp117.jpg
+    TOF10120, components/sensor/tof10120, tof10120.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
     Tuya Sensor, components/sensor/tuya, tuya.png
@@ -195,13 +259,14 @@ Binary Sensor Components
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
-    Nextion Touch, components/binary_sensor/nextion, nextion.jpg
+    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
+    XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -220,6 +285,7 @@ Output Components
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
+    SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
@@ -264,6 +330,8 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
+    BLE Client Switch, components/switch/ble_client, bluetooth.svg
+    Nextion Switch, components/switch/nextion, nextion.jpg
 
 Fan Components
 --------------
@@ -297,7 +365,7 @@ Display Components
     ST7789V, components/display/st7789v, st7789v.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate 6, components/display/inkplate, inkplate.jpg
+    Inkplate 6, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
@@ -324,6 +392,8 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
+    Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
 
 Climate Components
 ------------------
@@ -338,6 +408,15 @@ Climate Components
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
     Midea Air Conditioner, components/climate/midea_ac, midea.svg
+    Anova Cooker, components/climate/anova, anova.png
+
+Number Components
+-----------------
+
+.. imgtable::
+
+    Number Core, components/number/index, folder-open.svg
+    Template Number, components/number/template, description.svg
 
 Misc Components
 ---------------
@@ -353,6 +432,7 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
     ESP32 Ethernet, components/ethernet, ethernet.svg
@@ -363,12 +443,14 @@ Misc Components
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
+    TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
+    Improv, components/esp32_improv, improv.svg
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
@@ -376,6 +458,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
+    Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
 
 Additional Custom Components
 ----------------------------
@@ -416,6 +499,7 @@ Cookbook
     Teckin SB50, cookbook/teckin_sb50, teckin_sb50.jpg
     Sonoff light switch options, cookbook/sonoff-light-switch, light_switch.png
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
+    ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png

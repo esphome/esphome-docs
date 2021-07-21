@@ -93,9 +93,15 @@ Configuration variables:
    to check the sensor. Defaults to ``60s``.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-Multiplexer And Gain
+Multiplexer and Gain
 --------------------
 
+.. note::
+
+    As per (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) Section 7.3 Note 2: 
+    "No more than VDD + 0.3V must be applied to the analog inputs of the device."
+    This means if you power the device with 3.3V, take care not to supply the 4 AIN pins with more than 3.6V.
+    
 The ADS1115 has a multiplexer that can be configured to measure voltage between several pin configurations. These are:
 
  - ``A0_A1`` (between Pin 0 and Pin 1)

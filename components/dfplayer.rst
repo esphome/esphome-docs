@@ -99,8 +99,8 @@ Plays a track.
     on_...:
       then:
         - dfplayer.play:
-          file: 23
-          loop: false
+            file: 23
+            loop: false
         # Shorthand
         - dfplayer.play: 23
 
@@ -179,6 +179,28 @@ Configuration options:
 
 - **volume** (**Required**, int, :ref:`templatable <config-templatable>`): The volume value.
   Valid values goes from ``0`` to ``30``.
+
+``dfplayer.volume_up`` Action
+-----------------------------
+
+Turn volume up.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - dfplayer.volume_up
+
+``dfplayer.volume_down`` Action
+-------------------------------
+
+Turn volume down.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - dfplayer.volume_down
 
 ``dfplayer.set_eq`` Action
 --------------------------
@@ -391,6 +413,14 @@ Sample code
       - service: dfplayer_random
         then:
           - dfplayer.random
+
+      - service: dfplayer_volume_up
+        then:
+          - dfplayer.volume_up
+
+      - service: dfplayer_volume_down
+        then:
+          - dfplayer.volume_down
 
 See Also
 --------

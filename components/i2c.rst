@@ -61,6 +61,13 @@ Configuration variables:
          address: 0x76
          # ...
 
+       # If a I²C multiplexer is used all I²C devices can be additionally configured like:
+       - platform: bmp280
+         multiplexer:
+           id: multiplex0
+           channel: 0
+         # ...
+
 See Also
 --------
 

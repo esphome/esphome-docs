@@ -67,7 +67,6 @@ Frame Settings:
   resolutions require more memory, if there's not enough memory you will see an error during startup.
 
     - ``160x120`` (QQVGA)
-    - ``128x160`` (QQVGA2)
     - ``176x144`` (QCIF)
     - ``240x176`` (HQVGA)
     - ``320x240`` (QVGA)

@@ -34,10 +34,10 @@ There are numerous board types out there. Some initialize differently as well. T
         cs_pin: D1
         dc_pin: D2
         rotation: 0
-        devicewidth: 128
-        deviceheight: 160
-        colstart: 0
-        rowstart: 0
+        device_width: 128
+        device_height: 160
+        col_start: 0
+        row_start: 0
         eightbitcolor: true
         update_interval: 5s
 
@@ -77,5 +77,6 @@ See Also
 --------
 
 - :ref:`spi`
+- :doc:`/components/display/index`
 - :apiref:`st7735/st7735.h`
 - :ghedit:`Edit`
