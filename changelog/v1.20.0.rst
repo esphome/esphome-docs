@@ -61,7 +61,7 @@ Nextion
 
 The Nextion component has had a major rewrite this release bringing many more features to those that use the displays.
 I am not sure how to describe the changes except for listing the main change points from the PR and linking to the docs
-for you to read yourself. :doc:`components/display/nextion`
+for you to read yourself. :doc:`/components/display/nextion`
 
 - Sensors/binary sensors/switch/text sensors and touch have all been added.
 - Over the air TFT file upload
