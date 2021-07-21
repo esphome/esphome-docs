@@ -51,7 +51,8 @@ Configuration variables:
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
-  - **ssid** (**Required**, string): The name of the access point to create.
+  - **ssid** (*Optional*, string): The name of the access point to create. Leave empty to use
+    the device name.
   - **password** (*Optional*, string): The password for the access point. Leave empty for
     no password.
   - **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14.
@@ -93,6 +94,20 @@ to the WiFi router can be made.
     wifi:
       ap:
         ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
+
+You can also create a simple ``ap`` config which will set up the access point to have the
+devices name as the ssid with no password.
+
+.. code-block:: yaml
+
+    wifi:
+      ap: {}
+
+    # or if you still want the ap to have a password
+
+    wifi:
+      ap:
         password: "W1PBGyrokfLz"
 
 .. _wifi-manual_ip:

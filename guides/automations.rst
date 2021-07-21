@@ -334,6 +334,9 @@ All Triggers
 - :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
+- :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
+  :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
+  :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 
 All Actions
@@ -377,6 +380,7 @@ All Actions
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
+- :ref:`number.set <number-set_action>`
 
 .. _config-condition:
 
@@ -397,6 +401,7 @@ All Conditions
 - :ref:`text_sensor.state <text_sensor-state_condition>`
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
+- :ref:`number.in_range <number-in_range_condition>`
 
 All Lambda Calls
 ----------------
@@ -408,6 +413,7 @@ All Lambda Calls
 - :ref:`Cover <cover-lambda_calls>`
 - :ref:`Text Sensor <text_sensor-lambda_calls>`
 - :ref:`Stepper <stepper-lambda_calls>`
+- :ref:`Number <number-lambda_calls>`
 
 .. _delay_action:
 

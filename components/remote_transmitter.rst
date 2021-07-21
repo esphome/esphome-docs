@@ -197,22 +197,29 @@ Configuration variables:
 **********************************************
 
 This :ref:`action <config-action>` sends a Samsung infrared remote code to a remote transmitter.
+It transmits codes up to 64 bits in length in a single packet.
 
 .. code-block:: yaml
 
     on_...:
       - remote_transmitter.transmit_samsung:
           data: 0x1FEF05E4
+      # additional example for 48-bit codes:
+      - remote_transmitter.transmit_samsung:
+          data: 0xB946F50A09F6
+          nbits: 48
 
 Configuration variables:
 
 - **data** (**Required**, int): The data to send, see dumper output for more details.
+- **nbits** (*Optional*, int): The number of bits to send. Defaults to ``32``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_samsung36`` Action
 ************************************************
 
 This :ref:`action <config-action>` sends a Samsung36 infrared remote code to a remote transmitter.
+It transmits the ``address`` and ``command`` in two packets separated by a "space".
 
 .. code-block:: yaml
 
