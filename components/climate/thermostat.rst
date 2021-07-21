@@ -147,12 +147,13 @@ These temperatures are used when the device first starts up.
 - **default_mode** (*Optional*, climate mode): The default climate mode the controller should use if it 
   is unable to restore it from memory. One of:
 
-  - ``auto_mode``
-  - ``off_mode``
-  - ``heat_mode``
-  - ``cool_mode``
-  - ``dry_mode``
-  - ``fan_only_mode``
+  - ``off``
+  - ``heat_cool``
+  - ``cool``
+  - ``heat``
+  - ``dry``
+  - ``fan_only``
+  - ``auto``
 
 - **default_target_temperature_low** (*Optional*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
