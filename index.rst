@@ -477,7 +477,6 @@ Cookbook
 
 .. imgtable::
 
-    Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
     Arduino Port Extender, cookbook/arduino_port_extender, arduino_logo.svg
     Endstop Cover, cookbook/endstop-cover, window-open.svg
     PIR Sensor, cookbook/pir, pir.jpg
@@ -503,6 +502,7 @@ Cookbook
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
+    Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
