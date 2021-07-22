@@ -25,7 +25,7 @@ transmitted data.
 
 The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
 CAN bus to work you need to select the device that has the physical CAN bus implemented.
-At this moment only the MCP2515 driver is supported. You can configure multiple busses.
+At this moment only the MCP2515 driver is supported. You can configure multiple buses.
 
 Any can bus node can transmit data at any time, and any node can send any ``can_id`` value and any
 node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can

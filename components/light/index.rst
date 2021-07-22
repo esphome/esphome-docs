@@ -417,7 +417,7 @@ Configuration variables:
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
 - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transistion is started. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
 
 
 Random Effect
@@ -529,7 +529,7 @@ This effect allows you to write completely custom light effects yourself using :
               lambda: |-
                 static int state = 0;
                 auto call = id(my_light).turn_on();
-                // Transtion of 1000ms = 1s
+                // Transition of 1000ms = 1s
                 call.set_transition_length(1000);
                 if (state == 0) {
                   call.set_rgb(1.0, 1.0, 1.0);
@@ -992,7 +992,7 @@ Configuration variables:
 
 .. note::
 
-    You can also set the ``port`` to ``19446`` for compatability with Hyperion Classic using a
+    You can also set the ``port`` to ``19446`` for compatibility with Hyperion Classic using a
     UDP device with protocol 0.
 
 Currently the following realtime protocols are supported:
