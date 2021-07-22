@@ -194,7 +194,7 @@ The display can be switched on and off "dynamically" within the lambda code with
           it.turn_on_off(true);
 
 For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods
-(``printdigit``, ``printdigitf`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to
+(``printdigit``, ``printdigitf`` and ``strftimedigit``) can be used for displaying characters. Each 8 X 8 grid is used to
 display a single character. So not very space efficient. The format of the command is: ``it.printdigit("1234");`` or
 ``it.printdigitf("%s","1234")``;
 

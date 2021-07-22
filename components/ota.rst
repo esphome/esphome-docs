@@ -110,7 +110,7 @@ progress percentage (a value between 0 and 100) from the trigger with variable `
 ``on_end``
 **********
 
-This automation will be triggered when an OTA update has completed sucessfully,
+This automation will be triggered when an OTA update has completed successfully,
 right before the device is rebooted.
 
 Because the update has completed, you can safely use an automation action that

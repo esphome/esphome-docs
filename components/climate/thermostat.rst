@@ -10,7 +10,7 @@ physical thermostat. Its operation is similar to the :doc:`bang-bang <bang_bang>
 (the air temperature) and the controller will try to keep this value within a range defined by the set point(s). To do this,
 the controller can activate devices like a heating unit and/or a cooling unit to change the value observed by the sensor.
 When configured for both heating and cooling, it is essentially two :doc:`bang-bang <bang_bang>` controllers in one; it
-differs, however, in that interation with the thermostat component is nearly identical to that of a real thermostat.
+differs, however, in that interaction with the thermostat component is nearly identical to that of a real thermostat.
 
 This component can operate in one of two ways:
 

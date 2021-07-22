@@ -157,9 +157,9 @@ Configuration variables:
 - **today_generation_time** (*Optional*): Use the day generation time value for same day of the
   sensor in minutes. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_module_temp** (*Optional*): Use the inverter module temperature value of the sensor in
-  degree celcius. All options from :ref:`Sensor <config-sensor>`.
+  degree celsius. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_inner_temp** (*Optional*): Use the inverter inner temperature value of the sensor in
-  degree celcius. All options from :ref:`Sensor <config-sensor>`.
+  degree celsius. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_bus_voltage** (*Optional*): Use the inverter bus voltage value of the sensor in volts.
   All options from :ref:`Sensor <config-sensor>`.
 - **insulation_of_pv_n_to_ground** (*Optional*): Use the insulation  of  photo  voltiacs's 
