@@ -55,7 +55,7 @@ Configuration variables:
 
 **Touch Sensor:**
 The Nextion will send a **page_id** and **component_id** when the *Send Component ID* check box is selected for the component. To enable 
-this native event **page_id** and **component_id** are required. No :ref:`nextion_custom_binary_sensor_protocol` is required. If **page_id** and **component_id** are set then the component will only react to touch events from the Nextion. Setting **component_name** will allow setting options like forground color. 
+this native event **page_id** and **component_id** are required. No :ref:`nextion_custom_binary_sensor_protocol` is required. If **page_id** and **component_id** are set then the component will only react to touch events from the Nextion. Setting **component_name** will allow setting options like foreground color.
 
   .. note::
 
@@ -122,7 +122,7 @@ How things Update
 A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
 To have the Nextion send the data you can use the :ref:`nextion_custom_binary_sensor_protocol` for this. Add the :ref:`nextion_custom_binary_sensor_protocol` to the 
 component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
-set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
+set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/components)
 in the Nextion. 
 
 .. note::
@@ -141,7 +141,7 @@ Using the above yaml example:
 
 .. note::
 
-    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it won't update until it is set to be visible.
 
 .. _nextion_custom_binary_sensor_protocol:
 
