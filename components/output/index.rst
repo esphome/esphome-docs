@@ -26,7 +26,7 @@ Each output platform extends this configuration schema.
       - platform: ...
         id: my_output_id
         power_supply: power_supply_id
-        inverted: False
+        inverted: false
         min_power: 0.01
         max_power: 0.75
 
@@ -38,7 +38,7 @@ Configuration variables:
   this output. When the output is enabled, the power supply will
   automatically be switched on too.
 - **inverted** (*Optional*, boolean): If the output should be treated
-  as inverted. Defaults to ``False``.
+  as inverted. Defaults to ``false``.
 
 Float outputs only:
 

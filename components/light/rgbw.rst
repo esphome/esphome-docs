@@ -67,7 +67,7 @@ the RGB channels to maximum whilst wanting a white light will have an undesired 
 configuration variable is available that prevents the RGB leds and white leds from being turned on at the same
 time: ``color_interlock``.
 
-Setting this variable to ``True`` will automatically turn off the RGB leds when the white value is non-zero, or
+Setting this variable to ``true`` will automatically turn off the RGB leds when the white value is non-zero, or
 when the color is set to white (equal values for red, green and blue). When a different color is set, or the
 color brightness is raised above 0%, the white leds are automatically turned off.
 

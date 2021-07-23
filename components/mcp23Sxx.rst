@@ -39,7 +39,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
           number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
           mode: OUTPUT
-          inverted: False
+          inverted: false
 
     # Individual inputs
     binary_sensor:
@@ -51,7 +51,7 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
           number: 1
           # One of INPUT or INPUT_PULLUP
           mode: INPUT
-          inverted: False
+          inverted: false
 
 Configuration variables:
 ************************
@@ -104,7 +104,7 @@ binary sensor or GPIO switch.
           # Use pin number 0
           number: 0
           mode: OUTPUT
-          inverted: False
+          inverted: false
 
     # Individual inputs
     binary_sensor:
@@ -116,7 +116,7 @@ binary sensor or GPIO switch.
           number: 1
           # One of INPUT or INPUT_PULLUP
           mode: INPUT_PULLUP
-          inverted: False
+          inverted: false
 
 Configuration variables:
 ************************

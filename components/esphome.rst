@@ -52,7 +52,7 @@ Advanced options:
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 - **name_add_mac_suffix** (*Optional*, boolean): Appends the last 6 bytes of the mac address of the device to
-  the name in the form ``<name>-aabbcc``. Defaults to ``False``.
+  the name in the form ``<name>-aabbcc``. Defaults to ``false``.
   See :ref:`esphome-mac_suffix`.
 
 - **project** (*Optional*): ESPHome Creator's Project information. See :ref:`esphome-creators_project`.

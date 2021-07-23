@@ -459,15 +459,15 @@ This effect cycles through a list of colors with specific durations.
           - strobe:
               name: Strobe Effect With Custom Values
               colors:
-                - state: True
+                - state: true
                   brightness: 100%
                   red: 100%
                   green: 90%
                   blue: 0%
                   duration: 500ms
-                - state: False
+                - state: false
                   duration: 250ms
-                - state: True
+                - state: true
                   brightness: 100%
                   red: 0%
                   green: 100%
@@ -479,7 +479,7 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Strobe``.
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
-  - **state** (*Optional*, boolean): The ON/OFF state to show. Defaults to ``True``.
+  - **state** (*Optional*, boolean): The ON/OFF state to show. Defaults to ``true``.
   - **brightness** (*Optional*, percentage): The brightness of the light. Defaults to ``100%``.
   - **red** (*Optional*, percentage): The percentage that the red color should be on for RGB lights. Defaults to ``100%``.
   - **green** (*Optional*, percentage): The percentage that the green color should be on for RGB lights. Defaults to ``100%``.
@@ -603,7 +603,7 @@ the strip and shifts them forward every ``add_led_interval``.
                   blue: 0%
                   num_leds: 1
               add_led_interval: 100ms
-              reverse: False
+              reverse: false
 
 Configuration variables:
 
@@ -614,13 +614,13 @@ Configuration variables:
   - **red** (*Optional*, percentage): The percentage the red color channel should be on. Defaults to ``100%``.
   - **green** (*Optional*, percentage): The percentage the green color channel should be on. Defaults to ``100%``.
   - **blue** (*Optional*, percentage): The percentage the blue color channel should be on. Defaults to ``100%``.
-  - **random** (*Optional*, boolean): If set to ``True``, will overwrite the RGB colors by a new, randomly-chosen
-    color each time. Defaults to ``False``.
+  - **random** (*Optional*, boolean): If set to ``true``, will overwrite the RGB colors by a new, randomly-chosen
+    color each time. Defaults to ``false``.
   - **num_leds** (*Optional*, int): The number of leds of this type to have before moving on to the next color.
 
 - **add_led_interval** (*Optional*, :ref:`config-time`): The interval with which to shift in new leds at the
   beginning of the strip. Defaults to ``100ms``.
-- **reverse** (*Optional*, boolean): Whether to reverse the direction of the color wipe. Defaults to ``False``.
+- **reverse** (*Optional*, boolean): Whether to reverse the direction of the color wipe. Defaults to ``false``.
 
 Addressable Scan Effect
 ***********************
