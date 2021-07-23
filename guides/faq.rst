@@ -11,7 +11,7 @@ Tips for using ESPHome
 1. ESPHome supports (most of) `Home Assistant's YAML configuration directives
    <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
    ``!include`` and ``!secret``. So you can store all your secret WiFi passwords and so on
-   in a file called ``secrets.yaml`` within the directory where the configuration file is.
+   in a file called ``secrets.yaml`` within the directory where the esphome configuration files are.
 
    For even more configuration templating, take a look at :ref:`config-substitutions`.
 
