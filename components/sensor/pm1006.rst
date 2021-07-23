@@ -42,10 +42,6 @@ Configuration variables:
 - **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter.
   All options from :ref:`Sensor <config-sensor>`.
 
-- **rx_only** (*Optional*, boolean): Whether the sensor is connected **only by RX pin** to the UART bus.
-  Since the SDS011 can not be configured in RX-only mode, ``update_interval`` has no effect and the sensor must be
-  configured separately. Defaults to ``false``.
-
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
