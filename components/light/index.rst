@@ -123,30 +123,42 @@ This action turns a light with the given ID on when executed.
         # Shorthand
         - light.turn_on: light_1
 
-Configuration variables:
+Configuration variables (all percentage options accept values in the range ``0%`` to ``100%`` or ``0.0`` to ``1.0``):
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
   if the light supports it.
-- **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. This is a master brightness that applies to all channels (both color and white) of the
-  light. Defaults to not changing brightness.
-- **color_brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the color lights. Must
-  be in range ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Useful to control brightness of colored and white lights separately for
-  RGBW lights. Defaults to not changing brightness.
-- **red** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The red channel of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing red channel.
-- **green** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The green channel of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing green channel.
-- **blue** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The blue channel of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing blue channel.
-- **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the white lights. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing white channel.
-- **color_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): The white color temperature value (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) for CWWW / RGBWW lights. Defaults to not changing the color temperature value.
+- **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The master brightness of the light, that
+  applies to all channels (both color and white) of the light.
+- **color_mode** (*Optional*, :ref:`templatable <config-templatable>`): For lights that support more than one color mode, the color
+  mode that will be activated. This can for example be used to switch between color and white light. Must be a color mode that is
+  supported by the light. Valid color modes are:
+
+    - ``WHITE``: White channel.
+    - ``COLOR_TEMPERATURE``: Color-temperature controllable white channel.
+    - ``COLD_WARM_WHITE``: Two white channels with different color temperatures.
+    - ``RGB``: RGB color channel.
+    - ``RGB_WHITE``: RGB color channel and a separate white channel.
+    - ``RGB_COLOR_TEMPERATURE``: RGB color channel and a separate color-temperature controllable white channel.
+    - ``RGB_COLD_WARM_WHITE``: RGB color channel and two separate white channels with different color temperatures.
+
+- **color_brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the color lights. Useful
+  to control brightness of colored and white lights separately for RGBW lights.
+- **red** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The red channel of the light.
+- **green** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The green channel of the light.
+- **blue** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The blue channel of the light.
+- **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the white channel.
+- **color_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): The color temperature
+  (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) for the white channel.
+- **cold_white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the cold white channel.
+- **warm_white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the warm white channel.
 - **flash_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): If set, will flash the given color
   for this period of time and then go back to the previous state.
 - **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): If set, will attempt to
   start an effect with the given name.
+
+All options default to not changing the current value (which might be the value from before the light was last turned off).
+To reset values, explicitly set them to zero.
 
 .. note::
 
@@ -158,7 +170,10 @@ Configuration variables:
         // set parameters (optional)
         call.set_transition_length(1000); // in ms
         call.set_brightness(1.0); // 1.0 is full brightness
-        call.set_rgb(1.0, 1.0, 1.0); // color, 1.0 is fully lit
+        call.set_color_mode(ColorMode::RGB_COLD_WARM_WHITE);
+        call.set_rgb(0.5, 0.25, 1.0); // color in RGB order, this example is purple
+        call.set_cold_white(0.5);
+        call.set_warm_white(0.75);
         call.set_effect("The Effect");
         // perform action:
         call.perform();
@@ -172,8 +187,9 @@ Configuration variables:
 .. note::
 
     The master brightness (``brightness``) and separate brightness controls for the color and
-    white channels (``color_brightness`` and ``white``) are multiplied together. Thus, this will
-    result in color at 40% brightness and white at 60% brightness:
+    white channels (``color_brightness``, ``white``, ``cold_white`` and ``warm_white``) are
+    multiplied together. Thus, this will result in color at 40% brightness and white at 60%
+    brightness:
 
     .. code-block:: yaml
 
@@ -480,11 +496,9 @@ Configuration variables:
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
   - **state** (*Optional*, boolean): The ON/OFF state to show. Defaults to ``True``.
-  - **brightness** (*Optional*, percentage): The brightness of the light. Defaults to ``100%``.
-  - **red** (*Optional*, percentage): The percentage that the red color should be on for RGB lights. Defaults to ``100%``.
-  - **green** (*Optional*, percentage): The percentage that the green color should be on for RGB lights. Defaults to ``100%``.
-  - **blue** (*Optional*, percentage): The percentage that the blue color should be on for RGB lights. Defaults to ``100%``.
-  - **white** (*Optional*, percentage): The percentage that the white color should be on for RGBW lights. Defaults to ``100%``.
+  - **brightness**, **color_mode**, **color_brightness**, **red**, **green**, **blue**, **white**, **color_temperature**,
+    **cold_white**, **warm_white**: Control the color of the light. All options have the same meaning as in `light.turn_on <light-turn_on_action>`,
+    except that they default to ``100%``. Channels that shouldn't light up should be explicitly set to zero.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
 
 Flicker Effect
