@@ -50,8 +50,6 @@ Configuration variables:
 
 - **total** (*Optional*): Report the total number of pulses.
 
-  - All options from :ref:`Sensor <config-sensor>`.
-
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. note::
