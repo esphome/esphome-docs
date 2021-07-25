@@ -128,7 +128,6 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The cover to control.
 - **stop** (*Optional*, boolean): Whether to stop the cover.
-- **state** (*Optional*, string): The state to set the cover to - one of ``OPEN`` or ``CLOSE``.
 - **position** (*Optional*, float): The cover position to set.
 
   - ``0.0`` = ``0%`` = ``CLOSED``
@@ -164,11 +163,11 @@ advanced stuff.
       id(my_cover).publish_state(COVER_OPEN);
       id(my_cover).publish_state(COVER_CLOSED);
 
-- ``state``: Retrieve the current state of the cover.
+- ``position``: Retrieve the current position of the cover.
 
   .. code-block:: yaml
 
-      if (id(my_cover).state == COVER_OPEN) {
+      if (id(my_cover).position == COVER_OPEN) {
         // Cover is open
       } else {
         // Cover is closed
