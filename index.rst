@@ -215,6 +215,7 @@ Sensor Components
     SDM Meter, components/sensor/sdm_meter, sdm220m.png
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg
     SCD30, components/sensor/scd30, scd30.jpg
+    SDP3x, components/sensor/sdp3x, sdp31.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     SHT4X, components/sensor/sht4x, sht4x.jpg
