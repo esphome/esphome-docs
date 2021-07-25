@@ -20,7 +20,7 @@ sensors with ESPHome.
 
 .. _Sparkfun: https://www.sparkfun.com/products/17874
 
-To use the sensor, first set up an :ref:`I²C Bus <i2c>` and connect the sensor to the specified pins. Set the accuracy_decimals field to avoid rounding off the pressure readings, as the SDP3x sensors are designed to measure small pressure differences.
+To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the specified pins. 
 
 .. code-block:: yaml
 
@@ -28,8 +28,6 @@ To use the sensor, first set up an :ref:`I²C Bus <i2c>` and connect the sensor 
     - platform: sdp3x
       name: "HVAC Filter Pressure drop"
       id: filter_pressure
-      update_interval: 5s
-      accuracy_decimals: 3
 
 Configuration variables:
 ------------------------
