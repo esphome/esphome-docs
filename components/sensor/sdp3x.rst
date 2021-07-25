@@ -1,5 +1,5 @@
 SDP3x Differential Pressure Sensor
-=========================
+==================================
 
 .. seo::
     :description: Instructions for setting up the SDP3x Differential Pressure sensor.
