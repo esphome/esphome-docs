@@ -72,7 +72,16 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the climate device to control.
 - **mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Put the climate device
-  in a specific mode. One of ``OFF``, ``HEAT_COOL``, ``COOL`` and ``HEAT``.
+  in a specific mode. One of 
+  
+  - ``OFF`` - The device is manually set to off, the device is inactive.
+  - ``AUTO`` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
+  - ``HEAT`` - The device is set to heat to reach a target temperature.
+  - ``COOL`` - The device is set to cool to reach a target temperature.
+  - ``HEAT_COOL`` - The device should heat/cool to maintain a target temperature.
+  - ``FAN_ONLY`` - The device only has the fan enabled, no heating or cooling is taking place.
+  - ``DRY`` - The device is set to dry/humidity mode.
+
 - **target_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   target temperature of a climate device.
 - **target_temperature_low** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
