@@ -30,7 +30,7 @@ Additionally, you need to set the baud rate to 9600.
     sensor:
       - platform: pm1006
         pm_2_5:
-          name: "Particulate Matter <2.5µm Concentration"
+          name: "Particulate Matter 2.5µm Concentration"
 
 Unlike some other sensors, there is no configurable update interval, as this is a 'passive' implementation that picks up whatever the VINDRIKTNING MCU has requested from the sensor.
 
