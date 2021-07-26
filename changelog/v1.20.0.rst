@@ -96,6 +96,7 @@ Breaking Changes
 - Change color model to fix white channel issues :esphomepr:`1895` by :ghuser:`oxan` (breaking-change)
 - Remove a whole bunch of deprecated/removed stuff :esphomepr:`1981` by :ghuser:`jesserockz` (breaking-change)
 - catch 0.0 in float set_level pre-adjustment :esphomepr:`2013` by :ghuser:`WeekendWarrior1` (breaking-change)
+- Climate mode meaning was changed :esphomepr:`1995` by :ghuser:`OttoWinter` (breaking-change)
 
 Beta Fixes
 ^^^^^^^^^^
