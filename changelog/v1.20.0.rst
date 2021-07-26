@@ -69,6 +69,15 @@ for you to read yourself. :doc:`/components/display/nextion`
 - Display on_wake/on_sleep
 - Many API helpers (get_string/get_int) have been added
 
+Release 1.20.1 - July 27
+------------------------
+
+- Fix git pull for external_components :esphomepr:`2055` by :ghuser:`mmakaay`
+- midea_ac: fix presets implementation :esphomepr:`2054` by :ghuser:`dudanov`
+- Fixes new auto mode COOL and HEAT after :esphomepr:`1994` :esphomepr:`2053` by :ghuser:`carstenschroeder`
+- Log warning about lack of support for Anova nano :esphomepr:`2063` by :ghuser:`buxtronix`
+- Couple more updates for the Tuya component :esphomepr:`2065` by :ghuser:`nuttytree`
+- Fix MQTT climate custom fan modes without regular ones :esphomepr:`2071` by :ghuser:`OttoWinter`
 
 Full list of changes
 --------------------
