@@ -55,6 +55,7 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``tlc5947`` component. Use this if you have multiple TLC5947 chains
    connected at the same time.
+
 .. _tlc5947-output:
 
 Output
