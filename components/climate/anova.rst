@@ -25,6 +25,10 @@ address of your Anova device.
 You cannot use the Anova app over BLE whilst this component is connected, you
 should disconnect it first. To setup a (dis-)connect switch, see :doc:`/components/switch/ble_client`.
 
+.. warning::
+
+    The Anova Nano is not currently supported as it uses a different BLE protocol.
+
 .. code-block:: yaml
 
     ble_client:

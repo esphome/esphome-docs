@@ -127,7 +127,7 @@ How things Update
 A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
 To have the Nextion send the data you can use the :ref:`nextion_custom_sensor_protocol` for this. Add the :ref:`nextion_custom_sensor_protocol` to the
 component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it
-set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
+set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/components)
 in the Nextion.
 
 .. note::

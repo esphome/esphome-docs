@@ -5,11 +5,11 @@ Nextion Text Sensor Component
 
 .. seo::
     :description: Instructions for setting up Nextion text sensor.
-    :image: nextion.jpg    
+    :image: nextion.jpg
 
 The ``nextion`` text sensor platform supports text strings. It can be a component or variable in the Nextion display.
 It is best to set the components vscope to global in the Nextion Editor. This way the component will be available
-if the page is shown or not. 
+if the page is shown or not.
 
 See :doc:`/components/display/nextion` for setting up the display
 
@@ -35,7 +35,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **nextion_id** (*Optional*, :ref:`config-id`): The ID of the Nextion display.
 - **component_name** (*Optional*, string): The name of the Nextion component.
-- **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considerd to be **on**
+- **variable_name** (*Optional*, string): The name of the Nextion variable. Any value over ``0`` is considered to be **on**
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_text_sensor_protocol` this should not be used
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
@@ -84,20 +84,20 @@ some more advanced functions (see the full :apiref:`nextion/text_sensor/nextion_
 How things Update
 -----------------
 A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
-To have the Nextion send the data you can use the :ref:`nextion_custom_text_sensor_protocol` for this. Add the :ref:`nextion_custom_text_sensor_protocol` to the 
-component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
-set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
-in the Nextion. 
+To have the Nextion send the data you can use the :ref:`nextion_custom_text_sensor_protocol` for this. Add the :ref:`nextion_custom_text_sensor_protocol` to the
+component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it
+set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/components)
+in the Nextion.
 
 .. note::
 
     There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
     since this will be sending the real value to esphome.
 
-Using the above yaml example:  
-  - "text0" will poll the Nextion for ``text0.txt`` value and set the state accordingly.  
+Using the above yaml example:
+  - "text0" will poll the Nextion for ``text0.txt`` value and set the state accordingly.
 
-    - :ref:`Lambda Calls <nextion_text_sensor_lambda_calls>`.  
+    - :ref:`Lambda Calls <nextion_text_sensor_lambda_calls>`.
 
 .. note::
 
