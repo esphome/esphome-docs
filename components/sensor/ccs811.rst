@@ -54,6 +54,9 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
+- **version:** (*Optional*): This sensor reports the firmware ('application') version. Version 1.0.0 will be reported as '1000', 2.0.0 will be reported as '2000', etc.
+
+  - **name** (**Required**, string): The name for the version sensor.
 
 Advanced:
 
