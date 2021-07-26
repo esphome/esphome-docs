@@ -284,6 +284,7 @@ Output Components
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
+    TLC5947, components/output/tlc5947, tlc5947.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
