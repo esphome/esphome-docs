@@ -35,6 +35,7 @@ Additionally, you need to set the baud rate to 9600.
 Unlike some other sensors, there is no configurable update interval, as this is a 'passive' implementation that picks up whatever the VINDRIKTNING MCU has requested from the sensor.
 
 The implementation was inspired by https://github.com/Hypfer/esp8266-vindriktning-particle-sensor; you can also see the pinout there.
+However, we recommend mounting your ESP below the fan (which blows out the front) so you do not obstruct the airflow.
 
 Configuration variables:
 ------------------------
