@@ -90,24 +90,29 @@ modes that Home Assistant offers.
 Controller Behavior and Hysteresis
 ----------------------------------
 
-In addition to the set points, a hysteresis value determines how far the temperature may vary from the set point value(s)
-before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. It defaults to 0.5 °C.
+In addition to the set points, hysteresis values determine how far the temperature may vary from the set point value(s)
+before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. They each default to 0.5 °C. They are:
+
+- ``cool_deadband``: The minimum temperature differential (temperature above the set point) before **engaging** cooling
+- ``cool_overrun``: The minimum temperature differential (cooling beyond the set point) before **disengaging** cooling
+- ``heat_deadband``: The minimum temperature differential (temperature below the set point) before **engaging** heat
+- ``heat_overrun``: The minimum temperature differential (heating beyond the set point) before **disengaging** heat
 
 A question that often surfaces about this component is, "What is the expected behavior?" Let's quickly discuss
 *exactly when* the configured actions are called by the controller.
 
 Consider the low set point (the one that typically activates heating) for a moment, and assume it is set to a common room
-temperature of 21 °C. As mentioned above, the controller uses a default hysteresis value of 0.5 °C, so let's assume that
-value here, as well. The controller as implemented in this component will allow the temperature to drop as low as the set
-point's value (21 °C) *minus* the hysteresis value (0.5 °C), or 20.5 °C, before calling ``heat_action`` to activate heating.
+temperature of 22 °C. Let's assume ``heat_deadband`` is set to 0.4 °C while ``heat_overrun`` is set to 0.6 °C. In this case,
+the controller will allow the temperature to drop as low as the set point's value (22 °C) *minus* the ``heat_deadband``
+value (0.4 °C), or 21.6 °C, before calling ``heat_action`` to activate heating.
 
-After heating has been activated, it will remain active until the observed temperature reaches the set point (21 °C) *plus*
-the hysteresis value (0.5 °C), or 21.5 °C. Once this temperature is reached, ``idle_action`` will be called to deactivate
+After heating has been activated, it will remain active until the observed temperature reaches the set point (22 °C) *plus*
+the ``heat_overrun`` value (0.6 °C), or 22.6 °C. Once this temperature is reached, ``idle_action`` will be called to deactivate
 heating.
 
 The same behavior applies to the high set point, although the behavior is reversed in a sense; given an upper set point of
-22 °C, ``cool_action`` would be called at 22.5 °C and ``idle_action`` would not be called until the temperature is reduced
-to 21.5 °C.
+23 °C, ``cool_deadband`` set to 0.3 °C and ``cool_overrun`` set to 0.7 °C, ``cool_action`` would be called at 23.3 °C and
+``idle_action`` would not be called until the temperature is reduced to 22.3 °C.
 
 Important Terminology
 ---------------------
@@ -142,12 +147,12 @@ The thermostat controller uses the sensor to determine whether it should heat or
 Default Target Temperatures and Mode
 ************************************
 
-These temperatures are used when the device first starts up.
+These configuration items determine default values the thermostat controller should use when it starts.
 
 - **default_mode** (*Optional*, climate mode): The default climate mode the controller should use if it 
   is unable to restore it from memory. One of:
 
-  - ``off``
+  - ``off`` (default)
   - ``heat_cool``
   - ``cool``
   - ``heat``
@@ -264,10 +269,10 @@ These should be used to control the fan only, if available.
 Advanced Options
 ****************
 
-- **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
-  an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. Defaults to 0.5 °C.
-- **target_temperature_change_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the
-  thermostat's target temperature(s) is/are changed.
+**Set Point Options/Behavior**
+
+- **set_point_minimum_differential** (*Optional*, float): For dual-point/dual-function systems, the minimum
+  required temperature difference between the heat and cool set points.
 - **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
@@ -279,6 +284,32 @@ Advanced Options
 
 **If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified in the away mode configuration.**
+
+**Additional Actions/Behavior**
+
+- **fan_only_cooling** (*Optional*, boolean): If set to ``true``, when in the ``fan_only_mode`` climate mode,
+  the ``fan_only_action`` will only be called when the observed temperature exceeds the upper set point plus
+  ``cool_deadband``. When set to ``false`` (the default), ``fan_only_action`` is called immediately when
+  ``fan_only_mode`` is activated, regardless of the current temperature or set points.
+- **target_temperature_change_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the
+  thermostat's target temperature(s) is/are changed.
+
+
+**Hysteresis Values**
+
+- **cool_deadband** (*Optional*, float): The minimum temperature differential (temperature above the set point)
+  before calling the cooling :ref:`action <config-action>`. Defaults to 0.5 °C.
+- **cool_overrun** (*Optional*, float): The minimum temperature differential (cooling beyond the set point)
+  before calling the idle :ref:`action <config-action>`. Defaults to 0.5 °C.
+- **heat_deadband** (*Optional*, float): The minimum temperature differential (temperature below the set point)
+  before calling the heating :ref:`action <config-action>`. Defaults to 0.5 °C.
+- **heat_overrun** (*Optional*, float): The minimum temperature differential (heating beyond the set point)
+  before calling the idle :ref:`action <config-action>`. Defaults to 0.5 °C.
+- **hysteresis** (*Optional*, float): This configuration option provides a one-line way to configure *all* "deadband"
+  and "overrun" values identified above. Note that the above configuration options each take precedence over this
+  value. *This option is deprecated and may be removed in a future release.*
+
+
 
 .. note::
 
