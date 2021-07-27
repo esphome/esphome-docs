@@ -92,12 +92,12 @@ with the ``cover.template.publish`` action.
     on_...:
       - cover.template.publish:
           id: template_cov
-          position: OPEN
+          state: OPEN
 
       # Templated
       - cover.template.publish:
           id: template_cov
-          position: !lambda 'return COVER_OPEN;'
+          state: !lambda 'return COVER_OPEN;'
 
 Configuration options:
 
