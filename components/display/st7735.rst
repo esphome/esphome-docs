@@ -58,8 +58,8 @@ Memory notes:
 *************
 
 - 8Bit color saves 50% of the buffer required.
-- eightbitcolor: true 160x128 = 20480 *Important for memory constrained devices*
-- eightbitcolor: false 160x128x2 = 40960
+- ``eight_bit_color: true`` 160x128 = 20480 *Important for memory constrained devices*
+- ``eight_bit_color: false`` 160x128x2 = 40960
 
 
 Models:
