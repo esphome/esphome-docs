@@ -102,8 +102,10 @@ with the ``cover.template.publish`` action.
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the template cover.
+- **state** (*Optional*, :ref:`templatable <config-templatable>`):
+  The state to publish. One of ``OPEN``, ``CLOSED``. If using a lambda, use ``COVER_OPEN`` or ``COVER_CLOSED``.
 - **position** (*Optional*, :ref:`templatable <config-templatable>`, float):
-  The position to publish, from 0 (CLOSED) to 1.0 (OPEN). If using a lambda, use ``COVER_OPEN`` or ``COVER_CLOSED``.
+  The position to publish, from 0 (CLOSED) to 1.0 (OPEN)
 - **tilt** (*Optional*, :ref:`templatable <config-templatable>`, float):
   The tilt position to publish, from 0 (CLOSED) to 1.0 (OPEN)
 - **current_operation** (*Optional*, :ref:`templatable <config-templatable>`, string):
