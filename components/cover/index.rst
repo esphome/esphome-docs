@@ -128,6 +128,7 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The cover to control.
 - **stop** (*Optional*, boolean): Whether to stop the cover.
+- **state** (*Optional*, string): The state to set the cover to - one of ``OPEN`` or ``CLOSE``.
 - **position** (*Optional*, float): The cover position to set.
 
   - ``0.0`` = ``0%`` = ``CLOSED``
