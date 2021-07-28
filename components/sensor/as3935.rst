@@ -99,7 +99,14 @@ Configuration variables:
   detection and distance sensing. It's possible to add up to 120pF in steps of 8pF to the antenna. Defaults to ``0``.
 - **watchdog_threshold** (*Optional*, integer): Determines the threshold for events that trigger the IRQ pin.
   Defaults to ``2``.
-
+- **trim_antenna** (*Optional*, boolean): Start sensor in antenna trimming mode enabled. It will emit oscillator
+  frequency to be read on the INT pin. Please follow AS3935 documentation. Note that while this mode is enabled,
+  lightings will not be detected. It should be used for initial calibration only, in order to determine correct value of
+  ``capacitance`` and/or ``div_ratio`` parameters.
+  Defaults to ``False``.
+- **calibration** (*Optional*, boolean): Enable/disable oscillator calibration on startup. It is recommended to perform
+  antenna trimming procedure first and adjust parameters, so that RLC antenna resonance is tuned within optimal range.
+  Defaults to ``True``.
 
 Over I²C
 --------
@@ -152,6 +159,14 @@ Configuration variables:
   detection and distance sensing. It's possible to add up to 120pF in steps of 8pF to the antenna. Defaults to ``0``.
 - **watchdog_threshold** (*Optional*, integer): Determines the threshold for events that trigger the IRQ pin.
   Defaults to ``2``.
+- **trim_antenna** (*Optional*, boolean): Start sensor in antenna trimming mode enabled. It will emit oscillator
+  frequency to be read on the INT pin. Please follow AS3935 documentation. Note that while this mode is enabled,
+  lightings will not be detected. It should be used for initial calibration only, in order to determine correct value of
+  ``capacitance`` and/or ``div_ratio`` parameters.
+  Defaults to ``False``.
+- **calibration** (*Optional*, boolean): Enable/disable oscillator calibration on startup. It is recommended to perform
+  antenna trimming procedure first and adjust parameters, so that RLC antenna resonance is tuned within optimal range.
+  Defaults to ``True``.
 
 
 Sensor
