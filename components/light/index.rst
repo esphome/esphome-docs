@@ -313,8 +313,6 @@ Configuration variables:
 - **range_to** (*Optional*, :ref:`templatable <config-templatable>`, int): The end of the
   range of LEDs to control - this is a half-open interval. 0-based indexing.
   Defaults to the end of the strip (``num_leds``).
-- **color_brightness** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The brightness to
-  set the color channel to.
 - **red** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the red channel to.
 - **green** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
