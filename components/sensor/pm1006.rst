@@ -36,6 +36,7 @@ Unlike some other sensors, there is no configurable update interval, as this is 
 
 The implementation was inspired by https://github.com/Hypfer/esp8266-vindriktning-particle-sensor; you can also see the pinout there.
 However, we recommend mounting your ESP below the fan (which blows out the front) so you do not obstruct the airflow.
+`This discussion thread on the HA forum <https://community.home-assistant.io/t/ikea-vindriktning-air-quality-sensor/324599>`__ has several examples of how people have connected their ESP device to the IKEA sensor.
 
 Configuration variables:
 ------------------------
