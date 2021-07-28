@@ -37,7 +37,7 @@ T1
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         id: button_1
         on_press:
           then:
@@ -100,7 +100,7 @@ T2
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         id: button_1
         on_press:
           then:
@@ -110,7 +110,7 @@ T2
         pin:
           number: GPIO9
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         id: button_2
         on_press:
           then:
@@ -171,7 +171,7 @@ T3
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         id: button_1
         on_press:
           then:
@@ -181,7 +181,7 @@ T3
         pin:
           number: GPIO9
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         id: button_2
         on_press:
           then:
@@ -191,7 +191,7 @@ T3
         pin:
           number: GPIO10
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         id: button_3
         on_press:
           then:

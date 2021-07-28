@@ -96,7 +96,7 @@ In teleinfo platform:
 
 - **historical_mode** (*Optional*): Whether to use historical mode or standard mode.
   With historical mode, baudrate of 1200 must be used whereas 9600 must be used in
-  standard mode. Defaults to ``False``.
+  standard mode. Defaults to ``false``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.

@@ -51,15 +51,15 @@ Configuration variables:
 - **device_height** (**Required**, int): The device height. 160 is default
 - **col_start** (**Required**, int): The device height. 160 is default
 - **row_start** (**Required**, int): The device height. 160 is default
-- **eight_bit_color** (*Optional*, "True/False" ): 8bit mode. Default is False. This saves 50% of the buffer required for the display.
+- **eight_bit_color** (*Optional*, "true/false" ): 8bit mode. Default is false. This saves 50% of the buffer required for the display.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 
 Memory notes:
 *************
 
 - 8Bit color saves 50% of the buffer required.
-- eightbitcolor: True 160x128 = 20480 *Important for memory constrained devices*
-- eightbitcolor: False 160x128x2 = 40960
+- ``eight_bit_color: true`` 160x128 = 20480 *Important for memory constrained devices*
+- ``eight_bit_color: false`` 160x128x2 = 40960
 
 
 Models:

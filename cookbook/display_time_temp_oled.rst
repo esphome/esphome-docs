@@ -102,7 +102,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
     i2c:
       sda: D1
       scl: D2
-      scan: False
+      scan: false
 
     display:
       - platform: ssd1306_i2c

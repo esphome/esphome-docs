@@ -54,7 +54,7 @@ Configuration variables:
 
 ESP32 options:
 
-- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``True`` or ``False``. Defaults to ``False``.
+- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``true`` or ``false``. Defaults to ``false``.
 
 .. _uart-hardware_uarts:
 

@@ -91,14 +91,14 @@ Configuration variables:
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
-- **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
+- **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``false``.
 - **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: SILENT, TURBO.
-- **preset_eco** (*Optional*, boolean): ECO preset support. Defaults to ``False``.
-- **preset_sleep** (*Optional*, boolean): SLEEP preset support. Defaults to ``False``.
-- **preset_boost** (*Optional*, boolean): BOOST preset support. Defaults to ``False``.
+- **preset_eco** (*Optional*, boolean): ECO preset support. Defaults to ``false``.
+- **preset_sleep** (*Optional*, boolean): SLEEP preset support. Defaults to ``false``.
+- **preset_boost** (*Optional*, boolean): BOOST preset support. Defaults to ``false``.
 - **custom_presets** (*Optional*, list): List of supported custom presets. Possible values are: FREEZE_PROTECTION.
-- **swing_horizontal** (*Optional*, boolean): Enable **swing horizontal** option. Defaults to ``False``.
-- **swing_both** (*Optional*, boolean): Enable **swing both** option. Defaults to ``False``.
+- **swing_horizontal** (*Optional*, boolean): Enable **swing horizontal** option. Defaults to ``false``.
+- **swing_both** (*Optional*, boolean): Enable **swing both** option. Defaults to ``false``.
 - All other options from :ref:`Climate <config-climate>`.
 
 Configuration variables of midea-dongle component:
@@ -108,7 +108,7 @@ Configuration variables of midea-dongle component:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
 - **strength_icon** (*Optional*, boolean): Set if your device have signal strength icon
-  and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to ``False``.
+  and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to ``false``.
 
 
 Acknowledgments:

@@ -27,7 +27,7 @@ Once configured, you can use any of the 8 channels (TCA9548A) as separated chann
       - address: 0x70
         id: multiplex0
         i2c_id: i2c0
-        scan: True
+        scan: true
 
     # Individual I2C Devices
     sensor:

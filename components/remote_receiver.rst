@@ -231,7 +231,7 @@ Remote code selection (exactly one of these has to be included):
         remote_receiver:
           pin:
             number: D4
-            inverted: True
+            inverted: true
             mode: INPUT_PULLUP
           dump: all
 
