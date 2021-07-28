@@ -44,6 +44,8 @@ If ``update_interval`` is between 1-30 minutes, the SDS011 periodically turns on
 For the remaining time the sensor is shut off. As a result, this mode can reduce power consumption and increases
 the lifetime of the SDS011.
 
+Note that ``update_interval`` may not be set to ``never``.
+
 Configuration variables:
 ------------------------
 

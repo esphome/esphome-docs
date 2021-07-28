@@ -51,6 +51,8 @@ Configuration variables:
             filters:
               - multiply: 3.3
 
+
+
 .. _adc-esp32_attenuation:
 
 ESP32 Attenuation
@@ -72,17 +74,28 @@ To measure voltages higher than 1.1V, set ``attenuation`` to one of the `followi
 ESP8266 Measuring VCC
 ---------------------
 
-On the ESP8266 you can even measure the voltage the chip is getting. This can be useful in situations
+On the ESP8266 you can even measure the voltage the *chip is getting*. This can be useful in situations
 where you want to shut down the chip if the voltage is low when using a battery.
 
 To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is connected to the ``A0`` pin.
 
+.. note::
+
+    To avoid confusion: It measures the voltage at the chip, and not at the VCC pin of the board. It should usually be around 3.3V.
+    
 .. code-block:: yaml
 
     sensor:
       - platform: adc
         pin: VCC
         name: "VCC Voltage"
+
+Multiple ADC Sensors
+---------------------
+
+You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see below) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
+
+
 
 See Also
 --------

@@ -74,6 +74,9 @@ Configuration variables:
 
 - **transmitter_id** (*Optional*, :ref:`config-id`): The remote transmitter to send the
   remote code with. Defaults to the first one defined in the configuration.
+  
+If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
+Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
 .. _remote_transmitter-transmit_raw:
 
@@ -127,8 +130,8 @@ This :ref:`action <config-action>` sends an LG infrared remote code to a remote 
 
     on_...:
       - remote_transmitter.transmit_lg:
-          data: 0x1234567
-          nbits: 28
+          data: 0x20DF10EF # power on/off
+          nbits: 32
 
 Configuration variables:
 
@@ -194,16 +197,41 @@ Configuration variables:
 **********************************************
 
 This :ref:`action <config-action>` sends a Samsung infrared remote code to a remote transmitter.
+It transmits codes up to 64 bits in length in a single packet.
 
 .. code-block:: yaml
 
     on_...:
       - remote_transmitter.transmit_samsung:
           data: 0x1FEF05E4
+      # additional example for 48-bit codes:
+      - remote_transmitter.transmit_samsung:
+          data: 0xB946F50A09F6
+          nbits: 48
 
 Configuration variables:
 
 - **data** (**Required**, int): The data to send, see dumper output for more details.
+- **nbits** (*Optional*, int): The number of bits to send. Defaults to ``32``.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+``remote_transmitter.transmit_samsung36`` Action
+************************************************
+
+This :ref:`action <config-action>` sends a Samsung36 infrared remote code to a remote transmitter.
+It transmits the ``address`` and ``command`` in two packets separated by a "space".
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_samsung36:
+          address: 0x0400
+          command: 0x000E00FF      
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send, see dumper output for more details.
+- **command** (**Required**, int): The Samsung36 command to send, see dumper output for more details.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_panasonic`` Action
@@ -241,7 +269,7 @@ This :ref:`action <config-action>` sends a Pioneer infrared remote code to a rem
 Configuration variables:
 
 - **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
-- **rc_code_2** (**Optional**, int): The secondary remote control code to send; some codes are sent in
+- **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
   two parts.
 - Note that ``repeat`` is still optional, however **Pioneer devices may require that a given code is
   received multiple times before they will act on it.** Add this if your device does not respond to
@@ -460,6 +488,7 @@ earlier, create a new template switch that sends the infrared code when triggere
         name: Raw Code Power Button
         turn_on_action:
           - remote_transmitter.transmit_raw:
+              carrier_frequency: 38kHz
               code: [4088, -1542, 1019, -510, 513, -1019, 510, -509, 511, -510, 1020,
                      -1020, 1022, -1019, 510, -509, 511, -510, 511, -509, 511, -510,
                      1020, -1019, 510, -511, 1020, -510, 512, -508, 510, -1020, 1022]

@@ -47,12 +47,23 @@ not work.
           inverted: False
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this PCF8574 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x21``.
 - **pcf8575** (*Optional*, boolean): Whether this is a 16-pin PCF8575. Defaults to ``False``.
+
+
+Pin configuration variables:
+****************************
+
+- **pcf8574** (**Required**, :ref:`config-id`): The id of the PCF8574 component of the pin.
+- **number** (**Required**, integer): The pin number.
+- **inverted** (*Optional*, boolean): If all read and written values
+  should be treated as inverted. Defaults to ``False``.
+- **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.
+
 
 See Also
 --------

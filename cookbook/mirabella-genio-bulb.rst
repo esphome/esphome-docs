@@ -10,6 +10,11 @@ The Mirabella Genio is a Tuya-based smart bulb sold by Kmart in Australia.
 Originally intended to be used with their companion app once flashed using `tuya-convert <https://github.com/ct-Open-Source/tuya-convert>`__ ESPHome generated
 firmware can be uploaded allowing you to control the bulbs via Home Assistant.
 
+.. note::
+
+    Please note that the new version of this bulb that comes in a cardboard box are using the TYLC5 module which does not work via tuya-convert.
+    These bulbs are also using the SM2135 chipset and not PWM anymore.
+
 1. Create the ESPHome Firmware
 ------------------------------
 
@@ -87,7 +92,7 @@ firmware can be uploaded allowing you to control the bulbs via Home Assistant.
    via SSH and ensure your connection type is set to **SFTP**
 #. Browse to ``/root/tuya-convert/files``.
 #. Upload your compiled ``firmware.bin`` file to this directory. For command line based installs you can access the file under
-   ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin`` alternatively Hass.io users can download the file directly from the web ui.
+   ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin`` alternatively Home Assistant add-on users can download the file directly from the web ui.
 
 2.7 Use tuya-convert to install ESPHome Firmware
 ************************************************
@@ -115,7 +120,7 @@ Thanks to the `existing work <https://github.com/arendst/Sonoff-tasmota/wiki/Mir
 3.1 Monochromatic Bulbs
 ***********************
 
-So the brightness of the bulb can be controlled we use the ``esp8266_pwm`` output component connected to the light component using the id configuration
+The brightness of the bulb can be controlled using the ``esp8266_pwm`` output component connected to the light component using the id configuration
 variable ``output_component1``.
 
 .. code-block:: yaml
@@ -147,7 +152,9 @@ variable ``output_component1``.
     output:
       - platform: esp8266_pwm
         id: output_component1
+        # May need to use GPIO14 instead for certain globes
         pin: GPIO13
+        
 
 3.2 Cold + Warm White Bulbs
 ***************************
@@ -235,7 +242,51 @@ variable ``output_component1``.
         # Ensure the light turns on by default if the physical switch is actuated.
         restore_mode: ALWAYS_ON
 
+3.4 CWWW Mirabella Genio Downlights
+***********************************
 
+Kmart also sell a `downlight option <https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331>`__, which works quite well however the PWM method that is used is different to the way the CWWW lights in ESPHome works.
+
+A `project by ssieb <https://github.com/ssieb/custom_components/tree/master/cwww2>`__ resolves this using a custom component.
+
+.. code-block:: yaml
+
+    esphome:
+      name: rgbw_e27_01
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+    logger:
+
+    api:
+
+    ota:
+
+    output:
+      - platform: esp8266_pwm
+        id: output1
+        pin: GPIO14
+      - platform: esp8266_pwm
+        id: output2
+        pin: GPIO12
+
+    light:
+      - platform: cwww2
+        id: LED
+        name: "Downlight"
+        color_temperature: output2
+        brightness: output1
+        cold_white_color_temperature: 6500 K
+        warm_white_color_temperature: 2700 K
+
+        # Ensure the light turns on by default if the physical switch is actuated.
+        restore_mode: ALWAYS_ON
+        
+        
 4. Adding to Home Assistant
 ---------------------------
 

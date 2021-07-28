@@ -43,7 +43,7 @@ Use of the OE pin is optional. If used, the pin should be pulled up externally.
           inverted: False
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this SN74HC595 component.
 - **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 SER input.
@@ -52,11 +52,21 @@ Configuration variables:
 - **oe_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 OE pin
 - **sr_count** (*Optional*, int): Number of daisy-chained shift registers, up-to 4. Defaults to ``1``.
 
+
+Pin configuration variables:
+****************************
+
+- **sn74hc595** (**Required**, :ref:`config-id`): The id of the SN74HC595 component of the pin.
+- **number** (**Required**, integer): The pin number.
+- **inverted** (*Optional*, boolean): If all written values should be treated as inverted.
+  Defaults to ``False``.
+
+
 See Also
 --------
 
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
-- `Serial to Parallel Shifting-Out with a 74HC595 <https://www.arduino.cc/en/tutorial/ShiftOut>`
+- `Serial to Parallel Shifting-Out with a 74HC595 <https://www.arduino.cc/en/tutorial/ShiftOut>`__
 - :apiref:`sn74hc595/sn74hc595.h`
 - :ghedit:`Edit`

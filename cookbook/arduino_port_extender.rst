@@ -2,7 +2,7 @@ Arduino Port Expander
 =====================
 
 .. seo::
-    :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of a ESPHome node
+    :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of an ESPHome node
     :image: arduino_pro_mini.jpg
     :keywords: Arduino port expander extender ESPHome
 
@@ -25,10 +25,11 @@ Currently it is supported:
     - reading analog inputs
     - writing digital outputs
 
-The Arduino sketch can be retrieved from `here <https://github.com/glmnet/esphome_devices/tree/master/ArduinoPortExpander/src>`__
+The Arduino sketch can be retrieved from `here <https://gist.github.com/glmnet/49ca3d6a9742fc3649f4fbdeaa4cdf5d#file-arduino_port_expander_sketch-ino>`__
 you can rename it to ``.ino`` and use the Arduino IDE to program it.
 
-You need to download `arduino_port_expander.h <https://github.com/glmnet/esphome_devices/blob/master/arduino_port_expander.h>`__ and include the ape.h in the ESPHome configuration.
+You need to download `arduino_port_expander.h <https://gist.github.com/glmnet/49ca3d6a9742fc3649f4fbdeaa4cdf5d#file-arduino_port_expander-h>`__ 
+and include the arduino_port_expander.h in the ESPHome configuration.
 
 .. code-block:: yaml
 

@@ -33,12 +33,12 @@ for example the `RobotDyn dimmer
     # Example configuration entry
     output:
       - platform: ac_dimmer
-          id: dimmer1
-          gate_pin: D7
-          zero_cross_pin:
-            number: D6
-            mode: INPUT
-            inverted: yes
+        id: dimmer1
+        gate_pin: D7
+        zero_cross_pin:
+          number: D6
+          mode: INPUT
+          inverted: yes
 
     light:
       - platform: monochromatic

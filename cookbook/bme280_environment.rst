@@ -6,7 +6,7 @@ BME280 Environment
     :image: bme280.jpg
     :keywords: BME280
 
-The :doc:`/components/sensor/bme280` is a simple temperature, humidity, and pressure sensor with communication over I2C.
+The :doc:`/components/sensor/bme280` is a simple temperature, humidity, and pressure sensor with communication over :ref:`I²C <i2c>`.
 With some simple math it is possible to either determine the height of the sensor, or the current pressure at sea level.
 This guide can be applied to any sensor measuring temperature and pressure at the same time, like the
 :doc:`/components/sensor/bmp280`, or :doc:`/components/sensor/bme680`.
@@ -40,6 +40,7 @@ After validating the sensor is working, we can proceed and add some formulas.
           return ((id(bme280_temperature).state + 273.15) / 0.0065) *
             (powf((STANDARD_SEA_LEVEL_PRESSURE / id(bme280_pressure).state), 0.190234) - 1); // in meter
         update_interval: 15s
+        icon: 'mdi:signal'
         unit_of_measurement: 'm'
       - platform: template
         name: "Absolute Humidity"
@@ -51,7 +52,16 @@ After validating the sensor is working, we can proceed and add some formulas.
             ((273.15 + id(bme280_temperature).state) * r); // in grams/m^3
         accuracy_decimals: 2
         update_interval: 15s
+        icon: 'mdi:water'
         unit_of_measurement: 'g/m³'
+      - platform: template
+        name: "Dew Point"
+        lambda: |-
+          return (243.5*(log(id(bme280_humidity).state/100)+((17.67*id(bme280_temperature).state)/
+          (243.5+id(bme280_temperature).state)))/(17.67-log(id(bme280_humidity).state/100)-
+          ((17.67*id(bme280_temperature).state)/(243.5+id(bme280_temperature).state))));
+        unit_of_measurement: °C
+        icon: 'mdi:thermometer-alert'
 
 Altitude and absolute humidity:
 -------------------------------
@@ -112,6 +122,7 @@ Formula explanation
 
 - `Relative humidity calculations <https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/>`__
 - `Altitude calculation <https://en.wikipedia.org/wiki/Atmospheric_pressure#Altitude_variation>`__
+- `Dew Point calculation <https://carnotcycle.wordpress.com/2017/08/01/compute-dewpoint-temperature-from-rh-t/>`__
 
 See Also
 --------

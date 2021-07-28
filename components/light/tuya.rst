@@ -65,6 +65,7 @@ Now you can create the light.
       - platform: "tuya"
         name: "dim1"
         dimmer_datapoint: 3
+        min_value_datapoint: 2
         switch_datapoint: 1
 
 Configuration variables:
@@ -73,13 +74,23 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.
 - **dimmer_datapoint** (*Optional*, int): The datapoint id number of the dimmer value.
+- **min_value_datapoint** (*Optional*, int): The datapoint id number of the MCU minimum value
+  setting.  If this is set then ESPHome will sync the **min_value** to the MCU on startup.
 - **switch_datapoint** (*Optional*, int): The datapoint id number of the power switch.  My dimmer
   required this to be able to turn the light on and off.  Without this you would only be able to
   change the brightness and would have to toggle the light using the physical buttons.
+- **color_temperature_datapoint** (*Optional*, int): The datapoint id number of the color
+  temperature value.
 - **min_value** (*Optional*, int, default 0): The lowest dimmer value allowed.  My dimmer had a
   minimum of 25 and wouldn't even accept anything lower, but this option is available if necessary.
-- **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  My dimmer had a
-  maximum of 255 which seems like it would be the typical value.
+- **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  Most dimmers have a
+  maximum of 255, but dimmers with a maximum of 1000 can also be found. Try what works best.
+- **color_temperature_max_value** (*Optional*, int, default 255): The highest color temperature
+  value allowed. Some ceiling fans have a value of 100 (also for `max_value`).
+- **cold_white_color_temperature** (**Optional**, float): The color temperate (in `mireds
+  <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
+- **warm_white_color_temperature** (**Optional**, float): The color temperate (in `mireds
+  <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
 - All other options from :ref:`Light <config-light>`.
 - At least one of *dimmer_datapoint* or *switch_datapoint* must be provided.
 

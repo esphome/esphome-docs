@@ -132,6 +132,57 @@ Every time ``update`` is called we will now **publish** a new value to the front
 The rest of ESPHome will then take care of processing this value and ultimately publishing it
 to the outside world (for example using MQTT).
 
+One last thing. Some sensors, such as the BMP180 were are going to explain later, require some other component before they can be used. Remember how we talked about the ``setup()`` method? Well just like when writing in the Arduino IDE, components need to be set up in the right order. For that ESPHome introduces another method in the :apiclass:`Component` class.
+
+.. code-block:: cpp
+
+    float get_setup_priority() const override { return esphome::setup_priority::HARDWARE; }
+
+Where HARDWARE can be any of:
+
+.. code-block:: cpp
+
+    /// For communication buses like i2c/spi
+    extern const float BUS;
+    /// For components that represent GPIO pins like PCF8573
+    extern const float IO;
+    /// For components that deal with hardware and are very important like GPIO switch
+    extern const float HARDWARE;
+    /// For components that import data from directly connected sensors like DHT.
+    extern const float DATA;
+    /// Alias for DATA (here for compatibility reasons)
+    extern const float HARDWARE_LATE;
+    /// For components that use data from sensors like displays
+    extern const float PROCESSOR;
+    extern const float WIFI;
+    /// For components that should be initialized after WiFi is connected.
+    extern const float AFTER_WIFI;
+    /// For components that should be initialized after a data connection (API/MQTT) is connected.
+    extern const float AFTER_CONNECTION;
+    /// For components that should be initialized at the very end of the setup process.
+    extern const float LATE;
+
+Now don't let the wording confuse you. The ``get_setup_priority()`` method is an override. Instead of fetching the setup priority setup for us, it instead fetches the setup priority for esphome, while being defined by us. The BMP180 would for instance need to be setup with a priority of IO or lower. A serial streaming (TCP) server would require a working WIFI setup and therefore get AFTER_WIFI.
+
+This finalizes our example as:
+
+.. code-block:: cpp
+
+    class MyCustomSensor : public PollingComponent, public Sensor {
+     public:
+      // constructor
+      MyCustomSensor() : PollingComponent(15000) {}
+
+      float get_setup_priority() const override { return esphome::setup_priority::XXXX; }
+
+      void setup() override {
+        // This will be called by App.setup()
+      }
+      void update() override {
+        // This will be called every "update_interval" milliseconds.
+      }
+    };
+
 Step 2: Registering the custom sensor
 -------------------------------------
 
@@ -352,6 +403,7 @@ Note that the number of arguments you put in the curly braces *must* match the n
 ``sensors:`` block - *and* they must be in the same order.
 
 Configuration variables:
+************************
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   sensor(s).
@@ -380,16 +432,6 @@ functions for this.
     ESP_LOGD("custom", "The value of sensor is: %f", this->state);
 
 See :ref:`display-printf` for learning about how to use formatting in log strings.
-
-.. note::
-
-    On ESP8266s you need to disable storing strings in flash to use logging in custom code.
-
-    .. code-block:: yaml
-
-        logger:
-          level: DEBUG
-          esp8266_store_log_strings_in_flash: False
 
 See Also
 --------

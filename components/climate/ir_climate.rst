@@ -15,28 +15,32 @@ as your remote unit would do.
 There is a growing list of compatible units. If your unit is not listed below you can fill a feature
 request so it will be added (see FAQ).
 
-+------------------------+---------------------+----------------------+------------------------------------+
-| Name                   | Platform name       |  Supports receiver   |                                    |
-|                        |                     |                      |                                    |
-+========================+=====================+======================+====================================+
-| Coolix                 | ``coolix``          | yes                  |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
-| Daikin                 | ``daikin``          | yes                  |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
-| Fujitsu General        | ``fujitsu_general`` |                      |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
-| Mitsubishi             | ``mitsubishi``      |                      |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
-| TCL112, Fuego          | ``tcl112``          | yes                  |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
-| Toshiba                | ``toshiba``         | yes                  |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
-| Yashima                | ``yashima``         |                      |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
-| Whirlpool              | ``whirlpool``       | yes                  | :ref:`more info<model_whirlpool>`  |
-+------------------------+---------------------+----------------------+------------------------------------+
-| LG                     | ``climate_ir_lg``   | yes                  |                                    |
-+------------------------+---------------------+----------------------+------------------------------------+
++---------------------------------------+---------------------+----------------------+
+| Name                                  | Platform name       |  Supports receiver   |
+|                                       |                     |                      |
++=======================================+=====================+======================+
+| Ballu                                 | ``ballu``           | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Coolix                                | ``coolix``          | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Daikin                                | ``daikin``          | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Fujitsu General                       | ``fujitsu_general`` | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Mitsubishi                            | ``mitsubishi``      |                      |
++---------------------------------------+---------------------+----------------------+
+| TCL112, Fuego                         | ``tcl112``          | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Toshiba                               | ``toshiba``         | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Yashima                               | ``yashima``         |                      |
++---------------------------------------+---------------------+----------------------+
+| :ref:`Whirlpool<climate_ir_whirlpool>`| ``whirlpool``       | yes                  |
++---------------------------------------+---------------------+----------------------+
+| :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
++---------------------------------------+---------------------+----------------------+
+| Hitachi                               | ``hitachi_ac344``   | yes                  |
++---------------------------------------+---------------------+----------------------+
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
 
@@ -108,27 +112,58 @@ IR receiver.
         name: "Living Room AC"
         receiver_id: rcvr
 
-.. _model_whirlpool:
+.. _climate_ir_whirlpool:
 
-Whirlpool
----------
+``whirlpool`` Climate
+---------------------
 
 Additional configuration is available for this model
 
+
+Configuration variables:
+
 - **model** (*Optional*, string): There are two valid models
 
-  * ``MODEL_DG11J1_3A``: Temperature range is from 18 to 32 (default)
-  * ``MODEL_DG11J1_91``: Temperature range is from 16 to 30
+ -* ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
+ -* ``DG11J1-91``: Temperature range is from 16 to 30
 
+
+.. _climate_ir_lg:
+
+``climate_ir_lg`` Climate
+-------------------------
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **header_high** (*Optional*, :ref:`config-time`): time for the high part of the header for the LG protocol. Defaults to ``8000us``
+- **header_low** (*Optional*, :ref:`config-time`): time for the low part of the header for the LG protocol. Defaults to ``4000us``
+- **bit_high** (*Optional*, :ref:`config-time`): time for the high part of any bit in the LG protocol. Defaults to ``600us``
+- **bit_one_low** (*Optional*, :ref:`config-time`): time for the low part of a '1' bit in the LG protocol. Defaults to ``1600us``
+- **bit_zero_low** (*Optional*, :ref:`config-time`): time for the low part of a '0' bit in the LG protocol. Defaults to ``550us``
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: climate_ir_lg
+        name: "AC"
+        sensor: room_temperature
+        header_high: 3265us # AC Units from LG in Brazil, for example use these timings
+        header_low: 9856us
 
 See Also
 --------
 
 - :doc:`/components/climate/index`
 - :doc:`/components/remote_transmitter`
+- :apiref:`ballu.h <ballu/ballu.h>`,
 - :apiref:`coolix.h <coolix/coolix.h>`,
   :apiref:`daikin.h <daikin/daikin.h>`
   :apiref:`fujitsu_general.h <fujitsu_general/fujitsu_general.h>`,
+  :apiref:`hitachi_ac344.h <hitachi_ac344/hitachi_ac344.h>`,
   :apiref:`mitsubishi.h <mitsubishi/mitsubishi.h>`,
   :apiref:`tcl112.h <tcl112/tcl112.h>`,
   :apiref:`yashima.h <yashima/yashima.h>`
