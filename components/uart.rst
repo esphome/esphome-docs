@@ -32,12 +32,18 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
     ones used for logging. Therefore the UART data on the ESP8266 can have occasional data glitches especially with
     higher baud rates..
 
+.. note::
+
+    From ESPHome 1.21.0 the ``ESP8266SoftwareSerial`` UART ``write_byte`` function had the parity bit fixed to be correct
+    for the data being sent. This could cause unexpected issue if you have built your own devices that do parity checking.
+
+
 .. code-block:: yaml
 
     # Example configuration entry
     uart:
-      tx_pin: D0
-      rx_pin: D1
+      tx_pin: 1
+      rx_pin: 3
       baud_rate: 9600
 
 Configuration variables:
