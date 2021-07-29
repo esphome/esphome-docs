@@ -180,6 +180,7 @@ Sensor Components
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
+    HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
     INA226, components/sensor/ina226, ina226.jpg
