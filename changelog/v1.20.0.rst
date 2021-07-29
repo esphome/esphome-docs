@@ -87,6 +87,11 @@ Release 1.20.2 - July 29
 - HLW8012 - Dump energy sensor config :esphomepr:`2082` by :ghuser:`jesserockz`
 - Use sensor_schema for total_daily_energy :esphomepr:`2090` by :ghuser:`jesserockz`
 
+Release 1.20.3 - July 30
+------------------------
+
+- Set pulse meter total to use state class measurement and last reset type auto :esphomepr:`2097` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
