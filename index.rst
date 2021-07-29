@@ -180,16 +180,6 @@ Core / Home Assistant
     Uptime Sensor, components/sensor/uptime, timer.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
 
-Sensor Hubs
-***********
-
-These sensors first need a "hub" defined. Hubs typically allow multiple devices of the same type (e.g. the ADS1115 I²C A/D converter), but with different addresses, to coexist on the same bus.
-The hub type sensors are also listed in the relevant "sensor" categories below.
-
-.. imgtable::
-
-    ADS1115 (4-ch A/D), components/sensor/ads1115, ads1115.jpg
-    Dallas DS18B20 (temperature), components/sensor/dallas, dallas.jpg
 
 Air Quality / Gas
 *****************
@@ -299,12 +289,6 @@ Motion, Gesture
     RuuviTag (temp & humid & accelerometer), components/sensor/ruuvitag, ruuvitag.jpg
 
 
-Pressure
-********
-.. imgtable::
-
-    MS5611 (atmospheric pressure), components/sensor/ms5611, ms5611.jpg
-
 Current / Power / Energy
 **********************
 .. imgtable::
@@ -358,6 +342,7 @@ Temperature / Humidity / Pressure
     HDC1080 (temp & humid), components/sensor/hdc1080, hdc1080.jpg
     HTU21D (temp & humid), components/sensor/htu21d, htu21d.jpg
     Inkbird IBS-TH1 Mini (temp & humid), components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg
+    MS5611 (baro), components/sensor/ms5611, ms5611.jpg
     NTC Thermistor (temp), components/sensor/ntc, ntc.jpg
     TMP102 (temp), components/sensor/tmp102, tmp102.jpg
     TMP117 (temp), components/sensor/tmp117, tmp117.jpg
