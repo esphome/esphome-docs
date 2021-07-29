@@ -38,7 +38,7 @@ Configuration variables:
         status_led:
           pin:
             number: D0
-            inverted: True
+            inverted: true
 
 See Also
 --------

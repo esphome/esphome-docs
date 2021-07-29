@@ -39,9 +39,13 @@ PROJECT_NAME           = "ESPHome"
 # control system is used.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 PROJECT_NUMBER         = 1.21.0-dev
 =======
 PROJECT_NUMBER         = 1.20.0
+>>>>>>> current
+=======
+PROJECT_NUMBER         = 1.20.1
 >>>>>>> current
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description

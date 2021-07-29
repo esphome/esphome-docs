@@ -68,8 +68,8 @@ Configuration variables:
 - **name** (**Required**, string): The name for the climate device.
 - **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient
   temperature. This is only for reporting the current temperature in the frontend.
-- **supports_cool** (*Optional*, boolean): Enables setting cooling mode for this climate device. Defaults to ``True``.
-- **supports_heat** (*Optional*, boolean): Enables setting heating mode for this climate device. Defaults to ``True``.
+- **supports_cool** (*Optional*, boolean): Enables setting cooling mode for this climate device. Defaults to ``true``.
+- **supports_heat** (*Optional*, boolean): Enables setting heating mode for this climate device. Defaults to ``true``.
 - **receiver_id** (*Optional*, :ref:`config-id`): The id of the remote_receiver if this platform supports
   receiver. see: :ref:`ir-receiver_id`.
 - All other options from :ref:`Climate <config-climate>`.
@@ -102,7 +102,7 @@ IR receiver.
       id: rcvr
       pin:
         number: GPIO14
-        inverted: True
+        inverted: true
         mode: INPUT_PULLUP
       # high 55% tolerance is recommended for some remote control units
       tolerance: 55%

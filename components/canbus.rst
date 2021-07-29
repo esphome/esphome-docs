@@ -46,7 +46,7 @@ Each canbus platform extends this configuration schema.
         can_id: 4
         on_frame:
         - can_id: 500
-          use_extended_id: False
+          use_extended_id: false
           then:
           - lambda: |-
               std::string b(x.begin(), x.end());
@@ -56,8 +56,8 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
-- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
-  *False*: Standard 11 bits IDs, *True*: Extended 29 bits ID
+- **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
+  *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
 
     - 5KBPS
@@ -138,8 +138,8 @@ Configuration variables:
   the frame. Not needed if you are using only 1 can bus.
 - **can_id** (*Optional*, int): Allows to override the can id configured in
   the can bus device.
-- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
-  *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
+- **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
+  *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
 
 MCP2515 Component
 -----------------
@@ -221,7 +221,7 @@ Standard IDs and Extended IDs can coexist on the same segment.
             then:
               - canbus.send:
                   # Extended ID explicit
-                  use_extended_id: True
+                  use_extended_id: true
                   can_id: 0x100
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
               - canbus.send:
@@ -235,11 +235,11 @@ Standard IDs and Extended IDs can coexist on the same segment.
         spi_id: McpSpi
         cs_pin: GPIO14
         can_id: 0x1fff
-        use_extended_id: True
+        use_extended_id: true
         bit_rate: 125kbps
         on_frame:
         - can_id: 0x123
-          use_extended_id: True
+          use_extended_id: true
           then:
           - lambda: |-
               std::string b(x.begin(), x.end());

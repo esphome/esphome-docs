@@ -79,7 +79,7 @@ Configuration variables:
             # ...
             dir_pin:
               number: D1
-              inverted: True
+              inverted: true
 
 ULN2003 Component
 -----------------
