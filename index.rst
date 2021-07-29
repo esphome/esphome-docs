@@ -96,6 +96,27 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
 
 .. _devices:
 
+General ESPHome
+---------------
+
+Automations
+***********
+
+.. raw:: html
+
+    <p>
+    <A href="/guides/automations.html">Automations</A> allow you to perform actions under certain conditions and <a href="/guides/automations.html#templates-lambdas"> templates (lambdas)</A> are a way to easily customize everything about your node, using short snippets of C++ code.
+    </p>
+
+Configuration Types
+*******************
+
+.. raw:: html
+
+    <p>
+    <a href="/guides/configuration-types.html">Configuration Types</a> covers naming of your components with "ID", how to reference GPIO pins and configure them as input or output, pullups / pull downs etc and use substitutions which are like #defines in C++.
+    </p>
+
 Devices
 -------
 
@@ -143,104 +164,221 @@ Core Components
 Sensor Components
 -----------------
 
+Sensors have been split into categories. If a sensors fits into more than one categoey, it will be listed multiple times.
+
+Core / Home Assistant
+*********************
 .. imgtable::
 
     Sensor Core, components/sensor/index, folder-open.svg
+    Custom Sensor, components/sensor/custom, language-cpp.svg
+    Home Assistant, components/sensor/homeassistant, home-assistant.svg
+    Integration, components/sensor/integration, sigma.svg
+    MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
+    Resistance, components/sensor/resistance, omega.svg
+    Template Sensor, components/sensor/template, description.svg
+    Uptime Sensor, components/sensor/uptime, timer.svg
+    WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
+
+Sensor Hubs
+***********
+
+These sensors first need a "hub" defined. Hubs typically allow multiple devices of the same type (e.g. the ADS1115 I²C A/D converter), but with different addresses, to coexist on the same bus.
+The hub type sensors are also listed in the relevant "sensor" categories below.
+
+.. imgtable::
+
+    ADS1115 (4-ch A/D), components/sensor/ads1115, ads1115.jpg
+    Dallas DS18B20 (temperature), components/sensor/dallas, dallas.jpg
+
+Air Quality / Gas
+*****************
+.. imgtable::
+
+    CCS811 (CO2 & volatile organics), components/sensor/ccs811, ccs811.jpg
+    MH-Z19 (CO2 & temperature), components/sensor/mhz19, mhz19.jpg
+    HM3301 (particulate), components/sensor/hm3301, hm3301.jpg
+    PMSX003 (particulate), components/sensor/pmsx003, pmsx003.svg
+    SenseAir (CO2), components/sensor/senseair, senseair_s8.jpg
+    SDS011 Sensor (particulate), components/sensor/sds011, sds011.jpg
+    SM300D2 (air quality), components/sensor/sm300d2, sm300d2.jpg
+    SPS30 (particulate), components/sensor/sps30, sps30.jpg
+    STS3X (temperature), components/sensor/sts3x, sts3x.jpg
+    SGP30 (CO2 & volatile organic), components/sensor/sgp30, sgp30.jpg
+    SGP40 (volatile organic), components/sensor/sgp40, sgp40.jpg
+    ZyAura (CO2 & temp & humidity), components/sensor/zyaura, zgm053.jpg
+
+
+Ambient Light / Colour
+**********************
+.. imgtable::
+
+    APDS9960 (Colour & gesture), components/sensor/apds9960, apds9960.jpg
+    BH1750 (lux), components/sensor/bh1750, bh1750.jpg
+    TCS34725 (lux & RGB colour), components/sensor/tcs34725, tcs34725.jpg
+    TSL2561 (lux), components/sensor/tsl2561, tsl2561.jpg
+    Teleinfo (RGB colour), components/sensor/teleinfo, teleinfo.jpg
+
+
+Analogue To Digital
+*******************
+.. imgtable::
+
     ADC, components/sensor/adc, flash.svg
-    ADE7953, components/sensor/ade7953, ade7953.svg
-    ADS1115, components/sensor/ads1115, ads1115.jpg
-    AHT10, components/sensor/aht10, aht10.jpg
-    AM2320, components/sensor/am2320, am2320.jpg
-    APDS9960, components/sensor/apds9960, apds9960.jpg
-    ATM90E32, components/sensor/atm90e32, atm90e32.jpg
-    AS3935, components/sensor/as3935, as3935.jpg
-    BH1750, components/sensor/bh1750, bh1750.jpg
-    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg
+    ADS1115 (4-ch A/D), components/sensor/ads1115, ads1115.jpg
+    MCP3008 (8-ch A/D), components/sensor/mcp3008, mcp3008.jpg
+
+
+Bluetooth Low Energy (BLE)
+**************************
+.. imgtable::
+
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
-    BME280, components/sensor/bme280, bme280.jpg
-    BME680, components/sensor/bme680, bme680.jpg
-    BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
-    BMP085, components/sensor/bmp085, bmp180.jpg
-    BMP280, components/sensor/bmp280, bmp280.jpg
-    b-parasite, components/sensor/b_parasite, b_parasite.jpg
-    CCS811, components/sensor/ccs811, ccs811.jpg
-    CSE7766, components/sensor/cse7766, cse7766.svg
-    CS5460A, components/sensor/cs5460a, cs5460a.png
-    CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg
-    Dallas, components/sensor/dallas, dallas.jpg
-    DHT, components/sensor/dht, dht.jpg
-    DHT12, components/sensor/dht12, dht12.jpg
+    Inkbird IBS-TH1 Mini (temp & humid), components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg
+    Xiaomi BLE (various), components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
+    RuuviTag (temp & humid & accelerometer), components/sensor/ruuvitag, ruuvitag.jpg
+
+
+Digital Signals
+***************
+.. imgtable::
+
     Duty Cycle, components/sensor/duty_cycle, percent.svg
-    ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
-    EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
-    Havells Inverter, components/sensor/havells_inverter, havellsgti5000d_s.jpg
-    HDC1080, components/sensor/hdc1080, hdc1080.jpg
-    HLW8012, components/sensor/hlw8012, hlw8012.svg
-    HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
-    QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg
-    Home Assistant, components/sensor/homeassistant, home-assistant.svg
-    HX711, components/sensor/hx711, hx711.jpg
-    INA219, components/sensor/ina219, ina219.jpg
-    INA226, components/sensor/ina226, ina226.jpg
-    INA3221, components/sensor/ina3221, ina3221.jpg
-    Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg
-    Integration, components/sensor/integration, sigma.svg
-    HTU21D, components/sensor/htu21d, htu21d.jpg
-    HM3301, components/sensor/hm3301, hm3301.jpg
-    MAX31855, components/sensor/max31855, max31855.jpg
-    MAX31856, components/sensor/max31856, max31856.jpg
-    MAX31865, components/sensor/max31865, max31865.jpg
-    MAX6675, components/sensor/max6675, max6675.jpg
-    MCP3008, components/sensor/mcp3008, mcp3008.jpg
-    MCP9808, components/sensor/mcp9808, mcp9808.jpg
-    MH-Z19, components/sensor/mhz19, mhz19.jpg
-    MPU6050, components/sensor/mpu6050, mpu6050.jpg
-    MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
-    MS5611, components/sensor/ms5611, ms5611.jpg
-    Nextion, components/sensor/nextion, nextion.jpg
-    NTC Thermistor, components/sensor/ntc, ntc.jpg
-    PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Pulse Meter, components/sensor/pulse_meter, pulse.svg
     Pulse Width, components/sensor/pulse_width, pulse.svg
-    PZEM004T, components/sensor/pzem004t, pzem004t.svg
-    PZEM AC, components/sensor/pzemac, pzemac.svg
-    PZEM DC, components/sensor/pzemdc, pzemdc.svg
-    Resistance, components/sensor/resistance, omega.svg
-    Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
-    RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg
-    SenseAir, components/sensor/senseair, senseair_s8.jpg
-    SDS011 Sensor, components/sensor/sds011, sds011.jpg
-    SDM Meter, components/sensor/sdm_meter, sdm220m.png
-    SCD30, components/sensor/scd30, scd30.jpg
-    SHTCx, components/sensor/shtcx, shtc3.jpg
-    SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
-    SHT4X, components/sensor/sht4x, sht4x.jpg
-    SM300D2, components/sensor/sm300d2, sm300d2.jpg
-    SPS30, components/sensor/sps30, sps30.jpg
-    STS3X, components/sensor/sts3x, sts3x.jpg
-    SGP30, components/sensor/sgp30, sgp30.jpg
-    SGP40, components/sensor/sgp40, sgp40.jpg
-    TCS34725, components/sensor/tcs34725, tcs34725.jpg
-    Teleinfo, components/sensor/teleinfo, teleinfo.jpg
-    Template Sensor, components/sensor/template, description.svg
-    TMP102, components/sensor/tmp102, tmp102.jpg
-    TMP117, components/sensor/tmp117, tmp117.jpg
-    TOF10120, components/sensor/tof10120, tof10120.jpg
-    Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
-    TSL2561, components/sensor/tsl2561, tsl2561.jpg
-    Tuya Sensor, components/sensor/tuya, tuya.png
-    TX20, components/sensor/tx20, tx20.jpg
-    Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
-    Uptime Sensor, components/sensor/uptime, timer.svg
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.png
-    WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
-    Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg
+
+
+Distance
+********
+.. imgtable::
+
+    Ultrasonic Sensor (distance), components/sensor/ultrasonic, ultrasonic.jpg
+    TOF10120 (IR optical distance), components/sensor/tof10120, tof10120.jpg
+    VL53L0x (IR optical distance), components/sensor/vl53l0x, vl53l0x.png
+
+
+Load Cell (Force / Weight)
+**************************
+.. imgtable::
+
+    HX711 (load cell amp), components/sensor/hx711, hx711.jpg
     Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
     Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
-    ZyAura, components/sensor/zyaura, zgm053.jpg
-    Custom Sensor, components/sensor/custom, language-cpp.svg
+
+
+Magnetic / Hall Effect
+**********************
+.. imgtable::
+    
+    ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
+    HMC5883L (3 axis magnetometer), components/sensor/hmc5883l, hmc5883l.jpg
+    QMC5883L (3 axis magnetometer), components/sensor/qmc5883l, qmc5883l.jpg    
+
+
+Miscellaneous
+*************
+.. imgtable::
+
+    AS3935 (Storm Lightning), components/sensor/as3935, as3935.jpg
+    Binary Sensor Map (binary to value), components/sensor/binary_sensor_map, binary_sensor_map.jpg
+    b-parasite (moisture temp humid), components/sensor/b_parasite, b_parasite.jpg
+    EZO sensor circuits (pH), components/sensor/ezo, ezo-ph-circuit.png
+    Nextion (sensors from display), components/sensor/nextion, nextion.jpg
+    Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    Tuya Sensor (countdown timer), components/sensor/tuya, tuya.png
+    TX20 (wind speed & direction), components/sensor/tx20, tx20.jpg
+
+Motion, Gesture
+****************
+.. imgtable::
+
+    APDS9960 (Colour and gesture), components/sensor/apds9960, apds9960.jpg
+    MPU6050 (accelerometer & gyroscope), components/sensor/mpu6050, mpu6050.jpg
+    RuuviTag (temp & humid & accelerometer), components/sensor/ruuvitag, ruuvitag.jpg
+
+
+Pressure
+********
+.. imgtable::
+
+    MS5611 (atmospheric pressure), components/sensor/ms5611, ms5611.jpg
+
+Current / Power / Energy
+**********************
+.. imgtable::
+
+    ADE7953 (power), components/sensor/ade7953, ade7953.svg
+    ATM90E32 (voltage current power), components/sensor/atm90e32, atm90e32.jpg
+    CSE7766 (voltage current power), components/sensor/cse7766, cse7766.svg
+    CS5460A (voltage current power), components/sensor/cs5460a, cs5460a.png
+    CT Clamp (AC current), components/sensor/ct_clamp, ct_clamp.jpg
+    HLW8012 (voltage current power), components/sensor/hlw8012, hlw8012.svg
+    INA219 (DC current), components/sensor/ina219, ina219.jpg
+    INA226 (DC current power), components/sensor/ina226, ina226.jpg
+    INA3221 (3-ch DC current), components/sensor/ina3221, ina3221.jpg
+    PZEM004T (voltage current power), components/sensor/pzem004t, pzem004t.svg
+    PZEM AC (voltage current power freq pf), components/sensor/pzemac, pzem-ac.png
+    PZEM DC (voltage current power), components/sensor/pzemdc, pzem-dc.png
+    SDM Meter (modbus energy monitor), components/sensor/sdm_meter, sdm220m.png
+    Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
+
+Solar (PV) Inverters
+********************
+.. imgtable::
+
+    Havells Inverter (Solar rooftop), components/sensor/havells_inverter, havellsgti5000d_s.jpg
+
+
+Temperature / Humidity / Pressure
+********************************************
+
+.. Note::
+
+    "temp" = Temperature
+
+    "humid" = Relative Humidity
+
+    "baro" = Barometric Pressure (i.e. atmospheric pressure)
+
+.. imgtable::
+    
+    AHT10 (temp & humid), components/sensor/aht10, aht10.jpg
+    AM2320 (temp & humid), components/sensor/am2320, am2320.jpg
+    BMP085 (temp & baro), components/sensor/bmp085, bmp180.jpg
+    BMP280 (temp & humid & baro), components/sensor/bmp280, bmp280.jpg
+    BME280 (temp & humid & baro), components/sensor/bme280, bme280.jpg
+    BME680 (temp & humid & baro & gas), components/sensor/bme680, bme680.jpg
+    BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg
+    b-parasite (moisture temp humid), components/sensor/b_parasite, b_parasite.jpg    
+    Dallas DS18B20 (temperature), components/sensor/dallas, dallas.jpg
+    DHT (temp & humid), components/sensor/dht, dht.jpg
+    DHT12 (temp & humid), components/sensor/dht12, dht12.jpg
+    HDC1080 (temp & humid), components/sensor/hdc1080, hdc1080.jpg
+    HTU21D (temp & humid), components/sensor/htu21d, htu21d.jpg
+    Inkbird IBS-TH1 Mini (temp & humid), components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg
+    NTC Thermistor (temp), components/sensor/ntc, ntc.jpg
+    TMP102 (temp), components/sensor/tmp102, tmp102.jpg
+    TMP117 (temp), components/sensor/tmp117, tmp117.jpg
+    MCP9808 (temp), components/sensor/mcp9808, mcp9808.jpg
+    MH-Z19 (CO2 & temp), components/sensor/mhz19, mhz19.jpg
+    RuuviTag (temp & humid & accelerometer), components/sensor/ruuvitag, ruuvitag.jpg
+    SCD30 (temp & humid), components/sensor/scd30, scd30.jpg
+    SHTCx (temp & humid), components/sensor/shtcx, shtc3.jpg
+    SHT3X-D (temp & humid), components/sensor/sht3xd, sht3xd.jpg
+    SHT4X (temp & humid), components/sensor/sht4x, sht4x.jpg
+
+
+Thermocouple
+************
+.. imgtable::
+
+    MAX31855 (K-Type via SPI), components/sensor/max31855, max31855.jpg
+    MAX31856 (All types via SPI), components/sensor/max31856, max31856.jpg
+    MAX31865 (Platinum RTD via SPI), components/sensor/max31865, max31865.jpg
+    MAX6675 (K-Type via SPI), components/sensor/max6675, max6675.jpg
+
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
 :doc:`ADC Sensor </components/sensor/adc>` together with a formula like in the :doc:`TEMT6000
