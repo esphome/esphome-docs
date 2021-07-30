@@ -87,11 +87,11 @@ Configuration variables:
 - **name** (**Required**, string): The name of the climate device.
 - **autoconf** (*Optional*, boolean): Get capabilities automatically. Defaults to ``True``.
 - **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
-- **supported_modes** (*Optional*, list): List of supported modes. Possible values are: HEAT_COOL, COOL, HEAT, DRY, FAN_ONLY.
-- **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: SILENT, TURBO.
-- **supported_presets** (*Optional*, list): List of supported presets. Possible values are: ECO, BOOST, SLEEP.
-- **custom_presets** (*Optional*, list): List of supported custom presets. Possible values are: FREEZE_PROTECTION.
-- **supported_swing_modes** (*Optional*, list): List of supported swing modes. Possible values are: VERTICAL, HORIZONTAL, BOTH.
+- **supported_modes** (*Optional*, list): List of supported modes. Possible values are: ``HEAT_COOL``, ``COOL``, ``HEAT``, ``DRY``, ``FAN_ONLY``.
+- **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: ``SILENT``, ``TURBO``.
+- **supported_presets** (*Optional*, list): List of supported presets. Possible values are: ``ECO``, ``BOOST``, ``SLEEP``.
+- **custom_presets** (*Optional*, list): List of supported custom presets. Possible values are: ``FREEZE_PROTECTION``.
+- **supported_swing_modes** (*Optional*, list): List of supported swing modes. Possible values are: ``VERTICAL``, ``HORIZONTAL``, ``BOTH``.
 - **outdoor_temperature** (*Optional*): The information for the outdoor temperature
   sensor.
 
@@ -147,12 +147,15 @@ Configuration variables:
 - **beeper** (*Optional*, bool, :ref:`templatable <config-templatable>`): set beep on update.
 
 
+Automations
+-----------
+
 .. _midea_ac-display_toggle_action:
 
 ``midea_ac.display_toggle`` Action
 **********************************
 
-This action toggle ac screen.
+This action toggle ac screen. Works via UART if supported or :doc:`../remote_transmitter`.
 
 .. code-block:: yaml
 
@@ -166,7 +169,7 @@ This action toggle ac screen.
 ``midea_ac.swing_step`` Action
 ******************************
 
-This action adjust the louver by one step.
+This action adjust the louver by one step. :doc:`../remote_transmitter` required.
 
 .. code-block:: yaml
 
