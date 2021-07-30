@@ -124,6 +124,9 @@ Configuration variables of midea-dongle component:
 - **num_attempts** (*Optional*, integer 1-5): Number of request attempts. Defaults to ``3``.
 
 
+Automations
+-----------
+
 .. _midea_ac-follow_me_action:
 
 ``midea_ac.follow_me`` Action
@@ -146,9 +149,6 @@ Configuration variables:
   value of a internal temperature sensor.
 - **beeper** (*Optional*, bool, :ref:`templatable <config-templatable>`): set beep on update.
 
-
-Automations
------------
 
 .. _midea_ac-display_toggle_action:
 
