@@ -85,7 +85,8 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **midea_dongle_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``midea_dongle`` if you want to use multiple devices.
 - **name** (**Required**, string): The name of the climate device.
-- **autoconf** (*Optional*, boolean): Get capabilities automatically. Defaults to ``True``.
+- **autoconf** (*Optional*, boolean): Get capabilities automatically. Allows you not to manually define most of the capabilities of the appliance.
+  Defaults to ``True``.
 - **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
 - **supported_modes** (*Optional*, list): List of supported modes. Possible values are: ``HEAT_COOL``, ``COOL``, ``HEAT``, ``DRY``, ``FAN_ONLY``.
 - **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: ``SILENT``, ``TURBO``.
@@ -141,13 +142,14 @@ room temperature value to be used instead of the internal indoor unit sensor.
       then:
         - midea_ac.follow_me:
             temperature: !lambda "return x;"
-            beeper: false           # Optional. Beep on every FM command
+            beeper: false
 
 Configuration variables:
 
 - **temperature** (**Required**, uint8_t, :ref:`templatable <config-templatable>`): Set the
   value of a internal temperature sensor.
 - **beeper** (*Optional*, bool, :ref:`templatable <config-templatable>`): set beep on update.
+  Defaults to ``False``
 
 
 .. _midea_ac-display_toggle_action:
