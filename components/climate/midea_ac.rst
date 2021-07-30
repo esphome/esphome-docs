@@ -21,7 +21,7 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
         - `Inventor <https://www.inventorairconditioner.com/>`_
         - and maybe others
 
-    Example of hardware implementation is `Midea Open Dongle <https://github.com/dudanov/midea-open-dongle>`_ in free `KiCad <https://kicad-pcb.org>`_ format.
+    Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_.
 
 .. code-block:: yaml
 
@@ -39,27 +39,39 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
 
     # Optional (if you want modify settings)
     midea_dongle:
-      strength_icon: true   # Optional. For devices that supporting indication of several levels of signal quality
+      period: 1s
+      timeout: 2s
+      num_attempts: 3
     
     # Main settings
     climate:
       - platform: midea_ac
         name: "Midea AC #1"   # use a unique name
+        autoconf: true
+        beeper: true  # beep on commands
         visual:
           min_temperature: 17 °C    # min: 17
           max_temperature: 30 °C    # max: 30
           temperature_step: 0.5 °C  # min: 0.5
-        beeper: true  # beep on commands
+        supported_modes:
+          - FAN_ONLY
+          - HEAT_COOL
+          - COOL
+          - HEAT
+          - DRY
         custom_fan_modes:
           - SILENT
           - TURBO
-        preset_eco: true
-        preset_sleep: true
-        preset_boost: true
+        supported_presets:
+          - ECO
+          - BOOST
+          - SLEEP
         custom_presets:
           - FREEZE_PROTECTION
-        swing_horizontal: true
-        swing_both: true
+        supported_swing_modes:
+          - VERTICAL
+          - HORIZONTAL
+          - BOTH
         outdoor_temperature:  # Optional. Create outdoor unit temperature sensor (may display incorrect values after long inactivity)
           name: "Temp"        # Sensor unique name
         power_usage:          # Optional. Create power usage sensor (only for devices that support this feature)
@@ -73,6 +85,13 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **midea_dongle_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``midea_dongle`` if you want to use multiple devices.
 - **name** (**Required**, string): The name of the climate device.
+- **autoconf** (*Optional*, boolean): Get capabilities automatically. Defaults to ``True``.
+- **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
+- **supported_modes** (*Optional*, list): List of supported modes. Possible values are: HEAT_COOL, COOL, HEAT, DRY, FAN_ONLY.
+- **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: SILENT, TURBO.
+- **supported_presets** (*Optional*, list): List of supported presets. Possible values are: ECO, BOOST, SLEEP.
+- **custom_presets** (*Optional*, list): List of supported custom presets. Possible values are: FREEZE_PROTECTION.
+- **supported_swing_modes** (*Optional*, list): List of supported swing modes. Possible values are: VERTICAL, HORIZONTAL, BOTH.
 - **outdoor_temperature** (*Optional*): The information for the outdoor temperature
   sensor.
 
@@ -91,14 +110,6 @@ Configuration variables:
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
-- **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
-- **custom_fan_modes** (*Optional*, list): List of supported custom fan modes. Possible values are: SILENT, TURBO.
-- **preset_eco** (*Optional*, boolean): ECO preset support. Defaults to ``False``.
-- **preset_sleep** (*Optional*, boolean): SLEEP preset support. Defaults to ``False``.
-- **preset_boost** (*Optional*, boolean): BOOST preset support. Defaults to ``False``.
-- **custom_presets** (*Optional*, list): List of supported custom presets. Possible values are: FREEZE_PROTECTION.
-- **swing_horizontal** (*Optional*, boolean): Enable **swing horizontal** option. Defaults to ``False``.
-- **swing_both** (*Optional*, boolean): Enable **swing both** option. Defaults to ``False``.
 - All other options from :ref:`Climate <config-climate>`.
 
 Configuration variables of midea-dongle component:
@@ -108,8 +119,9 @@ Configuration variables of midea-dongle component:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
-- **strength_icon** (*Optional*, boolean): Set if your device have signal strength icon
-  and you want to use this feature. By default, on connected state, icon show maximum signal quality. Defaults to ``False``.
+- **period** (*Optional*, :ref:`time <config-time>`): Minimal period between requests to the appliance. Defaults to ``1s``.
+- **timeout** (*Optional*, :ref:`time <config-time>`): Request response timeout until next request attempt. Defaults to ``2s``.
+- **num_attempts** (*Optional*, integer 1-5): Number of request attempts. Defaults to ``3``.
 
 
 .. _midea_ac-follow_me_action:
@@ -125,7 +137,7 @@ room temperature value to be used instead of the internal indoor unit sensor.
     on_...:
       then:
         - midea_ac.follow_me:
-            temperature: !lambda "return x + 0.5;"
+            temperature: !lambda "return x;"
             beeper: false           # Optional. Beep on every FM command
 
 Configuration variables:
@@ -163,6 +175,33 @@ This action adjust the louver by one step.
         - midea_ac.swing_step:
 
 
+.. _midea_ac-beeper_on_action:
+
+``midea_ac.beeper_on`` Action
+******************************
+
+This action turn on beeper feedback.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.beeper_on:
+
+.. _midea_ac-beeper_off_action:
+
+``midea_ac.beeper_off`` Action
+******************************
+
+This action turn off beeper feedback.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.beeper_off:
+
+
 Additional control options using IR commands
 --------------------------------------------
 
@@ -191,7 +230,7 @@ component, as well as control the light of the LED display.
           - debounce: 1s
         on_value:
           - midea_ac.follow_me:
-              temperature: !lambda "return x + 0.5;"
+              temperature: !lambda "return x;"
               beeper: false           # Optional. Beep on every FM command
 
     # template momentary switch for sending display control command and swing step actions
