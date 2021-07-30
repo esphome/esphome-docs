@@ -207,7 +207,6 @@ Ambient Light / Colour
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB Colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
-    Teleinfo, components/sensor/teleinfo, teleinfo.jpg, RGB Colour
 
 
 Analogue To Digital
@@ -307,6 +306,7 @@ Current / Power / Energy
     PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
     SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus Energy Monitor
+    Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical Counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
 
 
