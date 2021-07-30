@@ -798,7 +798,7 @@ Available variables in the lambda:
               it[0] = Color::random_color();
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-              it.range(0, 50) = Color::BLACK;
+              it.range(0, 50) = COLOR_BLACK;
               it.all().fade_to_black(10);
 
 .. code-block:: yaml
@@ -822,7 +822,7 @@ Available variables in the lambda:
               // again you can use the initial_run variables
               if (initial_run) {
                 progress = 0;
-                it.all() = Color::BLACK;
+                it.all() = COLOR_BLACK;
                 // optionally do a return so nothing happens until the next update_interval
                 return;
               }
