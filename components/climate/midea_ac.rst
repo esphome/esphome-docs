@@ -46,14 +46,14 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
     # Main settings
     climate:
       - platform: midea_ac
-        name: "Midea AC"   # use a unique name
+        name: "Midea AC"    # Use a unique name.
         autoconf: true
-        beeper: true  # beep on commands
-        visual:
+        beeper: true        # Beep on commands.
+        visual:             # Optional. Example of visual settings override.
           min_temperature: 17 °C    # min: 17
           max_temperature: 30 °C    # max: 30
           temperature_step: 0.5 °C  # min: 0.5
-        supported_modes:
+        supported_modes:    # All capabilities in this section detected by autoconf.
           - FAN_ONLY
           - HEAT_COOL
           - COOL
@@ -62,22 +62,22 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
         custom_fan_modes:
           - SILENT
           - TURBO
-        supported_presets:
+        supported_presets:  # All capabilities in this section detected by autoconf.
           - ECO
           - BOOST
           - SLEEP
-        custom_presets:
+        custom_presets:     # All capabilities in this section detected by autoconf.
           - FREEZE_PROTECTION
         supported_swing_modes:
           - VERTICAL
           - HORIZONTAL
           - BOTH
-        outdoor_temperature:  # Optional. Create outdoor unit temperature sensor (may display incorrect values after long inactivity)
-          name: "Temp"        # Sensor unique name
-        power_usage:          # Optional. Create power usage sensor (only for devices that support this feature)
-          name: "Power"       # Sensor unique name
-        humidity_setpoint:    # Optional. Create indoor humidity sensor
-          name: "Hum"         # Sensor unique name
+        outdoor_temperature:  # Optional. Create outdoor unit temperature sensor (may display incorrect values after long inactivity).
+          name: "Temp"
+        power_usage:          # Optional. Create power usage sensor (only for devices that support this feature).
+          name: "Power"
+        humidity_setpoint:    # Optional. Create indoor humidity sensor.
+          name: "Humidity"
 
 Configuration variables:
 ------------------------
