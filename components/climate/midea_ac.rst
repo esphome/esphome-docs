@@ -46,7 +46,7 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
     # Main settings
     climate:
       - platform: midea_ac
-        name: "Midea AC #1"   # use a unique name
+        name: "Midea AC"   # use a unique name
         autoconf: true
         beeper: true  # beep on commands
         visual:
