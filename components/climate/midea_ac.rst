@@ -219,24 +219,24 @@ component, as well as control the light of the LED display.
     # Example configuration entry
 
     remote_transmitter:
-      pin: GPIO13                 # For iot-uni-stick
-      carrier_duty_percent: 100%  # 50% for IR LED, 100% for direct connect to TSOP IR receiver output.
+      pin: GPIO13                       # For iot-uni-stick.
+      carrier_duty_percent: 100%        # 50% for IR LED, 100% for direct connect to TSOP IR receiver output.
 
     midea_dongle:
-      transmitter_id:             # Add this option to use IR transmitter.
+      transmitter_id:                   # Add this option to use IR transmitter.
 
     sensor:
       - platform: homeassistant
         internal: true
-        entity_id: sensor.room_sensor # Sensor from HASS
+        entity_id: sensor.room_sensor   # Sensor from HASS
         filters:
           - throttle: 10s
-          - heartbeat: 2min       # Maximum interval between updates.
+          - heartbeat: 2min             # Maximum interval between updates.
           - debounce: 1s
         on_value:
           - midea_ac.follow_me:
               temperature: !lambda "return x;"
-              beeper: false       # Optional. Beep on update.
+              beeper: false             # Optional. Beep on update.
 
     # template momentary switches for sending display control command and swing step actions
     switch:
