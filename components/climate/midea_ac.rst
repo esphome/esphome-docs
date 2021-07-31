@@ -113,7 +113,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 - All other options from :ref:`Climate <config-climate>`.
 
-Configuration variables of midea-dongle component:
+Configuration variables of midea_dongle component:
 **************************************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
