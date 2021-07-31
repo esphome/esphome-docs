@@ -164,7 +164,7 @@ Core Components
 Sensor Components
 -----------------
 
-Sensors have been split into categories. If a sensors fits into more than one categoey, it will be listed multiple times.
+Sensors have been split into categories. If a sensor fits into more than one category, it will be listed multiple times.
 
 Core / Internal
 ***************
@@ -281,7 +281,7 @@ Miscellaneous
 
 
 Motion, Gesture
-****************
+***************
 .. imgtable::
 
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
@@ -290,7 +290,7 @@ Motion, Gesture
 
 
 Current / Power / Energy
-**********************
+************************
 .. imgtable::
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
@@ -318,7 +318,7 @@ Solar (PV) Inverters
 
 
 Temperature / Humidity / Pressure
-********************************************
+*********************************
 
 .. Note::
 
