@@ -7,7 +7,7 @@ Midea Air Conditioner
 
 The ``midea_ac`` component creates a Midea air conditioner climate device.
 
-This component requires a auto-loaded ``midea-dongle`` component, that use hardware UART.
+This component requires a auto-loaded ``midea_dongle`` component, that use hardware UART.
 
 .. note::
 
@@ -33,8 +33,8 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
 
     # UART settings for Midea dongle (required)
     uart:
-      tx_pin: 1   # hardware dependant
-      rx_pin: 3   # hardware dependant
+      tx_pin: 1         # hardware dependant
+      rx_pin: 3         # hardware dependant
       baud_rate: 9600
 
     # Optional (if you want modify settings)
@@ -46,15 +46,15 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
     # Main settings
     climate:
       - platform: midea_ac
-        name: "Midea AC"    # Use a unique name.
-        autoconf: true
-        beeper: true        # Beep on commands.
-        visual:             # Optional. Example of visual settings override.
+        name: "Midea AC"            # Use a unique name.
+        autoconf: true              # Autoconfigure most options.
+        beeper: true                # Beep on commands.
+        visual:                     # Optional. Example of visual settings override.
           min_temperature: 17 °C    # min: 17
           max_temperature: 30 °C    # max: 30
           temperature_step: 0.5 °C  # min: 0.5
-        supported_modes:    # All capabilities in this section detected by autoconf.
-          - FAN_ONLY
+        supported_modes:            # All capabilities in this section detected by autoconf.
+          - FAN_ONLY                # This capability is always used.
           - HEAT_COOL
           - COOL
           - HEAT
@@ -62,21 +62,21 @@ This component requires a auto-loaded ``midea-dongle`` component, that use hardw
         custom_fan_modes:
           - SILENT
           - TURBO
-        supported_presets:  # All capabilities in this section detected by autoconf.
+        supported_presets:          # All capabilities in this section detected by autoconf.
           - ECO
           - BOOST
-          - SLEEP
-        custom_presets:     # All capabilities in this section detected by autoconf.
+          - SLEEP                   # This capability is always used.
+        custom_presets:             # All capabilities in this section detected by autoconf.
           - FREEZE_PROTECTION
         supported_swing_modes:
-          - VERTICAL
+          - VERTICAL                # This capability is always used.
           - HORIZONTAL
           - BOTH
-        outdoor_temperature:  # Optional. Create outdoor unit temperature sensor (may display incorrect values after long inactivity).
+        outdoor_temperature:        # Optional. Outdoor temperature sensor (may display incorrect values after long inactivity).
           name: "Temp"
-        power_usage:          # Optional. Create power usage sensor (only for devices that support this feature).
+        power_usage:                # Optional. Power usage sensor (only for devices that support this feature).
           name: "Power"
-        humidity_setpoint:    # Optional. Create indoor humidity sensor.
+        humidity_setpoint:          # Optional. Indoor humidity sensor (only for devices that support this feature).
           name: "Humidity"
 
 Configuration variables:
@@ -256,6 +256,21 @@ component, as well as control the light of the LED display.
           - switch.turn_off: swing_step
 
 
+Example of Beeper Control Using a Switch
+----------------------------------------
+
+.. code-block:: yaml
+
+    switch:
+      - platform: template
+        name: "Beeper"
+        icon: "mdi:volume-source"
+        optimistic: true
+        turn_on_action:
+          - midea_ac.beeper_on:
+        turn_off_action:
+          - midea_ac.beeper_off:
+
 Acknowledgments:
 ----------------
 
@@ -263,7 +278,7 @@ Thanks to the following people for their contributions to reverse engineering th
 
 * `Mac Zhou <https://github.com/mac-zhou/midea-msmart>`_
 * `NeoAcheron <https://github.com/NeoAcheron/midea-ac-py>`_
-* `Rene Klootwijk <https://github.com/reneklootwijk/node-mideahvac>`_
+* `Rene Klootwijk <https://github.com/reneklootwijk/midea-uart>`_
 
 Special thanks to the project `IRremoteESP8266 <https://github.com/crankyoldgit/IRremoteESP8266>`_ for describing the IR protocol.
 
