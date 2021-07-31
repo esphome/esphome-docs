@@ -227,8 +227,8 @@ component, as well as control the light of the LED display.
 
     sensor:
       - platform: homeassistant
-        internal: true
         entity_id: sensor.room_sensor   # Sensor from HASS
+        internal: true
         filters:
           - throttle: 10s
           - heartbeat: 2min             # Maximum interval between updates.
