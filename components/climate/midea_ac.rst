@@ -234,9 +234,9 @@ component, as well as control the light of the LED display.
           - heartbeat: 2min             # Maximum interval between updates.
           - debounce: 1s
         on_value:
-          - midea_ac.follow_me:
-              temperature: !lambda "return x;"
-              beeper: false             # Optional. Beep on update.
+          midea_ac.follow_me:
+            temperature: !lambda "return x;"
+            beeper: false               # Optional. Beep on update.
 
     # template momentary switches for sending display control command and swing step actions
     switch:
@@ -244,12 +244,12 @@ component, as well as control the light of the LED display.
         name: Display Toggle
         icon: mdi:theme-light-dark
         turn_on_action:
-          - midea_ac.display_toggle:
+          midea_ac.display_toggle:
       - platform: template
         name: Swing Step
         icon: mdi:tailwind
         turn_on_action:
-          - midea_ac.swing_step:
+          midea_ac.swing_step:
 
 
 Example of Beeper Control Using a Switch
@@ -263,9 +263,9 @@ Example of Beeper Control Using a Switch
         icon: mdi:volume-source
         optimistic: true
         turn_on_action:
-          - midea_ac.beeper_on:
+          midea_ac.beeper_on:
         turn_off_action:
-          - midea_ac.beeper_off:
+          midea_ac.beeper_off:
 
 Acknowledgments:
 ----------------
