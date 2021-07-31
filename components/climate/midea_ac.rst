@@ -219,41 +219,37 @@ component, as well as control the light of the LED display.
     # Example configuration entry
 
     remote_transmitter:
-      pin: GPIO13                 # For midea-open-dongle hardware stick
-      carrier_duty_percent: 100%  # 50% for IR LED, 100% for direct connect to TSOP IR receiver output
+      pin: GPIO13                 # For iot-uni-stick
+      carrier_duty_percent: 100%  # 50% for IR LED, 100% for direct connect to TSOP IR receiver output.
 
     midea_dongle:
-      transmitter_id:             # Add this option to use IR transmitter
+      transmitter_id:             # Add this option to use IR transmitter.
 
     sensor:
       - platform: homeassistant
-        id: fm_sensor
+        internal: true
         entity_id: sensor.room_sensor # Sensor from HASS
         filters:
           - throttle: 10s
-          - heartbeat: 2min           # Maximum interval between FM commands
+          - heartbeat: 2min       # Maximum interval between updates.
           - debounce: 1s
         on_value:
           - midea_ac.follow_me:
               temperature: !lambda "return x;"
-              beeper: false           # Optional. Beep on every FM command
+              beeper: false       # Optional. Beep on update.
 
-    # template momentary switch for sending display control command and swing step actions
+    # template momentary switches for sending display control command and swing step actions
     switch:
       - platform: template
         name: "Display Toggle"
         icon: "mdi:theme-light-dark"
-        id: mlight
         turn_on_action:
           - midea_ac.display_toggle:
-          - switch.turn_off: mlight
       - platform: template
         name: "Swing Step"
         icon: "mdi:tailwind"
-        id: swing_step
         turn_on_action:
           - midea_ac.swing_step:
-          - switch.turn_off: swing_step
 
 
 Example of Beeper Control Using a Switch
