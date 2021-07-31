@@ -21,7 +21,7 @@ This component requires a auto-loaded ``midea_dongle`` component, that use hardw
         - `Inventor <https://www.inventorairconditioner.com/>`_
         - and maybe others
 
-    Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_.
+    Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_.
 
 .. code-block:: yaml
 
