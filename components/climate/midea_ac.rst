@@ -46,7 +46,7 @@ This component requires a auto-loaded ``midea_dongle`` component, that use hardw
     # Main settings
     climate:
       - platform: midea_ac
-        name: "Midea AC"            # Use a unique name.
+        name: Midea Climate         # Use a unique name.
         autoconf: true              # Autoconfigure most options.
         beeper: true                # Beep on commands.
         visual:                     # Optional. Example of visual settings override.
@@ -73,11 +73,11 @@ This component requires a auto-loaded ``midea_dongle`` component, that use hardw
           - HORIZONTAL
           - BOTH
         outdoor_temperature:        # Optional. Outdoor temperature sensor (may display incorrect values after long inactivity).
-          name: "Temp"
+          name: Temp
         power_usage:                # Optional. Power usage sensor (only for devices that support this feature).
-          name: "Power"
+          name: Power
         humidity_setpoint:          # Optional. Indoor humidity sensor (only for devices that support this feature).
-          name: "Humidity"
+          name: Humidity
 
 Configuration variables:
 ------------------------
@@ -241,13 +241,13 @@ component, as well as control the light of the LED display.
     # template momentary switches for sending display control command and swing step actions
     switch:
       - platform: template
-        name: "Display Toggle"
-        icon: "mdi:theme-light-dark"
+        name: Display Toggle
+        icon: mdi:theme-light-dark
         turn_on_action:
           - midea_ac.display_toggle:
       - platform: template
-        name: "Swing Step"
-        icon: "mdi:tailwind"
+        name: Swing Step
+        icon: mdi:tailwind
         turn_on_action:
           - midea_ac.swing_step:
 
@@ -259,8 +259,8 @@ Example of Beeper Control Using a Switch
 
     switch:
       - platform: template
-        name: "Beeper"
-        icon: "mdi:volume-source"
+        name: Beeper
+        icon: mdi:volume-source
         optimistic: true
         turn_on_action:
           - midea_ac.beeper_on:
