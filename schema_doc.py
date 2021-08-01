@@ -234,11 +234,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.props_level = 0
 
     def visit_document(self, node):
-        # ESPHome page docs follows strict formating guidelines which allows
+        # ESPHome page docs follows strict formatting guidelines which allows
         # for docs to be parsed directly into yaml schema
 
         if self.docname in ["components/sensor/binary_sensor_map"]:
-            # temporarly not supported
+            # temporarily not supported
             raise nodes.SkipChildren
 
         if len(list(node.traverse(nodes.paragraph))) == 0:
@@ -349,7 +349,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if title_text == CONFIGURATION_VARIABLES:
             if not self.props and self.multi_component is None:
                 raise ValueError(
-                    f'Found a "{CONFIGURATION_VARIABLES}": title after {self.previous_title_text}. Unkown object.'
+                    f'Found a "{CONFIGURATION_VARIABLES}": title after {self.previous_title_text}. Unknown object.'
                 )
 
         if title_text == "Over SPI" or title_text == "Over I²C":
@@ -645,7 +645,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     self.prop_stack.append(self.props)
                     self.props = self.find_props(ref)
                 else:
-                    # TODO: if the list items are formated like:
+                    # TODO: if the list items are formatted like:
                     #   - ``value`` <optional description>
                     #   - ``other value`` <optional description>
                     # then we could ensure these are enum values (or populate enum values double check.)
@@ -798,7 +798,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         k = str(prop_name)
         jprop = props.get(k)
         if not jprop:
-            # Create docs for common properties when descriptions are overriden
+            # Create docs for common properties when descriptions are overridden
             # in the most specific component.
 
             if k in [
@@ -812,7 +812,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 "update_interval",
                 # uart
                 "uart_id",
-                # ligth
+                # light
                 "effects",
                 "gamma_correct",
                 "default_transition_length",

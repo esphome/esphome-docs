@@ -132,7 +132,7 @@ Sensor </components/binary_sensor/gpio>`.
         name: "Living Room Window"
         pin:
           number: 16
-          inverted: True
+          inverted: true
           mode: INPUT_PULLUP
 
 This time when installing, you don’t need to have the device plugged in

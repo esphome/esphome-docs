@@ -33,7 +33,7 @@ Syntax
 
 Here's a quick RST primer:
 
-Title hierarchy is based on order of occurence, not on type of character used to underline it. This
+Title hierarchy is based on order of occurrence, not on type of character used to underline it. This
 documents establish the following character order for better consistency.
 
 - **Headers**: You can write titles like this:
