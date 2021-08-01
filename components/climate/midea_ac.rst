@@ -146,7 +146,7 @@ room temperature value to be used instead of the internal indoor unit sensor.
 
 Configuration variables:
 
-- **temperature** (**Required**, uint8_t, :ref:`templatable <config-templatable>`): Set the
+- **temperature** (**Required**, float, :ref:`templatable <config-templatable>`): Set the
   value of a internal temperature sensor.
 - **beeper** (*Optional*, bool, :ref:`templatable <config-templatable>`): set beep on update.
   Defaults to ``False``
