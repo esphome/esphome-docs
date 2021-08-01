@@ -72,7 +72,16 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the climate device to control.
 - **mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Put the climate device
-  in a specific mode. One of ``OFF``, ``HEAT_COOL``, ``COOL`` and ``HEAT``.
+  in a specific mode. One of 
+  
+  - ``OFF`` - The device is manually set to off, the device is inactive.
+  - ``AUTO`` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
+  - ``HEAT`` - The device is set to heat to reach a target temperature.
+  - ``COOL`` - The device is set to cool to reach a target temperature.
+  - ``HEAT_COOL`` - The device should heat/cool to maintain a target temperature.
+  - ``FAN_ONLY`` - The device only has the fan enabled, no heating or cooling is taking place.
+  - ``DRY`` - The device is set to dry/humidity mode.
+
 - **target_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   target temperature of a climate device.
 - **target_temperature_low** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
@@ -82,14 +91,14 @@ Configuration variables:
 - **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
   of the climate device.
 - **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
-  of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``, 
+  of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
   ``ACTIVITY``.
-- **custom_preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the 
+- **custom_preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
   supported custom_presets of the climate device.
 - **fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
   ``FOCUS``, ``DIFFUSE``.
-- **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the 
+- **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
   supported custom_fan_modes of the climate device.
 - **swing_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the swing mode
   of the climate device. One of ``OFF``, ``BOTH``, ``VERTICAL``, ``HORIZONTAL``.
@@ -104,7 +113,7 @@ advanced stuff.
 
 - Attributes: All climate devices have read-only attributes to get the current state of the device.
 
-  .. code-block:: yaml
+  .. code-block:: cpp
 
       // Current mode, type: ClimateMode (enum)
       id(my_climate).mode
@@ -125,7 +134,7 @@ advanced stuff.
 
 - ``.make_call``: Control the climate device
 
-  .. code-block:: yaml
+  .. code-block:: cpp
 
       auto call = id(my_climate).make_call();
       call.set_mode("OFF");
