@@ -302,6 +302,7 @@ Light Components
 
     Light Core, components/light/index, folder-open.svg
     Binary Light, components/light/binary, lightbulb.svg
+    Status Led, components/light/status_led, led-on.svg
     Monochromatic Light, components/light/monochromatic, brightness-medium.svg
 
     Cold+Warm White Light, components/light/cwww, brightness-medium.svg
