@@ -34,7 +34,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name for this sensor.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
-- **address** (*Optional*, int): The I²C address of the sensor. Defaults to 0x21.
+- **address** (*Optional*, int): The I²C address of the sensor. Defaults to ``0x21``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
