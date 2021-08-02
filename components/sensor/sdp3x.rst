@@ -32,7 +32,7 @@ To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name for the temperature sensor.
+- **name** (**Required**, string): The name for this sensor.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
 - **address** (*Optional*, int): The I²C address of the sensor. Defaults to 0x21.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
