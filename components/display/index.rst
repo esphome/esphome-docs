@@ -354,6 +354,76 @@ Configuration variables:
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 
+Graphs
+******
+
+You can display a graph of a sensor value using this component.
+.. figure:: images/graph_screen.png
+:align: center
+:width: 60.0%
+    
+Graph component with options for grids, border and line-types.
+
+.. code-block:: yaml
+
+    graph:
+      # Show bare-minimum auto-ranged graph
+      - id: small_temperature_graph
+        sensor: my_temperature
+        update_interval: 24s
+        width: 151
+        height: 51
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
+  in your display code.
+- **width** (**Required**, integer): The graph width in pixels
+- **height** (**Required**, integer): The graph height in pixels
+- **update_interval** (*Optional*, seconds): How frequent the sensor value is read and plotted. Each reading moves graph over a pixel.
+- **border** (*Optional*, boolean): Specifics if a border will be draw around the graph. Default is True.
+- **x_grid** (*Optional*, float): Specifics the number of samples (pixels) per division. If not specified, no vertical grid will be drawn.
+- **y_grid** (*Optional*, float): Specifics the number of units per division. If not specified, no horizontal grid will be drawn.
+- **sensor** (*Optional*, id): The sensor value to plot
+- **max_range** (*Optional*): Specifies the maximum Y-axis range. 
+- **min_range** (*Optional*): Specifies the minimum Y-axis range.
+- **max_value** (*Optional*): Specifies the maximum Y-axis value.
+- **min_value** (*Optional*): Specifies the minimum Y-axis value.
+- **line_thickness** (*Optional*): Defaults to 3
+- **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following:
+  ``SOLID``, ``DOTTED``, ``DASHED``. 
+  Defaults to ``SOLID``.
+
+And then later in code:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Draw the graph at position [x=10,y=20]
+          it.graph(10, 20, id(small_temperature_graph));
+
+.. note::
+    
+    - Setting ``y_grid`` will expand the range to the nearest multiple of grid spacings.
+    - Axis labels are currently not possible without manually placing them.
+  
+For making nice scaled x axis, easiest is to:
+  1. Decide number of vertical grid lines (divisions), and seconds per division.
+  2. Determine desired graph size in pixels. Ideally width should be one more than multiple of grid steps.
+  3. Set ``update_interval`` to match. update_interval = seconds per divison / pixels per step.
+
+For example:
+
+If we wanted to show 1 hour of history, in 6 steps so that it'll be 10 min/div.
+
+We determine we want 25 pixels per division, so our graph width should be: 
+25 pixels per division * 6 steps + 1 = 151
+
+Then we set update_interval = (10*60)/25 = 24s
+
 Images
 ******
 
@@ -365,7 +435,7 @@ Use this component to store graphical images on the device, you can then draw th
       - file: "image.png"
         id: my_image
         resize: 100x100
-
+        
 Configuration variables:
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
