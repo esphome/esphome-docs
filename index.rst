@@ -423,6 +423,14 @@ Number Components
     Number Core, components/number/index, folder-open.svg
     Template Number, components/number/template, description.svg
 
+Select Components
+-----------------
+
+.. imgtable::
+
+    Select Core, components/select/index, folder-open.svg
+    Template Select, components/select/template, description.svg
+
 Misc Components
 ---------------
 

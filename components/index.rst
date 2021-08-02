@@ -11,6 +11,7 @@ Components
     light/index
     number/index
     output/index
+    select/index
     sensor/index
     switch/index
     display/index
