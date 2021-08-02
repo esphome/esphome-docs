@@ -358,10 +358,11 @@ Graphs
 ******
 
 You can display a graph of a sensor value using this component.
+
 .. figure:: images/graph_screen.png
-:align: center
-:width: 60.0%
-    
+    :align: center
+    :width: 60.0%
+
 Graph component with options for grids, border and line-types.
 
 .. code-block:: yaml
@@ -406,9 +407,10 @@ And then later in code:
           it.graph(10, 20, id(small_temperature_graph));
 
 .. note::
-    
-    - Setting ``y_grid`` will expand the range to the nearest multiple of grid spacings.
-    - Axis labels are currently not possible without manually placing them.
+
+      - Setting ``y_grid`` will expand any specified range to the nearest multiple of grid spacings.
+      - Axis labels are currently not possible without manually placing them.
+      - Hopefully in near future it'll be possible to have multiple traces on same graph.
   
 For making nice scaled x axis, easiest is to:
   1. Decide number of vertical grid lines (divisions), and seconds per division.
