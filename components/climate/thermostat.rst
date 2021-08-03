@@ -190,16 +190,17 @@ These are triggered when the climate control **action** is changed by the thermo
 - **cool_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device should enter cooling mode to decrease the current temperature.
 - **supplemental_cooling_action** (*Optional*, :ref:`Action <config-action>`): The action
-  to call when the climate device should activate supplemental cooling mode to (more aggressively)
+  to call when the climate device should activate supplemental cooling to (more aggressively)
   decrease the current temperature. *This action is called repeatedly at an interval defined by*
   ``max_cooling_run_time`` *(see below).*
 - **dry_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device should perform its drying (dehumidification) action. The thermostat
   controller does not trigger this action; it is invoked by ``dry_mode`` (see below).
 - **fan_only_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
-  the climate device should activate its fan only (but does not heat or cool). The thermostat
-  controller triggers this action based on the upper target temperature when set to
-  ``fan_only_mode`` (see below).
+  the climate device should activate its fan only (but does not heat or cool). When ``fan_only_cooling``
+  is set to ``false``, the thermostat controller immediately triggers this action when set to
+  ``fan_only_mode``; however, when ``fan_only_cooling`` is set to ``true``, this action is called
+  based on the upper target temperature (similar to ``cool_action`` above).
 - All other options from :ref:`Climate <config-climate>`.
 
 **At least one of** ``cool_action``, ``fan_only_action``, ``heat_action``, **and** ``dry_action``
