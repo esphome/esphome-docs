@@ -282,11 +282,13 @@ Set Point Options/Behavior
 **************************
 
 - **set_point_minimum_differential** (*Optional*, float): For dual-point/dual-function systems, the minimum
-  required temperature difference between the heat and cool set points.
+  required temperature difference between the heat and cool set points. Defaults to 0.5 °C.
 - **supplemental_cooling_delta** (*Optional*, float): When the temperature difference between the upper set
   point and the current temperature exceeds this value, ``supplemental_cooling_action`` will be called immediately.
+  Defaults to 2.0 °C.
 - **supplemental_heating_delta** (*Optional*, float): When the temperature difference between the lower set
   point and the current temperature exceeds this value, ``supplemental_heating_action`` will be called immediately.
+  Defaults to 2.0 °C.
 - **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
@@ -307,32 +309,39 @@ Additional Actions/Behavior
 - **startup_delay** (*Optional*, boolean): If set to ``true``, when ESPHome starts, ``min_cooling_off_time``,
   ``min_fanning_off_time``, and ``min_heating_off_time`` must elapse before each respective action may be invoked.
   This option provides a way to prevent damage to equipment (for example) disrupted by a power interruption.
+  Defaults to ``false``.
 - **fan_only_cooling** (*Optional*, boolean): If set to ``true``, when in the ``fan_only_mode`` climate mode,
   the ``fan_only_action`` will only be called when the observed temperature exceeds the upper set point plus
   ``cool_deadband``. When set to ``false`` (the default), ``fan_only_action`` is called immediately when
-  ``fan_only_mode`` is activated, regardless of the current temperature or set points.
+  ``fan_only_mode`` is activated, regardless of the current temperature or set points. Defaults to ``false``.
 - **fan_with_cooling** (*Optional*, boolean): If set to ``true``, ``fan_only_action`` will be called whenever
   ``cool_action`` is called. This is useful for forced-air systems where the fan typically runs with cooling.
+  Defaults to ``false``.
 - **fan_with_heating** (*Optional*, boolean): If set to ``true``, ``fan_only_action`` will be called whenever
   ``heat_action`` is called. This is useful for forced-air systems where the fan typically runs with heating.
+  Defaults to ``false``.
 - **max_cooling_run_time** (*Optional*, int > 0): Duration after which ``supplemental_cooling_action`` will be
   called when cooling is active. Note that ``supplemental_cooling_action`` will be called repeatedly at an interval
   defined by this parameter, as well, enabling multiple stages of supplemental (auxiliary/emergency) cooling.
+  Defaults to ten minutes.
 - **max_heating_run_time** (*Optional*, int > 0): Duration after which ``supplemental_heating_action`` will be
   called when heating is active. Note that ``supplemental_heating_action`` will be called repeatedly at an interval
   defined by this parameter, as well, enabling multiple stages of supplemental (auxiliary/emergency) heating.
+  Defaults to ten minutes.
 - **min_cooling_off_time** (*Optional*, int > 0): Minimum duration the cooling action must be disengaged before 
-  it may be engaged.
+  it may be engaged. Defaults to five minutes.
 - **min_cooling_run_time** (*Optional*, int > 0): Minimum duration the cooling action must be engaged before it
-  may be disengaged.
+  may be disengaged. Defaults to five minutes.
 - **min_fanning_off_time** (*Optional*, int > 0): Minimum duration the fanning action must be disengaged before
-  it may be engaged.
+  it may be engaged. Defaults to thirty seconds.
 - **min_fanning_run_time** (*Optional*, int > 0): Minimum duration the fanning action must be engaged before it
-  may be disengaged.
+  may be disengaged. Defaults to thirty seconds.
 - **min_heating_off_time** (*Optional*, int > 0): Minimum duration the heating action must be disengaged before
-  it may be engaged.
+  it may be engaged. Defaults to five minutes.
 - **min_heating_run_time** (*Optional*, int > 0): Minimum duration the heating action must be engaged before it
-  may be disengaged.
+  may be disengaged. Defaults to five minutes.
+- **min_idle_time** (*Optional*, int > 0): Minimum duration the idle action must be active before calling another
+  climate action. Defaults to thirty seconds.
 
 Hysteresis Values
 *****************
