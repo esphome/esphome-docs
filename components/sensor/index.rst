@@ -63,6 +63,8 @@ Configuration variables:
   Assistant) to create a state changed event when the sensor updates even if the value stayed the same.
   Some applications like Grafana require this when working with Home Assistant, but beware it can
   significantly increase the database size. Defaults to ``false``.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Defaults to ``false``.
 
 Automations:
 
