@@ -284,12 +284,12 @@ Set Point Options/Behavior
 
 - **set_point_minimum_differential** (*Optional*, float): For dual-point/dual-function systems, the minimum
   required temperature difference between the heat and cool set points. Defaults to 0.5 °C.
-- **supplemental_cooling_delta** (*Optional*, float): When the temperature difference between the upper set
-  point and the current temperature exceeds this value, ``supplemental_cooling_action`` will be called immediately.
-  Defaults to 2.0 °C.
-- **supplemental_heating_delta** (*Optional*, float): When the temperature difference between the lower set
-  point and the current temperature exceeds this value, ``supplemental_heating_action`` will be called immediately.
-  Defaults to 2.0 °C.
+- **supplemental_cooling_delta** (*Required with* ``supplemental_cooling_action``, float): When the temperature
+  difference between the upper set point and the current temperature exceeds this value,
+  ``supplemental_cooling_action`` will be called immediately.
+- **supplemental_heating_delta** (*Required with* ``supplemental_heating_action``, float): When the temperature
+  difference between the lower set point and the current temperature exceeds this value,
+  ``supplemental_heating_action`` will be called immediately.
 - **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
