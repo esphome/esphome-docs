@@ -355,9 +355,6 @@ Hysteresis Values
   before calling the heating :ref:`action <config-action>`. Defaults to 0.5 °C.
 - **heat_overrun** (*Optional*, float): The minimum temperature differential (heating beyond the set point)
   before calling the idle :ref:`action <config-action>`. Defaults to 0.5 °C.
-- **hysteresis** (*Optional*, float): This configuration option provides a one-line way to configure *all* "deadband"
-  and "overrun" values identified above. Note that the above configuration options each take precedence over this
-  value. *This option is deprecated and may be removed in a future release.*
 
 .. note::
 
