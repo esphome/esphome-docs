@@ -60,7 +60,7 @@ Configuration variables:
 - **component_name** (*Optional*, string): Manually specify the name of the Nextion component.
 - **variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- **nextion_precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets
+- **precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets
   the precision that the component is set to. This typically is the ``vvs1`` setting of the component.
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
