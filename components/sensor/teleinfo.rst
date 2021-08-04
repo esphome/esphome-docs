@@ -6,7 +6,10 @@ Teleinformation from Linky electrical counter.
     :image: teleinfo.jpg
     :keywords: teleinfo
 
-The ``teleinfo`` component allows you to retrieve data from a 
+Component/Hub
+-------------
+
+The ``teleinfo`` component allows you to retrieve data from a
 French electrical counter using Teleinformation (`datasheet <https://www.enedis.fr/sites/default/files/Enedis-NOI-CPT_54E.pdf>`__). It works with Linky electrical
 counter but also legacy EDF electrical counter.
 
