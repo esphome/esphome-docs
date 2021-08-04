@@ -171,6 +171,7 @@ Sensor Components
     Dallas, components/sensor/dallas, dallas.jpg
     DHT, components/sensor/dht, dht.jpg
     DHT12, components/sensor/dht12, dht12.jpg
+    DSMR, components/sensor/dsmr, dsmr.jpg
     Duty Cycle, components/sensor/duty_cycle, percent.svg
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
