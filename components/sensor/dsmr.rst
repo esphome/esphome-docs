@@ -3,7 +3,7 @@ DSMR Component
 
 .. seo::
     :description: Instructions for setting up DSMR Slimme Meter component in ESPHome.
-    :image: pcf8574.jpg
+    :image: dsmr.jpg
 
 Component/Hub
 *************
