@@ -321,24 +321,26 @@ Additional Actions/Behavior
 - **fan_with_heating** (*Optional*, boolean): If set to ``true``, ``fan_only_action`` will be called whenever
   ``heat_action`` is called. This is useful for forced-air systems where the fan typically runs with heating.
   Defaults to ``false``.
-- **max_cooling_run_time** (*Required*, :ref:`config-time`): Duration after which ``supplemental_cooling_action`` 
-  will be called when cooling is active. Note that ``supplemental_cooling_action`` will be called repeatedly at an
-  interval defined by this parameter, as well, enabling multiple stages of supplemental (auxiliary/emergency) cooling.
-- **max_heating_run_time** (*Required*, :ref:`config-time`): Duration after which ``supplemental_heating_action``
-  will be called when heating is active. Note that ``supplemental_heating_action`` will be called repeatedly at an
-  interval defined by this parameter, as well, enabling multiple stages of supplemental (auxiliary/emergency) heating.
-- **min_cooling_off_time** (*Required*, :ref:`config-time`): Minimum duration the cooling action must be disengaged
-  before it may be engaged.
-- **min_cooling_run_time** (*Required*, :ref:`config-time`): Minimum duration the cooling action must be engaged
-  before it may be disengaged.
-- **min_fanning_off_time** (*Required*, :ref:`config-time`): Minimum duration the fanning action must be disengaged
-- before it may be engaged.
-- **min_fanning_run_time** (*Required*, :ref:`config-time`): Minimum duration the fanning action must be engaged
-  before it may be disengaged.
-- **min_heating_off_time** (*Required*, :ref:`config-time`): Minimum duration the heating action must be disengaged
-  before it may be engaged.
-- **min_heating_run_time** (*Required*, :ref:`config-time`): Minimum duration the heating action must be engaged
-  before it may be disengaged.
+- **max_cooling_run_time** (*Required with* ``supplemental_cooling_action``, :ref:`config-time`): Duration after
+  which ``supplemental_cooling_action`` will be called when cooling is active. Note that
+  ``supplemental_cooling_action`` will be called repeatedly at an interval defined by this parameter, as well,
+  enabling multiple stages of supplemental (auxiliary/emergency) cooling.
+- **max_heating_run_time** (*Required with* ``supplemental_heating_action``, :ref:`config-time`): Duration after
+  which ``supplemental_heating_action`` will be called when heating is active. Note thermostat
+  ``supplemental_heating_action`` will be called repeatedly at an interval defined by this parameter, as well,
+  enabling multiple stages of supplemental (auxiliary/emergency) heating.
+- **min_cooling_off_time** (*Required with* ``cool_action``, :ref:`config-time`): Minimum duration the cooling action
+  must be disengaged before it may be engaged.
+- **min_cooling_run_time** (*Required with* ``cool_action``, :ref:`config-time`): Minimum duration the cooling action
+  must be engaged before it may be disengaged.
+- **min_fanning_off_time** (*Required with* ``fan_only_action``, :ref:`config-time`): Minimum duration the fanning
+  action must be disengaged before it may be engaged.
+- **min_fanning_run_time** (*Required with* ``fan_only_action``, :ref:`config-time`): Minimum duration the fanning
+  action must be engaged before it may be disengaged.
+- **min_heating_off_time** (*Required with* ``heat_action``, :ref:`config-time`): Minimum duration the heating action
+  must be disengaged before it may be engaged.
+- **min_heating_run_time** (*Required with* ``heat_action``, :ref:`config-time`): Minimum duration the heating action
+  must be engaged before it may be disengaged.
 - **min_idle_time** (*Required*, :ref:`config-time`): Minimum duration the idle action must be active before calling
   another climate action.
 
