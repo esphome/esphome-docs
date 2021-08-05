@@ -32,7 +32,7 @@ Configuration variables:
 - **uv_index** (**Optional**): UV index (UVI). All options from :ref:`Sensor <config-sensor>`.
 - **uv** (**Optional**): Sensor counts for the UV sensor (#). All options from :ref:`Sensor <config-sensor>`.
 - **light** (**Optional**): Lux of ambient light (lx). All options from :ref:`Sensor <config-sensor>`.
-- **als** (**Optional**): Sensor counts for the Ambient light sensor (#). All options from :ref:`Sensor <config-sensor>`.
+- **ambient_light** (**Optional**): Sensor counts for the Ambient light sensor (#). All options from :ref:`Sensor <config-sensor>`.
 - **gain** (**Optional**, string): Adjusts the sensitivity of the sensor. A larger value means higher sensitivity. See table below for details. Default is ``"X3"``.
 - **resolution** (**Optional**, int): ADC resolution. Higher resolutions require longer sensor integration times. See table below for details. Default is ``18``.
 - **wfac** (**Optional**, float): Window correction factor. Use larger values when using under tinted windows. Default is ``1.0``, must be ``>= 1.0``.
