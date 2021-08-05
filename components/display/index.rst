@@ -371,7 +371,7 @@ Graph component with options for grids, border and line-types.
       # Show bare-minimum auto-ranged graph
       - id: small_temperature_graph
         sensor: my_temperature
-        update_interval: 24s
+        duration: 1h
         width: 151
         height: 51
 
@@ -381,9 +381,9 @@ Configuration variables:
   in your display code.
 - **width** (**Required**, integer): The graph width in pixels
 - **height** (**Required**, integer): The graph height in pixels
-- **update_interval** (*Optional*, seconds): How frequent the sensor value is read and plotted. Each reading moves graph over a pixel.
+- **duration** (**Required**, seconds): The total graph history duration.
 - **border** (*Optional*, boolean): Specifics if a border will be draw around the graph. Default is True.
-- **x_grid** (*Optional*, float): Specifics the number of samples (pixels) per division. If not specified, no vertical grid will be drawn.
+- **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
 - **y_grid** (*Optional*, float): Specifics the number of units per division. If not specified, no horizontal grid will be drawn.
 - **sensor** (*Optional*, id): The sensor value to plot
 - **max_range** (*Optional*): Specifies the maximum Y-axis range. 
@@ -413,19 +413,6 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - Hopefully in near future it'll be possible to have multiple traces on same graph.
   
-For making nice scaled x axis, easiest is to:
-  1. Decide number of vertical grid lines (divisions), and seconds per division.
-  2. Determine desired graph size in pixels. Ideally width should be one more than multiple of grid steps.
-  3. Set ``update_interval`` to match. update_interval = seconds per divison / pixels per step.
-
-For example:
-
-If we wanted to show 1 hour of history, in 6 steps so that it'll be 10 min/div.
-
-We determine we want 25 pixels per division, so our graph width should be: 
-25 pixels per division * 6 steps + 1 = 151
-
-Then we set update_interval = (10*60)/25 = 24s
 
 Images
 ******
