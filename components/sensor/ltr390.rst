@@ -29,7 +29,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 Configuration variables:
 ------------------------
 
-- **uvi** (**Optional**): UV index (UVI). All options from :ref:`Sensor <config-sensor>`.
+- **uv_index** (**Optional**): UV index (UVI). All options from :ref:`Sensor <config-sensor>`.
 - **uv** (**Optional**): Sensor counts for the UV sensor (#). All options from :ref:`Sensor <config-sensor>`.
 - **light** (**Optional**): Lux of ambient light (lx). All options from :ref:`Sensor <config-sensor>`.
 - **als** (**Optional**): Sensor counts for the Ambient light sensor (#). All options from :ref:`Sensor <config-sensor>`.
