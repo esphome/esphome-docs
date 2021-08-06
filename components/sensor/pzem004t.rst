@@ -69,8 +69,8 @@ ESPs need a `Level Shifter <https://www.adafruit.com/product/1875>`__ to be comp
 
 .. note::
 
-   You need a IC level shifter and not a `Mosfet-based <https://www.sparkfun.com/products/12009>`__ level shifter, because you need
-   to power the optocoupler's LEDs without an additional resistor in the path.
+    You need a IC level shifter and not a `Mosfet-based <https://www.sparkfun.com/products/12009>`__ level shifter, because you need
+    to power the optocoupler's LEDs without an additional resistor in the path.
    
 If prefer, you could change the value of the optocoupler's resistors by following `this <https://gregwareblog.wordpress.com/2020/12/13/home-power-monitoring-pzem-004/>`__ or `this <https://www.instructables.com/Power-Peacefair-PZEM-004-ESP8266-Arduino-Nano/>`__ guide.
 
