@@ -24,6 +24,12 @@ The TSL2591 device is available on breakout boards from a few vendors
 
     TSL2591 Ambient Light Sensor on a breakout board.
 
+.. figure:: images/tsl2591-ui.jpg
+    :align: center
+    :width: 100.0%
+
+    TSL2591 sensors in Home Assistant UI.
+
 The sensor claims a dynamic range of 600 million to 1 with an effective range up to 88000 lux.
 It achieves that large range by having a configurable ``gain`` value.
 You want a higher gain value when measuring less intense light sources.
