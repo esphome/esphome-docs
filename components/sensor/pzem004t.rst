@@ -68,6 +68,7 @@ These devices have optocouplers on the UART port and the resistors mounted on th
 ESPs need a `Level Shifter <https://www.adafruit.com/product/1875>`__ to be compatible with TTL levels. 
 
 .. note::
+
    You need a IC level shifter and not a `Mosfet-based <https://www.sparkfun.com/products/12009>`__ level shifter, because you need
    to power the optocoupler's LEDs without an additional resistor in the path.
    
