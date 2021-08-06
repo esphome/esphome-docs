@@ -234,6 +234,7 @@ Sensor Components
     TOF10120, components/sensor/tof10120, tof10120.jpg
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
     TSL2561, components/sensor/tsl2561, tsl2561.jpg
+    TSL2591, components/sensor/tsl2591, tsl2591.jpg
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg
