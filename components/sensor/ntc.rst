@@ -97,7 +97,8 @@ In the example below, the pin ``D0`` is the "top" side of the voltage divider:
     sensor:
       # Same as before:
       - platform: ntc
-        sensor: resistance_sensor
+        sensor: source_sensor
+        id: resistance_sensor
         # ...
 
       - platform: adc
