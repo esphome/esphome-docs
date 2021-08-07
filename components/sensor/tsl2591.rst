@@ -7,9 +7,7 @@ TSL2591 Ambient Light Sensor
     :keywords: TSL2591
 
 The ``tsl2591`` sensor platform allows you to use the AMS TSL2591 ambient light sensor with ESPHome.
-Communication with the sensors is over :ref:`I²C <i2c>`, which must be present in your configuration.
-The Adafruit sensors library, upon which this integration is based, also requires you to
-configure :ref:`SPI <spi>`, but SPI is not actually used for this device in the runtime.
+Communication with the device is over :ref:`I²C <i2c>`, which must be present in your configuration.
 
 The TSL2591 device is available on breakout boards from a few vendors
 (for example, `Adafruit`_, `CQRobot`_, `Waveshare`_).
@@ -30,43 +28,47 @@ The TSL2591 device is available on breakout boards from a few vendors
 
     TSL2591 sensors in Home Assistant UI.
 
-The sensor claims a dynamic range of 600 million to 1 with an effective range up to 88000 lux.
+The sensor claims a dynamic range of 600 million to 1 with an effective maximum of 88000 lux.
 It achieves that large range by having a configurable ``gain`` value.
-You want a higher gain value when measuring less intense light sources.
+Use a higher gain value when measuring less intense light sources.
 On the other hand, if you get ADC readings of 65,535 for either physical sensor,
 you may be saturating that sensor and need to reduce the gain.
 This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of some lux values for comparison.
 
 The implementation offers four logical sensors, each of which has a default unit of measurement of ``lux``.
-The device's two physical sensors measure "visible and infrared" and "infrared", respectively.
-However, the logical sensor readings here also provides the simple visible value separately.
+Only one of them, **calculated_lux**, is a true ``lux`` value, and even that is a bit subjective.
+(For information about the difference between radiometric and photometric measurements, see the references.)
+The device's two physical sensors measure "visible and infrared" (channel 0) and "infrared" (channel 1), respectively.
+However, the logical sensor readings here also provide the simple "visible" value separately.
 The visible value is obtained by subtracting the reading of the physical infrared sensor
-from the value of the physical sensor that combines visible and infrared.
+(channel 1) from the value of the physical sensor that combines visible and infrared (channel 0).
 Since those are two different infrared sensor readings, there is the possibility of a small inaccuracy.
 
-- **full_spectrum**: Raw 16 bit reading from the on-board ADC for the physical sensor for visible and infrared light.
+- **full_spectrum**: Raw 16 bit reading from the on-board ADC for the physical sensor for visible and infrared light (channel 0).
   This is not really ``lux``.
-- **infrared**: Raw 16 bit reading from the on-board ADC for the physical sensor for infrared light.
+- **infrared**: Raw 16 bit reading from the on-board ADC for the physical sensor for infrared light (channel 1).
   This is not really ``lux``
-- **visible**: For convenience, a value calculated by taking the difference of the two physical sensors.
+- **visible**: For convenience, a value calculated by taking the difference between the two physical sensors (channel 0 minus channel 1).
   This is not really ``lux``.
 - **calculated_lux**: This is a calculated value for lux based on the readings of the
   physical sensors, the configured gain, and the configured integration time.
   For details of the actual calculation, which can depend on additional physical properties,
-  see method ``Adafruit_TSL2591::calculateLux()`` in the Adafruit TSL2591 library.
+  see method ``get_calculated_lux()`` in the API reference.
   If you are not happy with that calculation, you have the raw data you need to do your own.
-  AMS has a few application notes that discuss this.
+  The manufacturer, AMS, has a few application notes that discuss this topic.
+  See the references.
 
 Values reported are said to be in units of ``lux``, but there are some things to understand about that.
 
 - Three of the sensors reflect raw ADC values, as described just above. They are not really lux values.
 - The gain values that can be configured are only approximations.
   The sensor will use something close to it, but the exact value can vary from device to device.
+  There is no way to ask the device what precise gain value it is using.
   See the TSL2591 datasheet for the specific device characteristic ranges.
 - The measurement of any lux value requires careful calibration for the light frequency
   or frequencies under measurement, conversion coefficients for the specific device, and other factors.
-  In short, to really get a true lux value measurement, you should do a lab-grade calibration specific to your use case.
-  If you are the sort of person who can do a lab-grade calibration, you probably knew all of that already.
+  In short, to really get a true lux value measurement, you should do a laboratory-grade calibration specific to your use case.
+  If you are the sort of person who can do a laboratory-grade calibration, you probably knew all of that already.
 - Even considering the above points, you can still get values that will be "in the ballpark" without calibration.
   This is especially true if you just want to distinguish among "no light", "a little bit of light",
   "a lot of light", or something similar.
@@ -76,12 +78,9 @@ Values reported are said to be in units of ``lux``, but there are some things to
     # Example configuration entry
     i2c:
       # ...
-    spi:
-      # ...
     sensor:
       - platform: tsl2591
         id: "my_tls2591"
-        name: "TSL2591 Ambient Light"
         address: 0x29
         update_interval: 60s
         visible:
@@ -98,10 +97,12 @@ Configuration variables:
 For the TSL2591 device:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **name** (*Optional*, string): A user-friendly name for this TSL2591 device.
 - **address** (*Optional*, int): Manually specify the I²C address of the device.
   Defaults to ``0x29``.
-  It is probably not possible to change this for this device.
-  It also uses a secondary address of ``0x28`` (see the datasheet), making that address unavailable for other devices on the same bus.
+  It is not possible to change this for this device without additional hardware.
+  It also uses a secondary address of ``0x28`` (see the datasheet),
+  making that address unavailable for other devices on the same I²C bus.
 - **integration_time** (*Optional*, :ref:`config-time`):
   The time the device will use for each measurement. Longer means more accurate values.
   You cannot specify an arbitrary amount of time. It must be the equivalent of one of:
@@ -119,28 +120,79 @@ For the TSL2591 device:
 
   - ``low``, ``1x``
   - ``medium``, ``med``, ``25x``   *(default)*
-  - ``high``, ``428x``
-  - ``maximum``, ``max``, ``9876x``
+  - ``high``, ``400x``
+  - ``maximum``, ``max``, ``9500x``
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval for checking the sensors.
   Defaults to ``60s``.
-  The device is in a low power state between update intervals.
+- **power_save_mode** (*Optional*, boolean) Should the device be powered down between update intervals?
+  Defaults to ``False`` (*recommended*, see discussion below).
+  
 
-You can configure all or any subset of the sensors listed above (``full_spectrum``, ``infrared``, ``visible``, ``calculated_lux``).
+- All other options for I²C devices described at :ref:`I²C Bus <i2c>`.
+
+You can configure all or any subset of the sensors described earlier.
 Each configured sensor is reported separately on each **update_interval**.
-For each configured sensor:
 
-- **name** (**Required**, string): The name for the sensor.
-- All other options from :ref:`Sensor <config-sensor>`.
+- **full_spectrum** (*Optional*): The reading for the full spectrum sensor.
 
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **infrared** (*Optional*): The reading for the infrared sensor.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **visible** (*Optional*): The reading for visible light.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **calculated_lux** (*Optional*): The value of the calculated lux.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+Power save mode
+...............
+Sensor readings are only taken when the device indicates that the ADC values are valid.
+If the device is powered down between readings,
+there is a delay for the ADC to go through an integration cycle before a reliable reading is available.
+Since that happens during the
+ESPHome update loop, waiting slows down the entire ESP device.
+It might also cause unrelated timing-dependent activities to act strangely.
+
+Only enable power save mode if you need to minimize power consumption and you can tolerate that general delay.
+
+.. (TODO: provide a nice example of this scripting)
+
+A better, but more complex, approach would be to use ESPHome scripting with the ``tsl2591`` device API to:
+
+- enable the device (``enable()``),
+- delay in a loop until the ADC values are valid (``is_adc_valid()``),
+- take readings (``update()``),
+- disable the device (``disable()``).
+
+Delays in ESPHome scripts are asynchronous and do not affect the general update loop.
+The delay will usually be no more than the configured integration time after the device is enabled.
+Thus, if you use a loop to wait in incrments of, for example, 100ms while checking for valid ADC values,
+then the maximum total wait should be no more than 600ms.
+(If you use the TSL2591 API to change the gain value, you should first disabled the TSL2591.
+Otherwise, the next set of ADC readings will be unreliable
+because the current ADC integration cycle will have been done with mixed gain values.
+The ADCs are now "aware" that the gain was changed.)
   
 See Also
 --------
 
 - :ref:`sensor-filters`
+- `AMS TSL2591 document library <https://ams.com/tsl25911#tab/documents>`__
 - `AMS TSL2591 datasheet <https://ams.com/documents/20143/36005/TSL2591_DS000338_6-00.pdf>`__
-- `Adafruit TSL2591 Arduino Library <https://github.com/adafruit/Adafruit_TSL2591_Library>`__ by `Adafruit <https://adafruit.com/>`__
-- `Waveshare TSL2591 Libraries <https://github.com/waveshare/TSL2591X-Light-Sensor>`__ by `Waveshare Electronics <https://www.waveshare.net/>`__ *(An alternative library for Arduino, Raspberry Pi, and STM32; not used in this integration.)*
+- AMS Application Note, `Developing a Custom Lux Equation <https://ams.com/documents/20143/36005/AmbientLightSensors_AN000173_2-00.pdf>`__
+- `Radiometric vs. Photometric Units <https://www.thorlabs.de/catalogPages/506.pdf>`__
+- `Adafruit TSL2591 Arduino Library <https://github.com/adafruit/Adafruit_TSL2591_Library>`__ by `Adafruit <https://adafruit.com/>`__ *(for comparison only)*
+- `Waveshare TSL2591 Libraries <https://github.com/waveshare/TSL2591X-Light-Sensor>`__ by `Waveshare Electronics <https://www.waveshare.net/>`__ *(for comparison only)*
 - :doc:`tsl2561`
 - :doc:`bh1750`
 - :apiref:`tsl2591/tsl2591.h`
