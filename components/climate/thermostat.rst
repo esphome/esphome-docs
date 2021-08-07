@@ -311,6 +311,10 @@ Additional Actions/Behavior
   ``min_fanning_off_time``, and ``min_heating_off_time`` must elapse before each respective action may be invoked.
   This option provides a way to prevent damage to equipment (for example) disrupted by a power interruption.
   Defaults to ``false``.
+- **fan_only_action_uses_fan_mode_timer** (*Optional*, boolean): If set to ``true``, the ``fan_only_action`` will
+  share the same delay timer used for all ``fan_mode`` actions. The minimum fan switching delay is then determined
+  by ``min_fan_mode_switching_time`` (see below). This is useful when ``fan_only_action`` controls the same physical
+  fan as the ``fan_mode`` actions, common in forced-air HVAC systems.
 - **fan_only_cooling** (*Optional*, boolean): If set to ``true``, when in the ``fan_only_mode`` climate mode,
   the ``fan_only_action`` will only be called when the observed temperature exceeds the upper set point plus
   ``cool_deadband``. When set to ``false`` (the default), ``fan_only_action`` is called immediately when
@@ -343,6 +347,8 @@ Additional Actions/Behavior
   must be engaged before it may be disengaged.
 - **min_idle_time** (*Required*, :ref:`config-time`): Minimum duration the idle action must be active before calling
   another climate action.
+- **min_fan_mode_switching_time** (*Required with any* ``fan_mode`` *action*, :ref:`config-time`): Minimum duration
+  any given fan mode must be active before it may be changed.
 
 Hysteresis Values
 *****************
