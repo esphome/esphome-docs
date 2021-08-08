@@ -89,11 +89,12 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas:
+    This action can also be written in lambdas, the parameter of the `public_state` method denotes if
+    the switch is currently on or off:
 
     .. code-block:: cpp
 
-        id(template_swi).publish_state(42.0);
+        id(template_swi).publish_state(false);
 
 See Also
 --------
