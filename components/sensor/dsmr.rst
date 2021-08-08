@@ -9,7 +9,7 @@ Component/Hub
 *************
 
 The DSMR component connects to Dutch Smart Meters which comply to DSMR (Dutch Smart Meter
-Requirements), also known as ‘Slimme meter’ or ‘P1 poort’.
+Requirements), also known as ‘Slimme meter’ or ‘P1 port’.
 
 This integration supports plain non encrypted telegrams and also encrypted as used in Luxembourg.
 In case your equipment has encryption you must get a 32 character long encryption key from your energy company.
@@ -19,8 +19,6 @@ data which this component decodes and updates the configured sensors at the peac
 
 - For official information about DSMR refer to: `DSMR Document <https://www.netbeheernederland.nl/dossiers/slimme-meter-15>`__
 - For official information about the P1 port refer to: `P1 Companion Standard <https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf>`__
-- For unofficial hardware connection examples refer to: `Domoticx <http://domoticx.com/p1-poort-slimme-meter-hardware/>`__
-
 
 .. code-block:: yaml
 
@@ -215,14 +213,13 @@ Configuration variables:
 
   - **name** (**Required**, string): The name for the identification text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Text Sensor <config-text-sensor>`.
-
+  - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 - **p1_version** (*Optional*): DSMR Version
 
   - **name** (**Required**, string): The name for the p1_version text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Text Sensor <config-text-sensor>`.
+  - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 Belgium
 
@@ -230,7 +227,7 @@ Belgium
 
   - **name** (**Required**, string): The name for the p1_version_be text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Text Sensor <config-text-sensor>`.
+  - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 
 See Also
