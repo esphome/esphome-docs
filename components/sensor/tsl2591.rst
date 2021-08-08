@@ -35,33 +35,31 @@ On the other hand, if you get ADC readings of 65,535 for either physical sensor,
 you may be saturating that sensor and need to reduce the gain.
 This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of some lux values for comparison.
 
-The implementation offers four logical sensors, each of which has a default unit of measurement of ``lux``.
+The implementation offers four sensors.
 Only one of them, **calculated_lux**, is a true ``lux`` value, and even that is a bit subjective.
 (For information about the difference between radiometric and photometric measurements, see the references.)
-The device's two physical sensors measure "visible and infrared" (channel 0) and "infrared" (channel 1), respectively.
-However, the logical sensor readings here also provide the simple "visible" value separately.
+The other sensors are unitless readings from the device's on-board ADCs for the physical sensors.
+The two physical sensors measure "visible and infrared" (channel 0) and "infrared" (channel 1), respectively.
+However, the sensor readings here also provide the simple "visible" value separately.
 The visible value is obtained by subtracting the reading of the physical infrared sensor
 (channel 1) from the value of the physical sensor that combines visible and infrared (channel 0).
-Since those are two different infrared sensor readings, there is the possibility of a small inaccuracy.
+Since those are two different physical infrared sensor readings, there is the possibility of a small inaccuracy.
 
 - **full_spectrum**: Raw 16 bit reading from the on-board ADC for the physical sensor for visible and infrared light (channel 0).
-  This is not really ``lux``.
 - **infrared**: Raw 16 bit reading from the on-board ADC for the physical sensor for infrared light (channel 1).
-  This is not really ``lux``
 - **visible**: For convenience, a value calculated by taking the difference between the two physical sensors (channel 0 minus channel 1).
-  This is not really ``lux``.
 - **calculated_lux**: This is a calculated value for lux based on the readings of the
   physical sensors, the configured gain, and the configured integration time.
   For details of the actual calculation, which can depend on additional physical properties,
   see method ``get_calculated_lux()`` in the API reference.
-  If you are not happy with that calculation, you have the raw data you need to do your own.
+  There are configuration items for the device factor and the glass attenuation factor that go into the lux equation.
+  If you are not happy with that built-in calculation, you have the raw data you need to do your own.
   The manufacturer, AMS, has a few application notes that discuss this topic.
   See the references.
 
 Values reported are said to be in units of ``lux``, but there are some things to understand about that.
 
-- Three of the sensors reflect raw ADC values, as described just above. They are not really lux values.
-- The gain values that can be configured are only approximations.
+- The gain multiplier values that can be configured are only approximations.
   The sensor will use something close to it, but the exact value can vary from device to device.
   There is no way to ask the device what precise gain value it is using.
   See the TSL2591 datasheet for the specific device characteristic ranges.
@@ -80,9 +78,12 @@ Values reported are said to be in units of ``lux``, but there are some things to
       # ...
     sensor:
       - platform: tsl2591
+        name: "This little light of mine"
         id: "my_tls2591"
         address: 0x29
         update_interval: 60s
+        device_factor: 53
+        glass_attenuation_factor: 14.4
         visible:
           name: "TSL2591 visible light"
         infrared:
@@ -90,6 +91,7 @@ Values reported are said to be in units of ``lux``, but there are some things to
         full_spectrum:
           name: "TSL2591 full spectrum light"
         calculated_lux:
+          id: i_lux
           name: "TSL2591 Lux"
 
 Configuration variables:
@@ -101,7 +103,7 @@ For the TSL2591 device:
 - **address** (*Optional*, int): Manually specify the I²C address of the device.
   Defaults to ``0x29``.
   It is not possible to change this for this device without additional hardware.
-  It also uses a secondary address of ``0x28`` (see the datasheet),
+  It also automatically uses a secondary address of ``0x28`` (see the datasheet),
   making that address unavailable for other devices on the same I²C bus.
 - **integration_time** (*Optional*, :ref:`config-time`):
   The time the device will use for each measurement. Longer means more accurate values.
@@ -127,6 +129,10 @@ For the TSL2591 device:
   Defaults to ``60s``.
 - **power_save_mode** (*Optional*, boolean) Should the device be powered down between update intervals?
   Defaults to ``False`` (*recommended*, see discussion below).
+- **device_factor** (*Optional*, float) The default is ``53.0``.
+  The device factor to be used as part of the lux equation for **caclulated_lux**.
+- **glass_attenuation_factor** (*Optional*, float) The default is ``7.7``.
+  The glass attenuation factor to be used as part of the lux equation for **caclulated_lux**.
   
 
 - All other options for I²C devices described at :ref:`I²C Bus <i2c>`.
@@ -176,12 +182,14 @@ A better, but more complex, approach would be to use ESPHome scripting with the 
 
 Delays in ESPHome scripts are asynchronous and do not affect the general update loop.
 The delay will usually be no more than the configured integration time after the device is enabled.
-Thus, if you use a loop to wait in incrments of, for example, 100ms while checking for valid ADC values,
+Thus, if you use a loop to wait in increments of, for example, 100ms while checking for valid ADC values,
 then the maximum total wait should be no more than 600ms.
-(If you use the TSL2591 API to change the gain value, you should first disabled the TSL2591.
-Otherwise, the next set of ADC readings will be unreliable
+
+If you use the TSL2591 API to change the gain or integration time value,
+the device is internally disabled and re-enabled.
+Otherwise, the next set of ADC readings would be unreliable
 because the current ADC integration cycle will have been done with mixed gain values.
-The ADCs are now "aware" that the gain was changed.)
+The ADCs are not automatically "aware" that the gain or integration time was changed.)
   
 See Also
 --------
@@ -195,5 +203,6 @@ See Also
 - `Waveshare TSL2591 Libraries <https://github.com/waveshare/TSL2591X-Light-Sensor>`__ by `Waveshare Electronics <https://www.waveshare.net/>`__ *(for comparison only)*
 - :doc:`tsl2561`
 - :doc:`bh1750`
+- `The Water Watcher (a DIY project using a TSL2591) <https://hackaday.io/project/176690-the-water-watcher>`__
 - :apiref:`tsl2591/tsl2591.h`
 - :ghedit:`Edit`
