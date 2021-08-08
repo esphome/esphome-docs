@@ -2,8 +2,8 @@ DSMR Component
 ==============
 
 .. seo::
-    :description: Instructions for setting up DSMR Slimme Meter component in ESPHome.
-    :image: dsmr.jpg
+    :description: Instructions for setting up DSMR Meter component in ESPHome.
+    :image: dsmr.png
 
 Component/Hub
 *************
