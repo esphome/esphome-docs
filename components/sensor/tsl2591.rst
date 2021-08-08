@@ -176,7 +176,7 @@ A better, but more complex, approach would be to use ESPHome scripting with the 
 
 Delays in ESPHome scripts are asynchronous and do not affect the general update loop.
 The delay will usually be no more than the configured integration time after the device is enabled.
-Thus, if you use a loop to wait in incrments of, for example, 100ms while checking for valid ADC values,
+Thus, if you use a loop to wait in increments of, for example, 100ms while checking for valid ADC values,
 then the maximum total wait should be no more than 600ms.
 (If you use the TSL2591 API to change the gain value, you should first disabled the TSL2591.
 Otherwise, the next set of ADC readings will be unreliable
