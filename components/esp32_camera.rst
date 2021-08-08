@@ -32,7 +32,8 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the camera.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
-  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Defaults to ``false``.
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 
 Connection Options:
 

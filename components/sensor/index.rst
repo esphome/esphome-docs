@@ -64,7 +64,8 @@ Configuration variables:
   Some applications like Grafana require this when working with Home Assistant, but beware it can
   significantly increase the database size. Defaults to ``false``.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
-  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Defaults to ``false``.
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 
 Automations:
 
