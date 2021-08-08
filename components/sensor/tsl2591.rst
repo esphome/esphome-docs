@@ -128,7 +128,7 @@ For the TSL2591 device:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval for checking the sensors.
   Defaults to ``60s``.
 - **power_save_mode** (*Optional*, boolean) Should the device be powered down between update intervals?
-  Defaults to ``False`` (*recommended*, see discussion below).
+  Defaults to ``True``
 - **device_factor** (*Optional*, float) The default is ``53.0``.
   The device factor to be used as part of the lux equation for **caclulated_lux**.
 - **glass_attenuation_factor** (*Optional*, float) The default is ``7.7``.
@@ -165,32 +165,24 @@ Power save mode
 Sensor readings are only taken when the device indicates that the ADC values are valid.
 If the device is powered down between readings,
 there is a delay for the ADC to go through an integration cycle before a reliable reading is available.
-Since that happens during the
-ESPHome update loop, waiting slows down the entire ESP device.
-It might also cause unrelated timing-dependent activities to act strangely.
-
-Only enable power save mode if you need to minimize power consumption and you can tolerate that general delay.
-
-.. (TODO: provide a nice example of this scripting)
-
-A better, but more complex, approach would be to use ESPHome scripting with the ``tsl2591`` device API to:
-
-- enable the device (``enable()``),
-- delay in a loop until the ADC values are valid (``is_adc_valid()``),
-- take readings (``update()``),
-- disable the device (``disable()``).
-
-Delays in ESPHome scripts are asynchronous and do not affect the general update loop.
-The delay will usually be no more than the configured integration time after the device is enabled.
-Thus, if you use a loop to wait in increments of, for example, 100ms while checking for valid ADC values,
-then the maximum total wait should be no more than 600ms.
+The delay is appoximately the configured integration time.
+The implementation uses asynchronous delays to wait for the ADC readings to become available.
+This avoids slowing down the overall ESPHome update loop,
+but it means that the publishing of state updates for the TSL2561 might come slightly later.
 
 If you use the TSL2591 API to change the gain or integration time value,
 the device is internally disabled and re-enabled.
 Otherwise, the next set of ADC readings would be unreliable
 because the current ADC integration cycle will have been done with mixed gain values.
-The ADCs are not automatically "aware" that the gain or integration time was changed.)
-  
+(The ADCs are not automatically "aware" that the gain or integration time was changed.)
+Even if power save mode is not enabled, there can be the same sort of slight
+delay for the first sensor reading after the change if it happens to come at an unlucky time.
+
+Since the delays are only a fraction of a second (a maximum of 600-700 ms)
+and update intervals are typically many seconds,
+the delays are not generally very interesting.
+To see if delays are occurring, you can turn on debug logging.
+
 See Also
 --------
 
