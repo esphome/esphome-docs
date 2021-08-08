@@ -39,7 +39,8 @@ request so it will be added (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Hitachi                               | ``hitachi_ac344``   | yes                  |
+| Hitachi                               | ``hitachi_ac344,``  | yes                  |
+|                                       | ``hitachi_ac424``   |                      |
 +---------------------------------------+---------------------+----------------------+
 
 This component requires that you have setup a :doc:`/components/remote_transmitter`.
