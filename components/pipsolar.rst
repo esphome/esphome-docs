@@ -316,7 +316,7 @@ All sensors are normal text sensors... so all text sensor variables are working 
 .. _pipsolaroutput_set_level_action:
 
 ``output.pipsolar.set_level`` Action
------------------------------------
+------------------------------------
 
 To use your outputs in :ref:`automations <automation>` or templates, you can use this action to set the
 target level of the output.
