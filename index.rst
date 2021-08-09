@@ -305,14 +305,16 @@ Light Components
     Monochromatic Light, components/light/monochromatic, brightness-medium.svg
 
     Cold+Warm White Light, components/light/cwww, brightness-medium.svg
+    Color Temperature Light, components/light/color_temperature, brightness-medium.svg
     RGB Light, components/light/rgb, rgb.png
     RGBW Light, components/light/rgbw, rgbw.png
-
     RGBWW Light, components/light/rgbww, rgbw.png
+    RGBCT Light, components/light/rgbct, rgbw.png
+
     FastLED Light, components/light/fastled, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
-
     Light Partition, components/light/partition, color_lens.svg
+
     Tuya Dimmer, components/light/tuya, tuya.png
     Custom Light, components/light/custom, language-cpp.svg
 
