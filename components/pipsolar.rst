@@ -1,5 +1,5 @@
 PipSolar PV Inverter
-========================
+====================
 
 .. seo::
     :description: Instructions for setting up PipSolar Compatible PV Inverter in ESPHome.
@@ -55,7 +55,7 @@ Configuration variables:
 - **uart_id** (*Optional*): The uart Bus ID
 
 Sensors
---------
+-------
 .. code-block:: yaml
 
     # Example configuration entry
@@ -206,7 +206,7 @@ All sensors are normal binary sensors... so all binary sensor variables are work
 - **warning_battery_equalization** (*Optional*): warning battery equalization
 
 Text Sensors
---------------
+------------
 .. code-block:: yaml
 
     # Example configuration entry
@@ -235,7 +235,7 @@ All sensors are normal text sensors... so all text sensor variables are working 
 - **last_qmn** (*Optional*): last qmn reponse
 
 Switches
---------------
+--------
 Not all possible switches are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself. 
 
 .. code-block:: yaml
@@ -313,9 +313,9 @@ All sensors are normal text sensors... so all text sensor variables are working 
 
   - **possible_values** (*Optional*,list): a list of possible values default: 00.0,48.0,49,50.0,51.0,52,53,54,55,56,57,58
 
-.. _Pipsolaroutput_set_level_action:
+.. _pipsolaroutput_set_level_action:
 
-``Pipsolaroutput.set_level`` Action
+``output.pipsolar.set_level`` Action
 -----------------------------------
 
 To use your outputs in :ref:`automations <automation>` or templates, you can use this action to set the
@@ -325,7 +325,7 @@ target level of the output.
 
     on_...:
       then:
-      - Pipsolaroutput.set_level:
+      - output.pipsolar.set_level:
           id: my_pipsolar_output
           level: 48.0
 
