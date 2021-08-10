@@ -169,7 +169,7 @@ damaging the flash if these components are quickly changed.
 Now, when a state is changed, the state is first stored in memory before being flushed to flash after
 the ``flash_write_interval`` has passed.
 
-For ESP8266, :ref:`_esphome-esp8266_restore_from_flash` must also be set to true for states to be written to flash.
+For ESP8266, :ref:`esphome-esp8266_restore_from_flash` must also be set to true for states to be written to flash.
 
 .. _esphome-on_boot:
 
