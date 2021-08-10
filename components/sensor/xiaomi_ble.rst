@@ -182,9 +182,11 @@ There are the following possibilities to operate this sensor:
 
 1. Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
 2. Device flashed with `ATC MiThermometer <https://github.com/atc1441/ATC_MiThermometer>`__ custom firmware
+3. Device flashed with `PVVX MiThermometer <https://github.com/pvvx/ATC_MiThermometer>`__ custom firmware
 
    - "Mi Like" advertisement (dummy bindkey required)
    - "Custom" advertisement (no bindkey required)
+   - "pvvx" custom advertisement (no bindkey required, only PVVX firmware)
 
 Configuration example for Xiaomi stock firmware or ATC MiThermometer firmware set to "Mi Like" advertisement:
 
@@ -216,6 +218,22 @@ Configuration example for ATC MiThermometer firmware set to "Custom" advertiseme
           name: "ATC Battery-Level"
         battery_voltage:
           name: "ATC Battery-Voltage"
+
+Configuration example for PVVX MiThermometer firmware set to "Custom" advertisement:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: pvvx_mithermometer
+        mac_address: "A4:C1:38:B1:CD:7F"
+        temperature:
+          name: "PVVX Temperature"
+        humidity:
+          name: "PVVX Humidity"
+        battery_level:
+          name: "PVVX Battery-Level"
+        battery_voltage:
+          name: "PVVX Battery-Voltage"
 
 MHO-C401
 **********
@@ -266,6 +284,31 @@ Configuration example:
           name: "CGD1 Humidity"
         battery_level:
           name: "CGD1 Battery Level"
+
+CGDK2
+*****
+
+Cleargrass (Qingping) Temp & RH Lite, round body, segment LCD, encrypted, broadcasts temperature, humidity and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
+The measurements are broadcast every 10-15 minutes.
+
+.. figure:: images/xiaomi_cgdk2.jpg
+    :align: center
+    :width: 30.0%
+
+Configuration example:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: xiaomi_cgdk2
+        mac_address: "58:2D:34:11:34:B7"
+        bindkey: "fe39106baeedb7c801e3d63c4396f97e"
+        temperature:
+          name: "CGDK2 Temperature"
+        humidity:
+          name: "CGDK2 Humidity"
+        battery_level:
+          name: "CGDK2 Battery Level"
 
 JQJCY01YM
 *********
@@ -449,6 +492,13 @@ If the LYWSD03MMC sensor is operated with the Xiaomi stock firmware, you can use
 
     The new bind key will work with ESPHome, but the Mi Home app will not recognise the sensor anymore once the device has been activated by the TeLink flasher application. To use the sensor again with the Xiaomi Mi Home app, the device needs to be removed and then re-added inside the Mi Home app.
 
+CGDK2
+*****
+
+The method to obtain a new bind key for the CGDK2 sensor is similar to the method for the LYWSD03MMC sensor, except a modified version of the flasher application is used.
+
+For this, you load the `application <https://zaluthar.github.io/TelinkFlasher.html>`__ with a `supported browser <https://github.com/WebBluetoothCG/web-bluetooth/blob/master/implementation-status.md>`__ and connect the device by pressing "Connect". After the connection is established, you press the "Do Activation" button and the new key will be shown in the "Mi Bind Key" field. The key can be copied directly into the sensor YAML configuration.
+
 Other encrypted devices
 ***********************
 
@@ -479,5 +529,6 @@ See Also
 - Xiaomi LYWSD03MMC passive sensor readout `<https://github.com/ahpohl/xiaomi_lywsd03mmc>`__ by `@ahpohl <https://github.com/ahpohl>`__
 - Custom firmware for the Xiaomi Thermometer LYWSD03MMC `<https://github.com/atc1441/ATC_MiThermometer>`__
 - TeLink flasher application `<https://atc1441.github.io/TelinkFlasher.html>`__
+- TeLink flasher application modified for CGDK2 `<https://zaluthar.github.io/TelinkFlasher.html>`__
 
 - :ghedit:`Edit`

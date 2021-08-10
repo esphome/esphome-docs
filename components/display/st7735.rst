@@ -28,18 +28,18 @@ There are numerous board types out there. Some initialize differently as well. T
 
     # Example configuration entry
     display:
-    - platform: st7735
-      model: "INITR_18BLACKTAB"
-      reset_pin: D4
-      cs_pin: D1
-      dc_pin: D2
-      rotation: 0
-      device_width: 128
-      device_height: 160
-      col_start: 0
-      row_start: 0
-      eight_bit_color: true
-      update_interval: 5s
+      - platform: st7735
+        model: "INITR_18BLACKTAB"
+        reset_pin: D4
+        cs_pin: D1
+        dc_pin: D2
+        rotation: 0
+        device_width: 128
+        device_height: 160
+        col_start: 0
+        row_start: 0
+        eight_bit_color: true
+        update_interval: 5s
 
 Configuration variables:
 ************************
@@ -51,15 +51,15 @@ Configuration variables:
 - **device_height** (**Required**, int): The device height. 160 is default
 - **col_start** (**Required**, int): The device height. 160 is default
 - **row_start** (**Required**, int): The device height. 160 is default
-- **eight_bit_color** (*Optional*, "True/False" ): 8bit mode. Default is False. This saves 50% of the buffer required for the display.
+- **eight_bit_color** (*Optional*, "true/false" ): 8bit mode. Default is false. This saves 50% of the buffer required for the display.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 
 Memory notes:
 *************
 
 - 8Bit color saves 50% of the buffer required.
-- eightbitcolor: True 160x128 = 20480 *Important for memory constrained devices*
-- eightbitcolor: False 160x128x2 = 40960
+- ``eight_bit_color: true`` 160x128 = 20480 *Important for memory constrained devices*
+- ``eight_bit_color: false`` 160x128x2 = 40960
 
 
 Models:
@@ -68,7 +68,7 @@ Models:
 - INITR_GREENTAB
 - INITR_REDTAB
 - INITR_BLACKTAB
-- INITR_MIN_I160X80
+- INITR_MINI160X80
 - INITR_18BLACKTAB
 - INITR_18REDTAB
 
@@ -77,5 +77,6 @@ See Also
 --------
 
 - :ref:`spi`
+- :doc:`/components/display/index`
 - :apiref:`st7735/st7735.h`
 - :ghedit:`Edit`

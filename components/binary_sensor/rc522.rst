@@ -9,7 +9,7 @@ RC522 RFID
 .. _rc522-component:
 
 The ``rc522`` component allows you to use RC522 RFID controllers
-(`datasheet <hthttps://www.nxp.com/docs/en/data-sheet/MFRC522.pdff>`__, `Ali Express <https://es.aliexpress.com/item/1260729519.html>`__)
+(`datasheet <https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf>`__, `Ali Express <https://es.aliexpress.com/item/1260729519.html>`__)
 with ESPHome. ESPHome can read the tag UID from it, every RFID tag comes with a unique
 UID value. Each known tag can be associated to a binary sensor, or you can use the tag information directly.
 See :ref:`rc522-setting_up_tags` for information on how to setup individual binary sensors for this component.
@@ -31,7 +31,7 @@ Over SPI
 --------
 
 The ``rc522_spi`` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that
-establishes the connection to the RC522 via :ref:`SPI <spi>` (also avilable over I²C). Using the
+establishes the connection to the RC522 via :ref:`SPI <spi>` (also available over I²C). Using the
 :ref:`RC522 binary sensors <rc522-tag>` you can then create individual binary sensors that track if
 an RFID tag is currently detected by the RC522.
 
@@ -67,7 +67,7 @@ Over I²C
 --------
 
 The ``rc522_i2c`` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that
-establishes the connection to the RC522 via :ref:`I²C <i2c>` (also avilable over SPI). Using the
+establishes the connection to the RC522 via :ref:`I²C <i2c>` (also available over SPI). Using the
 :ref:`RC522 binary sensors <rc522-tag>` you can then create individual binary sensors that track if
 an RFID tag is currently detected by the RC522.
 
@@ -76,7 +76,6 @@ an RFID tag is currently detected by the RC522.
     i2c:
 
     rc522_i2c:
-      cs_pin: GPIO2
 
     binary_sensor:
       - platform: rc522

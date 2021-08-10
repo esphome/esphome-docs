@@ -74,7 +74,7 @@ Configuration variables:
 
 - **transmitter_id** (*Optional*, :ref:`config-id`): The remote transmitter to send the
   remote code with. Defaults to the first one defined in the configuration.
-
+  
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
@@ -130,8 +130,8 @@ This :ref:`action <config-action>` sends an LG infrared remote code to a remote 
 
     on_...:
       - remote_transmitter.transmit_lg:
-          data: 0x1234567
-          nbits: 28
+          data: 0x20DF10EF # power on/off
+          nbits: 32
 
 Configuration variables:
 
@@ -197,22 +197,29 @@ Configuration variables:
 **********************************************
 
 This :ref:`action <config-action>` sends a Samsung infrared remote code to a remote transmitter.
+It transmits codes up to 64 bits in length in a single packet.
 
 .. code-block:: yaml
 
     on_...:
       - remote_transmitter.transmit_samsung:
           data: 0x1FEF05E4
+      # additional example for 48-bit codes:
+      - remote_transmitter.transmit_samsung:
+          data: 0xB946F50A09F6
+          nbits: 48
 
 Configuration variables:
 
 - **data** (**Required**, int): The data to send, see dumper output for more details.
+- **nbits** (*Optional*, int): The number of bits to send. Defaults to ``32``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_samsung36`` Action
 ************************************************
 
 This :ref:`action <config-action>` sends a Samsung36 infrared remote code to a remote transmitter.
+It transmits the ``address`` and ``command`` in two packets separated by a "space".
 
 .. code-block:: yaml
 
@@ -244,6 +251,27 @@ Configuration variables:
 - **address** (**Required**, int): The address to send the command to, see dumper output for more details.
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
+
+``remote_transmitter.transmit_dish`` Action
+************************************************
+
+This :ref:`action <config-action>` sends a Dish Network infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_dish:
+          address: 1
+          command: 16
+
+Configuration variables:
+
+- **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``.
+- **command** (**Required**, int, 0-63): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
+
 
 ``remote_transmitter.transmit_pioneer`` Action
 **********************************************

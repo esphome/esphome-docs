@@ -46,7 +46,7 @@ Configuration variables:
   decoding process. Defaults to ``25%``.
 - **buffer_size** (*Optional*, int): The size of the internal buffer for storing the remote codes. Defaults to ``10kB``
   on the ESP32 and ``1kB`` on the ESP8266.
-- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platfrom. Defaults to
+- **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
   ``3``.
 - **filter** (*Optional*, :ref:`time <config-time>`): Filter any pulses that are shorter than this. Useful for removing
   glitches from noisy signals. Defaults to ``10us``.
@@ -90,6 +90,10 @@ Automations:
 - **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   pioneer remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::PioneerData`
   is passed to the automation for use in lambdas.
+  - **on_dish** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  dish network remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::DishData`
+  is passed to the automation for use in lambdas.
+  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 
 .. _remote-receiver-binary-sensor:
 
@@ -156,6 +160,7 @@ Remote code selection (exactly one of these has to be included):
 - **samsung**: Trigger on a decoded Samsung remote code with the given data.
 
   - **data** (**Required**, int): The data to trigger on, see dumper output for more info.
+  - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``32``.
 
 - **samsung36**: Trigger on a decoded Samsung36 remote code with the given data.
 
@@ -170,6 +175,12 @@ Remote code selection (exactly one of these has to be included):
 - **pioneer**: Trigger on a decoded Pioneer remote code with the given data.
 
   - **rc_code_1** (**Required**, int): The remote control code trigger on, see dumper output for more details.
+
+- **dish**: Trigger on a decoded Dish Network remote code with the given data.
+  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+
+  - **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``. 
+  - **command** (**Required**, int, 0-63): The Dish command to listen for. 
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
@@ -223,14 +234,14 @@ Remote code selection (exactly one of these has to be included):
 
 .. note::
 
-    To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use ``INPUT_PULLUP``:
+    To capture the codes more effectively with directly connected receiver like tsop38238 you can try to use ``INPUT_PULLUP``:
 
     .. code-block:: yaml
 
         remote_receiver:
           pin:
             number: D4
-            inverted: True
+            inverted: true
             mode: INPUT_PULLUP
           dump: all
 

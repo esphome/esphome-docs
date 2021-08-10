@@ -202,12 +202,12 @@ or just ``|`` or ``>``. There's a slight difference in how these different style
 purposes we can ignore that).
 
 With ``if (...) { ... } else { ... }`` we create a *condition*. What this effectively says that if the thing inside
-the first parentheses evaluates to ``true``` then execute the first block (in this case ``return COVER_OPEN;``,
+the first parentheses evaluates to ``true`` then execute the first block (in this case ``return COVER_OPEN;``,
 or else evaluate the second block. ``return ...;`` makes the code block give back a value to the template. In this case,
 we're either *returning* ``COVER_OPEN`` or ``COVER_CLOSED`` to indicate that the cover is closed or open.
 
 Finally, ``id(...)`` is a helper function that makes ESPHome fetch an object with the supplied ID (which you defined
-somewhere else, like ``top_end_stop```) and lets you call any of ESPHome's many APIs directly. For example, here
+somewhere else, like ``top_end_stop``) and lets you call any of ESPHome's many APIs directly. For example, here
 we're retrieving the current state of the end stop using ``.state`` and using it to construct our cover state.
 
 .. note::
@@ -334,6 +334,10 @@ All Triggers
 - :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
+- :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
+  :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
+  :ref:`ota.on_state_change <ota-on_state_change>`
+- :ref:`display.on_page_change <display-on_page_change-trigger>`
 
 All Actions
 -----------
@@ -375,6 +379,8 @@ All Actions
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`cs5460a.restart <cs5460a-restart_action>`
+- :ref:`number.set <number-set_action>`
 
 .. _config-condition:
 
@@ -395,6 +401,7 @@ All Conditions
 - :ref:`text_sensor.state <text_sensor-state_condition>`
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
+- :ref:`number.in_range <number-in_range_condition>`
 
 All Lambda Calls
 ----------------
@@ -406,6 +413,7 @@ All Lambda Calls
 - :ref:`Cover <cover-lambda_calls>`
 - :ref:`Text Sensor <text_sensor-lambda_calls>`
 - :ref:`Stepper <stepper-lambda_calls>`
+- :ref:`Number <number-lambda_calls>`
 
 .. _delay_action:
 
@@ -792,16 +800,16 @@ using script modes ``single`` and ``restart`` respectively.
 .. code-block:: yaml
 
     script:
-    - id: hallway_light_script
-      mode: restart     # Light will be kept on during 1 minute since
-                        # the latest time the script is executed
-      then:
-        - light.turn_on: hallway_light
-        - delay: 1 min
-        - light.turn_off: hallway_light
+      - id: hallway_light_script
+        mode: restart     # Light will be kept on during 1 minute since
+                          # the latest time the script is executed
+        then:
+          - light.turn_on: hallway_light
+          - delay: 1 min
+          - light.turn_off: hallway_light
 
     ...
-      on_...:           # can be called from diffrent wall switches
+      on_...:           # can be called from different wall switches
         - script.execute: hallway_light_script
 
 Sometimes you'll also need a timer which does not perform any action, that is ok too, just

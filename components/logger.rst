@@ -38,7 +38,7 @@ Advanced settings:
 -  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
    log strings in the flash section of the device (uses more memory). Defaults to true.
 -  **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
-   performed when a message is to be looged. The vairables ``int level``, ``const char* tag`` and
+   performed when a message is to be logged. The variables ``int level``, ``const char* tag`` and
    ``const char* message`` are available for lambda processing.
 
 .. _logger-hardware_uarts:
@@ -127,7 +127,7 @@ Next, we can manually set the log levels in the configuration like this:
         mqtt.client: ERROR
 
 Please note that the global log level determines what log messages are
-saved in the binary. So for example a ``INFO`` global log message will
+saved in the binary. So for example an ``INFO`` global log message will
 purge all ``DEBUG`` log statements from the binary in order to conserve
 space. This however means that you cannot set tag-specific log levels
 that have a lower severity than the global log level.

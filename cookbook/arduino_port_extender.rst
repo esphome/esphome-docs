@@ -2,7 +2,7 @@ Arduino Port Expander
 =====================
 
 .. seo::
-    :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of a ESPHome node
+    :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of an ESPHome node
     :image: arduino_pro_mini.jpg
     :keywords: Arduino port expander extender ESPHome
 
