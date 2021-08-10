@@ -71,7 +71,7 @@ Configuration example:
                 state: OFF
     # This entry queries the battery level. Some tags may not
     # support this characteristic, you will see 'Unknown' in the
-    # HA frontent.
+    # HA frontend.
       - platform: ble_client
         ble_client_id: itag_black
         name: "Black iTag Battery"

@@ -65,6 +65,11 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
                         Configuration types
                     </a>
                 </li>
+                <li>
+                    <a class="reference" href="/guides/creators.html">
+                        Creating a Project
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="guide-card">
@@ -170,11 +175,13 @@ Sensor Components
     Duty Cycle, components/sensor/duty_cycle, percent.svg
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png
+    Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg
     HDC1080, components/sensor/hdc1080, hdc1080.jpg
     HLW8012, components/sensor/hlw8012, hlw8012.svg
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
+    HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg
     HX711, components/sensor/hx711, hx711.jpg
     INA219, components/sensor/ina219, ina219.jpg
     INA226, components/sensor/ina226, ina226.jpg
@@ -193,7 +200,9 @@ Sensor Components
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     MS5611, components/sensor/ms5611, ms5611.jpg
+    Nextion, components/sensor/nextion, nextion.jpg
     NTC Thermistor, components/sensor/ntc, ntc.jpg
+    PM1006 Sensor, components/sensor/pm1006, pm1006.jpg
     PMSX003, components/sensor/pmsx003, pmsx003.svg
     Pulse Counter, components/sensor/pulse_counter, pulse.svg
     Pulse Meter, components/sensor/pulse_meter, pulse.svg
@@ -207,6 +216,7 @@ Sensor Components
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SDM Meter, components/sensor/sdm_meter, sdm220m.png
+    Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg
     SCD30, components/sensor/scd30, scd30.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
@@ -216,6 +226,7 @@ Sensor Components
     STS3X, components/sensor/sts3x, sts3x.jpg
     SGP30, components/sensor/sgp30, sgp30.jpg
     SGP40, components/sensor/sgp40, sgp40.jpg
+    T6613/15, components/sensor/t6615, t6615.png
     TCS34725, components/sensor/tcs34725, tcs34725.jpg
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg
     Template Sensor, components/sensor/template, description.svg
@@ -253,7 +264,7 @@ Binary Sensor Components
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
-    Nextion Touch, components/binary_sensor/nextion, nextion.jpg
+    Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
     PN532, components/binary_sensor/pn532, pn532.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
@@ -277,6 +288,7 @@ Output Components
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
+    TLC5947, components/output/tlc5947, tlc5947.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
@@ -325,6 +337,7 @@ Switch Components
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
+    Nextion Switch, components/switch/nextion, nextion.jpg
 
 Fan Components
 --------------
@@ -386,6 +399,8 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
+    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
+    Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
 
 Climate Components
 ------------------
@@ -400,6 +415,23 @@ Climate Components
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
     Midea Air Conditioner, components/climate/midea_ac, midea.svg
+    Anova Cooker, components/climate/anova, anova.png
+
+Number Components
+-----------------
+
+.. imgtable::
+
+    Number Core, components/number/index, folder-open.svg
+    Template Number, components/number/template, description.svg
+
+Select Components
+-----------------
+
+.. imgtable::
+
+    Select Core, components/select/index, folder-open.svg
+    Template Select, components/select/template, description.svg
 
 Misc Components
 ---------------
@@ -442,6 +474,7 @@ Misc Components
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    Demo, components/demo, description.svg
 
 Additional Custom Components
 ----------------------------
@@ -485,6 +518,7 @@ Cookbook
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
+    Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

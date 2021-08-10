@@ -69,6 +69,37 @@ we now have ``esphome run config.yaml``. The old format is still accepted and wi
 but there is a **breaking change** with this release which is the arguments ``--upload-port`` and ``--serial-port`` have been
 combined and changed to ``--device``.
 
+Release 1.19.1 - June 18
+------------------------
+
+- Update dashboard to 20210617.0 :esphomepr:`1930` by :ghuser:`balloob`
+- Fix: midea_ac: fixed query status frame :esphomepr:`1922` by :ghuser:`dudanov`
+- Improve config final validation :esphomepr:`1917` by :ghuser:`OttoWinter`
+- Replace CLIMATE_MODE_AUTO with CLIMATE_MODE_HEAT_COOL in most cases :esphomepr:`1933` by :ghuser:`jesserockz`
+
+Release 1.19.2 - June 21
+------------------------
+
+- Don't send Tuya commands while currently receiving a message :esphomepr:`1886` by :ghuser:`nuttytree`
+- Fix midea_ac query frame :esphomepr:`1940` by :ghuser:`dudanov`
+- Allow wifi setup to proceed when there is no sta or ap :esphomepr:`1931` by :ghuser:`jesserockz`
+- Fix bad climate control enum :esphomepr:`1942` by :ghuser:`jesserockz`
+
+Release 1.19.3 - June 23
+------------------------
+
+- Bump esphome-dashboard to 20210622.0 :esphomepr:`1955` by :ghuser:`jesserockz`
+
+Release 1.19.4 - June 24
+------------------------
+
+- Rework climate traits :esphomepr:`1941` by :ghuser:`OttoWinter`
+- API raise minor version for climate changes :esphomepr:`1947` by :ghuser:`OttoWinter`
+- Disallow power_save_mode NONE if used together with BLE :esphomepr:`1950` by :ghuser:`OttoWinter`
+- Add climate preset NONE again :esphomepr:`1951` by :ghuser:`OttoWinter`
+- Compat argv parsing improvements :esphomepr:`1952` by :ghuser:`OttoWinter`
+- Bump dashboard to 20210623.0 :esphomepr:`1958` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 

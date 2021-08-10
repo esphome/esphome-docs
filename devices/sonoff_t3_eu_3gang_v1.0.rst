@@ -251,19 +251,19 @@ of the basic functions.
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff T3 EU 3 Gang Touchpad 1"
       - platform: gpio
         pin:
           number: GPIO9
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff T3 EU 3 Gang Touchpad 2"
       - platform: gpio
         pin:
           number: GPIO10
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff T3 EU 3 Gang Touchpad 3"
       - platform: status
         name: "Sonoff T3 EU 3 Gang Status"
@@ -284,7 +284,7 @@ of the basic functions.
       - platform: esp8266_pwm
         id: blue_led
         pin: GPIO13
-        inverted: True
+        inverted: true
 
     light:
       # ... and then make a light out of it.

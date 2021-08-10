@@ -30,7 +30,7 @@ sensor:
   - platform: hlw8012
     sel_pin:
       number: GPIO12
-      inverted: True
+      inverted: true
     cf_pin: GPIO5
     cf1_pin: GPIO14
     current:
@@ -64,7 +64,7 @@ time:
 status_led:
   pin:
     number: GPIO0   # Red LED
-    inverted: True
+    inverted: true
 
 binary_sensor:
   - platform: gpio
@@ -73,14 +73,14 @@ binary_sensor:
     name: ${friendly_name} Button
     on_press:
       - switch.toggle: relay
-    internal: True
+    internal: true
 
 switch:
   - platform: gpio
     id: blue_led
     pin:
       number: GPIO2
-      inverted: True
+      inverted: true
     
   - platform: gpio
     pin: GPIO4

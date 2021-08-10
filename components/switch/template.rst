@@ -46,7 +46,7 @@ Configuration variables:
 - **restore_state** (*Optional*, boolean): Sets whether ESPHome should attempt to restore the
   state on boot-up and call the turn on/off actions with the recovered values. Defaults to ``no``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
-  any command sent to the template cover will immediately update the reported state.
+  any command sent to the template switch will immediately update the reported state.
   Defaults to ``false``.
 - **assumed_state** (*Optional*, boolean): Whether the true state of the switch is not known.
   This will make the Home Assistant frontend show buttons for both ON and OFF actions, instead

@@ -78,9 +78,6 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
-If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
-Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
-
 .. _remote_transmitter-transmit_raw:
 
 ``remote_transmitter.transmit_raw`` Action
@@ -254,6 +251,27 @@ Configuration variables:
 - **address** (**Required**, int): The address to send the command to, see dumper output for more details.
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
+
+``remote_transmitter.transmit_dish`` Action
+************************************************
+
+This :ref:`action <config-action>` sends a Dish Network infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_dish:
+          address: 1
+          command: 16
+
+Configuration variables:
+
+- **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``.
+- **command** (**Required**, int, 0-63): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
+
 
 ``remote_transmitter.transmit_pioneer`` Action
 **********************************************

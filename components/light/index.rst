@@ -32,7 +32,7 @@ Configuration variables:
   Defaults to ``2.8``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The default transition length
   to use when no transition length is set in the light call. Defaults to ``1s``.
-- **restore_mode** (*Optional*): Control how the GPIO Switch attempts to restore state on bootup.
+- **restore_mode** (*Optional*): Control how the light attempts to restore state on bootup.
   For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
   :doc:`esphome section </components/esphome>`.
 
@@ -48,7 +48,7 @@ Configuration variables:
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the light is turned off. See :ref:`light-on_turn_on_off_trigger`.
 
-Additional Configuration variables for addressable lights:
+Additional configuration variables for addressable lights:
 
 - **color_correct** (*Optional*, list of float): Apply a color correction to each color channel.
   This defines the maximum brightness of each channel. For example ``[100%, 50%, 100%]`` would set the
@@ -61,6 +61,9 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _light-toggle_action:
@@ -129,15 +132,19 @@ Configuration variables:
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
   if the light supports it.
 - **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing brightness.
+  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. This is a master brightness that applies to all channels (both color and white) of the
+  light. Defaults to not changing brightness.
+- **color_brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the color lights. Must
+  be in range ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Useful to control brightness of colored and white lights separately for
+  RGBW lights. Defaults to not changing brightness.
 - **red** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The red channel of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing red.
+  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing red channel.
 - **green** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The green channel of the light. Must be in range
   ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing green channel.
 - **blue** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The blue channel of the light. Must be in range
   ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing blue channel.
-- **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The white channel value of RGBW lights. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing white value.
+- **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the white lights. Must be in range
+  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing white channel.
 - **color_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): The white color temperature value (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) for CWWW / RGBWW lights. Defaults to not changing the color temperature value.
 - **flash_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): If set, will flash the given color
   for this period of time and then go back to the previous state.
@@ -163,7 +170,21 @@ Configuration variables:
 
     The ``red``, ``green`` and ``blue`` values only control the color of the light, not its
     brightness! If you assign ``50%`` to all RGB channels it will be interpreted as 100% on.
-    Only use ``brightness`` to control the brightness of the light.
+    Only use ``brightness`` or ``color_brightness`` to control the brightness of the light.
+
+.. note::
+
+    The master brightness (``brightness``) and separate brightness controls for the color and
+    white channels (``color_brightness`` and ``white``) are multiplied together. Thus, this will
+    result in color at 40% brightness and white at 60% brightness:
+
+    .. code-block:: yaml
+
+        - light.turn_on:
+            id: light_1
+            brightness: 80%
+            color_brightness: 50%
+            white: 75%
 
 .. _light-turn_off_action:
 
@@ -291,17 +312,19 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the addressable light to control.
 - **range_from** (*Optional*, :ref:`templatable <config-templatable>`, int): The beginning
-  of the range of LEDs to control. 0-based indexing. Defaults to 0 (the beginning of the strip).
+  of the range of LEDs to control, inclusive, using zero-based indexing. Defaults to 0 (the beginning of the strip).
 - **range_to** (*Optional*, :ref:`templatable <config-templatable>`, int): The end of the
-  range of LEDs to control - this is a half-open interval. 0-based indexing.
-  Defaults to the end of the strip (``num_leds``).
+  range of LEDs to control, inclusive, using zero-based indexing.
+  Defaults to the end of the strip (``num_leds`` - 1).
+- **color_brightness** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The brightness to
+  set the color channel to.
 - **red** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the red channel to.
 - **green** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the green channel to.
 - **blue** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the blue channel to.
-- **white** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
+- **white** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The brightness to
   set the white channel to.
 
 .. _light-is_on_condition:
@@ -397,7 +420,7 @@ Configuration variables:
 
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
 - **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transistion is started. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
 
 
 Random Effect
@@ -439,15 +462,15 @@ This effect cycles through a list of colors with specific durations.
           - strobe:
               name: Strobe Effect With Custom Values
               colors:
-                - state: True
+                - state: true
                   brightness: 100%
                   red: 100%
                   green: 90%
                   blue: 0%
                   duration: 500ms
-                - state: False
+                - state: false
                   duration: 250ms
-                - state: True
+                - state: true
                   brightness: 100%
                   red: 0%
                   green: 100%
@@ -459,7 +482,7 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Strobe``.
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
-  - **state** (*Optional*, boolean): The ON/OFF state to show. Defaults to ``True``.
+  - **state** (*Optional*, boolean): The ON/OFF state to show. Defaults to ``true``.
   - **brightness** (*Optional*, percentage): The brightness of the light. Defaults to ``100%``.
   - **red** (*Optional*, percentage): The percentage that the red color should be on for RGB lights. Defaults to ``100%``.
   - **green** (*Optional*, percentage): The percentage that the green color should be on for RGB lights. Defaults to ``100%``.
@@ -509,7 +532,7 @@ This effect allows you to write completely custom light effects yourself using :
               lambda: |-
                 static int state = 0;
                 auto call = id(my_light).turn_on();
-                // Transtion of 1000ms = 1s
+                // Transition of 1000ms = 1s
                 call.set_transition_length(1000);
                 if (state == 0) {
                   call.set_rgb(1.0, 1.0, 1.0);
@@ -583,7 +606,7 @@ the strip and shifts them forward every ``add_led_interval``.
                   blue: 0%
                   num_leds: 1
               add_led_interval: 100ms
-              reverse: False
+              reverse: false
 
 Configuration variables:
 
@@ -594,13 +617,13 @@ Configuration variables:
   - **red** (*Optional*, percentage): The percentage the red color channel should be on. Defaults to ``100%``.
   - **green** (*Optional*, percentage): The percentage the green color channel should be on. Defaults to ``100%``.
   - **blue** (*Optional*, percentage): The percentage the blue color channel should be on. Defaults to ``100%``.
-  - **random** (*Optional*, boolean): If set to ``True``, will overwrite the RGB colors by a new, randomly-chosen
-    color each time. Defaults to ``False``.
+  - **random** (*Optional*, boolean): If set to ``true``, will overwrite the RGB colors by a new, randomly-chosen
+    color each time. Defaults to ``false``.
   - **num_leds** (*Optional*, int): The number of leds of this type to have before moving on to the next color.
 
 - **add_led_interval** (*Optional*, :ref:`config-time`): The interval with which to shift in new leds at the
   beginning of the strip. Defaults to ``100ms``.
-- **reverse** (*Optional*, boolean): Whether to reverse the direction of the color wipe. Defaults to ``False``.
+- **reverse** (*Optional*, boolean): Whether to reverse the direction of the color wipe. Defaults to ``false``.
 
 Addressable Scan Effect
 ***********************
@@ -972,7 +995,7 @@ Configuration variables:
 
 .. note::
 
-    You can also set the ``port`` to ``19446`` for compatability with Hyperion Classic using a
+    You can also set the ``port`` to ``19446`` for compatibility with Hyperion Classic using a
     UDP device with protocol 0.
 
 Currently the following realtime protocols are supported:

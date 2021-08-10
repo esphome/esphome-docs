@@ -244,25 +244,25 @@ of the basic functions.
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff 4CH Button 1"
       - platform: gpio
         pin:
           number: GPIO9
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff 4CH Button 2"
       - platform: gpio
         pin:
           number: GPIO10
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff 4CH Button 3"
       - platform: gpio
         pin:
           number: GPIO14
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff 4CH Button 4"
       - platform: status
         name: "Sonoff 4CH Status"
@@ -286,7 +286,7 @@ of the basic functions.
       - platform: esp8266_pwm
         id: blue_led
         pin: GPIO13
-        inverted: True
+        inverted: true
 
     light:
       # ... and then make a light out of it.
