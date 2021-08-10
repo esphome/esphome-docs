@@ -411,7 +411,7 @@ Configuration example:
 CGPR1
 *****
 
-Qingping motion & ambient light sensor. Broadcasts motion detection, idle time since last motion event, lux value and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`). Implemented as a hybrid sensor, needs both ``sensor`` and ``binary_sensor`` in config.
+Qingping motion & ambient light sensor. Broadcasts motion detection, idle time since last motion event, lux value and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
 
 .. figure:: images/xiaomi_cgpr1.png
     :align: center
@@ -420,8 +420,6 @@ Qingping motion & ambient light sensor. Broadcasts motion detection, idle time s
 Configuration example:
 
 .. code-block:: yaml
-
-    sensor:
 
     binary_sensor:
       - platform: xiaomi_cgpr1
