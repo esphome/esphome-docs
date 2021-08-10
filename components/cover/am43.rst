@@ -1,5 +1,5 @@
 AM43 Cover
-================
+==========
 
 .. seo::
     :description: Setting up AM43/BLE covers in ESPHome.
