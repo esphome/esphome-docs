@@ -140,7 +140,7 @@ Configuration example:
 CGG1
 ****
 
-Hygro thermometer, round body, e-ink display.
+Cleargrass (Qingping): hygro thermometer, round body, e-ink display.
 
 New firmware requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`), and stopped broadcasting battery level.
 
@@ -161,6 +161,13 @@ Configuration example:
           name: "CGG1 Humidity"
         battery_level:
           name: "CGG1 Battery Level"
+      - platform: xiaomi_cgg1
+        mac_address: "7A:80:8E:28:39:CD"
+        bindkey: "00112233445566778899aabbccddeeff"
+        temperature:
+          name: "CGG1 (New) Temperature"
+        humidity:
+          name: "CGG1 (New) Humidity"
 
 LYWSD03MMC
 **********
