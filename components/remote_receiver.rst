@@ -90,6 +90,10 @@ Automations:
 - **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   pioneer remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::PioneerData`
   is passed to the automation for use in lambdas.
+  - **on_dish** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  dish network remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::DishData`
+  is passed to the automation for use in lambdas.
+  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 
 .. _remote-receiver-binary-sensor:
 
@@ -171,6 +175,12 @@ Remote code selection (exactly one of these has to be included):
 - **pioneer**: Trigger on a decoded Pioneer remote code with the given data.
 
   - **rc_code_1** (**Required**, int): The remote control code trigger on, see dumper output for more details.
+
+- **dish**: Trigger on a decoded Dish Network remote code with the given data.
+  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+
+  - **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``. 
+  - **command** (**Required**, int, 0-63): The Dish command to listen for. 
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
