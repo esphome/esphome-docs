@@ -7,7 +7,7 @@ RF Bridge Component
     :keywords: RF Bridge
 
 The ``RF Bridge`` Component provides the ability to send and receive 433MHz remote codes without hardware
-hacking the circuit board to bypass the ``efm8bb1`` MCU. This component implements the communcation protocol
+hacking the circuit board to bypass the ``efm8bb1`` MCU. This component implements the communication protocol
 that the original ``efm8bb1`` firmware implements. The device is connected via the
 :doc:`UART bus </components/uart>`. The uart bus must be configured at the same speed of the module
 which is 19200bps.

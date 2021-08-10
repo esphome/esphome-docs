@@ -16,6 +16,11 @@ Installing ESPHome is very easy. All you need to do is have `Python
 <https://www.python.org/>`__ installed and install the console script through
 ``pip3``.
 
+.. note::
+
+    Python 3.7 or above is required to install ESPHome 1.18.0 or above.
+    
+
 .. code-block:: bash
 
     pip3 install esphome
@@ -38,7 +43,7 @@ file called ``livingroom.yaml``:
 
 .. code-block:: bash
 
-    esphome livingroom.yaml wizard
+    esphome wizard livingroom.yaml
     # On Docker:
     docker run --rm -v "${PWD}":/config -it esphome/esphome wizard livingroom.yaml
 
@@ -121,7 +126,7 @@ Sensor </components/binary_sensor/gpio>`.
         name: "Living Room Window"
         pin:
           number: 16
-          inverted: True
+          inverted: true
           mode: INPUT_PULLUP
 
 This is an advanced feature of ESPHome. Almost all pins can

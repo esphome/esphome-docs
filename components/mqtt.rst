@@ -38,10 +38,10 @@ Configuration variables:
 - **client_id** (*Optional*, string): The client id to use for opening
   connections. See :ref:`mqtt-defaults` for more information.
 - **discovery** (*Optional*, boolean): If Home Assistant automatic
-  discovery should be enabled. Defaults to ``True``.
+  discovery should be enabled. Defaults to ``true``.
 - **discovery_retain** (*Optional*, boolean): Whether to retain MQTT
   discovery messages so that entities are added automatically on Home
-  Assistant restart. Defaults to ``True``.
+  Assistant restart. Defaults to ``true``.
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
@@ -91,7 +91,7 @@ It is used in several places like last will and birth messages or MQTT log optio
       topic: topic/to/send/to
       payload: online
       qos: 0
-      retain: True
+      retain: true
 
 
 Configuration options:
@@ -103,7 +103,7 @@ Configuration options:
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean): If the published message should
-   have a retain flag on or not. Defaults to ``True``.
+   have a retain flag on or not. Defaults to ``true``.
 
 
 The ``log_topic`` has an additional configuration option:
@@ -126,7 +126,7 @@ discovery in your Home Assistant configuration with the following:
     # Example Home Assistant configuration.yaml entry
     mqtt:
       broker: ...
-      discovery: True
+      discovery: true
 
 And that should already be it 🎉 All devices defined through ESPHome should show up automatically
 in the entities section of Home Assistant.
@@ -253,8 +253,8 @@ MQTT can have some overrides for specific options.
 
     name: "Component Name"
     # Optional variables:
-    retain: True
-    discovery: True
+    retain: true
+    discovery: true
     availability:
       topic: livingroom/status
       payload_available: online
@@ -267,7 +267,7 @@ Configuration variables:
 -  **name** (**Required**, string): The name to use for the MQTT
    Component.
 -  **retain** (*Optional*, boolean): If all MQTT state messages should
-   be retained. Defaults to ``True``.
+   be retained. Defaults to ``true``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable
    discovery for a component. Defaults to the global default.
 -  **availability** (*Optional*): Manually set what should be sent to
@@ -447,7 +447,7 @@ Configuration options:
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean, :ref:`templatable <config-templatable>`): If the published message should
-   have a retain flag on or not. Defaults to ``False``.
+   have a retain flag on or not. Defaults to ``false``.
 
 
 .. note::
@@ -498,7 +498,7 @@ Configuration options:
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean): If the published message should
-   have a retain flag on or not. Defaults to ``False``.
+   have a retain flag on or not. Defaults to ``false``.
 
 
 .. note::

@@ -224,14 +224,14 @@ Remote code selection (exactly one of these has to be included):
 
 .. note::
 
-    To caputure the codes more effectively with directly connected receiver like tsop38238 you can try to use ``INPUT_PULLUP``:
+    To capture the codes more effectively with directly connected receiver like tsop38238 you can try to use ``INPUT_PULLUP``:
 
     .. code-block:: yaml
 
         remote_receiver:
           pin:
             number: D4
-            inverted: True
+            inverted: true
             mode: INPUT_PULLUP
           dump: all
 

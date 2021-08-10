@@ -87,6 +87,7 @@ Configuration variables:
   - ``2.90inv2``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
+  - ``4.20in-bV2`` (B/W rendering only)
   - ``5.83in``
   - ``7.50in``
   - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)

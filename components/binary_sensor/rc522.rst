@@ -31,7 +31,7 @@ Over SPI
 --------
 
 The ``rc522_spi`` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that
-establishes the connection to the RC522 via :ref:`SPI <spi>` (also avilable over I²C). Using the
+establishes the connection to the RC522 via :ref:`SPI <spi>` (also available over I²C). Using the
 :ref:`RC522 binary sensors <rc522-tag>` you can then create individual binary sensors that track if
 an RFID tag is currently detected by the RC522.
 
@@ -67,7 +67,7 @@ Over I²C
 --------
 
 The ``rc522_i2c`` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that
-establishes the connection to the RC522 via :ref:`I²C <i2c>` (also avilable over SPI). Using the
+establishes the connection to the RC522 via :ref:`I²C <i2c>` (also available over SPI). Using the
 :ref:`RC522 binary sensors <rc522-tag>` you can then create individual binary sensors that track if
 an RFID tag is currently detected by the RC522.
 
