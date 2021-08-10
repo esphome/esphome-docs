@@ -46,6 +46,8 @@ Float outputs only:
   Must be in range from 0 to max_power. Defaults to ``0``.
 - **max_power** (*Optional*, float): Sets the maximum output value of this output platform.
   Must be in range from min_power to 1. Defaults to ``1``.
+- **zero_means_zero** (*Optional*, boolean): Sets the output to use actual 0 instead of ``min_power``.
+  Defaults to ``false``.
 
 
 .. _output-turn_on_action:

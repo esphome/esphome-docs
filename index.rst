@@ -166,6 +166,7 @@ Air Quality
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
+    PM1006 Sensor, components/sensor/pm1006, pm1006.jpg Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
@@ -173,6 +174,7 @@ Air Quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
+    T6613/15, components/sensor/t6615, t6615.png C02
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
 
@@ -221,8 +223,9 @@ Distance
 ********
 .. imgtable::
 
-    Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
+    HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
+    Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
     VL53L0x, components/sensor/vl53l0x, vl53l0x.png, IR optical distance
 
 
@@ -238,7 +241,7 @@ Weight
 Magnetic
 ********
 .. imgtable::
-    
+
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
@@ -254,7 +257,7 @@ Miscellaneous
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
-    Havells Inverter, components/sensor/havells_inverter, havellsgti5000d_s.jpg, Solar rooftop
+    Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
 
@@ -285,6 +288,7 @@ Electricity
     PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
     SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus energy monitor
+    Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
 
@@ -293,7 +297,7 @@ Environmental
 *************
 
 .. imgtable::
-    
+
     AHT10, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
@@ -373,6 +377,7 @@ Output Components
     AC Dimmer, components/output/ac_dimmer, ac_dimmer.svg
     PCA9685, components/output/pca9685, pca9685.jpg
     TLC59208F, components/output/tlc59208f, tlc59208f.jpg
+    TLC5947, components/output/tlc5947, tlc5947.jpg
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
@@ -508,6 +513,14 @@ Number Components
     Number Core, components/number/index, folder-open.svg
     Template Number, components/number/template, description.svg
 
+Select Components
+-----------------
+
+.. imgtable::
+
+    Select Core, components/select/index, folder-open.svg
+    Template Select, components/select/template, description.svg
+
 Misc Components
 ---------------
 
@@ -549,6 +562,7 @@ Misc Components
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    Demo, components/demo, description.svg
 
 Additional Custom Components
 ----------------------------
