@@ -168,6 +168,7 @@ Air Quality
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
+    PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
