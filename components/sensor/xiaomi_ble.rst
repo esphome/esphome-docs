@@ -409,7 +409,7 @@ Configuration example:
           name: "MJYD02YL-A Illuminance"
 
 CGPR1
-**********
+*****
 
 Qingping motion & ambient light sensor. Broadcasts motion detection, idle time since last motion event, lux value and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`). Implemented as a hybrid sensor, needs both ``sensor`` and ``binary_sensor`` in config.
 
