@@ -3,7 +3,7 @@ Cover Component
 
 .. seo::
     :description: Instructions for setting up base covers in ESPHome.
-    :image: folder-opn.png
+    :image: folder-open.svg
 
 The ``cover`` component is a generic representation of covers in ESPHome.
 A cover can (currently) either be *closed* or *open* and supports three types of

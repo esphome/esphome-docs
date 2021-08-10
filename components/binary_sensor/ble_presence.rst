@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy Device
 
 .. seo::
     :description: Instructions for setting up BLE binary sensors for the ESP32.
-    :image: bluetooth.png
+    :image: bluetooth.svg
 
 The ``ble_presence`` binary sensor platform lets you track the presence of a
 Bluetooth Low Energy device.

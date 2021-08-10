@@ -3,7 +3,7 @@ PMSX003 Particulate Matter Sensor
 
 .. seo::
     :description: Instructions for setting up PMSX003 Particulate matter sensors
-    :image: pmsx003.png
+    :image: pmsx003.svg
 
 The ``pmsx003`` sensor platform allows you to use your PMS5003, PMS7003, ... particulate matter
 (`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__)

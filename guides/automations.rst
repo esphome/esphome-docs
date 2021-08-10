@@ -5,7 +5,7 @@ Automations and Templates
 
 .. seo::
     :description: Getting started guide for automations in ESPHome.
-    :image: auto-fix.png
+    :image: auto-fix.svg
 
 Automations and templates are two very powerful aspects of ESPHome. Automations
 allow you to perform actions under certain conditions and templates are a way to easily

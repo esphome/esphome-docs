@@ -3,7 +3,6 @@ DIY Light switch using a Sonoff Dual
 
 .. seo::
     :description: An example of how to integrate a dual light switch into Home Assistant using ESPHome
-    :image: sonoff_light_switch.png
     :keywords: Relay, Sonoff Dual Dual R1, Light, HASS, Home Assistant, ESPHome
 
 .. note::

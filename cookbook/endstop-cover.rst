@@ -3,7 +3,7 @@ Template Cover with Endstops
 
 .. seo::
     :description: An example of how to integrate covers with endstops in ESPHome.
-    :image: window-open.jpg
+    :image: window-open.svg
 
 The following is an example configuration for controlling covers (like window blinds etc)
 with ESPHome. This guide assumes that the cover is set up with two endstops at the top

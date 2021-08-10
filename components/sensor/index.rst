@@ -3,7 +3,7 @@ Sensor Component
 
 .. seo::
     :description: Instructions for setting up sensor components in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for many different sensors. Each of them is a
 platform of the ``sensor`` domain and each sensor has several base

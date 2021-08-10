@@ -3,7 +3,7 @@ Fan Component
 
 .. seo::
     :description: Instructions for setting up the base fan component.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 With the ``fan`` domain you can create components that appear as fans in
 the Home Assistant frontend. A fan can be switched ON or OFF, optionally

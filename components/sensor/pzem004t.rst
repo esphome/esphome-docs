@@ -3,7 +3,7 @@ Peacefair PZEM-004T Energy Monitor
 
 .. seo::
     :description: Instructions for setting up PZEM-004 and PZEM-004T V1 power monitors.
-    :image: pzem-004.jpg
+    :image: pzem004t.svg
     :keywords: PZEM-004T, PZEM-004
 
 .. note::
@@ -20,7 +20,7 @@ ESPHome.
 
 .. warning::
 
-    This page refers to version V1 of the PZEM-004T, which has been out of stock for a while. 
+    This page refers to version V1 of the PZEM-004T, which has been out of stock for a while.
     The PZEM-004, however, is still working (and selling) with this protocol and does not use modbus.
     For using the newer V3 variant of this sensor please see :doc:`pzemac <pzemac>`.
 
@@ -64,14 +64,14 @@ Configuration variables:
 
 Hardware considerations:
 ------------------------
-These devices have optocouplers on the UART port and the resistors mounted on the board have been designed to work with 5V devices. 
-ESPs need a `Level Shifter <https://www.adafruit.com/product/1875>`__ to be compatible with TTL levels. 
+These devices have optocouplers on the UART port and the resistors mounted on the board have been designed to work with 5V devices.
+ESPs need a `Level Shifter <https://www.adafruit.com/product/1875>`__ to be compatible with TTL levels.
 
 .. note::
 
     You need a IC level shifter and not a `Mosfet-based <https://www.sparkfun.com/products/12009>`__ level shifter, because you need
     to power the optocoupler's LEDs without an additional resistor in the path.
-   
+
 If prefer, you could change the value of the optocoupler's resistors by following `this <https://gregwareblog.wordpress.com/2020/12/13/home-power-monitoring-pzem-004/>`__ or `this <https://www.instructables.com/Power-Peacefair-PZEM-004-ESP8266-Arduino-Nano/>`__ guide.
 
 Your ESP shall be powered by an external power supply and cannot be connected to the PZEM for power.

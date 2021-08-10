@@ -3,7 +3,7 @@ Pulse Meter Sensor
 
 .. seo::
     :description: Instructions for setting up pulse meter sensors.
-    :image: pulse.png
+    :image: pulse.svg
 
 The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement
 for :doc:`integration sensor </components/sensor/pulse_counter>`, but offering better resolution.

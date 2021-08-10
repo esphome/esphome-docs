@@ -3,7 +3,7 @@ Time-Based Cover
 
 .. seo::
     :description: Instructions for setting up time-based covers in ESPHome.
-    :image: timer.png
+    :image: timer.svg
 
 The ``time_based`` cover platform allows you to create covers with position control that do not
 have any position feedback. The state of the cover is thus always an assumed one, the current

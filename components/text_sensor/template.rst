@@ -3,7 +3,7 @@ Template Text Sensor
 
 .. seo::
     :description: Instructions for setting up template text sensors in ESPHome
-    :image: description.png
+    :image: description.svg
 
 The ``template`` text sensor platform allows you to create a text sensor with templated values
 using :ref:`lambdas <config-lambda>`.

@@ -3,7 +3,7 @@ Selec Energy Monitor
 
 .. seo::
     :description: Instructions for setting up Selec power monitors.
-    :image: images/selec_meter_em2m.jpg
+    :image: selec_meter_em2m.jpg
     :keywords: EM2M
 
 The ``selec_meter`` sensor platform allows you to use Selec Modbus energy monitors

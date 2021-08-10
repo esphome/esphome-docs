@@ -3,7 +3,7 @@ Tuya Climate
 
 .. seo::
     :description: Instructions for setting up a Tuya climate device.
-    :image: air-conditioner.png
+    :image: air-conditioner.svg
 
 The ``tuya`` climate platform creates a climate device from a tuya component.
 

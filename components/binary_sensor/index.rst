@@ -3,7 +3,7 @@ Binary Sensor Component
 
 .. seo::
     :description: Information about the base representation of all binary sensors.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 With ESPHome you can use different types of binary sensors. They will
 automatically appear in the Home Assistant front-end and have several
