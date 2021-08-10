@@ -166,7 +166,7 @@ Air Quality
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
-    PM1006 Sensor, components/sensor/pm1006, pm1006.jpg Particulate
+    PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
@@ -174,7 +174,7 @@ Air Quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
-    T6613/15, components/sensor/t6615, t6615.png C02
+    T6613/15, components/sensor/t6615, t6615.png, C02
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
 
@@ -288,7 +288,7 @@ Electricity
     PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
     SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus energy monitor
-    Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg Modbus energy monitor
+    Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
 
