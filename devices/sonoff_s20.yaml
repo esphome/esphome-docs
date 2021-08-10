@@ -19,7 +19,7 @@ binary_sensor:
   pin:
     number: GPIO0
     mode: INPUT_PULLUP
-    inverted: True
+    inverted: true
   name: "Sonoff S20 Button"
   on_press:
     - switch.toggle: relay
@@ -37,7 +37,7 @@ output:
 - platform: esp8266_pwm
   id: s20_green_led
   pin: GPIO13
-  inverted: True
+  inverted: true
 
 light:
 - platform: monochromatic

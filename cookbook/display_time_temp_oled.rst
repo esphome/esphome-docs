@@ -2,7 +2,7 @@ Time & Temperature on OLED Display
 ==================================
 
 .. seo::
-    :description: Instructions for setting up a display in ESPhome to show sensor values from Home Assistant
+    :description: Instructions for setting up a display in ESPHome to show sensor values from Home Assistant
     :image: display_time_temp_oled_1.jpg
     :keywords: Display
 
@@ -102,7 +102,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
     i2c:
       sda: D1
       scl: D2
-      scan: False
+      scan: false
 
     display:
       - platform: ssd1306_i2c
@@ -129,7 +129,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
 Rendering
 ---------
 
-- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in :apiref:`display/display.h`.
+- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in :apiref:`display/display_buffer.h`.
 - The property ``has_state()`` on a sensor is useful as it can take some seconds to get the data from Home Assistant and you may not want to display ``Nan``
 - Refer to the rendering engine :ref:`display-engine` for more features (it can draw lines and circles too!)
 

@@ -134,18 +134,20 @@ specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf
 at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf`` file from somewhere on the Internet and create a ``font:`` section in your configuration:
+a ``.ttf`` file from somewhere on the internet and place it, for example,
+inside a ``fonts`` folder next to your configuration file.
+
+Next, create a ``font:`` section in your configuration:
 
 .. code-block:: yaml
 
     font:
-      - file: "Comic Sans MS.ttf"
+      - file: "fonts/Comic Sans MS.ttf"
         id: my_font
         size: 20
 
     display:
       # ...
-
 
 Configuration variables:
 
@@ -165,8 +167,9 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Hass.io add-on or with
-    the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
+    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
+    to install it using
     ``pip install pillow``.
 
 
@@ -277,7 +280,16 @@ arguments after the format string in the right order.
           // %% - literal % sign
           it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).state, id(humidity).state);
 
+To display a text string from a ``text_sensor``, append ``.c_str()`` to the end of your variable.
 
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
+          
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to
@@ -312,10 +324,40 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 Displaying Time
 ***************
 
-With ESPHome you can also display the current time using the NTP protocol. Please see the example :ref:`here <strftime>`.
+You can display current time using a time component. Please see the example :ref:`here <strftime>`.
+
+
+.. _config-color:
+
+Color
+*****
+
+When using RGB-capable displays in ESPHome you may wish to use custom colors.
+A ``color`` component exists for just this purpose:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red: 100%
+        green: 20%
+        blue: 25%
+        white: 0%
+
+
+Configuration variables:
+
+- **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
+- **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
+- **blue** (*Optional*, percentage): The percentage of the blue component. Defaults to ``100%``.
+- **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
+
+RGB displays use red, green, and blue, while grayscale displays may use white.
 
 Images
 ******
+
+Use this component to store graphical images on the device, you can then draw the images on compatible displays.
 
 .. code-block:: yaml
 
@@ -329,16 +371,16 @@ Configuration variables:
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
-- **resize** (*Optional*, int): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
+- **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
 - **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
 
-- **dither** (*Optional*): Specifies which dither method used to process the image, only used in GREYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
+- **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
   - ``NONE``: Every pixel convert to its nearest color.
   - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
@@ -346,7 +388,7 @@ Configuration variables:
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
 
 And then later in code:
@@ -379,8 +421,8 @@ as the additional parameters.
 Animation
 *********
 
-Animation inherits all options from the image component.
-It adds an additional method to change the shown picture of a gif.   
+Allows to use animated images on displays. Animation inherits all options from the image component.
+It adds an additional lambda method: ``next_frame()`` to change the shown picture of a gif.
 
 .. code-block:: yaml
 
@@ -416,6 +458,30 @@ This can be combined with all Lambdas:
               then:
                 lambda: |-
                   id(my_animation).next_frame();
+
+
+Configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **file** (**Required**, string): The path (relative to where the .yaml file is) of the gif file.
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the animation later
+  in your display code.
+- **resize** (*Optional*, string): If set, this will resize all the frames to fit inside the given dimensions ``WIDTHxHEIGHT``
+  and preserve the aspect ratio.
+- **type** (*Optional*): Specifies how to encode each frame internally. Defaults to ``BINARY``.
+
+  - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
+    per pixel, 8 pixels per byte.
+  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+
+- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GREYSCALE and BINARY type image.
+  Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
+  and `here <https://en.wikipedia.org/wiki/Dither>`__.
+
+  - ``NONE``: Every pixel convert to its nearest color.
+  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
+
 
 .. _display-pages:
 
@@ -486,6 +552,48 @@ You can then switch between these with three different actions:
               - display.page.show_next: my_display
               - component.update: my_display
 
+.. _display-is_displaying_page-condition:
+
+**display.is_displaying_page**: This condition returns true while the specified page is being shown.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      - if:
+          condition:
+            display.is_displaying_page: page1
+          then:
+            ...
+      - if:
+          condition:
+            display.is_displaying_page:
+              id: my_display
+              page_id: page2
+          then:
+            ...
+
+.. _display-on_page_change-trigger:
+
+**on_page_change**: This automation will be triggered when the page that is shown changes.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        on_page_change:
+          - from: page1
+            to: page2
+            then:
+              lambda: |-
+                ESP_LOGD("display", "Page changed from 1 to 2");
+
+- **from** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing from this page. Defaults to all pages.
+- **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
+
+Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
+              
 See Also
 --------
 

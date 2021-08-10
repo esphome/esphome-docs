@@ -5,7 +5,7 @@ SHT3X-D Temperature+Humidity Sensor
     :description: Instructions for setting up SHT31-D temperature and humidity sensors
     :image: sht3xd.jpg
 
-The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensiron SHT31-D
+The ``sht3xd`` sensor platform Temperature+Humidity sensor allows you to use your Sensirion SHT31-D
 (`datasheet <https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf>`__,
 `Adafruit`_ ) sensors with
 ESPHome. The :ref:`I²C Bus <i2c>` is

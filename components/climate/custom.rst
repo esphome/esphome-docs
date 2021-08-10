@@ -46,7 +46,7 @@ two methods (:apiclass:`Climate <climate::Climate>`):
         // The capabilities of the climate device
         auto traits = climate::ClimateTraits();
         traits.set_supports_current_temperature(true);
-        traits.set_supports_auto_mode(true);
+        traits.set_supports_heat_cool_mode(true);
         return traits;
       }
     };

@@ -7,8 +7,8 @@ SSD1322 OLED Display
 
 .. _ssd1322-spi:
 
-Usage
------
+``ssd1322_spi`` Component
+-------------------------
 
 The ``ssd1322_spi`` display platform allows you to use
 SSD1322 (`datasheet <https://www.newhavendisplay.com/specs/NHD-3.12-25664UCW2.pdf>`__,
@@ -47,9 +47,9 @@ Configuration variables:
 
   - ``SSD1322 256x64``
 
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.

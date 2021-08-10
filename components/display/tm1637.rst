@@ -13,7 +13,7 @@ The ``tm1637`` display platform allows you to use the popular TM1637 7-segment d
 
     TM1637 7-Segment Display.
 
-The module can be powered with 5v or with 3.3v too. To display the colon punctiation use the
+The module can be powered with 5v or with 3.3v too. To display the colon punctuation use the
 ``.`` in the colon place. (See clock example below)
 
 
@@ -48,7 +48,7 @@ Rendering Lambda
 
 The TM1637 has a similar API to the fully fledged :ref:`display-engine`, but it's only a subset as the TM1637
 7-segment displays don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
-as with all other displays. In this case however, ``it`` is an TM1637 instance (see API Reference).
+as with all other displays. In this case however, ``it`` is a TM1637 instance (see API Reference).
 
 The most basic operation with the TM1637 is wiring a simple number to the screen as in the configuration example
 at the top of this page. But even though you're passing in a string (here ``"0123"``), ESPHome converts it

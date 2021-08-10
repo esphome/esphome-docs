@@ -8,7 +8,7 @@ Waveshare E-Paper Display
 The ``waveshare_epaper`` display platform allows you to use
 some E-Paper displays sold by `Waveshare <https://www.waveshare.com/product/displays/e-paper.htm>`__
 with ESPHome. The 2.13" `TTGO module <https://github.com/lewisxhe/TTGO-EPaper-Series>`__ with an ESP32 on the board is supported as well.
-Depending on your specific revision of the board you might need to try out the `-b73` version (see below).
+Depending on your specific revision of the board you might need to try out the ``-b73`` or ``-b1`` version (see below).
 Similar modules sold by other vendors might also work but not have been tested yet. Currently only
 single-color E-Ink displays are implemented and of those only a few modules.
 
@@ -49,6 +49,11 @@ configuration.
 .. code-block:: yaml
 
     # Example configuration entry
+    font:
+      - file: 'fonts/Comic Sans MS.ttf'
+        id: font1
+        size: 8
+
     spi:
       clk_pin: D0
       mosi_pin: D1
@@ -62,7 +67,7 @@ configuration.
         model: 2.90in
         full_update_every: 30
         lambda: |-
-          it.print(0, 0, id(font), "Hello World!");
+          it.print(0, 0, id(font1), "Hello World!");
 
 Configuration variables:
 ------------------------
@@ -72,13 +77,17 @@ Configuration variables:
 - **model** (**Required**): The model of the E-Paper display. Options are:
 
   - ``1.54in``
+  - ``1.54inv2``
   - ``2.13in`` (not tested)
-  - ``2.13in-ttgo`` (T5_V2.3 tested)
+  - ``2.13in-ttgo`` (T5_V2.3 tested. Also works for Wemos D1 Mini ePaper Shield 2.13 1.0.0 "LOLIN")
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
+  - ``2.13in-ttgo-b1`` (T5_V2.3 with B1 display tested)
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
+  - ``2.90inv2``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
+  - ``4.20in-bV2`` (B/W rendering only)
   - ``5.83in``
   - ``7.50in``
   - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)
@@ -91,12 +100,12 @@ Configuration variables:
 - **full_update_every** (*Optional*, int): E-Paper displays have two modes of switching to the next image: A partial
   update that only changes the pixels that have changed and a full update mode that first clears the entire display
   and then re-draws the image. The former is much quicker and nicer, but every so often a full update needs to happen
-  because artifacts accumulate. On the ``1.54in``, ``2.13in`` and ``2.90in`` models you have the option to switch only
+  because artifacts accumulate. On the ``1.54in``, ``1.54inv2``, ``2.13in``, ``2.90in`` and ``2.90inv2`` models you have the option to switch only
   do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a full update for
   all other models.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``10s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``10s``, use ``never`` to only manually update the screen via ``component.update``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.

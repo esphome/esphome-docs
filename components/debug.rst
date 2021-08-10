@@ -22,7 +22,7 @@ a bunch of useful information like reset reason, free heap size, ESPHome version
     logger:
       level: debug
 
-There are no configuration variables for this component.
+No configuration variables.
 
 See Also
 --------
