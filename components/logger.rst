@@ -43,7 +43,7 @@ Advanced settings:
 -  **deassert_rts_dtr** (*Optional*, boolean): Deasserts RTS/DTR when opening
    log over UART. This is useful if RTS/DTR signals are directly connected to
    the reset pin or strapping pins. Note: Deassert typically means high on TTL
-   level since RTS/DTR are usually low active signals.
+   level since RTS/DTR are usually low active signals. Defaults to ``false``.
 
 .. _logger-hardware_uarts:
 
