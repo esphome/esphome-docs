@@ -61,6 +61,9 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _light-toggle_action:
@@ -309,10 +312,10 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the addressable light to control.
 - **range_from** (*Optional*, :ref:`templatable <config-templatable>`, int): The beginning
-  of the range of LEDs to control. 0-based indexing. Defaults to 0 (the beginning of the strip).
+  of the range of LEDs to control, inclusive, using zero-based indexing. Defaults to 0 (the beginning of the strip).
 - **range_to** (*Optional*, :ref:`templatable <config-templatable>`, int): The end of the
-  range of LEDs to control - this is a half-open interval. 0-based indexing.
-  Defaults to the end of the strip (``num_leds``).
+  range of LEDs to control, inclusive, using zero-based indexing.
+  Defaults to the end of the strip (``num_leds`` - 1).
 - **color_brightness** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The brightness to
   set the color channel to.
 - **red** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to

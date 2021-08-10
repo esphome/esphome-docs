@@ -47,9 +47,7 @@ Configuration variables:
 - **component_id** (*Optional*, string): The ID (the number, not name!) of the component to track.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_binary_sensor_protocol` this should not be used
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
-- **background_pressed_color** (*Optional*, :ref:`config-color`):  The background color when pressed
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
-- **foreground_pressed_color** (*Optional*, :ref:`config-color`):  The foreground color when pressed
 - **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 

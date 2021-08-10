@@ -292,6 +292,7 @@ Contributors
 - `Jim Bauwens (@jimbauwens) <https://github.com/jimbauwens>`__
 - `Jérémy JOURDIN (@JJK801) <https://github.com/JJK801>`__
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__
+- `John K. Luebs (@jkl1337) <https://github.com/jkl1337>`__
 - `Justin Maxwell (@jkmaxwell) <https://github.com/jkmaxwell>`__
 - `Jeppe Ladefoged (@jladefoged) <https://github.com/jladefoged>`__
 - `Jonathan Martens (@jmartens) <https://github.com/jmartens>`__
@@ -331,6 +332,7 @@ Contributors
 - `Kevin Pelzel (@kpelzel) <https://github.com/kpelzel>`__
 - `Karl Q. (@kquinsland) <https://github.com/kquinsland>`__
 - `krahabb (@krahabb) <https://github.com/krahabb>`__
+- `Kodey Converse (@krconv) <https://github.com/krconv>`__
 - `krikk (@krikk) <https://github.com/krikk>`__
 - `KristopherMackowiak (@KristopherMackowiak) <https://github.com/KristopherMackowiak>`__
 - `kroimon (@kroimon) <https://github.com/kroimon>`__
@@ -427,6 +429,7 @@ Contributors
 - `Nebula (@nebula-it) <https://github.com/nebula-it>`__
 - `needspeed (@needspeed) <https://github.com/needspeed>`__
 - `nepozs (@nepozs) <https://github.com/nepozs>`__
+- `Mike Meessen (@netmikey) <https://github.com/netmikey>`__
 - `nickrout (@nickrout) <https://github.com/nickrout>`__
 - `Nick Whyte (@nickw444) <https://github.com/nickw444>`__
 - `nicuh (@nicuh) <https://github.com/nicuh>`__
@@ -620,6 +623,7 @@ Contributors
 - `Alexey Vlasov (@turbulator) <https://github.com/turbulator>`__
 - `Seppel Hardt (@tuxBurner) <https://github.com/tuxBurner>`__
 - `Thorsten von Eicken (@tve) <https://github.com/tve>`__
+- `Tyler Menezes (@tylermenezes) <https://github.com/tylermenezes>`__
 - `tyomikh (@tyomikh) <https://github.com/tyomikh>`__
 - `ukewea (@ukewea) <https://github.com/ukewea>`__
 - `Vc (@Valcob) <https://github.com/Valcob>`__
@@ -658,4 +662,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated July 27, 2021.*
+*This page was last updated July 30, 2021.*

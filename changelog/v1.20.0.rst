@@ -79,6 +79,19 @@ Release 1.20.1 - July 27
 - Couple more updates for the Tuya component :esphomepr:`2065` by :ghuser:`nuttytree`
 - Fix MQTT climate custom fan modes without regular ones :esphomepr:`2071` by :ghuser:`OttoWinter`
 
+Release 1.20.2 - July 29
+------------------------
+
+- More Tuya MCU robustness :esphomepr:`2080` by :ghuser:`jkl1337`
+- Bump esphome dashboard to 20210728.0 :esphomepr:`2081` by :ghuser:`jesserockz`
+- HLW8012 - Dump energy sensor config :esphomepr:`2082` by :ghuser:`jesserockz`
+- Use sensor_schema for total_daily_energy :esphomepr:`2090` by :ghuser:`jesserockz`
+
+Release 1.20.3 - July 30
+------------------------
+
+- Set pulse meter total to use state class measurement and last reset type auto :esphomepr:`2097` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
