@@ -36,7 +36,7 @@ you may be saturating that sensor and need to reduce the gain.
 This Wikipedia `article <https://en.wikipedia.org/wiki/Lux>`__ has a table of some lux values for comparison.
 
 The implementation offers four sensors.
-Only one of them, **calculated_lux**, is a true ``lux`` value, and even that is a bit subjective.
+Only one of them, ``calculated_lux``, is a true ``lux`` value, and even that is a bit subjective.
 (For information about the difference between radiometric and photometric measurements, see the references.)
 The other sensors are unitless readings from the device's on-board ADCs for the physical sensors.
 The two physical sensors measure "visible and infrared" (channel 0) and "infrared" (channel 1), respectively.
@@ -130,15 +130,15 @@ For the TSL2591 device:
 - **power_save_mode** (*Optional*, boolean) Should the device be powered down between update intervals?
   Defaults to ``True``.
 - **device_factor** (*Optional*, float) The default is ``53.0``.
-  The device factor to be used as part of the lux equation for **calculated_lux**.
+  The device factor to be used as part of the lux equation for ``calculated_lux``.
 - **glass_attenuation_factor** (*Optional*, float) The default is ``7.7``.
-  The glass attenuation factor to be used as part of the lux equation for **calculated_lux**.
+  The glass attenuation factor to be used as part of the lux equation for ``calculated_lux``.
   
 
 - All other options for I²C devices described at :ref:`I²C Bus <i2c>`.
 
 You can configure all or any subset of the sensors described earlier.
-Each configured sensor is reported separately on each **update_interval**.
+Each configured sensor is reported separately on each ``update_interval``.
 
 - **full_spectrum** (*Optional*): The reading for the full spectrum sensor.
 
