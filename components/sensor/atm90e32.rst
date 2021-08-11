@@ -138,6 +138,14 @@ Here are common current calibrations for the **Expandable 6 Channel Energy Meter
    - 80A/26.6mA SCT-010: 41996
    - 100A/50ma SCT-013-000: 27961
    - 120A/40mA: SCT-016: 41880
+   
+Data in the Home Assistant Energy Dashboard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To display data in the Home Assistant Energy Dashboard you must be using ESPHome v1.20.4 or higher, and have at least one 
+``total_daily_energy`` platform configured in your ESPHome config. See config examples below.
+
+Once the kWh platform is configured in ESPHome, you will be able to select it under **Configureation > Energy** in Home Assistant.
 
 Active Energy
 ^^^^^^^^^^^^^
@@ -191,6 +199,7 @@ Additional Examples
             name: "EMON CT1 Current"
           power:
             name: "EMON Active Power CT1"
+            id: ct1watts
           reactive_power:
             name: "EMON Reactive Power CT1"
           power_factor:
@@ -202,6 +211,7 @@ Additional Examples
             name: "EMON CT2 Current"
           power:
             name: "EMON Active Power CT2"
+            id: ct2watts
           reactive_power:
             name: "EMON Reactive Power CT2"
           power_factor:
@@ -216,7 +226,26 @@ Additional Examples
         current_phases: 2
         gain_pga: 2X
         update_interval: 60s
-
+    #Total Watts
+        - platform: template
+        name: EMON Total Watts
+        id: totalWatts
+        lambda: return id(ct1Watts).state + id(ct2Watts).state ;
+        accuracy_decimals: 1
+        unit_of_measurement: W
+        icon: "mdi:flash-circle"
+        update_interval:60s
+    #Total kWh
+        - platform: total_daily_energy
+        name: EMON Total kWh
+        power_id: totalWatts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    time:
+        - platform: sntp
+        id: sntp_time 
+    
 .. code-block:: yaml
 
     # Example CircuitSetup 6-channel entry
@@ -234,6 +263,7 @@ Additional Examples
             name: "EMON CT1 Current"
           power:
             name: "EMON Active Power CT1"
+            id: ct1watts
           gain_voltage: 7305
           gain_ct: 12577
         phase_b:
@@ -241,6 +271,7 @@ Additional Examples
             name: "EMON CT2 Current"
           power:
             name: "EMON Active Power CT2"
+            id: ct2watts
           gain_voltage: 7305
           gain_ct: 12577
         phase_c:
@@ -248,6 +279,7 @@ Additional Examples
             name: "EMON CT3 Current"
           power:
             name: "EMON Active Power CT3"
+            id: ct3watts
           gain_voltage: 7305
           gain_ct: 12577
         frequency:
@@ -263,6 +295,7 @@ Additional Examples
             name: "EMON CT4 Current"
           power:
             name: "EMON Active Power CT4"
+            id: ct4watts
           gain_voltage: 7305
           gain_ct: 12577
         phase_b:
@@ -270,6 +303,7 @@ Additional Examples
             name: "EMON CT5 Current"
           power:
             name: "EMON Active Power CT5"
+            id: ct5watts
           gain_voltage: 7305
           gain_ct: 12577
         phase_c:
@@ -277,14 +311,77 @@ Additional Examples
             name: "EMON CT6 Current"
           power:
             name: "EMON Active Power CT6"
+            id: ct6watts
           gain_voltage: 7305
           gain_ct: 12577
         line_frequency: 50Hz
         current_phases: 3
         gain_pga: 1X
         update_interval: 60s
-
-
+    #Total Watts
+        - platform: template
+        name: EMON Total Watts
+        id: totalWatts
+        lambda: return id(ct1Watts).state + id(ct2Watts).state + id(ct3Watts).state + id(ct4Watts).state + id(ct5Watts).state + id(ct6Watts).state ;
+        accuracy_decimals: 1
+        unit_of_measurement: W
+        icon: "mdi:flash-circle"
+        update_interval:60s
+    #For Energy Grid or Solar tracking in Home Assistant
+    #Total kWh
+        - platform: total_daily_energy
+        name: EMON Total kWh
+        power_id: totalWatts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    #For Individual device/circuit tracking in Home Assistant
+    #CT1 kWh
+        - platform: total_daily_energy
+        name: EMON CT1 kWh
+        power_id: ct1watts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    #CT2 kWh
+        - platform: total_daily_energy
+        name: EMON CT2 kWh
+        power_id: ct2watts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    #CT3 kWh
+        - platform: total_daily_energy
+        name: EMON CT3 kWh
+        power_id: ct3watts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    #CT4 kWh
+        - platform: total_daily_energy
+        name: EMON CT4 kWh
+        power_id: ct4watts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    #CT5 kWh
+        - platform: total_daily_energy
+        name: EMON CT5 kWh
+        power_id: ct5watts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    #CT6 kWh
+        - platform: total_daily_energy
+        name: EMON CT6 kWh
+        power_id: ct6watts
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+    time:
+        - platform: sntp
+        id: sntp_time 
+        
 .. code-block:: yaml
 
     # Example CircuitSetup 6-channel without jumpers jp9-jp11 joined or < meter v1.4
@@ -431,11 +528,14 @@ Additional Examples
         filters:
           - multiply: 0.001
         unit_of_measurement: kWh
-
+    time:
+        - platform: sntp
+        id: sntp_time 
 
 See Also
 --------
 
+- :doc:`/components/sensor/total_daily_energy`
 - :ref:`sensor-filters`
 - :apiref:`atm90e32/atm90e32.h`
 - :ghedit:`Edit`
