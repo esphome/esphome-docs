@@ -92,6 +92,20 @@ Release 1.20.3 - July 30
 
 - Set pulse meter total to use state class measurement and last reset type auto :esphomepr:`2097` by :ghuser:`jesserockz`
 
+Release 1.20.4 - August 4
+-------------------------
+
+- Correctly invert esp32 RMT TX :esphomepr:`2022` by :ghuser:`WeekendWarrior1`
+- Move configure_rmt() into setup() :esphomepr:`2028` by :ghuser:`WeekendWarrior1`
+- Fix climate restore schema changed resulting in invalid restore :esphomepr:`2068` by :ghuser:`OttoWinter`
+- Fix PID climate breaks when restoring old modes :esphomepr:`2086` by :ghuser:`OttoWinter`
+- fix diplay trigger missing base class :esphomepr:`2099` by :ghuser:`glmnet`
+- Fix min/max keys in MQTT Number to match Home Assistant :esphomepr:`2102` by :ghuser:`paulmonigatti`
+- Use proper schema for the analog pin shorthand :esphomepr:`2103` by :ghuser:`nonameplum`
+- [duty_cycle] initialize two missing variables :esphomepr:`2088` by :ghuser:`CarlosGS`
+- Fix time.on_time triggering if time jumped back :esphomepr:`1806` by :ghuser:`brambo123`
+- Fix external components not refreshing with default or high refresh time :esphomepr:`2122` by :ghuser:`OttoWinter`
+
 Full list of changes
 --------------------
 
