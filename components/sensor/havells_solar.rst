@@ -1,5 +1,5 @@
-Havells Inverter
-================
+Havells Solar
+=============
 
 .. seo::
     :description: Instructions for setting up Havells inverter reading on modbus.
@@ -28,12 +28,12 @@ to some pins on your board and the baud rate set to 9600.
         baud_rate: 9600
         tx_pin: GPIO1
         rx_pin: GPIO3
-    
-    
+
+
     modbus:
       uart_id: uart1
       flow_control_pin: GPIO4
-    
+
     sensor:
       - platform: havells_solar
         update_interval: 60s
@@ -79,7 +79,7 @@ to some pins on your board and the baud rate set to 9600.
         reactive_power:
           name: "HAVELLS Reactive Power"
         frequency:
-          name: "HAVELLS Frequency"    
+          name: "HAVELLS Frequency"
         energy_production_day:
           name: "HAVELLS Today's Generation"
         total_energy_production:
@@ -104,9 +104,9 @@ to some pins on your board and the baud rate set to 9600.
           name: "HAVELLS DCI Of S"
         dci_of_t:
           name: "HAVELLS DCI Of T"
-    
-    
-    
+
+
+
 Configuration variables:
 ------------------------
 
@@ -145,7 +145,7 @@ Configuration variables:
 - **active_power** (*Optional*): Use the (active) power value of the sensor in watts. All options
   from :ref:`Sensor <config-sensor>`.
 - **reactive_power** (*Optional*): Use the reactive power value of the sensor in VAR. All
-  options from :ref:`Sensor <config-sensor>`.    
+  options from :ref:`Sensor <config-sensor>`.
 - **frequency** (*Optional*): Use the frequency value of the sensor in hertz.
   All options from :ref:`Sensor <config-sensor>`.
 - **energy_production_day** (*Optional*): Use the export active energy value for same day of the
@@ -157,12 +157,12 @@ Configuration variables:
 - **today_generation_time** (*Optional*): Use the day generation time value for same day of the
   sensor in minutes. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_module_temp** (*Optional*): Use the inverter module temperature value of the sensor in
-  degree celcius. All options from :ref:`Sensor <config-sensor>`.
+  degree celsius. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_inner_temp** (*Optional*): Use the inverter inner temperature value of the sensor in
-  degree celcius. All options from :ref:`Sensor <config-sensor>`.
+  degree celsius. All options from :ref:`Sensor <config-sensor>`.
 - **inverter_bus_voltage** (*Optional*): Use the inverter bus voltage value of the sensor in volts.
   All options from :ref:`Sensor <config-sensor>`.
-- **insulation_of_pv_n_to_ground** (*Optional*): Use the insulation  of  photo  voltiacs's 
+- **insulation_of_pv_n_to_ground** (*Optional*): Use the insulation  of  photo  voltiacs's
   -ve terminal to ground value of the sensor in kilo ohms. All options from :ref:`Sensor <config-sensor>`.
 - **gfci_value** (*Optional*): Use the GFCI value of the sensor.
   All options from :ref:`Sensor <config-sensor>`.

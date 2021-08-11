@@ -51,7 +51,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
         name: "VL53L0x Distance"
         address: 0x29
         update_interval: 60s
-        long_range: True
+        long_range: true
 
 Configuration variables:
 ------------------------

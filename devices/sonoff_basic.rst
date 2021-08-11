@@ -72,7 +72,7 @@ exposes all of the basic functions.
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff Basic Button"
         on_press:
           - switch.toggle: relay

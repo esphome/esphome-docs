@@ -41,7 +41,7 @@ Configuration variables:
   restored with ``restore_value``.
   Cannot be used with ``lambda``. Defaults to ``min_value``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-number>`.
+- All other options from :ref:`Number <config-number>`.
 
 ``number.set`` Action
 ----------------------------------

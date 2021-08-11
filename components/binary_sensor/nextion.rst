@@ -7,8 +7,8 @@ Nextion Binary Sensor Component
     :description: Instructions for setting up Nextion binary sensor.
     :image: nextion.jpg
 
-The ``nextion`` binary sensor platform supports the many switched components in the Nextion as well as integer variables (>0 == True). It can be a component or variable in the Nextion display.
-It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not. 
+The ``nextion`` binary sensor platform supports the many switched components in the Nextion as well as integer variables (>0 == true). It can be a component or variable in the Nextion display.
+It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not.
 
 See :doc:`/components/display/nextion` for setting up the display
 
@@ -47,15 +47,13 @@ Configuration variables:
 - **component_id** (*Optional*, string): The ID (the number, not name!) of the component to track.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_binary_sensor_protocol` this should not be used
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
-- **background_pressed_color** (*Optional*, :ref:`config-color`):  The background color when pressed
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
-- **foreground_pressed_color** (*Optional*, :ref:`config-color`):  The foreground color when pressed
 - **visible** (*Optional*, boolean ):  Visible or not
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 **Touch Sensor:**
-The Nextion will send a **page_id** and **component_id** when the *Send Component ID* check box is selected for the component. To enable 
-this native event **page_id** and **component_id** are required. No :ref:`nextion_custom_binary_sensor_protocol` is required. If **page_id** and **component_id** are set then the component will only react to touch events from the Nextion. Setting **component_name** will allow setting options like forground color. 
+The Nextion will send a **page_id** and **component_id** when the *Send Component ID* check box is selected for the component. To enable
+this native event **page_id** and **component_id** are required. No :ref:`nextion_custom_binary_sensor_protocol` is required. If **page_id** and **component_id** are set then the component will only react to touch events from the Nextion. Setting **component_name** will allow setting options like foreground color.
 
   .. note::
 
@@ -76,7 +74,7 @@ Example:
         lambda: |-
           id(nextion1).update_components_by_page_prefix("page"+x+".");
 
-  
+
 
 See :ref:`nextion_binary_sensor_how_things_update` for additional information
 
@@ -120,15 +118,15 @@ more advanced functions (see the full :apiref:`nextion/binary_sensor/nextion_bin
 How things Update
 -----------------
 A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
-To have the Nextion send the data you can use the :ref:`nextion_custom_binary_sensor_protocol` for this. Add the :ref:`nextion_custom_binary_sensor_protocol` to the 
-component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
-set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/componenets)
-in the Nextion. 
+To have the Nextion send the data you can use the :ref:`nextion_custom_binary_sensor_protocol` for this. Add the :ref:`nextion_custom_binary_sensor_protocol` to the
+component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it
+set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/components)
+in the Nextion.
 
 .. note::
 
     There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
-    for an integer value component since this will be sending the real value to esphome, 
+    for an integer value component since this will be sending the real value to esphome,
     but make sure you have both checked for a touch sensor.
 
 
@@ -137,11 +135,11 @@ Using the above yaml example:
   - "Radio 0 Binary Sensor" will poll the Nextion for the ``r0.val`` value and set the state accordingly.
   - "Is Darkmode Set" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_binary_sensor_protocol` or use a lambda:
 
-    - :ref:`Lambda Calls <nextion_binary_sensor_lambda_calls>`.    
+    - :ref:`Lambda Calls <nextion_binary_sensor_lambda_calls>`.
 
 .. note::
 
-    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it wont update until it is set to be visible.
+    No updates will be sent to the Nextion if it is sleeping. Once it wakes the components will be updated. If a component is invisible , :code:`visible(false)` , then it won't update until it is set to be visible.
 
 .. _nextion_custom_binary_sensor_protocol:
 

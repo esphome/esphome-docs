@@ -126,7 +126,7 @@ Sensor </components/binary_sensor/gpio>`.
         name: "Living Room Window"
         pin:
           number: 16
-          inverted: True
+          inverted: true
           mode: INPUT_PULLUP
 
 This is an advanced feature of ESPHome. Almost all pins can

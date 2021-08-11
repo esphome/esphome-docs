@@ -18,7 +18,7 @@ binary_sensor:
   pin:
     number: GPIO0
     mode: INPUT_PULLUP
-    inverted: True
+    inverted: true
   name: "Sonoff 4CH Button 1"
   on_press:
     - switch.toggle: relay_1
@@ -26,7 +26,7 @@ binary_sensor:
   pin:
     number: GPIO9
     mode: INPUT_PULLUP
-    inverted: True
+    inverted: true
   name: "Sonoff 4CH Button 2"
   on_press:
     - switch.toggle: relay_2
@@ -34,7 +34,7 @@ binary_sensor:
   pin:
     number: GPIO10
     mode: INPUT_PULLUP
-    inverted: True
+    inverted: true
   name: "Sonoff 4CH Button 3"
   on_press:
     - switch.toggle: relay_3
@@ -42,7 +42,7 @@ binary_sensor:
   pin:
     number: GPIO14
     mode: INPUT_PULLUP
-    inverted: True
+    inverted: true
   name: "Sonoff 4CH Button 4"
   on_press:
     - switch.toggle: relay_4
@@ -71,7 +71,7 @@ output:
 - platform: esp8266_pwm
   id: blue_led
   pin: GPIO13
-  inverted: True
+  inverted: true
 
 light:
 - platform: monochromatic

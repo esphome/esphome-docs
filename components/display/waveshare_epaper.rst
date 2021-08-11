@@ -82,11 +82,13 @@ Configuration variables:
   - ``2.13in-ttgo`` (T5_V2.3 tested. Also works for Wemos D1 Mini ePaper Shield 2.13 1.0.0 "LOLIN")
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
   - ``2.13in-ttgo-b1`` (T5_V2.3 with B1 display tested)
+  - ``2.13in-ttgo-dke`` (T5_V2.3 with DKE group display (DEPG0213BN) tested)
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
   - ``2.90inv2``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
+  - ``4.20in-bV2`` (B/W rendering only)
   - ``5.83in``
   - ``7.50in``
   - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)
