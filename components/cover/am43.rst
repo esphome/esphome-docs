@@ -8,7 +8,7 @@ AM43 Cover
 The ``am43`` cover platform allows you to control an AM43 based
 BLE cover motor. These devices are sold under various brands, such
 as Zemismart and A-OK. The platform connects to the device over the
-ESP32's BLE peripheral and both controls and fetchs the position
+ESP32's BLE peripheral and both controls and fetches the position
 and state of the motor.
 
 .. note::
