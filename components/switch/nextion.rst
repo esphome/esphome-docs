@@ -5,10 +5,10 @@ Nextion Switch Component
 
 .. seo::
     :description: Instructions for setting up Nextion Switch.
-    :image: nextion.jpg    
+    :image: nextion.jpg
 
 The ``nextion`` switch platform supports the many switched components in the Nextion as well as integer variables. It can be a component or variable in the Nextion display.
-It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not. 
+It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not.
 
 See :doc:`/components/display/nextion` for setting up the display
 
@@ -20,7 +20,7 @@ See :doc:`/components/display/nextion` for setting up the display
         id: nextion1
         # ...
 
-    switch:      
+    switch:
       - platform: nextion
         id: r0_switch
         name: "Radio 0 Switch"
@@ -90,21 +90,21 @@ some more advanced functions (see the full :apiref:`nextion/nextion_switch.h` fo
 How things Update
 -----------------
 A Nextion component with an integer value (.val) or Nextion variable will be automatically polled if **update_interval** is set.
-To have the Nextion send the data you can use the :ref:`nextion_custom_switch_protocol` for this. Add the :ref:`nextion_custom_switch_protocol` to the 
-component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it 
+To have the Nextion send the data you can use the :ref:`nextion_custom_switch_protocol` for this. Add the :ref:`nextion_custom_switch_protocol` to the
+component or function you want to trigger the send. Typically this is in *Touch Press Event* but some components, like a slider, should have it
 set in the *Touch Release Event* to capture all the changes. Since this is a custom protocol it can be sent from anywhere (timers/functions/components)
-in the Nextion. 
+in the Nextion.
 
 .. note::
 
     There is no need to check the *Send Component ID* for the *Touch Press Event* or *Touch Release Event*
     since this will be sending the real value to esphome.
 
-Using the above yaml example:  
+Using the above yaml example:
   - "Radio 0 switch" will poll the Nextion for the ``r0.val`` value and set the state accordingly.
   - "Is Darkmode Set" will NOT poll the Nextion. Either the Nextion will need to use the :ref:`nextion_custom_switch_protocol` or use a lambda:
 
-   - :ref:`Lambda Calls <nextion_switch_lambda_calls>`.  
+   - :ref:`Lambda Calls <nextion_switch_lambda_calls>`.
 
 .. note::
 
