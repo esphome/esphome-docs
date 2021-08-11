@@ -408,6 +408,31 @@ Configuration example:
         illuminance:
           name: "MJYD02YL-A Illuminance"
 
+CGPR1
+*****
+
+Qingping motion & ambient light sensor. Broadcasts motion detection, idle time since last motion event, lux value and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
+
+.. figure:: images/xiaomi_cgpr1.png
+    :align: center
+    :width: 30.0%
+
+Configuration example:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: xiaomi_cgpr1
+        name: "CGPR1 Motion detector"
+        mac_address: 58:2D:34:60:32:A2
+        bindkey: "ff1ae526b23b4aebeadcaaad86f59055"
+        idle_time:
+          name: "CGPR1 Idle Time"
+        battery_level:
+          name: "CGPR1 Battery Level"
+        illuminance:
+          name: "CGPR1 Illuminance"
+
 Setting Up Devices
 ------------------
 

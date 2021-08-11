@@ -201,7 +201,7 @@ documents establish the following character order for better consistency.
 - **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see
   `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
   New pages need to be added to the ``imgtable`` list. The syntax is CSV with <PAGE NAME>, <FILE NAME> (without RST),
-  <IMAGE> (in top-level images/ directory). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
+  <IMAGE> (in top-level images/ directory), <COMMENT> (optional - short text to describe the component). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
 
   Because these images are served on the main page, they need to be compressed heavily. SVGs are preferred over JPGs
   and JPGs should be max. 300x300px.
