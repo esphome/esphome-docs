@@ -222,6 +222,7 @@ Digital Signals
     Pulse Meter, components/sensor/pulse_meter, pulse.svg
     Pulse Width, components/sensor/pulse_width, pulse.svg
 
+
 Distance
 ********
 .. imgtable::
