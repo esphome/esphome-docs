@@ -183,6 +183,7 @@ Light
 *****
 .. imgtable::
 
+    AM43, components/sensor/am43, am43.jpg, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
@@ -204,6 +205,7 @@ Bluetooth Low Energy (BLE)
 **************************
 .. imgtable::
 
+    AM43, components/sensor/am43, am43.jpg, Lux & Battery level
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
@@ -479,6 +481,7 @@ Cover Components
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
+    AM43 Cover, components/cover/am43, am43.jpg
 
 Text Sensor Components
 ----------------------
