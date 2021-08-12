@@ -123,7 +123,8 @@ This action turns a light with the given ID on when executed.
         # Shorthand
         - light.turn_on: light_1
 
-Configuration variables (all percentage options accept values in the range ``0%`` to ``100%`` or ``0.0`` to ``1.0``):
+Configuration variables:
+
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -167,8 +168,9 @@ Configuration variables (all percentage options accept values in the range ``0%`
 - **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): If set, will attempt to
   start an effect with the given name.
 
-All options default to not changing the current value (which might be the value from before the light was last turned off).
-To reset values, explicitly set them to zero.
+All percentage options accept values in the range ``0%`` to ``100%`` or ``0.0`` to ``1.0``, and default to not changing
+the current value (which might be the value from before the light was last turned off). To reset values, explicitly set
+them to zero.
 
 .. note::
 
@@ -506,11 +508,19 @@ Configuration variables:
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
   - **state** (*Optional*, boolean): The ON/OFF state to show. Defaults to ``True``.
-  - **color_mode**, **brightness**, **color_brightness**, **red**, **green**, **blue**, **white**, **color_temperature**,
-    **cold_white**, **warm_white**: Control the color of the light. All options have the same meaning as in
-    `light.turn_on <light-turn_on_action>`, except that they default to ``100%``. Channels that shouldn't light up
-    should be explicitly set to zero.
+  - **color_mode**: The color mode of the light. Defaults to the current color mode.
+  - **brightness**: The brightness of the light. Defaults to ``100%``.
+  - **color_brightness**: The brightness of the RGB lights, if applicable. Defaults to ``100%``.
+  - **red**: The red channel of the light, if applicable. Defaults to ``100%``.
+  - **green**: The green channel of the light, if applicable. Defaults to ``100%``.
+  - **blue**: The blue channel of the light, if applicable. Defaults to ``100%``.
+  - **white**: The white channel of the light, if applicable. Defaults to ``100%``.
+  - **color_temperature**: The color temperature of the light, if applicable. Defaults to ``100%``.
+  - **cold_white**: The cold white channel of the light, if applicable. Defaults to ``100%``.
+  - **cold_white**: The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+
+See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
 Flicker Effect
 **************
