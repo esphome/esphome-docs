@@ -152,7 +152,6 @@ Core
     Sensor Core, components/sensor/index, folder-open.svg
     Home Assistant, components/sensor/homeassistant, home-assistant.svg
     Integration, components/sensor/integration, sigma.svg
-<<<<<<< HEAD
     HTU21D, components/sensor/htu21d, htu21d.jpg
     HM3301, components/sensor/hm3301, hm3301.jpg
     MAX31855, components/sensor/max31855, max31855.jpg
@@ -164,8 +163,6 @@ Core
     MH-Z19, components/sensor/mhz19, mhz19.jpg
     Modbus Sensor, components/sensor/modbus_sensor, modbus.png
     MPU6050, components/sensor/mpu6050, mpu6050.jpg
-=======
->>>>>>> 688f43a5662684a3a7c4ef90721d20544326bbf8
     MQTT Subscribe, components/sensor/mqtt_subscribe, mqtt.png
     Uptime Sensor, components/sensor/uptime, timer.svg
     WiFi Signal Strength, components/sensor/wifi_signal, network-wifi.svg
@@ -449,13 +446,9 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
-<<<<<<< HEAD
     Modbus Switch, components/switch/modbus_switch, modbus.png    
-    BLE Switch, components/switch/ble, bluetooth.svg
-=======
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
->>>>>>> 688f43a5662684a3a7c4ef90721d20544326bbf8
 
 Fan Components
 --------------
