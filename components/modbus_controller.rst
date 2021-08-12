@@ -1,5 +1,5 @@
-Modbus Controller (Modbus Master)
-=================================
+Modbus Controller
+=================
 
 .. seo::
     :description: Instructions for setting up the Modbus Controller component.
@@ -13,7 +13,7 @@ The ``modbus_controller`` component creates a RS485 connection to control a modb
 
 .. figure:: /images/modbus.png
     :align: center
-    :width: 40%
+    :width: 25%
 
 The ``modbus_controller`` component uses the modbus component
 
@@ -33,12 +33,11 @@ The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PI
 Configuration variables:
 ------------------------
 
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the uart hub.
+- **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the modbus hub.
 
-- **address** (*Required*, :ref:`config-id`): The modbus address of the device device
-  Specify the ID of the :ref:`Time Component <time>` which will be used.
+- **address** (*Required*, :ref:`config-id`): The modbus address of the device
+  Specify the modbus device address of the.
 
-- **ctrl_pin**  (**Optional**, :ref:`Pin Schema <config-pin_schema>`): The pin used to enable DE/RE for your rs485 controller if it is not automatically switching between receive and transmit
 - **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the device. Default is 0ms
   Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
 
@@ -65,8 +64,6 @@ Technically there is no difference between the "inline" and the standard definit
   wifi:
     ssid: !secret wifi_sid
     password: !secret wifi_password
-    domain: .int.grasruck.net
-    use_address: solarstation.int.grasruck.net
     reboot_timeout: 2min
 
   logger:
@@ -84,96 +81,56 @@ Technically there is no difference between the "inline" and the standard definit
     stop_bits: 1
 
   modbus:
-    id: modbus_epsolar
-
+    flow_control_pin: 5
+    id: modbus1
 
   modbus_controller:
-    command_throttle: 0ms
-    id: epever
-    uart_id: mod_bus
-    address: 0x1
-    # ctrl_pin: 5    # if you need to set the driver enable (DE) pin high before transmitting data configure it here
-    sensors:
-      - id: array_rated_voltage
-        name: "array_rated_voltage"
-        address: 0x3000
-        offset: 0
-        unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
-        value_type: U_WORD
-        accuracy_decimals: 1
-        skip_updates: 60
-        filters:
-        - multiply: 0.01
+    - id: epever
+      ## the Modbus device addr
+      address: 0x1
+      modbus_id: modbus1
+      setup_priority: -10
+      sensors:
+        - id: array_rated_voltage
+          name: "array_rated_voltage"
+          address: 0x3000
+          offset: 0
+          unit_of_measurement: "V"
+          modbus_functioncode: "read_input_registers"
+          value_type: U_WORD
+          accuracy_decimals: 1
+          skip_updates: 60
+          filters:
+            - multiply: 0.01
 
-      - id: array_rated_current
-        name: "array_rated_current"
-        address: 0x3000
-        offset: 2
-        unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
-        value_type: U_WORD
-        accuracy_decimals: 2
-        filters:
-          - multiply: 0.01
+      binary_sensors:
+        - id: charging_input_volt_failure
+          name: "Charging Input Volt Failure"
+          modbus_functioncode: read_input_registers
+          address: 0x3201
+          offset: 0
+          bitmask: 0xC000
 
-      - id: array_rated_power
-        name: "array_rated_power"
-        address: 0x3000
-        register_count: 2
-        offset: 4
-        unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
-        value_type: U_DWORD_R
-        accuracy_decimals: 1
-        filters:
-          - multiply: 0.01
+      switches:
+        - id: manual_control_load
+          modbus_functioncode: read_coils
+          address: 2
+          offset: 0
+          name: "manual control the load"
+          bitmask: 1
 
-      - id: length_of_night_minutes
-        address: 0x9065
-        internal: true
-        offset: 0
-        bitmask: 0xFF
-        unit_of_measurement: "m"
-        name: "Length of night-mins"
-        modbus_functioncode: read_holding_registers
-        value_type: U_WORD
+      text_sensors:
+        - name: "rtc_clock"
+          id: rtc_clock
+          internal: true
+          modbus_functioncode: read_holding_registers
+          address: 0x9013
+          offset: 0
+          register_count: 3
+          raw_encode: HEXBYTES
+          response_size: 6
 
-      - id: length_of_night
-        address: 0x9065
-        offset: 0
-        bitmask: 0xFF00
-        unit_of_measurement: "m"
-        name: "Length of night"
-        modbus_functioncode: read_holding_registers
-        value_type: U_WORD
-        filters:
-          - lambda: return id(length_of_night_minutes).state  + ( 60 * x);
-
-    binary_sensors:
-      - id: charging_input_volt_failure
-        name: "Charging Input Volt Failure"
-        modbus_functioncode: read_input_registers
-        address: 0x3201
-        offset: 0
-        bitmask: 0xC000
-
-      - id: manual_control_load
-        modbus_functioncode: read_coils
-        address: 2
-        offset: 0
-        name: "manual control the load"
-        bitmask: 1
-
-    switches:
-      - id: clear_energy_stats
-        modbus_functioncode: read_coils
-        address: 0x14
-        offset: 0
-        name: "Clear generating  electricity statistic"
-        bitmask: 1
-
-    update_interval: 30s
+      update_interval: 30s
 
   switch:
     - platform: modbus_controller
@@ -371,7 +328,7 @@ However the C++ code provides the required API to write to a modbus device.
 These methods can be called from a lambda. 
 
 Here is an example how to set config values to for an EPEVER Trace AN controller.
-The code  syncs the localtime of MCU to the epever controller
+The code synchronizes the localtime of MCU to the epever controller
 The time is set by writing 12 bytes to register 0x9013. 
 Then battery charge settings are sent.
 
@@ -454,28 +411,31 @@ Then battery charge settings are sent.
       rx_pin: 16
       baud_rate: 115200
       stop_bits: 1
-
+   
+    modbus:
+      id: modbus1
 
     modbus_controller:
-      uart_id: mod_bus
-      command_throttle: 0ms
-      id: epever
-      ## the Modbus device addr
-      address: 0x1
-      ctrl_pin: 5    # if you need to set the driver enable (DE) pin high before transmitting data configure it here
-      setup_priority: -10
-      sensors:
-        - id: array_rated_voltage
-          name: "array_rated_voltage"
-          address: 0x3000
-          offset: 0
-          unit_of_measurement: "V"
-          modbus_functioncode: "read_input_registers"
-          value_type: U_WORD
-          accuracy_decimals: 1
-          skip_updates: 60
-          filters:
-            - multiply: 0.01
+      - id: epever
+        modbus_id: modbus1
+        command_throttle: 0ms
+        
+        ## the Modbus device addr
+        address: 0x1
+        ctrl_pin: 5    # if you need to set the driver enable (DE) pin high before transmitting data configure it here
+        setup_priority: -10
+        sensors:
+          - id: array_rated_voltage
+            name: "array_rated_voltage"
+            address: 0x3000
+            offset: 0
+            unit_of_measurement: "V"
+            modbus_functioncode: "read_input_registers"
+            value_type: U_WORD
+            accuracy_decimals: 1
+            skip_updates: 60
+            filters:
+              - multiply: 0.01
 
 
 
