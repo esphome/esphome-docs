@@ -139,9 +139,9 @@ Configuration variables:
   - Only available if RAWv2 protocol is used.
 
 - **measurement_sequence_number** (*Optional*): The information for the
-  measurment sequence number sensor
+  measurement sequence number sensor
 
-  - **name** (**Required**, string): The name for the measurment sequence
+  - **name** (**Required**, string): The name for the measurement sequence
     number sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
     in lambdas.

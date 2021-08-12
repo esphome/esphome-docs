@@ -9,7 +9,9 @@ Components
     cover/index
     fan/index
     light/index
+    number/index
     output/index
+    select/index
     sensor/index
     switch/index
     display/index

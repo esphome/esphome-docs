@@ -65,5 +65,8 @@ See Also
 
 - :doc:`/components/fan/tuya`
 - :doc:`/components/light/tuya`
+- :doc:`/components/switch/tuya`
+- :doc:`/components/climate/tuya`
+- :doc:`/components/binary_sensor/tuya`
 - :apiref:`tuya/tuya.h`
 - :ghedit:`Edit`

@@ -119,7 +119,7 @@ class ImageTableDirective(Table):
         for row in data:
             if not row:
                 continue
-            name, page, image = row
+            name, page, image = row[0:3]
             link = page.strip()
             if link.startswith("http"):
                 pass
@@ -133,6 +133,7 @@ class ImageTableDirective(Table):
                     "name": name.strip(),
                     "link": link,
                     "image": "/images/{}".format(image.strip()),
+                    "category": row[3] if len(row) >= 4 else None
                 }
             )
 
@@ -183,6 +184,10 @@ class ImageTableDirective(Table):
                 para = nodes.paragraph()
                 para += ref
                 entry += para
+                cat_text = cell["category"]
+                if cat_text:
+                    cat = nodes.paragraph(text=cat_text)
+                    entry += cat
                 trow += entry
             rows.append(trow)
         tbody.extend(rows)

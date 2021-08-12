@@ -51,10 +51,10 @@ Configuration variables:
 - **has_built_in_endstop** (*Optional*, boolean): Indicates that the cover has built in end stop
   detectors. In this configuration the ``stop_action`` is not performed when the open or close
   time is completed and if the cover is commanded to open or close the corresponding actions
-  will be performed without checking current state. Defaults to ``False``.
+  will be performed without checking current state. Defaults to ``false``.
 - **assumed_state** (*Optional*, boolean): Whether the true state of the cover is not known.
   This will make the Home Assistant frontend show buttons for both OPEN and CLOSE actions, instead
-  of hiding or disabling one of them. Defaults to ``True``.
+  of hiding or disabling one of them. Defaults to ``true``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
