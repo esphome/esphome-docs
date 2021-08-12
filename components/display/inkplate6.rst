@@ -3,13 +3,13 @@ Inkplate 6
 
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
-    :image: inkplate.jpg
+    :image: inkplate6.jpg
 
 All-in-one e-paper display  ``Inkplate 6``
 Inkplate 6 is a powerful, Wi-Fi enabled ESP32 based six-inch e-paper display – recycled from a Kindle e-reader. Its main feature is simplicity.
 Learn more at `Inkplate's website <https://inkplate.io/>`__
 
-.. figure:: images/inkplate.jpg
+.. figure:: images/inkplate6.jpg
     :align: center
     :width: 75.0%
 
@@ -34,25 +34,25 @@ Learn more at `Inkplate's website <https://inkplate.io/>`__
       ckv_pin: 32
       sph_pin: 33
       gmod_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 1
       gpio0_enable_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 8
       oe_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 0
       spv_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 2
       powerup_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 4
       wakeup_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 3
       vcom_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 5
 
 .. warning::
@@ -70,8 +70,8 @@ Configuration variables:
 ************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **greyscale** (*Optional*, boolean): Makes the screen display 3 bit colors. Defaults to ``False``
-- **partial_updating** (*Optional*, boolean): Makes the screen update partially, which is faster, but leaves burnin. Defaults to ``False``
+- **greyscale** (*Optional*, boolean): Makes the screen display 3 bit colors. Defaults to ``false``
+- **partial_updating** (*Optional*, boolean): Makes the screen update partially, which is faster, but leaves burnin. Defaults to ``false``
 - **full_update_every** (*Optional*, int): When partial updating is enabled, forces a full screen update after chosen number of updates. Defaults to ``10``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
@@ -146,7 +146,7 @@ Wi-Fi, API, and OTA configuration.
       - platform: gpio
         id: battery_read_mosfet
         pin:
-          mcp23017: mcp23017_hub
+          mcp23xxx: mcp23017_hub
           number: 9
           inverted: true
 
@@ -197,17 +197,17 @@ Wi-Fi, API, and OTA configuration.
       - platform: gpio
         name: "Inkplate Touch Pad 1"
         pin:
-          mcp23017: mcp23017_hub
+          mcp23xxx: mcp23017_hub
           number: 10
       - platform: gpio
         name: "Inkplate Touch Pad 2"
         pin:
-          mcp23017: mcp23017_hub
+          mcp23xxx: mcp23017_hub
           number: 11
       - platform: gpio
         name: "Inkplate Touch Pad 3"
         pin:
-          mcp23017: mcp23017_hub
+          mcp23xxx: mcp23017_hub
           number: 12
 
     time:
@@ -233,25 +233,25 @@ Wi-Fi, API, and OTA configuration.
       ckv_pin: 32
       sph_pin: 33
       gmod_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 1
       gpio0_enable_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 8
       oe_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 0
       spv_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 2
       powerup_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 4
       wakeup_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 3
       vcom_pin:
-        mcp23017: mcp23017_hub
+        mcp23xxx: mcp23017_hub
         number: 5
 
       lambda: |-

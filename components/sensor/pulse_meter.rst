@@ -5,7 +5,7 @@ Pulse Meter Sensor
     :description: Instructions for setting up pulse meter sensors.
     :image: pulse.png
 
-The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement 
+The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement
 for :doc:`integration sensor </components/sensor/pulse_counter>`, but offering better resolution.
 It measures the time between rising edges on a pin, for each pulse it outputs the frequency in pulses/min.
 
@@ -35,7 +35,7 @@ Converting units
 
 The sensor defaults to units of “pulses/min”. You can change this by using :ref:`sensor-filters`.
 For example, if you’re using the pulse meter with a photodiode to
-count the light pulses on a power meter that outputs 1000 pulses per kWh, 
+count the light pulses on a power meter that outputs 1000 pulses per kWh,
 you can use the following to output instantaneous usage in kW:
 
 .. code-block:: yaml
@@ -52,9 +52,9 @@ you can use the following to output instantaneous usage in kW:
 Counting total pulses
 ---------------------
 
-When the total sensor is configured, pulse_meter also reports the total 
-number of pulses measured. When used on a power meter, this can be used to 
-measure the total consumed energy in kWh. 
+When the total sensor is configured, pulse_meter also reports the total
+number of pulses measured. When used on a power meter, this can be used to
+measure the total consumed energy in kWh.
 
 .. code-block:: yaml
 
@@ -72,6 +72,27 @@ measure the total consumed energy in kWh.
           accuracy_decimals: 0
           filters:
             - multiply: 0.001
+
+(Re)Setting the total pulse count
+---------------------------------
+
+Using this action, you are able to reset/set the total pulse count. This can be useful
+if you would like the ``total`` sensor to match what you see on your meter you are
+trying to match.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - pulse_meter.set_total_pulses:
+            id: pulse_meter_id
+            value: 12345
+
+.. note::
+
+    This value is the raw count of pulses, and not the value you see after the filters
+    are applied.
+
 
 See Also
 --------

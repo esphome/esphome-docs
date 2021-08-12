@@ -9,7 +9,7 @@ b-parasite
 
 `b-parasite <https://github.com/rbaron/b-parasite>`__ is an open source soil moisture and ambient temperature/humidity sensor.
 
-The ``b_parasite`` sensor platform tracks b-parasite's Bluetooth Low Energy (BLE) advertisement packets. These packets contains soil moisture, air temperature/humidity and baterry voltage data.
+The ``b_parasite`` sensor platform tracks b-parasite's Bluetooth Low Energy (BLE) advertisement packets. These packets contains soil moisture, air temperature/humidity and battery voltage data.
 
 .. figure:: images/b_parasite.jpg
     :align: center
@@ -38,7 +38,7 @@ Configuration variables
 -----------------------
 
 - **mac_address** (**Required**): The MAC address of the device.
-- **temperature** (*Optional*): Air temperature in Celcius.
+- **temperature** (*Optional*): Air temperature in Celsius.
 
   - **name** (**Required**): Sensor name.
   - All other options from :ref:`Sensor <config-sensor>`.

@@ -58,7 +58,7 @@ Configuration example:
         ble_client_id: itag_black
         name: "Black iTag btn"
         service_uuid: 'ffe0'
-        char_uuid: 'ffe1'
+        characteristic_uuid: 'ffe1'
         notify: true
         update_interval: never
         on_notify:
@@ -71,12 +71,12 @@ Configuration example:
                 state: OFF
     # This entry queries the battery level. Some tags may not
     # support this characteristic, you will see 'Unknown' in the
-    # HA frontent.
+    # HA frontend.
       - platform: ble_client
         ble_client_id: itag_black
         name: "Black iTag Battery"
         service_uuid: '180f'
-        char_uuid: '2a19'
+        characteristic_uuid: '2a19'
         icon: 'mdi:battery'
         unit_of_measurement: '%'
 
@@ -110,5 +110,5 @@ See Also
 --------
 
 - :doc:`/components/ble_client`
-- :doc:`/components/sensor/ble_sensor`
+- :doc:`/components/sensor/ble_client`
 - :ghedit:`Edit`

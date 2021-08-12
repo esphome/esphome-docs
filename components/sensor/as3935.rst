@@ -19,7 +19,7 @@ Component/Hub
 
 The AS3935 can be configured to use either the SPI **or** I²C protocol for data communication.
 First choose which communication method you want to use for the sensor, set the SI pin for the appropriate
-level and set up the ESPhome integration for the chosen communication method.
+level and set up the ESPHome integration for the chosen communication method.
 
 Module Pins
 -----------

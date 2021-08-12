@@ -87,7 +87,7 @@ firmware can be uploaded allowing you to control the smart plugs via Home Assist
    via SSH and ensure your connection type is set to **SFTP**
 #. Browse to ``/root/tuya-convert/files``.
 #. Upload your compiled ``firmware.bin`` file to this directory. For command line based installs you can access the file under
-   ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin`` alternatively Hass.io users can download the file directly from the web ui.
+   ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin`` alternatively Home Assistant add-on users can download the file directly from the web ui.
 
 2.7 Use tuya-convert to install ESPHome Firmware
 ************************************************
@@ -254,7 +254,7 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
       - platform: gpio
         pin:
           number: GPIO3
-          inverted: True
+          inverted: true
         name: "Power Button"
         on_press:
           - switch.toggle: relay
@@ -277,7 +277,7 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
       - platform: hlw8012
         sel_pin:
           number: GPIO12
-          inverted: True
+          inverted: true
         cf_pin: GPIO04
         cf1_pin: GPIO05
         current_resistor: 0.00221
@@ -381,7 +381,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: gpio
         pin:
           number: GPIO0
-          inverted: True
+          inverted: true
         name: "${plug_name}_button"
         on_press:
           - switch.toggle: relay
@@ -390,7 +390,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: gpio
         name: "${plug_name}_LED_Red"
         pin: GPIO13
-        inverted: True
+        inverted: true
         restore_mode: ALWAYS_OFF
         id: red_led
 
@@ -410,7 +410,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: hlw8012
         sel_pin:
           number: GPIO12
-          inverted: True
+          inverted: true
         cf_pin: GPIO04
         cf1_pin: GPIO05
         current_resistor: ${current_res}

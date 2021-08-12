@@ -5,8 +5,8 @@ SPS30 Particulate Matter Sensor
     :description: Instructions for setting up SPS30 PM1.0, PM2.5, PM4, PM10 Particulate Matter sensors
     :image: sps30.jpg
 
-The ``sps30`` sensor platform allows you to use your Sensiron SPS30
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Particulate_Matter/Sensirion_PM_Sensors_SPS30_Datasheet.pdf>`__) sensors with ESPHome.
+The ``sps30`` sensor platform allows you to use your Sensirion SPS30
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.6_Particulate_Matter/Datasheets/Sensirion_PM_Sensors_Datasheet_SPS30.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 This sensor supports both UART and I²C communication. However, at the moment only I²C communication is implemented.
 
@@ -50,7 +50,6 @@ This sensor supports both UART and I²C communication. However, at the moment on
           id: "workshop_PMC_10_0"
         address: 0x69
         update_interval: 10s
-
 
 Configuration variables:
 ------------------------

@@ -62,21 +62,25 @@ Configuration variables:
 Color Interlock
 ***************
 
-With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will have an undesired
-hue affect. Additionally, the brightness command may not work as expected depending upon configuration,
-leaving users to adjust the white component level separately. For these cases a new configration variable
-has been added: color_interlock.
+With some LED bulbs, it is not possible to enable the RGB leds at the same time as the white leds, or setting
+the RGB channels to maximum whilst wanting a white light will have an undesired hue effect. For these cases a
+configuration variable is available that prevents the RGB leds and white leds from being turned on at the same
+time: ``color_interlock``.
 
-Setting this variable to True will turn off RGB leds when white value is above 0 (or if they are to 255,255,255)
-and turn off white leds if color is not set to 255,255,255. This also allows the brightness parameter to
-control the intensity of the white leds.
+Setting this variable to ``true`` will automatically turn off the RGB leds when the white value is non-zero, or
+when the color is set to white (equal values for red, green and blue). When a different color is set, or the
+color brightness is raised above 0%, the white leds are automatically turned off.
 
 See Also
 --------
 
 - :doc:`/components/output/index`
 - :doc:`/components/light/index`
+- :doc:`/components/light/cwww`
+- :doc:`/components/light/color_temperature`
 - :doc:`/components/light/rgb`
+- :doc:`/components/light/rgbww`
+- :doc:`/components/light/rgbct`
 - :doc:`/components/power_supply`
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
