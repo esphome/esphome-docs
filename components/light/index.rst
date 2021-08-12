@@ -128,7 +128,6 @@ This action turns a light with the given ID on when executed.
 
 Configuration variables:
 
-
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
   if the light supports it.
