@@ -29,7 +29,8 @@ Configuration variables:
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the number.
 - **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
-  be performed when the remote (like Home Assistant's frontend) requests to set the number value.
+  be performed when the remote (like Home Assistant's frontend) requests to set the
+  number value. The new value is available to lambdas in the ``x`` variable.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   number. Defaults to ``60s``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
@@ -41,7 +42,7 @@ Configuration variables:
   restored with ``restore_value``.
   Cannot be used with ``lambda``. Defaults to ``min_value``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- All other options from :ref:`Sensor <config-number>`.
+- All other options from :ref:`Number <config-number>`.
 
 ``number.set`` Action
 ----------------------------------

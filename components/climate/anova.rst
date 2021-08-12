@@ -25,6 +25,14 @@ address of your Anova device.
 You cannot use the Anova app over BLE whilst this component is connected, you
 should disconnect it first. To setup a (dis-)connect switch, see :doc:`/components/switch/ble_client`.
 
+You need to specify unit_of_measurement as 'c' or 'f'. This ensures the stick's display
+uses the unit you intend. All values within ESPHome are converted to Celcius so you may
+need to do conversion again within the frontend if you use Fahrenheit.
+
+.. warning::
+
+    The Anova Nano is not currently supported as it uses a different BLE protocol.
+
 .. code-block:: yaml
 
     ble_client:
@@ -35,6 +43,7 @@ should disconnect it first. To setup a (dis-)connect switch, see :doc:`/componen
       - platform: anova
         name: "My Anova stick"
         ble_client_id: my_anova
+        unit_of_measurement: c
 
 Configuration variables:
 ------------------------
@@ -42,6 +51,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the climate device.
 - **ble_client_id** (**Required**, :ref:`config-id`): The ID of the BLE Client.
+- **unit_of_measurement** (**Required**, string): Units to use on the device display. 'c' or 'f'.
 - All other options from :ref:`Climate <config-climate>`.
 
 See Also

@@ -21,14 +21,14 @@ Logging+WiFi+OTA are initialized, so that you can upload a new binary.
 
     # Example configuration entry
     ota:
-      safe_mode: True
+      safe_mode: true
       password: VERYSECURE
 
 Configuration variables:
 ------------------------
 
 -  **safe_mode** (*Optional*, boolean): Whether to enable safe mode.
-   Defaults to ``True``.
+   Defaults to ``true``.
 -  **password** (*Optional*, string): The password to use for updates.
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
@@ -110,7 +110,7 @@ progress percentage (a value between 0 and 100) from the trigger with variable `
 ``on_end``
 **********
 
-This automation will be triggered when an OTA update has completed sucessfully,
+This automation will be triggered when an OTA update has completed successfully,
 right before the device is rebooted.
 
 Because the update has completed, you can safely use an automation action that

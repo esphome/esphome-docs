@@ -45,8 +45,8 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the climate device.
-- **supports_heat** (*Optional*, boolean): Specifies if the device has a heating mode. Defaults to ``True``.
-- **supports_cool** (*Optional*, boolean): Specifies if the device has a cooling mode. Defaults to ``False``.
+- **supports_heat** (*Optional*, boolean): Specifies if the device has a heating mode. Defaults to ``true``.
+- **supports_cool** (*Optional*, boolean): Specifies if the device has a cooling mode. Defaults to ``false``.
 - **switch_datapoint** (**Required**, int): The datapoint id number of the climate switch.
 - **active_state_datapoint** (*Optional*, int): The datapoint id number of the active state.
 - **active_state_heating_value** (*Optional*, int): The active state datapoint value the device reports when heating. Defaults to ``1``.

@@ -79,7 +79,7 @@ Then you need to set it up with yaml.
         id: vbutton_light
         pin:
           number: GPIO0
-          inverted: True
+          inverted: true
         on_press:
           then:
             - light.toggle: ifan02_light
@@ -88,7 +88,7 @@ Then you need to set it up with yaml.
         id: vbutton_relay_1
         pin:
           number: GPIO9
-          inverted: True
+          inverted: true
         on_press:
           then:
             - switch.toggle: fan_relay1
@@ -98,7 +98,7 @@ Then you need to set it up with yaml.
         id: vbutton_relay_2
         pin:
           number: GPIO10
-          inverted: True
+          inverted: true
         on_press:
           then:
             - switch.toggle: fan_relay2
@@ -108,7 +108,7 @@ Then you need to set it up with yaml.
         id: vbutton_relay_3
         pin:
           number: GPIO14
-          inverted: True
+          inverted: true
         on_press:
           then:
             - switch.toggle: fan_relay3
@@ -137,7 +137,7 @@ Then you need to set it up with yaml.
     switch:
       - platform: template
         id: update_fan_speed
-        optimistic: True
+        optimistic: true
         turn_on_action:
           then:
             - delay: 200ms
