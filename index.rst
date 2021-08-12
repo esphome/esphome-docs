@@ -387,7 +387,7 @@ Misc Components
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
     Tuya MCU, components/tuya, tuya.png
-    Modbus Controller, components//modbus_controller, modbus.png        
+    Modbus Controller, components/modbus_controller, modbus.png        
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
