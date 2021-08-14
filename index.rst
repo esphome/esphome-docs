@@ -284,6 +284,7 @@ Electricity
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
+    Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC current
