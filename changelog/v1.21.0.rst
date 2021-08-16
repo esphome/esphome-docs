@@ -2,30 +2,30 @@ Changelog - Version 1.21.0 - 18th August 2021
 =============================================
 
 .. seo::
-    :description: Changelog for ESPHome version 1.20.0.
-    :image: /_static/changelog-1.20.0.png
+    :description: Changelog for ESPHome version 1.21.0.
+    :image: /_static/changelog-1.21.0.png
     :author: ESPHome
     :author_twitter: @esphome_
 
 .. imgtable::
     :columns: 4
 
-    AM43, components/sensor/am43, am43.jpg, Lux
+    AM43, components/sensor/am43, am43.jpg
     AM43 Cover, components/cover/am43, am43.jpg
     Color Temperature Light, components/light/color_temperature, brightness-medium.svg
     Demo, components/demo, description.svg
-    DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
-    HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
+    DSMR, components/sensor/dsmr, dsmr.svg
+    HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
-    PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
+    PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg
     RGBCT Light, components/light/rgbct, rgbw.png
-    SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
+    SDP3x, components/sensor/sdp3x, sdp31.jpg
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg
-    T6613/15, components/sensor/t6615, t6615.png, C02
+    T6613/15, components/sensor/t6615, t6615.png
     TLC5947, components/output/tlc5947, tlc5947.jpg
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
-    TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
+    TSL2591, components/sensor/tsl2591, tsl2591.jpg
 
 
 Notes pending...
@@ -34,7 +34,7 @@ Notes pending...
 Select Entities
 ---------------
 
-ESPHome devices can now create ``select`` entities in Home Assistant. This allows you to
+ESPHome devices can now create :doc:`Select</components/select/index>` entities in Home Assistant. This allows you to
 not have to create ``input_select`` from HA and then import the current option into ESPHome.
 The chosen option can be updated from both sides and will be reflected accordinlgy.
 
@@ -42,15 +42,41 @@ The chosen option can be updated from both sides and will be reflected accordinl
 Light Color Modes
 -----------------
 
-This is an internal change, but ESPHome has been updated to properly support Home Assistant's
-color modes for lights. For the most part it mainly fixes issues that have come up with the
-color mode on Home Assistant not doing what people expected in ESPHome.
+:ghuser:`oxan` has been at it working hard on getting the all of the light code up to scratch and working
+really well with the latest changes to Home Assistant. This is mostly an internal change, but ESPHome has
+been updated to properly support Home Assistant's color modes for lights. For the most part it mainly
+fixes issues that have come up with the color mode on Home Assistant not doing what people expected in ESPHome.
+
+
+DSMR
+----
+
+:ghuser:`glmnet` and :ghuser:`zuidwijk` have worked together to bring DSMR support to ESPHome.
+This platform allows you to read your DSMR smart meter via the P1 port. Check out the
+`repo <https://github.com/zuidwijk/dsmr>`_ with more info on the hardware required for this.
+
+
+Thermostat Breaking changes
+---------------------------
+
+:ghuser:`kbx81` Has made a few changes to the :doc:`thermostat</components/climate/thermostat>` climate platform
+in :esphomepr:`2032`, :esphomepr:`2073` and :esphomepr:`2114` to allow for the many different use cases that everyone has.
+Unfortunately this means you might need to make some changes to your YAML configuration to utilize the new code.
+
+ - ``hysteresis`` has been replaced with ``cool_deadband``, ``cool_overrun``, ``heat_deadband`` and ``heat_overrun``.
+ - Climate action timers now govern how quickly climate actions may be called:
+
+   - ``min_idle_time`` is required for all configurations.
+   - ``min_cooling_off_time`` and  ``min_cooling_run_time`` are required where cool_action or dry_action is used.
+   - ``min_heating_off_time`` and ``min_heating_run_time`` are required where heat_action is used.
+   - ``min_fanning_off_time`` and ``min_fanning_run_time`` are required where fan_only_action is used.
+   - ``min_fan_mode_switching_time`` is required where any ``fan_mode`` actions (ex.: ``fan_mode_auto_action``, ``fan_mode_on_action``) are used.
 
 
 Anova Souve
 -----------
 
-There is a change with the Anova BLE Souve climate platform that has a new **required**
+There is a change with the :doc:`Anova BLE Souve</components/climate/anova>` climate platform that has a new **required**
 config option: ``unit_of_measurement``.
 
 
@@ -104,6 +130,14 @@ Breaking Changes
 - Anova fahrenheit support :esphomepr:`2126` by :ghuser:`buxtronix` (breaking-change)
 - Tidy HA addon :esphomepr:`1937` by :ghuser:`jesserockz` (breaking-change)
 - Thermostat enhancements 2 :esphomepr:`2114` by :ghuser:`kbx81` (breaking-change)
+
+Beta Fixes
+^^^^^^^^^^
+
+- Always send all light state values in API :esphomepr:`2150` by :ghuser:`oxan`
+- Let sensors announce their state_class via mqtt :esphomepr:`2155` by :ghuser:`puuu`
+- Thermostat delayed fan mode fix :esphomepr:`2158` by :ghuser:`kbx81`
+- Fix native API log level enum values :esphomepr:`2151` by :ghuser:`OttoWinter`
 
 Notable Changes
 ^^^^^^^^^^^^^^^
