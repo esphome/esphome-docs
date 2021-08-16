@@ -179,18 +179,6 @@ Air Quality
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
 
-Light
-*****
-.. imgtable::
-
-    AM43, components/sensor/am43, am43.jpg, Lux
-    APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
-    BH1750, components/sensor/bh1750, bh1750.jpg, Lux
-    TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
-    TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
-    TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
-
-
 Analogue
 ********
 .. imgtable::
@@ -231,48 +219,6 @@ Distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
     VL53L0x, components/sensor/vl53l0x, vl53l0x.png, IR optical distance
-
-
-Weight
-******
-.. imgtable::
-
-    HX711, components/sensor/hx711, hx711.jpg, Load cell amplifier
-    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
-    Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
-
-
-Magnetic
-********
-.. imgtable::
-
-    ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal
-    HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
-    QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
-
-
-Miscellaneous
-*************
-.. imgtable::
-
-    AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
-    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
-    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
-    EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
-    Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
-    Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
-    Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
-    Tuya Sensor, components/sensor/tuya, tuya.png
-    TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
-
-
-Motion
-******
-.. imgtable::
-
-    APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
-    MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
-    RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
 
 
 Electricity
@@ -332,6 +278,51 @@ Environmental
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
 
 
+Light
+*****
+.. imgtable::
+
+    AM43, components/sensor/am43, am43.jpg, Lux
+    APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
+    TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
+    TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
+
+
+Magnetic
+********
+.. imgtable::
+
+    ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal
+    HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
+    QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
+
+
+Miscellaneous
+*************
+.. imgtable::
+
+    AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
+    Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
+    EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
+    Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
+    Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
+    Tuya Sensor, components/sensor/tuya, tuya.png
+    TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
+
+
+Motion
+******
+.. imgtable::
+
+    APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
+    MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
+    RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+
+
 Thermocouple
 ************
 .. imgtable::
@@ -340,6 +331,15 @@ Thermocouple
     MAX31856, components/sensor/max31856, max31856.jpg, All types
     MAX31865, components/sensor/max31865, max31865.jpg, Platinum RTD
     MAX6675, components/sensor/max6675, max6675.jpg, K-Type
+
+
+Weight
+******
+.. imgtable::
+
+    HX711, components/sensor/hx711, hx711.jpg, Load cell amplifier
+    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
+    Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
 
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
