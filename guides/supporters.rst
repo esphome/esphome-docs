@@ -183,8 +183,10 @@ Contributors
 - `Robert Resch (@edenhaus) <https://github.com/edenhaus>`__
 - `Niclas Larsson (@edge90) <https://github.com/edge90>`__
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__
+- `Eli Fidler (@efidler) <https://github.com/efidler>`__
 - `Erwin Kooi (@egeltje) <https://github.com/egeltje>`__
 - `Eike (@ei-ke) <https://github.com/ei-ke>`__
+- `Elazar Leibovich (@elazarl) <https://github.com/elazarl>`__
 - `electrofun-smart (@electrofun-smart) <https://github.com/electrofun-smart>`__
 - `Elkropac (@Elkropac) <https://github.com/Elkropac>`__
 - `elyorkhakimov (@elyorkhakimov) <https://github.com/elyorkhakimov>`__
@@ -266,6 +268,7 @@ Contributors
 - `Hamish Moffatt (@hmoffatt) <https://github.com/hmoffatt>`__
 - `MoA (@honomoa) <https://github.com/honomoa>`__
 - `Hopperpop (@Hopperpop) <https://github.com/Hopperpop>`__
+- `Yang Hau (@HowJMay) <https://github.com/HowJMay>`__
 - `hreintke (@hreintke) <https://github.com/hreintke>`__
 - `Huub Eikens (@huubeikens) <https://github.com/huubeikens>`__
 - `Petr Urbánek (@HyperReap) <https://github.com/HyperReap>`__
@@ -433,6 +436,8 @@ Contributors
 - `n8detar (@n8detar) <https://github.com/n8detar>`__
 - `Erik Näsström (@Naesstrom) <https://github.com/Naesstrom>`__
 - `Oskar Napieraj (@napieraj) <https://github.com/napieraj>`__
+- `ueno (@nayuta-ueno) <https://github.com/nayuta-ueno>`__
+- `Nazar Mokrynskyi (@nazar-pc) <https://github.com/nazar-pc>`__
 - `Bergont Nicolas (@nbergont) <https://github.com/nbergont>`__
 - `Nebula (@nebula-it) <https://github.com/nebula-it>`__
 - `needspeed (@needspeed) <https://github.com/needspeed>`__
@@ -471,6 +476,7 @@ Contributors
 - `Oxan van Leeuwen (@oxan) <https://github.com/oxan>`__
 - `Pack3tL0ss (@Pack3tL0ss) <https://github.com/Pack3tL0ss>`__
 - `Pablo Clemente Maseda (@paclema) <https://github.com/paclema>`__
+- `Derrick Lyndon Pallas (@pallas) <https://github.com/pallas>`__
 - `Panuruj Khambanonda (PK) (@panuruj) <https://github.com/panuruj>`__
 - `Pasi Suominen (@pasiz) <https://github.com/pasiz>`__
 - `Paul Deen (@PaulAntonDeen) <https://github.com/PaulAntonDeen>`__
@@ -541,6 +547,7 @@ Contributors
 - `RubyBailey (@RubyBailey) <https://github.com/RubyBailey>`__
 - `rudgr (@rudgr) <https://github.com/rudgr>`__
 - `Roberto Wagner (@rwagnervm) <https://github.com/rwagnervm>`__
+- `rweather (@rweather) <https://github.com/rweather>`__
 - `ryanalden (@ryanalden) <https://github.com/ryanalden>`__
 - `Ryan Nazaretian (@ryannazaretian) <https://github.com/ryannazaretian>`__
 - `samnewman86 (@samnewman86) <https://github.com/samnewman86>`__
@@ -675,6 +682,7 @@ Contributors
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__
 - `zaluthar (@zaluthar) <https://github.com/zaluthar>`__
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
+- `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated August 11, 2021.*
+*This page was last updated August 16, 2021.*
