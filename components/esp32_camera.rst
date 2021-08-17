@@ -31,6 +31,9 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the camera.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 
 Connection Options:
 
@@ -298,7 +301,7 @@ Configuration for TTGO-Camera Mini
         pin: GPIO32
         frequency: 20MHz
       i2c_pins:
-        sda: GPIO13 
+        sda: GPIO13
         scl: GPIO12
       data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO37, GPIO38, GPIO36, GPIO39]
       vsync_pin: GPIO27
