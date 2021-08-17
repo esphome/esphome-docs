@@ -86,10 +86,10 @@ Configuration variables:
 - **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  Most dimmers have a
   maximum of 255, but dimmers with a maximum of 1000 can also be found. Try what works best.
 - **color_temperature_max_value** (*Optional*, int, default 255): The highest color temperature
-  value allowed. Some ceiling fans have a value of 100 (also for ``max_value``).
-- **cold_white_color_temperature** (*Optional*, float): The color temperate (in `mireds
+  value allowed. Some ceiling fans have a value of 100 (also for `max_value`).
+- **cold_white_color_temperature** (*Optional*, float): The color temperature (in `mireds
   <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
-- **warm_white_color_temperature** (*Optional*, float): The color temperate (in `mireds
+- **warm_white_color_temperature** (*Optional*, float): The color temperature (in `mireds
   <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
 - All other options from :ref:`Light <config-light>`.
 - At least one of *dimmer_datapoint* or *switch_datapoint* must be provided.

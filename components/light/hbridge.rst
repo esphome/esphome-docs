@@ -36,6 +36,11 @@ The pins are switched alternatively to allow two sets of lights to operate.
         pin_a: pina
         pin_b: pinb
 
+Internally, H-bridge lights are implemented as cold/warm white lights. This means that the brightness of the two colors
+is mapped to the cold white and warm white values, even if the colors aren't actually white in reality. To individually
+control the colors in the :ref:`light control actions <light-turn_on_action>`, you need to use the ``cold_white`` and
+``warm_white`` options.
+
 
 Configuration variables:
 ------------------------
@@ -48,7 +53,7 @@ Configuration variables:
 
 .. note::
 
-    As we are switching the h-bridge in software, the light may glitch every so often when other tasks run on the MCU.
+    As we are switching the H-bridge in software, the light may glitch every so often when other tasks run on the MCU.
 
 See Also
 --------
