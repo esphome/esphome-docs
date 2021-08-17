@@ -168,7 +168,7 @@ advanced stuff.
 
   .. code-block:: yaml
 
-      if (id(my_cover).state == COVER_OPEN) {
+      if (id(my_cover).position == COVER_OPEN) {
         // Cover is open
       } else {
         // Cover is closed
