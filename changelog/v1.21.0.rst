@@ -17,6 +17,7 @@ Changelog - Version 1.21.0 - 18th August 2021
     DSMR, components/sensor/dsmr, dsmr.svg
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
+    PM1006 Sensor, components/sensor/pm1006, pm1006.jpg
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg
     RGBCT Light, components/light/rgbct, rgbw.png
     SDP3x, components/sensor/sdp3x, sdp31.jpg
@@ -28,7 +29,7 @@ Changelog - Version 1.21.0 - 18th August 2021
     TSL2591, components/sensor/tsl2591, tsl2591.jpg
 
 
-Notes pending...
+Look at that nice sorted and categorized home page of sensors. Thanks to :ghuser:`patfelst` for doing this.
 
 
 Select Entities
@@ -138,6 +139,12 @@ Beta Fixes
 - Let sensors announce their state_class via mqtt :esphomepr:`2155` by :ghuser:`puuu`
 - Thermostat delayed fan mode fix :esphomepr:`2158` by :ghuser:`kbx81`
 - Fix native API log level enum values :esphomepr:`2151` by :ghuser:`OttoWinter`
+- Initialize color temperature to value within range if possible :esphomepr:`2168` by :ghuser:`oxan`
+- Add a dummy color temp :esphomepr:`2161` by :ghuser:`DotNetDann`
+- Add Gas device class to DSMR component :esphomepr:`2169` by :ghuser:`frenck`
+- Send dirty states when screen wakes up :esphomepr:`2167` by :ghuser:`jesserockz`
+- Remove specified accuracy_decimals from total_daily_energy :esphomepr:`2174` by :ghuser:`jesserockz`
+- Add new total_increasing state-class for Home Assistant 2021.9+ :esphomepr:`2166` by :ghuser:`jesserockz`
 
 Notable Changes
 ^^^^^^^^^^^^^^^
@@ -236,3 +243,13 @@ All changes
 - Modular light transformers :esphomepr:`2124` by :ghuser:`oxan`
 - Support for the DKE screen version of LilyGo-TTGO-T5 V2.3 :esphomepr:`1969` by :ghuser:`blambov`
 - Support multiple configuration directories for update-all subcommand :esphomepr:`1925` by :ghuser:`oxan`
+- Always send all light state values in API :esphomepr:`2150` by :ghuser:`oxan`
+- Let sensors announce their state_class via mqtt :esphomepr:`2155` by :ghuser:`puuu`
+- Thermostat delayed fan mode fix :esphomepr:`2158` by :ghuser:`kbx81`
+- Fix native API log level enum values :esphomepr:`2151` by :ghuser:`OttoWinter`
+- Initialize color temperature to value within range if possible :esphomepr:`2168` by :ghuser:`oxan`
+- Add a dummy color temp :esphomepr:`2161` by :ghuser:`DotNetDann`
+- Add Gas device class to DSMR component :esphomepr:`2169` by :ghuser:`frenck`
+- Send dirty states when screen wakes up :esphomepr:`2167` by :ghuser:`jesserockz`
+- Remove specified accuracy_decimals from total_daily_energy :esphomepr:`2174` by :ghuser:`jesserockz`
+- Add new total_increasing state-class for Home Assistant 2021.9+ :esphomepr:`2166` by :ghuser:`jesserockz`
