@@ -164,17 +164,17 @@ Air Quality
 .. imgtable::
 
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
-    MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
+    MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
-    PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
-    SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
+    PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
-    SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
-    SPS30, components/sensor/sps30, sps30.jpg, Particulate
+    SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
+    SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
+    SPS30, components/sensor/sps30, sps30.jpg, Particulate
     T6613/15, components/sensor/t6615, t6615.png, C02
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
@@ -194,11 +194,11 @@ Bluetooth Low Energy (BLE)
 .. imgtable::
 
     AM43, components/sensor/am43, am43.jpg, Lux & Battery level
-    BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
+    BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
-    Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+    Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
 
 
 Digital Signals
@@ -227,17 +227,17 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
-    CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
+    CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC current
     INA226, components/sensor/ina226, ina226.jpg, DC current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
-    PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
     PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
+    PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
     SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus energy monitor
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
@@ -251,11 +251,11 @@ Environmental
 
     AHT10, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
-    BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
-    BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Humidity & Pressure
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
+    BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
+    BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Humidity & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
@@ -270,9 +270,9 @@ Environmental
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, Temperature & Humidity
     SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
-    SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
+    SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
@@ -307,9 +307,9 @@ Miscellaneous
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
+    Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
-    Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
 
