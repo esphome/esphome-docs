@@ -49,6 +49,9 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Climate Automation
@@ -72,7 +75,16 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the climate device to control.
 - **mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Put the climate device
-  in a specific mode. One of ``OFF``, ``HEAT_COOL``, ``COOL`` and ``HEAT``.
+  in a specific mode. One of
+
+  - ``OFF`` - The device is manually set to off, the device is inactive.
+  - ``AUTO`` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
+  - ``HEAT`` - The device is set to heat to reach a target temperature.
+  - ``COOL`` - The device is set to cool to reach a target temperature.
+  - ``HEAT_COOL`` - The device should heat/cool to maintain a target temperature.
+  - ``FAN_ONLY`` - The device only has the fan enabled, no heating or cooling is taking place.
+  - ``DRY`` - The device is set to dry/humidity mode.
+
 - **target_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   target temperature of a climate device.
 - **target_temperature_low** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the

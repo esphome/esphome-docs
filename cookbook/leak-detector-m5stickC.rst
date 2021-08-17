@@ -89,7 +89,7 @@ I also needed this procedure to flash M5Stack ATOM Lite and ATOM Matrix modules,
 Calibration & Testing
 =====================
 
-Once everything is hooked up and flashed, enable ``esp32_touch:`` ``setup_mode: True`` and proceed to adjust the threshold setting on the touch-sensitive binary sensor (GPIO33) to find the proper value for your particular moisture sensor and cabling situation.  Grab a glass of water for testing, another for yourself, and dip away while watching the logs.  Your goal is to find a threshold value that is sufficient to trigger the binary sensor in water, but not otherwise.  See :ref:`ESP32 Touch Pad <esp32-touch-binary-sensor>` for more information.
+Once everything is hooked up and flashed, enable ``esp32_touch:`` ``setup_mode: true`` and proceed to adjust the threshold setting on the touch-sensitive binary sensor (GPIO33) to find the proper value for your particular moisture sensor and cabling situation.  Grab a glass of water for testing, another for yourself, and dip away while watching the logs.  Your goal is to find a threshold value that is sufficient to trigger the binary sensor in water, but not otherwise.  See :ref:`ESP32 Touch Pad <esp32-touch-binary-sensor>` for more information.
 
 ------------
 
@@ -161,7 +161,7 @@ ESPHome configuration
     status_led:
       pin:
         number: GPIO10
-        inverted: True
+        inverted: true
 
     spi:
       clk_pin: GPIO13
@@ -171,10 +171,10 @@ ESPHome configuration
        - id: bus_a
          sda: GPIO21
          scl: GPIO22
-         scan: True
+         scan: true
 
     esp32_touch:
-      #setup_mode: True
+      #setup_mode: true
       iir_filter: 10ms
 
     binary_sensor:
