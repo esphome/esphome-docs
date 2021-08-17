@@ -19,7 +19,7 @@ Changelog - Version 1.21.0 - 18th August 2021
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg
     RGBCT Light, components/light/rgbct, rgbw.png
-    PM1006 Sensor, components/sensor/pm1006, pm1006.jpg
+    PM1006, components/sensor/pm1006, pm1006.jpg
     SDP3x, components/sensor/sdp3x, sdp31.jpg
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg
     T6613/15, components/sensor/t6615, t6615.png
