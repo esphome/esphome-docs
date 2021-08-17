@@ -26,10 +26,10 @@ Use of the OE pin is optional. If used, the pin should be pulled up externally.
     # Example configuration entry
     sn74hc595:
       - id: 'sn74hc595_hub'
-        data_pin: D5
-        clock_pin: D8
-        latch_pin: D7
-        oe_pin: D6
+        data_pin: GPIO13
+        clock_pin: GPIO15
+        latch_pin: GPIO12
+        oe_pin: GPIO4
         sr_count: 2
 
     # Individual outputs
@@ -48,6 +48,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this SN74HC595 component.
 - **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 SER input.
 - **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 SRCLK pin
+- **name:** (**Required**, string): Name of the pin
 - **latch_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 RCLK pin
 - **oe_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 OE pin
 - **sr_count** (*Optional*, int): Number of daisy-chained shift registers, up-to 4. Defaults to ``1``.
@@ -60,6 +61,20 @@ Pin configuration variables:
 - **number** (**Required**, integer): The pin number.
 - **inverted** (*Optional*, boolean): If all written values should be treated as inverted.
   Defaults to ``false``.
+  
+    
+Note
+****
+CMOS logic families typically require all unused inputs to be connected to a high or low state (i.e. Vcc or Gnd). Essentially, a floating input could result in unusually high internal currents to flow between Vcc and Gnd.
+
+oe_pin: if connected to VCC the outputs will be high impedance state, if connected to GND the outputs works normaly (negative logic).
+SRCLR: if connected on VCC there's no reset, if connected to GND all bits will be 0 in the shift register (negative logic).
+
+Here's a connection exemple (other GPIO can be used or even a ESP32): 
+
+.. figure:: https://i0.wp.com/techtutorialsx.com/wp-content/uploads/2016/08/esp8266-to-74hc595-connection.png?resize=499%2C303&ssl=1
+    :align: right
+    :width: 70.0%
 
 
 See Also
