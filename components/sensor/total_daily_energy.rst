@@ -39,7 +39,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **method** (*Optional*, string): The method to use for calculating the total daily energy. One of
-  ``trapezoid``, ``left`` or ``right``. Defaults to ``trapezoid``.
+  ``trapezoid``, ``left`` or ``right``. Defaults to ``right``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Converting from W to kW
