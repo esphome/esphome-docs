@@ -1,9 +1,9 @@
-Changelog - Version 1.21.0 - 18th August 2021
-=============================================
+ESPHome 2021.8.0 - 18th August 2021
+===================================
 
 .. seo::
-    :description: Changelog for ESPHome version 1.21.0.
-    :image: /_static/changelog-1.21.0.png
+    :description: Changelog for ESPHome 2021.8.0.
+    :image: /_static/changelog-2021.8.0.png
     :author: ESPHome
     :author_twitter: @esphome_
 
@@ -29,7 +29,13 @@ Changelog - Version 1.21.0 - 18th August 2021
     TSL2591, components/sensor/tsl2591, tsl2591.jpg
 
 
-Look at that nice sorted and categorized home page of sensors. Thanks to :ghuser:`patfelst` for doing this.
+Since starting monthly cycles, it just made sense to make this release, **ESPHome 2021.8.0**. From now ESPHome will
+be versioned according to the year and month of the release. We hope that this will not confuse everyone too much =).
+
+There are a bunch of new integrations this release as seen above and a few breaking changes below. Hopefully nothing
+has been missed out.
+
+Also, look at that nice sorted and categorized home page of sensors. Thanks to :ghuser:`patfelst` for doing this.
 
 
 Select Entities
@@ -253,3 +259,24 @@ All changes
 - Send dirty states when screen wakes up :esphomepr:`2167` by :ghuser:`jesserockz`
 - Remove specified accuracy_decimals from total_daily_energy :esphomepr:`2174` by :ghuser:`jesserockz`
 - Add new total_increasing state-class for Home Assistant 2021.9+ :esphomepr:`2166` by :ghuser:`jesserockz`
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.20.0
+    v1.19.0
+    v1.18.0
+    v1.17.0
+    v1.16.0
+    v1.15.0
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
