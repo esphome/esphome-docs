@@ -48,7 +48,6 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this SN74HC595 component.
 - **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 SER input.
 - **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 SRCLK pin
-- **name:** (**Required**, string): Name of the pin
 - **latch_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 RCLK pin
 - **oe_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC595 OE pin
 - **sr_count** (*Optional*, int): Number of daisy-chained shift registers, up-to 4. Defaults to ``1``.
