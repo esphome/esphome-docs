@@ -27,7 +27,7 @@ Configuration variables:
   sensor in the frontend.
 - **inverted** (*Optional*, boolean): Whether to invert the binary
   state, i.e. report ON states as OFF and vice versa. Defaults
-  to ``False``.
+  to ``false``.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
@@ -35,6 +35,9 @@ Configuration variables:
   when the switch is turned on. See :ref:`switch-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the switch is turned off. See :ref:`switch-on_turn_on_off_trigger`.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _switch-toggle_action:

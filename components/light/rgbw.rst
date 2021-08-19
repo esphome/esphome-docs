@@ -43,6 +43,21 @@ perceived intensity of different colors will generally vary. This can be done by
         pin: D1
         max_power: 80%
 
+.. _rgbw_color_interlock:
+
+Color Interlock
+---------------
+
+With some LED bulbs, it is not possible to enable the RGB leds at the same time as the white leds, or setting
+the RGB channels to maximum whilst wanting a white light will have an undesired hue effect. For these cases a
+configuration variable is available that prevents the RGB leds and white leds from being turned on at the same
+time: ``color_interlock``.
+
+Setting this option to ``true`` will result in the light having two color modes available, ``RGB`` and ``WHITE``.
+When the ``RGB`` color mode is active, the white leds are turned off, and when the ``WHITE`` color mode is active,
+the RGB leds are turned off. Switching between these modes can be done from the Home Assistant interface, or by using
+the ``color_mode`` option of the :ref:`light control actions <light-turn_on_action>`.
+
 Configuration variables:
 ------------------------
 
@@ -57,26 +72,16 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.
 
-.. _rgbw_color_interlock:
-
-Color Interlock
-***************
-
-With some LED bulbs, it is not possible to enable the RGB leds at the same time as the white leds, or setting
-the RGB channels to maximum whilst wanting a white light will have an undesired hue effect. For these cases a
-configuration variable is available that prevents the RGB leds and white leds from being turned on at the same
-time: ``color_interlock``.
-
-Setting this variable to ``True`` will automatically turn off the RGB leds when the white value is non-zero, or
-when the color is set to white (equal values for red, green and blue). When a different color is set, or the
-color brightness is raised above 0%, the white leds are automatically turned off.
-
 See Also
 --------
 
 - :doc:`/components/output/index`
 - :doc:`/components/light/index`
+- :doc:`/components/light/cwww`
+- :doc:`/components/light/color_temperature`
 - :doc:`/components/light/rgb`
+- :doc:`/components/light/rgbww`
+- :doc:`/components/light/rgbct`
 - :doc:`/components/power_supply`
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`

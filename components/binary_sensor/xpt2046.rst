@@ -41,7 +41,7 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
       calibration_x_max: 280
       calibration_y_min: 340
       calibration_y_max: 3860
-      swap_x_y: False
+      swap_x_y: false
 
     binary_sensor:
       - platform: xpt2046
@@ -220,7 +220,7 @@ That means that the minimum raw x is 281, maximum 3848, minimum y 347 and maximu
 Identify which raw value is the display's x direction and what the y one. In our case
 moving right decreases the x raw value and going down increases the y one so the axes
 match and we *don't* need to use ``swap_x_y``. If the raw x is the display's y,
-use ``swap_x_y = True``.
+use ``swap_x_y = true``.
 
 If one of the coordinates goes in the "wrong" direction it needs to be inverted.
 The inversion is performed by swapping the minimum and maximum values. In our

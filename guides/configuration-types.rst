@@ -74,14 +74,14 @@ In some places, ESPHome also supports a more advanced “pin schema”.
       # Advanced:
       pin:
         number: D0
-        inverted: True
+        inverted: true
         mode: INPUT_PULLUP
 
 Configuration variables:
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
-   should be treated as inverted. Defaults to ``False``.
+   should be treated as inverted. Defaults to ``false``.
 -  **mode** (*Optional*, string): A pin mode to set for the pin at
    startup, corresponds to Arduino’s ``pinMode`` call.
 
@@ -326,7 +326,7 @@ merged with the services definitions from main config file.
     i2c:
       sda: GPIO21
       scl: GPIO22
-      scan: True
+      scan: true
       frequency: 100kHz
 
     # Enable logging

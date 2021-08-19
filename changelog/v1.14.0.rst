@@ -18,8 +18,8 @@ Changelog - Version 1.14.0 - November 1
 
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg
     PZEM004T, components/sensor/pzem004t, pzem004t.svg
-    PZEM AC, components/sensor/pzemac, pzemac.svg
-    PZEM DC, components/sensor/pzemdc, pzemdc.svg
+    PZEM AC, components/sensor/pzemac, pzem-ac.png
+    PZEM DC, components/sensor/pzemdc, pzem-dc.png
     ADE7953, components/sensor/ade7953, ade7953.svg
 
     SenseAir, components/sensor/senseair, senseair_s8.jpg

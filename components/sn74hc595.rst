@@ -40,7 +40,7 @@ Use of the OE pin is optional. If used, the pin should be pulled up externally.
           sn74hc595: sn74hc595_hub
           # Use pin number 0
           number: 0
-          inverted: False
+          inverted: false
 
 Configuration variables:
 ************************
@@ -59,7 +59,7 @@ Pin configuration variables:
 - **sn74hc595** (**Required**, :ref:`config-id`): The id of the SN74HC595 component of the pin.
 - **number** (**Required**, integer): The pin number.
 - **inverted** (*Optional*, boolean): If all written values should be treated as inverted.
-  Defaults to ``False``.
+  Defaults to ``false``.
 
 
 See Also
