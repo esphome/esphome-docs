@@ -34,7 +34,9 @@ For SPI communication it's important to connect PSB on the LCD to GND.
 
     display:
       - platform: st7920
-        rs_pin: D8
+        cs_pin: 
+          number: 4
+          inverted: true
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
@@ -42,7 +44,7 @@ For SPI communication it's important to connect PSB on the LCD to GND.
 Configuration variables:
 ************************
 
-- **rs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS/RS).
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Sometimes also called ``RS``. For ST7920 should be inverted.
 - **width** (**Required**, int): The "width" of a screen. Defaults to 128.
 - **height** (**Required**, int): The "height" of a screen. Defaults to 64;
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
