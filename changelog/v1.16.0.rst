@@ -23,7 +23,7 @@ Changelog - Version 1.16.0 - February 3, 2021
     ST7735, components/display/st7735, st7735.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     CAN Bus, components/canbus, canbus.svg
-    Inkplate 6, components/display/Inkplate, Inkplate.jpg
+    Inkplate 6, components/display/Inkplate, inkplate6.jpg
 
 Hello, hello. Jesse Hills (:ghuser:`jesserockz`) here. Yet another new name doing the next release.
 

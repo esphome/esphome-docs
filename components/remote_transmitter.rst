@@ -78,9 +78,6 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
-If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
-Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
-
 .. _remote_transmitter-transmit_raw:
 
 ``remote_transmitter.transmit_raw`` Action
@@ -133,8 +130,8 @@ This :ref:`action <config-action>` sends an LG infrared remote code to a remote 
 
     on_...:
       - remote_transmitter.transmit_lg:
-          data: 0x1234567
-          nbits: 28
+          data: 0x20DF10EF # power on/off
+          nbits: 32
 
 Configuration variables:
 
@@ -200,22 +197,29 @@ Configuration variables:
 **********************************************
 
 This :ref:`action <config-action>` sends a Samsung infrared remote code to a remote transmitter.
+It transmits codes up to 64 bits in length in a single packet.
 
 .. code-block:: yaml
 
     on_...:
       - remote_transmitter.transmit_samsung:
           data: 0x1FEF05E4
+      # additional example for 48-bit codes:
+      - remote_transmitter.transmit_samsung:
+          data: 0xB946F50A09F6
+          nbits: 48
 
 Configuration variables:
 
 - **data** (**Required**, int): The data to send, see dumper output for more details.
+- **nbits** (*Optional*, int): The number of bits to send. Defaults to ``32``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_samsung36`` Action
 ************************************************
 
 This :ref:`action <config-action>` sends a Samsung36 infrared remote code to a remote transmitter.
+It transmits the ``address`` and ``command`` in two packets separated by a "space".
 
 .. code-block:: yaml
 
@@ -248,6 +252,27 @@ Configuration variables:
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+``remote_transmitter.transmit_dish`` Action
+************************************************
+
+This :ref:`action <config-action>` sends a Dish Network infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_dish:
+          address: 1
+          command: 16
+
+Configuration variables:
+
+- **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``.
+- **command** (**Required**, int, 0-63): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
+
+
 ``remote_transmitter.transmit_pioneer`` Action
 **********************************************
 
@@ -276,6 +301,26 @@ At the time this action was created, Pioneer maintained listings of IR codes use
 `here <https://www.pioneerelectronics.com/PUSA/Support/Home-Entertainment-Custom-Install/IR+Codes>`__.
 If unable to find your specific device in the documentation, find a device in the same class; the codes
 are largely shared among devices within a given class.
+
+``remote_transmitter.transmit_toshiba_ac`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a Toshiba AC infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_toshiba_ac:
+          rc_code_1: 0xB24DBF4040BF
+          rc_code_2: 0xD5660001003C
+
+Configuration variables:
+
+- **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
+- **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
+  two parts.
+- **Note:** this action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_rc_switch_raw`` Action
 ****************************************************

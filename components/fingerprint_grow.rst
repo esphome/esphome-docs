@@ -19,8 +19,9 @@ The ``fingerprint_grow`` component allows you to use your R307, R503, ZFM-20, ..
 
     R503 Capacitive Fingerprint Reader with Bi-Color Aura LED (`datasheet <https://cdn-shop.adafruit.com/product-files/4651/4651_R503+fingerprint+module+user+manual.pdf>`__, `Adafruit <https://www.adafruit.com/product/4651>`__). Image by `Adafruit <https://www.adafruit.com/product/4651>`__.
 
-Overview
---------
+
+Component/Hub
+-------------
 
 The reader can be powered by the 3.3V output of an NodeMCU. As the communication with the reader is done using UART (default baud rate is 57600), you need to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the reader's ``TX`` and the ``tx_pin`` connected to the reader's ``RX``.
 
@@ -60,25 +61,25 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
         - text_sensor.template.publish:
             id: fingerprint_state
             state: "Failed to enroll fingerprint"
-    
+
     # Optional template text sensor for visual feedback
     text_sensor:
       - platform: template
         id: fingerprint_state
         name: "Fingerprint State"
-    
+
     # Optional component (GPIO switch, lock etc.) to control in on_finger_scan_matched trigger
     switch:
       - platform: gpio
         pin: GPIO14
         id: gate
-    
+
     # Optional sensors
     binary_sensor:
       - platform: fingerprint_grow
         id: fingerprint_enrolling
         name: "Fingerprint Enrolling"
-    
+
     sensor:
       - platform: fingerprint_grow
         fingerprint_count:
@@ -96,7 +97,6 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
 
 
 Configuration variables:
-------------------------
 
 The configuration is made up of three parts: The central component, optional individual sensors, and the optional enrolling binary sensor.
 
@@ -113,7 +113,10 @@ Base Configuration:
 - **on_enrollment_done** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint is enrolled. See :ref:`fingerprint_grow-on_enrollment_done`.
 - **on_enrollment_failed** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a fingerprint enrollment failed. See :ref:`fingerprint_grow-on_enrollment_failed`.
 
-Optional Binary Sensor Configuration:
+Binary Sensor
+-------------
+
+Configuration variables:
 
 - **name** (**Required**, string): The name for the enrolling binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -121,7 +124,8 @@ Optional Binary Sensor Configuration:
 
 Optional Sensor Configuration:
 
-Available sensors:
+Sensor
+------
 
 - **fingerprint_count**: The number of enrolled fingerprints stored on the reader.
 
@@ -198,7 +202,7 @@ To use the variables, use a :ref:`lambda <config-lambda>` template, the matched 
     on_finger_scan_matched:
       - text_sensor.template.publish:
           id: fingerprint_state
-          state: !lambda 'return "Authorized finger " + to_string(finger_id) + ", confidence " + tostring(confidence);'
+          state: !lambda 'return "Authorized finger " + to_string(finger_id) + ", confidence " + to_string(confidence);'
       # Pushing a tag_scanned event based on finger_id only if confidence is greater than 50
       - if:
           condition:
