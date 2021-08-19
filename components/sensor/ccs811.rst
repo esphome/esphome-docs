@@ -99,6 +99,14 @@ and you will get consistent values.
 Please note that after some time (a couple of months), the baseline will need to be
 re-calibrated because the internal sensor has a slight value drift over time.
 
+Feature of the popular Chinese sensor CJMCU-811 from Aliexpress
+--------------------
+
+Such a popular CSS811 (CJMCU-811) sensor from Aliexpress is not detected when you scanning the i2c bus. Because the sensor will not start working until the pin WAK (nWAKE) is grounded (it is pulled low).
+
+
+
+
 See Also
 --------
 
