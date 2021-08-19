@@ -3,10 +3,10 @@ Relay
 
 .. seo::
     :description: Instructions for using the M5Stack 4Relay with ESPHome.
-    :image: m5stack_4relay.webp
+    :image: m5stack_4relay.png
     :keywords: Relay, M5Stack 4Relay
 
-.. figure:: images/m5stack_4relay.webp
+.. figure:: images/m5stack_4relay.png
     :align: center
     :width: 80.0%
 
