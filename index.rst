@@ -328,6 +328,7 @@ Switch Components
     Tuya Switch, components/switch/tuya, tuya.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
+    M5Stack 4Relay, components/swtich/m5stack_4relay, m5stack_4relay.webp
 
 Fan Components
 --------------
