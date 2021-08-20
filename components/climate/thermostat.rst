@@ -54,6 +54,11 @@ modes that Home Assistant offers.
         sensor: my_temperature_sensor
         default_target_temperature_low: 20 °C
         default_target_temperature_high: 22 °C
+        min_cooling_off_time: 300s
+        min_cooling_run_time: 300s
+        min_heating_off_time: 300s
+        min_heating_run_time: 300s
+        min_idle_time: 30s
         cool_action:
           - switch.turn_on: air_cond
         heat_action:
@@ -67,8 +72,12 @@ modes that Home Assistant offers.
     # Example single-point configuration entry (for heating only)
     climate:
       - platform: thermostat
+        name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
         default_target_temperature_low: 20 °C
+        min_heating_off_time: 300s
+        min_heating_run_time: 300s
+        min_idle_time: 30s
         heat_action:
           - switch.turn_on: heater
         idle_action:
@@ -79,8 +88,12 @@ modes that Home Assistant offers.
     # Example single-point configuration entry (for cooling only)
     climate:
       - platform: thermostat
+        name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
         default_target_temperature_high: 22 °C
+        min_cooling_off_time: 300s
+        min_cooling_run_time: 300s
+        min_idle_time: 30s
         cool_action:
           - switch.turn_on: air_cond
         idle_action:
@@ -330,7 +343,7 @@ Additional Actions/Behavior
   ``supplemental_cooling_action`` will be called repeatedly at an interval defined by this parameter, as well,
   enabling multiple stages of supplemental (auxiliary/emergency) cooling.
 - **max_heating_run_time** (*Required with* ``supplemental_heating_action``, :ref:`config-time`): Duration after
-  which ``supplemental_heating_action`` will be called when heating is active. Note thermostat
+  which ``supplemental_heating_action`` will be called when heating is active. Note that
   ``supplemental_heating_action`` will be called repeatedly at an interval defined by this parameter, as well,
   enabling multiple stages of supplemental (auxiliary/emergency) heating.
 - **min_cooling_off_time** (*Required with* ``cool_action``, :ref:`config-time`): Minimum duration the cooling action
