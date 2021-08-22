@@ -52,18 +52,21 @@ Here is an example output for a Tuya fan controller:
     [12:39:45][C][tuya:032]:   Datapoint 9: switch (value: OFF)
     [12:39:45][C][tuya:046]:   Product: '{"p":"hqq73kftvzh8c92u","v":"1.0.0","m":0}'
 
-
 Configuration variables:
 ------------------------
 
 - **time_id** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome. 
   Specify the ID of the :ref:`Time Component <time>` which will be used.
 
+- **ignore_mcu_update_on_datapoints** (*Optional*, list): A list of datapoints to ignore MCU updates for.  Useful for certain broken/erratic hardware and debugging.
 
 See Also
 --------
 
 - :doc:`/components/fan/tuya`
 - :doc:`/components/light/tuya`
+- :doc:`/components/switch/tuya`
+- :doc:`/components/climate/tuya`
+- :doc:`/components/binary_sensor/tuya`
 - :apiref:`tuya/tuya.h`
 - :ghedit:`Edit`

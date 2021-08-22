@@ -5,9 +5,9 @@ Cold White + Warm White Light
     :description: Instructions for setting up Cold White + Warm White lights.
     :image: brightness-medium.png
 
-The ``cwww`` light platform creates an Cold-White+Warm-White
-light from 2 :ref:`float output components <output>` (one for each channel). The two
-channels will be mixed using the color temperature configuration options.
+The ``cwww`` light platform creates a cold white + warm white light from 2
+:ref:`float output components <output>` (one for each channel). The two channels
+can be controlled individually or together.
 
 .. code-block:: yaml
 
@@ -21,16 +21,28 @@ channels will be mixed using the color temperature configuration options.
         warm_white_color_temperature: 2000 K
         constant_brightness: true
 
+.. _cwww_mixing:
+
+Mixing
+------
+
+The two channels of this light can be controlled individually by using the ``cold_white`` and ``warm_white`` options of
+the :ref:`light control actions <light-turn_on_action>`.
+
+If the color temperature of both lights is supplied, it is also possible to control the the two channels together by
+setting a color temperature, using the ``white`` (interpreted as brightness) and ``color_temperature`` options. This
+calculation assumes that both lights have the same illuminance, which might not always be accurate.
+
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the light.
 - **cold_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the cold white channel.
 - **warm_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the warm white channel.
-- **cold_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the cold white channel.
-- **warm_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the warm white channel.
+- **cold_white_color_temperature** (*Optional*, float): The color temperature (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
+  of the cold white channel. Note that this option is required to control the mixing from Home Assistant.
+- **warm_white_color_temperature** (*Optional*, float): The color temperature (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
+  of the warm white channel. Note that this option is required to control the mixing from Home Assistant.
 - **constant_brightness** (*Optional*, boolean): When enabled, this will keep the overall brightness of the cold and warm white channels constant by limiting the combined output to 100% of a single channel. This reduces the possible overall brightness but is necessary for some power supplies that are not able to run both channels at full brightness at once. Defaults to ``false``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -43,10 +55,13 @@ See Also
 - :doc:`/components/light/index`
 - :doc:`/components/light/rgb`
 - :doc:`/components/light/rgbw`
+- :doc:`/components/light/rgbww`
+- :doc:`/components/light/rgbct`
+- :doc:`/components/light/color_temperature`
 - :doc:`/components/power_supply`
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/pca9685`
 - :doc:`/components/output/tlc59208f`
-- :apiref:`cwww/cww_light_output.h`
+- :apiref:`cwww/cwww_light_output.h`
 - :ghedit:`Edit`

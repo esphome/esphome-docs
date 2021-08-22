@@ -16,12 +16,32 @@ and ULN2003 (`datasheet <http://www.ti.com/lit/ds/symlink/uln2003a.pdf>`__) are 
     This component will not show up in the Home Assistant front-end automatically because
     Home Assistant doesn't have support for steppers. Please see :ref:`stepper-ha-config`.
 
-A4988 Configuration
--------------------
+.. _base_stepper_config:
+
+Base Stepper Configuration
+--------------------------
+
+All stepper configuration schemas inherit these options.
+
+Configuration variables:
+
+- **max_speed** (**Required**, float): The maximum speed in ``steps/s`` (steps per seconds) to drive the
+  stepper at. Note most steppers can't step properly with speeds higher than 250 steps/s.
+- **acceleration** (*Optional*, float): The acceleration in ``steps/s^2`` (steps per seconds squared)
+  to use when starting to move. The default is ``inf`` which means infinite acceleration, so the
+  stepper will try to drive with the full speed immediately. This value is helpful if that first motion of
+  the motor is too jerky for what it's moving.  If you make this a small number, it will take the motor a
+  moment to get up  to speed.
+- **deceleration** (*Optional*, float): The same as ``acceleration``, but for when the motor is decelerating
+  shortly before reaching the set position. Defaults to ``inf`` (immediate deceleration).
+
+A4988 Component
+---------------
+
+Put this code into the configuration file on ESPHome for this device.
 
 .. code-block:: yaml
 
-    # Example configuration entry
     stepper:
       - platform: a4988
         id: my_stepper
@@ -42,16 +62,11 @@ Configuration variables:
   stepper driver.
 - **dir_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The ``DIRECTION`` pin of the A4988
   stepper driver.
-- **max_speed** (**Required**, float): The maximum speed in ``steps/s`` (steps per seconds) to drive the
-  stepper at. Note most steppers can't step properly with speeds higher than 250 steps/s.
 - **sleep_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Optionally also use the ``SLEEP`` pin
   of the A4988 stepper driver. If specified, the driver will be put into sleep mode as soon as the stepper
   reaches the target steps.
-- **acceleration** (*Optional*, float): The acceleration in ``steps/s^2`` (steps per seconds squared)
-  to use when starting to move. The default is ``inf`` which means infinite acceleration, so the
-  stepper will try to drive with the full speed immediately.
-- **deceleration** (*Optional*, float): The same as ``acceleration``, but for when the motor is decelerating
-  shortly before reaching the set position. Defaults to ``inf`` (immediate deceleration).
+
+- All other from :ref:`base_stepper_config`.
 
 .. note::
 
@@ -64,10 +79,12 @@ Configuration variables:
             # ...
             dir_pin:
               number: D1
-              inverted: True
+              inverted: true
 
-ULN2003 Configuration
----------------------
+ULN2003 Component
+-----------------
+
+Put this code into the configuration file on ESPHome for this device.
 
 .. code-block:: yaml
 
@@ -89,8 +106,10 @@ ULN2003 Configuration
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): Specify the ID of the stepper so that you can control it.
-- **pin_a**, **pin_b**, **pin_c**, **pin_d** (**Required**, :ref:`Pin Schema <config-pin_schema>`):
-  The four pins of the stepper control board.
+- **pin_a** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin **a** of the stepper control board.
+- **pin_b** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin **b** of the stepper control board.
+- **pin_c** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin **c** of the stepper control board.
+- **pin_d** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin **d** of the stepper control board.
 - **sleep_when_done** (*Optional*, boolean): Whether to turn off all coils when the stepper has
   reached the target position
 - **step_mode** (*Optional*, string): The step mode to operate the motor with. One of:
@@ -99,13 +118,7 @@ Configuration variables:
     - ``HALF_STEP``
     - ``WAVE_DRIVE``
 
-- **max_speed** (**Required**, float): The maximum speed in ``steps/s`` (steps per seconds) to drive the
-  stepper at. Note most steppers can't step properly with speeds higher than 250 steps/s.
-- **acceleration** (*Optional*, float): The acceleration in ``steps/s^2`` (steps per seconds squared)
-  to use when starting to move. The default is ``inf`` which means infinite acceleration, so the
-  stepper will try to drive with the full speed immediately.
-- **deceleration** (*Optional*, float): The same as ``acceleration``, but for when the motor is decelerating
-  shortly before reaching the set position. Defaults to ``inf`` (immediate deceleration).
+- All other from :ref:`base_stepper_config`.
 
 .. _stepper-set_target_action:
 
@@ -136,7 +149,7 @@ position (in steps). The stepper will always run towards the target position and
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
-- **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
+- **target** (**Required**, int, :ref:`templatable <config-templatable>`): The target position in steps.
 
 .. warning::
 
@@ -190,10 +203,10 @@ the target again.
               return -1000;
             }
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the stepper.
-- **target** (*Optional*, int, :ref:`templatable <config-templatable>`): The target position in steps.
+- **position** (**Required**, int, :ref:`templatable <config-templatable>`): The position to report in steps.
 
 .. _stepper-set_speed_action:
 
@@ -215,19 +228,60 @@ Configuration variables:
 - **speed** (**Required**, :ref:`templatable <config-templatable>`, float): The speed
   in ``steps/s`` (steps per seconds) to drive the stepper at.
 
+.. _stepper-set_acceleration_action:
+
+``stepper.set_acceleration`` Action
+-----------------------------------
+
+This :ref:`Action <config-action>` allows you to set the acceleration of a stepper at runtime.
+
+.. code-block:: yaml
+
+    on_...:
+      - stepper.set_acceleration:
+          id: my_stepper
+          speed: 250 steps/s^2
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **acceleration** (**Required**, :ref:`templatable <config-templatable>`, float): The acceleration
+  in ``steps/s^2`` (steps per seconds squared) to use when starting to move.
+
+.. _stepper-set_deceleration_action:
+
+``stepper.set_deceleration`` Action
+-----------------------------------
+
+This :ref:`Action <config-action>` allows you to set the deceleration of a stepper at runtime.
+
+.. code-block:: yaml
+
+    on_...:
+      - stepper.set_deceleration:
+          id: my_stepper
+          speed: 250 steps/s^2
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the stepper.
+- **deceleration** (**Required**, :ref:`templatable <config-templatable>`, float): The same as ``acceleration``,
+  but for when the motor is decelerating shortly before reaching the set position.
+
 .. _stepper-ha-config:
 
 Home Assistant Configuration
 ----------------------------
 
-This component will not show up in the Home Assistant frontend automatically because Home Assistant
-does not support steppers natively (raise this issue in Home Assistant forums to make this a
-higher priority for Home Assistant). You can add this to your Home Assistant configuration to
-be able to control the stepper from the frontend.
+This component will not show up in the Home Assistant front-end (Overview) automatically because
+Home Assistant does not support steppers natively.
+
+You can add the stepper component code below to your Home Assistant configuration (``configuration.yaml``) to
+be able to control the stepper from the front-end.
 
 .. code-block:: yaml
 
-    # Home Assistant configuration
+    # Add a slider control to Home Assistant to set an integer value
     input_number:
       stepper_control:
         name: Stepper Control
@@ -237,6 +291,7 @@ be able to control the stepper from the frontend.
         step: 1
         mode: slider
 
+    # Do something when the slider changes
     automation:
       - alias: Write Stepper Value to ESP
         trigger:
@@ -247,6 +302,40 @@ be able to control the stepper from the frontend.
           - service: esphome.livingroom_control_stepper
             data_template:
               target: '{{ trigger.to_state.state | int }}'
+
+In the above code, "stepper_control" is the ID of a numeric input field. It must be unique and it is
+used in the automation section as a reference name. The display name for this field is in
+stepper_control's ``name`` key.
+
+If you want your user interface to give you more control over your stepper controller, such as
+setting the acceleration, deceleration, etc, then you can add more input fields after ``stepper_control``
+but before ``automation``. They can be a simple number-entry field (mode: box) or a slider like this.
+Each of these extra input fields needs an associated input parameter defined on the ESPHome device's
+API service.
+
+The automation section tells Home Assistant what to do when the slider changes. It needs a trigger
+(state of the ``stepper_control`` slider) and an action. In the trigger section, ``entity_id`` must refer
+back to the configuration ID that triggers the automation. For us, that is the ``stepper_control``
+field in the ``input_number`` item. That's why the value is ``input_number.stepper_control``.
+
+In the action section, the service name is vital to get right: it's the glue that connects Home Automation's
+front-end to the ESPHome device configuration. While you might expect the syntax to be ``esphome.<your_device>.<api_service>``,
+the correct syntax is to join the device ID to the API service ID with an underscore,
+as in ``esphome.livingroom_control_stepper`` where "Livingroom" is a device in ESPHome and "control_stepper" is an
+API service for that device.
+
+The template string is used to get the "state" value from the ``target`` field (defined in the target section) on the
+``input_number`` component of the Home Assistant front-end. This value is then passed to the API service as defined in
+the ESPHome device's configuration. The ``data_template`` section lists one value for each of the input parameters on
+the service being called by the automation. In our case, the ESPHome device has an API service with a single parameter,
+"target". If you called this "my_target", then the last line above should be ``my_target: '{{ trigger.to_state.state | int }}'``.
+Getting this linkage right is very important.
+
+The following code needs to go in the ESPHome configuration file for this device. Above, we mention "API service"
+a lot. This code is where that is defined. You may have already added it (or something similar). Note
+that the input variable for the ``control_stepper`` service is called ``target``. That's what matches with the
+automation configuration above. Also note that the variable ``target`` is defined as an integer. That means it
+must be an integer number, not a string.
 
 .. code-block:: yaml
 

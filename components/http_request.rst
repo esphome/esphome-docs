@@ -49,6 +49,12 @@ This :ref:`action <config-action>` sends a GET request.
           headers:
             Content-Type: application/json
           verify_ssl: false
+          on_response:
+            then:
+              - logger.log:
+                  format: 'Response status: %d'
+                  args:
+                    - status_code
       # Short form
       - http_request.get: https://esphome.io
 
@@ -57,6 +63,7 @@ Configuration variables:
 - **url** (**Required**, string, :ref:`templatable <config-templatable>`): URL to send request.
 - **headers** (*Optional*, mapping): Map of HTTP headers. Values are :ref:`templatable <config-templatable>`.
 - **verify_ssl** (*Optional*, boolean): Verify the SSL certificate of the endpoint. Defaults to ``true``.
+- **on_response** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the request is finished.
 
 .. note::
 
@@ -111,6 +118,29 @@ Configuration variables:
 
 - **method** (**Required**, string): HTTP method to use (``GET``, ``POST``, ``PUT``, ``DELETE``, ``PATCH``).
 - All other options from :ref:`http_request-post_action`.
+
+.. _http_request-on_response:
+
+``on_response`` Trigger
+-----------------------
+
+This automation will be triggered when the HTTP request is finished and will supply the
+http response code in parameter ``status_code`` as an ``int``.
+
+.. code-block:: yaml
+
+    on_...
+      then:
+        - http_request.get:
+            url: https://esphome.io
+            verify_ssl: false
+            on_response:
+              then:
+                - logger.log:
+                    format: "Response status: %d"
+                    args:
+                      - status_code
+
 
 .. _http_request-examples:
 

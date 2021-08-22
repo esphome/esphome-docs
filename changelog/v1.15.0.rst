@@ -33,6 +33,7 @@ Changelog - Version 1.15.0 - September 13, 2020
     TM1637, components/display/tm1637, tm1637.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
+    ILI9341, components/display/ili9341, ili9341.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
@@ -40,7 +41,7 @@ Changelog - Version 1.15.0 - September 13, 2020
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     HTTP Request, components/http_request, connection.svg
-    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
+    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
@@ -571,6 +572,56 @@ Release 1.15.1 - September 14
 - esphome: Fix for Ruuvi voltage parsing of RAWv2 format :esphomepr:`1267` by :ghuser:`akoivist`
 - docs: Adds Tuya Climate temperature multiplier :docspr:`756` by :ghuser:`jesserockz`
 - esphome: Adds support for Tuya Climate temperature multiplier :esphomepr:`1276` by :ghuser:`jesserockz`
+
+Release 1.15.2 - September 20
+-----------------------------
+
+- docs: Light triggers referenced in the "automation" guide. :docspr:`746` by :ghuser:`demikl`
+- docs: specific MacOS Docker command to launch dashboard :docspr:`553` by :ghuser:`oncleben31`
+- docs: Update index.rst :docspr:`757` by :ghuser:`3ative`
+- esphome: Adds new homeassistant.tag_scanned action :esphomepr:`1281` by :ghuser:`jesserockz`
+- docs: add custom uart id usage :docspr:`765` by :ghuser:`glmnet`
+- esphome: Readds the battery level for xiaomi_hhccjcy01 :esphomepr:`1288` by :ghuser:`jesserockz`
+- esphome: fix(remote_receiver): Add missing pin setup for ESP32 :esphomepr:`1252` by :ghuser:`lwfitzgerald`
+- docs: Add docs for homeassistant.tag_scanned action :docspr:`763` by :ghuser:`jesserockz`
+
+Release 1.15.3 - October 22
+---------------------------
+
+- docs: Mention CODEOWNERS magic symbol :docspr:`767` by :ghuser:`glmnet`
+- docs: using docker image to build esphome-docs locally :docspr:`747` by :ghuser:`demikl`
+- docs: Add missing doc for rc_switch event :docspr:`740` by :ghuser:`micw`
+- docs: Remove unneeded parameters :docspr:`752` by :ghuser:`KTibow`
+- docs: Enable color_interlock for the Teckin SB50 example :docspr:`743` by :ghuser:`CarlosGS`
+- docs: clarify esp8266_restore_from_flash with restore_value :docspr:`754` by :ghuser:`pille`
+- docs: Update mirabella-genio-bulb.rst :docspr:`732` by :ghuser:`DotNetDann`
+- docs: Fix APDS9960 datasheet link :docspr:`772` by :ghuser:`JonathanTreffler`
+- docs: Update uart.rst :docspr:`771` by :ghuser:`sublime93`
+- docs: Update index.rst :docspr:`773` by :ghuser:`damanti-me`
+- docs: HM3301 - Change type to calculation_type :docspr:`769` by :ghuser:`rdehuyss`
+- docs: Update diy.rst :docspr:`781` by :ghuser:`Dilbert66`
+- docs: Update docker architectures in getting started :docspr:`780` by :ghuser:`jesserockz`
+- docs: Remove bh7150 API reference :docspr:`784` by :ghuser:`JeffResc`
+- docs: Add 2.13in-ttgo-b73 to list of waveshare models :docspr:`786` by :ghuser:`davewongillies`
+- docs: Typo: connedted -> connected :docspr:`787` by :ghuser:`johanvanderkuijl`
+- docs: Update edit URL on Sonoff Basic page :docspr:`785` by :ghuser:`JeffResc`
+- docs: Update Sonoff Mini :docspr:`783` by :ghuser:`debsahu`
+- docs: Set correct link to ESPColor struct :docspr:`788` by :ghuser:`cdrfun`
+- docs: Add battery_level note for xiaomi_hhccjcy01 :docspr:`761` by :ghuser:`axilleas`
+- docs: Corrected the example pin mapping to GPIO mapping. :docspr:`789` by :ghuser:`shaeed`
+- esphome: fix chip_rotation: 180 :esphomepr:`1321` by :ghuser:`ssieb`
+- docs: Fix links, moved to gists :docspr:`802` by :ghuser:`glmnet`
+- docs: Update wifi.rst :docspr:`795` by :ghuser:`Frankster-NL`
+- docs: BME680 default address is 0x76 :docspr:`792` by :ghuser:`trvrnrth`
+- docs: Individual BMXXXXX sensor configs are optional :docspr:`791` by :ghuser:`trvrnrth`
+- esphome: Fix Light Trigger :esphomepr:`1308` by :ghuser:`MartinWelsch`
+- esphome: Fix Xiaomi merged packet parsing :esphomepr:`1293` by :ghuser:`Alex9779`
+- docs: Correct pull-up value :docspr:`811` by :ghuser:`tomlut`
+- esphome: Fix color_interlock behavior :esphomepr:`1325` by :ghuser:`margau`
+- esphome: Fix scheduler with too many cancelled timers :esphomepr:`1309` by :ghuser:`glmnet`
+- esphome: fix config check in OnlyWith configuration helper :esphomepr:`1304` by :ghuser:`akomelj`
+- esphome: fix: Incorrect time delay conversion breaks remote_transmitter_esp8266.cpp :esphomepr:`1322` by :ghuser:`thejonesyboy`
+- esphome: fix hm3301 AQICalculator is off by 1 :esphomepr:`1331` by :ghuser:`ikatkov`
 
 Past Changelogs
 ---------------

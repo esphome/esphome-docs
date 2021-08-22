@@ -47,15 +47,15 @@ VCC to 3.3V and GND to GND.
 Backlight
 *********
 
-To use a backlight LIGHT pin needs to be connected to ground. If connected to GPIO pin it can be controlled from EPSHome. See :doc:`/components/light/monochromatic`.
+To use a backlight LIGHT pin needs to be connected to ground. If connected to GPIO pin it can be controlled from ESPHome. See :doc:`/components/light/monochromatic`.
 
 
 Configuration variables:
 ************************
 
-- **reset_pin** (**Required**)(:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **cs_pin** (**Required**)(:ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (**Required**)(:ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.

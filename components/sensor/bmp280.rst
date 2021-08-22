@@ -35,7 +35,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **temperature** (**Required**): The information for the temperature.
+- **temperature** (*Optional*): The information for the temperature.
   sensor
 
   - **name** (**Required**, string): The name for the temperature
@@ -45,7 +45,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pressure** (**Required**): The information for the pressure sensor.
+- **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
   - **oversampling** (*Optional*): The oversampling parameter for the temperature sensor.

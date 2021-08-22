@@ -1,0 +1,123 @@
+SM300D2 7-in-1 Air Quality Sensor
+=================================
+
+.. seo::
+    :description: Instructions for setting up SM300D2 sensor to work with ESPHome
+    :image: sm300d2-full.jpg
+    :keywords: sm300d2
+
+The ``sm300d2`` sensor platform allows you to use the SM300D2 7-in-1 Air Quality Sensor with ESPHome.
+
+.. figure:: images/sm300d2-full.jpg
+    :align: center
+    :width: 50.0%
+
+    SM300D2 7-in-1 Air Quality Sensor.
+
+.. figure:: images/sm300d2-ui.png
+    :align: center
+    :width: 50.0%
+
+
+The SM300D2 sensor supports connections via UART or RS485. This platform only supports UART-connections.
+Make sure you have a :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the
+TX pin of the sensor. The sensor does not support receiving data, so the ``tx_pin`` does not need to be
+connected. The sensor expects the baud rate to be set at 9600.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      rx_pin: D0
+      tx_pin: D1
+      baud_rate: 9600
+
+    sensor:
+      - platform: sm300d2
+        co2:
+          name: "SM300D2 CO2 Value"
+        formaldehyde:
+          name: "SM300D2 Formaldehyde Value"
+        tvoc:
+          name: "SM300D2 TVOC Value"
+        pm_2_5:
+          name: "SM300D2 PM2.5 Value"
+        pm_10_0:
+          name: "SM300D2 PM10 Value"
+        temperature:
+          name: "SM300D2 Temperature Value"
+        humidity:
+          name: "SM300D2 Humidity Value"
+        update_interval: 60s
+
+Configuration variables:
+------------------------
+
+
+- **co2** (**Required**): The CO₂ data from the sensor in parts per million (ppm).
+
+  - **name** (**Required**, string): The name of the CO₂ sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **formaldehyde** (**Required**): The formaldehyde data of the sensor in micrograms per cubic meter air (µg/m³).
+
+  - **name** (**Required**, string): The name of the formaldehyde sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **tvoc** (**Required**): The total volatile organic compounds (TVOC) data of the sensor in micrograms per cubic meter air (µg/m³).
+
+  - **name** (**Required**, string): The name of the TVOC sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **pm_2_5** (**Required**): The PM2.5 data of the sensor in micrograms per cubic meter air (µg/m³).
+
+  - **name** (**Required**, string): The name of the PM2.5 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **pm_10_0** (**Required**): The PM10 data of the sensor in micrograms per cubic meter air (µg/m³).
+
+  - **name** (**Required**, string): The name of the PM10 sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **temperature** (**Required**): The temperature data of the sensor in degrees celsius (°C).
+
+  - **name** (**Required**, string): The name of the temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **humidity** (**Required**): The humidity data of the sensor in percent relative humidity (%).
+
+  - **name** (**Required**, string): The name of the humidity sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``60s``.
+
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for actions.
+
+.. figure:: images/sm300d2-pins.jpg
+    :align: center
+    :width: 80.0%
+
+    Pins on the SM300D2. UART RX is not in use.
+
+.. note::
+
+    ``5V`` should be connected to power supply (supported voltage is 4.8 V to 5.2 V), ``GD`` to ``GND`` pin
+
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`sm300d2/sm300d2.h`
+- :ghedit:`Edit`

@@ -31,9 +31,10 @@ The ESPHome documentation is built using `sphinx <http://www.sphinx-doc.org/>`__
 Syntax
 ******
 
-In my opinion, Markdown would have been the much better choice in hindsight, but at the time
-I was setting up the documentation good Doxygen integration was key to me. Anyway, here's a quick
-RST primer:
+Here's a quick RST primer:
+
+Title hierarchy is based on order of occurrence, not on type of character used to underline it. This
+documents establish the following character order for better consistency.
 
 - **Headers**: You can write titles like this:
 
@@ -200,7 +201,7 @@ RST primer:
 - **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see
   `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
   New pages need to be added to the ``imgtable`` list. The syntax is CSV with <PAGE NAME>, <FILE NAME> (without RST),
-  <IMAGE> (in top-level images/ directory). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
+  <IMAGE> (in top-level images/ directory), <COMMENT> (optional - short text to describe the component). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
 
   Because these images are served on the main page, they need to be compressed heavily. SVGs are preferred over JPGs
   and JPGs should be max. 300x300px.
@@ -222,9 +223,9 @@ Build
 
     .. code-block:: bash
 
-        docker run --rm -v "${PWD}/":/data -p 8000:8000 -it esphome/esphome-docs
+        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
 
-    And then go to ``<CONTAINER_IP>:8000`` in your browser.
+    With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
 
     This way, you don't have to install the dependencies to build the documentation.
 
@@ -284,7 +285,7 @@ Now you can open ESPHome in your IDE of choice (mine is CLion) with the Platform
 addons (see PlatformIO docs for more info). Then develop the new feature with the
 guidelines below.
 
-All PRs are automatically checked for some basic formatting/code mistakes with Travis.
+All PRs are automatically checked for some basic formatting/code mistakes with Github Actions.
 These checks *must* pass for your PR to be mergeable.
 
 Setting Up Git Environment
@@ -329,9 +330,9 @@ Pull Request template outlining your changes; if your PR is not ready to merge y
 mark it as a draft PR in the dropdown of the green "create PR" button.
 
 **Review Process:** ESPHome's code base tries to have a high code standard. At the bottom
-of the Pull Request you will be able to see the "Travis" continuous integration check which
+of the Pull Request you will be able to see the "Github Actions" continuous integration check which
 will automatically go through your patch and try to spot errors. If the CI check fails,
-please see the Travis log and fix all errors that appear there. Only PRs that pass the automated
+please see the Github Actions log and fix all errors that appear there. Only PRs that pass the automated
 checks can be merged!
 
 **Catching up with reality**: Sometimes other commits have been made to the same files
@@ -413,10 +414,11 @@ by the integration developer.
 
 .. note::
 
-    Additionally, ESPHome has a ``custom_components`` mechanism like
-    `Home Assistant does <https://developers.home-assistant.io/docs/creating_component_index>`__.
-    So for testing you can also create a new ``custom_components`` folder inside of your ESPHome
-    config folder and create new integrations in there.
+    For testing you can use :doc:`/components/external_components`.
+
+    ESPHome also has a ``custom_components`` mechanism like `Home Assistant does
+    <https://developers.home-assistant.io/docs/creating_component_index>`__. However this is
+    discouraged in favor of :doc:`/components/external_components`.
 
 2. Config Validation
 ********************
@@ -542,11 +544,15 @@ loader. These are:
 - ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
   added these components in their configuration, a validation error will be generated.
 - ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
-- ``MULTI_CONF``: Mark this component to accept an array of configurations.
+- ``MULTI_CONF``: Mark this component to accept an array of configurations. If this is an
+  integer instead of a boolean, validation will only permit the given number of entries.
 - ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
   has one of them in the config, a validation error will be generated.
 
 - ``ESP_PLATFORMS``: Provide a list of allowed ESP types this integration works with.
+- ``CODEOWNERS``: GitHub usernames or team names of people that are responsible for this integration.
+  You should add at least your GitHub username here, as well as anyone who helped you to write code
+  that is being included.
 
 Codebase Standards
 ------------------
@@ -570,7 +576,7 @@ Standard for the esphome-core codebase:
 - New components should dump their configuration using ``ESP_LOGCONFIG``
   at startup in ``dump_config()``
 - ESPHome uses a unified formatting tool for all source files (but this tool can be difficult to install).
-  When creating a new PR in GitHub, see the Travis CI output to see what formatting needs to be changed
+  When creating a new PR in GitHub, see the Github Actions output to see what formatting needs to be changed
   and what potential problems are detected.
 
 - The number of external libraries should be kept to a minimum. If the component you're developing has a simple
@@ -592,7 +598,7 @@ Standard for the esphome-core codebase:
 
 .. note::
 
-    You can also run the lint and Travis checks through a docker image:
+    You can also run the lint and Github Actions checks through a docker image:
 
     .. code-block:: bash
 

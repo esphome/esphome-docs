@@ -7,7 +7,7 @@ Climate Component
 
 ESPHome has support for climate devices. Climate devices can represent different types of
 hardware, but the defining factor is that climate devices have a settable target temperature
-and can be put in different modes like HEAT, COOL, AUTO or OFF.
+and can be put in different modes like HEAT, COOL, HEAT_COOL or OFF.
 
 .. figure:: images/climate-ui.png
     :align: center
@@ -49,6 +49,9 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Climate Automation
@@ -65,14 +68,23 @@ This is an :ref:`Action <config-action>` for setting parameters for climate devi
 
     - climate.control:
         id: my_climate
-        mode: AUTO
+        mode: HEAT_COOL
         target_temperature: 25°C
 
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the climate device to control.
 - **mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Put the climate device
-  in a specific mode. One of ``OFF``, ``AUTO``, ``COOL`` and ``HEAT``.
+  in a specific mode. One of
+
+  - ``OFF`` - The device is manually set to off, the device is inactive.
+  - ``AUTO`` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
+  - ``HEAT`` - The device is set to heat to reach a target temperature.
+  - ``COOL`` - The device is set to cool to reach a target temperature.
+  - ``HEAT_COOL`` - The device should heat/cool to maintain a target temperature.
+  - ``FAN_ONLY`` - The device only has the fan enabled, no heating or cooling is taking place.
+  - ``DRY`` - The device is set to dry/humidity mode.
+
 - **target_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   target temperature of a climate device.
 - **target_temperature_low** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
@@ -81,10 +93,17 @@ Configuration variables:
   higher target temperature of a climate device with a two-point target temperature.
 - **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
   of the climate device.
-- **fan_mode** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the fan mode
+- **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
+  of the climate device. One of ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
+  ``ACTIVITY``.
+- **custom_preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
+  supported custom_presets of the climate device.
+- **fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
   ``FOCUS``, ``DIFFUSE``.
-- **swing_mode** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the swing mode
+- **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
+  supported custom_fan_modes of the climate device.
+- **swing_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the swing mode
   of the climate device. One of ``OFF``, ``BOTH``, ``VERTICAL``, ``HORIZONTAL``.
 
 .. _climate-lambda_calls:
@@ -97,7 +116,7 @@ advanced stuff.
 
 - Attributes: All climate devices have read-only attributes to get the current state of the device.
 
-  .. code-block:: yaml
+  .. code-block:: cpp
 
       // Current mode, type: ClimateMode (enum)
       id(my_climate).mode
@@ -118,7 +137,7 @@ advanced stuff.
 
 - ``.make_call``: Control the climate device
 
-  .. code-block:: yaml
+  .. code-block:: cpp
 
       auto call = id(my_climate).make_call();
       call.set_mode("OFF");

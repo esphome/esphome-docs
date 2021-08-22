@@ -42,14 +42,13 @@ Configuration variables:
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32,
   this value can not be higher than ``13us``, for the ESP8266 you can use larger intervals too.
-  If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge.
+  If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-- **total** (*Optional*): Report the total number of pulses
-  All options from :ref:`Sensor <config-sensor>`.
+- **total** (*Optional*): Report the total number of pulses.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -75,7 +74,7 @@ count the light pulses on a power meter, you can do the following:
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
-          - multiply: 0.06
+          - multiply: 0.06  # (60s/1000 pulses per kWh)
 
 
 Counting total pulses
@@ -94,13 +93,13 @@ measure the total consumed energy in kWh.
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
-          - multiply: 0.06
+          - multiply: 0.06  # (60s/1000 pulses per kWh)
 
         total:
           unit_of_measurement: 'kWh'
           name: 'Energy Meter House'
           filters:
-            - multiply: 0.001
+            - multiply: 0.001  # (1/1000 pulses per kWh)
 
 See Also
 --------

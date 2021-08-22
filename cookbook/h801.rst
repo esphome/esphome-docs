@@ -105,7 +105,7 @@ The example below uses the TX pin as a PIR motion sensor input:
     :align: center
     :width: 80.0%
 
-H801 shown with PIR connedted to header pins
+H801 shown with PIR connected to header pins
 
 The following can be appended to the YAML file for your H801 to configure the TX pin as a motion 
 sensor input. 

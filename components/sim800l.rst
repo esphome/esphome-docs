@@ -2,11 +2,11 @@ Sim800L Component
 =================
 
 .. seo::
-    :description: Instructions for setting up the SIM800L GSM module to send and receive SMS in ESPHome.
+    :description: Instructions for setting up the SIM800L GSM module to dial, send and receive SMS in ESPHome.
     :image: sim800l.jpg
     :keywords: SMS SIM800L GSM
 
-The ``SIM800L`` Component provides the ability to send and receive SMS text messages. The device must be
+The ``SIM800L`` Component provides the ability to dial, send and receive SMS text messages. The device must be
 connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line.
 The UART bus must be configured at the same speed of the module which is by default 9600bps.
 The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
@@ -92,11 +92,24 @@ Send a SMS message to a phone recipient using this action in automations.
             message: !lambda |-
               return id(reed_switch).state ? "Door is now OPEN" : "Hey door just CLOSED";
 
+
+.. _sim800l-dial_action:
+
+``sim800l.dial`` Action
+---------------------------
+
+Dial to a phone recipient using this action in automations.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sim800l.dial:
+            recipient: '+15551234567'
+
 Configuration options:
 
-- **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The message recipient.
-  number.
-- **message** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
+- **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The number to dial.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
 
 .. note::
@@ -105,14 +118,14 @@ Configuration options:
 
     .. code-block:: cpp
 
-        id(sim800l1).send_sms("+15551234567", "The message content");
+        id(sim800l1).dial("+15551234567");
 
 
 Getting started with Home Assistant
 -----------------------------------
 
 The following code will get you up and running with a configuration updating received messages
-on Home Assistant and will also setup a service so you can send messages with your SIM800L.
+on Home Assistant and will also setup a service so you can send messages and dial with your SIM800L.
 
 .. code-block:: yaml
 
@@ -126,6 +139,12 @@ on Home Assistant and will also setup a service so you can send messages with yo
         - sim800l.send_sms:
             recipient: !lambda 'return recipient;'
             message: !lambda 'return message;'
+      - service: dial
+        variables:
+          recipient: string
+        then:
+        - sim800l.dial:
+            recipient: !lambda 'return recipient;'
 
     text_sensor:
     - platform: template
@@ -159,6 +178,26 @@ To trigger the automation from Home Assistant you can invoke the service with th
         data:
           recipient: "+15551234567"
           message: "Hello World!"
+      - service: esphome.livingroom_dial
+        data:
+          recipient: "+15551234567"
+
+
+Relay management commands received from an authorized sender:
+
+.. code-block:: yaml
+
+    sim800l:
+      on_sms_received:
+      - lambda: |-
+          if ( (id(sms_sender).state == "+79991234567") && ( (id(sms_message).state == "relay_1_on") OR (id(sms_message).state == "Relay_1_on") ) ) {
+            id(relay_1).turn_on();
+          }
+    switch:
+      - platform: gpio
+        id: relay_1
+        pin: 0
+
 
 See Also
 --------

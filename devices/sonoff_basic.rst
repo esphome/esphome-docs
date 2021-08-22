@@ -72,7 +72,7 @@ exposes all of the basic functions.
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff Basic Button"
         on_press:
           - switch.toggle: relay
@@ -271,4 +271,4 @@ See Also
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_s20`
 - `GPIO locations <https://github.com/arendst/Sonoff-Tasmota/wiki/GPIO-Locations>`__
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/devices/sonoff_basic.rst>`__
