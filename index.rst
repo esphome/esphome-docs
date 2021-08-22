@@ -412,7 +412,7 @@ Climate Components
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
-    Midea Air Conditioner, components/climate/midea_ac, midea.svg
+    Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
 
 Number Components

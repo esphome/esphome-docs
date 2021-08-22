@@ -5,9 +5,7 @@ Midea Air Conditioner
     :description: Instructions for setting up a Midea climate device
     :image: air-conditioner.png
 
-The ``midea_ac`` component creates a Midea air conditioner climate device.
-
-This component requires a auto-loaded ``midea_dongle`` component, that use hardware UART.
+The ``midea`` component creates a Midea air conditioner climate device.
 
 .. note::
 
@@ -37,16 +35,14 @@ This component requires a auto-loaded ``midea_dongle`` component, that use hardw
       rx_pin: 3         # hardware dependant
       baud_rate: 9600
 
-    # Optional (if you want modify settings)
-    midea_dongle:
-      period: 1s
-      timeout: 2s
-      num_attempts: 3
-    
     # Main settings
     climate:
-      - platform: midea_ac
+      - platform: midea
         name: Midea Climate         # Use a unique name.
+        transmitter_id:             # Optional. Add this option to use IR transmitter.
+        period: 1s                  # Optional
+        timeout: 2s                 # Optional
+        num_attempts: 3             # Optional
         autoconf: true              # Autoconfigure most options.
         beeper: true                # Beep on commands.
         visual:                     # Optional. Example of visual settings override.
@@ -83,8 +79,13 @@ Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **midea_dongle_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the ``midea_dongle`` if you want to use multiple devices.
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
+  to use multiple UART buses.
 - **name** (**Required**, string): The name of the climate device.
+- **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
+- **period** (*Optional*, :ref:`time <config-time>`): Minimal period between requests to the appliance. Defaults to ``1s``.
+- **timeout** (*Optional*, :ref:`time <config-time>`): Request response timeout until next request attempt. Defaults to ``2s``.
+- **num_attempts** (*Optional*, integer 1-5): Number of request attempts. Defaults to ``3``.
 - **autoconf** (*Optional*, boolean): Get capabilities automatically. Allows you not to manually define most of the capabilities of the appliance.
   Defaults to ``True``.
 - **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
@@ -112,18 +113,6 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 - All other options from :ref:`Climate <config-climate>`.
-
-Configuration variables of midea_dongle component:
-**************************************************
-
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
-  to use multiple UART buses.
-- **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
-- **period** (*Optional*, :ref:`time <config-time>`): Minimal period between requests to the appliance. Defaults to ``1s``.
-- **timeout** (*Optional*, :ref:`time <config-time>`): Request response timeout until next request attempt. Defaults to ``2s``.
-- **num_attempts** (*Optional*, integer 1-5): Number of request attempts. Defaults to ``3``.
-
 
 Automations
 -----------
@@ -221,9 +210,6 @@ component, as well as control the light of the LED display.
     remote_transmitter:
       pin: GPIO13                       # For iot-uni-stick.
       carrier_duty_percent: 100%        # 50% for IR LED, 100% for direct connect to TSOP IR receiver output.
-
-    midea_dongle:
-      transmitter_id:                   # Add this option to use IR transmitter.
 
     sensor:
       - platform: homeassistant
