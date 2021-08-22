@@ -53,6 +53,8 @@ The BMS communicate with board by :ref:`UART <uart>` protocol.
           name: "Min Temperature Probe Number"
         remaining_capacity:
           name: "Remaining Capacity"
+        cells_number:
+          name: "Cells Number"
         temperature_1:
           name: "Temperature 1"
         temperature_2:
@@ -151,6 +153,12 @@ Configuration variables:
 - **remaining_capacity** (*Optional*): The capacity in Ah left in the battery.
 
   - **name** (**Required**, string): The name for the Remaining Capacity sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **cells_number** (*Optional*): The number of cells in series in the battery pack.
+
+  - **name** (**Required**, string): The name for the Cells Number sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
