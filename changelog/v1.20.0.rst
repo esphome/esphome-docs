@@ -12,7 +12,7 @@ Changelog - Version 1.20.0 - 21st July 2021
 
     Number Core, components/number/index, folder-open.svg
     Template Number, components/number/template, description.svg
-    Havells Inverter, components/sensor/havells_inverter, havellsgti5000d_s.jpg
+    Havells Inverter, components/sensor/havells_solar, havellsgti5000d_s.jpg
     Anova Cooker, components/climate/anova, anova.png
 
 
@@ -86,6 +86,25 @@ Release 1.20.2 - July 29
 - Bump esphome dashboard to 20210728.0 :esphomepr:`2081` by :ghuser:`jesserockz`
 - HLW8012 - Dump energy sensor config :esphomepr:`2082` by :ghuser:`jesserockz`
 - Use sensor_schema for total_daily_energy :esphomepr:`2090` by :ghuser:`jesserockz`
+
+Release 1.20.3 - July 30
+------------------------
+
+- Set pulse meter total to use state class measurement and last reset type auto :esphomepr:`2097` by :ghuser:`jesserockz`
+
+Release 1.20.4 - August 4
+-------------------------
+
+- Correctly invert esp32 RMT TX :esphomepr:`2022` by :ghuser:`WeekendWarrior1`
+- Move configure_rmt() into setup() :esphomepr:`2028` by :ghuser:`WeekendWarrior1`
+- Fix climate restore schema changed resulting in invalid restore :esphomepr:`2068` by :ghuser:`OttoWinter`
+- Fix PID climate breaks when restoring old modes :esphomepr:`2086` by :ghuser:`OttoWinter`
+- fix diplay trigger missing base class :esphomepr:`2099` by :ghuser:`glmnet`
+- Fix min/max keys in MQTT Number to match Home Assistant :esphomepr:`2102` by :ghuser:`paulmonigatti`
+- Use proper schema for the analog pin shorthand :esphomepr:`2103` by :ghuser:`nonameplum`
+- [duty_cycle] initialize two missing variables :esphomepr:`2088` by :ghuser:`CarlosGS`
+- Fix time.on_time triggering if time jumped back :esphomepr:`1806` by :ghuser:`brambo123`
+- Fix external components not refreshing with default or high refresh time :esphomepr:`2122` by :ghuser:`OttoWinter`
 
 Full list of changes
 --------------------

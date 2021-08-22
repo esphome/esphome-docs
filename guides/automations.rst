@@ -436,7 +436,7 @@ time period.
 .. note::
 
     This is a "smart" asynchronous delay - other code will still run in the background while
-    the delay is happening.
+    the delay is happening. When using a lambda call, you should return the delay value in milliseconds.
 
 .. _lambda_action:
 
