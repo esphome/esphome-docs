@@ -1,15 +1,15 @@
 Daly BMS
-=======================================
+========
 
 .. seo::
-    :description: Instructions for setting up a Daly Smart MBS
+    :description: Instructions for setting up a Daly Smart BMS
     :image: daly_bms.png
 
-The ``Daly BMS`` sensor platform allows you to use a Daly smart BMS
+The ``daly_bms`` sensor platform allows you to use a Daly smart BMS
 (`more info <https://dalyelec.en.made-in-china.com/>`__)
 with ESPHome.
 
-The BMS communicate with board by :ref:`UART <uart>` protocol.
+The BMS communicates via :ref:`UART <uart>`.
 
 .. figure:: images/daly_bms_example.png
     :align: center
@@ -73,16 +73,17 @@ The BMS communicate with board by :ref:`UART <uart>` protocol.
         discharging_mos_enabled:
           name: "Discharging MOS"
 
+Component/Hub
+-------------
+
 Configuration variables:
-------------------------
-- **update_interval** (*Optional*): Update interval between readings from BMS.
-
-
+************************
 Sensor:
-------------------------
+-------
 A sensor platform to read BMS data
 
 Configuration variables:
+************************
 
 - **voltage** (*Optional*): Voltage of the battery pack connected to Daly BMS.
 
@@ -175,37 +176,39 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 Text Sensor:
-------------------------
+------------
 Text sensor that indicates the status of BMS.
 
 Configuration variables:
+************************
 
 - **status** (*Optional*): The BMS Status (Charging, Disgharging, Stationary).
 
   - **name** (**Required**, string): The name for the BMS status text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 Binary Sensor:
-------------------------
+--------------
 Binary sensor that indicates the status of MOS.
 
 Configuration variables:
+************************
 
 - **charging_mos_enabled** (*Optional*): The BMS charging mos status to enable the reacharge of the battery.
 
   - **name** (**Required**, string): The name for the Charging MOS binary sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 - **discharging_mos_enabled** (*Optional*): The BMS Discharging mos status to enable the load.
 
   - **name** (**Required**, string): The name for the Discharging MOS binary sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 UART Connection:
-------------------------
+----------------
 Connect RX from BMS to TX in ESP board and TX from BMS to RX in ESP board
 
 .. figure:: images/daly_bms_pinout.png
