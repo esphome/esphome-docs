@@ -7,7 +7,7 @@ Generic ESP32
 
 All ESP32-based devices are supported by ESPHome. Simply select ``ESP32`` when
 the ESPHome wizard asks you for your platform and choose a board type
-from `this link <http://docs.platformio.org/en/latest/platforms/espressif32.html>`__ when the wizard
+from `this link <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ when the wizard
 asks you for the board type.
 
 .. code-block:: yaml
