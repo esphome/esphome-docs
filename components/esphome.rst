@@ -105,6 +105,8 @@ option you can tell ESPHome which Arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the Arduino version to these values (see the full
 list of Arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
+* `3.0.1 <https://github.com/esp8266/Arduino/releases/tag/3.0.1>`__ (not recommended yet)
+* `3.0.0 <https://github.com/esp8266/Arduino/releases/tag/3.0.0>`__ (not recommended yet)
 * `2.7.4 <https://github.com/esp8266/Arduino/releases/tag/2.7.4>`__ (default)
 * `2.7.3 <https://github.com/esp8266/Arduino/releases/tag/2.7.3>`__
 * `2.7.2 <https://github.com/esp8266/Arduino/releases/tag/2.7.2>`__
