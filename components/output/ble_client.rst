@@ -5,8 +5,9 @@ BLE Client Binary Output
     :description: Writes a binary value to a BLE device.
     :image: bluetooth.svg
 
-The ``ble_client`` component is a sensor platform that can
-query BLE devices for specific values of service characteristics.
+The ``ble_client`` component is a output that can
+write a binary value to service characteristics of
+BLE devices.
 
 For more information on BLE services and characteristics, see
 :doc:`/components/ble_client`.
