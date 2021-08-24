@@ -165,7 +165,7 @@ is already set up. You can however change this using the ``priority`` parameter.
     esphome:
       # ...
       on_boot:
-        priority: -10
+        priority: 600
         # ...
         then:
           - switch.turn_off: switch_1
@@ -174,7 +174,7 @@ Configuration variables:
 
 - **priority** (*Optional*, float): The priority to execute your custom initialization code. A higher value
   means a high priority and thus also your code being executed earlier. Please note this is an ESPHome-internal
-  value and any change will not be marked as a breaking change. Defaults to ``-10``. Priorities (you can use any value between them too):
+  value and any change will not be marked as a breaking change. Defaults to ``600``. Priorities (you can use any value between them too):
 
   - ``800.0``: This is where all hardware initialization of vital components is executed. For example setting switches
     to their initial state.

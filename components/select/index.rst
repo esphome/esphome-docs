@@ -116,7 +116,7 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: cpp
 
       // For example, create a custom log message when an option is selected:
-      ESP_LOGI("main", "Option of my select: %f", id(my_select).state);
+      ESP_LOGI("main", "Option of my select: %s", id(my_select).state.c_str());
 
 See Also
 --------
