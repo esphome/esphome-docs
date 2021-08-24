@@ -49,11 +49,11 @@ def sub(path, pattern, repl, expected_count=1):
 
 
 def write_version(version: Version):
-    # ESPHOME_REF = v1.14.4
+    # ESPHOME_REF = 2021.8.0
     sub(
         "Makefile",
         r"ESPHOME_REF = .*",
-        f"ESPHOME_REF = v{version}" if not version.dev else "ESPHOME_REF = dev",
+        f"ESPHOME_REF = {version}" if not version.dev else "ESPHOME_REF = dev",
     )
     # PROJECT_NUMBER         = 1.14.4
     sub(
