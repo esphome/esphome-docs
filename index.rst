@@ -497,7 +497,6 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
-    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
 
 Climate Components
