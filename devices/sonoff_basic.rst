@@ -55,7 +55,6 @@ exposes all of the basic functions.
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp8285
-      arduino_version: 2.4.2
 
     wifi:
       ssid: <YOUR_SSID>

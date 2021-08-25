@@ -27,14 +27,14 @@ Configuration variables:
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPHome network. May only contain lowercase
   characters, digits and hyphens. See :ref:`esphome-changing_node_name`.
-- **platform** (**Required**, string): The platform your board is on,
-  either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
-- **board** (**Required**, string): The board ESPHome should
-  specify for PlatformIO. For the ESP32, choose the appropriate one
-  from `this list <http://docs.platformio.org/en/latest/platforms/espressif32.html#boards>`__
-  and use `this list <http://docs.platformio.org/en/latest/platforms/espressif8266.html#boards>`__
-  for ESP8266-based boards. *This only affects pin aliases and some internal settings*, if unsure
-  choose the generic board option!
+- **platform** (**Required**, string): The platform your board is using,
+  either ``ESP32`` or ``ESP8266``.
+- **board** (**Required**, string): The PlatformIO board ID that should
+  be used. Choose the appropriate board from
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>` for the ESP8266, and
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32`> for the ESP32 (the icon
+  next to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*,
+  if unsure choose a generic board from Espressif.
 
 Advanced options:
 
@@ -105,6 +105,8 @@ option you can tell ESPHome which Arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the Arduino version to these values (see the full
 list of Arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
+* `3.0.1 <https://github.com/esp8266/Arduino/releases/tag/3.0.1>`__ (not recommended yet)
+* `3.0.0 <https://github.com/esp8266/Arduino/releases/tag/3.0.0>`__ (not recommended yet)
 * `2.7.4 <https://github.com/esp8266/Arduino/releases/tag/2.7.4>`__ (default)
 * `2.7.3 <https://github.com/esp8266/Arduino/releases/tag/2.7.3>`__
 * `2.7.2 <https://github.com/esp8266/Arduino/releases/tag/2.7.2>`__
