@@ -47,7 +47,7 @@ Configuration variables:
 ``select.set`` Action
 ----------------------------------
 
-You can also set an option to a Template Telect from elsewhere in your YAML file
+You can also set an option to a Template Select from elsewhere in your YAML file
 with the :ref:`select-set_action`.
 
 See Also
