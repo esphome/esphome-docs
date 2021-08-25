@@ -357,9 +357,13 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 Graphs
 ******
 
-You can display a graph of a sensor value using this component.
+You can display a graph of a sensor value(s) using this component. Examples:
 
 .. figure:: images/graph_screen.png
+    :align: center
+    :width: 60.0%
+
+.. figure:: images/graph_dualtrace.png
     :align: center
     :width: 60.0%
 
