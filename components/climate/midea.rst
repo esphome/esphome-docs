@@ -117,6 +117,33 @@ Configuration variables:
 Automations
 -----------
 
+.. _midea_ac-power_on_action:
+
+``midea_ac.power_on`` Action
+******************************
+
+This action turn on power. The mode and preset will be restored to the last state before turned off.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.power_on:
+
+.. _midea_ac-power_off_action:
+
+``midea_ac.power_off`` Action
+******************************
+
+This action turn off power.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.power_off:
+
+
 .. _midea_ac-follow_me_action:
 
 ``midea_ac.follow_me`` Action
