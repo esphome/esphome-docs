@@ -45,7 +45,7 @@ Advanced options:
   but you can customize this behavior using this option.
 - **flash_write_interval** (*Optional*, :ref:`config-time`): Customize the frequency in which data is
   flushed to the flash. This setting helps to prevent rapid changes to a component from being quickly
-  written to the flash and wearing it out. Defaults to ``1s``. See :ref:`esphome-flash_write_interval` for more info.
+  written to the flash and wearing it out. Defaults to ``1min``. See :ref:`esphome-flash_write_interval` for more info.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
@@ -161,13 +161,17 @@ certain light effects like ``random`` and the ``on_value_range`` trigger.
 ------------------------
 
 As all devices have a limited number of flash write cycles, this setting helps to reduce the number of flash writes
-due to quickly changing components. In the past, components such as ``light``, ``switch``, ``fan`` and ``globals``
+due to quickly changing components. In the past, when components such as ``light``, ``switch``, ``fan`` and ``globals``
 were changed, the state was immediately committed to flash. The result of this was that the last state of these
 components would always restore to its last state on power loss, however, this has the cost of potentially quickly
-damaging the flash if these components are quickly changed. 
+damaging the flash if these components are quickly changed.
 
-Now, when a state is changed, the state is first stored in memory before being flushed to flash after
-the ``flash_write_interval`` has passed.
+A safety feature has thus been implemented to mitigate issues resulting from the limited number of flash write cycles,
+the state is first stored in memory before being flushed to flash after the ``flash_write_interval`` has passed. This
+results in fewer flash writes, preserving the flash health.
+
+This behavior can be disabled by setting ``flash_write_interval`` to immediately commit the state to flash,
+however, be aware that this may lead to increased flash wearing and a shortened device lifespan!
 
 For ESP8266, :ref:`esphome-esp8266_restore_from_flash` must also be set to true for states to be written to flash.
 
