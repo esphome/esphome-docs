@@ -175,7 +175,7 @@ Air Quality
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
-    T6613/15, components/sensor/t6615, t6615.png, C02
+    T6613/15, components/sensor/t6615, t6615.png, CO2
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
 
@@ -497,7 +497,6 @@ Text Sensor Components
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
-    Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
 
 Climate Components

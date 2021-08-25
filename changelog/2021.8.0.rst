@@ -98,6 +98,18 @@ need to downgrade the esphome version because a new version does not work the wa
 should be using the snapshot/backup feature built into Home Assistant Supervisor to rollback.
 
 
+Release 2021.8.1 - August 24
+----------------------------
+
+- Fix pypi download url :esphomepr:`2177` by :ghuser:`jesserockz`
+- Light: include ON_OFF capability to BRIGHTNESS ColorMode :esphomepr:`2186` by :ghuser:`puuu`
+- Fix addressable light control without transitions & effects with transitions :esphomepr:`2187` by :ghuser:`oxan`
+- mqtt_light: remove legacy API config that is not compatible with HA 2021.8 :esphomepr:`2183` by :ghuser:`puuu`
+- Tuya fan component uses enum datapoint type for speed instead of integer :esphomepr:`2182` by :ghuser:`nuttytree`
+- Fix template select lambda :esphomepr:`2198` by :ghuser:`ssieb`
+- Send Celsius temperature unit in MQTT discovery message :esphomepr:`1840` by :ghuser:`mtl010957`
+
+
 Full list of changes
 --------------------
 
