@@ -182,9 +182,11 @@ There are the following possibilities to operate this sensor:
 
 1. Xiaomi stock firmware (requires a bindkey in order to decrypt the received data, see :ref:`obtaining_the_bindkey`)
 2. Device flashed with `ATC MiThermometer <https://github.com/atc1441/ATC_MiThermometer>`__ custom firmware
+3. Device flashed with `PVVX MiThermometer <https://github.com/pvvx/ATC_MiThermometer>`__ custom firmware
 
    - "Mi Like" advertisement (dummy bindkey required)
    - "Custom" advertisement (no bindkey required)
+   - "pvvx" custom advertisement (no bindkey required, only PVVX firmware)
 
 Configuration example for Xiaomi stock firmware or ATC MiThermometer firmware set to "Mi Like" advertisement:
 
@@ -216,6 +218,22 @@ Configuration example for ATC MiThermometer firmware set to "Custom" advertiseme
           name: "ATC Battery-Level"
         battery_voltage:
           name: "ATC Battery-Voltage"
+
+Configuration example for PVVX MiThermometer firmware set to "Custom" advertisement:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: pvvx_mithermometer
+        mac_address: "A4:C1:38:B1:CD:7F"
+        temperature:
+          name: "PVVX Temperature"
+        humidity:
+          name: "PVVX Humidity"
+        battery_level:
+          name: "PVVX Battery-Level"
+        battery_voltage:
+          name: "PVVX Battery-Voltage"
 
 MHO-C401
 **********
@@ -389,6 +407,31 @@ Configuration example:
           name: "MJYD02YL-A Battery Level"
         illuminance:
           name: "MJYD02YL-A Illuminance"
+
+CGPR1
+*****
+
+Qingping motion & ambient light sensor. Broadcasts motion detection, idle time since last motion event, lux value and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
+
+.. figure:: images/xiaomi_cgpr1.png
+    :align: center
+    :width: 30.0%
+
+Configuration example:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: xiaomi_cgpr1
+        name: "CGPR1 Motion detector"
+        mac_address: 58:2D:34:60:32:A2
+        bindkey: "ff1ae526b23b4aebeadcaaad86f59055"
+        idle_time:
+          name: "CGPR1 Idle Time"
+        battery_level:
+          name: "CGPR1 Battery Level"
+        illuminance:
+          name: "CGPR1 Illuminance"
 
 Setting Up Devices
 ------------------

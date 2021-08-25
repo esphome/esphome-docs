@@ -11,7 +11,6 @@ Peacefair PZEM-004T V3 Energy Monitor
     This page is incomplete and could some work. If you want to contribute, please read the
     :doc:`contributing guide </guides/contributing>`. This page is missing:
 
-      - An image for the front page.
       - Images/screenshots/example configs of this device being used in action.
 
 The ``pzemac`` sensor platform allows you to use PZEM-004T V3 energy monitors
@@ -21,6 +20,12 @@ with ESPHome.
 
 The sensor can be connected in various configurations - please see the `manufacturer's website <https://innovatorsguru.com/pzem-004t-v3/>`__
 for more information.
+
+.. figure:: images/pzem-ac.png
+    :align: center
+    :width: 80.0%
+
+    PZEM-004T Version 3.
 
 .. warning::
 

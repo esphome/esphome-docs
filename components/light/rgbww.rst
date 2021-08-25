@@ -6,8 +6,8 @@ RGBWW Light
     :image: rgbw.png
 
 The ``rgbww`` light platform creates an RGBWW (cold white + warm white)
-light from 5 :ref:`float output components <output>` (one for each channel). The cold white
-and warm white channels will be mixed using the color temperature configuration options.
+light from 5 :ref:`float output components <output>` (one for each channel). The cold and warm
+white channels can be controlled individually or together, see :ref:`cwww_mixing` for more information.
 
 .. code-block:: yaml
 
@@ -49,6 +49,19 @@ perceived intensity of different colors will generally vary. This can be done by
         pin: D1
         max_power: 80%
 
+Color Interlock
+---------------
+
+With some LED bulbs, it is not possible to enable the RGB leds at the same time as the white leds, or setting
+the RGB channels to maximum whilst wanting a white light will have an undesired hue effect. For these cases a
+configuration variable is available that prevents the RGB leds and white leds from being turned on at the same
+time: ``color_interlock``.
+
+Setting this option to ``true`` will result in the light having two color modes available, ``RGB`` and ``COLD_WARM_WHITE``.
+When the ``RGB`` color mode is active, the white leds are turned off, and when the ``COLD_WARM_WHITE`` color mode is active,
+the RGB leds are turned off. Switching between these modes can be done from the Home Assistant interface, or by using
+the ``color_mode`` option of the :ref:`light control actions <light-turn_on_action>`.
+
 
 Configuration variables:
 ------------------------
@@ -61,10 +74,12 @@ Configuration variables:
   white channel.
 - **warm_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the warm
   white channel.
-- **cold_white_color_temperature** (**Required**, float): The color temperate (in
-  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
-- **warm_white_color_temperature** (**Required**, float): The color temperate (in
-  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
+- **cold_white_color_temperature** (*Optional*, float): The color temperature (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel. Note that when the color interlock
+  is enabled, this option is required to control the light from Home Assistant.
+- **warm_white_color_temperature** (*Optional*, float): The color temperature (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel. Note that when the color interlock
+  is enabled, this option is required to control the light from Home Assistant.
 - **constant_brightness** (*Optional*, boolean): When enabled, this will keep the overall brightness of the
   cold and warm white channels constant by limiting the combined output to 100% of a single channel. This
   reduces the possible overall brightness but is necessary for some power supplies that are not able to run

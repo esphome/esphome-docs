@@ -1,4 +1,4 @@
-Neopixelbus Light
+NeoPixelBus Light
 =================
 
 .. seo::
