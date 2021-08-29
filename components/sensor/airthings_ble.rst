@@ -51,7 +51,7 @@ Configuration example:
 
     sensor:
       - platform: airthings_wave_plus
-        mac_address: '01:02:03:04:05:06'
+        ble_client_id: airthings01
         update_interval: 5min # default
         temperature:
           name: "WavePlus Temperature"
@@ -67,6 +67,12 @@ Configuration example:
           name: "WavePlus CO2"
         tvoc:
           name: "WavePlus VOC"
+
+    ble_client:
+      - mac_address: 01:02:03:04:05:06
+        id: airthings01
+
+    esp32_ble_tracker:
 
 .. note::
 
