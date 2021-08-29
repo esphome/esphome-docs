@@ -269,6 +269,7 @@ Environmental
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+    SCD4X, components/sensor/scd4x, scd4x.jpg, CO2, Temperature & Humidity
     SCD30, components/sensor/scd30, scd30.jpg, Temperature & Humidity
     SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
