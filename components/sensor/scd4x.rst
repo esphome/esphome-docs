@@ -1,5 +1,5 @@
 SCD4X CO₂, Temperature and Relative Humidity Sensor
-==================================================
+===================================================
 
 .. seo::
     :description: Instructions for setting up SCD4X CO₂ Temperature and Relative Humidity Sensor
