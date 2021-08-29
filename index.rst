@@ -153,6 +153,7 @@ Sensor Components
     SenseAir, components/sensor/senseair, senseair_s8.jpg
     SDS011 Sensor, components/sensor/sds011, sds011.jpg
     SCD30, components/sensor/scd30, scd30.jpg
+    SCD4X, components/sensor/scd4x, scd4x.jpg
     SHTCx, components/sensor/shtcx, shtc3.jpg
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg
     SPS30, components/sensor/sps30, sps30.jpg
