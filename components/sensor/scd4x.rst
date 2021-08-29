@@ -1,15 +1,15 @@
-SCD4X CO₂, Temperature and Relative Humidty Sensor
+SCD4X CO₂, Temperature and Relative Humidity Sensor
 ==================================================
 
 .. seo::
-    :description: Instructions for setting up SCD4X CO₂ Temperature and Relative Humidty Sensor
-    :image: scd40.jpg
+    :description: Instructions for setting up SCD4X CO₂ Temperature and Relative Humidity Sensor
+    :image: scd4x.jpg
 
-The ``scd4x`` sensor platform  allows you to use your Sensiron SCD4X CO₂
+The ``scd4x`` sensor platform  allows you to use your Sensirion SCD4X CO₂
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.5_CO2/Sensirion_CO2_Sensors_SCD4x_Datasheet.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
-.. figure:: images/scd40.jpg
+.. figure:: images/scd4x.jpg
     :align: center
     :width: 80.0%
 
@@ -78,5 +78,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`scd30`
-- :apiref:`scd30/scd30.h`
+- :apiref:`scd4x/scd4x.h`
 - :ghedit:`Edit`
