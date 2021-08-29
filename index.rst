@@ -270,6 +270,7 @@ Environmental
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
+    SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
