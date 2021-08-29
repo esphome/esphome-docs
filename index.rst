@@ -171,6 +171,7 @@ Air Quality
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
+    SCD4X, components/sensor/scd4x, scd4x.jpg, CO2, Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
