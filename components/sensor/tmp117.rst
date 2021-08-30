@@ -6,7 +6,7 @@ TMP117 Temperature Sensor
     :image: tmp117.jpg
     :keywords: TMP117
 
-The TMP117 Temperature+Humidity sensor allows you to use your TMP117
+The TMP117 Temperature sensor allows you to use your TMP117
 (`datasheet <https://www.ti.com/lit/ds/symlink/tmp117.pdf>`__,
 `sparkfun <https://www.sparkfun.com/products/15805>`__)
 sensors with ESPHome.

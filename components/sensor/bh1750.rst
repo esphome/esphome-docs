@@ -28,12 +28,12 @@ your configuration for this sensor to work.
       - platform: bh1750
         name: "BH1750 Illuminance"
         address: 0x23
-        measurement_time: 69
+        measurement_duration: 69
         update_interval: 60s
 
-By default the **measurement_time** is set to ``69`` which will result into measurements up
-to 54612.5 lx for this sensor. For low-light situtations consider to choose a higer
-measurement_time up to ``254`` which will result in a maximum measurement range up to 14835 lx.
+By default the **measurement_duration** is set to ``69`` which will result into measurements up
+to 54612.5 lx for this sensor. For low-light situations consider to choose a higher
+measurement_duration up to ``254`` which will result in a maximum measurement range up to 14835 lx.
 For sunny scenes (for example outdoors with sunlight) use lower values down to ``31`` which will
 give you the maximum measurement range up to 121556 lx.
 
@@ -44,7 +44,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x23`` (address if address pin is pulled low). If the address pin is pulled high,
   the address is ``0x5C``.
-- **measurement_time** (*Optional*, int): Manually specifiy the measurement time between ``31``
+- **measurement_duration** (*Optional*, int): Manually specify the measurement duration between ``31``
   and ``254``. Defaults to ``69``.
 - **resolution** (*Optional*, string): The resolution of the sensor in lx. One of ``4.0``,
   ``1.0``, ``0.5``. Defaults to ``0.5`` (the maximum resolution).

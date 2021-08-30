@@ -13,15 +13,15 @@ page describes them.
 ID
 --
 
-Quite an important aspect of ESPHome are “ids”. They are used to
+Quite an important aspect of ESPHome are “IDs”. They are used to
 connect components from different domains. For example, you define an
-output component together with an id and then later specify that same id
+output component together with an ID and then later specify that same ID
 in the light component. IDs should always be unique within a
 configuration and ESPHome will warn you if you try to use the same
 ID twice.
 
 Because ESPHome converts your configuration into C++ code and the
-ids are in reality just C++ variable names, they must also adhere to
+IDs are in reality just C++ variable names, they must also adhere to
 C++’s naming conventions. `C++ Variable
 names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>`__
 …
@@ -74,14 +74,14 @@ In some places, ESPHome also supports a more advanced “pin schema”.
       # Advanced:
       pin:
         number: D0
-        inverted: True
+        inverted: true
         mode: INPUT_PULLUP
 
 Configuration variables:
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
-   should be treated as inverted. Defaults to ``False``.
+   should be treated as inverted. Defaults to ``false``.
 -  **mode** (*Optional*, string): A pin mode to set for the pin at
    startup, corresponds to Arduino’s ``pinMode`` call.
 
@@ -205,7 +205,7 @@ of nodes inherit:
 
     To hide these base files from the dashboard, you can
 
-    - Place them in a subdirectory (dashboard only shows files in top-level dir)
+    - Place them in a subdirectory (dashboard only shows files in top-level directory)
     - Prepend a dot to the filename, like ``.base.yaml``
 
 .. _command-line-substitutions:
@@ -248,7 +248,6 @@ added ``board``, and overridden ``name`` substitutions):
       platform: ESP8266
       board: esp01_1m
       includes: []
-      board_flash_mode: dout
       libraries: []
       esp8266_restore_from_flash: false
       build_path: device01
@@ -271,8 +270,8 @@ config in the main yaml file. All definitions from packages will be merged with 
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
 
-Consider the following example where author put common pieces of configuration like WiFi,
-I²C into base files and extends it with some devices specific configurations in the main config.
+Consider the following example where the author put common pieces of configuration like WiFi and
+I²C into base files and extends it with some device specific configurations in the main config.
 
 Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
 merged with the services definitions from main config file.
@@ -327,7 +326,7 @@ merged with the services definitions from main config file.
     i2c:
       sda: GPIO21
       scl: GPIO22
-      scan: True
+      scan: true
       frequency: 100kHz
 
     # Enable logging

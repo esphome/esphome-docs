@@ -15,14 +15,14 @@ and shipping from China takes a long time, I've only set up dedicated guides for
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp8285
-      arduino_version: 2.4.2
-
-The selected board and arduino_version are required in v1.14.3 (and probably later), see
-https://github.com/esphome/issues/issues/931 for details.
 
 After that use the following list of pin to function mappings to set up your Sonoff device.
 This list has been compiled from the Sonoff Tasmota pin source file which can be found here:
 https://github.com/arendst/Tasmota/blob/development/tasmota/tasmota_template.h ❤️
+
+.. note::
+
+    SAFETY HAZARD: Some devices such as Sonoff POWs/Shelly/etc, have the digital GND connected directly to mains voltage so **the GPIOs become LIVE during normal operation**. Our advice is to mark these boards to prevent any use of the dangerous digital pins.
 
 Sonoff RF
 ---------

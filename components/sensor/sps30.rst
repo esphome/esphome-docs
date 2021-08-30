@@ -5,8 +5,8 @@ SPS30 Particulate Matter Sensor
     :description: Instructions for setting up SPS30 PM1.0, PM2.5, PM4, PM10 Particulate Matter sensors
     :image: sps30.jpg
 
-The ``sps30`` sensor platform allows you to use your Sensiron SPS30
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Particulate_Matter/Sensirion_PM_Sensors_SPS30_Datasheet.pdf>`__) sensors with ESPHome.
+The ``sps30`` sensor platform allows you to use your Sensirion SPS30
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9.6_Particulate_Matter/Datasheets/Sensirion_PM_Sensors_Datasheet_SPS30.pdf>`__) sensors with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 This sensor supports both UART and I²C communication. However, at the moment only I²C communication is implemented.
 
@@ -50,7 +50,6 @@ This sensor supports both UART and I²C communication. However, at the moment on
           id: "workshop_PMC_10_0"
         address: 0x69
         update_interval: 10s
-
 
 Configuration variables:
 ------------------------
@@ -118,7 +117,7 @@ Wiring:
 -------
 
 The sensor has a 5 pin JST ZHR type connector, with a 1.5mm pitch. (`Matching connector housing <https://octopart.com/zhr-5-jst-279203>`__, `datasheet <http://www.farnell.com/datasheets/1393424.pdf>`__)
-To force the force the sensor into I²C mode, the SEL pin (Interface Select pin no.5) should be shorted to ground (pin no.4)
+To force the sensor into I²C mode, the SEL pin (Interface Select pin no.5) should be shorted to ground (pin no.4)
 
 .. figure:: images/sps30-wiring.png
     :align: center

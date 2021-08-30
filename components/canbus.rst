@@ -25,7 +25,7 @@ transmitted data.
 
 The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
 CAN bus to work you need to select the device that has the physical CAN bus implemented.
-At this moment only the MCP2515 driver is supported. You can configure multiple busses.
+At this moment only the MCP2515 driver is supported. You can configure multiple buses.
 
 Any can bus node can transmit data at any time, and any node can send any ``can_id`` value and any
 node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can
@@ -46,7 +46,7 @@ Each canbus platform extends this configuration schema.
         can_id: 4
         on_frame:
         - can_id: 500
-          use_extended_id: False
+          use_extended_id: false
           then:
           - lambda: |-
               std::string b(x.begin(), x.end());
@@ -56,8 +56,8 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, integer): default *can id* used for transmitting frames.
-- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
-  *False*: Standard 11 bits IDs, *True*: Extended 29 bits ID
+- **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
+  *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
 
     - 5KBPS
@@ -92,7 +92,7 @@ This automation will be triggered when a can frame is  received. A variable ``x`
 
 .. note::
 
-    Messeges this node sends to te same ID will not show up as reveived messages.
+    Messages this node sends to the same ID will not show up as received messages.
 
 .. code-block:: yaml
 
@@ -138,16 +138,16 @@ Configuration variables:
   the frame. Not needed if you are using only 1 can bus.
 - **can_id** (*Optional*, int): Allows to override the can id configured in
   the can bus device.
-- **use_extended_id** (*Optional*, boolean): default *False* identifies the type of *can_id*:
-  *False*: Standard 11 Bit IDs, *True*: Extended 29Bit ID
+- **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
+  *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
 
 MCP2515 Component
 -----------------
 
-The MCP2515 is a spi device and therfore you must first add the configuration for the spi bus to your file.
+The MCP2515 is a spi device and therefore you must first add the configuration for the spi bus to your file.
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
-For wireing up the MSP2515 please refer to the section below.
+For wiring up the MSP2515 please refer to the section below.
 
 Configuration variables:
 ************************
@@ -157,7 +157,7 @@ Configuration variables:
   Sometimes also called ``SS``.
 - **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
   Defaults to ``8MHZ``.
-- **mode** (*Optional*): Operation mode. Default ot ``NORMAL``
+- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
 
   - NORMAL: Normal operation
   - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
@@ -205,7 +205,7 @@ Standard IDs and Extended IDs can coexist on the same segment.
 
 .. note::
 
-    It is important to know that for example Standard 0x123 and Extended 0x123 are different addesses.
+    It is important to know that for example Standard 0x123 and Extended 0x123 are different addresses.
     This example shows how the different ID types are used in the configuration for transmission and receiving.
     For the IDs decimal or hexadecimal notation is possible:
     0x000 - 0x7ff / 0-2047 for Standard IDs only.
@@ -221,7 +221,7 @@ Standard IDs and Extended IDs can coexist on the same segment.
             then:
               - canbus.send:
                   # Extended ID explicit
-                  use_extended_id: True
+                  use_extended_id: true
                   can_id: 0x100
                   data: [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
               - canbus.send:
@@ -235,11 +235,11 @@ Standard IDs and Extended IDs can coexist on the same segment.
         spi_id: McpSpi
         cs_pin: GPIO14
         can_id: 0x1fff
-        use_extended_id: True
+        use_extended_id: true
         bit_rate: 125kbps
         on_frame:
         - can_id: 0x123
-          use_extended_id: True
+          use_extended_id: true
           then:
           - lambda: |-
               std::string b(x.begin(), x.end());

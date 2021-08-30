@@ -33,7 +33,7 @@ Syntax
 
 Here's a quick RST primer:
 
-Title hierarchy is based on order of occurence, not on type of character used to underline it. This
+Title hierarchy is based on order of occurrence, not on type of character used to underline it. This
 documents establish the following character order for better consistency.
 
 - **Headers**: You can write titles like this:
@@ -201,7 +201,7 @@ documents establish the following character order for better consistency.
 - **imgtable**: ESPHome uses a custom RST directive to show the table on the front page (see
   `index.rst <https://github.com/esphome/esphome-docs/blob/current/index.rst>`__).
   New pages need to be added to the ``imgtable`` list. The syntax is CSV with <PAGE NAME>, <FILE NAME> (without RST),
-  <IMAGE> (in top-level images/ directory). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
+  <IMAGE> (in top-level images/ directory), <COMMENT> (optional - short text to describe the component). The aspect ratio of these images should be 8:10 (or 10:8) but exceptions are possible.
 
   Because these images are served on the main page, they need to be compressed heavily. SVGs are preferred over JPGs
   and JPGs should be max. 300x300px.
@@ -225,7 +225,7 @@ Build
 
         docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
 
-    With ``PWD`` refering to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
+    With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
 
     This way, you don't have to install the dependencies to build the documentation.
 
@@ -414,10 +414,11 @@ by the integration developer.
 
 .. note::
 
-    Additionally, ESPHome has a ``custom_components`` mechanism like
-    `Home Assistant does <https://developers.home-assistant.io/docs/creating_component_index>`__.
-    So for testing you can also create a new ``custom_components`` folder inside of your ESPHome
-    config folder and create new integrations in there.
+    For testing you can use :doc:`/components/external_components`.
+
+    ESPHome also has a ``custom_components`` mechanism like `Home Assistant does
+    <https://developers.home-assistant.io/docs/creating_component_index>`__. However this is
+    discouraged in favor of :doc:`/components/external_components`.
 
 2. Config Validation
 ********************
@@ -543,7 +544,8 @@ loader. These are:
 - ``DEPENDENCIES``: Mark the component to depend on other components. If the user hasn't explicitly
   added these components in their configuration, a validation error will be generated.
 - ``AUTO_LOAD``: Automatically load an integration if the user hasn't added it manually.
-- ``MULTI_CONF``: Mark this component to accept an array of configurations.
+- ``MULTI_CONF``: Mark this component to accept an array of configurations. If this is an
+  integer instead of a boolean, validation will only permit the given number of entries.
 - ``CONFLICTS_WITH``: Mark a list of components as conflicting with this integration. If the user
   has one of them in the config, a validation error will be generated.
 
