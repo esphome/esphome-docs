@@ -444,6 +444,7 @@ Fan Components
 
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
+    H-bridge Fan, components/fan/hbridge, fan.svg
     Speed Fan, components/fan/speed, fan.svg
     Tuya Fan, components/fan/tuya, tuya.png
 
