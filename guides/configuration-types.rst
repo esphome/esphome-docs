@@ -357,6 +357,7 @@ Packages can also be loaded from a git repository by utilizing the correct confi
 
 .. code-block:: yaml
 
+    packages:
       # Git repo examples
       remote_package:
         url: https://github.com/esphome/non-existant-repo
