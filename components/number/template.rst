@@ -34,7 +34,8 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   number. Defaults to ``60s``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
-  any command sent to the template number will immediately update the reported state.
+  any command sent to the template number will immediately update the reported state. 
+  This must be set to ``true`` inorder for changes from Home Assistant to be applied.
   Cannot be used with ``lambda``. Defaults to ``false``.
 - **restore_value** (*Optional*, boolean): Saves and loads the state to RTC/Flash.
   Cannot be used with ``lambda``. Defaults to ``false``.
