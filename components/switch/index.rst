@@ -101,7 +101,7 @@ This :ref:`Condition <config-condition>` checks if the given switch is ON (or OF
 lambda calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
+From :ref:`lambdas <config-lambda>`, you can call several methods on all switches to do some
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the switch to publish a new state and store it internally.
@@ -134,24 +134,6 @@ advanced stuff (see the full API Reference for more info).
       id(my_switch).turn_on();
       // Toggle the switch
       id(my_switch).toggle();
-
-.. _switch-is_on_off_condition:
-
-``switch.is_on`` / ``switch.is_off`` Condition
-**********************************************
-
-This :ref:`condition <config-condition>` passes if the given switch is on/off.
-
-.. code-block:: yaml
-
-    # in a trigger:
-    on_...:
-      if:
-        condition:
-          switch.is_on: my_switch
-          # same goes for is_off
-        then:
-        - script.execute: my_script
 
 .. _switch-on_turn_on_off_trigger:
 
