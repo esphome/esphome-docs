@@ -50,107 +50,78 @@ The following code create a modbus_controller hub talking to a modbus device at 
 Modbus sensors can be directly defined (inline) under the modbus_controller hub or as standalone components
 Technically there is no difference between the "inline" and the standard definitions approach.
 
-
 .. code-block:: yaml
 
-  esphome:
-    name: solarstation
-    platform: ESP32
-    board: esp32dev
+    esphome:
+      name: solarstation
+      platform: ESP32
+      board: esp32dev
 
-  substitutions:
-    updates: 30s
+    substitutions:
+      updates: 30s
 
-  wifi:
-    ssid: !secret wifi_sid
-    password: !secret wifi_password
-    reboot_timeout: 2min
+    wifi:
+      ssid: !secret wifi_sid
+      password: !secret wifi_password
+      reboot_timeout: 2min
 
-  logger:
-    level: INFO
-    baud_rate: 0
+    logger:
+      level: INFO
+      baud_rate: 0
 
-  api:
-    password: !secret api_password
+    api:
+      password: !secret api_password
 
-  uart:
-    id: mod_bus
-    tx_pin: 17
-    rx_pin: 16
-    baud_rate: 115200
-    stop_bits: 1
+    uart:
+      id: mod_bus
+      tx_pin: 17
+      rx_pin: 16
+      baud_rate: 115200
+      stop_bits: 1
 
-  modbus:
-    flow_control_pin: 5
-    id: modbus1
+    modbus:
+      flow_control_pin: 5
+      id: modbus1
 
-  modbus_controller:
-    - id: epever
-      ## the Modbus device addr
-      address: 0x1
-      modbus_id: modbus1
-      setup_priority: -10
-      sensors:
-        - id: array_rated_voltage
-          name: "array_rated_voltage"
-          address: 0x3000
-          offset: 0
-          unit_of_measurement: "V"
-          modbus_functioncode: "read_input_registers"
-          value_type: U_WORD
-          accuracy_decimals: 1
-          skip_updates: 60
-          filters:
-            - multiply: 0.01
+    modbus_controller:
+      - id: epever
+        ## the Modbus device addr
+        address: 0x1
+        modbus_id: modbus1
+        setup_priority: -10
 
-      binary_sensors:
-        - id: charging_input_volt_failure
-          name: "Charging Input Volt Failure"
-          modbus_functioncode: read_input_registers
-          address: 0x3201
-          offset: 0
-          bitmask: 0xC000
+    text_sensor:
+      - name: "rtc_clock"
+        platform: modbus_controller
+        modbus_controller_id: epever
+        id: rtc_clock
+        internal: true
+        modbus_functioncode: read_holding_registers
+        address: 0x9013
+        offset: 0
+        register_count: 3
+        raw_encode: HEXBYTES
+        response_size: 6
 
-      switches:
-        - id: manual_control_load
-          modbus_functioncode: read_coils
-          address: 2
-          offset: 0
-          name: "manual control the load"
-          bitmask: 1
+    switch:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: reset_to_fabric_default
+        name: "Reset to Factory Default"
+        modbus_functioncode: write_single_coil
+        address: 0x15
+        bitmask: 1
 
-      text_sensors:
-        - name: "rtc_clock"
-          id: rtc_clock
-          internal: true
-          modbus_functioncode: read_holding_registers
-          address: 0x9013
-          offset: 0
-          register_count: 3
-          raw_encode: HEXBYTES
-          response_size: 6
-
-      update_interval: 30s
-
-  switch:
-    - platform: modbus_controller
-      modbus_controller_id: epever
-      id: reset_to_fabric_default
-      name: "Reset to Factory Default"
-      modbus_functioncode: write_single_coil
-      address: 0x15
-      bitmask: 1
-
-  sensor:
-    - platform: modbus_controller
-      modbus_controller_id: epever
-      name: "Battery Capacity"
-      id: battery_capacity
-      modbus_functioncode: read_holding_registers
-      address: 0x9001
-      offset: 0
-      unit_of_measurement: "AH"
-      value_type: U_WORD
+    sensor:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        name: "Battery Capacity"
+        id: battery_capacity
+        modbus_functioncode: read_holding_registers
+        address: 0x9001
+        offset: 0
+        unit_of_measurement: "AH"
+        value_type: U_WORD
 
 
 Protocol decoding example
@@ -158,84 +129,97 @@ Protocol decoding example
 
 .. code-block:: yaml
 
-  sensors:
-    - id: array_rated_voltage
-      name: "array_rated_voltage"
-      address: 0x3000
-      offset: 0
-      unit_of_measurement: "V"
-      modbus_functioncode: "read_input_registers"
-      value_type: U_WORD
-      accuracy_decimals: 1
-      skip_updates: 60
-      filters:
-        - multiply: 0.01
+    sensors:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: array_rated_voltage
+        name: "array_rated_voltage"
+        address: 0x3000
+        offset: 0
+        unit_of_measurement: "V"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 1
+        skip_updates: 60
+        filters:
+          - multiply: 0.01
 
-    - id: array_rated_current
-      name: "array_rated_current"
-      address: 0x3000
-      offset: 2
-      unit_of_measurement: "V"
-      modbus_functioncode: "read_input_registers"
-      value_type: U_WORD
-      accuracy_decimals: 2
-      filters:
-        - multiply: 0.01
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: array_rated_current
+        name: "array_rated_current"
+        address: 0x3000
+        offset: 2
+        unit_of_measurement: "V"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 2
+        filters:
+          - multiply: 0.01
 
-    - id: array_rated_power
-      name: "array_rated_power"
-      address: 0x3000
-      register_count: 2
-      offset: 4
-      unit_of_measurement: "W"
-      modbus_functioncode: "read_input_registers"
-      value_type: U_DWORD_R
-      accuracy_decimals: 1
-      filters:
-        - multiply: 0.01
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: array_rated_power
+        name: "array_rated_power"
+        address: 0x3000
+        register_count: 2
+        offset: 4
+        unit_of_measurement: "W"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_DWORD_R
+        accuracy_decimals: 1
+        filters:
+          - multiply: 0.01
 
-    - id: battery_rated_voltage
-      name: "battery_rated_voltage"
-      address: 0x3000
-      offset: 8
-      unit_of_measurement: "V"
-      modbus_functioncode: "read_input_registers"
-      value_type: U_WORD
-      accuracy_decimals: 1
-      filters:
-        - multiply: 0.01
+      -platform: modbus_controller
+        modbus_controller_id: epever
+        id: battery_rated_voltage
+        name: "battery_rated_voltage"
+        address: 0x3000
+        offset: 8
+        unit_of_measurement: "V"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 1
+        filters:
+          - multiply: 0.01
 
-    - id: battery_rated_current
-      name: "battery_rated_current"
-      address: 0x3000
-      offset: 10
-      unit_of_measurement: "A"
-      modbus_functioncode: "read_input_registers"
-      value_type: U_WORD
-      accuracy_decimals: 1
-      filters:
-        - multiply: 0.01
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: battery_rated_current
+        name: "battery_rated_current"
+        address: 0x3000
+        offset: 10
+        unit_of_measurement: "A"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 1
+        filters:
+          - multiply: 0.01
 
-    - id: battery_rated_power
-      name: "battery_rated_power"
-      address: 0x3000
-      register_count: 2
-      offset: 12
-      unit_of_measurement: "W"
-      modbus_functioncode: "read_input_registers"
-      value_type: U_DWORD_R
-      accuracy_decimals: 1
-      filters:
-        - multiply: 0.01
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: battery_rated_power
+        name: "battery_rated_power"
+        address: 0x3000
+        register_count: 2
+        offset: 12
+        unit_of_measurement: "W"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_DWORD_R
+        accuracy_decimals: 1
+        filters:
+          - multiply: 0.01
 
-    - id: charging_mode
-      name: "charging_mode"
-      address: 0x3000
-      offset: 16
-      unit_of_measurement: ""
-      modbus_functioncode: "read_input_registers"
-      value_type: U_WORD
-      accuracy_decimals: 0
+      - platform: modbus_controller
+        modbus_controller_id: epever id: charging_mode
+        name: "charging_mode"
+        address: 0x3000
+        offset: 16
+        unit_of_measurement: ""
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 0
 
 
 
@@ -325,11 +309,11 @@ Note
 Write support is only implemented for switches.
 However the C++ code provides the required API to write to a modbus device.
 
-These methods can be called from a lambda. 
+These methods can be called from a lambda.
 
 Here is an example how to set config values to for an EPEVER Trace AN controller.
 The code synchronizes the localtime of MCU to the epever controller
-The time is set by writing 12 bytes to register 0x9013. 
+The time is set by writing 12 bytes to register 0x9013.
 Then battery charge settings are sent.
 
 
@@ -340,7 +324,7 @@ Then battery charge settings are sent.
       platform: ESP32
       board: esp32dev
 
-      ## send config values at startup 
+      ## send config values at startup
       ## configure rtc clock and battery charge settings
       on_boot:
         priority: -100
@@ -371,26 +355,26 @@ Then battery charge settings are sent.
               // Battery settings
               // Note: these values are examples only and apply to my AGM Battery
               std::vector<uint16_t> battery_settings = {
-                  0,       // 9000 Battery Type 0 =  User
-                  0x0055,  // 9001 Battery Cap 0x55 == 85AH
-                  0x012C,  // 9002 Temp compensation -3V /°C/2V
-                  0x05DC,  // 9003 0x5DC == 1500 Over Voltage Disconnect Voltage 15,0
-                  0x058C,  // 9004 0x58C == 1480 Charging Limit Voltage	14,8
-                  0x058C,  // 9005 Over Voltage Reconnect Voltage	14,8
-                  0x05B4,  // 9006 Equalize Charging Voltage	14,6
-                  0x05A0,  // 9007 Boost Charging Voltage	14,4
-                  0x0564,  // 9008 Float Charging Voltage	13,8
-                  0x0528,  // 9009 Boost Reconnect Charging Voltage	13,2
-                  0x04EC,  // 900A Low Voltage Reconnect Voltage	12,6
-                  0x04C4,  // 900B Under Voltage Warning Reconnect Voltage	12,2
-                  0x04BA,  // 900c Under Volt. Warning Volt	12,1
-                  0x04BA,  // 900d Low Volt. Disconnect Volt.	12,1
-                  0x0424   // 900E Discharging Limit Voltage	10,6
+                  0,       // 9000 Battery Type  0 =  User
+                  0x0055,  // 9001 Battery Cap  0x55 == 85AH
+                  0x012C,  // 9002 Temp compensation  -3V /°C/2V
+                  0x05DC,  // 9003 0x5DC == 1500 Over Voltage Disconnect Voltage  15,0
+                  0x058C,  // 9004 0x58C == 1480 Charging Limit Voltage  14,8
+                  0x058C,  // 9005 Over Voltage Reconnect Voltage  14,8
+                  0x05B4,  // 9006 Equalize Charging Voltage  14,6
+                  0x05A0,  // 9007 Boost Charging Voltage  14,4
+                  0x0564,  // 9008 Float Charging Voltage  13,8
+                  0x0528,  // 9009 Boost Reconnect Charging Voltage  13,2
+                  0x04EC,  // 900A Low Voltage Reconnect Voltage  12,6
+                  0x04C4,  // 900B Under Voltage Warning Reconnect Voltage  12,2
+                  0x04BA,  // 900c Under Volt. Warning Volt  12,1
+                  0x04BA,  // 900d Low Volt. Disconnect Volt.  12,1
+                  0x0424   // 900E Discharging Limit Voltage  10,6
               };
               // Boost and equalization periods
               std::vector<uint16_t> battery_settings2 = {
-                  0x0000,  // 906B Equalize Duration (min.)	0
-                  0x0075   // 906C Boost Duration (aka absorb)	120 mins
+                  0x0000,  // 906B Equalize Duration (min.) 0
+                  0x0075   // 906C Boost Duration (aka absorb) 120 mins
               };
 
 
@@ -411,31 +395,45 @@ Then battery charge settings are sent.
       rx_pin: 16
       baud_rate: 115200
       stop_bits: 1
-   
+
     modbus:
       id: modbus1
+      flow_control_pin: 5
 
     modbus_controller:
       - id: epever
         modbus_id: modbus1
         command_throttle: 0ms
-        
         ## the Modbus device addr
         address: 0x1
-        ctrl_pin: 5    # if you need to set the driver enable (DE) pin high before transmitting data configure it here
         setup_priority: -10
-        sensors:
-          - id: array_rated_voltage
-            name: "array_rated_voltage"
-            address: 0x3000
-            offset: 0
-            unit_of_measurement: "V"
-            modbus_functioncode: "read_input_registers"
-            value_type: U_WORD
-            accuracy_decimals: 1
-            skip_updates: 60
-            filters:
-              - multiply: 0.01
+
+    sensor:
+      - id: array_rated_voltage
+        name: "array_rated_voltage"
+        platform: modbus_controller
+        modbus_controller_id: epever
+        address: 0x3000
+        offset: 0
+        unit_of_measurement: "V"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 1
+        filters:
+          - multiply: 0.01
+
+      - id: array_rated_current
+        name: "array_rated_current"
+        platform: modbus_controller
+        modbus_controller_id: epever
+        address: 0x3000
+        offset: 2
+        unit_of_measurement: "V"
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 2
+        filters:
+          - multiply: 0.01
 
 
 

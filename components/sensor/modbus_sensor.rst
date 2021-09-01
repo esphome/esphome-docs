@@ -54,41 +54,41 @@ This example will send 2 modbus commands (device address 1 assumed)
 
 .. code-block:: yaml
 
-  - platform: modbus_controller
-    modbus_controller_id: traceran
-    id: pv_input_voltage
-    name: "PV array input voltage"
-    address: 0x3100
-    offset: 0
-    unit_of_measurement: "V" ## for any other unit the value is returned in minutes
-    modbus_functioncode: "read_input_registers"
-    value_type: U_WORD
-    accuracy_decimals: 1
-    filters:
-      - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: traceran
+      id: pv_input_voltage
+      name: "PV array input voltage"
+      address: 0x3100
+      offset: 0
+      unit_of_measurement: "V" ## for any other unit the value is returned in minutes
+      modbus_functioncode: "read_input_registers"
+      value_type: U_WORD
+      accuracy_decimals: 1
+      filters:
+        - multiply: 0.01
 
-  - platform: modbus_controller
-    modbus_controller_id: traceran
-    id: pv_input_current
-    name: "PV array input current"
-    address: 0x3100
-    offset: 2
-    unit_of_measurement: "A" ## for any other unit the value is returned in minutes
-    modbus_functioncode: "read_input_registers"
-    value_type: U_WORD
-    accuracy_decimals: 2
-    filters:
-      - multiply: 0.01
+    - platform: modbus_controller
+      modbus_controller_id: traceran
+      id: pv_input_current
+      name: "PV array input current"
+      address: 0x3100
+      offset: 2
+      unit_of_measurement: "A" ## for any other unit the value is returned in minutes
+      modbus_functioncode: "read_input_registers"
+      value_type: U_WORD
+      accuracy_decimals: 2
+      filters:
+        - multiply: 0.01
 
-  - platform: modbus_controller
-    modbus_controller_id: traceran
-    name: "Battery Capacity"
-    id: battery_capacity
-    modbus_functioncode: read_holding_registers
-    address: 0x9001
-    offset: 0
-    unit_of_measurement: "AH"
-    value_type: U_WORD    
+    - platform: modbus_controller
+      modbus_controller_id: traceran
+      name: "Battery Capacity"
+      id: battery_capacity
+      modbus_functioncode: read_holding_registers
+      address: 0x9001
+      offset: 0
+      unit_of_measurement: "AH"
+      value_type: U_WORD    
 
 See Also
 --------
