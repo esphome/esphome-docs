@@ -26,10 +26,12 @@ Configuration variables:
 - **name** (**Required**, string): The name of the light.
 - **color_temperature** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the color temperature.
 - **brightness** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the brightness.
-- **cold_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the cold white channel.
-- **warm_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the warm white channel.
+- **cold_white_color_temperature** (**Required**, float): The coldest color temperature supported by this light. This
+  is the lowest value when expressed in `mireds <https://en.wikipedia.org/wiki/Mired>`__, or the highest value when
+  expressed in Kelvin.
+- **warm_white_color_temperature** (**Required**, float): The warmest color temperature supported by this light. This
+  is the highest value when expressed in `mireds <https://en.wikipedia.org/wiki/Mired>`__, or the lowest value when
+  expressed in Kelvin.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.

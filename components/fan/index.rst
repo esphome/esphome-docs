@@ -104,6 +104,8 @@ Configuration options:
   Set the oscillation state of the fan. Defaults to not affecting oscillation.
 - **speed** (*Optional*, int, :ref:`templatable <config-templatable>`):
   Set the speed level of the fan. Can be a number between 1 and the maximum speed level of the fan.
+- **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
+  Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
 
 .. _fan-on_turn_on_off_trigger:
 

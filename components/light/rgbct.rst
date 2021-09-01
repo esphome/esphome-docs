@@ -5,7 +5,7 @@ RGBCT Light
     :description: Instructions for setting up RGBCT lights.
     :image: rgbw.png
 
-The ``rgbct`` light platform creates an RGBWT (colour temperature + white brightness)
+The ``rgbct`` light platform creates an RGBWT (color temperature + white brightness)
 light from 5 :ref:`float output components <output>` (one for each channel).
 
 .. code-block:: yaml
@@ -30,13 +30,15 @@ Configuration variables:
 - **green** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the green channel.
 - **blue** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the blue channel.
 - **color_temperature** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the
-  color temperature cannel.
+  color temperature channel.
 - **white_brightness** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the brightness
   of the white leds.
-- **cold_white_color_temperature** (**Required**, float): The color temperate (in
-  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
-- **warm_white_color_temperature** (**Required**, float): The color temperate (in
-  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
+- **cold_white_color_temperature** (**Required**, float): The coldest color temperature supported by this light. This
+  is the lowest value when expressed in `mireds <https://en.wikipedia.org/wiki/Mired>`__, or the highest value when
+  expressed in Kelvin.
+- **warm_white_color_temperature** (**Required**, float): The warmest color temperature supported by this light. This
+  is the highest value when expressed in `mireds <https://en.wikipedia.org/wiki/Mired>`__, or the lowest value when
+  expressed in Kelvin.
 - **color_interlock** (*Optional*, boolean): When enabled, this will prevent white leds being on at the same
   time as RGB leds. See :ref:`rgbw_color_interlock` for more information. Defaults to ``false``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.

@@ -302,6 +302,26 @@ At the time this action was created, Pioneer maintained listings of IR codes use
 If unable to find your specific device in the documentation, find a device in the same class; the codes
 are largely shared among devices within a given class.
 
+``remote_transmitter.transmit_toshiba_ac`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a Toshiba AC infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_toshiba_ac:
+          rc_code_1: 0xB24DBF4040BF
+          rc_code_2: 0xD5660001003C
+
+Configuration variables:
+
+- **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
+- **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
+  two parts.
+- **Note:** this action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 ``remote_transmitter.transmit_rc_switch_raw`` Action
 ****************************************************
 

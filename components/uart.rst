@@ -34,8 +34,8 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
 
 .. note::
 
-    From ESPHome 1.21.0 the ``ESP8266SoftwareSerial`` UART ``write_byte`` function had the parity bit fixed to be correct
-    for the data being sent. This could cause unexpected issues if you are using the Software Serial and have devices that 
+    From ESPHome 2021.8 the ``ESP8266SoftwareSerial`` UART ``write_byte`` function had the parity bit fixed to be correct
+    for the data being sent. This could cause unexpected issues if you are using the Software Serial and have devices that
     explicity check the parity. Most likely you will need to flip the ``parity`` flag in YAML.
 
 
