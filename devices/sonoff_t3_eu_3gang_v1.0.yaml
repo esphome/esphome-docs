@@ -25,7 +25,7 @@ binary_sensor:
     pin:
       number: GPIO0
       mode: INPUT_PULLUP
-      inverted: True
+      inverted: true
     name: "Sonoff T3 EU 3 Gang Touchpad 1"
     on_press:
       - switch.toggle: relay_1
@@ -33,7 +33,7 @@ binary_sensor:
     pin:
       number: GPIO9
       mode: INPUT_PULLUP
-      inverted: True
+      inverted: true
     name: "Sonoff T3 EU 3 Gang Touchpad 2"
     on_press:
       - switch.toggle: relay_2
@@ -41,7 +41,7 @@ binary_sensor:
     pin:
       number: GPIO10
       mode: INPUT_PULLUP
-      inverted: True
+      inverted: true
     name: "Sonoff T3 EU 3 Gang Touchpad 3"
     on_press:
       - switch.toggle: relay_3
@@ -67,7 +67,7 @@ output:
   - platform: esp8266_pwm
     id: blue_led
     pin: GPIO13
-    inverted: True
+    inverted: true
 
 light:
   # ... and then make a light out of it.

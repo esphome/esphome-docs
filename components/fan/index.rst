@@ -32,6 +32,9 @@ Configuration variables:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 
 MQTT options:
 
@@ -101,6 +104,8 @@ Configuration options:
   Set the oscillation state of the fan. Defaults to not affecting oscillation.
 - **speed** (*Optional*, int, :ref:`templatable <config-templatable>`):
   Set the speed level of the fan. Can be a number between 1 and the maximum speed level of the fan.
+- **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
+  Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
 
 .. _fan-on_turn_on_off_trigger:
 

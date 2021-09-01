@@ -27,6 +27,7 @@ and convert those voltage measurements to illuminance values in lux using a form
       - platform: adc
         pin: A0
         name: "TEMT6000 Illuminance"
+        device_class: illuminance
         unit_of_measurement: lx
         filters:
           - lambda: |-

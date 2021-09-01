@@ -160,7 +160,7 @@ If you find some, please do however report them.
 
 To install the dev version of ESPHome:
 
-- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
+- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
@@ -342,6 +342,14 @@ the device itself (technically, the configuration can be reverse-engineered from
 with a lot of work).
 
 Always back up all your files!
+
+
+Why shouldn't I use underscores in my device name?
+--------------------------------------------------
+
+The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.  
+
+Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
 See Also
 --------
