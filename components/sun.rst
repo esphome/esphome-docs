@@ -57,8 +57,8 @@ Automation:
 
   - **elevation** (*Optional*, float): The elevation to cross. Defaults to 0° (horizon).
 
-Sensor Platform
----------------
+``sun`` Sensor
+--------------
 
 Additionally, the sun component exposes its values over a sensor platform.
 
@@ -85,8 +85,8 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
-Text Sensor Platform
---------------------
+``sun`` Text Sensor
+-------------------
 
 Other properties like the next sunset time can be read out with the sun text_sensor platform.
 

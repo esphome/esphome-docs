@@ -16,11 +16,25 @@ states from your Home Assistant instance using the :doc:`native API </components
         name: "Input Boolean From Home Assistant"
         entity_id: input_boolean.state_home
 
+With Home Assistant 2021.6 or newer, entity state attributes can also be imported.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: homeassistant
+        id: muted
+        entity_id: media_player.mega_speakers
+        attribute: is_volume_muted
+
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the binary sensor.
 - **entity_id** (**Required**, string): The entity ID to import from Home Assistant.
+- **attribute** (*Optional*, string): The name of the state attribute to import from the
+  specified entity. The entity state is used when this option is omitted.
+  Requires Home Assistant 2021.6 or newer.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 

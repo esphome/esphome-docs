@@ -17,7 +17,7 @@ the eight touch pads of the ESP32 as :ref:`binary sensors <esp32-touch-binary-se
 
     # Example configuration entry
     esp32_touch:
-      setup_mode: False
+      setup_mode: false
 
     binary_sensor:
       - platform: esp32_touch
@@ -131,7 +131,7 @@ to make the validator happy, we are going to find good thresholds in a moment an
 
     # Example configuration entry for finding threshold values
     esp32_touch:
-      setup_mode: True
+      setup_mode: true
 
     binary_sensor:
       - platform: esp32_touch
@@ -148,7 +148,7 @@ touch/non-touch events.
     :align: center
 
 Finally, put your threshold parameter in the configuration. Do not forget to disable the ``setup_mode``
-option again by setting it to ``False``. Otherwise you will end up spamming the logs and slowing the device
+option again by setting it to ``false``. Otherwise you will end up spamming the logs and slowing the device
 down.
 
 See Also

@@ -7,8 +7,8 @@ SSD1351 OLED Display
 
 .. _ssd1351-spi:
 
-Usage
------
+``ssd1351_spi`` Component
+-------------------------
 
 The ``ssd1351_spi`` display platform allows you to use
 SSD1351 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1351-Revision+1.3.pdf>`__,
@@ -43,18 +43,17 @@ which should be connected to 3.3 volts only. Connect the GND or G pin to GND.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
-Configuration variables
-***********************
+Configuration variables:
+************************
 
 - **model** (**Required**): The model of the display. Options are:
 
   - ``SSD1351 128x128`` (SSD1351 with 128 columns and 128 rows)
   - ``SSD1351 128x96`` (SSD1351 with 128 columns and 96 rows)
 
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
-  The CS line can be connected to GND if this is the only device on the SPI bus.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.

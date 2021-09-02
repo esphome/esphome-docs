@@ -16,7 +16,7 @@ Assistant configuration.
 
     When enabling MQTT and you do *not* use the "native API" for Home Assistant, you must
     remove the ``api:`` line from your ESPHome configuration, otherwise the ESP will
-    reboot every 5 minutes because no client connected to the native API.
+    reboot every 15 minutes because no client connected to the native API.
 
 .. code-block:: yaml
 
@@ -38,17 +38,17 @@ Configuration variables:
 - **client_id** (*Optional*, string): The client id to use for opening
   connections. See :ref:`mqtt-defaults` for more information.
 - **discovery** (*Optional*, boolean): If Home Assistant automatic
-  discovery should be enabled. Defaults to ``True``.
+  discovery should be enabled. Defaults to ``true``.
 - **discovery_retain** (*Optional*, boolean): Whether to retain MQTT
   discovery messages so that entities are added automatically on Home
-  Assistant restart. Defaults to ``True``.
+  Assistant restart. Defaults to ``true``.
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
-- **log_topic** (*Optional*, :ref:`mqtt-message`) The topic to send MQTT log
+- **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
   messages to.
 - **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
@@ -91,7 +91,7 @@ It is used in several places like last will and birth messages or MQTT log optio
       topic: topic/to/send/to
       payload: online
       qos: 0
-      retain: True
+      retain: true
 
 
 Configuration options:
@@ -103,7 +103,7 @@ Configuration options:
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean): If the published message should
-   have a retain flag on or not. Defaults to ``True``.
+   have a retain flag on or not. Defaults to ``true``.
 
 
 The ``log_topic`` has an additional configuration option:
@@ -126,7 +126,7 @@ discovery in your Home Assistant configuration with the following:
     # Example Home Assistant configuration.yaml entry
     mqtt:
       broker: ...
-      discovery: True
+      discovery: true
 
 And that should already be it 🎉 All devices defined through ESPHome should show up automatically
 in the entities section of Home Assistant.
@@ -149,7 +149,7 @@ With Docker:
 
 .. code-block:: bash
 
-    docker run --rm -v "${PWD}":/config -it esphome/esphome configuration.yaml clean-mqtt
+    docker run --rm -v "${PWD}":/config -it esphome/esphome clean-mqtt configuration.yaml
 
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
@@ -253,8 +253,8 @@ MQTT can have some overrides for specific options.
 
     name: "Component Name"
     # Optional variables:
-    retain: True
-    discovery: True
+    retain: true
+    discovery: true
     availability:
       topic: livingroom/status
       payload_available: online
@@ -267,7 +267,7 @@ Configuration variables:
 -  **name** (**Required**, string): The name to use for the MQTT
    Component.
 -  **retain** (*Optional*, boolean): If all MQTT state messages should
-   be retained. Defaults to ``True``.
+   be retained. Defaults to ``true``.
 -  **discovery** (*Optional*, boolean): Manually enable/disable
    discovery for a component. Defaults to the global default.
 -  **availability** (*Optional*): Manually set what should be sent to
@@ -440,14 +440,14 @@ Publish an MQTT message on a topic using this action in automations.
 
 Configuration options:
 
--  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+-  **topic** (**Required**, string, :ref:`templatable <config-templatable>`):
    The MQTT topic to publish the message.
--  **payload** (*Required*, string, :ref:`templatable <config-templatable>`): The message content.
+-  **payload** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
 -  **qos** (*Optional*, int, :ref:`templatable <config-templatable>`): The `Quality of
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean, :ref:`templatable <config-templatable>`): If the published message should
-   have a retain flag on or not. Defaults to ``False``.
+   have a retain flag on or not. Defaults to ``false``.
 
 
 .. note::
@@ -491,14 +491,14 @@ as seen below.
 
 Configuration options:
 
--  **topic** (*Required*, string, :ref:`templatable <config-templatable>`):
+-  **topic** (**Required**, string, :ref:`templatable <config-templatable>`):
    The MQTT topic to publish the message.
--  **payload** (*Required*, :ref:`lambda <config-lambda>`): The message content.
+-  **payload** (**Required**, :ref:`lambda <config-lambda>`): The message content.
 -  **qos** (*Optional*, int): The `Quality of
    Service <https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels>`__
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean): If the published message should
-   have a retain flag on or not. Defaults to ``False``.
+   have a retain flag on or not. Defaults to ``false``.
 
 
 .. note::

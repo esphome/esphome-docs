@@ -76,7 +76,7 @@ Let's now also take a closer look at this line, which you might not be too used 
 
 .. code-block:: cpp
 
-    class MyCustomSensor : public Component, public Sensor { 
+    class MyCustomSensor : public Component, public Sensor {
 
 What this line is essentially saying is that we're defining our own class that's called ``MyCustomSensor``
 which is also a subclass of :apiclass:`Component` and :apiclass:`Sensor <sensor::Sensor>`.
@@ -137,7 +137,7 @@ One last thing. Some sensors, such as the BMP180 were are going to explain later
 .. code-block:: cpp
 
     float get_setup_priority() const override { return esphome::setup_priority::HARDWARE; }
-    
+
 Where HARDWARE can be any of:
 
 .. code-block:: cpp
@@ -150,7 +150,7 @@ Where HARDWARE can be any of:
     extern const float HARDWARE;
     /// For components that import data from directly connected sensors like DHT.
     extern const float DATA;
-    /// Alias for DATA (here for compatability reasons)
+    /// Alias for DATA (here for compatibility reasons)
     extern const float HARDWARE_LATE;
     /// For components that use data from sensors like displays
     extern const float PROCESSOR;
@@ -161,7 +161,7 @@ Where HARDWARE can be any of:
     extern const float AFTER_CONNECTION;
     /// For components that should be initialized at the very end of the setup process.
     extern const float LATE;
-        
+
 Now don't let the wording confuse you. The ``get_setup_priority()`` method is an override. Instead of fetching the setup priority setup for us, it instead fetches the setup priority for esphome, while being defined by us. The BMP180 would for instance need to be setup with a priority of IO or lower. A serial streaming (TCP) server would require a working WIFI setup and therefore get AFTER_WIFI.
 
 This finalizes our example as:
@@ -172,9 +172,9 @@ This finalizes our example as:
      public:
       // constructor
       MyCustomSensor() : PollingComponent(15000) {}
-      
+
       float get_setup_priority() const override { return esphome::setup_priority::XXXX; }
-      
+
       void setup() override {
         // This will be called by App.setup()
       }
@@ -182,7 +182,7 @@ This finalizes our example as:
         // This will be called every "update_interval" milliseconds.
       }
     };
-    
+
 Step 2: Registering the custom sensor
 -------------------------------------
 
@@ -403,6 +403,7 @@ Note that the number of arguments you put in the curly braces *must* match the n
 ``sensors:`` block - *and* they must be in the same order.
 
 Configuration variables:
+************************
 
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The lambda to run for instantiating the
   sensor(s).
@@ -431,16 +432,6 @@ functions for this.
     ESP_LOGD("custom", "The value of sensor is: %f", this->state);
 
 See :ref:`display-printf` for learning about how to use formatting in log strings.
-
-.. note::
-
-    On ESP8266s you need to disable storing strings in flash to use logging in custom code.
-
-    .. code-block:: yaml
-
-        logger:
-          level: DEBUG
-          esp8266_store_log_strings_in_flash: False
 
 See Also
 --------

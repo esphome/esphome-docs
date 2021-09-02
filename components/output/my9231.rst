@@ -8,8 +8,8 @@ MY9231/MY9291 LED driver
 
 .. _my9231-component:
 
-Component
----------
+Component/Hub
+-------------
 
 The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain
 (`MY9231 description <http://www.my-semi.com.tw/file/MY9231_BF_0.91.pdf>`__,
@@ -56,6 +56,40 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``my9231`` component. Use this if you have multiple MY9231/MY9291 chains
    connected at the same time.
+
+
+.. _my9231-output:
+
+Output
+------
+
+The MY931/MY9291 output component exposes a MY931/MY9291 channel of a global
+:ref:`my9231-component` as a float output.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    my9231:
+      - data_pin: GPIO12
+        clock_pin: GPIO14
+
+    # Individual outputs
+    output:
+      - platform: my9231
+        id: 'my9231_output1'
+        channel: 0
+
+Configuration variables:
+************************
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this output component.
+- **channel** (**Required**, int): Chose the channel of the MY9231/MY9291 chain of
+  this output component. Channel 0 is the most close channel.
+- **my9231_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
+  :ref:`my9231-component`.
+  Use this if you have multiple MY9231/MY9291 chains you want to use at the same time.
+- All other options from :ref:`Output <config-output>`.
+
 
 Sonoff B1 configuration example
 -------------------------------
@@ -171,38 +205,6 @@ And here is a complete configuration for the AiThinker AiLight:
         blue: output_blue
         white: output_cold_white
 
-
-.. _my9231-output:
-
-Driver Output
--------------
-
-The MY931/MY9291 output component exposes a MY931/MY9291 channel of a global
-:ref:`my9231-component` as a float output.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    my9231:
-      - data_pin: GPIO12
-        clock_pin: GPIO14
-
-    # Individual outputs
-    output:
-      - platform: my9231
-        id: 'my9231_output1'
-        channel: 0
-
-Configuration variables:
-************************
-
-- **id** (**Required**, :ref:`config-id`): The id to use for this output component.
-- **channel** (**Required**, int): Chose the channel of the MY9231/MY9291 chain of
-  this output component. Channel 0 is the most close channel.
-- **my9231_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
-  :ref:`my9231-component`.
-  Use this if you have multiple MY9231/MY9291 chains you want to use at the same time.
-- All other options from :ref:`Output <config-output>`.
 
 See Also
 --------

@@ -33,13 +33,13 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
         dc_pin: 27
         led_pin: 32  ### see note below ###
         reset_pin: 33
-        
+
         lambda: |-
           it.fill(COLOR_BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
-    
-Configuration variables
-***********************
+
+Configuration variables:
+************************
 
 - **model** (**Required**): The model of the display. Options are:
 
@@ -65,7 +65,7 @@ Configuration examples
 To utilize the color capabilities of this display module, you'll likely want to add a ``color:`` section to your
 YAML configuration; please see :ref:`color <config-color>` for more detail on this configuration section.
 
-To use colors in your lambada:
+To use colors in your lambda:
 
 .. code-block:: yaml
 
