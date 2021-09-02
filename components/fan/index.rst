@@ -107,6 +107,25 @@ Configuration options:
 - **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
   Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
 
+.. _fan-is_on_condition:
+.. _fan-is_off_condition:
+
+``fan.is_on`` / ``fan.is_off`` Condition
+**********************************************
+
+This :ref:`condition <config-condition>` passes if the given fan is on/off.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          fan.is_on: my_fan
+          # same goes for is_off
+        then:
+        - script.execute: my_script
+
 .. _fan-on_turn_on_off_trigger:
 
 ``fan.on_turn_on`` / ``fan.on_turn_off`` Trigger
