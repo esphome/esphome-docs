@@ -14,7 +14,7 @@ using :ref:`lambdas <config-lambda>`.
     select:
       - platform: template
         name: "Template select"
-        update_interval: never
+        optimistic: true
         options:
           - one
           - two
@@ -28,11 +28,12 @@ Configuration variables:
 - **name** (**Required**, string): The name of the Select.
 - **options** (**Required**, list): The list of options this Select has.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-  Lambda to be evaluated every update interval to get the new option of the Select.
+  Lambda to be evaluated every update interval to get the current option of the select.
 - **set_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests to set the Select option.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  Select ``lambda``. Defaults to ``60s``.
+  The new option is available to lambdas in the ``x`` variable.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval on which to update the select
+  by executing the ``lambda``. Defaults to ``60s``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the Template Select will immediately update the reported state.
   Cannot be used with ``lambda``. Defaults to ``false``.
@@ -45,9 +46,9 @@ Configuration variables:
 - All other options from :ref:`Select <config-select>`.
 
 ``select.set`` Action
-----------------------------------
+---------------------
 
-You can also set an option to a Template Select from elsewhere in your YAML file
+You can also set an option for the template select from elsewhere in your YAML file
 with the :ref:`select-set_action`.
 
 See Also
