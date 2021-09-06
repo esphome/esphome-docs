@@ -170,7 +170,7 @@ A safety feature has thus been implemented to mitigate issues resulting from the
 the state is first stored in memory before being flushed to flash after the ``flash_write_interval`` has passed. This
 results in fewer flash writes, preserving the flash health.
 
-This behavior can be disabled by setting ``flash_write_interval`` to `0s` to immediately commit the state to flash,
+This behavior can be disabled by setting ``flash_write_interval`` to ``0s`` to immediately commit the state to flash,
 however, be aware that this may lead to increased flash wearing and a shortened device lifespan!
 
 For ESP8266, :ref:`esphome-esp8266_restore_from_flash` must also be set to true for states to be written to flash.
