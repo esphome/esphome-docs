@@ -56,6 +56,7 @@ Automation triggers:
   when the fan is turned off. See :ref:`fan-on_turn_on_off_trigger`.
 - **on_speed_set** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the fan speed is set/changed. See :ref:`fan-on_speed_set_trigger`.
+
 .. _fan-toggle_action:
 
 ``fan.toggle`` Action
