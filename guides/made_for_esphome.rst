@@ -45,8 +45,9 @@ Logos
 
     Made with ESPHome black on transparent
 
-.. figure:: /_static/made-for-esphome-white-on-transparent.png
-    :align: center
-    :width: 100%
+.. raw:: html
 
-    Made with ESPHome white on transparent
+    <a href="/_static/made-for-esphome-white-on-transparent.png">
+        <img src="/_static/made-for-esphome-white-on-transparent.png" style="background: repeating-conic-gradient(#999 0% 25%, transparent 10% 50%) 50% / 10px 10px;">
+    </a>
+    <center>Made with ESPHome white on transparent</center>
