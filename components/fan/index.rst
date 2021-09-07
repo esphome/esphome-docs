@@ -151,7 +151,7 @@ if a command to turn the fan on or off already matches the current state.
 ``fan.on_speed_set`` Trigger
 ****************************************************
 
-This trigger is activated each time the fan speed is changed. Itwill fire when the speed is either set via API e.g. in Home Assstant or locally by an automation or a lambda function. 
+This trigger is activated each time the fan speed is changed. It will fire when the speed is either set via API e.g. in Home Assistant or locally by an automation or a lambda function. 
 
 .. code-block:: yaml
 
