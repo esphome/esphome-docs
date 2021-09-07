@@ -160,7 +160,6 @@ This trigger is activated each time the fan speed is changed. Itwill fire when t
         # ...
         on_speed_set:
         - logger.log: "Fan Speed was changed!"
-        
 Full Fan Index
 --------------
 
