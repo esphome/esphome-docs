@@ -27,6 +27,14 @@ Your product has to match the following requirements:
 Logos
 -----
 
+.. raw:: html
+
+    <style>
+        .transparent-background img {
+            background: repeating-conic-gradient(#999 0% 25%, transparent 10% 50%) 50% / 10px 10px;
+        }
+    </style>
+
 .. figure:: /_static/made-for-esphome-black-on-white.png
     :align: center
     :width: 100%
@@ -42,12 +50,13 @@ Logos
 .. figure:: /_static/made-for-esphome-black-on-transparent.png
     :align: center
     :width: 100%
+    :class: transparent-background
 
     Made with ESPHome black on transparent
 
-.. raw:: html
+.. figure:: /_static/made-for-esphome-white-on-transparent.png
+    :align: center
+    :width: 100%
+    :class: transparent-background
 
-    <a href="/_static/made-for-esphome-white-on-transparent.png">
-        <img src="/_static/made-for-esphome-white-on-transparent.png" style="background: repeating-conic-gradient(#999 0% 25%, transparent 10% 50%) 50% / 10px 10px;">
-    </a>
-    <center>Made with ESPHome white on transparent</center>
+    Made with ESPHome white on transparent
