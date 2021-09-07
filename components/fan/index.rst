@@ -145,6 +145,7 @@ if a command to turn the fan on or off already matches the current state.
         - logger.log: "Fan Turned On!"
         on_turn_off:
         - logger.log: "Fan Turned Off!"
+
 .. _fan-on_speed_set_trigger:
 
 ``fan.on_speed_set`` Trigger
