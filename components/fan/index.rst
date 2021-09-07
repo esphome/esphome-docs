@@ -98,6 +98,7 @@ Turns the fan with the given ID on when executed.
             id: fan_1
         # Shorthand:
         - fan.turn_on: fan_1
+
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the fan.
