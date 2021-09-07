@@ -12,9 +12,6 @@ You can apply for your project to get the Made for ESPHome stamp of approval.
 This ensures that your project is powered by ESPHome and guarantees a
 minimum level of customizability to users.
 
-When your project matches all requirements of the Made for ESPHome program,
-you can apply for permission to carry the logo by emailing esphome@nabucasa.com
-
 Requirements
 ------------
 
@@ -23,6 +20,9 @@ Your product has to match the following requirements:
  - Your ESPHome configuration is open source
  - Users should be able to apply updates if your project sells ready-made devices
  - Your product name cannot contain **ESPHome** except in the case of *ending with* **for ESPHome**
+
+When your project matches all requirements of the Made for ESPHome program,
+you can apply for permission to carry the logo by emailing esphome@nabucasa.com
 
 Logos
 -----
