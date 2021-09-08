@@ -139,6 +139,24 @@ Configuration variables:
 - **nbits** (*Optional*, int): The number of bits to send. Defaults to ``28``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_midea:
+
+``remote_transmitter.transmit_midea`` Action
+********************************************
+
+This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmitter. 8-bits of checksum added automatically.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_midea:
+          code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
+
+Configuration variables:
+
+- **code** (**Required**, list): The 40-bit Midea code to send as a list of hex or integers.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 ``remote_transmitter.transmit_nec`` Action
 ******************************************
 

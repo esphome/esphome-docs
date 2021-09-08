@@ -31,6 +31,7 @@ Configuration variables:
   Set to ``all`` to dump all available codecs:
 
   - **lg**: Decode and dump LG infrared codes.
+  - **midea**: Decode and dump Midea infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
   - **pioneer**: Decode and dump Pioneer infrared codes.
@@ -63,6 +64,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::LGData`
+  is passed to the automation for use in lambdas.
+- **on_midea** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Midea remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::MideaData`
   is passed to the automation for use in lambdas.
 - **on_nec** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   NEC remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::NECData`
@@ -140,6 +144,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, int): The LG code to trigger on, see dumper output for more info.
   - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``28``.
+
+- **midea**: Trigger on a Midea remote code with the given code.
+
+  - **code** (**Required**, 5-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_midea`
+    for more info. Usually you only need to copy first 5 bytes directly from the dumper output.
 
 - **nec**: Trigger on a decoded NEC remote code with the given data.
 
