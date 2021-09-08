@@ -270,6 +270,11 @@ config in the main yaml file. All definitions from packages will be merged with 
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
 
+Components declared in a package may be extended (for example, adding an :ref:`switch-on_turn_on_off_trigger`
+to a :ref:`Switch <config-switch>`) or overridden (for example, changing the ``update_interval``
+of a ``sensor``) by declaring the component in the main yaml file with a matching ``id``, and
+adding options as required.
+
 Local packages
 **************
 
@@ -297,6 +302,10 @@ merged with the services definitions from main config file.
             - switch.turn_on: relay
             - delay: 3h
             - switch.turn_off: relay
+
+    switch:
+      - id: relay
+        icon: mdi:washing-machine
 
     sensor:
       - platform: mhz19
@@ -348,6 +357,9 @@ merged with the services definitions from main config file.
 
     switch:
       - !include common/switch/restart_switch.config.yaml
+      - platform: gpio
+        pin: D0
+        id: relay
 
 
 Remote/git Packages
