@@ -1,0 +1,155 @@
+ESPHome 2021.9.0 - 15th September 2021
+======================================
+
+.. seo::
+    :description: Changelog for ESPHome 2021.9.0.
+    :image: /_static/changelog-2021.9.0.png
+    :author: ESPHome
+    :author_twitter: @esphome_
+
+.. imgtable::
+    :columns: 2
+
+    AirThings BLE, components/sensor/airthings_ble, airthings_logo.png
+    ST7920, components/display/st7920, st7920.jpg
+
+
+
+API Encryption
+--------------
+
+:ghuser:`OttoWinter` has been hard at work adding a layer of encryption to the API which utilises the
+``noise`` protocol. This releases adds the capabilities to ESPHome devices, but Home Assistant (or other clients)
+will need to upgrade their client libraries (e.g. ``aioesphomeapi``) before they can connect and communicate to
+devices with encryption. This is scheduled to be available in Home Assistant 2021.10.
+
+Midea AC
+--------
+
+``platform: midea_ac`` has been changed to ``platform: midea`` in this release and has
+quite a few upgrades. Check the docs for the new features. :doc:`/components/climate/midea`
+
+SDM Meters
+----------
+
+:doc:`SDM Meters</components/sensor/sdm_meter>` have been fixed to use kWh instead of Wh
+as the energy unit of measurement.
+
+Template Select/Number/Switch
+-----------------------------
+
+The template selects, numbers and switches now have more validations on them preventing weird usage.
+If you do not set a ``lambda`` then you are required to make them either ``optimistic: true``, or
+utilise the ``set_action`` (select/number) / ``turn_on_trigger`` (switch).
+
+
+Full list of changes
+--------------------
+
+New Features
+^^^^^^^^^^^^
+
+- Allow using a git source for a package :esphomepr:`2193` by :ghuser:`jesserockz` (new-feature)
+
+New Components
+^^^^^^^^^^^^^^
+
+- Add st7920 display, :esphomepr:`1440` by :ghuser:`marsjan155` (new-integration)
+- Support for the AirThings Wave Plus :esphomepr:`1656` by :ghuser:`jeromelaban` (new-integration)
+
+Breaking Changes
+^^^^^^^^^^^^^^^^
+
+- Fix SDM energy units to be KILO... :esphomepr:`2206` by :ghuser:`jesserockz` (breaking-change)
+- Reject template select/number/switches that don't handle user input :esphomepr:`2230` by :ghuser:`oxan` (breaking-change)
+- Remove last_reset_type and convert all those sensors to TOTAL_INCREASING :esphomepr:`2233` by :ghuser:`jesserockz` (breaking-change)
+- Midea support v2 :esphomepr:`2188` by :ghuser:`dudanov` (breaking-change)
+
+All changes
+^^^^^^^^^^^
+
+- Minor code cleanup in light components :esphomepr:`2162` by :ghuser:`mmakaay`
+- Add device class update to binary sensor :esphomepr:`2170` by :ghuser:`frenck`
+- Total daily energy methods :esphomepr:`2163` by :ghuser:`nuttytree`
+- Set SDM voltage state class to measurement :esphomepr:`2181` by :ghuser:`jesserockz`
+-  Add macros header with more usable Arduino version defines  :esphomepr:`2145` by :ghuser:`oxan`
+- Clean-up constant definitions :esphomepr:`2148` by :ghuser:`oxan`
+- Remove double scheduling from addressable lights :esphomepr:`1963` by :ghuser:`oxan`
+- Reduce static RAM usage :esphomepr:`2140` by :ghuser:`oxan`
+- Fix template select log message mentioning number :esphomepr:`2194` by :ghuser:`jesserockz`
+- Add deprecated attribute to some deprecated types/methods :esphomepr:`2185` by :ghuser:`oxan`
+- Store source package in Component for debugging :esphomepr:`2070` by :ghuser:`OttoWinter`
+- ST7789V: Make backlight_pin optional :esphomepr:`2180` by :ghuser:`speijnik`
+- Fix SDM energy units to be KILO... :esphomepr:`2206` by :ghuser:`jesserockz` (breaking-change)
+- Optionally set direction on fan.turn_on action :esphomepr:`2171` by :ghuser:`WeekendWarrior1`
+- Add st7920 display, :esphomepr:`1440` by :ghuser:`marsjan155` (new-integration)
+- Fix css/js file loading for webserver when esphome not executed form config directory :esphomepr:`2207` by :ghuser:`jesserockz`
+- cs_pin made optional for ili9341 :esphomepr:`2219` by :ghuser:`a13ssandr0`
+- Fix Packages when using MQTT :esphomepr:`2210` by :ghuser:`paulmonigatti`
+- Update known boards :esphomepr:`2190` by :ghuser:`oxan`
+- Bump dashboard to 20210826.0 :esphomepr:`2211` by :ghuser:`jesserockz`
+- Remove footer validation for fujitsu_general :esphomepr:`2196` by :ghuser:`marciogranzotto`
+- Glmnet schema 202105 :esphomepr:`2220` by :ghuser:`glmnet`
+- Add H-Bridge fan component :esphomepr:`2212` by :ghuser:`WeekendWarrior1`
+- Bump black from 21.7b0 to 21.8b0 :esphomepr:`2222` by :ghuser:`dependabot[bot]`
+- Bump pytest from 6.2.4 to 6.2.5 :esphomepr:`2223` by :ghuser:`dependabot[bot]`
+- Support for the AirThings Wave Plus :esphomepr:`1656` by :ghuser:`jeromelaban` (new-integration)
+- Fix some lint errors in pylint 2.10.2 :esphomepr:`2226` by :ghuser:`jesserockz`
+- Add transitions to light flash :esphomepr:`2201` by :ghuser:`alexyao2015`
+- iBeacon support for ble_presence :esphomepr:`1627` by :ghuser:`ignisf`
+- Cleanup flash transitions :esphomepr:`2227` by :ghuser:`alexyao2015`
+- Add is_on and is_off conditions for the fan component :esphomepr:`2225` by :ghuser:`nuttytree`
+- Bump pylint from 2.9.6 to 2.10.2 :esphomepr:`2197` by :ghuser:`dependabot[bot]`
+- mqtt_sensor: properly send state_class via MQTT :esphomepr:`2228` by :ghuser:`ayufan`
+- Change uptime's state_class to total_increasing (esphome/issues#2337) :esphomepr:`2205` by :ghuser:`DAVe3283`
+- Expose WHITE/CWWW/RGBCT color modes over MQTT :esphomepr:`2231` by :ghuser:`oxan`
+- Reject template select/number/switches that don't handle user input :esphomepr:`2230` by :ghuser:`oxan` (breaking-change)
+- Fix UARTComponent hardware vs software UART0 conflict :esphomepr:`2229` by :ghuser:`ferbar`
+- Move to use zeroconf library instead of inline copy :esphomepr:`2192` by :ghuser:`jesserockz`
+- Allow using a git source for a package :esphomepr:`2193` by :ghuser:`jesserockz` (new-feature)
+- Remove last_reset_type and convert all those sensors to TOTAL_INCREASING :esphomepr:`2233` by :ghuser:`jesserockz` (breaking-change)
+- Dont dump legacy fields :esphomepr:`2241` by :ghuser:`jesserockz`
+- Fix encoding bug :esphomepr:`2242` by :ghuser:`jesserockz`
+- Light: include ON_OFF capability to BRIGHTNESS ColorMode :esphomepr:`2204` by :ghuser:`jesserockz`
+- LOG_UPDATE_INTERVAL: correctly report "never" :esphomepr:`2240` by :ghuser:`Habbie`
+- Fix runtime exception due to dict typing :esphomepr:`2243` by :ghuser:`alexyao2015`
+- template: select: fix initial_value cannot be used with lambda :esphomepr:`2244` by :ghuser:`ayufan`
+- Add device classes new in HA 2021.9 :esphomepr:`2248` by :ghuser:`oxan`
+- Logger prevent recursive logging :esphomepr:`2251` by :ghuser:`OttoWinter`
+- Add new trigger to fan component `on_speed_set` :esphomepr:`2246` by :ghuser:`dgtal1`
+- Fix fan speed restore issue on boot :esphomepr:`1867` by :ghuser:`wifwucite`
+- Template sensors always publish on update interval :esphomepr:`2224` by :ghuser:`nuttytree`
+- Socket component :esphomepr:`2250` by :ghuser:`OttoWinter`
+- Allow .yml files in dashboard :esphomepr:`2257` by :ghuser:`jesserockz`
+- Bump dashboard to 20210908.0 and fix card names for yml :esphomepr:`2258` by :ghuser:`jesserockz`
+- Fix socket not setting callbacks early enough :esphomepr:`2260` by :ghuser:`OttoWinter`
+- Convert API to use sockets :esphomepr:`2253` by :ghuser:`OttoWinter`
+- Midea support v2 :esphomepr:`2188` by :ghuser:`dudanov` (breaking-change)
+- ccs811: publish firmware version; log bootloader and HW version; fix a bug :esphomepr:`2006` by :ghuser:`Habbie`
+- API encryption :esphomepr:`2254` by :ghuser:`OttoWinter`
+- Revert "Dont dump legacy fields" :esphomepr:`2259` by :ghuser:`jesserockz`
+- pm1006: add support for sending a measurement request :esphomepr:`2214` by :ghuser:`Habbie`
+- SGP40 sensor start-up fix :esphomepr:`2178` by :ghuser:`kbx81`
+- PMSA003i Update state_class and async :esphomepr:`2216` by :ghuser:`sjtrny`
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    2021.8.0
+    v1.20.0
+    v1.19.0
+    v1.18.0
+    v1.17.0
+    v1.16.0
+    v1.15.0
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
