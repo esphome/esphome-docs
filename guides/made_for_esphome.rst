@@ -4,7 +4,7 @@ Made for ESPHome
 ================
 
 .. seo::
-    :description: Information about the "Made for ESPHome" logo
+    :description: Information about the Made for ESPHome program
     :image: /_static/made-for-esphome-black-on-white.png
 
 ESPHome has a great and active community that loves creating and sharing projects.
@@ -35,28 +35,30 @@ Logos
         }
     </style>
 
-.. figure:: /_static/made-for-esphome-black-on-white.png
-    :align: center
-    :width: 100%
-
-    Made with ESPHome black on white
-
-.. figure:: /_static/made-for-esphome-white-on-black.png
-    :align: center
-    :width: 100%
-
-    Made with ESPHome white on black
-
-.. figure:: /_static/made-for-esphome-black-on-transparent.png
+.. figure:: /_static/made-for-esphome-black-on-white.svg
     :align: center
     :width: 100%
     :class: transparent-background
 
-    Made with ESPHome black on transparent
+    Made with ESPHome black on white (`svg </_static/made-for-esphome-black-on-white.svg>`__, `png </_static/made-for-esphome-black-on-white.png>`__)
 
-.. figure:: /_static/made-for-esphome-white-on-transparent.png
+.. figure:: /_static/made-for-esphome-white-on-black.svg
     :align: center
     :width: 100%
     :class: transparent-background
 
-    Made with ESPHome white on transparent
+    Made with ESPHome white on black (`svg </_static/made-for-esphome-white-on-black.svg>`__, `png </_static/made-for-esphome-white-on-black.png>`__)
+
+.. figure:: /_static/made-for-esphome-black-on-transparent.svg
+    :align: center
+    :width: 100%
+    :class: transparent-background
+
+    Made with ESPHome black on transparent (`svg </_static/made-for-esphome-black-on-transparent.svg>`__, `png </_static/made-for-esphome-black-on-transparent.png>`__)
+
+.. figure:: /_static/made-for-esphome-white-on-transparent.svg
+    :align: center
+    :width: 100%
+    :class: transparent-background
+
+    Made with ESPHome white on transparent (`svg </_static/made-for-esphome-white-on-transparent.svg>`__, `png </_static/made-for-esphome-white-on-transparent.png>`__)
