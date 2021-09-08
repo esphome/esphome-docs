@@ -105,6 +105,7 @@ Configuration variables:
 - All other options from :ref:`Light <config-light>`.
 
 .. note::
+
     If **from** and **to** are not specified for an addressable segment, that segment will be treated as non-addressable and hence controlled as a single LED.
 
 .. note::
