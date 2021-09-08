@@ -168,6 +168,7 @@ Air Quality
 ***********
 .. imgtable::
 
+    AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
@@ -255,6 +256,7 @@ Environmental
 .. imgtable::
 
     AHT10, components/sensor/aht10, aht10.jpg, Temperature & Humidity
+    AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
@@ -449,6 +451,7 @@ Fan Components
 
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
+    H-bridge Fan, components/fan/hbridge, fan.svg
     Speed Fan, components/fan/speed, fan.svg
     Tuya Fan, components/fan/tuya, tuya.png
 
@@ -472,6 +475,7 @@ Display Components
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7735, components/display/st7735, st7735.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
+    ST7920, components/display/st7920, st7920.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate 6, components/display/inkplate6, inkplate6.jpg
@@ -516,7 +520,7 @@ Climate Components
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
-    Midea Air Conditioner, components/climate/midea_ac, midea.svg
+    Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
 
 Number Components
