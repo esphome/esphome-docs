@@ -1,19 +1,19 @@
-Status Led Light
+Status LED Light
 ================
 
 .. seo::
-    :description: Instructions for setting up a Status Led shared also as binary ON/OFF light in ESPHome.
+    :description: Instructions for setting up a Status LED shared also as binary ON/OFF light in ESPHome.
     :image: led-on.png
 
-The ``status_led`` light platform allows to share a single led for indicating the status of
+The ``status_led`` light platform allows to share a single LED for indicating the status of
 the device (when on error/warning state) or as binary light (when on OK state). 
-This is useful for devices with only one led available.
+This is useful for devices with only one LED available.
 
 It provides the combined functionality of :doc:`status_led component </components/status_led>` and a 
 :doc:`binary light component </components/light/binary>` over a single shared GPIO led. 
 
-When the device is on error/warning state, the function of ``status_led`` will take precedence and control the blinking of the led.
-When the device is in OK state, the led will be restored to the state of the ``binary light`` function and can be controlled as such.
+When the device is on error/warning state, the function of ``status_led`` will take precedence and control the blinking of the LED.
+When the device is in OK state, the LED will be restored to the state of the ``binary light`` function and can be controlled as such.
 
 .. code-block:: yaml
 
