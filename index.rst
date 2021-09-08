@@ -70,6 +70,11 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
                         Creating a Project
                     </a>
                 </li>
+                <li>
+                    <a class="reference" href="/guides/made_for_esphome.html">
+                        Made for ESPHome program
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="guide-card">

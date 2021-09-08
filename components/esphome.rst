@@ -31,8 +31,8 @@ Configuration variables:
   either ``ESP32`` or ``ESP8266``.
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>` for the ESP8266, and
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32`> for the ESP32 (the icon
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ for the ESP8266, and
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ for the ESP32 (the icon
   next to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*,
   if unsure choose a generic board from Espressif.
 
