@@ -457,5 +457,6 @@ See Also
 - :doc:`/components/binary_sensor/modbus_binarysensor`
 - :doc:`/components/text_sensor/modbus_textsensor`
 - :doc:`/components/switch/modbus_switch`
+- :doc:`/cookbook/tracer-an`
 - https://www.modbustools.com/modbus.html
 - :ghedit:`Edit`

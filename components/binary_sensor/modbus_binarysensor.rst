@@ -21,7 +21,8 @@ Configuration variables:
     - "read_input_registers": Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device.
 
 - **address**: (**Required**, integer): start address of the first register in a range
-- **offset**: (**Optional**, integer): offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
+- **offset**: (**Optional**, integer): not required for most cases 
+  offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
   The value for offset depends on the register type. If a binary_sensor is created from an input register the offset is in bytes. For coil and discrete input resisters the LSB of the first data byte contains the coil addressed in the request. The other coils follow toward the high-order end of this byte and from low order to high order in subsequent bytes. For the registers  offset is the position of the relevant bit.
   To get the value of the coil register 2 can be retrived using address: 2 / offset: 0 or address: 0 / offset 2 
 - **bitmask** : some values are packed in a response. The bitmask is used to determined if the result is true or false

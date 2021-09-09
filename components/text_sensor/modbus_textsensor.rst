@@ -21,7 +21,8 @@ Configuration variables:
 
 
 - **address**: (**Required**, integer): start address of the first register in a range
-- **offset**: (**Optional**, integer): offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
+- **offset**: (**Optional**, integer): not required in most cases  
+  offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
 - **bitmask**: (**Optional**) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
 - **skip_updates**: (**Optional**, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 - **register_count**: (**Optional**): The number of registers this data point spans. Default is 1 
@@ -44,7 +45,6 @@ Configuration variables:
         internal: true
         modbus_functioncode: read_holding_registers
         address: 0x9013
-        offset: 0
         register_count: 3
         hex_encode: true
         response_size: 6
