@@ -70,6 +70,11 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
                         Creating a Project
                     </a>
                 </li>
+                <li>
+                    <a class="reference" href="/guides/made_for_esphome.html">
+                        Made for ESPHome program
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="guide-card">
@@ -529,7 +534,7 @@ Climate Components
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
-    Midea Air Conditioner, components/climate/midea_ac, midea.svg
+    Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
 
 Number Components

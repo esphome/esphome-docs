@@ -109,6 +109,10 @@ Release 2021.8.1 - August 24
 - Fix template select lambda :esphomepr:`2198` by :ghuser:`ssieb`
 - Send Celsius temperature unit in MQTT discovery message :esphomepr:`1840` by :ghuser:`mtl010957`
 
+Release 2021.8.2 - August 25
+----------------------------
+
+- Revert "Light: include ON_OFF capability to BRIGHTNESS ColorMode" :esphomepr:`2202` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
