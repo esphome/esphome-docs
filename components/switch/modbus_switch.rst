@@ -33,7 +33,6 @@ Configuration variables:
         id: enable_load_test
         modbus_functioncode: read_coils
         address: 2
-        offset: 3
         name: "enable load test mode"
         bitmask: 1
 
