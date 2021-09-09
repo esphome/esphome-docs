@@ -48,9 +48,6 @@ Configuration variables:
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
   for a list of available options. Set to ``""`` to remove the default state class of a sensor.
-- **last_reset_type** (*Optional*, string): The last reset type to use for the sensor.
-  Currently there is no gain in overriding this string in YAML and it should be set in the platform code.
-  Set to ``""`` to remove the default last reset type of a sensor.
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend. The icon set here
   is ignored by Home Assistant, if a device class is already set.
 - **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
