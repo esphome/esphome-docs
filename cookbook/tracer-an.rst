@@ -154,9 +154,162 @@ Below is the ESPHome configuration file that will get you up and running. This a
         ## the Modbus device addr
         address: 0x1
         modbus_id: mod_bus_epever
-        command_throttle: 0ms
+        command_throttle: 200ms
         setup_priority: -10
         update_interval: ${updates}
+
+    packages:
+      tracer-rated-datum: !include tracer-rated-datum.yaml
+      tracer-real-time: !include tracer-real-time.yaml
+      tracer-stats: !include tracer-stats.yaml
+      #tracer-settings: !include tracer-settings.yaml
+      
+    sensor:
+      - platform: template
+        accuracy_decimals: 0
+        name: "Generated Charge today"
+        id: generated_charge_today
+        unit_of_measurement: "Ah"
+
+      - platform: wifi_signal
+        name: "WiFi Signal"
+        update_interval: ${updates}
+
+    binary_sensor:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: charging_input_volt_failure
+        name: "Charging Input Volt Failure"
+        modbus_functioncode: read_input_registers
+        address: 0x3201
+        bitmask: 0xC000
+
+    switch:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: manual_control_load
+        modbus_functioncode: read_coils
+        address: 2
+        name: "manual control the load"
+        bitmask: 1
+
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: default_control_the_load
+        modbus_functioncode: read_coils
+        address: 3
+        name: "default control the load"
+        bitmask: 1
+
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: enable_load_test
+        modbus_functioncode: read_coils
+        address: 5
+        name: "enable load test mode"
+        bitmask: 1
+
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: force_load
+        modbus_functioncode: read_coils
+        address: 6
+        name: "Force Load on/off"
+        bitmask: 1
+
+      # - platform: modbus_controller
+      #   modbus_controller_id: epever
+      #   id: clear_energy_stats
+      #   modbus_functioncode: read_coils
+      #   address: 0x14
+      #   name: "Clear generating  electricity statistic"
+      #   bitmask: 1
+
+    #  - platform: modbus_controller
+    #    modbus_controller_id: epever
+    #    id: reset_to_fabric_default
+    #    name: "Reset to Factory Default"
+    #    modbus_functioncode: write_single_coil
+    #    address: 0x15
+    #    bitmask: 1
+
+    text_sensor:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        name: "rtc_clock"
+        id: rtc_clock
+        internal: true
+        modbus_functioncode: read_holding_registers
+        address: 0x9013
+        register_count: 3
+        raw_encode: HEXBYTES
+        response_size: 6
+        #                /*
+        #                E20 Real time clock 9013 D7-0 Sec, D15-8 Min
+        #                E21 Real time clock 9014 D7-0 Hour, D15-8 Day
+        #                E22 Real time clock 9015 D7-0 Month, D15-8 Year
+        #                */
+        on_value:
+          then:
+            - lambda: |-
+                ESP_LOGV("main", "decoding rtc hex encoded raw data: %s", x.c_str());
+                uint8_t h=0,m=0,s=0,d=0,month_=0,y = 0 ;
+                m = esphome::modbus_controller::byte_from_hex_str(x,0);
+                s = esphome::modbus_controller::byte_from_hex_str(x,1);
+                d = esphome::modbus_controller::byte_from_hex_str(x,2);
+                h = esphome::modbus_controller::byte_from_hex_str(x,3);
+                y = esphome::modbus_controller::byte_from_hex_str(x,4);
+                month_ = esphome::modbus_controller::byte_from_hex_str(x,5);
+                // Now check if the rtc time of the controller is ok and correct it
+                time_t now = ::time(nullptr);
+                struct tm *time_info = ::localtime(&now);
+                int seconds = time_info->tm_sec;
+                int minutes = time_info->tm_min;
+                int hour = time_info->tm_hour;
+                int day = time_info->tm_mday;
+                int month = time_info->tm_mon + 1;
+                int year = time_info->tm_year % 100;
+                // correct time if needed (ignore seconds)
+                if (d != day || month_ != month || y != year || h != hour || m != minutes) {
+                  // create the payload
+                  std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
+                                                    uint16_t((year << 8) | month)};
+                  // Create a modbus command item with the time information as the payload
+                  esphome::modbus_controller::ModbusCommandItem set_rtc_command = esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(epever, 0x9013, 3, rtc_data);
+                  // Submit the command to the send queue
+                  epever->queue_command(set_rtc_command);
+                  ESP_LOGI("ModbusLambda", "EPSOLAR RTC set to %02d:%02d:%02d %02d.%02d.%04d", hour, minutes, seconds, day, month, year + 2000);
+                }
+                char buffer[20];
+                // format time as YYYY-mm-dd hh:mm:ss
+                sprintf(buffer,"%04d-%02d-%02d %02d:%02d:%02d",y+2000,month_,d,h,m,s);
+                id(template_rtc).publish_state(buffer);
+
+      - platform: template
+        name: "RTC Time Sensor"
+        id: template_rtc
+
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        name: "rtc clock test 2"
+        id: rtc_clock_test2
+        internal: true
+        modbus_functioncode: read_holding_registers
+        address: 0x9013
+        register_count: 3
+        raw_encode: HEXBYTES
+        response_size: 6
+
+    web_server:
+      port: 80
+
+The definitions for most sensors is included using Packages
+
+Rated Datum registers 
+
+tracer-rated-datum.yaml
+
+.. code-block:: yaml
 
     sensor:
       - platform: modbus_controller
@@ -170,7 +323,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
-          - multiply: 0.01
+            - multiply: 0.01
 
       - platform: modbus_controller
         modbus_controller_id: epever
@@ -182,7 +335,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         value_type: U_WORD
         accuracy_decimals: 2
         filters:
-          - multiply: 0.01
+            - multiply: 0.01
 
       - platform: modbus_controller
         modbus_controller_id: epever
@@ -256,12 +409,19 @@ Below is the ESPHome configuration file that will get you up and running. This a
         filters:
           - multiply: 0.01
 
+
+Real TimeDatum registers
+tracer-real-time.yaml
+
+.. code-block:: yaml
+
+    sensor:
       - platform: modbus_controller
         modbus_controller_id: epever
         id: pv_input_voltage
         name: "PV array input voltage"
         address: 0x3100
-        unit_of_measurement: "V"
+        unit_of_measurement: "V" ## for any other unit the value is returned in minutes
         modbus_functioncode: "read_input_registers"
         value_type: U_WORD
         accuracy_decimals: 1
@@ -273,7 +433,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         id: pv_input_current
         name: "PV array input current"
         address: 0x3101
-        unit_of_measurement: "A"
+        unit_of_measurement: "A" ## for any other unit the value is returned in minutes
         modbus_functioncode: "read_input_registers"
         value_type: U_WORD
         accuracy_decimals: 2
@@ -285,7 +445,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         id: pv_input_power
         name: "PV array input power"
         address: 0x3102
-        unit_of_measurement: "W"
+        unit_of_measurement: "W" ## for any other unit the value is returned in minutes
         modbus_functioncode: "read_input_registers"
         value_type: U_DWORD_R
         accuracy_decimals: 1
@@ -433,6 +593,39 @@ Below is the ESPHome configuration file that will get you up and running. This a
         filters:
           - multiply: 0.01
 
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: Battery_status_volt
+        name: "Battery status voltage"
+        address: 0x3200
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        bitmask: 7  #(Bits 0-3)
+        accuracy_decimals: 0
+
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: Battery_status_temp
+        name: "Battery status temeratur"
+        address: 0x3200
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        bitmask: 0x38  #(Bits 4-7)
+        accuracy_decimals: 0
+
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: Charger_status
+        name: "Charger status"
+        address: 0x3201
+        modbus_functioncode: "read_input_registers"
+        value_type: U_WORD
+        accuracy_decimals: 0
+
+    Statistic registers
+    tracer-stats.yaml:
+    .. code-block:: yaml
+    sensor:
       - platform: modbus_controller
         modbus_controller_id: epever
         id: max_pv_voltage_today
@@ -618,6 +811,13 @@ Below is the ESPHome configuration file that will get you up and running. This a
         filters:
           - multiply: 0.01
 
+
+Setting registers (commented out to save stack space)
+tracer-settings.yaml
+
+.. code-block:: yaml
+
+    sensor:
       - platform: modbus_controller
         modbus_controller_id: epever
         id: battery_type
@@ -1078,148 +1278,6 @@ Below is the ESPHome configuration file that will get you up and running. This a
         skip_updates: 50
         filters:
           - lambda: return id(length_of_night_minutes).state  + ( 60 * x);
-
-      - platform: template
-        accuracy_decimals: 0
-        name: "Generated Charge today"
-        id: generated_charge_today
-        unit_of_measurement: "Ah"
-
-      - platform: wifi_signal
-        name: "WiFi Signal"
-        update_interval: ${updates}
-
-    binary_sensor:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: charging_input_volt_failure
-        name: "Charging Input Volt Failure"
-        modbus_functioncode: read_input_registers
-        address: 0x3201
-        bitmask: 0xC000
-
-    switch:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: manual_control_load
-        modbus_functioncode: read_coils
-        address: 2
-        name: "manual control the load"
-        bitmask: 1
-
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: default_control_the_load
-        modbus_functioncode: read_coils
-        address: 3
-        name: "default control the load"
-        bitmask: 1
-
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: enable_load_test
-        modbus_functioncode: read_coils
-        address: 5
-        name: "enable load test mode"
-        bitmask: 1
-
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: force_load
-        modbus_functioncode: read_coils
-        address: 6
-        name: "Force Load on/off"
-        bitmask: 1
-
-      # - platform: modbus_controller
-      #   modbus_controller_id: epever
-      #   id: clear_energy_stats
-      #   modbus_functioncode: read_coils
-      #   address: 0x14
-      #   name: "Clear generating  electricity statistic"
-      #   bitmask: 1
-
-    #  - platform: modbus_controller
-    #    modbus_controller_id: epever
-    #    id: reset_to_fabric_default
-    #    name: "Reset to Factory Default"
-    #    modbus_functioncode: write_single_coil
-    #    address: 0x15
-    #    bitmask: 1
-
-    text_sensor:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        name: "rtc_clock"
-        id: rtc_clock
-        internal: true
-        modbus_functioncode: read_holding_registers
-        address: 0x9013
-        register_count: 3
-        raw_encode: HEXBYTES
-        response_size: 6
-        #                /*
-        #                E20 Real time clock 9013 D7-0 Sec, D15-8 Min
-        #                E21 Real time clock 9014 D7-0 Hour, D15-8 Day
-        #                E22 Real time clock 9015 D7-0 Month, D15-8 Year
-        #                */
-        on_value:
-          then:
-            - lambda: |-
-                ESP_LOGV("main", "decoding rtc hex encoded raw data: %s", x.c_str());
-                uint8_t h=0,m=0,s=0,d=0,month_=0,y = 0 ;
-                m = esphome::modbus_controller::byte_from_hex_str(x,0);
-                s = esphome::modbus_controller::byte_from_hex_str(x,1);
-                d = esphome::modbus_controller::byte_from_hex_str(x,2);
-                h = esphome::modbus_controller::byte_from_hex_str(x,3);
-                y = esphome::modbus_controller::byte_from_hex_str(x,4);
-                month_ = esphome::modbus_controller::byte_from_hex_str(x,5);
-                // Now check if the rtc time of the controller is ok and correct it
-                time_t now = ::time(nullptr);
-                struct tm *time_info = ::localtime(&now);
-                int seconds = time_info->tm_sec;
-                int minutes = time_info->tm_min;
-                int hour = time_info->tm_hour;
-                int day = time_info->tm_mday;
-                int month = time_info->tm_mon + 1;
-                int year = time_info->tm_year % 100;
-                // correct time if needed (ignore seconds)
-                if (d != day || month_ != month || y != year || h != hour || m != minutes) {
-                  // create the payload
-                  std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
-                                                    uint16_t((year << 8) | month)};
-                  // Create a modbus command item with the time information as the payload
-                  esphome::modbus_controller::ModbusCommandItem set_rtc_command = esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(epever, 0x9013, 3, rtc_data);
-                  // Submit the command to the send queue
-                  epever->queue_command(set_rtc_command);
-                  ESP_LOGI("ModbusLambda", "EPSOLAR RTC set to %02d:%02d:%02d %02d.%02d.%04d", hour, minutes, seconds, day, month, year + 2000);
-                }
-                char buffer[20];
-                // format time as YYYY-mm-dd hh:mm:ss
-                sprintf(buffer,"%04d-%02d-%02d %02d:%02d:%02d",y+2000,month_,d,h,m,s);
-                id(template_rtc).publish_state(buffer);
-
-      - platform: template
-        name: "RTC Time Sensor"
-        id: template_rtc
-
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        name: "rtc clock test 2"
-        id: rtc_clock_test2
-        internal: true
-        modbus_functioncode: read_holding_registers
-        address: 0x9013
-        register_count: 3
-        raw_encode: HEXBYTES
-        response_size: 6
-
-    web_server:
-      port: 80
-
-
-
-
 
 
 See Also
