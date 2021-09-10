@@ -508,6 +508,7 @@ Contributors
 - `Marcus Kempe (@plopp) <https://github.com/plopp>`__
 - `DK (@poldim) <https://github.com/poldim>`__
 - `polyfaces (@polyfaces) <https://github.com/polyfaces>`__
+- `poptix (@poptix) <https://github.com/poptix>`__
 - `Iván Povedano (@pove) <https://github.com/pove>`__
 - `pplucky (@pplucky) <https://github.com/pplucky>`__
 - `probonopd (@probonopd) <https://github.com/probonopd>`__
@@ -697,4 +698,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 9, 2021.*
+*This page was last updated September 10, 2021.*

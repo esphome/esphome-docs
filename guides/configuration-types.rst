@@ -349,11 +349,14 @@ merged with the services definitions from main config file.
     switch:
       - !include common/switch/restart_switch.config.yaml
 
+.. _config-git_packages:
 
 Remote/git Packages
 *******************
 
 Packages can also be loaded from a git repository by utilizing the correct config syntax.
+:ref:`config-substitutions` can be used inside the remote packages which allows users to override
+them locally with their own subsitution value.
 
 .. code-block:: yaml
 
