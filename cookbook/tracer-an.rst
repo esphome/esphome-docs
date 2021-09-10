@@ -623,8 +623,10 @@ tracer-real-time.yaml
         accuracy_decimals: 0
 
     Statistic registers
-    tracer-stats.yaml:
+    tracer-stats.yaml
+    
     .. code-block:: yaml
+
     sensor:
       - platform: modbus_controller
         modbus_controller_id: epever
