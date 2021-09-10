@@ -36,9 +36,6 @@
     </div>
   </div>
   <script>
-    if (window.location.pathname === "/") {
-      window.document.title = "ESPHome"
-    }
     var old = window.localStorage.getItem("version");
     if (old === null) { window.localStorage.setItem("version", "{{ version }}");
     } else if (old !== "{{ version }}") {
