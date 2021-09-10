@@ -23,6 +23,12 @@ API Encryption
 will need to upgrade their client libraries (e.g. ``aioesphomeapi``) before they can connect and communicate to
 devices with encryption. This is scheduled to be available in Home Assistant 2021.10.
 
+Git Packages
+------------
+
+:ref:`Packages<config-git_packages>` have been extended to allow loading (multiple) YAML file(s) from a git repo.
+Take a look at the examples to see how to use them.
+
 Midea AC
 --------
 
@@ -64,6 +70,12 @@ Breaking Changes
 - Reject template select/number/switches that don't handle user input :esphomepr:`2230` by :ghuser:`oxan` (breaking-change)
 - Remove last_reset_type and convert all those sensors to TOTAL_INCREASING :esphomepr:`2233` by :ghuser:`jesserockz` (breaking-change)
 - Midea support v2 :esphomepr:`2188` by :ghuser:`dudanov` (breaking-change)
+
+Beta Fixes
+^^^^^^^^^^
+
+- Fix a few ESP32-C3 compiler issues :esphomepr:`2265` by :ghuser:`jesserockz`
+- sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
 
 All changes
 ^^^^^^^^^^^
@@ -131,6 +143,8 @@ All changes
 - pm1006: add support for sending a measurement request :esphomepr:`2214` by :ghuser:`Habbie`
 - SGP40 sensor start-up fix :esphomepr:`2178` by :ghuser:`kbx81`
 - PMSA003i Update state_class and async :esphomepr:`2216` by :ghuser:`sjtrny`
+- Fix a few ESP32-C3 compiler issues :esphomepr:`2265` by :ghuser:`jesserockz`
+- sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
 
 Past Changelogs
 ---------------
