@@ -44,6 +44,7 @@ Configuration variables:
   Note: The modbus_controller groups component by address ranges to reduce number of transactions. All compoents with the same address will be updated in one request. skip_updates applies for all components in the same range.
 - **register_count**: (**Optional**): only required for uncommon response encodings 
   The number of registers this data point spans. Default is 1 
+- **force_new_range**: (**Optional**, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -96,5 +97,5 @@ See Also
 - :doc:`/components/binary_sensor/modbus_binarysensor`
 - :doc:`/components/text_sensor/modbus_textsensor`
 - :doc:`/components/switch/modbus_switch`
-- https://www.modbustools.com/modbus.html
+- :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
 - :ghedit:`Edit`
