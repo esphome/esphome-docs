@@ -85,13 +85,13 @@ Additionally, the device has an ::doc:`NTC temperature sensor <ntc>`.
           internal: false
         # On the Shelly 2.5 channels are mixed ch1=B ch2=A
         current_b:
-          name: "${channel_1} current"
+          name: "Channel 1 current"
           internal: true
         current_a:
-          name: "${channel_2} current"
+          name: "Channel 2 current"
           internal: true
         active_power_b:
-          name: "${channel_1} power"
+          name: "Channel 1 power"
           id: power_channel_1
           device_class: power
           state_class: measurement
@@ -99,7 +99,7 @@ Additionally, the device has an ::doc:`NTC temperature sensor <ntc>`.
             - multiply: -1 # active_power_b is inverted, so multiply by -1
             - lambda: if (x < 2) return 0; else return x; # return zero if below 2w
         active_power_a:
-          name: "${channel_2} power"
+          name: "Channel 2 power"
           id: power_channel_2
           device_class: power
           state_class: measurement
