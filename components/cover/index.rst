@@ -152,30 +152,37 @@ Configuration variables:
 
 .. _cover-lambda_calls:
 
-lambda calls
-------------
+Lambdas
+-------
 
-From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
-advanced stuff.
+From :ref:`lambdas <config-lambda>`, you can access the current state of the cover (note that these
+fields are read-only, if you want to act on the cover, use the ``make_call()`` method as shown above).
 
-- ``publish_state()``: Manually cause the cover to publish a new state and store it internally.
-  If it's different from the last internal state, it's additionally published to the frontend.
+- ``position``: Retrieve the current position of the cover, as a value between ``0.0`` (open) and ``1.0`` (closed).
 
-  .. code-block:: yaml
-
-      // Within lambda, make the cover report a specific state
-      id(my_cover).publish_state(COVER_OPEN);
-      id(my_cover).publish_state(COVER_CLOSED);
-
-- ``state``: Retrieve the current state of the cover.
-
-  .. code-block:: yaml
+  .. code-block:: cpp
 
       if (id(my_cover).position == COVER_OPEN) {
         // Cover is open
-      } else {
+      } else if (id(my_cover).position == COVER_CLOSED) {
         // Cover is closed
+      } else {
+        // Cover is in-between open and closed
       }
+      
+- ``tilt``: Retrieve the current tilt position of the cover, as a value between ``0.0`` and ``1.0``.
+
+- ``current_operation``: The operation the cover is currently performing:
+
+  .. code-block:: cpp
+  
+    if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_IDLE) {
+      // Cover is idle
+    } else if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_OPENING) {
+      // Cover is currently opening
+    } else if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_CLOSING) {
+      // Cover is currently closing
+    }
 
 See Also
 --------
