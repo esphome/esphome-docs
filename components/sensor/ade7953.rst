@@ -51,7 +51,8 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **active_power_b** (*Optional*): Use the power value of the A channel in watts. All options from
   :ref:`Sensor <config-sensor>`.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``
+  ``10s`` will also work fine, lower might give unreliable results.
 
 Use with Shelly 2.5
 -------------------
@@ -78,9 +79,8 @@ Additionally, the device has an ::doc:`NTC temperature sensor <ntc>`.
     sensor:
       - platform: ade7953
         irq_pin: GPIO16 # Prevent overheating by setting this
-        update_interval: 10s
         voltage:
-          name: "${devicename} voltage"
+          name: "Shelly voltage"
           device_class: voltage
           internal: false
         # On the Shelly 2.5 channels are mixed ch1=B ch2=A
@@ -98,16 +98,6 @@ Additionally, the device has an ::doc:`NTC temperature sensor <ntc>`.
           filters:
             - multiply: -1 # active_power_b is inverted, so multiply by -1
             - lambda: if (x < 2) return 0; else return x; # return zero if below 2w
-          on_value_range:
-            - above: ${max_power}
-              then:
-                - switch.turn_off: shelly_relay_1
-                - homeassistant.service:
-                    service: persistent_notification.create
-                    data:
-                      title: Message from ${devicename}
-                    data_template:
-                      message: "Switch ${channel_1} turned off because power exceeded ${max_power}W"
         active_power_a:
           name: "${channel_2} power"
           id: power_channel_2
@@ -115,16 +105,6 @@ Additionally, the device has an ::doc:`NTC temperature sensor <ntc>`.
           state_class: measurement
           filters: # active_power_a is normal, so don't multiply by -1
             - lambda: if (x < 2) return 0; else return x; # return zero if below 2w
-          on_value_range:
-            - above: ${max_power}
-              then:
-                - switch.turn_off: shelly_relay_2
-                - homeassistant.service:
-                    service: persistent_notification.create
-                    data:
-                      title: Message from ${devicename}
-                    data_template:
-                      message: "Switch ${channel_2} turned off because power exceeded ${max_power}W"
 
 See Also
 --------
