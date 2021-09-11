@@ -175,7 +175,7 @@ fields are read-only, if you want to act on the cover, use the ``make_call()`` m
 - ``current_operation``: The operation the cover is currently performing:
 
   .. code-block:: cpp
-  
+
     if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_IDLE) {
       // Cover is idle
     } else if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_OPENING) {
