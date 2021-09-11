@@ -87,6 +87,9 @@ Configuration variables:
   maximum of 255, but dimmers with a maximum of 1000 can also be found. Try what works best.
 - **color_temperature_max_value** (*Optional*, int, default 255): The highest color temperature
   value allowed. Some ceiling fans have a value of 100 (also for `max_value`).
+- **color_temperature_invert** (*Optional*, boolean, default false): Control how color temperature
+  values are sent to the MCU. If this is set to true ESPHome will treat 0 as warm white and
+  **color_temperature_max_value** as cool white when setting **color_temperature_datapoint**.
 - **cold_white_color_temperature** (*Optional*, float): The color temperature (in `mireds
   <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
 - **warm_white_color_temperature** (*Optional*, float): The color temperature (in `mireds
