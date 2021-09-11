@@ -162,19 +162,19 @@ fields are read-only, if you want to act on the cover, use the ``make_call()`` m
 
     .. code-block:: cpp
 
-          if (id(my_cover).position == COVER_OPEN) {
-            // Cover is open
-          } else if (id(my_cover).position == COVER_CLOSED) {
-            // Cover is closed
-          } else {
-            // Cover is in-between open and closed
-          }
+        if (id(my_cover).position == COVER_OPEN) {
+          // Cover is open
+        } else if (id(my_cover).position == COVER_CLOSED) {
+          // Cover is closed
+        } else {
+          // Cover is in-between open and closed
+        }
       
 - ``tilt``: Retrieve the current tilt position of the cover, as a value between ``0.0`` and ``1.0``.
 
 - ``current_operation``: The operation the cover is currently performing:
 
-      .. code-block:: cpp
+    .. code-block:: cpp
 
         if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_IDLE) {
           // Cover is idle
