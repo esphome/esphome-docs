@@ -5,14 +5,6 @@ ADE7953 Power Sensor
     :description: Instructions for setting up ADE7953 power sensors
     :image: ade7953.png
 
-.. note::
-
-    This page is incomplete and could use some work. If you want to contribute, please read the
-    :doc:`contributing guide </guides/contributing>`. This page is missing:
-
-      - A complete configuration example for the Shelly 2.5
-      - An image for the front page
-
 The ``ade7953`` sensor platform allows you to use ADE7953 single phase energy metering ICs
 (`datasheet <https://www.analog.com/media/en/technical-documentation/data-sheets/ADE7953.pdf>`__)
 with ESPHome. These are commonly found in **Shelly 2.5** devices.
@@ -71,53 +63,68 @@ There are three oddities with the Shelly 2.5:
 
 - First, the A and B channels are mixed up - the chip's A channel is label B on the outside and
   vice versa. Probably to make the PCB easier to manufacture.
-- Secondly, due to the first point the active_power values are inverted. This is fixed by
-  using a multiply filter as seen in the config below.
+- Secondly, the output value active_power_b is inverted, which is not the case for active_power_a.
+  This is fixed by using a multiply filter as seen in the config below.
 - Lastly, the ADE7953 IRQ line is connected to the GPIO16. The irq_pin MUST be set to GPIO16 to prevent device overheat (>70ºC idling).
 
 Additionally, the device has an ::doc:`NTC temperature sensor <ntc>`.
 
 .. code-block:: yaml
 
-    i2c:
-      sda: GPIO12
-      scl: GPIO14
+		i2c:
+			sda: GPIO12
+			scl: GPIO14
 
-    sensor:
-      - platform: ade7953
-        irq_pin: GPIO16
-        voltage:
-          name: Shelly Voltage
-        current_a:
-          name: Shelly Current B
-        current_b:
-          name: Shelly Current A
-        active_power_a:
-          name: Shelly Active Power B
-          filters:
-            - multiply: -1
-        active_power_b:
-          name: Shelly Active Power A
-          filters:
-            - multiply: -1
-        update_interval: 60s
-
-      # NTC Temperature
-      - platform: ntc
-        sensor: temp_resistance_reading
-        name: "Shelly Temperature"
-        calibration:
-          b_constant: 3350
-          reference_resistance: 10kOhm
-          reference_temperature: 298.15K
-      - platform: resistance
-        id: temp_resistance_reading
-        sensor: temp_analog_reading
-        configuration: DOWNSTREAM
-        resistor: 32kOhm
-      - platform: adc
-        id: temp_analog_reading
-        pin: A0
+		sensor:
+			- platform: ade7953
+				irq_pin: GPIO16 # Prevent overheating by setting this
+				update_interval: 10s
+				voltage:
+					name: "${devicename} voltage"
+					device_class: voltage
+					internal: false
+				# On the Shelly 2.5 channels are mixed ch1=B ch2=A
+				current_b:
+					name: "${channel_1} current"
+					internal: true
+				current_a:
+					name: "${channel_2} current"
+					internal: true
+				active_power_b:
+					name: "${channel_1} power"
+					id: power_channel_1
+					device_class: power
+					state_class: measurement
+					filters:
+						- multiply: -1 # active_power_b is inversed, so multiply by -1
+						- lambda: if (x < 2) return 0; else return x; # return zero if below 2w
+					on_value_range:
+						- above: ${max_power}
+							then:
+								- switch.turn_off: shelly_relay_1
+								- homeassistant.service:
+										service: persistent_notification.create
+										data:
+											title: Message from ${devicename}
+										data_template:
+											message: "Switch ${channel_1} turned off because power exceeded ${max_power}W"
+				active_power_a:
+					name: "${channel_2} power"
+					id: power_channel_2
+					device_class: power
+					state_class: measurement
+					filters: # active_power_a is normal, so don't multiply by -1
+						- lambda: if (x < 2) return 0; else return x; # return zero if below 2w
+					on_value_range:
+						- above: ${max_power}
+							then:
+								- switch.turn_off: shelly_relay_2
+								- homeassistant.service:
+										service: persistent_notification.create
+										data:
+											title: Message from ${devicename}
+										data_template:
+											message: "Switch ${channel_2} turned off because power exceeded ${max_power}W"
 
 See Also
 --------
