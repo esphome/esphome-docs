@@ -61,7 +61,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the :ref:`I²C <i2c>` address of the display. Defaults to 0x3C.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
-- **brightness** (*Optional*): Set the screen brightness in percents 0.0-1.0. Defaults to `1.0` that corresponds to 100%.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **external_vcc** (*Optional*, boolean): Set this to true if you have the VCC pin connected to an external power supply.
   Defaults to ``false``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
@@ -69,7 +69,6 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 .. note::
 
@@ -133,6 +132,7 @@ Configuration variables:
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **external_vcc** (*Optional*, boolean): Set this to true if you have the VCC pin connected to an external power supply.
   Defaults to ``false``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
@@ -142,7 +142,6 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 See Also
 --------

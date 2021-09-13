@@ -41,8 +41,8 @@ ESP; this is recommended as it improves reliability.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
-Configuration variables
-***********************
+Configuration variables:
+************************
 
 - **model** (**Required**): The model of the display. At present, only one option is available:
 
@@ -52,13 +52,12 @@ Configuration variables
 - **address** (*Optional*, int): Manually specify the :ref:`I²C <i2c>` address of the display. Defaults to 0x3D.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
-- **brightness** (*Optional*): Set the screen brightness in percents 0.0-1.0. Defaults to `1.0` that corresponds to 100%.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 .. note::
 
@@ -101,8 +100,8 @@ available pin on the ESP; this is recommended as it improves reliability.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
-Configuration variables
-***********************
+Configuration variables:
+************************
 
 - **model** (**Required**): The model of the display. At present, only one option is available:
 
@@ -113,6 +112,7 @@ Configuration variables
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -120,7 +120,6 @@ Configuration variables
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **brightness** (*Optional*, float): Manually override display brightness in %. Defaults to ``100%``
 
 Configuration examples
 **********************

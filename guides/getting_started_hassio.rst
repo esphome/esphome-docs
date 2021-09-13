@@ -2,36 +2,26 @@ Getting Started with ESPHome and Home Assistant
 ===============================================
 
 .. seo::
-    :description: Getting Started guide for installing ESPHome as a Home Assistant add-on and creating a basic configuration.
+    :description: Getting Started guide for installing ESPHome Dashboard as a Home Assistant add-on and creating a basic configuration.
     :image: home-assistant.png
 
 ESPHome is the perfect solution for creating custom firmware for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
-basic "node" by use of the Home Assistant add-on.
+basic "node" using the ESPHome Dashboard, installed as a Home Assistant add-on.
 
 But first, here's a very quick introduction to how ESPHome works:
-ESPHome is a *tool* which reads in a YAML configuration file (just like Home Assistant)
-and creates a custom firmware binary. The tool also has many helpers that simplify flashing devices (uploading the new binary file)
-and aim to make managing your ESP boards as simple as possible. Once you have added devices
-or sensors in ESPHome's configuration, they will even automatically show up in Home
-Assistant's UI.
+ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file (just like Home Assistant) and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
 
-Installation
-------------
+Installing ESPHome Dashboard
+----------------------------
 
-Installing the ESPHome Home Assistant add-on is easy. Navigate to the Supervisor
-panel in your Home Assistant frontend, then enter ``ESPHome`` in the searchbar of the "Add-on Store"
-tab.
+The ESPHome Dashboard can be installed as a Home Assistant add-on, which you can find in the add-on store in the Supervisor panel. Open it using the following button then click on INSTALL:
 
-.. figure:: images/hassio_repo.png
+.. raw:: html
 
-Click on ESPHome, then INSTALL.
+    <a href="https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_esphome" target="_blank"><img src="https://my.home-assistant.io/badges/supervisor_addon.svg" alt="Open your Home Assistant instance and show the dashboard of a Supervisor add-on." /></a>
 
-.. figure:: images/hassio_addons_section.png
-
-After that, wait a bit until the add-on is installed (this can take a while) and
-go to the add-on page. Start the add-on and then click "Open Web UI". If you see "502: Bad Gateway" the
-addon is currently starting, and you can refresh the page after a couple of seconds.
+After that, wait a bit until it is installed (this can take a while). Click "Start" and then click "Open Web UI". If you see "502: Bad Gateway" it is currently starting, and you can refresh the page after a couple of seconds.
 
 .. figure:: images/hassio_addon.png
     :align: center
@@ -44,11 +34,32 @@ creating your first configuration.
     :align: center
     :width: 95.0%
 
+The wizard will guide you through creating your first configuration and, depending on your browser, install it on your ESP device. You will need to name your configuration and enter your wireless network settings so that the ESP device can come online and can communicate with Home Assistant.
+
+.. raw:: html
+
+    <a name='webserial'></a>
+
+.. note::
+
+    The most difficult part of setting up a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to a computer. Later updates can be installed wirelessly.
+
+    If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome Dashboard.
+    *You need to access the ESPHome Dashboard over HTTPS for this to work. This is a requirement of browsers to access your ESP device to ensure that we write the correct data.*
+
+    If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome Dashboard and Home Assistant.
+
+    If the serial port is not showing up, you might not have the required drivers installed. These drivers work for most ESP devices:
+
+      * CP2102 (square chip): `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
+      * CH341: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
+
+
 Dashboard Interface
 -------------------
 
 Assuming you created your first configuration file with the wizard, let's take a quick
-tour of the ESPHome dashboard interface.
+tour of the ESPHome Dashboard interface.
 
 .. figure:: images/dashboard.png
     :align: center
@@ -57,34 +68,19 @@ tour of the ESPHome dashboard interface.
 On the front page you will see all configurations for nodes you created. For each file,
 there are three basic actions you can perform:
 
-- **UPLOAD**: This compiles the firmware for your node and uploads it using any connected
-  USB device or, if no USB devices are connected, over-the-air using the :doc:`/components/ota`.
-
-  .. warning::
-
-      The Home Assistant add-on is currently not capable of discovering new USB ports after the
-      add-on has started due to some docker restrictions. Please go to the add-on details page
-      and restart the add-on if a new USB device is not automatically found. If the USB device
-      is still not found, try changing the USB cable and restarting the add-on.
+- **INSTALL**: This compiles the firmware for your node and installs it. Installation happens wirelessy if you have enabled the :doc:`/components/ota` in your configuration. Alternatively you can install it from your browser or via a device connected to the machine running the ESPHome Dashboard.
 
 - **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
   connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
 
 - **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
-  binary so that you can upload it yourself from your computer.
-
-  .. note::
-
-      If you're having problems with flashing over USB, you can always download the firmware using the
-      ``COMPILE`` button and flash the firmware using :ref:`ESPHome-flasher <esphome-flasher>`.
+  binary so that you can install it yourself from your computer using :ref:`ESPHome-flasher <esphome-flasher>`.
 
 The configuration files for ESPHome can be found and edited under ``<HOME_ASSISTANT_CONFIG>/esphome/``.
 For example the configuration for the node in the picture above can be found
 in ``/config/esphome/livingroom.yaml``.
 
-Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration for the device you
-intend to flash an ESPHome firmware onto. Then proceed with uploading the first firmware using the
-upload button.
+Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration.
 
 Adding some (basic) features
 ----------------------------
@@ -106,8 +102,12 @@ anything really, for example lights) and is connected to the pin ``GPIO5``.
 Connecting your device to Home Assistant
 ----------------------------------------
 
-Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
-should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).
+Once your configuration is installed on your ESP device and is online, it will be automatically discovered by Home Assistant and offered to set up on your integrations screen:
+
+.. raw:: html
+
+    <a href="https://my.home-assistant.io/redirect/config_flow_start/?domain=esphome" target="_blank"><img src="https://my.home-assistant.io/badges/config_flow_start.svg" alt="Open your Home Assistant instance and start setting up a new integration." /></a>
+
 Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
 and entering "<NODE_NAME>.local" as the host.
 
@@ -115,9 +115,8 @@ and entering "<NODE_NAME>.local" as the host.
     :align: center
     :width: 75.0%
 
-After the first upload, you will probably never need to use the USB
+After the first installation, you will probably never need to use the USB
 cable again, as all features of ESPHome are enabled remotely as well.
-No more opening hidden boxes stowed in places hard to reach. Yay!
 
 Adding A Binary Sensor
 ----------------------
@@ -133,15 +132,11 @@ Sensor </components/binary_sensor/gpio>`.
         name: "Living Room Window"
         pin:
           number: 16
-          inverted: True
+          inverted: true
           mode: INPUT_PULLUP
 
-This is an advanced feature of ESPHome, almost all pins can
-optionally have a more complicated configuration schema with options for
-inversion and pinMode - the :ref:`Pin Schema <config-pin_schema>`.
-
-This time when uploading, you don’t need to have the device plugged in
-through USB again. The upload will magically happen :doc:`"over the air" </components/ota>`.
+This time when installing, you don’t need to have the device plugged in
+through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota>`).
 
 .. figure:: /components/binary_sensor/images/gpio-ui.png
     :align: center
@@ -151,7 +146,7 @@ Where To Go Next
 ----------------
 
 Great 🎉! You’ve now successfully setup your first ESPHome project
-and uploaded your first ESPHome custom firmware to your node. You’ve
+and installed your first ESPHome custom firmware to your node. You’ve
 also learned how to enable some basic components via the configuration
 file.
 

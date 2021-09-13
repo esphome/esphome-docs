@@ -38,8 +38,8 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **type** (**Required**, string): The type of output. One of ``binary`` and ``float``.
-- **on_write_action** (*Required*, :ref:`Action <config-action>`): The action that should
-  be performed when the state of the output is updated.
+- **write_action** (**Required**, :ref:`Automation <automation>`): An automation to perform
+  when the state of the output is updated.
 - All other options from :ref:`Output <config-output>`.
 
 See :apiclass:`output::BinaryOutput` and :apiclass:`output::FloatOutput`.
@@ -51,13 +51,13 @@ See :apiclass:`output::BinaryOutput` and :apiclass:`output::FloatOutput`.
 
 .. _output-template-on_write_action:
 
-``output.template.on_write`` Action
------------------------------------
+``write_action`` Trigger
+------------------------
 
-When the state for this output is updated, the on_write action is executed. 
+When the state for this output is updated, the ``write_action`` is triggered.
 It is possible to access the state value inside Lambdas:
 
-.. code-block:: yaml  
+.. code-block:: yaml
 
     - platform: template
         id: my_output

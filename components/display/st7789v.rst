@@ -50,13 +50,13 @@ hardwired programming. (OTA updates are of course possible after ESPHome is init
     When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
     hardwired within the module/PCB.
 
-Configuration variables
-***********************
+Configuration variables:
+************************
 
-- **backlight_pin** (:ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
-- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **backlight_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.

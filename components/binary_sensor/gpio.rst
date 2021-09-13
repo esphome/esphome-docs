@@ -60,7 +60,7 @@ sensor:
       - platform: gpio
         pin:
           number: D2
-          inverted: True
+          inverted: true
         name: ...
 
 Debouncing Values

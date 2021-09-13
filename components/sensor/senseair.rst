@@ -64,6 +64,77 @@ Configuration variables:
 
     ``G+`` should be connected to power supply (supported voltage is 4.5 V to 5.25 V), ``G0`` to ``GND`` pin
 
+.. _senseair-background_calibration_action:
+
+``senseair.background_calibration`` Action
+------------------------------------------
+
+This :ref:`action <config-action>` initiates a background calibration on the sensor with the given ID: the current
+CO2 level will be used as a reference for the 400ppm threshold. Ensure that the sensor is in a stable environment with
+fresh ambient air, preferably near a window that has already been opened for a sufficient time.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - senseair.background_calibration: my_senseair_id
+
+.. _senseair-background_calibration_result_action:
+
+``senseair.background_calibration_result`` Action
+-------------------------------------------------
+
+This :ref:`action <config-action>` requests the result of the background calibration procedure from the sensor
+with the given ID. The value will be printed in ESPHome logs.
+
+Wait at least one sensor lamp cycle after having triggered the background calibration before requesting its result.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - senseair.background_calibration_result: my_senseair_id
+
+.. _senseair-abc_get_period_action:
+
+``senseair.abc_get_period`` Action
+----------------------------------
+
+This :ref:`action <config-action>` requests the currently configured ABC interval from the sensor with the given ID.
+The value will be printed in ESPHome logs.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - senseair.abc_get_period: my_senseair_id
+
+.. _senseair-abc_enable_action:
+
+``senseair.abc_enable`` Action
+------------------------------
+
+This :ref:`action <config-action>` enables Automatic Baseline Calibration on the sensor with the given ID.
+ABC will be activated with the default interval of 180 hours.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - senseair.abc_enable: my_senseair_id
+
+.. _senseair-abc_disable_action:
+
+``senseair.abc_disable`` Action
+-------------------------------
+
+This :ref:`action <config-action>` disables Automatic Baseline Calibration on the sensor with the given ID.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - senseair.abc_disable: my_senseair_id
 
 See Also
 --------

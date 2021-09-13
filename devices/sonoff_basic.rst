@@ -54,7 +54,7 @@ exposes all of the basic functions.
     esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
-      board: esp01_1m
+      board: esp8285
 
     wifi:
       ssid: <YOUR_SSID>
@@ -71,7 +71,7 @@ exposes all of the basic functions.
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff Basic Button"
         on_press:
           - switch.toggle: relay

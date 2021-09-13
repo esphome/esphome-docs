@@ -74,14 +74,14 @@ In some places, ESPHome also supports a more advanced “pin schema”.
       # Advanced:
       pin:
         number: D0
-        inverted: True
+        inverted: true
         mode: INPUT_PULLUP
 
 Configuration variables:
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
-   should be treated as inverted. Defaults to ``False``.
+   should be treated as inverted. Defaults to ``false``.
 -  **mode** (*Optional*, string): A pin mode to set for the pin at
    startup, corresponds to Arduino’s ``pinMode`` call.
 
@@ -108,25 +108,6 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
 
-.. _config-color:
-
-Color
------
-
-When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
-A ``color`` component exists for just this purpose:
-
-.. code-block:: yaml
-
-    color:
-      - id: my_light_red
-        red: 100%
-        green: 20%
-        blue: 25%
-        white: 0%
-
-RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
-may use all four color elements depending on their capabilities.
 
 .. _config-time:
 
@@ -267,7 +248,6 @@ added ``board``, and overridden ``name`` substitutions):
       platform: ESP8266
       board: esp01_1m
       includes: []
-      board_flash_mode: dout
       libraries: []
       esp8266_restore_from_flash: false
       build_path: device01
@@ -346,7 +326,7 @@ merged with the services definitions from main config file.
     i2c:
       sda: GPIO21
       scl: GPIO22
-      scan: True
+      scan: true
       frequency: 100kHz
 
     # Enable logging

@@ -7,8 +7,8 @@ SSD1325/7 OLED Display
 
 .. _ssd1325-spi:
 
-Usage
------
+``ssd1325_spi`` Component
+-------------------------
 
 The ``ssd1325_spi`` display platform allows you to use
 SSD1325 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1325.pdf>`__,
@@ -44,8 +44,8 @@ that explains how to do this, if necessary.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
-Configuration Variables
-***********************
+Configuration variables:
+************************
 
 - **model** (**Required**): The model of the display. Options are:
 
@@ -54,10 +54,10 @@ Configuration Variables
   - ``SSD1325 96x16``
   - ``SSD1325 64x48``
 
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
   The CS line can be connected to GND if this is the only device on the SPI bus.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.

@@ -15,8 +15,8 @@ This is exactly the same API as the MCP23SXX I/O Expander except talks on the SP
 
 .. _mcp23S08-label:
 
-MCP23S08
---------
+MCP23S08 Component
+------------------
 
 The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/MCP23008-MCP23S08-Data-Sheet-20001919F.pdf>`__,
 `Digi-Key <https://www.digikey.com/product-detail/en/microchip-technology/MCP23S08-E-P/MCP23S08-E-P-ND/735954>`__) has 8 GPIOs that can be configured independently.
@@ -34,38 +34,48 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
       - platform: gpio
         name: "MCP23S08 Pin #0"
         pin:
-          mcp23s08: mcp23s08_hub
+          mcp23xxx: mcp23s08_hub
           # Use pin number 0
           number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
           mode: OUTPUT
-          inverted: False
+          inverted: false
 
     # Individual inputs
     binary_sensor:
       - platform: gpio
         name: "MCP23S08 Pin #1"
         pin:
-          mcp23s08: mcp23s08_hub
+          mcp23xxx: mcp23s08_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
           mode: INPUT
-          inverted: False
+          inverted: false
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23S08 component.
-- **cs_pin** (*Required*, int): The SPI chip select pin to use  
+- **cs_pin** (**Required**, int): The SPI chip select pin to use
 - **deviceaddress** (*Optional*, int): The address of the chip.
   Defaults to ``0``.
+- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+  Useful when the MCP23S08's power supply is greater than 3.3 volts. Note that these pins
+  will require pull-up resistors (to 3.3 volts) when this mode is enabled.
+
+Pin Configuration Variables:
+****************************
+
+- **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23S08 component.
+- **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
+- All other options from :ref:`Pin Schema <config-pin_schema>`
 
 
 .. _mcp23S17-label:
 
-MCP23S17
---------
+MCP23S17 Component
+------------------
 
 The MCP23S17 component allows you to use MCP23S17 I/O expanders
 (`datasheet <http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf>`__,
@@ -90,31 +100,41 @@ binary sensor or GPIO switch.
       - platform: gpio
         name: "MCP23S17 Pin #0"
         pin:
-          mcp23s17: mcp23s17_hub
+          mcp23xxx: mcp23s17_hub
           # Use pin number 0
           number: 0
           mode: OUTPUT
-          inverted: False
+          inverted: false
 
     # Individual inputs
     binary_sensor:
       - platform: gpio
         name: "MCP23S17 Pin #1"
         pin:
-          mcp23s17: mcp23s17_hub
+          mcp23xxx: mcp23s17_hub
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
           mode: INPUT_PULLUP
-          inverted: False
+          inverted: false
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23S17 component.
-- **cs_pin** (*Required*, int): The SPI chip select pin to use.
+- **cs_pin** (**Required**, int): The SPI chip select pin to use.
 - **deviceaddress** (*Optional*, int): The address of the chip.
   Defaults to ``0``.
+- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+  Useful when the MCP23S17's power supply is greater than 3.3 volts. Note that these pins
+  will require pull-up resistors (to 3.3 volts) when this mode is enabled.
+
+Pin Configuration Variables:
+****************************
+
+- **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23S17 component.
+- **interrupt** (*Optional*): Set this pin to trigger the port INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
+- All other options from :ref:`Pin Schema <config-pin_schema>`
 
 
 See Also

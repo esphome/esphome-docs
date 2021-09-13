@@ -34,8 +34,8 @@ If accuracy is a must, see section 8.2.2.2 of the `datasheet <https://www.ti.com
         name: "Living Room Temperature"
         update_interval: 60s
 
-Configuration variables
------------------------
+Configuration variables:
+------------------------
 
 - **name** (**Required**, string): The name for the temperature sensor.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for lambdas/multiple sensors.
