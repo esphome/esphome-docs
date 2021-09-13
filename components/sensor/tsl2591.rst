@@ -168,7 +168,7 @@ there is a delay for the ADC to go through an integration cycle before a reliabl
 The delay is appoximately the configured integration time.
 The implementation uses asynchronous delays to wait for the ADC readings to become available.
 This avoids slowing down the overall ESPHome update loop,
-but it means that the publishing of state updates for the TSL2561 might come slightly later.
+but it means that the publishing of state updates for the TSL2591 might come slightly later.
 
 If you use the TSL2591 API to change the gain or integration time value,
 the device is internally disabled and re-enabled.
