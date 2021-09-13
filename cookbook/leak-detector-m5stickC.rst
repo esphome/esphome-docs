@@ -16,7 +16,7 @@ Things you'll need
 ==================
 
 -  `M5Stick axp192 custom component <https://github.com/airy10/esphome-m5stickC>`__
-    This is needed to power up the display.  You don't need the st7735 display driver, as it is already included with ESPHome >1.16.0
+    This is needed to power up the display.  You don't need the st7735 display driver, as it is already included with ESPHome >1.16.0.
 
 - M5StickC ESP32 development kit
    `M5Stack Link <https://m5stack.com/collections/m5-core/products/stick-c>`__
