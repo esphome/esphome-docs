@@ -123,7 +123,7 @@ if a command to turn the fan on or off already matches the current state.
         on_turn_off:
         - logger.log: "Fan Turned Off!"
 
-lambda calls
+Lambda calls
 ************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods on all fans to do some
