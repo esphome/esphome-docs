@@ -48,8 +48,8 @@ Example With Compensation
         name: "Workshop VOC"
         update_interval: 5s        
         compensation:
-          humidity_source: dht1_temp
-          temperature_source: dht1_hum  
+          humidity_source: dht1_hum
+          temperature_source: dht1_temp 
           
 See Also
 --------
