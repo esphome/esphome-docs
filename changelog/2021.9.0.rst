@@ -76,6 +76,8 @@ Beta Fixes
 
 - Fix a few ESP32-C3 compiler issues :esphomepr:`2265` by :ghuser:`jesserockz`
 - sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
+- Disable automatic usage of SNTP servers from DHCP :esphomepr:`2273` by :ghuser:`oxan`
+- Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
 
 All changes
 ^^^^^^^^^^^
@@ -145,6 +147,8 @@ All changes
 - PMSA003i Update state_class and async :esphomepr:`2216` by :ghuser:`sjtrny`
 - Fix a few ESP32-C3 compiler issues :esphomepr:`2265` by :ghuser:`jesserockz`
 - sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
+- Disable automatic usage of SNTP servers from DHCP :esphomepr:`2273` by :ghuser:`oxan`
+- Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
 
 Past Changelogs
 ---------------
