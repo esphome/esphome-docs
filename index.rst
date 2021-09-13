@@ -384,7 +384,7 @@ Binary Sensor Components
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
-    Modbus Binary Sensor, components/binary_sensor/modbus_binarysensor, modbus.png    
+    Modbus Binary Sensor, components/binary_sensor/modbus_binarysensor, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
@@ -407,6 +407,7 @@ Output Components
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
+    Modbus Output, components/output/modbus_output, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
 
@@ -453,7 +454,7 @@ Switch Components
     UART Switch, components/switch/uart, uart.svg
     Custom Switch, components/switch/custom, language-cpp.svg
     Tuya Switch, components/switch/tuya, tuya.png
-    Modbus Switch, components/switch/modbus_switch, modbus.png    
+    Modbus Switch, components/switch/modbus_switch, modbus.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
 
@@ -517,7 +518,7 @@ Text Sensor Components
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
-    Modbus Text Sensor, components/text_sensor/modbus_textsensor, modbus.png        
+    Modbus Text Sensor, components/text_sensor/modbus_textsensor, modbus.png
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
@@ -543,6 +544,7 @@ Number Components
 .. imgtable::
 
     Number Core, components/number/index, folder-open.svg
+    Modbus Number, components/number/modbus_number, modbus.png
     Template Number, components/number/template, description.svg
 
 Select Components
@@ -590,7 +592,7 @@ Misc Components
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg
     Tuya MCU, components/tuya, tuya.png
-    Modbus Controller, components/modbus_controller, modbus.png        
+    Modbus Controller, components/modbus_controller, modbus.png
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg

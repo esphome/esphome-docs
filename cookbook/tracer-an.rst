@@ -786,7 +786,7 @@ tracer-real-time.yaml
         accuracy_decimals: 1
         unit_of_measurement: "kg"
         filters:
-          - multiply: 1.0
+          - multiply: 10.0
 
       - platform: modbus_controller
         modbus_controller_id: epever
