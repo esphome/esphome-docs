@@ -129,8 +129,8 @@ Configuration variables:
 
 
 - **address** (*Optional*, int): Manually specify the I²C address of
-  the sensor. Defaults to ``0x03`` (``A0` and ``A1`` pins pulled low).
-  Another address can be ``0x02``.
+  the sensor. Defaults to ``0x03`` (``A0`` and ``A1`` pins pulled high).
+  The address is made up using the state of ``A0`` as bit 1 and the state of ``A1`` as bit 2, so a total of four addresses is possible.
 - **irq_pin** (**Required**, :ref:`config-pin`): The IRQ pin, which indicates if a lightning strike has been detected.
 - **indoor** (*Optional*, boolean): Indicates if the sensor is used indoor. Defaults to ``true``.
 - **noise_level** (*Optional*, integer): Noise floor level is compared to known reference voltage.
