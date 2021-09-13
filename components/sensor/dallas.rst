@@ -21,7 +21,7 @@ To use your :ref:`dallas sensor <dallas-sensor>`, first define a dallas “hub�
 id, which you will later use to create the sensors. The 1-Wire bus the
 sensors are connected to should have an external pullup resistor of
 about 4.7KΩ. For this, connect a resistor of *about* 4.7KΩ between ``3.3V``
-and the data pin. Values +/- 1KΩ will, in most cases, work fine as well,
+and the data pin. Values ± 1KΩ will, in most cases, work fine as well,
 if you don't have massively long wires.
 
 .. code-block:: yaml
@@ -39,7 +39,7 @@ if you don't have massively long wires.
 Configuration variables:
 ************************
 
-- **pin** (**Required**, number): The pin the sensor bus is connected to. NOTE: 1-wire is a bi-directional bus so it requires both input and output from pin. 
+- **pin** (**Required**, number): The pin the sensor bus is connected to. Please note that 1-wire is a bi-directional bus so it requires both input and output from the pin.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
   Defaults to 60 seconds.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
