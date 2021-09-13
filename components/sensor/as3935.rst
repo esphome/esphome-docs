@@ -83,7 +83,7 @@ Configuration variables:
 - **noise_level** (*Optional*, integer): Noise floor level is compared to known reference voltage.
   If this level is exceeded the chip will issue an interrupt to the IRQ pin, broadcasting that it can not
   operate properly due to noise (INT_NH). Defaults to ``2``.
-- **spike_rejection** (*Optional*, integer): Helps to differentiate between real events and actual lightning.
+- **spike_rejection** (*Optional*, integer): Helps to differentiate between false events and actual lightning.
   Increasing this value increases robustness at the cost of sensitivity to distant events. Defaults to ``2``.
 - **lightning_threshold** (*Optional*, integer): The number of lightnings that must appear in a 15-minute time
   window before a lightning storm is detected.
@@ -136,7 +136,7 @@ Configuration variables:
 - **noise_level** (*Optional*, integer): Noise floor level is compared to known reference voltage.
   If this level is exceeded the chip will issue an interrupt to the IRQ pin, broadcasting that it can not
   operate properly due to noise (INT_NH). Defaults to ``2``.
-- **spike_rejection** (*Optional*, integer): Helps to differentiate between real events and actual lightning.
+- **spike_rejection** (*Optional*, integer): Helps to differentiate between false events and actual lightning.
   Increasing this value increases robustness at the cost of sensitivity to distant events. Defaults to ``2``.
 - **lightning_threshold** (*Optional*, integer): The number of lightnings that must appear in a 15-minute time
   window before a lightning storm is detected.
