@@ -19,6 +19,7 @@ Contributors
 - `0hax (@0hax) <https://github.com/0hax>`__
 - `Nikola (@0nikola1) <https://github.com/0nikola1>`__
 - `0x0a11c0de (@0x0a11c0de) <https://github.com/0x0a11c0de>`__
+- `Tercio Filho (@0x3333) <https://github.com/0x3333>`__
 - `2016for (@2016for) <https://github.com/2016for>`__
 - `Pavel Golovin (@31337Ghost) <https://github.com/31337Ghost>`__
 - `David Martin (@3ative) <https://github.com/3ative>`__
@@ -285,15 +286,18 @@ Contributors
 - `Michael (@imeekle) <https://github.com/imeekle>`__
 - `imgbot[bot] (@imgbot[bot]) <https://github.com/imgbot[bot]>`__
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__
+- `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
 - `Ivan Shvedunov (@ivan4th) <https://github.com/ivan4th>`__
 - `Ivan Kravets (@ivankravets) <https://github.com/ivankravets>`__
 - `Ivo-tje (@Ivo-tje) <https://github.com/Ivo-tje>`__
 - `Jakob Reiter (@jakommo) <https://github.com/jakommo>`__
+- `James Braid (@jamesbraid) <https://github.com/jamesbraid>`__
 - `James Gao (@jamesgao) <https://github.com/jamesgao>`__
 - `János Rusiczki (@janosrusiczki) <https://github.com/janosrusiczki>`__
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__
 - `Jason-nz (@Jason-nz) <https://github.com/Jason-nz>`__
 - `Jason Hines (@jasonehines) <https://github.com/jasonehines>`__
+- `Jas Strong (@jasstrong) <https://github.com/jasstrong>`__
 - `JbLb (@jblb) <https://github.com/jblb>`__
 - `James Callaghan (@jcallaghan) <https://github.com/jcallaghan>`__
 - `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
@@ -698,4 +702,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 10, 2021.*
+*This page was last updated September 14, 2021.*
