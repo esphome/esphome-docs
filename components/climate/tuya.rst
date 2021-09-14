@@ -74,8 +74,8 @@ Some Tuya climate devices report the active state (idle/heating/cooling) via a t
 If your device does not make a data point available for this, it is possible to modify the hardware so that the relay outputs can be read by the ESP. Please refer to `this discussion <https://github.com/klausahrenberg/WThermostatBeca/issues/17>` for more details on the required modifications. You can then use the **heating_state_pin** and/or **cooling_state_pin** configuration variables to detect the current state.
 
 If none of the above variables are set, the current state is inferred from the difference between the current and target temperatures.
-If **supports_heat** is ``True`` and the current temperature is more than 1 °C below the target temperature, the device is expected to be heating.
-If **supports_cool** is ``True`` and the current temperature is more than 1 °C above the target temperature, the device is expected to be cooling.
+If **supports_heat** is ``True`` and the current temperature is more than 1 Â°C below the target temperature, the device is expected to be heating.
+If **supports_cool** is ``True`` and the current temperature is more than 1 Â°C above the target temperature, the device is expected to be cooling.
 
 .. _temperature-multiplier:
 
