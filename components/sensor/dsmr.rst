@@ -223,7 +223,7 @@ Configuration variables:
 
 Belgium
 
-- **p1_version_be** (*Optional*): DSMR Version Beligum
+- **p1_version_be** (*Optional*): DSMR Version Belgium
 
   - **name** (**Required**, string): The name for the p1_version_be text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.

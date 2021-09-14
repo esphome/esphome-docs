@@ -113,7 +113,7 @@ Configuration options:
 .. _fan-is_off_condition:
 
 ``fan.is_on`` / ``fan.is_off`` Condition
-**********************************************
+----------------------------------------
 
 This :ref:`condition <config-condition>` passes if the given fan is on/off.
 
@@ -131,7 +131,7 @@ This :ref:`condition <config-condition>` passes if the given fan is on/off.
 .. _fan-on_turn_on_off_trigger:
 
 ``fan.on_turn_on`` / ``fan.on_turn_off`` Trigger
-****************************************************
+------------------------------------------------
 
 This trigger is activated each time the fan is turned on or off. It does not fire
 if a command to turn the fan on or off already matches the current state.
@@ -149,9 +149,9 @@ if a command to turn the fan on or off already matches the current state.
 .. _fan-on_speed_set_trigger:
 
 ``fan.on_speed_set`` Trigger
-****************************************************
+----------------------------
 
-This trigger is activated each time the fan speed is changed. It will fire when the speed is either set via API e.g. in Home Assistant or locally by an automation or a lambda function. 
+This trigger is activated each time the fan speed is changed. It will fire when the speed is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
 
 .. code-block:: yaml
 
@@ -160,6 +160,77 @@ This trigger is activated each time the fan speed is changed. It will fire when 
         # ...
         on_speed_set:
         - logger.log: "Fan Speed was changed!"
+
+Lambda calls
+------------
+
+From :ref:`lambdas <config-lambda>`, you can call several methods on all fans to do some
+advanced stuff (see the full API Reference for more info).
+
+- ``state``: Retrieve the current state (on/off) of the fan.
+
+  .. code-block:: yaml
+
+      // Within lambda, get the fan state and conditionally do something
+      if (id(my_fan).state) {
+        // Fan is ON, do something here
+      } else {
+        // Fan is OFF, do something else here
+      }
+
+- ``speed``: Retrieve the current speed of the fan.
+
+  .. code-block:: yaml
+
+      // Within lambda, get the fan speed and conditionally do something
+      if (id(my_fan).speed == 2) {
+        // Fan speed is 2, do something here
+      } else {
+        // Fan speed is not 2, do something else here
+      }
+
+- ``oscillating``: Retrieve the current oscillating state of the fan.
+
+  .. code-block:: yaml
+
+      // Within lambda, get the fan oscillating state and conditionally do something
+      if (id(my_fan).oscillating) {
+        // Fan is oscillating, do something here
+      } else {
+        // Fan is not oscillating, do something else here
+      }
+
+- ``direction``: Retrieve the current direction of the fan.
+
+  .. code-block:: yaml
+
+      // Within lambda, get the fan direction and conditionally do something
+      if (id(my_fan).direction == FanDirection::FAN_DIRECTION_FORWARD) {
+        // Fan direction is forward, do something here
+      } else {
+        // Fan direction is reverse, do something else here
+      }
+
+- ``turn_off()``/``turn_on()``/``toggle()``: Manually turn the fan ON/OFF from code.
+  Similar to the ``fan.turn_on``, ``fan.turn_off``, and ``fan.toggle`` actions,
+  but can be used in complex lambda expressions.
+
+  .. code-block:: yaml
+
+      // Turn the fan off
+      auto call = id(my_fan).turn_off();
+      call.perform();
+
+      // Turn the fan on and set the speed, oscillating, and direction
+      auto call = id(my_fan).turn_on();
+      call.set_speed(2);
+      call.set_oscillating(true);
+      call.set_direction(FanDirection::FAN_DIRECTION_REVERSE);
+      call.perform();
+
+      // Toggle the fan on/off
+      auto call = id(my_fan).toggle();
+      call.perform();
 
 Full Fan Index
 --------------
