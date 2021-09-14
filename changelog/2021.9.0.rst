@@ -78,6 +78,14 @@ Beta Fixes
 - sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
 - Disable automatic usage of SNTP servers from DHCP :esphomepr:`2273` by :ghuser:`oxan`
 - Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
+- Only try compat parsing after regular parsing fails :esphomepr:`2269` by :ghuser:`oxan`
+- Suppress excessive warnings about deprecated Fan interfaces :esphomepr:`2270` by :ghuser:`oxan`
+- t6615: tolerate sensor dropping commands :esphomepr:`2255` by :ghuser:`jasstrong`
+- Bump platformio to 5.2.0 :esphomepr:`2291` by :ghuser:`OttoWinter`
+- API Noise logging :esphomepr:`2298` by :ghuser:`OttoWinter`
+- Fix api noise explicit reject :esphomepr:`2297` by :ghuser:`OttoWinter`
+- Allow simple hostname for sntp servers :esphomepr:`2300` by :ghuser:`jesserockz`
+- Fix binary strobe :esphomepr:`2301` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -149,6 +157,14 @@ All changes
 - sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
 - Disable automatic usage of SNTP servers from DHCP :esphomepr:`2273` by :ghuser:`oxan`
 - Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
+- Only try compat parsing after regular parsing fails :esphomepr:`2269` by :ghuser:`oxan`
+- Suppress excessive warnings about deprecated Fan interfaces :esphomepr:`2270` by :ghuser:`oxan`
+- t6615: tolerate sensor dropping commands :esphomepr:`2255` by :ghuser:`jasstrong`
+- Bump platformio to 5.2.0 :esphomepr:`2291` by :ghuser:`OttoWinter`
+- API Noise logging :esphomepr:`2298` by :ghuser:`OttoWinter`
+- Fix api noise explicit reject :esphomepr:`2297` by :ghuser:`OttoWinter`
+- Allow simple hostname for sntp servers :esphomepr:`2300` by :ghuser:`jesserockz`
+- Fix binary strobe :esphomepr:`2301` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
