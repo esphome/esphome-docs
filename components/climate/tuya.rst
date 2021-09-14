@@ -39,8 +39,8 @@ Based on this, you can create the climate device as follows:
         switch_datapoint: 1
         target_temperature_datapoint: 3
         current_temperature_datapoint: 4
-        away_datapoint: 7
-        away_temperature: 20 °C
+        eco_datapoint: 7
+        eco_temperature: 20 °C
 
 Configuration variables:
 ------------------------
@@ -56,8 +56,8 @@ Configuration variables:
 - **target_temperature_datapoint** (**Required**, int): The datapoint id number of the target temperature.
 - **current_temperature_datapoint** (**Required**, int): The datapoint id number of the current temperature.
 - **temperature_multiplier** (*Optional*, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
-- **away_datapoint** (*Optional*, int): The datapoint id number of the away/eco mode state.
-- **away_temperature** (*Optional*, float): The target temperature the controller uses while the away/eco mode is active.
+- **eco_datapoint** (*Optional*, int): The datapoint id number of the eco mode state.
+- **eco_temperature** (*Optional*, float): The target temperature the controller uses while the eco mode is active.
 
 If the device has different multipliers for current and target temperatures, **temperature_multiplier** can be replaced with both of:
 
