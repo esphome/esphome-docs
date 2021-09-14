@@ -46,7 +46,7 @@ Configuration variables:
   ``4``.
 - **rotate_chip** (*Optional*): Rotates every 8x8 chip. Valid values are ``0``, ``90``, ``180`` and ``270``.
   Defaults to ``0``.
-- **scroll_enable** (*Optional*, boolean): Turn scroll mode on when content does not fit. Defaults to ``True``.
+- **scroll_enable** (*Optional*, boolean): Turn scroll mode on when content does not fit. Defaults to ``true``.
 - **scroll_mode** (*Optional*): Set the scroll mode. One of ``CONTINUOUS`` or ``STOP``. Defaults to ``CONTINUOUS``
 
     - ``CONTINUOUS``: Always scrolls and the text repeats continuously, you might need to add some
@@ -57,7 +57,7 @@ Configuration variables:
 - **scroll_delay** (*Optional*, :ref:`config-time`): Set delay time before scroll starts. Defaults to ``1s``.
 - **scroll_dwell** (*Optional*, :ref:`config-time`): Sets the wait time at the end of the scroll before starting
   over. This is only used in mode ``STOP``. Defaults to ``1s``.
-- **reverse_enable** (*Optional*, boolean): For some displays the order of the displays is reversed ("DCBA"). This option will reverse the display to ("ABCD") again. Defaults to  ``False``.
+- **reverse_enable** (*Optional*, boolean): For some displays the order of the displays is reversed ("DCBA"). This option will reverse the display to ("ABCD") again. Defaults to  ``false``.
 - **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is
   from ``0``, least intense to ``15`` the brightest. Defaults to ``15``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the
@@ -194,7 +194,7 @@ The display can be switched on and off "dynamically" within the lambda code with
           it.turn_on_off(true);
 
 For a quick display some additional commands are embedded in the code with a related 8 pixel font. Three methods
-(``printdigit``, ``printdigitf`` and ``strftimedigit``) can be used for diplaying characters. Each 8 X 8 grid is used to
+(``printdigit``, ``printdigitf`` and ``strftimedigit``) can be used for displaying characters. Each 8 X 8 grid is used to
 display a single character. So not very space efficient. The format of the command is: ``it.printdigit("1234");`` or
 ``it.printdigitf("%s","1234")``;
 

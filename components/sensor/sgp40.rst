@@ -5,7 +5,7 @@ SGP40 Volatile Organic Compound Sensor
     :description: Instructions for setting up SGP40 Volatile Organic Compound sensor
     :image: sgp40.jpg
 
-The ``sgp40`` sensor platform  allows you to use your Sensiron SGP40 VOC sensor
+The ``sgp40`` sensor platform allows you to use your Sensirion SGP40 VOC sensor
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf>`__) with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
@@ -20,14 +20,13 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
       - platform: sgp40
         name: "Workshop VOC"
 
-
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name for the CO₂eq sensor.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``
-- **store_baseline** (*Optional*, boolean ): Stores and retrieves the baseline infortmation for quicker startups. Defaults to ``True``
+- **store_baseline** (*Optional*, boolean ): Stores and retrieves the baseline information for quicker startups. Defaults to ``true``
 
 - **compensation** (*Optional*): The block containing sensors used for compensation. If not set defaults will be used.
 
@@ -49,8 +48,8 @@ Example With Compensation
         name: "Workshop VOC"
         update_interval: 5s        
         compensation:
-          humidity_source: dht1_temp
-          temperature_source: dht1_hum  
+          humidity_source: dht1_hum
+          temperature_source: dht1_temp 
           
 See Also
 --------

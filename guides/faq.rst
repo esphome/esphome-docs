@@ -19,13 +19,13 @@ Tips for using ESPHome
 
    .. code-block:: bash
 
-       esphome livingroom.yaml config
+       esphome config livingroom.yaml
 
 3. To view the logs from your node without uploading, run
 
    .. code-block:: bash
 
-       esphome livingroom.yaml logs
+       esphome logs livingroom.yaml
 
 4. You can always find the source ESPHome generates under ``<NODE_NAME>/src/``.
 
@@ -51,10 +51,10 @@ and did not mount the ESP device into your container using ``--device=/dev/ttyUS
 Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
-First, you need to get the firmware file to flash. For Hass.io add-on based installs you can
-use the ``COMPILE`` button (click the overflow icon with the three dots) and then press
-``Download Binary``. For command line based installs you can access the file under
-``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
+First, you need to get the firmware file to flash. For the Home Assistant add-on based
+installs you can use the ``COMPILE`` button (click the overflow icon with the three dots)
+and then press ``Download Binary``. For command line based installs you can access the
+file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
 and downloading one of the pre-compiled binaries. Open up the application and select the serial port
@@ -125,7 +125,8 @@ It's simple. Run:
     # From docker:
     docker pull esphome/esphome:latest
 
-And in Hass.io, there's a simple UPDATE button when there's an update available as with all add-ons
+And in Home Assistant, there's a simple UPDATE button when there's an update
+available as with all add-ons.
 
 .. _faq-beta:
 
@@ -142,7 +143,7 @@ by installing the tested beta:
     pip3 install --pre -U esphome
 
     # For docker-based installs
-    docker run [...] -it esphome/esphome:beta livingroom.yaml run
+    docker run [...] -it esphome/esphome:beta run livingroom.yaml
 
 For Home Assistant supervised installs add the community addons beta repository by
 adding
@@ -159,7 +160,7 @@ If you find some, please do however report them.
 
 To install the dev version of ESPHome:
 
-- In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
+- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
@@ -259,13 +260,13 @@ Command reference:
 .. code-block:: bash
 
     # Start a new file wizard for file livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml wizard
+    docker run --rm -v "${PWD}":/config -it esphome/esphome wizard livingroom.yaml
 
     # Compile and upload livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml run
+    docker run --rm -v "${PWD}":/config -it esphome/esphome run livingroom.yaml
 
     # View logs
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml logs
+    docker run --rm -v "${PWD}":/config -it esphome/esphome logs livingroom.yaml
 
     # Map /dev/ttyUSB0 into container
     docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
@@ -315,7 +316,8 @@ And a docker compose file looks like this:
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
     Alternatively, you can make esphome use ICMP pings to check the status of the device
-    with the Hass.io Addon ``"status_use_ping": true,`` option or with docker ``-e ESPHOME_DASHBOARD_USE_PING=true``
+    with the Home Assistant add-on ``"status_use_ping": true,`` option or with
+    Docker ``-e ESPHOME_DASHBOARD_USE_PING=true``.
     See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
     
 .. _faq-notes_on_disabling_mdns:
@@ -340,6 +342,14 @@ the device itself (technically, the configuration can be reverse-engineered from
 with a lot of work).
 
 Always back up all your files!
+
+
+Why shouldn't I use underscores in my device name?
+--------------------------------------------------
+
+The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.  
+
+Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
 See Also
 --------

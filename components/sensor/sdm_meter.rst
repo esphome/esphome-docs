@@ -16,7 +16,8 @@ with ESPHome.
 
     SDM220M Energy Monitor.
 
-The communication with this integration is done over a :ref:`UART bus <uart>` using :ref:`Modbus <modbus>`.
+The communication with this integration is done over a :ref:`UART bus <uart>` using the :ref:`Modbus protocol <modbus>` 
+over RS485 wiring. You will need an RS485 to UART converter for communication.
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
 to some pins on your board and the baud rate set to 9600.
 

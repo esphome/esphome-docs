@@ -37,7 +37,7 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           # Use pin number 0
           number: 0
           mode: OUTPUT
-          inverted: False
+          inverted: false
 
     # Individual inputs
     binary_sensor:
@@ -49,7 +49,7 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           number: 1
           # One of INPUT or INPUT_PULLUP
           mode: INPUT
-          inverted: False
+          inverted: false
 
 Configuration variables:
 ************************
@@ -68,7 +68,7 @@ Pin configuration variables:
 - **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
 - **number** (**Required**, integer): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
-  should be treated as inverted. Defaults to ``False``.
+  should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.
 
 .. _mcp23016-label:
@@ -99,7 +99,7 @@ has 16 GPIOs and can be configured the same way than the other variants.
           # Use pin number 0
           number: 0
           mode: OUTPUT
-          inverted: False
+          inverted: false
 
     # Individual inputs
     binary_sensor:
@@ -110,7 +110,7 @@ has 16 GPIOs and can be configured the same way than the other variants.
           # Use pin number 1
           number: 1
           mode: INPUT
-          inverted: False
+          inverted: false
 
 
 Configuration variables:
@@ -158,7 +158,7 @@ binary sensor or GPIO switch.
           # Use pin number 0
           number: 0
           mode: OUTPUT
-          inverted: False
+          inverted: false
 
     # Individual inputs
     binary_sensor:
@@ -170,7 +170,7 @@ binary sensor or GPIO switch.
           number: 1
           # One of INPUT or INPUT_PULLUP
           mode: INPUT_PULLUP
-          inverted: False
+          inverted: false
 
 Configuration variables:
 ************************

@@ -29,6 +29,10 @@ source.addEventListener('state', function (e) {
 const states = document.getElementById("states");
 let i = 0, row;
 for (; row = states.rows[i]; i++) {
+    if (!row.children[2].children.length) {
+        continue;
+    }
+
     if (row.classList.contains("switch")) {
         (function(id) {
             row.children[2].children[0].addEventListener('click', function () {
@@ -66,6 +70,15 @@ for (; row = states.rows[i]; i++) {
             row.children[2].children[1].addEventListener('click', function () {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", '/cover/' + id.substr(6) + '/close', true);
+                xhr.send();
+            });
+        })(row.id);
+    }
+    if (row.classList.contains("select")) {
+        (function(id) {
+            row.children[2].children[0].addEventListener('change', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", '/select/' + id.substr(7) + '/set?option=' + encodeURIComponent(this.value), true);
                 xhr.send();
             });
         })(row.id);

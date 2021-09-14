@@ -88,6 +88,7 @@ Configuration variables:
   - **from** (**Required**, int): The first LED to address in the segment. Counting starts with 0,
     so first LED is 0.
   - **to** (**Required**, int): The index of the last LED to address in this segment.
+  - **reversed** (**Required**, int): Whether to reverse the LEDs in this segment.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.

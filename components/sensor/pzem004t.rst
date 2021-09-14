@@ -8,7 +8,7 @@ Peacefair PZEM-004T Energy Monitor
 
 .. note::
 
-    This page is incomplete and could some work. If you want to contribute, please read the
+    This page is incomplete and could use some work. If you want to contribute, please read the
     :doc:`contributing guide </guides/contributing>`. This page is missing:
 
       - An image for the front page.
