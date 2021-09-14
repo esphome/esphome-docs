@@ -373,6 +373,8 @@ All Actions
 - :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
   / :ref:`stepper.set_speed <stepper-set_speed_action>`
 - :ref:`servo.write <servo-write_action>` / :ref:`servo.detach <servo-detach_action>`
+- :ref:`sprinkler.start_full_cycle <sprinkler-controller_actions>` / :ref:`sprinkler.sprinkler.shutdown <sprinkler-controller_actions>` / 
+  :ref:`sprinkler.sprinkler.next_valve <sprinkler-controller_actions>` / :ref:`sprinkler.sprinkler.previous_valve <sprinkler-controller_actions>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
