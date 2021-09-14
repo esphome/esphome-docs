@@ -89,8 +89,7 @@ and circles:
           it.filled_circle(25, 25, 10);
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
-color to draw. Currently, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported because
-ESPHome only has implemented binary displays.
+color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
 .. code-block:: yaml
 
@@ -108,6 +107,23 @@ ESPHome only has implemented binary displays.
 
           // Turn off a whole display portion.
           it.rectangle(50, 50, 30, 42, COLOR_OFF);
+
+For color displays (e.g. TFT displays), you can use the Color class.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          auto red = Color(255, 0, 0);
+          auto green = Color(0, 255, 0);
+          auto blue = Color(0, 0, 255);
+          auto white = Color(255, 255, 255);
+          it.rectangle(20, 50, 30, 30, white);
+          it.rectangle(25, 55, 30, 30, red);
+          it.rectangle(30, 60, 30, 30, green);
+          it.rectangle(35, 65, 30, 30, blue);
 
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
@@ -167,8 +183,9 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Hass.io add-on or with
-    the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
+    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
+    to install it using
     ``pip install pillow``.
 
 
@@ -387,7 +404,7 @@ Configuration variables:
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
 
 And then later in code:
@@ -572,7 +589,27 @@ You can then switch between these with three different actions:
           then:
             ...
 
+.. _display-on_page_change-trigger:
 
+**on_page_change**: This automation will be triggered when the page that is shown changes.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        on_page_change:
+          - from: page1
+            to: page2
+            then:
+              lambda: |-
+                ESP_LOGD("display", "Page changed from 1 to 2");
+
+- **from** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing from this page. Defaults to all pages.
+- **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
+
+Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
+              
 See Also
 --------
 

@@ -45,8 +45,8 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the climate device.
-- **supports_heat** (*Optional*, boolean): Specifies if the device has a heating mode. Defaults to ``True``.
-- **supports_cool** (*Optional*, boolean): Specifies if the device has a cooling mode. Defaults to ``False``.
+- **supports_heat** (*Optional*, boolean): Specifies if the device has a heating mode. Defaults to ``true``.
+- **supports_cool** (*Optional*, boolean): Specifies if the device has a cooling mode. Defaults to ``false``.
 - **switch_datapoint** (**Required**, int): The datapoint id number of the climate switch (device on/off).
 - **active_state_datapoint** (*Optional*, int): The datapoint id number of the active state - :ref:`see below <active_state_detection>`.
 - **active_state_heating_value** (*Optional*, int): The active state datapoint value the device reports when heating. Defaults to ``1`` - :ref:`see below <active_state_detection>`.
@@ -74,8 +74,8 @@ Some Tuya climate devices report the active state (idle/heating/cooling) via a t
 If your device does not make a data point available for this, it is possible to modify the hardware so that the relay outputs can be read by the ESP. Please refer to `this discussion <https://github.com/klausahrenberg/WThermostatBeca/issues/17>` for more details on the required modifications. You can then use the **heating_state_pin** and/or **cooling_state_pin** configuration variables to detect the current state.
 
 If none of the above variables are set, the current state is inferred from the difference between the current and target temperatures.
-If **supports_heat** is ``True`` and the current temperature is more than 1 Â°C below the target temperature, the device is expected to be heating.
-If **supports_cool** is ``True`` and the current temperature is more than 1 Â°C above the target temperature, the device is expected to be cooling.
+If **supports_heat** is ``True`` and the current temperature is more than 1 °C below the target temperature, the device is expected to be heating.
+If **supports_cool** is ``True`` and the current temperature is more than 1 °C above the target temperature, the device is expected to be cooling.
 
 .. _temperature-multiplier:
 

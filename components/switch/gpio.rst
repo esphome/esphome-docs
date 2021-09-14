@@ -59,7 +59,7 @@ To create an active-low switch (one that is turned off by default), use the :ref
       - platform: gpio
         pin:
           number: 25
-          inverted: yes
+          inverted: true
 
 Momentary Switch
 ----------------
