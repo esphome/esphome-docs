@@ -59,7 +59,7 @@ Configuration variables:
 
 
 - **scan_parameters** (*Optional*): Advanced parameters for configuring the scan behavior of the ESP32.
-  See also `this guide by Texas Instruments <http://dev.ti.com/tirex/content/simplelink_academy_cc2640r2sdk_1_12_01_16/modules/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning>`__
+  See also `this guide by Texas Instruments <https://dev.ti.com/tirex/explore/content/simplelink_academy_cc2640r2sdk_5_10_02_00/modules/blestack/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning-basics>`__
   for reference.
 
   - **interval** (*Optional*, :ref:`config-time`): The interval between each consecutive scan window.
