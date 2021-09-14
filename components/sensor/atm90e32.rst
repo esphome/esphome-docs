@@ -125,6 +125,9 @@ It is possible that the two identical CT current sensors will have different
 small. The current calibration can be done once and used on all sensors or
 repeated for each one.
 
+Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``4X``:
+   - 200A/100mA SCT-024: 12597
+   
 Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``2X``:
    - 20A/25mA SCT-006: 10170
    - 100A/50mA SCT-013-000: 25498
