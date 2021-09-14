@@ -5,7 +5,7 @@ Daly BMS
     :description: Instructions for setting up a Daly Smart BMS
     :image: daly_bms.png
 
-The ``daly_bms`` sensor platform allows you to use a Daly smart BMS
+The ``daly_bms`` sensor platform allows you to use a Daly Smart BMS
 (`more info <https://dalyelec.en.made-in-china.com/>`__)
 with ESPHome.
 
@@ -75,6 +75,8 @@ The BMS communicates via :ref:`UART <uart>`.
 
 Component/Hub
 -------------
+
+- **update_interval** (*Optional*, :ref:`config-time`): Delay between data requests.
 
 Configuration variables:
 ************************
@@ -182,7 +184,7 @@ Text sensor that indicates the status of BMS.
 Configuration variables:
 ************************
 
-- **status** (*Optional*): The BMS Status (Charging, Disgharging, Stationary).
+- **status** (*Optional*): The BMS Status (Charging, Discharging, Stationary).
 
   - **name** (**Required**, string): The name for the BMS status text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
@@ -195,17 +197,17 @@ Binary sensor that indicates the status of MOS.
 Configuration variables:
 ************************
 
-- **charging_mos_enabled** (*Optional*): The BMS charging mos status to enable the reacharge of the battery.
+- **charging_mos_enabled** (*Optional*): The BMS charging MOS status to enable the recharge of the battery.
 
-  - **name** (**Required**, string): The name for the Charging MOS binary sensor.
+  - **name** (**Required**, string): The name for the charging MOS binary sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+  - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-- **discharging_mos_enabled** (*Optional*): The BMS Discharging mos status to enable the load.
+- **discharging_mos_enabled** (*Optional*): The BMS discharging mos status to enable the load.
 
-  - **name** (**Required**, string): The name for the Discharging MOS binary sensor.
+  - **name** (**Required**, string): The name for the discharging MOS binary sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+  - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 UART Connection:
 ----------------
