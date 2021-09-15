@@ -36,7 +36,7 @@ Configuration variables:
         id: battery_capacity
         address: 0x9001
         name: "Battery Capacity"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
 
     number:

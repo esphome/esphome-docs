@@ -32,7 +32,7 @@ Configuration variables:
     - platform: modbus_controller
         modbus_controller_id: epever
         id: enable_load_test
-        modbus_functioncode: read_coils
+        register_type: coil
         address: 2
         name: "enable load test mode"
         bitmask: 1

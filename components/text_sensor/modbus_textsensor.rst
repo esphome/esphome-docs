@@ -13,13 +13,11 @@ Configuration variables:
 ------------------------
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
-- **modbus_functioncode** (**Required**): type of the modbus register.
-    - "read_coils": Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the device.
-    - "read_discrete_inputs": Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the device.
-    - "read_holding_registers": Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the device.
-    - "read_input_registers": Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device.
-
-
+- **register_type** (**Required**): type of the modbus register.
+    - "coil": coil type registers read/write.
+    - "discrete_input": discrete input register (read only coil) Reads the ON/OFF status of discrete inputs in the device.
+    - "holding": Holding Registers - ReadWrite the binary contents of holding registers in the device.
+    - "read": Read Input Registers - Read the binary contents of input registers in the device.
 - **address**: (**Required**, integer): start address of the first register in a range
 - **offset**: (**Optional**, integer): not required in most cases  
   offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
@@ -43,7 +41,7 @@ Configuration variables:
         name: "rtc clock test"
         id: rtc_clock_test
         internal: true
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         address: 0x9013
         register_count: 3
         hex_encode: true

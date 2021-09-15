@@ -29,6 +29,18 @@ Configuration variables:
 - **skip_updates**: (**Optional**, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 
 
+Example
+.. code-block:: yaml
+    binary_sensor:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: battery_internal_resistance_abnormal
+        name: "Battery internal resistance abnormal"
+        register_type: read
+        address: 0x3200
+        bitmask: 0x80 #(bit 8)
+
+
 See Also
 --------
 - :doc:`/components/modbus_controller`

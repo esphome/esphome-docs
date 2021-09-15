@@ -13,16 +13,11 @@ Configuration variables:
 ------------------------
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
-- **modbus_functioncode** (**Required**): type of the modbus register.
-    - "read_coils": Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the device.
-    - "read_discrete_inputs": Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the device.
-    - "read_holding_registers": Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the device.
-    - "read_input_registers": Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device.
-    - "write_single_coil": Function 05 (05hex) Write Single Coil - Writes a single coil to either ON or OFF.
-    - "write_single_register": Function 06 (06hex) Write Single Register - Writes a value into a single holding register.
-    - "write_multiple_coils": Function 15 (0Fhex) Write Multiple Coils - Writes each coil in a sequence of coils to either ON or OFF.
-    - "write_multiple_registers": Function 16 (10hex) Write Multiple Registers - Writes values into a sequence of holding registers
-
+- **register_type** (**Required**): type of the modbus register.
+    - "coil": coil type registers read/write.
+    - "discrete_input": discrete input register (read only coil) Reads the ON/OFF status of discrete inputs in the device.
+    - "holding": Holding Registers - ReadWrite the binary contents of holding registers in the device.
+    - "read": Read Input Registers - Read the binary contents of input registers in the device.
 - **address**: (**Required**, int): start address of the first register in a range
 - **offset**: (**Optional**, int): only required for uncommon response encodings  
     offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
@@ -63,7 +58,7 @@ This example will send 2 modbus commands (device address 1 assumed)
       name: "PV array input voltage"
       address: 0x3100
       unit_of_measurement: "V" ## for any other unit the value is returned in minutes
-      modbus_functioncode: "read_input_registers"
+      register_type: read
       value_type: U_WORD
       accuracy_decimals: 1
       filters:
@@ -75,7 +70,7 @@ This example will send 2 modbus commands (device address 1 assumed)
       name: "PV array input current"
       address: 0x3101
       unit_of_measurement: "A" ## for any other unit the value is returned in minutes
-      modbus_functioncode: "read_input_registers"
+      register_type: read
       value_type: U_WORD
       accuracy_decimals: 2
       filters:
@@ -85,7 +80,7 @@ This example will send 2 modbus commands (device address 1 assumed)
       modbus_controller_id: traceran
       name: "Battery Capacity"
       id: battery_capacity
-      modbus_functioncode: read_holding_registers
+      register_type: holding
       address: 0x9001
       unit_of_measurement: "AH"
       value_type: U_WORD    

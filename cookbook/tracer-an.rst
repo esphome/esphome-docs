@@ -180,7 +180,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         modbus_controller_id: epever
         id: charging_input_volt_failure
         name: "Charging Input Volt Failure"
-        modbus_functioncode: read_input_registers
+        register_type: read
         address: 0x3201
         bitmask: 0xC000
 
@@ -188,7 +188,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       - platform: modbus_controller
         modbus_controller_id: epever
         id: manual_control_load
-        modbus_functioncode: read_coils
+        register_type: coil
         address: 2
         name: "manual control the load"
         bitmask: 1
@@ -196,7 +196,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       - platform: modbus_controller
         modbus_controller_id: epever
         id: default_control_the_load
-        modbus_functioncode: read_coils
+        register_type: coil
         address: 3
         name: "default control the load"
         bitmask: 1
@@ -204,7 +204,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       - platform: modbus_controller
         modbus_controller_id: epever
         id: enable_load_test
-        modbus_functioncode: read_coils
+        register_type: coil
         address: 5
         name: "enable load test mode"
         bitmask: 1
@@ -212,7 +212,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       - platform: modbus_controller
         modbus_controller_id: epever
         id: force_load
-        modbus_functioncode: read_coils
+        register_type: coil
         address: 6
         name: "Force Load on/off"
         bitmask: 1
@@ -220,7 +220,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       # - platform: modbus_controller
       #   modbus_controller_id: epever
       #   id: clear_energy_stats
-      #   modbus_functioncode: read_coils
+      #   register_type: coil
       #   address: 0x14
       #   name: "Clear generating  electricity statistic"
       #   bitmask: 1
@@ -229,7 +229,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
     #    modbus_controller_id: epever
     #    id: reset_to_fabric_default
     #    name: "Reset to Factory Default"
-    #    modbus_functioncode: write_single_coil
+    #    register_type: coil
     #    address: 0x15
     #    bitmask: 1
 
@@ -239,7 +239,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         name: "rtc_clock"
         id: rtc_clock
         internal: true
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         address: 0x9013
         register_count: 3
         raw_encode: HEXBYTES
@@ -294,7 +294,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
         name: "rtc clock test 2"
         id: rtc_clock_test2
         internal: true
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         address: 0x9013
         register_count: 3
         raw_encode: HEXBYTES
@@ -319,7 +319,7 @@ tracer-rated-datum.yaml
         address: 0x3000
         skip_updates: 60
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -331,7 +331,7 @@ tracer-rated-datum.yaml
         name: "array_rated_current"
         address: 0x3001
         unit_of_measurement: "A"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 2
         filters:
@@ -344,7 +344,7 @@ tracer-rated-datum.yaml
         address: 0x3002
         register_count: 2
         unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -356,7 +356,7 @@ tracer-rated-datum.yaml
         name: "battery_rated_voltage"
         address: 0x3004
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -368,7 +368,7 @@ tracer-rated-datum.yaml
         name: "battery_rated_current"
         address: 0x3005
         unit_of_measurement: "A"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -380,7 +380,7 @@ tracer-rated-datum.yaml
         name: "battery_rated_power"
         address: 0x3006
         unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -392,7 +392,7 @@ tracer-rated-datum.yaml
         name: "charging_mode"
         address: 0x3008
         unit_of_measurement: ""
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 0
 
@@ -403,7 +403,7 @@ tracer-rated-datum.yaml
         address: 0x300E
         skip_updates: 60
         unit_of_measurement: "A"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -422,7 +422,7 @@ tracer-real-time.yaml
         name: "PV array input voltage"
         address: 0x3100
         unit_of_measurement: "V" ## for any other unit the value is returned in minutes
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -434,7 +434,7 @@ tracer-real-time.yaml
         name: "PV array input current"
         address: 0x3101
         unit_of_measurement: "A" ## for any other unit the value is returned in minutes
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 2
         filters:
@@ -446,7 +446,7 @@ tracer-real-time.yaml
         name: "PV array input power"
         address: 0x3102
         unit_of_measurement: "W" ## for any other unit the value is returned in minutes
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -458,7 +458,7 @@ tracer-real-time.yaml
         name: "Charging voltage"
         address: 0x3104
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -470,7 +470,7 @@ tracer-real-time.yaml
         name: "Charging current"
         address: 0x3105
         unit_of_measurement: "A"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -482,7 +482,7 @@ tracer-real-time.yaml
         name: "Charging power"
         address: 0x3106
         unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -494,7 +494,7 @@ tracer-real-time.yaml
         name: "Load voltage"
         address: 0x310C
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -506,7 +506,7 @@ tracer-real-time.yaml
         name: "Load Current"
         address: 0x310D
         unit_of_measurement: "A"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 2
         filters:
@@ -518,7 +518,7 @@ tracer-real-time.yaml
         name: "Load power"
         address: 0x310E
         unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -530,7 +530,7 @@ tracer-real-time.yaml
         name: "Battery temperature"
         address: 0x3110
         unit_of_measurement: °C
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -542,7 +542,7 @@ tracer-real-time.yaml
         name: "Device temperature"
         address: 0x3111
         unit_of_measurement: °C
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -554,7 +554,7 @@ tracer-real-time.yaml
         name: "Power components temperature"
         address: 0x3112
         unit_of_measurement: °C
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -566,7 +566,7 @@ tracer-real-time.yaml
         name: "Battery SOC"
         address: 0x311A
         unit_of_measurement: "%"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 0
 
@@ -576,7 +576,7 @@ tracer-real-time.yaml
         name: "Remote battery temperature"
         address: 0x311B
         unit_of_measurement: °C
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -587,7 +587,7 @@ tracer-real-time.yaml
         name: "Remote real voltage"
         address: 0x311D
         unit_of_measurement: "°C"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -598,7 +598,7 @@ tracer-real-time.yaml
         id: Battery_status_volt
         name: "Battery status voltage"
         address: 0x3200
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         bitmask: 7  #(Bits 0-3)
         accuracy_decimals: 0
@@ -608,7 +608,7 @@ tracer-real-time.yaml
         id: Battery_status_temp
         name: "Battery status temeratur"
         address: 0x3200
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         bitmask: 0x38  #(Bits 4-7)
         accuracy_decimals: 0
@@ -618,7 +618,7 @@ tracer-real-time.yaml
         id: Charger_status
         name: "Charger status"
         address: 0x3201
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 0
 
@@ -633,7 +633,7 @@ tracer-real-time.yaml
         id: max_pv_voltage_today
         name: "Maximum PV voltage today"
         address: 0x3300
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         unit_of_measurement: "V"
@@ -645,7 +645,7 @@ tracer-real-time.yaml
         id: min_pv_voltage_today
         name: "Minimum PV voltage today"
         address: 0x3301
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         unit_of_measurement: "V"
@@ -657,7 +657,7 @@ tracer-real-time.yaml
         id: max_battery_voltage_today
         name: "Maximum battery voltage today"
         address: 0x3302
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         unit_of_measurement: "V"
@@ -669,7 +669,7 @@ tracer-real-time.yaml
         id: min_battery_today
         name: "Minimum battery voltage today"
         address: 0x3303
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         unit_of_measurement: "V"
@@ -681,7 +681,7 @@ tracer-real-time.yaml
         id: consumed_energy_today
         name: "Consumed energy today"
         address: 0x3304
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 0
         unit_of_measurement: "Wh"
@@ -693,7 +693,7 @@ tracer-real-time.yaml
         id: consumed_energy_month
         name: "Consumed Energy Month"
         address: 0x3306
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 0
         unit_of_measurement: "Wh"
@@ -705,7 +705,7 @@ tracer-real-time.yaml
         id: consumed_energy_year
         name: "Consumed energy year"
         address: 0x3308
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         unit_of_measurement: "kWh"
@@ -717,7 +717,7 @@ tracer-real-time.yaml
         id: consumed_energy_total
         name: "Consumed energy total"
         address: 0x330A
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         unit_of_measurement: "kWh"
@@ -729,7 +729,7 @@ tracer-real-time.yaml
         id: generated_energy_today
         name: "Generated energy today"
         address: 0x330C
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 0
         unit_of_measurement: "Wh"
@@ -746,7 +746,7 @@ tracer-real-time.yaml
         id: generated_energy_month
         name: "Generated energy month"
         address: 0x330E
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 0
         unit_of_measurement: "Wh"
@@ -758,7 +758,7 @@ tracer-real-time.yaml
         id: generated_energy_year
         name: "Generated energy year"
         address: 0x3310
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         unit_of_measurement: "kWh"
@@ -770,7 +770,7 @@ tracer-real-time.yaml
         id: generated_energy_total
         name: "Generated energy total"
         address: 0x3312
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -781,7 +781,7 @@ tracer-real-time.yaml
         id: co2_reduction
         name: "CO2 reduction"
         address: 0x3314
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         unit_of_measurement: "kg"
@@ -793,7 +793,7 @@ tracer-real-time.yaml
         id: battery_voltage
         name: "Battery voltage"
         address: 0x331A
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         unit_of_measurement: "V"
@@ -805,7 +805,7 @@ tracer-real-time.yaml
         id: battery_current
         name: "Battery current"
         address: 0x331B
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: S_DWORD_R
         register_count: 2
         accuracy_decimals: 2
@@ -825,7 +825,7 @@ tracer-settings.yaml
         id: battery_type
         address: 0x9000
         name: "Battery Type"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         skip_updates: 50
 
@@ -834,7 +834,7 @@ tracer-settings.yaml
         id: battery_capacity
         address: 0x9001
         name: "Battery Capacity"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
 
       - platform: modbus_controller
@@ -843,7 +843,7 @@ tracer-settings.yaml
         address: 0x9002
         name: "Temperature compensation coefficient"
         unit_of_measurement: "mV/°C/2V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -854,7 +854,7 @@ tracer-settings.yaml
         address: 0x9003
         name: "High Voltage disconnect"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -865,7 +865,7 @@ tracer-settings.yaml
         address: 0x9004
         name: "Charging limit voltage"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -876,7 +876,7 @@ tracer-settings.yaml
         address: 0x9005
         name: "Over voltage reconnect"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -887,7 +887,7 @@ tracer-settings.yaml
         address: 0x9006
         name: "Equalization voltage"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -898,7 +898,7 @@ tracer-settings.yaml
         address: 0x9007
         name: "Boost voltage"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -909,7 +909,7 @@ tracer-settings.yaml
         address: 0x9008
         name: "Float voltage"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -920,7 +920,7 @@ tracer-settings.yaml
         address: 0x9009
         name: "Boost reconnect voltage"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -931,7 +931,7 @@ tracer-settings.yaml
         address: 0x900A
         name: "Low voltage reconnect"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -942,7 +942,7 @@ tracer-settings.yaml
         address: 0x900B
         name: "Under voltage recover"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -953,7 +953,7 @@ tracer-settings.yaml
         address: 0x900C
         name: "Under voltage warning"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -964,7 +964,7 @@ tracer-settings.yaml
         address: 0x900D
         name: "Low voltage disconnect"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -975,7 +975,7 @@ tracer-settings.yaml
         address: 0x900E
         name: "Discharging limit voltage"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -986,7 +986,7 @@ tracer-settings.yaml
         address: 0x9017
         name: "Battery temperature warning upper limit"
         unit_of_measurement: "°C"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         # new range add 'skip_updates' again
         skip_updates: 50
@@ -999,7 +999,7 @@ tracer-settings.yaml
         address: 0x9018
         name: "Battery temperature warning lower limit"
         unit_of_measurement: "°C"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1010,7 +1010,7 @@ tracer-settings.yaml
         address: 0x9019
         name: "Controller inner temperature upper limit"
         unit_of_measurement: "°C"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1021,7 +1021,7 @@ tracer-settings.yaml
         address: 0x901A
         name: "Controller inner temperature upper limit recover"
         unit_of_measurement: "°C"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1032,7 +1032,7 @@ tracer-settings.yaml
         address: 0x901B
         name: "Power component temperature upper limit"
         unit_of_measurement: "°C"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1043,7 +1043,7 @@ tracer-settings.yaml
         address: 0x901C
         name: "Power component temperature upper limit recover"
         unit_of_measurement: "°C"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1054,7 +1054,7 @@ tracer-settings.yaml
         address: 0x901D
         name: "Line Impedance"
         unit_of_measurement: "mOhm"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1065,7 +1065,7 @@ tracer-settings.yaml
         address: 0x901E
         name: "Day Time Threshold Voltage"
         unit_of_measurement: "V"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1076,7 +1076,7 @@ tracer-settings.yaml
         address: 0x901F
         name: "Light signal startup delay time"
         unit_of_measurement: "mins"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1087,7 +1087,7 @@ tracer-settings.yaml
         address: 0x9020
         name: "Light Time Threshold Voltage"
         unit_of_measurement: "mins"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1098,7 +1098,7 @@ tracer-settings.yaml
         address: 0x9021
         name: "Light signal close delay time"
         unit_of_measurement: "mins"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         filters:
           - multiply: 0.01
@@ -1113,7 +1113,7 @@ tracer-settings.yaml
           # 0003H Time Control
         address: 0x903D
         name: "Load controlling modes"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
         skip_updates: 50
@@ -1125,7 +1125,7 @@ tracer-settings.yaml
         # D15-D8,hour, D7-D0, minute
         address: 0x903E
         name: "Working_time length 1"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1134,7 +1134,7 @@ tracer-settings.yaml
         id: working_time_length_2
         address: 0x903F
         name: "Working_time length 1"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1143,7 +1143,7 @@ tracer-settings.yaml
         id: turn_on_timing_1_seconds
         address: 0x9042
         name: "Turn on timing 1 seconds"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
         skip_updates: 50
@@ -1153,7 +1153,7 @@ tracer-settings.yaml
         id: turn_on_timing_1_minutes
         address: 0x9043
         name: "Turn on timing 1 minutes"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1162,7 +1162,7 @@ tracer-settings.yaml
         id: turn_on_timing_1_hours
         address: 0x9044
         name: "Turn on timing 1 hours"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1171,7 +1171,7 @@ tracer-settings.yaml
         id: turn_off_timing_1_seconds
         address: 0x9045
         name: "Turn off timing 1 seconds"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1180,7 +1180,7 @@ tracer-settings.yaml
         id: turn_off_timing_1_minutes
         address: 0x9046
         name: "Turn off timing 1 minutes"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1189,7 +1189,7 @@ tracer-settings.yaml
         id: turn_off_timing_1_hours
         address: 0x9047
         name: "Turn off timing 1 hours"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1198,7 +1198,7 @@ tracer-settings.yaml
         id: turn_on_timing_2_seconds
         address: 0x9048
         name: "Turn on timing 2 seconds"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1207,7 +1207,7 @@ tracer-settings.yaml
         id: turn_on_timing_2_minutes
         address: 0x9049
         name: "Turn on timing 2 minutes"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1216,7 +1216,7 @@ tracer-settings.yaml
         id: turn_on_timing_2_hours
         address: 0x904A
         name: "Turn on timing 2 hours"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1225,7 +1225,7 @@ tracer-settings.yaml
         id: turn_off_timing_2_seconds
         address: 0x904B
         name: "Turn off timing 2 seconds"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1234,7 +1234,7 @@ tracer-settings.yaml
         id: turn_off_timing_2_minutes
         address: 0x904C
         name: "Turn off timing 2 minutes"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1243,7 +1243,7 @@ tracer-settings.yaml
         id: turn_off_timing_2_hours
         address: 0x904D
         name: "Turn off timing 2 hours"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         value_type: U_WORD
 
@@ -1252,7 +1252,7 @@ tracer-settings.yaml
         id: backlight_time
         address: 0x9063
         name: "Backlight time"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         accuracy_decimals: 0
         unit_of_measurement: "s"
         value_type: U_WORD
@@ -1265,7 +1265,7 @@ tracer-settings.yaml
         bitmask: 0xFF
         unit_of_measurement: "m"
         name: "Length of night-mins"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
 
       - platform: modbus_controller
@@ -1275,7 +1275,7 @@ tracer-settings.yaml
         bitmask: 0xFF00
         unit_of_measurement: "m"
         name: "Length of night"
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         value_type: U_WORD
         skip_updates: 50
         filters:

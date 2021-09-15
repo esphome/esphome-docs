@@ -96,7 +96,7 @@ Technically there is no difference between the "inline" and the standard definit
         modbus_controller_id: epever
         id: rtc_clock
         internal: true
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         address: 0x9013
         register_count: 3
         raw_encode: HEXBYTES
@@ -107,7 +107,7 @@ Technically there is no difference between the "inline" and the standard definit
         modbus_controller_id: epever
         id: reset_to_fabric_default
         name: "Reset to Factory Default"
-        modbus_functioncode: write_single_coil
+        register_type: coil
         address: 0x15
         bitmask: 1
 
@@ -116,7 +116,7 @@ Technically there is no difference between the "inline" and the standard definit
         modbus_controller_id: epever
         name: "Battery Capacity"
         id: battery_capacity
-        modbus_functioncode: read_holding_registers
+        register_type: holding
         address: 0x9001
         unit_of_measurement: "AH"
         value_type: U_WORD
@@ -134,7 +134,7 @@ Protocol decoding example
         name: "array_rated_voltage"
         address: 0x3000
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         skip_updates: 60
@@ -147,7 +147,7 @@ Protocol decoding example
         name: "array_rated_current"
         address: 0x3001
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 2
         filters:
@@ -159,7 +159,7 @@ Protocol decoding example
         name: "array_rated_power"
         address: 0x3002
         unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -171,7 +171,7 @@ Protocol decoding example
         name: "battery_rated_voltage"
         address: 0x3004
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -183,7 +183,7 @@ Protocol decoding example
         name: "battery_rated_current"
         address: 0x3005
         unit_of_measurement: "A"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -195,7 +195,7 @@ Protocol decoding example
         name: "battery_rated_power"
         address: 0x3006
         unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
@@ -206,7 +206,7 @@ Protocol decoding example
         name: "charging_mode"
         address: 0x3008
         unit_of_measurement: ""
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 0
 
@@ -417,7 +417,7 @@ Then battery charge settings are sent.
         name: "array_rated_voltage"
         address: 0x3000
         unit_of_measurement: "V"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 1
         filters:
@@ -429,7 +429,7 @@ Then battery charge settings are sent.
         name: "array_rated_current"
         address: 0x3001
         unit_of_measurement: "A"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_WORD
         accuracy_decimals: 2
         filters:
@@ -441,7 +441,7 @@ Then battery charge settings are sent.
         name: "array_rated_power"
         address: 0x3002
         unit_of_measurement: "W"
-        modbus_functioncode: "read_input_registers"
+        register_type: read
         value_type: U_DWORD_R
         accuracy_decimals: 1
         filters:
