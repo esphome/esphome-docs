@@ -51,6 +51,7 @@ Configuration variables:
 - **device_height** (**Required**, int): The device height. 160 is default
 - **col_start** (**Required**, int): The device height. 160 is default
 - **row_start** (**Required**, int): The device height. 160 is default
+- **invert_colors** (*Optional*, "true/false"): Invert LCD colors. Default is false.
 - **eight_bit_color** (*Optional*, "true/false" ): 8bit mode. Default is false. This saves 50% of the buffer required for the display.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 
