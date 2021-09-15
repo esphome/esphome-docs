@@ -8,12 +8,20 @@ ESPHome 2021.9.0 - 15th September 2021
     :author_twitter: @esphome_
 
 .. imgtable::
-    :columns: 2
+    :columns: 3
 
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png
+    H-bridge Fan, components/fan/hbridge, fan.svg
     ST7920, components/display/st7920, st7920.jpg
 
 
+`Home Assistant Amber <https://home-assistant.io/amber>`__
+----------------------------------------------------------
+
+You get the most out of your ESPHome devices when you combine it with Home Assistant,
+which offers a seamless and local integration to control and manage all your ESPHome devices.
+Today Home Assistant launched a crowdfunding campaign for the `Home Assistant Amber <https://home-assistant.io/amber>`__,
+the easiest way to get started with Home Assistant and a privacy focused smart home.
 
 API Encryption
 --------------
@@ -55,6 +63,7 @@ Full list of changes
 New Features
 ^^^^^^^^^^^^
 
+- Add H-Bridge fan component :esphomepr:`2212` by :ghuser:`WeekendWarrior1` (new-feature)
 - Allow using a git source for a package :esphomepr:`2193` by :ghuser:`jesserockz` (new-feature)
 
 New Components
@@ -77,10 +86,10 @@ Beta Fixes
 - Fix a few ESP32-C3 compiler issues :esphomepr:`2265` by :ghuser:`jesserockz`
 - sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
 - Disable automatic usage of SNTP servers from DHCP :esphomepr:`2273` by :ghuser:`oxan`
-- Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
 - Only try compat parsing after regular parsing fails :esphomepr:`2269` by :ghuser:`oxan`
 - Suppress excessive warnings about deprecated Fan interfaces :esphomepr:`2270` by :ghuser:`oxan`
 - t6615: tolerate sensor dropping commands :esphomepr:`2255` by :ghuser:`jasstrong`
+- Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
 - Bump platformio to 5.2.0 :esphomepr:`2291` by :ghuser:`OttoWinter`
 - API Noise logging :esphomepr:`2298` by :ghuser:`OttoWinter`
 - Fix api noise explicit reject :esphomepr:`2297` by :ghuser:`OttoWinter`
@@ -116,7 +125,7 @@ All changes
 - Bump dashboard to 20210826.0 :esphomepr:`2211` by :ghuser:`jesserockz`
 - Remove footer validation for fujitsu_general :esphomepr:`2196` by :ghuser:`marciogranzotto`
 - Glmnet schema 202105 :esphomepr:`2220` by :ghuser:`glmnet`
-- Add H-Bridge fan component :esphomepr:`2212` by :ghuser:`WeekendWarrior1`
+- Add H-Bridge fan component :esphomepr:`2212` by :ghuser:`WeekendWarrior1` (new-feature)
 - Bump black from 21.7b0 to 21.8b0 :esphomepr:`2222` by :ghuser:`dependabot[bot]`
 - Bump pytest from 6.2.4 to 6.2.5 :esphomepr:`2223` by :ghuser:`dependabot[bot]`
 - Support for the AirThings Wave Plus :esphomepr:`1656` by :ghuser:`jeromelaban` (new-integration)
@@ -160,10 +169,10 @@ All changes
 - Fix a few ESP32-C3 compiler issues :esphomepr:`2265` by :ghuser:`jesserockz`
 - sm300d2: Accept (undocumented) 0x80 checksum offset. :esphomepr:`2263` by :ghuser:`poptix`
 - Disable automatic usage of SNTP servers from DHCP :esphomepr:`2273` by :ghuser:`oxan`
-- Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
 - Only try compat parsing after regular parsing fails :esphomepr:`2269` by :ghuser:`oxan`
 - Suppress excessive warnings about deprecated Fan interfaces :esphomepr:`2270` by :ghuser:`oxan`
 - t6615: tolerate sensor dropping commands :esphomepr:`2255` by :ghuser:`jasstrong`
+- Fix API socket issues :esphomepr:`2288` by :ghuser:`OttoWinter`
 - Bump platformio to 5.2.0 :esphomepr:`2291` by :ghuser:`OttoWinter`
 - API Noise logging :esphomepr:`2298` by :ghuser:`OttoWinter`
 - Fix api noise explicit reject :esphomepr:`2297` by :ghuser:`OttoWinter`
