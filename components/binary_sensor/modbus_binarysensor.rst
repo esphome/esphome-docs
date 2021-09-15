@@ -30,15 +30,17 @@ Configuration variables:
 
 
 Example
+
 .. code-block:: yaml
+
     binary_sensor:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: battery_internal_resistance_abnormal
-        name: "Battery internal resistance abnormal"
-        register_type: read
-        address: 0x3200
-        bitmask: 0x80 #(bit 8)
+    - platform: modbus_controller
+      modbus_controller_id: epever
+      id: battery_internal_resistance_abnormal
+      name: "Battery internal resistance abnormal"
+      register_type: read
+      address: 0x3200
+      bitmask: 0x80 #(bit 8)
 
 
 See Also
