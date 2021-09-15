@@ -86,6 +86,10 @@ Beta Fixes
 - Fix api noise explicit reject :esphomepr:`2297` by :ghuser:`OttoWinter`
 - Allow simple hostname for sntp servers :esphomepr:`2300` by :ghuser:`jesserockz`
 - Fix binary strobe :esphomepr:`2301` by :ghuser:`jesserockz`
+- Fix unit of measurement fields for DSMR power consumed/delivered fields :esphomepr:`2304` by :ghuser:`jsuanet`
+- Simple time.sleep in place of threading wait due to upgraded zeroconf :esphomepr:`2307` by :ghuser:`jesserockz`
+- Fix aioesphomeapi API logger with explicit API port config :esphomepr:`2310` by :ghuser:`mmakaay`
+- Start a wifi scan after saving station details :esphomepr:`2315` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -165,6 +169,10 @@ All changes
 - Fix api noise explicit reject :esphomepr:`2297` by :ghuser:`OttoWinter`
 - Allow simple hostname for sntp servers :esphomepr:`2300` by :ghuser:`jesserockz`
 - Fix binary strobe :esphomepr:`2301` by :ghuser:`jesserockz`
+- Fix unit of measurement fields for DSMR power consumed/delivered fields :esphomepr:`2304` by :ghuser:`jsuanet`
+- Simple time.sleep in place of threading wait due to upgraded zeroconf :esphomepr:`2307` by :ghuser:`jesserockz`
+- Fix aioesphomeapi API logger with explicit API port config :esphomepr:`2310` by :ghuser:`mmakaay`
+- Start a wifi scan after saving station details :esphomepr:`2315` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
