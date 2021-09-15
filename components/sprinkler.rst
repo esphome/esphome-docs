@@ -15,8 +15,10 @@ an individual electric valve via a relay or other switching device. It offers a 
 - Adjustable "valve open delay" to help ensure valves are fully closed before the next one is opened
 - Enable/disable for each individual valve, allowing valves to be omitted from a full cycle of the system
 - A multiplier value to proportionally increase or decrease the run duration for all valves/zones
-- Ability to run only a single valve/zone for its configured run duration
-- Ability to iterate through valves/zones in forward or reverse order
+- Ability to:
+  - Run only a single valve/zone for its configured run duration
+  - Pause and resume a cycle
+  - Iterate through valves/zones in forward or reverse order
 
 .. code-block:: yaml
 
@@ -76,6 +78,11 @@ Controller Actions
 - **sprinkler.shutdown**: Immediately turns off all valves, effectively shutting down the system.
 - **sprinkler.next_valve**: Immediately advances to the next valve (numerically).
 - **sprinkler.previous_valve**: Immediately advances to the previous valve (numerically).
+- **sprinkler.pause**: Immediately turns off all valves, saving the active valve and the amount of
+  time remaining so that the cycle may be resumed later on.
+- **sprinkler.resume**: Resumes a cycle placed on hold with ``sprinkler.pause``.
+- **sprinkler.resume_or_start_full_cycle**: Resumes a cycle placed on hold with ``sprinkler.pause``,
+  but if no cycle was paused, starts a full cycle (same as ``sprinkler.start_full_cycle``).
 
 .. note::
 
