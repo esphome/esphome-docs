@@ -410,6 +410,7 @@ Contributors
 - `matikij (@matikij) <https://github.com/matikij>`__
 - `Michel Marti (@matoxp) <https://github.com/matoxp>`__
 - `matt123p (@matt123p) <https://github.com/matt123p>`__
+- `Matthew Mazzanti (@matthewmazzanti) <https://github.com/matthewmazzanti>`__
 - `Maurice Schleußinger (@maurice-schleussinger) <https://github.com/maurice-schleussinger>`__
 - `mbo18 (@mbo18) <https://github.com/mbo18>`__
 - `Me No Dev (@me-no-dev) <https://github.com/me-no-dev>`__
@@ -712,4 +713,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 15, 2021.*
+*This page was last updated September 16, 2021.*
