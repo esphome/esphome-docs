@@ -57,7 +57,7 @@ Configuration variables:
 - **current_temperature_datapoint** (**Required**, int): The datapoint id number of the current temperature.
 - **temperature_multiplier** (*Optional*, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
 - **eco_datapoint** (*Optional*, int): The datapoint id number of the eco mode state.
-- **eco_temperature** (*Optional*, float): The target temperature the controller uses while the eco mode is active.
+- **eco_temperature** (*Optional*, float): The target temperature the controller uses while the eco mode is active. Defaults to 20 °C.
 
 If the device has different multipliers for current and target temperatures, **temperature_multiplier** can be replaced with both of:
 
