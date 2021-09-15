@@ -402,6 +402,7 @@ All Conditions
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 - :ref:`number.in_range <number-in_range_condition>`
+- :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
 
 All Lambda Calls
 ----------------

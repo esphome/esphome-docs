@@ -54,6 +54,8 @@ Automation triggers:
   when the fan is turned on. See :ref:`fan-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the fan is turned off. See :ref:`fan-on_turn_on_off_trigger`.
+- **on_speed_set** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the fan speed is set/changed. See :ref:`fan-on_speed_set_trigger`.
 
 .. _fan-toggle_action:
 
@@ -104,11 +106,32 @@ Configuration options:
   Set the oscillation state of the fan. Defaults to not affecting oscillation.
 - **speed** (*Optional*, int, :ref:`templatable <config-templatable>`):
   Set the speed level of the fan. Can be a number between 1 and the maximum speed level of the fan.
+- **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
+  Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
+
+.. _fan-is_on_condition:
+.. _fan-is_off_condition:
+
+``fan.is_on`` / ``fan.is_off`` Condition
+----------------------------------------
+
+This :ref:`condition <config-condition>` passes if the given fan is on/off.
+
+.. code-block:: yaml
+
+    # in a trigger:
+    on_...:
+      if:
+        condition:
+          fan.is_on: my_fan
+          # same goes for is_off
+        then:
+        - script.execute: my_script
 
 .. _fan-on_turn_on_off_trigger:
 
 ``fan.on_turn_on`` / ``fan.on_turn_off`` Trigger
-****************************************************
+------------------------------------------------
 
 This trigger is activated each time the fan is turned on or off. It does not fire
 if a command to turn the fan on or off already matches the current state.
@@ -123,8 +146,23 @@ if a command to turn the fan on or off already matches the current state.
         on_turn_off:
         - logger.log: "Fan Turned Off!"
 
+.. _fan-on_speed_set_trigger:
+
+``fan.on_speed_set`` Trigger
+----------------------------
+
+This trigger is activated each time the fan speed is changed. It will fire when the speed is either set via API e.g. in Home Assistant or locally by an automation or a lambda function.
+
+.. code-block:: yaml
+
+    fan:
+      - platform: speed # or any other platform
+        # ...
+        on_speed_set:
+        - logger.log: "Fan Speed was changed!"
+
 Lambda calls
-************
+------------
 
 From :ref:`lambdas <config-lambda>`, you can call several methods on all fans to do some
 advanced stuff (see the full API Reference for more info).

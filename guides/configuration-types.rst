@@ -270,6 +270,9 @@ config in the main yaml file. All definitions from packages will be merged with 
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
 
+Local packages
+**************
+
 Consider the following example where the author put common pieces of configuration like WiFi and
 I²C into base files and extends it with some device specific configurations in the main config.
 
@@ -345,6 +348,35 @@ merged with the services definitions from main config file.
 
     switch:
       - !include common/switch/restart_switch.config.yaml
+
+.. _config-git_packages:
+
+Remote/git Packages
+*******************
+
+Packages can also be loaded from a git repository by utilizing the correct config syntax.
+:ref:`config-substitutions` can be used inside the remote packages which allows users to override
+them locally with their own subsitution value.
+
+.. code-block:: yaml
+
+    packages:
+      # Git repo examples
+      remote_package:
+        url: https://github.com/esphome/non-existant-repo
+        ref: main # optional
+        files: [file1.yml, file2.yml]
+        refresh: 1d # optional
+
+      # A single file can be expressed using `file` or `files` as a string
+      remote_package_two:
+        url: https://github.com/esphome/non-existant-repo
+        file: file1.yml # cannot be combined with `files`
+        # files: file1.yml
+
+      # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
+      remote_package_three: github://esphome/non-existant-repo/file1.yml@main
+
 
 See Also
 --------

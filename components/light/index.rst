@@ -32,6 +32,8 @@ Configuration variables:
   Defaults to ``2.8``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The default transition length
   to use when no transition length is set in the light call. Defaults to ``1s``.
+- **flash_transition_length** (*Optional*, :ref:`config-time`): The transition length to use when flash
+  is called. Defaults to ``0s``.
 - **restore_mode** (*Optional*): Control how the light attempts to restore state on bootup.
   For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
   :doc:`esphome section </components/esphome>`.
