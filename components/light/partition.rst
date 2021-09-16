@@ -64,7 +64,7 @@ Joining multiple LED lights into one
             from: 0
             to: 9
           # Use light3 as the 21st light in the partition
-          - id: light3
+          - single_light_id: light3
 
       # Example for light segment source
       - platform: fastled_clockless
@@ -91,22 +91,25 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the light.
-- **segments** (**Required**, list): The segments this light partition controls
+- **segments** (**Required**, list): A list of segments included in this partition.
+  
+  *For addressable segments:*
 
-  - **id** (**Required**, :ref:`config-id`): The ID of the light this segment belongs to.
-  - **from** (**Required**, int): The first LED to address in the segment. Counting starts with 0,
-    so first LED is 0. Must not be specified if this light is not addressable.
-  - **to** (**Required**, int): The index of the last LED to address in this segment.  Must not be specified if this light is not addressable.
-  - **reversed** (**Required**, int): Whether to reverse the LEDs in this segment.  Must not be specified if this light is not addressable.
+  - **id** (**Required**, :ref:`config-id`): The ID of the addressable light to be controlled by this segment.
+  - **from** (**Required**, int): The index of the first LED to address in the segment. Counting starts with 0,
+    so first LED is 0.
+  - **to** (**Required**, int): The index of the last LED to address in this segment.
+  - **reversed** (**Optional**, boolean): Whether to reverse the order of LEDs in this segment. Defaults to ``false``.
+
+  *For single light segments:*
+
+  - **single_light_id** (**required**, :ref:`config-id`): The ID of an addressable or non-addressable light to be
+    controlled as a single light in this segment. All LEDs in an addressable light will be treated as one light in the partition.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 
 - All other options from :ref:`Light <config-light>`.
-
-.. note::
-
-    If **from** and **to** are not specified for an addressable segment, that segment will be treated as non-addressable and hence controlled as a single LED.
 
 .. note::
 
