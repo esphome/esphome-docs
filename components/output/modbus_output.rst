@@ -13,8 +13,6 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **address**: (**Required**, int): start address of the first register in a range
-- **offset**: (**Optional**, int): only required for uncommon response encodings  
-    offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
 - **value_type**: (**Required**): datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
     - U_WORD (unsigned float from 1 register =16bit
     - S_WORD (signed float from one register)
@@ -32,8 +30,26 @@ Configuration variables:
   Lambda is evaluated before the modbus write command is created. The value is passed in as `float x` and an empty vector is passed in as `std::vector<uint16_t>&payload`
   You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used. 
 - **multiply** (**Optional**, float): multiply the new value with this factor before sending the requests. Ignored if lambda is defined.
+- **offset**: (**Optional**, int): only required for uncommon response encodings  
+    offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
 
-- All other options from :ref:`Output <config-output>`.
+All other options from :ref:`Output <config-output>`.
+
+
+**Parameters passed into the lambda**
+
+- **x** (float): The float value to be sent to the modbus device
+
+- **payload** (`std::vector<uint16_t>&payload`): empty vector for the payload. The lamdba can add 16 bit raw modbus register words.
+      note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.
+- **item** (const pointer to a SensorItem derived object):  The sensor object itself.
+
+Possible return values for the lambda:
+
+ - ``return <FLOATING_POINT_NUMBER>;`` the new value for the sensor.
+ - ``return <anything>; and fill payload with data`` if the payload is added from the lambda then these 16 bit words will be sent
+ - ``return {};`` if you don't want write the command to the device (or do it from the lambda).
+
 
 **Example**
 
@@ -53,6 +69,7 @@ Configuration variables:
   
 
 
+
 See Also
 --------
 - :doc:`/components/modbus_controller`
@@ -60,6 +77,6 @@ See Also
 - :doc:`/components/binary_sensor/modbus_binarysensor`
 - :doc:`/components/switch/modbus_switch`
 - :doc:`/components/text_sensor/modbus_textsensor`
-- :doc:`/components/output/modbus_output`
+- :doc:`/components/number/modbus_number`
 - https://www.modbustools.com/modbus.html
 - :ghedit:`Edit`
