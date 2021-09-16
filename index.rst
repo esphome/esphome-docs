@@ -1,3 +1,5 @@
+.. title:: ESPHome
+
 .. meta::
     :google-site-verification: Q5q5TFbCofxA8-cSa1Frv5Hj4RopF5zwEZf_zaNHqf4
 
@@ -188,6 +190,7 @@ Air Quality
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
+    SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
@@ -273,7 +276,7 @@ Environmental
     BME680, components/sensor/bme680, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
-    BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Humidity & Pressure
+    BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
@@ -286,7 +289,7 @@ Environmental
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
-    SCD30, components/sensor/scd30, scd30.jpg, Temperature & Humidity
+    SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity

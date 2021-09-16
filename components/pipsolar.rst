@@ -32,7 +32,7 @@ This component will poll the needed polling commands in a loop. If there is a co
 There is a buffer to buffer up to 10 commands.
 
 .. |here| replace:: ``here``
-.. _here: https://github.com/jblance/mpp-solar/raw/master/docs/PI30_PIP-GK_MK-Protocol.pdf
+.. _here: https://github.com/jblance/mpp-solar/tree/master/docs
 
 .. code-block:: yaml
 

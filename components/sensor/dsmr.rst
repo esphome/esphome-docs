@@ -43,6 +43,9 @@ Configuration variables:
 
 - **decryption_key** (*Optional*, string, :ref:`templatable <config-templatable>`, 32 characters, case insensitive): The key to decrypt the
   telegrams. Used in Lux only.
+- **gas_mbus_id** (*Optional*, integer): The id of the gas meter. Defaults to ``1``.
+- **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false for
+  older DSMR versions as they do not provide a CRC. Defaults to ``true``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the DSMR if you have multiple components.
 
@@ -221,13 +224,54 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
+- **gas_delivered_text** (*Optional*): A text sensor which unformatted gas data. You need to
+  apply a custom parsing of this value depending on your meter format.
+
+  - **name** (**Required**, string): The name for the p1_version text sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
 Belgium
 
-- **p1_version_be** (*Optional*): DSMR Version Beligum
+- **p1_version_be** (*Optional*): DSMR Version Belgium
 
   - **name** (**Required**, string): The name for the p1_version_be text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+Older DSMR meters support
+*************************
+
+Version 2.2 is supported with the following configuration:
+
+.. code-block:: yaml
+
+    # Custom uart settings for DSMR v2.2
+    uart:
+      baud_rate: 9600
+      data_bits: 7
+      parity: NONE
+      stop_bits: 1
+
+    dsmr:
+      crc_check: false
+
+    sensor:
+      - platform: dsmr
+        energy_delivered_tariff1:
+          name: dsmr_energy_delivered_tariff1
+        energy_delivered_lux:
+          name: dsmr_energy_delivered_tarifflux
+
+    text_sensor:
+      - platform: dsmr
+        identification:
+          name: "dsmr_identification"
+        p1_version:
+          name: "dsmr_p1_version"
+        gas_delivered_text:
+          name: "gas delivered raw"
+
 
 
 See Also
