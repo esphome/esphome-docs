@@ -103,8 +103,8 @@ Configuration variables:
 
   *For single light segments:*
 
-  - **single_light_id** (**required**, :ref:`config-id`): The ID of an addressable or non-addressable light to be
-    controlled as a single light in this segment. All LEDs in an addressable light will be treated as one light in the partition.
+  - **single_light_id** (**required**, :ref:`config-id`): The ID of a single addressable or non-addressable light.
+    If an addressable light is specified, it will be treated as a single light in the partition.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
