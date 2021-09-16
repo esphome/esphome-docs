@@ -347,7 +347,7 @@ merged with the services definitions from main config file.
       - <<: !include common/binary_sensor/connection_status.config.yaml
 
     switch:
-      - !include common/switch/restart_switch.config.yaml
+      - <<: !include common/switch/restart_switch.config.yaml
 
 .. _config-git_packages:
 
