@@ -81,12 +81,15 @@ Configuration variables:
   - ``2.13in`` (not tested)
   - ``2.13in-ttgo`` (T5_V2.3 tested. Also works for Wemos D1 Mini ePaper Shield 2.13 1.0.0 "LOLIN")
   - ``2.13in-ttgo-b73`` (T5_V2.3 with B73 display tested)
+  - ``2.13in-ttgo-b74`` (T5_V2.3.1 with B74 display tested)
   - ``2.13in-ttgo-b1`` (T5_V2.3 with B1 display tested)
+  - ``2.13in-ttgo-dke`` (T5_V2.3 with DKE group display (DEPG0213BN) tested)
   - ``2.70in`` (currently not working with the HAT Rev 2.1 version)
   - ``2.90in``
   - ``2.90inv2``
   - ``2.90in-b`` (B/W rendering only)
   - ``4.20in``
+  - ``4.20in-bV2`` (B/W rendering only)
   - ``5.83in``
   - ``7.50in``
   - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)
@@ -94,6 +97,7 @@ Configuration variables:
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
   Make sure you pull this pin high (by connecting it to 3.3V with a resistor) if not connected to a GPIO pin.
+  The B74 display variant requires the reset pin.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
 - **full_update_every** (*Optional*, int): E-Paper displays have two modes of switching to the next image: A partial
@@ -104,7 +108,7 @@ Configuration variables:
   all other models.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``10s``, use ``never`` to only manually update the screen via ``component.update``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``, use ``never`` to only manually update the screen via ``component.update``.
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.

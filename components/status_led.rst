@@ -21,6 +21,10 @@ the device. Specifically, it will:
     status_led:
       pin: GPIO2
 
+.. note::
+
+    If your device has a single LED that needs to be shared use  :doc:`status_led light platform </components/light/status_led>` instead.
+
 Configuration variables:
 ------------------------
 
@@ -38,10 +42,11 @@ Configuration variables:
         status_led:
           pin:
             number: D0
-            inverted: True
+            inverted: true
 
 See Also
 --------
 
+- :doc:`/components/light/status_led`
 - :apiref:`status_led/status_led.h`
 - :ghedit:`Edit`

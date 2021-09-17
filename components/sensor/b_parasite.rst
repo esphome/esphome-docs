@@ -38,7 +38,7 @@ Configuration variables
 -----------------------
 
 - **mac_address** (**Required**): The MAC address of the device.
-- **temperature** (*Optional*): Air temperature in Celcius.
+- **temperature** (*Optional*): Air temperature in Celsius.
 
   - **name** (**Required**): Sensor name.
   - All other options from :ref:`Sensor <config-sensor>`.

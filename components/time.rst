@@ -239,7 +239,7 @@ Configuration variables:
 
     Due to limitations of the SNTP implementation, this component will trigger ``on_time_sync`` only once when it detects that the
     system clock has been set, even if the update was not done by the SNTP implementation!
-    This must be taken into consideration when SNTP is used together with other real time componnents, where another time source could
+    This must be taken into consideration when SNTP is used together with other real time components, where another time source could
     update the time before SNTP synchronizes.
 
 GPS Time Source
@@ -326,7 +326,7 @@ In a typical setup, you will have at least one additional time source to synchro
 external time source might not always be available e.g. due to a limited network connection.
 In order to have a valid, reliable system time, the system should read the RTC once at start and then try to
 synchronize with an external reliable time source.
-When a synchronization to another time source was successfull, the RTC can be resynchronized.
+When a synchronization to another time source was successful, the RTC can be resynchronized.
 
 .. code-block:: yaml
 

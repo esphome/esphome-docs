@@ -15,10 +15,6 @@ and shipping from China takes a long time, I've only set up dedicated guides for
       name: <NAME_OF_NODE>
       platform: ESP8266
       board: esp8285
-      arduino_version: 2.4.2
-
-The selected board and arduino_version are required in v1.14.3 (and probably later), see
-https://github.com/esphome/issues/issues/931 for details.
 
 After that use the following list of pin to function mappings to set up your Sonoff device.
 This list has been compiled from the Sonoff Tasmota pin source file which can be found here:

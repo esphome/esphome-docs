@@ -7,7 +7,7 @@ ADE7953 Power Sensor
 
 .. note::
 
-    This page is incomplete and could some work. If you want to contribute, please read the
+    This page is incomplete and could use some work. If you want to contribute, please read the
     :doc:`contributing guide </guides/contributing>`. This page is missing:
 
       - A complete configuration example for the Shelly 2.5

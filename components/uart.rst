@@ -32,12 +32,19 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
     ones used for logging. Therefore the UART data on the ESP8266 can have occasional data glitches especially with
     higher baud rates..
 
+.. note::
+
+    From ESPHome 2021.8 the ``ESP8266SoftwareSerial`` UART ``write_byte`` function had the parity bit fixed to be correct
+    for the data being sent. This could cause unexpected issues if you are using the Software Serial and have devices that
+    explicity check the parity. Most likely you will need to flip the ``parity`` flag in YAML.
+
+
 .. code-block:: yaml
 
     # Example configuration entry
     uart:
-      tx_pin: D0
-      rx_pin: D1
+      tx_pin: 1
+      rx_pin: 3
       baud_rate: 9600
 
 Configuration variables:
@@ -54,7 +61,7 @@ Configuration variables:
 
 ESP32 options:
 
-- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``True`` or ``False``. Defaults to ``False``.
+- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``true`` or ``false``. Defaults to ``false``.
 
 .. _uart-hardware_uarts:
 
