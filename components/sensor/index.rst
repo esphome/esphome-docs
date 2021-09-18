@@ -109,7 +109,7 @@ There are a lot of filters that sensors support. You define them by adding a ``f
 block in the sensor configuration (at the same level as ``platform``; or inside each sensor block
 for platforms with multiple sensors)
 
-Filters are processed in order they are defined in your configuration.
+Filters are processed in the order they are defined in your configuration.
 
 .. code-block:: yaml
 
