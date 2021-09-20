@@ -236,6 +236,7 @@ Contributors
 - `Fritz Mueller (@fritzm) <https://github.com/fritzm>`__
 - `Marc Egli (@frog32) <https://github.com/frog32>`__
 - `mr G1K (@G1K) <https://github.com/G1K>`__
+- `Aljaž Srebrnič (@g5pw) <https://github.com/g5pw>`__
 - `Gabe Cook (@gabe565) <https://github.com/gabe565>`__
 - `Gareth Cooper (@gaco79) <https://github.com/gaco79>`__
 - `galagaking (@galagaking) <https://github.com/galagaking>`__
@@ -374,6 +375,7 @@ Contributors
 - `larsonmpdx (@larsonmpdx) <https://github.com/larsonmpdx>`__
 - `lein1013 (@lein1013) <https://github.com/lein1013>`__
 - `Riku Lindblad (@lepinkainen) <https://github.com/lepinkainen>`__
+- `Luca Gugelmann (@lgugelmann) <https://github.com/lgugelmann>`__
 - `Juraj Liso (@LiJu09) <https://github.com/LiJu09>`__
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__
 - `Barry Loong (@loongyh) <https://github.com/loongyh>`__
@@ -713,4 +715,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 16, 2021.*
+*This page was last updated September 20, 2021.*
