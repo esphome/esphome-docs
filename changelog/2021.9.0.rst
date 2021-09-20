@@ -56,6 +56,14 @@ The template selects, numbers and switches now have more validations on them pre
 If you do not set a ``lambda`` then you are required to make them either ``optimistic: true``, or
 utilise the ``set_action`` (select/number) / ``turn_on_trigger`` (switch).
 
+Release 2021.9.1 - September 20
+-------------------------------
+
+- Fix MQTT discovery for sensor state_class :esphomepr:`2331` by :ghuser:`paulmonigatti`
+- Light transition fixes :esphomepr:`2320` by :ghuser:`oxan`
+- Cease using deprecated Cover methods in automations :esphomepr:`2326` by :ghuser:`oxan`
+- Apply color brightness to addressable light effects :esphomepr:`2321` by :ghuser:`oxan`
+- Add readv and writev for more efficient API packets :esphomepr:`2342` by :ghuser:`OttoWinter`
 
 Full list of changes
 --------------------
