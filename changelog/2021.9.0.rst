@@ -64,6 +64,7 @@ Release 2021.9.1 - September 20
 - Cease using deprecated Cover methods in automations :esphomepr:`2326` by :ghuser:`oxan`
 - Apply color brightness to addressable light effects :esphomepr:`2321` by :ghuser:`oxan`
 - Add readv and writev for more efficient API packets :esphomepr:`2342` by :ghuser:`OttoWinter`
+- Clean-up sensor integration :esphomepr:`2275` by :ghuser:`oxan`
 
 Full list of changes
 --------------------
