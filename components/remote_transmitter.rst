@@ -482,7 +482,7 @@ lambda calls
 
 Actions may also be called from :ref:`lambdas <config-lambda>`. The ``.transmit()`` call can be populated with
 encoded data for a specific protocol by following the example below.
-See the full `API Reference <https://esphome.io/api/namespaceesphome_1_1remote__base.html>`__ for more info.
+See the full API Reference for more info.
 
 - ``.transmit()``: Transmit an IR code using the remote transmitter.
 
