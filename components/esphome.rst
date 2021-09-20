@@ -50,6 +50,7 @@ Advanced options:
   is in. See :ref:`esphome-includes` for more info.
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
+  The ``<name>=<source>`` syntax can be used to override the source used for a library that is included by a component.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 - **name_add_mac_suffix** (*Optional*, boolean): Appends the last 6 bytes of the mac address of the device to
   the name in the form ``<name>-aabbcc``. Defaults to ``false``.
