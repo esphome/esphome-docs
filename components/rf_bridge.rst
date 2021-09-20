@@ -170,7 +170,7 @@ ESPHome is able to receive the extra protocols that can be decoded as well as ac
 .. _rf_bridge-on_advanced_code_received:
 
 ``on_advanced_code_received`` Trigger
--------------------------------------
+*************************************
 
 Similar to :ref:`rf_bridge-on_code_received`, this trigger receives the codes after advanced sniffing is started.
 To use the code, use a :ref:`lambda <config-lambda>` template, the code and the corresponding protocol and length
@@ -190,7 +190,7 @@ are available inside that lambda under the variables named ``code``, ``protocol`
 .. _rf_bridge-send_advanced_code_action:
 
 ``rf_bridge.send_advanced_code`` Action
----------------------------------------
+***************************************
 
 Send an  RF code using this action in automations.
 
@@ -222,7 +222,7 @@ Configuration options:
 .. _rf_bridge-start_advanced_sniffing_action:
 
 ``rf_bridge.start_advanced_sniffing`` Action
---------------------------------------------
+********************************************
 
 Tell the RF Bridge to listen for the advanced/extra protocols defined in the portisch firmware.
 The decoded codes with length and protocol will be returned to :ref:`rf_bridge-on_advanced_code_received`
@@ -249,7 +249,7 @@ Configuration options:
 .. _rf_bridge-stop_advanced_sniffing_action:
 
 ``rf_bridge.stop_advanced_sniffing`` Action
--------------------------------------------
+*******************************************
 
 Tell the RF Bridge to stop listening for the advanced/extra protocols defined in the portisch firmware.
 
@@ -274,7 +274,7 @@ Configuration options:
 .. _rf_bridge-start_bucket_sniffing_action:
 
 ``rf_bridge.start_bucket_sniffing`` Action
-------------------------------------------
+******************************************
 
 Tell the RF Bridge to dump raw sniffing data. Useful for getting codes for unsupported protocols.
 The raw data will be available in the log and can later be used with :ref:`rf_bridge-send_raw_action` action.
@@ -311,7 +311,7 @@ Configuration options:
 .. _rf_bridge-beep_action:
 
 ``rf_bridge.beep`` Action
--------------------------------------------
+*************************
 
 Activate the internal buzzer to make a beep.
 
