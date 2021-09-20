@@ -473,7 +473,6 @@ Use this component to store graphical images on the device, you can then draw th
       - file: "image.png"
         id: my_image
         resize: 100x100
-        
 Configuration variables:
 
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
