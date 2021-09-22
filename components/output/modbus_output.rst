@@ -59,11 +59,11 @@ Possible return values for the lambda:
         - platform: modbus_controller
             modbus_controller_id: epever
             id: battery_capacity_output
-            lambda: !lambda |-
-            ESP_LOGD("main","Modbus Output incoming value = %f",x);
-            uint16_t b_capacity = x ; 
-            payload.push_back(b_capacity);
-            return x * 1.0 ;
+            lambda: |-
+              ESP_LOGD("main","Modbus Output incoming value = %f",x);
+              uint16_t b_capacity = x ; 
+              payload.push_back(b_capacity);
+              return x * 1.0 ;
             address: 0x9001
             value_type: U_WORD
   

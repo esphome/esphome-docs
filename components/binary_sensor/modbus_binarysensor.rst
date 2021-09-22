@@ -2,7 +2,7 @@ Modbus Binary Sensor
 ====================
 
 .. seo::
-    :description: Instructions for setting up a modebus_controller device binary sensor.
+    :description: Instructions for setting up a modbus_controller device binary sensor.
     :image: modbus.png
 
 The ``modbus_controller`` binary sensor platform creates a binary sensor from a modbus_controller component
@@ -22,7 +22,7 @@ Configuration variables:
 
 - **address**: (**Required**, integer): start address of the first register in a range
 - **bitmask** : some values are packed in a response. The bitmask is used to determined if the result is true or false
-- **skip_updates**: (**Optional**, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
+- **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 - **force_new_range**: (**Optional**, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor

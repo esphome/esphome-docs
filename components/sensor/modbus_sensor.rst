@@ -104,7 +104,7 @@ This example logs the value as parsed and the raw modbus bytes received for this
           name: "Battery Capacity"
           register_type: holding
           value_type: U_WORD
-          lambda: !lambda |-
+          lambda: |-
             ESP_LOGI("","Lambda incoming value=%f - data array size is %d",x,data.size());
             ESP_LOGI("","Sensor properties: adress = 0x%X, offset = 0x%X value type=%d",item->start_address,item->offset,item->sensor_value_type);
             int i=0 ;
