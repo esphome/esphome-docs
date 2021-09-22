@@ -26,7 +26,7 @@ Configuration variables:
     - S_QWORD_R (sigend float from 4 registers low word first )
 - **register_count**: (**Optional**): only required for uncommon response encodings 
   The number of registers this data point spans. Default is 1 
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+- **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda is evaluated before the modbus write command is created. The value is passed in as `float x` and an empty vector is passed in as `std::vector<uint16_t>&payload`
   You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used. 
 - **multiply** (**Optional**, float): multiply the new value with this factor before sending the requests. Ignored if lambda is defined.

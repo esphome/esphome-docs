@@ -126,7 +126,6 @@ Possible return values for the lambda:
 
  - ``return <FLOATING_POINT_NUMBER>;`` the new value for the sensor.
  - ``return NAN;`` if the state should be considered invalid to indicate an error (advanced).
- - ``return {};`` if you don't want to publish a new state (advanced).
 
 See Also
 --------

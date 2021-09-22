@@ -49,21 +49,17 @@ Example
 Parameters passed into the lambda
 
 - **x** (bool): The parsed float value of the modbus data
-
-- **value_type**: (**Required**): datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
-    - U_WORD (unsigned float from 1 register =16bit
-
 - **data** (std::vector<uint8_t): vector containing the complete raw modbus response bytes for this sensor
-- **item** (const pointer to a BinarySensorItem object):  The sensor object itself.
+- **item** (const pointer to a ModbusBinarySensor object):  The sensor object itself.
 
 Possible return values for the lambda:
 
  - ``return true/false;`` the new value for the sensor.
- - ``return {};`` if you don't want to publish a new state (advanced).
 
 
 See Also
 --------
+- :apiclass:`:modbus_controller::ModbusBinarySensor`
 - :doc:`/components/modbus_controller`
 - :doc:`/components/switch/modbus_switch`
 - :doc:`/components/output/modbus_output`
