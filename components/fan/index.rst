@@ -42,10 +42,14 @@ MQTT options:
   publish fan oscillation state changes to.
 - **oscillation_command_topic** (*Optional*, string): The topic to
   receive oscillation commands on.
+- **speed_level_state_topic** (*Optional*, int): The topic to publish
+  numeric fan speed state changes to (range: 0 to speed count).
+- **speed_level_command_topic** (*Optional*, int): The topic to receive
+  numeric speed commands on (range: 0 to speed count).
 - **speed_state_topic** (*Optional*, string): The topic to publish fan
-  speed state changes to.
+  speed state changes to (options: LOW, MEDIUM, HIGH).
 - **speed_command_topic** (*Optional*, string): The topic to receive
-  speed commands on.
+  speed commands on (options: LOW, MEDIUM, HIGH).
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Automation triggers:
