@@ -349,8 +349,7 @@ Weight
 .. imgtable::
 
     HX711, components/sensor/hx711, hx711.jpg, Load cell amplifier
-    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
-    Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
+    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale1&2.jpg
 
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
