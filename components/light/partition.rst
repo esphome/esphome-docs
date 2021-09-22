@@ -6,8 +6,8 @@ Light Partition
     :image: color_lens.png
 
 The ``partition`` light platform allows you to combine multiple addressable light segments
-(like :doc:`fastled` or :doc:`neopixelbus`) into a single addressable light.
-This platform also allows splitting up an addressable lights into multiple segments, so that
+(like :doc:`fastled` or :doc:`neopixelbus`) and/or individual lights (like :doc:`rgb`) into a single addressable light.
+This platform also allows splitting up an addressable light into multiple segments, so that
 segments can be individually controlled.
 
 Splitting a single LED strip
@@ -44,7 +44,7 @@ mark the original ``light`` as ``internal: true``.
         internal: true
         # Other settings
 
-Joining multiple LED strips into one
+Joining multiple LED lights into one
 ------------------------------------
 
 .. code-block:: yaml
@@ -63,6 +63,8 @@ Joining multiple LED strips into one
           - id: light2
             from: 0
             to: 9
+          # Use light3 as the 21st light in the partition
+          - single_light_id: light3
 
       # Example for light segment source
       - platform: fastled_clockless
@@ -78,17 +80,31 @@ Joining multiple LED strips into one
         internal: true
         # Other settings
 
+      # Example for non-addressable light source
+      - platform: rgb
+        id: light3
+        # You may want (but don't need) this
+        internal: true
+        # Other settings
+
 Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the light.
-- **segments** (**Required**, list): The segments this light partition controls
+- **segments** (**Required**, list): A list of segments included in this partition.
+  
+  *For addressable segments:*
 
-  - **id** (**Required**, :ref:`config-id`): The ID of the light this segment belongs to.
-  - **from** (**Required**, int): The first LED to address in the segment. Counting starts with 0,
+  - **id** (**Required**, :ref:`config-id`): The ID of the addressable light to be controlled by this segment.
+  - **from** (**Required**, int): The index of the first LED to address in the segment. Counting starts with 0,
     so first LED is 0.
   - **to** (**Required**, int): The index of the last LED to address in this segment.
-  - **reversed** (**Required**, int): Whether to reverse the LEDs in this segment.
+  - **reversed** (**Optional**, boolean): Whether to reverse the order of LEDs in this segment. Defaults to ``false``.
+
+  *For single light segments:*
+
+  - **single_light_id** (**required**, :ref:`config-id`): The ID of a single addressable or non-addressable light.
+    If an addressable light is specified, it will be treated as a single light in the partition.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
