@@ -177,7 +177,7 @@ Configuration variables:
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 
 
 .. note::
