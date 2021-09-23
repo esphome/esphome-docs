@@ -63,24 +63,23 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the cover.
-
 - **open_sensor** (**Required**, :ref:`config-id`): The open current sensor.
 - **open_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be opened.
 - **open_duration** (**Required**, :ref:`config-time`): The amount of time it takes the cover
   to open up from the fully-closed state.
-- **open_moving_current_threshold** (*Required*, float): The amount of current in Amps the motor 
+- **open_moving_current_threshold** (**Required**, float): The amount of current in Amps the motor 
   should drain to consider the cover is opening. 
-- **open_obstacle_current_threshold** (*Required*, float): The amount of current in Amps the motor 
+- **open_obstacle_current_threshold** (**Required**, float): The amount of current in Amps the motor 
   should drain to consider the cover is blocked during opening.
 - **close_sensor** (**Required**, :ref:`config-id`): The close current sensor.
 - **close_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed.
 - **close_duration** (**Required**, :ref:`config-time`): The amount of time it takes the cover
   to close from the fully-open state.
-- **close_moving_current_threshold** (*Required*, float): The amount of current in Amps the motor 
+- **close_moving_current_threshold** (**Required**, float): The amount of current in Amps the motor 
   should drain to consider the cover is closing.
-- **close_obstacle_current_threshold** (*Required*, float): The amount of current in Amps the motor 
+- **close_obstacle_current_threshold** (**Required**, float): The amount of current in Amps the motor 
   should drain to consider the cover is blocked during closing.
 - **stop_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed to stop the cover.
@@ -107,14 +106,14 @@ Use with Shelly 2.5
     :image:  shelly2.5.png
 
 The Shelly 2.5 is the perfect hardware for this platform. It features two outputs with current monitoring
-(Thanks to an embedded :doc:`ADE7953 </components/sensor/ade7953>`) in a very small form factor (39mm x 36mm x 17 mm). 
+(thanks to an embedded :doc:`ADE7953 </components/sensor/ade7953>`) in a very small form factor (39mm x 36mm x 17 mm). 
 It also features an :doc:`NTC temperature sensor </components/sensor/ntc>`.
 
 .. figure:: images/shelly2.5.png
     :align: center
     :width: 30.0%
 
-These devices typically run hot (~55Cº at 20ºC room temperature). Long-term heavy loads (near to it's rated limit) can overheat the device. 
+These devices typically run hot (~55Cº at 20ºC room temperature). Long-term heavy loads (near to its rated limit) can overheat the device. 
 It is strongly recommended to monitor the device temperature using the NTC temperature sensor, shutting down the device if it exceeds 90ºC. 
 This safety feature is also present in the original firmware.
 
