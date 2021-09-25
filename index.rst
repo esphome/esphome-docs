@@ -267,7 +267,7 @@ Environmental
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
-    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
@@ -316,7 +316,7 @@ Miscellaneous
 
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
-    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
