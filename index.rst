@@ -252,6 +252,7 @@ Electricity
     PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
     SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus energy monitor
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
+    SML, components/sensor/sml, sml.svg, Electrical counter
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
 
