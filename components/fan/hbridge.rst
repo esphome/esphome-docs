@@ -39,9 +39,9 @@ Configuration variables:
   :ref:`float output <output>` connected to Pin A (alternatively IN1, etc.) of the h-bridge.
 - **pin_b** (**Required**, :ref:`config-id`): The id of the
   :ref:`float output <output>` connected to Pin B (alternatively IN2, etc.) of the h-bridge.
-- **enable_pin** (**Optional**, :ref:`config-id`): The id of the
+- **enable_pin** (*Optional*, :ref:`config-id`): The id of the
   :ref:`float output <output>` connected to the Enable pin of the h-bridge (if h-bridge uses enable).
-- **decay_mode** (**Optional**, string): The decay mode you want to use with
+- **decay_mode** (*Optional*, string): The decay mode you want to use with
   the h-bridge. Either ``slow`` (braking) or ``fast`` (coasting). Defaults to ``slow``.
 - **name** (**Required**, string): The name for this fan.
 - **oscillation_output** (*Optional*, :ref:`config-id`): The id of the
