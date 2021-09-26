@@ -70,6 +70,30 @@ It can work with multiple beacons simultaneously.
     :align: center
     :width: 75.0%
 
+Changing advertisement UUID
+---------------------------
+
+You can change the beacon UUID by using ``update_advertisement(std::array<uint8_t, 16>)`` lambda
+call on the beacon component. This can be used for real-time reporting of sensor values via BLE
+advertisement.
+
+Example lambda expression that updates advertisement UUID of a beacon when a sensor value
+changes in the sensor's ``on_value`` automation rule:
+
+.. code-block:: yaml
+
+    on_value:
+      - lambda: |-
+          // round sensor value to the nearest 32-bit integer
+          auto val = lroundf(x);
+
+          // embed sensor value into the first 4 bytes of the new UUID (big endian)
+          std::array<unsigned char, 16> uuid = {(uint8_t) (val >> 24), (uint8_t) (val >> 16), (uint8_t) (val >> 8), (uint8_t) val, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+          // update the advertisement UUID of beacon 'id: beacon'
+          id(beacon)->update_advertisement(uuid);
+
+
 See Also
 --------
 
