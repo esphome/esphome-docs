@@ -130,9 +130,9 @@ Possible return values for the lambda:
 See Also
 --------
 - :doc:`/components/modbus_controller`
-- :doc:`/components/number/modbus_number`
-- :doc:`/components/binary_sensor/modbus_binarysensor`
-- :doc:`/components/text_sensor/modbus_textsensor`
-- :doc:`/components/switch/modbus_switch`
+- :doc:`/components/number/modbus_controller`
+- :doc:`/components/binary_sensor/modbus_controller`
+- :doc:`/components/text_sensor/modbus_controller`
+- :doc:`/components/switch/modbus_controller`
 - :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
 - :ghedit:`Edit`

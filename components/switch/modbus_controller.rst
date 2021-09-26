@@ -47,8 +47,8 @@ For holding registers the write command will be write_single_register. Because t
 See Also
 --------
 - :doc:`/components/modbus_controller`
-- :doc:`/components/sensor/modbus_sensor`
-- :doc:`/components/binary_sensor/modbus_binarysensor`
-- :doc:`/components/text_sensor/modbus_textsensor`
+- :doc:`/components/sensor/modbus_controller`
+- :doc:`/components/binary_sensor/modbus_controller`
+- :doc:`/components/text_sensor/modbus_controller`
 - https://www.modbustools.com/modbus.html
 - :ghedit:`Edit`

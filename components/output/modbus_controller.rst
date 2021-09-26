@@ -73,10 +73,10 @@ Possible return values for the lambda:
 See Also
 --------
 - :doc:`/components/modbus_controller`
-- :doc:`/components/sensor/modbus_sensor`
-- :doc:`/components/binary_sensor/modbus_binarysensor`
-- :doc:`/components/switch/modbus_switch`
-- :doc:`/components/text_sensor/modbus_textsensor`
-- :doc:`/components/number/modbus_number`
+- :doc:`/components/sensor/modbus_controller`
+- :doc:`/components/binary_sensor/modbus_controller`
+- :doc:`/components/switch/modbus_controller`
+- :doc:`/components/text_sensor/modbus_controller`
+- :doc:`/components/number/modbus_controller`
 - https://www.modbustools.com/modbus.html
 - :ghedit:`Edit`

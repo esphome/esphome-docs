@@ -453,12 +453,12 @@ Then battery charge settings are sent.
 See Also
 --------
 
-- :doc:`/components/sensor/modbus_sensor`
-- :doc:`/components/binary_sensor/modbus_binarysensor`
-- :doc:`/components/text_sensor/modbus_textsensor`
-- :doc:`/components/switch/modbus_switch`
-- :doc:`/components/number/modbus_number`
-- :doc:`/components/output/modbus_output`
+- :doc:`/components/sensor/modbus_controller`
+- :doc:`/components/binary_sensor/modbus_controller`
+- :doc:`/components/text_sensor/modbus_controller`
+- :doc:`/components/switch/modbus_controller`
+- :doc:`/components/number/modbus_controller`
+- :doc:`/components/output/modbus_controller`
 - :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
 - `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - :ghedit:`Edit`
