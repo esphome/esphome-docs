@@ -2,7 +2,7 @@ Modbus Sensor
 =============
 
 .. seo::
-    :description: Instructions for setting up a modebus_controller device sensor.
+    :description: Instructions for setting up a modbus_controller device sensor.
     :image: modbus.png
 
 The ``modbus_controller`` sensor platform creates a sensor from a modbus_controller component

@@ -2,7 +2,7 @@ Modbus Text Sensor
 ==================
 
 .. seo::
-    :description: Instructions for setting up a modebus_controller modbus text sensor.
+    :description: Instructions for setting up a modbus_controller modbus text sensor.
     :image: modbus_controller.png
 
 The ``modbus_controller`` sensor platform creates a text sensor from a modbus_controller component
