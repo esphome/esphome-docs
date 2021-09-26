@@ -113,6 +113,20 @@ Configuration options:
 - **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
   Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
 
+.. _fan-cycle_speed_action:
+
+``fan.cycle_speed`` Action
+--------------------------
+
+Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, turns fan off.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - fan.cycle_speed: fan_1
+
+
 .. _fan-is_on_condition:
 .. _fan-is_off_condition:
 
