@@ -31,15 +31,15 @@ Configuration variables:
     - U_QWORD_R (unsigend float from 4 registers low word first )
     - S_QWORD_R (sigend float from 4 registers low word first )
 
-- **bitmask**: (**Optional**) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
-- **skip_updates**: (**Optional**, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
+- **bitmask**: (*Optional*) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
+- **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
   Note: The modbus_controller groups component by address ranges to reduce number of transactions. All compoents with the same address will be updated in one request. skip_updates applies for all components in the same range.
-- **register_count**: (**Optional**): only required for uncommon response encodings
+- **register_count**: (*Optional*): only required for uncommon response encodings
   The number of registers this data point spans. Default is 1
-- **force_new_range**: (**Optional**, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
+- **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor.
-- **offset**: (**Optional**, int): only required for uncommon response encodings
+- **offset**: (*Optional*, int): only required for uncommon response encodings
     offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
     For coil or discrete input registers offset is the position of the coil/register because these registers encode 8 coils in one byte.
 

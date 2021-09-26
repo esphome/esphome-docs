@@ -15,21 +15,21 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **register_type** (**Required**): type of the modbus register.
     - coil: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access
-    - discrete_input: discrete input register (read only coil) are similar to coils but can only be read. 
+    - discrete_input: discrete input register (read only coil) are similar to coils but can only be read.
     - holding: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access
     - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read
 - **address**: (**Required**, integer): start address of the first register in a range
-- **bitmask**: (**Optional**) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
-- **skip_updates**: (**Optional**, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
-- **register_count**: (**Optional**): The number of registers this data point spans. Default is 1 
+- **bitmask**: (*Optional*) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
+- **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
+- **register_count**: (*Optional*): The number of registers this data point spans. Default is 1
 - **response_size**:  (**Required**):response number of bytes of the response
-- **raw_encode**: (**Optional**, NONE , HEXBYTES, COMMA) If the response is binary it can't be published directly. Since a text sensor only publishes strings the binary data can encoded
-     - HEXBYTES:  2 byte hex string. 0x2011 will be sent as "2011". 
+- **raw_encode**: (*Optional*, NONE , HEXBYTES, COMMA) If the response is binary it can't be published directly. Since a text sensor only publishes strings the binary data can encoded
+     - HEXBYTES:  2 byte hex string. 0x2011 will be sent as "2011".
      - COMMA: Byte values as integers, delimited by a coma. 0x2011 will be sent as "32,17"
-- **force_new_range**: (**Optional**, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
+- **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor
-- **offset**: (**Optional**, integer): not required in most cases  
+- **offset**: (*Optional*, integer): not required in most cases
   offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
 
 

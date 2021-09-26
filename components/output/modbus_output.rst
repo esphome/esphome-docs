@@ -24,13 +24,13 @@ Configuration variables:
     - S_QWORD (signed float from 4 registers = 64bit
     - U_QWORD_R (unsigend float from 4 registers low word first )
     - S_QWORD_R (sigend float from 4 registers low word first )
-- **register_count**: (**Optional**): only required for uncommon response encodings 
-  The number of registers this data point spans. Default is 1 
+- **register_count**: (*Optional*): only required for uncommon response encodings
+  The number of registers this data point spans. Default is 1
 - **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda is evaluated before the modbus write command is created. The value is passed in as `float x` and an empty vector is passed in as `std::vector<uint16_t>&payload`
-  You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used. 
-- **multiply** (**Optional**, float): multiply the new value with this factor before sending the requests. Ignored if lambda is defined.
-- **offset**: (**Optional**, int): only required for uncommon response encodings  
+  You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used.
+- **multiply** (*Optional*, float): multiply the new value with this factor before sending the requests. Ignored if lambda is defined.
+- **offset**: (*Optional*, int): only required for uncommon response encodings
     offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
 
 All other options from :ref:`Output <config-output>`.
@@ -61,12 +61,12 @@ Possible return values for the lambda:
             id: battery_capacity_output
             lambda: |-
               ESP_LOGD("main","Modbus Output incoming value = %f",x);
-              uint16_t b_capacity = x ; 
+              uint16_t b_capacity = x ;
               payload.push_back(b_capacity);
               return x * 1.0 ;
             address: 0x9001
             value_type: U_WORD
-  
+
 
 
 
