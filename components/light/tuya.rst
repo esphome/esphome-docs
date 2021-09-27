@@ -81,8 +81,10 @@ Configuration variables:
   change the brightness and would have to toggle the light using the physical buttons.
 - **color_temperature_datapoint** (*Optional*, int): The datapoint id number of the color
   temperature value.
-- **rgb_datapoint** (*Optional*, int): The datapoint id number of the rgb value.  If this is set
-  then ESPHome will set the color using a 6 digit hex RGB value.
+- **rgb_datapoint** (*Optional*, int): The datapoint id number of the RGB (red/green/blue) value.
+  If this is set then ESPHome will set the color using a 6 digit hex RGB value.
+- **hsv_datapoint** (*Optional*, int): The datapoint id number of the HSV (hue/saturation/value) value.
+  If this is set then ESPHome will set the color using a 12 digit hex HSV value.
 - **min_value** (*Optional*, int, default 0): The lowest dimmer value allowed.  My dimmer had a
   minimum of 25 and wouldn't even accept anything lower, but this option is available if necessary.
 - **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  Most dimmers have a
@@ -97,7 +99,8 @@ Configuration variables:
 - **warm_white_color_temperature** (*Optional*, float): The color temperature (in `mireds
   <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
 - All other options from :ref:`Light <config-light>`.
-- At least one of *dimmer_datapoint*, *switch_datapoint*, or *rgb_datapoint* must be provided.
+- At least one of *dimmer_datapoint*, *switch_datapoint*, *rgb_datapoint*, or *hsv_datapoint* must be provided.
+- Only one of *rgb_datapoint* or *hsv_datapoint* can be provided for one light.
 
 .. note::
 
