@@ -99,8 +99,10 @@ Configuration variables:
     multiplied by this value to determine the run duration for the valve, thus allowing the run duration for
     all valves/zones to be proportionally increased or decreased as desired.
   - **valve_switch** (**Required**, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
-    component to be used to control the valve that operates the given section or zone of the sprinkler system.
-    *It is not recommended to expose this switch to the front end.*
+    component to be used to control the valve that operates the given section or zone of the sprinkler
+    system. Typically this would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay
+    or other switching device which in turn would activate the respective valve. *It is not recommended
+    to expose this switch to the front end.*
 
 .. _sprinkler-controller-actions:
 
