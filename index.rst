@@ -496,6 +496,7 @@ Cover Components
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
+    Current-Based Cover, components/cover/current_based, flash.svg
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
     AM43 Cover, components/cover/am43, am43.jpg
