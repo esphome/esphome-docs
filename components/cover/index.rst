@@ -110,6 +110,31 @@ This :ref:`action <config-action>` stops the cover with the given ID when execut
         call.set_command_stop();
         call.perform();
 
+.. _cover-toggle_action:
+
+``cover.toggle`` Action
+-----------------------
+
+This :ref:`action <config-action>` toggles the cover with the given ID when executed,
+cycling through the states close/stop/open/stop... This allows the cover to be controlled
+by a single push button.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - cover.toggle: cover_1
+
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        auto call = id(cover_1).make_call();
+        call.set_command_toggle();
+        call.perform();
+
 .. _cover-control_action:
 
 ``cover.control`` Action
