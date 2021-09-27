@@ -60,19 +60,20 @@ Configuration variables:
 - **name** (**Required** with more than one valve, *string*): The name for the sprinkler controller's 
   main switch as it will appear in the front end. This switch, when turned on, calls the
   ``sprinkler.resume_or_start_full_cycle`` action; when turned off, it calls the ``sprinkler.shutdown``
-  action (see below). It will appear to be "on" when any valve on the controller is active. It will
-  not appear if the controller is configured with only one valve.
+  action (see below). It will appear to be "on" when any valve on the controller is active. This switch
+  will not appear in the front end if the controller is configured with only one valve.
 - **auto_advance_switch_name** (**Required** with more than one valve, *string*): The name for the
   sprinkler controller's "auto-advance" switch as it will appear in the front end. When this switch is
-  turned on, the sprinkler controller will automatically activate next enabled valve in the controller
-  as a part of a "full cycle" of the system. When turned off, the sprinkler controller will shut down
-  after the active valve's run duration is reached. It will not appear if the controller is configured
-  with only one valve.
+  turned on while a valve is active, when the valve's ``run_duration`` is reached, the sprinkler
+  controller will automatically advance to the next enabled valve as a part of a "full cycle" of the
+  system. When turned off, the sprinkler controller will shut down after the active valve's
+  ``run_duration`` is reached. This switch will not appear in the front end if the controller is
+  configured with only one valve.
 - **reverse_switch_name** (*Optional*, *string*): The name for the sprinkler controller's reverse switch
   as it will appear in the front end. When this switch is turned on, the controller will iterate through
   the valves in reverse order (last-to-first as they appear in the controller's configuration). When
   this switch is turned off or not provided, the controller will iterate through the valves first-to-last.
-  It will not appear if the controller is configured with only one valve.
+  This switch will not appear in the front end if the controller is configured with only one valve.
 - **valve_open_delay** (*Optional*, :ref:`config-time`): The delay in seconds from when a valve/zone
   is activated to when the switch component is turned on. Useful for systems with valves which depend
   on sufficient water pressure to close. May not be used with *valve_overlap*.
@@ -163,7 +164,8 @@ Immediately turns off all valves, effectively shutting down the system.
 ``sprinkler.next_valve`` action
 *******************************
 
-Immediately advances to the next valve (numerically).
+Immediately advances to the next valve (numerically). If no valve is active, the first valve (as
+they appear in the controller's configuration) will be started.
 
 .. code-block:: yaml
 
@@ -176,7 +178,8 @@ Immediately advances to the next valve (numerically).
 ``sprinkler.previous_valve`` action
 ***********************************
 
-Immediately advances to the previous valve (numerically).
+Immediately advances to the previous valve (numerically). If no valve is active, the last valve (as
+they appear in the controller's configuration) will be started.
 
 .. code-block:: yaml
 
