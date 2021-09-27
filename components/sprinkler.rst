@@ -12,12 +12,13 @@ an individual electric valve via a relay or other switching device. It offers:
 
 - Support for:
 
-  - Up to 127 valves/zones
+  - Up to 127 valves/zones per controller instance
   - Multiple controller instances on a single device
   - Multiple pumps, which may be shared across controller instances
 
 - Enable/disable for each individual valve, allowing valves to be omitted from a full cycle of the system
 - A multiplier value to proportionally increase or decrease the run duration for all valves/zones
+  within a given controller instance
 - Valve management strategies to accommodate varying types of hardware:
 
   - Adjustable "valve open delay" to help ensure valves are fully closed before the next one is opened
