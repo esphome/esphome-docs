@@ -14,7 +14,7 @@ an individual electric valve via a relay or other switching device. It offers:
 
   - Up to 127 valves/zones
   - Multiple controller instances on a single device
-  - Multiple pumps, "main" or "master" electric valves, which may be shared across controller instances
+  - Multiple pumps, which may be shared across controller instances
 
 - Enable/disable for each individual valve, allowing valves to be omitted from a full cycle of the system
 - A multiplier value to proportionally increase or decrease the run duration for all valves/zones
@@ -32,8 +32,9 @@ an individual electric valve via a relay or other switching device. It offers:
 .. note::
 
     While the term "pump" is used throughout this document, the device controlled need not be a
-    physical pump. In many cases, it may simply be another electric valve behaving as a "main"
-    or "master" valve that controls the water supply to other downstream electric valves.
+    physical pump. Instead, it may simply be another electric valve located upstream of distribution
+    valves (often known in the industry as a "main" or "master" valve). The pump or upstream valve
+    simply controls the water supply to other downstream valves.
 
 .. code-block:: yaml
 
@@ -56,11 +57,21 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required** with more than one valve, *string*): The name for the sprinkler controller's 
-  main switch as it will appear in the front end.
+  main switch as it will appear in the front end. This switch, when turned on, calls the
+  ``sprinkler.resume_or_start_full_cycle`` action; when turned off, it calls the ``sprinkler.shutdown``
+  action (see below). It will appear to be "on" when any valve on the controller is active. It will
+  not appear if the controller is configured with only one valve.
 - **auto_advance_switch_name** (**Required** with more than one valve, *string*): The name for the
-  sprinkler controller's "auto-advance" switch as it will appear in the front end.
+  sprinkler controller's "auto-advance" switch as it will appear in the front end. When this switch is
+  turned on, the sprinkler controller will automatically activate next enabled valve in the controller
+  as a part of a "full cycle" of the system. When turned off, the sprinkler controller will shut down
+  after the active valve's run duration is reached. It will not appear if the controller is configured
+  with only one valve.
 - **reverse_switch_name** (*Optional*, *string*): The name for the sprinkler controller's reverse switch
-  as it will appear in the front end.
+  as it will appear in the front end. When this switch is turned on, the controller will iterate through
+  the valves in reverse order (last-to-first as they appear in the controller's configuration). When
+  this switch is turned off or not provided, the controller will iterate through the valves first-to-last.
+  It will not appear if the controller is configured with only one valve.
 - **valve_open_delay** (*Optional*, :ref:`config-time`): The delay in seconds from when a valve/zone
   is activated to when the switch component is turned on. Useful for systems with valves which depend
   on sufficient water pressure to close. May not be used with *valve_overlap*.
@@ -72,18 +83,24 @@ Configuration variables:
 - **valves** (**Required**, *list*): A list of valves the controller should use. Each valve consists of:
 
   - **enable_switch_name** (*Optional*, *string*): The name for the switch component to be used to enable
-    this valve to be run as a part of a full cycle of the system.
+    this valve to be run as a part of a full cycle of the system. When this switch is turned off, the valve
+    will be excluded from a full cycle of the system. When this switch is turned on or not provided, the
+    controller will include the valve in a full cycle of the system.
   - **valve_switch_name** (**Required**, *string*): The name for the switch component to be used to control
-    the valve for this part of the sprinkler system (often referred to as a "zone").
+    the valve for this part of the sprinkler system (often referred to as a "zone"). When this switch is
+    turned on, the controller's "auto-advance" feature is disabled and it will activate the associated
+    valve for its ``run_duration`` multiplied by the controller's multiplier value. When this switch is
+    turned off, the ``sprinkler.shutdown`` action is called (see below).
   - **pump_switch** (*Optional*, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
     component to be used to control the valve's pump or other upstream electric valve.
   - **run_duration** (**Required**, :ref:`config-time`): The duration in seconds this valve should
-    remain open after it is activated. Note that ``valve_open_delay`` cuts into this interval while
+    remain on/open after it is activated. Note that ``valve_open_delay`` cuts into this interval while
     ``valve_overlap`` extends it. When a given valve is activated, the controller's multiplier value is
     multiplied by this value to determine the run duration for the valve, thus allowing the run duration for
     all valves/zones to be proportionally increased or decreased as desired.
   - **valve_switch** (**Required**, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
     component to be used to control the valve that operates the given section or zone of the sprinkler system.
+    *It is not recommended to expose this switch to the front end.*
 
 .. _sprinkler-controller-actions:
 
@@ -95,7 +112,7 @@ Controller Actions
 ``sprinkler.start_full_cycle`` action
 *************************************
 
-Starts a full cycle of the system. This enables the controller's ``auto_advance`` feature and the
+Starts a full cycle of the system. This enables the controller's "auto-advance" feature and the
 controller will iterate through all enabled valves/zones. They will each run for their configured
 ``run_duration`` multiplied by the controller's multiplier value. *Note that if NO valves are enabled
 when this action is called, the controller will automatically enable all valves.*
@@ -111,11 +128,11 @@ when this action is called, the controller will automatically enable all valves.
 ``sprinkler.start_single_valve`` action
 ***************************************
 
-Starts a single valve. This disables the controller's ``auto_advance`` feature so that only this
+Starts a single valve. This disables the controller's "auto-advance" feature so that only this
 valve/zone will run. The valve will remain on for its configured ``run_duration`` multiplied by
 the controller's multiplier value. *Note that this action ignores whether the valve is enabled;
 that is, when called, the specified valve will always run.* Valves are numbered in the order they
-appear in the configuration starting at zero (0).
+appear in the sprinkler controller's configuration starting at zero (0).
 
 .. code-block:: yaml
 
@@ -183,7 +200,8 @@ the cycle may be resumed later on.
 ``sprinkler.resume`` action
 ***************************
 
-Resumes a cycle placed on hold with ``sprinkler.pause``.
+Resumes a cycle placed on hold with ``sprinkler.pause``. If there is no paused cycle, this action
+will do nothing.
 
 .. code-block:: yaml
 
@@ -218,7 +236,7 @@ Sets the multiplier value used to proportionally increase or decrease the run du
       then:
         - sprinkler.set_multiplier:
             id: sprinkler_ctrlr
-            multiplier: 0
+            multiplier: 1.5
 
 .. note::
 
@@ -368,7 +386,8 @@ Dual Controller, Five Valves, Two Pumps
 ***************************************
 
 This example illustrates a complete and more complex dual-controller system with a total of five
-valves (three on the first controller and two on the second controller) and two pumps/upstream valves:
+valves (three on the first controller and two on the second controller) and two pumps/upstream
+valves, each of which are shared between the two controllers:
 
 .. code-block:: yaml
 
@@ -425,31 +444,24 @@ valves (three on the first controller and two on the second controller) and two 
     switch:
       - platform: gpio
         id: sprinkler_pump_sw0
-        name: "Pump 0"
         pin: 12
       - platform: gpio
         id: sprinkler_pump_sw1
-        name: "Pump 1"
         pin: 13
       - platform: gpio
         id: lawn_sprinkler_valve_sw0
-        name: "Lawn Valve Switch 0"
         pin: 0
       - platform: gpio
         id: lawn_sprinkler_valve_sw1
-        name: "Lawn Valve Switch 1"
         pin: 2
       - platform: gpio
         id: lawn_sprinkler_valve_sw2
-        name: "Lawn Valve Switch 2"
         pin: 4
       - platform: gpio
         id: garden_sprinkler_valve_sw0
-        name: "Garden Valve Switch 0"
         pin: 14
       - platform: gpio
         id: garden_sprinkler_valve_sw1
-        name: "Garden Valve Switch 1"
         pin: 15
 
 .. note::
@@ -463,8 +475,8 @@ Expose Sprinkler Controller Actions via user-API
 ************************************************
 
 This configuration snippet illustrates how user-defined ESPHome API services may be used to expose
-various sprinkler controller actions to the front end via the API. This could be useful to change
-settings and/or trigger sprinkler controller actions using automations.
+various sprinkler controller actions to the front end. This could be useful to change settings
+and/or trigger sprinkler controller actions using automations.
 
 .. code-block:: yaml
 
