@@ -48,11 +48,11 @@ Text Sensor Filters
 
 ESPHome allows you to do some basic pre-processing of
 text_sensor values before they’re sent to Home Assistant. This is for example
-useful if you want to apply manipulate the text_sensor string in some fashion.
+useful if you want to manipulate the text_sensor string in some fashion.
 
 There are a lot of filters that sensors support. You define them by adding a ``filters``
 block in the text_sensor configuration (at the same level as ``platform``; or inside each text_sensor block
-for platforms with multiple sensors)
+for platforms with multiple sensors).
 
 Filters are processed in the order they are defined in your configuration.
 
@@ -72,7 +72,7 @@ Filters are processed in the order they are defined in your configuration.
 ``to_upper``
 ************
 
-Converts all characters within a string to uppercase.
+Converts all characters within a string to uppercase (only the English alphabet is supported at this time).
 
 .. code-block:: yaml
 
@@ -85,7 +85,7 @@ Converts all characters within a string to uppercase.
 ``to_lower``
 ************
 
-Converts all characters within a string to lowercase.
+Converts all characters within a string to lowercase (only the English alphabet is supported at this time).
 
 .. code-block:: yaml
 
@@ -124,7 +124,7 @@ Adds a string to the start of the current string.
 ``substitute``
 **************
 
-Search the text sensor current string for a string, and replace it with a second string.
+Search the current value of the text sensor for a string, and replace it with another string.
 
 .. code-block:: yaml
 
