@@ -87,6 +87,7 @@ Contributors
 - `J. Nick Koston (@bdraco) <https://github.com/bdraco>`__
 - `Ben Suffolk (@bensuffolk) <https://github.com/bensuffolk>`__
 - `Ivan Bessarabov (@bessarabov) <https://github.com/bessarabov>`__
+- `besteru (@besteru) <https://github.com/besteru>`__
 - `Bierchermuesli (@Bierchermuesli) <https://github.com/Bierchermuesli>`__
 - `JDavid (@blackhack) <https://github.com/blackhack>`__
 - `Branimir Lambov (@blambov) <https://github.com/blambov>`__
@@ -115,6 +116,7 @@ Contributors
 - `Ciprian Constantinescu (@cciprian5) <https://github.com/cciprian5>`__
 - `Marco (@cdrfun) <https://github.com/cdrfun>`__
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__
+- `Christian Taedcke (@chrta) <https://github.com/chrta>`__
 - `Pavel Skuratovich (@Chupaka) <https://github.com/Chupaka>`__
 - `John (@CircuitSetup) <https://github.com/CircuitSetup>`__
 - `Chris Debenham (@cjd) <https://github.com/cjd>`__
@@ -180,6 +182,7 @@ Contributors
 - `dr-oblivium (@dr-oblivium) <https://github.com/dr-oblivium>`__
 - `Drew Perttula (@drewp) <https://github.com/drewp>`__
 - `DrRob (@DrRob) <https://github.com/DrRob>`__
+- `Daniel Müller (@dtmuller) <https://github.com/dtmuller>`__
 - `dubit0 (@dubit0) <https://github.com/dubit0>`__
 - `Sergey V. DUDANOV (@dudanov) <https://github.com/dudanov>`__
 - `dyarkovoy (@dyarkovoy) <https://github.com/dyarkovoy>`__
@@ -255,6 +258,7 @@ Contributors
 - `Germain Masse (@gmasse) <https://github.com/gmasse>`__
 - `Jelle Raaijmakers (@GMTA) <https://github.com/GMTA>`__
 - `gordon-zhao (@gordon-zhao) <https://github.com/gordon-zhao>`__
+- `Gustavo Ambrozio (@gpambrozio) <https://github.com/gpambrozio>`__
 - `Antoine GRÉA (@grea09) <https://github.com/grea09>`__
 - `Andrea (@Guglio95) <https://github.com/Guglio95>`__
 - `Guillaume DELVIT (@guiguid) <https://github.com/guiguid>`__
@@ -515,6 +519,7 @@ Contributors
 - `phjr (@phjr) <https://github.com/phjr>`__
 - `pieterbrink123 (@pieterbrink123) <https://github.com/pieterbrink123>`__
 - `pille (@pille) <https://github.com/pille>`__
+- `Tommy van der Vorst (@pixelspark) <https://github.com/pixelspark>`__
 - `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__
 - `Peter Kuehne (@pkuehne) <https://github.com/pkuehne>`__
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__
@@ -537,6 +542,7 @@ Contributors
 - `Richard Kuhnt (@r15ch13) <https://github.com/r15ch13>`__
 - `Richard Miles (@r89m) <https://github.com/r89m>`__
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__
+- `Radim Karniš (@radimkarnis) <https://github.com/radimkarnis>`__
 - `Florian Ragwitz (@rafl) <https://github.com/rafl>`__
 - `rbaron (@rbaron) <https://github.com/rbaron>`__
 - `Robert Cambridge (@rcambrj) <https://github.com/rcambrj>`__
@@ -575,6 +581,7 @@ Contributors
 - `rweather (@rweather) <https://github.com/rweather>`__
 - `ryanalden (@ryanalden) <https://github.com/ryanalden>`__
 - `Ryan Nazaretian (@ryannazaretian) <https://github.com/ryannazaretian>`__
+- `Silvio (@s1lvi0) <https://github.com/s1lvi0>`__
 - `samnewman86 (@samnewman86) <https://github.com/samnewman86>`__
 - `sascha lammers (@sascha432) <https://github.com/sascha432>`__
 - `Sascha (@Scarbous) <https://github.com/Scarbous>`__
@@ -613,9 +620,11 @@ Contributors
 - `starwolf73 (@starwolf73) <https://github.com/starwolf73>`__
 - `Steve Baxter (@stevebaxter) <https://github.com/stevebaxter>`__
 - `sticilface (@sticilface) <https://github.com/sticilface>`__
+- `Stijn Tintel (@stintel) <https://github.com/stintel>`__
 - `stubs12 (@stubs12) <https://github.com/stubs12>`__
 - `Jordan Vohwinkel (@sublime93) <https://github.com/sublime93>`__
 - `swhaat (@swhaat) <https://github.com/swhaat>`__
+- `synco (@synco) <https://github.com/synco>`__
 - `Marcel Feix (@Syndlex) <https://github.com/Syndlex>`__
 - `Teemu Mikkonen (@T3m3z) <https://github.com/T3m3z>`__
 - `Taigar2015 (@Taigar2015) <https://github.com/Taigar2015>`__
@@ -711,8 +720,9 @@ Contributors
 - `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
 - `ZabojnikM (@ZabojnikM) <https://github.com/ZabojnikM>`__
 - `zaluthar (@zaluthar) <https://github.com/zaluthar>`__
+- `ZJY (@zhangjingye03) <https://github.com/zhangjingye03>`__
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 20, 2021.*
+*This page was last updated September 28, 2021.*
