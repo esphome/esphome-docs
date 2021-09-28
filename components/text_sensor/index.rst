@@ -38,6 +38,8 @@ Automations:
 
 - **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a new value is published. See :ref:`text_sensor-on_value`.
+- **on_raw_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a new value is received that hasn't passed through any filters. See :ref:`text_sensor-on_raw_value`.
 
 .. _text_sensor-filters:
 
@@ -172,6 +174,26 @@ In :ref:`Lambdas <config-lambda>` you can get the value from the trigger with ``
       - platform: version
         # ...
         on_value:
+          then:
+            - lambda: |-
+                ESP_LOGD("main", "The current version is %s", x.c_str());
+
+Configuration variables: See :ref:`Automation <automation>`.
+
+.. _text_sensor-on_raw_value:
+
+``on_raw_value``
+****************
+
+This automation will be triggered when a new value is received that hasn't passed
+through any filters. In :ref:`Lambdas <config-lambda>` you can get the value from the trigger with ``x``.
+
+.. code-block:: yaml
+
+    text_sensor:
+      - platform: version
+        # ...
+        on_raw_value:
           then:
             - lambda: |-
                 ESP_LOGD("main", "The current version is %s", x.c_str());
