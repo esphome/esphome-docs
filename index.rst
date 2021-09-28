@@ -502,6 +502,7 @@ Cover Components
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
     AM43 Cover, components/cover/am43, am43.jpg
+    Tuya Cover, components/cover/tuya, tuya.png
 
 Text Sensor Components
 ----------------------
