@@ -31,8 +31,8 @@ Configuration variables:
   either ``ESP32`` or ``ESP8266``.
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>` for the ESP8266, and
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32`> for the ESP32 (the icon
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ for the ESP8266, and
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ for the ESP32 (the icon
   next to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*,
   if unsure choose a generic board from Espressif.
 
@@ -45,11 +45,12 @@ Advanced options:
   but you can customize this behavior using this option.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
-- **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
+- **includes** (*Optional*, list of files): A list of C/C++ files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
-  is in. Should have file extension ``.h`` - See :ref:`esphome-includes` for more info.
+  is in. See :ref:`esphome-includes` for more info.
 - **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
   to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
+  The ``<name>=<source>`` syntax can be used to override the source used for a library that is included by a component.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 - **name_add_mac_suffix** (*Optional*, boolean): Appends the last 6 bytes of the mac address of the device to
   the name in the form ``<name>-aabbcc``. Defaults to ``false``.
@@ -267,10 +268,13 @@ The ``includes`` option is only a helper option that does that for you.
 
 This option behaves differently depending on what the included file is pointing at:
 
- - If the include string is pointing at a directory, the entire directory tree is copied over
-   to the src/ folder.
- - If the include string is point at a header file (.h, .hpp, .tcc) - it is copied in the src/ folder
-   AND included in the main.cpp. This way the lambda code can access it.
+ - If the include string is pointing at a directory, the entire directory tree is copied into the
+   src/ folder.
+ - If the include string points to a header file (.h, .hpp, .tcc), it is copied in the src/ folder
+   AND included in the ``main.cpp`` file. This way the lambda code can access it.
+ - If the include string points to a regular source file (.c, .cpp), it is copied in the src/ folder
+   AND compiled into the binary. This way implementation of classes and functions in header files can
+   be provided.
 
 
 .. _esphome-changing_node_name:

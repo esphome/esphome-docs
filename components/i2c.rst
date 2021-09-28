@@ -36,7 +36,7 @@ Configuration variables:
 - **scan** (*Optional*, boolean): If ESPHome should do a search of the I²C address space on startup.
   Defaults to ``true``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
-  Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
+  Defaults to ``50kHz``. Values are ``10kHz``, ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this I²C bus if you need multiple I²C buses.
 
 .. note::

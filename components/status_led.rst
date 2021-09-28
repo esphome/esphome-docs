@@ -23,7 +23,7 @@ the device. Specifically, it will:
 
 .. note::
 
-    If your device has a single led that needs to be shared use  :doc:`status_led light platform </components/light/status_led>` instead.
+    If your device has a single LED that needs to be shared use  :doc:`status_led light platform </components/light/status_led>` instead.
 
 Configuration variables:
 ------------------------

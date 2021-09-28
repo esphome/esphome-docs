@@ -110,6 +110,31 @@ This :ref:`action <config-action>` stops the cover with the given ID when execut
         call.set_command_stop();
         call.perform();
 
+.. _cover-toggle_action:
+
+``cover.toggle`` Action
+-----------------------
+
+This :ref:`action <config-action>` toggles the cover with the given ID when executed,
+cycling through the states close/stop/open/stop... This allows the cover to be controlled
+by a single push button.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - cover.toggle: cover_1
+
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        auto call = id(cover_1).make_call();
+        call.set_command_toggle();
+        call.perform();
+
 .. _cover-control_action:
 
 ``cover.control`` Action
@@ -152,30 +177,37 @@ Configuration variables:
 
 .. _cover-lambda_calls:
 
-lambda calls
-------------
+Lambdas
+-------
 
-From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
-advanced stuff.
+From :ref:`lambdas <config-lambda>`, you can access the current state of the cover (note that these
+fields are read-only, if you want to act on the cover, use the ``make_call()`` method as shown above).
 
-- ``publish_state()``: Manually cause the cover to publish a new state and store it internally.
-  If it's different from the last internal state, it's additionally published to the frontend.
+- ``position``: Retrieve the current position of the cover, as a value between ``0.0`` (open) and ``1.0`` (closed).
 
-  .. code-block:: yaml
+    .. code-block:: cpp
 
-      // Within lambda, make the cover report a specific state
-      id(my_cover).publish_state(COVER_OPEN);
-      id(my_cover).publish_state(COVER_CLOSED);
+        if (id(my_cover).position == COVER_OPEN) {
+          // Cover is open
+        } else if (id(my_cover).position == COVER_CLOSED) {
+          // Cover is closed
+        } else {
+          // Cover is in-between open and closed
+        }
+      
+- ``tilt``: Retrieve the current tilt position of the cover, as a value between ``0.0`` and ``1.0``.
 
-- ``state``: Retrieve the current state of the cover.
+- ``current_operation``: The operation the cover is currently performing:
 
-  .. code-block:: yaml
+    .. code-block:: cpp
 
-      if (id(my_cover).position == COVER_OPEN) {
-        // Cover is open
-      } else {
-        // Cover is closed
-      }
+        if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_IDLE) {
+          // Cover is idle
+        } else if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_OPENING) {
+          // Cover is currently opening
+        } else if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_CLOSING) {
+          // Cover is currently closing
+        }
 
 See Also
 --------
