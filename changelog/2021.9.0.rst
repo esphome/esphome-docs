@@ -21,7 +21,8 @@ Web Server Vulnerability
 It was brought to our attention by :ghuser:`andir` that the :doc:`/components/web_server` had a vulnerability in that
 the OTA form could be POST'd to without the basic auth credentials set in the ``web_server`` configuration.
 If you use the ``web_server`` and rely on the credentials for security, then you need to upgrade to 2021.9.2 or
-disable the ``web_server`` completely.
+disable the ``web_server`` completely. The `Security Advisory on GitHub <https://github.com/esphome/esphome/security/advisories/GHSA-48mj-p7x2-5jfm>`__
+has been given ``CVE-2021-41104``.
 
 `Home Assistant Amber <https://home-assistant.io/amber>`__
 ----------------------------------------------------------
@@ -79,6 +80,7 @@ Release 2021.9.2 - September 28
 
 - Bump aioesphomeapi to 9.1.1 :esphomepr:`2350` by :ghuser:`OttoWinter`
 - Midea fix :esphomepr:`2395` by :ghuser:`dudanov`
+- Move web_server auth to web_server_base `be965a6 <https://github.com/esphome/esphome/commit/be965a60eba6bb769e2a5afdbc8eed132f077a59>`__  by :ghuser:`OttoWinter`
 - Fix lint issues in web_server_base :esphomepr:`2409` by :ghuser:`jesserockz`
 
 Full list of changes
