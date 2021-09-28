@@ -8,13 +8,16 @@ Sprinkler Controller
 The ``sprinkler`` controller component aims to behave like a sprinkler system/valve controller, much
 like those made by companies such as Rain Bird or Hunter. It does so by automating control of a
 number of :ref:`switch <config-switch>` components, each of which would typically be used to control
-an individual electric valve via a relay or other switching device. It offers:
+an individual electric valve via a relay or other switching device. It offers support for:
 
-- Support for:
+- Up to 256 valves/zones per controller instance
+- Multiple controller instances on a single device
+- Multiple pumps, which may be shared across controller instances
+- Running only a single valve/zone for its configured run duration
+- Pausing and resuming a cycle
+- Iterating through valves/zones in forward or reverse order
 
-  - Up to 127 valves/zones per controller instance
-  - Multiple controller instances on a single device
-  - Multiple pumps, which may be shared across controller instances
+In addition, it provides:
 
 - Enable/disable for each individual valve, allowing valves to be omitted from a full cycle of the system
 - A multiplier value to proportionally increase or decrease the run duration for all valves/zones
@@ -23,12 +26,6 @@ an individual electric valve via a relay or other switching device. It offers:
 
   - Adjustable "valve open delay" to help ensure valves are fully closed before the next one is opened
   - Adjustable "valve overlap" to help minimize banging of pipes due to water hammer
-
-- Ability to:
-
-  - Run only a single valve/zone for its configured run duration
-  - Pause and resume a cycle
-  - Iterate through valves/zones in forward or reverse order
 
 .. note::
 
@@ -235,6 +232,8 @@ cycle (equivalent to ``sprinkler.start_full_cycle``).
 ***********************************
 
 Sets the multiplier value used to proportionally increase or decrease the run duration for all valves/zones.
+When a given valve is activated, this value is multiplied by the valve's run duration (see below) to determine
+the valve's actual run duration.
 
 .. code-block:: yaml
 
@@ -243,6 +242,23 @@ Sets the multiplier value used to proportionally increase or decrease the run du
         - sprinkler.set_multiplier:
             id: sprinkler_ctrlr
             multiplier: 1.5
+
+.. _sprinkler-controller-action_set_valve_run_duration:
+
+``sprinkler.set_valve_run_duration`` action
+*******************************************
+
+Sets the run duration for the specified valve. When the valve is activated, this value is multiplied by the
+multiplier value (see above) to determine the valve's actual run duration.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sprinkler.set_valve_run_duration:
+            id: sprinkler_ctrlr
+            valve_number: 0
+            run_duration: 600s
 
 .. note::
 

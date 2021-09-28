@@ -377,7 +377,7 @@ All Actions
   :ref:`sprinkler.shutdown <sprinkler-controller-action_shutdown>` / :ref:`sprinkler.next_valve <sprinkler-controller-action_next_valve>` /
   :ref:`sprinkler.previous_valve <sprinkler-controller-action_previous_valve>` / :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /
   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` / :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /
-  :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>`
+  :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` / :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
