@@ -232,8 +232,8 @@ cycle (equivalent to ``sprinkler.start_full_cycle``).
 ***********************************
 
 Sets the multiplier value used to proportionally increase or decrease the run duration for all valves/zones.
-When a given valve is activated, this value is multiplied by the valve's run duration (see below) to determine
-the valve's actual run duration.
+When a given valve is activated, this value is multiplied by the valve's run duration (see below) to
+determine the valve's actual run duration.
 
 .. code-block:: yaml
 
@@ -248,8 +248,8 @@ the valve's actual run duration.
 ``sprinkler.set_valve_run_duration`` action
 *******************************************
 
-Sets the run duration for the specified valve. When the valve is activated, this value is multiplied by the
-multiplier value (see above) to determine the valve's actual run duration.
+Sets the run duration for the specified valve. When the valve is activated, this value is multiplied
+by the multiplier value (see above) to determine the valve's actual run duration.
 
 .. code-block:: yaml
 
@@ -262,8 +262,10 @@ multiplier value (see above) to determine the valve's actual run duration.
 
 .. note::
 
-    The ``next_valve``, ``previous_valve`` and ``start_single_valve`` actions ignore whether a valve
-    is enabled via its enable switch.
+    - The ``next_valve``, ``previous_valve`` and ``start_single_valve`` actions ignore whether a valve
+      is enabled via its enable switch.
+    - If the multiplier value or a valve's ``run_duration`` is changed while a valve is active, the
+      active valve's run duration will remain unaffected until the next time it is started.
 
 Controller Examples
 -------------------
