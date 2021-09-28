@@ -15,6 +15,14 @@ ESPHome 2021.9.0 - 15th September 2021
     ST7920, components/display/st7920, st7920.jpg
 
 
+Web Server Vulnerability
+------------------------
+
+It was brought to our attention by :ghuser:`andir` that the :doc:`/components/web_server` had a vulnerability in that
+the OTA form could be POST'd to without the basic auth credentials set in the ``web_server`` configuration.
+If you use the ``web_server`` and rely on the credentials for security, then you need to upgrade to 2021.9.2 or
+disable the ``web_server`` completely.
+
 `Home Assistant Amber <https://home-assistant.io/amber>`__
 ----------------------------------------------------------
 
@@ -65,6 +73,13 @@ Release 2021.9.1 - September 20
 - Apply color brightness to addressable light effects :esphomepr:`2321` by :ghuser:`oxan`
 - Add readv and writev for more efficient API packets :esphomepr:`2342` by :ghuser:`OttoWinter`
 - Clean-up sensor integration :esphomepr:`2275` by :ghuser:`oxan`
+
+Release 2021.9.2 - September 28
+-------------------------------
+
+- Bump aioesphomeapi to 9.1.1 :esphomepr:`2350` by :ghuser:`OttoWinter`
+- Midea fix :esphomepr:`2395` by :ghuser:`dudanov`
+- Fix lint issues in web_server_base :esphomepr:`2409` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
