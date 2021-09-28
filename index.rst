@@ -180,6 +180,7 @@ Air Quality
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
+    SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
@@ -280,6 +281,7 @@ Environmental
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
+    SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
