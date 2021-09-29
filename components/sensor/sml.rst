@@ -57,6 +57,8 @@ smart meter. If you see checksum errors in the log try changing the interface pa
         obis: "1-0:1.8.0"
         unit_of_measurement: kWh
         accuracy_decimals: 1
+        device_class: energy
+        state_class: total_increasing
         filters:
           - multiply: 0.0001
 
