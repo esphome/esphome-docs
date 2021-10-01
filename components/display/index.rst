@@ -177,7 +177,7 @@ Configuration variables:
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 
 
 .. note::
@@ -369,6 +369,114 @@ Configuration variables:
 - **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
+
+Graphs
+******
+
+You can display a graph of a sensor value(s) using this component. Examples:
+
+.. figure:: images/graph_screen.png
+    :align: center
+    :width: 60.0%
+
+.. figure:: images/graph_dualtrace.png
+    :align: center
+    :width: 60.0%
+
+Graph component with options for grids, border and line-types.
+
+.. code-block:: yaml
+
+    graph:
+      # Show bare-minimum auto-ranged graph
+      - id: single_temperature_graph
+        sensor: my_temperature
+        duration: 1h
+        width: 151
+        height: 51
+      # Show multi-trace graph
+      - id: multi_temperature_graph
+        duration: 1h
+        x_grid: 10min
+        y_grid: 1.0     # degC/div
+        width: 151
+        height: 51
+        traces:
+          - sensor: my_inside_temperature
+            line_type: DASHED
+            line_thickness: 2
+            color: my_red
+          - sensor: my_outside_temperature
+            line_type: SOLID
+            line_thickness: 3
+            color: my_blue
+          - sensor: my_beer_temperature
+            line_type: DOTTED
+            line_thickness: 2
+            color: my_green
+  
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
+  in your display code.
+- **width** (**Required**, integer): The graph width in pixels
+- **height** (**Required**, integer): The graph height in pixels
+- **duration** (**Required**, seconds): The total graph history duration.
+- **border** (*Optional*, boolean): Specifics if a border will be draw around the graph. Default is True.
+- **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
+- **y_grid** (*Optional*, float): Specifics the number of units per division. If not specified, no horizontal grid will be drawn.
+- **max_range** (*Optional*): Specifies the maximum Y-axis range. 
+- **min_range** (*Optional*): Specifies the minimum Y-axis range.
+- **max_value** (*Optional*): Specifies the maximum Y-axis value.
+- **min_value** (*Optional*): Specifies the minimum Y-axis value.
+- **traces** (*Optional*): Use this to specify more than a single trace.
+
+Trace specific fields:
+- **sensor** (*Optional*, id): The sensor value to plot
+- **line_thickness** (*Optional*): Defaults to 3
+- **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **color** (*Optional*): Sets the color of the sensor trace.
+
+And then later in code:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(simple_temperature_graph));
+          - id: page2
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(multi_temperature_graph), my_yellow);
+  
+    color:
+      - id: my_red
+        red: 100%
+        green: 0%
+        blue: 0%
+      - id: my_green
+        red: 0%
+        green: 100%
+        blue: 0%
+      - id: my_blue
+        red: 0%
+        green: 0%
+        blue: 100%
+      - id: my_yellow
+        red: 100%
+        green: 100%
+        blue: 0%
+.. note::
+
+    Here are some things to note:
+    - Setting ``y_grid`` will expand any specified range to the nearest multiple of grid spacings.
+    - Axis labels are currently not possible without manually placing them.
+    - The grid and border color is set with it.graph(), while the traces are defined separately.  
 
 Images
 ******

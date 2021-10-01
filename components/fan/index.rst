@@ -42,10 +42,14 @@ MQTT options:
   publish fan oscillation state changes to.
 - **oscillation_command_topic** (*Optional*, string): The topic to
   receive oscillation commands on.
+- **speed_level_state_topic** (*Optional*, int): The topic to publish
+  numeric fan speed state changes to (range: 0 to speed count).
+- **speed_level_command_topic** (*Optional*, int): The topic to receive
+  numeric speed commands on (range: 0 to speed count).
 - **speed_state_topic** (*Optional*, string): The topic to publish fan
-  speed state changes to.
+  speed state changes to (options: LOW, MEDIUM, HIGH).
 - **speed_command_topic** (*Optional*, string): The topic to receive
-  speed commands on.
+  speed commands on (options: LOW, MEDIUM, HIGH).
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Automation triggers:
@@ -108,6 +112,20 @@ Configuration options:
   Set the speed level of the fan. Can be a number between 1 and the maximum speed level of the fan.
 - **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
   Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
+
+.. _fan-cycle_speed_action:
+
+``fan.cycle_speed`` Action
+--------------------------
+
+Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, turns fan off.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - fan.cycle_speed: fan_1
+
 
 .. _fan-is_on_condition:
 .. _fan-is_off_condition:

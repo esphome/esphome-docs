@@ -12,11 +12,11 @@ Over I²C
 
 The ``ssd1306_i2c`` display platform allows you to use
 SSD1306 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf>`__,
-`Adafruit <https://www.adafruit.com/product/326>`__)
+`Adafruit <https://www.adafruit.com/product/326>`__), SSD1305 (`datasheet <https://cdn-shop.adafruit.com/datasheets/SSD1305.pdf>`__) 
 and SH1106 (`datasheet <https://www.elecrow.com/download/SH1106%20datasheet.pdf>`__,
 `electrodragon <https://www.electrodragon.com/product/1-3-12864-blue-oled-display-iicspi/>`__)
 displays with ESPHome. Note that this component is for displays that are connected via the :ref:`I²C Bus <i2c>`.
-If your SSD1306 or SH1106 is connected via the 4-Wire :ref:`SPI bus <spi>`, see :ref:`ssd1306-spi`.
+If your SSD1306/SSD1305 or SH1106 is connected via the 4-Wire :ref:`SPI bus <spi>`, see :ref:`ssd1306-spi`.
 
 .. figure:: images/ssd1306-full.jpg
     :align: center
@@ -56,14 +56,22 @@ Configuration variables:
   - ``SH1106 128x64``
   - ``SH1106 96x16``
   - ``SH1106 64x48``
+  - ``SSD1305 128x32``
+  - ``SSD1305 128x64``
 
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
 - **address** (*Optional*, int): Manually specify the :ref:`I²C <i2c>` address of the display. Defaults to 0x3C.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
-- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
+- **contrast** (*Optional*, percentage): Set display contrast in %. Defaults to ``100%``.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Only can be used with SSD1305. Defaults to ``100%``.
 - **external_vcc** (*Optional*, boolean): Set this to true if you have the VCC pin connected to an external power supply.
   Defaults to ``false``.
+- **flip_x** (*Optional*, boolean): Flip the horizontal axis on the screen. Defaults to ``true``.
+- **flip_y** (*Optional*, boolean): Flip the vertical axis on the screen. Defaults to ``true``.
+- **offset_x** (*Optional*, int): Set this option if some horizontal pixel is missing. Numbers are only allowed between ``0~15``. Defaults to ``0``.
+- **offset_y** (*Optional*, int): Set this option if some vertical pixel is missing. Numbers are only allowed between ``0~15``. Defaults to ``0``.
+- **invert** (*Optional*, boolean): Invert all pixel state on the display. Defaults to ``false``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -126,15 +134,23 @@ Configuration variables:
   - ``SH1106 128x64``
   - ``SH1106 96x16``
   - ``SH1106 64x48``
+  - ``SSD1305 128x32``
+  - ``SSD1305 128x64``
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The Chip Select (CS) pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin. Defaults to not connected.
 - **rotation** (*Optional*): Set the rotation of the display. Everything you draw in ``lambda:`` will be rotated
   by this option. One of ``0°`` (default), ``90°``, ``180°``, ``270°``.
-- **brightness** (*Optional*, percentage): Set display brightness in %. Defaults to ``100%``
+- **contrast** (*Optional*, percentage): Set display contrast in %. Defaults to ``100%``.
+- **brightness** (*Optional*, percentage): Set display brightness in %. Only can be used with SSD1305. Defaults to ``100%``.
 - **external_vcc** (*Optional*, boolean): Set this to true if you have the VCC pin connected to an external power supply.
   Defaults to ``false``.
+- **flip_x** (*Optional*, boolean): Flip the horizontal axis on the screen. Defaults to ``true``.
+- **flip_y** (*Optional*, boolean): Flip the vertical axis on the screen. Defaults to ``true``.
+- **offset_x** (*Optional*, int): Set this option if some horizontal pixel is missing. Numbers are only allowed between ``0~15``. Defaults to ``0``.
+- **offset_y** (*Optional*, int): Set this option if some vertical pixel is missing. Numbers are only allowed between ``0~15``. Defaults to ``0``.
+- **invert** (*Optional*, boolean): Invert all pixel state on the display. Defaults to ``false``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -149,4 +165,5 @@ See Also
 - :doc:`index`
 - :apiref:`ssd1306_base/ssd1306_base.h`
 - `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <https://www.adafruit.com/>`__
+- `SSD1305 Library <https://github.com/adafruit/Adafruit_SSD1305>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

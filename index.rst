@@ -180,6 +180,7 @@ Air Quality
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
+    SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
@@ -239,6 +240,7 @@ Electricity
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
+    Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC current
@@ -266,7 +268,7 @@ Environmental
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
-    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
@@ -279,6 +281,7 @@ Environmental
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
+    SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
@@ -315,7 +318,7 @@ Miscellaneous
 
     AS3935, components/sensor/as3935, as3935.jpg, Storm lightning
     Binary Sensor Map, components/sensor/binary_sensor_map, binary_sensor_map.jpg, Map binary to value
-    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity
+    b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
@@ -349,8 +352,7 @@ Weight
 .. imgtable::
 
     HX711, components/sensor/hx711, hx711.jpg, Load cell amplifier
-    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale.jpg
-    Xiaomi Miscale2, components/sensor/xiaomi_miscale2, xiaomi_miscale2.jpg
+    Xiaomi Miscale, components/sensor/xiaomi_miscale, xiaomi_miscale1&2.jpg
 
 
 Looking for a sensor that outputs its values as an analog voltage? Have a look at the
@@ -496,9 +498,11 @@ Cover Components
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
+    Current-Based Cover, components/cover/current_based, flash.svg
     Time-Based Cover, components/cover/time_based, timer.svg
     Custom Cover, components/cover/custom, language-cpp.svg
     AM43 Cover, components/cover/am43, am43.jpg
+    Tuya Cover, components/cover/tuya, tuya.png
 
 Text Sensor Components
 ----------------------
