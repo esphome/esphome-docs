@@ -54,7 +54,7 @@ smart meter. If you see checksum errors in the log try changing the interface pa
         name: "Total energy"
         sml_id: mysml
         server_id: "0123456789abcdef"
-        obis: "1-0:1.8.0"
+        obis_code: "1-0:1.8.0"
         unit_of_measurement: kWh
         accuracy_decimals: 1
         device_class: energy
@@ -67,7 +67,7 @@ smart meter. If you see checksum errors in the log try changing the interface pa
         name: "Manufacturer"
         sml_id: mysml
         server_id: "0123456789abcdef"
-        obis: "129-129:199.130.3"
+        obis_code: "129-129:199.130.3"
         format: text
 
 
@@ -86,7 +86,7 @@ SML platform
 Sensor
 ******
 
-- **obis** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device.
+- **obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device.
   The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)
 - **server_id** (*Optional*, string): Specify the device's server_id to retrieve the OBIS code from. Should be specified if more then one device is connected to the same hardware sensor component.
 - **sml_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`SML platform <sml-platform>`
@@ -95,7 +95,7 @@ Sensor
 Text Sensor
 ***********
 
-- **obis** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device.
+- **obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device.
   The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)
 - **server_id** (*Optional*, string): Specify the device's server_id to retrieve the OBIS code from. Should be specified if more then one device is connected to the same hardware sensor component.
 - **sml_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`SML platform <sml-platform>`
@@ -145,7 +145,7 @@ For ESPHome we have:
     text_sensor:
       - platform: sml
         name: "Total energy text"
-        obis: "1-0:1.8.0"
+        obis_code: "1-0:1.8.0"
         format: uint
 
 The `format` parameter is optional. If ommited, the SML component will try to guess the correct datatype
