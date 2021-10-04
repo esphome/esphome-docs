@@ -174,6 +174,7 @@ Air Quality
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MQ Series, components/sensor/mq, mq.jpg, Gas & Air Quality
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
