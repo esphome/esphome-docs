@@ -5,7 +5,7 @@ AirThings BLE Sensors
     :description: Instructions for setting up AirThings bluetooth-based sensors in ESPHome.
     :keywords: AirThings, BLE, Bluetooth, Wave Plus, Wave Mini
 
-The ``airthings_wave_plus`` sensor platform lets you track the output of AirThings Bluetooth Low Energy devices.
+The ``airthings_wave_plus`` and ``airthings_wave_mini`` sensor platforms lets you track the output of AirThings Bluetooth Low Energy devices.
 
 This component will track radon, airborne chemicals, CO2, temperature and humidity and others depending on the device sensors.
 
