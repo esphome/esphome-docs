@@ -1,5 +1,5 @@
 Safe Mode Switch
-==============
+================
 
 .. seo::
     :description: Instructions for setting up switches that can remotely reboot the ESP in ESPHome into safe mode.
