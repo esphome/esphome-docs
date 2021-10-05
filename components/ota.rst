@@ -6,6 +6,8 @@ OTA Update Component
     :image: system-update.png
     :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
 
+.. _config-ota:
+
 With the OTA (Over The Air) update component you can upload your
 firmware binaries to your node without having to use a USB cable for
 uploads. ESPHome natively supports this through its ``run`` and
