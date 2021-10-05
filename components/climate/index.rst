@@ -33,6 +33,7 @@ All climate platforms in ESPHome inherit from the climate configuration schema.
 
 Configuration variables:
 
+- **icon** (*Optional*, icon): Manually set the icon to use for the climate device in the frontend.
 - **visual** (*Optional*): Visual settings for the climate device - these do not
   affect operation and are solely for controlling how the climate device shows up in the
   frontend.
