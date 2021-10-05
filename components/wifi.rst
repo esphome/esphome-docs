@@ -62,6 +62,7 @@ Configuration variables:
   - **ap_timeout** (*Optional*, :ref:`config-time`): The time after which to enable the
     configured fallback hotspot. Defaults to ``1min``.
 
+- **enable_ipv6** (*Optional*, boolean): Enables IPv6 support. Defaults to ``false``.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
