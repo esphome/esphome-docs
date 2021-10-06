@@ -46,7 +46,7 @@ AirThings Wave Plus tracks radon (24h and long term), airborne chemicals, CO2, t
     :width: 60.0%
 
 Configuration example:
-*********
+**********************
 
 
 .. code-block:: yaml
