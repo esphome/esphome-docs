@@ -71,7 +71,7 @@ measure the total consumed energy in kWh.
         total:
           name: "Electricity Total"
           unit_of_measurement: "kWh"
-          accuracy_decimals: 5
+          accuracy_decimals: 3
           filters:
             - multiply: 0.001
 
