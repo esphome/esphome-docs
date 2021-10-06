@@ -443,6 +443,7 @@ Switch Components
     Switch Core, components/switch/index, folder-open.svg
     GPIO Switch, components/switch/gpio, pin.svg
     Restart Switch, components/switch/restart, restart.svg
+    Safe Mode Switch, components/switch/safe_mode, restart-alert.svg
     Shutdown Switch, components/switch/shutdown, power_settings.svg
     Generic Output Switch, components/switch/output, upload.svg
     Template Switch, components/switch/template, description.svg
