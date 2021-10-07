@@ -83,6 +83,16 @@ Release 2021.9.2 - September 28
 - Move web_server auth to web_server_base `be965a6 <https://github.com/esphome/esphome/commit/be965a60eba6bb769e2a5afdbc8eed132f077a59>`__  by :ghuser:`OttoWinter`
 - Fix lint issues in web_server_base :esphomepr:`2409` by :ghuser:`jesserockz`
 
+Release 2021.9.3 - October 7
+----------------------------
+
+- Re-enable TCP nodelay for ESP32 :esphomepr:`2390` by :ghuser:`OttoWinter`
+- Bump aioesphomeapi from 9.1.1 to 9.1.2 :esphomepr:`2426` by :ghuser:`dependabot[bot]`
+- Fix socket abstraction for ESP-IDF v4 :esphomepr:`2434` by :ghuser:`agners`
+- Bump aioesphomeapi from 9.1.2 to 9.1.4 :esphomepr:`2443` by :ghuser:`dependabot[bot]`
+- Add log line to show if API encryption is being used :esphomepr:`2450` by :ghuser:`jesserockz`
+- API encryption switch to libsodium backend :esphomepr:`2456` by :ghuser:`OttoWinter`
+
 Full list of changes
 --------------------
 
