@@ -15,6 +15,7 @@ an individual electric valve via a relay or other switching device. It offers su
 - Multiple pumps, which may be shared across controller instances
 - Running only a single valve/zone for its configured run duration
 - Pausing and resuming a cycle
+- Automatic cycle repeating
 - Iterating through valves/zones in forward or reverse order
 
 In addition, it provides:
@@ -66,6 +67,10 @@ Configuration variables:
   system. When turned off, the sprinkler controller will shut down after the active valve's
   ``run_duration`` is reached. This switch will not appear in the front end if the controller is
   configured with only one valve.
+- **manual_selection_delay** (*Optional*, :ref:`config-time`): The amount of time the controller should
+  wait to activate a valve after the ``next_valve`` and ``previous_valve`` actions are called. Useful
+  if the control interface consists of only forward/reverse buttons as the button(s) may be pressed
+  multiple times to make the selection.
 - **reverse_switch_name** (*Optional*, *string*): The name for the sprinkler controller's reverse switch
   as it will appear in the front end. When this switch is turned on, the controller will iterate through
   the valves in reverse order (last-to-first as they appear in the controller's configuration). When
@@ -77,6 +82,7 @@ Configuration variables:
 - **valve_overlap** (*Optional*, :ref:`config-time`): The delay in seconds from when a valve/zone
   is activated to when the previous valve/switch will be turned off. This may help prevent pipes from
   banging as the valves close. May not be used with *valve_open_delay*.
+- **repeat** (*Optional*, int): The number of times a full cycle should be repeated. Defaults to 0.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
   this is necessary to call controller actions (see below) such as ``start_full_cycle`` or ``shutdown``.
 - **valves** (**Required**, *list*): A list of valves the controller should use. Each valve consists of:
@@ -161,8 +167,9 @@ Immediately turns off all valves, effectively shutting down the system.
 ``sprinkler.next_valve`` action
 *******************************
 
-Immediately advances to the next valve (numerically). If no valve is active, the first valve (as
-they appear in the controller's configuration) will be started.
+Advances to the next valve (numerically). If ``manual_selection_delay`` is configured, the controller
+will wait before activating the selected valve. If no valve is active, the first valve (as they appear
+in the controller's configuration) will be started.
 
 .. code-block:: yaml
 
@@ -175,8 +182,9 @@ they appear in the controller's configuration) will be started.
 ``sprinkler.previous_valve`` action
 ***********************************
 
-Immediately advances to the previous valve (numerically). If no valve is active, the last valve (as
-they appear in the controller's configuration) will be started.
+Advances to the previous valve (numerically). If ``manual_selection_delay`` is configured, the controller
+will wait before activating the selected valve. If no valve is active, the last valve (as they appear in
+the controller's configuration) will be started.
 
 .. code-block:: yaml
 
@@ -226,6 +234,25 @@ cycle (equivalent to ``sprinkler.start_full_cycle``).
       then:
         - sprinkler.resume_or_start_full_cycle: sprinkler_ctrlr
 
+.. _sprinkler-controller-action_queue_single_valve:
+
+``sprinkler.queue_single_valve`` action
+***************************************
+
+Requests the controller to run the specified valve next. The specified valve will automatically be
+activated after the current active valve's run duration is reached, regardless of the state of the
+auto-advance feature. This may be useful to temporarily re-order the sequence of the valves or to
+force an additional valve to run after the active valve. Note that the queue depth is exactly one;
+in other words, it is not possible to queue multiple valves this way.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sprinkler.queue_single_valve:
+            id: sprinkler_ctrlr
+            valve_number: 2
+
 .. _sprinkler-controller-action_set_multiplier:
 
 ``sprinkler.set_multiplier`` action
@@ -242,6 +269,23 @@ determine the valve's actual run duration.
         - sprinkler.set_multiplier:
             id: sprinkler_ctrlr
             multiplier: 1.5
+
+.. _sprinkler-controller-action_set_repeat:
+
+``sprinkler.set_repeat`` action
+*******************************
+
+Specifies the number of times full cycles should be repeated. **Note that the total number of cycles
+the controller will run is equal to the repeat value plus one.** For example, with a ``repeat`` value
+of 1, the initial cycle will run, then the repeat cycle will run, resulting in a total of two cycles.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sprinkler.set_repeat:
+            id: sprinkler_ctrlr
+            repeat: 2  # would run three cycles
 
 .. _sprinkler-controller-action_set_valve_run_duration:
 
@@ -264,8 +308,8 @@ by the multiplier value (see above) to determine the valve's actual run duration
 
     - The ``next_valve``, ``previous_valve`` and ``start_single_valve`` actions ignore whether a valve
       is enabled via its enable switch.
-    - If the multiplier value or a valve's ``run_duration`` is changed while a valve is active, the
-      active valve's run duration will remain unaffected until the next time it is started.
+    - If a valve is active when its ``run_duration`` or the multiplier value is changed, the active
+      valve's run duration will remain unaffected until the next time it is started.
 
 Controller Examples
 -------------------
