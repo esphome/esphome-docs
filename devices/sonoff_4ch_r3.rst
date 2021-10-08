@@ -23,7 +23,7 @@ Over-The-Air update process.
 
     If you've previously installed Sonoff-Tasmota on your Sonoff 4CH R3, you're in luck 😀.
     ESPHome can generate a firmware binary which you can then upload via the
-    Tasmota web interface. To see how to create this binary, skip to :ref:`sonoff_4ch-creating_firmware`.
+    Tasmota web interface. To see how to create this binary, skip to :ref:`sonoff_4ch_r3-creating_firmware`.
 
 Since firmware version 1.6.0, iTead (the creator of this device) has removed the ability to upload
 a custom firmware through their own upload process. Unfortunately, that means that the only way to
@@ -120,7 +120,7 @@ When you're done, it should look something like this:
     to the pins being swapped. In that case, just swap ``RX`` and ``TX`` and try again - you won't break
     anything if they're swapped.
 
-.. _sonoff_4ch-creating_firmware:
+.. _sonoff_4ch_r3-creating_firmware:
 
 Step 3: Creating Firmware
 -------------------------
