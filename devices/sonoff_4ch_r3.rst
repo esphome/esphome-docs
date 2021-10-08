@@ -1,27 +1,27 @@
-Using With Sonoff 4CH
-=====================
+Using With Sonoff 4CH R3
+========================
 
 .. seo::
-    :description: Instructions for putting Sonoff 4CH devices into flash mode and installing ESPHome on them.
+    :description: Instructions for putting Sonoff 4CH R3 devices into flash mode and installing ESPHome on them.
     :image: sonoff_4ch.jpg
 
 ESPHome can also be used with Sonoff 4CH wireless switches. These devices are
 basically just an ESP8266 chip with 4 relays to control power output, a few buttons on the
 top and a few status LEDs.
 
-.. figure:: images/sonoff_4ch_header.jpg
+.. figure:: images/sonoff_4ch_r3_header.jpg
     :align: center
     :width: 75.0%
 
-    Sonoff 4CH WiFi switch.
+    Sonoff 4CH R3 WiFi switch.
 
-This guide will step you through setting up your Sonoff 4CH and flashing the first ESPHome firmware
+This guide will step you through setting up your Sonoff 4CH R3 and flashing the first ESPHome firmware
 with the serial interface. After that, you will be able to upload all future firmwares with the remote
 Over-The-Air update process.
 
 .. note::
 
-    If you've previously installed Sonoff-Tasmota on your Sonoff 4CH, you're in luck 😀.
+    If you've previously installed Sonoff-Tasmota on your Sonoff 4CH R3, you're in luck 😀.
     ESPHome can generate a firmware binary which you can then upload via the
     Tasmota web interface. To see how to create this binary, skip to :ref:`sonoff_4ch-creating_firmware`.
 
@@ -43,7 +43,7 @@ interface.
 
 For this guide you will need:
 
-- Sonoff 4CH 😉.
+- Sonoff 4CH R3 😉.
 - A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins.
@@ -53,44 +53,53 @@ For this guide you will need:
 Have everything? Great! Then you can start.
 
 
-Step 1: Opening up the Sonoff 4CH
----------------------------------
+Step 1: Opening up the Sonoff 4CH R3
+------------------------------------
 
-The first step is to open up the Sonoff 4CH. Note that you do not have to run the original firmware
-supplied with the Sonoff 4CH before doing this step.
+The first step is to open up the Sonoff 4CH R3. Note that you do not have to run the original firmware
+supplied with the Sonoff 4CH R3 before doing this step.
 
 .. warning::
 
     Just to repeat this: Make **absolutely sure** the device is not connected to any appliance or
     connected to mains power before doing this step.
 
-While the device is not plugged in, turn the device so you are viewing it from the top,
-then unscrew the long screws in the four corners of the top cover.
+While the device is not plugged in, turn the device so you are viewing it from the back,
+then unscrew the long screws in the four corners of the back cover.
 
-.. figure:: images/sonoff_4ch_top.jpg
+.. figure:: images/sonoff_4ch_r3_top.jpg
     :align: center
     :width: 60.0%
 
-    There are four screws on the front of the Sonoff 4CH.
+    There are four screws on the back of the Sonoff 4CH R3.
 
-After that, you should be able to remove the front cover and should be greeted by the main board.
-The chip we're interested in here is the "big" one encased in an aluminium cover.
+After that, you should be able to remove the front and rear covers and should be greeted by the main board.
+The ports we're interested in here are in the bottom left corner and are labelled ``J1`` and ``GND``,``TX``, ``RX``, and ``VCC33``.
 
-.. figure:: images/sonoff_4ch_mcu.jpg
+.. figure:: images/sonoff_4ch_r3_mcu.jpg
     :align: center
     :width: 75.0%
 
-    The main chip of the Sonoff 4CH and the header pins we're going to use to flash our custom
+    The board of the Sonoff 4CH-R3 and the ports we're going to use to flash our custom
     firmware.
 
 Step 2: Connecting UART
 -----------------------
 
 Now we need our computer to somehow establish a data connection to the board. For this we will
-have to connect the four wires on the UART to USB bridge to the UART pins of the Sonoff 4Ch.
+have to connect the four wires on the UART to USB bridge to the UART pins of the Sonoff 4CH R3.
 
-Fortunately for us, exactly these pins come pre-populated with a few header pins. You can identify
-these by the ``VCC33``, ``RX``, ``TX`` and ``GND`` markings on the silk-screen.
+Unfortunately for us, these pins do not come pre-populated with header pins, so you'll have to add your own.
+
+.. figure:: images/sonoff_4ch_r3_mcu_headers.jpg
+    :align: center
+    :width: 75.0%
+
+    The board of the Sonoff 4CH-R3 and the header pins we're going to use to flash our custom
+    firmware.
+
+
+You can identify these by the ``VCC33``, ``RX``, ``TX`` and ``GND`` markings on the silk-screen.
 
 Now go ahead and connect these pins to your UART to USB bridge as seen in the below image. Make sure
 that you connect these correctly, especially the ``VCC33`` and ``GND`` parts as you can otherwise
@@ -101,13 +110,13 @@ and the same with ``RX``/``TX``.
 
 When you're done, it should look something like this:
 
-.. figure:: images/sonoff_4ch_uart.jpg
+.. figure:: images/sonoff_4ch_r3_uart.jpg
     :align: center
 
 .. note::
 
-    On some older 4CHs, the ``RX`` and ``TX`` pins are swapped (sometimes even the written silkscreen is
-    wrong). If your upload fails with an ``error: espcomm_upload_mem failed`` message it's most likely due
+    On some 4CH R3s (including the one illustrated here), the ``RX`` and ``TX`` pins are swapped and the written silkscreen is
+    wrong. If your upload fails with an ``error: espcomm_upload_mem failed`` message it's most likely due
     to the pins being swapped. In that case, just swap ``RX`` and ``TX`` and try again - you won't break
     anything if they're swapped.
 
@@ -116,7 +125,7 @@ When you're done, it should look something like this:
 Step 3: Creating Firmware
 -------------------------
 
-The Sonoff 4CH is based on the ``ESP8266`` platform (technically it's the ``ESP8285``, but for our purposes
+The Sonoff 4CH-R3 is based on the ``ESP8266`` platform (technically it's the ``ESP8285``, but for our purposes
 they're the same) and is a subtype of the ``esp01_1m`` board.
 With this information, you can step through the ESPHome wizard (``esphome sonoff_4ch.yaml wizard``),
 or alternatively, you can just take the below configuration file and modify it to your needs.
@@ -152,14 +161,14 @@ Step 4: Uploading Firmware
 
 In order to upload the firmware, you're first going to need to get the chip into a flash mode, otherwise
 the device will start up without accepting any firmware flash attempts. To do this, while the UART
-bridge is not connected to your USB port, press and hold the bottom-left push button labelled ``FW/IO0``
+bridge is not connected to your USB port, press and hold the bottom-right push button labelled ``S1/IO0``
 and continue to do so while plugging in the UART bridge into your computer. Keep holding the button for
-another 2-4 seconds. The 4CH should now be in a flash mode and should not blink any LED.
+another 2-4 seconds. The 4CH R3 should now be in a flash mode and should not blink any LED.
 
-.. figure:: images/sonoff_4ch_buttons.jpg
+.. figure:: images/sonoff_4ch_r3_buttons.jpg
     :align: center
 
-    You need to press the button labelled ``FW/IO0`` during startup.
+    You need to press the button labelled ``S1/IO0`` during startup.
 
 Now you can finally run the upload command:
 
@@ -172,8 +181,8 @@ If successful, you should see something like this:
 .. figure:: images/sonoff_4ch_upload.png
     :align: center
 
-Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your Sonoff 4CH. And in a moment,
-you will be able to use all of ESPHome's great features with your Sonoff 4CH.
+Hooray 🎉! You've now successfully uploaded the first ESPHome firmware to your Sonoff 4CH R3. And in a moment,
+you will be able to use all of ESPHome's great features with your Sonoff 4CH R3.
 
 If above step don't work, however, here are some steps that can help:
 
@@ -187,9 +196,9 @@ If above step don't work, however, here are some steps that can help:
 Step 5: Adding the Button, Relay and LEDs
 -----------------------------------------
 
-Now we would like the 4CH to actually do something, not just connect to WiFi and pretty much sit idle.
+Now we would like the 4CH-R3 to actually do something, not just connect to WiFi and pretty much sit idle.
 
-Below you will find a table of all usable GPIO pins of the Sonoff 4CH and a configuration file that exposes all
+Below you will find a table of all usable GPIO pins of the Sonoff 4CH R3 and a configuration file that exposes all
 of the basic functions.
 
 ======================================== =========================================
@@ -310,10 +319,10 @@ with automation example <https://github.com/esphome/esphome-docs/blob/current/de
 Step 6: Finishing Up
 --------------------
 
-If you're sure everything is done with the 4CH and have double checked there's nothing that could cause a short
+If you're sure everything is done with the 4CH R3 and have double checked there's nothing that could cause a short
 in the case, you can put the front cover back on and screw everything together.
 
-Now triple- or even quadruple-check the UART bridge is not connected to the 4CH, then comes the time when you can
+Now triple- or even quadruple-check the UART bridge is not connected to the 4CH R3, then comes the time when you can
 connect it.
 
 Happy hacking!
@@ -323,4 +332,5 @@ See Also
 
 - :doc:`sonoff`
 - :doc:`sonoff_s20`
+- :doc:`sonoff_4ch`
 - :ghedit:`Edit`
