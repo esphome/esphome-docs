@@ -402,7 +402,7 @@ See Also
 --------
 
 - :doc:`sonoff_s20`
-- :doc:`sonoff_4ch`
+- :doc:`sonoff_4ch` / :doc:`sonoff_4ch_r3`
 - :doc:`sonoff_basic`
 - :doc:`esp8266`
 - :ghedit:`Edit`

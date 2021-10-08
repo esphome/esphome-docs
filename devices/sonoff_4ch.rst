@@ -323,4 +323,5 @@ See Also
 
 - :doc:`sonoff`
 - :doc:`sonoff_s20`
+- :doc:`sonoff_4ch_r3`
 - :ghedit:`Edit`
