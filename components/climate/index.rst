@@ -53,7 +53,42 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+MQTT options:
+
+- **action_state_topic** (*Optional*, string): The topic to publish
+  climate device action changes to.
+- **away_state_topic** (*Optional*, string): The topic to publish
+  away mode changes on.
+- **away_command_topic** (*Optional*, string): The topic to receive
+  away mode commands on.
+- **current_temperature_state_topic** (*Optional*, string): The topic to publish
+  current temperature changes to.
+- **fan_mode_state_topic** (*Optional*, string): The topic to publish
+  fan mode changes to.
+- **fan_mode_command_topic** (*Optional*, string): The topic to receive
+  fan mode commands on.
+- **mode_state_topic** (*Optional*, string): The topic to publish
+  climate device mode changes to.
+- **mode_command_topic** (*Optional*, string): The topic to receive
+  climate device mode commands on.
+- **swing_mode_state_topic** (*Optional*, string): The topic to publish
+  swing mode changes to.
+- **swing_mode_command_topic** (*Optional*, string): The topic to receive
+  swing mode commands on.
+- **target_temperature_state_topic** (*Optional*, string): The topic to publish
+  target temperature changes to.
+- **target_temperature_command_topic** (*Optional*, string): The topic to receive
+  target temperature commands on.
+- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
+  higher target temperature changes to.
+- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
+  higher target temperature commands on.
+- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
+  lower target temperature changes to.
+- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
+  lower target temperature commands on.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Climate Automation
 ------------------
