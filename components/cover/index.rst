@@ -30,6 +30,7 @@ Configuration variables:
 
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/cover/ for a list of available options.
+- **icon** (*Optional*, icon): Manually set the icon to use for the cover in the frontend.
 
 Advanced options:
 

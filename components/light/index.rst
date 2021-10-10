@@ -26,6 +26,7 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
+- **icon** (*Optional*, icon): Manually set the icon to use for the light in the frontend.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ to the light channels.
