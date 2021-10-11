@@ -240,7 +240,7 @@ This trigger is activated each time the cover reaches a fully open state.
 .. _cover-on_closed_trigger:
 
 ``cover.on_closed`` Trigger
-*************************
+***************************
 
 This trigger is activated each time the cover reaches a fully closed state.
 
