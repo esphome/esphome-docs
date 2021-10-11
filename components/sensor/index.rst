@@ -132,6 +132,7 @@ Filters are processed in the order they are defined in your configuration.
           alpha: 0.1
           send_every: 15
       - throttle: 1s
+      - throttle_average: 1s
       - heartbeat: 5s
       - debounce: 0.1s
       - delta: 5.0
@@ -369,6 +370,15 @@ If it is not older than the configured value, the value is not passed forward.
       - delta: 5.0
       - lambda: return x * (9.0/5.0) + 32.0;
 
+``throttle_average``
+**********
+
+An average over the ``specified time period``, potentially throttling incoming values. When this filter gets an incoming value, it checks the passed time since the last outgoing value, compares it to the ``specified time period`` and either executes:
+
+* a) more time passed: push out the new value
+* b) less time passed: collect all incoming values and push out the average after ``specified time period`` has passed
+
+In comparison to the ``throttle`` filter it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter it supports variable sensor reporting intervals and allows to receive slow sensor update rates as they are and to throttle fast sensor update rates to the ``specified time period``.
 
 ``heartbeat``
 *************
