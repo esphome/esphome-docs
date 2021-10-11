@@ -222,6 +222,36 @@ fields are read-only, if you want to act on the cover, use the ``make_call()`` m
           // Cover is currently closing
         }
 
+.. _cover-on_open_trigger:
+
+``cover.on_open`` Trigger
+*************************
+
+This trigger is activated each time the cover reaches a fully open state.
+
+.. code-block:: yaml
+
+    cover:
+      - platform: template  # or any other platform
+        # ...
+        on_open:
+          - logger.log: "Cover is Open!"
+
+.. _cover-on_open_trigger:
+
+``cover.on_closed`` Trigger
+*************************
+
+This trigger is activated each time the cover reaches a fully closed state.
+
+.. code-block:: yaml
+
+    cover:
+      - platform: template  # or any other platform
+        # ...
+        on_closed:
+          - logger.log: "Cover is Closed!"
+
 See Also
 --------
 

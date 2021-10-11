@@ -338,6 +338,7 @@ All Triggers
   :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
+- :ref:`cover.on_open <cover-on_open>` / :ref:`cover.on_closed <cover-on_closed>`
 
 All Actions
 -----------
