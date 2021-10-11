@@ -237,7 +237,7 @@ This trigger is activated each time the cover reaches a fully open state.
         on_open:
           - logger.log: "Cover is Open!"
 
-.. _cover-on_open_trigger:
+.. _cover-on_closed_trigger:
 
 ``cover.on_closed`` Trigger
 *************************
