@@ -371,7 +371,7 @@ If it is not older than the configured value, the value is not passed forward.
       - lambda: return x * (9.0/5.0) + 32.0;
 
 ``throttle_average``
-**********
+********************
 
 An average over the ``specified time period``, potentially throttling incoming values. When this filter gets an incoming value, it checks the passed time since the last outgoing value, compares it to the ``specified time period`` and either executes:
 
