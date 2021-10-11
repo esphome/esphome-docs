@@ -378,6 +378,62 @@ them locally with their own subsitution value.
       remote_package_three: github://esphome/non-existant-repo/file1.yml@main
 
 
+Disabling reused components
+---------------------------
+
+You may wish to temporarily or permanently disable some of the components in your configuration
+file.
+
+Consider the case where a system-wide ``packages`` configuration file with all common integrations
+and components is included by every device configuration file. A particular device may not be
+accessible by your Home Assistant instance and you wish to disable Native API for this particular
+device and switch to MQTT integration.
+
+The following configuration will disable Native API that is included in the device configuration
+file via ``packages`` reuse mechanism and configure MQTT broker connection instead.
+
+.. code-block:: yaml
+
+    # In config.yaml
+    esphome:
+      name: "device-name"
+      platform: ESP32
+      board: wemos_d1_mini32 
+
+    # Include common system-wide packages (WI-FI, Native API, ...)
+    <<: !include system-packages.yaml
+
+    # Disable Native API for this particular device
+    disable:
+      - api
+
+    # Enable MQTT broker integration
+    mqtt:
+      broker: "broker.yourdomain.lan"    
+
+.. code-block:: yaml
+
+    # In system-packages.yaml
+    packages:
+      api: !include system-api.yaml
+
+      wifi: !include system-wifi.yaml
+    
+.. code-block:: yaml
+
+    # In system-api.yaml
+    api:
+      reboot_timeout: 0s
+
+.. code-block:: yaml
+
+    # In system-wifi.yaml
+    wifi:
+      ssid: "your_ssid"
+      password: "your_password"
+
+
+
 See Also
 --------
 
