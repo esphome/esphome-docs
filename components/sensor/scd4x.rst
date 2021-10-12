@@ -65,14 +65,8 @@ Configuration variables:
   *altitude_compensation* is ignored if *ambient_pressure_compensation*
   is set.
 
-- **compensation** (*Optional*): External sensors used for compensation.
-
-  - **pressure_source** (*Optional*, :ref:`config-id`): Set an external pressure sensor ID used for ambient pressure compensation.
-    The pressure sensor must report pressure in hPa.
-
-  - **altitude_source** (*Optional*, :ref:`config-id`): Set an external altitude sensor ID for altitude compensation
-    The altitude sensor must report altitude in metres.  Notice: setting
-    *altitude_source* is ignored if *pressure_source*  is set.
+- **ambient_pressure_compensation_source** (*Optional*, :ref:`config-id`): Set an external pressure sensor ID used for ambient pressure compensation.
+  The pressure sensor must report pressure in hPa. the correction is applied before updating the state of the co2 sensor.
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x62``.
@@ -83,15 +77,12 @@ Configuration variables:
 Automation
 -----------------
 
-Ambient pressure compensation and altitude compensation can be changed from :ref:`lambdas <config-lambda>`
+Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
 
 
 ``set_ambient_pressure_compensation(  <pressure in bar)"``
 
-and
 
-
-``>set_altitude_compensation(  altitude in m)"``
 
 Example
 *******
