@@ -373,10 +373,10 @@ If it is not older than the configured value, the value is not passed forward.
 ``throttle_average``
 ********************
 
-An average over the ``specified time period``, potentially throttling incoming values. When this filter gets an incoming value, it checks the passed time since the last outgoing value, compares it to the ``specified time period`` and either executes:
+An average over the ``specified time period``, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the ``specified time period`` passed. There are two edge cases to consider within the ``specified time period``:
 
-* more time passed: push out the new value
-* less time passed: collect all incoming values and push out the average after ``specified time period`` has passed
+* no value received: nothing will be pushed - add the ``heartbeat`` filter if periodical pushes are required
+* one value received: the value is pushed out after the ``specified time period`` passed, without calculating an average
 
 In comparison to the ``throttle`` filter it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter it supports variable sensor reporting intervals, allows to receive slow sensor update rates as they are and to throttle fast sensor update rates to the ``specified time period``.
 
