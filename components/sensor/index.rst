@@ -375,7 +375,7 @@ If it is not older than the configured value, the value is not passed forward.
 
 An average over the ``specified time period``, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the ``specified time period`` passed. There are two edge cases to consider within the ``specified time period``:
 
-* no value received: ``NaN`` is returned - add the ``heartbeat`` filter if periodical pushes are required and/or ``filter_out: nan`` if required
+* no value(s) received: ``NaN`` is returned - add the ``heartbeat`` filter if periodical pushes are required and/or ``filter_out: nan`` if required
 * one value received: the value is pushed out after the ``specified time period`` passed, without calculating an average
 
 For example a ``throttle_average: 60s`` will push out a value every 60 seconds, in case at least one sensor value is received within these 60 seconds.
