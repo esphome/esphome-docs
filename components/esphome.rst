@@ -152,36 +152,6 @@ the flash section will fail. So do not use this option when you have components 
 These include GPIO switches that are used internally (disable restoring with the ``restore_mode`` option),
 certain light effects like ``random`` and the ``on_value_range`` trigger.
 
-.. _preferences-flash_write_interval:
-
-``flash_write_interval``
-------------------------
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    preferences:
-      flash_write_interval: 1min
-
-- **flash_write_interval** (*Optional*, :ref:`config-time`): Customize the frequency in which data is
-  flushed to the flash. This setting helps to prevent rapid changes to a component from being quickly
-  written to the flash and wearing it out. Defaults to ``1min``.
-
-As all devices have a limited number of flash write cycles, this setting helps to reduce the number of flash writes
-due to quickly changing components. In the past, when components such as ``light``, ``switch``, ``fan`` and ``globals``
-were changed, the state was immediately committed to flash. The result of this was that the last state of these
-components would always restore to its last state on power loss, however, this has the cost of potentially quickly
-damaging the flash if these components are quickly changed.
-
-A safety feature has thus been implemented to mitigate issues resulting from the limited number of flash write cycles,
-the state is first stored in memory before being flushed to flash after the ``flash_write_interval`` has passed. This
-results in fewer flash writes, preserving the flash health.
-
-This behavior can be disabled by setting ``flash_write_interval`` to ``0s`` to immediately commit the state to flash,
-however, be aware that this may lead to increased flash wearing and a shortened device lifespan!
-
-For ESP8266, :ref:`esphome-esp8266_restore_from_flash` must also be set to true for states to be written to flash.
-
 .. _esphome-on_boot:
 
 ``on_boot``
@@ -300,6 +270,35 @@ This option behaves differently depending on what the included file is pointing 
  - If the include string is point at a header file (.h, .hpp, .tcc) - it is copied in the src/ folder
    AND included in the main.cpp. This way the lambda code can access it.
 
+.. _preferences-flash_write_interval:
+
+Adjusting flash writes
+------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    preferences:
+      flash_write_interval: 1min
+
+- **flash_write_interval** (*Optional*, :ref:`config-time`): Customize the frequency in which data is
+  flushed to the flash. This setting helps to prevent rapid changes to a component from being quickly
+  written to the flash and wearing it out. Defaults to ``1min``.
+
+As all devices have a limited number of flash write cycles, this setting helps to reduce the number of flash writes
+due to quickly changing components. In the past, when components such as ``light``, ``switch``, ``fan`` and ``globals``
+were changed, the state was immediately committed to flash. The result of this was that the last state of these
+components would always restore to its last state on power loss, however, this has the cost of potentially quickly
+damaging the flash if these components are quickly changed.
+
+A safety feature has thus been implemented to mitigate issues resulting from the limited number of flash write cycles,
+the state is first stored in memory before being flushed to flash after the ``flash_write_interval`` has passed. This
+results in fewer flash writes, preserving the flash health.
+
+This behavior can be disabled by setting ``flash_write_interval`` to ``0s`` to immediately commit the state to flash,
+however, be aware that this may lead to increased flash wearing and a shortened device lifespan!
+
+For ESP8266, :ref:`esphome-esp8266_restore_from_flash` must also be set to true for states to be written to flash.
 
 .. _esphome-changing_node_name:
 
