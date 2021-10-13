@@ -6,15 +6,13 @@ MQTT Client Component
     :image: mqtt.png
     :keywords: MQTT
 
-The MQTT Client Component sets up the MQTT connection to your broker and
-is currently required for ESPHome to work. In most cases, you will
-just be able to copy over the `MQTT
-section <https://www.home-assistant.io/components/mqtt/>`__ of your Home
-Assistant configuration.
+The MQTT Client Component sets up the MQTT connection to your broker.
+If you are connecting to Home Assistant, you may prefer to use the native API,
+in which case this is not needed.
 
 .. warning::
 
-    When enabling MQTT and you do *not* use the "native API" for Home Assistant, you must
+    If you enable MQTT and you do *not* use the "native API" for Home Assistant, you must
     remove the ``api:`` line from your ESPHome configuration, otherwise the ESP will
     reboot every 15 minutes because no client connected to the native API.
 

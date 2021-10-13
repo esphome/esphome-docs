@@ -338,6 +338,7 @@ All Triggers
   :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
+- :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
 
 All Actions
 -----------
@@ -577,7 +578,10 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
           binary_sensor.is_on: some_binary_sensor
       - logger.log: "Binary sensor is ready"
 
-Configuration option: A :ref:`Condition <config-condition>`.
+Configuration variables:
+
+- **condition** (**Required**): The condition to wait to become true. See :ref:`Conditions <config-condition>`.
+- **timeout** (*Optional*, :ref:`config-time`): Time to wait before timing out. Defaults to never timing out.
 
 .. _component-update_action:
 

@@ -30,6 +30,7 @@ Configuration variables:
 
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/cover/ for a list of available options.
+- **icon** (*Optional*, icon): Manually set the icon to use for the cover in the frontend.
 
 Advanced options:
 
@@ -39,7 +40,19 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+
+MQTT options:
+
+- **position_state_topic** (*Optional*, string): The topic to publish
+  cover position changes to.
+- **position_command_topic** (*Optional*, string): The topic to receive
+  cover position commands on.
+- **tilt_state_topic** (*Optional*, string): The topic to publish cover
+  cover tilt state changes to.
+- **tilt_command_topic** (*Optional*, string): The topic to receive
+  cover tilt commands on.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
 
 .. _cover-open_action:
 
@@ -110,6 +123,31 @@ This :ref:`action <config-action>` stops the cover with the given ID when execut
         call.set_command_stop();
         call.perform();
 
+.. _cover-toggle_action:
+
+``cover.toggle`` Action
+-----------------------
+
+This :ref:`action <config-action>` toggles the cover with the given ID when executed,
+cycling through the states close/stop/open/stop... This allows the cover to be controlled
+by a single push button.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - cover.toggle: cover_1
+
+.. note::
+
+    This action can also be expressed in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        auto call = id(cover_1).make_call();
+        call.set_command_toggle();
+        call.perform();
+
 .. _cover-control_action:
 
 ``cover.control`` Action
@@ -169,7 +207,7 @@ fields are read-only, if you want to act on the cover, use the ``make_call()`` m
         } else {
           // Cover is in-between open and closed
         }
-      
+
 - ``tilt``: Retrieve the current tilt position of the cover, as a value between ``0.0`` and ``1.0``.
 
 - ``current_operation``: The operation the cover is currently performing:
@@ -183,6 +221,36 @@ fields are read-only, if you want to act on the cover, use the ``make_call()`` m
         } else if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_CLOSING) {
           // Cover is currently closing
         }
+
+.. _cover-on_open_trigger:
+
+``cover.on_open`` Trigger
+*************************
+
+This trigger is activated each time the cover reaches a fully open state.
+
+.. code-block:: yaml
+
+    cover:
+      - platform: template  # or any other platform
+        # ...
+        on_open:
+          - logger.log: "Cover is Open!"
+
+.. _cover-on_closed_trigger:
+
+``cover.on_closed`` Trigger
+***************************
+
+This trigger is activated each time the cover reaches a fully closed state.
+
+.. code-block:: yaml
+
+    cover:
+      - platform: template  # or any other platform
+        # ...
+        on_closed:
+          - logger.log: "Cover is Closed!"
 
 See Also
 --------
