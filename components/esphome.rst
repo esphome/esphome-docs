@@ -43,9 +43,6 @@ Advanced options:
 - **build_path** (*Optional*, string): Customize where ESPHome will store the build files
   for your node. By default, ESPHome puts all PlatformIO project files under a folder ``<NODE_NAME>/``,
   but you can customize this behavior using this option.
-- **flash_write_interval** (*Optional*, :ref:`config-time`): Customize the frequency in which data is
-  flushed to the flash. This setting helps to prevent rapid changes to a component from being quickly
-  written to the flash and wearing it out. Defaults to ``1min``. See :ref:`esphome-flash_write_interval` for more info.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
@@ -155,10 +152,20 @@ the flash section will fail. So do not use this option when you have components 
 These include GPIO switches that are used internally (disable restoring with the ``restore_mode`` option),
 certain light effects like ``random`` and the ``on_value_range`` trigger.
 
-.. _esphome-flash_write_interval:
+.. _preferences-flash_write_interval:
 
 ``flash_write_interval``
 ------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    preferences:
+      flash_write_interval: 1min
+
+- **flash_write_interval** (*Optional*, :ref:`config-time`): Customize the frequency in which data is
+  flushed to the flash. This setting helps to prevent rapid changes to a component from being quickly
+  written to the flash and wearing it out. Defaults to ``1min``.
 
 As all devices have a limited number of flash write cycles, this setting helps to reduce the number of flash writes
 due to quickly changing components. In the past, when components such as ``light``, ``switch``, ``fan`` and ``globals``
