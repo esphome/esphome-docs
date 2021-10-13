@@ -302,7 +302,7 @@ Configuration variables:
 Do Automations Work Without a Network Connection
 ------------------------------------------------
 
-YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
+YES! All automations you define in ESPHome are executed on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
 
 There is one caveat though: ESPHome automatically reboots if no connection to the MQTT broker can be
