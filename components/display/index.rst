@@ -305,7 +305,7 @@ To display a text string from a ``text_sensor``, append ``.c_str()`` to the end 
         # ...
         lambda: |-
           it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
-          
+
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to
@@ -370,6 +370,8 @@ Configuration variables:
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 
+.. _display-graphs:
+
 Graphs
 ******
 
@@ -414,7 +416,7 @@ Graph component with options for grids, border and line-types.
             line_type: DOTTED
             line_thickness: 2
             color: my_green
-  
+
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
@@ -425,7 +427,7 @@ Configuration variables:
 - **border** (*Optional*, boolean): Specifics if a border will be draw around the graph. Default is True.
 - **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
 - **y_grid** (*Optional*, float): Specifics the number of units per division. If not specified, no horizontal grid will be drawn.
-- **max_range** (*Optional*): Specifies the maximum Y-axis range. 
+- **max_range** (*Optional*): Specifies the maximum Y-axis range.
 - **min_range** (*Optional*): Specifies the minimum Y-axis range.
 - **max_value** (*Optional*): Specifies the maximum Y-axis value.
 - **min_value** (*Optional*): Specifies the minimum Y-axis value.
@@ -453,7 +455,7 @@ And then later in code:
             lambda: |-
               // Draw the graph at position [x=10,y=20]
               it.graph(10, 20, id(multi_temperature_graph), my_yellow);
-  
+
     color:
       - id: my_red
         red: 100%
@@ -476,7 +478,7 @@ And then later in code:
     Here are some things to note:
     - Setting ``y_grid`` will expand any specified range to the nearest multiple of grid spacings.
     - Axis labels are currently not possible without manually placing them.
-    - The grid and border color is set with it.graph(), while the traces are defined separately.  
+    - The grid and border color is set with it.graph(), while the traces are defined separately.
 
 Images
 ******
@@ -717,7 +719,7 @@ You can then switch between these with three different actions:
 - **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
 
 Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
-              
+
 See Also
 --------
 
