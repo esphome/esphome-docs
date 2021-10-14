@@ -47,14 +47,14 @@ In the example below, the ``adc`` and ``cd74hc4067`` sensors are internal and :d
         sensor: adc_sensor
         update_interval: 3600s
     - platform: ct_clamp
-        name: "SolarPower1"
+        name: "Solar1"
         sensor: solar_1_raw
         update_interval: 5s
         unit_of_measurement: "A"
         filters:
             - multiply: 36000
     - platform: ct_clamp
-        name: "SolarPower2"
+        name: "Solar2"
         sensor: solar_2_raw
         update_interval: 5s
         unit_of_measurement: "A"
