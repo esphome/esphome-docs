@@ -165,6 +165,7 @@ Contributors
 - `dentra (@dentra) <https://github.com/dentra>`__
 - `Davide Depau (@Depau) <https://github.com/Depau>`__
 - `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__
+- `Joeri Colman (@depuits) <https://github.com/depuits>`__
 - `Destix (@Destix) <https://github.com/Destix>`__
 - `Develo (@devyte) <https://github.com/devyte>`__
 - `Dezorian (@Dezorian) <https://github.com/Dezorian>`__
@@ -177,6 +178,7 @@ Contributors
 - `djtef (@djtef) <https://github.com/djtef>`__
 - `Marcos Pérez Ferro (@djwmarcx) <https://github.com/djwmarcx>`__
 - `Dan Mannock (@dmannock) <https://github.com/dmannock>`__
+- `Dmitriy Lopatko (@dmitriy5181) <https://github.com/dmitriy5181>`__
 - `dmkif (@dmkif) <https://github.com/dmkif>`__
 - `Farzad E. (@dnetguru) <https://github.com/dnetguru>`__
 - `DrZoid (@docteurzoidberg) <https://github.com/docteurzoidberg>`__
@@ -556,6 +558,7 @@ Contributors
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__
 - `Radim Karniš (@radimkarnis) <https://github.com/radimkarnis>`__
 - `Florian Ragwitz (@rafl) <https://github.com/rafl>`__
+- `razorback16 (@razorback16) <https://github.com/razorback16>`__
 - `rbaron (@rbaron) <https://github.com/rbaron>`__
 - `Robert Cambridge (@rcambrj) <https://github.com/rcambrj>`__
 - `Ronald Dehuysser (@rdehuyss) <https://github.com/rdehuyss>`__
@@ -739,4 +742,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 13, 2021.*
+*This page was last updated October 15, 2021.*
