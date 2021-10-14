@@ -150,6 +150,18 @@ Breaking Changes
 - Correctly invert the float output state :esphomepr:`2368` by :ghuser:`jesserockz` (breaking-change)
 - Add SSD1305 support to SSD1306 integration along with few new options :esphomepr:`1902` by :ghuser:`zhangjingye03` (new-feature) (breaking-change)
 
+Beta Fixes
+^^^^^^^^^^
+
+- Fix light state remaining on after turn off with transition :esphomepr:`2509` by :ghuser:`oxan`
+- Fix: Light flash not restoring previous LightState :esphomepr:`2383` by :ghuser:`paulmonigatti`
+- Disallow using UART2 for logger on ESP-32 variants that lack it :esphomepr:`2510` by :ghuser:`oxan`
+- Fix BME680_BSEC compilation issue with ESP32 :esphomepr:`2516` by :ghuser:`paulmonigatti`
+- add missing include in sgp30 :esphomepr:`2517` by :ghuser:`dmitriy5181`
+- Fix: Color modes not being correctly used in light partitions :esphomepr:`2513` by :ghuser:`paulmonigatti`
+- Don't define UART_SELECTION_UART2 when UART2 is unavailable :esphomepr:`2512` by :ghuser:`oxan`
+- Remove BME680_BSEC test :esphomepr:`2518` by :ghuser:`paulmonigatti`
+
 All changes
 ^^^^^^^^^^^
 
@@ -326,6 +338,14 @@ All changes
 - Improves ct_clamp component accuracy :esphomepr:`2283` by :ghuser:`skasi7`
 - Allow multiple pn532_spi entries :esphomepr:`2489` by :ghuser:`jesserockz`
 - Add throttle_average sensor filter :esphomepr:`2485` by :ghuser:`sermayoral`
+- Fix light state remaining on after turn off with transition :esphomepr:`2509` by :ghuser:`oxan`
+- Fix: Light flash not restoring previous LightState :esphomepr:`2383` by :ghuser:`paulmonigatti`
+- Disallow using UART2 for logger on ESP-32 variants that lack it :esphomepr:`2510` by :ghuser:`oxan`
+- Fix BME680_BSEC compilation issue with ESP32 :esphomepr:`2516` by :ghuser:`paulmonigatti`
+- add missing include in sgp30 :esphomepr:`2517` by :ghuser:`dmitriy5181`
+- Fix: Color modes not being correctly used in light partitions :esphomepr:`2513` by :ghuser:`paulmonigatti`
+- Don't define UART_SELECTION_UART2 when UART2 is unavailable :esphomepr:`2512` by :ghuser:`oxan`
+- Remove BME680_BSEC test :esphomepr:`2518` by :ghuser:`paulmonigatti`
 
 Past Changelogs
 ---------------
