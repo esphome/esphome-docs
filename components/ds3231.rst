@@ -12,7 +12,7 @@ that includes 2 alarms, an output that can be triggered by either alarm or outpu
 1024hz, 4096hz, or 8192hz, a 32.768kHz output, and a temperature sensor. It uses :ref:`I²C Bus <i2c>` for communication.
 
 
-.. figure:: images/ds3231.jpg
+.. figure:: /images/ds3231.jpg
     :align: center
     :width: 80.0%
 
