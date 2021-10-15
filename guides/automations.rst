@@ -385,6 +385,7 @@ All Actions
 - :ref:`number.set <number-set_action>`
 - :ref:`ds3231.set_alarm_1 <ds3231-set_alarm_1>` / :ref:`ds3231.set_alarm_2 <ds3231-set_alarm_2>`
 - :ref:`ds3231.reset_alarm_1 <ds3231-reset_alarm_1>` / :ref:`ds3231.reset_alarm_2 <ds3231-reset_alarm_2>`
+- :ref:`ds3231.read_time <ds3231-read_time>` / :ref:`ds3231.write_time <ds3231-write_time>`
 
 .. _config-condition:
 

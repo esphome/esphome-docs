@@ -95,7 +95,6 @@ Configuration variables:
 
 
 Automation Triggers:
-
 .. _ds3231-on_alarm_1:
 .. _ds3231-on_alarm_2:
 
@@ -117,7 +116,6 @@ Automation Triggers:
 
 
 Automation Actions
-
 .. _ds3231-set_alarm_1:
 
 ``ds3231.set_alarm_1`` Action

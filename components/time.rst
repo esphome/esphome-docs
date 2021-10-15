@@ -348,6 +348,83 @@ When a synchronization to another time source was successful, the RTC can be res
             # ... and update the RTC when the synchronization was successful
             ds1307.write_time:
 
+DS3231 Time Source
+------------------
+
+You first need to set up the :doc:`I2C </components/i2c>`and :doc:`DS3231 </components/ds3231>` components.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    time:
+      - platform: ds3231
+        id: ds3231_time
+
+.. _ds3231-write_time:
+
+``ds3231.write_time`` Action
+****************************
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
+
+.. note::
+
+    The DS3231 component will *not* write the RTC clock if not triggered *explicitly* by this action.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3231.write_time
+
+.. _ds3231-read_time_action:
+
+``ds3231.read_time`` Action
+***************************
+
+This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
+
+.. note::
+
+    The DS3231 component will automatically read the RTC clock every 15 minutes by default and synchronize the
+    system clock when a valid timestamp was read from the RTC. (The ``update_interval`` can be changed.)
+    This action can be used to trigger *additional* synchronizations.
+
+.. code-block:: yaml
+
+    on_...:
+      - ds3231.read_time
+
+.. _ds3231-config_example:
+
+Configuration Example
+*********************
+
+In a typical setup, you will have at least one additional time source to synchronize the RTC with. Such an
+external time source might not always be available e.g. due to a limited network connection.
+In order to have a valid, reliable system time, the system should read the RTC once at start and then try to
+synchronize with an external reliable time source.
+When a synchronization to another time source was successful, the RTC can be resynchronized.
+
+.. code-block:: yaml
+
+    esphome:
+      on_boot:
+        then:
+          # read the RTC time once when the system boots
+          ds3231.read_time:
+
+    time:
+      - platform: ds3231
+        # repeated synchronization is not necessary unless the external RTC
+        # is much more accurate than the internal clock
+        update_interval: never
+      - platform: homeassistant
+        # instead try to synchronize via network repeatedly ...
+        on_time_sync:
+          then:
+            # ... and update the RTC when the synchronization was successful
+            ds3231.write_time:
+
 Use In Lambdas
 --------------
 
