@@ -55,8 +55,8 @@ Relevant Documentation
   credentials and they must be set by the user via either the ``ap`` + ``captive_portal`` or
   the ``esp32_improv`` components.
 - ``dashboard_import`` -> ``package_import_url`` - This should point to the public repository containing
-  the configuration for the device so that the user's ESPHome dashboard can auto detect this device and
-  create a minimal yaml using :ref:`config-git_packages`.
+  the configuration for the device so that the user's ESPHome dashboard can autodetect this device and
+  create a minimal YAML using :ref:`config-git_packages`.
 
 See Also
 --------
