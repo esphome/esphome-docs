@@ -597,6 +597,7 @@ Misc Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     Demo, components/demo, description.svg
+    DS3231 RTC, components/ds3231, ds3231.jpg
 
 Additional Custom Components
 ----------------------------
