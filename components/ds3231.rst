@@ -1,7 +1,7 @@
 .. _ds3231:
 
 DS3231 RTC
-=======
+==========
 
 .. seo::
     :description: Instructions for setting up a DS3231 Real Time Clock in ESPHome
@@ -47,21 +47,21 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **address** (*Optional*, int): The I²C address of the DS3231. Defaults to ``0x68``.
 - **i2c_id** (*Optional*): The I²C Bus ID
-- **square_wave_mode** (*Optional*, enum): The mode of the square wave output. Defaults to ALARM_INTERRUPT.
+- **square_wave_mode** (*Optional*, enum): The mode of the square wave output. Defaults to ``ALARM_INTERRUPT``.
 
   - ``ALARM_INTERRUPT`` - The square wave output goes high when an alarm with interrupt_enabled set to true is triggered.
   - ``SQUARE_WAVE`` - The square wave output produces a continuous square wave at the specified frequency.
 
-- **square_wave_frequncy** (*Optional*, enum): The frequency of the square wave output. Defaults to 8192Hz.
+- **square_wave_frequncy** (*Optional*, enum): The frequency of the square wave output. Defaults to ``8192HZ``.
 
   - ``1HZ``
   - ``1024HZ``
   - ``4096HZ``
   - ``8192HZ``
 
-- **alarm_1** (*Optional*): The settings for alarm 1
+- **alarm_1** (*Optional*): The settings for alarm 1.
 
-  - **mode** (**Required**, enum): The mode of the alarm
+  - **mode** (**Required**, enum): The mode of the alarm.
 
     - ``EVERY_SECOND`` - Alarm is triggered every second.
     - ``MATCH_SECOND`` - Alarm is triggered everytime the second matches the provided value.
@@ -71,14 +71,14 @@ Configuration variables:
     - ``MATCH_DAY_OF_WEEK_HOUR_MINUTE_SECOND`` - Alarm is triggered everytime the second, minute, hour, and day of the week match the provided values.
 
   - **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is true the square wave output will go high when the alarm is triggered. Defaults to ``false``.
-  - **second** (*Optional*, int) - The second (0-59) the alarm should match on. Defaults to 0.
-  - **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to 0.
-  - **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to 0.
-  - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to 1.
+  - **second** (*Optional*, int) - The second (0-59) the alarm should match on. Defaults to ``0``.
+  - **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to ``0``.
+  - **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to ``0``.
+  - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
 
-- **alarm_2** (*Optional*): The settings for alarm 2
+- **alarm_2** (*Optional*): The settings for alarm 2.
 
-  - **mode** (**Required**, enum): The mode of the alarm
+  - **mode** (**Required**, enum): The mode of the alarm.
 
     - ``EVERY_MINUTE`` - Alarm is triggered every minute.
     - ``MATCH_MINUTE`` - Alarm is triggered everytime the minute matches the provided value.
@@ -87,9 +87,9 @@ Configuration variables:
     - ``MATCH_DAY_OF_WEEK_HOUR_MINUTE`` - Alarm is triggered everytime the minute, hour, and day of the week match the provided values.
 
   - **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is true the square wave output will go high when the alarm is triggered. Defaults to ``false``.
-  - **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to 0.
-  - **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to 0.
-  - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to 1.
+  - **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to ``0``.
+  - **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to ``0``.
+  - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
 
 
 See Also
