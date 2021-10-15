@@ -4,7 +4,7 @@ Sharing ESPHome devices
 .. seo::
     :description: Information for creating and sharing devices using ESPHome firmware.
 
-We have added configuration options to ESPHome to make it easier for everyone
+We have added configuration options to ESPHome to make it easier
 to create, configure, install and distribute devices running ESPHome.
 
 Example configuration
