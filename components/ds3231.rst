@@ -118,7 +118,7 @@ Automation Triggers:
 
 Automation Actions
 
-.. _ds3231-set_alarm_1_action:
+.. _ds3231-set_alarm_1:
 
 ``ds3231.set_alarm_1`` Action
 -----------------------------
@@ -155,7 +155,7 @@ Configuration options:
 - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
 
 
-.. _ds3231-set_alarm_2_action:
+.. _ds3231-set_alarm_2:
 
 ``ds3231.set_alarm_2`` Action
 -----------------------------
@@ -189,7 +189,7 @@ Configuration options:
 - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
 
 
-.. _ds3231-reset_alarm_1_action:
+.. _ds3231-reset_alarm_1:
 
 ``ds3231.reset_alarm_1`` Action
 -------------------------------
@@ -203,7 +203,7 @@ Resets alarm 1 to an untriggered state.
         - fan.ds3231.reset_alarm_1:
 
 
-.. _ds3231-reset_alarm_2_action:
+.. _ds3231-reset_alarm_2:
 
 ``ds3231.reset_alarm_2`` Action
 -------------------------------
