@@ -3,9 +3,9 @@ Using With Sonoff 4CH R3
 
 .. seo::
     :description: Instructions for putting Sonoff 4CH R3 devices into flash mode and installing ESPHome on them.
-    :image: sonoff_4ch.jpg
+    :image: sonoff_4ch_r3.jpg
 
-ESPHome can also be used with Sonoff 4CH wireless switches. These devices are
+ESPHome can also be used with Sonoff 4CH R3 wireless switches. These devices are
 basically just an ESP8266 chip with 4 relays to control power output, a few buttons on the
 top and a few status LEDs.
 
@@ -43,7 +43,7 @@ interface.
 
 For this guide you will need:
 
-- Sonoff 4CH R3 😉.
+- Sonoff 4CH R3 or 4CH Pro R3 😉.
 - A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins.

@@ -111,6 +111,8 @@ Technically, all ESP8266/ESP32 devices are supported by ESPHome.
     NodeMCU ESP32, devices/nodemcu_esp32, nodemcu_esp32.jpg
     Sonoff S20, devices/sonoff_s20, sonoff_s20.jpg
     Sonoff 4CH, devices/sonoff_4ch, sonoff_4ch.jpg
+    Sonoff 4CH, devices/sonoff_4ch, sonoff_4ch.jpg
+    Sonoff 4CH R3, devices/sonoff_4ch_r3, sonoff_4ch_r3.jpg
 
     Generic Sonoff, devices/sonoff, sonoff.svg
     Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
