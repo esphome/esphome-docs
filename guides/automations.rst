@@ -339,6 +339,7 @@ All Triggers
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
+- :ref:`ds3231.on_alarm_1 <ds3231-on_alarm_1>` / :ref:`ds3231.on_alarm_2 <ds3231-on_alarm_2>`
 
 All Actions
 -----------
@@ -382,6 +383,8 @@ All Actions
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`number.set <number-set_action>`
+- :ref:`ds3231.set_alarm_1 <ds3231-set_alarm_1>` / :ref:`ds3231.set_alarm_2 <ds3231-set_alarm_2>`
+- :ref:`ds3231.reset_alarm_1 <ds3231-reset_alarm_1>` / :ref:`ds3231.reset_alarm_2 <ds3231-reset_alarm_2>`
 
 .. _config-condition:
 

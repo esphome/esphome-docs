@@ -25,6 +25,7 @@ that includes 2 alarms, an output that can be triggered by either alarm or outpu
       id: ds3231_cmp
       address: 0x68
       i2c_id: i2c0
+      update_interval: 60s
       square_wave_mode: square_wave
       square_wave_frequency: 1hz
       alarm_1:
@@ -47,6 +48,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **address** (*Optional*, int): The I²C address of the DS3231. Defaults to ``0x68``.
 - **i2c_id** (*Optional*): The I²C Bus ID
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the alarm triggers. Defaults to ``60s``.
 - **square_wave_mode** (*Optional*, enum): The mode of the square wave output. Defaults to ``ALARM_INTERRUPT``.
 
   - ``ALARM_INTERRUPT`` - The square wave output goes high when an alarm with interrupt_enabled set to true is triggered.
@@ -59,7 +61,7 @@ Configuration variables:
   - ``4096HZ``
   - ``8192HZ``
 
-- **alarm_1** (*Optional*): The settings for alarm 1.
+- **alarm_1** (*Optional*): The configuration for alarm 1.
 
   - **mode** (**Required**, enum): The mode of the alarm.
 
@@ -70,13 +72,13 @@ Configuration variables:
     - ``MATCH_DAY_OF_MONTH_HOUR_MINUTE_SECOND`` - Alarm is triggered everytime the second, minute, hour, and day of the month match the provided values.
     - ``MATCH_DAY_OF_WEEK_HOUR_MINUTE_SECOND`` - Alarm is triggered everytime the second, minute, hour, and day of the week match the provided values.
 
-  - **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is true the square wave output will go high when the alarm is triggered. Defaults to ``false``.
+  - **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is ``ALARM_INTERRUPT`` the square wave output will go high when the alarm is triggered. Defaults to ``false``.
   - **second** (*Optional*, int) - The second (0-59) the alarm should match on. Defaults to ``0``.
   - **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to ``0``.
   - **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to ``0``.
   - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
 
-- **alarm_2** (*Optional*): The settings for alarm 2.
+- **alarm_2** (*Optional*): The configuration for alarm 2.
 
   - **mode** (**Required**, enum): The mode of the alarm.
 
@@ -86,10 +88,130 @@ Configuration variables:
     - ``MATCH_DAY_OF_MONTH_HOUR_MINUTE`` - Alarm is triggered everytime the minute, hour, and day of the month match the provided values.
     - ``MATCH_DAY_OF_WEEK_HOUR_MINUTE`` - Alarm is triggered everytime the minute, hour, and day of the week match the provided values.
 
-  - **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is true the square wave output will go high when the alarm is triggered. Defaults to ``false``.
+  - **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is ``ALARM_INTERRUPT`` the square wave output will go high when the alarm is triggered. Defaults to ``false``.
   - **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to ``0``.
   - **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to ``0``.
   - **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
+
+
+Automation Triggers:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    ds3231:
+      on_alarm_1:
+        - then:
+            - logger.log: Alarm 1 was triggered!
+
+      on_alarm_2:
+        - then:
+            - logger.log: Alarm 2 was triggered!
+
+- **on_alarm_1** (*Optional*, :ref:`Automation <automation>`): An automation to perform when alarm 1 is triggered. Note: This trigger may not happen exactly when the alarm is triggered as it is only checked when the component is updated.
+
+- **on_alarm_2** (*Optional*, :ref:`Automation <automation>`): An automation to perform when alarm 2 is triggered. Note: This trigger may not happen exactly when the alarm is triggered as it is only checked when the component is updated.
+
+
+Automation Actions
+
+.. _ds3231-set_alarm_1_action:
+
+``ds3231.set_alarm_1`` Action
+-----------------------------
+
+Sets the configuration for alarm 1.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - fan.ds3231.set_alarm_1:
+            mode: match_day_of_week_hour_minute_second
+            interrupt_enabled: false
+            second: 1
+            minute: 2
+            hour: 3
+            day: 4
+
+Configuration options:
+
+- **mode** (**Required**, enum): The mode of the alarm.
+
+  - ``EVERY_SECOND`` - Alarm is triggered every second.
+  - ``MATCH_SECOND`` - Alarm is triggered everytime the second matches the provided value.
+  - ``MATCH_MINUTE_SECOND`` - Alarm is triggered everytime the second and minute match the provided values.
+  - ``MATCH_HOUR_MINUTE_SECOND`` - Alarm is triggered everytime the second, minute, and hour match the provided values.
+  - ``MATCH_DAY_OF_MONTH_HOUR_MINUTE_SECOND`` - Alarm is triggered everytime the second, minute, hour, and day of the month match the provided values.
+  - ``MATCH_DAY_OF_WEEK_HOUR_MINUTE_SECOND`` - Alarm is triggered everytime the second, minute, hour, and day of the week match the provided values.
+
+- **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is ``ALARM_INTERRUPT`` the square wave output will go high when the alarm is triggered. Defaults to ``false``.
+- **second** (*Optional*, int) - The second (0-59) the alarm should match on. Defaults to ``0``.
+- **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to ``0``.
+- **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to ``0``.
+- **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
+
+
+.. _ds3231-set_alarm_2_action:
+
+``ds3231.set_alarm_2`` Action
+-----------------------------
+
+Sets the configuration for alarm 2.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - fan.ds3231.set_alarm_2:
+            mode: match_day_of_month_hour_minute
+            interrupt_enabled: false
+            minute: 2
+            hour: 3
+            day: 4
+
+Configuration options:
+
+- **mode** (**Required**, enum): The mode of the alarm.
+
+  - ``EVERY_MINUTE`` - Alarm is triggered every minute.
+  - ``MATCH_MINUTE`` - Alarm is triggered everytime the minute matches the provided value.
+  - ``MATCH_HOUR_MINUTE`` - Alarm is triggered everytime the minute, and hour match the provided values.
+  - ``MATCH_DAY_OF_MONTH_HOUR_MINUTE`` - Alarm is triggered everytime the minute, hour, and day of the month match the provided values.
+  - ``MATCH_DAY_OF_WEEK_HOUR_MINUTE`` - Alarm is triggered everytime the minute, hour, and day of the week match the provided values.
+
+- **interrupt_enabled** (*Optional*, boolean) - If true and square_wave_mode is ``ALARM_INTERRUPT`` the square wave output will go high when the alarm is triggered. Defaults to ``false``.
+- **minute** (*Optional*, int) - The minute (0-59) the alarm should match on. Defaults to ``0``.
+- **hour** (*Optional*, int) - The hour (0-23) the alarm should match on. Defaults to ``0``.
+- **day** (*Optional*, int) - The day of month (1-31) or day of week (1-7) the alarm should match on. Defaults to ``1``.
+
+
+.. _ds3231-reset_alarm_1_action:
+
+``ds3231.reset_alarm_1`` Action
+-------------------------------
+
+Resets alarm 1 to an untriggered state.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - fan.ds3231.reset_alarm_1:
+
+
+.. _ds3231-reset_alarm_2_action:
+
+``ds3231.reset_alarm_2`` Action
+-------------------------------
+
+Resets alarm 2 to an untriggered state.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - fan.ds3231.reset_alarm_2:
 
 
 See Also
