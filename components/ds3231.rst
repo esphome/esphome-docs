@@ -96,6 +96,9 @@ Configuration variables:
 
 Automation Triggers:
 
+.. _ds3231-on_alarm_1:
+.. _ds3231-on_alarm_2:
+
 .. code-block:: yaml
 
     # Example configuration entry
