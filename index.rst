@@ -69,7 +69,7 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
                 </li>
                 <li>
                     <a class="reference" href="/guides/creators.html">
-                        Creating a Project
+                        Sharing ESPHome devices
                     </a>
                 </li>
                 <li>
