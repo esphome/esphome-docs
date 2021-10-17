@@ -161,6 +161,13 @@ Beta Fixes
 - Fix: Color modes not being correctly used in light partitions :esphomepr:`2513` by :ghuser:`paulmonigatti`
 - Don't define UART_SELECTION_UART2 when UART2 is unavailable :esphomepr:`2512` by :ghuser:`oxan`
 - Remove BME680_BSEC test :esphomepr:`2518` by :ghuser:`paulmonigatti`
+- Add pressure compensation during runtime :esphomepr:`2493` by :ghuser:`martgras`
+- Fix Nextion HTTPClient error for ESP32 :esphomepr:`2524` by :ghuser:`kbx81`
+- Fix bug in register name definition :esphomepr:`2526` by :ghuser:`martgras`
+- Replace framework version_hint with source option :esphomepr:`2529` by :ghuser:`oxan`
+- Fix bitshift on read in ADE7953 :esphomepr:`2537` by :ghuser:`oxan`
+- Allow downloading all bin files from backend in dashboard :esphomepr:`2514` by :ghuser:`jesserockz`
+- Bump dashboard to 20211015.0 :esphomepr:`2525` by :ghuser:`balloob`
 
 All changes
 ^^^^^^^^^^^
@@ -346,6 +353,13 @@ All changes
 - Fix: Color modes not being correctly used in light partitions :esphomepr:`2513` by :ghuser:`paulmonigatti`
 - Don't define UART_SELECTION_UART2 when UART2 is unavailable :esphomepr:`2512` by :ghuser:`oxan`
 - Remove BME680_BSEC test :esphomepr:`2518` by :ghuser:`paulmonigatti`
+- Add pressure compensation during runtime :esphomepr:`2493` by :ghuser:`martgras`
+- Fix Nextion HTTPClient error for ESP32 :esphomepr:`2524` by :ghuser:`kbx81`
+- Fix bug in register name definition :esphomepr:`2526` by :ghuser:`martgras`
+- Replace framework version_hint with source option :esphomepr:`2529` by :ghuser:`oxan`
+- Fix bitshift on read in ADE7953 :esphomepr:`2537` by :ghuser:`oxan`
+- Allow downloading all bin files from backend in dashboard :esphomepr:`2514` by :ghuser:`jesserockz`
+- Bump dashboard to 20211015.0 :esphomepr:`2525` by :ghuser:`balloob`
 
 Past Changelogs
 ---------------
