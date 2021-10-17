@@ -66,6 +66,7 @@ When the ``RGB`` color mode is active, the white leds are turned off, and when t
 the RGB leds are turned off. Switching between these modes can be done from the Home Assistant interface, or by using
 the ``color_mode`` option of the :ref:`light control actions <light-turn_on_action>`.
 
+
 Configuration variables:
 ------------------------
 
