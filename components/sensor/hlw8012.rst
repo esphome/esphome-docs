@@ -16,10 +16,6 @@ with the :doc:`CSE7766 <cse7766>` integration.
 
     SAFETY HAZARD: Some devices such as Sonoff POWs/Shelly/etc, have the digital GND connected directly to mains voltage so **the GPIOs become LIVE during normal operation**. Our advice is to mark these boards to prevent any use of the dangerous digital pins.
 
-.. note::
-
-    SAFETY HAZARD: Some devices such as Sonoff POWs/Shelly/etc, have the digital GND connected directly to mains voltage so **the GPIOs become LIVE during normal operation**. Our advice is to mark these boards to prevent any use of the dangerous digital pins.
-
 This sensor has two data outputs which both encode values using the frequency of a modulated signal: CF and CF1.
 CF's frequency is proportional to the (active) power measured and CF1 is proportional to the current/voltage. Using
 the SEL pin, one can choose between which mode to use.
