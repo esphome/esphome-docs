@@ -1,10 +1,10 @@
-Using ESPHome for your Project
-==============================
+Sharing ESPHome devices
+=======================
 
 .. seo::
-    :description: Information for creators when using ESPHome firmware.
+    :description: Information for creating and sharing devices using ESPHome firmware.
 
-We have added configuration options to ESPHome to make it easier for creators
+We have added configuration options to ESPHome to make it easier
 to create, configure, install and distribute devices running ESPHome.
 
 Example configuration
@@ -23,6 +23,10 @@ Example configuration
       project:
         name: jesse.temperature_monitor
         version: "1.0"
+
+    # This should point to the public location of this yaml file.
+    dashboard_import:
+      package_import_url: github://jesserockz/dummy-esphome-configs@v1/temperature-monitor.yaml
 
     wifi:
       # Set up a wifi access point
@@ -50,6 +54,9 @@ Relevant Documentation
 - ``wifi`` -> ``networks: []`` allows you to flash a device that will not contain any
   credentials and they must be set by the user via either the ``ap`` + ``captive_portal`` or
   the ``esp32_improv`` components.
+- ``dashboard_import`` -> ``package_import_url`` - This should point to the public repository containing
+  the configuration for the device so that the user's ESPHome dashboard can autodetect this device and
+  create a minimal YAML using :ref:`config-git_packages`.
 
 See Also
 --------

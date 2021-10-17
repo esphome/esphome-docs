@@ -58,6 +58,7 @@ Configuration variables:
 - **pin** (*Optional*, int): The pin for the device, as
   set in the app. The default is usually printed on the
   device. Defaults to ``8888``.
+- **invert_position** (*Optional*, boolean): Inverts the position value to and from the device. Set if ESPHome is swapping around the open/close state of the cover.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
