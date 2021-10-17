@@ -6,7 +6,7 @@ Using With Sonoff T1 UK 3 Gang
     :image: sonoff_t1_uk_3g_v1.1.jpg
 
 ESPHome can also be used with Sonoff T1 UK 3 Gang wireless switches. These devices are
-basically just an ESP8266 chip with 3 relays to control power output ant three backlit capacitive touch buttons to control the relays.
+basically just an ESP8266 chip with 3 relays to control power output and three backlit capacitive touch buttons to control the relays.
 
 .. note::
 
@@ -48,7 +48,7 @@ interface.
 For this guide you will need:
 
 - Sonoff T1 UK 3 Gang 😉
-- An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
+- A USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins and to connect GPIO0 to the Ground.
 - Computer running ESPHome or Hass.io add-on.
@@ -69,7 +69,7 @@ supplied with the Sonoff T1 UK 3 Gang before doing this step.
     plugged in before doing this step.
 
 While the device is not plugged in, turn the device face down and put a narrow flat screwdriver into the slot at the bottom.
-With careful twisting motion detach the face plate.
+With careful twisting motion detach the faceplate.
 
 .. figure:: images/sonoff_t1_uk_3g_back_v1.1.jpg
     :align: center
@@ -84,7 +84,7 @@ This PCB contains the ESP chip and what's left inside the switch body are relays
     :align: center
     :width: 75.0%
 
-    "TOUCH BOARD" with touch pads holds the ESP chip.
+    "TOUCH BOARD" with touchpads holds the ESP chip.
 
 Step 2: Connecting UART
 -----------------------
@@ -119,7 +119,7 @@ Step 3: Creating Firmware
 
 The Sonoff T1 UK 3 Gang is based on the ``ESP8266`` platform (technically it's the ``ESP8285``, but for our purposes
 they're the same) and is a subtype of the ``esp01_1m`` board.
-With this information, you can step through the ESPHome wizard (``esphome sonoff_t1_uk_3g.yaml wizard``),
+With this information, you can step through the ESPHome wizard (``esphome sonoff_t1_uk_3g_v1.1.yaml wizard``),
 or alternatively, you can just take the below configuration file and modify it to your needs.
 
 .. code-block:: yaml
@@ -158,12 +158,12 @@ To put ESP8266 into flash mode you need to connect ``GPIO0`` to ``GND`` when the
 This is a tricky process with T1 and the best way to do it is to use a wire with pins on either side.
 To do this, while the device is UART bridge is not connected to your USB port, flip the PCB over,
 take a wire and connect the second Ground hole on the PCB (red) to the third from the right bottom leg on the chip as depicted below (yellow) -
-that leg is connected to the GPIO0 on ESP and plug the UART to your USB port.
+that leg is connected to the ``GPIO0`` on ESP and plug the UART to your USB port.
 
-Keep holding  GND and GPIO0 connected for 2-4 seconds. The T1 UK 3 Gang should now be in a flash mode and should not blink with any LED.
+Keep holding ``GND`` and ``GPIO0`` connected for 2-4 seconds. The T1 UK 3 Gang should now be in a flash mode and should not blink with any LED.
 The touchpads may light up.
 
-.. figure:: images/sonoff_t1_uk_3g_back_plate_v1.1.jpg
+.. figure:: images/sonoff_t1_uk_3g_backplate_v1.1.jpg
     :align: center
 
     Connect red and yellow contacts while powering the board.
@@ -295,7 +295,7 @@ them in one area, and simply pass that ID later on. For example, above you can s
 output being created with the ID ``blue_led`` for the blue LED. Later on it is then transformed
 into a :doc:`monochromatic light </components/light/monochromatic>`.
 If you additionally want the buttons to control the relays, look at `the complete Sonoff T1 UK 3 Gang
-with automation example <https://github.com/OttoWinter/esphomedocs/blob/current/devices/sonoff_t1_uk_3gang_v1.1.yaml>`__.
+with automation example <https://github.com/esphome/esphome-docs/blob/current/devices/sonoff_t1_uk_3gang_v1.1.yaml>`__.
 
 Step 6: Finishing Up
 --------------------

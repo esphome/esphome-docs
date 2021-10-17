@@ -54,8 +54,7 @@ exposes all of the basic functions.
     esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
-      board: esp8285
-      arduino_version: 2.4.2
+      board: esp01_1m
 
     wifi:
       ssid: <YOUR_SSID>
@@ -271,4 +270,4 @@ See Also
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_s20`
 - `GPIO locations <https://github.com/arendst/Sonoff-Tasmota/wiki/GPIO-Locations>`__
-- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/esphomeyaml/devices/sonoff_basic.rst>`__
+- `Edit this page on GitHub <https://github.com/OttoWinter/esphomedocs/blob/current/devices/sonoff_basic.rst>`__

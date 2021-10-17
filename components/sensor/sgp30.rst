@@ -43,7 +43,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x58``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
@@ -51,8 +51,11 @@ Configuration variables:
 
 Advanced:
 
-- **baseline** (*Optional*, int): The baseline value for the unit, for calibration
-  purposes. See :ref:`sgp30-calibrating` for more info.
+- **baseline** (*Optional*): The block containing baselines for calibration purposes. See :ref:`sgp30-calibrating` for more info.
+
+  - **eco2_baseline** (**Required**, int): The eCO2 baseline for calibration purposes.
+
+  - **tvoc_baseline** (**Required**, int): The TVOC baseline for calibration purposes.
 
 - **compensation** (*Optional*): The block containing sensors used for compensation.
 
@@ -67,7 +70,7 @@ Advanced:
 Calibrating Baseline
 --------------------
 
-The SGP30 sensor will re-calibrate its baseline each time it is powered on. During the first power-up this can take upto 12 hours.
+The SGP30 sensor will re-calibrate its baseline each time it is powered on. During the first power-up this can take up to 12 hours.
 
 For best performance and faster startup times, the current **baseline** needs to be persistently stored on the device before shutting it down and set again accordingly after boot up
 that also means that if the sensor reboots at a time when the air is less clean than normal,
@@ -75,7 +78,7 @@ the values will have a constant offset and cannot be compared to the values befo
 boot.
 
 To do this, let the sensor boot up with no baseline set and let the sensor calibrate itself. After around 12 hours you can then view the remote logs on the ESP. The next
-time the sensor is read out, you will see a log message with something like ``Current eCO2 & TVOC baseline: 0x44D4``.
+time the sensor is read out, you will see a log message with something like ``Current eCO2 baseline: 0x86C5, TVOC baseline: 0x8B38``.
 
 Now set the baseline property in your configuration file like so with the value you got
 via the logs:
@@ -86,7 +89,9 @@ via the logs:
     sensor:
       - platform: sgp30
         # ...
-        baseline: 0x44D4
+        baseline:
+          eco2_baseline: 0x86C5
+          tvoc_baseline: 0x8B38
 
 The next time you upload the code, the SGP30 will be continue its operation with this baseline and you will get consistent values.
 
@@ -101,5 +106,6 @@ See Also
 - :doc:`dht12`
 - :doc:`hdc1080`
 - :doc:`htu21d`
+- :doc:`sht3xd`
 - :apiref:`sgp30/sgp30.h`
 - :ghedit:`Edit`

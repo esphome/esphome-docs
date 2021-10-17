@@ -60,12 +60,20 @@ Configuration variables:
 - **red** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the red channel.
 - **green** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the green channel.
 - **blue** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the blue channel.
-- **cold_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the cold white channel.
-- **warm_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the warm white channel.
-- **cold_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the cold white channel.
-- **warm_white_color_temperature** (**Required**, float): The color temperate (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin)
-  of the warm white channel.
+- **cold_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the cold
+  white channel.
+- **warm_white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the warm
+  white channel.
+- **cold_white_color_temperature** (**Required**, float): The color temperate (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
+- **warm_white_color_temperature** (**Required**, float): The color temperate (in
+  `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
+- **constant_brightness** (*Optional*, boolean): When enabled, this will keep the overall brightness of the
+  cold and warm white channels constant by limiting the combined output to 100% of a single channel. This
+  reduces the possible overall brightness but is necessary for some power supplies that are not able to run
+  both channels at full brightness at once. Defaults to ``false``.
+- **color_interlock** (*Optional*, boolean): When enabled, this will prevent white leds being on at the same
+  time as RGB leds. See :ref:`rgbw_color_interlock` for more information. Defaults to ``false``.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.

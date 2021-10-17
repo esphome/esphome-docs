@@ -1,8 +1,13 @@
 _build
+.DS_Store
 
 .python-version
 __pycache__/
 *.py[cod]
 *$py.class
+
+venv
+
+.vscode
 *.DS_Store
 /.idea/

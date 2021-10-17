@@ -6,7 +6,7 @@ Neopixelbus Light
     :image: color_lens.png
 
 The ``neopixelbus`` light platform allows you to create RGB lights
-in ESPHome for a individually addressable lights like NeoPixel or WS2812.
+in ESPHome for an individually addressable lights like NeoPixel or WS2812.
 
 It is very similar to the :doc:`fastled` platform.
 in fact most addressable lights are supported through both light platforms. The
@@ -65,6 +65,7 @@ Configuration variables:
   - ``BIT_BANG`` (can flicker a bit)
 
 - **num_leds** (**Required**, int): The number of LEDs attached.
+- **invert** (*Optional*, boolean): Invert data output, for use with n-type transistor. Defaults to ``no``.  
 
 **Pin Options:** Some chipsets have two data pins to connect, others only have one.
 If you have one line, only specify ``pin``, otherwise specify both ``clock_pin`` and ``data_pin``.

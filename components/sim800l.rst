@@ -40,6 +40,9 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
 
+    logger:
+      baud_rate: 0 # disable uart logger on esp 8266
+
 Configuration variables:
 ------------------------
 
@@ -156,6 +159,23 @@ To trigger the automation from Home Assistant you can invoke the service with th
         data:
           recipient: "+15551234567"
           message: "Hello World!"
+
+
+Relay management commands received from an authorized sender:
+
+.. code-block:: yaml
+
+    sim800l:
+      on_sms_received:
+      - lambda: |-
+          if ( (id(sms_sender).state == "+79991234567") && ( (id(sms_message).state == "relay_1_on") OR (id(sms_message).state == "Relay_1_on") ) ) {
+            id(relay_1).turn_on();
+          }
+    switch:
+      - platform: gpio
+        id: relay_1
+        pin: 0
+
 
 See Also
 --------

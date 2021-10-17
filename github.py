@@ -38,7 +38,7 @@ DOXYGEN_LOOKUP = {}
 for s in string.ascii_lowercase + string.digits:
     DOXYGEN_LOOKUP[s] = s
 for s in string.ascii_uppercase:
-    DOXYGEN_LOOKUP[s] = '_{}'.format(s)
+    DOXYGEN_LOOKUP[s] = '_{}'.format(s.lower())
 DOXYGEN_LOOKUP[':'] = '_1'
 DOXYGEN_LOOKUP['_'] = '__'
 DOXYGEN_LOOKUP['.'] = '_8'
@@ -74,6 +74,15 @@ def apiclass_role(name, rawtext, text, lineno, inliner, options=None,
     if text is None:
         text = value
     ref = '/api/classesphome_1_1{}.html'.format(encode_doxygen(value))
+    return [make_link_node(rawtext, text, ref, options)], []
+
+
+def apistruct_role(name, rawtext, text, lineno, inliner, options=None,
+                  content=None):
+    text, value = split_text_value(text)
+    if text is None:
+        text = value
+    ref = '/api/structesphome_1_1{}.html'.format(encode_doxygen(value))
     return [make_link_node(rawtext, text, ref, options)], []
 
 
@@ -268,6 +277,7 @@ def setup(app):
     app.add_role('ghuser', ghuser_role)
     app.add_role('apiref', apiref_role)
     app.add_role('apiclass', apiclass_role)
+    app.add_role('apistruct', apistruct_role)
     app.add_role('ghedit', ghedit_role)
     app.add_directive('imgtable', ImageTableDirective)
     app.add_directive('pintable', PinTableDirective)

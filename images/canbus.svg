@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="135mm"
+   height="60mm"
+   viewBox="0 0 135 60"
+   version="1.1"
+   id="svg100"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="canbus.svg">
+  <defs
+     id="defs94" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="377.23571"
+     inkscape:cy="206.93478"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata97">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Laag 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-237)">
+    <path
+       d="m 16.440094,239.55732 100.197636,-0.82276 c 7.87458,-0.0647 14.25779,8.06718 14.25779,18.01748 v 19.94787 c 0,9.9503 -6.38398,17.95186 -14.25779,18.01651 l -100.197636,0.82277 c -7.8745723,0.0647 -14.2585483,-8.0662 -14.2585483,-18.0165 v -19.94792 c 0,-9.95124 6.383809,-18.01745 14.2577863,-18.01745 z"
+       id="path69"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssssssssc"
+       style="stroke-width:0.85861504" />
+    <path
+       d="m 16.440094,239.55732 100.342446,-0.33525 c 7.87473,-0.0255 14.25779,8.06715 14.25779,18.01745 v 19.94792 c 0,9.9503 -6.38383,17.9902 -14.25779,18.01649 l -100.342446,0.33526 c -7.8747113,0.0255 -14.2585483,-8.0662 -14.2585483,-18.0165 v -19.94792 c 0,-9.95124 6.383809,-18.01745 14.2577863,-18.01745 z"
+       stroke-miterlimit="10"
+       id="path71"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:1.14453387;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+       sodipodi:nodetypes="cssssssssc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36.63424301px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.85861504"
+       x="19.823954"
+       y="250.492"
+       id="text114"
+       transform="scale(0.8895678,1.1241414)"><tspan
+         sodipodi:role="line"
+         id="tspan112"
+         x="19.823954"
+         y="250.492"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36.63424301px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#ffffff;stroke-width:0.85861504">CAN</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.48880768px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.86666292"
+       x="-352.34537"
+       y="87.275421"
+       id="text118"
+       transform="matrix(0,-0.80144605,1.2477446,0,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan116"
+         x="-352.34537"
+         y="87.275421"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.48880768px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#ffffff;stroke-width:0.86666292">BUS</tspan></text>
+  </g>
+</svg>

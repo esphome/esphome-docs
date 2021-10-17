@@ -439,6 +439,82 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: uptime
         name: ${plug_name}_Uptime SensorPreformatted text
 
+3.6 Arlec Grid Connect Smart Plug In Socket With 2.1A USB Charger
+*****************************************************************
+
+.. code-block:: yaml
+
+    substitutions:
+      item_name: "arlec_pc389ha_001"
+
+    esphome:
+      name: ${item_name}
+      platform: ESP8266
+      board: esp01_1m
+
+    wifi:
+      ssid: 'WIFI'
+      password: 'WIFIPASS'
+
+      # Enable fallback hotspot (captive portal) in case wifi connection fails
+      ap:
+        ssid: ${item_name}
+
+    captive_portal:
+
+    # Enable logging
+    logger:
+
+    # Enable Home Assistant API
+    api:
+
+    ota:
+
+    binary_sensor:
+      - platform: gpio
+        pin:
+          number: 14
+          mode: INPUT_PULLUP
+          inverted: true
+        name: "${item_name}_button"
+        on_press:
+          - switch.toggle: relay
+
+      - platform: status
+        name: "${item_name}_status"
+
+    switch:
+      - platform: gpio
+        id: blue_led
+        pin:
+          number: GPIO4
+          inverted: true
+
+      - platform: gpio
+        id: red_led
+        pin:
+          number: GPIO13
+          inverted: true
+
+      - platform: gpio
+        name: "${item_name}_power"
+        pin: GPIO12
+        id: relay
+        on_turn_on:
+          # Turn off blue LED to show blue when turned on
+          - switch.turn_off: red_led
+          - switch.turn_on: blue_led
+        on_turn_off:
+          # Turns on the blue LED once the plug is turned off
+          - switch.turn_off: blue_led
+          - switch.turn_on: red_led
+
+    sensor:
+      - platform: wifi_signal
+        name: "${item_name}_wifi_signal"
+        update_interval: 60s
+        
+
 4. Adding to Home Assistant
 ---------------------------
 

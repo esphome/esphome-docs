@@ -107,7 +107,7 @@ For me to fix the issue quickly, there are some things that would be really help
     help given just that information?
 2.  A snippet of the code/configuration file used is always great to reproduce this issue.
     Please read `How to create a Minimal, Complete, and Verifiable example <https://stackoverflow.com/help/mcve>`__.
-3.  If it's an I^2C or hardware communication issue please also try setting the
+3.  If it's an I²C or hardware communication issue please also try setting the
     :ref:`log level <logger-log_levels>` to ``VERY_VERBOSE`` as it provides helpful information
     about what is going on.
 4.  Please also include what you've already tried and didn't work as that can help us track down the issue.
@@ -220,8 +220,8 @@ Some steps that can help with the issue:
 - The issue seems to happen with cheap boards more frequently. Especially the "cheap" NodeMCU
   boards from eBay which sometimes have quite bad antennas.
 - ESPHome reboots on purpose when something is not going right, e.g.
-  :doc:`wifi connetion cannot be made </components/wifi>` or
-  :doc:`api connetion is lost </components/api>` or
+  :doc:`wifi connection cannot be made </components/wifi>` or
+  :doc:`api connection is lost </components/api>` or
   :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
   to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
 
@@ -256,8 +256,12 @@ Command reference:
     # Map /dev/ttyUSB0 into container
     docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
 
-    # Start dashboard on port 6052
+    # Start dashboard on port 6052 (general command)
+    # Warning: this command is currently not working with Docker on MacOS. (see note below)
     docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome
+
+    # Start dashboard on port 6052 (MacOS specific command)
+    docker run --rm -p 6052:6052 -e ESPHOME_DASHBOARD_USE_PING=true -v "${PWD}":/config -it esphome/esphome
 
     # Setup a bash alias:
     alias esphome='docker run --rm -v "${PWD}":/config --net=host -it esphome/esphome'
@@ -282,6 +286,10 @@ And a docker compose file looks like this:
 
     ESPHome uses mDNS to show online/offline state in the dashboard view. So for that feature
     to work you need to enable host networking mode
+
+    On MacOS the networking mode ("-net=host" option) doesn't work as expected. You have to use
+    another way to launch the dashboard with a port mapping option and use alternative to mDNS
+    to have the online/offline stat (see below)
 
     mDNS might not work if your Home Assistant server and your ESPHome nodes are on different subnets.
     If your router supports Avahi, you are able to get mDNS working over different subnets.

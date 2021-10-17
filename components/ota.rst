@@ -7,14 +7,14 @@ OTA Update Component
     :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
 
 With the OTA (Over The Air) update component you can upload your
-firmware binaries to your node without having to use an USB cable for
+firmware binaries to your node without having to use a USB cable for
 uploads. ESPHome natively supports this through its ``run`` and
 ``upload`` helper scripts.
 
 ESPHome also has an "OTA safe mode". If for some reason your
 node gets into a boot loop, ESPHome will automatically try to detect
-this and will go over into a safe mode after 10 unsuccessful boot
-attempts. In that mode, all components are disabled and only Serial
+this and will go over into a safe mode after the configured unsuccessful boot
+attempts (Defaults to ``10``). In that mode, all components are disabled and only Serial
 Logging+WiFi+OTA are initialized, so that you can upload a new binary.
 
 .. code-block:: yaml
@@ -33,6 +33,9 @@ Configuration variables:
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+-  **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when in
+   safe mode. Defaults to ``5min``.
+-  **num_attempts** (*Optional*, int): The number of attempts to wait before entering safe mode. Defaults to ``10``.
 
 .. note::
 

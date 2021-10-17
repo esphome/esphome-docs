@@ -56,8 +56,24 @@ Configuration variables:
 - **blue** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the blue channel.
 - **white** (**Required**, :ref:`config-id`): The id of the float :ref:`output` to use for the white channel.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
+- **color_interlock** (*Optional*, boolean): When enabled, this will prevent white leds being on at the same
+  time as RGB leds. See :ref:`rgbw_color_interlock` for more information. Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.
+
+.. _rgbw_color_interlock:
+
+Color Interlock
+***************
+
+With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will have an undesired
+hue affect. Additionally, the brightness command may not work as expected depending upon configuration,
+leaving users to adjust the white component level separately. For these cases a new configration variable
+has been added: color_interlock.
+
+Setting this variable to True will turn off RGB leds when white value is above 0 (or if they are to 255,255,255)
+and turn off white leds if color is not set to 255,255,255. This also allows the brightness parameter to
+control the intensity of the white leds.
 
 See Also
 --------

@@ -45,7 +45,7 @@ The configuration is made up of two parts: The central component, and individual
 
 Base Configuration:
 
-- **address** (*Optional*, integer): The I^2C address of the sensor. Defaults to ``0x5A``.
+- **address** (*Optional*, integer): The I²C address of the sensor. Defaults to ``0x5A``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
 - **touch_debounce** (*Optional*, integer): The minimum length before a touch is recognized. Range is from 0 to 7.
   Defaults to 0.
@@ -58,6 +58,7 @@ Base Configuration:
 Binary Sensor Configuration:
 
 - **name** (**Optional**, string): The name for the binary sensor.
+- **mpr121_id** (*Optional*, :ref:`config-id`): The ID of the MPR121 defined above. Useful for multiple MPR121's on the I²C bus
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **channel** (*Required*, integer): The channel number at the MPR121 the touchkey is connected to.
 - **touch_threshold** (*Optional*, integer): A per-channel override of the global touch_threshold value. If not specified, uses the global value.

@@ -92,7 +92,7 @@ This action makes the given deep sleep component enter deep sleep immediately.
 -----------------------------
 
 This action prevents the given deep sleep component from entering deep sleep.
-Useful for
+Useful for keeping the ESP active during data transfer or OTA updating (See note below for more information).
 
 .. code-block:: yaml
 
@@ -111,7 +111,9 @@ Useful for
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
-    ``OFF``. Note that the device won't enter deep sleep again until the next reboot.
+    ``OFF``. To enter the the deep sleep again after the OTA update send a message on the topic ``livingroom/sleep_mode`` 
+    with payload ``ON``. Deep sleep will start immediately. Don't forget to delete the payload before the node
+    wakes up again.
 
     .. code-block:: yaml
 
@@ -121,10 +123,14 @@ Useful for
         mqtt:
           # ...
           on_message:
-            topic: livingroom/ota_mode
-            payload: 'ON'
-            then:
-              - deep_sleep.prevent: deep_sleep_1
+            - topic: livingroom/ota_mode
+              payload: 'ON'
+              then:
+                - deep_sleep.prevent: deep_sleep_1
+            - topic: livingroom/sleep_mode
+              payload: 'ON'
+              then:
+                - deep_sleep.enter: deep_sleep_1
 
 See Also
 --------

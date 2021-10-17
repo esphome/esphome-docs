@@ -41,6 +41,11 @@ Configuration variables:
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
+- **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the light is turned on. See :ref:`light-on_turn_on_off_trigger`.
+- **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the light is turned off. See :ref:`light-on_turn_on_off_trigger`.
+
 Additional Configuration variables for addressable lights:
 
 - **color_correct** (*Optional*, list of float): Apply a color correction to each color channel.
@@ -59,7 +64,7 @@ Advanced options:
 .. _light-toggle_action:
 
 ``light.toggle`` Action
------------------------
+***********************
 
 This action toggles a light with the given ID when executed.
 
@@ -91,7 +96,7 @@ Configuration options:
 .. _light-turn_on_action:
 
 ``light.turn_on`` Action
-------------------------
+************************
 
 This action turns a light with the given ID on when executed.
 
@@ -161,7 +166,7 @@ Configuration options:
 .. _light-turn_off_action:
 
 ``light.turn_off`` Action
--------------------------
+*************************
 
 This action turns a light with the given ID off when executed.
 
@@ -196,7 +201,7 @@ Configuration options:
 .. _light-control_action:
 
 ``light.control`` Action
-------------------------
+************************
 
 This :ref:`Action <config-action>` is a generic call to change the state of a light - it
 is essentially just a combination of the turn_on and turn_off calls.
@@ -219,7 +224,7 @@ Configuration options:
 .. _light-dim_relative_action:
 
 ``light.dim_relative`` Action
------------------------------
+*****************************
 
 This :ref:`Action <config-action>` allows you to dim a light that supports brightness
 by a relative amount.
@@ -264,7 +269,7 @@ Configuration options:
 .. _light-addressable_set_action:
 
 ``light.addressable_set`` Action
---------------------------------
+********************************
 
 This :ref:`Action <config-action>` allows you to manually set a range of LEDs on an addressable light
 to a specific color.
@@ -314,6 +319,25 @@ that the light is completely OFF, and ON means that the light is emitting at lea
         condition:
           # Same syntax for is_off
           light.is_on: my_light
+
+
+.. _light-on_turn_on_off_trigger:
+
+``light.on_turn_on`` / ``light.on_turn_off`` Trigger
+****************************************************
+
+This trigger is activated each time the light is turned on or off. It is consistent
+with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
+
+.. code-block:: yaml
+
+    light:
+      - platform: binary # or any other platform
+        # ...
+        on_turn_on:
+        - logger.log: "Light Turned On!"
+        on_turn_off:
+        - logger.log: "Light Turned Off!"
 
 .. _light-effects:
 
@@ -691,8 +715,11 @@ Addressable Lambda Effect
 
 This effect allows you to access each LED individually in a custom light effect.
 
-You're passed in one variable: ``it`` - an :apiclass:`AddressableLight <light::AddressableLight>`
-instance (see API reference for more info).
+Available variables in the lambda:
+
+- **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
+- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
 
 .. code-block:: yaml
 
@@ -719,6 +746,33 @@ instance (see API reference for more info).
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
               it.range(0, 50) = ESPColor::BLACK;
               it.all().fade_to_black(10);
+
+.. code-block:: yaml
+
+    light:
+    - platform: ...
+      effects:
+        - addressable_lambda:
+            name: "My Custom Effect"
+            update_interval: 16ms
+            lambda: |-
+              // Static variables keep their value even when
+              // stopping and starting the effect again
+              static uint16_t progress = 0;
+
+              // normal variables lost their value after each
+              // execution - basically after each update_interval
+              uint16_t changes = 0;
+
+              // To reset static when stopping and starting the effect
+              // again you can use the initial_run variables
+              if (initial_run) {
+                progress = 0;
+                it.all() = ESPColor::BLACK;
+                // optionally do a return so nothing happens until the next update_interval
+                return;
+              }
+
 
 Examples of this API can be found here:
 https://github.com/esphome/esphome/blob/dev/esphome/components/light/addressable_light_effect.h
@@ -762,6 +816,122 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect.
 - **sequence** (*Optional*, :ref:`Action <config-action>`): The actions to perform in sequence
   until the effect is stopped.
+
+E1.31
+*****
+
+This effect enables controlling addressable lights using UDP-based
+E1.31_ protocol.
+
+For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHome.
+
+.. code-block:: yaml
+
+    e131:
+      method: multicast # default: register E1.31 to Multicast group
+
+    light:
+      - platform: neopixelbus
+        num_leds: 189
+        effects:
+          - e131:
+              universe: 1
+              channels: RGB
+
+Configuration variables:
+
+- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
+- **universe** (*Required*, integer): The value of universe, between 1 to 512.
+- **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
+  ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
+
+There are three modes of operation:
+
+- `MONO`: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
+- `RGB`: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
+- `RGBW`: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
+
+If there's more LEDs than allowed per-universe, additional universe will be used.
+In the above example of 189 LEDs, first 170 LEDs will be assigned to 1 universe,
+the rest of 19 LEDs will be automatically assigned to 2 universe.
+
+It is possible to enable multiple light platforms to listen to the same universe concurrently,
+allowing to replicate the behaviour on multiple strips.
+
+The udp port esphome is listenig on is 5568.
+
+.. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
+.. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
+.. _Hyperion.NG: https://github.com/hyperion-project/hyperion.ng
+
+Adalight
+********
+
+This effect enables controlling addressable lights using UART-based
+Adalight_ protocol, allowing to create realtime ambient lighting effects.
+
+Prismatik_ can be used to control addressable lights via Adalight_ protocol
+on ESPHome.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    # Disable logging over USB
+    logger:
+      baud_rate: 0
+
+    # Adalight requires higher RX buffer size
+    # to operate without flickering
+    uart:
+      rx_buffer_size: 1024
+
+    adalight:
+
+    light:
+      - platform: neopixelbus
+        ...
+        effects:
+          - adalight:
+              # uart_id: additional_uart
+
+Configuration variables:
+
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
+.. _Adalight: https://learn.adafruit.com/adalight-diy-ambient-tv-lighting
+.. _Prismatik: https://github.com/psieg/Lightpack
+
+WLED
+****
+
+This effect enables controlling addressable lights using UDP-based
+`UDP Realtime Control`_ protocol used by WLED_, allowing to create realtime ambient
+lighting effects.
+
+Prismatik_ can be used to control addressable lights over network on ESPHome.
+
+.. code-block:: yaml
+
+    wled:
+
+    light:
+      - platform: neopixelbus
+        ...
+        effects:
+          - wled:
+              # port: 21324
+
+Configuration variables:
+
+- **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+
+Currently the following realtime protocols are supported:
+WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.
+
+.. _UDP Realtime Control: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
+.. _WLED: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
+.. _Prismatik: https://github.com/psieg/Lightpack
 
 See Also
 --------

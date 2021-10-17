@@ -13,15 +13,15 @@ page describes them.
 ID
 --
 
-Quite an important aspect of ESPHome are “ids”. They are used to
+Quite an important aspect of ESPHome are “IDs”. They are used to
 connect components from different domains. For example, you define an
-output component together with an id and then later specify that same id
+output component together with an ID and then later specify that same ID
 in the light component. IDs should always be unique within a
 configuration and ESPHome will warn you if you try to use the same
 ID twice.
 
 Because ESPHome converts your configuration into C++ code and the
-ids are in reality just C++ variable names, they must also adhere to
+IDs are in reality just C++ variable names, they must also adhere to
 C++’s naming conventions. `C++ Variable
 names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>`__
 …
@@ -107,6 +107,26 @@ More exotic Pin Modes are also supported, but rarely used:
 -  ``FUNCTION_4``
 -  ``FUNCTION_5`` (only on ESP32)
 -  ``FUNCTION_6`` (only on ESP32)
+
+.. _config-color:
+
+Color
+-----
+
+When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
+A ``color`` component exists for just this purpose:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red: 100%
+        green: 20%
+        blue: 25%
+        white: 0%
+
+RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
+may use all four color elements depending on their capabilities.
 
 .. _config-time:
 
@@ -204,8 +224,147 @@ of nodes inherit:
 
     To hide these base files from the dashboard, you can
 
-    - Place them in a subdirectory (dashboard only shows files in top-level dir)
+    - Place them in a subdirectory (dashboard only shows files in top-level directory)
     - Prepend a dot to the filename, like ``.base.yaml``
+
+.. _command-line-substitutions:
+
+Command line substitutions
+**************************
+
+You can define or override substitutions from the command line by adding e.g. ``-s KEY VALUE``
+which overrides substitution KEY and gives it value VALUE. This can be issued multiple times,
+so e.g. with the following ``example.yaml`` file:
+
+.. code-block:: yaml
+
+    substitutions:
+      name: default
+      platform: ESP8266
+
+    esphome:
+      name: $name
+      platform: $platform
+      board: $board
+
+and the following command:
+
+.. code-block:: bash
+
+    esphome -s name device01 -s board esp01_1m example.yaml config
+
+You will get something like the following output (please note the unchanged ``platform``,
+added ``board``, and overridden ``name`` substitutions):
+
+.. code-block:: yaml
+
+    substitutions:
+      name: device01
+      platform: ESP8266
+      board: esp01_1m
+    esphome:
+      name: device01
+      platform: ESP8266
+      board: esp01_1m
+      includes: []
+      board_flash_mode: dout
+      libraries: []
+      esp8266_restore_from_flash: false
+      build_path: device01
+      platformio_options: {}
+      arduino_version: espressif8266@2.2.3
+
+We can observe here that command line substitutions take precedence over the ones in
+your configuration file. This can be used to create generic 'template' configuration
+files (like the ``example.yaml`` above) which can be used for multiple devices,
+using substitutions which are provided on the command line.
+
+.. _config-packages:
+
+Packages
+--------
+
+Another way to modularize and reuse your configuration is to use packages. This feature allows
+you to put common pieces of configuration in separate files and keep only unique pieces of your
+config in the main yaml file. All definitions from packages will be merged with your main
+config in non-destructive way so you could always override some bits and pieces of package
+configuration.
+
+Consider the following example where the author put common pieces of configuration like WiFi and
+I²C into base files and extends it with some device specific configurations in the main config.
+
+Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
+merged with the services definitions from main config file.
+
+.. code-block:: yaml
+
+    # In config.yaml
+    substitutions:
+      node_name: mydevice
+      device_verbose_name: "My Device"
+
+    packages:
+      wifi: !include common/wifi.yaml
+      device_base: !include common/device_base.yaml
+
+    api:
+      services:
+        - service: start_laundry
+          then:
+            - switch.turn_on: relay
+            - delay: 3h
+            - switch.turn_off: relay
+
+    sensor:
+      - platform: mhz19
+        co2:
+          name: "CO2"
+        temperature:
+          name: "Temperature"
+        update_interval: 60s
+        automatic_baseline_calibration: false
+
+.. code-block:: yaml
+
+    # In wifi.yaml
+    wifi:
+      ssid: "your_ssid"
+      password: !secret wifi_password
+      domain: .yourdomain.lan
+      fast_connect: true
+
+.. code-block:: yaml
+
+    # In device_base.yaml
+    esphome:
+      name: ${node_name}
+      platform: ESP32
+      board: wemos_d1_mini32
+      build_path: ./build/${node_name}
+
+    # I²C Bus
+    i2c:
+      sda: GPIO21
+      scl: GPIO22
+      scan: True
+      frequency: 100kHz
+
+    # Enable logging
+    logger:
+      level: ${log_level}
+
+    api:
+      password: !secret hass_api_key
+      reboot_timeout: 1h
+
+    sensor:
+      - <<: !include common/sensor/uptime.config.yaml
+      - <<: !include common/sensor/wifi_signal.config.yaml
+    binary_sensor:
+      - <<: !include common/binary_sensor/connection_status.config.yaml
+
+    switch:
+      - !include common/switch/restart_switch.config.yaml
 
 See Also
 --------

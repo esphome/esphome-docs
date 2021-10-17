@@ -156,7 +156,9 @@ the state of a light, send a GET request to ``/light/<id>``, for example ``light
    -  **b**: The blue channel of this light. From 0 to 255.
 
 -  **effect**: The currently active effect, only if the light supports effects.
--  **white_value**: The white value of RGBW lights. From 0 to 255.
+-  **white_value**: The white value of RGBW lights. From 0 to 255. Only if the light supports white value.
+-  **color_temp**: The color temperature of the RGBWW light. Between minimum mireds and maximum mireds of the light.
+   Only if the light support color temperature. 
 
 Setting light state can happen through three POST method calls: ``turn_on``, ``turn_off`` and ``toggle``.
 Turn on and off have additional URL encoded parameters that can be used to set other properties. For example

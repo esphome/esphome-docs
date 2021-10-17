@@ -493,7 +493,7 @@ advanced stuff (see the full API Reference for more info).
       ESP_LOGI("main", "Value of my sensor: %f", id(my_sensor).state);
 
 - ``raw_state``: Retrieve the current value of the sensor that has not passed through any filters
-  Is ``NAN`` if no value if no value has been pushed by the sensor itself yet.
+  Is ``NAN`` if no value has been pushed by the sensor itself yet.
 
   .. code-block:: cpp
 

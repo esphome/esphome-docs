@@ -20,7 +20,7 @@ in your configuration.
 Overview
 --------
 
-The module can be powered by the 3.3V output of an NodeMCU. For communication you can connect only
+The module can be powered by the 3.3V output of a NodeMCU. For communication you can connect only
 the ``tx_pin`` of the ``uart`` bus to the module's ``RX`` but if you need feedback of playback active 
 you will also need to connect the ``rx_pin`` to the module's ``TX``.
 For best quality audio a powered stereo speaker can be connected to the modules ``DAC_R``,

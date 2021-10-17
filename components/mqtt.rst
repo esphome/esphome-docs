@@ -334,9 +334,15 @@ Configuration variables:
 
     This action can also be used in :ref:`lambdas <config-lambda>`:
 
+    .. code-block:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
     .. code-block:: cpp
 
-        App.get_mqtt_client()->subscribe("the/topic", [=](const std::string &payload) {
+        id(mqtt_client).subscribe("the/topic", [=](const std::string &payload) {
             // do something with payload
         });
 
@@ -362,7 +368,7 @@ Please note that it's a good idea to check if the key exists in the Json Object 
       # ...
       on_json_message:
         topic: the/topic
-          then:
+        then:
           - light.turn_on:
               id: living_room_lights
 
@@ -397,9 +403,15 @@ Configuration variables:
 
     This action can also be used in :ref:`lambdas <config-lambda>`:
 
+    .. code-block:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
     .. code-block:: cpp
 
-        App.get_mqtt_client()->subscribe_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).subscribe_json("the/topic", [=](JsonObject &root) {
             // do something with JSON-decoded value root
         });
 
@@ -521,6 +533,22 @@ the MQTT broker.
           mqtt.connected:
         then:
           - logger.log: MQTT is connected!
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: yaml
+
+        mqtt:
+          # Give the mqtt component an ID
+          id: mqtt_client
+
+    .. code-block:: cpp
+
+        if (id(mqtt_client)->is_connected()) {
+          // do something if MQTT is connected
+        }
 
 See Also
 --------

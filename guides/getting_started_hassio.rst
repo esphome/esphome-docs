@@ -50,7 +50,7 @@ Dashboard Interface
 Assuming you created your first configuration file with the wizard, let's take a quick
 tour of the ESPHome dashboard interface.
 
-.. figure:: images/hassio_interface.png
+.. figure:: images/dashboard.png
     :align: center
     :width: 95.0%
 
@@ -102,6 +102,9 @@ to the configuration like this:
 
 In above example, we're simply adding a switch that's called "Living Room Dehumidifier" (could control
 anything really, for example lights) and is connected to the pin ``GPIO5``.
+
+Connecting your device to Home Assistant
+----------------------------------------
 
 Now when you go to the Home Assistant "Integrations" screen (under "Configuration" panel), you
 should see the ESPHome device show up in the discovered section (although this can take up to 5 minutes).

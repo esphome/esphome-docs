@@ -87,7 +87,7 @@ Home Assistant, as well as starting services in Home Assistant.
         //     - cycle_duration: integer
         //     - silent: boolean
         //     - string_argument: string
-        //  - The function on_hello_world declared below will attached to the service.
+        //  - The function start_washer_cycle declared below will attached to the service.
         register_service(&MyCustomComponent::on_start_washer_cycle, "start_washer_cycle",
                          {"cycle_duration", "silent", "string_argument"});
 

@@ -118,7 +118,7 @@ Additionally, you have access to two helper methods which will fetch the width a
         # ...
         lambda: |-
           // Draw a circle in the middle of the display
-          it.filled_circle(it.get_width() / 2, it.get_height() / 2);
+          it.filled_circle(it.get_width() / 2, it.get_height() / 2, 20);
 
 
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
@@ -277,7 +277,16 @@ arguments after the format string in the right order.
           // %% - literal % sign
           it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).state, id(humidity).state);
 
+To display a text string from a ``text_sensor``, append ``.c_str()`` to the end of your variable.
 
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
+          
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to
@@ -331,6 +340,17 @@ Configuration variables:
   in your display code.
 - **resize** (*Optional*, int): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
+- **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
+
+  - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
+    per pixel, 8 pixels per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+
+- **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
+
+  - ``NONE``: Every pixel convert to its nearest color.
+  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
 
 .. note::
 
@@ -348,6 +368,63 @@ And then later in code:
         lambda: |-
           // Draw the image my_image at position [x=0,y=0]
           it.image(0, 0, id(my_image));
+
+For binary images the ``image`` method accepts two additional color parameters which can
+be supplied to modify the color used to represent the on and off bits respectively. e.g.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          // Draw the image my_image at position [x=0,y=0]
+          // with front color red and back color blue
+          it.image(0, 0, id(my_image), id(red), id(blue));
+
+You can also use this to invert images in two colors display, use ``COLOR_OFF`` then ``COLOR_ON``
+as the additional parameters.
+
+Animation
+*********
+
+Animation inherits all options from the image component.
+It adds an additional method to change the shown picture of a gif.   
+
+.. code-block:: yaml
+
+    animation:
+      - file: "animation.gif"
+        id: my_animation
+        resize: 100x100
+
+The animation can be rendered just like the image component with the ``image()`` function of the display component.
+
+To show the next frame of the animation call ``id(my_animation).next_frame()``
+This can be combined with all Lambdas:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          //Ingress shown animation Frame.
+          id(my_animation).next_frame();
+          // Draw the animation my_animation at position [x=0,y=0]
+          it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);
+
+.. note::
+
+    To draw the next animation independent of Display draw cycle use an interval:
+
+    .. code-block:: yaml
+
+        interval:
+          - interval: 5s
+              then:
+                lambda: |-
+                  id(my_animation).next_frame();
 
 .. _display-pages:
 

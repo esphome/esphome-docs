@@ -52,6 +52,7 @@ for information on how you can find out the MAC address of a device and track it
     resized. Please flash the ESP32 via USB when adding this to your configuration. After that,
     you can use OTA updates again.
 
+.. _config-esp32_ble_tracker:
 
 Configuration variables:
 ------------------------
@@ -74,6 +75,115 @@ Configuration variables:
     but also drains those devices' power a (tiny) bit more. Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
+
+Automations:
+
+- **on_ble_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a Bluetooth advertising is received. See :ref:`esp32_ble_tracker-on_ble_advertise`.
+- **on_ble_manufacturer_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
+  perform when a Bluetooth advertising with manufcaturer data is received. See
+  :ref:`esp32_ble_tracker-on_ble_manufacturer_data_advertise`.
+- **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
+  perform when a Bluetooth advertising with service data is received. See
+  :ref:`esp32_ble_tracker-on_ble_service_data_advertise`.
+
+ESP32 Bluetooth Low Energy Tracker Automation
+---------------------------------------------
+
+.. _esp32_ble_tracker-on_ble_advertise:
+
+``on_ble_advertise``
+********************
+
+This automation will be triggered when a Bluetooth advertising is received. A variable ``x`` of type
+:apiclass:`esp32_ble_tracker::ESPBTDevice` is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      on_ble_advertise:
+        - mac_address: 11:22:33:44:55:66
+          then:
+            - lambda: |-
+                ESP_LOGD("ble_adv", "New BLE device");
+                ESP_LOGD("ble_adv", "  address: %s", x.address_str().c_str());
+                ESP_LOGD("ble_adv", "  name: %s", x.get_name().c_str());
+                ESP_LOGD("ble_adv", "  Advertised service UUIDs:");
+                for (auto uuid : x.get_service_uuids()) {
+                    ESP_LOGD("ble_adv", "    - %s", uuid.to_string().c_str());
+                }
+                ESP_LOGD("ble_adv", "  Advertised service data:");
+                for (auto data : x.get_service_datas()) {
+                    ESP_LOGD("ble_adv", "    - %s: (length %i)", data.uuid.to_string().c_str(), data.data.size());
+                }
+                ESP_LOGD("ble_adv", "  Advertised manufacturer data:");
+                for (auto data : x.get_manufacturer_datas()) {
+                    ESP_LOGD("ble_adv", "    - %s: (length %i)", data.uuid.to_string().c_str(), data.data.size());
+                }
+
+Configuration variables:
+
+- **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
+- See :ref:`Automation <automation>`.
+
+.. _esp32_ble_tracker-on_ble_manufacturer_data_advertise:
+
+``on_ble_manufacturer_data_advertise``
+**************************************
+
+This automation will be triggered when a Bluetooth advertising with manufcaturer data is received. A
+variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: template
+        name: "BLE Sensor"
+        id: ble_sensor
+
+    esp32_ble_tracker:
+      on_ble_manufacturer_data_advertise:
+        - mac_address: 11:22:33:44:55:66
+          manufacturer_id: 0590
+          then:
+            - lambda: |-
+                if (x[0] != 0x7b || x[1] != 0x61) return;
+                int value = x[2] + (x[3] << 8);
+                id(ble_sensor).publish_state(value);
+
+Configuration variables:
+
+- **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
+- **manufacturer_id** (**Required**, string) 16 bit, 32 bit, or 128 bit BLE Manufacturer ID.
+- See :ref:`Automation <automation>`.
+
+.. _esp32_ble_tracker-on_ble_service_data_advertise:
+
+``on_ble_service_data_advertise``
+*********************************
+
+This automation will be triggered when a Bluetooth advertising with service data is received. A
+variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: template
+        name: "BLE Sensor"
+        id: ble_sensor
+
+    esp32_ble_tracker:
+      on_ble_service_data_advertise:
+        - mac_address: 11:22:33:44:55:66
+          service_uuid: 181A
+          then:
+            - lambda: 'id(ble_sensor).publish_state(x[0]);'
+
+Configuration variables:
+
+- **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
+- **service_uuid** (**Required**, string) 16 bit, 32 bit, or 128 bit BLE Service UUID.
+- See :ref:`Automation <automation>`.
 
 See Also
 --------

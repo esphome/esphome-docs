@@ -14,7 +14,7 @@ This configuration will expose a :doc:`/components/light/binary` and a :doc:`/co
 
 To get this working in ESPHome you first need to create a :doc:`/components/output/custom` to control the iFan02.
 
-Create a ifan02.h file:
+Create an ifan02.h file:
 
 .. code-block:: c++
 

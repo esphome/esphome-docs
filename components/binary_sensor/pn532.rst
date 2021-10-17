@@ -13,7 +13,7 @@ Component/Hub
 
 The ``pn532`` component allows you to use PN532 NFC/RFID controllers
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf>`__, `Adafruit <https://www.adafruit.com/product/364>`__)
-with ESPHome. This component is a global hub that establishes the connection to the PN532 via :ref:`SPI <spi>` and
+with ESPHome. This component is a global hub that establishes the connection to the PN532 via :ref:`SPI <spi>` or :ref:`I²C <i2c>` and
 outputs its data. Using the :ref:`PN532 binary sensors <pn532-tag>` you can then
 create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.
 
@@ -23,20 +23,20 @@ create individual binary sensors that track if an NFC/RFID tag is currently dete
 
 See :ref:`pn532-setting_up_tags` for information on how to setup individual binary sensors for this component.
 
-As the communication with the PN532 is done using SPI for this integration, you need to set the two switches on
-the board to the SPI mode (usually by setting the first one to OFF and the second one to ON). Additionally, you need
-to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin** and **mosi_pin** set.
+The PN532 can be configured to use either the SPI **or** I²C protocol for data communication.
+You will need to switch the dip switches located on the module according to the table printed on the board.
+SPI is usually switch 1 OFF and switch 2 ON and I²C is usually switch 1 ON and switch 2 OFF.
+You will need to have the :ref:`SPI Bus <spi>` or the :ref:`I²C Bus <i2c>` configured depending on your choice.
 
 .. code-block:: yaml
 
-    # Example configuration entry
-    spi:
-      clk_pin: D0
-      miso_pin: D1
-      mosi_pin: D2
-
-    pn532:
+    # Example configuration for SPI (choose which one!)
+    pn532_spi:
       cs_pin: D3
+      update_interval: 1s
+
+    # Example configuration for I²C (choose which one!)
+    pn532_i2c:
       update_interval: 1s
 
     binary_sensor:
@@ -47,7 +47,7 @@ to have an :ref:`SPI bus <spi>` in your configuration with both the **miso_pin**
 Configuration variables:
 ************************
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
+- **cs_pin** (**Required for SPI**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that the chip select line
   is connected to.
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the PN532. This affects the
   duration that the individual binary sensors stay active when they're found.
@@ -56,6 +56,8 @@ Configuration variables:
   when a tag is read. See :ref:`pn532-on_tag`.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
+- **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <spi>` if you want
+  to use multiple I²C buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
 
 .. figure:: images/pn532-spi.jpg
@@ -69,22 +71,52 @@ Configuration variables:
 ``on_tag``
 ----------
 
-This automation will be triggered when the PN532 module responds with a tag. Please note that this
-can be called quite often (with an interval of ``update_interval``) as it's triggered repeatedly
-if the tag is re-read many times.
+This automation will be triggered when the PN532 module responds with a tag. This will only be triggered
+if the tag is changed or goes away for one cycle of ``update_interval``.
 
 The parameter ``x`` this trigger provides is of type ``std::string`` and is the tag UID in the format
 ``74-10-37-94``. The configuration below will for example publish the tag ID on the MQTT topic ``pn532/tag``.
 
+See :ref:`pn532-ndef_reading` below for how to use the second ``tag`` parameter that is provided to this trigger.
+
 .. code-block:: yaml
 
-    pn532:
+    pn532_...:
       # ...
       on_tag:
         then:
           - mqtt.publish:
               topic: pn532/tag
               payload: !lambda 'return x;'
+
+A tag scanned event can also be sent to the Home Assistant tag component
+using :ref:`api-homeassistant_tag_scanned_action`.
+
+.. code-block:: yaml
+
+    pn532_...:
+      # ...
+      on_tag:
+        then:
+          - homeassistant.tag_scanned: !lambda 'return x;'
+
+Alternatively you could also send the value directly to Home Assistant via a
+:doc:`template sensor </components/sensor/template>`.
+
+.. code-block:: yaml
+
+    pn532_...:
+      # ...
+      on_tag:
+        then:
+        - text_sensor.template.publish:
+            id: rfid_tag
+            state: !lambda 'return x;'
+
+    text_sensor:
+      - platform: template
+        name: "RFID Tag"
+        id: rfid_tag
 
 .. _pn532-tag:
 
@@ -102,7 +134,7 @@ unique id (``uid``) is currently being detected by the PN532 or not.
       miso_pin: D1
       mosi_pin: D2
 
-    pn532:
+    pn532_spi:
       cs_pin: D3
       update_interval: 1s
 
@@ -137,10 +169,82 @@ When your code is running and you approach the PN532 with an NFC Tag, you should
 Then copy this id and create a ``binary_sensor`` entry as in the configuration example. Repeat this process for
 each tag.
 
+.. _pn532-ndef:
+
+NDEF
+====
+
+The PN532 supports reading and writing NDEF formatted data into the cards.
+
+.. _pn532-ndef_reading:
+
+NDEF reading
+------------
+
+The following example will read an NFC tag that has been formatted and written using the Home Assistant Companion
+App and send it to Home Assistant using the :ref:`api-homeassistant_tag_scanned_action`. The ``tag`` variable is
+supplied to the ``on_tag`` trigger and any actions that run and can be used as below.
+
+.. code-block:: yaml
+
+    pn532_...:
+      # ...
+      on_tag:
+        then:
+          - homeassistant.tag_scanned: !lambda |
+              if (!tag.has_ndef_message()) {
+                return x;
+              }
+              auto message = tag.get_ndef_message();
+              auto records = message->get_records();
+              for (auto &record : records) {
+                std::string payload = record->get_payload();
+                size_t pos = payload.find("https://www.home-assistant.io/tag/");
+                if (pos != std::string::npos) {
+                  return payload.substr(pos + 34);
+                }
+              }
+              return x;
+
+.. _pn532-ndef_writing:
+
+NDEF Writing
+------------
+
+The following example can be used to write a (pseudo) random UUID to the tag in the same format as the
+Home Assistant Companion App does.
+
+.. code-block:: yaml
+
+    on_...
+      then:
+        - lambda: |-
+            static const char alphanum[] = "0123456789abcdef";
+            std::string uri = "https://www.home-assistant.io/tag/";
+            for (int i = 0; i < 8; i++)
+              uri += alphanum[random_uint32() % (sizeof(alphanum) - 1)];
+            uri += "-";
+            for (int j = 0; j < 3; j++) {
+              for (int i = 0; i < 4; i++)
+                uri += alphanum[random_uint32() % (sizeof(alphanum) - 1)];
+              uri += "-";
+            }
+            for (int i = 0; i < 12; i++)
+              uri += alphanum[random_uint32() % (sizeof(alphanum) - 1)];
+            auto message = new nfc::NdefMessage();
+            message->add_uri_record(uri);
+            ESP_LOGD("ndef", "Writing payload: %s", uri.c_str());
+            id(pn532_board).write_mode(message);
+        - wait_until:
+            not:
+              pn532.is_writing:
+        - logger.log: "Finished writing tag"
+
 See Also
 --------
 
 - :doc:`index`
 - :doc:`rdm6300`
+- :doc:`rc522`
 - :apiref:`pn532/pn532.h`
 - :ghedit:`Edit`

@@ -56,4 +56,18 @@ for (; row = states.rows[i]; i++) {
             });
         })(row.id);
     }
+    if (row.classList.contains("cover")) {
+        (function(id) {
+            row.children[2].children[0].addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", '/cover/' + id.substr(6) + '/open', true);
+                xhr.send();
+            });
+            row.children[2].children[1].addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", '/cover/' + id.substr(6) + '/close', true);
+                xhr.send();
+            });
+        })(row.id);
+    }
 }

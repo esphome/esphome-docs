@@ -24,7 +24,7 @@ Configuration variables:
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPhome network. May only contain lowercase
-  characters, digits and underscores. See :ref:`esphome-changing_node_name`.
+  characters, digits, underscores and hyphens. See :ref:`esphome-changing_node_name`.
 - **platform** (**Required**, string): The platform your board is on,
   either ``ESP32`` or ``ESP8266``. See :ref:`esphome-arduino_version`.
 - **board** (**Required**, string): The board ESPHome should
@@ -43,8 +43,6 @@ Advanced options:
   but you can customize this behavior using this option.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
-- **use_custom_code** (*Optional*, boolean): Whether to configure the project for writing custom components.
-  This sets up some flags so that custom code should compile correctly
 - **includes** (*Optional*, list of files): A list of C[++] files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
   is in. Should have file extension ``.h`` - See :ref:`esphome-includes` for more info.
@@ -97,18 +95,26 @@ option you can tell ESPHome which Arduino framework to use for compiling.
 For the ESP8266, you currently can manually pin the Arduino version to these values (see the full
 list of Arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
 
+* `2.7.2 <https://github.com/esp8266/Arduino/releases/tag/2.7.2>`__ (default)
+* `2.7.1 <https://github.com/esp8266/Arduino/releases/tag/2.7.1>`__
+* `2.7.0 <https://github.com/esp8266/Arduino/releases/tag/2.7.0>`__
+* `2.6.3 <https://github.com/esp8266/Arduino/releases/tag/2.6.3>`__
+* `2.6.2 <https://github.com/esp8266/Arduino/releases/tag/2.6.2>`__
+* `2.6.1 <https://github.com/esp8266/Arduino/releases/tag/2.6.1>`__
 * `2.5.2 <https://github.com/esp8266/Arduino/releases/tag/2.5.2>`__
 * `2.5.1 <https://github.com/esp8266/Arduino/releases/tag/2.5.1>`__
 * `2.5.0 <https://github.com/esp8266/Arduino/releases/tag/2.5.0>`__
-* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__ (default)
+* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__
 * `2.4.1 <https://github.com/esp8266/Arduino/releases/tag/2.4.1>`__
 * `2.4.0 <https://github.com/esp8266/Arduino/releases/tag/2.4.0>`__
-* `2.3.0 <https://github.com/esp8266/Arduino/releases/tag/2.3.0>`__ (used by Tasmota etc)
+* `2.3.0 <https://github.com/esp8266/Arduino/releases/tag/2.3.0>`__
 
 For the ESP32, there are these Arduino `framework versions <https://github.com/espressif/arduino-esp32/releases>`__:
 
+- `1.0.4 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.4>`__ (default)
+- `1.0.3 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.3>`__
 - `1.0.2 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.2>`__
-- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__ (default)
+- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__
 - `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__
 
 .. _esphome-esp8266_restore_from_flash:

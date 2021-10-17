@@ -28,7 +28,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name for the temperature sensor.
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x4A``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.

@@ -60,7 +60,7 @@ Sensor
 
 The ``ads1115`` sensor allows you to use your ADS1115 sigma-delta ADC
 sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) with ESPHome.
-First, setup a :ref:`ADS1115 Hub <ads1115-component>` for your ADS1115 sensor and then use this
+First, setup an :ref:`ADS1115 Hub <ads1115-component>` for your ADS1115 sensor and then use this
 sensor platform to create individual sensors that will report the
 voltage to Home Assistant.
 
