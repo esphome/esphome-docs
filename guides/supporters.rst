@@ -726,7 +726,6 @@ Contributors
 - `workingmanrob (@workingmanrob) <https://github.com/workingmanrob>`__
 - `Wojtek Strzalka (@wstrzalka) <https://github.com/wstrzalka>`__
 - `wutr (@wutr) <https://github.com/wutr>`__
-- `xheronimo (@xheronimo) <https://github.com/xheronimo>`__
 - `Mike (@xsnoopy) <https://github.com/xsnoopy>`__
 - `Yaroslav (@Yarikx) <https://github.com/Yarikx>`__
 - `Marcin Jaworski (@yawor) <https://github.com/yawor>`__
@@ -739,7 +738,8 @@ Contributors
 - `zaluthar (@zaluthar) <https://github.com/zaluthar>`__
 - `ZJY (@zhangjingye03) <https://github.com/zhangjingye03>`__
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
+- `Zoltant7 (@Zoltant7) <https://github.com/Zoltant7>`__
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 15, 2021.*
+*This page was last updated October 17, 2021.*
