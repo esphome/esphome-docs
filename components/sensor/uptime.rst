@@ -56,10 +56,10 @@ with human readable output.
                   int minutes = seconds /  60;
                   seconds = seconds % 60;
                   return (
-                    (days ? String(days) + "d " : "") +
-                    (hours ? String(hours) + "h " : "") +
-                    (minutes ? String(minutes) + "m " : "") +
-                    (String(seconds) + "s") 
+                    (days ? to_string(days) + "d " : "") +
+                    (hours ? to_string(hours) + "h " : "") +
+                    (minutes ? to_string(minutes) + "m " : "") +
+                    (to_string(seconds) + "s") 
                   ).c_str();
 
 See Also
