@@ -51,6 +51,8 @@ Configuration variables:
             filters:
               - multiply: 3.3
 
+
+
 .. _adc-esp32_attenuation:
 
 ESP32 Attenuation
@@ -87,6 +89,13 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
       - platform: adc
         pin: VCC
         name: "VCC Voltage"
+
+Multiple ADC Sensors
+---------------------
+
+You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see above) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
+
+
 
 See Also
 --------

@@ -47,6 +47,19 @@ perceived intensity of different colors will generally vary. This can be done by
 
     Remember that ``gamma_correct`` is enabled by default (``γ=2.8``), and you may want take it into account for the calibration. For instance if you command a light to *50%* brightness and want it to be the new maximum: ``max_PWM_power = max_light_power^2.8 = 0.5^2.8 = 0.144``, then you would set ``max_power`` to *14.4%*.
 
+Color Interlock
+---------------
+
+With some LED bulbs, it is not possible to enable the RGB leds at the same time as the white leds, or setting
+the RGB channels to maximum whilst wanting a white light will have an undesired hue effect. For these cases a
+configuration variable is available that prevents the RGB leds and white leds from being turned on at the same
+time: ``color_interlock``.
+
+Setting this option to ``true`` will result in the light having two color modes available, ``RGB`` and ``WHITE``.
+When the ``RGB`` color mode is active, the white leds are turned off, and when the ``WHITE`` color mode is active,
+the RGB leds are turned off. Switching between these modes can be done from the Home Assistant interface, or by using
+the ``color_mode`` option of the :ref:`light control actions <light-turn_on_action>`.
+
 Configuration variables:
 ------------------------
 
@@ -61,26 +74,16 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.
 
-.. _rgbw_color_interlock:
-
-Color Interlock
-***************
-
-With some LED bulbs, setting the RGB channels to maximum whilst wanting a white light will have an undesired
-hue affect. Additionally, the brightness command may not work as expected depending upon configuration,
-leaving users to adjust the white component level separately. For these cases a new configration variable
-has been added: color_interlock.
-
-Setting this variable to True will turn off RGB leds when white value is above 0 (or if they are to 255,255,255)
-and turn off white leds if color is not set to 255,255,255. This also allows the brightness parameter to
-control the intensity of the white leds.
-
 See Also
 --------
 
 - :doc:`/components/output/index`
 - :doc:`/components/light/index`
+- :doc:`/components/light/cwww`
+- :doc:`/components/light/color_temperature`
 - :doc:`/components/light/rgb`
+- :doc:`/components/light/rgbww`
+- :doc:`/components/light/rgbct`
 - :doc:`/components/power_supply`
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`

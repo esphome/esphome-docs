@@ -32,12 +32,16 @@ Configuration variables:
   Defaults to ``2.8``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The default transition length
   to use when no transition length is set in the light call. Defaults to ``1s``.
-- **restore_mode** (*Optional*): Control how the GPIO Switch attempts to restore state on bootup.
+- **flash_transition_length** (*Optional*, :ref:`config-time`): The transition length to use when flash
+  is called. Defaults to ``0s``.
+- **restore_mode** (*Optional*): Control how the light attempts to restore state on bootup.
   For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
   :doc:`esphome section </components/esphome>`.
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
@@ -46,7 +50,7 @@ Configuration variables:
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the light is turned off. See :ref:`light-on_turn_on_off_trigger`.
 
-Additional Configuration variables for addressable lights:
+Additional configuration variables for addressable lights:
 
 - **color_correct** (*Optional*, list of float): Apply a color correction to each color channel.
   This defines the maximum brightness of each channel. For example ``[100%, 50%, 100%]`` would set the
@@ -59,6 +63,9 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _light-toggle_action:
@@ -77,7 +84,7 @@ This action toggles a light with the given ID when executed.
         # Shorthand:
         - light.toggle: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -121,26 +128,53 @@ This action turns a light with the given ID on when executed.
         # Shorthand
         - light.turn_on: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
   if the light supports it.
-- **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing brightness.
-- **red** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The red channel of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing red.
-- **green** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The green channel of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing green channel.
-- **blue** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The blue channel of the light. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing blue channel.
-- **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The white channel value of RGBW lights. Must be in range
-  ``0%`` to ``100%`` or ``0.0`` to ``1.0``. Defaults to not changing white value.
-- **color_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): The white color temperature value (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) for CWWW / RGBWW lights. Defaults to not changing the color temperature value.
+- **color_mode** (*Optional*, :ref:`templatable <config-templatable>`): For lights that support more than one color mode, the color
+  mode that will be activated. The color mode determines which outputs of the light are active, and which parameters can be used.
+  This can for example be used to switch between colored and white light. Must be a color mode that is supported by the light.
+  Valid color modes are:
+
+    - ``ON_OFF``: Only on/off control.
+    - ``BRIGHTNESS``: Only brightness control. Accepts *brightness* parameter.
+    - ``WHITE``: Single white channel only. Accepts *brightness* and *white* parameters.
+    - ``COLOR_TEMPERATURE``: Color-temperature controlled white channel. Accepts *brightness* and *color_temperature*
+      parameters.
+    - ``COLD_WARM_WHITE``: Cold and warm white channels. Accepts *brightness*, *color_temperature*, *cold_white* and
+      *warm_white* parameters.
+    - ``RGB``: RGB color channels. Accepts *brightness*, *color_brightness*, *red*, *green* and *blue* parameters.
+    - ``RGB_WHITE``: RGB color channels and a separate white channel. Accepts parameters from ``RGB`` and ``WHITE``
+      color modes.
+    - ``RGB_COLOR_TEMPERATURE``: RGB color channels and a separate color-temperature controlled white channel. Accepts
+      parameters from ``RGB`` and ``COLOR_TEMPERATURE`` color modes.
+    - ``RGB_COLD_WARM_WHITE``: RGB color channels and two separate cold and warm white channels. Accepts parameters
+      from ``RGB`` and ``COLD_WARM_WHITE`` color modes.
+
+- **brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The master brightness of the light, that
+  applies to all channels (both color and white) of the light.
+- **color_brightness** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the color lights. Useful
+  to control brightness of colored and white lights separately for RGBW lights.
+- **red** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The red channel of the light.
+- **green** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The green channel of the light.
+- **blue** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The blue channel of the light.
+- **white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the white channel.
+- **color_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): The color temperature
+  (in `mireds <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the white channel.
+- **cold_white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the cold white channel.
+  Cannot be used at the same time as *color_temperature*.
+- **warm_white** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The brightness of the warm white channel.
+  Cannot be used at the same time as *color_temperature*.
 - **flash_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): If set, will flash the given color
   for this period of time and then go back to the previous state.
 - **effect** (*Optional*, string, :ref:`templatable <config-templatable>`): If set, will attempt to
   start an effect with the given name.
+
+All percentage options accept values in the range ``0%`` to ``100%`` or ``0.0`` to ``1.0``, and default to not changing
+the current value (which might be the value from before the light was last turned off). To reset values, explicitly set
+them to zero.
 
 .. note::
 
@@ -152,7 +186,10 @@ Configuration options:
         // set parameters (optional)
         call.set_transition_length(1000); // in ms
         call.set_brightness(1.0); // 1.0 is full brightness
-        call.set_rgb(1.0, 1.0, 1.0); // color, 1.0 is fully lit
+        call.set_color_mode(ColorMode::RGB_COLD_WARM_WHITE);
+        call.set_rgb(0.5, 0.25, 1.0); // color in RGB order, this example is purple
+        call.set_cold_white(0.5);
+        call.set_warm_white(0.75);
         call.set_effect("The Effect");
         // perform action:
         call.perform();
@@ -161,7 +198,22 @@ Configuration options:
 
     The ``red``, ``green`` and ``blue`` values only control the color of the light, not its
     brightness! If you assign ``50%`` to all RGB channels it will be interpreted as 100% on.
-    Only use ``brightness`` to control the brightness of the light.
+    Only use ``brightness`` or ``color_brightness`` to control the brightness of the light.
+
+.. note::
+
+    The master brightness (``brightness``) and separate brightness controls for the color and
+    white channels (``color_brightness``, ``white``, ``cold_white`` and ``warm_white``) are
+    multiplied together. Thus, this will result in color at 40% brightness and white at 60%
+    brightness:
+
+    .. code-block:: yaml
+
+        - light.turn_on:
+            id: light_1
+            brightness: 80%
+            color_brightness: 50%
+            white: 75%
 
 .. _light-turn_off_action:
 
@@ -180,7 +232,7 @@ This action turns a light with the given ID off when executed.
         # Shorthand
         - light.turn_off: light_1
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition
@@ -214,7 +266,7 @@ is essentially just a combination of the turn_on and turn_off calls.
             id: light_1
             state: on
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
 - **state** (*Optional*, :ref:`templatable <config-templatable>`, boolean): Change the ON/OFF
@@ -238,10 +290,10 @@ by a relative amount.
             id: light_1
             relative_brightness: 5%
 
-Configuration options:
+Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the light.
-- **relative_brightness** (**Required***, :ref:`templatable <config-templatable>`, percentage):
+- **relative_brightness** (**Required**, :ref:`templatable <config-templatable>`, percentage):
   The relative brightness to dim the light by.
 - **transition_length** (*Optional*, :ref:`config-time`, :ref:`templatable <config-templatable>`): The length of the transition.
 
@@ -289,17 +341,19 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the addressable light to control.
 - **range_from** (*Optional*, :ref:`templatable <config-templatable>`, int): The beginning
-  of the range of LEDs to control. 0-based indexing. Defaults to 0 (the beginning of the strip).
+  of the range of LEDs to control, inclusive, using zero-based indexing. Defaults to 0 (the beginning of the strip).
 - **range_to** (*Optional*, :ref:`templatable <config-templatable>`, int): The end of the
-  range of LEDs to control - this is a half-open interval. 0-based indexing.
-  Defaults to the end of the strip (``num_leds``).
+  range of LEDs to control, inclusive, using zero-based indexing.
+  Defaults to the end of the strip (``num_leds`` - 1).
+- **color_brightness** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The brightness to
+  set the color channel to.
 - **red** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the red channel to.
 - **green** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the green channel to.
 - **blue** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
   set the blue channel to.
-- **white** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The value to
+- **white** (*Optional*, :ref:`templatable <config-templatable>`, percentage): The brightness to
   set the white channel to.
 
 .. _light-is_on_condition:
@@ -370,6 +424,34 @@ entries with each having a unique name like so:
               transition_length: 4s
               update_interval: 5s
 
+Pulse Effect
+************
+
+This effect makes a pulsating light. The period can be defined by ``update_interval``, the transition length with ``transition_length``. ``transition_length`` should be set to less than ``update_interval``, setting ``transition_length`` to ``1s`` and ``update_interval`` to ``2s`` will result in a transition from 0% to 100% lasting 1 second, 1 second full light, a transition from 100% to 0% for 1 second and off for 1 second.
+
+.. code-block:: yaml
+
+    light:
+      - platform: ...
+        # ...
+        effects:
+          - pulse:
+          - pulse:
+              name: "Fast Pulse"
+              transition_length: 0.5s
+              update_interval: 0.5s
+          - pulse:
+              name: "Slow Pulse"
+              # transition_length: 1s      # defaults to 1s
+              update_interval: 2s
+
+Configuration variables:
+
+- **name** (*Optional*, string): The name of the effect. Defaults to ``Pulse``.
+- **transition_length** (*Optional*, :ref:`config-time`): The duration of each transition. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval when the new transition is started. Defaults to ``1s``.
+
+
 Random Effect
 *************
 
@@ -409,15 +491,15 @@ This effect cycles through a list of colors with specific durations.
           - strobe:
               name: Strobe Effect With Custom Values
               colors:
-                - state: True
+                - state: true
                   brightness: 100%
                   red: 100%
                   green: 90%
                   blue: 0%
                   duration: 500ms
-                - state: False
+                - state: false
                   duration: 250ms
-                - state: True
+                - state: true
                   brightness: 100%
                   red: 0%
                   green: 100%
@@ -429,13 +511,20 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Strobe``.
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
-  - **state** (*Optional*, boolean): The ON/OFF state to show. Defaults to ``True``.
+  - **state** (*Optional*, boolean): The on/off state to show. Defaults to ``true``.
+  - **color_mode** (*Optional*, ): The color mode of the light. Defaults to the current color mode.
   - **brightness** (*Optional*, percentage): The brightness of the light. Defaults to ``100%``.
-  - **red** (*Optional*, percentage): The percentage that the red color should be on for RGB lights. Defaults to ``100%``.
-  - **green** (*Optional*, percentage): The percentage that the green color should be on for RGB lights. Defaults to ``100%``.
-  - **blue** (*Optional*, percentage): The percentage that the blue color should be on for RGB lights. Defaults to ``100%``.
-  - **white** (*Optional*, percentage): The percentage that the white color should be on for RGBW lights. Defaults to ``100%``.
+  - **color_brightness** (*Optional*, percentage): The brightness of the RGB lights, if applicable. Defaults to ``100%``.
+  - **red** (*Optional*, percentage): The red channel of the light, if applicable. Defaults to ``100%``.
+  - **green** (*Optional*, percentage): The green channel of the light, if applicable. Defaults to ``100%``.
+  - **blue** (*Optional*, percentage): The blue channel of the light, if applicable. Defaults to ``100%``.
+  - **white** (*Optional*, percentage): The white channel of the light, if applicable. Defaults to ``100%``.
+  - **color_temperature** (*Optional*, percentage): The color temperature of the light, if applicable. Defaults to ``100%``.
+  - **cold_white** (*Optional*, percentage): The cold white channel of the light, if applicable. Defaults to ``100%``.
+  - **warm_white** (*Optional*, percentage): The warm white channel of the light, if applicable. Defaults to ``100%``.
   - **duration** (**Required**, :ref:`config-time`): The duration this color should be active.
+
+See `light.turn_on <light-turn_on_action>` for more information on the various color fields.
 
 Flicker Effect
 **************
@@ -479,7 +568,7 @@ This effect allows you to write completely custom light effects yourself using :
               lambda: |-
                 static int state = 0;
                 auto call = id(my_light).turn_on();
-                // Transtion of 1000ms = 1s
+                // Transition of 1000ms = 1s
                 call.set_transition_length(1000);
                 if (state == 0) {
                   call.set_rgb(1.0, 1.0, 1.0);
@@ -553,7 +642,7 @@ the strip and shifts them forward every ``add_led_interval``.
                   blue: 0%
                   num_leds: 1
               add_led_interval: 100ms
-              reverse: False
+              reverse: false
 
 Configuration variables:
 
@@ -564,13 +653,13 @@ Configuration variables:
   - **red** (*Optional*, percentage): The percentage the red color channel should be on. Defaults to ``100%``.
   - **green** (*Optional*, percentage): The percentage the green color channel should be on. Defaults to ``100%``.
   - **blue** (*Optional*, percentage): The percentage the blue color channel should be on. Defaults to ``100%``.
-  - **random** (*Optional*, boolean): If set to ``True``, will overwrite the RGB colors by a new, randomly-chosen
-    color each time. Defaults to ``False``.
+  - **random** (*Optional*, boolean): If set to ``true``, will overwrite the RGB colors by a new, randomly-chosen
+    color each time. Defaults to ``false``.
   - **num_leds** (*Optional*, int): The number of leds of this type to have before moving on to the next color.
 
 - **add_led_interval** (*Optional*, :ref:`config-time`): The interval with which to shift in new leds at the
   beginning of the strip. Defaults to ``100ms``.
-- **reverse** (*Optional*, boolean): Whether to reverse the direction of the color wipe. Defaults to ``False``.
+- **reverse** (*Optional*, boolean): Whether to reverse the direction of the color wipe. Defaults to ``false``.
 
 Addressable Scan Effect
 ***********************
@@ -721,6 +810,10 @@ Available variables in the lambda:
 - **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
 - **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
 
+  .. note::
+
+      ESPColor has been migrated to Color. See :apistruct:`Color <Color>` for more information.
+
 .. code-block:: yaml
 
     light:
@@ -733,18 +826,18 @@ Available variables in the lambda:
               // it.size() - Number of LEDs
               // it[num] - Access the LED at index num.
               // Set the LED at num to the given r, g, b values
-              // it[num] = ESPColor(r, g, b);
-              // Get the color at index num (ESPColor instance)
+              // it[num] = Color(r, g, b);
+              // Get the color at index num (Color instance)
               // it[num].get();
 
               // Example: Simple color wipe
               for (int i = it.size() - 1; i > 0; i--) {
                 it[i] = it[i - 1].get();
               }
-              it[0] = ESPColor::random_color();              
+              it[0] = Color::random_color();
 
               // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-              it.range(0, 50) = ESPColor::BLACK;
+              it.range(0, 50) = Color::BLACK;
               it.all().fade_to_black(10);
 
 .. code-block:: yaml
@@ -768,7 +861,7 @@ Available variables in the lambda:
               // again you can use the initial_run variables
               if (initial_run) {
                 progress = 0;
-                it.all() = ESPColor::BLACK;
+                it.all() = Color::BLACK;
                 // optionally do a return so nothing happens until the next update_interval
                 return;
               }
@@ -817,8 +910,10 @@ Configuration variables:
 - **sequence** (*Optional*, :ref:`Action <config-action>`): The actions to perform in sequence
   until the effect is stopped.
 
-E1.31
-*****
+.. _e131-light-effect:
+
+E1.31 Effect
+************
 
 This effect enables controlling addressable lights using UDP-based
 E1.31_ protocol.
@@ -840,16 +935,15 @@ For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHom
 
 Configuration variables:
 
-- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
-- **universe** (*Required*, integer): The value of universe, between 1 to 512.
+- **universe** (**Required**, integer): The value of universe, between 1 to 512.
 - **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
   ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
 There are three modes of operation:
 
-- `MONO`: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
-- `RGB`: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
-- `RGBW`: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
+- ``MONO``: this supports 1 channel per LED (luminance), up-to 512 LEDs per universe
+- ``RGB``: this supports 3 channels per LED (RGB), up-to 170 LEDs (3*170 = 510 bytes) per universe
+- ``RGBW``: this supports 4 channels per LED (RGBW), up-to 128 LEDs (4*128 = 512 bytes) per universe
 
 If there's more LEDs than allowed per-universe, additional universe will be used.
 In the above example of 189 LEDs, first 170 LEDs will be assigned to 1 universe,
@@ -858,14 +952,23 @@ the rest of 19 LEDs will be automatically assigned to 2 universe.
 It is possible to enable multiple light platforms to listen to the same universe concurrently,
 allowing to replicate the behaviour on multiple strips.
 
-The udp port esphome is listenig on is 5568.
+E1.31 Component
+^^^^^^^^^^^^^^^
+
+The :ref:`e131-light-effect` requires a component hub for the ``e131`` light effect.
+
+Configuration variables:
+
+- **method** (*Optional*): Listening method, one of ``multicast`` or ``unicast``. Defaults to ``multicast``.
+
+The udp port esphome is listening on is 5568.
 
 .. _E1.31: https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol
 .. _JINX: http://www.live-leds.de/jinx-v1-3-with-resizable-mainwindow-real-dmx-and-sacne1-31/
 .. _Hyperion.NG: https://github.com/hyperion-project/hyperion.ng
 
-Adalight
-********
+Adalight Effect
+***************
 
 This effect enables controlling addressable lights using UART-based
 Adalight_ protocol, allowing to create realtime ambient lighting effects.
@@ -902,8 +1005,8 @@ Configuration variables:
 .. _Adalight: https://learn.adafruit.com/adalight-diy-ambient-tv-lighting
 .. _Prismatik: https://github.com/psieg/Lightpack
 
-WLED
-****
+WLED Effect
+***********
 
 This effect enables controlling addressable lights using UDP-based
 `UDP Realtime Control`_ protocol used by WLED_, allowing to create realtime ambient
@@ -925,6 +1028,11 @@ Prismatik_ can be used to control addressable lights over network on ESPHome.
 Configuration variables:
 
 - **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+
+.. note::
+
+    You can also set the ``port`` to ``19446`` for compatibility with Hyperion Classic using a
+    UDP device with protocol 0.
 
 Currently the following realtime protocols are supported:
 WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.

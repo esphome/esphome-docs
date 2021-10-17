@@ -15,8 +15,8 @@ consists of 2 pins:
 - **TX**: This line is used to send data to the device at the other end.
 - **RX**: This line is used to receive data from the device at the other end.
 
-Please note that these the naming of these two pins depends on the chosen perspective and can be ambiguous. For example,
-while the ESP might send (``TX``) on pin A and receive (``RX``) data on pin B, from the other devices
+Please note that the naming of these two pins depends on the chosen perspective and can be ambiguous. For example,
+while the ESP might send (``TX``) on pin A and receive (``RX``) data on pin B, from the other device's
 perspective these two pins are switched (i.e. *it* sends on pin B and receives on pin A). So you might
 need to try with the two pins switched if it doesn't work immediately.
 
@@ -32,12 +32,19 @@ In some cases only **TX** or **RX** exists as the device at the other end only a
     ones used for logging. Therefore the UART data on the ESP8266 can have occasional data glitches especially with
     higher baud rates..
 
+.. note::
+
+    From ESPHome 2021.8 the ``ESP8266SoftwareSerial`` UART ``write_byte`` function had the parity bit fixed to be correct
+    for the data being sent. This could cause unexpected issues if you are using the Software Serial and have devices that
+    explicity check the parity. Most likely you will need to flip the ``parity`` flag in YAML.
+
+
 .. code-block:: yaml
 
     # Example configuration entry
     uart:
-      tx_pin: D0
-      rx_pin: D1
+      tx_pin: 1
+      rx_pin: 3
       baud_rate: 9600
 
 Configuration variables:
@@ -46,11 +53,15 @@ Configuration variables:
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
 - **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
 - **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
-- **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use integration that needs to read big payloads from UART. Defaults to ``256``.
+- **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use an integration that needs to read big payloads from UART. Defaults to ``256``.
 - **data_bits** (*Optional*, int): The number of data bits used on the UART bus. Options: 5 to 8. Defaults to 8.
 - **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
+
+ESP32 options:
+
+- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``true`` or ``false``. Defaults to ``false``.
 
 .. _uart-hardware_uarts:
 

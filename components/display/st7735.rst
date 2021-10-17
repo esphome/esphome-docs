@@ -6,7 +6,7 @@ ST7735 Display
     :keywords: ST7735
     :image: ST7735.png
 
-ST7735 Display Driver. 
+ST7735 Display Driver.
 
 Usage
 -----
@@ -32,38 +32,39 @@ There are numerous board types out there. Some initialize differently as well. T
         model: "INITR_18BLACKTAB"
         reset_pin: D4
         cs_pin: D1
-        dc_pin: D2      
+        dc_pin: D2
         rotation: 0
-        devicewidth: 128
-        deviceheight: 160
-        colstart: 0
-        rowstart: 0
-        eightbitcolor: true
+        device_width: 128
+        device_height: 160
+        col_start: 0
+        row_start: 0
+        eight_bit_color: true
         update_interval: 5s
 
 Configuration variables:
-~~~~~~~~~~~~~~~~~~~~~~~~
+************************
 
 - **model** (**Required**, "See Models Below"): This the model to use. INITR_BLACKTAB is the default
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
-- **devicewidth** (**Required**, int): The device width. 128 is default
-- **deviceheight** (**Required**, int): The device height. 160 is default
-- **colstart** (**Required**, int): The device height. 160 is default
-- **rowstart** (**Required**, int): The device height. 160 is default
-- **eightbitcolor** (*Optional*, "True/False" ): 8bit mode. Default is False. This saves 50% of the buffer required for the display. 
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **device_width** (**Required**, int): The device width. 128 is default
+- **device_height** (**Required**, int): The device height. 160 is default
+- **col_start** (**Required**, int): The starting column offset. Default value depends on **model**.
+- **row_start** (**Required**, int): The starting row offset. Default value depends on **model**.
+- **use_bgr** (*Optional*, "true/false"): Use BGR mode. Default is false.
+- **eight_bit_color** (*Optional*, "true/false" ): 8bit mode. Default is false. This saves 50% of the buffer required for the display.
+- **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 
 Memory notes:
-~~~~~~~~~~~~~
+*************
 
 - 8Bit color saves 50% of the buffer required.
-- eightbitcolor: True 160x128 = 20480 *Important for memory constrained devices*
-- eightbitcolor: False 160x128x2 = 40960 
+- ``eight_bit_color: true`` 160x128 = 20480 *Important for memory constrained devices*
+- ``eight_bit_color: false`` 160x128x2 = 40960
 
 
 Models:
-~~~~~~~
+*******
 
 - INITR_GREENTAB
 - INITR_REDTAB
@@ -77,5 +78,6 @@ See Also
 --------
 
 - :ref:`spi`
+- :doc:`/components/display/index`
 - :apiref:`st7735/st7735.h`
 - :ghedit:`Edit`

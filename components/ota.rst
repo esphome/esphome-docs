@@ -4,7 +4,6 @@ OTA Update Component
 .. seo::
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to upload firmwares remotely.
     :image: system-update.png
-    :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
 
 With the OTA (Over The Air) update component you can upload your
 firmware binaries to your node without having to use a USB cable for
@@ -21,14 +20,14 @@ Logging+WiFi+OTA are initialized, so that you can upload a new binary.
 
     # Example configuration entry
     ota:
-      safe_mode: True
+      safe_mode: true
       password: VERYSECURE
 
 Configuration variables:
 ------------------------
 
 -  **safe_mode** (*Optional*, boolean): Whether to enable safe mode.
-   Defaults to ``True``.
+   Defaults to ``true``.
 -  **password** (*Optional*, string): The password to use for updates.
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
@@ -36,6 +35,16 @@ Configuration variables:
 -  **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when in
    safe mode. Defaults to ``5min``.
 -  **num_attempts** (*Optional*, int): The number of attempts to wait before entering safe mode. Defaults to ``10``.
+-  **on_begin** (*Optional*, :ref:`Automation<automation>`): An action to be
+   performed when an OTA update is started. See :ref:`ota-on_begin`.
+-  **on_progress** (*Optional*, :ref:`Automation<automation>`): An action to be
+   performed (multiple times) during an OTA update. See :ref:`ota-on_progress`.
+-  **on_end** (*Optional*, :ref:`Automation<automation>`): An action to be
+   performed after a successful OTA update. See :ref:`ota-on_end`.
+-  **on_error** (*Optional*, :ref:`Automation<automation>`): An action to be
+   performed after a failed OTA update. See :ref:`ota-on_error`.
+-  **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be
+   performed when an OTA update state change happens. See :ref:`ota-on_state_change`.
 
 .. note::
 
@@ -45,6 +54,120 @@ Configuration variables:
     ``Bad Answer: ERR: ERROR[11]: Invalid bootstrapping`` the reason is
     very likely that power-cycling the ESP module is required once after
     the serial upload.
+
+OTA Automation
+--------------
+
+The OTA component provides various automations that can be used to provide feedback
+during an OTA update. There are a few things to consider when making use of the
+provided automation triggers:
+
+-  An OTA update blocks the main loop during its operation. This means that you
+   won't be able to represent state changes using components that update their
+   output only from within their ``loop()`` method. Explained differently: if you
+   try to display the OTA progress using component X, but the update only appears
+   after the OTA update finished, then component X cannot be used for providing
+   OTA update feedback.
+
+-  Make sure that your automation actions do not take too much time, to prevent
+   them from blocking the OTA update code for too long.
+
+.. _ota-on_begin:
+
+``on_begin``
+************
+
+This automation will be triggered when an OTA update is started.
+
+.. code-block:: yaml
+
+    ota:
+      on_begin:
+        then:
+          - logger.log: "OTA start"
+
+.. _ota-on_progress:
+
+``on_progress``
+***************
+
+Using this automation, it is possible to report on the OTA update progress.
+It will be triggered multiple times during the OTA update. You can get the actual
+progress percentage (a value between 0 and 100) from the trigger with variable ``x``.
+
+.. code-block:: yaml
+
+    ota:
+      on_progress:
+        then:
+          - logger.log:
+              format: "OTA progress %0.1f%%"
+              args: ["x"]
+
+.. _ota-on_end:
+
+``on_end``
+**********
+
+This automation will be triggered when an OTA update has completed successfully,
+right before the device is rebooted.
+
+Because the update has completed, you can safely use an automation action that
+takes some time to complete. This can for example be useful if you want to flash
+a LED or so, in which case a pause would be required to make the LED light up
+for long enough, before the reboot turns it off.
+
+.. code-block:: yaml
+
+    ota:
+      on_end:
+        then:
+          - logger.log: "OTA end"
+
+.. _ota-on_error:
+
+``on_error``
+************
+
+This automation will be triggered when an OTA update has failed. You can get
+the internal error code with variable ``x``.
+
+Just like for :ref:`ota-on_end`, you can safely use an automation that
+takes some time to complete, because the OTA update is no longer busy.
+
+.. code-block:: yaml
+
+    ota:
+      on_error:
+        then:
+          - logger.log:
+              format: "OTA update error %d"
+              args: ["x"]
+
+.. _ota-on_state_change:
+
+``on_state_change``
+*******************
+
+This automation will be triggered on every state change. You can get the actual
+state with variable ``state``, which will contain one of values for the OTAState
+enum. These values are:
+
+-  ``ota::OTA_STARTED``
+-  ``ota::OTA_IN_PROGRESS`` (will be called multiple times during the update)
+-  ``ota::OTA_COMPLETED``
+-  ``ota::OTA_ERROR``
+
+.. code-block:: yaml
+
+    ota:
+      on_state_change:
+        then:
+          - if:
+              condition:
+                lambda: return state == ota::OTA_STARTED
+              then:
+                - logger.log: "OTA start"
 
 Updating the password:
 ----------------------

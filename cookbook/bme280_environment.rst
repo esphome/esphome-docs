@@ -56,9 +56,10 @@ After validating the sensor is working, we can proceed and add some formulas.
         unit_of_measurement: 'g/m³'
       - platform: template
         name: "Dew Point"
-        lambda: return (243.5*(log(id(bme280_humidity).state/100)+((17.67*id(bme280_temperature).state)/
-        (243.5+id(bme280_temperature).state)))/(17.67-log(id(bme280_humidity).state/100)-
-        ((17.67*id(bme280_temperature).state)/(243.5+id(bme280_temperature).state))));
+        lambda: |-
+          return (243.5*(log(id(bme280_humidity).state/100)+((17.67*id(bme280_temperature).state)/
+          (243.5+id(bme280_temperature).state)))/(17.67-log(id(bme280_humidity).state/100)-
+          ((17.67*id(bme280_temperature).state)/(243.5+id(bme280_temperature).state))));
         unit_of_measurement: °C
         icon: 'mdi:thermometer-alert'
 

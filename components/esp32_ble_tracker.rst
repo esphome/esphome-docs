@@ -59,7 +59,7 @@ Configuration variables:
 
 
 - **scan_parameters** (*Optional*): Advanced parameters for configuring the scan behavior of the ESP32.
-  See also `this guide by Texas Instruments <http://dev.ti.com/tirex/content/simplelink_academy_cc2640r2sdk_1_12_01_16/modules/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning>`__
+  See also `this guide by Texas Instruments <https://dev.ti.com/tirex/explore/content/simplelink_academy_cc2640r2sdk_5_10_02_00/modules/blestack/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning-basics>`__
   for reference.
 
   - **interval** (*Optional*, :ref:`config-time`): The interval between each consecutive scan window.
@@ -81,7 +81,7 @@ Automations:
 - **on_ble_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a Bluetooth advertising is received. See :ref:`esp32_ble_tracker-on_ble_advertise`.
 - **on_ble_manufacturer_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
-  perform when a Bluetooth advertising with manufcaturer data is received. See
+  perform when a Bluetooth advertising with manufacturer data is received. See
   :ref:`esp32_ble_tracker-on_ble_manufacturer_data_advertise`.
 - **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a Bluetooth advertising with service data is received. See
@@ -154,7 +154,7 @@ variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for 
 Configuration variables:
 
 - **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
-- **manufacturer_id** (**Required**, string) 16 bit, 32 bit, or 128 bit BLE Manufacturer ID.
+- **manufacturer_id** (**Required**, string): 16 bit, 32 bit, or 128 bit BLE Manufacturer ID.
 - See :ref:`Automation <automation>`.
 
 .. _esp32_ble_tracker-on_ble_service_data_advertise:
@@ -182,7 +182,7 @@ variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for 
 Configuration variables:
 
 - **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
-- **service_uuid** (**Required**, string) 16 bit, 32 bit, or 128 bit BLE Service UUID.
+- **service_uuid** (**Required**, string): 16 bit, 32 bit, or 128 bit BLE Service UUID.
 - See :ref:`Automation <automation>`.
 
 See Also

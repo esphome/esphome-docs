@@ -12,7 +12,7 @@ Usage
 
 The ``ili9341`` display platform allows you to use
 ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
-`Aliexpress <https://s.click.aliexpress.com/e/_dTKH6Mt>`__)
+`Aliexpress <https://www.aliexpress.com/af/Ili9341.html>`__)
 displays with ESPHome. As this is a somewhat higher resolution display and may require pins
 beyond the typical SPI connections, it is better suited for use with the ESP32.
 
@@ -33,13 +33,13 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
         dc_pin: 27
         led_pin: 32  ### see note below ###
         reset_pin: 33
-        
+
         lambda: |-
           it.fill(COLOR_BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
-    
-Configuration variables
-***********************
+
+Configuration variables:
+************************
 
 - **model** (**Required**): The model of the display. Options are:
 
@@ -123,5 +123,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ili9341/ili9341.h`
+- :apiref:`ili9341/ili9341_display.h`
 - :ghedit:`Edit`

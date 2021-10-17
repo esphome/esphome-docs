@@ -7,10 +7,9 @@ Peacefair PZEM-00X DC Energy Monitor
 
 .. note::
 
-    This page is incomplete and could some work. If you want to contribute, please read the
+    This page is incomplete and could use some work. If you want to contribute, please read the
     :doc:`contributing guide </guides/contributing>`. This page is missing:
 
-      - An image for the front page.
       - Images/screenshots/example configs of this device being used in action.
 
 The ``pzemdc`` sensor platform allows you to use various DC Peacefair PZEM energy monitors
@@ -19,6 +18,12 @@ with ESPHome. The supported models are: PZEM-003, PZEM-014, PZEM-016 and PZEM-01
 The communication with this integration is done over a :ref:`UART bus <uart>`.
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
 to some pins on your board and the baud rate set to 9600.
+
+.. figure:: images/pzem-dc.png
+    :align: center
+    :width: 80.0%
+
+    PZEM-0xx Energy Monitor.
 
 .. code-block:: yaml
 

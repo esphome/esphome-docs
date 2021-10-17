@@ -37,6 +37,13 @@ Advanced settings:
    Defaults to ``UART0``.
 -  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
    log strings in the flash section of the device (uses more memory). Defaults to true.
+-  **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
+   performed when a message is to be logged. The variables ``int level``, ``const char* tag`` and
+   ``const char* message`` are available for lambda processing.
+-  **deassert_rts_dtr** (*Optional*, boolean): Deasserts RTS/DTR when opening
+   log over UART. This is useful if RTS/DTR signals are directly connected to
+   the reset pin or strapping pins. Note: Deassert typically means high on TTL
+   level since RTS/DTR are usually low active signals. Defaults to ``false``.
 
 .. _logger-hardware_uarts:
 

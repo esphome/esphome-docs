@@ -46,7 +46,7 @@ For this guide you will need:
 -  Sonoff S20 😉.
 -  A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
    Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your S20.
--  A computer running Home Assistant with the ESPHome Hass.io add-on.
+-  A computer running Home Assistant with the ESPHome Home Assistant add-on.
 -  A screwdriver to open up the S20.
 -  A soldering iron and a few header pins to connect the UART interface.
 
@@ -200,6 +200,8 @@ of the basic functions.
 ``GPIO1``                                ``RX`` pin (for external sensors)
 ---------------------------------------- ----------------------------------------
 ``GPIO3``                                ``TX`` pin (for external sensors)
+---------------------------------------- ----------------------------------------
+``GPIO2``                                ``E-LOG`` pin (From PCB V2.1; for external sensors)
 ======================================== ========================================
 
 .. code-block:: yaml
@@ -207,8 +209,7 @@ of the basic functions.
     esphome:
       name: <NAME_OF_NODE>
       platform: ESP8266
-      board: esp8285
-      arduino_version: 2.4.2
+      board: esp01_1m
 
     wifi:
       ssid: <YOUR_SSID>
@@ -225,10 +226,13 @@ of the basic functions.
         pin:
           number: GPIO0
           mode: INPUT_PULLUP
-          inverted: True
+          inverted: true
         name: "Sonoff S20 Button"
       - platform: status
         name: "Sonoff S20 Status"
+      - platform: gpio
+        pin: GPIO2
+        name: "Sonoff S20 Sensor"
 
 
     switch:
@@ -242,7 +246,7 @@ of the basic functions.
         id: s20_green_led
         pin:
           number: GPIO13
-          inverted: True
+          inverted: true
 
     light:
       # ... and then make a light out of it.
@@ -271,7 +275,7 @@ in Home Assistant, replace the last part with this:
         id: s20_green_led
         pin:
           number: GPIO13
-          inverted: True
+          inverted: true
       # Note: do *not* make the relay a dimmable (PWM) signal, relays cannot handle that
       - platform: gpio
         id: s20_relay

@@ -48,8 +48,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-- **total** (*Optional*): Report the total number of pulses
-  All options from :ref:`Sensor <config-sensor>`.
+- **total** (*Optional*): Report the total number of pulses.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
@@ -75,7 +74,7 @@ count the light pulses on a power meter, you can do the following:
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
-          - multiply: 0.06
+          - multiply: 0.06  # (60s/1000 pulses per kWh)
 
 
 Counting total pulses
@@ -94,13 +93,13 @@ measure the total consumed energy in kWh.
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
         filters:
-          - multiply: 0.06
+          - multiply: 0.06  # (60s/1000 pulses per kWh)
 
         total:
           unit_of_measurement: 'kWh'
           name: 'Energy Meter House'
           filters:
-            - multiply: 0.001
+            - multiply: 0.001  # (1/1000 pulses per kWh)
 
 See Also
 --------

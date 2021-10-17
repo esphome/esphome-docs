@@ -85,6 +85,8 @@ See Also
 - :doc:`/components/output/index`
 - :doc:`/components/light/index`
 - :doc:`/components/light/rgbw`
+- :doc:`/components/light/rgbww`
+- :doc:`/components/light/rgbct`
 - :doc:`/components/power_supply`
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`

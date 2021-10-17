@@ -23,7 +23,7 @@ Changelog - Version 1.16.0 - February 3, 2021
     ST7735, components/display/st7735, st7735.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     CAN Bus, components/canbus, canbus.svg
-    Inkplate 6, components/display/Inkplate, Inkplate.jpg
+    Inkplate 6, components/display/Inkplate, inkplate6.jpg
 
 Hello, hello. Jesse Hills (:ghuser:`jesserockz`) here. Yet another new name doing the next release.
 
@@ -387,3 +387,19 @@ All changes
 - docs: Update scd30 docs to show sensors are optional :docspr:`970` by :ghuser:`jesserockz` (cherry-picked)
 - esphome: fix esp8266 remote_transmitter using incorrect timings :esphomepr:`1465` by :ghuser:`hcoohb` (cherry-picked)
 - esphome: rc522 increased retry loop count :esphomepr:`1506` by :ghuser:`glmnet` (cherry-picked)
+
+Past Changelogs
+---------------
+
+.. toctree::
+    :maxdepth: 1
+
+    v1.15.0
+    v1.14.0
+    v1.13.0
+    v1.12.0
+    v1.11.0
+    v1.10.0
+    v1.9.0
+    v1.8.0
+    v1.7.0
