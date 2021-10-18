@@ -76,7 +76,7 @@ Configuration variables:
   By default this rate will also be used for temperature, pressure and humidity sensors but these can be overridden on a per-sensor level if required.
 
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
-  flash so that calibration does have to start from zero on device restart. Defaults to ``6h``.
+  flash so that calibration doesn't have to start from zero on device restart. Defaults to ``6h``.
 
 Sensor
 ------
