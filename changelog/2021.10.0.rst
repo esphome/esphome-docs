@@ -51,7 +51,12 @@ using the ``ESP32-IDF`` option as the platform.
 Dashboard Node Import
 ---------------------
 
-To be written...
+If you intend on creating and distributing devices preinstalled with ESPHome, check out :doc:`/guides/creators`
+for more information and the best ways to give the end users the best experience.
+
+The newest feature of this set is the importing of devices found on the network. If the device is running
+ESPHome 2021.10 or newer, it can be configured to broadcast a url via mDNS and the ESPHome dashboard will pick this up
+and prompt the user to import the device and create a minimal configuration for it.
 
 Modbus Controller
 -----------------
@@ -168,6 +173,10 @@ Beta Fixes
 - Fix bitshift on read in ADE7953 :esphomepr:`2537` by :ghuser:`oxan`
 - Allow downloading all bin files from backend in dashboard :esphomepr:`2514` by :ghuser:`jesserockz`
 - Bump dashboard to 20211015.0 :esphomepr:`2525` by :ghuser:`balloob`
+- Only show timestamp for dashboard access logs :esphomepr:`2540` by :ghuser:`OttoWinter`
+- Fix const used for IDF recommended version :esphomepr:`2542` by :ghuser:`jesserockz`
+- Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
+- Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
 
 All changes
 ^^^^^^^^^^^
@@ -360,6 +369,10 @@ All changes
 - Fix bitshift on read in ADE7953 :esphomepr:`2537` by :ghuser:`oxan`
 - Allow downloading all bin files from backend in dashboard :esphomepr:`2514` by :ghuser:`jesserockz`
 - Bump dashboard to 20211015.0 :esphomepr:`2525` by :ghuser:`balloob`
+- Only show timestamp for dashboard access logs :esphomepr:`2540` by :ghuser:`OttoWinter`
+- Fix const used for IDF recommended version :esphomepr:`2542` by :ghuser:`jesserockz`
+- Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
+- Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
 
 Past Changelogs
 ---------------
