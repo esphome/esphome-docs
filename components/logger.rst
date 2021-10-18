@@ -188,7 +188,7 @@ using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const c
           - mqtt.publish:
               topic: some/topic
               payload: !lambda |-
-                return "Triggered on_message with level " + std::to_string(level) + ", tag " + tag + " and message " + message;
+                return "Triggered on_message with level " + esphome::to_string(level) + ", tag " + tag + " and message " + message;
 
 .. note::
 
