@@ -27,19 +27,9 @@ Configuration variables:
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPHome network. May only contain lowercase
   characters, digits and hyphens. See :ref:`esphome-changing_node_name`.
-- **platform** (**Required**, string): The platform your board is using,
-  either ``ESP32`` or ``ESP8266``.
-- **board** (**Required**, string): The PlatformIO board ID that should
-  be used. Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ for the ESP8266, and
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ for the ESP32 (the icon
-  next to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*,
-  if unsure choose a generic board from Espressif.
 
 Advanced options:
 
-- **arduino_version** (*Optional*): The version of the Arduino framework to link the project against.
-  See :ref:`esphome-arduino_version`.
 - **build_path** (*Optional*, string): Customize where ESPHome will store the build files
   for your node. By default, ESPHome puts all PlatformIO project files under a folder ``<NODE_NAME>/``,
   but you can customize this behavior using this option.
@@ -61,10 +51,20 @@ Advanced options:
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
 
-ESP8266 Options:
+Platform options that have been moved (now in platform-specific sections :doc:`esp32 </components/esp32>` and :doc:`esp8266 </components/esp8266>`):
 
-- **esp8266_restore_from_flash** (*Optional*, boolean): Whether to save & restore data from flash on ESP8266s.
-  Defaults to ``no``. See :ref:`esphome-esp8266_restore_from_flash` for more info
+- **platform** (**Required**, string): The type of platform. ``esp8266` or ``esp32``.
+- **board** (**Required**, string): The board that should be used. See 
+  :doc:`esp32 </components/esp32>` and :doc:`esp8266 </components/esp8266>` for more information.
+- **arduino_version** (*Optional*): The version of the Arduino framework to compile the project against.
+- **esp8266_restore_from_flash** (*Optional*, boolean): For ESP8266s, whether to store some persistent preferences in flash
+  memory.
+
+Choose the appropriate board from
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ for the ESP8266, and
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ for the ESP32 (the icon
+  next to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*,
+  if unsure choose a generic board from Espressif.
 
 Automations:
 
@@ -74,86 +74,6 @@ Automations:
   right before the node shuts down. See :ref:`esphome-on_shutdown`.
 - **on_loop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   on each ``loop()`` iteration. See :ref:`esphome-on_loop`.
-
-.. _esphome-arduino_version:
-
-``arduino_version``
--------------------
-
-ESPHome uses the Arduino framework internally to handle all low-level interactions like
-initializing the WiFi driver and so on. Unfortunately, every Arduino framework version often
-has its own quirks and bugs, especially concerning WiFi performance. With the ``arduino_version``
-option you can tell ESPHome which Arduino framework to use for compiling.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    esphome:
-      # ...
-      # Default: use the recommended version, usually this equals
-      # the latest version.
-      arduino_version: recommended
-
-      # Use the latest stable version
-      arduino_version: latest
-
-      # Use the latest staged version from GitHub, try this if you have WiFi problems
-      arduino_version: dev
-
-      # Use a specific version
-      arduino_version: 2.3.0
-
-For the ESP8266, you currently can manually pin the Arduino version to these values (see the full
-list of Arduino frameworks `here <https://github.com/esp8266/Arduino/releases>`__):
-
-* `3.0.1 <https://github.com/esp8266/Arduino/releases/tag/3.0.1>`__ (not recommended yet)
-* `3.0.0 <https://github.com/esp8266/Arduino/releases/tag/3.0.0>`__ (not recommended yet)
-* `2.7.4 <https://github.com/esp8266/Arduino/releases/tag/2.7.4>`__ (default)
-* `2.7.3 <https://github.com/esp8266/Arduino/releases/tag/2.7.3>`__
-* `2.7.2 <https://github.com/esp8266/Arduino/releases/tag/2.7.2>`__
-* `2.7.1 <https://github.com/esp8266/Arduino/releases/tag/2.7.1>`__
-* `2.7.0 <https://github.com/esp8266/Arduino/releases/tag/2.7.0>`__
-* `2.6.3 <https://github.com/esp8266/Arduino/releases/tag/2.6.3>`__
-* `2.6.2 <https://github.com/esp8266/Arduino/releases/tag/2.6.2>`__
-* `2.6.1 <https://github.com/esp8266/Arduino/releases/tag/2.6.1>`__
-* `2.5.2 <https://github.com/esp8266/Arduino/releases/tag/2.5.2>`__
-* `2.5.1 <https://github.com/esp8266/Arduino/releases/tag/2.5.1>`__
-* `2.5.0 <https://github.com/esp8266/Arduino/releases/tag/2.5.0>`__
-* `2.4.2 <https://github.com/esp8266/Arduino/releases/tag/2.4.2>`__
-* `2.4.1 <https://github.com/esp8266/Arduino/releases/tag/2.4.1>`__
-* `2.4.0 <https://github.com/esp8266/Arduino/releases/tag/2.4.0>`__
-* `2.3.0 <https://github.com/esp8266/Arduino/releases/tag/2.3.0>`__
-
-For the ESP32, there are these Arduino `framework versions <https://github.com/espressif/arduino-esp32/releases>`__:
-
-- `1.0.6 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.6>`__ (default)
-- `1.0.5 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.5>`__
-- `1.0.4 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.4>`__
-- `1.0.3 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.3>`__
-- `1.0.2 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.2>`__
-- `1.0.1 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.1>`__
-- `1.0.0 <https://github.com/espressif/arduino-esp32/releases/tag/1.0.0>`__
-
-.. _esphome-esp8266_restore_from_flash:
-
-``esp8266_restore_from_flash``
-------------------------------
-
-With this option you can control where the state of certain components is kept on the ESP.
-Components like ``light``, ``switch``, ``fan`` and ``globals`` can restore their state upon
-boot.
-
-However, by default this data is stored in the "RTC memory" section of the ESP8266s. This memory
-is cleared when the ESP8266 is disconnected from power. So by default the state cannot be recovered
-after power loss.
-
-To still have these components restore their state upon power loss the state can additionally be
-saved in *flash* memory by setting this option to ``true``.
-
-Beware: The flash has a limited number of write cycles (usually around 100 000), after that
-the flash section will fail. So do not use this option when you have components that update rapidly.
-These include GPIO switches that are used internally (disable restoring with the ``restore_mode`` option),
-certain light effects like ``random`` and the ``on_value_range`` trigger.
 
 .. _esphome-on_boot:
 
@@ -303,8 +223,6 @@ results in fewer flash writes, preserving the flash health.
 
 This behavior can be disabled by setting ``flash_write_interval`` to ``0s`` to immediately commit the state to flash,
 however, be aware that this may lead to increased flash wearing and a shortened device lifespan!
-
-For ESP8266, :ref:`esphome-esp8266_restore_from_flash` must also be set to true for states to be written to flash.
 
 .. _esphome-changing_node_name:
 
