@@ -177,6 +177,7 @@ Beta Fixes
 - Fix const used for IDF recommended version :esphomepr:`2542` by :ghuser:`jesserockz`
 - Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
 - Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
+- OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
 
 All changes
 ^^^^^^^^^^^
@@ -373,6 +374,7 @@ All changes
 - Fix const used for IDF recommended version :esphomepr:`2542` by :ghuser:`jesserockz`
 - Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
 - Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
+- OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
 
 Past Changelogs
 ---------------
