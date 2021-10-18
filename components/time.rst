@@ -376,7 +376,7 @@ This :ref:`Action <config-action>` triggers a synchronization of the current sys
     on_...:
       - ds3231.write_time
 
-.. _ds3231-read_time_action:
+.. _ds3231-read_time:
 
 ``ds3231.read_time`` Action
 ***************************
