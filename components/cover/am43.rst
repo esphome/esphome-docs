@@ -27,7 +27,7 @@ and state of the motor.
     esp32_ble_tracker:
 
     ble_client:
-      - mac: AA:BB:CC:DD:EE:FF
+      - mac_address: AA:BB:CC:DD:EE:FF
         id: am43_kitchen
 
     cover:
