@@ -96,7 +96,9 @@ Configuration variables:
 
 Automation Triggers:
 .. _ds3231-on_alarm_1:
-.. _ds3231-on_alarm_2:
+
+``ds3231.on_alarm_1`` Trigger
+-----------------------------
 
 .. code-block:: yaml
 
@@ -106,11 +108,21 @@ Automation Triggers:
         - then:
             - logger.log: Alarm 1 was triggered!
 
+- **on_alarm_1** (*Optional*, :ref:`Automation <automation>`): An automation to perform when alarm 1 is triggered. Note: This trigger may not happen exactly when the alarm is triggered as it is only checked when the component is updated.
+
+
+.. _ds3231-on_alarm_2:
+
+``ds3231.on_alarm_2`` Trigger
+-----------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    ds3231:
       on_alarm_2:
         - then:
             - logger.log: Alarm 2 was triggered!
-
-- **on_alarm_1** (*Optional*, :ref:`Automation <automation>`): An automation to perform when alarm 1 is triggered. Note: This trigger may not happen exactly when the alarm is triggered as it is only checked when the component is updated.
 
 - **on_alarm_2** (*Optional*, :ref:`Automation <automation>`): An automation to perform when alarm 2 is triggered. Note: This trigger may not happen exactly when the alarm is triggered as it is only checked when the component is updated.
 
