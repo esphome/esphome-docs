@@ -351,7 +351,7 @@ When a synchronization to another time source was successful, the RTC can be res
 DS3231 Time Source
 ------------------
 
-You first need to set up the :doc:`I2C </components/i2c>`and :doc:`DS3231 </components/ds3231>` components.
+You first need to set up the :doc:`I2C <i2c>`and :doc:`DS3231 <ds3231>` components.
 
 .. code-block:: yaml
 
