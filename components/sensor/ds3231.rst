@@ -1,0 +1,36 @@
+DS3231 RTC Temperature Sensor
+=============================
+
+.. seo::
+    :description: Instructions for setting up the temperature sensor on a DS3231 RTC.
+    :image: ds3231.jpg
+
+The ``DS3231`` (`datasheet <https://datasheets.maximintegrated.com/en/ds/DS3231.pdf>`__) is a real time clock device
+that includes 2 alarms, an output that can be triggered by either alarm or output a continuous square wave at 1 Hz,
+1024 Hz, 4096 Hz, or 8192 Hz, a 32.768kHz output, and a temperature sensor. It uses :ref:`I²C Bus <i2c>` for communication.
+The ``sensor.ds3231`` component allows you to get the temperature from the DS3231.
+
+You first need to set up the :ref:`I²C Bus <i2c>` and :ref:`DS3231 <ds3231>` components.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: ds3231
+        id: ds3231_temp
+        name: "DS3231 Temperature"
+
+Configuration variables:
+************************
+
+- **name** (**Required**, string): The name for the temperature sensor.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- All other options from :ref:`Sensor <config-sensor>`.
+
+
+See Also
+--------
+
+- :ref:`i2c`
+- :ref:`ds3231`
+- :apiref:`ds3231/ds3231.h`
+- :ghedit:`Edit`
