@@ -224,6 +224,8 @@ results in fewer flash writes, preserving the flash health.
 This behavior can be disabled by setting ``flash_write_interval`` to ``0s`` to immediately commit the state to flash,
 however, be aware that this may lead to increased flash wearing and a shortened device lifespan!
 
+For :doc:`ESP8266 </components/esp8266>`, ``restore_from_flash`` must also be set to ``true`` for states to be written to flash.
+
 .. _esphome-changing_node_name:
 
 Changing ESPHome Node Name
