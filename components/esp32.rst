@@ -21,7 +21,7 @@ Configuration variables:
   `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__. 
   *This only affects pin aliases, flash size and some internal settings*, if unsure choose a generic board.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
-  See :ref:`esp32-arduino_framework` and `esp32-espidf_framework`.
+  See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
 
 - **variant** (*Optional*, boolean): Defaults to the variant detected from the board. If the board is not known this option becomes mandatory.
   One of ``esp32``, ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``.
