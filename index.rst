@@ -559,6 +559,9 @@ Misc Components
 
 .. imgtable::
 
+    ESP8266, components/esp8266, esp8266.svg
+    ESP32, components/esp32, esp32.svg
+
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg

@@ -178,6 +178,8 @@ Beta Fixes
 - Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
 - Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
 - OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
+- Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
+- ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
 
 All changes
 ^^^^^^^^^^^
@@ -375,6 +377,8 @@ All changes
 - Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
 - Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
 - OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
+- Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
+- ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
 
 Past Changelogs
 ---------------
