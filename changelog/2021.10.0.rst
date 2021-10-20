@@ -20,6 +20,9 @@ ESPHome 2021.10.0 - 20th October 2021
     SCD4X, components/sensor/scd4x, scd4x.jpg
     Tuya Cover, components/cover/tuya, tuya.png
 
+
+Learn from the creators about the new encryption, support for any ESP32 variant and how Otto came up with ESPHome
+
 .. raw:: html
 
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/X10ToPN1gIk"
