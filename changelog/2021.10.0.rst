@@ -20,6 +20,13 @@ ESPHome 2021.10.0 - 20th October 2021
     SCD4X, components/sensor/scd4x, scd4x.jpg
     Tuya Cover, components/cover/tuya, tuya.png
 
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/X10ToPN1gIk"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
 
 ESP-IDF
 -------
