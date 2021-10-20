@@ -24,18 +24,6 @@ ESPHome 2021.10.0 - 20th October 2021
 ESP-IDF
 -------
 
-Docs still to be written before release on how to use ESP-IDF, but here is a quick example:
-
-.. code-block:: yaml
-
-    esphome:
-      name: livingroom
-
-    esp32:
-      board: <BOARD_TYPE>
-      framework:
-        type: esp-idf
-
 A huge effort has been put into reorganising, restructuring and rewriting a whole lot of code
 to allow ESP32 based boards to be compiled using ESP-IDF as the framework instead of Arduino.
 This allows ESPHome to keep up with new features and support for new ESP32 based chips
@@ -43,6 +31,8 @@ that Espressif add to the ESP-IDF, such as the ESP32-C3 that a lot of people had
 
 There are known issues and specific components that are missing support for ESP-IDF as those ones rely
 on an Arduino library and need more time to be rewritten in a compatible way.
+
+The new documentation is here at :doc:`/components/esp32`.
 
 If you come across an issue while switching to ESP-IDF, please file an
 `issue on GitHub <https://github.com/esphome/issues/issues/new?assignees=&labels=&template=bug_report.yml>`__
@@ -147,6 +137,7 @@ New Components
 - Add support for Airthing Wave Mini  :esphomepr:`2440` by :ghuser:`ncareau` (new-integration)
 - Add Safe Mode Restart Switch :esphomepr:`2437` by :ghuser:`paulmonigatti` (new-integration)
 - Added heatpumpir support :esphomepr:`1343` by :ghuser:`rob-deutsch` (new-integration)
+- OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
@@ -164,11 +155,12 @@ Beta Fixes
 - Fix BME680_BSEC compilation issue with ESP32 :esphomepr:`2516` by :ghuser:`paulmonigatti`
 - add missing include in sgp30 :esphomepr:`2517` by :ghuser:`dmitriy5181`
 - Fix: Color modes not being correctly used in light partitions :esphomepr:`2513` by :ghuser:`paulmonigatti`
+- Add pressure compensation during runtime :esphomepr:`2493` by :ghuser:`martgras`
 - Don't define UART_SELECTION_UART2 when UART2 is unavailable :esphomepr:`2512` by :ghuser:`oxan`
 - Remove BME680_BSEC test :esphomepr:`2518` by :ghuser:`paulmonigatti`
-- Add pressure compensation during runtime :esphomepr:`2493` by :ghuser:`martgras`
 - Fix Nextion HTTPClient error for ESP32 :esphomepr:`2524` by :ghuser:`kbx81`
 - Fix bug in register name definition :esphomepr:`2526` by :ghuser:`martgras`
+- OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
 - Replace framework version_hint with source option :esphomepr:`2529` by :ghuser:`oxan`
 - Fix bitshift on read in ADE7953 :esphomepr:`2537` by :ghuser:`oxan`
 - Allow downloading all bin files from backend in dashboard :esphomepr:`2514` by :ghuser:`jesserockz`
@@ -177,10 +169,12 @@ Beta Fixes
 - Fix const used for IDF recommended version :esphomepr:`2542` by :ghuser:`jesserockz`
 - Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
 - Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
-- OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
+- Bump dashboard to 20211019.0 :esphomepr:`2549` by :ghuser:`jesserockz`
 - Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
 - ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
+- Bump dashboard to 20211020.0 :esphomepr:`2556` by :ghuser:`jesserockz`
 - Fix HA addon so it does not have logout button :esphomepr:`2558` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20211020.1 :esphomepr:`2559` by :ghuser:`jesserockz`
 - A few esp32_ble_server/improv fixes :esphomepr:`2562` by :ghuser:`jesserockz`
 - Bump esphome-dashboard to 20211021.0 :esphomepr:`2564` by :ghuser:`jesserockz`
 - Move running process log line to debug level :esphomepr:`2565` by :ghuser:`OttoWinter`
@@ -296,7 +290,7 @@ All changes
 - bump dashboard to 20210927.0 :esphomepr:`2405` by :ghuser:`balloob`
 - Add str_sprintf function that returns std::string :esphomepr:`2408` by :ghuser:`oxan`
 - Fix lint issues in web_server_base :esphomepr:`2409` by :ghuser:`jesserockz`
-- Fix uninitialised use of ESPPreferenceObject.backend :esphomepr:`2411` by :ghuser:`paulmonigatti`
+- Fix uninitialised use of ESPPreferenceObject.backend_ :esphomepr:`2411` by :ghuser:`paulmonigatti`
 - Add support for SCD4X :esphomepr:`2217` by :ghuser:`sjtrny` (new-integration)
 - Support HSV-based color support on tuya light :esphomepr:`2400` by :ghuser:`irtimaled` (new-feature)
 - Tuya: add cover component :esphomepr:`2279` by :ghuser:`marmarek`
@@ -368,11 +362,12 @@ All changes
 - Fix BME680_BSEC compilation issue with ESP32 :esphomepr:`2516` by :ghuser:`paulmonigatti`
 - add missing include in sgp30 :esphomepr:`2517` by :ghuser:`dmitriy5181`
 - Fix: Color modes not being correctly used in light partitions :esphomepr:`2513` by :ghuser:`paulmonigatti`
+- Add pressure compensation during runtime :esphomepr:`2493` by :ghuser:`martgras`
 - Don't define UART_SELECTION_UART2 when UART2 is unavailable :esphomepr:`2512` by :ghuser:`oxan`
 - Remove BME680_BSEC test :esphomepr:`2518` by :ghuser:`paulmonigatti`
-- Add pressure compensation during runtime :esphomepr:`2493` by :ghuser:`martgras`
 - Fix Nextion HTTPClient error for ESP32 :esphomepr:`2524` by :ghuser:`kbx81`
 - Fix bug in register name definition :esphomepr:`2526` by :ghuser:`martgras`
+- OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
 - Replace framework version_hint with source option :esphomepr:`2529` by :ghuser:`oxan`
 - Fix bitshift on read in ADE7953 :esphomepr:`2537` by :ghuser:`oxan`
 - Allow downloading all bin files from backend in dashboard :esphomepr:`2514` by :ghuser:`jesserockz`
@@ -381,10 +376,12 @@ All changes
 - Fix const used for IDF recommended version :esphomepr:`2542` by :ghuser:`jesserockz`
 - Fix Bluetooth setup_priorities :esphomepr:`2458` by :ghuser:`jesserockz`
 - Autodetect ESP32 variant :esphomepr:`2530` by :ghuser:`oxan`
-- OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
+- Bump dashboard to 20211019.0 :esphomepr:`2549` by :ghuser:`jesserockz`
 - Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
 - ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
+- Bump dashboard to 20211020.0 :esphomepr:`2556` by :ghuser:`jesserockz`
 - Fix HA addon so it does not have logout button :esphomepr:`2558` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20211020.1 :esphomepr:`2559` by :ghuser:`jesserockz`
 - A few esp32_ble_server/improv fixes :esphomepr:`2562` by :ghuser:`jesserockz`
 - Bump esphome-dashboard to 20211021.0 :esphomepr:`2564` by :ghuser:`jesserockz`
 - Move running process log line to debug level :esphomepr:`2565` by :ghuser:`OttoWinter`
