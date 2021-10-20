@@ -92,6 +92,7 @@ Configuration variables:
   - ``4.20in-bV2`` (B/W rendering only)
   - ``5.83in``
   - ``7.50in``
+  - ``7.50in-bc`` (display with version sticker '(C)' on the back, B/W rendering only)
   - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)
 
 - **busy_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The BUSY pin. Defaults to not connected.

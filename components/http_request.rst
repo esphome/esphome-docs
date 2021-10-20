@@ -7,13 +7,7 @@ HTTP Request
     :keywords: http, request
 
 
-The ``http_request`` component lets you make HTTP/HTTPS requests.
-
-.. note::
-
-    This component works only with :ref:`arduino framework <esphome-arduino_version>` 2.5.0 or newer.
-
-First, you need to setup a component:
+The ``http_request`` component lets you make HTTP/HTTPS requests. First, you need to setup a component:
 
 .. code-block:: yaml
 
@@ -28,6 +22,21 @@ Configuration variables:
 - **useragent** (*Optional*, string): User-Agent header for requests. Defaults to ``ESPHome``.
 - **timeout** (*Optional*, :ref:`time <config-time>`): Timeout for request. Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+ESP8266 Options:
+
+- **esp8266_disable_ssl_support** (*Optional*, boolean): Whether to include SSL support on ESP8266s.
+  Defaults to ``no``. See :ref:`esphome-esp8266_disable_ssl_support` for more info
+
+.. _esphome-esp8266_disable_ssl_support:
+
+``esp8266_disable_ssl_support``
+-------------------------------
+
+This options allows you to disable inclusion of SSL libraries. This is required on a flash
+constrained devices (512k or 1M) which does not have enough space to support
+SSL and OTA concurrently. The flashing will fail with the following error
+``Error: ESP does not have enough space to store OTA file``.
 
 HTTP Request Actions
 --------------------

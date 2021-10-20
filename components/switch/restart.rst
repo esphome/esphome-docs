@@ -30,6 +30,7 @@ See Also
 --------
 
 - :doc:`shutdown`
+- :doc:`safe_mode`
 - :doc:`template`
 - :apiref:`restart/restart_switch.h`
 - :ghedit:`Edit`
