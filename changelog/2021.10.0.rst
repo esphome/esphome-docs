@@ -181,6 +181,10 @@ Beta Fixes
 - Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
 - ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
 - Fix HA addon so it does not have logout button :esphomepr:`2558` by :ghuser:`jesserockz`
+- A few esp32_ble_server/improv fixes :esphomepr:`2562` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20211021.0 :esphomepr:`2564` by :ghuser:`jesserockz`
+- Move running process log line to debug level :esphomepr:`2565` by :ghuser:`OttoWinter`
+- Revert nextion clang-tidy changes :esphomepr:`2566` by :ghuser:`OttoWinter`
 
 All changes
 ^^^^^^^^^^^
@@ -381,6 +385,10 @@ All changes
 - Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
 - ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
 - Fix HA addon so it does not have logout button :esphomepr:`2558` by :ghuser:`jesserockz`
+- A few esp32_ble_server/improv fixes :esphomepr:`2562` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20211021.0 :esphomepr:`2564` by :ghuser:`jesserockz`
+- Move running process log line to debug level :esphomepr:`2565` by :ghuser:`OttoWinter`
+- Revert nextion clang-tidy changes :esphomepr:`2566` by :ghuser:`OttoWinter`
 
 Past Changelogs
 ---------------
