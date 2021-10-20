@@ -180,6 +180,7 @@ Beta Fixes
 - OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
 - Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
 - ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
+- Fix HA addon so it does not have logout button :esphomepr:`2558` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -379,6 +380,7 @@ All changes
 - OTA firmware MD5 check + password support for esp-idf :esphomepr:`2507` by :ghuser:`mmakaay` (new-integration)
 - Fix ADC pin validation on ESP32-C3 :esphomepr:`2551` by :ghuser:`oxan`
 - ignore exception when not waiting for a response :esphomepr:`2552` by :ghuser:`martgras`
+- Fix HA addon so it does not have logout button :esphomepr:`2558` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
