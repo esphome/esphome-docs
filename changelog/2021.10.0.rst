@@ -290,7 +290,7 @@ All changes
 - bump dashboard to 20210927.0 :esphomepr:`2405` by :ghuser:`balloob`
 - Add str_sprintf function that returns std::string :esphomepr:`2408` by :ghuser:`oxan`
 - Fix lint issues in web_server_base :esphomepr:`2409` by :ghuser:`jesserockz`
-- Fix uninitialised use of ESPPreferenceObject.backend_ :esphomepr:`2411` by :ghuser:`paulmonigatti`
+- Fix uninitialised use of ESPPreferenceObject.backend :esphomepr:`2411` by :ghuser:`paulmonigatti`
 - Add support for SCD4X :esphomepr:`2217` by :ghuser:`sjtrny` (new-integration)
 - Support HSV-based color support on tuya light :esphomepr:`2400` by :ghuser:`irtimaled` (new-feature)
 - Tuya: add cover component :esphomepr:`2279` by :ghuser:`marmarek`
