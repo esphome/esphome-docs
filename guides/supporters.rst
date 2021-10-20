@@ -504,6 +504,7 @@ Contributors
 - `obrain17 (@obrain17) <https://github.com/obrain17>`__
 - `Ockert Marais (@OckertM) <https://github.com/OckertM>`__
 - `Dave Walker (@oddsockmachine) <https://github.com/oddsockmachine>`__
+- `Andrey Ganzevich (@odya) <https://github.com/odya>`__
 - `Olivér Falvai (@ofalvai) <https://github.com/ofalvai>`__
 - `Omar Ghader (@omarghader) <https://github.com/omarghader>`__
 - `Ömer Şiar Baysal (@omersiar) <https://github.com/omersiar>`__
@@ -725,7 +726,6 @@ Contributors
 - `Rick van Hattem (@WoLpH) <https://github.com/WoLpH>`__
 - `workingmanrob (@workingmanrob) <https://github.com/workingmanrob>`__
 - `Wojtek Strzalka (@wstrzalka) <https://github.com/wstrzalka>`__
-- `wutr (@wutr) <https://github.com/wutr>`__
 - `Mike (@xsnoopy) <https://github.com/xsnoopy>`__
 - `Yaroslav (@Yarikx) <https://github.com/Yarikx>`__
 - `Marcin Jaworski (@yawor) <https://github.com/yawor>`__
@@ -742,4 +742,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 20, 2021.*
+*This page was last updated October 21, 2021.*
