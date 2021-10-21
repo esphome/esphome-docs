@@ -100,6 +100,20 @@ The ``wait_until`` action now has an optional ``timeout`` option that lets you c
 if action afterwards) your automations if the condition does not become true after a period of time.
 
 
+GPIO0 input mode
+----------------
+
+From this release, ESPHome will show a configuration error when attempting to use ``mode: INPUT_PULLUP`` for GPIO0 / Pin 0.
+This is because GPIO0 is always pulled up and you only need to set ``mode: INPUT`` or use the newer syntax:
+
+.. code-block:: yaml
+
+    pin:
+      number: 0
+      mode:
+        input: true
+
+
 Combination of MiScale 1 & 2
 ----------------------------
 
