@@ -167,6 +167,7 @@ Breaking Changes
 - Combine code of xiaomi_miscale and xiaomi_miscale2 :esphomepr:`2266` by :ghuser:`edenhaus` (breaking-change)
 - Correctly invert the float output state :esphomepr:`2368` by :ghuser:`jesserockz` (breaking-change)
 - Add SSD1305 support to SSD1306 integration along with few new options :esphomepr:`1902` by :ghuser:`zhangjingye03` (new-feature) (breaking-change)
+- Disable dependency finder on ESP32 :esphomepr:`2435` by :ghuser:`agners` (breaking-change)
 
 Beta Fixes
 ^^^^^^^^^^
