@@ -122,6 +122,7 @@ Release 2021.10.1 - October 21
 - Arduino global delay/millis/... symbols workaround :esphomepr:`2575` by :ghuser:`OttoWinter`
 - Fix ESP8266 OTA adds unnecessary Update library :esphomepr:`2579` by :ghuser:`OttoWinter`
 - Fix ESP8266 dallas GPIO16 INPUT_PULLUP :esphomepr:`2581` by :ghuser:`OttoWinter`
+- Fix platformio version in Dockerfile doesn't match requirements :esphomepr:`2582` by :ghuser:`OttoWinter`
 
 Full list of changes
 --------------------
