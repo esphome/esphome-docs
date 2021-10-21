@@ -236,7 +236,7 @@ Configuration example for PVVX MiThermometer firmware set to "Custom" advertisem
           name: "PVVX Battery-Voltage"
 
 MHO-C401
-**********
+********
 
 Hygro thermometer, square body, e-ink display, encrypted, broadcasts temperature, humidity and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
 
@@ -501,7 +501,7 @@ Obtaining The Bindkey
 To set up an encrypted device such as the LYWSD03MMC (with Xiaomi stock firmware) and CGD1, you first need to obtain the bind key. The ``xiaomi_ble`` sensor component is not able to automatically generate a bind key so other workarounds are necessary.
 
 LYWSD03MMC/MHO-C401
-**********
+*******************
 
 If the LYWSD03MMC or MHO-C401 sensor is operated with the Xiaomi stock firmware, you can use the `TeLink flasher application <https://atc1441.github.io/TelinkFlasher.html>`__ to easily generate a new bind key and upload the key to the device without the need to flash a new firmware (see figure). For this, you load the flasher `webpage <https://atc1441.github.io/TelinkFlasher.html>`__ with a `supported browser <https://github.com/WebBluetoothCG/web-bluetooth/blob/master/implementation-status.md>`__ and connect the device by pressing "Connect". After the connection is established, you press the "Do Activation" button and the new key will be shown in the "Mi Bind Key" field. The key can be copied directly into the sensor YAML configuration.
 
