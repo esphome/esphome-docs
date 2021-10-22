@@ -113,6 +113,18 @@ When using a float output with both invert and min/max values, prevously
 the end resut value was being calculated incorrectly. :esphomepr:`2368` fixed this.
 
 
+Release 2021.10.1 - October 21
+------------------------------
+
+- Fix MDNS for ESP8266 devices :esphomepr:`2571` by :ghuser:`mmakaay`
+- Fix ESP8266 GPIO0 Pullup Validation :esphomepr:`2572` by :ghuser:`OttoWinter`
+- Fix wifi ble coexistence check :esphomepr:`2573` by :ghuser:`OttoWinter`
+- Arduino global delay/millis/... symbols workaround :esphomepr:`2575` by :ghuser:`OttoWinter`
+- Fix ESP8266 OTA adds unnecessary Update library :esphomepr:`2579` by :ghuser:`OttoWinter`
+- Fix ESP8266 dallas GPIO16 INPUT_PULLUP :esphomepr:`2581` by :ghuser:`OttoWinter`
+- Fix platformio version in Dockerfile doesn't match requirements :esphomepr:`2582` by :ghuser:`OttoWinter`
+- Fix platformio_install_deps no longer installing all lib_deps :esphomepr:`2584` by :ghuser:`OttoWinter`
+
 Full list of changes
 --------------------
 
