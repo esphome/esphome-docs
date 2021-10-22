@@ -125,6 +125,24 @@ Release 2021.10.1 - October 21
 - Fix platformio version in Dockerfile doesn't match requirements :esphomepr:`2582` by :ghuser:`OttoWinter`
 - Fix platformio_install_deps no longer installing all lib_deps :esphomepr:`2584` by :ghuser:`OttoWinter`
 
+Release 2021.10.2 - October 22
+------------------------------
+
+- Fix HeatpumpIR pin :esphomepr:`2585` by :ghuser:`OttoWinter`
+- Fix PlatformIO version for latest Arduino framework :esphomepr:`2590` by :ghuser:`oxan`
+- Fix pin/component switchup in SX1509 pin configuration :esphomepr:`2593` by :ghuser:`oxan`
+- Fix old-style `arduino_version` on ESP8266 and with magic values :esphomepr:`2591` by :ghuser:`oxan`
+- Bump esphome-dashboard from 20211021.0 to 20211021.1 :esphomepr:`2594` by :ghuser:`dependabot[bot]`
+- Fix validation of addressable light IDs :esphomepr:`2588` by :ghuser:`oxan`
+- Fix socket connection closed not detected :esphomepr:`2587` by :ghuser:`OttoWinter`
+- Bump noise-c from 0.1.3 to 0.1.4 :esphomepr:`2602` by :ghuser:`OttoWinter`
+- Add OTA upload compression for ESP8266 :esphomepr:`2601` by :ghuser:`OttoWinter`
+- Re-raise keyboardinterrupt :esphomepr:`2603` by :ghuser:`OttoWinter`
+- Add owner to all libraries used :esphomepr:`2604` by :ghuser:`OttoWinter`
+- Fix compiler warnings and update platformio line filter :esphomepr:`2607` by :ghuser:`OttoWinter`
+- Fix ESP8266 OTA compression only starting framework v2.7.0 :esphomepr:`2610` by :ghuser:`OttoWinter`
+- Bugfix tca9548a and idf refactor anh :esphomepr:`2612` by :ghuser:`andreashergert1984`
+
 Full list of changes
 --------------------
 
