@@ -3,7 +3,7 @@ Mopeka Pro Check BLE Sensor
 
 .. seo::
     :description: Instructions for setting up Mopeka Pro Check bluetooth-based sensors in ESPHome.
-    :image: mopeka.png
+    :image: mopeka_pro_check.jpg
     :keywords: Mopeka, Mopeka Pro Check, BLE, Bluetooth
 
 The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka 
