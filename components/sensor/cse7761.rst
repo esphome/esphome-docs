@@ -20,7 +20,7 @@ Additionally, you need to set the baud rate to 38400 and parity to ``EVEN``.
 .. code-block:: yaml
 
     # Example configuration entry
-    # Disable logging over USB
+    # Disable logging over serial
     logger:
       baud_rate: 0
 
