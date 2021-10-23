@@ -45,8 +45,8 @@ out a BLE broadcast.
     - platform: mopeka_pro_check
         mac_address: D3:75:F2:DC:16:91
         tank_type: CUSTOM
-        distance_full: 40cm
-        distance_empty: 10mm
+        custom_distance_full: 40cm
+        custom_distance_empty: 10mm
         temperature:
             name: "Propane c test temp"
         level:
@@ -66,10 +66,10 @@ Configuration variables:
 - **tank_type** (*Optional*, Default: 20LB_V): The tank type the sensor is
   measuring.
 
-- **distance_full** (*Optional*): distance sensor will read when it should be
+- **custom_distance_full** (*Optional*): distance sensor will read when it should be
   considered full (100%).  This is only used when tank_type = CUSTOM
 
-- **distance_empty** (*Optional*): distance sensor will read when it should be
+- **custom_distance_empty** (*Optional*): distance sensor will read when it should be
   considered empty (0%).  This is only used when tank_type = CUSTOM
 
 - **level** (*Optional*): The percentage of full for the tank sensor
