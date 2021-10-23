@@ -106,6 +106,27 @@ Configuration variables:
   with for infrared signals. Defaults to ``0Hz``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_pronto:
+
+``remote_transmitter.transmit_pronto`` Action
+******************************************
+
+This :ref:`action <config-action>` sends a raw code to a remote transmitter specified in Pronto format.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_pronto:
+          data: "0000 006D 0010 0000 0008 0020 0008 0046 000A 0020 0008 0020 0008 001E 000A 001E 000A 0046 000A 001E 0008 0020 0008 0020 0008 0046 000A 0046 000A 0046 000A 001E 000A 001E 0008 06C3"
+
+Configuration variables:
+
+- **data** (**Required**, string): The raw code to send specified as a string.
+  A lot of remote control Pronto codes can be found on http://remotecentral.com
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+
+
 ``remote_transmitter.transmit_jvc`` Action
 ******************************************
 
