@@ -19,7 +19,6 @@ out a BLE broadcast.
 
 .. figure:: images/mopeka_pro_check.jpg
     :align: center
-    :width: 80.0%
 
     Mopeka Pro Check LP over BLE.
 
@@ -30,31 +29,31 @@ out a BLE broadcast.
     sensor:
     # Example using 20lb vertical propane tank.
     - platform: mopeka_pro_check
-        mac_address: D3:75:F2:DC:16:91
-        tank_type: 20LB_V
-        temperature:
-            name: "Propane test temp"
-        level:
-            name: "Propane test level"
-        distance:
-            name: "Propane test distance"
-        battery_level:
-            name: "Propane test battery level"
+      mac_address: D3:75:F2:DC:16:91
+      tank_type: 20LB_V
+      temperature:
+          name: "Propane test temp"
+      level:
+          name: "Propane test level"
+      distance:
+          name: "Propane test distance"
+      battery_level:
+          name: "Propane test battery level"
 
     # Custom example - user defined empty / full points
     - platform: mopeka_pro_check
-        mac_address: D3:75:F2:DC:16:91
-        tank_type: CUSTOM
-        custom_distance_full: 40cm
-        custom_distance_empty: 10mm
-        temperature:
-            name: "Propane c test temp"
-        level:
-            name: "Propane c test level"
-        distance:
-            name: "Propane c test distance"
-        battery_level:
-            name: "Propane c test battery level"
+      mac_address: D3:75:F2:DC:16:91
+      tank_type: CUSTOM
+      custom_distance_full: 40cm
+      custom_distance_empty: 10mm
+      temperature:
+          name: "Propane c test temp"
+      level:
+          name: "Propane c test level"
+      distance:
+          name: "Propane c test distance"
+      battery_level:
+          name: "Propane c test battery level"
 
 
 Configuration variables:
@@ -131,7 +130,7 @@ found the ``mopeka_ble`` component will print a message like this one:
 
 .. code::
 
-    [20:43:26][I][mopeka_ble:053]: SENSOR FOUND: D3:75:F2:DC:16:91
+    [20:43:26][I][mopeka_ble:040]: SENSOR FOUND: D3:75:F2:DC:16:91
 
 Then just copy the address (``D3:75:F2:DC:16:91``) into a new
 ``sensor.mopeka_pro_check`` platform entry like in the configuration example at the top.
