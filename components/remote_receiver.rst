@@ -51,7 +51,7 @@ Configuration variables:
 - **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
   ``3``.
 - **filter** (*Optional*, :ref:`time <config-time>`): Filter any pulses that are shorter than this. Useful for removing
-  glitches from noisy signals. Defaults to ``10us``.
+  glitches from noisy signals. Defaults to ``50us``.
 - **idle** (*Optional*, :ref:`time <config-time>`): The amount of time that a signal should remain stable (i.e. not
   change) for it to be considered complete. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
