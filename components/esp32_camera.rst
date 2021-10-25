@@ -94,6 +94,46 @@ Frame Settings:
     Camera uses PWM timer #1. If you need PWM (via the ``ledc`` platform) you need to manually specify
     a channel there (with the ``channel: 2``  parameter)
 
+Configuration for generic ESP32-CAM-MB board
+-----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    
+    
+    esp32_camera:
+      external_clock:
+        pin: GPIO0
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO26
+        scl: GPIO27
+      data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+      vsync_pin: GPIO25
+      href_pin: GPIO23
+      pixel_clock_pin: GPIO22
+      power_down_pin: GPIO32
+      # Image settings
+      name: My Camera
+      # ...
+
+    output:
+      - platform: gpio
+        pin: GPIO4
+        id: gpio_4
+      - platform: gpio
+        pin: GPIO33
+        id: gpio_33
+
+    light:
+      - platform: binary
+        output: gpio_4
+        name: "$friendly_name flashlight"
+      - platform: binary
+        output: gpio_33
+        name: "$friendly_name Red-LED"
+
 Configuration for Ai-Thinker Camera
 -----------------------------------
 
