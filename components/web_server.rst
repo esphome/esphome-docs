@@ -50,6 +50,8 @@ Configuration variables:
   - **username** (**Required**, string): The username to use for authentication.
   - **password** (**Required**, string): The password to check for authentication.
 
+- **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
+  web interface. Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. note::
