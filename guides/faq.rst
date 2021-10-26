@@ -358,7 +358,7 @@ Why am I getting a warning about strapping pins?
 The ESP chips have special "strapping pins" that are read during the bootup procedure and determine how it boots up. They define whether the ESP boots into a special "flashing mode" or normal boot and a couple of other internal settings.
 If an external pullup/down changes the configured voltage levels boot failures or hard to diagnose issues can happen.
 While the use of them in software is not a problem if  there's something attached to the pins (particularly if they're not floating) you may run into problems.
-Unless you have a pressing need to use them and you know exactly what you are doing it is recommended to avoid them. 
+It's recommended to avoid them unless you have a pressing need to use them and you know have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
 
 See Also
 --------
