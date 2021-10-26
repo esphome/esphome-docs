@@ -10,6 +10,10 @@ on:
       - Dockerfile
       - .github/workflows/docker.yml
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
