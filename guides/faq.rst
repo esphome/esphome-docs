@@ -351,6 +351,15 @@ The top level ``name:`` field in your .yaml file defines the node name(/hostname
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
+
+Why am I getting a warning about strapping pins?
+--------------------------------------------------
+
+The strapping pins are read on esp bootup and determine how it boots up. The define flashing mode, normal boot and a couple of other settings. 
+If an external pullup/down changes the configured voltage levels boot failure or hard to diagnose issues can happen.  
+While the use of them in software is not a problem if  there's something attached to the pins (particularly if they're not floating) you may run into problems.
+Unless you have a pressing need to use them and you know exactly what you are doing it is recommended to avoid them. 
+
 See Also
 --------
 
