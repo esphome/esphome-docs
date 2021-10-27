@@ -59,6 +59,10 @@ Configuration variables:
   the knob further will not decrease the number. Defaults to no minimum.
 - **max_value** (*Optional*, int): The maximum value this rotary encoder will go to, turning
   the knob further will not increase the number. Defaults to no maximum.
+- **publish_initial_value** (*Optional*, boolean): Controls whether the value is published
+  upon start of ESPHome. By default the value is only published when it changes, causing an
+  "unknown" value at first. If you set this option to true, the value is published once after
+  boot and when it changes. Defaults to ``false``.
 - **on_clockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when
   the knob is turned clockwise. See :ref:`sensor-rotary_encoder-triggers`.
 - **on_anticlockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when
