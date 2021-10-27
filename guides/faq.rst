@@ -351,6 +351,26 @@ The top level ``name:`` field in your .yaml file defines the node name(/hostname
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
+How can I test a Pull Request?
+------------------------------
+
+By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page). Then, if you add a block of code like the following to your YAML file, once you recompile and flash your device, the code from the Pull Request will be used for these components.
+
+.. code-block:: yaml
+
+    external_components:
+      - source:
+          type: git
+          url: https://github.com/esphome/esphome
+          # replace 1234 with the number of the Pull Request
+          ref: pull/1234/head
+        components:
+          # list all components touched by this Pull Request here
+          - ccs811  
+
+
+Note that this only works for Pull Requests that change only files within a component. If any files outside ``esphome/components/`` are added or changed, this method unfortunately doesn't work.
+
 See Also
 --------
 
