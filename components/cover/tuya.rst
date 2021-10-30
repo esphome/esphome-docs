@@ -71,8 +71,8 @@ Configuration variables:
 - **invert_position** (*Optional*, boolean): Sets the direction of travel to be inverted, if direction_datapoint is configured.
 - All other options from :ref:`Cover <config-cover>`.
 
-Supported devices:
-------------------
+Supported devices
+-----------------
 
 Tuya cover devices known to be supported by this integration:
 
@@ -88,6 +88,20 @@ Tuya cover devices known to be supported by this integration:
 
 If you have a Tuya cover device that isn't listed above, it may still work - but you'll need to determine which datapoints it uses
 (and what their IDs are) for yourself.
+
+Restore modes
+-------------
+
+The default restore mode (``RESTORE``) attempts to restore the state on startup, but doesn't instruct the cover to move to that state.
+
+``RESTORE_AND_CALL`` additionally instructs the cover to move to the restored state - which might not work, depending on your device (see note below).
+
+The Tuya MCU usually reports its position on startup, so ``NO_RESTORE`` will likely also appear to restore its state - but may take slightly longer.
+
+Note that if your Tuya cover device uses relative position sensing (such as the ZM79E-DT), it can't tell if the cover was moved while not powered up.
+This means that moving the cover while the device is powered off will result in its position not matching the reported/requested state.
+In this condition, it will go into an error / uncalibrated state when it next tries to go in one direction (as it can't move as far as it wants to), requiring an open/close cycle to recalibrate.
+
 
 See Also
 --------
