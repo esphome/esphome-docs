@@ -149,6 +149,28 @@ Configuration for M5Stack Camera
       name: My Camera
       # ...
 
+Configuration for M5Stack Timer Camera X/F
+--------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+
+      # Image settings
+      name: My Camera
+      # ...
 
 Configuration for Wrover Kit Boards
 -----------------------------------
