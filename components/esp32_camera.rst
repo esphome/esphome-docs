@@ -150,7 +150,7 @@ Configuration for M5Stack Camera
       # ...
 
 Configuration for M5Stack Timer Camera X/F
---------------------------------
+------------------------------------------
 
 .. code-block:: yaml
 
