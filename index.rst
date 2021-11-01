@@ -645,6 +645,7 @@ Cookbook
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
+    SNRE Solar Charge Controller MC24xx series, cookbook/mc24xx, mc24xx.png
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
