@@ -386,7 +386,7 @@ Tested with MC2420
       ## Calculate Conversion efficeny
       - platform: template
         name: "Conversion efficiency"
-        lambda: "return  100.0f * id(solar_power).state /  (id(battery_voltage).state * id(charging_current).state);"
+        lambda: "return  100.0f * id(battery_voltage).state * id(charging_current).state / id(solar_power).state ;"
         unit_of_measurement: "%"
         update_interval: ${updates}
 
