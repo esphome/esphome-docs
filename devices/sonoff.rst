@@ -102,6 +102,22 @@ Sonoff Dual R2 v1.4
     GPIO10, Button on the case,
     GPIO13, Blue LED (inverted)
 
+Sonoff Dual R3 v1.x
+-------------------
+
+.. pintable::
+
+    GPIO27, Relay #1,
+    GPIO14, Relay #2,
+    GPIO0, Button,
+    GPIO13, Blue LED (inverted),
+    GPIO32, SW Input #1 (inverted),
+    GPIO33, SW Input #2 (inverted),
+    GPIO25, UART TX pin (for power sensor)
+    GPIO26, UART RX pin (for power sensor)
+
+See :doc:`/components/sensor/cse7761` for measuring power.
+
 Sonoff Pow R1
 -------------
 
