@@ -126,7 +126,9 @@ IR receiver.
       pin:
         number: GPIO14
         inverted: true
-        mode: INPUT_PULLUP
+        mode:
+          input: true
+          pullup: true
       # high 55% tolerance is recommended for some remote control units
       tolerance: 55%
 

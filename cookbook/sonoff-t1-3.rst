@@ -36,7 +36,9 @@ T1
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         id: button_1
         on_press:
@@ -99,7 +101,9 @@ T2
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         id: button_1
         on_press:
@@ -109,7 +113,9 @@ T2
       - platform: gpio
         pin:
           number: GPIO9
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         id: button_2
         on_press:
@@ -170,7 +176,9 @@ T3
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         id: button_1
         on_press:
@@ -180,7 +188,9 @@ T3
       - platform: gpio
         pin:
           number: GPIO9
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         id: button_2
         on_press:
@@ -190,7 +200,9 @@ T3
       - platform: gpio
         pin:
           number: GPIO10
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         id: button_3
         on_press:
@@ -241,4 +253,3 @@ See Also
 - :doc:`/cookbook/sonoff-light-switch`
 - :doc:`/guides/automations`
 - :doc:`/devices/sonoff_t1_uk_3gang_v1.1`
-

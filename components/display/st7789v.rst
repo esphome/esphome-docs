@@ -201,7 +201,9 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
         pin:
           number: GPIO0
           inverted: true
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
         name: "T-Display Button Input 0"
         id: tdisplay_button_input_0
       - platform: gpio

@@ -260,7 +260,9 @@ Remote code selection (exactly one of these has to be included):
           pin:
             number: D4
             inverted: true
-            mode: INPUT_PULLUP
+            mode:
+              input: true
+              pullup: true
           dump: all
 
 
