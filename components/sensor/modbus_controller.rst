@@ -30,13 +30,22 @@ Configuration variables:
     - S_QWORD (signed float from 4 registers = 64bit
     - U_QWORD_R (unsigend float from 4 registers low word first )
     - S_QWORD_R (sigend float from 4 registers low word first )
+    - FP32 (32 bit IEEE 754 floating point from 2 registers)
+    - FP32_R (32 bit IEEE 754 floating point - same as FP32 but low word first)
 
 - **bitmask**: (*Optional*) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
 - **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
   Note: The modbus_controller groups component by address ranges to reduce number of transactions. All compoents with the same address will be updated in one request. skip_updates applies for all components in the same range.
 - **register_count**: (*Optional*): only required for uncommon response encodings
-  The number of registers this data point spans. Default is 1
+  The number of registers this data point spans. Overrides the defaults determined by `value_type`.
+  If no value for `register_count` is provided, it is calculated based on the register type.
+
+  The default size for 1 register is 16 bits (1 Word). Some devices are not adhering to this convention and have registers larger than 16 bits.  In this case `register_count` must be set. For example, if your modbus device uses 1 registers for a FP32 value instead the default of two set `register_count: 2`.
+
 - **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
+- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used. 
+  custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+  See :ref:`modbus_custom_data` how to use `custom_command`
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor.
 - **offset**: (*Optional*, int): only required for uncommon response encodings
@@ -126,6 +135,130 @@ Possible return values for the lambda:
 
  - ``return <FLOATING_POINT_NUMBER>;`` the new value for the sensor.
  - ``return NAN;`` if the state should be considered invalid to indicate an error (advanced).
+
+.. _modbus_custom_data:
+
+Using custom_data
+-----------------
+
+`custom_data` can be used to create an arbitrary modbus command. Combined with a lambda any response can be handled. 
+This example re-implements the command to read the registers 0x156 (Total active energy) and 0x158 Total (reactive energy) from a SDM-120.
+SDM-120 returns the values as floats using 32 bits in 2 registers. 
+
+    .. code-block:: yaml
+
+        modbus:
+          send_wait_time: 200ms
+          uart_id: mod_uart
+          id: mod_bus
+
+        modbus_controller:
+          - id: sdm
+            address: 2
+            modbus_id: mod_bus
+            command_throttle: 100ms
+            setup_priority: -10
+            update_interval: 30s
+        sensors:
+          - platform: modbus_controller
+            modbus_controller_id: sdm
+            name: "Total active energy"
+            id: total_energy
+            #    address: 0x156
+            #    register_type: "read"
+            ## reimplement using custom_command
+            # 0x2 : modbus device address
+            # 0x4 : modbus function code
+            # 0x1 : high byte of modbus register address
+            # 0x56: low byte of modbus register address
+            # 0x00: high byte of total number of registers requested 
+            # 0x02: low byte of total number of registers requested
+            custom_command: [ 0x2, 0x4, 0x1, 0x56,0x00, 0x02]
+            value_type: FP32
+            unit_of_measurement: kWh
+            accuracy_decimals: 1
+
+          - platform: modbus_controller
+            modbus_controller_id: sdm
+            name: "Total reactive energy"
+            #   address: 0x158
+            #   register_type: "read"
+            custom_command: [0x2, 0x4, 0x1, 0x58, 0x00, 0x02]
+            ## the command returns an float value using 4 bytes
+            lambda: |-
+              ESP_LOGD("Modbus Sensor Lambda","Got new data" );
+              union {
+                float float_value;
+                uint32_t raw;
+              } raw_to_float;
+              if (data.size() < 4 ) {
+                ESP_LOGE("Modbus Sensor Lambda", "invalid data size %d",data.size());
+                return NAN;
+              }
+              raw_to_float.raw =   data[0] << 24 | data[1] << 16 | data[2] << 8 |  data[3];
+              ESP_LOGD("Modbus Sensor Lambda", "FP32 = 0x%08X => %f", raw_to_float.raw, raw_to_float.float_value);
+              return raw_to_float.float_value;
+            unit_of_measurement: kVArh
+            accuracy_decimals: 1
+
+
+.. note:: **Optimize modbus communications**
+
+    `register_count` can also be used to skip a register in consecutive range. 
+    
+    An example is a SDM meter: 
+    
+    .. code-block:: yaml
+
+        - platform: modbus_controller
+            name: "Voltage Phase 1"
+            address: 0
+            register_type: "read"
+            value_type: FP32
+
+        - platform: modbus_controller
+            name: "Voltage Phase 2"
+            address: 2
+            register_type: "read"
+            value_type: FP32
+
+        - platform: modbus_controller
+            name: "Voltage Phase 3"
+            address: 4
+            register_type: "read"
+            value_type: FP32
+
+          - platform: modbus_controller
+            name: "Current Phase 1"
+            address: 6
+            register_type: "read"
+            value_type: FP32
+            accuracy_decimals: 1
+
+    Maybe you don’t care about the Voltage value for Phase 2 and Phase 3 (or you have a SDM-120). 
+    Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. The configuration above will generate one modbus  command `read multiple registers from 0 to 6`. If you remove the registers at address 2 and 4 then 2 commands will be generated `read register 0` and `read register 6`.
+    To avoid the generation of multiple commands and reduce the amount of uart communication `register_count` can be used to fill the gaps 
+
+    .. code-block:: yaml
+
+        - platform: modbus_controller
+            name: "Voltage Phase 1"
+            address: 0
+            unit_of_measurement: "V"
+            register_type: "read"
+            value_type: FP32
+            register_count: 6
+
+          - platform: modbus_controller
+            name: "Current Phase 1"
+            address: 6
+            register_type: "read"
+            value_type: FP32
+
+    Because `register_count: 6` is used for the first register the command “read registers from 0 to 6” can still be used but the values in between are ignored. 
+    **Calculation:** FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
+    So we have 2 for address 0, 2 for address 2 and 2 for address 4 then `register_count` must be 6.
+
 
 See Also
 --------

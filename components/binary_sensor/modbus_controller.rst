@@ -24,6 +24,9 @@ Configuration variables:
 - **bitmask** : some values are packed in a response. The bitmask is used to determined if the result is true or false
 - **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 - **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
+- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used. 
+  custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+  See :ref:`modbus_custom_data` how to use `custom_command`
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor
 - **offset**: (*Optional*, integer): not required for most cases

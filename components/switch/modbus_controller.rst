@@ -22,6 +22,48 @@ Configuration variables:
   To get the value of the coil register 2 can be retrived using address: 2 / offset: 0 or address: 0 / offset 2
 - **bitmask** : some values are packed in a response. The bitmask is used to determined if the result is true or false
 - **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
+- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used. 
+  custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+  See :ref:`modbus_custom_data` how to use `custom_command`
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda to be evaluated every update interval to read the status of the switch.
+- **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`): Lambda called before send.
+  Lambda is evaluated before the modbus write command is created.
+
+**Parameters passed into write_lambda**
+
+- **x** (float): The float value to be sent to the modbus device
+
+- **payload** (`std::vector<uint8_t>&payload`): empty vector for the payload. If payload is set in the lambda it is sent as a custom command and must include all required bytes for a modbus request
+      note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.
+- **item** (const pointer to a Switch derived object):  The sensor object itself.
+
+Possible return values for the lambda:
+
+ - ``return <true / false>;`` the new value for the sensor.
+ - ``return <anything>; and fill payload with data`` if the payload is added from the lambda then these bytes will be sent
+
+**Example**
+
+.. code-block:: yaml
+
+    switch:
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: enable_load_test
+        register_type: coil
+        address: 2
+        name: "enable load test mode"
+        write_lambda: |-
+          ESP_LOGD("main","Modbus Switch incoming state = %f",x);
+          // return false ; // use this to just change the value
+          payload.push_back(0x1);  // device address
+          payload.push_back(0x5);  // force single coil
+          payload.push_back(0x00); // high byte address of the coil
+          payload.push_back(0x6);  // low byte address of the coil
+          payload.push_back(0xFF); // ON = 0xFF00 OFF=0000
+          payload.push_back(0x00);
+
 
 
 **Example**

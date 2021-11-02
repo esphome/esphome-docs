@@ -27,8 +27,11 @@ Configuration variables:
      - HEXBYTES:  2 byte hex string. 0x2011 will be sent as "2011".
      - COMMA: Byte values as integers, delimited by a coma. 0x2011 will be sent as "32,17"
 - **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
+- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used. 
+  custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+  See :ref:`modbus_custom_data` how to use `custom_command`
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-  Lambda to be evaluated every update interval to get the new value of the sensor
+  Lambda to be evaluated every update interval to get the new value of the text_sensor
 - **offset**: (*Optional*, integer): not required in most cases
   offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
 

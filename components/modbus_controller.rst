@@ -7,10 +7,6 @@ Modbus Controller
 
 The ``modbus_controller`` component creates a RS485 connection to control a modbus device
 
-.. warning::
-
-    If you are using the :doc:`logger` uart logging might interfere especially on esp8266. You can disable the uart logging with the ``baud_rate: 0`` option.
-
 .. figure:: /images/modbus.png
     :align: center
     :width: 25%
@@ -29,6 +25,25 @@ See [How is this RS485 Module Working?](https://electronics.stackexchange.com/qu
 
 The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PIN 17 to RXD are the default ports but any other pins can be used as well . 3.3V to VCC and GND to GND.
 
+.. note::
+
+    If your are using an ESP82xx serial logging may cause problems reading from uart. For best results hardware serial is prefered. Software serial may not be able to read all received data if other components spend a lot of time in loop()
+    
+    For hardware serial only a limited set of pins can be used. Either `tx_pin: GPIO1` and `rx_pin: GPIO3`  or `tx_pin: GPIO15` and `rx_pin: GPIO13`.
+    
+    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the modbus device and cause errors.
+    
+    Serial logging can be disable by setting `baud_rate: 0`.
+    
+    See :doc:`logger` for more details
+
+    .. code-block:: yaml
+
+        logger:
+            level: <level>
+            baud_rate: 0
+
+
 
 Configuration variables:
 ------------------------
@@ -42,8 +57,8 @@ Configuration variables:
   Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
 
 
-Getting started with Home Assistant
------------------------------------
+Example
+-------
 The following code create a modbus_controller hub talking to a modbus device at address 1 with 115200 bps
 
 
@@ -53,73 +68,73 @@ Technically there is no difference between the "inline" and the standard definit
 .. code-block:: yaml
 
     esphome:
-      name: solarstation
-      platform: ESP32
-      board: esp32dev
+        name: solarstation
+        platform: ESP32
+        board: esp32dev
 
     substitutions:
-      updates: 30s
+        updates: 30s
 
     wifi:
-      ssid: !secret wifi_sid
-      password: !secret wifi_password
-      reboot_timeout: 2min
+        ssid: !secret wifi_sid
+        password: !secret wifi_password
+        reboot_timeout: 2min
 
     logger:
-      level: INFO
-      baud_rate: 0
+        level: INFO
+        baud_rate: 0
 
     api:
-      password: !secret api_password
+        password: !secret api_password
 
     uart:
-      id: mod_bus
-      tx_pin: 17
-      rx_pin: 16
-      baud_rate: 115200
-      stop_bits: 1
+        id: mod_bus
+        tx_pin: 17
+        rx_pin: 16
+        baud_rate: 115200
+        stop_bits: 1
 
     modbus:
-      flow_control_pin: 5
-      id: modbus1
+        flow_control_pin: 5
+        id: modbus1
 
     modbus_controller:
-      - id: epever
-        ## the Modbus device addr
-        address: 0x1
-        modbus_id: modbus1
-        setup_priority: -10
+        - id: epever
+          ## the Modbus device addr
+          address: 0x1
+          modbus_id: modbus1
+          setup_priority: -10
 
     text_sensor:
-      - name: "rtc_clock"
-        platform: modbus_controller
-        modbus_controller_id: epever
-        id: rtc_clock
-        internal: true
-        register_type: holding
-        address: 0x9013
-        register_count: 3
-        raw_encode: HEXBYTES
-        response_size: 6
+        - name: "rtc_clock"
+          platform: modbus_controller
+          modbus_controller_id: epever
+          id: rtc_clock
+          internal: true
+          register_type: holding
+          address: 0x9013
+          register_count: 3
+          raw_encode: HEXBYTES
+          response_size: 6
 
     switch:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        id: reset_to_fabric_default
-        name: "Reset to Factory Default"
-        register_type: coil
-        address: 0x15
-        bitmask: 1
+        - platform: modbus_controller
+          modbus_controller_id: epever
+          id: reset_to_fabric_default
+          name: "Reset to Factory Default"
+          register_type: coil
+          address: 0x15
+          bitmask: 1
 
     sensor:
-      - platform: modbus_controller
-        modbus_controller_id: epever
-        name: "Battery Capacity"
-        id: battery_capacity
-        register_type: holding
-        address: 0x9001
-        unit_of_measurement: "AH"
-        value_type: U_WORD
+        - platform: modbus_controller
+          modbus_controller_id: epever
+          name: "Battery Capacity"
+          id: battery_capacity
+          register_type: holding
+          address: 0x9001
+          unit_of_measurement: "AH"
+          value_type: U_WORD
 
 
 Protocol decoding example
