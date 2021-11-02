@@ -383,6 +383,7 @@ Binary Sensor Components
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+    CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
