@@ -19,7 +19,7 @@ Installing ESPHome is very easy. All you need to do is have `Python
 .. note::
 
     Python 3.7 or above is required to install ESPHome 1.18.0 or above.
-    
+
 
 .. code-block:: bash
 
@@ -127,7 +127,9 @@ Sensor </components/binary_sensor/gpio>`.
         pin:
           number: 16
           inverted: true
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
 
 This is an advanced feature of ESPHome. Almost all pins can
 optionally have a more complicated configuration schema with options for
