@@ -30,7 +30,7 @@ Configuration variables:
   Or on the ESP8266 alternatively also ``VCC``, see :ref:`adc-esp8266_vcc`.
 - **name** (**Required**, string): The name of the voltage sensor.
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
-  attenuation to use. See :ref:`adc-esp32_attenuation`.
+  attenuation to use. See :ref:`adc-esp32_attenuation`. Defaults to ``0db``.
 - **raw** (*Optional*): Allows to read the raw ADC output without any scaling or calibration. Defaults to ``false``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
@@ -60,16 +60,11 @@ ESP32 Attenuation
 -----------------
 
 On the ESP32, the voltage measured with the ADC caps out at 1.1V by default as the sensing range
-or the attenuation of the ADC is set to ``0db`` by default.
+or the attenuation of the ADC is set to ``0db`` by default. Measuring higher voltages requires setting ``attenuation`` to one of the following values:
+``0db``, ``2.5db``, ``6db``, ``11db``. The full-scale voltage range is *about* 0-3.3V, but the exact range limits are variable among chips. There's `more information at the manufacturer's website
+<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
 
-To measure voltages higher than 1.1V, set ``attenuation`` to one of the `following values
-<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__:
-
-- ``0db`` for a full-scale voltage of 1.1V (default)
-- ``2.5db`` for a full-scale voltage of 1.5V
-- ``6db`` for a full-scale voltage of 2.2V
-- ``11db`` for a full-scale voltage of 3.9V
-- ``auto`` for an automatic/seamless transition among scales
+To simplify this, we also provide the setting ``attenuation: auto`` that allows an automatic/seamless transition among scales. This setting combines all available ranges to provide the best resolution while allowing to read the full voltage range.
 
 .. _adc-esp8266_vcc:
 
