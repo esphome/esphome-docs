@@ -13,7 +13,7 @@ Component/Hub
 
 The ``cap1188`` sensor platform allows you to use your CAP1188
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/CAP1188.pdf>`__,
-`Adafruit`_) Capacitive Touch Sensor with ESPHome. The :ref:`I²C <i2c>` is
+`Adafruit`_) Capacitive Touch Sensor with ESPHome. The :ref:`I²C <i2c>` bus is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/cap1188-full.jpg
@@ -47,9 +47,9 @@ The configuration is made up of two parts: The central component, and individual
 
 - **address** (*Optional*, integer): The I²C address of the sensor. Defaults to ``0x29``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
-- **reset_pin** (**Required**, : ref:`pin`): Set the pin that is used to reset the CAP1188 board on boot.
+- **reset_pin** (*Optional*, : ref:`pin`): Set the pin that is used to reset the CAP1188 board on boot.
 - **touch_threshold** (*Optional*, integer): The touch threshold for all channels. This defines the sensitivity for touch detection.
-- **allow_multiple_touches** (*Optional*, integer): Allows one of ``0x80`` or ``0x41``. Defaults to ``0x80`` - Multi Touch off.
+- **allow_multiple_touches** (*Optional*, boolean): Whether to allow multitouch. Defaults to off.
 
 Binary Sensor
 -------------
@@ -63,7 +63,7 @@ Configuration variables:
 
 
 - **name** (*Optional*, string): The name for the binary sensor.
-- **cap1188_id** (*Optional*, :ref:`config-id`): The ID of the CAP1188 defined above. Useful for multiple CAP1188's on the I²C bus
+- **cap1188_id** (*Optional*, :ref:`config-id`): The ID of the CAP1188 defined above. Useful for multiple CAP1188's on the I²C bus.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **channel** (**Required**, integer): The channel number at the CAP1188 the touchkey is connected to.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
