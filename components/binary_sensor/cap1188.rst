@@ -47,8 +47,12 @@ The configuration is made up of two parts: The central component, and individual
 
 - **address** (*Optional*, integer): The I²C address of the sensor. Defaults to ``0x29``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
-- **reset_pin** (*Optional*, : ref:`pin`): Set the pin that is used to reset the CAP1188 board on boot.
+- **reset_pin** (*Optional*, :ref:`config-pin`): Set the pin that is used to reset the CAP1188 board on boot.
 - **touch_threshold** (*Optional*, integer): The touch threshold for all channels. This defines the sensitivity for touch detection.
+   - ``0x00``: Maximum sensitivity - Most sensitive to touch
+   - ``0x20``: Default sensitivity
+   - ``0x40``: Medium sensitivity (I used this sensitivity when being used through a 3mm sheet of plastic)
+   - ``0x80``: Minimum sensitivity - Least sensitive to touch
 - **allow_multiple_touches** (*Optional*, boolean): Whether to allow multitouch. Defaults to off.
 
 Binary Sensor
@@ -65,7 +69,7 @@ Configuration variables:
 - **name** (*Optional*, string): The name for the binary sensor.
 - **cap1188_id** (*Optional*, :ref:`config-id`): The ID of the CAP1188 defined above. Useful for multiple CAP1188's on the I²C bus.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **channel** (**Required**, integer): The channel number at the CAP1188 the touchkey is connected to.
+- **channel** (**Required**, integer): The channel number the CAP1188 the touchkey is connected to.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. note::
