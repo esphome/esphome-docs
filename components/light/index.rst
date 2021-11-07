@@ -26,12 +26,15 @@ All light configuration schemas inherit these options.
 
 Configuration variables:
 
+- **icon** (*Optional*, icon): Manually set the icon to use for the light in the frontend.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ to the light channels.
   Defaults to ``2.8``.
 - **default_transition_length** (*Optional*, :ref:`config-time`): The default transition length
   to use when no transition length is set in the light call. Defaults to ``1s``.
+- **flash_transition_length** (*Optional*, :ref:`config-time`): The transition length to use when flash
+  is called. Defaults to ``0s``.
 - **restore_mode** (*Optional*): Control how the light attempts to restore state on bootup.
   For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
   :doc:`esphome section </components/esphome>`.
@@ -64,6 +67,10 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _light-toggle_action:

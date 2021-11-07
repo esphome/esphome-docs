@@ -302,7 +302,7 @@ Configuration variables:
 Do Automations Work Without a Network Connection
 ------------------------------------------------
 
-YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
+YES! All automations you define in ESPHome are executed on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
 
 There is one caveat though: ESPHome automatically reboots if no connection to the MQTT broker can be
@@ -338,6 +338,7 @@ All Triggers
   :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
+- :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
 
 All Actions
 -----------
@@ -402,6 +403,7 @@ All Conditions
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
 - :ref:`number.in_range <number-in_range_condition>`
+- :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
 
 All Lambda Calls
 ----------------
@@ -576,7 +578,10 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
           binary_sensor.is_on: some_binary_sensor
       - logger.log: "Binary sensor is ready"
 
-Configuration option: A :ref:`Condition <config-condition>`.
+Configuration variables:
+
+- **condition** (**Required**): The condition to wait to become true. See :ref:`Conditions <config-condition>`.
+- **timeout** (*Optional*, :ref:`config-time`): Time to wait before timing out. Defaults to never timing out.
 
 .. _component-update_action:
 

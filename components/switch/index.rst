@@ -38,6 +38,10 @@ Configuration variables:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _switch-toggle_action:
@@ -101,7 +105,7 @@ This :ref:`Condition <config-condition>` checks if the given switch is ON (or OF
 lambda calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
+From :ref:`lambdas <config-lambda>`, you can call several methods on all switches to do some
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the switch to publish a new state and store it internally.
@@ -134,24 +138,6 @@ advanced stuff (see the full API Reference for more info).
       id(my_switch).turn_on();
       // Toggle the switch
       id(my_switch).toggle();
-
-.. _switch-is_on_off_condition:
-
-``switch.is_on`` / ``switch.is_off`` Condition
-**********************************************
-
-This :ref:`condition <config-condition>` passes if the given switch is on/off.
-
-.. code-block:: yaml
-
-    # in a trigger:
-    on_...:
-      if:
-        condition:
-          switch.is_on: my_switch
-          # same goes for is_off
-        then:
-        - script.execute: my_script
 
 .. _switch-on_turn_on_off_trigger:
 

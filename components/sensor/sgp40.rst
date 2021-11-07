@@ -9,6 +9,14 @@ The ``sgp40`` sensor platform allows you to use your Sensirion SGP40 VOC sensor
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf>`__) with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
+.. note::
+
+    This sensor need to be driven at a rate of 1Hz. Because of this, the
+    sensor will be read out on device once a second separately from the
+    update_interval.  The state will be reported to other components, or
+    the front end at the update_interval, saving wifi power and network
+    communication.
+
 .. figure:: images/sgp40.jpg
     :align: center
     :width: 80.0%
@@ -48,8 +56,8 @@ Example With Compensation
         name: "Workshop VOC"
         update_interval: 5s        
         compensation:
-          humidity_source: dht1_temp
-          temperature_source: dht1_hum  
+          humidity_source: dht1_hum
+          temperature_source: dht1_temp 
           
 See Also
 --------

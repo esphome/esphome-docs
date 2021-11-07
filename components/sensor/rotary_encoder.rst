@@ -59,6 +59,17 @@ Configuration variables:
   the knob further will not decrease the number. Defaults to no minimum.
 - **max_value** (*Optional*, int): The maximum value this rotary encoder will go to, turning
   the knob further will not increase the number. Defaults to no maximum.
+- **publish_initial_value** (*Optional*, boolean): Controls whether the value is published
+  upon start of ESPHome. By default the value is only published when it changes, causing an
+  "unknown" value at first. If you set this option to true, the value is published once after
+  boot and when it changes. Defaults to ``false``.
+- **restore_mode** (*Optional*): Control how the Rotary Encoder attempts to restore state on bootup.
+  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
+  :doc:`esphome section </components/esphome>`.
+
+    - ``RESTORE_DEFAULT_ZERO`` (Default) - Attempt to restore state and default to zero (0) if not possible to restore.
+    - ``ALWAYS_ZERO`` - Always initialize the counter with value zero (0).
+
 - **on_clockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when
   the knob is turned clockwise. See :ref:`sensor-rotary_encoder-triggers`.
 - **on_anticlockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when

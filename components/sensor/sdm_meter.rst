@@ -67,17 +67,17 @@ Configuration variables:
 
   - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
     :ref:`Sensor <config-sensor>`.
-  - **voltage** (*Optional*): Use the voltage value of the sensor in volts.
+  - **voltage** (*Optional*): Use the voltage value of the sensor in volts (V).
     All options from :ref:`Sensor <config-sensor>`.
-  - **active_power** (*Optional*): Use the (active) power value of the sensor in watts. All options
+  - **active_power** (*Optional*): Use the (active) power value of the sensor in watts (W). All options
     from :ref:`Sensor <config-sensor>`.
   - **power_factor** (*Optional*): Use the power factor value of the sensor.
     All options from :ref:`Sensor <config-sensor>`.
-  - **apparent_power** (*Optional*): Use the apparent power value of the sensor in VA. All
+  - **apparent_power** (*Optional*): Use the apparent power value of the sensor in volt amps (VA). All
     options from :ref:`Sensor <config-sensor>`.
-  - **reactive_power** (*Optional*): Use the reactive power value of the sensor in VAR. All
+  - **reactive_power** (*Optional*): Use the reactive power value of the sensor in volt amps reactive (VAR). All
     options from :ref:`Sensor <config-sensor>`.
-  - **phase_angle** (*Optional*): Use the phase angle value of the sensor in degree. All options
+  - **phase_angle** (*Optional*): Use the phase angle value of the sensor in degrees (°). All options
     from :ref:`Sensor <config-sensor>`.
 
 - **phase_b** (*Optional*): The group of exposed sensors for Phase B/2 on applicable meters. eg: SDM630
@@ -90,14 +90,14 @@ Configuration variables:
 
 - **frequency** (*Optional*): Use the frequency value of the sensor in hertz.
   All options from :ref:`Sensor <config-sensor>`.
-- **import_active_energy** (*Optional*): Use the import active energy value of the sensor in watt
-  hours. All options from :ref:`Sensor <config-sensor>`.
-- **export_active_energy** (*Optional*): Use the export active energy value of the sensor in watt
-  hours. All options from :ref:`Sensor <config-sensor>`.
+- **import_active_energy** (*Optional*): Use the import active energy value of the sensor in kilowatt
+  hours (kWh). All options from :ref:`Sensor <config-sensor>`.
+- **export_active_energy** (*Optional*): Use the export active energy value of the sensor in kilowatt
+  hours (kWh). All options from :ref:`Sensor <config-sensor>`.
 - **import_reactive_energy** (*Optional*): Use the import reactive energy value of the sensor in
-  volt amps reactive hours. All options from :ref:`Sensor <config-sensor>`.
+  kilovolt amps reactive hours (kVArh). All options from :ref:`Sensor <config-sensor>`.
 - **export_reactive_energy** (*Optional*): Use the export reactive energy value of the sensor in
-  volt amps reactive hours. All options from :ref:`Sensor <config-sensor>`.
+  kilovolt amps reactive hours (kVArh). All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **address** (*Optional*, int): The address of the sensor if multiple sensors are attached to

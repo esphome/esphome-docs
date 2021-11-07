@@ -6,17 +6,15 @@ MQTT Client Component
     :image: mqtt.png
     :keywords: MQTT
 
-The MQTT Client Component sets up the MQTT connection to your broker and
-is currently required for ESPHome to work. In most cases, you will
-just be able to copy over the `MQTT
-section <https://www.home-assistant.io/components/mqtt/>`__ of your Home
-Assistant configuration.
+The MQTT Client Component sets up the MQTT connection to your broker.
+If you are connecting to Home Assistant, you may prefer to use the native API,
+in which case this is not needed.
 
 .. warning::
 
-    When enabling MQTT and you do *not* use the "native API" for Home Assistant, you must
+    If you enable MQTT and you do *not* use the "native API" for Home Assistant, you must
     remove the ``api:`` line from your ESPHome configuration, otherwise the ESP will
-    reboot every 5 minutes because no client connected to the native API.
+    reboot every 15 minutes because no client connected to the native API.
 
 .. code-block:: yaml
 
@@ -45,6 +43,9 @@ Configuration variables:
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
+- **use_abbreviations** (*Optional*, boolean): Whether to use
+  `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
+  in discovery messages. Defaults to ``true``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.

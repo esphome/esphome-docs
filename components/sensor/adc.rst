@@ -68,6 +68,7 @@ To measure voltages higher than 1.1V, set ``attenuation`` to one of the `followi
 - ``2.5db`` for a full-scale voltage of 1.5V
 - ``6db`` for a full-scale voltage of 2.2V
 - ``11db`` for a full-scale voltage of 3.9V
+- ``auto`` for an automatic/seamless transition among scales
 
 .. _adc-esp8266_vcc:
 
@@ -93,7 +94,7 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
 Multiple ADC Sensors
 ---------------------
 
-You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see below) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
+You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see above) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
 
 
 
