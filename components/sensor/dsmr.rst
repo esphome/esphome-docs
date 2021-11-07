@@ -47,13 +47,13 @@ Configuration variables:
 - **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false
   for older DSMR versions as they do not provide a CRC. Defaults to ``true``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the DSMR if you have multiple components.
 - **request_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin that can be used for controlling
   the P1 port's Data Request pin. Defaults to not using a Data Request pin.
   See :ref:`Using the P1 Data Request pin <sensor-dsmr-request_pin>`. 
 - **request_interval** (*Optional*, :ref:`config-time`): The minimum time between two telegram readings.
   Defaults to ``0``, meaning that the pace at which the smart meter sends its data determines the update frequency.
   This works best in combination with a ``request_pin``, but this option will work without one too.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the DSMR if you have multiple components.
 
 Sensor
 ------
