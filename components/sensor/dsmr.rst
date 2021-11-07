@@ -46,6 +46,8 @@ Configuration variables:
 - **gas_mbus_id** (*Optional*, integer): The id of the gas meter. Defaults to ``1``.
 - **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false for
   older DSMR versions as they do not provide a CRC. Defaults to ``true``.
+- **max_telegram_length** (*Optional*, integer): The size of the buffer used for reading DSMR telegrams. Increase
+  if you are reading from a smart meter that sends large telegrams. Defaults to ``1500``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the DSMR if you have multiple components.
 
@@ -272,6 +274,55 @@ Version 2.2 is supported with the following configuration:
         gas_delivered_text:
           name: "gas delivered raw"
 
+Tips for improving reader results
+*********************************
+
+When telegrams are sometimes missed, or when you get a lot of CRC errors, then you might have to do some
+changes to get better reader results.
+
+It is recommended to set the ``rx_buffer_size`` option of the UART bus to at least the maximum telegram size,
+which defaults to 1500 bytes. The default UART read buffer is quite small an can easily overflow, causing
+bytes of data getting lost.
+
+.. code-block:: yaml
+
+    # Example configuration
+    uart:
+      pin: D7
+      baud_rate: 115200
+      rx_buffer_size: 1700
+
+    dsmr:
+      max_telegram_length: 1700
+
+It's best when a hardware UART is used for reading the P1 data. Whether or not hardware UART is used can
+be checked in the config dump that you get when connecting to the API logger. Example logging output:
+
+.. code-block:: text
+
+    [02:38:37][C][uart.arduino_esp8266:095]: UART Bus:
+    [02:38:37][C][uart.arduino_esp8266:097]:   RX Pin: GPIO13
+    [02:38:37][C][uart.arduino_esp8266:099]:   RX Buffer Size: 1500
+    [02:38:37][C][uart.arduino_esp8266:101]:   Baud Rate: 115200 baud
+    [02:38:37][C][uart.arduino_esp8266:102]:   Data Bits: 8
+    [02:38:37][C][uart.arduino_esp8266:103]:   Parity: NONE
+    [02:38:37][C][uart.arduino_esp8266:104]:   Stop bits: 1
+    [02:38:37][C][uart.arduino_esp8266:106]:   Using hardware serial interface.
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When using an ESP8266, then GPIO13 (e.g. pin D7 on a D1 Mini) can be used for hardware RX. However, to
+actually make it work, serial logging must be disabled to keep the hardware UART available for D7.
+
+.. code-block:: yaml
+
+    # Example configuration for ESP8266
+    logger:
+      baud_rate: 0
+      level: DEBUG
+
+    uart:
+      pin: GPIO13
+      baud_rate: 115200
 
 
 See Also
