@@ -6,7 +6,7 @@ DSMR Component
     :image: dsmr.png
 
 Component/Hub
-*************
+-------------
 
 The DSMR component connects to Dutch Smart Meters which comply to DSMR (Dutch Smart Meter
 Requirements), also known as ‘Slimme meter’ or ‘P1 port’.
@@ -41,16 +41,22 @@ data which this component decodes and updates the configured sensors at the pace
 
 Configuration variables:
 
-- **decryption_key** (*Optional*, string, :ref:`templatable <config-templatable>`, 32 characters, case insensitive): The key to decrypt the
-  telegrams. Used in Lux only.
+- **decryption_key** (*Optional*, string, :ref:`templatable <config-templatable>`, 32 characters, case insensitive):
+  The key to decrypt the telegrams. Used in Lux only.
 - **gas_mbus_id** (*Optional*, integer): The id of the gas meter. Defaults to ``1``.
-- **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false for
-  older DSMR versions as they do not provide a CRC. Defaults to ``true``.
+- **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false
+  for older DSMR versions as they do not provide a CRC. Defaults to ``true``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the DSMR if you have multiple components.
+- **request_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin that can be used for controlling
+  the P1 port's Data Request pin. Defaults to not using a Data Request pin.
+  See :ref:`Using the P1 Data Request pin <sensor-dsmr-request_pin>`. 
+- **request_interval** (*Optional*, :ref:`config-time`): The minimum time between two telegram readings.
+  Defaults to ``0``, meaning that the pace at which the smart meter sends its data determines the update frequency.
+  This works best in combination with a ``request_pin``, but this option will work without one too.
 
 Sensor
-******
+------
 
 .. note:: Not all sensors are available on all devices.
 
@@ -208,7 +214,7 @@ Luxembourg
 
 
 Text Sensor
-***********
+-----------
 
 Configuration variables:
 
@@ -240,7 +246,7 @@ Belgium
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 Older DSMR meters support
-*************************
+-------------------------
 
 Version 2.2 is supported with the following configuration:
 
@@ -272,6 +278,38 @@ Version 2.2 is supported with the following configuration:
         gas_delivered_text:
           name: "gas delivered raw"
 
+.. _sensor-dsmr-request_pin:                                                                                                  
+
+Using the P1 Data Request pin
+-----------------------------
+
+From the P1 companion guide: The P1 port is activated (start sending data) by setting "Data Request" line high
+(to +5V). While receiving data, the requesting OSM must keep the "Data Request" line activated (set to +5V).
+To stop receiving data OSM needs to drop "Data Request" line (set it to "high impedance" mode). Data transfer
+will stop immediately in such case.
+
+**Advantages when using a request pin:**
+
+- After reading a telegram, the dsmr component will stop the data transfer until the telegram has been
+  fully processed. This separates retrieving and processing data and can thus be seen as a form of
+  hardware flow control.
+- The interval at which sensor readings must be updated can be controlled cleanly by only starting a data
+  transfer when needed. This configuration option ``request_interval`` can be used to define this interval.
+
+**Required hardware support**
+
+Many DSMR reader circuits link the +5V pin of the P1 port directly to its Data Request pin. Doing this will
+make the smart meter send telegrams at a pace as defined by the smart meter firmware. For example many
+DSMR v5 meters will send a telegram every second.
+*Circuits that use this type of wiring cannot make use of the* ``request_pin`` *option.*
+
+However, when a circuit is used that allows switching the Data Request pin between +5V and high impedance
+mode from a GPIO, then this GPIO can be configured as the ``request_pin``.
+
+Best results have been achieved by using an optocoupler circuit to handle the switching. Direct GPIO output
+or a transistor-based circuit are not feasible options. Here's an example circuit design:
+
+.. figure:: images/dsmr-request-pin-circuit-example.png
 
 
 See Also
