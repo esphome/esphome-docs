@@ -52,6 +52,7 @@ Configuration variables:
 
 - **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
   web interface. Defaults to ``false``.
+- **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Default: `true`
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. note::
@@ -69,12 +70,14 @@ Configuration variables:
 
     Example web_server configuration with CSS and JS included from esphome-docs.
     CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
+    Force to turn off OTA function because the missing authentication.
 
     .. code-block:: yaml
 
         # Example configuration entry
         web_server:
           port: 80
+          ota: false
           css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
           css_url: ""
           js_include: "../../../esphome-docs/_static/webserver-v1.min.js"

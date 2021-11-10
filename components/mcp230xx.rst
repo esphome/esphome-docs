@@ -36,7 +36,8 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           mcp23xxx: mcp23008_hub
           # Use pin number 0
           number: 0
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
     # Individual inputs
@@ -48,7 +49,8 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
-          mode: INPUT
+          mode:
+            input: true
           inverted: false
 
 Configuration variables:
@@ -98,7 +100,8 @@ has 16 GPIOs and can be configured the same way than the other variants.
           mcp23016: mcp23016_hub
           # Use pin number 0
           number: 0
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
     # Individual inputs
@@ -109,7 +112,8 @@ has 16 GPIOs and can be configured the same way than the other variants.
           mcp23016: mcp23016_hub
           # Use pin number 1
           number: 1
-          mode: INPUT
+          mode:
+            input: true
           inverted: false
 
 
@@ -157,7 +161,8 @@ binary sensor or GPIO switch.
           mcp23xxx: mcp23017_hub
           # Use pin number 0
           number: 0
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
     # Individual inputs
@@ -169,7 +174,9 @@ binary sensor or GPIO switch.
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: false
 
 Configuration variables:

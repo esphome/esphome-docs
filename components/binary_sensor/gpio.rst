@@ -44,7 +44,9 @@ you can do so with the :ref:`Pin Schema <config-pin_schema>`.
       - platform: gpio
         pin:
           number: D2
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
         name: ...
 
 Inverting Values
