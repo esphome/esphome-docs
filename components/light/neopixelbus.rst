@@ -47,6 +47,7 @@ Configuration variables:
   - ``400KBPS``
   - ``WS2812X``
   - ``SK6812``
+  - ``TM1829``
   - ``WS2813`` (same as ``WS2812X``)
   - ``WS2812`` (same as ``800KBPS``)
   - ``LC8812`` (same as ``SK6812``)
