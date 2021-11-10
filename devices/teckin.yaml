@@ -21,7 +21,9 @@ binary_sensor:
     name: "Teckin Button"
     pin:
       number: GPIO1
-      mode: INPUT_PULLUP
+      mode:
+        input: true
+        pullup: true
       inverted: true
     on_press:
       - switch.toggle: relay

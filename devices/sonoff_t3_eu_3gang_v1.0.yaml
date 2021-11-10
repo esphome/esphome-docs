@@ -24,7 +24,9 @@ binary_sensor:
   - platform: gpio
     pin:
       number: GPIO0
-      mode: INPUT_PULLUP
+      mode:
+        input: true
+        pullup: true
       inverted: true
     name: "Sonoff T3 EU 3 Gang Touchpad 1"
     on_press:
@@ -32,7 +34,9 @@ binary_sensor:
   - platform: gpio
     pin:
       number: GPIO9
-      mode: INPUT_PULLUP
+      mode:
+        input: true
+        pullup: true
       inverted: true
     name: "Sonoff T3 EU 3 Gang Touchpad 2"
     on_press:
@@ -40,7 +44,9 @@ binary_sensor:
   - platform: gpio
     pin:
       number: GPIO10
-      mode: INPUT_PULLUP
+      mode:
+        input: true
+        pullup: true
       inverted: true
     name: "Sonoff T3 EU 3 Gang Touchpad 3"
     on_press:

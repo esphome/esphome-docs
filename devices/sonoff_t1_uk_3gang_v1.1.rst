@@ -246,19 +246,25 @@ of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff T1 UK 3 Gang Touchpad 1"
       - platform: gpio
         pin:
           number: GPIO9
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff T1 UK 3 Gang Touchpad 2"
       - platform: gpio
         pin:
           number: GPIO10
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff T1 UK 3 Gang Touchpad 3"
       - platform: status
