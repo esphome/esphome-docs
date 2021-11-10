@@ -31,7 +31,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the voltage sensor.
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
   attenuation to use. See :ref:`adc-esp32_attenuation`. Defaults to ``0db``.
-- **raw** (*Optional*): Allows to read the raw ADC output without any scaling or calibration. Defaults to ``false``.
+- **raw** (*Optional*): Allows to read the raw ADC output without any conversion or calibration. Defaults to ``false``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
