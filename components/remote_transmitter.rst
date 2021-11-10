@@ -109,7 +109,7 @@ Configuration variables:
 .. _remote_transmitter-transmit_pronto:
 
 ``remote_transmitter.transmit_pronto`` Action
-******************************************
+*********************************************
 
 This :ref:`action <config-action>` sends a raw code to a remote transmitter specified in Pronto format.
 
