@@ -12,8 +12,12 @@ Example configuration
 
 .. code-block:: yaml
 
+    # These substitutions allow the end user to override certain values
+    substitutions:
+      name: "jesses-temperature-monitor"
+
     esphome:
-      ...
+      name: "${name}"
       # Automatically add the mac address to the name
       # so you can use a single firmware for all devices
       name_add_mac_suffix: true
@@ -26,13 +30,13 @@ Example configuration
 
     # This should point to the public location of this yaml file.
     dashboard_import:
-      package_import_url: github://jesserockz/dummy-esphome-configs@v1/temperature-monitor.yaml
+      package_import_url: github://jesserockz/dummy-esphome-configs/temperature-monitor.yaml@v6
 
     wifi:
       # Set up a wifi access point
       ap:
         ssid: jesses_temperature_monitor
-        password: 12345678
+        password: "12345678"
 
     # In combination with the `ap` this allows the user
     # to provision wifi credentials to the device.
