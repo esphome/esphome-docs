@@ -1,8 +1,8 @@
-Improv
-======
+Improv via BLE
+==============
 
 .. seo::
-    :description: Instructions for setting up Improv WiFi in ESPHome.
+    :description: Instructions for setting up Improv via BLE in ESPHome.
     :image: improv-social.png
 
 The ``esp32_improv`` component in ESPHome implements the open `Improv standard <https://www.improv-wifi.com/>`__
@@ -35,6 +35,7 @@ See Also
 --------
 
 - :doc:`wifi`
+- :doc:`improv_serial`
 - :doc:`captive_portal`
 - `Improv Wi-Fi <https://www.improv-wifi.com/>`__
 - :apiref:`esp32_improv/esp32_improv_component.h`
