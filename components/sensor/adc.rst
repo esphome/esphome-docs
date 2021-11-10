@@ -30,7 +30,8 @@ Configuration variables:
   Or on the ESP8266 alternatively also ``VCC``, see :ref:`adc-esp8266_vcc`.
 - **name** (**Required**, string): The name of the voltage sensor.
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
-  attenuation to use. See :ref:`adc-esp32_attenuation`.
+  attenuation to use. See :ref:`adc-esp32_attenuation`. Defaults to ``0db``.
+- **raw** (*Optional*): Allows to read the raw ADC output without any conversion or calibration. Defaults to ``false``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -52,23 +53,23 @@ Configuration variables:
               - multiply: 3.3
 
 
-
 .. _adc-esp32_attenuation:
 
 ESP32 Attenuation
 -----------------
 
-On the ESP32, the voltage measured with the ADC caps out at 1.1V by default as the sensing range
-or the attenuation of the ADC is set to ``0db`` by default.
+On the ESP32 the voltage measured with the ADC caps out at ~1.1V by default as the sensing range (attenuation of the ADC) is set to ``0db`` by default.
+Measuring higher voltages requires setting ``attenuation`` to one of the following values: ``0db``, ``2.5db``, ``6db``, ``11db``.
+There's more information `at the manufacturer's website <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
 
-To measure voltages higher than 1.1V, set ``attenuation`` to one of the `following values
-<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__:
+To simplify this, we provide the setting ``attenuation: auto`` for an automatic/seamless transition among scales. `Our implementation
+<https://github.com/esphome/esphome/blob/dev/esphome/components/adc/adc_sensor.cpp>`__ combines all available ranges to allow the best resolution without having to compromise on a specific attenuation.
 
-- ``0db`` for a full-scale voltage of 1.1V (default)
-- ``2.5db`` for a full-scale voltage of 1.5V
-- ``6db`` for a full-scale voltage of 2.2V
-- ``11db`` for a full-scale voltage of 3.9V
-- ``auto`` for an automatic/seamless transition among scales
+.. note::
+
+    In our tests, the usable ADC range was from ~0.075V to ~3.12V (with the ``attenuation: auto`` setting), and anything outside that range capped out at either end.
+    Even though the measurements are calibrated, the range *limits* are variable among chips due to differences in the internal voltage reference.
+
 
 .. _adc-esp8266_vcc:
 
