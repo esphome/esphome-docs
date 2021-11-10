@@ -50,6 +50,14 @@ Breaking Changes
 - Add restore_mode to rotary_encoder :esphomepr:`2643` by :ghuser:`niklasweber` (breaking-change)
 - Neopixelbus redo method definitions :esphomepr:`2616` by :ghuser:`OttoWinter` (new-feature) (breaking-change)
 
+Beta fixes
+^^^^^^^^^^
+
+- Fix template number initial value being NaN :esphomepr:`2692` by :ghuser:`jesserockz`
+- [remote_transmitter] accurate pulse timing for ESP8266 :esphomepr:`2476` by :ghuser:`CarlosGS`
+- Uart debugging support :esphomepr:`2478` by :ghuser:`mmakaay`
+- Enable addressable light power supply based on raw values :esphomepr:`2690` by :ghuser:`oxan`
+
 All changes
 ^^^^^^^^^^^
 
@@ -137,6 +145,10 @@ All changes
 - Make OTA function switchable in web_server component :esphomepr:`2685` by :ghuser:`lazlyhu`
 - Implement Improv via Serial component :esphomepr:`2423` by :ghuser:`jesserockz` (new-integration)
 - [ms5611]: Re-implement conversion from ADC readings to sensor values :esphomepr:`2665` by :ghuser:`anatoly-savchenkov`
+- Fix template number initial value being NaN :esphomepr:`2692` by :ghuser:`jesserockz`
+- [remote_transmitter] accurate pulse timing for ESP8266 :esphomepr:`2476` by :ghuser:`CarlosGS`
+- Uart debugging support :esphomepr:`2478` by :ghuser:`mmakaay`
+- Enable addressable light power supply based on raw values :esphomepr:`2690` by :ghuser:`oxan`
 
 Past Changelogs
 ---------------
