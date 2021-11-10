@@ -592,7 +592,8 @@ Misc Components
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
-    Improv, components/esp32_improv, improv.svg
+    Improv via BLE, components/esp32_improv, improv.svg
+    Improv via Serial, components/improv_serial, improv.svg
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg

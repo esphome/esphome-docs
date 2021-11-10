@@ -42,5 +42,7 @@ See Also
 --------
 
 - :doc:`wifi`
+- :doc:`improv_serial`
+- :doc:`esp32_improv`
 - :apiref:`captive_portal/captive_portal.h`
 - :ghedit:`Edit`

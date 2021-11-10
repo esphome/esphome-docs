@@ -47,6 +47,10 @@ Example configuration
     esp32_improv:
       authorizer: none
 
+    logger:
+
+    improv_serial:
+
 
 Relevant Documentation
 ----------------------
@@ -61,6 +65,7 @@ Relevant Documentation
 - ``dashboard_import`` -> ``package_import_url`` - This should point to the public repository containing
   the configuration for the device so that the user's ESPHome dashboard can autodetect this device and
   create a minimal YAML using :ref:`config-git_packages`.
+- ``improv_serial`` - :doc:`/components/improv_serial`
 
 See Also
 --------
