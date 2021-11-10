@@ -67,7 +67,7 @@ To simplify this, we provide the setting ``attenuation: auto`` for an automatic/
 
 .. note::
 
-    In our tests, the usable ADC range was from ~0.075V to ~3.12V, and anything outside that range capped out at either end.
+    In our tests, the usable ADC range was from ~0.075V to ~3.12V (with the ``attenuation: auto`` setting), and anything outside that range capped out at either end.
     Even though the measurements are calibrated, the range *limits* are variable among chips due to differences in the internal voltage reference.
 
 
