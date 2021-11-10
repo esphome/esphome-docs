@@ -68,73 +68,73 @@ Technically there is no difference between the "inline" and the standard definit
 .. code-block:: yaml
 
     esphome:
-        name: solarstation
-        platform: ESP32
-        board: esp32dev
+      name: solarstation
+      platform: ESP32
+      board: esp32dev
 
     substitutions:
-        updates: 30s
+      updates: 30s
 
     wifi:
-        ssid: !secret wifi_sid
-        password: !secret wifi_password
-        reboot_timeout: 2min
+      ssid: !secret wifi_sid
+      password: !secret wifi_password
+      reboot_timeout: 2min
 
     logger:
-        level: INFO
-        baud_rate: 0
+      level: INFO
+      baud_rate: 0
 
     api:
-        password: !secret api_password
+      password: !secret api_password
 
     uart:
-        id: mod_bus
-        tx_pin: 17
-        rx_pin: 16
-        baud_rate: 115200
-        stop_bits: 1
+      id: mod_bus
+      tx_pin: 17
+      rx_pin: 16
+      baud_rate: 115200
+      stop_bits: 1
 
     modbus:
-        flow_control_pin: 5
-        id: modbus1
+      flow_control_pin: 5
+      id: modbus1
 
     modbus_controller:
-        - id: epever
-          ## the Modbus device addr
-          address: 0x1
-          modbus_id: modbus1
-          setup_priority: -10
+      - id: epever
+        ## the Modbus device addr
+        address: 0x1
+        modbus_id: modbus1
+        setup_priority: -10
 
     text_sensor:
-        - name: "rtc_clock"
-          platform: modbus_controller
-          modbus_controller_id: epever
-          id: rtc_clock
-          internal: true
-          register_type: holding
-          address: 0x9013
-          register_count: 3
-          raw_encode: HEXBYTES
-          response_size: 6
+      - name: "rtc_clock"
+        platform: modbus_controller
+        modbus_controller_id: epever
+        id: rtc_clock
+        internal: true
+        register_type: holding
+        address: 0x9013
+        register_count: 3
+        raw_encode: HEXBYTES
+        response_size: 6
 
     switch:
-        - platform: modbus_controller
-          modbus_controller_id: epever
-          id: reset_to_fabric_default
-          name: "Reset to Factory Default"
-          register_type: coil
-          address: 0x15
-          bitmask: 1
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        id: reset_to_fabric_default
+        name: "Reset to Factory Default"
+        register_type: coil
+        address: 0x15
+        bitmask: 1
 
     sensor:
-        - platform: modbus_controller
-          modbus_controller_id: epever
-          name: "Battery Capacity"
-          id: battery_capacity
-          register_type: holding
-          address: 0x9001
-          unit_of_measurement: "AH"
-          value_type: U_WORD
+      - platform: modbus_controller
+        modbus_controller_id: epever
+        name: "Battery Capacity"
+        id: battery_capacity
+        register_type: holding
+        address: 0x9001
+        unit_of_measurement: "AH"
+        value_type: U_WORD
 
 
 Protocol decoding example
