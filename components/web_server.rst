@@ -21,8 +21,15 @@ interface are hosted by esphome.io. If you want to use your own service, use the
 
 .. figure:: /components/images/web_server.png
     :align: center
-
-    Example web server frontend.
+    
+    Example web server frontend (Version 1)
+    
+Version 2:
+---------
+.. figure:: /components/images/web_server-v2.png
+    :align: center   
+    
+    Web Components (Version 2)
 
 .. code-block:: yaml
 
@@ -52,6 +59,7 @@ Configuration variables:
 
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Default: `true`
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **version** (*Optional*, string): 1 or 2. Version 1 displays as a table. Version 2 uses web components and has more functionality
 
 .. note::
 
@@ -65,6 +73,20 @@ Configuration variables:
           auth:
             username: admin
             password: !secret web_server_password
+            
+    Example web_server configuration using version 2:
+
+    .. code-block:: yaml
+
+        # Example configuration entry
+        web_server:
+          port: 80
+          version: 2
+          css_url: ""
+          js_url: "https://esphome.io/_static/v2/www.js"
+          
+    The `css_url` is blank to prevent the loading of the default v1 css file which is not required.
+                 
 
     Example web_server configuration with CSS and JS included from esphome-docs.
     CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
@@ -77,9 +99,10 @@ Configuration variables:
           port: 80
           ota: false
           css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
-          css_url: ""
           js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
           js_url: ""
+          
+        Version 2 will support compressed files to minimise flash usage in a release shortly
 
 See Also
 --------
