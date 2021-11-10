@@ -64,12 +64,14 @@ measure the total consumed energy in kWh.
         pin: 12
         unit_of_measurement: 'kW'
         name: 'Electricity Usage'
+        internal_filter: 100ms
+        accuracy_decimals: 3
         filters:
           - multiply: 0.06
         total:
           name: "Electricity Total"
           unit_of_measurement: "kWh"
-          accuracy_decimals: 0
+          accuracy_decimals: 3
           filters:
             - multiply: 0.001
 

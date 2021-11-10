@@ -68,6 +68,7 @@ To measure voltages higher than 1.1V, set ``attenuation`` to one of the `followi
 - ``2.5db`` for a full-scale voltage of 1.5V
 - ``6db`` for a full-scale voltage of 2.2V
 - ``11db`` for a full-scale voltage of 3.9V
+- ``auto`` for an automatic/seamless transition among scales
 
 .. _adc-esp8266_vcc:
 

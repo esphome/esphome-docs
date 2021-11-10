@@ -19,6 +19,8 @@ submit a feature request (see FAQ).
 | Name                                  | Platform name       |  Supports receiver   |
 |                                       |                     |                      |
 +=======================================+=====================+======================+
+| :ref:`Arduino-HeatpumpIR<heatpumpir>` | ``heatpumpir``      |                      |
++---------------------------------------+---------------------+----------------------+
 | Ballu                                 | ``ballu``           | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Coolix                                | ``coolix``          | yes                  |
@@ -81,6 +83,25 @@ Advanced Options
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the remote transmitter.
 
+.. _heatpumpir:
+
+Arduino-HeatpumpIR
+------------------
+
+The ``heatpumpir`` platform supports dozens of manufacturers and hundreds of AC units by utilising the `Arduino-HeatpumpIR library <https://github.com/ToniA/arduino-heatpumpir>`__.
+
+This platform should only be used if your AC unit is not supported by any of the other (native) platforms. No support can be provided for Arduino-HeatpumpIR, because it is a third party library.
+
+This platform utilises the library's generic one-size-fits-all API, which might not line up perfectly with all of the supported AC units. For example, some AC units have more fan speed options than what the generic API supports.
+
+Additional configuration must be specified for this platform:
+
+- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyan``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``
+- **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``
+- **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
+- **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
+- **min_temperature** (**Required**, float): The minimum temperature that the AC unit supports being set to.
+
 .. _ir-receiver_id:
 
 Using a Receiver
@@ -105,7 +126,9 @@ IR receiver.
       pin:
         number: GPIO14
         inverted: true
-        mode: INPUT_PULLUP
+        mode:
+          input: true
+          pullup: true
       # high 55% tolerance is recommended for some remote control units
       tolerance: 55%
 

@@ -40,6 +40,10 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 MQTT options:
 
@@ -221,6 +225,36 @@ fields are read-only, if you want to act on the cover, use the ``make_call()`` m
         } else if (id(my_cover).current_operation == CoverOperation::COVER_OPERATION_CLOSING) {
           // Cover is currently closing
         }
+
+.. _cover-on_open_trigger:
+
+``cover.on_open`` Trigger
+*************************
+
+This trigger is activated each time the cover reaches a fully open state.
+
+.. code-block:: yaml
+
+    cover:
+      - platform: template  # or any other platform
+        # ...
+        on_open:
+          - logger.log: "Cover is Open!"
+
+.. _cover-on_closed_trigger:
+
+``cover.on_closed`` Trigger
+***************************
+
+This trigger is activated each time the cover reaches a fully closed state.
+
+.. code-block:: yaml
+
+    cover:
+      - platform: template  # or any other platform
+        # ...
+        on_closed:
+          - logger.log: "Cover is Closed!"
 
 See Also
 --------

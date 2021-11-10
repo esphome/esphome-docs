@@ -43,6 +43,9 @@ Configuration variables:
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
+- **use_abbreviations** (*Optional*, boolean): Whether to use
+  `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
+  in discovery messages. Defaults to ``true``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.

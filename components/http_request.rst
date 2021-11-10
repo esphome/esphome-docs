@@ -7,13 +7,7 @@ HTTP Request
     :keywords: http, request
 
 
-The ``http_request`` component lets you make HTTP/HTTPS requests.
-
-.. note::
-
-    This component works only with :ref:`arduino framework <esphome-arduino_version>` 2.5.0 or newer.
-
-First, you need to setup a component:
+The ``http_request`` component lets you make HTTP/HTTPS requests. First, you need to setup a component:
 
 .. code-block:: yaml
 

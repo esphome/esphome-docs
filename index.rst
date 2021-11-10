@@ -69,7 +69,7 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
                 </li>
                 <li>
                     <a class="reference" href="/guides/creators.html">
-                        Creating a Project
+                        Sharing ESPHome devices
                     </a>
                 </li>
                 <li>
@@ -238,6 +238,7 @@ Electricity
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
+    CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
     Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
@@ -298,6 +299,7 @@ Light
     AM43, components/sensor/am43, am43.jpg, Lux
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
+    LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
@@ -558,6 +560,9 @@ Misc Components
 
 .. imgtable::
 
+    ESP8266, components/esp8266, esp8266.svg
+    ESP32, components/esp32, esp32.svg
+
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
@@ -573,6 +578,7 @@ Misc Components
     ESP32 Ethernet, components/ethernet, ethernet.svg
 
     ESP32 Camera, components/esp32_camera, camera.svg
+    ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
 
