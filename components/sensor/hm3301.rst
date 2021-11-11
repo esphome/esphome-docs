@@ -49,7 +49,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **aqi** (*Optional*): AQI sensor. Requires the ``pm_2_5`` and ``pm_10_0`` sensors defined. See below.
+- **aqi** (*Optional*): AQI sensor. Requires the ``pm_10_0`` sensor to be defined. See below.
 
   - **calculation_type** (**Required**): One of: ``AQI`` or ``CAQI``.
   - **name** (**Required**, string): The name for the temperature sensor.
@@ -59,7 +59,7 @@ Configuration variables:
 Air Quality Sensor:
 -------------------
 
-There is a sensor which calculates quality of air based on PM 2.5 and PM 10.0 values.
+There is a sensor which calculates quality of air based PM 10.0 value.
 There are two implementations:
 
 - AQI: USA air quality standard
@@ -69,8 +69,6 @@ There are two implementations:
 
     sensor:
       - platform: hm3301
-        pm_2_5:
-          name: "PM2.5"
         pm_10_0:
           name: "PM10.0"
         aqi:
