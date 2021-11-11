@@ -43,6 +43,10 @@ Configuration variables:
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
+- **discovery_unique_id_generator** (*Optional*, string): The unique_id generator
+  to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
+  generates unique_id in format ``ESP<component_type><default_object_id>``.
+  ``mac`` generator uses format ``<mac_address>-<component_type>-<default_object_id>``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
