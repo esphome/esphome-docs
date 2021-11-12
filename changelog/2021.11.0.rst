@@ -16,7 +16,49 @@ ESPHome 2021.11.0 - 17th November 2021
     Improv via Serial, components/improv_serial, improv.svg
 
 
-TBD
+State of the Open Smart Home
+----------------------------
+
+Write something here...
+
+
+Improv via Serial
+-----------------
+
+After we created :doc:`/components/esp32_improv`, we thought it might be a good idea to implement the same for serial connections.
+See the docs here for :doc:`Improv via Serial </components/improv_serial>` and the
+`website documentation <https://www.improv-wifi.com/serial/>`__ for implementing a client or implementing improv in other firmware.
+
+Entity Categories for Home Assistant
+------------------------------------
+
+Home Assistant added support for `Entity Categories <https://www.home-assistant.io/blog/2021/11/03/release-202111/#entity-categorization>`__
+and with this release certain ESPHome entites such as the restart switch and uptime sensors will have the config and diagnostic categories set respectively.
+The category can be overridden by the user in the yaml configuration.
+
+Repeat Action
+-------------
+
+:ghuser:`oxan` has implemented a ``repeat`` action for those that want to execute a list of actions x number of times without just copying and pasting them.
+
+Device name length
+------------------
+
+The maximum length of the device name has been limited to 31 characters to fall in line with standards and you will get
+an error if you try to set a device name longer than that.
+
+BH1750
+------
+
+When using the default resolution of 0.5 for the BH17850, the result is now divided by 2 as per the finidings of the community.
+
+
+Binary sensor device classes
+----------------------------
+
+:esphomepr:`2703` brings the binary sensor device classes up to date with Home Assistant, but this means that
+the ``update`` ``device_class`` for binary sensors has been removed, you will get an error in your configuration if
+you are using this device class.
 
 Full list of changes
 --------------------
@@ -49,6 +91,7 @@ Breaking Changes
 - Add option to use MQTT abbreviations :esphomepr:`2641` by :ghuser:`paulmonigatti` (breaking-change)
 - Add restore_mode to rotary_encoder :esphomepr:`2643` by :ghuser:`niklasweber` (breaking-change)
 - Neopixelbus redo method definitions :esphomepr:`2616` by :ghuser:`OttoWinter` (new-feature) (breaking-change)
+- Update device classes for binary sensors :esphomepr:`2703` by :ghuser:`lcavalli` (breaking-change)
 
 Beta fixes
 ^^^^^^^^^^
@@ -57,6 +100,9 @@ Beta fixes
 - [remote_transmitter] accurate pulse timing for ESP8266 :esphomepr:`2476` by :ghuser:`CarlosGS`
 - Uart debugging support :esphomepr:`2478` by :ghuser:`mmakaay`
 - Enable addressable light power supply based on raw values :esphomepr:`2690` by :ghuser:`oxan`
+- Remove my.ha links from improv :esphomepr:`2695` by :ghuser:`jesserockz`
+- Only allow prometheus when using arduino :esphomepr:`2697` by :ghuser:`jesserockz`
+- Update device classes for binary sensors :esphomepr:`2703` by :ghuser:`lcavalli` (breaking-change)
 
 All changes
 ^^^^^^^^^^^
@@ -149,6 +195,9 @@ All changes
 - [remote_transmitter] accurate pulse timing for ESP8266 :esphomepr:`2476` by :ghuser:`CarlosGS`
 - Uart debugging support :esphomepr:`2478` by :ghuser:`mmakaay`
 - Enable addressable light power supply based on raw values :esphomepr:`2690` by :ghuser:`oxan`
+- Remove my.ha links from improv :esphomepr:`2695` by :ghuser:`jesserockz`
+- Only allow prometheus when using arduino :esphomepr:`2697` by :ghuser:`jesserockz`
+- Update device classes for binary sensors :esphomepr:`2703` by :ghuser:`lcavalli` (breaking-change)
 
 Past Changelogs
 ---------------
