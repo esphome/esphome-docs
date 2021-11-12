@@ -392,6 +392,7 @@ Contributors
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__
 - `larsonmpdx (@larsonmpdx) <https://github.com/larsonmpdx>`__
 - `Laszlo Gazdag (@lazlyhu) <https://github.com/lazlyhu>`__
+- `lcavalli (@lcavalli) <https://github.com/lcavalli>`__
 - `lein1013 (@lein1013) <https://github.com/lein1013>`__
 - `Riku Lindblad (@lepinkainen) <https://github.com/lepinkainen>`__
 - `Luca Gugelmann (@lgugelmann) <https://github.com/lgugelmann>`__
@@ -746,4 +747,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 11, 2021.*
+*This page was last updated November 12, 2021.*
