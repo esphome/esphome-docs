@@ -137,7 +137,7 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
               then:
                 - deep_sleep.prevent: deep_sleep_1
             - topic: livingroom/sleep_mode
-              payload: 'ON'
+              payload: 'OFF'
               then:
                 - deep_sleep.enter: deep_sleep_1
 
