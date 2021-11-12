@@ -184,6 +184,20 @@ advanced stuff.
       // etc. see API reference
       call.perform();
 
+.. _climate-on_state_trigger:
+
+``climate.on_state`` Trigger
+******************************************************
+
+This trigger is activated each time the climate device is updated (using publish_state).
+
+.. code-block:: yaml
+
+    climate:
+      - platform: midea  # or any other platform
+        # ...
+        on_state:
+        - logger.log: "State updated!"
 
 See Also
 --------
