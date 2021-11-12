@@ -47,6 +47,9 @@ Configuration variables:
   to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
   generates unique_id in format ``ESP<component_type><default_object_id>``.
   ``mac`` generator uses format ``<mac_address>-<component_type>-<default_object_id>``.
+- **use_abbreviations** (*Optional*, boolean): Whether to use
+  `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
+  in discovery messages. Defaults to ``true``.
 - **topic_prefix** (*Optional*, string): The prefix used for all MQTT
   messages. Should not contain trailing slash. Defaults to
   ``<APP_NAME>``.
