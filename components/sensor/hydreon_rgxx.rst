@@ -12,7 +12,7 @@ These optical rain sensors use a UART connection at 3.3V. The :ref:`UART <uart>`
 required to be set up in your configuration for this sensor to work.
 
 
-.. figure:: images/hydreon_rg9.jpg
+.. figure:: hydreon_rg9.jpg
     :align: center
     :width: 50.0%
 
