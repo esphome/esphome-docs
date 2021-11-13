@@ -58,6 +58,9 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
+  to use multiple UART buses.
+
 - **moisture** (*Optional*): Rain intensity level from 0-7. Only on RG-9.
   - **name** (**Required**, string): The name for the voltage sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
