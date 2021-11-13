@@ -19,6 +19,7 @@ required to be set up in your configuration for this sensor to work.
     Hydreon RG-9 Rain Sensor.
 
 .. code-block:: yaml
+
     # Example RG-9 entry
     
     uart:
@@ -35,6 +36,7 @@ required to be set up in your configuration for this sensor to work.
           expire_after: 30s  
 
 .. code-block:: yaml
+
     # Example RG-15 entry
 
     uart:
