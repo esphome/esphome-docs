@@ -7,7 +7,7 @@ Hydreon Rain Sensor
     :keywords: ina219
 
 The ``hydreon_rgxx`` sensor platform allows you to use rain sensors by Hydreon. Currently supported are the RG-9
-(`rainsensors.com <https://rainsensors.com/products/rg-9/>`) and RG-15 (`rainsensors.com <https://rainsensors.com/products/rg-15/`) sensors.
+(`rainsensors.com <https://rainsensors.com/products/rg-9/>`_) and RG-15 (`rainsensors.com <https://rainsensors.com/products/rg-15/`_) sensors.
 These optical rain sensors use a UART connection at 3.3V. The :ref:`UART <uart>` is
 required to be set up in your configuration for this sensor to work.
 
@@ -16,7 +16,7 @@ required to be set up in your configuration for this sensor to work.
     :align: center
     :width: 50.0%
 
-    Hydreon RG-9 Rain Sensor.
+    Hydreon RG-9 Rain Sensor. Image by (`Hydreon <https://rainsensors.com/products/rg-9/>`_).
 
 .. code-block:: yaml
 
