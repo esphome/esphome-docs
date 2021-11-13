@@ -189,7 +189,8 @@ advanced stuff.
 ``climate.on_state`` Trigger
 ******************************************************
 
-This trigger is activated each time the climate device is updated (using publish_state).
+This trigger is activated each time the state of the climate device is updated 
+(for example, if the current temperature measurement or the mode set by the users changes).
 
 .. code-block:: yaml
 
