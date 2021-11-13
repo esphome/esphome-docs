@@ -20,40 +20,40 @@ required to be set up in your configuration for this sensor to work.
 
 .. code-block:: yaml
 
-		uart:
-			rx_pin: GPIO16
-			tx_pin: GPIO17
-			baud_rate: 9600
+    uart:
+      rx_pin: GPIO16
+      tx_pin: GPIO17
+      baud_rate: 9600
 
     # Example RG-9 entry
-		sensor:
-			- platform: hydreon_rgxx
-				model: "RG_9"
-				update_interval: 1s
-				moisture:
-					name: "rain"
-					expire_after: 30s	
+    sensor:
+      - platform: hydreon_rgxx
+        model: "RG_9"
+        update_interval: 1s
+        moisture:
+          name: "rain"
+          expire_after: 30s  
 
 .. code-block:: yaml
 
-		uart:
-			rx_pin: GPIO16
-			tx_pin: GPIO17
-			baud_rate: 9600
+    uart:
+      rx_pin: GPIO16
+      tx_pin: GPIO17
+      baud_rate: 9600
 
     # Example RG-15 entry
-		sensor:
-			- platform: hydreon_rgxx
-				model: "RG_15"
-				update_interval: 1s
-				acc:
-					name: "rain"
-				eventacc:
-					name: "rain event"
-				totalacc:
-					name: "rain total"
-				rint:
-					name: "rain intensity"
+    sensor:
+      - platform: hydreon_rgxx
+        model: "RG_15"
+        update_interval: 1s
+        acc:
+          name: "rain"
+        eventacc:
+          name: "rain event"
+        totalacc:
+          name: "rain total"
+        rint:
+          name: "rain intensity"
 
 Configuration variables:
 ------------------------

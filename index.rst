@@ -290,7 +290,7 @@ Environmental
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     HTU21D, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
-		Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
+    Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
