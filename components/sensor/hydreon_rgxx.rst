@@ -6,7 +6,8 @@ Hydreon Rain Sensor
     :image: hydreon_rg9.jpg
     :keywords: ina219
 
-The ``hydreon_rgxx`` sensor platform allows you to use rain sensors by Hydreon. Currently supported are the RG-9 (`rainsensors.com <https://rainsensors.com/products/rg-9/>`) and RG-15 (`rainsensors.com <https://rainsensors.com/products/rg-15/`) sensors.
+The ``hydreon_rgxx`` sensor platform allows you to use rain sensors by Hydreon. Currently supported are the RG-9
+(`rainsensors.com <https://rainsensors.com/products/rg-9/>`) and RG-15 (`rainsensors.com <https://rainsensors.com/products/rg-15/`) sensors.
 These optical rain sensors use a UART connection at 3.3V. The :ref:`UART <uart>` is
 required to be set up in your configuration for this sensor to work.
 
@@ -28,8 +29,9 @@ required to be set up in your configuration for this sensor to work.
 		sensor:
 			- platform: hydreon_rgxx
 				model: "RG_9"
+				update_interval: 1s
 				moisture:
-					name: "Rain"
+					name: "rain"
 					expire_after: 30s	
 
 .. code-block:: yaml
@@ -43,6 +45,7 @@ required to be set up in your configuration for this sensor to work.
 		sensor:
 			- platform: hydreon_rgxx
 				model: "RG_15"
+				update_interval: 1s
 				acc:
 					name: "rain"
 				eventacc:
@@ -55,29 +58,36 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x40``.
-- **shunt_resistance** (*Optional*, float): The value of the shunt resistor on the board for current calculation.
-  Defaults to ``0.1 ohm``.
-- **max_voltage** (*Optional*, float): The maximum bus voltage you are expecting. ESPHome will use this to
-  configure the sensor optimally. Defaults to ``32V`` (the max).
-- **max_current** (*Optional*, float): The maximum current you are expecting. ESPHome will use this to
-  configure the sensor optimally. Defaults to ``3.2A``.
-- **current** (*Optional*): Use the current value of the sensor in amperes. All options from
-  :ref:`Sensor <config-sensor>`.
-- **power** (*Optional*): Use the power value of the sensor in watts. All options from
-  :ref:`Sensor <config-sensor>`.
-- **bus_voltage** (*Optional*): Use the bus voltage (voltage of the high side contact) value of the sensor in V.
-  All options from :ref:`Sensor <config-sensor>`.
-- **shunt_voltage** (*Optional*): Use the shunt voltage (voltage across the shunt resistor) value of the sensor in V.
-  All options from :ref:`Sensor <config-sensor>`.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
+- **moisture** (*Optional*): Rain intensity level from 0-7. Only on RG-9.
+  - **name** (**Required**, string): The name for the voltage sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **acc** (*Optional*): Amount of rain since last message (see `update_interval`), in `mm`. Only on RG-15.
+  - **name** (**Required**, string): The name for the voltage sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **eventacc** (*Optional*): Amount of rain for this event (i.e. since it last stopped raining), in `mm`. Only on RG-15.
+  - **name** (**Required**, string): The name for the voltage sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **totalacc** (*Optional*): Total amount of rain this sensor has ever measured, in `mm`. Only on RG-15.
+  - **name** (**Required**, string): The name for the voltage sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **rint** (*Optional*): Current rain intensity in `mm/h`. Only on RG-15.
+  - **name** (**Required**, string): The name for the voltage sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
 
 
 See Also
 --------
 
 - :ref:`sensor-filters`
-- :doc:`ina3221`
-- :apiref:`ina219/ina219.h`
-- `INA291 Arduino Library <https://github.com/adafruit/Adafruit_INA219>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`
