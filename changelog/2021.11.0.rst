@@ -19,7 +19,20 @@ ESPHome 2021.11.0 - 17th November 2021
 State of the Open Smart Home
 ----------------------------
 
-Write something here...
+Mark your calendar for the `State of the Open Smart Home <https://www.home-assistant.io/state-of-the-open-home/>`__ hosted by Nabu Casa, Home Assistant & ESPHome
+and we’ll be joined by our friends from WLED and Z-Wave JS to talk about our work on making this vision a reality.
+
+Where: YouTube
+
+When: Saturday, December 11, at 11am PST / 8pm CET
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/6ZMXE5PXPqU"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
 
 
 Improv via Serial
@@ -103,6 +116,12 @@ Beta fixes
 - Remove my.ha links from improv :esphomepr:`2695` by :ghuser:`jesserockz`
 - Only allow prometheus when using arduino :esphomepr:`2697` by :ghuser:`jesserockz`
 - Update device classes for binary sensors :esphomepr:`2703` by :ghuser:`lcavalli` (breaking-change)
+- Bump ESPAsyncWebServer to 2.1.0 :esphomepr:`2686` by :ghuser:`jesserockz`
+- Allow setting custom command_topic for Select and Number components :esphomepr:`2714` by :ghuser:`kbialek`
+- Restore InterruptLock on wifi-less ESP8266 :esphomepr:`2712` by :ghuser:`oxan`
+- Feed WDT between doing ESP32 touchpad measurements :esphomepr:`2720` by :ghuser:`oxan`
+- RemoteTransmitter fix. Bug from version 2021.10. Some changes. :esphomepr:`2706` by :ghuser:`dudanov`
+- Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -198,6 +217,12 @@ All changes
 - Remove my.ha links from improv :esphomepr:`2695` by :ghuser:`jesserockz`
 - Only allow prometheus when using arduino :esphomepr:`2697` by :ghuser:`jesserockz`
 - Update device classes for binary sensors :esphomepr:`2703` by :ghuser:`lcavalli` (breaking-change)
+- Bump ESPAsyncWebServer to 2.1.0 :esphomepr:`2686` by :ghuser:`jesserockz`
+- Allow setting custom command_topic for Select and Number components :esphomepr:`2714` by :ghuser:`kbialek`
+- Restore InterruptLock on wifi-less ESP8266 :esphomepr:`2712` by :ghuser:`oxan`
+- Feed WDT between doing ESP32 touchpad measurements :esphomepr:`2720` by :ghuser:`oxan`
+- RemoteTransmitter fix. Bug from version 2021.10. Some changes. :esphomepr:`2706` by :ghuser:`dudanov`
+- Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
