@@ -17,6 +17,7 @@ This platform supports three sensor types, which you need to specify using the `
 value:
 
 - ``PMSX003`` for generic PMS5003, PMS7003, ...; these sensors support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` output.
+- ``PMS5003S`` for PMS5003ST. These support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` and ``formaldehyde``.
 - ``PMS5003T`` for PMS5003T. These support ``pm_2_5``, ``temperature`` and ``humidity``.
 - ``PMS5003ST`` for PMS5003ST. These support ``pm_2_5``, ``temperature``, ``humidity`` and ``formaldehyde``.
 
@@ -68,7 +69,7 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **humidity** (*Optional*): Use the humidity value in % for the ``PMS5003T`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
-- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003ST``.
+- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003S`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.

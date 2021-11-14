@@ -458,6 +458,8 @@ To find the MAC Address so that ESPHome can identify the device, you can create 
 
     esp32_ble_tracker:
 
+    xiaomi_ble:
+
 After uploading, the ESP32 will immediately try to scan for BLE devices. When it detects a new sensor, it will automatically parse the BLE message print a message like this one:
 
 .. code::
