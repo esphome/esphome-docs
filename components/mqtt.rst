@@ -46,7 +46,7 @@ Configuration variables:
 - **discovery_unique_id_generator** (*Optional*, string): The unique_id generator
   to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
   generates unique_id in format ``ESP<component_type><default_object_id>``.
-  ``mac`` generator uses format ``<mac_address>-<component_type>-<default_object_id>``.
+  ``mac`` generator uses format ``<mac_address>-<component_type>-<fnv1_hash(friendly_name)>``.
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
