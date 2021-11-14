@@ -359,13 +359,10 @@ By leveraging the :doc:`external components </components/external_components>` f
 .. code-block:: yaml
 
     external_components:
-      - source:
-          type: git
-          url: https://github.com/esphome/esphome
-          # replace 1234 with the number of the Pull Request
-          ref: pull/1234/head
+      # replace 1234 with the number of the Pull Request
+      - source: source: github://pr#1234
         components:
-          # list all components touched by this Pull Request here
+          # list all components modified by this Pull Request here
           - ccs811  
 
 
