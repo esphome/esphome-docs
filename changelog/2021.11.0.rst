@@ -38,6 +38,14 @@ When: Saturday, December 11, at 11am PST / 8pm CET
 Improv via Serial
 -----------------
 
+.. raw:: html
+    <script
+    type="module"
+    src="https://unpkg.com/improv-wifi-serial-sdk@2.0.0/dist/web/serial-launch-button.js"
+    ></script>
+
+    <improv-wifi-serial-launch-button></improv-wifi-serial-launch-button>
+
 After we created :doc:`/components/esp32_improv`, we thought it might be a good idea to implement the same for serial connections.
 See the docs here for :doc:`Improv via Serial </components/improv_serial>` and the
 `website documentation <https://www.improv-wifi.com/serial/>`__ for implementing a client or implementing improv in other firmware.
@@ -123,6 +131,7 @@ Beta fixes
 - RemoteTransmitter fix. Bug from version 2021.10. Some changes. :esphomepr:`2706` by :ghuser:`dudanov`
 - Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
+- Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -225,6 +234,7 @@ All changes
 - RemoteTransmitter fix. Bug from version 2021.10. Some changes. :esphomepr:`2706` by :ghuser:`dudanov`
 - Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
+- Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
