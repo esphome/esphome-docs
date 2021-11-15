@@ -39,6 +39,7 @@ Improv via Serial
 -----------------
 
 .. raw:: html
+
     <script
     type="module"
     src="https://unpkg.com/improv-wifi-serial-sdk@2.0.0/dist/web/serial-launch-button.js"
