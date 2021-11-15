@@ -415,6 +415,7 @@ Contributors
 - `M95D (@M95D) <https://github.com/M95D>`__
 - `Marc-Antoine Courteau (@macourteau) <https://github.com/macourteau>`__
 - `Massimiliano Ravelli (@madron) <https://github.com/madron>`__
+- `Alexandre-Jacques St-Jacques (@Maelstrom96) <https://github.com/Maelstrom96>`__
 - `magnus (@magnusja) <https://github.com/magnusja>`__
 - `Magnus Øverli (@magnusoverli) <https://github.com/magnusoverli>`__
 - `Major Péter (@majorpeter) <https://github.com/majorpeter>`__
@@ -751,4 +752,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 15, 2021.*
+*This page was last updated November 16, 2021.*
