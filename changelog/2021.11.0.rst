@@ -133,6 +133,7 @@ Beta fixes
 - Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
+- Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -236,6 +237,7 @@ All changes
 - Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
+- Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
