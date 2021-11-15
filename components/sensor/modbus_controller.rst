@@ -14,20 +14,20 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **register_type** (**Required**): type of the modbus register.
-    - coil: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access
-    - discrete_input: discrete input register (read only coil) are similar to coils but can only be read.
-    - holding: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access
-    - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read
+    - coil: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access. Modbus function code 1 (Read Coil Status) will be used
+    - discrete_input: discrete input register (read only coil) are similar to coils but can only be read. Modbus function code 2 (Read Input Status) will be used.
+    - holding: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access. Modbus function code 3 (Read Holding Registers) will be used.
+    - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus function code 4 (Read Input Registers) will be used.
 - **address**: (**Required**, int): start address of the first register in a range
 - **value_type**: (**Required**): datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
-    - U_WORD (unsigned float from 1 register =16bit
-    - S_WORD (signed float from one register)
-    - U_DWORD (unsigned float from 2 registers = 32bit)
-    - S_DWORD (unsigned float from 2 registers = 32bit)
-    - U_DWORD_R (unsigend float from 2 registers low word first )
-    - S_DWORD_R (sigend float from 2 registers low word first )
-    - U_QWORD (unsigned float from 4 registers = 64bit
-    - S_QWORD (signed float from 4 registers = 64bit
+    - U_WORD (unsigned 16 bit integer 1 register =16bit
+    - S_WORD (signed 16 bit integer one register)
+    - U_DWORD (unsigned 32 bit integer from 2 registers = 32bit)
+    - S_DWORD (signed 32 bit integer from 2 registers = 32bit)
+    - U_DWORD_R (unsigned 32 bit integer from 2 registers low word first )
+    - S_DWORD_R (signed 32 bit integer from 2 registers low word first )
+    - U_QWORD (unsigned 64 bit integer from 4 registers = 64bit
+    - S_QWORD (unsigned 64 bit integer from 4 registers = 64bit
     - U_QWORD_R (unsigend float from 4 registers low word first )
     - S_QWORD_R (sigend float from 4 registers low word first )
     - FP32 (32 bit IEEE 754 floating point from 2 registers)
