@@ -134,6 +134,7 @@ Beta fixes
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 - Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
+- Fix zeroconf time comparisons :esphomepr:`2733` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -238,6 +239,7 @@ All changes
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 - Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
+- Fix zeroconf time comparisons :esphomepr:`2733` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
