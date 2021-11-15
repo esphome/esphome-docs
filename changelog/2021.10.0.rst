@@ -143,6 +143,19 @@ Release 2021.10.2 - October 22
 - Fix ESP8266 OTA compression only starting framework v2.7.0 :esphomepr:`2610` by :ghuser:`OttoWinter`
 - Bugfix tca9548a and idf refactor anh :esphomepr:`2612` by :ghuser:`andreashergert1984`
 
+Release 2021.10.3 - October 27
+------------------------------
+
+- fixed dependency for pca9685 component :esphomepr:`2614` by :ghuser:`andreashergert1984`
+- Bump platform-espressif8266 from 2.6.2 to 2.6.3 :esphomepr:`2620` by :ghuser:`OttoWinter`
+- Autodetect flash size :esphomepr:`2615` by :ghuser:`agners`
+- Teleinfo ptec :esphomepr:`2599` by :ghuser:`0hax`
+- Fix glue code missing micros() :esphomepr:`2623` by :ghuser:`OttoWinter`
+- Remove power and energy from sensors that are not true power :esphomepr:`2628` by :ghuser:`jesserockz`
+- fix modbus output :esphomepr:`2630` by :ghuser:`martgras`
+- Fix pin number validation for sn74hc595 :esphomepr:`2621` by :ghuser:`sairon`
+- Fix select.set using lambda :esphomepr:`2633` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
