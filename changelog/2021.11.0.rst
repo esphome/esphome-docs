@@ -122,6 +122,7 @@ Beta fixes
 - Feed WDT between doing ESP32 touchpad measurements :esphomepr:`2720` by :ghuser:`oxan`
 - RemoteTransmitter fix. Bug from version 2021.10. Some changes. :esphomepr:`2706` by :ghuser:`dudanov`
 - Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
+- Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 
 All changes
 ^^^^^^^^^^^
@@ -223,6 +224,7 @@ All changes
 - Feed WDT between doing ESP32 touchpad measurements :esphomepr:`2720` by :ghuser:`oxan`
 - RemoteTransmitter fix. Bug from version 2021.10. Some changes. :esphomepr:`2706` by :ghuser:`dudanov`
 - Fix indentation of write_lambda for modbus_controller number :esphomepr:`2722` by :ghuser:`jesserockz`
+- Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 
 Past Changelogs
 ---------------
