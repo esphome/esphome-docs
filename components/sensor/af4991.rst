@@ -40,7 +40,12 @@ setup in your configuration.
       - platform: af4991
         af4991_id: af4991_component
         name: "Rotary Encoder Button"
-        
+
+.. note::
+
+    This method does not support the Neopixel built into the breakout board.
+
+
 Configuration variables:
 ------------------------
 
