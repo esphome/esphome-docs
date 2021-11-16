@@ -45,7 +45,9 @@ Improv via Serial
     src="https://unpkg.com/improv-wifi-serial-sdk@2.0.0/dist/web/serial-launch-button.js"
     ></script>
 
-    <improv-wifi-serial-launch-button></improv-wifi-serial-launch-button>
+    <improv-wifi-serial-launch-button>
+        <i slot='unsupported'>The demo does not work in your browser. Use Google Chrome or Microsoft Edge.</i>
+    </improv-wifi-serial-launch-button>
 
 After we created :doc:`/components/esp32_improv`, we thought it might be a good idea to implement the same for serial connections.
 See the docs here for :doc:`Improv via Serial </components/improv_serial>` and the
@@ -134,6 +136,7 @@ Beta fixes
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 - Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
+- Fix zeroconf time comparisons :esphomepr:`2733` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -238,6 +241,7 @@ All changes
 - Remove unnecessary duplicate touch_pad_filter_start :esphomepr:`2724` by :ghuser:`Maelstrom96`
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 - Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
+- Fix zeroconf time comparisons :esphomepr:`2733` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
