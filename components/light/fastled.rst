@@ -3,7 +3,7 @@ FastLED Light
 
 .. seo::
     :description: Instructions for setting up FastLED addressable lights like NEOPIXEL.
-    :image: color_lens.png
+    :image: color_lens.svg
 
 .. _fastled-clockless:
 
@@ -79,6 +79,7 @@ Supported Chipsets
 - ``UCS1903``
 - ``UCS1904``
 - ``UCS2903``
+- ``SM16703``
 
 .. _fastled-spi:
 

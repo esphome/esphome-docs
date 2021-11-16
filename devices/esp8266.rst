@@ -3,12 +3,12 @@ Generic ESP8266
 
 .. seo::
     :description: Instructions for using generic ESP8266s with ESPHome.
-    :image: esp8266.png
+    :image: esp8266.svg
     :keywords: ESP8266
 
 All ESP8266-based devices are supported by ESPHome. Simply select ``ESP8266`` when
 the ESPHome wizard asks you for your platform and choose a board type
-from `this link <http://docs.platformio.org/en/latest/platforms/espressif8266.html>`__ when the wizard
+from `this link <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ when the wizard
 asks you for the board type.
 
 

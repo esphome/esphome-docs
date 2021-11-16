@@ -3,7 +3,7 @@ Getting Started with ESPHome and Home Assistant
 
 .. seo::
     :description: Getting Started guide for installing ESPHome Dashboard as a Home Assistant add-on and creating a basic configuration.
-    :image: home-assistant.png
+    :image: home-assistant.svg
 
 ESPHome is the perfect solution for creating custom firmware for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
@@ -46,7 +46,7 @@ The wizard will guide you through creating your first configuration and, dependi
 
     If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome Dashboard.
     *You need to access the ESPHome Dashboard over HTTPS for this to work. This is a requirement of browsers to access your ESP device to ensure that we write the correct data.*
-    
+
     If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome Dashboard and Home Assistant.
 
     If the serial port is not showing up, you might not have the required drivers installed. These drivers work for most ESP devices:
@@ -132,8 +132,10 @@ Sensor </components/binary_sensor/gpio>`.
         name: "Living Room Window"
         pin:
           number: 16
-          inverted: True
-          mode: INPUT_PULLUP
+          inverted: true
+          mode:
+            input: true
+            pullup: true
 
 This time when installing, you don’t need to have the device plugged in
 through USB again. The upload will happen wirelessly (:doc:`"over the air" </components/ota>`).

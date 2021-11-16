@@ -3,7 +3,7 @@ MCP23Sxx I/O Expander
 
 .. seo::
     :description: Instructions for setting up MCP23S08, MCP23S16 or MCP23S17 digital port expander in ESPHome. This is exactly the same API as the MCP23SXX I/O Expander except talks on the SPI bus
-    :image: mcp23Sxx.png
+    :image: mcp230xx.svg
 
 The Microchip MCP23Sxx series of general purpose, parallel I/O expansion for SPI bus applications.
 This is exactly the same API as the MCP23SXX I/O Expander except talks on the SPI bus
@@ -38,8 +38,9 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
           # Use pin number 0
           number: 0
           # One of INPUT, INPUT_PULLUP or OUTPUT
-          mode: OUTPUT
-          inverted: False
+          mode:
+            output: true
+          inverted: false
 
     # Individual inputs
     binary_sensor:
@@ -50,8 +51,9 @@ The MCP23S08 component (`datasheet <http://ww1.microchip.com/downloads/en/Device
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
-          mode: INPUT
-          inverted: False
+          mode:
+            input: true
+          inverted: false
 
 Configuration variables:
 ************************
@@ -103,8 +105,9 @@ binary sensor or GPIO switch.
           mcp23xxx: mcp23s17_hub
           # Use pin number 0
           number: 0
-          mode: OUTPUT
-          inverted: False
+          mode:
+            output: true
+          inverted: false
 
     # Individual inputs
     binary_sensor:
@@ -115,8 +118,10 @@ binary sensor or GPIO switch.
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
-          mode: INPUT_PULLUP
-          inverted: False
+          mode:
+            input: true
+            pullup: true
+          inverted: false
 
 Configuration variables:
 ************************

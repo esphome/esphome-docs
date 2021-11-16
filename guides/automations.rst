@@ -5,7 +5,7 @@ Automations and Templates
 
 .. seo::
     :description: Getting started guide for automations in ESPHome.
-    :image: auto-fix.png
+    :image: auto-fix.svg
 
 Automations and templates are two very powerful aspects of ESPHome. Automations
 allow you to perform actions under certain conditions and templates are a way to easily
@@ -302,7 +302,7 @@ Configuration variables:
 Do Automations Work Without a Network Connection
 ------------------------------------------------
 
-YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
+YES! All automations you define in ESPHome are executed on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
 
 There is one caveat though: ESPHome automatically reboots if no connection to the MQTT broker can be
@@ -334,6 +334,11 @@ All Triggers
 - :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
+- :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
+  :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
+  :ref:`ota.on_state_change <ota-on_state_change>`
+- :ref:`display.on_page_change <display-on_page_change-trigger>`
+- :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
 
 All Actions
 -----------
@@ -376,6 +381,7 @@ All Actions
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
+- :ref:`number.set <number-set_action>`
 
 .. _config-condition:
 
@@ -396,6 +402,8 @@ All Conditions
 - :ref:`text_sensor.state <text_sensor-state_condition>`
 - :ref:`light.is_on <light-is_on_condition>` / :ref:`light.is_off <light-is_off_condition>`
 - :ref:`display.is_displaying_page <display-is_displaying_page-condition>`
+- :ref:`number.in_range <number-in_range_condition>`
+- :ref:`fan.is_on <fan-is_on_condition>` / :ref:`fan.is_off <fan-is_off_condition>`
 
 All Lambda Calls
 ----------------
@@ -407,6 +415,7 @@ All Lambda Calls
 - :ref:`Cover <cover-lambda_calls>`
 - :ref:`Text Sensor <text_sensor-lambda_calls>`
 - :ref:`Stepper <stepper-lambda_calls>`
+- :ref:`Number <number-lambda_calls>`
 
 .. _delay_action:
 
@@ -429,7 +438,7 @@ time period.
 .. note::
 
     This is a "smart" asynchronous delay - other code will still run in the background while
-    the delay is happening.
+    the delay is happening. When using a lambda call, you should return the delay value in milliseconds.
 
 .. _lambda_action:
 
@@ -552,6 +561,30 @@ Configuration variables:
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
 
+.. _repeat_action:
+
+``repeat`` Action
+-----------------
+
+This action allows you to repeat a block a given number of times.
+For example, the automation below will flash the light five times.
+
+.. code-block:: yaml
+
+    on_...:
+      - repeat:
+          count: 5
+          then:
+            - light.turn_on: some_light
+            - delay: 1s
+            - light.turn_off: some_light
+            - delay: 10s
+
+Configuration variables:
+
+- **count** (**Required**, integer): The number of times the action should be repeated.
+- **then** (**Required**, :ref:`config-action`): The action to repeat.
+
 .. _wait_until_action:
 
 ``wait_until`` Action
@@ -569,7 +602,10 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
           binary_sensor.is_on: some_binary_sensor
       - logger.log: "Binary sensor is ready"
 
-Configuration option: A :ref:`Condition <config-condition>`.
+Configuration variables:
+
+- **condition** (**Required**): The condition to wait to become true. See :ref:`Conditions <config-condition>`.
+- **timeout** (*Optional*, :ref:`config-time`): Time to wait before timing out. Defaults to never timing out.
 
 .. _component-update_action:
 

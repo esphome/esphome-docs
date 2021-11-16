@@ -3,7 +3,7 @@ WiFi Component
 
 .. seo::
     :description: Instructions for setting up the WiFi configuration for your ESP node in ESPHome.
-    :image: network-wifi.png
+    :image: network-wifi.svg
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
 This core ESPHome component sets up WiFi connections to access points
@@ -51,7 +51,8 @@ Configuration variables:
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
-  - **ssid** (**Required**, string): The name of the access point to create.
+  - **ssid** (*Optional*, string): The name of the access point to create. Leave empty to use
+    the device name.
   - **password** (*Optional*, string): The password for the access point. Leave empty for
     no password.
   - **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14.
@@ -61,7 +62,7 @@ Configuration variables:
   - **ap_timeout** (*Optional*, :ref:`time <config-time>`): The time after which to enable the
     configured fallback hotspot. Defaults to ``1min``.
 
-- **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presense and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname which can break certain functionalities. Please see :ref:`notes on disabling mDNS <faq-notes_on_disabling_mdns>`. Defaults to ``true``.
+- **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presence and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname which can break certain functionalities. Please see :ref:`notes on disabling mDNS <faq-notes_on_disabling_mdns>`. Defaults to ``true``.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
@@ -93,6 +94,20 @@ to the WiFi router can be made.
     wifi:
       ap:
         ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
+
+You can also create a simple ``ap`` config which will set up the access point to have the
+devices name as the ssid with no password.
+
+.. code-block:: yaml
+
+    wifi:
+      ap: {}
+
+    # or if you still want the ap to have a password
+
+    wifi:
+      ap:
         password: "W1PBGyrokfLz"
 
 .. _wifi-manual_ip:

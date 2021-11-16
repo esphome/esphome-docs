@@ -3,7 +3,7 @@ Pulse Meter Sensor
 
 .. seo::
     :description: Instructions for setting up pulse meter sensors.
-    :image: pulse.png
+    :image: pulse.svg
 
 The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement
 for :doc:`integration sensor </components/sensor/pulse_counter>`, but offering better resolution.
@@ -64,12 +64,14 @@ measure the total consumed energy in kWh.
         pin: 12
         unit_of_measurement: 'kW'
         name: 'Electricity Usage'
+        internal_filter: 100ms
+        accuracy_decimals: 3
         filters:
           - multiply: 0.06
         total:
           name: "Electricity Total"
           unit_of_measurement: "kWh"
-          accuracy_decimals: 0
+          accuracy_decimals: 3
           filters:
             - multiply: 0.001
 

@@ -3,7 +3,7 @@ Home Assistant Sensor
 
 .. seo::
     :description: Instructions for setting up Home Assistant sensors with ESPHome that import states from your Home Assistant instance.
-    :image: home-assistant.png
+    :image: home-assistant.svg
 
 The ``homeassistant`` sensor platform allows you to create sensors that import
 states from your Home Assistant instance using the :doc:`native API </components/api>`.

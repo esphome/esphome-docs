@@ -3,7 +3,7 @@ Version Text Sensor
 
 .. seo::
     :description: Instructions for setting up version text sensors.
-    :image: new-box.png
+    :image: new-box.svg
 
 The ``version`` text sensor platform exposes the ESPHome version the firmware
 was compiled against as a text sensor.
@@ -23,7 +23,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the text sensor.
-- **hide_timestamp** (*Optional*, boolean): Allows you to hide the compilation timestamp from the version string. Defaults to ``False``.
+- **hide_timestamp** (*Optional*, boolean): Allows you to hide the compilation timestamp from the version string. Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
@@ -36,7 +36,7 @@ Disabling the compilation timestamp:
     text_sensor:
       - platform: version
         name: "ESPHome Version"
-        hide_timestamp: True
+        hide_timestamp: true
 
 This will, for example, change the output of the senser from:
 

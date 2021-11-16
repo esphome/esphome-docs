@@ -3,7 +3,7 @@ HX711 Load Cell Amplifier
 
 .. seo::
     :description: Instructions for setting up HX711 load cell amplifiers with ESPHome
-    :image: hx711.png
+    :image: hx711.jpg
     :keywords: HX711
 
 The ``hx711`` sensor platform allows you to use your HX711

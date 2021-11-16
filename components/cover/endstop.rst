@@ -3,7 +3,7 @@ Endstop Cover
 
 .. seo::
     :description: Instructions for setting up time-based covers in ESPHome.
-    :image: electric-switch.png
+    :image: electric-switch.svg
 
 The ``endstop`` cover platform allows you to create covers with position control that have
 endstops at both ends of the cover to detect the fully-open and fully-closed states.
@@ -15,7 +15,7 @@ controlling the cover. The user just needs to enter what to do when the platform
 cover in either direction, or stop it, as well as information about open and close information so that
 the current position can be approximated.
 
-Additionally, open and close durations can be specified to allow ESPHome to approximate the
+Additionally, open and close durations must be specified to allow ESPHome to approximate the
 current position of the cover.
 
 .. figure:: images/more-info-ui.png
@@ -55,7 +55,7 @@ Configuration variables:
 - **open_endstop** (**Required**, :ref:`config-id`): The ID of the
   :ref:`Binary Sensor <config-binary_sensor>` that turns on when the open position is reached.
 
-- **close_action** (*Optional*, :ref:`Action <config-action>`): The action that should
+- **close_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed.
 - **close_duration** (**Required**, :ref:`config-time`): The amount of time it takes the cover
   to close from the fully-open state.

@@ -3,7 +3,7 @@ Logger Component
 
 .. seo::
     :description: Instructions for setting up the central logging component in ESPHome.
-    :image: file-document-box.png
+    :image: file-document-box.svg
 
 The logger component automatically logs all log messages through the
 serial port and through MQTT topics. By default, all logs with a
@@ -38,8 +38,12 @@ Advanced settings:
 -  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
    log strings in the flash section of the device (uses more memory). Defaults to true.
 -  **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
-   performed when a message is to be looged. The vairables ``int level``, ``const char* tag`` and
+   performed when a message is to be logged. The variables ``int level``, ``const char* tag`` and
    ``const char* message`` are available for lambda processing.
+-  **deassert_rts_dtr** (*Optional*, boolean): Deasserts RTS/DTR when opening
+   log over UART. This is useful if RTS/DTR signals are directly connected to
+   the reset pin or strapping pins. Note: Deassert typically means high on TTL
+   level since RTS/DTR are usually low active signals. Defaults to ``false``.
 
 .. _logger-hardware_uarts:
 
@@ -184,7 +188,7 @@ using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const c
           - mqtt.publish:
               topic: some/topic
               payload: !lambda |-
-                return "Triggered on_message with level " + std::to_string(level) + ", tag " + tag + " and message " + message;
+                return "Triggered on_message with level " + to_string(level) + ", tag " + tag + " and message " + message;
 
 .. note::
 

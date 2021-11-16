@@ -3,7 +3,7 @@ Pulse Counter Sensor
 
 .. seo::
     :description: Instructions for setting up pulse counter sensors.
-    :image: pulse.png
+    :image: pulse.svg
 
 The pulse counter sensor allows you to count the number of pulses and the frequency of a signal
 on any pin.
@@ -49,8 +49,6 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 - **total** (*Optional*): Report the total number of pulses.
-
-  - All options from :ref:`Sensor <config-sensor>`.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 

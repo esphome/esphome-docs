@@ -3,11 +3,12 @@ Generic ESP32
 
 .. seo::
     :description: Information about how to use generic ESP32 boards in ESPHome.
-    :image: esp32.png
+    :image: esp32.svg
+    :keywords: ESP32
 
-All ESP32-based devices are supported by ESPHome. Simply select ``ESP32`` when
+All devices based on the original ESP32 are supported by ESPHome. Simply select ``ESP32`` when
 the ESPHome wizard asks you for your platform and choose a board type
-from `this link <http://docs.platformio.org/en/latest/platforms/espressif32.html>`__ when the wizard
+from `this link <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ when the wizard
 asks you for the board type.
 
 .. code-block:: yaml
@@ -17,6 +18,10 @@ asks you for the board type.
       name: livingroom
       platform: ESP32
       board: <BOARD_TYPE>
+
+.. note::
+
+    Support for the ESP32-S2 and ESP32-C3 is currently in development.
 
 The ESP32 boards often use the internal GPIO pin numbering on the board, this means that
 you don't have to worry about other kinds of pin numberings, yay!

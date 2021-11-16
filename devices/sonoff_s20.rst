@@ -225,8 +225,10 @@ of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff S20 Button"
       - platform: status
         name: "Sonoff S20 Status"
@@ -246,7 +248,7 @@ of the basic functions.
         id: s20_green_led
         pin:
           number: GPIO13
-          inverted: True
+          inverted: true
 
     light:
       # ... and then make a light out of it.
@@ -275,7 +277,7 @@ in Home Assistant, replace the last part with this:
         id: s20_green_led
         pin:
           number: GPIO13
-          inverted: True
+          inverted: true
       # Note: do *not* make the relay a dimmable (PWM) signal, relays cannot handle that
       - platform: gpio
         id: s20_relay

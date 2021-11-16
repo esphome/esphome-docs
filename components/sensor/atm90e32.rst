@@ -3,7 +3,7 @@ ATM90E32 Power Sensor
 
 .. seo::
     :description: Instructions for setting up ATM90E32 energy metering sensors
-    :image: atm90e32.png
+    :image: atm90e32.jpg
     :keywords: ATM90E32, CircuitSetup, Split Single Phase Real Time Whole House Energy Meter, Expandable 6 Channel ESP32 Energy Meter Main Board
 
 The ``atm90e32`` sensor platform allows you to use your ATM90E32 voltage/current and power sensors
@@ -125,6 +125,9 @@ It is possible that the two identical CT current sensors will have different
 small. The current calibration can be done once and used on all sensors or
 repeated for each one.
 
+Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``4X``:
+   - 200A/100mA SCT-024: 12597
+   
 Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``2X``:
    - 20A/25mA SCT-006: 10170
    - 100A/50mA SCT-013-000: 25498

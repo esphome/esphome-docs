@@ -3,7 +3,7 @@ DIY Examples
 
 .. seo::
     :description: Community curated list of DIY creations and custom code for ESPHome.
-    :image: earth.png
+    :image: earth.svg
 
 This is a curated list of awesome creations with ESPHome containing various
 custom components, blog posts, videos and sample configurations. It should serve as a means of
@@ -36,7 +36,7 @@ Blog Posts & Videos
 - `Automated Bathroom Ventilation <https://www.youtube.com/watch?v=weBDnmrQYOs>`__ by `Intermittent Technology <https://intermit.tech>`__
 - `ESPHome MP3 Sound Machine <https://selfhostedhome.com/esp8266-mp3-sound-machine/>`__ by `Self Hosted Home <https://selfhostedhome.com>`__
 - `ESP32 Camera+ESP8266 PIR <https://www.dopebuild.com/i-am-sorry-dave-i-am-unable-to-do-that/>`__ by `Dave Richer <https://dopebuild.com/>`__
-- `Detecting Sound with ESP8266 <https://thibmaek.com/post/detecting-sound-level-using-esp8266-and-esphome>`__ by `Thibault Maekelbergh <https://thibmaek.com>`__
+- `Detecting Sound with ESP8266 <https://thibmaek.com/posts/detecting-sound-level-using-esp8266-and-esphome>`__ by `Thibault Maekelbergh <https://thibmaek.com>`__
 - `SW420 Vibration Sensor with Remote Notifications <https://github.com/rmooreID/Home-Assistant-Appliance-Monitor/>`__ by :ghuser:`rmooreID`
 - `DIY Irrigation Controller (with Internal Scheduler + Lovelace UI) <https://brianhanifin.com/posts/diy-irrigation-controller-esphome-home-assistant/>`__ by :ghuser:`BrianHanifin`
 - `Smart Intercom <https://frog32.ch/smart-intercom.html>`__ by `Marc Egli <https://frog32.ch/>`__
@@ -48,6 +48,8 @@ Blog Posts & Videos
 - `Baseboard (Line Voltage) Thermostat from Smart Switch <https://github.com/rjmurph2241/baseboard-heating-thermostat>`__ by :ghuser:`rjmurph2241`
 - `Office Doorbell <https://github.com/shish/esphome-projects/blob/master/office-doorbell.md>`__ by :ghuser:`shish`
 - `Display TM1637 with ESPHome and MQTT showing Youtube subscribers count and other info <https://youtu.be/27JZEky0h1Q>`__ by :ghuser:`electrofun-smart`
+- `Automate your garage door with ESP8266 lysignal Yunshan 7v-30v <https://www.haade.fr/en/blog/home-automation-smarthome-jeedom-homeassistant/tutos-haade-lab/domotiser-sa-porte-de-garage-pour-5e/>`__ by :ghuser:`haade-administrator`
+- `Embedded controller for Audioengine A5+ <https://github.com/chatziko/audioengine-a5-controller/>`__ by :ghuser:`chatziko`
 
 Custom Components & Code
 ------------------------

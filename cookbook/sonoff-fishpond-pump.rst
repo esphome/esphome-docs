@@ -3,7 +3,7 @@ Sonoff Fish Pond Pump
 
 .. seo::
     :description: Making an automated fish pond pump with timing and auto stop safety with Sonoff Basic ESP8266 chip
-    :image: images/sonoff-fishpond-pump-installed.jpg
+    :image: cookbook-sonoff-fishpond-pump.jpg
     :keywords: sonoff, esp8266, home automation, ESPHome, hass, home assistant
 
 .. figure:: images/sonoff-fishpond.jpg
@@ -115,7 +115,9 @@ Here is the configuration with the basic operations outlined above.
         name: "esp_fishpond_gpio14"
         pin:
           number: 14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
         on_press:
           - switch.turn_off: esp_fishpond_pump
 

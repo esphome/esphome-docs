@@ -147,7 +147,9 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
       - platform: gpio
         pin:
           number: 14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Power Button"
         on_press:
@@ -202,7 +204,9 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
       - platform: gpio
         pin:
           number: GPIO13
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Power Button"
         on_press:
@@ -254,7 +258,7 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
       - platform: gpio
         pin:
           number: GPIO3
-          inverted: True
+          inverted: true
         name: "Power Button"
         on_press:
           - switch.toggle: relay
@@ -277,7 +281,7 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
       - platform: hlw8012
         sel_pin:
           number: GPIO12
-          inverted: True
+          inverted: true
         cf_pin: GPIO04
         cf1_pin: GPIO05
         current_resistor: 0.00221
@@ -321,7 +325,9 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: gpio
         pin:
           number: 14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Power Button"
         on_press:
@@ -381,7 +387,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: gpio
         pin:
           number: GPIO0
-          inverted: True
+          inverted: true
         name: "${plug_name}_button"
         on_press:
           - switch.toggle: relay
@@ -390,7 +396,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: gpio
         name: "${plug_name}_LED_Red"
         pin: GPIO13
-        inverted: True
+        inverted: true
         restore_mode: ALWAYS_OFF
         id: red_led
 
@@ -398,19 +404,19 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
         name: "${plug_name}_Relay"
         pin: GPIO14
         restore_mode: ALWAYS_ON
-        id: relay    
+        id: relay
 
         on_turn_on:
-          - switch.turn_on: red_led    
+          - switch.turn_on: red_led
 
         on_turn_off:
-          - switch.turn_off: red_led      
+          - switch.turn_off: red_led
 
     sensor:
       - platform: hlw8012
         sel_pin:
           number: GPIO12
-          inverted: True
+          inverted: true
         cf_pin: GPIO04
         cf1_pin: GPIO05
         current_resistor: ${current_res}
@@ -474,7 +480,9 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: gpio
         pin:
           number: 14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "${item_name}_button"
         on_press:
@@ -513,7 +521,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
       - platform: wifi_signal
         name: "${item_name}_wifi_signal"
         update_interval: 60s
-        
+
 
 4. Adding to Home Assistant
 ---------------------------

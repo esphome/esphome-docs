@@ -3,7 +3,7 @@ Sensor Component
 
 .. seo::
     :description: Instructions for setting up sensor components in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for many different sensors. Each of them is a
 platform of the ``sensor`` domain and each sensor has several base
@@ -48,8 +48,7 @@ Configuration variables:
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
   for a list of available options. Set to ``""`` to remove the default state class of a sensor.
-- **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend. The icon set here
-  is ignored by Home Assistant, if a device class is already set.
+- **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
 - **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
 - **filters** (*Optional*): Specify filters to use for some basic
   transforming of values. See :ref:`Sensor Filters <sensor-filters>` for more information.
@@ -60,6 +59,13 @@ Configuration variables:
   Assistant) to create a state changed event when the sensor updates even if the value stayed the same.
   Some applications like Grafana require this when working with Home Assistant, but beware it can
   significantly increase the database size. Defaults to ``false``.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 Automations:
 
@@ -106,6 +112,8 @@ There are a lot of filters that sensors support. You define them by adding a ``f
 block in the sensor configuration (at the same level as ``platform``; or inside each sensor block
 for platforms with multiple sensors)
 
+Filters are processed in the order they are defined in your configuration.
+
 .. code-block:: yaml
 
     # Example filters:
@@ -128,6 +136,7 @@ for platforms with multiple sensors)
           alpha: 0.1
           send_every: 15
       - throttle: 1s
+      - throttle_average: 1s
       - heartbeat: 5s
       - debounce: 0.1s
       - delta: 5.0
@@ -365,6 +374,17 @@ If it is not older than the configured value, the value is not passed forward.
       - delta: 5.0
       - lambda: return x * (9.0/5.0) + 32.0;
 
+``throttle_average``
+********************
+
+An average over the ``specified time period``, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the ``specified time period`` passed. There are two edge cases to consider within the ``specified time period``:
+
+* no value(s) received: ``NaN`` is returned - add the ``heartbeat`` filter if periodical pushes are required and/or ``filter_out: nan`` if required
+* one value received: the value is pushed out after the ``specified time period`` passed, without calculating an average
+
+For example a ``throttle_average: 60s`` will push out a value every 60 seconds, in case at least one sensor value is received within these 60 seconds.
+
+In comparison to the ``throttle`` filter it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
 
 ``heartbeat``
 *************

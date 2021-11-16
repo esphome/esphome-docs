@@ -3,7 +3,6 @@ DIY Light switch using a Sonoff Dual
 
 .. seo::
     :description: An example of how to integrate a dual light switch into Home Assistant using ESPHome
-    :image: sonoff_light_switch.png
     :keywords: Relay, Sonoff Dual Dual R1, Light, HASS, Home Assistant, ESPHome
 
 .. note::
@@ -97,8 +96,10 @@ The R1 version of the Dual controls the relays via the UART, so the code gets a 
       - platform: gpio
         pin:
           number: GPIO4
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         id: button_1
         on_press:
           then:
@@ -107,8 +108,10 @@ The R1 version of the Dual controls the relays via the UART, so the code gets a 
       - platform: gpio
         pin:
           number: GPIO14
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         id: button_2
         on_press:
           then:
@@ -196,8 +199,10 @@ It's basically the same as the :doc:`T2 </cookbook/sonoff-t1-3>`
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         id: button
         on_press:
           then:
@@ -206,8 +211,10 @@ It's basically the same as the :doc:`T2 </cookbook/sonoff-t1-3>`
       - platform: gpio
         pin:
           number: GPIO14
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         id: button
         on_press:
           then:

@@ -3,13 +3,13 @@ Infostripe
 
 .. seo::
     :description: Simple visualisation of Home Assistant states using a Neopixel stripe
-    :image: infostrip-detai.jpg
+    :image: /cookbook/images/infostrip-detail.jpg
     :keywords: Neopixel
 
 Showing the current status of sensor states using a Neopixel (WS2812B) strip is a simple way to communicate states to the user.
 Compared to a dashboard screen the infostrip can only communicate the information like a binary sensor.
 
-- color (e.g., red = error/warning, orange = waring, green = ok, blue = active)
+- color (e.g., red = error/warning, orange = warning, green = ok, blue = active)
 - intensity (off, scaled brightness)
 - mode (continuous vs. flashing, flashing or strobe is not recommend)
 - light position on stripe

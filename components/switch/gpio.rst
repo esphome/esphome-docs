@@ -3,7 +3,7 @@ GPIO Switch
 
 .. seo::
     :description: Instructions for setting up GPIO pin switches in ESPHome that control GPIO outputs.
-    :image: pin.png
+    :image: pin.svg
 
 The ``gpio`` switch platform allows you to use any pin on your node as a
 switch. You can for example hook up a relay to a GPIO pin and use it
@@ -59,7 +59,7 @@ To create an active-low switch (one that is turned off by default), use the :ref
       - platform: gpio
         pin:
           number: 25
-          inverted: yes
+          inverted: true
 
 Momentary Switch
 ----------------

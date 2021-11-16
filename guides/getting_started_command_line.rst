@@ -3,7 +3,7 @@ Getting Started with ESPHome
 
 .. seo::
     :description: Getting Started guide for installing ESPHome using the command line and creating a basic configuration.
-    :image: console.png
+    :image: console.svg
 
 ESPHome is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to set up a
@@ -19,7 +19,7 @@ Installing ESPHome is very easy. All you need to do is have `Python
 .. note::
 
     Python 3.7 or above is required to install ESPHome 1.18.0 or above.
-    
+
 
 .. code-block:: bash
 
@@ -126,8 +126,10 @@ Sensor </components/binary_sensor/gpio>`.
         name: "Living Room Window"
         pin:
           number: 16
-          inverted: True
-          mode: INPUT_PULLUP
+          inverted: true
+          mode:
+            input: true
+            pullup: true
 
 This is an advanced feature of ESPHome. Almost all pins can
 optionally have a more complicated configuration schema with options for

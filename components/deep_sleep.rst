@@ -1,9 +1,11 @@
+.. _deep_sleep-component:
+
 Deep Sleep Component
 ====================
 
 .. seo::
     :description: Instructions for setting up the deep sleep support for minimizing power consumption on ESPs.
-    :image: hotel.png
+    :image: hotel.svg
 
 The ``deep_sleep`` component can be used to automatically enter a deep sleep mode on the
 ESP8266/ESP32 after a certain amount of time. This is especially useful with nodes that operate
@@ -33,6 +35,8 @@ Configuration variables:
 
 - **run_duration** (*Optional*, :ref:`config-time`): The time duration the node should be active, i.e. run code.
 - **sleep_duration** (*Optional*, :ref:`config-time`): The time duration to stay in deep sleep mode.
+- **touch_wakeup** (*Optional*, boolean): Only on ESP32. Use a touch event to wakeup from deep sleep. To be able
+  to wakeup from a touch event, :ref:`esp32-touch-binary-sensor` must be configured properly.
 - **wakeup_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Only on ESP32. A pin to wake up to once
   in deep sleep mode. Use the inverted property to wake up to LOW signals.
 - **wakeup_pin_mode** (*Optional*): Only on ESP32. Specify how to handle waking up from a ``wakeup_pin`` if

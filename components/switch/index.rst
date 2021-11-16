@@ -3,7 +3,7 @@ Switch Component
 
 .. seo::
     :description: Instructions for setting up generic switches in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``switch`` domain includes all platforms that should show up like a
 switch and can only be turned ON or OFF.
@@ -27,7 +27,7 @@ Configuration variables:
   sensor in the frontend.
 - **inverted** (*Optional*, boolean): Whether to invert the binary
   state, i.e. report ON states as OFF and vice versa. Defaults
-  to ``False``.
+  to ``false``.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
@@ -35,6 +35,13 @@ Configuration variables:
   when the switch is turned on. See :ref:`switch-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the switch is turned off. See :ref:`switch-on_turn_on_off_trigger`.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _switch-toggle_action:
@@ -98,7 +105,7 @@ This :ref:`Condition <config-condition>` checks if the given switch is ON (or OF
 lambda calls
 ************
 
-From :ref:`lambdas <config-lambda>`, you can call several methods on all covers to do some
+From :ref:`lambdas <config-lambda>`, you can call several methods on all switches to do some
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the switch to publish a new state and store it internally.
@@ -131,24 +138,6 @@ advanced stuff (see the full API Reference for more info).
       id(my_switch).turn_on();
       // Toggle the switch
       id(my_switch).toggle();
-
-.. _switch-is_on_off_condition:
-
-``switch.is_on`` / ``switch.is_off`` Condition
-**********************************************
-
-This :ref:`condition <config-condition>` passes if the given switch is on/off.
-
-.. code-block:: yaml
-
-    # in a trigger:
-    on_...:
-      if:
-        condition:
-          switch.is_on: my_switch
-          # same goes for is_off
-        then:
-        - script.execute: my_script
 
 .. _switch-on_turn_on_off_trigger:
 

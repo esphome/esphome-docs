@@ -3,7 +3,7 @@ Binary Sensor Component
 
 .. seo::
     :description: Information about the base representation of all binary sensors.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 With ESPHome you can use different types of binary sensors. They will
 automatically appear in the Home Assistant front-end and have several
@@ -30,6 +30,7 @@ Configuration variables:
 - **device_class** (*Optional*, string): The device class for the
   sensor. See https://www.home-assistant.io/components/binary_sensor/
   for a list of available options.
+- **icon** (*Optional*, icon): Manually set the icon to use for the binary sensor in the frontend.
 - **filters** (*Optional*, list): A list of filters to apply on the binary sensor values such as
   inverting signals. See :ref:`binary_sensor-filters`.
 
@@ -56,6 +57,13 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _binary_sensor-filters:

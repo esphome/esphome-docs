@@ -3,7 +3,7 @@ DF-Player mini
 
 .. seo::
     :description: Instructions for setting up DF Player Mini integration in ESPHome.
-    :image: crosshair-gps.png
+    :image: dfplayer.svg
 
 The ``dfplayer`` (`datasheet <https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299>`__), component
 allows you to play sound and music stored in an SD card or USB flash drive.
@@ -109,7 +109,7 @@ Configuration options:
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The global track
   number (from all tracks in the device). If not specified plays the first track.
 - **loop** (*Optional*, bool, :ref:`templatable <config-templatable>`): Repeats playing
-  the same track. Defaults to ``False``.
+  the same track. Defaults to ``false``.
 
 ``dfplayer.play_folder`` Action
 -------------------------------
@@ -147,7 +147,7 @@ Configuration options:
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The file number
   inside the folder to play. Optional only if ``loop`` is not set.
 - **loop** (*Optional*, bool, :ref:`templatable <config-templatable>`): Repeats playing
-  all files in the folder. Causes ``file`` to be ignored. Defaults to ``False``.
+  all files in the folder. Causes ``file`` to be ignored. Defaults to ``false``.
 
 
 ``dfplayer.set_device`` Action
@@ -369,7 +369,7 @@ Sample code
         then:
           - dfplayer.play_folder:
               folder: !lambda 'return folder;'
-              loop: True
+              loop: true
 
       - service: dfplayer_set_device_tf
         then:

@@ -3,7 +3,7 @@ Template Switch
 
 .. seo::
     :description: Instructions for setting up template switches that can execute arbitrary actions when turned on or off.
-    :image: description.png
+    :image: description.svg
 
 The ``template`` switch platform allows you to create simple switches out of just actions and
 an optional value lambda. Once defined, it will automatically appear in Home Assistant
@@ -89,11 +89,12 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas:
+    This action can also be written in lambdas, the parameter of the `public_state` method denotes if
+    the switch is currently on or off:
 
     .. code-block:: cpp
 
-        id(template_swi).publish_state(42.0);
+        id(template_swi).publish_state(false);
 
 See Also
 --------

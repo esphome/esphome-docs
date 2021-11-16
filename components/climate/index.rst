@@ -3,7 +3,7 @@ Climate Component
 
 .. seo::
     :description: Information about the base representation of all climate devices.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for climate devices. Climate devices can represent different types of
 hardware, but the defining factor is that climate devices have a settable target temperature
@@ -33,6 +33,7 @@ All climate platforms in ESPHome inherit from the climate configuration schema.
 
 Configuration variables:
 
+- **icon** (*Optional*, icon): Manually set the icon to use for the climate device in the frontend.
 - **visual** (*Optional*): Visual settings for the climate device - these do not
   affect operation and are solely for controlling how the climate device shows up in the
   frontend.
@@ -49,7 +50,49 @@ Advanced options:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
-- If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+  (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
+  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
+
+MQTT options:
+
+- **action_state_topic** (*Optional*, string): The topic to publish
+  climate device action changes to.
+- **away_state_topic** (*Optional*, string): The topic to publish
+  away mode changes on.
+- **away_command_topic** (*Optional*, string): The topic to receive
+  away mode commands on.
+- **current_temperature_state_topic** (*Optional*, string): The topic to publish
+  current temperature changes to.
+- **fan_mode_state_topic** (*Optional*, string): The topic to publish
+  fan mode changes to.
+- **fan_mode_command_topic** (*Optional*, string): The topic to receive
+  fan mode commands on.
+- **mode_state_topic** (*Optional*, string): The topic to publish
+  climate device mode changes to.
+- **mode_command_topic** (*Optional*, string): The topic to receive
+  climate device mode commands on.
+- **swing_mode_state_topic** (*Optional*, string): The topic to publish
+  swing mode changes to.
+- **swing_mode_command_topic** (*Optional*, string): The topic to receive
+  swing mode commands on.
+- **target_temperature_state_topic** (*Optional*, string): The topic to publish
+  target temperature changes to.
+- **target_temperature_command_topic** (*Optional*, string): The topic to receive
+  target temperature commands on.
+- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
+  higher target temperature changes to.
+- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
+  higher target temperature commands on.
+- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
+  lower target temperature changes to.
+- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
+  lower target temperature commands on.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Climate Automation
 ------------------
@@ -72,7 +115,16 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the climate device to control.
 - **mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Put the climate device
-  in a specific mode. One of ``OFF``, ``HEAT_COOL``, ``COOL`` and ``HEAT``.
+  in a specific mode. One of
+
+  - ``OFF`` - The device is manually set to off, the device is inactive.
+  - ``AUTO`` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
+  - ``HEAT`` - The device is set to heat to reach a target temperature.
+  - ``COOL`` - The device is set to cool to reach a target temperature.
+  - ``HEAT_COOL`` - The device should heat/cool to maintain a target temperature.
+  - ``FAN_ONLY`` - The device only has the fan enabled, no heating or cooling is taking place.
+  - ``DRY`` - The device is set to dry/humidity mode.
+
 - **target_temperature** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
   target temperature of a climate device.
 - **target_temperature_low** (*Optional*, float, :ref:`templatable <config-templatable>`): Set the
@@ -132,6 +184,21 @@ advanced stuff.
       // etc. see API reference
       call.perform();
 
+.. _climate-on_state_trigger:
+
+``climate.on_state`` Trigger
+******************************************************
+
+This trigger is activated each time the state of the climate device is updated 
+(for example, if the current temperature measurement or the mode set by the users changes).
+
+.. code-block:: yaml
+
+    climate:
+      - platform: midea  # or any other platform
+        # ...
+        on_state:
+        - logger.log: "State updated!"
 
 See Also
 --------

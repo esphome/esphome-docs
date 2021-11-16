@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
@@ -124,8 +125,16 @@ class SEODirective(Directive):
 
         image = self.options.get("image")
         if image is not None:
+            local_img = image
             if not image.startswith("/"):
+                local_img = f"/images/{image}"
                 image = "/_images/" + image
+            p = Path(__file__).parent / local_img[1:]
+            if not p.is_file():
+                raise ValueError(f"File {p} for seo tag does not exist {self.state.document}")
+            
+            if image.endswith(".svg"):
+                image = image[:-len(".svg")] + ".png"
             self.options["image"] = env.config.html_baseurl + image
         return [SEONode(**self.options)]
 
