@@ -3,7 +3,7 @@ Pulse Counter Sensor
 
 .. seo::
     :description: Instructions for setting up pulse counter sensors.
-    :image: pulse.png
+    :image: pulse.svg
 
 The pulse counter sensor allows you to count the number of pulses and the frequency of a signal
 on any pin.

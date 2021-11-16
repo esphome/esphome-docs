@@ -3,7 +3,7 @@ Prometheus Component
 
 .. seo::
     :description: Instructions for setting up a prometheus exporter with ESPHome.
-    :image: prometheus.png
+    :image: prometheus.svg
 
 The ``prometheus`` component enables an HTTP endpoint for the
 :doc:`web_server` in order to integrate a `Prometheus <https://prometheus.io/>`__ installation.

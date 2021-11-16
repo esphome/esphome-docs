@@ -3,7 +3,7 @@ Version Text Sensor
 
 .. seo::
     :description: Instructions for setting up version text sensors.
-    :image: new-box.png
+    :image: new-box.svg
 
 The ``version`` text sensor platform exposes the ESPHome version the firmware
 was compiled against as a text sensor.

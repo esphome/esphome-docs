@@ -3,7 +3,7 @@ Remote Transmitter
 
 .. seo::
     :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
-    :image: remote.png
+    :image: remote.svg
     :keywords: Infrared, IR, RF, Remote, TX
 
 The ``remote_transmitter`` component lets you send digital packets to control

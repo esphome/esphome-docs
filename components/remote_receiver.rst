@@ -3,7 +3,7 @@ Remote Receiver
 
 .. seo::
     :description: Instructions for setting up remote receiver binary sensors for infrared and RF codes.
-    :image: remote.png
+    :image: remote.svg
     :keywords: RF, infrared
 
 The ``remote_receiver`` component lets you receive and decode any remote signal, these can

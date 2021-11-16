@@ -3,7 +3,7 @@ Web Server Component
 
 .. seo::
     :description: Instructions for setting up a web server in ESPHome.
-    :image: http.png
+    :image: http.svg
     :keywords: web server, http, REST API
 
 The ``web_server`` component creates a simple web server on the node that can be accessed

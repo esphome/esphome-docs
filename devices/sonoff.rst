@@ -3,7 +3,7 @@ Generic Sonoff
 
 .. seo::
     :description: Instructions for using generic Sonoff devices with ESPHome.
-    :image: sonoff.png
+    :image: sonoff.svg
 
 In principle ESPHome supports all Sonoff devices, but as these devices are quite cheap
 and shipping from China takes a long time, I've only set up dedicated guides for the

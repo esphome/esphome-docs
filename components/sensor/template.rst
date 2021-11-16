@@ -3,7 +3,7 @@ Template Sensor
 
 .. seo::
     :description: Instructions for setting up template sensors with ESPHome.
-    :image: description.png
+    :image: description.svg
 
 The ``template`` sensor platform allows you to create a sensor with templated values
 using :ref:`lambdas <config-lambda>`.

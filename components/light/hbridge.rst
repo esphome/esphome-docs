@@ -3,7 +3,7 @@ H-bridge Light
 
 .. seo::
     :description: Instructions for setting up a hbridge light.
-    :image: brightness-medium.png
+    :image: brightness-medium.svg
 
 The ``hbridge`` light platform creates a dual color brightness controlled light from two
 :ref:`float output component <output>`.

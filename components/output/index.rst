@@ -5,7 +5,7 @@ Output Component
 
 .. seo::
     :description: Instructions for setting up generic outputs in ESPHome
-    :image: folder-open.png
+    :image: folder-open.svg
 
 Each platform of the ``output`` domain exposes some output to
 ESPHome. These are grouped into two categories: ``binary`` outputs

@@ -5,7 +5,7 @@ UART Bus
 
 .. seo::
     :description: Instructions for setting up a UART serial bus on ESPs
-    :image: uart.png
+    :image: uart.svg
     :keywords: UART, serial bus
 
 UART is a common serial protocol for a lot of devices. For example, when uploading a binary to your ESP

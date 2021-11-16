@@ -3,7 +3,7 @@ Light Component
 
 .. seo::
     :description: Instructions for setting up lights and light effects in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``light`` domain in ESPHome lets you create lights that will
 automatically be shown in Home Assistant’s frontend and have many

@@ -3,7 +3,7 @@ Template Select
 
 .. seo::
     :description: Instructions for setting up Template Select(s) with ESPHome.
-    :image: description.png
+    :image: description.svg
 
 The ``template`` Select platform allows you to create a Select with templated values
 using :ref:`lambdas <config-lambda>`.

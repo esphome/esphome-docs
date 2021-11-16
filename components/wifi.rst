@@ -3,7 +3,7 @@ WiFi Component
 
 .. seo::
     :description: Instructions for setting up the WiFi configuration for your ESP node in ESPHome.
-    :image: network-wifi.png
+    :image: network-wifi.svg
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
 This core ESPHome component sets up WiFi connections to access points

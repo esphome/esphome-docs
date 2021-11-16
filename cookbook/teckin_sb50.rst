@@ -3,7 +3,7 @@ TECKIN SB50 LED Bulb
 
 .. seo::
     :description: ESPHome configuration for Teckin SB50 LED Bulb.
-    :image: images/teckin_sb50.jpg
+    :image: teckin_sb50.jpg
     :keywords: Teckin SB50
 
 .. figure:: images/teckin_sb50.jpg

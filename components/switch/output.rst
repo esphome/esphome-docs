@@ -3,7 +3,7 @@ Generic Output Switch
 
 .. seo::
     :description: Instructions for setting up generic output switches in ESPHome that control an output component.
-    :image: upload.png
+    :image: upload.svg
 
 The ``output`` switch platform allows you to use any output component as a switch.
 

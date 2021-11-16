@@ -3,7 +3,7 @@ ESPHome Core Configuration
 
 .. seo::
     :description: Instructions for setting up the core ESPHome configuration.
-    :image: cloud-circle.png
+    :image: cloud-circle.svg
 
 Here you specify some core information that ESPHome needs to create
 firmwares. Most importantly, this is the section of the configuration

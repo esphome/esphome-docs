@@ -5,7 +5,7 @@ CAN bus
 
 .. seo::
     :description: Instructions for setting up an CAN bus in ESPHome
-    :image: canbus.png
+    :image: canbus.svg
     :keywords: CAN
 
 Controller Area Network (CAN bus) is a serial bus protocol to connect individual systems and sensors

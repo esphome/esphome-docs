@@ -3,7 +3,6 @@ Modbus Controller Output
 
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
-    :image: modbus_controller.png
 
 The ``modbus_controller`` platform creates a output from a modbus_controller.
 

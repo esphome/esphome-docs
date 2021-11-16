@@ -3,7 +3,7 @@ Select Component
 
 .. seo::
     :description: Instructions for setting up select components in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for components to create a select entity. A select entity is
 basically an option list that can be set by either yaml, hardware or the user/frontend.
