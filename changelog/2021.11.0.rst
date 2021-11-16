@@ -56,9 +56,19 @@ See the docs here for :doc:`Improv via Serial </components/improv_serial>` and t
 Entity Categories for Home Assistant
 ------------------------------------
 
-Home Assistant added support for `Entity Categories <https://www.home-assistant.io/blog/2021/11/03/release-202111/#entity-categorization>`__
+Home Assistant 2021.11 added support for `Entity Categories <https://www.home-assistant.io/blog/2021/11/03/release-202111/#entity-categorization>`__
 and with this release certain ESPHome entites such as the restart switch and uptime sensors will have the config and diagnostic categories set respectively.
 The category can be overridden by the user in the yaml configuration.
+
+Configuration URL
+-----------------
+
+Another feature added to Home Assistant 2021.11 is the configuration URL. This allows for ESPHome devices to notify Home Assistant when the ``web_server`` is
+enabled and there will be a button in the Home Assistant device page to link directly to the ``web_server`` UI for your ESPHome device.
+
+.. figure:: images/configuration-url.png
+    :align: center
+    :width: 50.0%
 
 Repeat Action
 -------------
@@ -70,6 +80,12 @@ Device name length
 
 The maximum length of the device name has been limited to 31 characters to fall in line with standards and you will get
 an error if you try to set a device name longer than that.
+
+BLE Sensor UUID changes
+-----------------------
+
+A bug was introduced in 2021.9 with the UUIDs for the ``ble_client`` sensors being reversed incorrectly. This release flips them to be the correct way around
+and you will need to reverse them in your YAML configuration.
 
 BH1750
 ------
@@ -116,6 +132,7 @@ Breaking Changes
 - Add restore_mode to rotary_encoder :esphomepr:`2643` by :ghuser:`niklasweber` (breaking-change)
 - Neopixelbus redo method definitions :esphomepr:`2616` by :ghuser:`OttoWinter` (new-feature) (breaking-change)
 - Update device classes for binary sensors :esphomepr:`2703` by :ghuser:`lcavalli` (breaking-change)
+- BLE_Sensor: Use as_reversed_hex_array to properly parse UUIDs after #1627 :esphomepr:`2737` by :ghuser:`tekmaven` (breaking-change)
 
 Beta fixes
 ^^^^^^^^^^
@@ -137,6 +154,8 @@ Beta fixes
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 - Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
 - Fix zeroconf time comparisons :esphomepr:`2733` by :ghuser:`jesserockz`
+- BLE_Sensor: Use as_reversed_hex_array to properly parse UUIDs after #1627 :esphomepr:`2737` by :ghuser:`tekmaven` (breaking-change)
+- Fix senseair component uart read timeout :esphomepr:`2658` by :ghuser:`rotarykite`
 
 All changes
 ^^^^^^^^^^^
@@ -242,6 +261,8 @@ All changes
 - Add zeroconf as a direct dependency and lock the version :esphomepr:`2729` by :ghuser:`jesserockz`
 - Improv serial/checksum changes :esphomepr:`2731` by :ghuser:`jesserockz`
 - Fix zeroconf time comparisons :esphomepr:`2733` by :ghuser:`jesserockz`
+- BLE_Sensor: Use as_reversed_hex_array to properly parse UUIDs after #1627 :esphomepr:`2737` by :ghuser:`tekmaven` (breaking-change)
+- Fix senseair component uart read timeout :esphomepr:`2658` by :ghuser:`rotarykite`
 
 Past Changelogs
 ---------------
