@@ -3,14 +3,14 @@ Current Based Cover
 
 .. seo::
     :description: Instructions for setting up current-based covers in ESPHome.
-    :image:  window-open.jpg
+    :image:  window-open.svg
 
 The ``current_based`` cover platform allows you to create covers with position control by using current
-sensors to detect the fully-open and fully-closed states. This is pretty useful when using motors with 
-integrated mechanical endstops. During cover operation, the component monitors the current consumption 
-to detect when the motor has stopped. 
+sensors to detect the fully-open and fully-closed states. This is pretty useful when using motors with
+integrated mechanical endstops. During cover operation, the component monitors the current consumption
+to detect when the motor has stopped.
 
-When fully open or close is requested, the corresponding relay will stay on until the current the motor is 
+When fully open or close is requested, the corresponding relay will stay on until the current the motor is
 consuming goes below a certain amount. The amount of current needs to be specified in the configuration.
 
 Open and close durations can be specified to allow ESPHome to approximate the current position of the cover.
@@ -19,14 +19,14 @@ Open and close durations can be specified to allow ESPHome to approximate the cu
     :align: center
     :width: 75.0%
 
-This type of cover also provides safety features like current-based obstacle detection with automatic configurable 
-rollback as well as relay malfunction detection: operation cancels if there's a current flowing in the opposite 
-operation circuit (typically caused by welded relays).  
+This type of cover also provides safety features like current-based obstacle detection with automatic configurable
+rollback as well as relay malfunction detection: operation cancels if there's a current flowing in the opposite
+operation circuit (typically caused by welded relays).
 
 .. warning::
 
-    Depending on the cover and motor type, obstacles can physically damage the cover before being detectable. 
-    Verify your setup to ensure the current consumption will increase enough to be detectable before causing 
+    Depending on the cover and motor type, obstacles can physically damage the cover before being detectable.
+    Verify your setup to ensure the current consumption will increase enough to be detectable before causing
     any physical damage. Use it at your own risk.
 
 .. code-block:: yaml
@@ -56,7 +56,7 @@ operation circuit (typically caused by welded relays).
 
         obstacle_rollback: 30%
         start_sensing_delay: 0.8s
-          
+
 
 
 Configuration variables:
@@ -68,32 +68,32 @@ Configuration variables:
   be performed when the remote requests the cover to be opened.
 - **open_duration** (**Required**, :ref:`config-time`): The amount of time it takes the cover
   to open up from the fully-closed state.
-- **open_moving_current_threshold** (**Required**, float): The amount of current in Amps the motor 
-  should drain to consider the cover is opening. 
-- **open_obstacle_current_threshold** (**Required**, float): The amount of current in Amps the motor 
+- **open_moving_current_threshold** (**Required**, float): The amount of current in Amps the motor
+  should drain to consider the cover is opening.
+- **open_obstacle_current_threshold** (**Required**, float): The amount of current in Amps the motor
   should drain to consider the cover is blocked during opening.
 - **close_sensor** (**Required**, :ref:`config-id`): The close current sensor.
 - **close_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed.
 - **close_duration** (**Required**, :ref:`config-time`): The amount of time it takes the cover
   to close from the fully-open state.
-- **close_moving_current_threshold** (**Required**, float): The amount of current in Amps the motor 
+- **close_moving_current_threshold** (**Required**, float): The amount of current in Amps the motor
   should drain to consider the cover is closing.
-- **close_obstacle_current_threshold** (**Required**, float): The amount of current in Amps the motor 
+- **close_obstacle_current_threshold** (**Required**, float): The amount of current in Amps the motor
   should drain to consider the cover is blocked during closing.
 - **stop_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed to stop the cover.
 - **max_duration** (*Optional*, :ref:`config-time`): The maximum duration the cover should be opening
   or closing. Useful for protecting from dysfunctional motor integrated endstops.
-- **start_sensing_delay** (*Optional*, :ref:`config-time`): The amount of time the current sensing will be 
-  disabled when the movement starts. Motors can take some time before reaching their average consumption. 
-  Low values can cause an immediate stop because of the first current reading happening in the current-rising period. 
+- **start_sensing_delay** (*Optional*, :ref:`config-time`): The amount of time the current sensing will be
+  disabled when the movement starts. Motors can take some time before reaching their average consumption.
+  Low values can cause an immediate stop because of the first current reading happening in the current-rising period.
   Defaults to ``500ms``.
-- **obstacle_rollback** (*Optional*, percentage): The percentage of rollback the cover will perform in case of 
+- **obstacle_rollback** (*Optional*, percentage): The percentage of rollback the cover will perform in case of
   obstacle detection. Defaults to ``10%``.
 - **malfunction_detection** (*Optional*, boolean): Enable to detect malfunction detection (Tipically welded realys). Defaults to ``True``.
 - **malfunction_action** (*Optional*, :ref:`Action <config-action>`): The action that should
-  be performed when relay malfunction is detected. Malfunction may require device servicing. You can use this action 
+  be performed when relay malfunction is detected. Malfunction may require device servicing. You can use this action
   to notify other systems about this situation
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
@@ -106,20 +106,20 @@ Use with Shelly 2.5
     :image:  shelly2.5.png
 
 The Shelly 2.5 is the perfect hardware for this platform. It features two outputs with current monitoring
-(thanks to an embedded :doc:`ADE7953 </components/sensor/ade7953>`) in a very small form factor (39mm x 36mm x 17 mm). 
+(thanks to an embedded :doc:`ADE7953 </components/sensor/ade7953>`) in a very small form factor (39mm x 36mm x 17 mm).
 It also features an :doc:`NTC temperature sensor </components/sensor/ntc>`.
 
 .. figure:: images/shelly2.5.png
     :align: center
     :width: 30.0%
 
-These devices typically run hot (~55Cº at 20ºC room temperature). Long-term heavy loads (near to its rated limit) can overheat the device. 
-It is strongly recommended to monitor the device temperature using the NTC temperature sensor, shutting down the device if it exceeds 90ºC. 
+These devices typically run hot (~55Cº at 20ºC room temperature). Long-term heavy loads (near to its rated limit) can overheat the device.
+It is strongly recommended to monitor the device temperature using the NTC temperature sensor, shutting down the device if it exceeds 90ºC.
 This safety feature is also present in the original firmware.
 
 .. warning::
 
-    The ADE7953 IRQ line is connected to the GPIO16. The ``irq_pin`` parameter for the :doc:`ADE7953 </components/sensor/ade7953>` MUST be 
+    The ADE7953 IRQ line is connected to the GPIO16. The ``irq_pin`` parameter for the :doc:`ADE7953 </components/sensor/ade7953>` MUST be
     set to GPIO16 to prevent device overheat (>70ºC idling).
 
 Configuration example:
@@ -135,7 +135,7 @@ Configuration example:
     i2c:
       sda: GPIO12
       scl: GPIO14
-        
+
     sensor:
       - platform: ade7953
         irq_pin: GPIO16
@@ -153,7 +153,7 @@ Configuration example:
           id: close_current
           internal: true
         update_interval: 0.5s
-        
+
       # NTC Temperature
       - platform: ntc
         sensor: temp_resistance_reading
@@ -164,7 +164,7 @@ Configuration example:
           b_constant: 3350
           reference_resistance: 10kOhm
           reference_temperature: 298.15K
-        on_value_range: 
+        on_value_range:
           above: 90
           then: # Security shutdown by overheating
             - switch.turn_on: _shutdown
@@ -182,7 +182,7 @@ Configuration example:
         internal: true
 
     binary_sensor:
-      - platform: gpio 
+      - platform: gpio
         pin:
           number: GPIO13
         name: Shelly 2.5 Open Button
@@ -243,8 +243,8 @@ Configuration example:
         malfunction_detection: true
         malfunction_action:
           then:
-            - logger.log: "Malfunction detected. Relay welded."    
-          
+            - logger.log: "Malfunction detected. Relay welded."
+
 
 
     status_led:
