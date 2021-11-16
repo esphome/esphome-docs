@@ -3,7 +3,7 @@ DSMR Component
 
 .. seo::
     :description: Instructions for setting up DSMR Meter component in ESPHome.
-    :image: dsmr.png
+    :image: dsmr.svg
 
 Component/Hub
 *************

@@ -101,10 +101,6 @@ Configuration variables:
 Use with Shelly 2.5
 -------------------
 
-.. seo::
-    :description: Instructions for setting up current-based covers in ESPHome using a Shelly 2.5.
-    :image:  shelly2.5.png
-
 The Shelly 2.5 is the perfect hardware for this platform. It features two outputs with current monitoring
 (thanks to an embedded :doc:`ADE7953 </components/sensor/ade7953>`) in a very small form factor (39mm x 36mm x 17 mm).
 It also features an :doc:`NTC temperature sensor </components/sensor/ntc>`.

@@ -3,7 +3,6 @@ Modbus Controller Number
 
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
-    :image: modbus_controller.png
 
 The ``modbus_controller`` platform creates a Number from a modbus_controller.
 When the Number is updated a modbus write command is created sent to the device.

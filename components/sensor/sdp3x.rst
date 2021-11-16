@@ -3,7 +3,7 @@ SDP3x Differential Pressure Sensor
 
 .. seo::
     :description: Instructions for setting up the SDP3x Differential Pressure sensor.
-    :image: images/sdp31.jpg
+    :image: sdp31.jpg
     :keywords: SDP3x, SDP31, SDP32
 
 The SDP3x Differential Pressure sensor allows you to use your SDP3x
@@ -20,7 +20,7 @@ sensors with ESPHome.
 
 .. _Sparkfun: https://www.sparkfun.com/products/17874
 
-To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the specified pins. 
+To use the sensor, set up an :ref:`I²C Bus <i2c>` and connect the sensor to the specified pins.
 
 .. code-block:: yaml
 

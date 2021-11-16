@@ -3,7 +3,6 @@ Modbus Switch
 
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
-    :image: modbus_controller.png
 
 The ``modbus_controller`` sensor platform creates a sensor from a modbus_controller component
 and requires :doc:`/components/modbus_controller` to be configured.
