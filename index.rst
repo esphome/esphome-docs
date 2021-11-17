@@ -391,6 +391,7 @@ Binary Sensor Components
     Status, components/binary_sensor/status, server-network.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
