@@ -57,6 +57,7 @@ Configuration variables:
   - **username** (**Required**, string): The username to use for authentication.
   - **password** (**Required**, string): The password to check for authentication.
 
+- **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Default: `true`
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **version** (*Optional*, string): 1 or 2. Version 1 displays as a table. Version 2 uses web components and has more functionality
 
@@ -89,12 +90,14 @@ Configuration variables:
 
     Example web_server configuration with CSS and JS included from esphome-docs.
     CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
+    Force to turn off OTA function because the missing authentication.
 
     .. code-block:: yaml
 
         # Example configuration entry
         web_server:
           port: 80
+          ota: false
           css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
           js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
           js_url: ""
