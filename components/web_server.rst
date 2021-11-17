@@ -24,7 +24,7 @@ interface are hosted by esphome.io. If you want to use your own service, use the
     Example web server frontend (Version 1)
     
 Version 2:
----------
+----------
 .. figure:: /components/images/web_server-v2.png 
 
     Web Components (Version 2)
