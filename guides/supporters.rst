@@ -555,7 +555,6 @@ Contributors
 - `pieterbrink123 (@pieterbrink123) <https://github.com/pieterbrink123>`__
 - `pille (@pille) <https://github.com/pille>`__
 - `Tommy van der Vorst (@pixelspark) <https://github.com/pixelspark>`__
-- `pixiandreas (@pixiandreas) <https://github.com/pixiandreas>`__
 - `Peter Kuehne (@pkuehne) <https://github.com/pkuehne>`__
 - `Plácido Revilla (@placidorevilla) <https://github.com/placidorevilla>`__
 - `Marcus Kempe (@plopp) <https://github.com/plopp>`__
@@ -563,7 +562,6 @@ Contributors
 - `polyfaces (@polyfaces) <https://github.com/polyfaces>`__
 - `poptix (@poptix) <https://github.com/poptix>`__
 - `Iván Povedano (@pove) <https://github.com/pove>`__
-- `pplucky (@pplucky) <https://github.com/pplucky>`__
 - `probonopd (@probonopd) <https://github.com/probonopd>`__
 - `Peter Stuifzand (@pstuifzand) <https://github.com/pstuifzand>`__
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__
@@ -574,7 +572,6 @@ Contributors
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__
 - `Quentin Stafford-Fraser (@quentinsf) <https://github.com/quentinsf>`__
 - `Quinn Hosler (@quinnhosler) <https://github.com/quinnhosler>`__
-- `r-jordan (@r-jordan) <https://github.com/r-jordan>`__
 - `Richard Kuhnt (@r15ch13) <https://github.com/r15ch13>`__
 - `Richard Miles (@r89m) <https://github.com/r89m>`__
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__
@@ -586,14 +583,12 @@ Contributors
 - `Ronald Dehuysser (@rdehuyss) <https://github.com/rdehuyss>`__
 - `Alex (@redwngsrul) <https://github.com/redwngsrul>`__
 - `Alex Reid (@reidprojects) <https://github.com/reidprojects>`__
-- `rheinz (@rheinz) <https://github.com/rheinz>`__
 - `Richard Klingler (@richardklingler) <https://github.com/richardklingler>`__
 - `richardweinberger (@richardweinberger) <https://github.com/richardweinberger>`__
 - `Rich Foley (@RichFoley) <https://github.com/RichFoley>`__
 - `Richard Lewis (@richrd) <https://github.com/richrd>`__
 - `Rico van Genugten (@ricovangenugten) <https://github.com/ricovangenugten>`__
 - `rjlexx (@rjlexx) <https://github.com/rjlexx>`__
-- `rjmurph2241 (@rjmurph2241) <https://github.com/rjmurph2241>`__
 - `René Klomp (@rklomp) <https://github.com/rklomp>`__
 - `rlowens (@rlowens) <https://github.com/rlowens>`__
 - `Roy Meissner (@rmeissn) <https://github.com/rmeissn>`__
