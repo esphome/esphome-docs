@@ -732,6 +732,7 @@ Contributors
 - `Ian Wells (@wellsi) <https://github.com/wellsi>`__
 - `Werner Beroux (@wernight) <https://github.com/wernight>`__
 - `wifwucite (@wifwucite) <https://github.com/wifwucite>`__
+- `wilberforce (@wilberforce) <https://github.com/wilberforce>`__
 - `Wilmar den Ouden (@wilmardo) <https://github.com/wilmardo>`__
 - `Emil Hesslow (@WizKid) <https://github.com/WizKid>`__
 - `WJCarpenter (@wjcarpenter) <https://github.com/wjcarpenter>`__
