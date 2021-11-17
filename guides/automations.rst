@@ -561,6 +561,30 @@ Configuration variables:
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
 - **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
 
+.. _repeat_action:
+
+``repeat`` Action
+-----------------
+
+This action allows you to repeat a block a given number of times.
+For example, the automation below will flash the light five times.
+
+.. code-block:: yaml
+
+    on_...:
+      - repeat:
+          count: 5
+          then:
+            - light.turn_on: some_light
+            - delay: 1s
+            - light.turn_off: some_light
+            - delay: 10s
+
+Configuration variables:
+
+- **count** (**Required**, integer): The number of times the action should be repeated.
+- **then** (**Required**, :ref:`config-action`): The action to repeat.
+
 .. _wait_until_action:
 
 ``wait_until`` Action

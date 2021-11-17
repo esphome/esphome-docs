@@ -35,7 +35,9 @@ individually.
 
 So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
 option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
-In there, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
+In each cycle, the display is automatically cleared before the lambda is executed. You can disable
+this behavior by setting ``auto_clear_enabled: false``.
+In the lambda, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
 .. code-block:: yaml
