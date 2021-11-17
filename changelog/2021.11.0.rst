@@ -134,7 +134,7 @@ Breaking Changes
 - Update device classes for binary sensors :esphomepr:`2703` by :ghuser:`lcavalli` (breaking-change)
 - BLE_Sensor: Use as_reversed_hex_array to properly parse UUIDs after #1627 :esphomepr:`2737` by :ghuser:`tekmaven` (breaking-change)
 
-Beta fixes
+Beta Fixes
 ^^^^^^^^^^
 
 - Fix template number initial value being NaN :esphomepr:`2692` by :ghuser:`jesserockz`
