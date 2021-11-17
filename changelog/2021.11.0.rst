@@ -96,9 +96,14 @@ When using the default resolution of 0.5 for the BH17850, the result is now divi
 Binary sensor device classes
 ----------------------------
 
-:esphomepr:`2703` brings the binary sensor device classes up to date with Home Assistant, but this means that
-the ``update`` ``device_class`` for binary sensors has been removed, you will get an error in your configuration if
-you are using this device class.
+:esphomepr:`2703` removed the ``update`` ``device_class`` for binary sensors incorrectly in 2021.11.0. :ghuser:`frenck` noticed this and has
+added it back again in 2021.11.1.
+
+Release 2021.11.1 - November 17
+-------------------------------
+
+- Fix AQI index calculator :esphomepr:`2739` by :ghuser:`freekode`
+- Re-instate device class update for binary sensors :esphomepr:`2743` by :ghuser:`frenck`
 
 Full list of changes
 --------------------
@@ -263,6 +268,8 @@ All changes
 - Fix zeroconf time comparisons :esphomepr:`2733` by :ghuser:`jesserockz`
 - BLE_Sensor: Use as_reversed_hex_array to properly parse UUIDs after #1627 :esphomepr:`2737` by :ghuser:`tekmaven` (breaking-change)
 - Fix senseair component uart read timeout :esphomepr:`2658` by :ghuser:`rotarykite`
+- Fix AQI index calculator :esphomepr:`2739` by :ghuser:`freekode`
+- Re-instate device class update for binary sensors :esphomepr:`2743` by :ghuser:`frenck`
 
 Past Changelogs
 ---------------
