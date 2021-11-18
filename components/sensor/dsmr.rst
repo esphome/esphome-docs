@@ -269,7 +269,7 @@ Configuration variables:
 
 - **sub_equipment_id** (*Optional*): Sub Equipment ID
 
-   - **name** (**Required**, string): he name for the sub_equipment_id sensor.
+   - **name** (**Required**, string): The name for the sub_equipment_id sensor.
    - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
    - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
