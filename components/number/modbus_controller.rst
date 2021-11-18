@@ -19,16 +19,16 @@ Configuration variables:
     - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read
 - **address**: (**Required**, int): start address of the first register in a range
 - **value_type**: (**Required**): datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
-    - U_WORD (unsigned 16 bit integer 1 register =16bit
-    - S_WORD (signed 16 bit integer one register)
+    - U_WORD (unsigned 16 bit integer from 1 register = 16bit)
+    - S_WORD (signed 16 bit integer from 1 register = 16bit)
     - U_DWORD (unsigned 32 bit integer from 2 registers = 32bit)
     - S_DWORD (signed 32 bit integer from 2 registers = 32bit)
-    - U_DWORD_R (unsigned 32 bit integer from 2 registers low word first )
-    - S_DWORD_R (signed 32 bit integer from 2 registers low word first )
-    - U_QWORD (unsigned 64 bit integer from 4 registers = 64bit
-    - S_QWORD (unsigned 64 bit integer from 4 registers = 64bit
-    - U_QWORD_R (unsigend float from 4 registers low word first )
-    - S_QWORD_R (sigend float from 4 registers low word first )
+    - U_DWORD_R (unsigned 32 bit integer from 2 registers low word first)
+    - S_DWORD_R (signed 32 bit integer from 2 registers low word first)
+    - U_QWORD (unsigned 64 bit integer from 4 registers = 64bit)
+    - S_QWORD (unsigned 64 bit integer from 4 registers = 64bit)
+    - U_QWORD_R (unsigned 64 bit integer from 4 registers low word first)
+    - U_QWORD_R signed 64 bit integer from 4 registers low word first)
     - FP32 (32 bit IEEE 754 floating point from 2 registers)
     - FP32_R (32 bit IEEE 754 floating point - same as FP32 but low word first)
 
@@ -42,7 +42,7 @@ Configuration variables:
 - **min_value** (*Optional*, float): The minimum value this number can be.
 - **max_value** (*Optional*, float): The maximum value this number can be.
 - **step** (*Optional*, float): The granularity with which the number can be set. Defaults to 1
-- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used. 
+- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used.
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
   See :ref:`modbus_custom_data` how to use `custom_command`
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):

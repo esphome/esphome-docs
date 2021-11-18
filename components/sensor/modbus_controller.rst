@@ -20,18 +20,18 @@ Configuration variables:
     - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus function code 4 (Read Input Registers) will be used.
 - **address**: (**Required**, int): start address of the first register in a range
 - **value_type**: (**Required**): datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
-    - U_WORD (unsigned 16 bit integer 1 register =16bit
-    - S_WORD (signed 16 bit integer one register)
+    - U_WORD (unsigned 16 bit integer from 1 register = 16bit)
+    - S_WORD (signed 16 bit integer from 1 register = 16bit)
     - U_DWORD (unsigned 32 bit integer from 2 registers = 32bit)
     - S_DWORD (signed 32 bit integer from 2 registers = 32bit)
-    - U_DWORD_R (unsigned 32 bit integer from 2 registers low word first )
-    - S_DWORD_R (signed 32 bit integer from 2 registers low word first )
-    - U_QWORD (unsigned 64 bit integer from 4 registers = 64bit
-    - S_QWORD (unsigned 64 bit integer from 4 registers = 64bit
-    - U_QWORD_R (unsigend float from 4 registers low word first )
-    - S_QWORD_R (sigend float from 4 registers low word first )
+    - U_DWORD_R (unsigned 32 bit integer from 2 registers low word first)
+    - S_DWORD_R (signed 32 bit integer from 2 registers low word first)
+    - U_QWORD (unsigned 64 bit integer from 4 registers = 64bit)
+    - S_QWORD (unsigned 64 bit integer from 4 registers = 64bit)
+    - U_QWORD_R (unsigned 64 bit integer from 4 registers low word first)
+    - U_QWORD_R signed 64 bit integer from 4 registers low word first)
     - FP32 (32 bit IEEE 754 floating point from 2 registers)
-    - FP32_R (32 bit IEEE 754 floating point - same as FP32 but low word first)
+    - FP32_R (32 bit IEEE 754 floating point - same as FP32 but low word first)s
 
 - **bitmask**: (*Optional*) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
 - **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
