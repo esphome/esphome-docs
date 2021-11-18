@@ -78,28 +78,38 @@ Configuration variables:
 
         # Example configuration entry
         web_server:
-          port: 80
+          port: 80        
           version: 2
-          css_url: ""
-          js_url: "https://esphome.io/_static/v2/www.js"
           
-    The `css_url` is blank to prevent the loading of the default v1 css file which is not required.
-                 
-
-    Example web_server configuration with CSS and JS included from esphome-docs.
+    Example web_server version 1 configuration with CSS and JS included from esphome-docs.
     CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
     Force to turn off OTA function because the missing authentication.
 
     .. code-block:: yaml
 
-        # Example configuration entry
+        # Example configuration entry V1
         web_server:
           port: 80
           ota: false
           css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
           js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
           js_url: ""
+
+    Example web_server version 2 configuration with JS included from a local file.
+    
+    CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
+    V2 embeds the css within the js file so is not required, however you could include your own CSS.
+
+    .. code-block:: yaml
+
+        # Example configuration entry V2
+        web_server:
+          port: 80
+          js_include: "./v2/www.js"
+          js_url: ""
+          version: 2        
           
+        Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
         Version 2 will support compressed files to minimise flash usage in a release shortly
 
 See Also
