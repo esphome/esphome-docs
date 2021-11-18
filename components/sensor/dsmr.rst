@@ -82,6 +82,12 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **electricity_tariff** (*Optional*): The current tariff.
+
+   - **name** (**Required**, string): The name for the electricity_tariff sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Sensor <config-sensor>`.
+
 - **power_delivered** (*Optional*): Power Consumed.
 
   - **name** (**Required**, string): The name for the power_delivered sensor.
