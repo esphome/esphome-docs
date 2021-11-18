@@ -78,7 +78,7 @@ Configuration variables:
 
         # Example configuration entry
         web_server:
-          port: 80        
+          port: 80
           version: 2
           
     Example web_server version 1 configuration with CSS and JS included from esphome-docs.
