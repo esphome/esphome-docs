@@ -548,6 +548,7 @@ Number Components
     Number Core, components/number/index, folder-open.svg
     Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg
+    Tuya Number, components/number/tuya, tuya.png
 
 Select Components
 -----------------
