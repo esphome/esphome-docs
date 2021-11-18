@@ -82,12 +82,6 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **electricity_tariff** (*Optional*): The current tariff.
-
-   - **name** (**Required**, string): The name for the electricity_tariff sensor.
-   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-   - All other options from :ref:`Sensor <config-sensor>`.
-
 - **power_delivered** (*Optional*): Power Consumed.
 
   - **name** (**Required**, string): The name for the power_delivered sensor.
@@ -229,6 +223,12 @@ Configuration variables:
   - **name** (**Required**, string): The name for the p1_version text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **electricity_tariff** (*Optional*): The current tariff.
+
+   - **name** (**Required**, string): The name for the electricity_tariff sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 - **gas_delivered_text** (*Optional*): A text sensor which unformatted gas data. You need to
   apply a custom parsing of this value depending on your meter format.
