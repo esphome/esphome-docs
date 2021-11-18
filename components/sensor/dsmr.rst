@@ -224,9 +224,52 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
-- **electricity_tariff** (*Optional*): The current tariff.
+- **timestamp** (*Optional*): Timestamp
+
+   - **name** (**Required**, string): The name for the timestamp sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **electricity_tariff** (*Optional*): The current tariff. According to the specs value
+  '0001' means 'normal tariff' and value '0002' means 'low tariff'. Your meter may report differently.
 
    - **name** (**Required**, string): The name for the electricity_tariff sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **electricity_failure_log** (*Optional*): Electricity Failure Log
+
+   - **name** (**Required**, string): The name for the electricity_failure_log sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **message_short** (*Optional*): Message Short
+
+   - **name** (**Required**, string): The name for the message_short sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **message_long** (*Optional*): Message Long
+
+   - **name** (**Required**, string): The name for the message_long sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **gas_equipment_id** (*Optional*): Gas Equipment ID.
+
+   - **name** (**Required**, string): The name for the gas_equipment_id sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **water_equipment_id** (*Optional*): Water Equipment ID
+
+   - **name** (**Required**, string): The name for the water_equipment_id sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **sub_equipment_id** (*Optional*): Sub Equipment ID
+
+   - **name** (**Required**, string): he name for the sub_equipment_id sensor.
    - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
    - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
