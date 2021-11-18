@@ -95,7 +95,7 @@ Frame Settings:
     a channel there (with the ``channel: 2``  parameter)
 
 Configuration for generic ESP32-CAM-MB board
------------------------------------
+--------------------------------------------
 
 .. code-block:: yaml
 
