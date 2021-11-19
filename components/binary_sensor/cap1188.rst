@@ -49,7 +49,7 @@ The configuration is made up of two parts: The central component, and individual
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
 - **reset_pin** (*Optional*, :ref:`config-pin`): Set the pin that is used to reset the CAP1188 board on boot.
 - **touch_threshold** (*Optional*, integer): The touch threshold for all channels. This defines the sensitivity for touch detection.
-   - ``0x00``: Maximum sensitivity - Most sensitive to touch
+   - ``0x01``: Maximum sensitivity - Most sensitive to touch
    - ``0x20``: Default sensitivity
    - ``0x40``: Medium sensitivity (I used this sensitivity when being used through a 3mm sheet of plastic)
    - ``0x80``: Minimum sensitivity - Least sensitive to touch
