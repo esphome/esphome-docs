@@ -64,6 +64,8 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
+- **model**: (**Required**, int): Specify which rain sensor you have connected. Must be either ``RG_9`` or ``RG_15``.
+
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
