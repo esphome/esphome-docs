@@ -105,6 +105,15 @@ UART Connection:
 
 MIDI Output from our instrument should be connected to the RX pin on the ESP board. The baud rate needs to be set to 31250.
 
+Here's an example circuit for reading MIDI data:
+
+.. figure:: /images/midi_in_schematic.png
+    :align: center
+
+``MIDI4`` and ``MIDI5`` connectors map to pin 4 and pin 5 of the DIN plug that connects to MIDI OUT of your MIDI device. 
+Refer to `MIDI Tutorial <https://learn.sparkfun.com/tutorials/midi-tutorial/all>`__ by Sparkfun for more details about the wiring. 
+
+Note that the octocoupler needs to be fast enought to handle baud rate of 31250 (needs to react within roughly 10ms). PC900 optocoupler works great.
 
 See Also
 --------
@@ -112,4 +121,5 @@ See Also
 - :ref:`uart`
 - :apiref:`midi_in/midi_in.h`
 - `Arduino MIDI Library <https://github.com/FortySevenEffects/arduino_midi_library>`__ by `FortySevenEffects <https://github.com/FortySevenEffects>`__
+- `MIDI Tutorial <https://learn.sparkfun.com/tutorials/midi-tutorial/all>`__ by Sparkfun
 - :ghedit:`Edit`
