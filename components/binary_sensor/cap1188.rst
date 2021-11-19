@@ -32,7 +32,7 @@ required to be set up in your configuration for this sensor to work.
       address: 0x29
       reset_pin: 14
       touch_threshold: 0x40
-      allow_multiple_touches: 0x80
+      allow_multiple_touches: true
 
     binary_sensor:
       - platform: cap1188
