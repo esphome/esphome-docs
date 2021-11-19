@@ -145,7 +145,7 @@ of the debugging feature.
   - **bytes** (*Optional*, int): Trigger after accumulating the specified number of bytes. Defaults to 256.
   - **timeout** (*Optional*, :ref:`config-time`): Trigger after no communication has been seen during the
     specified timeout, while one or more bytes have been accumulated. Defaults to 100ms.
-  - **sequence** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
+  - **delimiter** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
     detected in the communication.
 
 - **sequence** (*Required*, :ref:`config-action`): Action(s) to perform for publishing debugging data. The
