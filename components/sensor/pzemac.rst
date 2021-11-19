@@ -36,6 +36,16 @@ The communication with this integration is done over a :ref:`UART bus <uart>` us
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
 to some pins on your board and the baud rate set to 9600.
 
+The previous version of the ``pzemac`` sensor platform had two behaviors that could be unwanted:
+
+- Sometimes, when the PZEM was energized, there was spurious data with very high values.
+
+- When the PZEM lacked power and the ESP8266 was still energized, the last values were kept.
+
+To circumvent these behaviors, a logic was created to filter (or rather, disregard the first
+measurements at power-up) and to reset the values when the PZEM is de-energized.
+The configuration variable ``update_filter`` was created to handle this.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -43,7 +53,7 @@ to some pins on your board and the baud rate set to 9600.
       rx_pin: D1
       tx_pin: D2
       baud_rate: 9600
-      
+
     modbus:
 
     sensor:
@@ -60,7 +70,9 @@ to some pins on your board and the baud rate set to 9600.
           name: "PZEM-004T V3 Frequency"
         power_factor:
           name: "PZEM-004T V3 Power Factor"
-        update_interval: 60s
+        update_interval: 1s
+        address: 1
+        update_filter: 3
 
 Configuration variables:
 ------------------------
@@ -82,6 +94,10 @@ Configuration variables:
 - **address** (*Optional*, int): The address of the sensor if multiple sensors are attached to
   the same UART bus. You will need to set the address of each device manually. Defaults to ``1``.
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Modbus hub.
+- **update_filter** (*Optional*, int): Update filter defines the number of updates to be rejected
+  when the PZEM was energized, and also the number of update feedback failures to set values to zero.
+  Defaults to ``0``. With ``update_filter`` = ``0`` the ``pzemac`` sensor platform operation is the
+  same as the previous version without ``update_filter``.
 
 See Also
 --------
