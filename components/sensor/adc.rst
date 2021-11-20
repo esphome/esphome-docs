@@ -79,16 +79,16 @@ Different ESP32-ADC behavior since 2021.11
 The ADC output reads voltage very accurately since 2021.11 where manufacturer calibration was incorporated. Before this every ESP32 would read different voltages and be largely innacurate/nonlinear. Users with a manually calibrated setup are encouraged to check their the installations to ensure proper output.
 For users that don't need a precise voltage reading, the "raw" output option allows to have the raw ADC values (0-4095 for ESP32) prior to manufacturer calibration. It is possible to get the old uncalibrated measurements with a filter multiplier:
 
-```yaml
-# To replicate old uncalibrated output, set raw:true and keep only one of the multiplier lines.
-raw: true
-filters:
-  - multiply: 0.00026862 # 1.1/4095, for attenuation 0db
-  - multiply: 0.00036630 # 1.5/4095, for attenuation 2.5db
-  - multiply: 0.00053724 # 2.2/4095, for attenuation 6db
-  - multiply: 0.00095238 # 3.9/4095, for attenuation 11db
-  # your existing filters would go here
-```
+.. code-block:: yaml
+
+    # To replicate old uncalibrated output, set raw:true and keep only one of the multiplier lines.
+    raw: true
+    filters:
+      - multiply: 0.00026862 # 1.1/4095, for attenuation 0db
+      - multiply: 0.00036630 # 1.5/4095, for attenuation 2.5db
+      - multiply: 0.00053724 # 2.2/4095, for attenuation 6db
+      - multiply: 0.00095238 # 3.9/4095, for attenuation 11db
+      # your existing filters would go here
 
 Note we don't recommend this method as it will change between chips, and newer ESP32 modules have different ranges (i.e. 0-8191); it is better to use the new calibrated voltages and update any existing filters accordingly.
 
