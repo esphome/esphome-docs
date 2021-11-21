@@ -30,7 +30,7 @@ With Home Assistant 2021.6 or newer, entity state attributes can also be importe
 Configuration variables:
 ------------------------
 
-- **name** (**Required**, string): The name of the binary sensor.
+- **name** (*Optional*, string): The name of the binary sensor.
 - **entity_id** (**Required**, string): The entity ID to import from Home Assistant.
 - **attribute** (*Optional*, string): The name of the state attribute to import from the
   specified entity. The entity state is used when this option is omitted.
