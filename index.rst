@@ -244,8 +244,9 @@ Electricity
     Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
-    INA219, components/sensor/ina219, ina219.jpg, DC current
-    INA226, components/sensor/ina226, ina226.jpg, DC current & Power
+    INA219, components/sensor/ina219, ina219.jpg, DC Current
+    INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
+    INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
     PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
