@@ -16,7 +16,7 @@ temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX
 
 .. _SainSmart: https://www.sainsmart.com/products/max6675-module-k-type-thermocouple-thermocouple-sensor-temperature-0-1024-for-arduino
 
-As the communication with the MAX66775 is done using SPI, you need
+As the communication with the MAX6675 is done using SPI, you need
 to have an :ref:`SPI bus <spi>` in your configuration with the **miso_pin** set (MOSI is not required).
 
 Connect ``GND`` to ``GND``, ``VCC`` to ``3.3V`` and the other three ``MISO`` (or ``SO`` for short),
