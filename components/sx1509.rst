@@ -17,7 +17,7 @@ The SX1509 can do much more than just simple digital pin control. It can produce
 And, with a built-in keypad engine, it can interface with up to 64 buttons set up in an 8x8 matrix.
 
 Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used, but some more
-complicated components that use the pin schema will not work. For example the I2C or SPI pins.
+complicated components that use the pin schema will not work. For example the I²C or SPI pins.
 
 .. figure:: images/sx1509-full.jpg
     :align: center
@@ -41,8 +41,8 @@ complicated components that use the pin schema will not work. For example the I2
           scan_time: 2
           debounce_time: 1
 
-Configuration variables for the SX1509 device:
-----------------------------------------------
+Configuration variables:
+------------------------
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this SX1509 component.
 - **address** (*Optional*, int): The I²C address of the driver.
@@ -53,9 +53,9 @@ up to 8x8 matrix (i.e. 64 keys).
 
 - **keypad** (*Optional*): Add this to enable the keypad.
 
-  - **key_row** (*Required*, int): The number of keypad rows to use. This enables any number of the first 7 pins.
+  - **key_rows** (**Required**, int): The number of keypad rows to use. This enables any number of the first 7 pins.
     So a value of 3 enables pins 0,1,2 to be used as the rows for the keypad matrix. This value must be between 1 and 8.
-  - **key_columns** (*Required*, int): The number of keypad columns to use. This enables any number of the last 7 pins.
+  - **key_columns** (**Required**, int): The number of keypad columns to use. This enables any number of the last 7 pins.
     So a value of 4 enables pins 8,9,10,11 to be used as the columns for the keypad matrix. This value must be between 1 and 8.
   - **sleep_time** (*Optional*, int): No key press within this time will set keypad engine to sleep.
   - **scan_time** (*Optional*, int): Scan time per row (must be set above debounce time).
@@ -108,6 +108,9 @@ Attention should be paid to the capabilities of the I/O pins.
 | 15  |    ✓             |     |   ✓    |
 +-----+------------------+-----+--------+
 
+Binary Sensor
+=============
+
 To use the individual keys on the keypad you need to add individual binary_sensor entries in the config.
 
 .. code-block:: yaml
@@ -125,11 +128,15 @@ To use the individual keys on the keypad you need to add individual binary_senso
         row: 0
         col: 1
 
-Configuration variables for the SX1509 keypad keys:
----------------------------------------------------
+Configuration variables:
+------------------------
 
 - **row** (**Required**, int): The row number for this key on the keypad.
 - **col** (**Required**, int): The column number for this key on the keypad.
+
+
+Pin configuration variables:
+----------------------------
 
 With the following configuration items you may use the individual pins of the SX1509 as the pins for binary_sensor, switch, or output.
 The outputs can in turn be used to add PWM-enabled lights like the monochromatic light.
@@ -144,8 +151,10 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
           sx1509: sx1509_hub1
           # Use pin number 0 on the SX1509
           number: 0
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
 
     # Individual binary outputs
     switch:
@@ -156,8 +165,9 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
           # Use pin number 1 on the SX1509
           number: 1
           # use as output for switch
-          mode: OUTPUT
-          inverted: False
+          mode:
+            output: true
+          inverted: false
 
     # Individual outputs
     output:
@@ -174,7 +184,14 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
         name: "light0"
         output: sx1509_output
 
-- All other options from :ref:`Output <config-output>`.
+
+- **sx1509** (**Required**, :ref:`config-id`): The id of the SX1509 component of the pin.
+- **number** (**Required**, integer): The pin number.
+- **inverted** (*Optional*, boolean): If all read and written values
+  should be treated as inverted. Defaults to ``false``.
+- **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT``,
+  ``INPUT_PULLUP`` or ``OUTPUT``.
+
 
 And naturally you may use all automation functions with these SX1509 binary_sensors, switches and output (lights).
 

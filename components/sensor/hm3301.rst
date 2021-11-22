@@ -9,7 +9,7 @@ The ``HM3301`` sensor platform allows you to use your HM3301 particulate matter 
 (`more info <http://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301>`__)
 sensors with ESPHome.
 
-The sensor communicate with board by ``I2C`` protocol, and requires 3.3v.
+The sensor communicate with board by :ref:`I²C <i2c>` protocol, and requires 3.3v.
 
 .. code-block:: yaml
 

@@ -53,7 +53,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the I^2C address of
+- **address** (*Optional*, int): Manually specify the I²C address of
   the sensor. Defaults to ``0x77``. Another address can be ``0x76``.
 - **iir_filter** (*Optional*): Set up an Infinite Impulse Response filter to increase accuracy. One of
   ``OFF``, ``2x``, ``4x``, ``16x``. Defaults to ``OFF``.

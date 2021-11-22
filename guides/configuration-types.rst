@@ -13,15 +13,15 @@ page describes them.
 ID
 --
 
-Quite an important aspect of ESPHome are “ids”. They are used to
+Quite an important aspect of ESPHome are “IDs”. They are used to
 connect components from different domains. For example, you define an
-output component together with an id and then later specify that same id
+output component together with an ID and then later specify that same ID
 in the light component. IDs should always be unique within a
 configuration and ESPHome will warn you if you try to use the same
 ID twice.
 
 Because ESPHome converts your configuration into C++ code and the
-ids are in reality just C++ variable names, they must also adhere to
+IDs are in reality just C++ variable names, they must also adhere to
 C++’s naming conventions. `C++ Variable
 names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf>`__
 …
@@ -74,59 +74,42 @@ In some places, ESPHome also supports a more advanced “pin schema”.
       # Advanced:
       pin:
         number: D0
-        inverted: True
-        mode: INPUT_PULLUP
+        inverted: true
+        mode:
+          input: true
+          pullup: true
 
 Configuration variables:
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
-   should be treated as inverted. Defaults to ``False``.
--  **mode** (*Optional*, string): A pin mode to set for the pin at
-   startup, corresponds to Arduino’s ``pinMode`` call.
+   should be treated as inverted. Defaults to ``false``.
+-  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
+   modes like input or output. The default value depends on the context.
+   Accepts either a shorthand string or a mapping where each feature can be individually 
+   enabled/disabled:
 
-Available Pin Modes:
+   - **input** (*Optional*, boolean): If true, configure the pin as an input.
+   - **output** (*Optional*, boolean): If true, configure the pin as an output.
+   - **pullup** (*Optional*, boolean): Activate internal pullup resistors on the pin.
+   - **pulldown** (*Optional*, boolean): Activate internal pulldown resistors on the pin.
+   - **open_drain** (*Optional*, boolean): Set the pin to open-drain (as opposed to push-pull).
+     The active pin state will then result in a high-impedance state.
 
--  ``INPUT``
--  ``OUTPUT``
--  ``OUTPUT_OPEN_DRAIN``
--  ``ANALOG`` (only on ESP32)
--  ``INPUT_PULLUP``
--  ``INPUT_PULLDOWN`` (only on ESP32)
--  ``INPUT_PULLDOWN_16`` (only on ESP8266 and only on GPIO16)
+   For compatibility some shorthand modes can also be used.
 
-More exotic Pin Modes are also supported, but rarely used:
+   - ``INPUT``
+   - ``OUTPUT``
+   - ``OUTPUT_OPEN_DRAIN``
+   - ``ANALOG``
+   - ``INPUT_PULLUP``
+   - ``INPUT_PULLDOWN``
 
--  ``WAKEUP_PULLUP`` (only on ESP8266)
--  ``WAKEUP_PULLDOWN`` (only on ESP8266)
--  ``SPECIAL``
--  ``FUNCTION_0`` (only on ESP8266)
--  ``FUNCTION_1``
--  ``FUNCTION_2``
--  ``FUNCTION_3``
--  ``FUNCTION_4``
--  ``FUNCTION_5`` (only on ESP32)
--  ``FUNCTION_6`` (only on ESP32)
+Advanced options:
 
-.. _config-color:
-
-Color
------
-
-When using RGB-capable displays or LEDs/lighting in ESPHome you may wish to use custom colors.
-A ``color`` component exists for just this purpose:
-
-.. code-block:: yaml
-
-    color:
-      - id: my_light_red
-        red: 100%
-        green: 20%
-        blue: 25%
-        white: 0%
-
-RGB displays use red, green, and blue, while grayscale displays may use white. LEDs or LED-based light bulbs
-may use all four color elements depending on their capabilities.
+- **drive_strength** (*Optional*, string): On ESP32s with esp-idf framework the pad drive strength,
+  i.e. the maximum amount of current can additionally be set. Defaults to ``20mA``.
+  Options are ``5mA``, ``10mA``, ``20mA``, ``40mA``.
 
 .. _config-time:
 
@@ -224,7 +207,7 @@ of nodes inherit:
 
     To hide these base files from the dashboard, you can
 
-    - Place them in a subdirectory (dashboard only shows files in top-level dir)
+    - Place them in a subdirectory (dashboard only shows files in top-level directory)
     - Prepend a dot to the filename, like ``.base.yaml``
 
 .. _command-line-substitutions:
@@ -267,7 +250,6 @@ added ``board``, and overridden ``name`` substitutions):
       platform: ESP8266
       board: esp01_1m
       includes: []
-      board_flash_mode: dout
       libraries: []
       esp8266_restore_from_flash: false
       build_path: device01
@@ -290,8 +272,11 @@ config in the main yaml file. All definitions from packages will be merged with 
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
 
-Consider the following example where author put common pieces of configuration like WiFi,
-I2C into base files and extends it with some devices specific configurations in the main config.
+Local packages
+**************
+
+Consider the following example where the author put common pieces of configuration like WiFi and
+I²C into base files and extends it with some device specific configurations in the main config.
 
 Note how the piece of configuration describing ``api`` component in ``device_base.yaml`` gets
 merged with the services definitions from main config file.
@@ -342,11 +327,11 @@ merged with the services definitions from main config file.
       board: wemos_d1_mini32
       build_path: ./build/${node_name}
 
-    # I2C Bus
+    # I²C Bus
     i2c:
       sda: GPIO21
       scl: GPIO22
-      scan: True
+      scan: true
       frequency: 100kHz
 
     # Enable logging
@@ -364,7 +349,36 @@ merged with the services definitions from main config file.
       - <<: !include common/binary_sensor/connection_status.config.yaml
 
     switch:
-      - !include common/switch/restart_switch.config.yaml
+      - <<: !include common/switch/restart_switch.config.yaml
+
+.. _config-git_packages:
+
+Remote/git Packages
+*******************
+
+Packages can also be loaded from a git repository by utilizing the correct config syntax.
+:ref:`config-substitutions` can be used inside the remote packages which allows users to override
+them locally with their own subsitution value.
+
+.. code-block:: yaml
+
+    packages:
+      # Git repo examples
+      remote_package:
+        url: https://github.com/esphome/non-existant-repo
+        ref: main # optional
+        files: [file1.yml, file2.yml]
+        refresh: 1d # optional
+
+      # A single file can be expressed using `file` or `files` as a string
+      remote_package_two:
+        url: https://github.com/esphome/non-existant-repo
+        file: file1.yml # cannot be combined with `files`
+        # files: file1.yml
+
+      # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
+      remote_package_three: github://esphome/non-existant-repo/file1.yml@main
+
 
 See Also
 --------

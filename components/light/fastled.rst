@@ -79,6 +79,7 @@ Supported Chipsets
 - ``UCS1903``
 - ``UCS1904``
 - ``UCS2903``
+- ``SM16703``
 
 .. _fastled-spi:
 
@@ -123,6 +124,8 @@ Configuration variables:
 - **max_refresh_rate** (*Optional*, :ref:`config-time`):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to the default value for the used chipset.
+- **data_rate** (*Optional*, frequency): The data rate to use for shifting data to the light. Can help if you 
+  have long cables or slow level-shifters.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Light <config-light>`.

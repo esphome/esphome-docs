@@ -14,7 +14,7 @@ This configuration will expose a :doc:`/components/light/binary` and a :doc:`/co
 
 To get this working in ESPHome you first need to create a :doc:`/components/output/custom` to control the iFan02.
 
-Create a ifan02.h file:
+Create an ifan02.h file:
 
 .. code-block:: c++
 
@@ -79,7 +79,7 @@ Then you need to set it up with yaml.
         id: vbutton_light
         pin:
           number: GPIO0
-          inverted: True
+          inverted: true
         on_press:
           then:
             - light.toggle: ifan02_light
@@ -88,7 +88,7 @@ Then you need to set it up with yaml.
         id: vbutton_relay_1
         pin:
           number: GPIO9
-          inverted: True
+          inverted: true
         on_press:
           then:
             - switch.toggle: fan_relay1
@@ -98,7 +98,7 @@ Then you need to set it up with yaml.
         id: vbutton_relay_2
         pin:
           number: GPIO10
-          inverted: True
+          inverted: true
         on_press:
           then:
             - switch.toggle: fan_relay2
@@ -108,7 +108,7 @@ Then you need to set it up with yaml.
         id: vbutton_relay_3
         pin:
           number: GPIO14
-          inverted: True
+          inverted: true
         on_press:
           then:
             - switch.toggle: fan_relay3
@@ -137,7 +137,7 @@ Then you need to set it up with yaml.
     switch:
       - platform: template
         id: update_fan_speed
-        optimistic: True
+        optimistic: true
         turn_on_action:
           then:
             - delay: 200ms
@@ -158,7 +158,7 @@ Then you need to set it up with yaml.
                 then:
                   - fan.turn_on:
                       id: ifan02_fan
-                      speed: LOW
+                      speed: 1
             - if:
                 condition:
                   and:
@@ -168,7 +168,7 @@ Then you need to set it up with yaml.
                 then:
                   - fan.turn_on:
                       id: ifan02_fan
-                      speed: MEDIUM
+                      speed: 2
             - if:
                 condition:
                   and:
@@ -178,7 +178,7 @@ Then you need to set it up with yaml.
                 then:
                   - fan.turn_on:
                       id: ifan02_fan
-                      speed: HIGH
+                      speed: 3
             - switch.turn_off: update_fan_speed
 
       - platform: gpio
@@ -197,6 +197,7 @@ Then you need to set it up with yaml.
       - platform: speed
         output: fanoutput
         id: ifan02_fan
+        speed_count: 3
         name: "iFan02 Fan"
 
 See Also

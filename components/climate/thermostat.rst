@@ -10,7 +10,7 @@ physical thermostat. Its operation is similar to the :doc:`bang-bang <bang_bang>
 (the air temperature) and the controller will try to keep this value within a range defined by the set point(s). To do this,
 the controller can activate devices like a heating unit and/or a cooling unit to change the value observed by the sensor.
 When configured for both heating and cooling, it is essentially two :doc:`bang-bang <bang_bang>` controllers in one; it
-differs, however, in that interation with the thermostat component is nearly identical to that of a real thermostat.
+differs, however, in that interaction with the thermostat component is nearly identical to that of a real thermostat.
 
 This component can operate in one of two ways:
 
@@ -54,6 +54,11 @@ modes that Home Assistant offers.
         sensor: my_temperature_sensor
         default_target_temperature_low: 20 °C
         default_target_temperature_high: 22 °C
+        min_cooling_off_time: 300s
+        min_cooling_run_time: 300s
+        min_heating_off_time: 300s
+        min_heating_run_time: 300s
+        min_idle_time: 30s
         cool_action:
           - switch.turn_on: air_cond
         heat_action:
@@ -67,8 +72,12 @@ modes that Home Assistant offers.
     # Example single-point configuration entry (for heating only)
     climate:
       - platform: thermostat
+        name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
         default_target_temperature_low: 20 °C
+        min_heating_off_time: 300s
+        min_heating_run_time: 300s
+        min_idle_time: 30s
         heat_action:
           - switch.turn_on: heater
         idle_action:
@@ -79,8 +88,12 @@ modes that Home Assistant offers.
     # Example single-point configuration entry (for cooling only)
     climate:
       - platform: thermostat
+        name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
         default_target_temperature_high: 22 °C
+        min_cooling_off_time: 300s
+        min_cooling_run_time: 300s
+        min_idle_time: 30s
         cool_action:
           - switch.turn_on: air_cond
         idle_action:
@@ -90,24 +103,29 @@ modes that Home Assistant offers.
 Controller Behavior and Hysteresis
 ----------------------------------
 
-In addition to the set points, a hysteresis value determines how far the temperature may vary from the set point value(s)
-before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. It defaults to 0.5 °C.
+In addition to the set points, hysteresis values determine how far the temperature may vary from the set point value(s)
+before an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. They each default to 0.5 °C. They are:
+
+- ``cool_deadband``: The minimum temperature differential (temperature above the set point) before **engaging** cooling
+- ``cool_overrun``: The minimum temperature differential (cooling beyond the set point) before **disengaging** cooling
+- ``heat_deadband``: The minimum temperature differential (temperature below the set point) before **engaging** heat
+- ``heat_overrun``: The minimum temperature differential (heating beyond the set point) before **disengaging** heat
 
 A question that often surfaces about this component is, "What is the expected behavior?" Let's quickly discuss
 *exactly when* the configured actions are called by the controller.
 
 Consider the low set point (the one that typically activates heating) for a moment, and assume it is set to a common room
-temperature of 21 °C. As mentioned above, the controller uses a default hysteresis value of 0.5 °C, so let's assume that
-value here, as well. The controller as implemented in this component will allow the temperature to drop as low as the set
-point's value (21 °C) *minus* the hysteresis value (0.5 °C), or 20.5 °C, before calling ``heat_action`` to activate heating.
+temperature of 22 °C. Let's assume ``heat_deadband`` is set to 0.4 °C while ``heat_overrun`` is set to 0.6 °C. In this case,
+the controller will allow the temperature to drop as low as the set point's value (22 °C) *minus* the ``heat_deadband``
+value (0.4 °C), or 21.6 °C, before calling ``heat_action`` to activate heating.
 
-After heating has been activated, it will remain active until the observed temperature reaches the set point (21 °C) *plus*
-the hysteresis value (0.5 °C), or 21.5 °C. Once this temperature is reached, ``idle_action`` will be called to deactivate
+After heating has been activated, it will remain active until the observed temperature reaches the set point (22 °C) *plus*
+the ``heat_overrun`` value (0.6 °C), or 22.6 °C. Once this temperature is reached, ``idle_action`` will be called to deactivate
 heating.
 
 The same behavior applies to the high set point, although the behavior is reversed in a sense; given an upper set point of
-22 °C, ``cool_action`` would be called at 22.5 °C and ``idle_action`` would not be called until the temperature is reduced
-to 21.5 °C.
+23 °C, ``cool_deadband`` set to 0.3 °C and ``cool_overrun`` set to 0.7 °C, ``cool_action`` would be called at 23.3 °C and
+``idle_action`` would not be called until the temperature is reduced to 22.3 °C.
 
 Important Terminology
 ---------------------
@@ -133,17 +151,28 @@ Examples:
 
 Got all that? Great. Let's take a closer look at some configuration.
 
-Configuration Variables
------------------------
+Configuration Variables:
+------------------------
 
 The thermostat controller uses the sensor to determine whether it should heat or cool.
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
 
-Default Target Temperatures
-***************************
+Default Target Temperatures and Mode
+************************************
 
-These temperatures are used when the device first starts up.
+These configuration items determine default values the thermostat controller should use when it starts.
+
+- **default_mode** (*Optional*, climate mode): The default climate mode the controller should use if it 
+  is unable to restore it from memory. One of:
+
+  - ``off`` (default)
+  - ``heat_cool``
+  - ``cool``
+  - ``heat``
+  - ``dry``
+  - ``fan_only``
+  - ``auto``
 
 - **default_target_temperature_low** (*Optional*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
@@ -152,6 +181,9 @@ These temperatures are used when the device first starts up.
 
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
+
+Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
+the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
 
 Heating and Cooling Actions
 ***************************
@@ -164,15 +196,24 @@ These are triggered when the climate control **action** is changed by the thermo
   the climate device should enter its idle state (not cooling, not heating).
 - **heat_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device should enter heating mode to increase the current temperature.
+- **supplemental_heating_action** (*Optional*, :ref:`Action <config-action>`): The action
+  to call when the climate device should activate supplemental heating to (more aggressively)
+  increase the current temperature. *This action is called repeatedly at an interval defined by*
+  ``max_heating_run_time`` *(see below).*
 - **cool_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device should enter cooling mode to decrease the current temperature.
+- **supplemental_cooling_action** (*Optional*, :ref:`Action <config-action>`): The action
+  to call when the climate device should activate supplemental cooling to (more aggressively)
+  decrease the current temperature. *This action is called repeatedly at an interval defined by*
+  ``max_cooling_run_time`` *(see below).*
 - **dry_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
   the climate device should perform its drying (dehumidification) action. The thermostat
   controller does not trigger this action; it is invoked by ``dry_mode`` (see below).
 - **fan_only_action** (*Optional*, :ref:`Action <config-action>`): The action to call when
-  the climate device should activate its fan only (but does not heat or cool). The thermostat
-  controller triggers this action based on the upper target temperature when set to
-  ``fan_only_mode`` (see below).
+  the climate device should activate its fan only (but does not heat or cool). When ``fan_only_cooling``
+  is set to ``false``, the thermostat controller immediately triggers this action when set to
+  ``fan_only_mode``; however, when ``fan_only_cooling`` is set to ``true``, this action is called
+  based on the upper target temperature (similar to ``cool_action`` above).
 - All other options from :ref:`Climate <config-climate>`.
 
 **At least one of** ``cool_action``, ``fan_only_action``, ``heat_action``, **and** ``dry_action``
@@ -248,11 +289,20 @@ These should be used to control the fan only, if available.
 - **swing_both_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the fan
   should oscillate in horizontal and vertical directions.
 
-Advanced Options
-****************
+Advanced Configuration/Behavior:
+--------------------------------
 
-- **hysteresis** (*Optional*, float): Defines how far the temperature may vary from the target values before
-  an :ref:`action <config-action>` (cooling, heating, etc.) is triggered. Defaults to 0.5 °C.
+Set Point Options/Behavior
+**************************
+
+- **set_point_minimum_differential** (*Optional*, float): For dual-point/dual-function systems, the minimum
+  required temperature difference between the heat and cool set points. Defaults to 0.5 °C.
+- **supplemental_cooling_delta** (*Required with* ``supplemental_cooling_action``, float): When the temperature
+  difference between the upper set point and the current temperature exceeds this value,
+  ``supplemental_cooling_action`` will be called immediately.
+- **supplemental_heating_delta** (*Required with* ``supplemental_heating_action``, float): When the temperature
+  difference between the lower set point and the current temperature exceeds this value,
+  ``supplemental_heating_action`` will be called immediately.
 - **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
@@ -265,10 +315,73 @@ Advanced Options
 **If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified in the away mode configuration.**
 
+Additional Actions/Behavior
+***************************
+
+- **target_temperature_change_action** (*Optional*, :ref:`Action <config-action>`): The action to call when the
+  thermostat's target temperature(s) is/are changed.
+- **startup_delay** (*Optional*, boolean): If set to ``true``, when ESPHome starts, ``min_cooling_off_time``,
+  ``min_fanning_off_time``, and ``min_heating_off_time`` must elapse before each respective action may be invoked.
+  This option provides a way to prevent damage to equipment (for example) disrupted by a power interruption.
+  Defaults to ``false``.
+- **fan_only_action_uses_fan_mode_timer** (*Optional*, boolean): If set to ``true``, the ``fan_only_action`` will
+  share the same delay timer used for all ``fan_mode`` actions. The minimum fan switching delay is then determined
+  by ``min_fan_mode_switching_time`` (see below). This is useful when ``fan_only_action`` controls the same physical
+  fan as the ``fan_mode`` actions, common in forced-air HVAC systems.
+- **fan_only_cooling** (*Optional*, boolean): If set to ``true``, when in the ``fan_only_mode`` climate mode,
+  the ``fan_only_action`` will only be called when the observed temperature exceeds the upper set point plus
+  ``cool_deadband``. When set to ``false`` (the default), ``fan_only_action`` is called immediately when
+  ``fan_only_mode`` is activated, regardless of the current temperature or set points. Defaults to ``false``.
+- **fan_with_cooling** (*Optional*, boolean): If set to ``true``, ``fan_only_action`` will be called whenever
+  ``cool_action`` is called. This is useful for forced-air systems where the fan typically runs with cooling.
+  Defaults to ``false``.
+- **fan_with_heating** (*Optional*, boolean): If set to ``true``, ``fan_only_action`` will be called whenever
+  ``heat_action`` is called. This is useful for forced-air systems where the fan typically runs with heating.
+  Defaults to ``false``.
+- **max_cooling_run_time** (*Required with* ``supplemental_cooling_action``, :ref:`config-time`): Duration after
+  which ``supplemental_cooling_action`` will be called when cooling is active. Note that
+  ``supplemental_cooling_action`` will be called repeatedly at an interval defined by this parameter, as well,
+  enabling multiple stages of supplemental (auxiliary/emergency) cooling.
+- **max_heating_run_time** (*Required with* ``supplemental_heating_action``, :ref:`config-time`): Duration after
+  which ``supplemental_heating_action`` will be called when heating is active. Note that
+  ``supplemental_heating_action`` will be called repeatedly at an interval defined by this parameter, as well,
+  enabling multiple stages of supplemental (auxiliary/emergency) heating.
+- **min_cooling_off_time** (*Required with* ``cool_action``, :ref:`config-time`): Minimum duration the cooling action
+  must be disengaged before it may be engaged.
+- **min_cooling_run_time** (*Required with* ``cool_action``, :ref:`config-time`): Minimum duration the cooling action
+  must be engaged before it may be disengaged.
+- **min_fanning_off_time** (*Required with* ``fan_only_action``, :ref:`config-time`): Minimum duration the fanning
+  action must be disengaged before it may be engaged.
+- **min_fanning_run_time** (*Required with* ``fan_only_action``, :ref:`config-time`): Minimum duration the fanning
+  action must be engaged before it may be disengaged.
+- **min_heating_off_time** (*Required with* ``heat_action``, :ref:`config-time`): Minimum duration the heating action
+  must be disengaged before it may be engaged.
+- **min_heating_run_time** (*Required with* ``heat_action``, :ref:`config-time`): Minimum duration the heating action
+  must be engaged before it may be disengaged.
+- **min_idle_time** (*Required*, :ref:`config-time`): Minimum duration the idle action must be active before calling
+  another climate action.
+- **min_fan_mode_switching_time** (*Required with any* ``fan_mode`` *action*, :ref:`config-time`): Minimum duration
+  any given fan mode must be active before it may be changed.
+
+Hysteresis Values
+*****************
+
+- **cool_deadband** (*Optional*, float): The minimum temperature differential (temperature above the set point)
+  before calling the cooling :ref:`action <config-action>`. Defaults to 0.5 °C.
+- **cool_overrun** (*Optional*, float): The minimum temperature differential (cooling beyond the set point)
+  before calling the idle :ref:`action <config-action>`. Defaults to 0.5 °C.
+- **heat_deadband** (*Optional*, float): The minimum temperature differential (temperature below the set point)
+  before calling the heating :ref:`action <config-action>`. Defaults to 0.5 °C.
+- **heat_overrun** (*Optional*, float): The minimum temperature differential (heating beyond the set point)
+  before calling the idle :ref:`action <config-action>`. Defaults to 0.5 °C.
+
 .. note::
 
-    While this platform uses the term temperature everywhere, it can also be used to regulate other values.
-    For example, controlling humidity is also possible with this platform.
+    - While this platform uses the term temperature everywhere, it can also be used to regulate other values.
+      For example, controlling humidity is also possible with this platform.
+    - ``min_temperature`` and ``max_temperature`` from the base climate component are used the define the range of 
+      adjustability and the defaults will probably not make sense for control of things like humidity. See
+      :doc:`/components/climate/index`.
 
 Bang-bang vs. Thermostat
 ------------------------

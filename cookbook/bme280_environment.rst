@@ -6,7 +6,7 @@ BME280 Environment
     :image: bme280.jpg
     :keywords: BME280
 
-The :doc:`/components/sensor/bme280` is a simple temperature, humidity, and pressure sensor with communication over I2C.
+The :doc:`/components/sensor/bme280` is a simple temperature, humidity, and pressure sensor with communication over :ref:`I²C <i2c>`.
 With some simple math it is possible to either determine the height of the sensor, or the current pressure at sea level.
 This guide can be applied to any sensor measuring temperature and pressure at the same time, like the
 :doc:`/components/sensor/bmp280`, or :doc:`/components/sensor/bme680`.
@@ -56,9 +56,10 @@ After validating the sensor is working, we can proceed and add some formulas.
         unit_of_measurement: 'g/m³'
       - platform: template
         name: "Dew Point"
-        lambda: return (243.5*(log(id(bme280_humidity).state/100)+((17.67*id(bme280_temperature).state)/
-        (243.5+id(bme280_temperature).state)))/(17.67-log(id(bme280_humidity).state/100)-
-        ((17.67*id(bme280_temperature).state)/(243.5+id(bme280_temperature).state))));
+        lambda: |-
+          return (243.5*(log(id(bme280_humidity).state/100)+((17.67*id(bme280_temperature).state)/
+          (243.5+id(bme280_temperature).state)))/(17.67-log(id(bme280_humidity).state/100)-
+          ((17.67*id(bme280_temperature).state)/(243.5+id(bme280_temperature).state))));
         unit_of_measurement: °C
         icon: 'mdi:thermometer-alert'
 

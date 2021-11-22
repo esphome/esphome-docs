@@ -35,7 +35,9 @@ individually.
 
 So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
 option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
-In there, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
+In each cycle, the display is automatically cleared before the lambda is executed. You can disable
+this behavior by setting ``auto_clear_enabled: false``.
+In the lambda, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
 .. code-block:: yaml
@@ -89,8 +91,7 @@ and circles:
           it.filled_circle(25, 25, 10);
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
-color to draw. Currently, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported because
-ESPHome only has implemented binary displays.
+color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
 .. code-block:: yaml
 
@@ -108,6 +109,23 @@ ESPHome only has implemented binary displays.
 
           // Turn off a whole display portion.
           it.rectangle(50, 50, 30, 42, COLOR_OFF);
+
+For color displays (e.g. TFT displays), you can use the Color class.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          auto red = Color(255, 0, 0);
+          auto green = Color(0, 255, 0);
+          auto blue = Color(0, 0, 255);
+          auto white = Color(255, 255, 255);
+          it.rectangle(20, 50, 30, 30, white);
+          it.rectangle(25, 55, 30, 30, red);
+          it.rectangle(30, 60, 30, 30, green);
+          it.rectangle(35, 65, 30, 30, blue);
 
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
@@ -134,18 +152,20 @@ specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf
 at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf`` file from somewhere on the Internet and create a ``font:`` section in your configuration:
+a ``.ttf`` file from somewhere on the internet and place it, for example,
+inside a ``fonts`` folder next to your configuration file.
+
+Next, create a ``font:`` section in your configuration:
 
 .. code-block:: yaml
 
     font:
-      - file: "Comic Sans MS.ttf"
+      - file: "fonts/Comic Sans MS.ttf"
         id: my_font
         size: 20
 
     display:
       # ...
-
 
 Configuration variables:
 
@@ -159,14 +179,15 @@ Configuration variables:
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 
 
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Hass.io add-on or with
-    the official ESPHome docker image, it should already be installed. Otherwise you need to install it using
+    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
+    to install it using
     ``pip install pillow``.
 
 
@@ -277,6 +298,15 @@ arguments after the format string in the right order.
           // %% - literal % sign
           it.printf(0, 0, id(my_font), "Temperature: %.1f°C, Humidity: %.1f%%", id(temperature).state, id(humidity).state);
 
+To display a text string from a ``text_sensor``, append ``.c_str()`` to the end of your variable.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
 
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
@@ -312,10 +342,150 @@ use any string you pass it, like ``"ON"`` or ``"OFF"``.
 Displaying Time
 ***************
 
-With ESPHome you can also display the current time using the NTP protocol. Please see the example :ref:`here <strftime>`.
+You can display current time using a time component. Please see the example :ref:`here <strftime>`.
+
+
+.. _config-color:
+
+Color
+*****
+
+When using RGB-capable displays in ESPHome you may wish to use custom colors.
+A ``color`` component exists for just this purpose:
+
+.. code-block:: yaml
+
+    color:
+      - id: my_light_red
+        red: 100%
+        green: 20%
+        blue: 25%
+        white: 0%
+
+
+Configuration variables:
+
+- **red** (*Optional*, percentage): The percentage of the red component. Defaults to ``100%``.
+- **green** (*Optional*, percentage): The percentage of the green component. Defaults to ``100%``.
+- **blue** (*Optional*, percentage): The percentage of the blue component. Defaults to ``100%``.
+- **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
+
+RGB displays use red, green, and blue, while grayscale displays may use white.
+
+.. _display-graphs:
+
+Graphs
+******
+
+You can display a graph of a sensor value(s) using this component. Examples:
+
+.. figure:: images/graph_screen.png
+    :align: center
+    :width: 60.0%
+
+.. figure:: images/graph_dualtrace.png
+    :align: center
+    :width: 60.0%
+
+Graph component with options for grids, border and line-types.
+
+.. code-block:: yaml
+
+    graph:
+      # Show bare-minimum auto-ranged graph
+      - id: single_temperature_graph
+        sensor: my_temperature
+        duration: 1h
+        width: 151
+        height: 51
+      # Show multi-trace graph
+      - id: multi_temperature_graph
+        duration: 1h
+        x_grid: 10min
+        y_grid: 1.0     # degC/div
+        width: 151
+        height: 51
+        traces:
+          - sensor: my_inside_temperature
+            line_type: DASHED
+            line_thickness: 2
+            color: my_red
+          - sensor: my_outside_temperature
+            line_type: SOLID
+            line_thickness: 3
+            color: my_blue
+          - sensor: my_beer_temperature
+            line_type: DOTTED
+            line_thickness: 2
+            color: my_green
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
+  in your display code.
+- **width** (**Required**, integer): The graph width in pixels
+- **height** (**Required**, integer): The graph height in pixels
+- **duration** (**Required**, seconds): The total graph history duration.
+- **border** (*Optional*, boolean): Specifics if a border will be draw around the graph. Default is True.
+- **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
+- **y_grid** (*Optional*, float): Specifics the number of units per division. If not specified, no horizontal grid will be drawn.
+- **max_range** (*Optional*): Specifies the maximum Y-axis range.
+- **min_range** (*Optional*): Specifies the minimum Y-axis range.
+- **max_value** (*Optional*): Specifies the maximum Y-axis value.
+- **min_value** (*Optional*): Specifies the minimum Y-axis value.
+- **traces** (*Optional*): Use this to specify more than a single trace.
+
+Trace specific fields:
+- **sensor** (*Optional*, id): The sensor value to plot
+- **line_thickness** (*Optional*): Defaults to 3
+- **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **color** (*Optional*): Sets the color of the sensor trace.
+
+And then later in code:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(simple_temperature_graph));
+          - id: page2
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(multi_temperature_graph), my_yellow);
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 0%
+        blue: 0%
+      - id: my_green
+        red: 0%
+        green: 100%
+        blue: 0%
+      - id: my_blue
+        red: 0%
+        green: 0%
+        blue: 100%
+      - id: my_yellow
+        red: 100%
+        green: 100%
+        blue: 0%
+.. note::
+
+    Here are some things to note:
+    - Setting ``y_grid`` will expand any specified range to the nearest multiple of grid spacings.
+    - Axis labels are currently not possible without manually placing them.
+    - The grid and border color is set with it.graph(), while the traces are defined separately.
 
 Images
 ******
+
+Use this component to store graphical images on the device, you can then draw the images on compatible displays.
 
 .. code-block:: yaml
 
@@ -329,19 +499,24 @@ Configuration variables:
 - **file** (**Required**, string): The path (relative to where the .yaml file is) of the image file.
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the image later
   in your display code.
-- **resize** (*Optional*, int): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
+- **resize** (*Optional*, string): If set, this will resize the image to fit inside the given dimensions ``WIDTHxHEIGHT``
   and preserve the aspect ratio.
 - **type** (*Optional*): Specifies how to encode image internally. Defaults to ``BINARY``.
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+
+- **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
+
+  - ``NONE``: Every pixel convert to its nearest color.
+  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
 
 .. note::
 
     To use images you will need to have the python ``pillow`` package installed.
-    If you're running this as a Hass.io add-on or with the official ESPHome docker image, it should already be
+    If you're running this as a Home Assistant add-on or with the official ESPHome docker image, it should already be
     installed. Otherwise you need to install it using ``pip install pillow``.
 
 And then later in code:
@@ -370,6 +545,71 @@ be supplied to modify the color used to represent the on and off bits respective
 
 You can also use this to invert images in two colors display, use ``COLOR_OFF`` then ``COLOR_ON``
 as the additional parameters.
+
+Animation
+*********
+
+Allows to use animated images on displays. Animation inherits all options from the image component.
+It adds an additional lambda method: ``next_frame()`` to change the shown picture of a gif.
+
+.. code-block:: yaml
+
+    animation:
+      - file: "animation.gif"
+        id: my_animation
+        resize: 100x100
+
+The animation can be rendered just like the image component with the ``image()`` function of the display component.
+
+To show the next frame of the animation call ``id(my_animation).next_frame()``
+This can be combined with all Lambdas:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          //Ingress shown animation Frame.
+          id(my_animation).next_frame();
+          // Draw the animation my_animation at position [x=0,y=0]
+          it.image(0, 0, id(my_animation), COLOR_ON, COLOR_OFF);
+
+.. note::
+
+    To draw the next animation independent of Display draw cycle use an interval:
+
+    .. code-block:: yaml
+
+        interval:
+          - interval: 5s
+              then:
+                lambda: |-
+                  id(my_animation).next_frame();
+
+
+Configuration variables:
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- **file** (**Required**, string): The path (relative to where the .yaml file is) of the gif file.
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the animation later
+  in your display code.
+- **resize** (*Optional*, string): If set, this will resize all the frames to fit inside the given dimensions ``WIDTHxHEIGHT``
+  and preserve the aspect ratio.
+- **type** (*Optional*): Specifies how to encode each frame internally. Defaults to ``BINARY``.
+
+  - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
+    per pixel, 8 pixels per byte.
+  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+
+- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GREYSCALE and BINARY type image.
+  Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
+  and `here <https://en.wikipedia.org/wiki/Dither>`__.
+
+  - ``NONE``: Every pixel convert to its nearest color.
+  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
+
 
 .. _display-pages:
 
@@ -439,6 +679,48 @@ You can then switch between these with three different actions:
             then:
               - display.page.show_next: my_display
               - component.update: my_display
+
+.. _display-is_displaying_page-condition:
+
+**display.is_displaying_page**: This condition returns true while the specified page is being shown.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      - if:
+          condition:
+            display.is_displaying_page: page1
+          then:
+            ...
+      - if:
+          condition:
+            display.is_displaying_page:
+              id: my_display
+              page_id: page2
+          then:
+            ...
+
+.. _display-on_page_change-trigger:
+
+**on_page_change**: This automation will be triggered when the page that is shown changes.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        on_page_change:
+          - from: page1
+            to: page2
+            then:
+              lambda: |-
+                ESP_LOGD("display", "Page changed from 1 to 2");
+
+- **from** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing from this page. Defaults to all pages.
+- **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
+
+Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
 
 See Also
 --------

@@ -53,7 +53,7 @@ new feature. Supporting all possible use-cases would be quite hard.
 Configuration variables:
 ------------------------
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x68``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x68``.
 - **accel_x** (*Optional*): Use the X-Axis of the Accelerometer. All options from
   :ref:`Sensor <config-sensor>`.
 - **accel_y** (*Optional*): Use the Y-Axis of the Accelerometer. All options from

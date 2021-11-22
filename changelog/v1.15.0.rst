@@ -33,6 +33,7 @@ Changelog - Version 1.15.0 - September 13, 2020
     TM1637, components/display/tm1637, tm1637.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
+    ILI9341, components/display/ili9341, ili9341.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Custom UART Text Sensor, components/text_sensor/uart, language-cpp.svg
@@ -40,7 +41,7 @@ Changelog - Version 1.15.0 - September 13, 2020
     PID Controller, components/climate/pid, function.svg
     IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
     HTTP Request, components/http_request, connection.svg
-    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.png
+    MCP3008 8-Channel 10-Bit A/D Converter, components/mcp3008, mcp3008.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg

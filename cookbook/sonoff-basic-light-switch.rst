@@ -117,8 +117,10 @@ Now you have a pair of wires from the GPIO and 0V to your retractive switch lets
       - platform: gpio
         pin:
           number: GPIO14
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         id: button_1
         on_press:
           then:

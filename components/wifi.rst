@@ -26,6 +26,8 @@ dramatically improve connection times.
         gateway: 10.0.0.1
         subnet: 255.255.255.0
 
+.. _wifi-configuration_variables:
+
 Configuration variables:
 ------------------------
 
@@ -38,9 +40,9 @@ Configuration variables:
   that is reachable will be connected to. See :ref:`wifi-networks`.
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
-  - **static_ip** (*Required*, IPv4 address): The static IP of your node.
-  - **gateway** (*Required*, IPv4 address): The gateway of the local network.
-  - **subnet** (*Required*, IPv4 address): The subnet of the local network.
+  - **static_ip** (**Required**, IPv4 address): The static IP of your node.
+  - **gateway** (**Required**, IPv4 address): The gateway of the local network.
+  - **subnet** (**Required**, IPv4 address): The subnet of the local network.
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
@@ -49,8 +51,9 @@ Configuration variables:
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
-  - **ssid** (*Required*, string): The name of the access point to create.
-  - **password** (*Optional* string): The password for the access point. Leave empty for
+  - **ssid** (*Optional*, string): The name of the access point to create. Leave empty to use
+    the device name.
+  - **password** (*Optional*, string): The password for the access point. Leave empty for
     no password.
   - **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14.
     Defaults to 1.
@@ -59,6 +62,7 @@ Configuration variables:
   - **ap_timeout** (*Optional*, :ref:`time <config-time>`): The time after which to enable the
     configured fallback hotspot. Defaults to ``1min``.
 
+- **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presence and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname which can break certain functionalities. Please see :ref:`notes on disabling mDNS <faq-notes_on_disabling_mdns>`. Defaults to ``true``.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
@@ -90,6 +94,20 @@ to the WiFi router can be made.
     wifi:
       ap:
         ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
+
+You can also create a simple ``ap`` config which will set up the access point to have the
+devices name as the ssid with no password.
+
+.. code-block:: yaml
+
+    wifi:
+      ap: {}
+
+    # or if you still want the ap to have a password
+
+    wifi:
+      ap:
         password: "W1PBGyrokfLz"
 
 .. _wifi-manual_ip:
@@ -176,8 +194,8 @@ Configuration variables:
 - **eap** (*Optional*): See :ref:`eap`.
 - **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.
-- **bssid** (*Optional*, string): Optionally define a BSSID (MAC-Address) of the network to connect to.
-  This can be used to further restrict which networks to connect to.
+- **bssid** (*Optional*, string): The connection's BSSID (MAC address). BSSIDs must consist of six
+  two-digit hexadecimal values separated by colon characters ("``:``"). All letters must be in upper case.
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
 - **priority** (*Optional*, float): The priority of this network. After each time, the network with
@@ -189,7 +207,7 @@ Configuration variables:
 Enterprise Authentication
 -------------------------
 
-WPA2_EAP Enterprise Authentication is supported on ESP32s.
+WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s.
 In order to configure this feature you must use the :ref:`wifi-networks` style configuration.
 The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS.
 These are advanced settings and you will usually need to consult your enterprise network administrator.

@@ -7,7 +7,7 @@ ATM90E32 Power Sensor
     :keywords: ATM90E32, CircuitSetup, Split Single Phase Real Time Whole House Energy Meter, Expandable 6 Channel ESP32 Energy Meter Main Board
 
 The ``atm90e32`` sensor platform allows you to use your ATM90E32 voltage/current and power sensors
-(`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf>`__) sensors with
+(`datasheet <http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf>`__) with
 ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy meters.
 
 Communication with the device is done via an :ref:`SPI bus <spi>`, so you need to have an ``spi:`` entry in your configuration
@@ -46,20 +46,24 @@ Configuration variables:
     :ref:`Sensor <config-sensor>`.
   - **power** (*Optional*): Use the power value on this phase in watts. All options from
     :ref:`Sensor <config-sensor>`.
-  - **reactive_power** (*Optional*): Use the reactive power value on this phase. All options from 
+  - **reactive_power** (*Optional*): Use the reactive power value on this phase. All options from
     :ref:`Sensor <config-sensor>`.
-  - **power_factor** (*Optional*): Use the power factor value on this phase. All options from 
+  - **power_factor** (*Optional*): Use the power factor value on this phase. All options from
     :ref:`Sensor <config-sensor>`.
   - **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power pack to household mains feed.
     Defaults to ``7305``.
   - **gain_ct** (*Optional*, int): CT clamp calibration for this phase.
     Defaults to ``27961``.
+  - **forward_active_energy** (*Optional*): Use the forward active energy value on this phase in watt-hours.
+    All options from :ref:`Sensor <config-sensor>`.
+  - **reverse_active_energy** (*Optional*): Use the reverse active energy value on this phase in watt-hours.
+    All options from :ref:`Sensor <config-sensor>`.
 
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as 1st phase.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as 1st phase.
-- **frequency** (*Optional*): Use the frequenycy value calculated by the meter. All options from 
+- **frequency** (*Optional*): Use the frequenycy value calculated by the meter. All options from
   :ref:`Sensor <config-sensor>`.
-- **chip_temperature** (*Optional*): Use the chip temperature value. All options from 
+- **chip_temperature** (*Optional*): Use the chip temperature value. All options from
   :ref:`Sensor <config-sensor>`.
 - **gain_pga** (*Optional*, string): The gain for the CT clamp, ``2X`` for 100A, ``4X`` for 100A - 200A. One of ``1X``, ``2X``, ``4X``.
   Defaults to ``2X`` which is suitable for the popular SCT-013-000 clamp.
@@ -80,7 +84,7 @@ A load which uses a known amount of current can be used to calibrate. For for a 
 Voltage
 ^^^^^^^
 
-Use the expected mains voltage for your region 110V/230V or plug in the Kill-A-Watt and select voltage. See what 
+Use the expected mains voltage for your region 110V/230V or plug in the Kill-A-Watt and select voltage. See what
 value the ATM90E32 sensor reports for voltage. To adjust the sensor use the calculation:
 
 ``New gain_voltage = (your voltage reading / ESPHome voltage reading) * existing gain_voltage value``
@@ -121,6 +125,9 @@ It is possible that the two identical CT current sensors will have different
 small. The current calibration can be done once and used on all sensors or
 repeated for each one.
 
+Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``4X``:
+   - 200A/100mA SCT-024: 12597
+   
 Here are common current calibration values for the **Split Single Phase Energy Meter** when **gain_pga** is set to ``2X``:
    - 20A/25mA SCT-006: 10170
    - 100A/50mA SCT-013-000: 25498
@@ -134,6 +141,37 @@ Here are common current calibrations for the **Expandable 6 Channel Energy Meter
    - 80A/26.6mA SCT-010: 41996
    - 100A/50ma SCT-013-000: 27961
    - 120A/40mA: SCT-016: 41880
+
+Active Energy
+^^^^^^^^^^^^^
+
+The ATM90E32 chip has a high-precision built-in ability to count the amount of consumed energy on a per-phase basis.
+For each phase both the Forward and Reverse active energy is counted in watt-hours.
+Forward Active Energy is used to count consumed energy, whereas Reverse Active Energy is used to count exported energy
+(e.g. with solar pv installations).
+The counters are reset every time a given active energy value is read from the ATM90E32 chip.
+
+Current implementation targets users who retrieve the energy values with a regular interval and store them in
+a time-series-database, e.g. InfluxDB.
+
+**Example:**
+
+.. code-block:: yaml
+
+    sensor:
+    #IC1 Main
+      - platform: atm90e32
+        cs_pin: 5
+        phase_a:
+          forward_active_energy:
+            name: ${disp_name} ct1 FAWattHours
+            id: ct1FAWattHours
+            state_topic: ${disp_name}/ct1/forward_active_energy
+          reverse_active_energy:
+            name: ${disp_name} ct1 RAWattHours
+            id: ct1RAWattHours
+            state_topic: ${disp_name}/ct1/reverse_active_energy
+
 
 Additional Examples
 -------------------
@@ -156,7 +194,7 @@ Additional Examples
             name: "EMON CT1 Current"
           power:
             name: "EMON Active Power CT1"
-          reactive_power: 
+          reactive_power:
             name: "EMON Reactive Power CT1"
           power_factor:
             name: "EMON Power Factor CT1"
@@ -167,7 +205,7 @@ Additional Examples
             name: "EMON CT2 Current"
           power:
             name: "EMON Active Power CT2"
-          reactive_power: 
+          reactive_power:
             name: "EMON Reactive Power CT2"
           power_factor:
             name: "EMON Power Factor CT2"
@@ -248,18 +286,18 @@ Additional Examples
         current_phases: 3
         gain_pga: 1X
         update_interval: 60s
-        
+
 
 .. code-block:: yaml
 
     # Example CircuitSetup 6-channel without jumpers jp9-jp11 joined or < meter v1.4
     # power is calculated in a template
-    
+
     substitutions:
       disp_name: 6C
       update_time: 10s
       current_cal: '27961'
-  
+
     spi:
       clk_pin: 18
       miso_pin: 19
@@ -321,7 +359,7 @@ Additional Examples
         current_phases: 3
         gain_pga: 1X
         update_interval: ${update_time}
-    
+
     #Watts per channel
       - platform: template
         name: ${disp_name} CT1 Watts
@@ -330,7 +368,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}         
+        update_interval: ${update_time}
       - platform: template
         name: ${disp_name} CT2 Watts
         id: ct2Watts
@@ -338,7 +376,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}         
+        update_interval: ${update_time}
       - platform: template
         name: ${disp_name} CT3 Watts
         id: ct3Watts
@@ -346,7 +384,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}         
+        update_interval: ${update_time}
       - platform: template
         name: ${disp_name} CT4 Watts
         id: ct4Watts
@@ -354,7 +392,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}         
+        update_interval: ${update_time}
       - platform: template
         name: ${disp_name} CT5 Watts
         id: ct5Watts
@@ -362,7 +400,7 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}         
+        update_interval: ${update_time}
       - platform: template
         name: ${disp_name} CT6 Watts
         id: ct6Watts
@@ -370,8 +408,8 @@ Additional Examples
         accuracy_decimals: 0
         unit_of_measurement: W
         icon: "mdi:flash-circle"
-        update_interval: ${update_time}         
-    #Total Amps   
+        update_interval: ${update_time}
+    #Total Amps
       - platform: template
         name: ${disp_name} Total Amps
         id: totalAmps
@@ -379,7 +417,7 @@ Additional Examples
         accuracy_decimals: 2
         unit_of_measurement: A
         icon: "mdi:flash"
-        update_interval: ${update_time}         
+        update_interval: ${update_time}
     #Total Watts
       - platform: template
         name: ${disp_name} Total Watts

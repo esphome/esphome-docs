@@ -44,7 +44,7 @@ interface.
 For this guide you will need:
 
 - Sonoff T3 EU 3 Gang 😉
-- An USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
+- A USB to UART Bridge for flashing the device. These can be bought on Amazon for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins and to connect GPIO0 to the Ground.
 - Computer running ESPHome or the Home Assistant ESPHome add-on.
@@ -250,20 +250,26 @@ of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff T3 EU 3 Gang Touchpad 1"
       - platform: gpio
         pin:
           number: GPIO9
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff T3 EU 3 Gang Touchpad 2"
       - platform: gpio
         pin:
           number: GPIO10
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff T3 EU 3 Gang Touchpad 3"
       - platform: status
         name: "Sonoff T3 EU 3 Gang Status"
@@ -284,7 +290,7 @@ of the basic functions.
       - platform: esp8266_pwm
         id: blue_led
         pin: GPIO13
-        inverted: True
+        inverted: true
 
     light:
       # ... and then make a light out of it.

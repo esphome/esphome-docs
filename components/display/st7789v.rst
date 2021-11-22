@@ -50,13 +50,13 @@ hardwired programming. (OTA updates are of course possible after ESPHome is init
     When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
     hardwired within the module/PCB.
 
-Configuration variables
-***********************
+Configuration variables:
+************************
 
-- **backlight_pin** (:ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
-- **cs_pin** (:ref:`Pin Schema <config-pin_schema>`): The CS pin.
-- **dc_pin** (:ref:`Pin Schema <config-pin_schema>`): The DC pin.
-- **reset_pin** (:ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
+- **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
+- **backlight_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
@@ -70,7 +70,7 @@ As of version 1.15, ESPHome supports color displays. To utilize the color capabi
 module, you'll likely want to add a ``color:`` section to your YAML configuration; please see
 :ref:`color <config-color>` for more detail on this configuration section.
 
-To use colors in your lambada:
+To use colors in your lambda:
 
 .. code-block:: yaml
 
@@ -85,7 +85,7 @@ To use colors in your lambada:
     display:
         ...
         lambda: |-
-          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red);
+          it.rectangle(0,  0, it.get_width(), it.get_height(), id(my_red));
 
 
 To bring in color images:
@@ -120,7 +120,7 @@ Wi-Fi, API, and OTA configuration. It defines:
 - time, for display...on the display
 - the SPI configuration for communicating with the display
 - the display component itself, for use on the TTGO module
-- a lambada which paints the screen as shown in the picture above:
+- a lambda which paints the screen as shown in the picture above:
 
   - blue borders, with a sort of "title bar" along the top
   - "ESPHome" in yellow in the top left corner
@@ -130,7 +130,7 @@ Wi-Fi, API, and OTA configuration. It defines:
 To use this example, you need only to provide the font file, "Helvetica.ttf" (or update it to
 a font of your choosing) and an image file, "image.png" (it may also be a ".jpg"). Place these
 into the same directory as the YAML configuration file itself. Comment/Uncomment/Modify the
-appropriate lines of C code in the lambada to hide or show the image or text as you wish.
+appropriate lines of C code in the lambda to hide or show the image or text as you wish.
 
 .. code-block:: yaml
 
@@ -201,7 +201,9 @@ appropriate lines of C code in the lambada to hide or show the image or text as 
         pin:
           number: GPIO0
           inverted: true
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
         name: "T-Display Button Input 0"
         id: tdisplay_button_input_0
       - platform: gpio
@@ -222,7 +224,7 @@ appropriate lines of C code in the lambada to hide or show the image or text as 
       - file: "image.png"
         id: my_image
         resize: 200x200
-        type: RGB565
+        type: RGB24
 
     time:
       - platform: homeassistant
