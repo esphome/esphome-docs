@@ -23,6 +23,14 @@ The `'hbridge`' fan platform allows you to use a compatible `h-bridge` (L298N, D
 .. code-block:: yaml
 
     # Example configuration entry
+    output:
+      - platform: esp8266_pwm
+        id: motor_forward_pin
+        pin: D1
+      - platform: esp8266_pwm
+        id: motor_reverse_pin
+        pin: D2
+    
     fan:
       - platform: hbridge
         id: my_fan
