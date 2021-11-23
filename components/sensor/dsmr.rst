@@ -51,8 +51,11 @@ Configuration variables:
   the P1 port's Data Request pin. Defaults to not using a Data Request pin.
   See :ref:`Using the P1 Data Request pin <sensor-dsmr-request_pin>`. 
 - **request_interval** (*Optional*, :ref:`config-time`): The minimum time between two telegram readings.
-  Defaults to ``0``, meaning that the pace at which the smart meter sends its data determines the update frequency.
+  Defaults to ``0ms``, meaning that the pace at which the smart meter sends its data determines the update frequency.
   This works best in combination with a ``request_pin``, but this option will work without one too.
+- **timeout** (*Optional*, :ref:`config-time`): The read timeout while reading an incoming telegram. When no new
+  data comes in within the given timeout, the device will consider the current telegram a loss and starts looking
+  for the next one in the incoming data. Defaults to ``200ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the DSMR if you have multiple components.
 
 Sensor
