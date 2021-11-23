@@ -22,7 +22,7 @@ Configuration variables:
   To get the value of the coil register 2 can be retrived using address: 2 / offset: 0 or address: 0 / offset 2
 - **bitmask** : some values are packed in a response. The bitmask is used to determined if the result is true or false
 - **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
-- **use_write_multiple**: (*Optional*, boolean): By default the modbus command `Force Single Coil` (function code 5) is used to send state changes to the device. If your device onyl supports `Force Multiple Coils` (function code 15) set this option to true.
+- **use_write_multiple**: (*Optional*, boolean): By default the modbus command `Force Single Coil` (function code 5) is used to send state changes to the device. If your device only supports `Force Multiple Coils` (function code 15) set this option to true.
 - **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used. 
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
   See :ref:`modbus_custom_data` how to use `custom_command`

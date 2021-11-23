@@ -27,13 +27,13 @@ The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PI
 
 .. note::
 
-    If your are using an ESP82xx serial logging may cause problems reading from uart. For best results hardware serial is prefered. Software serial may not be able to read all received data if other components spend a lot of time in loop()
+    If you are using an ESP8266, serial logging may cause problems reading from UART. For best results, hardware serial is recommended. Software serial may not be able to read all received data if other components spend a lot of time in the ``loop()``.
     
     For hardware serial only a limited set of pins can be used. Either `tx_pin: GPIO1` and `rx_pin: GPIO3`  or `tx_pin: GPIO15` and `rx_pin: GPIO13`.
     
     The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the modbus device and cause errors.
     
-    Serial logging can be disable by setting `baud_rate: 0`.
+    Serial logging can be disabled by setting `baud_rate: 0`.
     
     See :doc:`logger` for more details
 
