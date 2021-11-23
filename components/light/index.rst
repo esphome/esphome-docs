@@ -431,7 +431,7 @@ entries with each having a unique name like so:
 
 .. note::
 
-    After setting a light effect, it is possible to reset the in-use effect back to a static light by setting the `effect` to `none` when it is being called through Home Assistant or directly on the device.
+    After setting a light effect, it is possible to reset the in-use effect back to a static light by setting the ``effect`` to ``none`` when it is being called through Home Assistant or directly on the device.
 
 Pulse Effect
 ************
