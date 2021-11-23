@@ -14,7 +14,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **register_type** (**Required**): type of the modbus register.
-    - coil: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access. Modbus function code 1 (Read Coil Status) will be used
+    - coil: coils are also called discrete output. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access. Modbus function code 1 (Read Coil Status) will be used
     - discrete_input: discrete input register (read only coil) are similar to coils but can only be read. Modbus function code 2 (Read Input Status) will be used.
     - holding: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access. Modbus function code 3 (Read Holding Registers) will be used.
     - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus function code 4 (Read Input Registers) will be used.
@@ -141,7 +141,7 @@ Possible return values for the lambda:
 Using custom_data
 -----------------
 
-`custom_data` can be used to create an arbitrary modbus command. Combined with a lambda any response can be handled. 
+``custom_data`` can be used to create an arbitrary modbus command. Combined with a lambda any response can be handled. 
 This example re-implements the command to read the registers 0x156 (Total active energy) and 0x158 Total (reactive energy) from a SDM-120.
 SDM-120 returns the values as floats using 32 bits in 2 registers. 
 
@@ -204,7 +204,7 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 
 .. note:: **Optimize modbus communications**
 
-    `register_count` can also be used to skip a register in consecutive range. 
+    ``register_count`` can also be used to skip a register in consecutive range. 
     
     An example is a SDM meter: 
     
