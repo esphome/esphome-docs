@@ -37,15 +37,15 @@ Configuration variables:
 - **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
   Note: The modbus_controller groups component by address ranges to reduce number of transactions. All compoents with the same address will be updated in one request. skip_updates applies for all components in the same range.
 - **register_count**: (*Optional*): only required for uncommon response encodings
-  The number of registers this data point spans. Overrides the defaults determined by `value_type`.
-  If no value for `register_count` is provided, it is calculated based on the register type.
+  The number of registers this data point spans. Overrides the defaults determined by ``value_type``.
+  If no value for ``register_count`` is provided, it is calculated based on the register type.
 
-  The default size for 1 register is 16 bits (1 Word). Some devices are not adhering to this convention and have registers larger than 16 bits.  In this case `register_count` must be set. For example, if your modbus device uses 1 registers for a FP32 value instead the default of two set `register_count: 2`.
+  The default size for 1 register is 16 bits (1 Word). Some devices are not adhering to this convention and have registers larger than 16 bits.  In this case ``register_count`` must be set. For example, if your modbus device uses 1 registers for a FP32 value instead the default of two set ``register_count: 2``.
 
-- **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
-- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If `custom_data` is used `address` and `register_type` can't be used. 
+- **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting ``force_new_range: true`` enforces the start of a new range at that address.
+- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used. 
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
-  See :ref:`modbus_custom_data` how to use `custom_command`
+  See :ref:`modbus_custom_data` how to use ``custom_command``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor.
 - **offset**: (*Optional*, int): only required for uncommon response encodings
@@ -128,7 +128,7 @@ Parameters passed into the lambda
 - **x** (float): The parsed float value of the modbus data
 
 - **data** (std::vector<uint8_t): vector containing the complete raw modbus response bytes for this sensor
-      note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.
+      note: because the response contains data for all registers in the same range you have to use ``data[item->offset]`` to get the first response byte for your sensor.
 - **item** (const pointer to a SensorItem derived object):  The sensor object itself.
 
 Possible return values for the lambda:
@@ -237,7 +237,7 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 
     Maybe you don’t care about the Voltage value for Phase 2 and Phase 3 (or you have a SDM-120). 
     Of course, you can delete the sensors your don’t care about. But then you have a gap in the addresses. The configuration above will generate one modbus  command `read multiple registers from 0 to 6`. If you remove the registers at address 2 and 4 then 2 commands will be generated `read register 0` and `read register 6`.
-    To avoid the generation of multiple commands and reduce the amount of uart communication `register_count` can be used to fill the gaps 
+    To avoid the generation of multiple commands and reduce the amount of uart communication ``register_count`` can be used to fill the gaps 
 
     .. code-block:: yaml
 
@@ -257,7 +257,7 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 
     Because `register_count: 6` is used for the first register the command “read registers from 0 to 6” can still be used but the values in between are ignored. 
     **Calculation:** FP32 is a 32 bit value and uses 2 registers. Therefore, to skip the 2 FP32 registers the size of these 2 registers must be added to the default size for the first register.
-    So we have 2 for address 0, 2 for address 2 and 2 for address 4 then `register_count` must be 6.
+    So we have 2 for address 0, 2 for address 2 and 2 for address 4 then ``register_count`` must be 6.
 
 
 See Also

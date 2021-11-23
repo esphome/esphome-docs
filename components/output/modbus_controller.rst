@@ -29,7 +29,7 @@ Configuration variables:
 - **register_count**: (*Optional*): only required for uncommon response encodings
   The number of registers this data point spans. Default is 1
 - **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-  Lambda is evaluated before the modbus write command is created. The value is passed in as `float x` and an empty vector is passed in as `std::vector<uint16_t>&payload`
+  Lambda is evaluated before the modbus write command is created. The value is passed in as ``float x`` and an empty vector is passed in as ``std::vector<uint16_t>&payload``
   You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used.
 - **multiply** (*Optional*, float): multiply the new value with this factor before sending the requests. Ignored if lambda is defined.
 - **offset**: (*Optional*, int): only required for uncommon response encodings
@@ -43,7 +43,7 @@ All other options from :ref:`Output <config-output>`.
 - **x** (float): The float value to be sent to the modbus device
 
 - **payload** (`std::vector<uint16_t>&payload`): empty vector for the payload. The lamdba can add 16 bit raw modbus register words.
-      note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.
+      note: because the response contains data for all registers in the same range you have to use ``data[item->offset]`` to get the first response byte for your sensor.
 - **item** (const pointer to a SensorItem derived object):  The sensor object itself.
 
 Possible return values for the lambda:
