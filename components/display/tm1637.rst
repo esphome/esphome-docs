@@ -43,6 +43,37 @@ Configuration variables:
 
 .. _display-tm1637_lambda:
 
+Keyboard scan (8x2bit) Binary-Sensor
+------------------------------------
+
+The TM1637 LED display controller also includes a special circuit with keyboard scan interface and enhanced identification circuit with anti-interference keys.
+This circuit uses the 8 segment lines that also drive the LED display. But combined with the K1 and K2 pins we can add 16 keys that can be used as binary sensors in esphome.
+
+.. figure:: images/tm1637_key_connections.png
+    :align: center
+    :width: 50.0%
+
+    TM1637 display keyboard connections
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: tm1637
+        id: key0
+        name: key1-00
+        tm1637_id: tm1637_display
+        key: 0
+
+Configuration variables:
+************************
+
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
+- **name** (*Optional*, string): The name for the binary sensor.
+- **tm1637_id** (**Required**, ::ref:`config-id`): The id of the tm1637 that should be used to scan the keys.
+- **key** (**Required**, integer): The keycode for the connected key (Seg0 = 0, Seg1 = 1 etc,). Range is from
+  0 (least intense) to 15.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+
 Rendering Lambda
 ----------------
 
@@ -120,6 +151,25 @@ The following example creates a typical digital clock with the ``:`` colon flash
           else
             it.strftime("%H%M", id(homeassistant_time).now());
 
+Connect multiple displays
+-------------------------
+
+To connect multiple TM1636 displays you need as many control lines as you have displays. This is achived by sharing control-lines for clk and dio between displays.
+
+.. figure:: images/tm1637_2devices.png
+    :align: center
+    :width: 50.0%
+
+    Two TM1637 displays on only 2 control lines
+
+When using more than 2 devices like 3 or more you add a control-line for the Dio pin and share this with the next display Clk pin.
+The last displays Dio pin shares the Clk pin of the first display. 
+
+.. figure:: images/tm1637_3plus_devices.png
+    :align: center
+    :width: 50.0%
+
+    Three TM1637 displays on 3 control lines
 
 See Also
 --------
