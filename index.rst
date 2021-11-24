@@ -283,7 +283,7 @@ Environmental
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
-    SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
+    SDP3x / SDP800 Series, components/sensor/sdp3x, sdp31.jpg, Pressure
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
