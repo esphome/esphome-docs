@@ -55,7 +55,7 @@ Automation:
 - **on_sunset** (*Optional*, :ref:`Automation <automation>`): An automation to perform at sunset
   when the sun crosses a specified angle.
 
-  - **elevation** (*Optional*, float): The elevation to cross. Defaults to -0.833° (the horizon, slightly less than 0° to compensate for atmospheric refraction).```
+  - **elevation** (*Optional*, float): The elevation to cross. Defaults to -0.833° (the horizon, slightly less than 0° to compensate for atmospheric refraction).
 
 ``sun`` Sensor
 --------------
