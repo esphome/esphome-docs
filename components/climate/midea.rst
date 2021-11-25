@@ -86,7 +86,7 @@ Configuration variables:
 - **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
 - **period** (*Optional*, :ref:`time <config-time>`): Minimal period between requests to the appliance. Defaults to ``1s``.
 - **timeout** (*Optional*, :ref:`time <config-time>`): Request response timeout until next request attempt. Defaults to ``2s``.
-- **num_attempts** (*Optional*, integer 1-5): Number of request attempts. Defaults to ``3``.
+- **num_attempts** (*Optional*, int): Number of request attempts between 1 and 5 inclusive. Defaults to ``3``.
 - **autoconf** (*Optional*, boolean): Get capabilities automatically. Allows you not to manually define most of the capabilities of the appliance.
   Defaults to ``True``.
 - **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.

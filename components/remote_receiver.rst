@@ -197,8 +197,8 @@ Remote code selection (exactly one of these has to be included):
 - **dish**: Trigger on a decoded Dish Network remote code with the given data.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 
-  - **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``.
-  - **command** (**Required**, int, 0-63): The Dish command to listen for.
+  - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
+  - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
