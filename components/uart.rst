@@ -148,7 +148,7 @@ of the debugging feature.
   - **delimiter** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
     detected in the communication.
 
-- **sequence** (*Required*, :ref:`config-action`): Action(s) to perform for publishing debugging data. The
+- **sequence** (**Required**, :ref:`config-action`): Action(s) to perform for publishing debugging data. The
   actions can make use of the following variables:
 
   - **direction**: ``uart::UART_DIRECTION_RX`` or ``uart::UART_DIRECTION_TX``

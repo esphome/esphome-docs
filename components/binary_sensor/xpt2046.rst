@@ -154,10 +154,10 @@ to create individual binary sensors for each virtual button.
 - **name** (*Optional*, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **xpt2046_id** (*Optional*, :ref:`config-id`): Specify the ID of the component the sensor is part of. Useful when you have more than one touch screen.
-- **x_min** (*Required*, integer): Left coordinate of the screen area to be detected as the virtual button.
-- **x_max** (*Required*, integer): Right coordinate of the screen area to be detected as the virtual button.
-- **y_min** (*Required*, integer): Top coordinate of the screen area to be detected as the virtual button.
-- **y_max** (*Required*, integer): Bottom coordinate of the screen area to be detected as the virtual button.
+- **x_min** (**Required**, integer): Left coordinate of the screen area to be detected as the virtual button.
+- **x_max** (**Required**, integer): Right coordinate of the screen area to be detected as the virtual button.
+- **y_min** (**Required**, integer): Top coordinate of the screen area to be detected as the virtual button.
+- **y_max** (**Required**, integer): Bottom coordinate of the screen area to be detected as the virtual button.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _xpt2046-calibration:
