@@ -99,7 +99,7 @@ Configuration variables:
   - **from** (**Required**, int): The index of the first LED to address in the segment. Counting starts with 0,
     so first LED is 0.
   - **to** (**Required**, int): The index of the last LED to address in this segment.
-  - **reversed** (**Optional**, boolean): Whether to reverse the order of LEDs in this segment. Defaults to ``false``.
+  - **reversed** (*Optional*, boolean): Whether to reverse the order of LEDs in this segment. Defaults to ``false``.
 
   *For single light segments:*
 
