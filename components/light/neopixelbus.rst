@@ -9,7 +9,7 @@ The ``neopixelbus`` light platform allows you to create RGB lights
 in ESPHome for an individually addressable lights like NeoPixel or WS2812.
 
 It is very similar to the :doc:`fastled` platform.
-in fact most addressable lights are supported through both light platforms. The
+In fact, most addressable lights are supported through both light platforms. The
 difference is that they use different libraries: While the fastled platform uses
 the `FastLED <https://github.com/FastLED/FastLED>`__ library, this integration uses
 the `NeoPixelBus <https://github.com/Makuna/NeoPixelBus/>`__ library internally.
@@ -40,7 +40,7 @@ Configuration variables:
   if it is an RGBW or RGB light and in which order the colors are. Defaults to
   ``GRB``. Change this if you have lights with white value and/or the colors are in the wrong order.
 - **variant** (**Required**, string): The chipset of the light.
-  
+
   The following chipsets are supported:
 
   - ``ws2811``
@@ -54,7 +54,7 @@ Configuration variables:
   - ``apa106``
   - ``lc8812``
 
-  Additionally the following two-wire (set ``data_pin`` and ``clock_pin``) 
+  Additionally the following two-wire (set ``data_pin`` and ``clock_pin``)
   chipsets are supported:
 
   - ``ws2801``
@@ -63,7 +63,7 @@ Configuration variables:
   - ``lpd8806``
   - ``p9813``
 
-- **method** (*Optional*, string): The method used to transmit the data. By default, ESPHome will try to use the best method 
+- **method** (*Optional*, string): The method used to transmit the data. By default, ESPHome will try to use the best method
   available for this chipset, ESP platform, and the given pin. See `methods <neopixelbus-methods>` for more information.
 
 - **num_leds** (**Required**, int): The number of LEDs attached.

@@ -17,6 +17,7 @@ The ``midea`` component creates a Midea air conditioner climate device.
         - `Carrier <https://www.carrier.com/>`_
         - `Comfee <http://www.comfee-russia.ru/>`_
         - `Inventor <https://www.inventorairconditioner.com/>`_
+        - `Senville <https://senville.com/>`_
         - and maybe others
 
     Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_.

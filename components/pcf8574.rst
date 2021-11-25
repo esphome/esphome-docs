@@ -43,7 +43,8 @@ not work.
           # Use pin number 0
           number: 0
           # One of INPUT or OUTPUT
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
 Configuration variables:

@@ -67,6 +67,10 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _light-toggle_action:
@@ -424,6 +428,10 @@ entries with each having a unique name like so:
               name: "My Fast Random Effect"
               transition_length: 4s
               update_interval: 5s
+
+.. note::
+
+    After setting a light effect, it is possible to reset the in-use effect back to a static light by setting the ``effect`` to ``none`` when it is being called through Home Assistant or directly on the device.
 
 Pulse Effect
 ************

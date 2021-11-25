@@ -151,7 +151,9 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
           sx1509: sx1509_hub1
           # Use pin number 0 on the SX1509
           number: 0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
 
     # Individual binary outputs
@@ -163,7 +165,8 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
           # Use pin number 1 on the SX1509
           number: 1
           # use as output for switch
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
     # Individual outputs

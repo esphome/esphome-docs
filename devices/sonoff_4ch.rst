@@ -243,25 +243,33 @@ of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff 4CH Button 1"
       - platform: gpio
         pin:
           number: GPIO9
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff 4CH Button 2"
       - platform: gpio
         pin:
           number: GPIO10
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff 4CH Button 3"
       - platform: gpio
         pin:
           number: GPIO14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff 4CH Button 4"
       - platform: status

@@ -115,7 +115,9 @@ Here is the configuration with the basic operations outlined above.
         name: "esp_fishpond_gpio14"
         pin:
           number: 14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
         on_press:
           - switch.turn_off: esp_fishpond_pump
 
