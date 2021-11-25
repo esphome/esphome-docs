@@ -64,7 +64,7 @@ Configuration variables:
   the precision that the component is set to. This typically is the ``vvs1`` setting of the component.
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
-- **visible** (*Optional*, boolean ):  Visible or not
+- **visible** (*Optional*, boolean):  Visible or not
 
 Waveform Settings
 *****************

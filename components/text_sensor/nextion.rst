@@ -39,7 +39,7 @@ Configuration variables:
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
 - **font_id** (*Optional*, int):  The font id for the component
-- **visible** (*Optional*, boolean ):  Visible or not
+- **visible** (*Optional*, boolean):  Visible or not
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 **Only one** *component_name* **or** *variable_name* **can be set**
