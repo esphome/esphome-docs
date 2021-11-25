@@ -436,7 +436,7 @@ Configuration variables:
 - **traces** (*Optional*): Use this to specify more than a single trace.
 
 Trace specific fields:
-- **sensor** (*Optional*, id): The sensor value to plot
+- **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
 - **color** (*Optional*): Sets the color of the sensor trace.
