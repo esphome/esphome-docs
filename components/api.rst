@@ -63,7 +63,7 @@ Configuration variables:
         </script>
 
 - **services** (*Optional*, list): A list of user-defined services. See :ref:`api-services`.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   client connects to the API. This is needed because sometimes the low level ESP functions report that
   the ESP is connected to the network, when in fact it is not - only a full reboot fixes it.
   Can be disabled by setting this to ``0s``. Defaults to ``15min``.
