@@ -24,12 +24,12 @@ If you use the ``web_server`` and rely on the credentials for security, then you
 disable the ``web_server`` completely. The `Security Advisory on GitHub <https://github.com/esphome/esphome/security/advisories/GHSA-48mj-p7x2-5jfm>`__
 has been given ``CVE-2021-41104``.
 
-`Home Assistant Amber <https://home-assistant.io/amber>`__
-----------------------------------------------------------
+`Home Assistant Yellow <https://home-assistant.io/yellow>`__
+------------------------------------------------------------
 
 You get the most out of your ESPHome devices when you combine it with Home Assistant,
 which offers a seamless and local integration to control and manage all your ESPHome devices.
-Today Home Assistant launched a crowdfunding campaign for the `Home Assistant Amber <https://home-assistant.io/amber>`__,
+Today Home Assistant launched a crowdfunding campaign for the `Home Assistant Yellow <https://home-assistant.io/yellow>`__,
 the easiest way to get started with Home Assistant and a privacy focused smart home.
 
 API Encryption

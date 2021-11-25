@@ -90,7 +90,7 @@ and you will need to reverse them in your YAML configuration.
 BH1750
 ------
 
-When using the default resolution of 0.5 for the BH17850, the result is now divided by 2 as per the finidings of the community.
+When using the default resolution of 0.5 for the BH1750, the result is now divided by 2 as per the finidings of the community.
 
 
 Binary sensor device classes
