@@ -44,7 +44,15 @@ There are numerous board types out there. Some initialize differently as well. T
 Configuration variables:
 ************************
 
-- **model** (**Required**, "See Models Below"): This the model to use. INITR_BLACKTAB is the default
+- **model** (**Required**, string): The model to use, one of the following options:
+
+  - ``INITR_BLACKTAB``
+  - ``INITR_GREENTAB``
+  - ``INITR_REDTAB``
+  - ``INITR_MINI160X80``
+  - ``INITR_18BLACKTAB``
+  - ``INITR_18REDTAB``
+
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **device_width** (**Required**, int): The device width. 128 is default
