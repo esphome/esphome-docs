@@ -64,8 +64,8 @@ Configuration variables:
 - **name** (**Required**, string): The name of the cover.
 - **position_datapoint** (**Required**, int): The datapoint id number of the cover position value.
 - **min_value** (*Optional*, int): The lowest position value, meaning cover closed. Defaults to 0.
-- **max_value** (*optional*, int): the highest position value, meaning cover opened. Defaults to 255.
-- **invert_position** (*optional*, boolean): invert the meaning of ``min_value`` and ``max_value``.
+- **max_value** (*Optional*, int): the highest position value, meaning cover opened. Defaults to 255.
+- **invert_position** (*Optional*, boolean): invert the meaning of ``min_value`` and ``max_value``.
   When set to ``true``, ``min_value`` will mean opened and ``max_value`` is closed.
 - All other options from :ref:`Cover <config-cover>`.
 
