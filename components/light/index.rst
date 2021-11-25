@@ -521,7 +521,7 @@ Configuration variables:
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
   - **state** (*Optional*, boolean): The on/off state to show. Defaults to ``true``.
-  - **color_mode** (*Optional*, ): The color mode of the light. Defaults to the current color mode.
+  - **color_mode** (*Optional*, string): The color mode of the light. Defaults to the current color mode.
   - **brightness** (*Optional*, percentage): The brightness of the light. Defaults to ``100%``.
   - **color_brightness** (*Optional*, percentage): The brightness of the RGB lights, if applicable. Defaults to ``100%``.
   - **red** (*Optional*, percentage): The red channel of the light, if applicable. Defaults to ``100%``.
