@@ -568,7 +568,7 @@ Misc Components
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
     HTTP Request, components/http_request, connection.svg
-    mDNS, components/mdns, mdns.svg
+    mDNS, components/mdns, radio-tower.svg
 
     Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
