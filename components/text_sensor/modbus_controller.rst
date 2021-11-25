@@ -23,9 +23,10 @@ Configuration variables:
 - **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 - **register_count**: (*Optional*): The number of registers this data point spans. Default is 1
 - **response_size**:  (**Required**):response number of bytes of the response
-- **raw_encode**: (*Optional*, NONE , HEXBYTES, COMMA) If the response is binary it can't be published directly. Since a text sensor only publishes strings the binary data can encoded
-     - HEXBYTES:  2 byte hex string. 0x2011 will be sent as "2011".
-     - COMMA: Byte values as integers, delimited by a coma. 0x2011 will be sent as "32,17"
+- **raw_encode**: (*Optional*, enum) If the response is binary it can't be published directly. Since a text sensor only publishes strings the binary data can encoded
+     - ``NONE``: Don't encode data.
+     - ``HEXBYTES``:  2 byte hex string. 0x2011 will be sent as "2011".
+     - ``COMMA``: Byte values as integers, delimited by a coma. 0x2011 will be sent as "32,17"
 - **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor
