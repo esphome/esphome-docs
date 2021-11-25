@@ -43,7 +43,7 @@ Configuration variables:
   The default size for 1 register is 16 bits (1 Word). Some devices are not adhering to this convention and have registers larger than 16 bits.  In this case ``register_count`` must be set. For example, if your modbus device uses 1 registers for a FP32 value instead the default of two set ``register_count: 2``.
 
 - **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting ``force_new_range: true`` enforces the start of a new range at that address.
-- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used. 
+- **custom_data** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used. 
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
   See :ref:`modbus_custom_data` how to use ``custom_command``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):

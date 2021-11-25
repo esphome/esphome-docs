@@ -42,7 +42,7 @@ Configuration variables:
 - **min_value** (*Optional*, float): The minimum value this number can be.
 - **max_value** (*Optional*, float): The maximum value this number can be.
 - **step** (*Optional*, float): The granularity with which the number can be set. Defaults to 1
-- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used.
+- **custom_data** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used.
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
   See :ref:`modbus_custom_data` how to use ``custom_command``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):

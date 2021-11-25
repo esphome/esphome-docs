@@ -27,7 +27,7 @@ Configuration variables:
      - HEXBYTES:  2 byte hex string. 0x2011 will be sent as "2011".
      - COMMA: Byte values as integers, delimited by a coma. 0x2011 will be sent as "32,17"
 - **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting ``force_new_range: true`` enforces the start of a new range at that address.
-- **custom_data** (**Optional**, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used. 
+- **custom_data** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used. 
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
   See :ref:`modbus_custom_data` how to use ``custom_command``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
