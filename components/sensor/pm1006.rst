@@ -45,7 +45,7 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
-- **update_interval** (*Optional*, defaults to ``never``): If you need to actively request measurements to the sensor, set this to some sensible interval. The IKEA VINDRIKTNING does measurements every 20 seconds.
+- **update_interval** (*Optional*, :ref:`time <config-time>`): If you need to actively request measurements to the sensor, set this to some sensible interval. The IKEA VINDRIKTNING does measurements every 20 seconds. Defaults to never.
 
 Using this component standalone
 -------------------------------
