@@ -128,9 +128,14 @@ of the debugging feature.
         direction: BOTH
         dummy_receiver: false
         after:
-          bytes: 60
+          delimiter: "\n"
         sequence:
-          - lambda: UARTDebug::log_hex(direction, bytes, ':');
+          - lambda: UARTDebug::log_string(direction, bytes);
+
+    # Minimal configuration example, logs hex strings by default
+    uart:
+      baud_rate: 9600
+      debug:
 
 - **direction** (*Optional*, enum): The direction of communication to debug, one of: "RX" (receive, incoming),
   "TX" (send, outgoing) or "BOTH". Defaults to "BOTH".
@@ -142,14 +147,14 @@ of the debugging feature.
 - **after** (*Optional*, mapping): The debugger accumulates bytes of communication. This option defines when
   to trigger publishing the accumulated bytes. The possible options are:
 
-  - **bytes** (*Optional*, int): Trigger after accumulating the specified number of bytes. Defaults to 256.
+  - **bytes** (*Optional*, int): Trigger after accumulating the specified number of bytes. Defaults to 150.
   - **timeout** (*Optional*, :ref:`config-time`): Trigger after no communication has been seen during the
     specified timeout, while one or more bytes have been accumulated. Defaults to 100ms.
   - **sequence** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
     detected in the communication.
 
-- **sequence** (*Required*, :ref:`config-action`): Action(s) to perform for publishing debugging data. The
-  actions can make use of the following variables:
+- **sequence** (*Optional*, :ref:`config-action`): Action(s) to perform for publishing debugging data.
+  Defaults to an action that logs the bytes in hex format. The actions can make use of the following variables:
 
   - **direction**: ``uart::UART_DIRECTION_RX`` or ``uart::UART_DIRECTION_TX``
   - **bytes**: ``std::vector<uint8_t>`` containing the accumulated bytes
