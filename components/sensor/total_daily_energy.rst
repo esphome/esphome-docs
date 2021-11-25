@@ -40,7 +40,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **restore** (*Optional*, boolean): Whether to store the intermediate result on the device so
   that the value can be restored upon power cycle or reboot.
-  Warning: this option can wear out your flash. Defaults to ``true``.
+  Defaults to ``true``.
 - **min_save_interval** (*Optional*, :ref:`config-time`): The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to ``0s``.
 - **method** (*Optional*, string): The method to use for calculating the total daily energy. One of
   ``trapezoid``, ``left`` or ``right``. Defaults to ``right``.
