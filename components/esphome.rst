@@ -31,8 +31,9 @@ Configuration variables:
 Advanced options:
 
 - **build_path** (*Optional*, string): Customize where ESPHome will store the build files
-  for your node. By default, ESPHome puts all PlatformIO project files under a folder ``<NODE_NAME>/``,
-  but you can customize this behavior using this option.
+  for your node. By default, ESPHome puts the PlatformIO project it uses to build the
+  firmware in the ``.esphome/build/<NODE>`` directory, but you can customize this
+  behavior using this option.
 - **platformio_options** (*Optional*, mapping): Additional options to pass over to PlatformIO in the
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **includes** (*Optional*, list of files): A list of C/C++ files to include in the main (auto-generated) sketch file
@@ -174,7 +175,7 @@ You can view a full list of PlatformIO options here: https://docs.platformio.org
 With ``includes`` you can include source files in the generated PlatformIO project.
 All files declared with this option are copied to the project each time it is compiled.
 
-You can always look at the generated PlatformIO project (``<CONFIG_DIR>/<NODENAME>``) to see what
+You can always look at the generated PlatformIO project (``.esphome/build/<NODE>``) to see what
 is happening - and if you want you can even copy the include files directly into the ``src/`` folder.
 The ``includes`` option is only a helper option that does that for you.
 
