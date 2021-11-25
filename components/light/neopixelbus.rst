@@ -89,7 +89,7 @@ If you have one line, only specify ``pin``, otherwise specify both ``clock_pin``
     On ESP8266 it's highly recommended to connect the light strip to pin
     GPIO3 to reduce flickering.
 
-.. _neopixelbus-method:
+.. _neopixelbus-methods:
 
 Methods
 -------
