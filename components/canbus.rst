@@ -79,7 +79,7 @@ Configuration variables:
 
 Automations:
 
-- **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
+- **on_frame** (*Optional*, :ref:`Action <config-action>`): An automation to perform when ability
   CAN Frame is received. See :ref:`canbus-on-frame`.
 
 .. _canbus-on-frame:

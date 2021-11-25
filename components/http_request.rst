@@ -72,7 +72,7 @@ Configuration variables:
 - **url** (**Required**, string, :ref:`templatable <config-templatable>`): URL to send request.
 - **headers** (*Optional*, mapping): Map of HTTP headers. Values are :ref:`templatable <config-templatable>`.
 - **verify_ssl** (*Optional*, boolean): Verify the SSL certificate of the endpoint. Defaults to ``true``.
-- **on_response** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the request is finished.
+- **on_response** (*Optional*, :ref:`Action <config-action>`): An automation to perform when the request is finished.
 
 .. note::
 

@@ -68,11 +68,11 @@ Choose the appropriate board from
 
 Automations:
 
-- **on_boot** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_boot** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the node starts. See :ref:`esphome-on_boot`.
-- **on_shutdown** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_shutdown** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   right before the node shuts down. See :ref:`esphome-on_shutdown`.
-- **on_loop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_loop** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   on each ``loop()`` iteration. See :ref:`esphome-on_loop`.
 
 .. _esphome-on_boot:

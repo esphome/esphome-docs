@@ -100,7 +100,7 @@ Base Configuration:
 
 - **swap_x_y** (*Optional*, boolean): If true the x and y axes are swapped. Defaults to ``false``.
 
-- **on_state** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the touch screen is pressed or released. See :ref:`xpt2046-on_state`.
 
 .. _xpt2046-on_state:

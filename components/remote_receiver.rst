@@ -59,46 +59,46 @@ Configuration variables:
 
 Automations:
 
-- **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_jvc** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
   is passed to the automation for use in lambdas.
-- **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_lg** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
   is passed to the automation for use in lambdas.
-- **on_midea** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_midea** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   Midea remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::MideaData`
   is passed to the automation for use in lambdas.
-- **on_nec** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_nec** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   NEC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::NECData`
   is passed to the automation for use in lambdas.
-- **on_sony** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_sony** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   Sony remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SonyData`
   is passed to the automation for use in lambdas.
-- **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_toshiba_ac** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
   is passed to the automation for use in lambdas.
-- **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_raw** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   raw remote code has been decoded. A variable ``x`` of type ``std::vector<int>``
   is passed to the automation for use in lambdas.
-- **on_rc5** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_rc5** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   RC5 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RC5Data`
   is passed to the automation for use in lambdas.
-- **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_rc_switch** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   RCSwitch RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RCSwitchData`
   is passed to the automation for use in lambdas.
-- **on_samsung** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_samsung** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   Samsung remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SamsungData`
   is passed to the automation for use in lambdas.
-- **on_samsung36** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_samsung36** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   Samsung36 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::Samsung36Data`
   is passed to the automation for use in lambdas.
-- **on_panasonic** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_panasonic** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   Panasonic remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PanasonicData`
   is passed to the automation for use in lambdas.
-- **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+- **on_pioneer** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   pioneer remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PioneerData`
   is passed to the automation for use in lambdas.
-  - **on_dish** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  - **on_dish** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a
   dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.

@@ -46,7 +46,7 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
-- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_tag** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when a tag is read. See :ref:`rdm6300-on_tag`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this component.
 

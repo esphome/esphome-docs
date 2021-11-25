@@ -38,7 +38,7 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **type** (**Required**, string): The type of output. One of ``binary`` and ``float``.
-- **write_action** (**Required**, :ref:`Automation <automation>`): An automation to perform
+- **write_action** (**Required**, :ref:`Action <config-action>`): An automation to perform
   when the state of the output is updated.
 - All other options from :ref:`Output <config-output>`.
 

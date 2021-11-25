@@ -25,7 +25,7 @@ nearby COVID-19 exposure notification bluetooth messages sent by phones running 
 Configuration variables:
 ------------------------
 
-- **on_exposure_notification** (*Optional*, :ref:`Automation <automation>`): An automation
+- **on_exposure_notification** (*Optional*, :ref:`Action <config-action>`): An automation
   to run when an exposure notification bluetooth message is received.
 
   A variable ``x`` of type :apistruct:`exposure_notifications::ExposureNotification` is passed to the automation.

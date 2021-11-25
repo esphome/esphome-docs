@@ -78,12 +78,12 @@ Configuration variables:
 
 Automations:
 
-- **on_ble_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_ble_advertise** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when a Bluetooth advertising is received. See :ref:`esp32_ble_tracker-on_ble_advertise`.
-- **on_ble_manufacturer_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
+- **on_ble_manufacturer_data_advertise** (*Optional*, :ref:`Action <config-action>`): An automation to
   perform when a Bluetooth advertising with manufacturer data is received. See
   :ref:`esp32_ble_tracker-on_ble_manufacturer_data_advertise`.
-- **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
+- **on_ble_service_data_advertise** (*Optional*, :ref:`Action <config-action>`): An automation to
   perform when a Bluetooth advertising with service data is received. See
   :ref:`esp32_ble_tracker-on_ble_service_data_advertise`.
 

@@ -37,15 +37,15 @@ Configuration variables:
 -  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in
    safe mode. Defaults to ``5min``.
 -  **num_attempts** (*Optional*, int): The number of attempts to wait before entering safe mode. Defaults to ``10``.
--  **on_begin** (*Optional*, :ref:`Automation<automation>`): An action to be
+-  **on_begin** (*Optional*, :ref:`Action <config-action>`): An action to be
    performed when an OTA update is started. See :ref:`ota-on_begin`.
--  **on_progress** (*Optional*, :ref:`Automation<automation>`): An action to be
+-  **on_progress** (*Optional*, :ref:`Action <config-action>`): An action to be
    performed (multiple times) during an OTA update. See :ref:`ota-on_progress`.
--  **on_end** (*Optional*, :ref:`Automation<automation>`): An action to be
+-  **on_end** (*Optional*, :ref:`Action <config-action>`): An action to be
    performed after a successful OTA update. See :ref:`ota-on_end`.
--  **on_error** (*Optional*, :ref:`Automation<automation>`): An action to be
+-  **on_error** (*Optional*, :ref:`Action <config-action>`): An action to be
    performed after a failed OTA update. See :ref:`ota-on_error`.
--  **on_state_change** (*Optional*, :ref:`Automation<automation>`): An action to be
+-  **on_state_change** (*Optional*, :ref:`Action <config-action>`): An action to be
    performed when an OTA update state change happens. See :ref:`ota-on_state_change`.
 
 .. note::

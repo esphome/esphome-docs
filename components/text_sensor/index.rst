@@ -40,9 +40,9 @@ Configuration variables:
 
 Automations:
 
-- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_value** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when a new value is published. See :ref:`text_sensor-on_value`.
-- **on_raw_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_raw_value** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when a new value is received that hasn't passed through any filters. See :ref:`text_sensor-on_raw_value`.
 
 .. _text_sensor-filters:

@@ -42,7 +42,7 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **on_code_received** (*Optional*, :ref:`Automation <automation>`): An action to be
+- **on_code_received** (*Optional*, :ref:`Action <config-action>`): An action to be
   performed when a code is received. See :ref:`rf_bridge-on_code_received`.
 
 .. _rf_bridge-on_code_received:

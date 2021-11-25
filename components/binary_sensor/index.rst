@@ -36,19 +36,19 @@ Configuration variables:
 
 Automations:
 
-- **on_press** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_press** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the button is pressed. See :ref:`binary_sensor-on_press`.
-- **on_release** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_release** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the button is released. See :ref:`binary_sensor-on_release`.
-- **on_state** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when a state is published. See :ref:`binary_sensor-on_state`.
-- **on_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_click** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the button is held down for a specified period of time.
   See :ref:`binary_sensor-on_click`.
-- **on_double_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_double_click** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the button is pressed twice for specified periods of time.
   See :ref:`binary_sensor-on_double_click`.
-- **on_multi_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_multi_click** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the button is pressed in a specific sequence.
   See :ref:`binary_sensor-on_multi_click`.
 
