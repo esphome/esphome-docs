@@ -28,7 +28,7 @@ A Python library that implements this protocol is `aioesphomeapi <https://github
 Configuration variables:
 ------------------------
 
-- **port** (*Optional*, integer): The port to run the API Server on. Defaults to ``6053``.
+- **port** (*Optional*, int): The port to run the API Server on. Defaults to ``6053``.
 - **password** (*Optional*, string): The password to protect the API Server with. Defaults to no password.
 - **encryption** (*Optional*): Enable transport encryption of the API layer.
 

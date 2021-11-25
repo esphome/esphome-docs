@@ -582,7 +582,7 @@ For example, the automation below will flash the light five times.
 
 Configuration variables:
 
-- **count** (**Required**, integer): The number of times the action should be repeated.
+- **count** (**Required**, int): The number of times the action should be repeated.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to repeat.
 
 .. _wait_until_action:
@@ -677,7 +677,7 @@ Configuration variables:
     - ``queued``: Start a new run after previous runs complete.
     - ``parallel``: Start a new, independent run in parallel with previous runs.
 
-- **max_runs** (*Optional*, integer): Allows limiting the maxiumun number of runs when using script
+- **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 

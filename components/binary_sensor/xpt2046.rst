@@ -77,25 +77,25 @@ Base Configuration:
 - **report_interval** (*Optional*, :ref:`config-time`): The interval to periodically
   report the coordinates while the touch screen is touched. Defaults to ``never``.
 
-- **threshold** (*Optional*, integer): The value to detect the touch or release. Defaults to ``400``.
+- **threshold** (*Optional*, int): The value to detect the touch or release. Defaults to ``400``.
 
-- **dimension_x** (*Optional*, integer): The dimension of the display in the horizontal
+- **dimension_x** (*Optional*, int): The dimension of the display in the horizontal
   direction. Usually in pixels but a percentage can be useful as well. Defaults to ``100``.
 
-- **dimension_y** (*Optional*, integer): The dimension of the display in the vertical
+- **dimension_y** (*Optional*, int): The dimension of the display in the vertical
   direction. Usually in pixels but a percentage can be useful as well. Defaults to ``100``.
 
-- **calibration_x_min** (*Optional*, integer): The raw value corresponding to the left
+- **calibration_x_min** (*Optional*, int): The raw value corresponding to the left
   (or top if ``swap_x_y`` is specified) edge of the display. See :ref:`xpt2046-calibration`
   for the process to calibrate the touch screen. Defaults to ``0``.
 
-- **calibration_x_max** (*Optional*, integer): The raw value corresponding to the right
+- **calibration_x_max** (*Optional*, int): The raw value corresponding to the right
   (or bottom if ``swap_x_y`` is specified) edge of the display. Defaults to ``4095``.
 
-- **calibration_y_min** (*Optional*, integer): The raw value corresponding to the top
+- **calibration_y_min** (*Optional*, int): The raw value corresponding to the top
   (or left if ``swap_x_y`` is specified) edge of the display. Defaults to ``0``.
 
-- **calibration_y_max** (*Optional*, integer): The raw value corresponding to the bottom
+- **calibration_y_max** (*Optional*, int): The raw value corresponding to the bottom
   (or right if ``swap_x_y`` is specified) edge of the display. Defaults to ``4095``.
 
 - **swap_x_y** (*Optional*, boolean): If true the x and y axes are swapped. Defaults to ``false``.
@@ -154,10 +154,10 @@ to create individual binary sensors for each virtual button.
 - **name** (*Optional*, string): The name for the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **xpt2046_id** (*Optional*, :ref:`config-id`): Specify the ID of the component the sensor is part of. Useful when you have more than one touch screen.
-- **x_min** (**Required**, integer): Left coordinate of the screen area to be detected as the virtual button.
-- **x_max** (**Required**, integer): Right coordinate of the screen area to be detected as the virtual button.
-- **y_min** (**Required**, integer): Top coordinate of the screen area to be detected as the virtual button.
-- **y_max** (**Required**, integer): Bottom coordinate of the screen area to be detected as the virtual button.
+- **x_min** (**Required**, int): Left coordinate of the screen area to be detected as the virtual button.
+- **x_max** (**Required**, int): Right coordinate of the screen area to be detected as the virtual button.
+- **y_min** (**Required**, int): Top coordinate of the screen area to be detected as the virtual button.
+- **y_max** (**Required**, int): Bottom coordinate of the screen area to be detected as the virtual button.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _xpt2046-calibration:

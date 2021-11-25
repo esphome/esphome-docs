@@ -693,7 +693,7 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Scan``.
 - **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot/line one LED forward.
   Defaults to ``100ms``.
-- **scan_width** (*Optional*, integer): The number of LEDs to use.
+- **scan_width** (*Optional*, int): The number of LEDs to use.
   Defaults to ``1``.
 
 Addressable Twinkle Effect
@@ -778,7 +778,7 @@ Configuration variables:
   LED at any given time step. Defaults to ``10%``.
 - **use_random_color** (*Optional*, boolean): Whether to use random colors for new firework sparks. Defaults to
   using the currently active light color.
-- **fade_out_rate** (*Optional*, integer): The rate with which to fade out the LED strip, unitless. Needs to be carefully
+- **fade_out_rate** (*Optional*, int): The rate with which to fade out the LED strip, unitless. Needs to be carefully
   chosen so that the whole strip doesn't light up forever if the fade out rate is too low or that the firework
   sparks do not propagate for a long time. Defaults to ``120``.
 
@@ -944,7 +944,7 @@ For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHom
 
 Configuration variables:
 
-- **universe** (**Required**, integer): The value of universe, between 1 to 512.
+- **universe** (**Required**, int): The value of universe, between 1 to 512.
 - **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
   ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
@@ -1036,7 +1036,7 @@ Prismatik_ can be used to control addressable lights over network on ESPHome.
 
 Configuration variables:
 
-- **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+- **port** (*Optional*, int): The port to run the UDP server on. Defaults to ``21324``.
 
 .. note::
 

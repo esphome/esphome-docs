@@ -30,7 +30,7 @@ Configuration variables:
     - U_QWORD_R (unsigend float from 4 registers low word first )
     - S_QWORD_R (sigend float from 4 registers low word first )
 
-- **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
+- **skip_updates**: (*Optional*, int): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
   Note: The modbus_controller groups component by address ranges to reduce number of transactions. All compoents with the same address will be updated in one request. skip_updates applies for all components in the same range.
 - **register_count**: (*Optional*): only required for uncommon response encodings
   The number of registers this data point spans. Default is 1

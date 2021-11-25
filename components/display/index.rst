@@ -423,8 +423,8 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
   in your display code.
-- **width** (**Required**, integer): The graph width in pixels
-- **height** (**Required**, integer): The graph height in pixels
+- **width** (**Required**, int): The graph width in pixels
+- **height** (**Required**, int): The graph height in pixels
 - **duration** (**Required**, :ref:`config-time`): The total graph history duration.
 - **border** (*Optional*, boolean): Specifies if a border will be drawn around the graph. Default is True.
 - **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.

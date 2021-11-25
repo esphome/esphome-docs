@@ -68,7 +68,7 @@ Pin configuration variables:
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23008 component.
 - **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
-- **number** (**Required**, integer): The pin number.
+- **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
   should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.
