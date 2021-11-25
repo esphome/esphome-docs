@@ -20,6 +20,7 @@ the `NeoPixelBus <https://github.com/Makuna/NeoPixelBus/>`__ library internally.
     light:
       - platform: neopixelbus
         type: GRB
+        variant: 800KBPS
         pin: GPIO23
         num_leds: 60
         name: "NeoPixel Light"
@@ -39,30 +40,75 @@ Configuration variables:
   if it is an RGBW or RGB light and in which order the colors are. Defaults to
   ``GRB``. Change this if you have lights with white value and/or the colors are in the wrong order.
 - **variant** (**Required**, string): The chipset variant. You can read more about these
-  `here <https://github.com/Makuna/NeoPixelBus/wiki/NeoPixelBus-object#neopixel-led-model-specific-methods>`__
-  (some of the info on that page is not entirely correct).
+  `here <https://github.com/Makuna/NeoPixelBus/wiki/NeoPixelBus-object#neo-methods>`__.
   One of these values:
 
-  - ``800KBPS``
+  - ``800KBPS`` (recommended, unless the chip you're using is listed below)
   - ``400KBPS``
-  - ``WS2812X``
+  - ``DotStar``
+  - ``APA106``
+  - ``LC8812``
+  - ``LPD8806``
+  - ``LPD6803``
+  - ``P9813``
   - ``SK6812``
-  - ``WS2813`` (same as ``WS2812X``)
-  - ``WS2812`` (same as ``800KBPS``)
-  - ``LC8812`` (same as ``SK6812``)
+  - ``TM1814``
+  - ``TM1829``
+  - ``TM1914``
+  - ``WS2801``
+  - ``WS2811``
+  - ``WS2812``
+  - ``WS2812X``
+  - ``WS2813``
 
-- **method** (*Optional*, string): The method to transmit the data with. You can read
-  more about these here: `ESP32 <https://github.com/Makuna/NeoPixelBus/wiki/ESP32-NeoMethods>`__,
-  `ESP8266 <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__
+- **method** (*Optional*, string): The method used to transmit the data.
 
-  - ``ESP8266_DMA`` (default for ESP8266, only on pin GPIO3)
-  - ``ESP8266_UART0`` (only on pin GPIO1)
-  - ``ESP8266_UART1`` (only on pin GPIO2)
-  - ``ESP8266_ASYNC_UART0`` (only on pin GPIO1)
-  - ``ESP8266_ASYNC_UART1`` (only on pin GPIO2)
-  - ``ESP32_I2S_0``
-  - ``ESP32_I2S_1`` (default for ESP32)
-  - ``BIT_BANG`` (can flicker a bit)
+  - **type** (*Optional*, string): One of ``bit_bang``, ``spi``, ``esp8266_uart``, ``esp8266_dma``, ``esp32_rmt`` or ``esp32_i2s``. By default a method suitable for your ESP, chip and used pins is chosen. You can read more about these methods for the `ESP32 <https://github.com/Makuna/NeoPixelBus/wiki/ESP32-NeoMethods>`__ and  `ESP8266 <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__.
+  
+    - ``bit_bang``: Use bit-banging. This is slow and can cause flicker, but is always available.
+    - ``spi``: Use the SPI bus. Only compatible with two-wire chips. On the ESP8266, must use pin GPIO13 (data) and GPIO14 (clock).
+    - ``esp8266_uart``: Use the hardware UART on the ESP8266. Only compatible with one-wire chips. Must use either pin GPIO1 (bus 0) or GPIO2 (bus 1).
+    - ``esp8266_dma``: Use the I2S DMA functionality on the ESP8266. Only compatible with one-wire chips. Must use pin GPIO3.
+    - ``esp32_rmt``: Use the RMT module on the ESP32. Only compatible with one-wire chips. 
+    - ``esp32_i2s``: Use the I2S module on the ESP32. Only compatible with one-wire chips. 
+    
+  Additional options for ``spi``:
+    
+    - **bus** (*Optional*, string): One of ``vspi`` or ``hspi``. Only on ESP32, defaults to ``vspi``.
+    - **speed** (*Optional*, float): The frequency to use for the SPI bus. One of 500 kHz, 1 MHz, 2 MHz, 5 MHz, 10 MHz, 20 MHz or 40 MHz. Defaults to 10 MHz.
+    
+  Additional options for ``esp8266_uart``:
+  
+    - **bus** (*Optional*, integer): Bus to use, either 0 or 1. Defaults to 1.
+    - **async** (*Optional*, boolean): Whether to send data asynchronously. Defaults to false.
+    
+  Additional options for ``esp32_rmt``:
+  
+    - **channel** (*Optional*, integer): RMT channel to use.
+    
+  Additional options for ``esp32_i2s``:
+  
+    - **bus** (*Optional*, integer): I2C bus number to use.
+     
+  Additionally, the following short-hand values are accepted for historic reasons:
+  
+    - ``BIT_BANG`` (for ``bit_bang``)
+    - ``SPI`` (for ``spi`` on bus ``vspi``)
+    - ``ESP8266_DMA`` (for ``esp8266_dma``)
+    - ``ESP8266_UART0`` (for ``esp8266_uart`` on bus 0)
+    - ``ESP8266_UART1`` (for ``esp8266_uart`` on bus 1)
+    - ``ESP8266_ASYNC_UART0`` (for ``esp8266_uart`` on bus 0 with async enabled)
+    - ``ESP8266_ASYNC_UART1`` (for ``esp8266_uart`` on bus 1 with async enabled)
+    - ``ESP32_I2S_0`` (for ``esp32_i2s`` on bus 0)
+    - ``ESP32_I2S_1`` (for ``esp32_i2s`` on bus 1)
+    - ``ESP32_RMT_0`` (for ``esp32_rmt`` on channel 0)
+    - ``ESP32_RMT_1`` (for ``esp32_rmt`` on channel 1)
+    - ``ESP32_RMT_2`` (for ``esp32_rmt`` on channel 2)
+    - ``ESP32_RMT_3`` (for ``esp32_rmt`` on channel 3)
+    - ``ESP32_RMT_4`` (for ``esp32_rmt`` on channel 4)
+    - ``ESP32_RMT_5`` (for ``esp32_rmt`` on channel 5)
+    - ``ESP32_RMT_6`` (for ``esp32_rmt`` on channel 6)
+    - ``ESP32_RMT_7`` (for ``esp32_rmt`` on channel 7)
 
 - **num_leds** (**Required**, int): The number of LEDs attached.
 - **invert** (*Optional*, boolean): Invert data output, for use with n-type transistor. Defaults to ``no``.  
