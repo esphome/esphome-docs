@@ -435,6 +435,7 @@ Light Components
     Custom Light, components/light/custom, language-cpp.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg
+    Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
