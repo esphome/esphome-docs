@@ -2,23 +2,27 @@ mDNS Component
 ==============
 
 .. seo::
-    :description: Instructions for setting up the MDNS configuration for your ESP node in ESPHome.
+    :description: Instructions for setting up the mDNS configuration for your ESP node in ESPHome.
     :image: mdns.svg
-    :keywords: WiFi, WLAN, ESP8266, ESP32, MDNS
+    :keywords: WiFi, WLAN, ESP8266, ESP32, mDNS
 
-This core ESPHome component that enables/disables mDNS for you. mDNS is used to find IP address of each ESPHome node. Please note the regarding the consequences of disabling mDNS. Static IP for nodes may be required as well as explicit setting of ping usage in the ESPHome config with the HA addon config.
+The ``mdns`` component makes the node announce itself on the local network using the multicast DNS (mDNS) protocol.
 
-It’s recommended to leave MDNS enabled. Default is enabled.
+Both Home Assistant and the ESPHome dashboard use mDNS to identify the IP address of all ESPHome nodes on the network.
+If mDNS is disabled, they will no longer be able to automatically find your devices. It may be necessary to use a static
+IP for all nodes and to enable the ping option in the Home Assistant add-on.
+
+It is recommended to leave mDNS enabled.
 
 .. code-block:: yaml
 
     # Example configuration entry
     mdns:
       disabled: false
-      
+
 .. _mdns-configuration_variables:
 
 Configuration variables:
 ------------------------
 
-- **disabled** (*Optional*, string): Set to disabled, if you want to prevent mDNS usage.
+- **disabled** (*Optional*, boolean): Set to true to disable mDNS usage. Defaults to false.
