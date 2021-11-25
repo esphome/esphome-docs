@@ -38,9 +38,8 @@ Advanced options:
 - **includes** (*Optional*, list of files): A list of C/C++ files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
   is in. See :ref:`esphome-includes` for more info.
-- **libraries** (*Optional*, list of libraries): A list of `platformio libraries <https://platformio.org/lib>`__
-  to include in the project. See `platformio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__.
-  The ``<name>=<source>`` syntax can be used to override the source used for a library that is included by a component.
+- **libraries** (*Optional*, list of libraries): A list of libraries to include in the project. See
+  :ref:`esphome-libraries` for more information.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 - **name_add_mac_suffix** (*Optional*, boolean): Appends the last 3 bytes of the mac address of the device to
   the name in the form ``<name>-aabbcc``. Defaults to ``false``.
@@ -195,6 +194,42 @@ This option behaves differently depending on what the included file is pointing 
  - If the include string points to a regular source file (.c, .cpp), it is copied in the src/ folder
    AND compiled into the binary. This way implementation of classes and functions in header files can
    be provided.
+
+.. _esphome-libraries:
+
+``libraries``
+-------------
+
+With the ``libraries`` option it is possible to include libraries in the PlatformIO project. These libraries will then
+be compiled into the resulting firmware, and can be used in code from :ref:`lambdas <config-lambda>` and from
+custom components.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esphome:
+      # ...
+      libraries:
+        # a library from PlatformIO
+        - espressif/esp32-camera
+
+        # a library bundled with Arduino
+        - Wire
+
+        # use the git version of a library used by a component
+        - esphome/Improv=https://github.com/improv-wifi/sdk-cpp.git#v1.0.0
+
+The most common usage of this option is to include third-party libraries that are available in the `PlatformIO registry
+<https://platformio.org/lib>`__. They can be added by listing their name under this option. It is also possible to use
+specific versions, or to fetch libraries from a file or git repository. ESPHome accepts the same syntax as the
+`pio lib install <https://docs.platformio.org/en/latest/userguide/lib/cmd_install.html>`__ command.
+
+Using ``<name>=<source>`` syntax, it is possible to override the version used for libraries that are automatically added
+by one of ESPHome's components. This can be useful during development to make ESPHome use a custom fork of a library.
+
+By default, ESPHome does not include any libraries into the project. This means that libraries that are bundled with
+Arduino, such as ``Wire`` or ``EEPROM``, aren't available. If you need to use them, you should list them manually under
+this option. If they are used by another library, they should be listed before the library that uses them.
 
 .. _preferences-flash_write_interval:
 
