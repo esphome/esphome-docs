@@ -38,7 +38,7 @@ Configuration variables:
 - **type** (*Optional*, string): The type of light. This is used to specify
   if it is an RGBW or RGB light and in which order the colors are. Defaults to
   ``GRB``. Change this if you have lights with white value and/or the colors are in the wrong order.
-- **variant** (*Required*, string): The chipset variant. You can read more about these
+- **variant** (**Required**, string): The chipset variant. You can read more about these
   `here <https://github.com/Makuna/NeoPixelBus/wiki/NeoPixelBus-object#neopixel-led-model-specific-methods>`__
   (some of the info on that page is not entirely correct).
   One of these values:
