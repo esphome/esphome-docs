@@ -32,7 +32,6 @@ required to be set up in your configuration for this sensor to work.
           name: "INA260 Power"
         bus_voltage:
           name: "INA260 Bus Voltage"
-        max_current: 15A
         update_interval: 60s
 
 Configuration variables:
@@ -40,8 +39,6 @@ Configuration variables:
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x40``.
   Defaults to ``0.002ohm``.
-- **max_current** (*Optional*, float): The maximum current you are expecting. ESPHome will use this to
-  configure the sensor optimally. Defaults to ``15A``.
 - **current** (*Optional*): Use the current value of the sensor in amperes. All options from
   :ref:`Sensor <config-sensor>`.
 - **power** (*Optional*): Use the power value of the sensor in watts. All options from
