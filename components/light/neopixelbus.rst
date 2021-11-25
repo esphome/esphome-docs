@@ -32,6 +32,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the light.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **num_leds** (**Required**, int): The number of LEDs attached.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 
 **Type Options:**
@@ -61,21 +62,28 @@ Configuration variables:
   - ``WS2812X``
   - ``WS2813``
 
-- **method** (*Optional*, string): The method used to transmit the data.
+- **method** (*Optional*): The method used to transmit the data.
 
-  - **type** (*Optional*, string): One of ``bit_bang``, ``spi``, ``esp8266_uart``, ``esp8266_dma``, ``esp32_rmt`` or ``esp32_i2s``. By default a method suitable for your ESP, chip and used pins is chosen. You can read more about these methods for the `ESP32 <https://github.com/Makuna/NeoPixelBus/wiki/ESP32-NeoMethods>`__ and  `ESP8266 <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__.
+  - **type** (*Optional*, string): One of ``bit_bang``, ``spi``, ``esp8266_uart``, ``esp8266_dma``, ``esp32_rmt`` or 
+    ``esp32_i2s``. By default a method suitable for your ESP, chip and used pins is chosen. You can read more about 
+	these methods for the `ESP32 <https://github.com/Makuna/NeoPixelBus/wiki/ESP32-NeoMethods>`__ and 
+	`ESP8266 <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__.
   
     - ``bit_bang``: Use bit-banging. This is slow and can cause flicker, but is always available.
-    - ``spi``: Use the SPI bus. Only compatible with two-wire chips. On the ESP8266, must use pin GPIO13 (data) and GPIO14 (clock).
-    - ``esp8266_uart``: Use the hardware UART on the ESP8266. Only compatible with one-wire chips. Must use either pin GPIO1 (bus 0) or GPIO2 (bus 1).
-    - ``esp8266_dma``: Use the I2S DMA functionality on the ESP8266. Only compatible with one-wire chips. Must use pin GPIO3.
+    - ``spi``: Use the SPI bus. Only compatible with two-wire chips. On the ESP8266, must use pin GPIO13 (data) and 
+	  GPIO14 (clock).
+    - ``esp8266_uart``: Use the hardware UART on the ESP8266. Only compatible with one-wire chips. Must use either pin
+      GPIO1 (bus 0) or GPIO2 (bus 1).
+    - ``esp8266_dma``: Use the I2S DMA functionality on the ESP8266. Only compatible with one-wire chips. Must use pin
+      GPIO3.
     - ``esp32_rmt``: Use the RMT module on the ESP32. Only compatible with one-wire chips. 
     - ``esp32_i2s``: Use the I2S module on the ESP32. Only compatible with one-wire chips. 
     
   Additional options for ``spi``:
     
     - **bus** (*Optional*, string): One of ``vspi`` or ``hspi``. Only on ESP32, defaults to ``vspi``.
-    - **speed** (*Optional*, float): The frequency to use for the SPI bus. One of 500 kHz, 1 MHz, 2 MHz, 5 MHz, 10 MHz, 20 MHz or 40 MHz. Defaults to 10 MHz.
+    - **speed** (*Optional*, float): The frequency to use for the SPI bus. One of 500 kHz, 1 MHz, 2 MHz, 5 MHz, 10 MHz,
+      20 MHz or 40 MHz. Defaults to 10 MHz.
     
   Additional options for ``esp8266_uart``:
   
@@ -84,13 +92,15 @@ Configuration variables:
     
   Additional options for ``esp32_rmt``:
   
-    - **channel** (*Optional*, integer): RMT channel to use.
+    - **channel** (*Optional*, integer): RMT channel to use. Must be either a channel number available on your device, 
+	  or ``dynamic`` to pick a channel dynamically. Defaults to 1 on the ESP32-S2 and ESP32-C3, and 6 otherwise.
     
   Additional options for ``esp32_i2s``:
   
-    - **bus** (*Optional*, integer): I2C bus number to use.
+    - **bus** (*Optional*, integer): I2C bus number to use. Must be either a bus available on your device, or 
+	  ``dynamic`` to pick a bus dynamically. Defaults to 1 on the ESP32, and 0 otherwise.
      
-  Additionally, the following short-hand values are accepted for historic reasons:
+  This option also accepts the following short-hand values for historic reasons:
   
     - ``BIT_BANG`` (for ``bit_bang``)
     - ``SPI`` (for ``spi`` on bus ``vspi``)
@@ -110,7 +120,6 @@ Configuration variables:
     - ``ESP32_RMT_6`` (for ``esp32_rmt`` on channel 6)
     - ``ESP32_RMT_7`` (for ``esp32_rmt`` on channel 7)
 
-- **num_leds** (**Required**, int): The number of LEDs attached.
 - **invert** (*Optional*, boolean): Invert data output, for use with n-type transistor. Defaults to ``no``.  
 
 **Pin Options:** Some chipsets have two data pins to connect, others only have one.
