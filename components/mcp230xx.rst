@@ -59,7 +59,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23008 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
-- **open_drain_interrupt** (*Optional*, bool): Configure the interrupt pin to open-drain mode.
+- **open_drain_interrupt** (*Optional*, boolean): Configure the interrupt pin to open-drain mode.
   Useful when the MCP23008's power supply is greater than 3.3 volts. Note that this pin
   will require a pull-up resistor (to 3.3 volts) when this mode is enabled.
 
@@ -185,7 +185,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23017 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
-- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+- **open_drain_interrupt** (*Optional*, boolean): Configure interrupt pins to open-drain mode.
   Useful when the MCP23017's power supply is greater than 3.3 volts. Note that these pins
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 

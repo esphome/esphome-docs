@@ -165,7 +165,7 @@ Configuration variables:
 
 - **temperature** (**Required**, float, :ref:`templatable <config-templatable>`): Set the
   value of a internal temperature sensor.
-- **beeper** (*Optional*, bool, :ref:`templatable <config-templatable>`): set beep on update.
+- **beeper** (*Optional*, boolean, :ref:`templatable <config-templatable>`): set beep on update.
   Defaults to ``False``
 
 
