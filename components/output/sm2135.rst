@@ -56,8 +56,8 @@ global ``sm2135`` hub and give it an id, and then define the
 Configuration variables:
 ************************
 
--  **data_pin** (**Required**, :ref:`config-pin_schema`): The pin used for MOSI.
--  **clock_pin** (**Required**, :ref:`config-pin_schema`): The pin which SCLK is
+-  **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for MOSI.
+-  **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin which SCLK is
    connected to.
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``sm2135`` component. Use this if you have multiple SM2135 chains

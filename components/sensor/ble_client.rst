@@ -36,7 +36,7 @@ Configuration variables:
 - **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
 - **descriptor_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
 - **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
-- **lambda** (*Optional*, :ref:`config-lambda`): The lambda to use for converting a raw data
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for converting a raw data
   reading to a sensor value. See :ref:`ble-sensor-lambda` for more information.
 - **notify** (*Optional*, boolean): Instruct the server to send notifications for this
   characteristic.
