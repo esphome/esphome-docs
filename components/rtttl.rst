@@ -42,7 +42,7 @@ Configuration variables:
 - **output** (**Required**, :ref:`config-id`): The id of the :ref:`float output <output>` to use for
   this buzzer.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **on_finished_playback** (*Optional*, :ref:`Action <config-action>`): An action to be
+- **on_finished_playback** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when playback is finished.
 
 

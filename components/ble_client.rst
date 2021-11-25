@@ -49,9 +49,9 @@ Configuration variables:
 
 Automations:
 
-- **on_connect** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the client connects to a device. See :ref:`ble_client-on_connect`.
-- **on_disconnect** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the client disconnects from a device. See :ref:`ble_client-on_disconnect`.
 
 BLE Client Automation

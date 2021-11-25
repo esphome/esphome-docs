@@ -57,9 +57,9 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the PN532. This affects the
   duration that the individual binary sensors stay active when they're found.
   If a device is not found within this time window, it will be marked as not present. Defaults to 1s.
-- **on_tag** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a tag is read. See :ref:`pn532-on_tag`.
-- **on_tag_removed** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_tag_removed** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a tag is removed. See :ref:`pn532-on_tag_removed`.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
@@ -100,7 +100,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The duration of each scan on the PN532. This affects the
   duration that the individual binary sensors stay active when they're found.
   If a device is not found within this time window, it will be marked as not present. Defaults to 1s.
-- **on_tag** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a tag is read. See :ref:`pn532-on_tag`.
 - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
   to use multiple I²C buses.

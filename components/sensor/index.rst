@@ -69,11 +69,11 @@ Configuration variables:
 
 Automations:
 
-- **on_value** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a new value is published. See :ref:`sensor-on_value`.
-- **on_value_range** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_value_range** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a published value transition from outside to a range to inside. See :ref:`sensor-on_value_range`.
-- **on_raw_value** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_raw_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a raw value is received that hasn't passed through any filters. See :ref:`sensor-on_raw_value`.
 
 MQTT Options:

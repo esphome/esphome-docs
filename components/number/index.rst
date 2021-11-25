@@ -45,9 +45,9 @@ Configuration variables:
 
 Automations:
 
-- **on_value** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a new value is published. See :ref:`number-on_value`.
-- **on_value_range** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+- **on_value_range** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a published value transition from outside to a range to inside. See :ref:`number-on_value_range`.
 
 MQTT Options:

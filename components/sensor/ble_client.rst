@@ -45,7 +45,7 @@ Configuration variables:
 
 Automations:
 
-- **on_notify** (*Optional*, :ref:`Action <config-action>`): An automation to
+- **on_notify** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a notify message is received from the device. See :ref:`ble_sensor-on_notify`.
 
 .. _ble-sensor-lambda:

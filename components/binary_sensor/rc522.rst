@@ -54,7 +54,7 @@ Configuration variables:
   is connected to.
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
-- **on_tag** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a tag is read. See
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a tag is read. See
   :ref:`rc522-on_tag`.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the RST line. Some tests
   shows the RC522 working okay without this.
@@ -88,7 +88,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x28``.
 - **i2c_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`I²C Component <i2c>` if you want
   to use multiple I²C buses.
-- **on_tag** (*Optional*, :ref:`Action <config-action>`): An automation to perform when a tag is read. See
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a tag is read. See
   :ref:`rc522-on_tag`.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to the RST line. Some tests
   shows the RC522 working okay without this.

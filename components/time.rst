@@ -27,9 +27,9 @@ Configuration variables:
   or the simpler `TZ database name <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`__ in the form
   <Region>/<City>. ESPHome tries to automatically infer the time zone string based on the time zone of the computer
   that is running ESPHome, but this might not always be accurate.
-- **on_time** (*Optional*, :ref:`Action <config-action>`): Automation to run at specific intervals using
+- **on_time** (*Optional*, :ref:`Automation <automation>`): Automation to run at specific intervals using
   a cron-like syntax. See :ref:`time-on_time`.
-- **on_time_sync** (*Optional*, :ref:`Action <config-action>`): Automation to run when the time source
+- **on_time_sync** (*Optional*, :ref:`Automation <automation>`): Automation to run when the time source
   could be (re-)synchronized.. See :ref:`time-on_time_sync`.
 
 .. _time-has_time_condition:

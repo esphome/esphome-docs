@@ -37,7 +37,7 @@ Advanced settings:
    Defaults to ``UART0``.
 -  **esp8266_store_log_strings_in_flash** (*Optional*, boolean): If set to false, disables storing
    log strings in the flash section of the device (uses more memory). Defaults to true.
--  **on_message** (*Optional*, :ref:`Action <config-action>`): An action to be
+-  **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
    performed when a message is to be logged. The variables ``int level``, ``const char* tag`` and
    ``const char* message`` are available for lambda processing.
 -  **deassert_rts_dtr** (*Optional*, boolean): Deasserts RTS/DTR when opening

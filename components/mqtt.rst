@@ -65,9 +65,9 @@ Configuration variables:
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
   WiFi traffic with more pings. Defaults to 15 seconds.
-- **on_message** (*Optional*, :ref:`Action <config-action>`): An action to be
+- **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a message on a specific MQTT topic is received. See :ref:`mqtt-on_message`.
-- **on_json_message** (*Optional*, :ref:`Action <config-action>`): An action to be
+- **on_json_message** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a JSON message on a specific MQTT topic is received. See :ref:`mqtt-on_json_message`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 

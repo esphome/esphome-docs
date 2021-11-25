@@ -47,12 +47,12 @@ Automation:
         - then:
             - logger.log: Good evening!
 
-- **on_sunrise** (*Optional*, :ref:`Action <config-action>`): An automation to perform at sunrise
+- **on_sunrise** (*Optional*, :ref:`Automation <automation>`): An automation to perform at sunrise
   when the sun crosses a specified angle.
 
   - **elevation** (*Optional*, float): The elevation to cross. Defaults to 0° (horizon).
 
-- **on_sunset** (*Optional*, :ref:`Action <config-action>`): An automation to perform at sunset
+- **on_sunset** (*Optional*, :ref:`Automation <automation>`): An automation to perform at sunset
   when the sun crosses a specified angle.
 
   - **elevation** (*Optional*, float): The elevation to cross. Defaults to 0° (horizon).

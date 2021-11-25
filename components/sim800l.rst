@@ -48,7 +48,7 @@ Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **on_sms_received** (*Optional*, :ref:`Action <config-action>`): An action to be
+- **on_sms_received** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when an SMS is received. See :ref:`sim800l-on_sms_received`.
 
 .. _sim800l-on_sms_received:

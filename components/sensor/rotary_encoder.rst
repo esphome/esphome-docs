@@ -70,9 +70,9 @@ Configuration variables:
     - ``RESTORE_DEFAULT_ZERO`` (Default) - Attempt to restore state and default to zero (0) if not possible to restore.
     - ``ALWAYS_ZERO`` - Always initialize the counter with value zero (0).
 
-- **on_clockwise** (*Optional*, :ref:`Action <config-action>`): Actions to be performed when
+- **on_clockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when
   the knob is turned clockwise. See :ref:`sensor-rotary_encoder-triggers`.
-- **on_anticlockwise** (*Optional*, :ref:`Action <config-action>`): Actions to be performed when
+- **on_anticlockwise** (*Optional*, :ref:`Automation <automation>`): Actions to be performed when
   the knob is turned anticlockwise. See :ref:`sensor-rotary_encoder-triggers`.
 - All other options from :ref:`Sensor <config-sensor>`.
 
