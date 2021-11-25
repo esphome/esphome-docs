@@ -10,7 +10,7 @@ in ESPHome for an individually addressable lights like NeoPixel or WS2812.
 
 It is very similar to the :doc:`fastled` platform.
 In fact, most addressable lights are supported through both light platforms. The
-difference is that they use different libraries: While the fastled platform uses
+difference is that they use different libraries: while the fastled platform uses
 the `FastLED <https://github.com/FastLED/FastLED>`__ library, this integration uses
 the `NeoPixelBus <https://github.com/Makuna/NeoPixelBus/>`__ library internally.
 
@@ -39,13 +39,13 @@ Configuration variables:
 
 - **type** (*Optional*, string): The type of light. This is used to specify
   if it is an RGBW or RGB light and in which order the colors are. Defaults to
-  ``GRB``. Change this if you have lights with white value and/or the colors are in the wrong order.
+  ``GRB``. Change this if you have lights with white channel and/or the colors are in the wrong order.
 - **variant** (**Required**, string): The chipset of the light.
 
   The following options are supported:
 
-  - ``800kbps`` (generic option, recommended if there is no explicit support for the chipset)
-  - ``400kbps``
+  - ``800KBPS`` (generic option, recommended for chipsets without explicit support)
+  - ``400KBPS``
   - ``WS2811``
   - ``WS2812``
   - ``WS2812X``
@@ -57,8 +57,8 @@ Configuration variables:
   - ``APA106``
   - ``LC8812``
 
-  Additionally the following two-wire (set ``data_pin`` and ``clock_pin``)
-  chipsets are supported:
+  Additionally the following two-wire chipsets (set ``data_pin`` and ``clock_pin``)
+  are supported:
 
   - ``WS2801``
   - ``DotStar``
@@ -67,16 +67,18 @@ Configuration variables:
   - ``P9813``
 
 - **method** (*Optional*, string): The method used to transmit the data. By default, ESPHome will try to use the best method
-  available for this chipset, ESP platform, and the given pin. See `methods <neopixelbus-methods>` for more information.
+  available for this chipset, ESP platform, and the given pin. See :ref:`methods <neopixelbus-methods>` for more information.
 
-- **invert** (*Optional*, boolean): Invert data output, for use with n-type transistor. Defaults to ``no``.  
+- **invert** (*Optional*, boolean): Invert data output, for use with n-type transistors. Defaults to ``no``.
 
-**Pin Options:** Some chipsets have two data pins to connect, others only have one.
+**Pin Options:**
+
+Some chipsets have two data pins to connect, others only have one.
 If you have one line, only specify ``pin``, otherwise specify both ``clock_pin`` and ``data_pin``.
 
 - **pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light.
-- **clock_pin** (**Required**, :ref:`config-pin`): The pin for the clock line of the light, for two-pin lights.
-- **data_pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light, for two-pin lights.
+- **clock_pin** (**Required**, :ref:`config-pin`): The pin for the clock line of the light, for two-wire lights.
+- **data_pin** (**Required**, :ref:`config-pin`): The pin for the data line of the light, for two-wire lights.
 
 **Advanced Options:**
 
@@ -150,14 +152,14 @@ The following method is available only for two-wire chips (specify ``data_pin`` 
 The ``method`` key also accepts a short-hand syntax consisting of a single value for historic reasons. Usage of
 this method is no longer recommended, but documented here for reference purposes. Possible values were:
 
-  - ``ESP8266_DMA`` (for ``esp8266_dma``)
-  - ``ESP8266_UART0`` (for ``esp8266_uart`` on bus 0)
-  - ``ESP8266_UART1`` (for ``esp8266_uart`` on bus 1)
-  - ``ESP8266_ASYNC_UART0`` (for ``esp8266_uart`` on bus 0 with async enabled)
-  - ``ESP8266_ASYNC_UART1`` (for ``esp8266_uart`` on bus 1 with async enabled)
-  - ``ESP32_I2S_0`` (for ``esp32_i2s`` on bus 0)
-  - ``ESP32_I2S_1`` (for ``esp32_i2s`` on bus 1)
-  - ``BIT_BANG`` (for ``bit_bang``)
+- ``ESP8266_DMA`` (for ``esp8266_dma``)
+- ``ESP8266_UART0`` (for ``esp8266_uart`` on bus 0)
+- ``ESP8266_UART1`` (for ``esp8266_uart`` on bus 1)
+- ``ESP8266_ASYNC_UART0`` (for ``esp8266_uart`` on bus 0 with async enabled)
+- ``ESP8266_ASYNC_UART1`` (for ``esp8266_uart`` on bus 1 with async enabled)
+- ``ESP32_I2S_0`` (for ``esp32_i2s`` on bus 0)
+- ``ESP32_I2S_1`` (for ``esp32_i2s`` on bus 1)
+- ``BIT_BANG`` (for ``bit_bang``)
 
 See Also
 --------
