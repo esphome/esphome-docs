@@ -42,6 +42,8 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
+- **unit_of_measurement** (*Optional*, string): Manually set the unit
+  of measurement for the number.
 
 Automations:
 
