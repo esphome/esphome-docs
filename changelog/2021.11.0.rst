@@ -114,6 +114,11 @@ Release 2021.11.2 - November 26
 - Remove floating point ops from the ISR :esphomepr:`2751` by :ghuser:`ssieb`
 - Fix parsing numbers from null-terminated buffers :esphomepr:`2755` by :ghuser:`oxan`
 
+Release 2021.11.3 - November 27
+-------------------------------
+
+- Fix restoring preferences for ESP32 :esphomepr:`2805` by :ghuser:`mmakaay`
+
 Full list of changes
 --------------------
 
@@ -284,6 +289,7 @@ All changes
 - esp32_camera_web_server: Improve support for MotionEye :esphomepr:`2777` by :ghuser:`ayufan`
 - Remove floating point ops from the ISR :esphomepr:`2751` by :ghuser:`ssieb`
 - Fix parsing numbers from null-terminated buffers :esphomepr:`2755` by :ghuser:`oxan`
+- Fix restoring preferences for ESP32 :esphomepr:`2805` by :ghuser:`mmakaay`
 
 Past Changelogs
 ---------------
