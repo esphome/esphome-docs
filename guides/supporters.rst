@@ -130,6 +130,7 @@ Contributors
 - `Clifford Roche (@cmroche) <https://github.com/cmroche>`__
 - `CODeRUS (@CODeRUS) <https://github.com/CODeRUS>`__
 - `Cody James (@codyjamestechnical) <https://github.com/codyjamestechnical>`__
+- `Conclusio (@Conclusio) <https://github.com/Conclusio>`__
 - `John Coggeshall (@coogle) <https://github.com/coogle>`__
 - `James Crook (@cooljimy84) <https://github.com/cooljimy84>`__
 - `copercini (@copercini) <https://github.com/copercini>`__
@@ -755,4 +756,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 27, 2021.*
+*This page was last updated November 29, 2021.*
