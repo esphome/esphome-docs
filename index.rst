@@ -483,6 +483,7 @@ Switch Components
     Modbus Switch, components/switch/modbus_controller, modbus.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
+    BLE Writer Switch, components/switch/ble_writer_switch, bluetooth.svg
 
 Button Components
 -----------------
