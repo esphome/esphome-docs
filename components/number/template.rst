@@ -13,11 +13,19 @@ using :ref:`lambdas <config-lambda>`.
     # Example configuration entry
     number:
       - platform: template
-        name: "Template number"
-        optimistic: true
+        name: "Changeable Global Variable"
         min_value: 0
         max_value: 100
         step: 1
+        lambda: |-
+          float value = id(sensor).getValue();
+          ESP_LOGD("volume", "returning value %f, value);
+          return value;
+        set_action:
+          lambda: |-
+            ESP_LOGD("sensor", "setting value %f", x);
+            id(sensor).setValue(x);
+
 
 Configuration variables:
 ------------------------
