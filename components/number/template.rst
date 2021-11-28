@@ -10,7 +10,7 @@ using :ref:`lambdas <config-lambda>`.
 
 .. code-block:: yaml
 
-    # Example configuration entry for setting a value, either in combination with set_action or add_on_state_callback() in a custom component.
+    # Example configuration entry for setting a value, either in combination with the set_action configuration or the add_on_state_callback() method in a custom component.
     number:
       - platform: template
         name: "Some setting"
