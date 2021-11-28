@@ -44,16 +44,24 @@ There are numerous board types out there. Some initialize differently as well. T
 Configuration variables:
 ************************
 
-- **model** (**Required**, "See Models Below"): This the model to use. INITR_BLACKTAB is the default
+- **model** (**Required**, string): The model to use, one of the following options:
+
+  - ``INITR_BLACKTAB``
+  - ``INITR_GREENTAB``
+  - ``INITR_REDTAB``
+  - ``INITR_MINI160X80``
+  - ``INITR_18BLACKTAB``
+  - ``INITR_18REDTAB``
+
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **device_width** (**Required**, int): The device width. 128 is default
 - **device_height** (**Required**, int): The device height. 160 is default
 - **col_start** (**Required**, int): The starting column offset. Default value depends on **model**.
 - **row_start** (**Required**, int): The starting row offset. Default value depends on **model**.
-- **use_bgr** (*Optional*, "true/false"): Use BGR mode. Default is false.
-- **invert_colors** (*Optional*, "true/false"): Invert LCD colors. Default is false.
-- **eight_bit_color** (*Optional*, "true/false" ): 8bit mode. Default is false. This saves 50% of the buffer required for the display.
+- **use_bgr** (*Optional*, boolean): Use BGR mode. Default is false.
+- **invert_colors** (*Optional*, boolean): Invert LCD colors. Default is false.
+- **eight_bit_color** (*Optional*, boolean): 8bit mode. Default is false. This saves 50% of the buffer required for the display.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 
 Memory notes:

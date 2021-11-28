@@ -50,7 +50,7 @@ Configuration variables:
 - **components** (*Optional*, list): The list of components to use from the external source.
   By default, all available components are used.
 
-- **refresh** (*Optional*, :ref:`time <config-time>`): The interval the source will be checked. Has no
+- **refresh** (*Optional*, :ref:`config-time`): The interval the source will be checked. Has no
   effect on ``local``. See :ref:`external-components_refresh`. for more info. Defaults to ``1day``.
 
 

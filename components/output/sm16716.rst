@@ -48,8 +48,8 @@ global ``sm16716`` hub and give it an id, and then define the
 Configuration variables:
 ************************
 
--  **data_pin** (**Required**, :ref:`config-pin_schema`): The pin used for MOSI.
--  **clock_pin** (**Required**, :ref:`config-pin_schema`): The pin which SCLK is
+-  **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for MOSI.
+-  **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin which SCLK is
    connected to.
 -  **num_channels** (*Optional*, int): Total number of channels of the whole
    chain. Must be in range from 3 to 255. Defaults to 3.

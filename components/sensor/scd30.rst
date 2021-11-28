@@ -57,7 +57,7 @@ Configuration variables:
   devices. This variable allows the compensation of those effects by
   setting a temperature offset.
 
-- **automatic_self_calibration** (*Optional*, bool): Whether to enable
+- **automatic_self_calibration** (*Optional*, boolean): Whether to enable
   automatic self calibration (ASC). Defaults to ``true``.
 
 - **ambient_pressure_compensation** (*Optional*, int): Enable compensation
