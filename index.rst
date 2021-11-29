@@ -524,6 +524,7 @@ Text Sensor Components
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
+    Tuya Text Sensor, components/text_sensor/tuya, tuya.png
 
 Climate Components
 ------------------
