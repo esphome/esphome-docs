@@ -1,5 +1,5 @@
 ESPHOME_PATH = ../esphome
-ESPHOME_REF = 2021.11.3
+ESPHOME_REF = 2021.11.4
 
 .PHONY: html html-strict cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
