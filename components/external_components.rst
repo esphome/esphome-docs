@@ -42,6 +42,8 @@ Configuration variables:
 
   - **url** (**Required**, url): HTTP git repository url. See :ref:`external-components_git`.
   - **ref** (*Optional*, string): Git ref (branch or tag). If not specified the default branch is used.
+  - **username** (*Optional*, string): Username for the Git server, if one is required
+  - **password** (*Optional*, string): Password for the Git server, if one is required
 
   local options:
 
