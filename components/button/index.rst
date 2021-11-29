@@ -6,7 +6,7 @@ Button Component
     :image: folder-open.svg
 
 ESPHome has support for components to create a button entity. A button entity is
-basically a momentary switch with no state and can be triggered by either yaml or
+basically a momentary switch with no state and can be triggered by either YAML or
 the user/frontend.
 
 .. note::
