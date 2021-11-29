@@ -184,6 +184,12 @@ folder and components will then be loaded from this local copy. The local path o
 varies per repository name and ref name, so repositories with different refs are considered different
 repositories and updated independently.
 
+If required, you can supply a username and password to use when authenticating with the remote git
+server using the ``username`` and ``password`` fields. This is most useful when combined with the
+``!secret``  feature, to load the values in from a ``secrets.yaml`` file. This is not a comprehensive
+security measure; your username and password will necessarily be stored in clear text within the
+``.esphome`` directory.
+
 .. _external-components_refresh:
 
 Refresh
