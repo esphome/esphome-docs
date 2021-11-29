@@ -23,11 +23,15 @@ All buttons in ESPHome have a name and an optional icon.
 .. code-block:: yaml
 
     # Example button configuration
-    name: Livingroom Lazy Mood
-    id: my_button
+    button:
+      - platform: ...
+        name: Livingroom Lazy Mood
+        id: my_button
 
-    # Optional variables:
-    icon: "mdi:emoticon-outline"
+        # Optional variables:
+        icon: "mdi:emoticon-outline"
+        on_press:
+          - logger.log: "Button pressed"
 
 Configuration variables:
 
@@ -44,10 +48,10 @@ Configuration variables:
 
 Automations:
 
-- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a new value is published. See :ref:`select-on_value`.
+- **on_press** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the button is pressed. See :ref:`button-on_press`.
 
-MQTT Options:
+MQTT options:
 
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
@@ -70,7 +74,7 @@ This automation will be triggered when the button is pressed.
           then:
             - logger.log: Button Pressed
 
-Configuration variables: See :ref:`Automation <automation>`.
+Configuration variables: see :ref:`Automation <automation>`.
 
 .. _button-press_action:
 
@@ -85,7 +89,7 @@ This is an :ref:`Action <config-action>` for pressing a button in an Automation.
 
 Configuration variables:
 
-- **id** (**Required**, :ref:`config-id`): The ID of the select to set.
+- **id** (**Required**, :ref:`config-id`): The ID of the button to set.
 
 .. _button-lambda_calls:
 
@@ -94,7 +98,7 @@ lambda calls
 
 From :ref:`lambdas <config-lambda>`, you can press a button.
 
-- ``press()``: Set the select option.
+- ``press()``: Press the button.
 
   .. code-block:: cpp
 
