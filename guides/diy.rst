@@ -50,6 +50,7 @@ Blog Posts & Videos
 - `Display TM1637 with ESPHome and MQTT showing Youtube subscribers count and other info <https://youtu.be/27JZEky0h1Q>`__ by :ghuser:`electrofun-smart`
 - `Automate your garage door with ESP8266 lysignal Yunshan 7v-30v <https://www.haade.fr/en/blog/home-automation-smarthome-jeedom-homeassistant/tutos-haade-lab/domotiser-sa-porte-de-garage-pour-5e/>`__ by :ghuser:`haade-administrator`
 - `Embedded controller for Audioengine A5+ <https://github.com/chatziko/audioengine-a5-controller/>`__ by :ghuser:`chatziko`
+- `E-paper Weather Display - HA-ESPHome <https://github.com/NamasteJasutin/esphome_weatherdisplay>`__ by :ghuser:`NamasteJasutin`
 
 Custom Components & Code
 ------------------------
