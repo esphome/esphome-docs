@@ -7,8 +7,7 @@ ESPHome Core Configuration
 
 Here you specify some core information that ESPHome needs to create
 firmwares. Most importantly, this is the section of the configuration
-where you specify the **name** of the node, the **platform** and
-**board** you’re using.
+where you specify the **name** of the node.
 
 .. code-block:: yaml
 
@@ -39,25 +38,26 @@ Advanced options:
   platformio.ini file. See :ref:`esphome-platformio_options`.
 - **includes** (*Optional*, list of files): A list of C/C++ files to include in the main (auto-generated) sketch file
   for custom components. The paths in this list are relative to the directory where the YAML configuration file
-  is in. See :ref:`esphome-includes` for more info.
+  is in. See :ref:`esphome-includes`.
 - **libraries** (*Optional*, list of libraries): A list of libraries to include in the project. See
-  :ref:`esphome-libraries` for more information.
+  :ref:`esphome-libraries`.
 - **comment** (*Optional*, string): Additional text information about this node. Only for display in UI.
 - **name_add_mac_suffix** (*Optional*, boolean): Appends the last 3 bytes of the mac address of the device to
   the name in the form ``<name>-aabbcc``. Defaults to ``false``.
   See :ref:`esphome-mac_suffix`.
-
 - **project** (*Optional*): ESPHome Creator's Project information. See :ref:`esphome-creators_project`.
 
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
 
-Platform options that have been moved (now in platform-specific sections :doc:`esp32 </components/esp32>` and :doc:`esp8266 </components/esp8266>`):
+Old-style platform options, these have been moved to the platform-specific :doc:`esp32 </components/esp32>` and 
+:doc:`esp8266 </components/esp8266>` sections but are still accepted for compatibility reasons (not recommended for
+new projects):
 
-- **platform** (**Required**, string): The type of platform. One of ``esp8266`` or ``esp32``.
-- **board** (**Required**, string): The board that should be used. See 
+- **platform** (**Required**, string): The platform used, either ``esp8266`` or ``esp32``.
+- **board** (**Required**, string): The board used, see
   :doc:`esp32 </components/esp32>` and :doc:`esp8266 </components/esp8266>` for more information.
-- **arduino_version** (*Optional*): The version of the Arduino framework to compile the project against.
+- **arduino_version** (*Optional*, string): The version of the Arduino framework to compile the project against.
 - **esp8266_restore_from_flash** (*Optional*, boolean): For ESP8266s, whether to store some persistent preferences in flash
   memory.
 
@@ -154,7 +154,7 @@ This automation will be triggered on every ``loop()`` iteration (usually around 
 
 PlatformIO supports a number of options in its ``platformio.ini`` file. With the ``platformio_options``
 parameter you can tell ESPHome what options to pass into the ``env`` section of the PlatformIO file
-(Note you can also do this by editing the ``platformio.ini`` file manually).
+(note you can also do this by editing the ``platformio.ini`` file manually).
 
 You can view a full list of PlatformIO options here: https://docs.platformio.org/en/latest/projectconf/section_env.html
 
