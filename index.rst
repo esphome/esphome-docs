@@ -458,6 +458,15 @@ Switch Components
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
 
+Button Components
+-----------------
+
+.. imgtable::
+
+    Button Core, components/button/index, folder-open.svg
+    Template Button, components/button/template, description.svg
+    Restart Button, components/button/restart, restart.svg
+
 Fan Components
 --------------
 
