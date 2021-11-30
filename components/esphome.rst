@@ -61,12 +61,6 @@ new projects):
 - **esp8266_restore_from_flash** (*Optional*, boolean): For ESP8266s, whether to store some persistent preferences in flash
   memory.
 
-Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ for the ESP8266, and
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ for the ESP32 (the icon
-  next to the name can be used to copy the board ID). *This only affects pin aliases and some internal settings*,
-  if unsure choose a generic board from Espressif.
-
 Automations:
 
 - **on_boot** (*Optional*, :ref:`Automation <automation>`): An automation to perform
