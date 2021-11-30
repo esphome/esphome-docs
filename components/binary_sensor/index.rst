@@ -28,7 +28,7 @@ you can always override it.
 Configuration variables:
 
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://www.home-assistant.io/components/binary_sensor/
+  sensor. See https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes
   for a list of available options.
 - **icon** (*Optional*, icon): Manually set the icon to use for the binary sensor in the frontend.
 - **filters** (*Optional*, list): A list of filters to apply on the binary sensor values such as
