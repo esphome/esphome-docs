@@ -426,9 +426,9 @@ Configuration variables:
 - **width** (**Required**, integer): The graph width in pixels
 - **height** (**Required**, integer): The graph height in pixels
 - **duration** (**Required**, seconds): The total graph history duration.
-- **border** (*Optional*, boolean): Specifics if a border will be draw around the graph. Default is True.
+- **border** (*Optional*, boolean): Specifies if a border will be drawn around the graph. Default is True.
 - **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
-- **y_grid** (*Optional*, float): Specifics the number of units per division. If not specified, no horizontal grid will be drawn.
+- **y_grid** (*Optional*, float): Specifies the number of units per division. If not specified, no horizontal grid will be drawn.
 - **max_range** (*Optional*): Specifies the maximum Y-axis range.
 - **min_range** (*Optional*): Specifies the minimum Y-axis range.
 - **max_value** (*Optional*): Specifies the maximum Y-axis value.

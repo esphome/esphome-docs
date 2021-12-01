@@ -90,7 +90,7 @@ and you will need to reverse them in your YAML configuration.
 BH1750
 ------
 
-When using the default resolution of 0.5 for the BH17850, the result is now divided by 2 as per the finidings of the community.
+When using the default resolution of 0.5 for the BH1750, the result is now divided by 2 as per the finidings of the community.
 
 
 Binary sensor device classes
@@ -104,6 +104,15 @@ Release 2021.11.1 - November 17
 
 - Fix AQI index calculator :esphomepr:`2739` by :ghuser:`freekode`
 - Re-instate device class update for binary sensors :esphomepr:`2743` by :ghuser:`frenck`
+
+Release 2021.11.2 - November 26
+-------------------------------
+
+- Allow UART debug configuration with no after: definition :esphomepr:`2753` by :ghuser:`mmakaay`
+- Fix gif frame scaling #2717 :esphomepr:`2750` by :ghuser:`davet2001`
+- esp32_camera_web_server: Improve support for MotionEye :esphomepr:`2777` by :ghuser:`ayufan`
+- Remove floating point ops from the ISR :esphomepr:`2751` by :ghuser:`ssieb`
+- Fix parsing numbers from null-terminated buffers :esphomepr:`2755` by :ghuser:`oxan`
 
 Full list of changes
 --------------------
@@ -270,6 +279,11 @@ All changes
 - Fix senseair component uart read timeout :esphomepr:`2658` by :ghuser:`rotarykite`
 - Fix AQI index calculator :esphomepr:`2739` by :ghuser:`freekode`
 - Re-instate device class update for binary sensors :esphomepr:`2743` by :ghuser:`frenck`
+- Allow UART debug configuration with no after: definition :esphomepr:`2753` by :ghuser:`mmakaay`
+- Fix gif frame scaling #2717 :esphomepr:`2750` by :ghuser:`davet2001`
+- esp32_camera_web_server: Improve support for MotionEye :esphomepr:`2777` by :ghuser:`ayufan`
+- Remove floating point ops from the ISR :esphomepr:`2751` by :ghuser:`ssieb`
+- Fix parsing numbers from null-terminated buffers :esphomepr:`2755` by :ghuser:`oxan`
 
 Past Changelogs
 ---------------

@@ -458,6 +458,15 @@ Switch Components
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
 
+Button Components
+-----------------
+
+.. imgtable::
+
+    Button Core, components/button/index, folder-open.svg
+    Template Button, components/button/template, description.svg
+    Restart Button, components/button/restart, restart.svg
+
 Fan Components
 --------------
 
@@ -524,6 +533,7 @@ Text Sensor Components
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
+    Tuya Text Sensor, components/text_sensor/tuya, tuya.png
 
 Climate Components
 ------------------
@@ -569,6 +579,7 @@ Misc Components
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
     HTTP Request, components/http_request, connection.svg
+    mDNS, components/mdns, radio-tower.svg
 
     Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
