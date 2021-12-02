@@ -81,7 +81,7 @@ Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
-******************************************
+*********************************************
 
 This :ref:`action <config-action>` sends a 24-bit Coolix infrared remote code to a remote transmitter.
 
@@ -98,7 +98,7 @@ Configuration variables:
 .. _remote_transmitter-transmit_dish:
 
 ``remote_transmitter.transmit_dish`` Action
-************************************************
+*******************************************
 
 This :ref:`action <config-action>` sends a Dish Network infrared remote code to a remote transmitter.
 
