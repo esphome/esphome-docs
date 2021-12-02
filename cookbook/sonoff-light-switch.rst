@@ -3,7 +3,6 @@ Sonoff Light switch options
 
 .. seo::
     :description: A series of options on using Sonoff devices as a light switch within ESPHome
-    :image: sonoff_light_switch.jpg
     :keywords: Relay, Sonoff Basic, Sonoff Dual Dual R1, Light, HASS, Home Assistant, ESPHome
 
 There are a number of options for using Sonoff Devices as light switches, including purpose built ones

@@ -3,7 +3,7 @@ ILI9341 TFT LCD
 
 .. seo::
     :description: Instructions for setting up ILI9341 TFT LCD display drivers.
-    :image: ili9341-full.jpg
+    :image: ili9341.jpg
 
 .. _ili9341:
 

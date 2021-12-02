@@ -3,7 +3,7 @@ PID Climate
 
 .. seo::
     :description: Instructions for setting up PID climate controllers with ESPHome.
-    :image: function.png
+    :image: function.svg
 
 The ``pid`` climate platform allows you to regulate a value with a
 `PID controller <https://en.wikipedia.org/wiki/PID_controller>`__.

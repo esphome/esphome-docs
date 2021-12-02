@@ -3,7 +3,7 @@ SM16716 LED driver
 
 .. seo::
     :description: Instructions for setting up SM16716 LED drivers in ESPHome.
-    :image: sm16716.png
+    :image: sm16716.svg
     :keywords: SM16716, Feit Electric A19 Smart WiFi Bulb, Merkury Innovations A21 Smart Wi-Fi Bulb
 
 .. _sm16716-component:

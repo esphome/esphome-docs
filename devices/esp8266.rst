@@ -3,7 +3,7 @@ Generic ESP8266
 
 .. seo::
     :description: Instructions for using generic ESP8266s with ESPHome.
-    :image: esp8266.png
+    :image: esp8266.svg
     :keywords: ESP8266
 
 All ESP8266-based devices are supported by ESPHome. Simply select ``ESP8266`` when

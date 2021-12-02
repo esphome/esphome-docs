@@ -3,7 +3,7 @@ Tuya Dimmer
 
 .. seo::
     :description: Instructions for setting up a Tuya dimmer switch.
-    :image: brightness-medium.png
+    :image: brightness-medium.svg
 
 The ``tuya`` light platform creates a simple brightness-only light from a
 tuya serial component.

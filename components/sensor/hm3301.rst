@@ -3,7 +3,7 @@ The Grove - Laser PM2.5 Sensor (HM3301)
 
 .. seo::
     :description: Instructions for setting up HM3301 Particulate matter sensor
-    :image: hm3301.png
+    :image: hm3301.jpg
 
 The ``HM3301`` sensor platform allows you to use your HM3301 particulate matter sensor
 (`more info <http://wiki.seeedstudio.com/Grove-Laser_PM2.5_Sensor-HM3301>`__)

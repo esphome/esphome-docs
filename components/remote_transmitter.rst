@@ -3,7 +3,7 @@ Remote Transmitter
 
 .. seo::
     :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
-    :image: remote.png
+    :image: remote.svg
     :keywords: Infrared, IR, RF, Remote, TX
 
 The ``remote_transmitter`` component lets you send digital packets to control
@@ -182,6 +182,12 @@ Configuration variables:
 ******************************************
 
 This :ref:`action <config-action>` sends an NEC infrared remote code to a remote transmitter.
+
+.. note::
+
+    In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
+    Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+    For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 .. code-block:: yaml
 

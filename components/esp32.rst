@@ -3,7 +3,7 @@ ESP32 Platform
 
 .. seo::
     :description: Configuration for the ESP32 platform for ESPHome.
-    :image: esp32.png
+    :image: esp32.svg
 
 This component contains platform-specific options for the ESP32 platform.
 
@@ -18,7 +18,7 @@ Configuration variables:
 
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__. 
+  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__.
   *This only affects pin aliases, flash size and some internal settings*, if unsure choose a generic board.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
   See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
@@ -42,7 +42,7 @@ This is the default framework for ESP32 chips at the moment.
         type: arduino
         version: 2.0.0
 
-- **version** (*Optional*, string): The base framework version number to use, from 
+- **version** (*Optional*, string): The base framework version number to use, from
   `ESP32 arduino releases <https://github.com/espressif/arduino-esp32/releases>`__. Defaults to ``recommended``. Additional values are:
 
   - ``dev``: Use the latest commit from https://github.com/espressif/arduino-esp32, note this may break at any time
@@ -75,7 +75,7 @@ of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.
       advanced:
         ignore_efuse_mac_crc: false
 
-- **version** (*Optional*, string): The base framework version number to use, from 
+- **version** (*Optional*, string): The base framework version number to use, from
   `ESP32 ESP-IDF releases <https://github.com/espressif/esp-idf/releases>`__. Defaults to ``recommended``. Additional values are:
 
   - ``dev``: Use the latest commit from https://github.com/espressif/esp-idf, note this may break at any time

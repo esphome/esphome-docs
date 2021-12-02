@@ -3,7 +3,7 @@ Getting Started with ESPHome
 
 .. seo::
     :description: Getting Started guide for installing ESPHome using the command line and creating a basic configuration.
-    :image: console.png
+    :image: console.svg
 
 ESPHome is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to set up a

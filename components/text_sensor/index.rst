@@ -3,7 +3,7 @@ Text Sensor Component
 
 .. seo::
     :description: Instructions for setting up text sensors that represent their state as a string of text.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 Text sensors are a lot like normal :doc:`sensors </components/sensor/index>`.
 But where the "normal" sensors only represent sensors that output **numbers**, this
@@ -141,6 +141,25 @@ Search the current value of the text sensor for a string, and replace it with an
           - "pre -> bar"
 
 The arguments are a list of substitutions, each in the form ``TO_FIND -> REPLACEMENT``.
+
+``map``
+*******
+
+Lookup the current value of the text sensor in a list, and return the matching item if found. 
+Does not change the value of the text sensor if the current value wasn't found.
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: template
+      # ...
+      filters:
+        - map:
+          - high -> On
+          - low -> Off
+
+The arguments are a list of substitutions, each in the form ``LOOKUP -> REPLACEMENT``.
 
 ``lambda``
 **********

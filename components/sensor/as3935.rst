@@ -3,7 +3,7 @@ AMS AS3935 Franklin Lightning Sensor
 
 .. seo::
     :description: Instructions for setting up AS3935 lightning sensor
-    :image: images/as3935.jpg
+    :image: as3935.jpg
     :keywords: as3935
 
 The **AS3935** sensor platform allows you to use your AS3935 sensor

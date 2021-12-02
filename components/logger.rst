@@ -3,7 +3,7 @@ Logger Component
 
 .. seo::
     :description: Instructions for setting up the central logging component in ESPHome.
-    :image: file-document-box.png
+    :image: file-document-box.svg
 
 The logger component automatically logs all log messages through the
 serial port and through MQTT topics. By default, all logs with a

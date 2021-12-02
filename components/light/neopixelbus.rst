@@ -3,7 +3,7 @@ NeoPixelBus Light
 
 .. seo::
     :description: Instructions for setting up Neopixel addressable lights.
-    :image: color_lens.png
+    :image: color_lens.svg
 
 The ``neopixelbus`` light platform allows you to create RGB lights
 in ESPHome for an individually addressable lights like NeoPixel or WS2812.

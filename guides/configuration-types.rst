@@ -3,7 +3,7 @@ Configuration Types
 
 .. seo::
     :description: Documentation of different configuration types in ESPHome
-    :image: settings.png
+    :image: settings.svg
 
 ESPHome’s configuration files have several configuration types. This
 page describes them.
