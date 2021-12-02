@@ -24,12 +24,12 @@ The `'hbridge`' fan platform allows you to use a compatible `h-bridge` (L298N, D
 
     # Example configuration entry
     output:
-      - platform: esp8266_pwm
+      - platform: ...
         id: motor_forward_pin
-        pin: D1
-      - platform: esp8266_pwm
+        pin: GPIO5
+      - platform: ...
         id: motor_reverse_pin
-        pin: D2
+        pin: GPIO4
     
     fan:
       - platform: hbridge
