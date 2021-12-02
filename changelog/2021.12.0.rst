@@ -95,6 +95,11 @@ Breaking Changes
 - Fix NEC protocol implementation :esphomepr:`2534` by :ghuser:`dudanov` (breaking-change)
 - Tuya Cover improvements :esphomepr:`2637` by :ghuser:`pauln` (breaking-change)
 
+Beta Fixes
+^^^^^^^^^^
+
+- Feed watchdog during OTA :esphomepr:`2852` by :ghuser:`oxan`
+
 All changes
 ^^^^^^^^^^^
 
@@ -174,6 +179,7 @@ All changes
 - Tuya Cover improvements :esphomepr:`2637` by :ghuser:`pauln` (breaking-change)
 - Fix wifi not working with manual_ip using esp-idf :esphomepr:`2849` by :ghuser:`Maelstrom96`
 - modbus_controller: bugfix: enable overriding calculated register size :esphomepr:`2845` by :ghuser:`martgras`
+- Feed watchdog during OTA :esphomepr:`2852` by :ghuser:`oxan`
 
 Past Changelogs
 ---------------
