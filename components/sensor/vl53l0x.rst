@@ -63,7 +63,7 @@ Configuration variables:
   (mega counts per second). This is the minimum signal amplitude detected by the sensor necessary
   for it to report a valid reading. Setting a lower value may increase the range of the sensor
   but also increases the chance of getting inaccurate readings. Defaults to ``0.25``.
-- **long_range** (*Optional*, bool): Set the sensor in long range mode. The signal_rate_limit is overruled
+- **long_range** (*Optional*, boolean): Set the sensor in long range mode. The signal_rate_limit is overruled
   to ``0.1``. Defaults to ``false``.
 - **address** (*Optional*, int): Manually specify the i2c address of the sensor. Defaults to ``0x29``.
   If an address other the ``0x29`` is specified, the sensor will be dynamically re-addressed at startup.

@@ -358,7 +358,7 @@ Additional Actions/Behavior
   must be disengaged before it may be engaged.
 - **min_heating_run_time** (*Required with* ``heat_action``, :ref:`config-time`): Minimum duration the heating action
   must be engaged before it may be disengaged.
-- **min_idle_time** (*Required*, :ref:`config-time`): Minimum duration the idle action must be active before calling
+- **min_idle_time** (**Required**, :ref:`config-time`): Minimum duration the idle action must be active before calling
   another climate action.
 - **min_fan_mode_switching_time** (*Required with any* ``fan_mode`` *action*, :ref:`config-time`): Minimum duration
   any given fan mode must be active before it may be changed.

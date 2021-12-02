@@ -14,15 +14,15 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **modbus_functioncode** (**Required**): type of the modbus register.
-- **address**: (**Required**, integer): start address of the first register in a range
-- **offset**: (*Optional*, integer): not required in most cases
+- **address**: (**Required**, int): start address of the first register in a range
+- **offset**: (*Optional*, int): not required in most cases
   offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
   The value for offset depends on the register type. For holding input registers the offset is in bytes. For coil and discrete input resisters the LSB of the first data byte contains the coil addressed in the request. The other coils follow toward the high-order end of this byte and from low order to high order in subsequent bytes. For the registers  offset is the position of the relevant bit.
   To get the value of the coil register 2 can be retrived using address: 2 / offset: 0 or address: 0 / offset 2
 - **bitmask** : some values are packed in a response. The bitmask is used to determined if the result is true or false
-- **skip_updates**: (*Optional*, integer): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
+- **skip_updates**: (*Optional*, int): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 - **use_write_multiple**: (*Optional*, boolean): By default the modbus command ``Force Single Coil`` (function code 5) is used to send state changes to the device. If your device only supports ``Force Multiple Coils`` (function code 15) set this option to true.
-- **custom_data** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used. 
+- **custom_data** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used.
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
   See :ref:`modbus_custom_data` how to use ``custom_command``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):

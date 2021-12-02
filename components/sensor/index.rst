@@ -43,7 +43,7 @@ Configuration variables:
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://www.home-assistant.io/integrations/sensor/#device-class
+  sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes
   for a list of available options. Set to ``""`` to remove the default device class of a sensor.
 - **state_class** (*Optional*, string): The state class for the
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
@@ -252,15 +252,15 @@ window size will make the filter slow to react to input changes.
 
 Configuration variables:
 
-- **window_size** (*Optional*, integer): The number of values over which to calculate the median
+- **window_size** (*Optional*, int): The number of values over which to calculate the median
   when pushing out a value. This number should
   be odd if you want an actual received value pushed out.
   Defaults to ``5``.
-- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+- **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
   example, in above configuration the median is calculated after every 4th
   received sensor value, over the last 7 received values.
   Defaults to ``5``.
-- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
   published. With this parameter you can specify when the very first value is to be sent.
   Must be smaller than or equal to ``send_every``
   Defaults to ``1``.
@@ -284,13 +284,13 @@ react to input changes.
 
 Configuration variables:
 
-- **window_size** (*Optional*, integer): The number of values over which to calculate the min/max when pushing out a
+- **window_size** (*Optional*, int): The number of values over which to calculate the min/max when pushing out a
   value. Defaults to ``5``.
-- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+- **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
   example, in above configuration the min is calculated after every 4th
   received sensor value, over the last 7 received values.
   Defaults to ``5``.
-- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
   published. With this parameter you can specify when the very first value is to be sent.
   Must be smaller than or equal to ``send_every``
   Defaults to ``1``.
@@ -303,14 +303,14 @@ react to input changes.
 
 Configuration variables:
 
-- **window_size** (*Optional*, integer): The number of values over which to calculate the min/max
+- **window_size** (*Optional*, int): The number of values over which to calculate the min/max
   when pushing out a value.
   Defaults to ``5``.
-- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+- **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
   example, in above configuration the min is calculated after every 4th
   received sensor value, over the last 7 received values.
   Defaults to ``5``.
-- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
   published. With this parameter you can specify when the very first value is to be sent.
   Must be smaller than or equal to ``send_every``
   Defaults to ``1``.
@@ -335,12 +335,12 @@ out an average on a specific interval (thus increasing resolution).
 
 Configuration variables:
 
-- **window_size** (*Optional*, integer): The number of values over which to perform an
+- **window_size** (*Optional*, int): The number of values over which to perform an
   average when pushing out a value.
-- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. For
+- **send_every** (*Optional*, int): How often a sensor value should be pushed out. For
   example, in above configuration the weighted average is only
   pushed out on every 15th received sensor value.
-- **send_first_at** (*Optional*, integer): By default, the very first raw value on boot is immediately
+- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
   published. With this parameter you can specify when the very first value is to be sent.
   Defaults to ``1``.
 
@@ -355,7 +355,7 @@ out an average on a specific interval (thus increasing resolution).
 Configuration variables:
 
 - **alpha** (*Optional*, float): The forget factor/alpha value of the filter. Defaults to ``0.1``.
-- **send_every** (*Optional*, integer): How often a sensor value should be pushed out. Defaults to ``15``.
+- **send_every** (*Optional*, int): How often a sensor value should be pushed out. Defaults to ``15``.
 
 ``throttle``
 ************

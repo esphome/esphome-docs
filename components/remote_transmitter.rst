@@ -311,8 +311,8 @@ This :ref:`action <config-action>` sends a Dish Network infrared remote code to 
 
 Configuration variables:
 
-- **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``.
-- **command** (**Required**, int, 0-63): The command to send.
+- **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
+- **command** (**Required**, int): The command to send, between 0 and 63 inclusive.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.

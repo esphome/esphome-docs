@@ -66,8 +66,8 @@ Configuration variables:
 - **position_datapoint** (**Required**, int): The datapoint id number of the cover position value.
 - **position_report_datapoint** (*Optional*, int): The datapoint id number of the cover position report value, if separate from position_datapoint.
 - **direction_datapoint** (*Optional*, int): The datapoint id number for setting the direction of travel.
-- **min_value** (*Optional*, int, default 0): The lowest position value, meaning cover closed.
-- **max_value** (*Optional*, int, default 100): the highest position value, meaning cover opened.
+- **min_value** (*Optional*, int): The lowest position value, meaning cover closed. Defaults to 0.
+- **max_value** (*Optional*, int): the highest position value, meaning cover opened. Defaults to 255.
 - **invert_position** (*Optional*, boolean): Sets the direction of travel to be inverted, if direction_datapoint is configured.
 - All other options from :ref:`Cover <config-cover>`.
 
@@ -110,4 +110,3 @@ See Also
 - :doc:`/components/cover/index`
 - :apiref:`tuya/cover/tuya_cover.h`
 - :ghedit:`Edit`
-
