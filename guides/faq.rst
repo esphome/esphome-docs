@@ -354,7 +354,7 @@ Important: follow these `instructions </components/esphome.html#changing-esphome
 How can I test a Pull Request?
 ------------------------------
 
-By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page). Then, if you add a block of code like the following to your YAML file, once you recompile and flash your device, the code from the Pull Request will be used for these components.
+By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and flash your device, the code from the Pull Request will be used for the components changed by the Pull Request.
 
 .. code-block:: yaml
 
@@ -366,7 +366,7 @@ By leveraging the :doc:`external components </components/external_components>` f
           - ccs811  
 
 
-Note that this only works for Pull Requests that change only files within a component. If any files outside ``esphome/components/`` are added or changed, this method unfortunately doesn't work.
+Note that this only works for Pull Requests that only change files within components. If any files outside ``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled with the "core" label on GitHub.
 
 See Also
 --------
