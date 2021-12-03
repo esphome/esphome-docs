@@ -34,7 +34,7 @@ Configuration variables:
 
 - **clk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CLK line hooked up to.
 - **dio_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the DIO line hooked up to.
-- **intensity** (*Optional*, integer): The intensity with which the TM1637 should drive the outputs. Range is from
+- **intensity** (*Optional*, int): The intensity with which the TM1637 should drive the outputs. Range is from
   0 (least intense) to 7 (the default).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the TM1637.
   See :ref:`display-tm1637_lambda` for more information.

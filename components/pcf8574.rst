@@ -43,7 +43,8 @@ not work.
           # Use pin number 0
           number: 0
           # One of INPUT or OUTPUT
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
 Configuration variables:
@@ -59,7 +60,7 @@ Pin configuration variables:
 ****************************
 
 - **pcf8574** (**Required**, :ref:`config-id`): The id of the PCF8574 component of the pin.
-- **number** (**Required**, integer): The pin number.
+- **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
   should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.

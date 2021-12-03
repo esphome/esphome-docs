@@ -6,9 +6,14 @@ on:
     branches: [current, next]
 
   pull_request:
+    types: [opened, edited, reopened, synchronize]
 
 permissions:
   contents: read
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:

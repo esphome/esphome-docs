@@ -58,6 +58,7 @@ Configuration variables:
 - **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
+- **debug** (*Optional*, mapping): Options for debugging communication on the UART hub, see :ref:`uart-debugging`.
 
 ESP32 options:
 
@@ -109,6 +110,70 @@ This :ref:`Action <config-action>` sends a defined UART signal to the given UART
       - uart.write:
           id: my_second_uart
           data: 'other data'
+
+.. _uart-debugging:
+
+Debugging
+---------
+
+If you need insight in the communication that is being sent and/or received over a UART bus, then you can make use
+of the debugging feature.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      baud_rate: 115200
+      debug:
+        direction: BOTH
+        dummy_receiver: false
+        after:
+          bytes: 60
+        sequence:
+          - lambda: UARTDebug::log_hex(direction, bytes, ':');
+
+- **direction** (*Optional*, enum): The direction of communication to debug, one of: "RX" (receive, incoming),
+  "TX" (send, outgoing) or "BOTH". Defaults to "BOTH".
+- **dummy_receiver** (*Optional*, boolean): Whether or not to enable the dummy receiver feature. The debugger
+  will only accumulate bytes that are actually read or sent by a UART device component. This feature is
+  useful when you want to debug all incoming communication, while no UART device component is configured
+  for the UART bus (yet). This is especially useful for developers. Normally you'd want to leave this
+  option disabled. Defaults to false.
+- **after** (*Optional*, mapping): The debugger accumulates bytes of communication. This option defines when
+  to trigger publishing the accumulated bytes. The possible options are:
+
+  - **bytes** (*Optional*, int): Trigger after accumulating the specified number of bytes. Defaults to 256.
+  - **timeout** (*Optional*, :ref:`config-time`): Trigger after no communication has been seen during the
+    specified timeout, while one or more bytes have been accumulated. Defaults to 100ms.
+  - **delimiter** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
+    detected in the communication.
+
+- **sequence** (**Required**, :ref:`Action <config-action>`): Action(s) to perform for publishing debugging data. The
+  actions can make use of the following variables:
+
+  - **direction**: ``uart::UART_DIRECTION_RX`` or ``uart::UART_DIRECTION_TX``
+  - **bytes**: ``std::vector<uint8_t>`` containing the accumulated bytes
+
+**Helper functions for logging**
+
+Helper functions are provided to make logging of debug data in various formats easy:
+
+- **UARTDebug::log_hex(direction, bytes, char separator)** Log the bytes as hex values, separated by the provided
+  separator character.
+- **UARTDebug::log_string(direction, bytes)** Log the bytes as string values, escaping unprintable characters.
+- **UARTDebug::log_int(direction, bytes, char separator)** Log the bytes as integer values, separated by the provided
+  separator character.
+- **UARTDebug::log_binary(direction, bytes, char separator)** Log the bytes as ``<binary> (<hex>)`` values,
+  separated by the provided separator character.
+
+**Logger buffer size**
+
+Beware that the ``logger`` component uses a limited buffer size of 512 bytes by default. If the UART
+debugger log lines become too long, then you will notice that they end up truncated in the log output.
+
+In that case, either make sure that the debugger outputs less data per log line (e.g. by setting the
+``after.bytes`` option to a lower value) or increase the logger buffer size using the logger
+``tx_buffer_size`` option.
 
 See Also
 --------

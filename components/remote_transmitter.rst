@@ -106,6 +106,27 @@ Configuration variables:
   with for infrared signals. Defaults to ``0Hz``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_pronto:
+
+``remote_transmitter.transmit_pronto`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a raw code to a remote transmitter specified in Pronto format.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_pronto:
+          data: "0000 006D 0010 0000 0008 0020 0008 0046 000A 0020 0008 0020 0008 001E 000A 001E 000A 0046 000A 001E 0008 0020 0008 0020 0008 0046 000A 0046 000A 0046 000A 001E 000A 001E 0008 06C3"
+
+Configuration variables:
+
+- **data** (**Required**, string): The raw code to send specified as a string.
+  A lot of remote control Pronto codes can be found on http://remotecentral.com
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+
+
 ``remote_transmitter.transmit_jvc`` Action
 ******************************************
 
@@ -284,8 +305,8 @@ This :ref:`action <config-action>` sends a Dish Network infrared remote code to 
 
 Configuration variables:
 
-- **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``.
-- **command** (**Required**, int, 0-63): The command to send.
+- **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
+- **command** (**Required**, int): The command to send, between 0 and 63 inclusive.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.

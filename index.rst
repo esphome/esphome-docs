@@ -238,6 +238,7 @@ Electricity
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
+    CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
     Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
@@ -382,6 +383,7 @@ Binary Sensor Components
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
+    CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -566,6 +568,7 @@ Misc Components
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
     HTTP Request, components/http_request, connection.svg
+    mDNS, components/mdns, radio-tower.svg
 
     Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
@@ -577,6 +580,7 @@ Misc Components
     ESP32 Ethernet, components/ethernet, ethernet.svg
 
     ESP32 Camera, components/esp32_camera, camera.svg
+    ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
 
@@ -589,7 +593,8 @@ Misc Components
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
     Captive Portal, components/captive_portal, wifi-strength-alert-outline.svg
-    Improv, components/esp32_improv, improv.svg
+    Improv via BLE, components/esp32_improv, improv.svg
+    Improv via Serial, components/improv_serial, improv.svg
     Debug Component, components/debug, bug-report.svg
     TM1651 Battery Display, components/tm1651, tm1651_battery_display.jpg
     RF Bridge, components/rf_bridge, rf_bridge.jpg

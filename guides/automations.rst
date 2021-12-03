@@ -531,9 +531,9 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 Configuration variables:
 
 - **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
-- **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
+- **then** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to true.
   Defaults to doing nothing.
-- **else** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to false.
+- **else** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to false.
   Defaults to doing nothing.
 
 .. _while_action:
@@ -559,7 +559,31 @@ a block until a given condition evaluates to false.
 Configuration variables:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
-- **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform until the condition evaluates to false.
+
+.. _repeat_action:
+
+``repeat`` Action
+-----------------
+
+This action allows you to repeat a block a given number of times.
+For example, the automation below will flash the light five times.
+
+.. code-block:: yaml
+
+    on_...:
+      - repeat:
+          count: 5
+          then:
+            - light.turn_on: some_light
+            - delay: 1s
+            - light.turn_off: some_light
+            - delay: 10s
+
+Configuration variables:
+
+- **count** (**Required**, int): The number of times the action should be repeated.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to repeat.
 
 .. _wait_until_action:
 
@@ -653,9 +677,9 @@ Configuration variables:
     - ``queued``: Start a new run after previous runs complete.
     - ``parallel``: Start a new, independent run in parallel with previous runs.
 
-- **max_runs** (*Optional*, integer): Allows limiting the maxiumun number of runs when using script
+- **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
-- **then** (**Required**, :ref:`config-action`): The action to perform.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
 .. _script-execute_action:
@@ -792,7 +816,7 @@ trigger, but this technique is more light-weight and user-friendly.
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
-- **then** (**Required**, :ref:`config-action`): The action to perform.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
 Timers and timeouts

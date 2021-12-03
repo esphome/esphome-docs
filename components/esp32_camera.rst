@@ -34,6 +34,10 @@ Configuration variables:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 Connection Options:
 
@@ -86,8 +90,8 @@ Frame Settings:
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
-- **vertical_flip** (*Optional*, bool): Whether to flip the image vertically. Defaults to ``true``.
-- **horizontal_mirror** (*Optional*, bool): Whether to mirror the image horizontally. Defaults to ``true``.
+- **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
+- **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
 
 .. note::
 
@@ -312,7 +316,7 @@ Configuration for TTGO-Camera Mini
       # Image settings
       name: My Camera
       # ...
-      
+
 Configuration for ESP-EYE
 ----------------------------------
 

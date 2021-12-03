@@ -20,7 +20,7 @@ Configuration variables:
 ------------------------
 
 - **useragent** (*Optional*, string): User-Agent header for requests. Defaults to ``ESPHome``.
-- **timeout** (*Optional*, :ref:`time <config-time>`): Timeout for request. Defaults to ``5s``.
+- **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 ESP8266 Options:

@@ -46,10 +46,10 @@ global ``tlc5947`` hub and give it an id, and then define the
 Configuration variables:
 ************************
 
--  **data_pin** (**Required**, :ref:`config-pin_schema`): The pin connected to DIN.
--  **clock_pin** (**Required**, :ref:`config-pin_schema`): The pin connected to CLK.
--  **lat_pin** (**Required**, :ref:`config-pin_schema`): The pin connected to LAT.
--  **oe_pin** (*Optional*, :ref:`config-pin_schema`): The pin connected to /OE (BLANK).
+-  **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to DIN.
+-  **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to CLK.
+-  **lat_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin connected to LAT.
+-  **oe_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin connected to /OE (BLANK).
 -  **num_chips** (*Optional*, int): Number of chips in the chain. Must be
    in range from 1 to 85. Defaults to 1.
 -  **id** (*Optional*, :ref:`config-id`): The id to use for

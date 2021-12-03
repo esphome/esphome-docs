@@ -37,7 +37,8 @@ for example the `RobotDyn dimmer
         gate_pin: D7
         zero_cross_pin:
           number: D6
-          mode: INPUT
+          mode:
+            input: true
           inverted: yes
 
     light:

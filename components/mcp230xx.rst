@@ -36,7 +36,8 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           mcp23xxx: mcp23008_hub
           # Use pin number 0
           number: 0
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
     # Individual inputs
@@ -48,7 +49,8 @@ The MCP23008 component (`datasheet <http://ww1.microchip.com/downloads/en/device
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
-          mode: INPUT
+          mode:
+            input: true
           inverted: false
 
 Configuration variables:
@@ -57,7 +59,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23008 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
-- **open_drain_interrupt** (*Optional*, bool): Configure the interrupt pin to open-drain mode.
+- **open_drain_interrupt** (*Optional*, boolean): Configure the interrupt pin to open-drain mode.
   Useful when the MCP23008's power supply is greater than 3.3 volts. Note that this pin
   will require a pull-up resistor (to 3.3 volts) when this mode is enabled.
 
@@ -66,7 +68,7 @@ Pin configuration variables:
 
 - **mcp23xxx** (**Required**, :ref:`config-id`): The id of the MCP23008 component.
 - **interrupt** (*Optional*): Set this pin to trigger the INT pin on the component. Can be one of ``CHANGE``, ``RISING``, ``FALLING``.
-- **number** (**Required**, integer): The pin number.
+- **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
   should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.
@@ -98,7 +100,8 @@ has 16 GPIOs and can be configured the same way than the other variants.
           mcp23016: mcp23016_hub
           # Use pin number 0
           number: 0
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
     # Individual inputs
@@ -109,7 +112,8 @@ has 16 GPIOs and can be configured the same way than the other variants.
           mcp23016: mcp23016_hub
           # Use pin number 1
           number: 1
-          mode: INPUT
+          mode:
+            input: true
           inverted: false
 
 
@@ -157,7 +161,8 @@ binary sensor or GPIO switch.
           mcp23xxx: mcp23017_hub
           # Use pin number 0
           number: 0
-          mode: OUTPUT
+          mode:
+            output: true
           inverted: false
 
     # Individual inputs
@@ -169,7 +174,9 @@ binary sensor or GPIO switch.
           # Use pin number 1
           number: 1
           # One of INPUT or INPUT_PULLUP
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: false
 
 Configuration variables:
@@ -178,7 +185,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this MCP23017 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x20``.
-- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+- **open_drain_interrupt** (*Optional*, boolean): Configure interrupt pins to open-drain mode.
   Useful when the MCP23017's power supply is greater than 3.3 volts. Note that these pins
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 

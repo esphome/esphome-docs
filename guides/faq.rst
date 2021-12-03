@@ -351,10 +351,24 @@ The top level ``name:`` field in your .yaml file defines the node name(/hostname
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
+Why am I getting a warning about strapping pins?
+--------------------------------------------------
+
+The ESP chips have special "strapping pins" that are read during the bootup procedure and determine how it boots up. They define whether the ESP boots into a special "flashing mode" or normal boot and a couple of other internal settings.
+If an external pullup/down changes the configured voltage levels boot failures or hard to diagnose issues can happen.
+While the use of them in software is not a problem, if there's something attached to the pins (particularly if they're not floating during the bootup) you may run into problems.
+It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
+
+Note that some boards connect pins such as GPIO0 to a builtin tactile switch. In these cases using the strapping pins is not a problem.
+
 How can I test a Pull Request?
 ------------------------------
 
-By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and flash your device, the code from the Pull Request will be used for the components changed by the Pull Request.
+By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull 
+Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components 
+that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page 
+of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and 
+flash your device, the code from the Pull Request will be used for the components changed by the Pull Request.
 
 .. code-block:: yaml
 
@@ -366,7 +380,9 @@ By leveraging the :doc:`external components </components/external_components>` f
           - ccs811  
 
 
-Note that this only works for Pull Requests that only change files within components. If any files outside ``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled with the "core" label on GitHub.
+Note that this only works for Pull Requests that only change files within components. If any files outside 
+``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled 
+with the "core" label on GitHub.
 
 See Also
 --------

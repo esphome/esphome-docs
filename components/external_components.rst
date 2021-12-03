@@ -22,6 +22,10 @@ Bundled components can be overridden using this feature.
       - source: github://esphome/esphome@dev
         components: [ rtttl ]
 
+      # equivalent shorthand for GitHub pull request
+      - source: github://pr#2639
+        components: [ rtttl ]
+
       # use all components from a local folder
       - source:
           type: local
@@ -46,7 +50,7 @@ Configuration variables:
 - **components** (*Optional*, list): The list of components to use from the external source.
   By default, all available components are used.
 
-- **refresh** (*Optional*, :ref:`time <config-time>`): The interval the source will be checked. Has no
+- **refresh** (*Optional*, :ref:`config-time`): The interval the source will be checked. Has no
   effect on ``local``. See :ref:`external-components_refresh`. for more info. Defaults to ``1day``.
 
 
@@ -164,6 +168,14 @@ The source field accepts a short hand **github://** resource:
     external_components:
       # shorthand
       source: github://<user or org>/<repository name>[@<branch or tag>]
+
+The source field also accepts a short hand **github://** pull request from the ESPHome repository:
+
+.. code-block:: yaml
+
+    external_components:
+      # shorthand
+      source: github://pr#<number>
 
 Under the hood, during validation, ESPHome will clone the git repository into the hidden ``.esphome``
 folder and components will then be loaded from this local copy. The local path of the cloned repository

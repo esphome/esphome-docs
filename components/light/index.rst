@@ -67,6 +67,10 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _light-toggle_action:
@@ -425,6 +429,10 @@ entries with each having a unique name like so:
               transition_length: 4s
               update_interval: 5s
 
+.. note::
+
+    After setting a light effect, it is possible to reset the in-use effect back to a static light by setting the ``effect`` to ``none`` when it is being called through Home Assistant or directly on the device.
+
 Pulse Effect
 ************
 
@@ -513,7 +521,7 @@ Configuration variables:
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
   - **state** (*Optional*, boolean): The on/off state to show. Defaults to ``true``.
-  - **color_mode** (*Optional*, ): The color mode of the light. Defaults to the current color mode.
+  - **color_mode** (*Optional*, string): The color mode of the light. Defaults to the current color mode.
   - **brightness** (*Optional*, percentage): The brightness of the light. Defaults to ``100%``.
   - **color_brightness** (*Optional*, percentage): The brightness of the RGB lights, if applicable. Defaults to ``100%``.
   - **red** (*Optional*, percentage): The red channel of the light, if applicable. Defaults to ``100%``.
@@ -685,7 +693,7 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Scan``.
 - **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot/line one LED forward.
   Defaults to ``100ms``.
-- **scan_width** (*Optional*, integer): The number of LEDs to use.
+- **scan_width** (*Optional*, int): The number of LEDs to use.
   Defaults to ``1``.
 
 Addressable Twinkle Effect
@@ -770,7 +778,7 @@ Configuration variables:
   LED at any given time step. Defaults to ``10%``.
 - **use_random_color** (*Optional*, boolean): Whether to use random colors for new firework sparks. Defaults to
   using the currently active light color.
-- **fade_out_rate** (*Optional*, integer): The rate with which to fade out the LED strip, unitless. Needs to be carefully
+- **fade_out_rate** (*Optional*, int): The rate with which to fade out the LED strip, unitless. Needs to be carefully
   chosen so that the whole strip doesn't light up forever if the fade out rate is too low or that the firework
   sparks do not propagate for a long time. Defaults to ``120``.
 
@@ -936,7 +944,7 @@ For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHom
 
 Configuration variables:
 
-- **universe** (**Required**, integer): The value of universe, between 1 to 512.
+- **universe** (**Required**, int): The value of universe, between 1 to 512.
 - **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
   ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
@@ -1028,7 +1036,7 @@ Prismatik_ can be used to control addressable lights over network on ESPHome.
 
 Configuration variables:
 
-- **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+- **port** (*Optional*, int): The port to run the UDP server on. Defaults to ``21324``.
 
 .. note::
 

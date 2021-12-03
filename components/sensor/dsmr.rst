@@ -43,7 +43,7 @@ Configuration variables:
 
 - **decryption_key** (*Optional*, string, :ref:`templatable <config-templatable>`, 32 characters, case insensitive): The key to decrypt the
   telegrams. Used in Lux only.
-- **gas_mbus_id** (*Optional*, integer): The id of the gas meter. Defaults to ``1``.
+- **gas_mbus_id** (*Optional*, int): The id of the gas meter. Defaults to ``1``.
 - **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false for
   older DSMR versions as they do not provide a CRC. Defaults to ``true``.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
@@ -223,6 +223,55 @@ Configuration variables:
   - **name** (**Required**, string): The name for the p1_version text sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **timestamp** (*Optional*): Timestamp
+
+   - **name** (**Required**, string): The name for the timestamp sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **electricity_tariff** (*Optional*): The current tariff. According to the specs value
+  '0001' means 'normal tariff' and value '0002' means 'low tariff'. Your meter may report differently.
+
+   - **name** (**Required**, string): The name for the electricity_tariff sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **electricity_failure_log** (*Optional*): Electricity Failure Log
+
+   - **name** (**Required**, string): The name for the electricity_failure_log sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **message_short** (*Optional*): Message Short
+
+   - **name** (**Required**, string): The name for the message_short sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **message_long** (*Optional*): Message Long
+
+   - **name** (**Required**, string): The name for the message_long sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **gas_equipment_id** (*Optional*): Gas Equipment ID.
+
+   - **name** (**Required**, string): The name for the gas_equipment_id sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **water_equipment_id** (*Optional*): Water Equipment ID
+
+   - **name** (**Required**, string): The name for the water_equipment_id sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+- **sub_equipment_id** (*Optional*): Sub Equipment ID
+
+   - **name** (**Required**, string): The name for the sub_equipment_id sensor.
+   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 - **gas_delivered_text** (*Optional*): A text sensor which unformatted gas data. You need to
   apply a custom parsing of this value depending on your meter format.
