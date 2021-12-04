@@ -41,9 +41,9 @@ data which this component decodes and updates the configured sensors at the pace
 
 Configuration variables:
 
-- **decryption_key** (*Optional*, string, :ref:`templatable <config-templatable>`, 32 characters, case insensitive):
-  The key to decrypt the telegrams. Used in Lux only.
-- **gas_mbus_id** (*Optional*, integer): The id of the gas meter. Defaults to ``1``.
+- **decryption_key** (*Optional*, string, :ref:`templatable <config-templatable>`, 32 characters, case insensitive): The key to decrypt the
+  telegrams. Used in Lux only.
+- **gas_mbus_id** (*Optional*, int): The id of the gas meter. Defaults to ``1``.
 - **crc_check** (*Optional*, boolean): Specifies if the CRC check must be done. This is required to be set to false for
   older DSMR versions as they do not provide a CRC. Defaults to ``true``.
 - **max_telegram_length** (*Optional*, integer): The size of the buffer used for reading DSMR telegrams. Increase
@@ -51,7 +51,7 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **request_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin that can be used for controlling
   the P1 port's Data Request pin. Defaults to not using a Data Request pin.
-  See :ref:`Using the P1 Data Request pin <sensor-dsmr-request_pin>`. 
+  See :ref:`Using the P1 Data Request pin <sensor-dsmr-request_pin>`.
 - **request_interval** (*Optional*, :ref:`config-time`): The minimum time between two telegram readings.
   Defaults to ``0ms``, meaning that the pace at which the smart meter sends its data determines the update frequency.
   This works best in combination with a ``request_pin``, but this option will work without one too.
@@ -332,7 +332,7 @@ Version 2.2 is supported with the following configuration:
           name: "gas delivered raw"
 
 
-.. _sensor-dsmr-request_pin:                                                                                                  
+.. _sensor-dsmr-request_pin:
 
 P1 Data Request pin
 -------------------
@@ -365,7 +365,7 @@ or a transistor-based circuit are not feasible options. Here's an example circui
 
 .. figure:: images/dsmr-request-pin-circuit-example.png
 
-.. _sensor-dsmr-improving_reader_results:                                                                                                  
+.. _sensor-dsmr-improving_reader_results:
 
 Improving reader results
 ------------------------

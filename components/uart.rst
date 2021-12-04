@@ -51,18 +51,14 @@ Configuration variables:
 ------------------------
 
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
-- **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
-- **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
+- **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
+- **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
 - **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use an integration that needs to read big payloads from UART. Defaults to ``256``.
 - **data_bits** (*Optional*, int): The number of data bits used on the UART bus. Options: 5 to 8. Defaults to 8.
 - **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
 - **debug** (*Optional*, mapping): Options for debugging communication on the UART hub, see :ref:`uart-debugging`.
-
-ESP32 options:
-
-- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``true`` or ``false``. Defaults to ``false``.
 
 .. _uart-hardware_uarts:
 
@@ -153,7 +149,7 @@ of the debugging feature.
   - **delimiter** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
     detected in the communication.
 
-- **sequence** (*Optional*, :ref:`config-action`): Action(s) to perform for publishing debugging data.
+- **sequence** (*Optional*, :ref:`Action <config-action>`): Action(s) to perform for publishing debugging data.
   Defaults to an action that logs the bytes in hex format. The actions can make use of the following variables:
 
   - **direction**: ``uart::UART_DIRECTION_RX`` or ``uart::UART_DIRECTION_TX``

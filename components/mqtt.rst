@@ -64,7 +64,7 @@ Configuration variables:
 - **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
   for more information.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
@@ -314,7 +314,7 @@ Configuration variables:
 - **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
   messages on. Every time a message with **this exact topic** is received, the automation will trigger.
 
-- **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+- **qos** (*Optional*, int): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
 
 - **payload** (*Optional*, string): Optionally set a payload to match. Only if exactly the payload
@@ -396,7 +396,7 @@ Configuration variables:
 - **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
   messages on. Every time a message with **this exact topic** is received, the automation will trigger.
 
-- **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+- **qos** (*Optional*, int): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
 
 .. note::

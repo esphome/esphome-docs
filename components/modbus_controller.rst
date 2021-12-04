@@ -50,7 +50,7 @@ Configuration variables:
 
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the modbus hub.
 
-- **address** (*Required*, :ref:`config-id`): The modbus address of the device
+- **address** (**Required**, :ref:`config-id`): The modbus address of the device
   Specify the modbus device address of the.
 
 - **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the device. Default is 0ms

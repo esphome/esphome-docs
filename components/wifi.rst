@@ -59,13 +59,13 @@ Configuration variables:
     Defaults to 1.
   - **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as
     manual_ip for station mode.
-  - **ap_timeout** (*Optional*, :ref:`time <config-time>`): The time after which to enable the
+  - **ap_timeout** (*Optional*, :ref:`config-time`): The time after which to enable the
     configured fallback hotspot. Defaults to ``1min``.
 
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
@@ -190,6 +190,16 @@ Configuration variables:
 
 - **ssid** (*Optional*, string): The SSID or WiFi network name.
 - **password** (*Optional*, string): The password to use for authentication. Leave empty for no password.
+- **manual_ip** (*Optional*): Manually configure the static IP of the node when using this network. Note that
+  when using different static IP addresses on each network, it is required to set ``use_address``, as ESPHome
+  cannot infer to which network the node is connected.
+
+  - **static_ip** (**Required**, IPv4 address): The static IP of your node.
+  - **gateway** (**Required**, IPv4 address): The gateway of the local network.
+  - **subnet** (**Required**, IPv4 address): The subnet of the local network.
+  - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
+  - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
+
 - **eap** (*Optional*): See :ref:`eap`.
 - **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.

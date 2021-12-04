@@ -114,6 +114,20 @@ Release 2021.11.2 - November 26
 - Remove floating point ops from the ISR :esphomepr:`2751` by :ghuser:`ssieb`
 - Fix parsing numbers from null-terminated buffers :esphomepr:`2755` by :ghuser:`oxan`
 
+Release 2021.11.3 - November 27
+-------------------------------
+
+- Fix restoring preferences for ESP32 :esphomepr:`2805` by :ghuser:`mmakaay`
+
+Release 2021.11.4 - November 29
+-------------------------------
+
+- Fix parsing numbers in Anova :esphomepr:`2816` by :ghuser:`oxan`
+- Fix parsing of multiple values in EZO sensor :esphomepr:`2814` by :ghuser:`oxan`
+- Fix compilation error for WPA enterprise in ESP-IDF :esphomepr:`2815` by :ghuser:`CarlosGS`
+- Correct bitmask for third color (blue) scaling. :esphomepr:`2817` by :ghuser:`davet2001`
+- Add delay to improve stability :esphomepr:`2793` by :ghuser:`Conclusio`
+
 Full list of changes
 --------------------
 
@@ -284,6 +298,12 @@ All changes
 - esp32_camera_web_server: Improve support for MotionEye :esphomepr:`2777` by :ghuser:`ayufan`
 - Remove floating point ops from the ISR :esphomepr:`2751` by :ghuser:`ssieb`
 - Fix parsing numbers from null-terminated buffers :esphomepr:`2755` by :ghuser:`oxan`
+- Fix restoring preferences for ESP32 :esphomepr:`2805` by :ghuser:`mmakaay`
+- Fix parsing numbers in Anova :esphomepr:`2816` by :ghuser:`oxan`
+- Fix parsing of multiple values in EZO sensor :esphomepr:`2814` by :ghuser:`oxan`
+- Fix compilation error for WPA enterprise in ESP-IDF :esphomepr:`2815` by :ghuser:`CarlosGS`
+- Correct bitmask for third color (blue) scaling. :esphomepr:`2817` by :ghuser:`davet2001`
+- Add delay to improve stability :esphomepr:`2793` by :ghuser:`Conclusio`
 
 Past Changelogs
 ---------------

@@ -27,7 +27,7 @@ Configuration variables:
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume 0 pulses/sec. Defaults to ``5 min``.
-- **total** (*Optional*, :ref:`Sensor <config-sensor>`): An additional sensor that outputs the total number of pulses counted.
+- **total** (*Optional*, :ref:`config-id`): An additional sensor that outputs the total number of pulses counted.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Converting units

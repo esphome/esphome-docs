@@ -29,7 +29,7 @@ the config and it will list the possible devices for you in the config log.
     # Make sure you can upload new firmware OTA
     ota:
 
-    # My dimmer used the hardware serial port on the alternate pins
+    # My cover used the hardware serial port on the alternate pins
     uart:
       rx_pin: GPIO13
       tx_pin: GPIO15
@@ -38,7 +38,7 @@ the config and it will list the possible devices for you in the config log.
     # Register the Tuya MCU connection
     tuya:
 
-Here is an example output for a Tuya dimmer:
+Here is an example output for a Tuya M515EGWT (motor for chain roller blinds):
 
 .. code-block:: text
 
@@ -51,7 +51,7 @@ Now you can create the cover.
 
 .. code-block:: yaml
 
-    # Create a cover using the dimmer
+    # Create a cover using the datapoint from above
     cover:
       - platform: "tuya"
         name: "motor1"
@@ -62,12 +62,45 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the cover.
+- **control_datapoint** (*Optional*, int): The datapoint id number for sending control commands.
 - **position_datapoint** (**Required**, int): The datapoint id number of the cover position value.
-- **min_value** (*Optional*, int, default 0): The lowest position value, meaning cover closed.
-- **max_value** (*optional*, int, default 255): the highest position value, meaning cover opened.
-- **invert_position** (*optional*, boolean): invert the meaning of ``min_value`` and ``max_value``.
-  When set to ``true``, ``min_value`` will mean opened and ``max_value`` is closed.
+- **position_report_datapoint** (*Optional*, int): The datapoint id number of the cover position report value, if separate from position_datapoint.
+- **direction_datapoint** (*Optional*, int): The datapoint id number for setting the direction of travel.
+- **min_value** (*Optional*, int): The lowest position value, meaning cover closed. Defaults to 0.
+- **max_value** (*Optional*, int): the highest position value, meaning cover opened. Defaults to 255.
+- **invert_position** (*Optional*, boolean): Sets the direction of travel to be inverted, if direction_datapoint is configured.
 - All other options from :ref:`Cover <config-cover>`.
+
+Supported devices
+-----------------
+
+Tuya cover devices known to be supported by this integration:
+
+- Tuya ``M515EGWT`` (motor for bead chain roller blinds)
+
+  - Only the ``position`` datapoint (2) is used for this device.
+  - Datapoint 5's function is not currently known.
+
+- Zemismart ``ZM79E-DT`` (curtain motor)
+
+  - Supported datapoints: ``control`` (1), ``position`` (2), ``position_report`` (3) and ``direction`` (5).
+  - The direction of travel is persisted to the Tuya MCU, so doesn't need to be set if you've already configured it via the remote control.
+
+If you have a Tuya cover device that isn't listed above, it may still work - but you'll need to determine which datapoints it uses
+(and what their IDs are) for yourself.
+
+Restore modes
+-------------
+
+The default restore mode (``RESTORE``) attempts to restore the state on startup, but doesn't instruct the cover to move to that state.
+
+``RESTORE_AND_CALL`` additionally instructs the cover to move to the restored state - which might not work, depending on your device (see note below).
+
+The Tuya MCU usually reports its position on startup, so ``NO_RESTORE`` will likely also appear to restore its state - but may take slightly longer.
+
+Note that if your Tuya cover device uses relative position sensing (such as the ZM79E-DT), it can't tell if the cover was moved while not powered up.
+This means that moving the cover while the device is powered off will result in its position not matching the reported/requested state.
+In this condition, it will go into an error / uncalibrated state when it next tries to go in one direction (as it can't move as far as it wants to), requiring an open/close cycle to recalibrate.
 
 
 See Also
@@ -77,4 +110,3 @@ See Also
 - :doc:`/components/cover/index`
 - :apiref:`tuya/cover/tuya_cover.h`
 - :ghedit:`Edit`
-
