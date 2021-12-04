@@ -115,7 +115,7 @@ They can also be changed in the Lambda by adding the following command:
 
 
 - **on/off** -> switch scrolling on or off, use true or false
-- **mode** -> 0 = Continuous scrolling, 1 = Stop at end and reset
+- **mode** -> max7219digit::CONTINUOUS for continuous scrolling, max7219digit::STOP = Stop at end and reset
 - **speed** -> Set speed of scrolling (ms for every step of one dot)
 - **delay** -> pause time at start of scrolling
 - **dwell** -> pause at end of scrolling (only in mode 1)
@@ -127,9 +127,9 @@ They can also be changed in the Lambda by adding the following command:
         # ...
         lambda: |-
           # ...
-          it.scroll(true, 0, 100, 5000, 1500);
+          it.scroll(true, max7219digit::CONTINUOUS, 100, 5000, 1500);
           // OR
-          it.scroll(true, 0);
+          it.scroll(true, max7219digit::CONTINUOUS);
           // OR
           it.scroll(true);
 
