@@ -48,6 +48,9 @@ This sensor supports both UART and I²C communication. However, at the moment on
         pmc_10_0:
           name: "Workshop PM <10µm Number concentration"
           id: "workshop_PMC_10_0"
+        pm_size:
+          name: "Typical Particle size"
+          id: "pm_size"
         address: 0x69
         update_interval: 10s
 
@@ -57,55 +60,61 @@ Configuration variables:
 - **pm_1_0** (*Optional*): The information for the **Weight Concentration** sensor for fine particles up to 1μm. Readings in µg/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pm_2_5** (*Optional*): The information for the **Weight Concentration** sensor for fine particles up to 2.5μm. Readings in µg/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pm_4_0** (*Optional*): The information for the **Weight Concentration** sensor for coarse particles up to 4μm. Readings in µg/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pm_10_0** (*Optional*): The information for the **Weight Concentration** sensor for coarse particles up to 10μm. Readings in µg/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pmc_0_5** (*Optional*): The information for the **Number Concentration** sensor for ultrafine particles up to 0.5μm. Readings in particles/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pmc_1_0** (*Optional*): The information for the **Number Concentration** sensor for fine particles up to 1μm. Readings in particles/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pmc_2_5** (*Optional*): The information for the **Number Concentration** sensor for fine particles up to 2.5μm. Readings in particles/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pmc_4_0** (*Optional*): The information for the **Number Concentration** sensor for coarse particles up to 4μm. Readings in particles/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **pmc_10_0** (*Optional*): The information for the **Number Concentration** sensor for coarse particles up to 10μm. Readings in particles/m³.
 
   - **name** (**Required**, string): The name for this sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **pm_size** (*Optional*): Typicall particles size in μm. 
+
+  - **name** (**Required**, string): The name for this sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
