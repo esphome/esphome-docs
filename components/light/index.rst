@@ -51,7 +51,7 @@ Configuration variables:
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the light is turned off. See :ref:`light-on_turn_on_off_trigger`.
 - **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the light state is changed. See :ref:`light-on_turn_on_off_trigger`.
+  when the light's set state is changed. See :ref:`light-on_state_trigger`.
 
 Additional configuration variables for addressable lights:
 
@@ -384,12 +384,11 @@ that the light is completely OFF, and ON means that the light is emitting at lea
 
 .. _light-on_turn_on_off_trigger:
 
-``light.on_turn_on`` / ``light.on_turn_off`` / ``light.on_state`` Trigger
-*************************************************************************
+``light.on_turn_on`` / ``light.on_turn_off``
+********************************************
 
 This trigger is activated each time the light is turned on or off. It is consistent
-with the behavior of the ``light.is_on`` and ``light.is_off`` condition above. Additionally,
-This trigger is activated immediately upon any light state (brightness, color, etc.).
+with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
 
 .. code-block:: yaml
 
@@ -400,6 +399,23 @@ This trigger is activated immediately upon any light state (brightness, color, e
         - logger.log: "Light Turned On!"
         on_turn_off:
         - logger.log: "Light Turned Off!"
+
+.. _light-on_state_trigger:
+
+``light.on_state`` Trigger
+**************************
+
+This trigger is activated each time the light set state is changed. It is not triggered 
+based on current state, but rather, it triggers on the set state which can differ from
+the current state due to transitions. For example, the ``light.on_state`` trigger can
+be used for immediate action when the light is set to off; while ``light.on_turn_off`` 
+does not trigger until the light actually achieves the off state.
+
+.. code-block:: yaml
+
+    light:
+      - platform: binary # or any other platform
+        # ...
         on_state:
         - logger.log: "Light State Changed!"
 
