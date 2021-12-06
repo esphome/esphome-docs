@@ -58,6 +58,12 @@ This release has a fix that allows using multiple networks each with their own s
 When using these options, you **must** also set ``wifi`` -> ``use_address`` when installing new firmware as ESPHome
 cannot know which IP address to use automatically.
 
+The Dashboard and secrets
+-------------------------
+
+The ESPHome Dashboard will now save the wifi credentials as secrets (``wifi_ssid`` / ``wifi_password``) for future use. If you are already using these secrets,
+then the dashboard will not ask for credentials and will configure using them for you.
+
 NEC remote protocol
 -------------------
 
@@ -95,10 +101,21 @@ Breaking Changes
 - Fix NEC protocol implementation :esphomepr:`2534` by :ghuser:`dudanov` (breaking-change)
 - Tuya Cover improvements :esphomepr:`2637` by :ghuser:`pauln` (breaking-change)
 
-Beta Fixes
-^^^^^^^^^^
+Beta Changes
+^^^^^^^^^^^^
 
 - Feed watchdog during OTA :esphomepr:`2852` by :ghuser:`oxan`
+- Bump esphome-dashboard to 20211206.0 :esphomepr:`2870` by :ghuser:`jesserockz`
+- tlc59208f : fix compilation error :esphomepr:`2867` by :ghuser:`martgras`
+- ADC: Turn verbose the debugging "got voltage" :esphomepr:`2863` by :ghuser:`CarlosGS`
+- SPS30 : fix i2c read size :esphomepr:`2866` by :ghuser:`martgras`
+- Fix MCP23x17 not disabling pullup after config change :esphomepr:`2855` by :ghuser:`oxan`
+- Ignore already stopped dhcp for ethernet :esphomepr:`2862` by :ghuser:`madron`
+- Add endpoint to fetch secrets keys :esphomepr:`2873` by :ghuser:`jesserockz`
+- Adopt using wifi secrets that should exist at this point :esphomepr:`2874` by :ghuser:`jesserockz`
+- Allow wizard to specify secrets :esphomepr:`2875` by :ghuser:`jesserockz`
+- Feed watchdog when no component loops :esphomepr:`2857` by :ghuser:`oxan`
+- Bump esphome-dashboard to 20211207.0 :esphomepr:`2877` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -180,6 +197,17 @@ All changes
 - Fix wifi not working with manual_ip using esp-idf :esphomepr:`2849` by :ghuser:`Maelstrom96`
 - modbus_controller: bugfix: enable overriding calculated register size :esphomepr:`2845` by :ghuser:`martgras`
 - Feed watchdog during OTA :esphomepr:`2852` by :ghuser:`oxan`
+- Bump esphome-dashboard to 20211206.0 :esphomepr:`2870` by :ghuser:`jesserockz`
+- tlc59208f : fix compilation error :esphomepr:`2867` by :ghuser:`martgras`
+- ADC: Turn verbose the debugging "got voltage" :esphomepr:`2863` by :ghuser:`CarlosGS`
+- SPS30 : fix i2c read size :esphomepr:`2866` by :ghuser:`martgras`
+- Fix MCP23x17 not disabling pullup after config change :esphomepr:`2855` by :ghuser:`oxan`
+- Ignore already stopped dhcp for ethernet :esphomepr:`2862` by :ghuser:`madron`
+- Add endpoint to fetch secrets keys :esphomepr:`2873` by :ghuser:`jesserockz`
+- Adopt using wifi secrets that should exist at this point :esphomepr:`2874` by :ghuser:`jesserockz`
+- Allow wizard to specify secrets :esphomepr:`2875` by :ghuser:`jesserockz`
+- Feed watchdog when no component loops :esphomepr:`2857` by :ghuser:`oxan`
+- Bump esphome-dashboard to 20211207.0 :esphomepr:`2877` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
