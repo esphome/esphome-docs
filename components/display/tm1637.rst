@@ -25,6 +25,8 @@ The module can be powered with 5v or with 3.3v too. To display the colon punctua
         id: tm1637_display
         clk_pin: D6
         dio_pin: D5
+        inverted: true
+        length: 4
         lambda: |-
           it.print("0123");
 
@@ -36,6 +38,9 @@ Configuration variables:
 - **dio_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the DIO line hooked up to.
 - **intensity** (*Optional*, int): The intensity with which the TM1637 should drive the outputs. Range is from
   0 (least intense) to 7 (the default).
+- **inverted** (*Optional*, bool): Invert character rendering to the TM1637 so you can physically flip the display around.
+- **length** (*Optional*, int): The amount of digits your TM1637 is driving. Only required when `inverted: true`
+  Range is from 1 to 6 (the default).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the TM1637.
   See :ref:`display-tm1637_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
