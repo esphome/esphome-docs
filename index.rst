@@ -243,6 +243,7 @@ Electricity
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
     Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
+    Emporia Vue, components/sensor/emporia_vue, emporia-vue-2-only.png, Voltage & Power
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC current
     INA226, components/sensor/ina226, ina226.jpg, DC current & Power
