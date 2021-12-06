@@ -34,6 +34,13 @@ Configuration variables:
 ------------------------
 
 - **run_duration** (*Optional*, :ref:`config-time`): The time duration the node should be active, i.e. run code.
+
+  Only on ESP32, instead of time, it is possible to specify run duration according to the wakeup reason from deep-sleep:
+
+  - **default** (*Required*, :ref:`config-time`): default run duration for timer wakeup and any unspecified wakeup reason.
+  - **gpio_wakeup_reason** (*Optional*, :ref:`config-time`): run duration if woken up by GPIO.
+  - **touch_wakeup_reason** (*Optional*, :ref:`config-time`): run duration if woken up by touch.
+
 - **sleep_duration** (*Optional*, :ref:`config-time`): The time duration to stay in deep sleep mode.
 - **touch_wakeup** (*Optional*, boolean): Only on ESP32. Use a touch event to wakeup from deep sleep. To be able
   to wakeup from a touch event, :ref:`esp32-touch-binary-sensor` must be configured properly.
