@@ -111,7 +111,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pm_size** (*Optional*): Typicall particles size in μm. 
+- **pm_size** (*Optional*): Typical particle size in μm. 
 
   - **name** (**Required**, string): The name for this sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
