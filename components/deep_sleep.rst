@@ -37,7 +37,7 @@ Configuration variables:
 
   Only on ESP32, instead of time, it is possible to specify run duration according to the wakeup reason from deep-sleep:
 
-  - **default** (*Required*, :ref:`config-time`): default run duration for timer wakeup and any unspecified wakeup reason.
+  - **default** (**Required**, :ref:`config-time`): default run duration for timer wakeup and any unspecified wakeup reason.
   - **gpio_wakeup_reason** (*Optional*, :ref:`config-time`): run duration if woken up by GPIO.
   - **touch_wakeup_reason** (*Optional*, :ref:`config-time`): run duration if woken up by touch.
 
