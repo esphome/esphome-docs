@@ -60,7 +60,7 @@ Configuration variables:
 
     - All options from :ref:`Text Sensor <config-text_sensor>`.
 
-See :apiclass:`TextSensor <text_sensor::TextSensor>`
+See from API :apiclass:`TextSensor <text_sensor::TextSensor>`
 
 See Also
 --------
