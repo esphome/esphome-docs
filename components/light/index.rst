@@ -405,7 +405,7 @@ with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
 ``light.on_state`` Trigger
 **************************
 
-This trigger is activated each time the light set state is changed. It is not triggered 
+This trigger is activated each time the set light state is changed. It is not triggered 
 based on current state, but rather, it triggers on the set state which can differ from
 the current state due to transitions. For example, the ``light.on_state`` trigger can
 be used for immediate action when the light is set to off; while ``light.on_turn_off`` 
