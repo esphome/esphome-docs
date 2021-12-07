@@ -116,6 +116,9 @@ Beta Changes
 - Allow wizard to specify secrets :esphomepr:`2875` by :ghuser:`jesserockz`
 - Feed watchdog when no component loops :esphomepr:`2857` by :ghuser:`oxan`
 - Bump esphome-dashboard to 20211207.0 :esphomepr:`2877` by :ghuser:`jesserockz`
+- Feed watchdog while setting up OTA :esphomepr:`2876` by :ghuser:`CarlosGS`
+- Use new platform component config blocks for wizard :esphomepr:`2885` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20211208.0 :esphomepr:`2887` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -208,6 +211,9 @@ All changes
 - Allow wizard to specify secrets :esphomepr:`2875` by :ghuser:`jesserockz`
 - Feed watchdog when no component loops :esphomepr:`2857` by :ghuser:`oxan`
 - Bump esphome-dashboard to 20211207.0 :esphomepr:`2877` by :ghuser:`jesserockz`
+- Feed watchdog while setting up OTA :esphomepr:`2876` by :ghuser:`CarlosGS`
+- Use new platform component config blocks for wizard :esphomepr:`2885` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20211208.0 :esphomepr:`2887` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
