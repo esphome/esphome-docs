@@ -384,8 +384,8 @@ that the light is completely OFF, and ON means that the light is emitting at lea
 
 .. _light-on_turn_on_off_trigger:
 
-``light.on_turn_on`` / ``light.on_turn_off``
-********************************************
+``light.on_turn_on`` / ``light.on_turn_off`` Trigger
+****************************************************
 
 This trigger is activated each time the light is turned on or off. It is consistent
 with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
