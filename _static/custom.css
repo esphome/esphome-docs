@@ -13,6 +13,11 @@ div.body {
   min-width: initial;
 }
 
+div.sphinxsidebar {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
 img.component-image {
   border: none;
   vertical-align: middle;

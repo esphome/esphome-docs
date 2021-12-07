@@ -361,6 +361,7 @@ Contributors
 - `Jasper van der Neut - Stulen (@jvanderneutstulen) <https://github.com/jvanderneutstulen>`__
 - `João Vitor M. Roma (@jvmr1) <https://github.com/jvmr1>`__
 - `Jack Wozny (@jwozny) <https://github.com/jwozny>`__
+- `Jozef Zuzelka (@jzlka) <https://github.com/jzlka>`__
 - `Kris (@K-r-i-s-t-i-a-n) <https://github.com/K-r-i-s-t-i-a-n>`__
 - `Harald Nagel (@k7hpn) <https://github.com/k7hpn>`__
 - `kaegi (@kaegi) <https://github.com/kaegi>`__
@@ -468,7 +469,6 @@ Contributors
 - `Mikko Tervala (@MikkoTervala) <https://github.com/MikkoTervala>`__
 - `mikosoft83 (@mikosoft83) <https://github.com/mikosoft83>`__
 - `Minideezel (@minideezel) <https://github.com/minideezel>`__
-- `mipa87 (@mipa87) <https://github.com/mipa87>`__
 - `André Klitzing (@misery) <https://github.com/misery>`__
 - `Matthew Edwards (@mje-nz) <https://github.com/mje-nz>`__
 - `Maarten (@mjkl-gh) <https://github.com/mjkl-gh>`__
@@ -643,6 +643,7 @@ Contributors
 - `Stephen Tierney (@sjtrny) <https://github.com/sjtrny>`__
 - `Niklas Wagner (@Skaronator) <https://github.com/Skaronator>`__
 - `Rafael Treviño (@skasi7) <https://github.com/skasi7>`__
+- `Sebastian Lövdahl (@slovdahl) <https://github.com/slovdahl>`__
 - `Luca Zimmermann (@soundstorm) <https://github.com/soundstorm>`__
 - `Sourabh Jaiswal (@sourabhjaiswal) <https://github.com/sourabhjaiswal>`__
 - `Philip Allgaier (@spacegaier) <https://github.com/spacegaier>`__
@@ -681,7 +682,6 @@ Contributors
 - `Spencer Hachmeister (@TheHackmeister) <https://github.com/TheHackmeister>`__
 - `thejonesyboy (@thejonesyboy) <https://github.com/thejonesyboy>`__
 - `TheJulianJES (@TheJulianJES) <https://github.com/TheJulianJES>`__
-- `Jozef Zuzelka (@TheKuko) <https://github.com/TheKuko>`__
 - `Mateusz Soszyński (@TheLastGimbus) <https://github.com/TheLastGimbus>`__
 - `Zixuan Wang (@TheNetAdmin) <https://github.com/TheNetAdmin>`__
 - `Dominik Bruhn (@theomega) <https://github.com/theomega>`__
@@ -760,4 +760,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 3, 2021.*
+*This page was last updated December 7, 2021.*
