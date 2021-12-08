@@ -60,9 +60,8 @@ Configuration variables:
 
     - All options from :ref:`Text Sensor <config-text_sensor>`.
 
-See from API :apiclass:`TextSensor <text_sensor::TextSensor>`
-
 See Also
 --------
 
+- :apiclass:`TextSensor <text_sensor::TextSensor>`
 - :ghedit:`Edit`
