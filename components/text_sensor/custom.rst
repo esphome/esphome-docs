@@ -63,5 +63,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiclass:`TextSensor <text_sensor::TextSensor>`
+- :apiclass:`API Reference <text_sensor::TextSensor>`
 - :ghedit:`Edit`
