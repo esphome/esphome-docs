@@ -68,12 +68,12 @@ of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.
       framework:
         type: esp-idf
         version: recommended
-      # Custom sdkconfig options
-      sdkconfig_options:
-        CONFIG_COMPILER_OPTIMIZATION_SIZE: y
-      # Advanced tweaking options
-      advanced:
-        ignore_efuse_mac_crc: false
+        # Custom sdkconfig options
+        sdkconfig_options:
+          CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+        # Advanced tweaking options
+        advanced:
+          ignore_efuse_mac_crc: false
 
 - **version** (*Optional*, string): The base framework version number to use, from
   `ESP32 ESP-IDF releases <https://github.com/espressif/esp-idf/releases>`__. Defaults to ``recommended``. Additional values are:
