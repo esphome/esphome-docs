@@ -33,6 +33,7 @@ Configuration variables:
 - **multiply** (*Optional*, float): multiply the new value with this factor before sending the requests. Ignored if lambda is defined.
 - **offset**: (*Optional*, int): only required for uncommon response encodings
     offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
+- **use_write_multiple**: (*Optional*, boolean): By default the modbus command ``Preset Single Registers`` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports ``Preset Multiple Registers`` (function code 16) set this option to true.
 
 All other options from :ref:`Output <config-output>`.
 
