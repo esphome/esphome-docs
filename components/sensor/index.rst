@@ -238,7 +238,7 @@ degree with a least squares solver.
         - filter_out: 85.0
 
 ``quantile``
-**********
+************
 
 A `simple moving quantile <https://www.wikiwand.com/en/Quantile>`__
 over the last few values. This can be used to filter outliers from the received sensor data. A large
