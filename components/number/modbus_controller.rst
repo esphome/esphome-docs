@@ -53,6 +53,7 @@ Configuration variables:
 - **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`): Lambda called before send.
   Lambda is evaluated before the modbus write command is created.
 - **multiply** (*Optional*, float): multiply the new value with this factor before sending the requests. Ignored if lambda is defined.
+- **use_write_multiple**: (*Optional*, boolean): By default the modbus command ``Preset Single Registers`` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports ``Preset Multiple Registers`` (function code 16) set this option to true.
 
 
 All other options from :ref:`Number <config-number>`.
