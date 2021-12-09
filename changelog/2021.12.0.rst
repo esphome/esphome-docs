@@ -119,6 +119,8 @@ Beta Changes
 - Feed watchdog while setting up OTA :esphomepr:`2876` by :ghuser:`CarlosGS`
 - Use new platform component config blocks for wizard :esphomepr:`2885` by :ghuser:`jesserockz`
 - Bump esphome-dashboard to 20211208.0 :esphomepr:`2887` by :ghuser:`jesserockz`
+- Fix published state for modbus number :esphomepr:`2894` by :ghuser:`jesserockz`
+- Modbus number/output use write single :esphomepr:`2896` by :ghuser:`glmnet`
 
 All changes
 ^^^^^^^^^^^
@@ -214,6 +216,8 @@ All changes
 - Feed watchdog while setting up OTA :esphomepr:`2876` by :ghuser:`CarlosGS`
 - Use new platform component config blocks for wizard :esphomepr:`2885` by :ghuser:`jesserockz`
 - Bump esphome-dashboard to 20211208.0 :esphomepr:`2887` by :ghuser:`jesserockz`
+- Fix published state for modbus number :esphomepr:`2894` by :ghuser:`jesserockz`
+- Modbus number/output use write single :esphomepr:`2896` by :ghuser:`glmnet`
 
 Past Changelogs
 ---------------
