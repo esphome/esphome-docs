@@ -103,6 +103,14 @@ Configuration variables
   with the stock firmware and most probably is a bug in the MCU firmware or in the RF chip
   firmware. Setting this to ``False`` instructs the platform to properly ignore such commands
   and thus prevent unexpected switches or light intensity changes.
+- **min_value** (*Optional*, int): The lowest dimmer value allowed. Acceptable value for your
+  setup will depend on actual light bulbs installed and number of them. Start with the default
+  value and check what will be the minimal brightness bulbs can render. Pay attention that for
+  some dimmable LED lamps minimal turn-on brightness will be higher that the minimal achievable
+  brightness if you just decrease it when lamp is already turned on. Defaults to 0.
+- **max_value** (*Optional*, int): The highest dimmer value allowed. Use this to hard-limit light
+  intensity for your setup. For some bulbs this parameter might be also useful to prevent
+  flickering at high brightness values. Defaults to 100.
 - All other options from :ref:`Light <config-light>`.
 
 
