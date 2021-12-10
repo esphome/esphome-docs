@@ -96,7 +96,7 @@ To bring in color images:
       - file: "image.jpg"
         id: my_image
         resize: 200x200
-        type: RGB565
+        type: RGB24
 
     ...
 
