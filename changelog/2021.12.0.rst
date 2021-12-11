@@ -64,6 +64,9 @@ The Dashboard and secrets
 The ESPHome Dashboard will now save the wifi credentials as secrets (``wifi_ssid`` / ``wifi_password``) for future use. If you are already using these secrets,
 then the dashboard will not ask for credentials and will configure using them for you.
 
+The dashboard also now can view the logs straight from a serial connected device via the web browser. It will show up as an option when choosing the method to
+view them.
+
 NEC remote protocol
 -------------------
 
@@ -87,7 +90,20 @@ Full list of changes
 New Features
 ^^^^^^^^^^^^
 
+- pmsx003: add support for new PMS5003S device :esphomepr:`2710` by :ghuser:`NeoAcheron` (new-feature)
+- Add climate on_state trigger :esphomepr:`2707` by :ghuser:`dudanov` (new-feature)
+- Add greeyac protocol to IR Climate / HeatpumpIR :esphomepr:`2694` by :ghuser:`cmroche` (new-feature)
+- Provide an option to select unique_id generator :esphomepr:`2701` by :ghuser:`kbialek` (new-feature)
+- Ignore secrets yaml on command line :esphomepr:`2715` by :ghuser:`cvwillegen` (new-feature)
+- Add max_telegram_length option to dsmr :esphomepr:`2674` by :ghuser:`mmakaay` (new-feature)
+- Relax the icon validator to allow non-mdi icons :esphomepr:`2764` by :ghuser:`paulmonigatti` (new-feature)
+- Add support for P1 Data Request pin control :esphomepr:`2676` by :ghuser:`mmakaay` (new-feature)
+- Add support for sdp8xx :esphomepr:`2779` by :ghuser:`martgras` (new-feature)
 - Add map filter for text sensors :esphomepr:`2761` by :ghuser:`oxan` (new-feature)
+- Optionally show internal components on the web server :esphomepr:`2627` by :ghuser:`mechanarchy` (new-feature)
+- cse7766: add energy sensor :esphomepr:`2822` by :ghuser:`ianchi` (new-feature)
+- Allow Git credentials to be loaded from secrets :esphomepr:`2825` by :ghuser:`mechanarchy` (new-feature)
+- Expand uart invert feature to ESP8266 :esphomepr:`1727` by :ghuser:`Lewn` (new-feature)
 
 New Components
 ^^^^^^^^^^^^^^
@@ -128,21 +144,21 @@ All changes
 ^^^^^^^^^^^
 
 - Defines tidy :esphomepr:`2696` by :ghuser:`jesserockz`
-- pmsx003: add support for new PMS5003S device :esphomepr:`2710` by :ghuser:`NeoAcheron`
-- Add climate on_state trigger :esphomepr:`2707` by :ghuser:`dudanov`
-- Add greeyac protocol to IR Climate / HeatpumpIR :esphomepr:`2694` by :ghuser:`cmroche`
+- pmsx003: add support for new PMS5003S device :esphomepr:`2710` by :ghuser:`NeoAcheron` (new-feature)
+- Add climate on_state trigger :esphomepr:`2707` by :ghuser:`dudanov` (new-feature)
+- Add greeyac protocol to IR Climate / HeatpumpIR :esphomepr:`2694` by :ghuser:`cmroche` (new-feature)
 - Fix rom/rtc.h deprecation compile warning for debug component :esphomepr:`2520` by :ghuser:`mmakaay`
 - Drop unused constants from const.py :esphomepr:`2718` by :ghuser:`oxan`
 - Install test requirements in lint Docker image :esphomepr:`2719` by :ghuser:`oxan`
 - Clean-up MAC address helpers :esphomepr:`2713` by :ghuser:`oxan`
-- Provide an option to select unique_id generator :esphomepr:`2701` by :ghuser:`kbialek`
-- Ignore secrets yaml on command line :esphomepr:`2715` by :ghuser:`cvwillegen`
+- Provide an option to select unique_id generator :esphomepr:`2701` by :ghuser:`kbialek` (new-feature)
+- Ignore secrets yaml on command line :esphomepr:`2715` by :ghuser:`cvwillegen` (new-feature)
 - Allow for subsecond sampling of hmc5883l :esphomepr:`2735` by :ghuser:`jaharkes`
 - Change log level from DEBUG to INFO for sniffing services of `rf_bridge` :esphomepr:`2736` by :ghuser:`nagyrobi`
 - Add ble_client binary_output :esphomepr:`2200` by :ghuser:`tekmaven` (new-integration)
 - Remove duplicated const data in esp8266 boards :esphomepr:`2740` by :ghuser:`jesserockz`
 - Move to use improv lib from platformio :esphomepr:`2741` by :ghuser:`jesserockz`
-- Add max_telegram_length option to dsmr :esphomepr:`2674` by :ghuser:`mmakaay`
+- Add max_telegram_length option to dsmr :esphomepr:`2674` by :ghuser:`mmakaay` (new-feature)
 - Changed LUT for DKE epaper on ttgo t5 2.13inch to improve partial rfresh :esphomepr:`2475` by :ghuser:`spattinson`
 - Fix NEC protocol implementation :esphomepr:`2534` by :ghuser:`dudanov` (breaking-change)
 - Remove arduino dependency from hm3301 :esphomepr:`2745` by :ghuser:`martgras`
@@ -151,14 +167,14 @@ All changes
 - Prettier date time display after time sync :esphomepr:`2778` by :ghuser:`cvwillegen`
 - Fix distorted gif frames when resizing :esphomepr:`2774` by :ghuser:`davet2001`
 - fixed wrong setup-usage tc9548a :esphomepr:`2766` by :ghuser:`andreashergert1984`
-- Relax the icon validator to allow non-mdi icons :esphomepr:`2764` by :ghuser:`paulmonigatti`
+- Relax the icon validator to allow non-mdi icons :esphomepr:`2764` by :ghuser:`paulmonigatti` (new-feature)
 - Bump black from 21.10b0 to 21.11b1 :esphomepr:`2760` by :ghuser:`dependabot[bot]`
 - Update aht10.cpp to address issue #1635 :esphomepr:`2675` by :ghuser:`krunkel`
-- Add support for P1 Data Request pin control :esphomepr:`2676` by :ghuser:`mmakaay`
+- Add support for P1 Data Request pin control :esphomepr:`2676` by :ghuser:`mmakaay` (new-feature)
 - Allow specifying the dashboard bind address :esphomepr:`2787` by :ghuser:`jesserockz`
 - remove LEDC_HIGH_SPEED_MODE for C3, S2, S3 :esphomepr:`2791` by :ghuser:`martgras`
 - Fix LEDC resolution calculation on ESP32-C3/S2/S3 :esphomepr:`2794` by :ghuser:`rsumner`
-- Add support for sdp8xx :esphomepr:`2779` by :ghuser:`martgras`
+- Add support for sdp8xx :esphomepr:`2779` by :ghuser:`martgras` (new-feature)
 - Allow empty UART debug: option, logging in hex format by default :esphomepr:`2771` by :ghuser:`mmakaay`
 - Bump pylint from 2.11.1 to 2.12.1 :esphomepr:`2798` by :ghuser:`dependabot[bot]`
 - Fix CI cache key for test3.yaml compile :esphomepr:`2757` by :ghuser:`oxan`
@@ -175,20 +191,20 @@ All changes
 - Make clang-tidy suggest stdint.h int types :esphomepr:`2820` by :ghuser:`oxan`
 - Fixed data type inside fast_random_8() routine :esphomepr:`2818` by :ghuser:`anatoly-savchenkov`
 - Improve DSMR read timeout handling :esphomepr:`2699` by :ghuser:`mmakaay`
-- Optionally show internal components on the web server :esphomepr:`2627` by :ghuser:`mechanarchy`
+- Optionally show internal components on the web server :esphomepr:`2627` by :ghuser:`mechanarchy` (new-feature)
 - Fix custom mode_state_topic :esphomepr:`2827` by :ghuser:`definitio`
 - Add support for button entities :esphomepr:`2824` by :ghuser:`jesserockz` (new-integration)
 - Tuya text_sensor and raw data usage :esphomepr:`1812` by :ghuser:`dentra`
 - Fix 8266 SPI Clock Polarity Setting :esphomepr:`2836` by :ghuser:`kbx81`
 - Fix too-broad matcher for custom CI script :esphomepr:`2829` by :ghuser:`oxan`
-- cse7766: add energy sensor :esphomepr:`2822` by :ghuser:`ianchi`
+- cse7766: add energy sensor :esphomepr:`2822` by :ghuser:`ianchi` (new-feature)
 - Burst read for BME280, to reduce spurious spikes :esphomepr:`2809` by :ghuser:`CarlosGS`
 - Bump aioesphomeapi from 10.2.0 to 10.6.0 :esphomepr:`2840` by :ghuser:`dependabot[bot]`
 - Button device class :esphomepr:`2835` by :ghuser:`jesserockz`
 - Implement unit_of_measurement for number component :esphomepr:`2804` by :ghuser:`puuu`
 - Number mode :esphomepr:`2838` by :ghuser:`jesserockz`
 - Bump esphome-dashboard to 20211201.0 :esphomepr:`2842` by :ghuser:`jesserockz`
-- Allow Git credentials to be loaded from secrets :esphomepr:`2825` by :ghuser:`mechanarchy`
+- Allow Git credentials to be loaded from secrets :esphomepr:`2825` by :ghuser:`mechanarchy` (new-feature)
 - Fix compile warning in Tuya automations :esphomepr:`2837` by :ghuser:`oxan`
 - Add problem matcher for Python formatting errors :esphomepr:`2833` by :ghuser:`oxan`
 - Fix CI check for Windows line endings :esphomepr:`2831` by :ghuser:`oxan`
@@ -196,7 +212,7 @@ All changes
 - ESP32 Deep Sleep: correct level value :esphomepr:`2812` by :ghuser:`jhamhader`
 - Fix OTA updates on esp8266 by declaring arch_get_cpu_cycle_count IRAM_ATTR and HOT :esphomepr:`2843` by :ghuser:`Doridian`
 - Fix compilation using subprocesses :esphomepr:`2834` by :ghuser:`oxan`
-- Expand uart invert feature to ESP8266 :esphomepr:`1727` by :ghuser:`Lewn`
+- Expand uart invert feature to ESP8266 :esphomepr:`1727` by :ghuser:`Lewn` (new-feature)
 - Support setting manual_ip under networks option :esphomepr:`2839` by :ghuser:`oxan`
 - Enable a bunch of clang-tidy checks :esphomepr:`2149` by :ghuser:`oxan`
 - Set ESP32 watchdog to loop task  :esphomepr:`2846` by :ghuser:`oxan`
