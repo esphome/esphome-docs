@@ -121,6 +121,8 @@ Beta Changes
 - Bump esphome-dashboard to 20211208.0 :esphomepr:`2887` by :ghuser:`jesserockz`
 - Fix published state for modbus number :esphomepr:`2894` by :ghuser:`jesserockz`
 - Modbus number/output use write single :esphomepr:`2896` by :ghuser:`glmnet`
+- Fix for two points setting when fan_only_cooling is disabled :esphomepr:`2903` by :ghuser:`kbx81`
+- Bump esphome-dashboard to 20211211.0 :esphomepr:`2904` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -218,6 +220,8 @@ All changes
 - Bump esphome-dashboard to 20211208.0 :esphomepr:`2887` by :ghuser:`jesserockz`
 - Fix published state for modbus number :esphomepr:`2894` by :ghuser:`jesserockz`
 - Modbus number/output use write single :esphomepr:`2896` by :ghuser:`glmnet`
+- Fix for two points setting when fan_only_cooling is disabled :esphomepr:`2903` by :ghuser:`kbx81`
+- Bump esphome-dashboard to 20211211.0 :esphomepr:`2904` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
