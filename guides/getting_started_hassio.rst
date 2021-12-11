@@ -3,7 +3,7 @@ Getting Started with ESPHome and Home Assistant
 
 .. seo::
     :description: Getting Started guide for installing ESPHome Dashboard as a Home Assistant add-on and creating a basic configuration.
-    :image: home-assistant.png
+    :image: home-assistant.svg
 
 ESPHome is the perfect solution for creating custom firmware for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a

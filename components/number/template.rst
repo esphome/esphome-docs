@@ -3,7 +3,7 @@ Template Number
 
 .. seo::
     :description: Instructions for setting up template numbers with ESPHome.
-    :image: description.png
+    :image: description.svg
 
 The ``template`` number platform allows you to create a number with templated values
 using :ref:`lambdas <config-lambda>`.

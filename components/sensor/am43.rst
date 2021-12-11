@@ -3,7 +3,7 @@ AM43 Sensor
 
 .. seo::
     :description: Sensors on AM43/BLE covers in ESPHome.
-    :image: am43.png
+    :image: am43.jpg
 
 The ``am43`` sensor platform allows you to read the light and
 battery sensors on an AM43 BLE cover motor. The platform connects

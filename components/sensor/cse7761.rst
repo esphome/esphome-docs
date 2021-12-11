@@ -3,7 +3,7 @@ CSE7761 Power Sensor
 
 .. seo::
     :description: Instructions for setting up CSE7761 power sensors for the Sonoff Dual R3 v1.x
-    :image: cse7761.png
+    :image: cse7761.svg
     :keywords: cse7761, Sonoff Dual R3
 
 The ``cse7761`` sensor platform allows you to use your CSE7761 voltage/current and power sensors

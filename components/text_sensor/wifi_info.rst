@@ -3,7 +3,7 @@ WiFi Info Text Sensor
 
 .. seo::
     :description: Instructions for setting up WiFi info text sensors.
-    :image: network-wifi.png
+    :image: network-wifi.svg
 
 The ``wifi_info`` text sensor platform exposes different WiFi information
 via text sensors.

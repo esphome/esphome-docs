@@ -3,7 +3,7 @@ Switch Component
 
 .. seo::
     :description: Instructions for setting up generic switches in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``switch`` domain includes all platforms that should show up like a
 switch and can only be turned ON or OFF.

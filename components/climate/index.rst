@@ -3,7 +3,7 @@ Climate Component
 
 .. seo::
     :description: Information about the base representation of all climate devices.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for climate devices. Climate devices can represent different types of
 hardware, but the defining factor is that climate devices have a settable target temperature
@@ -184,6 +184,21 @@ advanced stuff.
       // etc. see API reference
       call.perform();
 
+.. _climate-on_state_trigger:
+
+``climate.on_state`` Trigger
+******************************************************
+
+This trigger is activated each time the state of the climate device is updated 
+(for example, if the current temperature measurement or the mode set by the users changes).
+
+.. code-block:: yaml
+
+    climate:
+      - platform: midea  # or any other platform
+        # ...
+        on_state:
+        - logger.log: "State updated!"
 
 See Also
 --------

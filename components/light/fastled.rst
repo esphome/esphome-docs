@@ -3,7 +3,7 @@ FastLED Light
 
 .. seo::
     :description: Instructions for setting up FastLED addressable lights like NEOPIXEL.
-    :image: color_lens.png
+    :image: color_lens.svg
 
 .. _fastled-clockless:
 

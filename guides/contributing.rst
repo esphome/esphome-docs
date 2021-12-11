@@ -3,7 +3,7 @@ Contributing
 
 .. seo::
     :description: Getting started guide for contributing to the ESPHome project
-    :image: github-circle.png
+    :image: github-circle.svg
 
 Contributions to the ESPHome suite are very welcome! All the code for the projects
 is hosted on GitHub and you can find the sources here:

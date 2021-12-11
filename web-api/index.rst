@@ -3,7 +3,7 @@ Web Server API
 
 .. seo::
     :description: Migration guide for installing ESPHome on ESPs running ESPEasy.
-    :image: espeasy.png
+    :image: espeasy.svg
 
 Since version 1.3, ESPHome includes a built-in web server that can be used to view states
 and send commands. In addition to the web-frontend available under the root index of the

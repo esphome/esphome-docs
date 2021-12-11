@@ -3,7 +3,7 @@ ESP32 Touch Pad
 
 .. seo::
     :description: Instructions for setting up the touch pad on the ESP32.
-    :image: touch.png
+    :image: touch.svg
 
 .. _esp32-touch-component:
 

@@ -3,7 +3,7 @@ Midea Air Conditioner
 
 .. seo::
     :description: Instructions for setting up a Midea climate device
-    :image: air-conditioner.png
+    :image: air-conditioner.svg
 
 The ``midea`` component creates a Midea air conditioner climate device.
 

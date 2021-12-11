@@ -3,7 +3,7 @@ Arduino Port Expander
 
 .. seo::
     :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of an ESPHome node
-    :image: arduino_pro_mini.jpg
+    :image: arduino_logo.svg
     :keywords: Arduino port expander extender ESPHome
 
 With this sketch you can control pins of a remote Arduino board through ESPHome. The Arduino acts as a port

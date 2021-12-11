@@ -3,7 +3,7 @@ Native API Component
 
 .. seo::
     :description: Instructions for setting up the native ESPHome API for communication with Home Assistant.
-    :image: server-network.png
+    :image: server-network.svg
     :keywords: Native API, ESPHome, Home Assistant
 
 The ESPHome native API is used to communicate with clients directly, with a highly-optimized

@@ -3,7 +3,7 @@ HTTP Request
 
 .. seo::
     :description: Instructions for setting up HTTP Requests in ESPHome
-    :image: connection.png
+    :image: connection.svg
     :keywords: http, request
 
 

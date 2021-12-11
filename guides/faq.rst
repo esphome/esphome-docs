@@ -3,7 +3,7 @@ Frequently Asked Questions
 
 .. seo::
     :description: Frequently asked questions in ESPHome.
-    :image: question_answer.png
+    :image: question_answer.svg
 
 Tips for using ESPHome
 ----------------------
