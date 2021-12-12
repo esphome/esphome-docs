@@ -83,4 +83,13 @@ for (; row = states.rows[i]; i++) {
             });
         })(row.id);
     }
+    if (row.classList.contains("button")) {
+        (function(id) {
+            row.children[2].children[0].addEventListener('click', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", '/button/' + id.substr(7) + '/press', true);
+                xhr.send();
+            });
+        })(row.id);
+    }
 }
