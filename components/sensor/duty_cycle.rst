@@ -3,7 +3,7 @@ Duty Cycle Sensor
 
 .. seo::
     :description: Instructions for setting up duty cycle sensors in ESPHome
-    :image: percent.png
+    :image: percent.svg
 
 The duty cycle sensor allows you to measure for what percentage of time a signal
 on a GPIO pin is HIGH or LOW.

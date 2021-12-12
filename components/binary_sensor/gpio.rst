@@ -3,7 +3,7 @@ GPIO Binary Sensor
 
 .. seo::
     :description: Instructions for setting up GPIO binary sensors with ESPHome.
-    :image: pin.png
+    :image: pin.svg
 
 The GPIO Binary Sensor platform allows you to use any input pin on your
 device as a binary sensor.
@@ -44,7 +44,9 @@ you can do so with the :ref:`Pin Schema <config-pin_schema>`.
       - platform: gpio
         pin:
           number: D2
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
         name: ...
 
 Inverting Values
@@ -60,7 +62,7 @@ sensor:
       - platform: gpio
         pin:
           number: D2
-          inverted: True
+          inverted: true
         name: ...
 
 Debouncing Values

@@ -3,7 +3,7 @@ GPIO Switch
 
 .. seo::
     :description: Instructions for setting up GPIO pin switches in ESPHome that control GPIO outputs.
-    :image: pin.png
+    :image: pin.svg
 
 The ``gpio`` switch platform allows you to use any pin on your node as a
 switch. You can for example hook up a relay to a GPIO pin and use it
@@ -34,6 +34,8 @@ Configuration variables:
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the pin as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the pin as ON on bootup.
 
@@ -57,13 +59,13 @@ To create an active-low switch (one that is turned off by default), use the :ref
       - platform: gpio
         pin:
           number: 25
-          inverted: yes
+          inverted: true
 
 Momentary Switch
 ----------------
 
 To create momentary switches, for example switches that toggle a pin for a moment, you can use
-:doc:`template switches <template>`.
+`on_turn_on` trigger.
 
 An example that uses a single relay to activate a remote control button. The button can only
 start or stop the motor of the gate. In itself, the button or remote can not know if it opens
@@ -76,11 +78,9 @@ or closes the gate. The relay simulates the button press for 500ms.
       - platform: gpio
         pin: 25
         id: relay
-      - platform: template
         name: "Gate Remote"
         icon: "mdi:gate"
-        turn_on_action:
-        - switch.turn_on: relay
+        on_turn_on:
         - delay: 500ms
         - switch.turn_off: relay
 

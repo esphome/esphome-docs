@@ -21,8 +21,10 @@ binary_sensor:
     name: "Teckin Button"
     pin:
       number: GPIO1
-      mode: INPUT_PULLUP
-      inverted: True
+      mode:
+        input: true
+        pullup: true
+      inverted: true
     on_press:
       - switch.toggle: relay
 
@@ -31,7 +33,7 @@ switch:
   id: blue_led
   pin:
     number: GPIO13
-    inverted: True
+    inverted: true
 - platform: gpio
   name: "Teckin Relay"
   pin: GPIO14
@@ -45,13 +47,13 @@ switch:
 status_led:
   pin:
     number: GPIO3
-    inverted: True
+    inverted: true
 
 sensor:
   - platform: hlw8012
     sel_pin:
       number: GPIO12
-      inverted: True
+      inverted: true
     cf_pin: GPIO04
     cf1_pin: GPIO05
     # Higher value gives lower watt readout

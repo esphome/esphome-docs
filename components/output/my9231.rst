@@ -3,7 +3,7 @@ MY9231/MY9291 LED driver
 
 .. seo::
     :description: Instructions for setting up MY9231 and MY9291 LED drives in ESPHome.
-    :image: my9231.png
+    :image: my9231.svg
     :keywords: MY9231, MY9291, Sonoff B1, Ai-thinker AiLight WiFi light bulb, Arilux E27 Smart Bulb
 
 .. _my9231-component:
@@ -43,9 +43,9 @@ global ``my9231`` hub and give it an id, and then define the
 Configuration variables:
 ************************
 
--  **data_pin** (**Required**, :ref:`config-pin_schema`): The pin which DI is connected
+-  **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin which DI is connected
    to.
--  **clock_pin** (**Required**, :ref:`config-pin_schema`): The pin which DCKI is
+-  **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin which DCKI is
    connected to.
 -  **num_channels** (*Optional*, int): Total number of channels of the whole
    chain. Must be in range from 3 to 1020. Defaults to 6.

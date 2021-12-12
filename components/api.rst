@@ -3,7 +3,7 @@ Native API Component
 
 .. seo::
     :description: Instructions for setting up the native ESPHome API for communication with Home Assistant.
-    :image: server-network.png
+    :image: server-network.svg
     :keywords: Native API, ESPHome, Home Assistant
 
 The ESPHome native API is used to communicate with clients directly, with a highly-optimized
@@ -28,10 +28,42 @@ A Python library that implements this protocol is `aioesphomeapi <https://github
 Configuration variables:
 ------------------------
 
-- **port** (*Optional*, integer): The port to run the API Server on. Defaults to ``6053``.
+- **port** (*Optional*, int): The port to run the API Server on. Defaults to ``6053``.
 - **password** (*Optional*, string): The password to protect the API Server with. Defaults to no password.
+- **encryption** (*Optional*): Enable transport encryption of the API layer.
+
+  - **key** (**Required**, string): The pre-shared key for the encryption. This is a 32-byte base64 encoded string.
+    Below you can copy a key randomly generated in your browser:
+
+    .. raw:: html
+
+        <input type="text" id="api-key" onclick="this.focus();this.select()" style="width: 240px;" readonly="readonly">
+        <script>
+          // https://stackoverflow.com/a/62362724
+          function bytesArrToBase64(arr) {
+            const abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"; // base64 alphabet
+            const bin = n => n.toString(2).padStart(8,0); // convert num to 8-bit binary string
+            const l = arr.length
+            let result = '';
+
+            for(let i=0; i<=(l-1)/3; i++) {
+              let c1 = i*3+1>=l; // case when "=" is on end
+              let c2 = i*3+2>=l; // case when "=" is on end
+              let chunk = bin(arr[3*i]) + bin(c1? 0:arr[3*i+1]) + bin(c2? 0:arr[3*i+2]);
+              let r = chunk.match(/.{1,6}/g).map((x,j)=> j==3&&c2 ? '=' :(j==2&&c1 ? '=':abc[+('0b'+x)]));
+              result += r.join('');
+            }
+
+            return result;
+          }
+
+          let array = new Uint8Array(32);
+          window.crypto.getRandomValues(array);
+          document.getElementById("api-key").value = bytesArrToBase64(array);
+        </script>
+
 - **services** (*Optional*, list): A list of user-defined services. See :ref:`api-services`.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   client connects to the API. This is needed because sometimes the low level ESP functions report that
   the ESP is connected to the network, when in fact it is not - only a full reboot fixes it.
   Can be disabled by setting this to ``0s``. Defaults to ``15min``.

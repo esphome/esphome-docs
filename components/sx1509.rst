@@ -151,8 +151,10 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
           sx1509: sx1509_hub1
           # Use pin number 0 on the SX1509
           number: 0
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
 
     # Individual binary outputs
     switch:
@@ -163,8 +165,9 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
           # Use pin number 1 on the SX1509
           number: 1
           # use as output for switch
-          mode: OUTPUT
-          inverted: False
+          mode:
+            output: true
+          inverted: false
 
     # Individual outputs
     output:
@@ -183,9 +186,9 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
 
 
 - **sx1509** (**Required**, :ref:`config-id`): The id of the SX1509 component of the pin.
-- **number** (**Required**, integer): The pin number.
+- **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
-  should be treated as inverted. Defaults to ``False``.
+  should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT``,
   ``INPUT_PULLUP`` or ``OUTPUT``.
 

@@ -3,7 +3,7 @@ Frequently Asked Questions
 
 .. seo::
     :description: Frequently asked questions in ESPHome.
-    :image: question_answer.png
+    :image: question_answer.svg
 
 Tips for using ESPHome
 ----------------------
@@ -19,13 +19,13 @@ Tips for using ESPHome
 
    .. code-block:: bash
 
-       esphome livingroom.yaml config
+       esphome config livingroom.yaml
 
 3. To view the logs from your node without uploading, run
 
    .. code-block:: bash
 
-       esphome livingroom.yaml logs
+       esphome logs livingroom.yaml
 
 4. You can always find the source ESPHome generates under ``<NODE_NAME>/src/``.
 
@@ -51,10 +51,10 @@ and did not mount the ESP device into your container using ``--device=/dev/ttyUS
 Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
-First, you need to get the firmware file to flash. For Hass.io add-on based installs you can
-use the ``COMPILE`` button (click the overflow icon with the three dots) and then press
-``Download Binary``. For command line based installs you can access the file under
-``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
+First, you need to get the firmware file to flash. For the Home Assistant add-on based
+installs you can use the ``COMPILE`` button (click the overflow icon with the three dots)
+and then press ``Download Binary``. For command line based installs you can access the
+file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
 and downloading one of the pre-compiled binaries. Open up the application and select the serial port
@@ -89,19 +89,19 @@ That's no good. Here are some steps that resolve some problems:
 -  **If you're having WiFi problems**: See :ref:`wifi-problems`.
 -  Enable verbose logs in the logger: section.
 -  **Still an error?** Please file a bug report over in the `ESPHome issue tracker <https://github.com/esphome/issues>`__.
-   I will take a look at it as soon as I can. Thanks!
+   We will take a look at it as soon as we can. Thanks!
 
 .. _faq-bug_report:
 
 How to submit an issue report
 -----------------------------
 
-First of all, thank you very much to everybody submitting issue reports! While I try to test ESPHome/yaml as much as
-I can using my own hardware, I don't own every single device type and mostly only do tests with my own home automation
-system. When doing some changes in the core, it can quickly happen that something somewhere breaks. Issue reports are a
-great way for me to track and (hopefully) fix issues, so thank you!
+First of all, thank you very much to everybody submitting issue reports! While we try to test ESPHome/YAML as much as
+we can using our available hardware, we don't own every single device type and rely on testing done by the community 
+and the contributors. When doing some changes in the core, it can quickly happen that something somewhere breaks. 
+Issue reports are a great way for us to track and (hopefully) fix issues, so thank you!
 
-For me to fix the issue quickly, there are some things that would be really helpful:
+For us to fix the issue quickly, there are some things that would be really helpful:
 
 1.  **Just writing "X doesn't work" or "X gives bug" is not helpful!!!** Seriously, how do you expect
     help given just that information?
@@ -121,11 +121,12 @@ It's simple. Run:
 
 .. code-block:: bash
 
-    pip install -U esphome
+    pip3 install -U esphome
     # From docker:
     docker pull esphome/esphome:latest
 
-And in Hass.io, there's a simple UPDATE button when there's an update available as with all add-ons
+And in Home Assistant, there's a simple UPDATE button when there's an update
+available as with all add-ons.
 
 .. _faq-beta:
 
@@ -139,10 +140,10 @@ by installing the tested beta:
 .. code-block:: bash
 
     # For pip-based installs
-    pip install --pre -U esphome
+    pip3 install --pre -U esphome
 
     # For docker-based installs
-    docker run [...] -it esphome/esphome:beta livingroom.yaml run
+    docker run [...] -it esphome/esphome:beta run livingroom.yaml
 
 For Home Assistant supervised installs add the community addons beta repository by
 adding
@@ -155,13 +156,13 @@ How do I use the latest bleeding edge version?
 ----------------------------------------------
 
 First, a fair warning that the latest bleeding edge version is not always stable and might have issues.
-If you find some, please do however report them if you have time :)
+If you find some, please do however report them.
 
 To install the dev version of ESPHome:
 
-- In Hass.io: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`
+- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
-- From ``pip``: Run ``pip install https://github.com/esphome/esphome/archive/dev.zip``
+- From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
 
   .. code-block:: bash
@@ -186,13 +187,13 @@ Does ESPHome support [this device/feature]?
 -------------------------------------------
 
 If it's not in :doc:`the docs </index>`, it's probably not
-supported. However, I'm always trying to add support for new features, so feel free to create a feature
+supported. However, we are always trying to add support for new features, so feel free to create a feature
 request in the `ESPHome feature request tracker <https://github.com/esphome/feature-requests>`__. Thanks!
 
 I have a question... How can I contact you?
 -------------------------------------------
 
-Sure! I'd be happy to help :) You can contact me here:
+Sure! We are happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
 -  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
@@ -206,8 +207,8 @@ Sure! I'd be happy to help :) You can contact me here:
 My node keeps reconnecting randomly
 -----------------------------------
 
-Jep, that's a known issue. However, it seems to be very low-level and I don't really know
-how to solve it. I'm working on possible workarounds for the issue but currently I do
+Jep, that's a known issue. However, it seems to be very low-level and we don't really know
+how to solve it. We are working on possible workarounds for the issue, but currently we do
 not have a real solution.
 
 Some steps that can help with the issue:
@@ -224,7 +225,21 @@ Some steps that can help with the issue:
   :doc:`api connection is lost </components/api>` or
   :doc:`mqtt connection is lost </components/mqtt>`. So if you are facing this problem you'll need
   to explicitly set the ``reboot_timeout`` option to ``0s`` on the components being used.
-
+- If you see ``Error: Disconnecting <NODE_NAME>`` in your logs, ESPHome is actively closing
+  the native API client connection. Connect a serial console to inspect the reason, which is only
+  logged via serial. If you see ``ack timeout 4`` right before a disconnect, this might be because
+  of a bug in the AsyncTCP library, for which a fix was included in ESPHome version 1.18.0.
+  If you are running an ESPHome version, prior to 1.18.0, then upgrade ESPHome and build fresh
+  firmware for your devices. 
+- We have seen an increase in disconnects while the log level was set to ``VERY_VERBOSE``,
+  especially on single-core devices, where the logging code might be interfering with the operation
+  of the networking code. For this reason, we advise using a lower log level for production
+  purposes.
+- Related to this, seems to be the number of clients that are simultaneously connected to the native
+  API server on the device. These might for example be Home Assistant (via the ESPHome integration) and
+  the log viewer on the web dashboard. In production, you will likely only have a single connection from
+  Home Assistant, making this less of an issue. But beware that attaching a log viewer might
+  have impact.
 
 Docker Reference
 ----------------
@@ -245,13 +260,13 @@ Command reference:
 .. code-block:: bash
 
     # Start a new file wizard for file livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml wizard
+    docker run --rm -v "${PWD}":/config -it esphome/esphome wizard livingroom.yaml
 
     # Compile and upload livingroom.yaml
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml run
+    docker run --rm -v "${PWD}":/config -it esphome/esphome run livingroom.yaml
 
     # View logs
-    docker run --rm -v "${PWD}":/config -it esphome/esphome livingroom.yaml logs
+    docker run --rm -v "${PWD}":/config -it esphome/esphome logs livingroom.yaml
 
     # Map /dev/ttyUSB0 into container
     docker run --rm -v "${PWD}":/config --device=/dev/ttyUSB0 -it esphome/esphome ...
@@ -301,7 +316,8 @@ And a docker compose file looks like this:
     2. Enable UDP traffic from ESPHome node's subnet to 224.0.0.251/32 on port 5353.
 
     Alternatively, you can make esphome use ICMP pings to check the status of the device
-    with the Hass.io Addon ``"status_use_ping": true,`` option or with docker ``-e ESPHOME_DASHBOARD_USE_PING=true``
+    with the Home Assistant add-on ``"status_use_ping": true,`` option or with
+    Docker ``-e ESPHOME_DASHBOARD_USE_PING=true``.
     See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
     
 .. _faq-notes_on_disabling_mdns:
@@ -326,6 +342,47 @@ the device itself (technically, the configuration can be reverse-engineered from
 with a lot of work).
 
 Always back up all your files!
+
+
+Why shouldn't I use underscores in my device name?
+--------------------------------------------------
+
+The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.  
+
+Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
+
+Why am I getting a warning about strapping pins?
+--------------------------------------------------
+
+The ESP chips have special "strapping pins" that are read during the bootup procedure and determine how it boots up. They define whether the ESP boots into a special "flashing mode" or normal boot and a couple of other internal settings.
+If an external pullup/down changes the configured voltage levels boot failures or hard to diagnose issues can happen.
+While the use of them in software is not a problem, if there's something attached to the pins (particularly if they're not floating during the bootup) you may run into problems.
+It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
+
+Note that some boards connect pins such as GPIO0 to a builtin tactile switch. In these cases using the strapping pins is not a problem.
+
+How can I test a Pull Request?
+------------------------------
+
+By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull 
+Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components 
+that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page 
+of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and 
+flash your device, the code from the Pull Request will be used for the components changed by the Pull Request.
+
+.. code-block:: yaml
+
+    external_components:
+      # replace 1234 with the number of the Pull Request
+      - source: github://pr#1234
+        components:
+          # list all components modified by this Pull Request here
+          - ccs811  
+
+
+Note that this only works for Pull Requests that only change files within components. If any files outside 
+``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled 
+with the "core" label on GitHub.
 
 See Also
 --------

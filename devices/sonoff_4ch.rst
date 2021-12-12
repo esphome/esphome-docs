@@ -47,7 +47,7 @@ For this guide you will need:
 - A USB to UART Bridge for flashing the device. These can be bought on Amazon (or other online stores) for less than 5 dollars.
   Note that the bridge *must* be 3.3V compatible. Otherwise you will destroy your Sonoff.
 - Jumper wires to connect the UART bridge to the header pins.
-- A computer running Home Assistant with the ESPHome Hass.io add-on.
+- A computer running Home Assistant with the ESPHome Home Assistant add-on.
 - A screwdriver to open up the Sonoff 4CH.
 
 Have everything? Great! Then you can start.
@@ -211,12 +211,16 @@ of the basic functions.
 ---------------------------------------- -----------------------------------------
 ``GPIO13``                               Blue LED (inverted)
 ---------------------------------------- -----------------------------------------
-``GPIO1``                                ``RX`` pin (for external sensors)
+``GPIO1``                                ``TX`` pin (for external sensors)
 ---------------------------------------- -----------------------------------------
-``GPIO3``                                ``TX`` pin (for external sensors)
+``GPIO3``                                ``RX`` pin (for external sensors)
 ---------------------------------------- -----------------------------------------
 ``GPIO2``                                ``IO2`` pin (for external sensors)
 ======================================== =========================================
+
+.. note::
+
+    The ESP8266 will be prevented from booting if the following pins are pulled LOW (connected to GND) on cold startup: ``GPIO0``, ``GPIO1``, ``GPIO2``. Be prepared if you want to use them for input sensors.
 
 .. code-block:: yaml
 
@@ -239,26 +243,34 @@ of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff 4CH Button 1"
       - platform: gpio
         pin:
           number: GPIO9
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff 4CH Button 2"
       - platform: gpio
         pin:
           number: GPIO10
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff 4CH Button 3"
       - platform: gpio
         pin:
           number: GPIO14
-          mode: INPUT_PULLUP
-          inverted: True
+          mode:
+            input: true
+            pullup: true
+          inverted: true
         name: "Sonoff 4CH Button 4"
       - platform: status
         name: "Sonoff 4CH Status"
@@ -282,7 +294,7 @@ of the basic functions.
       - platform: esp8266_pwm
         id: blue_led
         pin: GPIO13
-        inverted: True
+        inverted: true
 
     light:
       # ... and then make a light out of it.

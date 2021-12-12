@@ -3,7 +3,7 @@ Migrating from Sonoff Tasmota
 
 .. seo::
     :description: Migration guide for installing ESPHome on ESPs running Sonoff Tasmota.
-    :image: tasmota.png
+    :image: tasmota.svg
 
 Migrating from previous Sonoff Tasmota setups is very easy. You just need to have
 ESPHome create a binary for you and then upload that in the Tasmota web interface.
@@ -14,8 +14,9 @@ Getting the Binary
 First follow the guides for the :ref:`different supported devices <devices>` and create a configuration
 file. Then, generate and download the binary:
 
-- **Using the Hass.io add-on/dashboard**: Just click the ``COMPILE`` button, wait for
-  the compilation to end and press the ``DOWNLOAD BINARY`` button.
+- **Using the Home Assistant add-on/dashboard**: Just click the ``COMPILE``
+  button, wait for the compilation to end and press the ``DOWNLOAD BINARY``
+  button.
 
   .. figure:: images/download_binary.png
 

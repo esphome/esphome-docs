@@ -3,7 +3,7 @@ GPS Component
 
 .. seo::
     :description: Instructions for setting up GPS integration in ESPHome.
-    :image: crosshair-gps.png
+    :image: crosshairs-gps.svg
 
 The ``gps`` component allows you to connect GPS modules to your ESPHome project.
 Any GPS module that uses the standardized NMEA communication protocol will work.

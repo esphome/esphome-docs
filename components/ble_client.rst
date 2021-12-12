@@ -44,8 +44,8 @@ client devices.
 Configuration variables:
 ------------------------
 
-- **mac_address** (*Required*, MAC Address): The MAC address of the BLE device to connect to.
-- **id** (*Required*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
+- **mac_address** (**Required**, MAC Address): The MAC address of the BLE device to connect to.
+- **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 
 Automations:
 
@@ -72,7 +72,7 @@ This automation is triggered when the client connects to the BLE device.
         on_connect:
           then:
             - lambda: |-
-              ESP_LOGD("ble_client_lambda", "Connected to BLE device");
+                ESP_LOGD("ble_client_lambda", "Connected to BLE device");
 
 .. _ble_client-on_disconnect:
 
@@ -89,7 +89,7 @@ This automation is triggered when the client disconnects from a BLE device.
         on_disconnect:
           then:
             - lambda: |-
-              ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
+                ESP_LOGD("ble_client_lambda", "Disconnected from BLE device");
 
 BLE Overview
 ------------
@@ -139,14 +139,14 @@ Once the connection is established, referencing each
 service/characteristic/descriptor by the full UUID would take a
 considerable portion of the small (~23 byte) packet. So the
 characteristics and descriptors also provide a small 2-byte
-*handle* (alias) to maximise available data space.
+*handle* (alias) to maximize available data space.
 
 Setting Up Devices
 ------------------
 
 Whilst the component can connect to most BLE devices (that do not
 require authentication/pin), useful functionality is only obtained
-through dependent components, such as :doc:`/components/sensor/ble_sensor`.
+through dependent components, such as :doc:`/components/sensor/ble_client`.
 See the documentation for these components for details on setting up
 specific devices.
 
@@ -203,12 +203,12 @@ display them in the log:
 
 The discovered services can then be used to enable and configure other
 ESPHome components, for example Service UUID 0xFFE0 is used for iTag style
-keychain button events, used by the :doc:`/components/sensor/ble_sensor` component.
+keychain button events, used by the :doc:`/components/sensor/ble_client` component.
 
 See Also
 --------
 
-- :doc:`/components/sensor/ble_sensor`
+- :doc:`/components/sensor/ble_client`
 - :ref:`Automation <automation>`
 - :apiref:`ble_client/ble_client.h`
 - :ghedit:`Edit`

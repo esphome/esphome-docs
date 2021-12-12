@@ -5,6 +5,19 @@
   text-align: center;
 }
 
+div.document {
+  margin-bottom: 50px;
+}
+
+div.body {
+  min-width: initial;
+}
+
+div.sphinxsidebar {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
 img.component-image {
   border: none;
   vertical-align: middle;
@@ -33,7 +46,7 @@ table.docutils {
   }
   100% {
     visibility: visible;
-}
+  }
 }
 @keyframes blink_effect {
   0% {
@@ -53,14 +66,14 @@ table.docutils {
   bottom: 0;
   right: 0;
   width: 100%;
-  background-color: rgba(20,20,20,0.8);
+  background-color: rgba(20, 20, 20, 0.8);
   min-height: 26px;
   font-size: 14px;
   color: #ccc;
   line-height: 26px;
   padding: 8px 0 8px 30px;
   z-index: 9999;
-  display: none
+  display: none;
 }
 .footer-button-container {
   margin: 0 60px 0 10px;
@@ -86,6 +99,12 @@ img.index-shield {
   margin-top: 10px;
 }
 
+div.index-shields {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 64px;
+}
+
 .supporters-row {
   display: flex;
 }
@@ -106,4 +125,65 @@ img.index-shield {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.guide-container {
+  margin: 32px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.guide-card {
+  color: #004b6b;
+  display: block;
+  height: auto;
+  width: 300px;
+  background-color: #f3f6f6;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px -4px #00000075;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.guide-card-title {
+  font-weight: 300;
+  margin: 16px !important;
+}
+
+.guide-code {
+  padding: 8px 16px;
+  margin: 8px;
+  color: black;
+  white-space: pre-line;
+}
+
+@media screen and (min-width: 870px) {
+  .guide-card:first-child {
+    z-index: 100;
+  }
+  .guide-card:nth-child(2) {
+    z-index: 50;
+  }
+
+  .guide-card:not(:first-child) {
+    margin-left: -40px;
+    padding-left: 40px;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .guide-container {
+    flex-direction: column;
+  }
+  .guide-card {
+    width: 100%;
+    margin: 8px 0;
+    padding: 0px;
+  }
+  .guide-card:not(:first-child) {
+    margin-left: 0;
+  }
+  .guide-card ul {
+    margin-left: 32px;
+  }
 }

@@ -2,8 +2,7 @@ Time & Temperature on OLED Display
 ==================================
 
 .. seo::
-    :description: Instructions for setting up a display in ESPhome to show sensor values from Home Assistant
-    :image: display_time_temp_oled_1.jpg
+    :description: Instructions for setting up a display in ESPHome to show sensor values from Home Assistant
     :keywords: Display
 
 .. figure:: images/display_time_temp_oled_1.jpg
@@ -102,7 +101,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
     i2c:
       sda: D1
       scl: D2
-      scan: False
+      scan: false
 
     display:
       - platform: ssd1306_i2c

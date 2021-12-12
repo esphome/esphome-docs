@@ -3,7 +3,7 @@ Configuration Types
 
 .. seo::
     :description: Documentation of different configuration types in ESPHome
-    :image: settings.png
+    :image: settings.svg
 
 ESPHome’s configuration files have several configuration types. This
 page describes them.
@@ -74,40 +74,42 @@ In some places, ESPHome also supports a more advanced “pin schema”.
       # Advanced:
       pin:
         number: D0
-        inverted: True
-        mode: INPUT_PULLUP
+        inverted: true
+        mode:
+          input: true
+          pullup: true
 
 Configuration variables:
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
-   should be treated as inverted. Defaults to ``False``.
--  **mode** (*Optional*, string): A pin mode to set for the pin at
-   startup, corresponds to Arduino’s ``pinMode`` call.
+   should be treated as inverted. Defaults to ``false``.
+-  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
+   modes like input or output. The default value depends on the context.
+   Accepts either a shorthand string or a mapping where each feature can be individually 
+   enabled/disabled:
 
-Available Pin Modes:
+   - **input** (*Optional*, boolean): If true, configure the pin as an input.
+   - **output** (*Optional*, boolean): If true, configure the pin as an output.
+   - **pullup** (*Optional*, boolean): Activate internal pullup resistors on the pin.
+   - **pulldown** (*Optional*, boolean): Activate internal pulldown resistors on the pin.
+   - **open_drain** (*Optional*, boolean): Set the pin to open-drain (as opposed to push-pull).
+     The active pin state will then result in a high-impedance state.
 
--  ``INPUT``
--  ``OUTPUT``
--  ``OUTPUT_OPEN_DRAIN``
--  ``ANALOG`` (only on ESP32)
--  ``INPUT_PULLUP``
--  ``INPUT_PULLDOWN`` (only on ESP32)
--  ``INPUT_PULLDOWN_16`` (only on ESP8266 and only on GPIO16)
+   For compatibility some shorthand modes can also be used.
 
-More exotic Pin Modes are also supported, but rarely used:
+   - ``INPUT``
+   - ``OUTPUT``
+   - ``OUTPUT_OPEN_DRAIN``
+   - ``ANALOG``
+   - ``INPUT_PULLUP``
+   - ``INPUT_PULLDOWN``
 
--  ``WAKEUP_PULLUP`` (only on ESP8266)
--  ``WAKEUP_PULLDOWN`` (only on ESP8266)
--  ``SPECIAL``
--  ``FUNCTION_0`` (only on ESP8266)
--  ``FUNCTION_1``
--  ``FUNCTION_2``
--  ``FUNCTION_3``
--  ``FUNCTION_4``
--  ``FUNCTION_5`` (only on ESP32)
--  ``FUNCTION_6`` (only on ESP32)
+Advanced options:
 
+- **drive_strength** (*Optional*, string): On ESP32s with esp-idf framework the pad drive strength,
+  i.e. the maximum amount of current can additionally be set. Defaults to ``20mA``.
+  Options are ``5mA``, ``10mA``, ``20mA``, ``40mA``.
 
 .. _config-time:
 
@@ -248,7 +250,6 @@ added ``board``, and overridden ``name`` substitutions):
       platform: ESP8266
       board: esp01_1m
       includes: []
-      board_flash_mode: dout
       libraries: []
       esp8266_restore_from_flash: false
       build_path: device01
@@ -270,6 +271,9 @@ you to put common pieces of configuration in separate files and keep only unique
 config in the main yaml file. All definitions from packages will be merged with your main
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
+
+Local packages
+**************
 
 Consider the following example where the author put common pieces of configuration like WiFi and
 I²C into base files and extends it with some device specific configurations in the main config.
@@ -327,7 +331,7 @@ merged with the services definitions from main config file.
     i2c:
       sda: GPIO21
       scl: GPIO22
-      scan: True
+      scan: true
       frequency: 100kHz
 
     # Enable logging
@@ -345,7 +349,36 @@ merged with the services definitions from main config file.
       - <<: !include common/binary_sensor/connection_status.config.yaml
 
     switch:
-      - !include common/switch/restart_switch.config.yaml
+      - <<: !include common/switch/restart_switch.config.yaml
+
+.. _config-git_packages:
+
+Remote/git Packages
+*******************
+
+Packages can also be loaded from a git repository by utilizing the correct config syntax.
+:ref:`config-substitutions` can be used inside the remote packages which allows users to override
+them locally with their own subsitution value.
+
+.. code-block:: yaml
+
+    packages:
+      # Git repo examples
+      remote_package:
+        url: https://github.com/esphome/non-existant-repo
+        ref: main # optional
+        files: [file1.yml, file2.yml]
+        refresh: 1d # optional
+
+      # A single file can be expressed using `file` or `files` as a string
+      remote_package_two:
+        url: https://github.com/esphome/non-existant-repo
+        file: file1.yml # cannot be combined with `files`
+        # files: file1.yml
+
+      # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
+      remote_package_three: github://esphome/non-existant-repo/file1.yml@main
+
 
 See Also
 --------

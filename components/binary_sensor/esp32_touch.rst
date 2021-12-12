@@ -3,7 +3,7 @@ ESP32 Touch Pad
 
 .. seo::
     :description: Instructions for setting up the touch pad on the ESP32.
-    :image: touch.png
+    :image: touch.svg
 
 .. _esp32-touch-component:
 
@@ -17,7 +17,7 @@ the eight touch pads of the ESP32 as :ref:`binary sensors <esp32-touch-binary-se
 
     # Example configuration entry
     esp32_touch:
-      setup_mode: False
+      setup_mode: false
 
     binary_sensor:
       - platform: esp32_touch
@@ -95,6 +95,10 @@ Configuration variables:
 -  **id** (*Optional*,
    :ref:`config-id`): Manually specify
    the ID used for code generation.
+-  **wakeup_threshold** (*Optional*, int): The threshold to use to detect touch events to wakeup from deep
+   sleep. Smaller values mean a higher probability that the pad is being touched. All touch pad sensors that
+   should trigger a wakeup from deep sleep must specify this value. The :ref:`deep_sleep-component` must also
+   be configured to enable a wakeup from a touch event. Note that no filter is active during deep sleep.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Touch Pad Pins
@@ -131,7 +135,7 @@ to make the validator happy, we are going to find good thresholds in a moment an
 
     # Example configuration entry for finding threshold values
     esp32_touch:
-      setup_mode: True
+      setup_mode: true
 
     binary_sensor:
       - platform: esp32_touch
@@ -148,7 +152,7 @@ touch/non-touch events.
     :align: center
 
 Finally, put your threshold parameter in the configuration. Do not forget to disable the ``setup_mode``
-option again by setting it to ``False``. Otherwise you will end up spamming the logs and slowing the device
+option again by setting it to ``false``. Otherwise you will end up spamming the logs and slowing the device
 down.
 
 See Also

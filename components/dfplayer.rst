@@ -3,7 +3,7 @@ DF-Player mini
 
 .. seo::
     :description: Instructions for setting up DF Player Mini integration in ESPHome.
-    :image: crosshair-gps.png
+    :image: dfplayer.svg
 
 The ``dfplayer`` (`datasheet <https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299>`__), component
 allows you to play sound and music stored in an SD card or USB flash drive.
@@ -99,8 +99,8 @@ Plays a track.
     on_...:
       then:
         - dfplayer.play:
-          file: 23
-          loop: false
+            file: 23
+            loop: false
         # Shorthand
         - dfplayer.play: 23
 
@@ -108,8 +108,8 @@ Configuration options:
 
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The global track
   number (from all tracks in the device). If not specified plays the first track.
-- **loop** (*Optional*, bool, :ref:`templatable <config-templatable>`): Repeats playing
-  the same track. Defaults to ``False``.
+- **loop** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Repeats playing
+  the same track. Defaults to ``false``.
 
 ``dfplayer.play_folder`` Action
 -------------------------------
@@ -146,8 +146,8 @@ Configuration options:
 - **folder** (**Required**, int, :ref:`templatable <config-templatable>`): The folder number.
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The file number
   inside the folder to play. Optional only if ``loop`` is not set.
-- **loop** (*Optional*, bool, :ref:`templatable <config-templatable>`): Repeats playing
-  all files in the folder. Causes ``file`` to be ignored. Defaults to ``False``.
+- **loop** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Repeats playing
+  all files in the folder. Causes ``file`` to be ignored. Defaults to ``false``.
 
 
 ``dfplayer.set_device`` Action
@@ -179,6 +179,28 @@ Configuration options:
 
 - **volume** (**Required**, int, :ref:`templatable <config-templatable>`): The volume value.
   Valid values goes from ``0`` to ``30``.
+
+``dfplayer.volume_up`` Action
+-----------------------------
+
+Turn volume up.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - dfplayer.volume_up
+
+``dfplayer.volume_down`` Action
+-------------------------------
+
+Turn volume down.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - dfplayer.volume_down
 
 ``dfplayer.set_eq`` Action
 --------------------------
@@ -347,7 +369,7 @@ Sample code
         then:
           - dfplayer.play_folder:
               folder: !lambda 'return folder;'
-              loop: True
+              loop: true
 
       - service: dfplayer_set_device_tf
         then:
@@ -391,6 +413,14 @@ Sample code
       - service: dfplayer_random
         then:
           - dfplayer.random
+
+      - service: dfplayer_volume_up
+        then:
+          - dfplayer.volume_up
+
+      - service: dfplayer_volume_down
+        then:
+          - dfplayer.volume_down
 
 See Also
 --------

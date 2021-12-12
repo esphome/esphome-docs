@@ -3,7 +3,7 @@ DIY Examples
 
 .. seo::
     :description: Community curated list of DIY creations and custom code for ESPHome.
-    :image: earth.png
+    :image: earth.svg
 
 This is a curated list of awesome creations with ESPHome containing various
 custom components, blog posts, videos and sample configurations. It should serve as a means of
@@ -36,18 +36,20 @@ Blog Posts & Videos
 - `Automated Bathroom Ventilation <https://www.youtube.com/watch?v=weBDnmrQYOs>`__ by `Intermittent Technology <https://intermit.tech>`__
 - `ESPHome MP3 Sound Machine <https://selfhostedhome.com/esp8266-mp3-sound-machine/>`__ by `Self Hosted Home <https://selfhostedhome.com>`__
 - `ESP32 Camera+ESP8266 PIR <https://www.dopebuild.com/i-am-sorry-dave-i-am-unable-to-do-that/>`__ by `Dave Richer <https://dopebuild.com/>`__
-- `Detecting Sound with ESP8266 <https://thibmaek.com/post/detecting-sound-level-using-esp8266-and-esphome>`__ by `Thibault Maekelbergh <https://thibmaek.com>`__
+- `Detecting Sound with ESP8266 <https://thibmaek.com/posts/detecting-sound-level-using-esp8266-and-esphome>`__ by `Thibault Maekelbergh <https://thibmaek.com>`__
 - `SW420 Vibration Sensor with Remote Notifications <https://github.com/rmooreID/Home-Assistant-Appliance-Monitor/>`__ by :ghuser:`rmooreID`
 - `DIY Irrigation Controller (with Internal Scheduler + Lovelace UI) <https://brianhanifin.com/posts/diy-irrigation-controller-esphome-home-assistant/>`__ by :ghuser:`BrianHanifin`
 - `Smart Intercom <https://frog32.ch/smart-intercom.html>`__ by `Marc Egli <https://frog32.ch/>`__
 - `Esp32 six shutters controller <https://github.com/Gio-dot/Six-shutters-ESP32-controller>`__ by `Gio-dot <https://github.com/Gio-dot>`__
 - `Washing machine phases detector (Sonoff Pow R2) <https://github.com/Gio-dot/Washing-Machine-Sonoff-Pow-R2-Esphome>`__ by `Gio-dot <https://github.com/Gio-dot>`__
-- `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-home-assistant/>`__ by :ghuser:`emorydunn`
+- `Sonoff L1 LED Strip <https://emorydunn.com/blog/2020/08/10/sonoff-l1-&-home-assistant/>`__ by :ghuser:`emorydunn`
 - `ESPHome for SP501E LED Controller <https://margau.net/posts/2020-11-21-2h-led-hack/>`__ by `margau <https://margau.net>`__
-- `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPhome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
+- `4$ Xiaomi mijia thermometer LYWSD03MMC + ESP32 + ESPHome <https://omarghader.github.io/how-to-monitor-your-home-temperature-with-esp32-and-xiaomi-mijia-using-esphome/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Baseboard (Line Voltage) Thermostat from Smart Switch <https://github.com/rjmurph2241/baseboard-heating-thermostat>`__ by :ghuser:`rjmurph2241`
 - `Office Doorbell <https://github.com/shish/esphome-projects/blob/master/office-doorbell.md>`__ by :ghuser:`shish`
 - `Display TM1637 with ESPHome and MQTT showing Youtube subscribers count and other info <https://youtu.be/27JZEky0h1Q>`__ by :ghuser:`electrofun-smart`
+- `Automate your garage door with ESP8266 lysignal Yunshan 7v-30v <https://www.haade.fr/en/blog/home-automation-smarthome-jeedom-homeassistant/tutos-haade-lab/domotiser-sa-porte-de-garage-pour-5e/>`__ by :ghuser:`haade-administrator`
+- `Embedded controller for Audioengine A5+ <https://github.com/chatziko/audioengine-a5-controller/>`__ by :ghuser:`chatziko`
 
 Custom Components & Code
 ------------------------
@@ -78,6 +80,7 @@ Custom Components & Code
 - `Custom UART component for WS3 weather station and air particulate matter sensor <https://github.com/kquinsland/ws3-to-esphome-bridge>`__ by :ghuser:`kquinsland`
 - `ADEMCO/VISTA/Honeywell alarm system custom component <https://github.com/Dilbert66/esphome-vistaECP>`__ by :ghuser:`Dilbert66`
 - `Winsen ZE08-CH2O (Formaldehyde sensor) custom component <https://gist.github.com/cretep/f96606dc6a4eae0d85993d6085959220>`__ by :ghuser:`cretep`
+- `ZclMqttBridge custom component <https://github.com/HyperReap/zcl_mqtt_bridge>`__ by :ghuser:`HyperReap`
 
 Sample Configurations
 ---------------------
@@ -93,6 +96,7 @@ Sample Configurations
 - `ESP32 Higrow Plant Moisture Sensor <https://gist.github.com/WoLpH/bc284ba9aeb5d1263f72d6294e239c1a>`__ by :ghuser:`WoLpH`
 - `Send push notification to phone when dryer cycle has finished <https://gist.github.com/jeffehobbs/93ab682705ec3bbba19887903e7ccdb9>`__ by :ghuser:`jeffehobbs`
 - `ESP8266 Smart Sprinkler Project <https://github.com/selfhostedhome/smart-sprinkler>`__ by `Self Hosted Home <https://selfhostedhome.com>`__
+- `ESP8266 lysignal Yunshan 7v-30v <https://gist.github.com/haade-administrator/ba9b6667ece8269cd37f64e34e908977/>`__ by :ghuser:`haade-administrator`
 - `LOHAS RGBW/CWWW Smart bulbs <https://www.youtube.com/watch?v=fTb6n6flJIw>`__ by `digiblurDIY <https://www.youtube.com/channel/UC5ZdPKE2ckcBhljTc2R_qNA>`__
 - `ESPHome with MakerLife Weather Station Kit <https://github.com/mkuoppa/esphomeweatherstation>`__ by :ghuser:`mkuoppa`
 - `ESPHome DIY Multisensor Cat Feeder <https://github.com/335iguy/diy-multisensor-cat-feeder>`__ by :ghuser:`335iguy`
@@ -104,3 +108,5 @@ Sample Configurations
 - `ESPHome AXA Remote 2 control <https://github.com/galagaking/espaxa/>`__ by :ghuser:`galagaking`
 - `ESPHome WF-DS01 TuyaMCU based dimmable bedside touch lamp <https://github.com/davet2001/miscellaneous/blob/master/tuyamcu_ws-df01_touchlamp.yaml>`__ by :ghuser:`davet2001`
 - `Universal menu system for devices with rotary encoder with push and SSD1306 I2C display <https://github.com/mikosoft83/pithy_screen_menu_system>`__ by :ghuser:`mikosoft83`
+- `Show heart rate sensor values sent over Bluetooth Low Energy on a display <https://github.com/koenvervloesem/ESPHome-Heart-Rate-Display>`__ by :ghuser:`koenvervloesem`
+- `ESPHome floor heating controller (proportional valves) <https://github.com/nliaudat/floor-heating-controller>`__ by :ghuser:`nliaudat`

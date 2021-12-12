@@ -3,7 +3,7 @@ WiFi Component
 
 .. seo::
     :description: Instructions for setting up the WiFi configuration for your ESP node in ESPHome.
-    :image: network-wifi.png
+    :image: network-wifi.svg
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
 This core ESPHome component sets up WiFi connections to access points
@@ -51,21 +51,21 @@ Configuration variables:
 
 - **ap** (*Optional*): Enable an access point mode on the node.
 
-  - **ssid** (**Required**, string): The name of the access point to create.
+  - **ssid** (*Optional*, string): The name of the access point to create. Leave empty to use
+    the device name.
   - **password** (*Optional*, string): The password for the access point. Leave empty for
     no password.
   - **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14.
     Defaults to 1.
   - **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as
     manual_ip for station mode.
-  - **ap_timeout** (*Optional*, :ref:`time <config-time>`): The time after which to enable the
+  - **ap_timeout** (*Optional*, :ref:`config-time`): The time after which to enable the
     configured fallback hotspot. Defaults to ``1min``.
 
-- **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presense and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname which can break certain functionalities. Please see :ref:`notes on disabling mDNS <faq-notes_on_disabling_mdns>`. Defaults to ``true``.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
@@ -93,6 +93,20 @@ to the WiFi router can be made.
     wifi:
       ap:
         ssid: "Livingroom Fallback Hotspot"
+        password: "W1PBGyrokfLz"
+
+You can also create a simple ``ap`` config which will set up the access point to have the
+devices name as the ssid with no password.
+
+.. code-block:: yaml
+
+    wifi:
+      ap: {}
+
+    # or if you still want the ap to have a password
+
+    wifi:
+      ap:
         password: "W1PBGyrokfLz"
 
 .. _wifi-manual_ip:
@@ -176,11 +190,21 @@ Configuration variables:
 
 - **ssid** (*Optional*, string): The SSID or WiFi network name.
 - **password** (*Optional*, string): The password to use for authentication. Leave empty for no password.
+- **manual_ip** (*Optional*): Manually configure the static IP of the node when using this network. Note that
+  when using different static IP addresses on each network, it is required to set ``use_address``, as ESPHome
+  cannot infer to which network the node is connected.
+
+  - **static_ip** (**Required**, IPv4 address): The static IP of your node.
+  - **gateway** (**Required**, IPv4 address): The gateway of the local network.
+  - **subnet** (**Required**, IPv4 address): The subnet of the local network.
+  - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
+  - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
+
 - **eap** (*Optional*): See :ref:`eap`.
 - **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.
-- **bssid** (*Optional*, string): Optionally define a BSSID (MAC-Address) of the network to connect to.
-  This can be used to further restrict which networks to connect to.
+- **bssid** (*Optional*, string): The connection's BSSID (MAC address). BSSIDs must consist of six
+  two-digit hexadecimal values separated by colon characters ("``:``"). All letters must be in upper case.
 - **hidden** (*Optional*, boolean): Whether this network is hidden. Defaults to false.
   If you add this option you also have to specify ssid.
 - **priority** (*Optional*, float): The priority of this network. After each time, the network with

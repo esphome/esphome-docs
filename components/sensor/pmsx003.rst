@@ -3,7 +3,7 @@ PMSX003 Particulate Matter Sensor
 
 .. seo::
     :description: Instructions for setting up PMSX003 Particulate matter sensors
-    :image: pmsx003.png
+    :image: pmsx003.svg
 
 The ``pmsx003`` sensor platform allows you to use your PMS5003, PMS7003, ... particulate matter
 (`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__)
@@ -17,6 +17,7 @@ This platform supports three sensor types, which you need to specify using the `
 value:
 
 - ``PMSX003`` for generic PMS5003, PMS7003, ...; these sensors support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` output.
+- ``PMS5003S`` for PMS5003ST. These support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` and ``formaldehyde``.
 - ``PMS5003T`` for PMS5003T. These support ``pm_2_5``, ``temperature`` and ``humidity``.
 - ``PMS5003ST`` for PMS5003ST. These support ``pm_2_5``, ``temperature``, ``humidity`` and ``formaldehyde``.
 
@@ -40,17 +41,35 @@ value:
 Configuration variables:
 ------------------------
 
-- **pm_1_0** (*Optional*): Use the concentration of particulates of size less than 1.0µm in µg per cubic meter.
+- **pm_1_0_std** (*Optional*): Use the concentration of particulates of size less than 1.0µm in µg per cubic meter at standard particle
   All options from :ref:`Sensor <config-sensor>`.
-- **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter.
+- **pm_2_5_std** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter at standard particle
   All options from :ref:`Sensor <config-sensor>`.
-- **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter.
+- **pm_10_0_std** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter at standard particle
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_1_0** (*Optional*): Use the concentration of particulates of size less than 1.0µm in µg per cubic meter under atmospheric environment
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_2_5** (*Optional*): Use the concentration of particulates of size less than 2.5µm in µg per cubic meter under atmospheric environment
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_10_0** (*Optional*): Use the concentration of particulates of size less than 10.0µm in µg per cubic meter under atmospheric environment
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_0_3um** (*Optional*): Use the number of particles with diameter beyond 0.3um in 0.1L of air
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_0_5um** (*Optional*): Use the number of particles with diameter beyond 0.5um in 0.1L of air
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_1_0um** (*Optional*): Use the number of particles with diameter beyond 1.0um in 0.1L of air
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_2_5um** (*Optional*): Use the number of particles with diameter beyond 2.5um in 0.1L of air
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_5_0um** (*Optional*): Use the number of particles with diameter beyond 5.0um in 0.1L of air
+  All options from :ref:`Sensor <config-sensor>`.
+- **pm_10_0um** (*Optional*): Use the number of particles with diameter beyond 10.0um in 0.1L of air
   All options from :ref:`Sensor <config-sensor>`.
 - **temperature** (*Optional*): Use the temperature value in °C for the ``PMS5003T`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
 - **humidity** (*Optional*): Use the humidity value in % for the ``PMS5003T`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
-- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003ST``.
+- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003S`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.

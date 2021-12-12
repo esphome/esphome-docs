@@ -139,9 +139,9 @@ Configuration variables:
   - Only available if RAWv2 protocol is used.
 
 - **measurement_sequence_number** (*Optional*): The information for the
-  measurment sequence number sensor
+  measurement sequence number sensor
 
-  - **name** (**Required**, string): The name for the measurment sequence
+  - **name** (**Required**, string): The name for the measurement sequence
     number sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
     in lambdas.
@@ -153,11 +153,13 @@ Setting Up Devices
 
 To set up RuuviTag devices you first need to find their MAC Address so that
 ESPHome can identify them. So first, create a simple configuration without any
-``ruuvitag`` entries like so:
+``ruuvitag`` entries but with ``ruuvi_ble`` enabled like so:
 
 .. code-block:: yaml
 
     esp32_ble_tracker:
+
+    ruuvi_ble:
 
 After uploading the ESP32 will immediately try to scan for BLE devices.
 When it detects these sensors, it will automatically parse the BLE message

@@ -5,7 +5,7 @@ I²C Bus
 
 .. seo::
     :description: Instructions for setting up the I²C bus to communicate with 2-wire devices in ESPHome
-    :image: i2c.png
+    :image: i2c.svg
     :keywords: i2c, iic, bus
 
 This component sets up the I²C bus for your ESP32 or ESP8266. In order for these components
@@ -22,7 +22,7 @@ connecting the wires from each device back to the two I²C pins on the ESP.
     i2c:
       sda: 21
       scl: 22
-      scan: True
+      scan: true
       id: bus_a
 
 Configuration variables:
@@ -34,9 +34,9 @@ Configuration variables:
   Defaults to the default of your board (usually GPIO22 for ESP32 and
   GPIO5 for ESP8266).
 - **scan** (*Optional*, boolean): If ESPHome should do a search of the I²C address space on startup.
-  Defaults to ``True``.
+  Defaults to ``true``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
-  Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
+  Defaults to ``50kHz``. Values are ``10kHz``, ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this I²C bus if you need multiple I²C buses.
 
 .. note::
@@ -50,11 +50,11 @@ Configuration variables:
           - id: bus_a
             sda: 13
             scl: 16
-            scan: True
+            scan: true
           - id: bus_b
             sda: 14
             scl: 15
-            scan: True
+            scan: true
        # Sensors should be specified as follows
        - platform: bme680
          i2c_id: bus_b

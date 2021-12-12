@@ -43,9 +43,9 @@ Configuration variables:
 ------------------------
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
-- **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
+- **num_chips** (*Optional*, int): The number of chips you wish to use for daisy chaining. Defaults to
   ``1``.
-- **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is from
+- **intensity** (*Optional*, int): The intensity with which the MAX7219 should drive the outputs. Range is from
   0 (least intense) to 15 (the default).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the MAX7219.
   See :ref:`display-max7219_lambda` for more information.
@@ -53,7 +53,7 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **reverse_enable** (*Optional*, boolean): For some displays the order of the chips is reversed so you'll see "56781234" instead of "12345678". This option will adjust the output to compensate. Defaults to ``False``.
+- **reverse_enable** (*Optional*, boolean): For some displays the order of the chips is reversed so you'll see "56781234" instead of "12345678". This option will adjust the output to compensate. Defaults to ``false``.
 
 
 .. _display-max7219_lambda:

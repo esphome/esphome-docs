@@ -3,7 +3,7 @@ TX20/TX23 Wind Speed/Direction Sensor
 
 .. seo::
     :description: Instructions for setting up TX20/TX23 wind speed and direction sensors
-    :image: images/tx20.jpg
+    :image: tx20.jpg
     :keywords: TX20
 
 The ``tx20`` sensor platform allows you to use your TX20/TX23

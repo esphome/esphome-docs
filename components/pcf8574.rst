@@ -32,7 +32,7 @@ not work.
     pcf8574:
       - id: 'pcf8574_hub'
         address: 0x21
-        pcf8575: False
+        pcf8575: false
 
     # Individual outputs
     switch:
@@ -43,8 +43,9 @@ not work.
           # Use pin number 0
           number: 0
           # One of INPUT or OUTPUT
-          mode: OUTPUT
-          inverted: False
+          mode:
+            output: true
+          inverted: false
 
 Configuration variables:
 ************************
@@ -52,16 +53,16 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this PCF8574 component.
 - **address** (*Optional*, int): The I²C address of the driver.
   Defaults to ``0x21``.
-- **pcf8575** (*Optional*, boolean): Whether this is a 16-pin PCF8575. Defaults to ``False``.
+- **pcf8575** (*Optional*, boolean): Whether this is a 16-pin PCF8575. Defaults to ``false``.
 
 
 Pin configuration variables:
 ****************************
 
 - **pcf8574** (**Required**, :ref:`config-id`): The id of the PCF8574 component of the pin.
-- **number** (**Required**, integer): The pin number.
+- **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
-  should be treated as inverted. Defaults to ``False``.
+  should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT`` or ``OUTPUT``.
 
 
