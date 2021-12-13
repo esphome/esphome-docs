@@ -163,7 +163,7 @@ Additional configuration is available for this platform
 
 Configuration variables:
 
-- **use_fahrenheits** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``False``.
+- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``False``.
 
 .. code-block:: yaml
 
@@ -172,7 +172,7 @@ Configuration variables:
       - platform: midea_ir
         name: "AC"
         sensor: room_temperature
-        use_fahrenheits: true
+        use_fahrenheit: true
 
 
 .. _climate_ir_lg:
