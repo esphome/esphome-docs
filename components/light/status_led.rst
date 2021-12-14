@@ -40,6 +40,20 @@ Configuration variables:
   only support very few of them.
 - All other options from :ref:`Light <config-light>`.
 
+.. note::
+
+    If your Status LED is in an active-LOW mode (such as with the D1 Mini ESP8266 boards), use the
+    ``inverted`` option of the :ref:`Pin Schema <config-pin_schema>`:
+
+    .. code-block:: yaml
+
+        status_led:
+          pin:
+            number: GPIO2
+            inverted: true
+
+
+
 See Also
 --------
 
