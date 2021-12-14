@@ -92,6 +92,9 @@ Frame Settings:
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
 - **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
+- **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Defaults to ``false``.
+- **ae_level** (*Optional*, int): The auto exposure level to apply to the picture, from -2 to 2. Defaults to ``0``.
+- **aec_value** (*Optional*, int): The Auto Exposure Control 2 value to apply to the picture, from 0 to 1200. Defaults to ``300``.
 
 .. note::
 
