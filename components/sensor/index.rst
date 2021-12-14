@@ -269,7 +269,7 @@ Configuration variables:
   published. With this parameter you can specify when the very first value is to be sent.
   Must be smaller than or equal to ``send_every``
   Defaults to ``1``.
-- **quantile** (**Optional**, float): value from 0 to 1 to determine which quantile to pick.
+- **quantile** (*Optional*, float): value from 0 to 1 to determine which quantile to pick.
   Defaults to ``.9``.
 
 ``median``
