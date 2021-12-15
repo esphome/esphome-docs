@@ -68,7 +68,7 @@ tour of the ESPHome Dashboard interface.
 On the front page you will see all configurations for nodes you created. For each file,
 there are three basic actions you can perform:
 
-- **INSTALL**: This compiles the firmware for your node and installs it. Installation happens wirelessy if you have enabled the :doc:`/components/ota` in your configuration. Alternatively you can install it from your browser or via a device connected to the machine running the ESPHome Dashboard.
+- **INSTALL**: This compiles the firmware for your node and installs it. Installation happens wirelessly if the device is already running ESPHome firmware with :doc:`/components/ota` enabled in its configuration, and it is connected wirelessly to the same subnet that the Home Assistant/ESPHome computer is on. Alternatively you can install it from your browser or via a device connected to the machine running the ESPHome Dashboard.
 
 - **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
   connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
