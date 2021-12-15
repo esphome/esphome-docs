@@ -144,7 +144,7 @@ Configuration variables:
   *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
 
 ESP32 CAN Component
------------------
+-------------------
 
 The ESP32 has an integrated CAN controller and therefore doesn't need an external controller necessarily.
 You only need to specify the RX and TX pins.
