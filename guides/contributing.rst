@@ -607,6 +607,20 @@ Standard for the esphome-core codebase:
 
         # Run lint only over changed files
         docker run --rm -v "${PWD}/":/esphome -it esphome/esphome-lint script/quicklint
+    
+    
+    If you are using Windows and have docker installed the syntax is slightly different.
+    If you have cloned esphome to ``c:\edev\esphome`` the volume format is ``c/edev/esphome``
+    
+    .. code-block:: bash
+
+            # convert the volume format
+            $current_dir=(Get-Location).Path.ToLower().Replace(':','').Replace('\','/')
+            # Run lint only over changed files from powershell
+            docker run --rm -v "$($current_dir):/esphome" -it esphome/esphome-lint:dev script/quicklint
+    
+    
+         
 
 ESPHome via Gitpod
 ******************
