@@ -65,7 +65,7 @@ To set up a PID climate controller, you need a couple of components:
 
 - A :ref:`Sensor <config-sensor>` to read the current temperature (``sensor``).
 - At least one :ref:`float output <config-output>` to drive for heating or cooling (or both).
-  This could for example be a PWM output via ``slow_pwm`` (TODO) that drives a heating unit.
+  This could for example be a PWM output via :doc:`slow_pwm` that drives a heating unit.
 
   Please note the output *must* be controllable with continuous value (not only ON/OFF, but any state
   in between for example 50% heating power).
