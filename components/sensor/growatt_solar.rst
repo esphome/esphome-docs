@@ -100,7 +100,7 @@ to some pins on your board and the baud rate set to 9600.
 Configuration variables:
 ------------------------
 
-- **inverter_status**: Status code of the inverter (0: waiting, 1: normal, 3:fault)
+- **inverter_status** (*Optional*): Status code of the inverter (0: waiting, 1: normal, 3:fault)
 
 - **phase_a** (*Optional*): The group of exposed sensors for Phase A/1.
 
