@@ -3,12 +3,12 @@ Growatt Solar
 
 .. seo::
     :description: Instructions for setting up a Growatt inverter reading on modbus.
-    :image: growatt.png
+    :image: growatt.jpg
     :keywords: Growatt, Ginverter
 
 The ``Growatt Inverter`` sensor platform allows you to use growatt inverter data reading on modbus with ESPHome.
 
-.. figure:: images/growatt.png
+.. figure:: images/growatt.jpg
     :align: center
     :width: 50.0%
 
