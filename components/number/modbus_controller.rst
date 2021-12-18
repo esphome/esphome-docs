@@ -12,10 +12,6 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
-    - coil: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access
-    - discrete_input: discrete input register (read only coil) are similar to coils but can only be read.
-    - holding: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access
-    - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read
 - **address**: (**Required**, int): start address of the first register in a range
 - **value_type**: (**Required**): datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)
     - U_WORD (unsigned 16 bit integer from 1 register = 16bit)
@@ -97,7 +93,6 @@ Possible return values for the lambda:
         id: battery_capacity_number
         name: "Battery Cap Number"
         address: 0x9001
-        register_type: holding
         value_type: U_WORD
         lambda: "return  x * 1.0; "
         write_lambda: |-
