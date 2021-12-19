@@ -347,7 +347,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe("the/topic", [=](const std::string &payload) {
+        id(mqtt_client).subscribe("the/topic", [=](const std::string &topic, const std::string &payload) {
             // do something with payload
         });
 
