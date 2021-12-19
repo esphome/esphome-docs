@@ -466,6 +466,7 @@ Button Components
     Button Core, components/button/index, folder-open.svg
     Template Button, components/button/template, description.svg
     Restart Button, components/button/restart, restart.svg
+    Safe Mode Button, components/button/safe_mode, restart-alert.svg
 
 Fan Components
 --------------
