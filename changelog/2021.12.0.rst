@@ -83,6 +83,11 @@ inversion of the direction. Instead, it seems that most if not all tuya covers h
 sets the direction on the secondary MCU. See the :doc:`documentation </components/cover/tuya>` for the new
 configuration options.
 
+Release 2021.12.1 - December 15
+-------------------------------
+
+- Set text sensor state property to filter output :esphomepr:`2893` by :ghuser:`oxan`
+- Allow button POST on press from web server :esphomepr:`2913` by :ghuser:`wilberforce`
 
 Full list of changes
 --------------------
