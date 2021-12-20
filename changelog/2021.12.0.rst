@@ -89,6 +89,12 @@ Release 2021.12.1 - December 15
 - Set text sensor state property to filter output :esphomepr:`2893` by :ghuser:`oxan`
 - Allow button POST on press from web server :esphomepr:`2913` by :ghuser:`wilberforce`
 
+Release 2021.12.2 - December 21
+-------------------------------
+
+- Don't disable idle task WDT when it's not enabled :esphomepr:`2856` by :ghuser:`oxan`
+- Fix MQTT button press action :esphomepr:`2917` by :ghuser:`oxan`
+
 Full list of changes
 --------------------
 
