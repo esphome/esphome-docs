@@ -614,10 +614,10 @@ Standard for the esphome-core codebase:
     
     .. code-block:: bash
 
-            # convert the volume format
-            $current_dir=(Get-Location).Path.ToLower().Replace(':','').Replace('\','/')
-            # Run lint only over changed files from powershell
-            docker run --rm -v "$($current_dir):/esphome" -it esphome/esphome-lint:dev script/quicklint
+        # convert the volume format
+        $current_dir=(Get-Location).Path.ToLower().Replace(':','').Replace('\','/')
+        # Run lint only over changed files from powershell
+        docker run --rm -v "$($current_dir):/esphome" -it esphome/esphome-lint:dev script/quicklint
     
     
          
