@@ -25,7 +25,7 @@ Here is what it can measure:
 Additionally:
 
 - There is a display so show off your data or whatever you desire from Home Assistant
-- You can download a 3D printeable case inkluding a wall mount bracket
+- You can download a 3D printable case including a wall mount bracket
 
 
 ESPHome Configuration
@@ -43,7 +43,7 @@ Soldering and setup video:
 
 .. raw:: html
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Cmr5VNALRAg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Cmr5VNALRAg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 See Also
 --------
