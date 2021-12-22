@@ -9,7 +9,7 @@ ENS210 Temperature+Humidity Sensor
 The ``ENS210`` Temperature+Humidity sensor allows you to use your ENS210
 (`datasheet <https://www.sciosense.com/wp-content/uploads/2021/01/ENS210.pdf>`__) i2c-based sensor with ESPHome.
 
-.. figure:: images/ens210.png
+.. figure:: images/ens210.jpg
     :align: center
     :width: 80.0%
 
