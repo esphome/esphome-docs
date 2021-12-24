@@ -491,7 +491,7 @@ Use this component to generate a qr code containing a string on the device, you 
 
     qr_code:
       - id: homepage_qr
-        value: https://esphome.io/index.html
+        value: esphome.io
 
 Configuration variables:
 
