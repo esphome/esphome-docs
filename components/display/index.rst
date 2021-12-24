@@ -482,6 +482,43 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
+QR Codes
+********
+
+Use this component to generate a qr code containing a string on the device, you can then draw the qr code on compatible displays.
+
+.. code-block:: yaml
+
+    qr_code:
+      - id: homepage_qr
+        value: https://esphome.io/index.html
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
+  in your display code.
+- **value** (**Required**, string): The string which you want to encode in the qr code.
+- **scale** (*Optional*, int): The scale you want to use. Defaults to ``1``.
+- **ecc** (*Optional*, string): The error correction code level you want oto use. Defaults to ``LOW``. You can use one of the following
+
+  - ``LOW`` - The QR Code can tolerate about 7% erroneous codewords
+  - ``MEDIUM`` - The QR Code can tolerate about 15% erroneous codewords
+  - ``QUARTILE`` - The QR Code can tolerate about 25% erroneous codewords
+  - ``HIGH`` - The QR Code can tolerate about 30% erroneous codewords
+
+And then later in code:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the qr code at position [x=50,y=0]
+              it.qr_code(50, 0, id(homepage_qr));
+
 Images
 ******
 
