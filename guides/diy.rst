@@ -110,4 +110,5 @@ Sample Configurations
 - `Universal menu system for devices with rotary encoder with push and SSD1306 I2C display <https://github.com/mikosoft83/pithy_screen_menu_system>`__ by :ghuser:`mikosoft83`
 - `Show heart rate sensor values sent over Bluetooth Low Energy on a display <https://github.com/koenvervloesem/ESPHome-Heart-Rate-Display>`__ by :ghuser:`koenvervloesem`
 - `ESPHome floor heating controller (proportional valves) <https://github.com/nliaudat/floor-heating-controller>`__ by :ghuser:`nliaudat`
-- `ESPHome Curtain/Cover/Shutter Switch from a noname Tuya switch <https://github.com/ludrao/shutterswitch>`__ by :ghuser:`ludrao`
+- `ESPHome Curtain/Cover/Shutter Switch from a noname Tuya switch <https://github.com/ludrao/esphome-shutterswitch>`__ by :ghuser:`ludrao`
+- `ESPHome Free your Thomson Guardian gate controller <https://github.com/ludrao/esphome-guardian>`__ by :ghuser:`ludrao`
