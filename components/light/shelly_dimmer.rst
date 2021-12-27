@@ -14,6 +14,7 @@ A detailed analysis of the Shelly Dimmer 2 hardware is given `here<https://githu
 
 
 An example of a configuration of this component:
+
 .. code-block:: yaml
 
     # the serial port is occupied with the communication to the microcontroller --> disable logging
