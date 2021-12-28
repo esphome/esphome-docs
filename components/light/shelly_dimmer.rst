@@ -48,7 +48,7 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **voltage** (**Optional**): Sensor of the voltage in Volts. Only accurate if neutral is connected. All options from :ref:`Sensor <config-sensor>`.
 - **power** (**Optional**): Sensor of the active power in Watts. Only accurate if neutral is connected. All options from :ref:`Sensor <config-sensor>`.
-- **firmware**  (**Optional**, string) Version string of the `firmware<https://github.com/jamesturton/shelly-dimmer-stm32>`_ that will be flashed on the microcontroller. The default is "51.5".
+- **firmware**  (**Optional**, string) Version string of the `firmware <https://github.com/jamesturton/shelly-dimmer-stm32>`_ that will be flashed on the microcontroller. The default is "51.5".
 - All other options from :ref:`Light <config-light>`.
 
 
