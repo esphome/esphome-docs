@@ -2,24 +2,34 @@ const source = new EventSource("/events");
 
 source.addEventListener('log', function (e) {
     const log = document.getElementById("log");
+    let log_prefs = [
+        ["\u001b[1;31m", 'e'],
+        ["\u001b[0;33m", 'w'],
+        ["\u001b[0;32m", 'i'],
+        ["\u001b[0;35m", 'c'],
+        ["\u001b[0;36m", 'd'],
+        ["\u001b[0;37m", 'v'],
+        ];
+    
     let klass = '';
-    if (e.data.startsWith("[1;31m")) {
-        klass = 'e';
-    } else if (e.data.startsWith("[0;33m")) {
-        klass = 'w';
-    } else if (e.data.startsWith("[0;32m")) {
-        klass = 'i';
-    } else if (e.data.startsWith("[0;35m")) {
-        klass = 'c';
-    } else if (e.data.startsWith("[0;36m")) {
-        klass = 'd';
-    } else if (e.data.startsWith("[0;37m")) {
-        klass = 'v';
-    } else {
+    for (const log_pref of log_prefs){
+        if (e.data.startsWith(log_pref[0])) {
+            klass = log_pref[1];
+        }
+    }
+    if (klass == ''){
         log.innerHTML += e.data + '\n';
     }
-    log.innerHTML += '<span class="' + klass + '">' + e.data.substr(7, e.data.length - 10) + "</span>\n";
+    log.innerHTML += '<span class="' + klass + '">' + e.data.substr(7, e.data.length - 11) + "</span>\n";
 });
+
+actions = [
+    ["switch", ["toggle"]],
+    ["light", ["toggle"]],
+    ["cover", ["open", "close"]],
+    ["button", ["press"]],
+    ["lock", ["lock", "unlock", "open"]],
+    ];
 
 source.addEventListener('state', function (e) {
     const data = JSON.parse(e.data);
@@ -32,64 +42,26 @@ for (; row = states.rows[i]; i++) {
     if (!row.children[2].children.length) {
         continue;
     }
-
-    if (row.classList.contains("switch")) {
-        (function(id) {
-            row.children[2].children[0].addEventListener('click', function () {
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/switch/' + id.substr(7) + '/toggle', true);
-                xhr.send();
+    
+    for (const domain of actions){
+        if (row.classList.contains(domain[0])) {
+            let id = row.id.substr(domain[0].length+1);
+            domain[1].forEach( (action, j) => {
+                row.children[2].children[j].addEventListener('click', function () {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", '/'+domain[0]+'/' + id + '/' + action, true);
+                    xhr.send();
+                });
             });
-        })(row.id);
-    }
-    if (row.classList.contains("fan")) {
-        (function(id) {
-            row.children[2].children[0].addEventListener('click', function () {
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/fan/' + id.substr(4) + '/toggle', true);
-                xhr.send();
-            });
-        })(row.id);
-    }
-    if (row.classList.contains("light")) {
-        (function(id) {
-            row.children[2].children[0].addEventListener('click', function () {
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/light/' + id.substr(6) + '/toggle', true);
-                xhr.send();
-            });
-        })(row.id);
-    }
-    if (row.classList.contains("cover")) {
-        (function(id) {
-            row.children[2].children[0].addEventListener('click', function () {
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/cover/' + id.substr(6) + '/open', true);
-                xhr.send();
-            });
-            row.children[2].children[1].addEventListener('click', function () {
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/cover/' + id.substr(6) + '/close', true);
-                xhr.send();
-            });
-        })(row.id);
-    }
+        }
+    }          
     if (row.classList.contains("select")) {
         (function(id) {
             row.children[2].children[0].addEventListener('change', function () {
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/select/' + id.substr(7) + '/set?option=' + encodeURIComponent(this.value), true);
+                xhr.open("POST", '/select/' + id + '/set?option=' + encodeURIComponent(this.value), true);
                 xhr.send();
             });
-        })(row.id);
-    }
-    if (row.classList.contains("button")) {
-        (function(id) {
-            row.children[2].children[0].addEventListener('click', function () {
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/button/' + id.substr(7) + '/press', true);
-                xhr.send();
-            });
-        })(row.id);
+        })(row.id.substr(7));
     }
 }
