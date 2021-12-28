@@ -249,3 +249,13 @@ can be used:
 Creating a POST request to ``/cover/front_window_blinds/set?position=0.1&tilt=0.3`` will
 start moving the blinds towards an almost completely closed position and a new tilt
 angle.
+
+Lock
+******
+
+Locks have the exact same properties as binary sensors in the state reporting aspect, but they
+additionally support setting states with the ``lock``, ``unlock`` and ``open`` methods.
+
+Each of these is quite self explanatory. Creating a POST request to ``/lock/front_door/unlock``
+would for example result in the component called "Front Door" to be unlocked. The server will respond
+with a 200 OK HTTP return code if the call succeeded.
