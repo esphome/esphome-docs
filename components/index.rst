@@ -18,4 +18,5 @@ Components
     display/index
     text_sensor/index
     stepper/index
+    lock/index
     *
