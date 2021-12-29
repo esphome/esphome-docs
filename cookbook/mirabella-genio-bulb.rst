@@ -161,40 +161,51 @@ variable ``output_component1``.
 
 .. code-block:: yaml
 
-    esphome:
-      name: mirabella_genio_cwww_1
-      platform: ESP8266
-      board: esp01_1m
+substitutions:
+  device_name: my-downlight
+  friendly_name: My Downlight
 
-    wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+esphome:
+  name: "${device_name}"
+  platform: ESP8266
+  board: esp8285
 
-    logger:
+# Enable logging
+logger:
 
-    api:
+# Enable Home Assistant API
+api:
 
-    ota:
+wifi:
+  ssid: !secret ssid
+  password: !secret wifi_password
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${device_name}"
+    password: ""
 
-    output:
-      - platform: esp8266_pwm
-        id: output_warm_white
-        pin: GPIO13
-      - platform: esp8266_pwm
-        id: output_daylight
-        pin: GPIO5
+captive_portal:
 
-    light:
-      - platform: cwww
-        name: "Mirabella Genio Smart Bulb"
-        id: light
-        cold_white: output_daylight
-        warm_white: output_warm_white
-        cold_white_color_temperature: 6500 K
-        warm_white_color_temperature: 2700 K
+output:
+  - platform: esp8266_pwm
+    id: output2
+    pin: GPIO12
+  - platform: esp8266_pwm
+    id: output1
+    pin: GPIO14
 
-        # Ensure the light turns on by default if the physical switch is actuated.
-        restore_mode: ALWAYS_ON
+light:
+  - platform: cwww
+    name: "${friendly_name}"
+    cold_white: output1
+    warm_white: output2
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
+    default_transition_length: 1.0s    
+    gamma_correct: false # Allows lights to dim to 1% 
+    # Ensure the light turns on by default if the physical switch is actuated.
+    restore_mode: ALWAYS_ON
+
 
 3.3 RGBW Color Bulbs
 ********************
