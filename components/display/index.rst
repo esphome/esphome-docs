@@ -372,6 +372,27 @@ Configuration variables:
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 
+
+.. _display-rotation:
+
+Rotation
+********
+
+You can have tell the rendering engine to set the display rotation before printing text, causing
+your text to print rotated.   Example:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          it.print(10, 10, id(my_font), white, TextAlign::TOP_RIGHT, "Normal Text");
+          it.set_rotation(DISPLAY_ROTATION_180_DEGREES);                              // set new rotation
+          it.print(10, 10, id(my_font), white, TextAlign::TOP_RIGHT, "Rotated Text");
+          it.set_rotation(DISPLAY_ROTATION_270_DEGREES);                              // set rotation back
+  
+
 .. _display-graphs:
 
 Graphs
