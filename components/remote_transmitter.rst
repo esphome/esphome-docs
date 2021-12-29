@@ -163,7 +163,7 @@ Configuration variables:
 .. _remote_transmitter-transmit_magiquest:
 
 ``remote_transmitter.transmit_magiquest`` Action
-********************************************
+************************************************
 
 This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter. 
 
