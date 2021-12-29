@@ -177,7 +177,7 @@ This :ref:`action <config-action>` sends a MagiQuest wand code to a remote trans
 Configuration variables:
 
 - **wand_id** (**Required**, int): The wand ID to send, as a hex integer.  See the dumper output for your wand ID.
-- **magnitude** (**Optional**, int): The magnitude of swishes and swirls of the want to transmit.  See the dumper output for examples.  If omitted, sends 0xFFFF (which the real wand never uses).
+- **magnitude** (*Optional*, int): The magnitude of swishes and swirls of the want to transmit.  See the dumper output for examples.  If omitted, sends 0xFFFF (which the real wand never uses).
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_midea:
