@@ -34,6 +34,8 @@ Configuration variables:
   will place high importance on the current state and be slow to respond to
   changes in the measured samples. A high value will update faster, but also be
   more noisy.
+- **std_dev** (*Optional*, :ref:`Sensor <config-sensor>`): A sensor
+  that publishes the current standard deviation of the state with each update.
 - **sources** (**Required**, list): A list of sensors to use as source. Each
   source must have either **error** or **error_function** set. These work like
   the **process_std_dev** parameter, with low values marking accurate data.
