@@ -384,6 +384,8 @@ Configuration variables:
   published. With this parameter you can specify when the very first value is to be sent.
   Defaults to ``1``.
 
+.. _sensor-filter-exponential_moving_average:
+
 ``exponential_moving_average``
 ******************************
 
