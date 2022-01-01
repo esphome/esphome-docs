@@ -46,13 +46,13 @@ for (; row = states.rows[i]; i++) {
     for (const domain of actions){
         if (row.classList.contains(domain[0])) {
             let id = row.id.substr(domain[0].length+1);
-            domain[1].forEach( (action, j) => {
+            for (let j=0;j<row.children[2].children.length && j < domain[1].length; j++){
                 row.children[2].children[j].addEventListener('click', function () {
                     const xhr = new XMLHttpRequest();
-                    xhr.open("POST", '/'+domain[0]+'/' + id + '/' + action, true);
+                    xhr.open("POST", '/'+domain[0]+'/' + id + '/' + domain[1][j], true);
                     xhr.send();
                 });
-            });
+            };
         }
     }          
     if (row.classList.contains("select")) {

@@ -31,11 +31,9 @@ Configuration variables:
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
 - **on_lock** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the lock is locked. See :ref:`lock-on_lock_unlock_open_trigger`.
+  when the lock is locked. See :ref:`lock-on_lock_unlock_trigger`.
 - **on_unlock** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the lock is unlocked. See :ref:`lock-on_lock_unlock_open_trigger`.
-- **on_open** (*Optional*, :ref:`Action <config-action>`): An automation to perform
-  when the lock is opened. See :ref:`lock-on_lock_unlock_open_trigger`.
+  when the lock is unlocked. See :ref:`lock-on_lock_unlock_trigger`..
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
@@ -139,12 +137,12 @@ advanced stuff (see the full API Reference for more info).
       id(my_lock).lock();
       id(my_lock).open();
 
-.. _lock-on_lock_unlock_open_trigger:
+.. _lock-on_lock_unlock_trigger:
 
-``lock.on_lock`` / ``lock.on_unlock`` / ``lock.on_open`` Trigger
+``lock.on_lock`` / ``lock.on_unlock`` Trigger
 ****************************************************************
 
-This trigger is activated each time the lock is locked/unlocked/opened. It becomes active
+This trigger is activated each time the lock is locked/unlocked. It becomes active
 right after the lock component has acknowledged the state (e.g. after it LOCKED/UNLOCKED itself).
 
 .. code-block:: yaml
@@ -156,8 +154,6 @@ right after the lock component has acknowledged the state (e.g. after it LOCKED/
         - logger.log: "Door Locked!"
         on_unlock:
         - logger.log: "Door Unlocked!"
-        on_open:
-        - logger.log: "Door Opened!"
 
 See Also
 --------
