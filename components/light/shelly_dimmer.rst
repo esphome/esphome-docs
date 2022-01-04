@@ -17,27 +17,45 @@ An example of a configuration of this component:
 
 .. code-block:: yaml
 
-    # the serial port is occupied with the communication to the microcontroller --> disable logging
-    logger:
+  logger:
       baud_rate: 0
 
-    light:
-      - platform: shelly_dimmer
-        name: Shelly Dimmer 2 Light
-        id: thislight
-        power:
-          name: Shelly Dimmer 2 Light Power
-        voltage:
-          name: Shelly Dimmer 2 Light Voltage
-        current:
-          name: Shelly Dimmer 2 Light Current
-        max_brightness: 500
+  uart:
+    tx_pin: 1
+    rx_pin: 3
+    baud_rate: 115200
+  sensor:
+
+  light:
+    - platform: shelly_dimmer
+      name: Shelly Dimmer 2 Light
+      id: thislight
+      power:
+        name: Shelly Dimmer 2 Light Power
+      voltage:
+        name: Shelly Dimmer 2 Light Voltage
+      current:
+        name: Shelly Dimmer 2 Light Current
+      max_brightness: 500
 
 
 Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub. 
+
+.. note::
+
+    Currently, only the first hardware UART of the ESP is supported, which has to be configured like this:  
+
+    .. code-block:: yaml
+      uart:
+        tx_pin: 1
+        rx_pin: 3
+        baud_rate: 115200
+
+
 - **name** (**Required**, string): The name of the light.
 - **leading_edge** (**Optional**, boolean): `Dimming mode <https://en.wikipedia.org/wiki/Dimmer#Solid-state_dimmer>`_: "true" means leading edge, "false" (default) is trailing edge.
 - **min_brightness** (**Optional**, int): Minimum brightness value on a scale from 0..1000, the default is 0.
