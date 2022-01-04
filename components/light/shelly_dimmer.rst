@@ -17,26 +17,26 @@ An example of a configuration of this component:
 
 .. code-block:: yaml
 
-  logger:
-      baud_rate: 0
+    logger:
+        baud_rate: 0
 
-  uart:
-    tx_pin: 1
-    rx_pin: 3
-    baud_rate: 115200
-  sensor:
+    uart:
+        tx_pin: 1
+        rx_pin: 3
+        baud_rate: 115200
+    sensor:
 
-  light:
-    - platform: shelly_dimmer
-      name: Shelly Dimmer 2 Light
-      id: thislight
-      power:
-        name: Shelly Dimmer 2 Light Power
-      voltage:
-        name: Shelly Dimmer 2 Light Voltage
-      current:
-        name: Shelly Dimmer 2 Light Current
-      max_brightness: 500
+    light:
+        - platform: shelly_dimmer
+          name: Shelly Dimmer 2 Light
+          id: thislight
+          power:
+            name: Shelly Dimmer 2 Light Power
+          voltage:
+            name: Shelly Dimmer 2 Light Voltage
+          current:
+            name: Shelly Dimmer 2 Light Current
+          max_brightness: 500
 
 
 Configuration variables:
@@ -50,10 +50,11 @@ Configuration variables:
     Currently, only the first hardware UART of the ESP is supported, which has to be configured like this:  
 
     .. code-block:: yaml
-      uart:
-        tx_pin: 1
-        rx_pin: 3
-        baud_rate: 115200
+    
+        uart:
+            tx_pin: 1
+            rx_pin: 3
+            baud_rate: 115200
 
 
 - **name** (**Required**, string): The name of the light.
