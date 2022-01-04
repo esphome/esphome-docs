@@ -16,8 +16,6 @@ required to be set up in your configuration for this sensor to work.
 
     BMP388/BMP390 Temperature and Pressure Sensor.
 
-.. _Adafruit: https://www.adafruit.com/product/2651
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -58,11 +56,6 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
-.. figure:: images/bmp388.jpg
-    :align: center
-    :width: 60.0%
-
-    Pins on the BMP388/BMP390. Only VCC, GND, SCL, and SDA need to be connected.
 
 .. _bmp3xx-oversampling:
 
