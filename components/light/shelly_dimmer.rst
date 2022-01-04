@@ -50,7 +50,7 @@ Configuration variables:
     Currently, only the first hardware UART of the ESP is supported, which has to be configured like this:  
 
     .. code-block:: yaml
-    
+
         uart:
             tx_pin: 1
             rx_pin: 3
