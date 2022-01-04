@@ -34,17 +34,17 @@ Configuration variables:
 - **period** (**Required**, :ref:`config-time`): The duration of each cycle. (i.e. a 10s
   period at 50% duty would result in the pin being turned on for 5s, then off for 5s)
 - **pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin to pulse.
-- **state_change_action**  (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is switched. If a `lambda` is used the ``bool state`` parameter holds the new status.
-- **turn_on_action**  (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned_on. Can be used to controll for example a switch or output component.
-- **turn_off_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned_off. ``turn_on_action`` and ``turn_off_action`` must be configured together
+- **state_change_action**  (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is switched. If a lambda is used the boolean ``state`` parameter holds the new status.
+- **turn_on_action**  (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned on. Can be used to control for example a switch or output component.
+- **turn_off_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned off. ``turn_on_action`` and ``turn_off_action`` must be configured together.
 
 - All other options from :ref:`Output <config-output>`.
 
 
 .. note::
 
-    - If ``pin`` is defined the gpio pin state is writen before any action is executed.
-    - ``state_change_action`` and ``turn_on/off_action`` can be used togther. ``state_change_action`` is called before ``turn_on/off_action``. It's recommended to use either ``state_change_action`` or ``turn_on/off_action`` to change the state of an output. Using both automations together is only recommended for montitoring
+    - If ``pin`` is defined the GPIO pin state is writen before any action is executed.
+    - ``state_change_action`` and ``turn_on_action``/``turn_off_action`` can be used togther. ``state_change_action`` is called before ``turn_on_action``/``turn_off_action``. It's recommended to use either ``state_change_action`` or ``turn_on_action``/``turn_off_action`` to change the state of an output. Using both automations together is only recommended for monitoring.
 
 
 Example:
