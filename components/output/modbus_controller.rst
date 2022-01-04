@@ -42,9 +42,10 @@ All other options from :ref:`Output <config-output>`.
 **Parameters passed into the lambda**
 
 - **x** (float): The float value to be sent to the modbus device for ``register_type: holding``
-- **x** (bool): The float value to be sent to the modbus device for ``register_type: coil``
+- **x** (bool): The boolean value to be sent to the modbus device for ``register_type: coil``
 
 - **payload** (`std::vector<uint16_t>&payload`): 
+
   - for ``register_type: holding``: empty vector for the payload. The lamdba can add 16 bit raw modbus register words.
   - for ``register_type: coil``: empty vector for the payload. If payload is set in the lambda it is sent as a custom command and must include all required bytes for a modbus request
     note: because the response contains data for all registers in the same range you have to use ``data[item->offset]`` to get the first response byte for your sensor.
