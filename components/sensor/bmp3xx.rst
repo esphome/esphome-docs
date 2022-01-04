@@ -7,7 +7,7 @@ BMP388 / BMP390 Temperature+Pressure Sensor
     :keywords: BMP388 BMP390
 
 The ``bmp3xx`` sensor platform allows you to use your BMP388 or BMP390 
-(`datasheet <https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf>`__, `BMP390 product page <https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp390/>`__) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
+(`datasheet <https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf>`__, `BMP390 product page <https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp390/>`__) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` bus is
 required to be set up in your configuration for this sensor to work.
 
 .. figure:: images/bmp388.jpg
@@ -34,8 +34,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **temperature** (*Optional*): The information for the temperature.
-  sensor
+- **temperature** (*Optional*): The information for the temperature sensor.
 
   - **name** (**Required**, string): The name for the temperature
     sensor.
