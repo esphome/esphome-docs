@@ -29,6 +29,7 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/button/restart`
 - :doc:`shutdown`
 - :doc:`safe_mode`
 - :doc:`template`
