@@ -3,7 +3,7 @@ Wake On Lan Button
 
 .. seo::
     :description: Instructions for setting up buttons that can send wakeup packets to computers on the network.
-    :image: power_settings.svg
+    :image: radio-tower.svg
 
 The ``wake_on_lan`` button platform allows you to send a Wake On Lan magic packet to a computer on the network
 by specifying its MAC address.
