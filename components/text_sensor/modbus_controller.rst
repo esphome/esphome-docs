@@ -20,8 +20,8 @@ Configuration variables:
 - **address**: (**Required**, int): start address of the first register in a range
 - **skip_updates**: (*Optional*, int): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 - **register_count**: (*Optional*): The number of registers this data point spans. Default is 1
-- **response_size**:  (**Required**):response number of bytes of the response
-- **raw_encode**: (*Optional*, enum) If the response is binary it can't be published directly. Since a text sensor only publishes strings the binary data can encoded
+- **response_size**:  (**Required**): Number of bytes of the response
+- **raw_encode**: (*Optional*, enum) If the response is binary it can't be published directly. Since a text sensor only publishes strings the binary data can be encoded
      - ``NONE``: Don't encode data.
      - ``HEXBYTES``:  2 byte hex string. 0x2011 will be sent as "2011".
      - ``COMMA``: Byte values as integers, delimited by a coma. 0x2011 will be sent as "32,17"
@@ -30,7 +30,7 @@ Configuration variables:
   custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
   See :ref:`modbus_custom_data` how to use ``custom_command``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-  Lambda to be evaluated every update interval to get the new value of the sensor
+  Lambda to be evaluated every update interval to get the new value of the sensor. It is called after the encoding according to **raw_encode**.
 - **offset**: (*Optional*, int): not required in most cases
   offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
 - All options from :ref:`Text Sensor <config-text_sensor>`.
