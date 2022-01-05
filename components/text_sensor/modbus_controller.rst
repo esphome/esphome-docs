@@ -18,7 +18,6 @@ Configuration variables:
     - holding: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access
     - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read
 - **address**: (**Required**, int): start address of the first register in a range
-- **bitmask**: (*Optional*) some values are packed in a response. The bitmask can be used to extract a value from the response.  For example, if the high byte value register 0x9013 contains the minute value of the current time. To only exctract this value use bitmask: 0xFF00.  The result will be automatically right shifted by the number of 0 before the first 1 in the bitmask.  For 0xFF00 (0b1111111100000000) the result is shifted 8 posistions.  More than one sensor can use the same address/offset if the bitmask is different.
 - **skip_updates**: (*Optional*, int): By default all sensors of of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle
 - **register_count**: (*Optional*): The number of registers this data point spans. Default is 1
 - **response_size**:  (**Required**):response number of bytes of the response
@@ -34,11 +33,11 @@ Configuration variables:
   Lambda to be evaluated every update interval to get the new value of the sensor
 - **offset**: (*Optional*, int): not required in most cases
   offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
-
+- All options from :ref:`Text Sensor <config-text_sensor>`.
 
 Parameters passed into the lambda
 
-- **x** (std:string): The parsed float value of the modbus data
+- **x** (std:string): The parsed value of the modbus data according to **raw_encode**
 
 - **data** (std::vector<uint8_t): vector containing the complete raw modbus response bytes for this sensor
       note: because the response contains data for all registers in the same range you have to use ``data[item->offset]`` to get the first response byte for your sensor.
@@ -46,9 +45,8 @@ Parameters passed into the lambda
 
 Possible return values for the lambda:
 
- - ``return <FLOATING_POINT_NUMBER>;`` the new value for the sensor.
- - ``return NAN;`` if the state should be considered invalid to indicate an error (advanced).
- - ``return {};`` if you don't want to publish a new state (advanced).
+ - ``return <std::string>;`` the new value for the sensor.
+ - ``return {};`` uses the parsed value for the state (same as ``return x;``).
 
 
 
@@ -58,55 +56,24 @@ Possible return values for the lambda:
 .. code-block:: yaml
 
     text_sensor:
-    - platform: template
-        name: "RTC Time Sensor"
-        id: template_rtc
-
-    - platform: modbus_controller
-        modbus_controller_id: traceranx
-        name: "rtc clock test"
-        id: rtc_clock_test
-        internal: true
+      - platform: modbus_controller
+        modbus_controller_id: modbus_device
+        id: reg_1002_text
+        bitmask: 0
         register_type: holding
-        address: 0x9013
-        register_count: 3
-        hex_encode: true
-        response_size: 6
-        on_value:
-            then:
-            - lambda: |-
-                ESP_LOGV("main", "decoding rtc hex encoded raw data: %s", x.c_str());
-                uint8_t h=0,m=0,s=0,d=0,month_=0,y = 0 ;
-                m = esphome::modbus_controller::byte_from_hex_str(x,0);
-                s = esphome::modbus_controller::byte_from_hex_str(x,1);
-                d = esphome::modbus_controller::byte_from_hex_str(x,2);
-                h = esphome::modbus_controller::byte_from_hex_str(x,3);
-                y = esphome::modbus_controller::byte_from_hex_str(x,4);
-                month_ = esphome::modbus_controller::byte_from_hex_str(x,5);
-                // Now check if the rtc time of the controller is ok and correct it
-                time_t now = ::time(nullptr);
-                struct tm *time_info = ::localtime(&now);
-                int seconds = time_info->tm_sec;
-                int minutes = time_info->tm_min;
-                int hour = time_info->tm_hour;
-                int day = time_info->tm_mday;
-                int month = time_info->tm_mon + 1;
-                int year = time_info->tm_year - 2000;
-                // correct time if needed (ignore seconds)
-                if (d != day || month_ != month || y != year || h != hour || m != minutes) {
-                    // create the payload
-                    std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
-                                                    uint16_t((year << 8) | month)};
-                    // Create a modbus command item with the time information as the payload
-                    esphome::modbus_controller::ModbusCommandItem set_rtc_command = esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(traceranx, 0x9013, 3, rtc_data);
-                    // Submit the command to the send queue
-                    traceranx->queue_command(set_rtc_command);
-                    ESP_LOGI("ModbusLambda", "EPSOLAR RTC set to %02d:%02d:%02d %02d.%02d.%04d", hour, minutes, seconds, day, month, year + 2000);
-                }
-                char buffer[20];
-                // format time as YYYY:mm:dd hh:mm:ss
-                sprintf(buffer,"%04d:%02d:%02d %02d:%02d:%02d",y+2000,month_,d,h,m,s);
-                id(template_rtc).publish_state(buffer);
+        address: 1002
+        raw_encode: HEXBYTES
+        name: Register 1002 (Text)
+        lambda: |-
+          uint16_t value = modbus_controller::word_from_hex_str(x, 0);
+          switch (value) {
+            case 1: return std::string("ready");
+            case 2: return std::string("EV is present");
+            case 3: return std::string("charging");
+            case 4: return std::string("charging with ventilation");
+            default: return std::string("Unknown");
+          }
+          return x;
 
 See Also
 --------
