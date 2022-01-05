@@ -275,7 +275,7 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
 .. code-block:: yaml
 
     mqtt:
-      broker: test.mosquitto.org
+      broker: test.mymqtt.local
       port: 8883
       discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
