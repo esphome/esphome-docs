@@ -112,7 +112,7 @@ You must set the ``address`` of the ``modbus_controller`` to the current address
                 return;
               }
 
-              esphome::modbus_controller::ModbusController *controller = id(epever);
+              esphome::modbus_controller::ModbusController *controller = id(pzem);
               auto set_addr_cmd = esphome::modbus_controller::ModbusCommandItem::create_write_single_command(
                 controller, 0x0002, new_address);
 
@@ -122,22 +122,16 @@ You must set the ``address`` of the ``modbus_controller`` to the current address
 
     modbus:
       send_wait_time: 200ms
-      id: mod_bus_epever
+      id: mod_bus_pzem
 
     modbus_controller:
-      - id: epever
+      - id: pzem
         ## the current device addr
         address: 0x1
-        modbus_id: mod_bus_epever
+        modbus_id: mod_bus_pzem
         command_throttle: 0ms
         setup_priority: -10
         update_interval: 30s
-
-    uart:
-      rx_pin: GPIO16
-      tx_pin: GPIO17
-      baud_rate: 9600
-      stop_bits: 2
 
 
 See Also
