@@ -503,6 +503,26 @@ Configuration variables:
   for more information.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+
+lambda calls
+************
+
+Actions may also be called from :ref:`lambdas <config-lambda>`. The ``.transmit()`` call can be populated with
+encoded data for a specific protocol by following the example below.
+See the full API Reference for more info.
+
+- ``.transmit()``: Transmit an IR code using the remote transmitter.
+
+  .. code-block:: cpp
+
+      // Example - transmit using the Pioneer protocol
+      auto call = id(my_transmitter).transmit();
+      esphome::remote_base::PioneerData data = { rc_code_1, rc_code_2 };
+      esphome::remote_base::PioneerProtocol().encode(call.get_data(), data);
+      call.set_send_times(2);
+      call.perform();
+
+
 .. _remote-setting-up-infrared:
 
 Setting up Infrared Devices
