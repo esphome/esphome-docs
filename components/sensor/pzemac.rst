@@ -85,7 +85,7 @@ Configuration variables:
 
 
 Changing the address of a PZEM-004T:
-------------------------
+------------------------------------
 
 You can use the following configuration to change the address of a sensor.
 You must set the ``address`` of the ``modbus_controller`` to the current address, and ``new_address`` of the ``on_boot`` lambda to the new one.
