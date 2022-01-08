@@ -343,6 +343,23 @@ Configuration for ESP-EYE
       name: My Camera
       # ...
 
+Troubleshooting
+----------------------------------
+
+If you have trouble getting the Camera Modul to work you can experiment with different Troubleshooting Options (try one by one Option).
+
+See https://github.com/esphome/issues/issues/2224 for example.
+
+.. code-block:: yaml
+
+    # Example Troubleshooting Options
+    esphome:
+      #arduino_version: 1.0.2
+      arduino_version: 1.0.5
+  
+    esp32_camera:
+      setup_priority: -200
+
 
 See Also
 --------
