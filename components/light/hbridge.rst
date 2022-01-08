@@ -5,36 +5,50 @@ H-bridge Light
     :description: Instructions for setting up a hbridge light.
     :image: brightness-medium.svg
 
-The ``hbridge`` light platform creates a dual color brightness controlled light from two
-:ref:`float output component <output>`.
+The ``hbridge`` light platform controls two light sources using a single pair of wires.
 
 .. figure:: images/hbridge-ui.png
     :align: center
     :width: 40.0%
 
-H-bridge lights are very common for Christmas lighting and they use 2 wires for a bunch of LEDs. 
-The pins are switched alternatively to allow two sets of lights to operate.
+These type of lights are very common for "Christmas lighting" and "adjustable color-temperature lights" or "dual color LEDs" 
+They use a single pair of wires to control two light sources. 
+
+.. figure:: images/hbridge-light.png
+    :align: center
+    :width: 40.0%
+
+Due to the diode property of LEDs they will only light up if current is flowing in one direction. 
+By putting the other light source in the reverse direction you can control which light source will light up by changing the current flow direction.
+
+By quickly alternating the current flow direction you can (make it seem like) both light sources are lit at the same time.
+
+Configuration
+-------------
 
 .. code-block:: yaml
 
     # Example configuration entry
 
-    # Specify the two pins of the h-bridge as PWM pins
+    # Output config list
+    # Note: For PWM output use "esp8266_pwm" for ESP8266 or "ledc" for ESP32 as platform
     output:
-      - platform: esp8266_pwm
-        id: pina
-        pin: GPIO12
-      - platform: esp8266_pwm
-        id: pinb
-        pin: GPIO14
+      - platform: ... # PWM Capable output platform
+        id: output_light_a
+        pin: ... # Output pin assignment
+        frequency: 1000 Hz
+      - platform: ... # PWM Capable output platform
+        id: output_light_b
+        pin: ... # Output pin assignment
+        frequency: 1000 Hz
 
     # Create a light using the hbridge
     light:
       - platform: hbridge
-        id: mainlight
-        name: "Hbridge Lights"
-        pin_a: pina
-        pin_b: pinb
+        id: hbridge_light
+        name: "H-Bridge Light"
+        pin_a: output_light_a
+        pin_b: output_light_b
 
 Internally, H-bridge lights are implemented as cold/warm white lights. This means that the brightness of the two colors
 is mapped to the cold white and warm white values, even if the colors aren't actually white in reality. To individually
@@ -42,8 +56,8 @@ control the colors in the :ref:`light control actions <light-turn_on_action>`, y
 ``warm_white`` options.
 
 
-Configuration variables:
-------------------------
+Output assignment
+*****************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.
@@ -59,6 +73,7 @@ See Also
 --------
 
 - :doc:`/components/light/index`
+- :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
-- :apiref:`hbridge/light/hbridge_light.h`
+- `Adafruit's basic H-bridge tutorial <https://learn.adafruit.com/adafruit-arduino-lesson-15-dc-motor-reversing/overview>`__
 - :ghedit:`Edit`

@@ -476,6 +476,7 @@ Switch Components
     Modbus Switch, components/switch/modbus_controller, modbus.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
+    H-bridge Switch, components/switch/hbridge, electric-switch.svg
 
 Button Components
 -----------------
@@ -493,7 +494,7 @@ Fan Components
 
     Fan Core, components/fan/index, folder-open.svg
     Binary Fan, components/fan/binary, fan.svg
-    H-bridge Fan, components/fan/hbridge, fan.svg
+    H-bridge Fan / DC Motor, components/fan/hbridge, fan.svg
     Speed Fan, components/fan/speed, fan.svg
     Tuya Fan, components/fan/tuya, tuya.png
 
