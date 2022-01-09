@@ -196,6 +196,7 @@ Analogue
     ADC, components/sensor/adc, flash.svg, ESP internal
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
+    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
