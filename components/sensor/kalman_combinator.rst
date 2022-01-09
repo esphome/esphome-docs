@@ -10,6 +10,11 @@ it acts like a :ref:`sensor-filter-exponential_moving_average` filter. With
 multiple sensors, it combines their values based on their respective standard
 deviation.
 
+The `unit_of_measurement`, `device_class`, `entity_category`, `icon`, and
+`accuracy_decimals` properties are by default inherited from the first sensor.
+`state_class` is explicitly not inherited, because `total_increasing` states
+could still decrease when multiple sensors are used.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -22,7 +27,7 @@ deviation.
           - source: temperature_sensor_1
             error: 1.
           - source: temperature_sensor_2
-            error_function: |-
+            error: !lambda |-
               return 0.5 + std::abs(x - 25) * 0.023
 
 Configuration variables:
@@ -42,10 +47,9 @@ Configuration variables:
 
   - **sensor** (**Required**, ID of a :doc:`/components/sensor/index`): The
     sensor that is used as sample source
-  - **error** (*Optional*, float): The standard deviation of the sensor's
-    measurements.
-  - **error_function** (*Optional*, lambda): A lambda that returns the
-    standard deviation of a single sample, based on the sample value ``x``.
+  - **error** (**Required**, templatable float): The standard deviation of the
+    sensor's measurements. If implemented as a template, the measurement is in
+    parameter `x`.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
