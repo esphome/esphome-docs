@@ -10,9 +10,9 @@ it acts like a :ref:`sensor-filter-exponential_moving_average` filter. With
 multiple sensors, it combines their values based on their respective standard
 deviation.
 
-The `unit_of_measurement`, `device_class`, `entity_category`, `icon`, and
-`accuracy_decimals` properties are by default inherited from the first sensor.
-`state_class` is explicitly not inherited, because `total_increasing` states
+The ``unit_of_measurement``, ``device_class``, ``entity_category``, ``icon``, and
+``accuracy_decimals`` properties are by default inherited from the first sensor.
+``state_class`` is explicitly not inherited, because ``total_increasing`` states
 could still decrease when multiple sensors are used.
 
 .. code-block:: yaml
@@ -45,11 +45,11 @@ Configuration variables:
   source must have either **error** or **error_function** set. These work like
   the **process_std_dev** parameter, with low values marking accurate data.
 
-  - **sensor** (**Required**, ID of a :doc:`/components/sensor/index`): The
+  - **sensor** (**Required**, :ref:`config-id` of a :doc:`/components/sensor/index`): The
     sensor that is used as sample source
-  - **error** (**Required**, templatable float): The standard deviation of the
+  - **error** (**Required**, float, :ref:`templatable <config-templatable>`): The standard deviation of the
     sensor's measurements. If implemented as a template, the measurement is in
-    parameter `x`.
+    parameter ``x``.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
