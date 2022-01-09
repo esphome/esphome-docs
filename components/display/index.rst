@@ -452,7 +452,7 @@ And then later in code:
           - id: page1
             lambda: |-
               // Draw the graph at position [x=10,y=20]
-              it.graph(10, 20, id(simple_temperature_graph));
+              it.graph(10, 20, id(single_temperature_graph));
           - id: page2
             lambda: |-
               // Draw the graph at position [x=10,y=20]
