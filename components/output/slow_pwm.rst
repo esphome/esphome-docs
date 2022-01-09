@@ -50,47 +50,19 @@ Configuration variables:
 Example:
 --------
 
-
-
 .. code-block:: yaml
 
-    esphome:
-      name: testing
-      on_boot:
-        priority: -100
-        then:
-          output.set_level:
-            id: my_slow_pwm
-            level: 25%
-              
-    output:
-      - platform: template
-        id: output1
-        type: binary
-        write_action:
-          - then:
-              - lambda: ESP_LOGD("Template Output","set state to %d",state);
 
+    output:
       - platform: slow_pwm
         id: my_slow_pwm
         period: 15s
-        # pin: 5
-        # state_change_action:
-        #  - lambda: |-
-        #      ESP_LOGD("SLOW PWM","toggle to state %d",state);
-        #      auto *out1 = id(output1);
-        #      if (state)
-        #        out1->turn_on();
-        #      else
-        #        out1->turn_off();
-
         turn_on_action:
           - lambda: |-
               auto *out1 = id(output1);
               out1->turn_on();
         turn_off_action:
           - output.turn_off: output1
-
 
 
 See Also
