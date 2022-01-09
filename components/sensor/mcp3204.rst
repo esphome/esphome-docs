@@ -31,9 +31,6 @@ It calculates the voltage by multiplying the ``reference_voltage * value`` on th
 
 Most configurations will set the ``reference_voltage`` = VREF (pin 13 on the chip)
 
-If you want just the scaled value you can use the read_data function
-  ``float MCP3204::read_data(uint8_t pin)``
-
 .. code-block:: yaml
 
     # Example configuration entry
