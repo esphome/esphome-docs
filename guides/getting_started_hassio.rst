@@ -34,7 +34,6 @@ creating your first configuration.
 
 The wizard will guide you through creating your first configuration and, depending on your browser, install it on your ESP device. You will need to name your configuration and enter your wireless network settings so that the ESP device can come online and can communicate with Home Assistant.
 
-
 Dashboard Interface
 -------------------
 
