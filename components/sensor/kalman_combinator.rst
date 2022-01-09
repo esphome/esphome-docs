@@ -25,7 +25,7 @@ could still decrease when multiple sensors are used.
         process_std_dev: 0.001
         sources:
           - source: temperature_sensor_1
-            error: 1.
+            error: 1.0
           - source: temperature_sensor_2
             error: !lambda |-
               return 0.5 + std::abs(x - 25) * 0.023
