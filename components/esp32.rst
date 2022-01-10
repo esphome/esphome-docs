@@ -18,13 +18,14 @@ Configuration variables:
 
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
-  `this list <https://registry.platformio.org/packages/platforms/platformio/espressif32/boards>`__.
-  *This only affects pin aliases, flash size and some internal settings*, if unsure choose a generic board.
+  `this list <https://registry.platformio.org/packages/platforms/platformio/espressif32/boards>`__ (the icon next to the name
+  can be used to copy the board ID). *This only affects pin aliases, flash size and some internal settings*, if unsure
+  choose a generic board from Espressif such as ``esp32dev``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
   See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
-
-- **variant** (*Optional*, boolean): Defaults to the variant detected from the board. If the board is not known this option becomes mandatory.
-  One of ``esp32``, ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``.
+- **variant** (*Optional*, boolean): The variant of the ESP32 that is used on this board. One of ``esp32``, 
+  ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board, if
+  a board that's unknown to ESPHome is used, this option is mandatory.
 
 .. _esp32-arduino_framework:
 
