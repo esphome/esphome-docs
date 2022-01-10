@@ -20,7 +20,37 @@ First, you need to configure the component with the digital pins that control th
 Then you need to set up a voltage sensor source (e.g. :doc:`ADC sensor <adc>`) and pass it to the cd74hc4067 sensors with the ``sensor`` option.
 Each cd74hc4067 sensor is configured for one of the 16 input pins of the multiplexer.
 
-In the example below, the ``adc`` and ``cd74hc4067`` sensors are internal and :doc:`CT clamp sensors <ct_clamp>` used on each of the sensors.
+.. code-block:: yaml
+
+    # Example configuration entry
+    cd74hc4067:
+    pin_s0: D0
+    pin_s1: D1
+    pin_s2: D2
+    pin_s3: D3     
+
+    sensor:
+    - platform: adc
+        id: adc_sensor
+        pin: A0
+    - platform: cd74hc4067
+        id: adc_0
+        number: 0
+        sensor: adc_sensor
+    - platform: cd74hc4067
+        id: adc_1
+        number: 1
+        sensor: adc_sensor
+
+Application Example
+*******************
+
+In this example, the component is used to measure the AC power output of two solar inverters to integrate them 
+as energy sources in `Home Assistant <https://www.home-assistant.io/docs/energy/solar-panels/>`__.
+
+For this purpose, :doc:`CT clamp sensors <ct_clamp>` are attached on each of the sensors.
+Filters are needed to calibrate the output and cut off the noise of near-zero values.
+The ``adc`` and ``cd74hc4067`` sensors updates are triggered by the ``ct_clamp`` sensors and have a very high internal update frequency.
 
 .. code-block:: yaml
 
@@ -47,19 +77,21 @@ In the example below, the ``adc`` and ``cd74hc4067`` sensors are internal and :d
         sensor: adc_sensor
         update_interval: 3600s
     - platform: ct_clamp
-        name: "Solar1"
+        name: "SolarPower1"
         sensor: solar_1_raw
         update_interval: 5s
-        unit_of_measurement: "A"
+        unit_of_measurement: "W"
+        device_class: "power"
         filters:
-            - multiply: 36000
+        - lambda: "return x > 0.001 ? x * 56221 : 0;"
     - platform: ct_clamp
-        name: "Solar2"
+        name: "SolarPower2"
         sensor: solar_2_raw
         update_interval: 5s
-        unit_of_measurement: "A"
+        unit_of_measurement: "W"
+        device_class: "power"
         filters:
-            - multiply: 36000
+        - lambda: "return x > 0.001 ? x * 57519 : 0;"
 
 Component/Hub
 -------------
