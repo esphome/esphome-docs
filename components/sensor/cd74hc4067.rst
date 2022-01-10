@@ -8,8 +8,6 @@ cd74hc4067 Analog Multiplexer
 
 The ``cd74hc4067`` Analog Multiplexer component allows you to attach up to 16 analog input sensors to a single ADC pin.
 The component is used to activate the right multiplexer pin for each of the defined cd74hc4067 sensors.
-Since the cd74hc4067 sensors are also voltage sensors, they can be used as input for :doc:`CT clamp sensors <ct_clamp>`, 
-as in the configuration example below.
 
 For further information about the cd74hc4067 chip see the `spec sheet  <https://www.ti.com/lit/ds/symlink/cd74hc4067.pdf>`__
 and there are also some guides around like the one from `Adam Meyer <http://adam-meyer.com/arduino/CD74HC4067>`__.
@@ -54,7 +52,6 @@ The ``adc`` and ``cd74hc4067`` sensors updates are triggered by the ``ct_clamp``
 
 .. code-block:: yaml
 
-    # Example configuration entry
     cd74hc4067:
     pin_s0: D0
     pin_s1: D1
