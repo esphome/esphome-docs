@@ -196,6 +196,7 @@ Analogue
     ADC, components/sensor/adc, flash.svg, ESP internal
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
+    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
@@ -237,6 +238,7 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
@@ -244,8 +246,9 @@ Electricity
     Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
-    INA219, components/sensor/ina219, ina219.jpg, DC current
-    INA226, components/sensor/ina226, ina226.jpg, DC current & Power
+    INA219, components/sensor/ina219, ina219.jpg, DC Current
+    INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
+    INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
     PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
@@ -269,6 +272,7 @@ Environmental
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
+    BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
@@ -283,7 +287,7 @@ Environmental
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
-    SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
+    SDP3x / SDP800 Series, components/sensor/sdp3x, sdp31.jpg, Pressure
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
@@ -323,6 +327,8 @@ Miscellaneous
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
+    Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
+    Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
@@ -405,6 +411,7 @@ Output Components
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
+    MCP47A1, components/output/mcp47a1, mcp47a1.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
@@ -458,6 +465,15 @@ Switch Components
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
 
+Button Components
+-----------------
+
+.. imgtable::
+
+    Button Core, components/button/index, folder-open.svg
+    Template Button, components/button/template, description.svg
+    Restart Button, components/button/restart, restart.svg
+
 Fan Components
 --------------
 
@@ -492,7 +508,7 @@ Display Components
     ST7920, components/display/st7920, st7920.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate 6, components/display/inkplate6, inkplate6.jpg
+    Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
@@ -524,6 +540,7 @@ Text Sensor Components
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
+    Tuya Text Sensor, components/text_sensor/tuya, tuya.png
 
 Climate Components
 ------------------
@@ -548,6 +565,7 @@ Number Components
     Number Core, components/number/index, folder-open.svg
     Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg
+    Tuya Number, components/number/tuya, tuya.png
 
 Select Components
 -----------------
@@ -569,6 +587,7 @@ Misc Components
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
     HTTP Request, components/http_request, connection.svg
+    mDNS, components/mdns, radio-tower.svg
 
     Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg

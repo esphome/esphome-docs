@@ -99,6 +99,31 @@ the initial measurement mode to match whichever mode the device uses, and disabl
         initial_mode: CURRENT
         change_mode_every: 4294967295
 
+SEL Pin Inversion
+-----------------
+
+If using model ``BL0937`` the function of the SEL pin is inverted compared to default. When SEL=0 current is measured,
+when SEL=1 voltage is measured. To accommodate this change use the following configuration:
+
+.. code-block:: yaml
+
+    # Example configuration entry for device BL0937 using inverted SEL pin functionality
+    sensor:
+      - platform: hlw8012
+        model: BL0937
+        sel_pin:  
+          number: 12
+          inverted: true
+        cf_pin: 4
+        cf1_pin: 5
+        current:
+          name: "BL0937 Current"
+        voltage:
+          name: "BL0937 Voltage"
+        power:
+          name: "BL0937 Power"
+        update_interval: 60s
+
 See Also
 --------
 

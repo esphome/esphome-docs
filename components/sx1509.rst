@@ -186,7 +186,7 @@ The outputs can in turn be used to add PWM-enabled lights like the monochromatic
 
 
 - **sx1509** (**Required**, :ref:`config-id`): The id of the SX1509 component of the pin.
-- **number** (**Required**, integer): The pin number.
+- **number** (**Required**, int): The pin number.
 - **inverted** (*Optional*, boolean): If all read and written values
   should be treated as inverted. Defaults to ``false``.
 - **mode** (*Optional*, string): A pin mode to set for the pin at. One of ``INPUT``,

@@ -31,6 +31,10 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the camera.
+- **icon** (*Optional*, icon): Manually set the icon to use for the camera in the frontend.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
@@ -90,8 +94,11 @@ Frame Settings:
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
-- **vertical_flip** (*Optional*, bool): Whether to flip the image vertically. Defaults to ``true``.
-- **horizontal_mirror** (*Optional*, bool): Whether to mirror the image horizontally. Defaults to ``true``.
+- **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
+- **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
+- **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Defaults to ``false``.
+- **ae_level** (*Optional*, int): The auto exposure level to apply to the picture, from -2 to 2. Defaults to ``0``.
+- **aec_value** (*Optional*, int): The Auto Exposure Control 2 value to apply to the picture, from 0 to 1200. Defaults to ``300``.
 
 .. note::
 

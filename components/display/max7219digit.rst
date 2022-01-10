@@ -42,7 +42,7 @@ Configuration variables:
 ------------------------
 
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CS line hooked up to.
-- **num_chips** (*Optional*, integer): The number of chips you wish to use for daisy chaining. Defaults to
+- **num_chips** (*Optional*, int): The number of chips you wish to use for daisy chaining. Defaults to
   ``4``.
 - **rotate_chip** (*Optional*): Rotates every 8x8 chip. Valid values are ``0``, ``90``, ``180`` and ``270``.
   Defaults to ``0``.
@@ -58,7 +58,7 @@ Configuration variables:
 - **scroll_dwell** (*Optional*, :ref:`config-time`): Sets the wait time at the end of the scroll before starting
   over. This is only used in mode ``STOP``. Defaults to ``1s``.
 - **reverse_enable** (*Optional*, boolean): For some displays the order of the displays is reversed ("DCBA"). This option will reverse the display to ("ABCD") again. Defaults to  ``false``.
-- **intensity** (*Optional*, integer): The intensity with which the MAX7219 should drive the outputs. Range is
+- **intensity** (*Optional*, int): The intensity with which the MAX7219 should drive the outputs. Range is
   from ``0``, least intense to ``15`` the brightest. Defaults to ``15``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the
   MAX7219. See :ref:`display-max7219digit_lambda` for more information.
@@ -66,7 +66,7 @@ Configuration variables:
 - **spi_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`SPI Component <spi>` if you want
   to use multiple SPI buses.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **num_chip_lines** (*Optional*, integer): Number of lines if you want to use the displays in Multiline Mode. Defaults to ``1`` Example: https://github.com/esphome/esphome/pull/1622#issue-836179156 
+- **num_chip_lines** (*Optional*, int): Number of lines if you want to use the displays in Multiline Mode. Defaults to ``1`` Example: https://github.com/esphome/esphome/pull/1622#issue-836179156
 - **chip_lines_style** (*Optional*): How are the lines in Multiline Mode connected? Possible values are ``zigzag`` and ``snake``. Defaults to ``snake``
 
 .. _display-max7219digit_lambda:
@@ -115,7 +115,7 @@ They can also be changed in the Lambda by adding the following command:
 
 
 - **on/off** -> switch scrolling on or off, use true or false
-- **mode** -> 0 = Continuous scrolling, 1 = Stop at end and reset
+- **mode** -> max7219digit::CONTINUOUS for continuous scrolling, max7219digit::STOP = Stop at end and reset
 - **speed** -> Set speed of scrolling (ms for every step of one dot)
 - **delay** -> pause time at start of scrolling
 - **dwell** -> pause at end of scrolling (only in mode 1)
@@ -127,9 +127,9 @@ They can also be changed in the Lambda by adding the following command:
         # ...
         lambda: |-
           # ...
-          it.scroll(true, 0, 100, 5000, 1500);
+          it.scroll(true, max7219digit::CONTINUOUS, 100, 5000, 1500);
           // OR
-          it.scroll(true, 0);
+          it.scroll(true, max7219digit::CONTINUOUS);
           // OR
           it.scroll(true);
 

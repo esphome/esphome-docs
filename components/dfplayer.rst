@@ -108,7 +108,7 @@ Configuration options:
 
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The global track
   number (from all tracks in the device). If not specified plays the first track.
-- **loop** (*Optional*, bool, :ref:`templatable <config-templatable>`): Repeats playing
+- **loop** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Repeats playing
   the same track. Defaults to ``false``.
 
 ``dfplayer.play_folder`` Action
@@ -146,7 +146,7 @@ Configuration options:
 - **folder** (**Required**, int, :ref:`templatable <config-templatable>`): The folder number.
 - **file** (*Optional*, int, :ref:`templatable <config-templatable>`): The file number
   inside the folder to play. Optional only if ``loop`` is not set.
-- **loop** (*Optional*, bool, :ref:`templatable <config-templatable>`): Repeats playing
+- **loop** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Repeats playing
   all files in the folder. Causes ``file`` to be ignored. Defaults to ``false``.
 
 

@@ -29,15 +29,15 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 Configuration variables:
 ------------------------
 
-- **uv_index** (**Optional**): UV index (UVI). All options from :ref:`Sensor <config-sensor>`.
-- **uv** (**Optional**): Sensor counts for the UV sensor (#). All options from :ref:`Sensor <config-sensor>`.
-- **light** (**Optional**): Lux of ambient light (lx). All options from :ref:`Sensor <config-sensor>`.
-- **ambient_light** (**Optional**): Sensor counts for the Ambient light sensor (#). All options from :ref:`Sensor <config-sensor>`.
-- **gain** (**Optional**, string): Adjusts the sensitivity of the sensor. A larger value means higher sensitivity. See table below for details. Default is ``"X3"``.
-- **resolution** (**Optional**, int): ADC resolution. Higher resolutions require longer sensor integration times. See table below for details. Default is ``18``.
-- **window_correction_factor** (**Optional**, float): Window correction factor. Use larger values when using under tinted windows. Default is ``1.0``, must be ``>= 1.0``.
-- **address** (**Optional**, int): Manually specify the I²C address of the sensor. Default is `0x53`.
-- **update_interval** (**Optional**, :ref:`config-time`): The interval to check the
+- **uv_index** (*Optional*): UV index (UVI). All options from :ref:`Sensor <config-sensor>`.
+- **uv** (*Optional*): Sensor counts for the UV sensor (#). All options from :ref:`Sensor <config-sensor>`.
+- **light** (*Optional*): Lux of ambient light (lx). All options from :ref:`Sensor <config-sensor>`.
+- **ambient_light** (*Optional*): Sensor counts for the Ambient light sensor (#). All options from :ref:`Sensor <config-sensor>`.
+- **gain** (*Optional*, string): Adjusts the sensitivity of the sensor. A larger value means higher sensitivity. See table below for details. Default is ``"X3"``.
+- **resolution** (*Optional*, int): ADC resolution. Higher resolutions require longer sensor integration times. See table below for details. Default is ``18``.
+- **window_correction_factor** (*Optional*, float): Window correction factor. Use larger values when using under tinted windows. Default is ``1.0``, must be ``>= 1.0``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Default is `0x53`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``. It is recommended that the update interval is at least 1 second since updates can take up to 800ms when using a high resolution value.
 
 Lux and UVI Formulas
