@@ -3,7 +3,7 @@ Generic ESP32
 
 .. seo::
     :description: Information about how to use generic ESP32 boards in ESPHome.
-    :image: esp32.png
+    :image: esp32.svg
     :keywords: ESP32
 
 All devices based on the original ESP32 are supported by ESPHome. Simply select ``ESP32`` when

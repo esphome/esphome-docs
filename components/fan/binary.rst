@@ -3,7 +3,7 @@ Binary Fan
 
 .. seo::
     :description: Instructions for setting up binary fans.
-    :image: fan.png
+    :image: fan.svg
 
 The ``binary`` fan platform lets you represent any binary :ref:`output` as a fan.
 

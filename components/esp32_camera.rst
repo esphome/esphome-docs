@@ -3,7 +3,7 @@ ESP32 Camera Component
 
 .. seo::
     :description: Instructions for setting up the ESP32 Cameras in ESPHome
-    :image: camera.png
+    :image: camera.svg
 
 The ``esp32_camera`` component allows you to use ESP32-based camera boards in ESPHome that
 directly integrate into Home Assistant through the native API.
@@ -31,6 +31,10 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the camera.
+- **icon** (*Optional*, icon): Manually set the icon to use for the camera in the frontend.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
@@ -153,6 +157,28 @@ Configuration for M5Stack Camera
       name: My Camera
       # ...
 
+Configuration for M5Stack Timer Camera X/F
+------------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+
+      # Image settings
+      name: My Camera
+      # ...
 
 Configuration for Wrover Kit Boards
 -----------------------------------

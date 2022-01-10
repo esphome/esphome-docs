@@ -3,7 +3,7 @@ ESP8266 Platform
 
 .. seo::
     :description: Configuration for the ESP8266 platform for ESPHome.
-    :image: esp8266.png
+    :image: esp8266.svg
 
 This component contains platform-specific options for the ESP8266 platform.
 
@@ -20,12 +20,12 @@ Configuration variables:
 
 - **board** (**Required**, string): The PlatformIO board ID that should
   be used. Choose the appropriate board from
-  `this list <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ (the icon next to the 
+  `this list <https://registry.platformio.org/platforms/platformio/espressif8266/boards>`__ (the icon next to the 
   name can be used to copy the board ID). *This only affects pin aliases, flash size and some internal settings*, if unsure
   choose a generic board from Espressif such as ``esp01_1m``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
 
-  - **version** (*Optional*, string): The base framework version number to use, from 
+  - **version** (*Optional*, string): The base framework version number to use, from
     `esp8266 arduino releases <https://github.com/esp8266/Arduino/releases>`__. Defaults to ``recommended``. Additional values
 
     - ``dev``: Use the latest commit from https://github.com/esp8266/Arduino, note this may break at any time

@@ -3,7 +3,6 @@ Modbus Text Sensor
 
 .. seo::
     :description: Instructions for setting up a modbus_controller modbus text sensor.
-    :image: modbus_controller.png
 
 The ``modbus_controller`` sensor platform creates a text sensor from a modbus_controller component
 and requires :doc:`/components/modbus_controller` to be configured.
@@ -28,6 +27,9 @@ Configuration variables:
      - ``HEXBYTES``:  2 byte hex string. 0x2011 will be sent as "2011".
      - ``COMMA``: Byte values as integers, delimited by a coma. 0x2011 will be sent as "32,17"
 - **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are grouped together and requested in one range. Setting `foce_new_range: true` enforces the start of a new range at that address.
+- **custom_data** (*Optional*, list of bytes): raw bytes for modbus command. This allows using non-standard commands. If ``custom_data`` is used ``address`` and ``register_type`` can't be used.
+  custom data must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command.
+  See :ref:`modbus_custom_data` how to use ``custom_command``
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda to be evaluated every update interval to get the new value of the sensor
 - **offset**: (*Optional*, int): not required in most cases
@@ -39,7 +41,7 @@ Parameters passed into the lambda
 - **x** (std:string): The parsed float value of the modbus data
 
 - **data** (std::vector<uint8_t): vector containing the complete raw modbus response bytes for this sensor
-      note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.
+      note: because the response contains data for all registers in the same range you have to use ``data[item->offset]`` to get the first response byte for your sensor.
 - **item** (const pointer to a SensorItem derived object):  The sensor object itself.
 
 Possible return values for the lambda:

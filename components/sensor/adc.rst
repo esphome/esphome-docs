@@ -3,7 +3,7 @@ Analog To Digital Sensor
 
 .. seo::
     :description: Instructions for setting up built-in analog voltage sensors.
-    :image: flash.png
+    :image: flash.svg
 
 The Analog To Digital (``adc``) Sensor allows you to use the built-in
 ADC in your device to measure a voltage on certain pins. On the ESP8266

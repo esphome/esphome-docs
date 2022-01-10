@@ -3,7 +3,7 @@ mDNS Component
 
 .. seo::
     :description: Instructions for setting up the mDNS configuration for your ESP node in ESPHome.
-    :image: mdns.svg
+    :image: radio-tower.svg
     :keywords: WiFi, WLAN, ESP8266, ESP32, mDNS
 
 The ``mdns`` component makes the node announce itself on the local network using the multicast DNS (mDNS) protocol.

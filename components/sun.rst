@@ -3,7 +3,7 @@ Sun
 
 .. seo::
     :description: Instructions for setting up tracking the sun position in ESPHome.
-    :image: weather-sunny.png
+    :image: weather-sunny.svg
 
 The ``sun`` component allows you to track the sun's position in the sky.
 
@@ -112,7 +112,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the text sensor.
 - **elevation** (*Optional*, float): The elevation to calculate the next sunrise/sunset event
   for. Defaults to -0.833° (the horizon, slightly less than 0° to compensate for atmospheric refraction).
-- **format** (*Optional*, string): The format to format the time value with, see :ref:`display-strftime`
+- **format** (*Optional*, string): The format to format the time value with, see :ref:`strftime`
   for more information. Defaults to ``%X``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

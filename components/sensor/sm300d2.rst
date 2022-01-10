@@ -3,7 +3,7 @@ SM300D2 7-in-1 Air Quality Sensor
 
 .. seo::
     :description: Instructions for setting up SM300D2 sensor to work with ESPHome
-    :image: sm300d2-full.jpg
+    :image: sm300d2.jpg
     :keywords: sm300d2
 
 The ``sm300d2`` sensor platform allows you to use the SM300D2 7-in-1 Air Quality Sensor with ESPHome.

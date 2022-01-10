@@ -7,7 +7,7 @@
     :description: ESPHome Homepage - Reimagining DIY Home Automation. ESPHome is a framework that
       tries to provide the best possible use experience for using ESP8266 and ESP32 microcontrollers
       for Home Automation. Just write a simple YAML configuration file and get your own customized firmware.
-    :image: logo.png
+    :image: logo.svg
 
 .. image:: /images/logo-text.svg
 
@@ -283,7 +283,7 @@ Environmental
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
-    SDP3x, components/sensor/sdp3x, sdp31.jpg, Pressure
+    SDP3x / SDP800 Series, components/sensor/sdp3x, sdp31.jpg, Pressure
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
@@ -405,6 +405,7 @@ Output Components
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
+    BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
@@ -456,6 +457,15 @@ Switch Components
     Modbus Switch, components/switch/modbus_controller, modbus.png
     BLE Client Switch, components/switch/ble_client, bluetooth.svg
     Nextion Switch, components/switch/nextion, nextion.jpg
+
+Button Components
+-----------------
+
+.. imgtable::
+
+    Button Core, components/button/index, folder-open.svg
+    Template Button, components/button/template, description.svg
+    Restart Button, components/button/restart, restart.svg
 
 Fan Components
 --------------
@@ -523,6 +533,7 @@ Text Sensor Components
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
+    Tuya Text Sensor, components/text_sensor/tuya, tuya.png
 
 Climate Components
 ------------------
@@ -651,6 +662,7 @@ Cookbook
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
+    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

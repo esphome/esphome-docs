@@ -3,7 +3,7 @@ Light Component
 
 .. seo::
     :description: Instructions for setting up lights and light effects in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``light`` domain in ESPHome lets you create lights that will
 automatically be shown in Home Assistant’s frontend and have many
@@ -41,8 +41,8 @@ Configuration variables:
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
-    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
-    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 

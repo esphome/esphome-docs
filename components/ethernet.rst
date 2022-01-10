@@ -3,7 +3,7 @@ Ethernet Component
 
 .. seo::
     :description: Instructions for setting up the Ethernet configuration for your ESP32 node in ESPHome.
-    :image: ethernet.png
+    :image: ethernet.svg
     :keywords: Ethernet, ESP32
 
 This core ESPHome component sets up ethernet connections for ESP32s.

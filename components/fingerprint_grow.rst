@@ -3,7 +3,7 @@ Grow Fingerprint Reader
 
 .. seo::
     :description: Instructions for setting up Grow Fingerprint Reader integration in ESPHome.
-    :image: fingerprint.png
+    :image: fingerprint.svg
 
 The ``fingerprint_grow`` component allows you to use your R307, R503, ZFM-20, ... fingerprint sensors with ESPHome.
 

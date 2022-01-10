@@ -3,7 +3,7 @@ LTR390 UV and Ambient Light Sensor
 
 .. seo::
     :description: Instructions for setting up LTR390 UV and light sensor
-    :image: images/ltr390-full.jpg
+    :image: ltr390.jpg
 
 The ``ltr390`` sensor platform  allows you to use your LTR390 UV and ambient
 light sensor
@@ -21,7 +21,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 
     sensor:
       - platform: ltr390
-        uvi:
+        uv:
           name: "UV Index"
         light:
           name: "Light"

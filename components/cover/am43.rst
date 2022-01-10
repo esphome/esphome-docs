@@ -3,7 +3,7 @@ AM43 Cover
 
 .. seo::
     :description: Setting up AM43/BLE covers in ESPHome.
-    :image: am43.png
+    :image: am43.jpg
 
 The ``am43`` cover platform allows you to control an AM43 based
 BLE cover motor. These devices are sold under various brands, such

@@ -3,7 +3,7 @@ ESPHome Core Configuration
 
 .. seo::
     :description: Instructions for setting up the core ESPHome configuration.
-    :image: cloud-circle.png
+    :image: cloud-circle.svg
 
 Here you specify some core information that ESPHome needs to create
 firmwares. Most importantly, this is the section of the configuration
@@ -50,9 +50,9 @@ Advanced options:
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
 
-Old-style platform options, these have been moved to the platform-specific :doc:`esp32 </components/esp32>` and 
-:doc:`esp8266 </components/esp8266>` sections but are still accepted for compatibility reasons (not recommended for
-new projects):
+Old-style platform options, which have been moved to the platform-specific :doc:`esp32 </components/esp32>` and 
+:doc:`esp8266 </components/esp8266>` sections but are still accepted here for compatibility reasons (usage not 
+recommended for new projects):
 
 - **platform** (**Required**, string): The platform used, either ``esp8266`` or ``esp32``.
 - **board** (**Required**, string): The board used, see

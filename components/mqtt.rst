@@ -43,6 +43,10 @@ Configuration variables:
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
+- **discovery_unique_id_generator** (*Optional*, string): The unique_id generator
+  to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
+  generates unique_id in format ``ESP<component_type><default_object_id>``.
+  ``mac`` generator uses format ``<mac_address>-<component_type>-<fnv1_hash(friendly_name)>``.
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
@@ -343,7 +347,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe("the/topic", [=](const std::string &payload) {
+        id(mqtt_client).subscribe("the/topic", [=](const std::string &topic, const std::string &payload) {
             // do something with payload
         });
 

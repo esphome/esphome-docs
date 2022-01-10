@@ -3,7 +3,7 @@ Remote Transmitter
 
 .. seo::
     :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
-    :image: remote.png
+    :image: remote.svg
     :keywords: Infrared, IR, RF, Remote, TX
 
 The ``remote_transmitter`` component lets you send digital packets to control
@@ -182,6 +182,12 @@ Configuration variables:
 ******************************************
 
 This :ref:`action <config-action>` sends an NEC infrared remote code to a remote transmitter.
+
+.. note::
+
+    In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
+    Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+    For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 .. code-block:: yaml
 
@@ -496,6 +502,26 @@ Configuration variables:
 - **protocol** (*Optional*): The RC Switch protocol to use, see :ref:`remote_transmitter-rc_switch-protocol`
   for more information.
 - All other options from :ref:`remote_transmitter-transmit_action`.
+
+
+lambda calls
+************
+
+Actions may also be called from :ref:`lambdas <config-lambda>`. The ``.transmit()`` call can be populated with
+encoded data for a specific protocol by following the example below.
+See the full API Reference for more info.
+
+- ``.transmit()``: Transmit an IR code using the remote transmitter.
+
+  .. code-block:: cpp
+
+      // Example - transmit using the Pioneer protocol
+      auto call = id(my_transmitter).transmit();
+      esphome::remote_base::PioneerData data = { rc_code_1, rc_code_2 };
+      esphome::remote_base::PioneerProtocol().encode(call.get_data(), data);
+      call.set_send_times(2);
+      call.perform();
+
 
 .. _remote-setting-up-infrared:
 

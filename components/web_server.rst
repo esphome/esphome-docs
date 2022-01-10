@@ -3,7 +3,7 @@ Web Server Component
 
 .. seo::
     :description: Instructions for setting up a web server in ESPHome.
-    :image: http.png
+    :image: http.svg
     :keywords: web server, http, REST API
 
 The ``web_server`` component creates a simple web server on the node that can be accessed
@@ -50,6 +50,8 @@ Configuration variables:
   - **username** (**Required**, string): The username to use for authentication.
   - **password** (**Required**, string): The password to check for authentication.
 
+- **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
+  web interface. Defaults to ``false``.
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Default: `true`
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 

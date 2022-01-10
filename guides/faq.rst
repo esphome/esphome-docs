@@ -3,7 +3,7 @@ Frequently Asked Questions
 
 .. seo::
     :description: Frequently asked questions in ESPHome.
-    :image: question_answer.png
+    :image: question_answer.svg
 
 Tips for using ESPHome
 ----------------------
@@ -196,7 +196,7 @@ I have a question... How can I contact you?
 Sure! We are happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/c/esphome>`__
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
@@ -351,7 +351,6 @@ The top level ``name:`` field in your .yaml file defines the node name(/hostname
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
-
 Why am I getting a warning about strapping pins?
 --------------------------------------------------
 
@@ -361,6 +360,30 @@ While the use of them in software is not a problem, if there's something attache
 It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
 
 Note that some boards connect pins such as GPIO0 to a builtin tactile switch. In these cases using the strapping pins is not a problem.
+
+How can I test a Pull Request?
+------------------------------
+
+By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull 
+Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components 
+that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page 
+of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and 
+flash your device, the code from the Pull Request will be used for the components changed by the Pull Request.
+
+.. code-block:: yaml
+
+    external_components:
+      # replace 1234 with the number of the Pull Request
+      - source: github://pr#1234
+        components:
+          # list all components modified by this Pull Request here
+          - ccs811  
+
+
+Note that this only works for Pull Requests that only change files within components. If any files outside 
+``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled 
+with the "core" label on GitHub.
+
 See Also
 --------
 
