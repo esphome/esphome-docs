@@ -40,8 +40,27 @@ Each cd74hc4067 sensor is configured for one of the 16 input pins of the multipl
         number: 1
         sensor: adc_sensor
 
+Component/Hub
+-------------
+
+Configuration Variables:
+************************
+
+- **pin_s0** to **pin_s3** (**Required**, :ref:`config-pin`): The I/O pins connected to the S0 to S3 channel selection pins
+- **delay** (*Optional*, :ref:`config-time`): A small delay duration needed for the chip to switch inputs, defaults to 2ms.
+
+Sensor
+------
+
+Configuration Variables:
+************************
+
+- **sensor** (**Required**, :ref:`config-id`): The source sensor to measure voltage values from, e.g. :doc:`ADC sensor <adc>`.
+- **number** (*Required*, int): The number of the cd74hc4067 input pin (0-15)
+- All other options from :ref:`Sensor <config-sensor>`.
+
 Application Example
-*******************
+-------------------
 
 In this example, the component is used to measure the AC power output of two solar inverters to integrate them 
 as energy sources in `Home Assistant <https://www.home-assistant.io/docs/energy/solar-panels/>`__.
@@ -89,25 +108,6 @@ The ``adc`` and ``cd74hc4067`` sensors updates are triggered by the ``ct_clamp``
         device_class: "power"
         filters:
         - lambda: "return x > 0.001 ? x * 57519 : 0;"
-
-Component/Hub
--------------
-
-Configuration Variables:
-************************
-
-- **pin_s0** to **pin_s3** (**Required**, :ref:`config-pin`): The I/O pins connected to the S0 to S3 channel selection pins
-- **delay** (*Optional*, :ref:`config-time`): A small delay duration needed for the chip to switch inputs, defaults to 2ms.
-
-Sensor
-------
-
-Configuration Variables:
-************************
-
-- **sensor** (**Required**, :ref:`config-id`): The source sensor to measure voltage values from, e.g. :doc:`ADC sensor <adc>`.
-- **number** (*Required*, int): The number of the cd74hc4067 input pin (0-15)
-- All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
