@@ -334,6 +334,7 @@ Miscellaneous
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
+    HDMI CEC, components/hdmi_cec, hdmi-cec.png
 
 
 Motion
