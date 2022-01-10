@@ -32,6 +32,11 @@ Configuration variables:
     When 2 devices are sending a command at the same the the response read from uart can't be assigend to the proper design.
     This value defines the maximumm queuing time for a command before it is send anyways.
 
+- **use_send_direct** (*Optional*, boolean): the modbus component serializes requests to ensure no other request is sent while another device is waiting for a response. 
+    This option disables the serialization and forces the modbus component to send a request directly when received. This option can be used for backward compatibility if the serialization causes incorrect behaviour.
+
+- **dont_drop_when_idle** (*Optional*, boolean): The modbus component is polling the connected UART for new data. Modbus devices should never send anything unless they received a command. Therefore, anything received from UART without a previous command is dropped. 
+    This option disables dropping unexpected bytes read from UART for backward compatibility.
 
 See Also
 --------
