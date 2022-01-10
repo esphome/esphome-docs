@@ -61,21 +61,23 @@ In the example below, the ``adc`` and ``cd74hc4067`` sensors are internal and :d
         filters:
             - multiply: 36000
 
-Configuration variables:
-------------------------
+Component/Hub
+-------------
 
-cd74hc4067 component
-********************
+Configuration Variables:
+************************
 
 - **pin_s0** to **pin_s3** (**Required**, :ref:`config-pin`): The I/O pins connected to the S0 to S3 channel selection pins
 - **delay** (*Optional*, :ref:`config-time`): A small delay duration needed for the chip to switch inputs, defaults to 2ms.
-- All other options from Component.
 
-cd74hc4067 sensor
-********************
+Sensor
+------
+
+Configuration Variables:
+************************
 
 - **sensor** (**Required**, :ref:`config-id`): The source sensor to measure voltage values from, e.g. :doc:`ADC sensor <adc>`.
-- **number** (*Required*, :ref:`config-number`): The number of the cd74hc4067 input pin (0-15)
+- **number** (*Required*, int): The number of the cd74hc4067 input pin (0-15)
 - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also

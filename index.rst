@@ -195,7 +195,7 @@ Analogue
 
     ADC, components/sensor/adc, flash.svg, ESP internal
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
-    CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 12-channel analog multiplexer
+    CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
