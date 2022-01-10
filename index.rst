@@ -390,6 +390,7 @@ Binary Sensor Components
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+    EKTF2232 Touchscreen, components/binary_sensor/ektf2232, ektf2232.svg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components

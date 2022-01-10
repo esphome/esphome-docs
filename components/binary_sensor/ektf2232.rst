@@ -1,0 +1,96 @@
+EKTF2232 Touch Screen Controller
+================================
+
+.. seo::
+    :description: Instructions for setting up EKTF2232 touch screen controller with ESPHome
+    :image: ektf2232.svg
+    :keywords: EKTF2232
+
+.. _ektf2232-component:
+
+Component/Hub
+-------------
+
+The ``ektf2232`` component allows using the touch screen controller
+found in the :doc:`Inkplate 6 Plus </components/display/inkplate6>` with ESPHome.
+The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    ektf2232:
+      interrupt_pin: GPIO36
+      rts_pin: GPIO16
+
+    binary_sensor:
+      - platform: ektf2232
+        id: touch_key0
+        x_min: 80
+        x_max: 160
+        y_min: 106
+        y_max: 212
+
+
+Configuration variables:
+------------------------
+
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
+
+- **rts_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The reset pin of the controller.
+
+- **interupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
+
+- **display_width** (*Optional*, int): The dimension of the display in the horizontal
+  direction. Defaults to ``1024`` to match the Inkplate 6 Plus.
+
+- **display_height** (*Optional*, int): The dimension of the display in the vertical
+  direction. Defaults to ``758`` to match the Inkplate 6 Plus.
+
+- **on_press** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the touch screen is pressed. See :ref:`ektf2232-on_press`.
+
+.. _ektf2232-on_press:
+
+``on_press`` Trigger
+--------------------
+
+This automation will be triggered when the EKTF2232 touch screen detects a touch.
+
+This trigger provides one arguments of type :apistruct:`ektf2232::TouchPoint` which has two integer members: ``x`` and ``y`` which
+represent the position of the touch calibrated to the display width and heigh conffig options given.
+
+Binary Sensor
+-------------
+
+The ``ektf2232`` binary sensor allows you to setup areas on the touch screen as virtual
+buttons. First, setup a :ref:`ektf2232-component` and then use this binary sensor platform
+to create individual binary sensors for each virtual button.
+
+Configuration variables:
+------------------------
+
+- **name** (*Optional*, string): The name for the binary sensor.
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+- **ektf2232_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the component the sensor is part of.
+
+- **x_min** (**Required**, int): Left coordinate of the screen area to be detected as the virtual button.
+
+- **x_max** (**Required**, int): Right coordinate of the screen area to be detected as the virtual button.
+
+- **y_min** (**Required**, int): Top coordinate of the screen area to be detected as the virtual button.
+
+- **y_max** (**Required**, int): Bottom coordinate of the screen area to be detected as the virtual button.
+
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+
+See Also
+--------
+
+- :ref:`Binary Sensor Filters <binary_sensor-filters>`
+- :doc:`Inkplate 6 Plus </components/display/inkplate6>`
+- :apiref:`ektf2232/ektf2232.h`
+- :apiref:`ektf2232/binary_sensor/ektf2232_binary_sensor.h`
+- :ghedit:`Edit`
