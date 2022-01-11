@@ -191,10 +191,9 @@ the value the sensor shows.
 
 The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
 then fit a linear equation to the values (using least squares). So you need to supply at least
-two values. If more than two points are specified, they may not lie on a straight line. In this 
-case, the calculated results often do not correspond to the specified values. Especially for 
-non-linear relationships, the result can deviate strongly from the expected value. It is 
-recommended to use the filter calibrate linear only if two given data points are sufficient.
+two values. If more than two values are given a linear solution will be calculated and may not
+represent each value exactly. It is recommended to use the filter calibrate linear only if two data
+points are sufficient.
 
 .. _sensor-calibrate_polynomial:
 
