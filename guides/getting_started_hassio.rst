@@ -30,7 +30,7 @@ After that, wait a bit until it is installed (this can take a while). Click "Sta
 You should now be greeted by a nice introduction wizard which will step you through
 creating your first configuration.
 
-.. figure:: images/hassio_start.png
+.. figure:: images/dashboard_empty.png
     :align: center
     :width: 95.0%
 
@@ -61,24 +61,30 @@ Dashboard Interface
 Assuming you created your first configuration file with the wizard, let's take a quick
 tour of the ESPHome Dashboard interface.
 
-.. figure:: images/dashboard.png
+.. figure:: images/dashboard_states.png
     :align: center
     :width: 95.0%
 
 On the front page you will see all configurations for nodes you created. For each file,
-there are three basic actions you can perform:
+there are a few basic actions you can perform:
 
-- **INSTALL**: This compiles the firmware for your node and installs it. Installation happens wirelessy if you have enabled the :doc:`/components/ota` in your configuration. Alternatively you can install it from your browser or via a device connected to the machine running the ESPHome Dashboard.
+- **UPDATE**: This button will show up if the device has not been installed with the same ESPHome version currently running.
 
-- **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
-  connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
+- **EDIT**: This will open the configuration editor.
 
-- **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
-  binary so that you can install it yourself from your computer using :ref:`ESPHome-flasher <esphome-flasher>`.
+- **LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
+  connected, you can choose to use the serial connection. Otherwise it will use the built-in OTA logs.
+
+- **Overflow menu**: This is a dropdown menu which allows you to perform more actions.
+
+  - **Validate**: This will validate the configuration file.
+  - **Install**: Opens the Install dialog.
+  - **Clean Build Files**: This will delete all of the generated build files and is a safe operation ot perform. Sometimes old files are not removed and can cause compile issues later on.
+  - **Delete**: This will delete the configuration file.
 
 The configuration files for ESPHome can be found and edited under ``<HOME_ASSISTANT_CONFIG>/esphome/``.
-For example the configuration for the node in the picture above can be found
-in ``/config/esphome/livingroom.yaml``.
+For example the configuration for the ``garage-door`` node in the picture above can be found
+in ``/config/esphome/garage-door.yaml``.
 
 Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration.
 
