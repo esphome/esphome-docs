@@ -83,6 +83,19 @@ Configuration variables:
   the same UART bus. You will need to set the address of each device manually. Defaults to ``1``.
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Modbus hub.
 
+.. _pzemac-reset_energy_action:
+
+``pzemac.reset_energy`` Action
+******************************
+
+This action resets the total energy value of the pzemac device with the given ID when executed.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - pzemac.reset_energy: pzemac_1
+
 See Also
 --------
 

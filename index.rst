@@ -195,7 +195,9 @@ Analogue
 
     ADC, components/sensor/adc, flash.svg, ESP internal
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
+    CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
+    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
@@ -271,6 +273,7 @@ Environmental
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
+    BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
@@ -326,6 +329,7 @@ Miscellaneous
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
+    Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
@@ -408,6 +412,7 @@ Output Components
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
+    MCP47A1, components/output/mcp47a1, mcp47a1.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
