@@ -50,6 +50,8 @@ Configuration variables:
   when the light is turned on. See :ref:`light-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the light is turned off. See :ref:`light-on_turn_on_off_trigger`.
+- **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the light's set state is changed. See :ref:`light-on_state_trigger`.
 
 Additional configuration variables for addressable lights:
 
@@ -397,6 +399,25 @@ with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
         - logger.log: "Light Turned On!"
         on_turn_off:
         - logger.log: "Light Turned Off!"
+
+.. _light-on_state_trigger:
+
+``light.on_state`` Trigger
+**************************
+
+This trigger is activated each time the set light state is changed. It is not triggered 
+based on current state, but rather, it triggers on the set state which can differ from
+the current state due to transitions. For example, the ``light.on_state`` trigger can
+be used for immediate action when the light is set to off; while ``light.on_turn_off`` 
+does not trigger until the light actually achieves the off state.
+
+.. code-block:: yaml
+
+    light:
+      - platform: binary # or any other platform
+        # ...
+        on_state:
+        - logger.log: "Light State Changed!"
 
 .. _light-effects:
 
