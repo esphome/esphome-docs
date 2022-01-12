@@ -74,7 +74,7 @@ Configuration variables:
 
 - **transmitter_id** (*Optional*, :ref:`config-id`): The remote transmitter to send the
   remote code with. Defaults to the first one defined in the configuration.
-  
+
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
@@ -521,7 +521,7 @@ It transmits the ``address`` and ``command`` in two packets separated by a "spac
     on_...:
       - remote_transmitter.transmit_samsung36:
           address: 0x0400
-          command: 0x000E00FF      
+          command: 0x000E00FF
 
 Configuration variables:
 
@@ -570,6 +570,26 @@ Configuration variables:
   two parts.
 - **Note:** this action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
 - All other options from :ref:`remote_transmitter-transmit_action`.
+
+
+Lambda calls
+************
+
+Actions may also be called from :ref:`lambdas <config-lambda>`. The ``.transmit()`` call can be populated with
+encoded data for a specific protocol by following the example below.
+See the full API Reference for more info.
+
+- ``.transmit()``: Transmit an IR code using the remote transmitter.
+
+  .. code-block:: cpp
+
+      // Example - transmit using the Pioneer protocol
+      auto call = id(my_transmitter).transmit();
+      esphome::remote_base::PioneerData data = { rc_code_1, rc_code_2 };
+      esphome::remote_base::PioneerProtocol().encode(call.get_data(), data);
+      call.set_send_times(2);
+      call.perform();
+
 
 .. _remote-setting-up-infrared:
 

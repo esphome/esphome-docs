@@ -196,7 +196,7 @@ I have a question... How can I contact you?
 Sure! We are happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/c/esphome>`__
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.

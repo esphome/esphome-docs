@@ -251,16 +251,15 @@ ESPHome configuration
         id: font1
         size: 66
 
-    # wonky color fix, in lieu of finding a way to invert the display
     color:
         - id: color_wet
           red: 100%
-          green: 100%
+          green: 0%
           blue: 0%
         - id: color_dry
-          red: 100%
-          green: 0%
-          blue: 100%
+          red: 0%
+          green: 100%
+          blue: 0%
 
     # built-in 80x160 TFT
     display:
@@ -274,14 +273,16 @@ ESPHome configuration
         cs_pin: GPIO5
         dc_pin: GPIO23
         reset_pin: GPIO18
+        invert_colors: true
+        use_bgr: true
         lambda: |-
           if (id(leak).state) {
-            it.fill(COLOR_ON);
+            it.fill(COLOR_OFF);
             it.print(42, -24, id(font1), id(color_wet), TextAlign::TOP_CENTER, "W");
             it.print(42, 32, id(font1), id(color_wet), TextAlign::TOP_CENTER, "E");
             it.print(42, 85, id(font1), id(color_wet), TextAlign::TOP_CENTER, "T");
           } else {
-            it.fill(COLOR_ON);
+            it.fill(COLOR_OFF);
             it.print(42, -24, id(font1), id(color_dry), TextAlign::TOP_CENTER, "D");
             it.print(42, 32, id(font1), id(color_dry), TextAlign::TOP_CENTER, "R");
             it.print(42, 85, id(font1), id(color_dry), TextAlign::TOP_CENTER, "Y");
