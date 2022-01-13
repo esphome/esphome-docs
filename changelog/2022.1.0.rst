@@ -62,6 +62,12 @@ Breaking Changes
 - Modbus: use multiply for publishing number :esphomepr:`2916` by :ghuser:`martgras` (breaking-change)
 - Upgrade ArduinoJson to 6.18.5 and migrate code :esphomepr:`2844` by :ghuser:`jesserockz` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Add factory to download name :esphomepr:`3040` by :ghuser:`balloob`
+- Bump dashboard to 20220113.2 :esphomepr:`3041` by :ghuser:`balloob`
+
 All changes
 ^^^^^^^^^^^
 

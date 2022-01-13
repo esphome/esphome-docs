@@ -70,6 +70,7 @@ Contributors
 - `Nikolay Vasilchuk (@Anonym-tsk) <https://github.com/Anonym-tsk>`__
 - `Adriaan Peeters (@apeeters) <https://github.com/apeeters>`__
 - `Darius Ratkevičius (@aphex008) <https://github.com/aphex008>`__
+- `aquaticus (@aquaticus) <https://github.com/aquaticus>`__
 - `Andy Allsopp (@arallsopp) <https://github.com/arallsopp>`__
 - `arantius (@arantius) <https://github.com/arantius>`__
 - `arunderwood (@arunderwood) <https://github.com/arunderwood>`__
@@ -169,6 +170,7 @@ Contributors
 - `David Beitey (@davidjb) <https://github.com/davidjb>`__
 - `davidmonro (@davidmonro) <https://github.com/davidmonro>`__
 - `David Zovko (@davidzovko) <https://github.com/davidzovko>`__
+- `Darren Tucker (@daztucker) <https://github.com/daztucker>`__
 - `David Buezas (@dbuezas) <https://github.com/dbuezas>`__
 - `dckiller51 (@dckiller51) <https://github.com/dckiller51>`__
 - `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__
@@ -212,7 +214,6 @@ Contributors
 - `Duncan Findlay (@duncf) <https://github.com/duncf>`__
 - `dyarkovoy (@dyarkovoy) <https://github.com/dyarkovoy>`__
 - `Dimitris Zervas (@dzervas) <https://github.com/dzervas>`__
-- `dziobson (@dziobson) <https://github.com/dziobson>`__
 - `Dan Jackson (@e28eta) <https://github.com/e28eta>`__
 - `Ermanno Baschiera (@ebaschiera) <https://github.com/ebaschiera>`__
 - `Robert Resch (@edenhaus) <https://github.com/edenhaus>`__
@@ -222,7 +223,6 @@ Contributors
 - `Erwin Kooi (@egeltje) <https://github.com/egeltje>`__
 - `Eike (@ei-ke) <https://github.com/ei-ke>`__
 - `Elazar Leibovich (@elazarl) <https://github.com/elazarl>`__
-- `electrofun-smart (@electrofun-smart) <https://github.com/electrofun-smart>`__
 - `Elkropac (@Elkropac) <https://github.com/Elkropac>`__
 - `elyorkhakimov (@elyorkhakimov) <https://github.com/elyorkhakimov>`__
 - `EmbeddedDevver (@EmbeddedDevver) <https://github.com/EmbeddedDevver>`__
@@ -234,7 +234,6 @@ Contributors
 - `Nico Weichbrodt (@envy) <https://github.com/envy>`__
 - `Evan Petousis (@epetousis) <https://github.com/epetousis>`__
 - `Wilhelm Erasmus (@erasmuswill) <https://github.com/erasmuswill>`__
-- `erazor666 (@erazor666) <https://github.com/erazor666>`__
 - `Eric Coffman (@ericbrian) <https://github.com/ericbrian>`__
 - `Eric Hiller (@erichiller) <https://github.com/erichiller>`__
 - `Ernst Klamer (@Ernst79) <https://github.com/Ernst79>`__
@@ -251,6 +250,7 @@ Contributors
 - `fkirill (@fkirill) <https://github.com/fkirill>`__
 - `Sean Vig (@flacjacket) <https://github.com/flacjacket>`__
 - `Diego Elio Pettenò (@Flameeyes) <https://github.com/Flameeyes>`__
+- `Flaviu Tamas (@flaviut) <https://github.com/flaviut>`__
 - `foxsam21 (@foxsam21) <https://github.com/foxsam21>`__
 - `Fractal147 (@Fractal147) <https://github.com/Fractal147>`__
 - `Francis-labo (@Francis-labo) <https://github.com/Francis-labo>`__
@@ -424,6 +424,7 @@ Contributors
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__
 - `Barry Loong (@loongyh) <https://github.com/loongyh>`__
 - `Joakim Sørensen (@ludeeus) <https://github.com/ludeeus>`__
+- `ludrao (@ludrao) <https://github.com/ludrao>`__
 - `Lukas Klass (@LukasK13) <https://github.com/LukasK13>`__
 - `Lumpusz (@Lumpusz) <https://github.com/Lumpusz>`__
 - `Luke Fitzgerald (@lwfitzgerald) <https://github.com/lwfitzgerald>`__
