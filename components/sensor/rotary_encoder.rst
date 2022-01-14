@@ -36,18 +36,6 @@ outputs go in the wrong direction, you can just swap these two pins.
         pin_a: D1
         pin_b: D2
 
-To modify additional parameters of pins like active state or pull-ups, you may add extra options.
-
-.. code-block:: yaml
-
-    # Example of advanced pin configuration
-    pin_a: 
-      number: D5
-      inverted: true
-      mode:
-        input: true
-        pullup: true
-
 Configuration variables:
 ------------------------
 

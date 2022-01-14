@@ -240,11 +240,6 @@ Some steps that can help with the issue:
   the log viewer on the web dashboard. In production, you will likely only have a single connection from
   Home Assistant, making this less of an issue. But beware that attaching a log viewer might
   have impact.
-- Reducing the Delivery Traffic Indication Message (DTIM) interval in the WiFi access point may help
-  improve the ESP's WiFi reliability and responsiveness.  This will cause WiFi devices in power
-  save mode, such as the ESP, to be woken up more frequently.  This may improve things for the ESP,
-  although it may also increase power (and possibly battery) usage of other devices also using power
-  save mode.
 
 Docker Reference
 ----------------
