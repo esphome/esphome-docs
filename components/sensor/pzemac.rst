@@ -83,6 +83,57 @@ Configuration variables:
   the same UART bus. You will need to set the address of each device manually. Defaults to ``1``.
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Modbus hub.
 
+
+Changing the address of a PZEM-004T:
+------------------------------------
+
+You can use the following configuration to change the address of a sensor.
+You must set the ``address`` of the ``modbus_controller`` to the current address, and ``new_address`` of the ``on_boot`` lambda to the new one.
+
+.. warning::
+
+    This should be used only once! After changing the address, this code should be removed from the ESP before using the actual sensor code.
+    
+.. code-block:: yaml
+
+    esphome:
+      ...
+      on_boot:
+        ## configure controller settings at setup
+        ## make sure priority is lower than setup_priority of modbus_controller
+        priority: -100
+        then:
+          - lambda: |-
+              auto new_address = 0x03;
+
+              if(new_address < 0x01 || new_address > 0xF7) // sanity check
+              {
+                ESP_LOGE("ModbusLambda", "Address needs to be between 0x01 and 0xF7");
+                return;
+              }
+
+              esphome::modbus_controller::ModbusController *controller = id(pzem);
+              auto set_addr_cmd = esphome::modbus_controller::ModbusCommandItem::create_write_single_command(
+                controller, 0x0002, new_address);
+
+              delay(200) ;
+              controller->queue_command(set_addr_cmd);
+              ESP_LOGI("ModbusLambda", "PZEM Addr set");
+
+    modbus:
+      send_wait_time: 200ms
+      id: mod_bus_pzem
+
+    modbus_controller:
+      - id: pzem
+        ## the current device addr
+        address: 0x1
+        modbus_id: mod_bus_pzem
+        command_throttle: 0ms
+        setup_priority: -10
+        update_interval: 30s
+
+=======
 .. _pzemac-reset_energy_action:
 
 ``pzemac.reset_energy`` Action
