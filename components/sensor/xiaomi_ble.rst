@@ -221,6 +221,8 @@ Configuration example for ATC MiThermometer firmware set to "Custom" advertiseme
           name: "ATC Battery-Level"
         battery_voltage:
           name: "ATC Battery-Voltage"
+        signal_strength:
+          name: "ATC Signal"
 
 Configuration example for PVVX MiThermometer firmware set to "Custom" advertisement:
 

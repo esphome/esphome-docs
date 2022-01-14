@@ -25,7 +25,7 @@ transmitted data.
 
 The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
 CAN bus to work you need to select the device that has the physical CAN bus implemented.
-At this moment only the MCP2515 controller is supported. You can configure multiple buses.
+You can configure multiple buses.
 
 Any can bus node can transmit data at any time, and any node can send any ``can_id`` value and any
 node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can
@@ -59,20 +59,21 @@ Configuration variables:
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
+  Bitrates marked with * are not supported by the internal ESP32 CAN controller.
 
-    - 5KBPS
-    - 10KBPS
-    - 20KBPS
-    - 31K25BPS
-    - 33KBPS
-    - 40KBPS
+    - 5KBPS *
+    - 10KBPS *
+    - 20KBPS *
+    - 31K25BPS *
+    - 33KBPS *
+    - 40KBPS *
     - 50KBPS
-    - 80KBPS
-    - 83K3BPS
-    - 95KBPS
+    - 80KBPS *
+    - 83K3BPS *
+    - 95KBPS *
     - 100KBPS
     - 125KBPS
-    - 200KBPS
+    - 200KBPS *
     - 250KBPS
     - 500KBPS
     - 1000KBPS
@@ -140,6 +141,18 @@ Configuration variables:
   the can bus device.
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
+
+ESP32 CAN Component
+-------------------
+
+The ESP32 has an integrated CAN controller and therefore doesn't need an external controller necessarily.
+You only need to specify the RX and TX pins.
+
+Configuration variables:
+************************
+
+- **rx_pin** (**Required**, :ref:`Pin <config-pin>`): Receive pin.
+- **tx_pin** (**Required**, :ref:`Pin <config-pin>`): Transmit pin.
 
 MCP2515 Component
 -----------------

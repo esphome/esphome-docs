@@ -133,6 +133,19 @@ You must set the ``address`` of the ``modbus_controller`` to the current address
         setup_priority: -10
         update_interval: 30s
 
+=======
+.. _pzemac-reset_energy_action:
+
+``pzemac.reset_energy`` Action
+******************************
+
+This action resets the total energy value of the pzemac device with the given ID when executed.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - pzemac.reset_energy: pzemac_1
 
 See Also
 --------
