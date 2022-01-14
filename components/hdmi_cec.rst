@@ -34,7 +34,7 @@ Configuration variables
   aren't addressed to our logical address are dropped. By enabling ``promiscuous_mode`` you can
   intercept messages between other devices (e.g. between your TV and Blu-ray player).
 - **on_message** (*Optional*, :ref:`Automation <automation>`): One or more automations to call when
-  Messages are received. These can be filtered based on source address, destination address,
+  messages are received. These can be filtered based on source address, destination address,
   opcode, or message data. See :ref:`On Message <hdmi_cec-on_message>`.
 
 .. _hdmi_cec-on_message:
