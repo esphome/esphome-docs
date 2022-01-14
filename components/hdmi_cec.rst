@@ -12,7 +12,9 @@ This can be used to read HDMI-CEC commands from other devices (e.g. volume, powe
 changed) as well as send your own commands onto the HDMI-CEC bus.
 
 For example, you can use this integration to pretend to be an audio device, intercept HDMI-CEC
-volume commands and transmit the IR codes to control older sound equipment.
+volume commands and transmit the IR codes to control older sound equipment. Or you could use this
+integration to power on your TV, switch sources to your Blu-ray player, then tell your Blu-ray
+player to start playing.
 
 
 Configuration variables
@@ -22,25 +24,26 @@ Configuration variables
   CEC pin.
 - **address** (**Required**, integer 0-14): The initial logical address of the device. This corresponds to the device class
   you are impersonating (e.g. 0x0 for TV, 0x5 for audio). This may be
-  reassigned if there are other devices of the same type on the CEC bus. See here https://kwikwai.com/knowledge-base/the-hdmi-cec-bus/
+  reassigned if there are other devices of the same type on the CEC bus. See
+  `here <https://kwikwai.com/knowledge-base/the-hdmi-cec-bus/>`__ for a list of device addresses.
 - **physical_address** (*Optional*, integer 0-65534): The physical address represents where this device is connected in the
   point-to-point topology of the HDMI connections. This is discovered using the HDMI DDC connection.
   We don't have access to this exchange so this must be hardcoded. It can be worth experimenting
   with this value if your HDMI devices aren't recognizing your ESPHome.
 - **promiscuous_mode** (*Optional*, boolean): By default messages that
   aren't addressed to our logical address are dropped. By enabling ``promiscuous_mode`` you can
-  intercept messages between other devices (e.g. between your TV and Bluray player).
+  intercept messages between other devices (e.g. between your TV and Blu-ray player).
 - **on_message** (*Optional*, :ref:`Automation <automation>`): One or more automations to call when
   Messages are received. These can be filtered based on source address, destination address,
-  opcode, or message data. See :ref:`config-on_message`.
+  opcode, or message data. See :ref:`On Message <hdmi_cec-on_message>`.
 
-.. _config-on_message:
+.. _hdmi_cec-on_message:
 
 On Message
 ----------
 
 Incoming messages can be filtered and specific automations can execute if all filter criteria
-are met.
+are met. All specified criteria must be met for the automation to run.
 
 - **source** (*Optional*, integer 0-15): Logical address of the device that sent the message.
 - **destination** (*Optional*, integer 0-15): Logical address of the device that the message is
@@ -53,8 +56,8 @@ are met.
 Wiring
 ------
 
-HDMI-CEC is a 3.3V protocol, so no external components are needed since the ESP* chips have 3.3V IO.
-A [HDMI breakout connector](https://www.amazon.com/gp/product/B075Q8HG2B) might be handy though.
+HDMI-CEC is a 3.3V protocol, so no external components are needed since the ESP32 and ESP82666 have 3.3V IO.
+A `HDMI breakout connector <https://www.amazon.com/gp/product/B075Q8HG2B>`__ might be handy though.
 Since HDMI-CEC is a bus, all devices should be electrically connected on HDMI pin 13, so anywhere
 you can tap into that pin should work. You could plug into any available HDMI port, or splice into
 a cable between two devices. Just connect:
@@ -155,7 +158,6 @@ In the future this could be improved by better use of interrupts in the underlyi
 See Also
 --------
 
-- :apiclass:`:hdmi_cec::HdmiCec`
 - `CEC-O-MATIC reference for CEC messages <https://www.cec-o-matic.com>`__
-- `HDMI 1.3a Spec <https://web.archive.org/web/20171009194844/http://www.microprocessor.org/HDMISpecification13a.pdf>__`
+- `HDMI 1.3a Spec <https://web.archive.org/web/20171009194844/http://www.microprocessor.org/HDMISpecification13a.pdf>`__
 - :ghedit:`Edit`
