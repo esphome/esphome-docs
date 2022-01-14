@@ -187,6 +187,9 @@ There are the following possibilities to operate this sensor:
    - "Mi Like" advertisement (dummy bindkey required)
    - "Custom" advertisement (no bindkey required)
    - "pvvx" custom advertisement (no bindkey required, only PVVX firmware)
+   - "reed-switch" is a binary_sensor that exposes the state of the pin labeled “P8”. 
+        You have to have to be using the custom advertisement and solder on wires. 
+        See the section “Reed Switch on GPIO PA6 (label on the "P8" pin)” on the pvvx github readme.
 
 Configuration example for Xiaomi stock firmware or ATC MiThermometer firmware set to "Mi Like" advertisement:
 
@@ -255,9 +258,6 @@ Similar to the LYWSD03MMC, there is custom firmware available for this device, s
 
    - "Mi Like" advertisement (dummy bindkey required)
    - "pvvx" custom advertisement (no bindkey required, only PVVX firmware)
-   - "reed-switch" is a binary_sensor that exposes the state of the pin labeled “P8”. 
-        You have to have to be using the custom advertisement and solder on wires. 
-        See the section “Reed Switch on GPIO PA6 (label on the "P8" pin)” on the pvvx github readme.
 
 
 Configuration example for Xiaomi stock firmware:
