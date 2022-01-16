@@ -427,6 +427,7 @@ Contributors
 - `ludrao (@ludrao) <https://github.com/ludrao>`__
 - `Lukas Klass (@LukasK13) <https://github.com/LukasK13>`__
 - `Lumpusz (@Lumpusz) <https://github.com/Lumpusz>`__
+- `Ohad Lutzky (@lutzky) <https://github.com/lutzky>`__
 - `Luke Fitzgerald (@lwfitzgerald) <https://github.com/lwfitzgerald>`__
 - `Lewis Juggins (@lwis) <https://github.com/lwis>`__
 - `Alex Peters (@Lx) <https://github.com/Lx>`__
@@ -712,6 +713,7 @@ Contributors
 - `Thomas Klingbeil (@thomasklingbeil) <https://github.com/thomasklingbeil>`__
 - `Thomas Dietrich (@ThomDietrich) <https://github.com/ThomDietrich>`__
 - `Andrew Thompson (@thompsa) <https://github.com/thompsa>`__
+- `John (@thorrak) <https://github.com/thorrak>`__
 - `Tijs-B (@Tijs-B) <https://github.com/Tijs-B>`__
 - `Aidan Timson (@timmo001) <https://github.com/timmo001>`__
 - `Tim Niemueller (@timn) <https://github.com/timn>`__
@@ -785,4 +787,4 @@ Contributors
 - `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated January 13, 2022.*
+*This page was last updated January 17, 2022.*
