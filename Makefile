@@ -10,8 +10,8 @@ html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
 
 minify:
-	minify -o _static/webserver-v1.min.js _static/webserver-v1.js
-	minify -o _static/webserver-v1.min.css _static/webserver-v1.css
+	minify _static/webserver-v1.js > _static/webserver-v1.min.js
+	minify _static/webserver-v1.css > _static/webserver-v1.min.css
 
 cleanhtml:
 	rm -rf "_build/html/*"
