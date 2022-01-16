@@ -63,7 +63,7 @@ There's also a simple REST API available which can be used to get and set the cu
 calls to this API follow the URL schema ``/<domain>/<id>[/<method>?<param>=<value>]``.
 The ``domain`` is the type of the component, for example ``sensor`` or ``light``. ``id`` refers
 to the id of the component - this ID is created by taking the name of the component, stripping out
-all non-alphanumeric characters, making everything lowercase and replacing all spaces by underscores. 
+all non-alphanumeric characters, making everything lowercase and replacing all spaces by underscores.
 To confirm the ``<id>`` to use, you can set the :ref:`log level <logger-log_levels>`
 to ``VERY_VERBOSE`` and check the ``object_id:`` in the logs.
 
@@ -161,7 +161,7 @@ the state of a light, send a GET request to ``/light/<id>``, for example ``light
 -  **effect**: The currently active effect, only if the light supports effects.
 -  **white_value**: The white value of RGBW lights. From 0 to 255. Only if the light supports white value.
 -  **color_temp**: The color temperature of the RGBWW light. Between minimum mireds and maximum mireds of the light.
-   Only if the light support color temperature. 
+   Only if the light support color temperature.
 
 Setting light state can happen through three POST method calls: ``turn_on``, ``turn_off`` and ``toggle``.
 Turn on and off have additional URL encoded parameters that can be used to set other properties. For example
@@ -249,3 +249,29 @@ can be used:
 Creating a POST request to ``/cover/front_window_blinds/set?position=0.1&tilt=0.3`` will
 start moving the blinds towards an almost completely closed position and a new tilt
 angle.
+
+Select
+******
+
+Selects can be set to an option and will return their current option. For example sending
+a GET request to ``/select/house_mode`` could yield this payload:
+
+.. code-block:: json
+
+    {
+      "id": "select-house_mode",
+      "state": "party",
+      "value": "party"
+    }
+
+POST requests on the other hand allow setting the select, the available
+method is ``set``. The following parameter can be used:
+
+-  **option**: The string option to set it to. Must be a valid option.
+
+For example POST ``/select/house_mode/set?option=guest`` will set the select to ``guest``.
+
+Button
+******
+
+A button can be ``pressed`` from the REST API by sending a POST request to ``button/do_something/press``.
