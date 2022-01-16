@@ -269,3 +269,8 @@ method is ``set``. The following parameter can be used:
 -  **option**: The string option to set it to. Must be a valid option.
 
 For example POST ``/select/house_mode/set?option=guest`` will set the select to ``guest``.
+
+Button
+******
+
+A button can be ``pressed`` from the REST API by sending a POST request to ``button/do_something/press``.
