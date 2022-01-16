@@ -59,7 +59,7 @@ there are a few basic actions you can perform:
 
   - **Validate**: This will validate the configuration file.
   - **Install**: Opens the Install dialog.
-  - **Clean Build Files**: This will delete all of the generated build files and is a safe operation ot perform. Sometimes old files are not removed and can cause compile issues later on.
+  - **Clean Build Files**: This will delete all of the generated build files and is a safe operation to perform. Sometimes old files are not removed and can cause compile issues later on.
   - **Delete**: This will delete the configuration file.
 
 The configuration files for ESPHome can be found and edited under ``<HOME_ASSISTANT_CONFIG>/esphome/``.
