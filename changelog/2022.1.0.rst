@@ -67,6 +67,10 @@ Beta Changes
 
 - Add factory to download name :esphomepr:`3040` by :ghuser:`balloob`
 - Bump dashboard to 20220113.2 :esphomepr:`3041` by :ghuser:`balloob`
+- Disable caching for binary download :esphomepr:`3054` by :ghuser:`lutzky`
+- Rename post_build scripts to fix codeowners script :esphomepr:`3057` by :ghuser:`oxan`
+- Remove deprecated attribute from virtual entity methods :esphomepr:`3056` by :ghuser:`oxan`
+- Add number setting to web_server/rest_api :esphomepr:`3055` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
