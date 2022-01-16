@@ -257,6 +257,7 @@ Selects can be set to an option and will return their current option. For exampl
 a GET request to ``/select/house_mode`` could yield this payload:
 
 .. code-block:: json
+
     {
       "id": "select-house_mode",
       "state": "party",
