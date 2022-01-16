@@ -63,7 +63,7 @@ Possible Hardware UART configurations:
 - ``UART1`` - TX: GPIO2, RX: None  (Only on ESP8266)
 - ``UART1`` - TX: GPIO9, RX: GPIO10  (Only on ESP32)
 - ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP32 but ESP32S2 and ESP32C3)
-- ``USB_CDC`` - uses the USB CDC driver (Only on ESP32S2 and ESP32C3)
+- ``USB_CDC`` - uses the USB CDC driver (Only on ESP32S2)
 
 .. _logger-log_levels:
 
