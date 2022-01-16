@@ -15,7 +15,7 @@ Installation
 See :doc:`installing_esphome`.
 
 If you're familiar with Docker, you can use that instead! Our image supports
-AMD64, ARM and ARM64(AARCH64), and can be downloaded with:
+AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
 
 .. code-block:: bash
 
