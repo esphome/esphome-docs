@@ -254,7 +254,7 @@ Number
 ******
 
 Numbers can be set to a value within their minimum and maximum range and will return their current value. For example sending
-a GET request to ``/sensor/outside_temperature`` could yield this payload:
+a GET request to ``/number/desired_delay`` could yield this payload:
 
 .. code-block:: json
 
