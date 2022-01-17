@@ -7,6 +7,8 @@ Template Binary Sensor
 
 The ``template`` binary sensor platform allows you to define any :ref:`lambda template <config-lambda>`
 and construct a binary sensor out if it.
+The lambda will run automatically in the background and is used to set the sensor value.
+It's not possible to specify an interval at which the lambda runs.
 
 For example, below configuration would turn the state of an ultrasonic sensor into
 a binary sensor.
