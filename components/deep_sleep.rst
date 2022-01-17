@@ -18,7 +18,8 @@ Next, tell the node how it should wakeup. On the ESP8266, you can only put the n
 for a duration using ``sleep_duration``, note that on the ESP8266 ``GPIO16`` must be connected to
 the ``RST`` pin so that it will wake up again. On the ESP32, you additionally have the option
 to wake up on any RTC pin (``GPIO0``, ``GPIO2``, ``GPIO4``, ``GPIO12``, ``GPIO13``, ``GPIO14``,
-``GPIO15``, ``GPIO25``, ``GPIO26``, ``GPIO27``, ``GPIO32``, ``GPIO39``).
+``GPIO15``, ``GPIO25``, ``GPIO26``, ``GPIO27``, ``GPIO32``, ``GPIO39``). For the ESP32-C3, deep sleep 
+wakeup-capable pins are (``GPIO0``, ``GPIO1``, ``GPIO2``, ``GPIO3``, ``GPIO4``, ``GPIO5``)
 
 While in deep sleep mode, the node will not do any work and not respond to any network traffic,
 even Over The Air updates.
