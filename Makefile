@@ -1,5 +1,5 @@
 ESPHOME_PATH = ../esphome
-ESPHOME_REF = 2022.1.0b2
+ESPHOME_REF = 2022.1.0b3
 
 .PHONY: html html-strict cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
@@ -10,8 +10,8 @@ html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
 
 minify:
-	minify -o _static/webserver-v1.min.js _static/webserver-v1.js
-	minify -o _static/webserver-v1.min.css _static/webserver-v1.css
+	minify _static/webserver-v1.js > _static/webserver-v1.min.js
+	minify _static/webserver-v1.css > _static/webserver-v1.min.css
 
 cleanhtml:
 	rm -rf "_build/html/*"

@@ -83,6 +83,15 @@ for (; row = states.rows[i]; i++) {
             });
         })(row.id);
     }
+    if (row.classList.contains("number")) {
+        (function(id) {
+            row.children[2].children[0].addEventListener('change', function () {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", '/number/' + id.substr(7) + '/set?value=' + encodeURIComponent(this.value), true);
+                xhr.send();
+            });
+        })(row.id);
+    }
     if (row.classList.contains("button")) {
         (function(id) {
             row.children[2].children[0].addEventListener('click', function () {
