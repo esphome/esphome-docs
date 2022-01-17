@@ -40,10 +40,12 @@ Configuration variables:
   - **name** (**Required**, string): The name for the x-axis sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - **resolution** (*Optional*, int): Set resolution. Defaults to ``19BIT``. Must be one of:
+  
     - ``16BIT``
     - ``17BIT``
     - ``18BIT``
     - ``19BIT``
+    
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **y_axis** (*Optional*): The information for the y-axis.
@@ -51,10 +53,12 @@ Configuration variables:
   - **name** (**Required**, string): The name for the y-axis sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - **resolution** (*Optional*, int): Set resolution. Defaults to ``19BIT``. Must be one of:
+  
     - ``16BIT``
     - ``17BIT``
     - ``18BIT``
     - ``19BIT``
+    
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **z_axis** (*Optional*): The information for the z-axis.
@@ -62,10 +66,12 @@ Configuration variables:
   - **name** (**Required**, string): The name for the z-axis sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - **resolution** (*Optional*, int): Set resolution. Defaults to ``16BIT``. Must be one of:
+  
     - ``16BIT``
     - ``17BIT``
     - ``18BIT``
     - ``19BIT``
+    
   - All other options from :ref:`Sensor <config-sensor>`.
   
 - **temperature** (*Optional*): Built-in temperature sensor.
