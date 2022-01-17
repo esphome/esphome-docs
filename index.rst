@@ -83,6 +83,16 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <h3 class="guide-card-title">Keeping up</h3>
             <ul>
                 <li>
+                    <a class="reference" href="https://discord.gg/KhAMKrd" target="_blank">
+                        Discord
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="https://community.home-assistant.io/c/esphome/" target="_blank">
+                        Forums
+                    </a>
+                </li>
+                <li>
                     <a class="reference" href="/changelog/index.html">
                         Changelog
                     </a>
