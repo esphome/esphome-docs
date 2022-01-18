@@ -28,6 +28,21 @@ ESPHome 2022.1.0 - 19th January 2022
 
 HAPPY NEW YEAR!!
 
+ESPHome Web
+-----------
+
+Today we're launching a new variant of the ESPHome dashboard: ESPHome Web – https://web.esphome.io.
+
+The biggest challenge to getting started with ESPHome is the initial installation of ESPHome on your device. This installation needs be done by attaching the device to your computer via a cable. Once installed, updates can be installed over-the-air.
+
+Last year we added support to the ESPHome dashboard to do the initial installation via the browser. Browsers security require the website to be served over HTTPS to allow device installation. Most people browse it from http://homeassistant.local or other local addresses so only users that manually configured external access or using Home Assistant Cloud could benefit.
+
+With ESPHome Web we took the installation bits of the ESPHome dashboard and made them available on a website served over HTTPS. It works 100% in your browser without a backend or data leaving your computer. Now anyone can easily install ESPHome on their devices to get started.
+
+`Visit ESPHome Web`_
+
+.. _Visit ESPHome Web: https://web.esphome.io/
+
 
 Full list of changes
 --------------------
