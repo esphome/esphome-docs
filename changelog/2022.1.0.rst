@@ -31,14 +31,29 @@ HAPPY NEW YEAR!!
 There are a few more new components this release than I expected, yay!!!
 
 
+ESPHome Web
+-----------
+
+Today we're launching a new variant of the ESPHome dashboard: ESPHome Web – https://web.esphome.io.
+
+The biggest challenge to getting started with ESPHome is the initial installation of ESPHome on your device. This installation needs be done by attaching the device to your computer via a cable. Once installed, updates can be installed over-the-air.
+
+Last year we added support to the ESPHome dashboard to do the initial installation via the browser. Browsers security require the website to be served over HTTPS to allow device installation. Most people browse it from http://homeassistant.local or other local addresses so only users that manually configured external access or using Home Assistant Cloud could benefit.
+
+With ESPHome Web we took the installation bits of the ESPHome dashboard and made them available on a website served over HTTPS. It works 100% in your browser without a backend or data leaving your computer. Now anyone can easily install ESPHome on their devices to get started.
+
+`Visit ESPHome Web`_
+
+.. _Visit ESPHome Web: https://web.esphome.io/
+
 JSON
 ----
 
 I upgraded the ArduinoJson library we use to parse and build json strings to the latest version.
 All of the internal code has been updated to work with the changes, but any custom code or even
-``lambda``s might need updating now.
+``lambda`` might need updating now.
 
-The most noticeble change is that the ``&`` reference modifier on the ``JsonObject``s that are
+The most noticeble change is that the ``&`` reference modifier on the ``JsonObject`` that are
 created in lambdas are no longer required.
 
 Example:
@@ -50,7 +65,6 @@ Example:
     // This should now be:
 
     JsonObject blah = root.createNestedObject("blah");
-
 
 
 Full list of changes
