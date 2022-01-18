@@ -67,7 +67,7 @@ Configuration variables:
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
-Requires ``arduino_version: 2.5.2`` or above see :ref:`esphome-arduino_version`
+Requires ``arduino_version: 2.5.2`` or above see `esp8266 arduino releases <https://github.com/esp8266/Arduino/releases>`
 
 See Also
 --------
