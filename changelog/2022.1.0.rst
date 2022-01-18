@@ -28,6 +28,30 @@ ESPHome 2022.1.0 - 19th January 2022
 
 HAPPY NEW YEAR!!
 
+There are a few more new components this release than I expected, yay!!!
+
+
+JSON
+----
+
+I upgraded the ArduinoJson library we use to parse and build json strings to the latest version.
+All of the internal code has been updated to work with the changes, but any custom code or even
+``lambda``s might need updating now.
+
+The most noticeble change is that the ``&`` reference modifier on the ``JsonObject``s that are
+created in lambdas are no longer required.
+
+Example:
+
+.. code-block:: cpp
+
+    JsonObject &blah = root.createNestedObject("blah");
+
+    // This should now be:
+
+    JsonObject blah = root.createNestedObject("blah");
+
+
 
 Full list of changes
 --------------------
@@ -71,6 +95,9 @@ Beta Changes
 - Rename post_build scripts to fix codeowners script :esphomepr:`3057` by :ghuser:`oxan`
 - Remove deprecated attribute from virtual entity methods :esphomepr:`3056` by :ghuser:`oxan`
 - Add number setting to web_server/rest_api :esphomepr:`3055` by :ghuser:`jesserockz`
+- bump dashboard to 20220116.0 :esphomepr:`3061` by :ghuser:`balloob`
+- [modbus_controller] add missing skip_updates :esphomepr:`3063` by :ghuser:`martgras`
+- Fail hard if no random bytes available for encryption :esphomepr:`3067` by :ghuser:`oxan`
 
 All changes
 ^^^^^^^^^^^
@@ -170,6 +197,15 @@ All changes
 - Introduce big- and little-endian integer types :esphomepr:`2997` by :ghuser:`oxan`
 - Generate basic config for esphome-web devices :esphomepr:`3036` by :ghuser:`jesserockz`
 - Bump esphome-dashboard to 20220113.1 :esphomepr:`3038` by :ghuser:`jesserockz`
+- Add factory to download name :esphomepr:`3040` by :ghuser:`balloob`
+- Bump dashboard to 20220113.2 :esphomepr:`3041` by :ghuser:`balloob`
+- Disable caching for binary download :esphomepr:`3054` by :ghuser:`lutzky`
+- Rename post_build scripts to fix codeowners script :esphomepr:`3057` by :ghuser:`oxan`
+- Remove deprecated attribute from virtual entity methods :esphomepr:`3056` by :ghuser:`oxan`
+- Add number setting to web_server/rest_api :esphomepr:`3055` by :ghuser:`jesserockz`
+- bump dashboard to 20220116.0 :esphomepr:`3061` by :ghuser:`balloob`
+- [modbus_controller] add missing skip_updates :esphomepr:`3063` by :ghuser:`martgras`
+- Fail hard if no random bytes available for encryption :esphomepr:`3067` by :ghuser:`oxan`
 
 Past Changelogs
 ---------------
