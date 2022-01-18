@@ -63,5 +63,6 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/text_sensor/index`
 - :apiclass:`API Reference <text_sensor::TextSensor>`
 - :ghedit:`Edit`
