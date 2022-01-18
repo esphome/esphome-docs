@@ -52,7 +52,10 @@ Each canbus platform extends this configuration schema.
               std::string b(x.begin(), x.end());
               ESP_LOGD("can id 500", "%s", &b[0] );
 
+.. _config-canbus:
+
 Configuration variables:
+************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, int): default *can id* used for transmitting frames.
@@ -79,6 +82,7 @@ Configuration variables:
     - 1000KBPS
 
 Automations:
+------------
 
 - **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
   CAN Frame is received. See :ref:`canbus-on-frame`.
@@ -148,11 +152,24 @@ ESP32 CAN Component
 The ESP32 has an integrated CAN controller and therefore doesn't need an external controller necessarily.
 You only need to specify the RX and TX pins.
 
+.. code-block:: yaml
+
+    # Example configuration entry
+    canbus:
+      - platform: esp32_can
+        tx_pin: GPIO1
+        rx_pin: GPIO3
+        can_id: 4
+        bit_rate: 50kbps
+        on_frame:
+          ...
+
 Configuration variables:
 ************************
 
 - **rx_pin** (**Required**, :ref:`Pin <config-pin>`): Receive pin.
 - **tx_pin** (**Required**, :ref:`Pin <config-pin>`): Transmit pin.
+- All other options from :ref:`Canbus <config-canbus>`.
 
 MCP2515 Component
 -----------------
@@ -161,20 +178,6 @@ The MCP2515 is a spi device and therefore you must first add the configuration f
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
 For wiring up the MSP2515 please refer to the section below.
-
-Configuration variables:
-************************
-
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
-  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
-  Sometimes also called ``SS``.
-- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
-  Defaults to ``8MHZ``.
-- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
-
-  - NORMAL: Normal operation
-  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
-  - LISTENONLY: only receive data
 
 .. code-block:: yaml
 
@@ -196,6 +199,22 @@ Configuration variables:
             - light.turn_on:
                 id: light_1
                 brightness: !lambda "return (x.size() > 0) ? (float) x[0]/255 : 0;"
+
+Configuration variables:
+************************
+
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
+  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
+  Sometimes also called ``SS``.
+- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
+  Defaults to ``8MHZ``.
+- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
+
+  - NORMAL: Normal operation
+  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
+  - LISTENONLY: only receive data
+
+- All other options from :ref:`Canbus <config-canbus>`.
 
 Wiring options
 ---------------
