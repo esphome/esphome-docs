@@ -43,7 +43,7 @@ to some pins on your board and the baud rate set to 9600.
       rx_pin: D1
       tx_pin: D2
       baud_rate: 9600
-      
+
     modbus:
 
     sensor:
@@ -83,6 +83,18 @@ Configuration variables:
   the same UART bus. You will need to set the address of each device manually. Defaults to ``1``.
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the Modbus hub.
 
+.. _pzemac-reset_energy_action:
+
+``pzemac.reset_energy`` Action
+******************************
+
+This action resets the total energy value of the pzemac device with the given ID when executed.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - pzemac.reset_energy: pzemac_1
 
 Changing the address of a PZEM-004T:
 ------------------------------------
@@ -93,7 +105,7 @@ You must set the ``address`` of the ``modbus_controller`` to the current address
 .. warning::
 
     This should be used only once! After changing the address, this code should be removed from the ESP before using the actual sensor code.
-    
+
 .. code-block:: yaml
 
     esphome:

@@ -275,3 +275,25 @@ Button
 ******
 
 A button can be ``pressed`` from the REST API by sending a POST request to ``button/do_something/press``.
+
+Number
+******
+
+Numbers can be set to a value within their minimum and maximum range and will return their current value. For example sending
+a GET request to ``/number/desired_delay`` could yield this payload:
+
+.. code-block:: json
+
+    {
+      "id": "number-desired_delay",
+      "state": "20.0000",
+      "value": 20
+    }
+
+POST requests on the other hand allow setting the number, the available
+method is ``set``. The following parameter can be used:
+
+-  **value**: The value you want to set the number to. The value must be within the
+   minimum and maximum range of the number otherwise it will be ignored.
+
+For example POST ``/number/desired_delay/set?value=24`` will set the number to 24.
