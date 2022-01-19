@@ -49,7 +49,7 @@ With ESPHome Web we took the installation bits of the ESPHome dashboard and made
 JSON
 ----
 
-We upgraded the ArduinoJson library we use to parse and build json strings to the latest version.
+We upgraded the ArduinoJson library used to parse and build JSON strings to the latest version.
 All of the internal code has been updated to work with the changes, but any custom code or even
 ``lambda`` might need updating now.
 
