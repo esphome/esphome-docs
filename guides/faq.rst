@@ -52,8 +52,8 @@ Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
-installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots)
-and then select ``Manual download``. For command line based installs you can access the
+installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
+and then select ``Manual download``). For command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
