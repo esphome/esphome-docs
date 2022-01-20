@@ -585,6 +585,7 @@ Select Components
 
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
+    Modbus Select, components/select/modbus_controller, modbus.png
 
 Misc Components
 ---------------
