@@ -189,7 +189,7 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
 
 After that, you will be able to access the dashboard through ``localhost:6052``.
 
-.. figure:: images/dashboard.png
+.. figure:: images/dashboard_states.png
 
 See Also
 --------
