@@ -46,18 +46,18 @@ Configuration variables:
 - **display_height** (*Optional*, int): The dimension of the display in the vertical
   direction. Defaults to ``758`` to match the Inkplate 6 Plus.
 
-- **on_press** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the touch screen is pressed. See :ref:`ektf2232-on_press`.
+- **on_touch** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the touch screen is pressed. See :ref:`ektf2232-on_touch`.
 
-.. _ektf2232-on_press:
+.. _ektf2232-on_touch:
 
-``on_press`` Trigger
+``on_touch`` Trigger
 --------------------
 
 This automation will be triggered when the EKTF2232 touch screen detects a touch.
 
 This trigger provides one arguments of type :apistruct:`ektf2232::TouchPoint` which has two integer members: ``x`` and ``y`` which
-represent the position of the touch calibrated to the display width and heigh conffig options given.
+represent the position of the touch calibrated to the display width and heigh config options given.
 
 Binary Sensor
 -------------
