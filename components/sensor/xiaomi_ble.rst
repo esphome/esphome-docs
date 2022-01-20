@@ -528,13 +528,18 @@ For this, you load the `application <https://zaluthar.github.io/TelinkFlasher.ht
 
 Other encrypted devices
 ***********************
-
+1.
 The easiest method (confirmed to work for LYWSD03MMC) is to use the `Telink flasher method <https://github.com/atc1441/ATC_MiThermometer>`__. The accompanying `video
 <https://www.youtube.com/watch?v=NXKzFG61lNs>`_ shows how to wirelessly flash a LYWSD03MMC, or how to obtain the bind key of the stock firmware (watch till around 13:10). The custom firmware allows you to change several settings of the device, including the smiley and the advertising interval. Keep in mind that when flashing the custom firmware, you need to enable the 'Advertising Type' to be 'Mi Like' and to give ESPHome a dummy bind key, as it still expects one even though the custom firmware does not encrypt the data.
 
+2.
 The other option is to use the original Mi Home app to add the sensor once. While adding the device, a new key is generated and uploaded into the Xiaomi cloud and to the device itself. Currently a chinese server needs to be selected as the rest of the world doesn't support most of these devices yet. Once generated, the key will not change again until the device is removed and re-added in the Xiaomi app.
 
-In order to obtain the bind key, a SSL packet sniffer needs to be setup on either an Android phone or the iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ in combination with `Wireshark <https://www.wireshark.org/>`__. A tutorial on how to setup the Remote PCAP packet sniffer can be found `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__ and `here <https://github.com/ahpohl/xiaomi_lywsd03mmc>`__. Instructions how to obtain the key using an iPhone are `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. Once the traffic between the Mi Home app and the Xiaomi servers has been recorded, the bind key will show in clear text:
+2a.
+The easiest method to retrieve the bindkey from the cloud is to use the `Cloud Tokens Extractor <https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor>`__, written by one of Home Assistant users. If you prefer to not use the executable, read `here <https://www.home-assistant.io/integrations/xiaomi_miio/#xiaomi-cloud-tokens-extractor>`__.
+
+2b.
+Another option is to use a SSL packet sniffer. It can be setup on either an Android phone or the iPhone. A good choice for Android is the `Remote PCAP <https://play.google.com/store/apps/details?id=com.egorovandreyrm.pcapremote&hl=en>`__ in combination with `Wireshark <https://www.wireshark.org/>`__. A tutorial on how to setup the Remote PCAP packet sniffer can be found `here <https://egorovandreyrm.com/pcap-remote-tutorial/>`__ and `here <https://github.com/ahpohl/xiaomi_lywsd03mmc>`__. Instructions how to obtain the key using an iPhone are `here <https://github.com/custom-components/sensor.mitemp_bt/blob/master/faq.md#my-sensors-ble-advertisements-are-encrypted-how-can-i-get-the-key>`__. Once the traffic between the Mi Home app and the Xiaomi servers has been recorded, the bind key will show in clear text:
 
 .. code-block:: yaml
 
@@ -557,5 +562,6 @@ See Also
 - Custom firmware for the Xiaomi Thermometer LYWSD03MMC `<https://github.com/atc1441/ATC_MiThermometer>`__
 - TeLink flasher application `<https://atc1441.github.io/TelinkFlasher.html>`__
 - TeLink flasher application modified for CGDK2 `<https://zaluthar.github.io/TelinkFlasher.html>`__
+- Cloud Tokens Extractor: `<https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor>`__
 
 - :ghedit:`Edit`
