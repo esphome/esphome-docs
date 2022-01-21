@@ -26,6 +26,9 @@ Configuration variables:
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
+- **internal_filter_mode** (*Optional*, string): Determines how the internal filter is applied.
+  One of ``EDGE`` and ``PULSE``. Defaults to ``EDGE``. In ``EDGE`` mode subsequent rising edges are compared and if they fall into an interval lesser than the internal filter value, the last one is discarded. In ``PULSE`` mode the rising edge is discarded if any further interrupts are detected before the internal_filter time has passed. In other words, a high pulse must be at least internal_filter long to be counted. This is useful if you are detecting long pulses that may bounces before and/or after the main pulse.
+
 - **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume 0 pulses/sec. Defaults to ``5 min``.
 - **total** (*Optional*, :ref:`config-id`): An additional sensor that outputs the total number of pulses counted.
 - All other options from :ref:`Sensor <config-sensor>`.
