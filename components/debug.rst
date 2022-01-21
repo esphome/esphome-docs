@@ -72,7 +72,7 @@ Requires ``arduino_version: 2.5.2`` or above see `esp8266 arduino releases <http
 See Also
 --------
 
-- https://arduino-esp8266.readthedocs.io/en/latest/libraries.html
+- https://arduino-esp8266.readthedocs.io/en/latest/libraries.html#esp-specific-apis
 - :ref:`sensor-filters`
 - :doc:`logger`
 - :apiref:`debug/debug_component.h`
