@@ -34,6 +34,13 @@ creating your first configuration.
 
 The wizard will guide you through creating your first configuration and, depending on your browser, install it on your ESP device. You will need to name your configuration and enter your wireless network settings so that the ESP device can come online and can communicate with Home Assistant.
 
+.. note::
+
+    The most difficult part of setting up a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to a computer. Later updates can be installed wirelessly.
+
+    For guidance on making this first connection, see :doc:`physical_device_connection`
+
+
 Dashboard Interface
 -------------------
 
