@@ -1,5 +1,5 @@
-Getting Started with ESPHome
-============================
+Getting Started with the ESPHome Command Line
+=============================================
 
 .. seo::
     :description: Getting Started guide for installing ESPHome using the command line and creating a basic configuration.
@@ -12,26 +12,26 @@ basic “node” in a few simple steps.
 Installation
 ------------
 
-Installing ESPHome is very easy. All you need to do is have `Python
-<https://www.python.org/>`__ installed and install the console script through
-``pip3``.
+See :doc:`installing_esphome`.
 
-.. note::
-
-    Python 3.7 or above is required to install ESPHome 1.18.0 or above.
-
-
-.. code-block:: bash
-
-    pip3 install esphome
-
-Alternatively, there’s also a Docker image available for easy
-installation (the Docker hub image is available for AMD64, ARM and ARM64(AARCH64) right now; if you have
-another architecture, please install ESPHome through ``pip`` or use :doc:`the Home Assistant add-on <getting_started_hassio>`:
+If you're familiar with Docker, you can use that instead! Our image supports
+AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
 
 .. code-block:: bash
 
     docker pull esphome/esphome
+
+Connecting the ESP Device
+-------------------------
+
+Follow the instructions in :doc:`physical_device_connection` to connect to your
+ESP device.
+
+.. note::
+
+    The most difficult part of setting up a new ESPHome device is the initial
+    installation. Installation requires that your ESP device is connected with
+    a cable to a computer. Later updates can be installed wirelessly.
 
 Creating a Project
 ------------------
