@@ -67,7 +67,7 @@ Configuration variables:
     Defaults to ``320ms``.
   - **window** (*Optional*, :ref:`config-time`): The time the ESP is actively listening for packets
     on a channel during each scan interval. If this is close to the ``interval`` value, the ESP will
-    spend more time listening to packets (but also consume more power).
+    spend more time listening to packets (but also consume more power). Defaults to ``30ms``
   - **duration** (*Optional*, :ref:`config-time`): The duration of each complete scan. This has no real
     impact on the device but can be used to debug the BLE stack. Defaults to ``5min``.
   - **active** (*Optional*, boolean): Whether to actively send scan requests to request more data
