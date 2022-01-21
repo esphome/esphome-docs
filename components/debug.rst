@@ -63,7 +63,7 @@ Configuration variables:
   (0% is clean, more than ~50% is not harmless)
 - **block** (*Optional*): reports the largest contiguous free RAM block in the heap in bytes,
   useful for checking heap fragmentation.
-- **loop-time** (*Optional*): reports the time between successive loop calls.
+- **loop_time** (*Optional*): reports the time between successive loop calls.
 
 - All other options from :ref:`Sensor <config-sensor>`.
 
