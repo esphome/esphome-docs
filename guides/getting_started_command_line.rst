@@ -1,5 +1,5 @@
-Getting Started with ESPHome
-============================
+Getting Started with the ESPHome Command Line
+=============================================
 
 .. seo::
     :description: Getting Started guide for installing ESPHome using the command line and creating a basic configuration.

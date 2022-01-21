@@ -1,5 +1,5 @@
-Installing ESPHome
-==================
+Installing ESPHome Manually
+===========================
 
 Windows
 -------
