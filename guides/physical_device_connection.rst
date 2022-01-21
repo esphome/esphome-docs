@@ -28,8 +28,8 @@ and connected it to your WiFi, you can use the `OTA (over-the-air) update
 component </components/ota.html>`_ to install software remotely.
 
 Programming a ESP-based device is done by connecting the serial port on the
-ESP\* to you computer through a USB to serial adaptor. Some devices have
-adaptor built into the circuit board, in which case things are a bit easier.
+ESP8266/ESP32 to your computer through a USB to serial adapter. Some devices
+have adapter built into the circuit board, in which case things are a bit easier.
 
 .. note::
 
@@ -80,10 +80,10 @@ USB Port on Device
     :align: center
     :width: 75.0%
 
-    A device with a USB port and a serial adaptor built-in
+    A device with a USB port and a serial adapter built-in
 
 Development boards often come with a USB port built in. This USB port is
-connected to a serial adaptor, so you don't need a separate serial adaptor. You
+connected to a serial adapter, so you don't need a separate serial adapter. You
 can use just a :ref:`USB cable <usb-cable>` to connect it to your computer to
 program it.
 
@@ -101,7 +101,7 @@ Pre-soldered Programming Header
     A device that comes with programming headers pre-installed
 
 In this situation, you'll need just :ref:`jumper wires <jumper-wires>` and a
-:ref:`USB to serial adaptor <usb-serial-adaptor>`. You don't need to solder
+:ref:`USB to serial adapter <usb-serial-adapter>`. You don't need to solder
 anything, that's already been done by the factory.
 
 Unpopulated Programming Header
@@ -114,7 +114,7 @@ Unpopulated Programming Header
     A device that has a spot for programming headers on the circuit board
 
 You can probably get away with :ref:`jumper wires <jumper-wires>` and a
-:ref:`USB to serial adaptor <usb-serial-adaptor>`. You can place the male end
+:ref:`USB to serial adapter <usb-serial-adapter>`. You can place the male end
 of the wires directly into the circuit board and hold them into place with your
 hand until you're done flashing the board.
 
@@ -154,13 +154,13 @@ Module Only
     An ESP8266 module with programming wires soldered on
 
 If the device has a module but no programming headers, things get a bit tricky.
-You'll need a :ref:`USB to serial adaptor <usb-serial-adaptor>`, :ref:`jumper
+You'll need a :ref:`USB to serial adapter <usb-serial-adapter>`, :ref:`jumper
 wires <jumper-wires>`, :ref:`wire strippers <wire-strippers>`, :ref:`wire snips
 <wire-snips>`, a :ref:`soldering iron <soldering-iron>`, :ref:`solder
 <solder>`, and a bit of :ref:`flux <soldering-flux>` would help.
 
 Cut the jumper wires, strip a bit off the end, and then solder them onto the
-module. You can find the correct places to solder the wires by looking the
+module. You can find the correct places to solder the wires by looking up the
 module model number on the internet. You can find `one list of commonly used
 modules here <https://tasmota.github.io/docs/Pinouts/>`_.
 
@@ -211,8 +211,8 @@ require different parts and tools.
       - .. image:: /guides/images/usb-cable.jpg
             :alt: From https://www.stockvault.net/photo/271754/usb-cable
 
-        .. _usb-serial-adaptor:
-    * - :ref:`USB to serial adaptor <usb-serial-adaptor>`
+        .. _usb-serial-adapter:
+    * - :ref:`USB to serial adapter <usb-serial-adapter>`
       - Serial communication is a simple way of talking to other devices, like
         the ESP32/ESP8266 you're flashing. But your computer probably doesn't
         have this capability built-in. "Serial", "UART", "TTL", and "COM" are
@@ -225,7 +225,7 @@ require different parts and tools.
         The `Tasmota website provides a good set of suggestions on what to buy
         <https://tasmota.github.io/docs/Getting-Started/#needed-hardware>`_.
       - $3 to $10
-      - .. image:: /guides/images/usb-serial-adaptor.jpg
+      - .. image:: /guides/images/usb-serial-adapter.jpg
             :alt: From https://tasmota.github.io/docs/Getting-Started/
 
         .. _jumper-wires:
