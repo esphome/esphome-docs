@@ -98,8 +98,8 @@ Configuration variables:
 
     Buttons are designed to trigger an action on a device from Home Assistant, and have an unidirectional flow from 
     Home Assistant to ESPHome. If you press a button using this action, no button press event will be triggered in Home 
-    Assistant. If you want to trigger an event that can be acted upon in Home Assistant, you can use the 
-    :ref:```homeassistant.event`` <api-homeassistant_event_action>` action.
+    Assistant. If you want to trigger an automation in Home Assistant, you should use a
+    :ref:`Home Assistant event <api-homeassistant_event_action>` instead.
 
 .. _button-lambda_calls:
 
