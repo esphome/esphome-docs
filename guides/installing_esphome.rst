@@ -49,6 +49,20 @@ with the following:
 Mac
 ---
 
+There are no tested installation instructions for Mac. ESPHome does support
+Mac & will run with no problem.
+
+Contributions are welcome!
+
+The process will likely be similar to Windows. You can install Python from the
+official site, and then install ESPHome with ``pip3 install esphome``.  You can
+then test that things are properly installed with the following:
+
+.. code-block:: console
+
+    $ esphome version
+    Version: 2021.12.3
+
 Linux
 -----
 
