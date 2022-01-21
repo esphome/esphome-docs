@@ -59,15 +59,16 @@ Configuration variables:
     - Reset reason & information
 
 - **free** (*Optional*): reports the free heap size in bytes.
+  - Any optional settings from :ref:`Sensor <config-sensor>`.
 - **fragmentation** (*Optional*): reports the fragmentation metric
   (0% is clean, more than ~50% is not harmless)
+  - Any optional settings from :ref:`Sensor <config-sensor>`.
+  - Requires ``arduino_version: 2.5.2`` or above see `esp8266 arduino releases <https://github.com/esp8266/Arduino/releases>`
 - **block** (*Optional*): reports the largest contiguous free RAM block in the heap in bytes,
   useful for checking heap fragmentation.
+  - Any optional settings from :ref:`Sensor <config-sensor>`.
 - **loop_time** (*Optional*): reports the time between successive loop calls.
-
-- All other options from :ref:`Sensor <config-sensor>`.
-
-Requires ``arduino_version: 2.5.2`` or above see `esp8266 arduino releases <https://github.com/esp8266/Arduino/releases>`
+  - Any optional settings from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
