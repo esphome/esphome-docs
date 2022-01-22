@@ -5,10 +5,12 @@ Getting Started with ESPHome and Home Assistant
     :description: Getting Started guide for installing ESPHome Dashboard as a Home Assistant add-on and creating a basic configuration.
     :image: home-assistant.svg
 
-In this guide we’ll go through how to install ESPHome on a device using the ESPHome Dashboard, installed as a Home Assistant add-on.
+ESPHome is the perfect solution for creating custom firmware for
+your ESP8266/ESP32 boards. In this guide we’ll go through how to setup a
+basic "node" using the ESPHome Dashboard, installed as a Home Assistant add-on.
 
 But first, here's a very quick introduction to how ESPHome works:
-ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
+ESPHome is a *tool* which aims to make managing your ESP boards as simple as possible. It reads in a YAML configuration file (just like Home Assistant) and creates custom firmware which it installs on your ESP device. Devices or sensors added in ESPHome's configuration will automatically show up in Home Assistant's UI.
 
 Installing ESPHome Dashboard
 ----------------------------
@@ -28,11 +30,29 @@ After that, wait a bit until it is installed (this can take a while). Click "Sta
 You should now be greeted by a nice introduction wizard which will step you through
 creating your first configuration.
 
-.. figure:: images/dashboard_empty.png
+.. figure:: images/hassio_start.png
     :align: center
     :width: 95.0%
 
 The wizard will guide you through creating your first configuration and, depending on your browser, install it on your ESP device. You will need to name your configuration and enter your wireless network settings so that the ESP device can come online and can communicate with Home Assistant.
+
+.. raw:: html
+
+    <a name='webserial'></a>
+
+.. note::
+
+    The most difficult part of setting up a new ESPHome device is the initial installation. Installation requires that your ESP device is connected with a cable to a computer. Later updates can be installed wirelessly.
+
+    If you use `Microsoft Edge <https://www.microsoft.com/edge>`_ or `Google Chrome <https://www.google.com/chrome>`_, you will be able to install the initial configuration by connecting your ESP device to the computer that you're using to view the ESPHome Dashboard.
+    *You need to access the ESPHome Dashboard over HTTPS for this to work. This is a requirement of browsers to access your ESP device to ensure that we write the correct data.*
+
+    If you use another browser, you will have to connect the ESP devices to the machine running the ESPHome Dashboard and Home Assistant.
+
+    If the serial port is not showing up, you might not have the required drivers installed. These drivers work for most ESP devices:
+
+      * CP2102 (square chip): `driver <https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers>`__
+      * CH341: `driver <https://github.com/nodemcu/nodemcu-devkit/tree/master/Drivers>`__
 
 
 Dashboard Interface
@@ -41,30 +61,24 @@ Dashboard Interface
 Assuming you created your first configuration file with the wizard, let's take a quick
 tour of the ESPHome Dashboard interface.
 
-.. figure:: images/dashboard_states.png
+.. figure:: images/dashboard.png
     :align: center
     :width: 95.0%
 
 On the front page you will see all configurations for nodes you created. For each file,
-there are a few basic actions you can perform:
+there are three basic actions you can perform:
 
-- **UPDATE**: This button will show up if the device has not been installed with the same ESPHome version currently running.
+- **INSTALL**: This compiles the firmware for your node and installs it. Installation happens wirelessy if you have enabled the :doc:`/components/ota` in your configuration. Alternatively you can install it from your browser or via a device connected to the machine running the ESPHome Dashboard.
 
-- **EDIT**: This will open the configuration editor.
+- **SHOW LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
+  connected, it will attempt to use the serial connection. Otherwise it will use the built-in OTA logs.
 
-- **LOGS**: With this command you can view all the logs the node is outputting. If a USB device is
-  connected, you can choose to use the serial connection. Otherwise it will use the built-in OTA logs.
-
-- **Overflow menu**: This is a dropdown menu which allows you to perform more actions.
-
-  - **Validate**: This will validate the configuration file.
-  - **Install**: Opens the Install dialog.
-  - **Clean Build Files**: This will delete all of the generated build files and is a safe operation to perform. Sometimes old files are not removed and can cause compile issues later on.
-  - **Delete**: This will delete the configuration file.
+- **COMPILE**: This command compiles the firmware and gives you the option of downloading the generated
+  binary so that you can install it yourself from your computer using :ref:`ESPHome-flasher <esphome-flasher>`.
 
 The configuration files for ESPHome can be found and edited under ``<HOME_ASSISTANT_CONFIG>/esphome/``.
-For example the configuration for the ``garage-door`` node in the picture above can be found
-in ``/config/esphome/garage-door.yaml``.
+For example the configuration for the node in the picture above can be found
+in ``/config/esphome/livingroom.yaml``.
 
 Now go ahead and use one of the :ref:`devices guides <devices>` to extend your configuration.
 
