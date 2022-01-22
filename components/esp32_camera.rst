@@ -113,7 +113,7 @@ Exposure Settings:
 - **aec_mode** (*Optional*, enum): The mode of exposure module. Defaults to ``auto`` (leave camera to automatically adjust exposure).
 
     - ``manual``: Exposure can be manually set, with **aec_value** parameter. **ae_level** has no effect here
-    - ``auto``: Camera manage exposure automatically. Compensation can be applied, thanks to **ae_level**. **aec_value** has no effect here
+    - ``auto``: Camera manage exposure automatically. Compensation can be applied, thanks to **ae_level** parameter. **aec_value** has no effect here
 
 - **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Seems to change computation method of automatic exposure. Defaults to ``false``.
 - **ae_level** (*Optional*, int): The auto exposure level to apply to the picture (when **aec_mode** is set to ``auto``), from -2 to 2. Defaults to ``0``.
@@ -124,9 +124,9 @@ Sensor Gain Settings:
 - **agc_mode** (*Optional*, enum): The mode of gain control module. Defaults to ``auto`` (leave camera to automatically adjust sensor gain).
 
     - ``manual``: Gain can be manually set, with **agc_value** parameter. **agc_gain_ceiling** has no effect here
-    - ``auto``: Camera manage sensor gain automatically. Maximum gain can be defined, thanks to **agc_gain_ceiling**. **agc_value** has no effect here
+    - ``auto``: Camera manage sensor gain automatically. Maximum gain can be defined, thanks to **agc_gain_ceiling** parameter. **agc_value** has no effect here
 
-- **agc_value** (*Optional*, int): The gain value to apply to the picture (when **aec_mode** is set to ``manual``), from 0 to 1200. Defaults to ``300``.
+- **agc_value** (*Optional*, int): The gain value to apply to the picture (when **aec_mode** is set to ``manual``), from 0 to 30. Defaults to ``0``.
 - **agc_gain_ceiling** (*Optional*, enum): The maximum gain allowed, when **agc_mode** is set to ``auto``. This parameter seems act as "ISO" setting. Defaults to ``2x``.
 
     - ``2x``: Camera is less sensitive, picture is clean (without visible noise)
