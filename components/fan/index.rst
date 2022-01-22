@@ -10,8 +10,6 @@ the Home Assistant frontend. A fan can be switched ON or OFF, optionally
 has a speed level between 1 and the maximum supported speed level of the fan, and can have an
 oscillate and direction output.
 
-This component restores its state on reboot/reset.
-
 .. figure:: images/fan-ui.png
     :align: center
 
@@ -30,6 +28,17 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
 - **icon** (*Optional*, icon): Manually set the icon to use for the fan in the frontend.
+- **restore_mode** (*Optional*): Control how the fan attempts to restore state on bootup.
+  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
+  :doc:`esphome section </components/esphome>`.
+
+    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
+    - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``ALWAYS_OFF`` - Always initialize the fan as OFF on bootup.
+    - ``ALWAYS_ON`` - Always initialize the fan as ON on bootup.
+
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
