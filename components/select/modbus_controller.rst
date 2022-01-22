@@ -69,32 +69,68 @@ Parameters passed into ``lambda``
 ---------------------------------
 
 - **x** (``int64_t``): The parsed integer value of the modbus data.
-- **data** (``std::vector<uint8_t>``): vector containing the complete raw modbus response bytes for this 
+- **data** (``const std::vector<uint8_t>&``): vector containing the complete raw modbus response bytes for this 
   sensor. Note: because the response contains data for all registers in the same range you have to 
   use ``data[item->offset]`` to get the first response byte for your sensor.
-- **item** (``const ModbusSelect*``):  The sensor object itself.
+- **item** (``ModbusSelect*const``):  The sensor object itself.
 
 Possible return values for the lambda:
 
  - ``return <std::string>;`` The new option for this Select.
  - ``return {};`` Use default mapping (see ``optionsmap``).
 
+.. code-block:: yaml
+
+    # example
+    lambda: |-
+      ESP_LOGD("Reg1000", "Received value %lld", x);
+      ESP_LOGD("Reg1000", "Parsed from bytes 0x%x;0x%x", data[item->offset], data[item->offset + 1]);
+      if (x > 3) {
+        return std::string("Three");
+      }
+
 
 Parameters passed into ``write_lambda``
 ---------------------------------------
 
-- **x** (``std::string``): The option value to set for this Select.
+- **x** (``const std::string&``): The option value to set for this Select.
 - **payload** (``std::vector<uint16_t>& payload``): Empty vector for the payload. The lamdba can add
   16 bit raw modbus register words which are send to the modbus device.
 - **skip_update** (``bool&``): Can be set to ``true`` to skip updating the sensor. Might be used 
   if the lambda updates the sensor by other ways (e.g. through other registers).
-- **item** (``const ModbusSelect*``):  The sensor object itself.
+- **item** (``ModbusSelect*const``):  The sensor object itself.
 
 Possible return values for the lambda:
 
  - ``return <int64_t>;`` the value which should be written to the configured modbus registers
  - ``return {};`` Depending if any registers are written to ``payload`` use the payload or
    use default mapping (see ``optionsmap``).
+
+.. code-block:: yaml
+
+    # example
+    write_lambda: |-
+      ESP_LOGD("Reg1000", "Set option to %s", x.c_str());
+
+      // default handling
+      if (x == "Zero") {
+        return {};
+      }
+
+      // return option value
+      if (x == "One") {
+        return 2;
+      }
+
+      // write payload
+      if (x == "Two") {
+        payload.push_back(0x0001);
+        return {};
+      }
+
+      // ignore update
+      skip_update = true;
+      return {};
 
 
 See Also
