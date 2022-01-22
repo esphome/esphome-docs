@@ -1,4 +1,4 @@
-Wake On Lan Button
+Wake-on-LAN Button
 ====================
 
 .. seo::
