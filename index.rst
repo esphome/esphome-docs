@@ -485,6 +485,7 @@ Button Components
     Button Core, components/button/index, folder-open.svg
     Template Button, components/button/template, description.svg
     Restart Button, components/button/restart, restart.svg
+    Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
 --------------
