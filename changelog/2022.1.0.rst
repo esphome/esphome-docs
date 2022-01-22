@@ -67,12 +67,6 @@ Example:
     JsonObject blah = root.createNestedObject("blah");
 
 
-Release 2022.1.1 - January 20
------------------------------
-
-- Add *.py.script files to distributions :esphomepr:`3074` by :ghuser:`jesserockz`
-
-
 Full list of changes
 --------------------
 
