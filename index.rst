@@ -23,17 +23,17 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <ul>
                 <li>
                     <a class="reference" href="/guides/getting_started_hassio.html">
-                        from Home Assistant
+                        ESPHome Dashboard
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/getting_started_command_line.html">
-                        using the command line
+                        Command Line Interface
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
-                        by migrating from Tasmota
+                        Migrating from Tasmota
                     </a>
                 </li>
             </ul>
