@@ -96,15 +96,12 @@ Parameters passed into ``write_lambda``
 - **x** (``const std::string&``): The option value to set for this Select.
 - **payload** (``std::vector<uint16_t>& payload``): Empty vector for the payload. The lamdba can add
   16 bit raw modbus register words which are send to the modbus device.
-- **skip_update** (``bool&``): Can be set to ``true`` to skip updating the sensor. Might be used 
-  if the lambda updates the sensor by other ways (e.g. through other registers).
 - **item** (``ModbusSelect*const``):  The sensor object itself.
 
 Possible return values for the lambda:
 
- - ``return <int64_t>;`` the value which should be written to the configured modbus registers
- - ``return {};`` Depending if any registers are written to ``payload`` use the payload or
-   use default mapping (see ``optionsmap``).
+ - ``return <int64_t>;`` the value which should be written to the configured modbus registers. If there were data written to ``payload`` this value is ignored.
+ - ``return {};`` Skip updating the register.
 
 .. code-block:: yaml
 
@@ -112,24 +109,20 @@ Possible return values for the lambda:
     write_lambda: |-
       ESP_LOGD("Reg1000", "Set option to %s", x.c_str());
 
-      // default handling
-      if (x == "Zero") {
-        return {};
-      }
-
       // return option value
       if (x == "One") {
         return 2;
+      } else if (x == "Zero") {
+        return 0;
       }
 
       // write payload
       if (x == "Two") {
         payload.push_back(0x0001);
-        return {};
+        return 0; // any value will do
       }
 
       // ignore update
-      skip_update = true;
       return {};
 
 
