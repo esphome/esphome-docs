@@ -28,6 +28,114 @@ setup, please feel free to submit a pull request.
 The ESPHome documentation is built using `sphinx <http://www.sphinx-doc.org/>`__ and uses
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`__ for all source files.
 
+If you're not familiar with writing rST, see :ref:`rst-syntax` for a quick refresher.
+
+Through Github
+**************
+
+This guide essentially goes over the same material found in `GitHub's Editing files in another user's repository <https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository>`__. You may also find that page helpful to read.
+
+At the bottom of each page in the docs, there is a "Edit this page on GitHub" link. Click this link and you'll see something like this:
+
+.. figure:: images/docs_ghedit_1.png
+    :align: center
+    :width: 80.0%
+    :alt: a screenshot of an rST file opened in GitHub, with the edit button circled
+
+Click the edit button to start making changes. If you're not sure about some element of syntax, see the quick-start :ref:`rst-syntax` guide.
+
+Once you've made your changes, give them a useful name and press "Propose changes". At this point, you've made the changes on your own personal copy of the docs in GitHub, but you still need to submit them to us.
+
+.. figure:: images/docs_ghedit_2.png
+    :align: center
+    :width: 80.0%
+    :alt: the commit creation screen in GitHub, with the commit title and "Propose changes" button circled
+
+To do that, you need to create a "Pull request":
+
+.. figure:: images/docs_ghedit_3.png
+    :align: center
+    :width: 80.0%
+    :alt: the pull request prompt screen in GitHub with the "Create pull request" button circled
+
+Fill out the new pull request form, replacing the ``[ ]`` with ``[x]`` to indicate that you have followed the instructions.
+
+.. figure:: images/docs_ghedit_4.png
+    :align: center
+    :width: 80.0%
+    :alt: the pull request creation screen in GitHub with the "Create pull request" button circled
+
+After waiting a while, you might see a green or a red mark next to your commit in your pull request:
+
+.. figure:: images/docs_ghedit_ci_failed.png
+    :align: center
+    :width: 80.0%
+    :alt: the pull request with a commit with a red x next to it
+
+This means that there is some error stopping your pull request from being fully processed. Click on the X, click on "Details" next to the lint step, and look and see what's causing your change to fail.
+
+.. figure:: images/docs_ghedit_ci_details.png
+    :align: center
+    :width: 80.0%
+    :alt: failed lint substep of build, with "details" link circled
+
+.. figure:: images/docs_ghedit_ci_logs.png
+    :align: center
+    :width: 80.0%
+    :alt: log messages showing reason for failed build
+
+For example, in this case, you'd want to go to line 136 of ``pzemac.rst`` and adjust the number of ``===`` so that it completely underlines the section heading.
+
+Once you make that change, the pull request will be built again, and hopefully this time where will be no other errors.
+
+Build
+*****
+
+.. note::
+
+    The easiest way is to use the `esphome-docs Docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
+
+    .. code-block:: bash
+
+        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
+
+    With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
+
+    This way, you don't have to install the dependencies to build the documentation.
+
+To check your documentation changes locally, you first need install Sphinx (with **Python 3**).
+
+.. code-block:: bash
+
+    # in ESPHome-Docs repo:
+    pip install -r requirements.txt
+
+Then, use the provided Makefile to build the changes and start a simple web server:
+
+.. code-block:: bash
+
+    # Start web server on port 8000
+    make webserver
+
+    # Updates then happen via:
+    make html
+
+Notes
+*****
+
+Some notes about the docs:
+
+- Use the English language (duh...)
+- An image tells a thousand words, please use them wherever possible. But also don't forget to shrink them, for example
+  I often use https://tinypng.com/
+- Try to use examples as often as possible (also while it's great to use highly accurate,
+  and domain-specific lingo, it should not interfere with new users understanding the content)
+- Fixes/improvements for the docs themselves should go to the ``current`` branch of the
+  esphomedocs repository. New features should be added against the ``next`` branch.
+- Always create new branches in your fork for each pull request.
+
+.. _rst-syntax:
+
 Syntax
 ******
 
@@ -213,52 +321,6 @@ documents establish the following character order for better consistency.
 
 reStructured text can do a lot more than this, so if you're looking for a more complete guide
 please have a look at the `Sphinx reStructuredText Primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__.
-
-Build
-*****
-
-.. note::
-
-    The easiest way is to use the `esphome-docs Docker image <https://hub.docker.com/r/esphome/esphome-docs/>`__:
-
-    .. code-block:: bash
-
-        docker run --rm -v "${PWD}/":/data/esphomedocs -p 8000:8000 -it esphome/esphome-docs
-
-    With ``PWD`` referring to the root of the ``esphome-docs`` git repository. Then go to ``<CONTAINER_IP>:8000`` in your browser.
-
-    This way, you don't have to install the dependencies to build the documentation.
-
-To check your documentation changes locally, you first need install Sphinx (with **Python 3**).
-
-.. code-block:: bash
-
-    # in ESPHome-Docs repo:
-    pip install -r requirements.txt
-
-Then, use the provided Makefile to build the changes and start a simple web server:
-
-.. code-block:: bash
-
-    # Start web server on port 8000
-    make webserver
-
-    # Updates then happen via:
-    make html
-
-Notes
-*****
-
-Some notes about the docs:
-
-- Use the English language (duh...)
-- An image tells a thousand words, please use them wherever possible. But also don't forget to shrink them, for example
-  I often use https://tinypng.com/
-- Try to use examples as often as possible (also while it's great to use highly accurate,
-  and domain-specific lingo, it should not interfere with new users understanding the content)
-- Fixes/improvements for the docs themselves should go to the ``current`` branch of the
-  esphomedocs repository. New features should be added against the ``next`` branch.
-- Always create new branches in your fork for each pull request.
 
 .. _setup_dev_env:
 
