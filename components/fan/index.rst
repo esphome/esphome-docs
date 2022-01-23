@@ -6,9 +6,9 @@ Fan Component
     :image: folder-open.svg
 
 With the ``fan`` domain you can create components that appear as fans in
-the Home Assistant frontend. A fan can be switched ON or OFF, optionally
-has a speed level between 1 and the maximum supported speed level of the fan, and can have an
-oscillate and direction output.
+the Home Assistant frontend. A fan can be switched on or off, optionally
+has a speed between 1 and the maximum supported speed of the fan, and can have an
+oscillation and direction output.
 
 .. figure:: images/fan-ui.png
     :align: center
@@ -28,11 +28,10 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
 - **icon** (*Optional*, icon): Manually set the icon to use for the fan in the frontend.
-- **restore_mode** (*Optional*): Control how the fan attempts to restore state on bootup.
-  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
-  :doc:`esphome section </components/esphome>`.
+- **restore_mode** (*Optional*): Control how the fan attempts to restore state on boot.
 
-    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
+    - ``NO_RESTORE`` - Don't restore any state.
+    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore (default).
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
@@ -42,7 +41,7 @@ Configuration variables:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
-- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
+- **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
@@ -125,7 +124,7 @@ Configuration options:
 - **speed** (*Optional*, int, :ref:`templatable <config-templatable>`):
   Set the speed level of the fan. Can be a number between 1 and the maximum speed level of the fan.
 - **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
-  Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
+  Set the direction of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
 
 .. _fan-cycle_speed_action:
 
@@ -147,7 +146,7 @@ Increments through speed levels of the fan with the given ID when executed. If t
 ``fan.is_on`` / ``fan.is_off`` Condition
 ----------------------------------------
 
-This :ref:`condition <config-condition>` passes if the given fan is on/off.
+This :ref:`condition <config-condition>` passes if the given fan is on or off.
 
 .. code-block:: yaml
 
@@ -237,7 +236,7 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: yaml
 
       // Within lambda, get the fan direction and conditionally do something
-      if (id(my_fan).direction == FanDirection::FAN_DIRECTION_FORWARD) {
+      if (id(my_fan).direction == FanDirection::FORWARD) {
         // Fan direction is forward, do something here
       } else {
         // Fan direction is reverse, do something else here
@@ -257,7 +256,7 @@ advanced stuff (see the full API Reference for more info).
       auto call = id(my_fan).turn_on();
       call.set_speed(2);
       call.set_oscillating(true);
-      call.set_direction(FanDirection::FAN_DIRECTION_REVERSE);
+      call.set_direction(FanDirection::REVERSE);
       call.perform();
 
       // Toggle the fan on/off
