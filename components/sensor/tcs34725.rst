@@ -49,18 +49,13 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **red_channel** (*Optional*): Get the percentage of how strongly the red color channel is activated.
-  All options from :ref:`Sensor <config-sensor>`.
-- **green_channel** (*Optional*): Get the percentage of how strongly the green color channel is activated.
-  All options from :ref:`Sensor <config-sensor>`.
-- **blue_channel** (*Optional*): Get the percentage of how strongly the blue color channel is activated.
-  All options from :ref:`Sensor <config-sensor>`.
-- **clear_channel** (*Optional*): Get the percentage of how strongly the clear (without a color filter)
-  channel is activated. All options from :ref:`Sensor <config-sensor>`.
+- **red_channel** (*Optional*): Get the percentage of red color channel in relation to the ``clear_channel``.
+- **green_channel** (*Optional*): Get the percentage the green color channel in relation to the ``clear_channel``.
+- **blue_channel** (*Optional*): Get the percentage of the blue color channel in relation to the ``clear_channel``.
+- **clear_channel** (*Optional*): Get the percentage of the clear (without a color filter)
+  channel in relation to the maximum value for the choosen ``integration_time``. 
 - **illuminance** (*Optional*): Get the total illuminance of the sensor in lx.
-  All options from :ref:`Sensor <config-sensor>`.
 - **color_temperature** (*Optional*): Get the calculated color temperature of the light in Kelvin.
-  All options from :ref:`Sensor <config-sensor>`.
 - **gain** (*Optional*): Set the gain for the internal ADCs to work better in certain low-light conditions. Valid
   values are ``1x`` (default), ``4x``, ``16x``, ``60x`` (highest gain).
 - **integration_time** (*Optional*): The amount of time the light sensor is exposed. Valid values are
@@ -71,6 +66,8 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x29``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
+
+Since the raw R+G+B values reported by the sensor are approximately equal to the clear value, ``red_channel``, ``green_channel`` and ``blue_channel`` percentages are calculated in relation to the ``clear_channel``.
 
 See Also
 --------
