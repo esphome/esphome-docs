@@ -45,5 +45,5 @@ See Also
 --------
 
 - :doc:`/components/output/index`
-- :apiref:`output/switch/output_switch.h`
+- :apiref:`output/button/output_button.h`
 - :ghedit:`Edit`
