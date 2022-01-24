@@ -70,7 +70,6 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
-Since the raw R+G+B values reported by the sensor are approximately equal to the clear value, ``red_channel``, ``green_channel`` and ``blue_channel`` percentages are calculated in relation to the ``clear_channel``.
 
 See Also
 --------
