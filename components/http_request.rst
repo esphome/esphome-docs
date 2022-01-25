@@ -23,7 +23,7 @@ Configuration variables:
 - **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **force_redirects** (*Optional*, boolean): Enable HTTP forced redirection. Defaults to ``true``.
-- **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled.
+- **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to ``3``.
 
 ESP8266 Options:
 
