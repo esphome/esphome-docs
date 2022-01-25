@@ -515,8 +515,8 @@ To draw the QR-code, call the `it.qr_code` function from your render lambda:
         pages:
           - id: page1
             lambda: |-
-              // Draw the qr code at position [x=50,y=0]
-              it.qr_code(50, 0, id(homepage_qr));
+              // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
+              it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
 
 Images
 ******
