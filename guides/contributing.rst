@@ -110,15 +110,12 @@ To check your documentation changes locally, you first need install Sphinx (with
     # in ESPHome-Docs repo:
     pip install -r requirements.txt
 
-Then, use the provided Makefile to build the changes and start a simple web server:
+Then, use the provided Makefile to build the changes and start a live-updating web server:
 
 .. code-block:: bash
 
     # Start web server on port 8000
-    make webserver
-
-    # Updates then happen via:
-    make html
+    make live-html
 
 Notes
 *****
