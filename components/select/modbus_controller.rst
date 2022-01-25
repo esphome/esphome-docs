@@ -94,6 +94,7 @@ Parameters passed into ``write_lambda``
 ---------------------------------------
 
 - **x** (``const std::string&``): The option value to set for this Select.
+- **value** (``int64_t``): The mapping value of ``x`` using ``optionsmap``.
 - **payload** (``std::vector<uint16_t>& payload``): Empty vector for the payload. The lamdba can add
   16 bit raw modbus register words which are send to the modbus device.
 - **item** (``ModbusSelect*const``):  The sensor object itself.
@@ -107,13 +108,16 @@ Possible return values for the lambda:
 
     # example
     write_lambda: |-
-      ESP_LOGD("Reg1000", "Set option to %s", x.c_str());
+      ESP_LOGD("Reg1000", "Set option to %s (%lld)", x.c_str(), value);
 
-      // return option value
+      // re-use default option value from optionsmap
+      if (value == 0) {
+        return value;
+      }
+
+      // return own option value
       if (x == "One") {
         return 2;
-      } else if (x == "Zero") {
-        return 0;
       }
 
       // write payload
