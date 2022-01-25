@@ -8,7 +8,7 @@ Debug Component
 The ``debug`` component can be used to debug problems with ESPHome. At startup, it prints
 a bunch of useful information like reset reason, free heap size, ESPHome version and so on.
 It also allows you get the same information as a text sensor, and to monitor the state of the
-ESP heap memory (free space, maximal free block and fragmentation level) and the main-loop timing.
+ESP heap memory (free space, maximum free block size and fragmentation level) and the main-loop timing.
 
 .. figure:: images/debug.png
     :align: center
@@ -38,7 +38,7 @@ ESP heap memory (free space, maximal free block and fragmentation level) and the
 Configuration variables:
 ------------------------
 
-- **device** (*Optional*): reports the debug information text:
+- **device** (*Optional*): Reports the following device information:
 
   - ESPHome Version
   - Free heap size at startup
@@ -57,23 +57,36 @@ Configuration variables:
     - Flash id
     - SDK, Core & Boot versions
     - Reset reason & information
+    
+  Accepts these options:
+    
+  - **name** (**Required**, string): The name of the sensor.
+  - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
-- **free** (*Optional*): reports the free heap size in bytes.
-  - Any optional settings from :ref:`Sensor <config-sensor>`.
-- **fragmentation** (*Optional*): reports the fragmentation metric
-  (0% is clean, more than ~50% is not harmless)
-  - Any optional settings from :ref:`Sensor <config-sensor>`.
-  - Requires ``arduino_version: 2.5.2`` or above see `esp8266 arduino releases <https://github.com/esp8266/Arduino/releases>`
-- **block** (*Optional*): reports the largest contiguous free RAM block in the heap in bytes,
-  useful for checking heap fragmentation.
-  - Any optional settings from :ref:`Sensor <config-sensor>`.
-- **loop_time** (*Optional*): reports the time between successive loop calls.
-  - Any optional settings from :ref:`Sensor <config-sensor>`.
+- **free** (*Optional*): Reports the free heap size in bytes.
+
+  - **name** (**Required**, string): The name of the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **fragmentation** (*Optional*): Reports the fragmentation metric of the heap 
+  (0% is clean, more than ~50% is not harmless). Only available on ESP8266 with Arduino 2.5.2+.
+  
+  - **name** (**Required**, string): The name of the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **block** (*Optional*): Reports the largest contiguous free RAM block on the heap in bytes.
+
+  - **name** (**Required**, string): The name of the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+  
+- **loop_time** (*Optional*): Reports the longest time between successive iterations of the main loop.
+
+  - **name** (**Required**, string): The name of the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 See Also
 --------
 
-- https://arduino-esp8266.readthedocs.io/en/latest/libraries.html#esp-specific-apis
 - :ref:`sensor-filters`
 - :doc:`logger`
 - :apiref:`debug/debug_component.h`
