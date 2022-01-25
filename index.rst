@@ -142,6 +142,7 @@ Core Components
     Core, components/esphome, cloud-circle.svg
     WiFi, components/wifi, network-wifi.svg
     MQTT, components/mqtt, mqtt.png
+    Network, components/network, network-wifi.svg
 
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
