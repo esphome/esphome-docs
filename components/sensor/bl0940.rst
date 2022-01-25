@@ -41,9 +41,9 @@ to some pins on your board and the baud rate set to 4800 with 1 stop bit.
           name: 'BL0940 Power'
         energy:
           name: 'BL0940 Energy'
-        temperature:
+        internal_temperature:
           name: 'BL0940 Internal temperature'
-        target_temperature:
+        external_temperature:
           name: 'BL0940 External temperature'
         update_interval: 60s
 
@@ -58,9 +58,9 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **energy** (*Optional*): Use the voltage value of the sensor in kWh.
   All options from :ref:`Sensor <config-sensor>`.
-- **temperature** (*Optional*): The internal temperature value of the sensor in °C.
+- **internal_temperature** (*Optional*): The internal temperature value of the sensor in °C.
   All options from :ref:`Sensor <config-sensor>`.
-- **target_temperature** (*Optional*): The external value of the sensor in °C. Often not connected and gives garbage data.
+- **external_temperature** (*Optional*): The external value of the sensor in °C. Often not connected and gives garbage data.
   All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.

@@ -452,7 +452,7 @@ And then later in code:
           - id: page1
             lambda: |-
               // Draw the graph at position [x=10,y=20]
-              it.graph(10, 20, id(simple_temperature_graph));
+              it.graph(10, 20, id(single_temperature_graph));
           - id: page2
             lambda: |-
               // Draw the graph at position [x=10,y=20]
@@ -600,10 +600,10 @@ Configuration variables:
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
 
-- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GREYSCALE and BINARY type image.
+- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GRAYSCALE and BINARY type image.
   Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
   and `here <https://en.wikipedia.org/wiki/Dither>`__.
 

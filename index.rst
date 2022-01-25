@@ -23,17 +23,17 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <ul>
                 <li>
                     <a class="reference" href="/guides/getting_started_hassio.html">
-                        ESPHome Dashboard
+                        from Home Assistant
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/getting_started_command_line.html">
-                        Command Line Interface
+                        using the command line
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
-                        Migrating from Tasmota
+                        by migrating from Tasmota
                     </a>
                 </li>
             </ul>
@@ -82,6 +82,16 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
         <div class="guide-card">
             <h3 class="guide-card-title">Keeping up</h3>
             <ul>
+                <li>
+                    <a class="reference" href="https://discord.gg/KhAMKrd" target="_blank">
+                        Discord
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="https://community.home-assistant.io/c/esphome/" target="_blank">
+                        Forums
+                    </a>
+                </li>
                 <li>
                     <a class="reference" href="/changelog/index.html">
                         Changelog
@@ -195,7 +205,9 @@ Analogue
 
     ADC, components/sensor/adc, flash.svg, ESP internal
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
+    CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
+    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
@@ -327,6 +339,7 @@ Miscellaneous
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
     Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
+    Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
@@ -664,10 +677,12 @@ Cookbook
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
     ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
+    TUYA Smart Life RGBW Controller, cookbook/tuya_rgbw, ../cookbook/images/tuya_rgbw.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
+    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

@@ -196,7 +196,8 @@ the value the sensor shows.
 
 The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
 then fit a linear equation to the values (using least squares). So you need to supply at least
-two values.
+two values. If more than two values are given a linear solution will be calculated and may not
+represent each value exactly.
 
 .. _sensor-calibrate_polynomial:
 
@@ -384,6 +385,8 @@ Configuration variables:
   published. With this parameter you can specify when the very first value is to be sent.
   Defaults to ``1``.
 
+.. _sensor-filter-exponential_moving_average:
+
 ``exponential_moving_average``
 ******************************
 
@@ -429,7 +432,10 @@ In comparison to the ``throttle`` filter it won't discard any values. In compari
 ``heartbeat``
 *************
 
-Send the last value that this sensor in the specified time interval.
+Send the value periodically with the specified time interval.
+If the sensor value changes during the interval the interval will not reset.
+The last value of the sensor will be sent.
+
 So a value of ``10s`` will cause the filter to output values every 10s regardless
 of the input values.
 
