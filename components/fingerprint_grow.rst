@@ -5,7 +5,7 @@ Grow Fingerprint Reader
     :description: Instructions for setting up Grow Fingerprint Reader integration in ESPHome.
     :image: fingerprint.svg
 
-The ``fingerprint_grow`` component allows you to use your R307, R503, ZFM-20, ... fingerprint sensors with ESPHome.
+The ``fingerprint_grow`` component allows you to use your R307, R503, R503-RGB, ZFM-20, ... fingerprint sensors with ESPHome.
 
 .. figure:: images/r307-full.jpg
     :align: center
@@ -25,7 +25,7 @@ Component/Hub
 
 The reader can be powered by the 3.3V output of an NodeMCU. As the communication with the reader is done using UART (default baud rate is 57600), you need to have an :ref:`UART bus <uart>` in your configuration with the ``rx_pin`` connected to the reader's ``TX`` and the ``tx_pin`` connected to the reader's ``RX``.
 
-If available on your reader model, it's recommended to connect 3.3VT (touch induction power supply) to 3.3V; WAKEUP (finger detection signal) to a free GPIO pin and define it with the ``sensing_pin`` option to allow the polling function to quickly return when there's no finger on the reader.
+If available on your reader model, it's recommended to connect 3.3VT (touch induction power supply) & 3.3V to 3.3V; WAKEUP (finger detection signal) to a free GPIO pin and define it with the ``sensing_pin`` option to allow the polling function to quickly return when there's no finger on the reader.
 
 .. code-block:: yaml
 
@@ -353,7 +353,7 @@ Removes all enrolled fingerprints.
 ``fingerprint_grow.led_control`` Action
 ---------------------------------------
 
-Turns on or off the LED on the reader. Only available on select models. If you have the R503 use :ref:`fingerprint_grow-aura_led_control` instead.
+Turns on or off the LED on the reader. Only available on select models. If you have the R503 or R503-RGB use :ref:`fingerprint_grow-aura_led_control` instead.
 
 .. code-block:: yaml
 
@@ -373,7 +373,7 @@ Configuration options:
 ``fingerprint_grow.aura_led_control`` Action
 --------------------------------------------
 
-Controls the Aura LED on the reader. Only available on select models.
+Controls the Aura LED on the reader. Only available on select models.  NOTE: The R503 has 2 variants with different LED colour options.
 
 .. code-block:: yaml
 
@@ -434,7 +434,7 @@ Configuration options:
 
 - **state** (**Required**, string, :ref:`templatable <config-templatable>`): The state to set the LED. One of ``BREATHING``, ``FLASHING``, ``ALWAYS_ON``, ``ALWAYS_OFF``, ``GRADUAL_ON`` and ``GRADUAL_OFF``.
 - **speed** (**Required**, int, :ref:`templatable <config-templatable>`): The duration each cycle lasts, a factor of 10ms. Only relevant for ``BREATHING``, ``FLASHING``, ``GRADUAL_ON`` and ``GRADUAL_OFF`` states. The total duration is defined by 10ms * speed * count. Range is 0 to 255.
-- **color** (**Required**, string, :ref:`templatable <config-templatable>`): The LED color to activate. One of ``RED``, ``BLUE`` and ``PURPLE``.
+- **color** (**Required**, string, :ref:`templatable <config-templatable>`): The LED color to activate. For R503, one of ``RED``, ``BLUE`` and ``PURPLE``.  For R503-RGB, one of ``RED``, ``BLUE``, ``PURPLE``, ``GREEN``, ``YELLOW``, ``CYAN`` and ``WHITE``.
 - **count** (**Required**, int, :ref:`templatable <config-templatable>`): How many times to repeat the pattern. Only relevant for ``BREATHING`` and ``FLASHING`` states. 0 for infinite, or 1 to 255.
 
 All actions
