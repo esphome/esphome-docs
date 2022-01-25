@@ -505,7 +505,7 @@ Configuration variables:
   - ``QUARTILE`` - The QR Code can tolerate about 25% erroneous codewords
   - ``HIGH`` - The QR Code can tolerate about 30% erroneous codewords
 
-To draw the QR-code, call the `it.qr_code` function from your render lambda:
+To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
 
 .. code-block:: yaml
 
