@@ -27,6 +27,7 @@ To find out your device's MAC address, add the following to your ESPHome configu
 The device will then listen for nearby devices, and display a message like this one:
 
 .. code-block:: text
+
     [D][radon_eye_ble:017]:
     Found Radon Eye RD200 device Name: FR:R20:SN1234      (MAC: 01:02:03:04:05:06)
 
