@@ -47,9 +47,9 @@ Configuration variables:
 
     .. code-block:: yaml
 
-      pin:
-        number: GPIO2
-        inverted: true
+        pin:
+          number: GPIO2
+          inverted: true
 
 
 
