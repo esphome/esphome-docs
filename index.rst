@@ -526,6 +526,14 @@ Display Components
     Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
+Touchscreen Components
+----------------------
+
+.. imgtable::
+
+    Touchscreen Core, components/touchscreen/index, folder-open.svg
+    EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
+
 Cover Components
 ----------------
 
