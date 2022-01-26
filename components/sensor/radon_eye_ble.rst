@@ -1,5 +1,5 @@
 Radon Eye BLE Sensors
-========================
+=====================
 
 .. seo::
     :description: Instructions for setting up Radon Eye bluetooth-based sensors in ESPHome.
@@ -38,7 +38,7 @@ Supported Devices
 -----------------
 
 Radon Eye RD200
-*********
+***************
 
 Radon Eye RD200 tracks radon concentration over short periods (5 min interval) and longer periods
 (24h or month).
