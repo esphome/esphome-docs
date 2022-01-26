@@ -196,7 +196,8 @@ the value the sensor shows.
 
 The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
 then fit a linear equation to the values (using least squares). So you need to supply at least
-two values.
+two values. If more than two values are given a linear solution will be calculated and may not
+represent each value exactly.
 
 .. _sensor-calibrate_polynomial:
 

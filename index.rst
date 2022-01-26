@@ -23,17 +23,17 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <ul>
                 <li>
                     <a class="reference" href="/guides/getting_started_hassio.html">
-                        ESPHome Dashboard
+                        from Home Assistant
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/getting_started_command_line.html">
-                        Command Line Interface
+                        using the command line
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
-                        Migrating from Tasmota
+                        by migrating from Tasmota
                     </a>
                 </li>
             </ul>
@@ -689,6 +689,7 @@ Cookbook
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
     ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
+    TUYA Smart Life RGBW Controller, cookbook/tuya_rgbw, ../cookbook/images/tuya_rgbw.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg

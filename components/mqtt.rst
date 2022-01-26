@@ -419,7 +419,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).subscribe_json("the/topic", [=](const std::string &topic, JsonObject root) {
             // do something with JSON-decoded value root
         });
 
@@ -521,7 +521,7 @@ Configuration options:
 
     .. code-block:: cpp
 
-        id(mqtt_client).publish_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).publish_json("the/topic", [=](JsonObject root) {
           root["something"] = id(my_sensor).state;
         });
 

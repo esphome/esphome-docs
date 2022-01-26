@@ -67,6 +67,18 @@ Example:
     JsonObject blah = root.createNestedObject("blah");
 
 
+Release 2022.1.1 - January 20
+-----------------------------
+
+- Add ``*.py.script`` files to distributions :esphomepr:`3074` by :ghuser:`jesserockz`
+
+Release 2022.1.2 - January 25
+-----------------------------
+
+- [modbus_controller] fix incorrect start address for number write :esphomepr:`3073` by :ghuser:`martgras`
+- Set the wrapped single light in light partition to internal :esphomepr:`3092` by :ghuser:`placidorevilla`
+
+
 Full list of changes
 --------------------
 
