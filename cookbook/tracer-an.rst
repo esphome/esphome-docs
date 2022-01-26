@@ -134,9 +134,6 @@ Below is the ESPHome configuration file that will get you up and running. This a
     ota:
       password: !secret ota_password
 
-    mqtt:
-      id: mqtt_client
-
     uart:
       id: mod_bus
       tx_pin: 19
