@@ -240,7 +240,7 @@ Configuration example for PVVX MiThermometer firmware set to "Custom" advertisem
 MHO-C303
 ********
 
-Hygro thermometer clock with alarm, rectangular body, e-ink display, broadcasts temperature, humidity and battery status. Not encripted.
+Hygro thermometer clock with alarm, rectangular body, e-ink display, broadcasts temperature, humidity and battery status. Not encrypted.
 
 .. figure:: images/xiaomi_mhoc303.jpg
     :align: center
