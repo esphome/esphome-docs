@@ -102,7 +102,7 @@ transmits IR codes to a soundbar to control the volume.
             - opcode: 0x70 # System audio mode request
             then:
                 - hdmi_cec.send:
-                    destination: 0x0
+                    destination: 0xF
                     data: [ 0x72, 0x01 ]
             - opcode: 0x7D # Give audio system mode status
             then:
