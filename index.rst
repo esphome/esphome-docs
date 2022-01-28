@@ -195,7 +195,7 @@ Air Quality
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
-    T6613/15, components/sensor/t6615, t6615.png, CO2
+    T6613/15, components/sensor/t6615, t6615.jpg, CO2
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
 
@@ -240,7 +240,7 @@ Distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.png, IR optical distance
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg, IR optical distance
 
 
 Electricity
@@ -254,17 +254,17 @@ Electricity
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
-    Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
+    Daly BMS, components/sensor/daly_bms, daly_bms.jpg, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
     INA219, components/sensor/ina219, ina219.jpg, DC Current
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
-    PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
-    PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
+    PZEM AC, components/sensor/pzemac, pzem-ac.jpg, Voltage & Current & Power
+    PZEM DC, components/sensor/pzemdc, pzem-dc.jpg, Voltage & Current & Power
     PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
-    SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus energy monitor
+    SDM Meter, components/sensor/sdm_meter, sdm220m.jpg, Modbus energy monitor
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
@@ -505,7 +505,7 @@ Display Components
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
-    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg

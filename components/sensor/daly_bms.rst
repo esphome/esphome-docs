@@ -3,7 +3,7 @@ Daly BMS
 
 .. seo::
     :description: Instructions for setting up a Daly Smart BMS
-    :image: daly_bms.png
+    :image: daly_bms.jpg
 
 The ``daly_bms`` sensor platform allows you to use a Daly Smart BMS
 (`more info <https://dalyelec.en.made-in-china.com/>`__)
