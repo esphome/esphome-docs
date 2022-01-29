@@ -17,13 +17,13 @@ The ``modbus_controller`` component uses the modbus component
 
 Hardware setup
 --------------
-I'm using a RS 485 module connected to an ESP32
+A RS 485 module connected to an ESP32, for example:
 
 .. figure:: /images/rs485.jpg
 
-See [How is this RS485 Module Working?](https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working) on stackexchange for more details
+See `How is this RS485 Module Working? <https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working>`__ on stackexchange for more details
 
-The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PIN 17 to RXD are the default ports but any other pins can be used as well . 3.3V to VCC and GND to GND.
+The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PIN 17 to RXD are the default ports but any other pins can be used as well. 3.3V to VCC and GND to GND.
 
 .. note::
 
