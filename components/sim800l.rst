@@ -51,6 +51,20 @@ Configuration variables:
 - **on_sms_received** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when an SMS is received. See :ref:`sim800l-on_sms_received`.
 
+Diagnostics:
+
+- **registered** (*Optional*): Indicates if the SIM800L has successfully registered in the cellular network.
+
+  - **name** (**Required**, string): The name for the registered binary sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+- **rssi** (*Optional*): The informed Received signal strength indication (RSSI) in dBm.
+
+  - **name** (**Required**, string): The name for the rssi sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
 .. _sim800l-on_sms_received:
 
 ``on_sms_received`` Trigger
