@@ -27,6 +27,10 @@ Configuration variables:
    specific component or tag. See :ref:`Manual Log Levels for more
    information <logger-manual_tag_specific_levels>`.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+-  **include_timestamps** (*Optional*, boolean): Include a timestamp into every log message.
+   The timestamp is number of milliseconds since start of ESP execution, and overflows
+   approximately every 49 days and 17 hours. Useful when debugging performance issues,
+   or optimizing battery-powered setups utilizing deep sleep.
 
 Advanced settings:
 
