@@ -11,7 +11,10 @@ The ZyAura CO2 & Temperature & Humidity sensor allows you to use your
 (`MT8057 <https://masterkit.ru/shop/1266110>`__, `MT8057S <https://medgadgets.ru/shop/kit-mt8057.html>`__),
 `ZG1683R(U) <http://www.zyaura.com/products/ZG1683R.asp>`__ (`MT8060 <https://masterkit.ru/shop/1921398>`__),
 `ZG1583RUD <http://www.zyaura.com/products/ZG1583RUD.asp>`__
-monitors with ESPHome.
+monitors with ESPHome. 
+There are similar products that use the same CO2 sensor but may not provide an integrated humidity sensor.
+(e.g.: `TFA AIRCO2NTROL MINI <https://www.tfa-dostmann.de/en/product/co2-monitor-airco2ntrol-mini-31-5006/>`__)
+
 
 .. figure:: images/zgm053-full.jpg
     :align: center
@@ -23,7 +26,9 @@ monitors with ESPHome.
     :align: center
     :width: 80.0%
 
-    ZyAura ZGm053U connection diagram (1 - empty, 2 - clock, 3 - data, 4 - GND). In some other models the clock and data pins are swapped.
+    ZyAura ZGm053U connection diagram (1 - empty, 2 - clock, 3 - data, 4 - GND). 
+    In some other models the clock and data pins are swapped,
+    e.g.: TFA AIRCO2NTROL MINI (1 - empty, 2 - data, 3 - clock, 4 - GND).
 
 .. code-block:: yaml
 
