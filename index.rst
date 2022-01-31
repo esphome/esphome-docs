@@ -602,6 +602,7 @@ Lock Components
 -----------------
 
 .. imgtable::
+
     Lock Core, components/lock/index, folder-open.svg
     Generic Output Lock, components/lock/output, upload.svg
     Template Lock, components/lock/template, description.svg
