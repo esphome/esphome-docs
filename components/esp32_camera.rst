@@ -74,6 +74,9 @@ Frame Settings:
   Up to 60Hz is possible (with reduced frame sizes), but beware of overheating. Defaults to ``10 fps``.
 - **idle_framerate** (*Optional*, float): The framerate to capture images at when no client
   is requesting a full stream. Defaults to ``0.1 fps``.
+
+Image Settings:
+
 - **resolution** (*Optional*, enum): The resolution the camera will capture images at. Higher
   resolutions require more memory, if there's not enough memory you will see an error during startup.
 
@@ -90,15 +93,64 @@ Frame Settings:
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
   From 10 (best) to 63 (worst). Defaults to ``10``.
-
+- **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
+- **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
-- **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
-- **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
-- **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Defaults to ``false``.
-- **ae_level** (*Optional*, int): The auto exposure level to apply to the picture, from -2 to 2. Defaults to ``0``.
-- **aec_value** (*Optional*, int): The Auto Exposure Control 2 value to apply to the picture, from 0 to 1200. Defaults to ``300``.
+- **special_effect** (*Optional*, enum): The effect to apply to the picture. Defaults to ``none`` (picture without effect).
+
+    - ``none``: Picture without effect
+    - ``negative``: Colors of picture are inverted
+    - ``grayscale``: Only luminance of picture is kept
+    - ``red_tint``: Picture appear red-tinted
+    - ``green_tint``: Picture appear green-tinted
+    - ``blue_tint``: Picture appear blue-tinted
+    - ``sepia``: Sepia effect is applied to picture
+
+Exposure Settings:
+
+- **aec_mode** (*Optional*, enum): The mode of exposure module. Defaults to ``auto`` (leave camera to automatically adjust exposure).
+
+    - ``manual``: Exposure can be manually set, with **aec_value** parameter. **ae_level** has no effect here
+    - ``auto``: Camera manage exposure automatically. Compensation can be applied, thanks to **ae_level** parameter. **aec_value** has no effect here
+
+- **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Seems to change computation method of automatic exposure. Defaults to ``false``.
+- **ae_level** (*Optional*, int): The auto exposure level to apply to the picture (when **aec_mode** is set to ``auto``), from -2 to 2. Defaults to ``0``.
+- **aec_value** (*Optional*, int): The Exposure value to apply to the picture (when **aec_mode** is set to ``manual``), from 0 to 1200. Defaults to ``300``.
+
+Sensor Gain Settings:
+
+- **agc_mode** (*Optional*, enum): The mode of gain control module. Defaults to ``auto`` (leave camera to automatically adjust sensor gain).
+
+    - ``manual``: Gain can be manually set, with **agc_value** parameter. **agc_gain_ceiling** has no effect here
+    - ``auto``: Camera manage sensor gain automatically. Maximum gain can be defined, thanks to **agc_gain_ceiling** parameter. **agc_value** has no effect here
+
+- **agc_value** (*Optional*, int): The gain value to apply to the picture (when **aec_mode** is set to ``manual``), from 0 to 30. Defaults to ``0``.
+- **agc_gain_ceiling** (*Optional*, enum): The maximum gain allowed, when **agc_mode** is set to ``auto``. This parameter seems act as "ISO" setting. Defaults to ``2x``.
+
+    - ``2x``: Camera is less sensitive, picture is clean (without visible noise)
+    - ``4x``
+    - ``8x``
+    - ``16x``
+    - ``32x``
+    - ``64x``
+    - ``128x``: Camera is more sensitive, but picture contain lot of noise
+
+White Balance Setting:
+
+- **wb_mode** (*Optional*, enum): The mode of white balace module. Defaults to ``auto``.
+
+    - ``auto``: Camera choose best white balance setting
+    - ``sunny``: White balance sunny mode
+    - ``cloudy``: White balance cloudy mode
+    - ``office``: White balance office mode
+    - ``home``: White balance home mode
+
+Test Setting:
+
+- **test_pattern** (*Optional*, boolean): For tests purposes, it's possible to replace picture get from sensor by a test color pattern. Defaults to ``false``.
+
 
 .. note::
 

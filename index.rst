@@ -132,6 +132,7 @@ Core Components
     Core, components/esphome, cloud-circle.svg
     WiFi, components/wifi, network-wifi.svg
     MQTT, components/mqtt, mqtt.png
+    Network, components/network, network-wifi.svg
 
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
@@ -385,6 +386,7 @@ Binary Sensor Components
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+    EKTF2232 Touchscreen, components/binary_sensor/ektf2232, ektf2232.svg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -466,7 +468,9 @@ Button Components
 
     Button Core, components/button/index, folder-open.svg
     Template Button, components/button/template, description.svg
+    Generic Output Button, components/button/output, upload.svg
     Restart Button, components/button/restart, restart.svg
+    Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
 --------------
@@ -504,6 +508,14 @@ Display Components
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
+
+Touchscreen Components
+----------------------
+
+.. imgtable::
+
+    Touchscreen Core, components/touchscreen/index, folder-open.svg
+    EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
 
 Cover Components
 ----------------

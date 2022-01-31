@@ -266,6 +266,7 @@ MQTT can have some overrides for specific options.
       payload_not_available: offline
     state_topic: livingroom/custom_state_topic
     command_topic: livingroom/custom_command_topic
+    command_retain: false
 
 Configuration variables:
 
@@ -284,6 +285,8 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+-  **command_retain** (*Optional*, boolean): Whether MQTT command messages
+   sent to the device should be retained or not. Default to ``false``.
 
 .. warning::
 

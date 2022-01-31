@@ -18,5 +18,6 @@ Components
     display/index
     text_sensor/index
     stepper/index
+    touchscreen/index
     lock/index
     *

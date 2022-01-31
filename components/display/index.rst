@@ -482,6 +482,42 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
+QR Codes
+********
+
+Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
+
+.. code-block:: yaml
+
+    qr_code:
+      - id: homepage_qr
+        value: esphome.io
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the QR-code later
+  in your display code.
+- **value** (**Required**, string): The string which you want to encode in the QR-code.
+- **ecc** (*Optional*, string): The error correction code level you want to use. Defaults to ``LOW``. You can use one of the following values:
+
+  - ``LOW`` - The QR Code can tolerate about 7% erroneous codewords
+  - ``MEDIUM`` - The QR Code can tolerate about 15% erroneous codewords
+  - ``QUARTILE`` - The QR Code can tolerate about 25% erroneous codewords
+  - ``HIGH`` - The QR Code can tolerate about 30% erroneous codewords
+
+To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
+              it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
+
 Images
 ******
 
@@ -507,6 +543,8 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
+    will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
 
 - **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
