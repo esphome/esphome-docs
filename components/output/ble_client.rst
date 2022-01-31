@@ -34,7 +34,7 @@ Configuration variables:
 - **service_uuid** (**Required**, UUID): UUID of the service on the device.
 - **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to write to.
 - **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
-- **require_response** (*Optional, boolean): Control whether to require a remote response from the device when writing. 
+- **require_response** (*Optional*, boolean): Control whether to require a remote response from the device when writing. 
   Whether or not this is required will vary by device. Defaults to ``false``
 - All other options from :ref:`Output <config-output>`.
 
