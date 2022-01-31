@@ -23,6 +23,14 @@ The `'hbridge`' fan platform allows you to use a compatible `h-bridge` (L298N, D
 .. code-block:: yaml
 
     # Example configuration entry
+    output:
+      - platform: ...
+        id: motor_forward_pin
+        pin: GPIO5
+      - platform: ...
+        id: motor_reverse_pin
+        pin: GPIO4
+    
     fan:
       - platform: hbridge
         id: my_fan
@@ -43,12 +51,10 @@ Configuration variables:
   :ref:`float output <output>` connected to the Enable pin of the h-bridge (if h-bridge uses enable).
 - **decay_mode** (*Optional*, string): The decay mode you want to use with
   the h-bridge. Either ``slow`` (braking) or ``fast`` (coasting). Defaults to ``slow``.
-- **name** (**Required**, string): The name for this fan.
-- **oscillation_output** (*Optional*, :ref:`config-id`): The id of the
-  :ref:`output <output>` to use for the oscillation state of this fan. Default is empty.
 - **speed_count** (*Optional*, int): Set the number of supported discrete speed levels. The value is used
   to calculate the percentages for each speed. E.g. ``2`` means that you have 50% and 100% while ``100``
   will allow 1% increments in the output. Defaults to ``100``.
+- **name** (**Required**, string): The name for this fan.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Fan Component <config-fan>`.
 

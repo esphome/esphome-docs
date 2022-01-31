@@ -34,6 +34,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| Midea                                 | ``midea_ir``        | yes                  |
++---------------------------------------+---------------------+----------------------+
 | Mitsubishi                            | ``mitsubishi``      |                      |
 +---------------------------------------+---------------------+----------------------+
 | TCL112, Fuego                         | ``tcl112``          | yes                  |
@@ -149,6 +151,30 @@ IR receiver.
         name: "Living Room AC"
         receiver_id: rcvr
 
+.. _midea_ir:
+
+``midea_ir`` Climate
+-------------------------
+
+These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: midea_ir
+        name: "AC"
+        sensor: room_temperature
+        use_fahrenheit: true
+
+
 .. _climate_ir_lg:
 
 ``climate_ir_lg`` Climate
@@ -237,6 +263,7 @@ See Also
   :apiref:`daikin.h <daikin/daikin.h>`
   :apiref:`fujitsu_general.h <fujitsu_general/fujitsu_general.h>`,
   :apiref:`hitachi_ac344.h <hitachi_ac344/hitachi_ac344.h>`,
+  :apiref:`midea_ir.h <midea_ir/midea_ir.h>`,
   :apiref:`mitsubishi.h <mitsubishi/mitsubishi.h>`,
   :apiref:`tcl112.h <tcl112/tcl112.h>`,
   :apiref:`yashima.h <yashima/yashima.h>`

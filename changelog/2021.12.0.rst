@@ -89,6 +89,20 @@ Release 2021.12.1 - December 15
 - Set text sensor state property to filter output :esphomepr:`2893` by :ghuser:`oxan`
 - Allow button POST on press from web server :esphomepr:`2913` by :ghuser:`wilberforce`
 
+Release 2021.12.2 - December 21
+-------------------------------
+
+- Don't disable idle task WDT when it's not enabled :esphomepr:`2856` by :ghuser:`oxan`
+- Fix MQTT button press action :esphomepr:`2917` by :ghuser:`oxan`
+
+Release 2021.12.3 - December 30
+-------------------------------
+
+- Require arduino in webserver for better validation :esphomepr:`2941` by :ghuser:`jesserockz`
+- Only allow internal pins for dht sensor :esphomepr:`2940` by :ghuser:`jesserockz`
+- Workaround installing as editable package not working :esphomepr:`2936` by :ghuser:`jesserockz`
+- Remove -e for hassio images :esphomepr:`2964` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
@@ -247,24 +261,21 @@ All changes
 Past Changelogs
 ---------------
 
-.. toctree::
-    :maxdepth: 1
-
-    2021.11.0
-    2021.10.0
-    2021.9.0
-    2021.8.0
-    v1.20.0
-    v1.19.0
-    v1.18.0
-    v1.17.0
-    v1.16.0
-    v1.15.0
-    v1.14.0
-    v1.13.0
-    v1.12.0
-    v1.11.0
-    v1.10.0
-    v1.9.0
-    v1.8.0
-    v1.7.0
+- :doc:`2021.11.0`
+- :doc:`2021.10.0`
+- :doc:`2021.9.0`
+- :doc:`2021.8.0`
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`
