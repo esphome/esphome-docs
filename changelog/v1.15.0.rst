@@ -29,7 +29,7 @@ Changelog - Version 1.15.0 - September 13, 2020
     Tuya Sensor, components/sensor/tuya, tuya.png
     Tuya Switch, components/switch/tuya, tuya.png
     Tuya Climate, components/climate/tuya, tuya.png
-    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
