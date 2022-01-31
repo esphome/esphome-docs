@@ -261,6 +261,31 @@ Configuration example:
           name: "MHO-C303 Climate Battery Level"
 
 MHO-C401
+********
+
+Hygro thermometer clock with alarm, rectangular body, e-ink display, broadcasts temperature, humidity and battery status. Not encrypted.
+
+.. figure:: images/xiaomi_mhoc303.jpg
+    :align: center
+    :width: 30.0%
+
+Similar to the LYWSD02, with additional clock features (alarm, pomodoro timer). Runs on two AAA batteries.
+
+Configuration example:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: xiaomi_mhoc303
+        mac_address: "E7:50:59:32:A0:1C"
+        temperature:
+          name: "MHO-C303 Climate Temperature"
+        humidity:
+          name: "MHO-C303 Climate Humidity"
+        battery_level:
+          name: "MHO-C303 Climate Battery Level"
+
+MHO-C401
 **********
 
 Hygro thermometer, square body, e-ink display, encrypted, broadcasts temperature, humidity and battery status. Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
