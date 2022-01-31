@@ -17,9 +17,9 @@ as a lock and can be controlled through the frontend.
         name: "Template Lock"
         lambda: |-
           if (id(some_binary_sensor).state) {
-            return true;
+            return LOCK_STATE_LOCKED;
           } else {
-            return false;
+            return LOCK_STATE_UNLOCKED;
           }
         lock_action:
           - switch.turn_on: switch1
@@ -83,12 +83,12 @@ with the ``lock.template.publish`` action.
     on_...:
       - lock.template.publish:
           id: template_lock1
-          state: ON
+          state: LOCK_STATE_LOCKED
 
       # Templated
       - lock.template.publish:
           id: template_lock1
-          state: !lambda 'return true;'
+          state: !lambda 'return LOCK_STATE_LOCKED;'
 
 Configuration options:
 
@@ -98,12 +98,12 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas, the parameter of the `public_state` method denotes if
-    the lock is currently locked or unlocked:
+    This action can also be written in lambdas, the parameter of the `publish_state` method denotes the state the
+    lock should become:
 
     .. code-block:: cpp
 
-        id(template_lock1).publish_state(false);
+        id(template_lock1).publish_state(lock::LOCK_STATE_LOCKED);
 
 See Also
 --------

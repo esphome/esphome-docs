@@ -253,8 +253,20 @@ angle.
 Lock
 ******
 
-Locks have the exact same properties as binary sensors in the state reporting aspect, but they
-additionally support setting states with the ``lock``, ``unlock`` and ``open`` methods.
+Locks have standard two states for ``LOCKED`` and ``UNLOCKED``, but may optionally also have states 
+``JAMMED``, ``LOCKING``, and ``UNLOCKING`` depending on the capabilities.
+The state can be set using the ``lock``, ``unlock`` and ``open`` methods. To get the current state of a lock, create a
+GET request to ``/lock/<id>``.
+
+.. code-block:: json
+
+    {
+      "id": "lock-front_door",
+      "state": "LOCKED"
+    }
+    
+-  **id**: The ID of the lock, prefixed with ``lock-``.
+-  **state**: ``NONE``, ``LOCKED``, ``UNLOCKED``, ``JAMMED``, ``LOCKING``, or ``UNLOCKING``
 
 Each of these is quite self explanatory. Creating a POST request to ``/lock/front_door/unlock``
 would for example result in the component called "Front Door" to be unlocked. The server will respond

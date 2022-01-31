@@ -2,7 +2,7 @@ Lock Component
 ================
 
 .. seo::
-    :description: Instructions for setting up generic lockss in ESPHome.
+    :description: Instructions for setting up generic locks in ESPHome.
     :image: folder-open.svg
 
 The ``lock`` domain includes all platforms that should function like a lock
@@ -36,7 +36,7 @@ Configuration variables:
   when the lock is unlocked. See :ref:`lock-on_lock_unlock_trigger`..
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
-  Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+  Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
@@ -61,7 +61,7 @@ This action locks a lock with the given ID on when executed.
 ``lock.unlock`` Action
 **************************
 
-This action unlock a lock with the given ID off when executed.
+This action unlocks a lock with the given ID off when executed.
 
 .. code-block:: yaml
 
@@ -74,7 +74,7 @@ This action unlock a lock with the given ID off when executed.
 ``lock.open`` Action
 ************************
 
-This action open (e.g. unlatch) a lock with the given ID off when executed.
+This action opens (e.g. unlatch) a lock with the given ID off when executed.
 
 .. code-block:: yaml
 
