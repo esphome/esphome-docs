@@ -31,6 +31,10 @@ actions = [
     ["button", ["press"]],
     ["lock", ["lock", "unlock", "open"]],
     ];
+multi_actions = [
+    ["select", "option"],
+    ["number", "value"],
+    ];
 
 source.addEventListener('state', function (e) {
     const data = JSON.parse(e.data);
@@ -53,16 +57,17 @@ for (; row = states.rows[i]; i++) {
                     xhr.open("POST", '/'+domain[0]+'/' + id + '/' + domain[1][j], true);
                     xhr.send();
                 });
-            };
+            }
         }
-    }          
-    if (row.classList.contains("select")) {
-        (function(id) {
+    }   
+    for (const domain of multi_actions){
+        if (row.classList.contains(domain[0])) {
+            let id = row.id.substr(domain[0].length+1);       
             row.children[2].children[0].addEventListener('change', function () {
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", '/select/' + id + '/set?option=' + encodeURIComponent(this.value), true);
+                xhr.open("POST", '/'+domain[0]+'/' + id + '/set?'+domain[1]+'=' + encodeURIComponent(this.value), true);
                 xhr.send();
             });
-        })(row.id.substr(7));
-    }
+        }
+    }   
 }
