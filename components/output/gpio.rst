@@ -20,7 +20,7 @@ will not show up in Home Assistant. See :doc:`/components/switch/gpio`.
 Configuration variables:
 ------------------------
 
-- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to turn on and off.
+- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to use PWM on.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - All other options from :ref:`Output <config-output>`.
 

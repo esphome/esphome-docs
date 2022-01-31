@@ -21,7 +21,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 
     sensor:
       - platform: ltr390
-        uv:
+        uvi:
           name: "UV Index"
         light:
           name: "Light"

@@ -252,17 +252,17 @@ component, as well as control the light of the LED display.
             temperature: !lambda "return x;"
             beeper: false               # Optional. Beep on update.
 
-    # template buttons for sending display control command and swing step actions
-    button:
+    # template momentary switches for sending display control command and swing step actions
+    switch:
       - platform: template
         name: Display Toggle
         icon: mdi:theme-light-dark
-        on_press:
+        turn_on_action:
           midea_ac.display_toggle:
       - platform: template
         name: Swing Step
         icon: mdi:tailwind
-        on_press:
+        turn_on_action:
           midea_ac.swing_step:
 
 

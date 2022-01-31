@@ -27,8 +27,8 @@ TX/RX labels are from the perspective of the MH-Z19). Additionally, you need to 
 
     # Example configuration entry
     uart:
-      rx_pin: GPIO3
-      tx_pin: GPIO1
+      rx_pin: D0
+      tx_pin: D1
       baud_rate: 9600
 
     sensor:

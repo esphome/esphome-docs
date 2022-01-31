@@ -146,9 +146,6 @@ pins for your projects. Within ESPHome they emulate a real internal GPIO pin
 and can therefore be used with many of ESPHome's components such as the GPIO
 binary sensor or GPIO switch.
 
-GPIO pins in the datasheet are labelled A0 to A7 and B0 to B7, these are mapped
-consecutively in this component to numbers from 0 to 15.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -159,10 +156,10 @@ consecutively in this component to numbers from 0 to 15.
     # Individual outputs
     switch:
       - platform: gpio
-        name: "MCP23017 Pin A0"
+        name: "MCP23017 Pin #0"
         pin:
           mcp23xxx: mcp23017_hub
-          # Use pin A0
+          # Use pin number 0
           number: 0
           mode:
             output: true
@@ -171,11 +168,11 @@ consecutively in this component to numbers from 0 to 15.
     # Individual inputs
     binary_sensor:
       - platform: gpio
-        name: "MCP23017 Pin B7"
+        name: "MCP23017 Pin #1"
         pin:
           mcp23xxx: mcp23017_hub
-          # Use pin B7
-          number: 15
+          # Use pin number 1
+          number: 1
           # One of INPUT or INPUT_PULLUP
           mode:
             input: true

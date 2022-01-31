@@ -10,7 +10,7 @@ The ``qmc5883l`` allows you to use your QMC5883L triple-axis magnetometers
 (`datasheet <http://wiki.sunfounder.cc/images/7/72/QMC5883L-Datasheet-1.0.pdf>`__) with
 ESPHome. This sensor is very simular to the :ref:`HMC5883L <hmc5883l>` sensor and is oftern found
 as a knock off replacement. The QMC5883L sensor performs on par to the HMC5883L sensor,
-though the configuration differs. The :ref:`I²C Bus <i2c>` is required to be set up in your
+though the congiuration differs. The :ref:`I²C Bus <i2c>` is required to be set up in your
 configuration for this sensor to work.
 
 .. figure:: ../../images/qmc5883l.jpg

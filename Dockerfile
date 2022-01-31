@@ -15,4 +15,4 @@ RUN pip3 install --no-cache-dir --no-binary :all: -r requirements.txt
 EXPOSE 8000
 WORKDIR /data/esphomedocs
 
-CMD ["make", "live-html"]
+CMD ["make", "webserver"]

@@ -81,7 +81,7 @@ Tuya cover devices known to be supported by this integration:
   - Only the ``position`` datapoint (2) is used for this device.
   - Datapoint 5's function is not currently known.
 
-- Zemismart ``ZM79E-DT`` and ``YH002`` (curtain motor)
+- Zemismart ``ZM79E-DT`` (curtain motor)
 
   - Supported datapoints: ``control`` (1), ``position`` (2), ``position_report`` (3) and ``direction`` (5).
   - The direction of travel is persisted to the Tuya MCU, so doesn't need to be set if you've already configured it via the remote control.

@@ -327,8 +327,12 @@ All changes
 - docs: MY9231/MY9291 LED driver documentation :docspr:`80` by :ghuser:`puuu` (new-feature)
 - docs: SEO Optimization :docspr:`82`
 
+
 Past Changelogs
 ---------------
 
-- :doc:`v1.8.0`
-- :doc:`v1.7.0`
+.. toctree::
+    :maxdepth: 1
+
+    v1.8.0
+    v1.7.0

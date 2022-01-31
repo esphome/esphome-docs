@@ -52,8 +52,8 @@ Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
-installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
-and then select ``Manual download``). For command line based installs you can access the
+installs you can use the ``COMPILE`` button (click the overflow icon with the three dots)
+and then press ``Download Binary``. For command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
@@ -196,7 +196,7 @@ I have a question... How can I contact you?
 Sure! We are happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/c/esphome>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
@@ -240,11 +240,6 @@ Some steps that can help with the issue:
   the log viewer on the web dashboard. In production, you will likely only have a single connection from
   Home Assistant, making this less of an issue. But beware that attaching a log viewer might
   have impact.
-- Reducing the Delivery Traffic Indication Message (DTIM) interval in the WiFi access point may help
-  improve the ESP's WiFi reliability and responsiveness.  This will cause WiFi devices in power
-  save mode, such as the ESP, to be woken up more frequently.  This may improve things for the ESP,
-  although it may also increase power (and possibly battery) usage of other devices also using power
-  save mode.
 
 Docker Reference
 ----------------
