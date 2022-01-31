@@ -26,6 +26,7 @@ source.addEventListener('log', function (e) {
 actions = [
     ["switch", ["toggle"]],
     ["light", ["toggle"]],
+    ["fan", ["toggle"]],
     ["cover", ["open", "close"]],
     ["button", ["press"]],
     ["lock", ["lock", "unlock", "open"]],
