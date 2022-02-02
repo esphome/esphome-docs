@@ -78,6 +78,11 @@ Release 2022.1.2 - January 25
 - [modbus_controller] fix incorrect start address for number write :esphomepr:`3073` by :ghuser:`martgras`
 - Set the wrapped single light in light partition to internal :esphomepr:`3092` by :ghuser:`placidorevilla`
 
+Release 2022.1.3 - February 2
+-----------------------------
+
+- Fix backwards string case helpers :esphomepr:`3126` by :ghuser:`jesserockz` (breaking-change)
+
 
 Full list of changes
 --------------------
@@ -111,6 +116,7 @@ Breaking Changes
 
 - Modbus: use multiply for publishing number :esphomepr:`2916` by :ghuser:`martgras` (breaking-change)
 - Upgrade ArduinoJson to 6.18.5 and migrate code :esphomepr:`2844` by :ghuser:`jesserockz` (breaking-change)
+- Fix backwards string case helpers :esphomepr:`3126` by :ghuser:`jesserockz` (breaking-change)
 
 Beta Changes
 ^^^^^^^^^^^^
