@@ -6,7 +6,11 @@ Lock Component
     :image: folder-open.svg
 
 The ``lock`` domain includes all platforms that should function like a lock
-with lock/unlock actions.
+with lock/unlock actions. 
+
+.. note::
+
+   ESPHome integration requires Home Assistant 2022.03 or newer
 
 .. _config-lock:
 
@@ -24,9 +28,6 @@ Configuration variables:
 - **name** (**Required**, string): The name of the lock.
 - **icon** (*Optional*, icon): Manually set the icon to use for the
   lock in the frontend.
-- **inverted** (*Optional*, boolean): Whether to invert the binary
-  state, i.e. report LOCKED states as UNLOCKED and vice versa. Defaults
-  to ``false``.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
@@ -39,8 +40,7 @@ Configuration variables:
   Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
-  for a list of available options. Requires Home Assistant 2021.11 or newer.
-  Set to ``""`` to remove the default entity category.
+  for a list of available options. Set to ``""`` to remove the default entity category.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _lock-lock_action:
@@ -113,18 +113,16 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: yaml
 
       // Within lambda, make the lock report a specific state
-      id(my_lock).publish_state(false);
-      id(my_lock).publish_state(true);
+      id(my_lock).publish_state(LOCKED);
+      id(my_lock).publish_state(UNLOCKED);
 
 - ``state``: Retrieve the current state of the lock.
 
   .. code-block:: yaml
 
       // Within lambda, get the lock state and conditionally do something
-      if (id(my_lock).state) {
+      if (id(my_lock).state == LOCKED) {
         // Lock is LOCKED, do something here
-      } else {
-        // Lock is UNLOCKED, do something else here
       }
 
 - ``unlock()``/``lock()``/``open()``: Manually lock/unlock/open a  lock from code.
