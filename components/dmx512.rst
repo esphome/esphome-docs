@@ -1,0 +1,200 @@
+.. _dmx512:
+
+DMX512 Component
+================
+
+.. seo::
+    :description: Instructions for setting up a DMX512 controller in ESPHome.
+    :keywords: DMX DMX512 fixture
+
+DMX512 is a standard for digital communication networks that are commonly used to control 
+lighting and effects. It was originally intended as a standardized method for controlling 
+stage lighting dimmers. It quickly became the primary method for linking controllers (such 
+as a lighting console) to dimmers and special effects devices such as fog machines and 
+intelligent lights. 
+
+This component allows Arduino-based devices to control DMX devices via :ref:`UART Bus <uart>` 
+(requiring an RS485 module, see below). ESP32 with the IDF-framework is currently not supported.
+
+DMX only works on hardware UARTs, therefore the number of the UART in use needs to be set.
+This defaults to 1, as the first UART is usually used for logging purposes.
+
+On the ESP8266, the only pin you can use is GPIO2. It's TX-only and can easily be used for DMX.
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      ...
+
+    dmx512:
+      id: dmx
+      uart_id: uart_bus
+      enable_pin: GPIO33
+      tx_pin: GPIO5
+      uart_num: 1
+      periodic_update: true
+      force_full_frames: false
+      custom_break_len: 92
+      custom_mab_len: 12
+      update_interval: 500    
+    
+    
+Configuration variables:
+------------------------
+
+- **id** (*Required*) The ID of this DMX512 hub
+- **uart_id** (*Required*) Set this to the ID of your UART component
+- **enable_pin** (*Optional*) The pin used to switch flow control.
+    This is useful for RS485 transeivers that do not have automatic flow control switching,
+    like the common MAX485.
+- **tx_pin** (*Required*) Set this to the same pin number as the UART component. 
+    This is required for the generation of the break signal. Defaults to `GPIO5`.
+- **uart_num** (*Optional*) Set this to the internal ESP32 UART number. 
+    If only logging is configured, this should be set to 1 (default). 
+- **periodic_update** (*Optional*) If set to false, only state changes are transmitted and 
+    the bus is silent in between - violates the specification and may cause some dimmers to turn off
+- **force_full_frames** (*Optional*) If set to true, the full 513-byte frame is always sent. 
+    Otherwise, only the configured channels are transmitted.
+- **custom_mab_len** (*Optional*) Set a custom mark-after-break length (in uS, default `12`)
+- **custom_break_len** (*Optional*) Set a custom break length (in uS, default `92`)
+- **update_interval** (*Optional*) Specify a custom update interval, i.e. the minimum 
+    time between resending the current values (in ms, default `500`)
+
+Impolementing the DMX lights
+----------------------------
+
+First you need to define standard ESPHome outputs pointing to the DMX channels of your fixtures:
+
+.. code-block:: yaml
+
+    output:
+    # d.001
+    - platform: dmx512
+      channel: 1
+      universe: dmx
+      id: vbar1_red
+    - platform: dmx512
+      channel: 2
+      universe: dmx
+      id: vbar1_green
+    - platform: dmx512
+      channel: 3
+      universe: dmx
+      id: vbar1_blue
+    - platform: dmx512
+      channel: 4
+      universe: dmx
+      id: vbar1_amber
+    - platform: dmx512
+      channel: 5
+      universe: dmx
+      id: vbar1_master
+
+Outputs point to channels in the DMX universe, from 1 to 512. Each DMX fixture has its own channel layout defined 
+by the manufacturer. Consult that documentation to find out which channels you have to use.
+
+Some DMX fixtures can be daisy chained with XLR cables, and each one can be set to operate at a different address. 
+When you specify the output channel in the configuration of this component, take into account that      
+*channel (in esphome component) = address + channel (on the fixture)*.     
+
+When you choose addresses for your DMX fixtures keep in mind that the next free address number on the bus that can 
+be assigned is the *address of the previous light + the last channel number of that light*. 
+
+The ``output`` implements float values between 0 and 100. You can use it not only for `light`, but for any component 
+which can send data to it, moreover, it can be set from lambdas. 
+
+You can then create colorful lights and dimmers for them:
+
+.. code-block:: yaml
+
+    light:
+    - platform: rgbw
+      name: DMX Light colors
+      id: dmx_bar_1
+      red: vbar1_red
+      green: vbar1_green
+      blue: vbar1_blue
+      white: vbar1_amber
+      icon: mdi:spotlight
+      default_transition_length: 0.3s
+      color_interlock: false
+      gamma_correct: 0
+      restore_mode: RESTORE_DEFAULT_ON
+  
+    - platform: monochromatic
+      name: DMX Light dimmer
+      output: vbar1_master
+      icon: mdi:blur
+      disabled_by_default: true
+      default_transition_length: 2s
+      gamma_correct: 0
+      restore_mode: RESTORE_DEFAULT_ON
+
+*Tip:* Usage of ``gamma_correct: 0`` in the lights configuration is likely required for most fixtures, as the gamma 
+compensation is usually already done in their hardware. This can be observed when, without this setting set to 0, 
+dimming to around 10% will actually turn the lights off. ESPHome has ``gamma_correct`` set to ``2.8`` by default.
+
+
+Hardware setup
+--------------
+
+You can use an RS485-TTL adapter module to connect your ESP device with the DMX bus. Attention: 
+The below module is actually a 5V module, but it seems to work fine even if powered from 3.3V. However, 
+there is no guarantee the MAX485 works at 3.3V. To be on the safe side, Use the MAX3485 instead (which 
+is the equivalent for 3.3V). NEVER power the module by 5V, the ESP is not designed for 5V logic!
+
+.. figure:: https://user-images.githubusercontent.com/1550668/149642143-7e13fb00-29fd-4e9d-8f11-6b4a2a2bd0ba.png
+    :align: center
+    :width: 25%
+
+For this adapter, use the wiring below:
+
+.. code-block:: yaml
+
+    MAX485-M VCC     -> ESP +3.3V
+    MAX485-M GND     -> ESP GND
+    MAX485-M DE      -> ESP +3.3V
+    MAX485-M RE      -> not connected
+    MAX485-M DI      -> ESP32 GPIO5 or ESP8266 GPIO2
+    MAX485-M A       -> XLR 3 (DMX +)
+    MAX485-M B       -> XLR 2 (DMX -)
+    MAX485-M GND     -> XLR 1 (DMX GND)
+
+
+The RE pin can be left unconnected, since we do not want to receive anything from the bus. For this module, 
+you could even leave DE unconnected since there is a pull-up resistor on the board.
+
+Don't forget about 120Ohm termination resistors (the specific module above already has the 120Ohm resistor as 
+R7 on the board). If your fixture has DMX IN and OUT ports, on the OUT port of the last fixture in the chain you 
+should use a termination resistor between XLR pins 2 and 3. Similarly on MAX485-M, it has to be placed in parallel with 
+A and B outputs, given that it's going to be placed at the start of the chain.
+
+Using good quality 120Ohm impedance cables, DMX lines can be run a maximum distance of approximately 1000 meters. 
+With CAT5 cable DMX lines are safe until approximately 300 meters.
+
+You can also tie the DE pin to a GPIO of the ESP. Usually, you would configure this GPIO as `enable_pin` in the 
+DMX component to activate the module automatically.  If you want to have a "mute" switch instead, define it as a 
+switch instead and do not configure ``enable_pin`` in the DMX component:
+
+
+.. code-block:: yaml
+
+    switch:
+    - platform: gpio
+      name: 'DMX Output MUTE'
+      icon: mdi:lightbulb-off
+      pin:
+        number: GPIO13
+        inverted: true
+
+
+See Also
+--------
+- `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
+- :ref:`uart`
+- :doc:`/components/output/index`
+- :doc:`/components/light/index`
+- :doc:`/components/light/rgbw`
+- :ghedit:`Edit`
