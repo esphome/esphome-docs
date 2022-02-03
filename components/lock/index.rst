@@ -10,7 +10,7 @@ with lock/unlock actions.
 
 .. note::
 
-    ESPHome integration requires Home Assistant 2022.03 or newer
+    ESPHome lock components requires Home Assistant 2022.3 or newer
 
 .. _config-lock:
 
