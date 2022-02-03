@@ -38,7 +38,6 @@ smart meter. If you see checksum errors in the log try changing the interface pa
     # Example configuration entry
     uart:
       id: uart_bus
-      tx_pin: GPIO1
       rx_pin: GPIO3
       baud_rate: 9600
       data_bits: 8
