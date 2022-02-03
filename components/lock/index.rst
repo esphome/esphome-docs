@@ -121,7 +121,7 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: yaml
 
       // Within lambda, get the lock state and conditionally do something
-      if (id(my_lock).state == LOCKED) {
+      if (id(my_lock).state == LOCK_STATE_LOCKED) {
         // Lock is LOCKED, do something here
       }
 
