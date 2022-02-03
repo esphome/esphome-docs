@@ -598,6 +598,15 @@ Select Components
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
 
+Lock Components
+-----------------
+
+.. imgtable::
+
+    Lock Core, components/lock/index, folder-open.svg
+    Generic Output Lock, components/lock/output, upload.svg
+    Template Lock, components/lock/template, description.svg
+
 Misc Components
 ---------------
 
