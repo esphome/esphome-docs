@@ -108,7 +108,7 @@ Configuration for Olimex ESP32-EVB
       clk_mode: GPIO0_IN
       phy_addr: 0
 
-Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
+Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8720A Chip
 ----------------------------------------------------------------------
 
 .. code-block:: yaml
