@@ -13,7 +13,7 @@ Changelog - Version 1.19.0 - 16th June 2021
     Improv, components/esp32_improv, improv.svg
     SM2135, components/output/sm2135, sm2135.svg
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
-    SDM Meter, components/sensor/sdm_meter, sdm220m.png
+    SDM Meter, components/sensor/sdm_meter, sdm220m.jpg
     CS5460A, components/sensor/cs5460a, cs5460a.png
 
 Wow. Ok, so this release may not look big, but there are a number of new features that are not new components.

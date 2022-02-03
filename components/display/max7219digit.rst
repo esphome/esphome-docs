@@ -3,7 +3,7 @@ MAX7219 Digit Display
 
 .. seo::
     :description: Instructions for setting up MAX7219 Digit displays.
-    :image: max7219digit.png
+    :image: max7219digit.jpg
 
 The ``max7219`` display platform allows you to use MAX7219 digit with ESPHome. Please note that this integration
 is *only* for the digit "matrix" display, for the 7 segment display see :doc:`max7219`.
