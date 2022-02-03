@@ -113,8 +113,8 @@ advanced stuff (see the full API Reference for more info).
   .. code-block:: yaml
 
       // Within lambda, make the lock report a specific state
-      id(my_lock).publish_state(LOCKED);
-      id(my_lock).publish_state(UNLOCKED);
+      id(my_lock).publish_state(LOCK_STATE_LOCKED);
+      id(my_lock).publish_state(LOCK_STATE_UNLOCKED);
 
 - ``state``: Retrieve the current state of the lock.
 
