@@ -20,23 +20,30 @@ ESP heap memory (free space, maximum free block size and fragmentation level) an
     # Example configuration entry
     debug:
       update_interval: 5s
-      device:
-        name: Device Info
-      free:
-        name: Heap Free
-      fragmentation:
-        name: Heap Fragmentation
-      block:
-        name: Heap Max Block
-      loop_time:
-        name: Loop Time
+
+    text_sensor:
+      - platform: debug
+        device:
+          name: "Device Info"
+
+    sensor:
+      - platform: debug
+        free:
+          name: "Heap Free"
+        fragmentation:
+          name: "Heap Fragmentation"
+        block:
+          name: "Heap Max Block"
+        loop_time:
+          name: "Loop Time"
 
     # Logger must be at least debug (default)
     logger:
       level: debug
 
+Text Sensor
+------------
 Configuration variables:
-------------------------
 
 - **device** (*Optional*): Reports the following device information:
 
@@ -57,11 +64,15 @@ Configuration variables:
     - Flash id
     - SDK, Core & Boot versions
     - Reset reason & information
-    
+
   Accepts these options:
-    
+
   - **name** (**Required**, string): The name of the sensor.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
+
+Sensor
+-------
+Configuration variables:
 
 - **free** (*Optional*): Reports the free heap size in bytes.
 
