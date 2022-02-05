@@ -48,11 +48,12 @@ Configuration variables:
 
 - **temperature** (*Optional*): The information for the temperature sensor.
     Some sensors do not have temperature sensing ability.
+
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **cs_pin** (**Required**): Chip select pin.
+- **cs_pin** (**Required**, :ref:'SPI <spi>'): Chip select pin.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
