@@ -39,8 +39,8 @@ Configuration variables:
 - **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
-  - **min_pressure** (**Required**, float): Minumim pressure for the temperature sensor.
-  - **max_pressure** (**Required**, float): Maximum pressure for the temperature sensor.
+  - **min_pressure** (**Required**, int or float): Minumim pressure for the temperature sensor.
+  - **max_pressure** (**Required**, int or float): Maximum pressure for the temperature sensor.
 
     From datasheet, used to calculate the pressure read by the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
@@ -53,7 +53,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **cs_pin** (**Required**, :ref:'SPI <spi>'): Chip select pin.
+- **cs_pin** (**Required**, :ref:`SPI <spi>`): Chip select pin.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
