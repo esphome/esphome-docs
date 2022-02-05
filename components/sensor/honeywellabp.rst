@@ -24,12 +24,12 @@ required to be set up in your configuration for this sensor to work
     sensor:
     - platform: honeywellabp
         pressure:
-        name: "Honeywell pressure"
-        unit_of_measurement: "psi"
-        min_pressure: 0
-        max_pressure: 15
+            name: "Honeywell pressure"
+            unit_of_measurement: "psi"
+            min_pressure: 0
+            max_pressure: 15
         temperature:
-        name: "Honeywell temperature"
+            name: "Honeywell temperature"
         cs_pin: GPIO5 #D5
         update_interval: 2s
 
@@ -39,8 +39,9 @@ Configuration variables:
 - **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
-  - **min_pressure** (**Required**): Minumim pressure for the temperature sensor.
-  - **max_pressure** (**Required**): Maximum pressure for the temperature sensor.
+  - **min_pressure** (**Required**, float): Minumim pressure for the temperature sensor.
+  - **max_pressure** (**Required**, float): Maximum pressure for the temperature sensor.
+
     From datasheet, used to calculate the pressure read by the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
