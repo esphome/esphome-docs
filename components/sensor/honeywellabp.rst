@@ -49,7 +49,7 @@ Configuration variables:
 - **temperature** (*Optional*): The information for the temperature sensor.
     See datasheet, some sensors do not have temperature sensing ability.
     Note: In some cases the sensor may return a valid temperature even though the 
-          datasheet indicates that the sensor does not measure temperature.
+    datasheet indicates that the sensor does not measure temperature.
 
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
