@@ -82,5 +82,5 @@ See Also
 
 - :doc:`/components/ble_client`
 - :doc:`/components/climate/index`
-- :apiref:`anova/anova.h`
+- :apiref:`bedjet/bedjet.h`
 - :ghedit:`Edit`
