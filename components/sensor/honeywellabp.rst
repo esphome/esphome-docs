@@ -56,7 +56,7 @@ datasheet indicates that the sensor does not measure temperature.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-
+ 
 - **cs_pin** (**Required**, :ref:`SPI <spi>`): Chip select pin.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
