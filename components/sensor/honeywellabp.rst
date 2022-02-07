@@ -36,21 +36,20 @@ required to be set up in your configuration for this sensor to work
 Configuration variables:
 ------------------------
 
+min_pressure and max_pressure are from the device datasheet. These are used to calculate the pressure reading published by the sensor
+
 - **pressure** (*Optional*): The information for the pressure sensor.
-    min_pressure and max_pressure are from the device datasheet. These 
-    are used to calculate the pressure reading published by the sensor
   - **name** (**Required**, string): The name for the pressure sensor.
   - **min_pressure** (**Required**, int or float): Minumim pressure for the pressure sensor.
   - **max_pressure** (**Required**, int or float): Maximum pressure for the pressure sensor.
-
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - **unit_of_measurement** (*Optional*, string): Defaults to ``psi``
   - All other options from :ref:`Sensor <config-sensor>`.
 
+Some sensors do not have temperature sensing ability, see datasheet. In some cases the sensor may return a valid temperature even though the 
+datasheet indicates that the sensor does not measure temperature.
+
 - **temperature** (*Optional*): The information for the temperature sensor.
-    Some sensors do not have temperature sensing ability, see datasheet. 
-    In some cases the sensor may return a valid temperature even though the 
-    datasheet indicates that the sensor does not measure temperature.
   - **name** (**Required**, string): The name for the temperature sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
