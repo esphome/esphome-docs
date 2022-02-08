@@ -1,13 +1,14 @@
-Inkplate 6 and Inkplate 10
-==========================
+Inkplate 6, 10 and 6 Plus
+=========================
 
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
     :image: inkplate6.jpg
 
-All-in-one e-paper display  ``Inkplate 6`` and ``Inkplate 10``.
+All-in-one e-paper display ``Inkplate 6``, ``Inkplate 10`` and ``Inkplate 6 Plus``.
 
-The Inkplate 6 and Inkplate 10 are powerful, Wi-Fi enabled ESP32 based six-inch e-paper displays – recycled from a Kindle e-reader. Its main feature is simplicity.
+The Inkplate 6, 10 and 6 Plus are powerful, Wi-Fi enabled ESP32 based six-inch e-paper displays -
+recycled from a Kindle e-reader. Its main feature is simplicity.
 
 Learn more at `Inkplate's website <https://inkplate.io/>`__
 
@@ -73,7 +74,11 @@ Configuration variables:
 ************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **model** (*Optional*, enum): Specify the model ``inkplate_6`` or ``inkplate_10``. Defaults to ``inkplate_6``.
+- **model** (*Optional*, enum): Specify the model. Defaults to ``inkplate_6``.
+  - ``inkplate_6``
+  - ``inkplate_10``
+  - ``inkplate_6_plus``
+
 - **greyscale** (*Optional*, boolean): Makes the screen display 3 bit colors. Defaults to ``false``
 - **partial_updating** (*Optional*, boolean): Makes the screen update partially, which is faster, but leaves burnin. Defaults to ``false``
 - **full_update_every** (*Optional*, int): When partial updating is enabled, forces a full screen update after chosen number of updates. Defaults to ``10``
@@ -113,8 +118,8 @@ Configuration variables:
   Defaults to GPIO27.
 
 
-Complete example
-****************
+Complete Inkplate 6 example
+***************************
 
 The following is a complete example YAML configuration that does a few things beyond the usual
 Wi-Fi, API, and OTA configuration.
@@ -273,9 +278,33 @@ Wi-Fi, API, and OTA configuration.
         }
 
 
+Inkplate 6 Plus Touchscreen
+***************************
+
+The Inkplate 6 Plus has a built in touchscreen supported by ESPHome.
+Below is a config example:
+
+.. code-block:: yaml
+
+    touchscreen:
+      - platform: ektf2232
+        interrupt_pin: GPIO36
+        rts_pin:
+          mcp23xxx: mcp23017_hub
+          number: 10
+        on_touch:
+          - logger.log:
+              format: "Touch: {x}, {y}"
+              args:
+                - touch.x
+                - touch.y
+
+
+
 See Also
 --------
 
 - :doc:`index`
+- :doc:`/components/touchscreen/ektf2232`
 - `Arduino Inkplate 6 library <https://github.com/e-radionicacom/Inkplate-6-Arduino-library>`__ by `E-radionica.com <https://e-radionica.com/>`__
 - :ghedit:`Edit`
