@@ -5,9 +5,11 @@ MCP4728 Output
     :description: Instructions for setting up MCP4728 outputs on the ESP.
     :image: mcp4728.jpg
 
+.. _mcp4728-component:
+
 The MCP4728 output component allows to use `12bit external quad DAC
 <https://www.adafruit.com/product/4470>`__
-in order to have analog outputs on any board by using I²C. Devices default address is ``0x60``.
+in order to have analog outputs on any board by using :ref:`I²C <i2c>`. Devices default address is ``0x60``.
 
 .. code-block:: yaml
 
@@ -31,13 +33,11 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I2C address of
   the DAC. Defaults to ``0x60``.
 - **eeprom** (*Optional*, boolean): Use SEQ_WRITE mode to also write to EEPROM sequentially.
-- All other options from :ref:`Output <config-output>`.
 
 Output
 ******
 
-The MCP4728 output component exposes 4 MCP4728 channels of a global
-:ref:`MCP4728-component` as float outputs.
+The MCP4728 output component exposes 4 MCP4728 channels of a global :ref:`MCP4728 <mcp4728-component>` as float outputs.
 
 .. code-block:: yaml
 
