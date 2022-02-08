@@ -25,12 +25,13 @@ the "DEVICE LIST" section of the BedJet mobile application.
 
     ble_client:
       - mac_address: 11:22:33:aa:bb:cc
-        id: my_bedjet
+        id: ble_bedjet
 
     climate:
       - platform: bedjet
+        id: my_bedjet_fan
         name: "My BedJet Fan"
-        ble_client_id: my_bedjet
+        ble_client_id: ble_bedjet
 
 Configuration variables:
 ------------------------
@@ -41,6 +42,23 @@ Configuration variables:
 - **time_id** (*Optional*, :ref:`config-id`): The ID of a :ref:`Time Component <time>` which
   can be used to set the time on the BedJet device.
 - All other options from :ref:`Climate <config-climate>`.
+
+lambda calls
+************
+
+From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced stuff.
+
+- ``.upgrade_firmware``: Check for and install updated BedJet firmware.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Check Bedjet Firmware"
+          on_press:
+            then:
+            - lambda: |-
+                id(my_bedjet_fan).upgrade_firmware();
 
 Known issues:
 -------------
