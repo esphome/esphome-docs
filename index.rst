@@ -405,7 +405,7 @@ Binary Sensor Components
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
-    EKTF2232 Touchscreen, components/binary_sensor/ektf2232, ektf2232.svg
+    Touchscreen, components/touchscreen/index, touch.svg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -536,6 +536,7 @@ Touchscreen Components
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
+    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.png
 
 Cover Components
 ----------------
