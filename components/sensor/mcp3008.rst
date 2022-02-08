@@ -4,7 +4,7 @@ MCP3008 I/O Expander
 .. seo::
     :description: Instructions for setting up MCP3008 10 Bit Analog to Digital Converter in ESPHome.
     :keywords: MCP3008
-    :image: images/mcp3008.jpg
+    :image: mcp3008.jpg
 
 The Microchip Technology Inc. MCP3008
 devices are successive approximation 10-bit Analog-to-Digital (A/D) converters with on-board sample and

@@ -3,7 +3,7 @@ HTTP Request
 
 .. seo::
     :description: Instructions for setting up HTTP Requests in ESPHome
-    :image: connection.png
+    :image: connection.svg
     :keywords: http, request
 
 
@@ -20,8 +20,10 @@ Configuration variables:
 ------------------------
 
 - **useragent** (*Optional*, string): User-Agent header for requests. Defaults to ``ESPHome``.
-- **timeout** (*Optional*, :ref:`time <config-time>`): Timeout for request. Defaults to ``5s``.
+- **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to ``true``.
+- **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to ``3``.
 
 ESP8266 Options:
 

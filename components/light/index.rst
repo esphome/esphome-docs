@@ -3,7 +3,7 @@ Light Component
 
 .. seo::
     :description: Instructions for setting up lights and light effects in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``light`` domain in ESPHome lets you create lights that will
 automatically be shown in Home Assistant’s frontend and have many
@@ -41,8 +41,8 @@ Configuration variables:
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
-    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
-    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
@@ -50,6 +50,8 @@ Configuration variables:
   when the light is turned on. See :ref:`light-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the light is turned off. See :ref:`light-on_turn_on_off_trigger`.
+- **on_state** (*Optional*, :ref:`Action <config-action>`): An automation to perform
+  when the light's set state is changed. See :ref:`light-on_state_trigger`.
 
 Additional configuration variables for addressable lights:
 
@@ -398,6 +400,25 @@ with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
         on_turn_off:
         - logger.log: "Light Turned Off!"
 
+.. _light-on_state_trigger:
+
+``light.on_state`` Trigger
+**************************
+
+This trigger is activated each time the set light state is changed. It is not triggered
+based on current state, but rather, it triggers on the set state which can differ from
+the current state due to transitions. For example, the ``light.on_state`` trigger can
+be used for immediate action when the light is set to off; while ``light.on_turn_off``
+does not trigger until the light actually achieves the off state.
+
+.. code-block:: yaml
+
+    light:
+      - platform: binary # or any other platform
+        # ...
+        on_state:
+        - logger.log: "Light State Changed!"
+
 .. _light-effects:
 
 Light Effects
@@ -428,6 +449,10 @@ entries with each having a unique name like so:
               name: "My Fast Random Effect"
               transition_length: 4s
               update_interval: 5s
+
+.. note::
+
+    After setting a light effect, it is possible to reset the in-use effect back to a static light by setting the ``effect`` to ``none`` when it is being called through Home Assistant or directly on the device.
 
 Pulse Effect
 ************
@@ -517,7 +542,7 @@ Configuration variables:
 - **colors** (*Optional*, list): A list of colors to cycle through. Defaults to a quick cycle between ON and OFF.
 
   - **state** (*Optional*, boolean): The on/off state to show. Defaults to ``true``.
-  - **color_mode** (*Optional*, ): The color mode of the light. Defaults to the current color mode.
+  - **color_mode** (*Optional*, string): The color mode of the light. Defaults to the current color mode.
   - **brightness** (*Optional*, percentage): The brightness of the light. Defaults to ``100%``.
   - **color_brightness** (*Optional*, percentage): The brightness of the RGB lights, if applicable. Defaults to ``100%``.
   - **red** (*Optional*, percentage): The red channel of the light, if applicable. Defaults to ``100%``.
@@ -561,6 +586,10 @@ Lambda Effect
 
 This effect allows you to write completely custom light effects yourself using :ref:`lambdas <config-lambda>`.
 
+Available variable in the lambda:
+
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
+
 .. code-block:: yaml
 
     light:
@@ -596,6 +625,7 @@ Configuration variables:
   A value of ``0ms`` means that the lambda is always executed, without a cool-down. Defaults to ``0ms``.
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The code to execute. ``static`` variables are
   especially useful.
+
 
 Addressable Rainbow Effect
 **************************
@@ -689,7 +719,7 @@ Configuration variables:
 - **name** (*Optional*, string): The name of the effect. Defaults to ``Scan``.
 - **move_interval** (*Optional*, :ref:`config-time`): The interval with which to move the dot/line one LED forward.
   Defaults to ``100ms``.
-- **scan_width** (*Optional*, integer): The number of LEDs to use.
+- **scan_width** (*Optional*, int): The number of LEDs to use.
   Defaults to ``1``.
 
 Addressable Twinkle Effect
@@ -774,7 +804,7 @@ Configuration variables:
   LED at any given time step. Defaults to ``10%``.
 - **use_random_color** (*Optional*, boolean): Whether to use random colors for new firework sparks. Defaults to
   using the currently active light color.
-- **fade_out_rate** (*Optional*, integer): The rate with which to fade out the LED strip, unitless. Needs to be carefully
+- **fade_out_rate** (*Optional*, int): The rate with which to fade out the LED strip, unitless. Needs to be carefully
   chosen so that the whole strip doesn't light up forever if the fade out rate is too low or that the firework
   sparks do not propagate for a long time. Defaults to ``120``.
 
@@ -940,7 +970,7 @@ For Example JINX_ or Hyperion.NG_ could be used to control E1.31_ enabled ESPHom
 
 Configuration variables:
 
-- **universe** (**Required**, integer): The value of universe, between 1 to 512.
+- **universe** (**Required**, int): The value of universe, between 1 to 512.
 - **channels** (*Optional*): The type of data. This is used to specify if it is a ``MONO``,
   ``RGB`` or ``RGBW`` light and in which order the colors are. Defaults to ``RGB``.
 
@@ -1032,7 +1062,7 @@ Prismatik_ can be used to control addressable lights over network on ESPHome.
 
 Configuration variables:
 
-- **port** (*Optional*, integer): The port to run the UDP server on. Defaults to ``21324``.
+- **port** (*Optional*, int): The port to run the UDP server on. Defaults to ``21324``.
 
 .. note::
 

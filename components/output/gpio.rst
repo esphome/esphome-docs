@@ -3,7 +3,7 @@ GPIO Output
 
 .. seo::
     :description: Instructions for setting up binary outputs for GPIO pins.
-    :image: pin.png
+    :image: pin.svg
 
 The GPIO output component is quite simple: It exposes a single GPIO pin
 as an output component. Note that output components are **not** switches and
@@ -20,7 +20,7 @@ will not show up in Home Assistant. See :doc:`/components/switch/gpio`.
 Configuration variables:
 ------------------------
 
-- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to use PWM on.
+- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to turn on and off.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - All other options from :ref:`Output <config-output>`.
 

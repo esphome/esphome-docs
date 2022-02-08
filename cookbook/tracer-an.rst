@@ -2,7 +2,7 @@ EPEVER® MPPT Solar Charge Controller Tracer-AN Series
 =====================================================
 .. seo::
     :description: ESPHome configuration for EPEVER® MPPT Solar Charge Controller Tracer-AN Series
-    :image: images/mages/tracer-an.jpg
+    :image: tracer-an.jpg
     :keywords: EPEVER Tracer
 
 .. figure:: images/tracer-an.jpg
@@ -33,7 +33,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       arduino_version: latest
       platformio_options:
         ## larger stack size required with all registers enable_load_test
-        ## reduce registers or wait for integration of 2.0.0 arduinoespressif32 
+        ## reduce registers or wait for integration of 2.0.0 arduinoespressif32
         ## not yet working needs 2.0
         build_flags:
           - -DCONFIG_ARDUINO_LOOP_STACK_SIZE=32768
@@ -134,9 +134,6 @@ Below is the ESPHome configuration file that will get you up and running. This a
     ota:
       password: !secret ota_password
 
-    mqtt:
-      id: mqtt_client
-    
     uart:
       id: mod_bus
       tx_pin: 19
@@ -163,7 +160,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       tracer-real-time: !include tracer-real-time.yaml
       tracer-stats: !include tracer-stats.yaml
       #tracer-settings: !include tracer-settings.yaml
-      
+
     sensor:
       - platform: template
         accuracy_decimals: 0
@@ -305,7 +302,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
 The definitions for most sensors is included using Packages
 
-Rated Datum registers 
+Rated Datum registers
 
 tracer-rated-datum.yaml
 
@@ -624,7 +621,7 @@ tracer-real-time.yaml
 
     Statistic registers
     tracer-stats.yaml
-    
+
     .. code-block:: yaml
 
     sensor:

@@ -3,7 +3,7 @@ Display Component
 
 .. seo::
     :description: Instructions for setting up the display integration.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
@@ -423,12 +423,12 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
   in your display code.
-- **width** (**Required**, integer): The graph width in pixels
-- **height** (**Required**, integer): The graph height in pixels
-- **duration** (**Required**, seconds): The total graph history duration.
-- **border** (*Optional*, boolean): Specifics if a border will be draw around the graph. Default is True.
+- **width** (**Required**, int): The graph width in pixels
+- **height** (**Required**, int): The graph height in pixels
+- **duration** (**Required**, :ref:`config-time`): The total graph history duration.
+- **border** (*Optional*, boolean): Specifies if a border will be drawn around the graph. Default is True.
 - **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
-- **y_grid** (*Optional*, float): Specifics the number of units per division. If not specified, no horizontal grid will be drawn.
+- **y_grid** (*Optional*, float): Specifies the number of units per division. If not specified, no horizontal grid will be drawn.
 - **max_range** (*Optional*): Specifies the maximum Y-axis range.
 - **min_range** (*Optional*): Specifies the minimum Y-axis range.
 - **max_value** (*Optional*): Specifies the maximum Y-axis value.
@@ -436,7 +436,7 @@ Configuration variables:
 - **traces** (*Optional*): Use this to specify more than a single trace.
 
 Trace specific fields:
-- **sensor** (*Optional*, id): The sensor value to plot
+- **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
 - **line_thickness** (*Optional*): Defaults to 3
 - **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
 - **color** (*Optional*): Sets the color of the sensor trace.
@@ -452,7 +452,7 @@ And then later in code:
           - id: page1
             lambda: |-
               // Draw the graph at position [x=10,y=20]
-              it.graph(10, 20, id(simple_temperature_graph));
+              it.graph(10, 20, id(single_temperature_graph));
           - id: page2
             lambda: |-
               // Draw the graph at position [x=10,y=20]
@@ -482,6 +482,42 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
+QR Codes
+********
+
+Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
+
+.. code-block:: yaml
+
+    qr_code:
+      - id: homepage_qr
+        value: esphome.io
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the QR-code later
+  in your display code.
+- **value** (**Required**, string): The string which you want to encode in the QR-code.
+- **ecc** (*Optional*, string): The error correction code level you want to use. Defaults to ``LOW``. You can use one of the following values:
+
+  - ``LOW`` - The QR Code can tolerate about 7% erroneous codewords
+  - ``MEDIUM`` - The QR Code can tolerate about 15% erroneous codewords
+  - ``QUARTILE`` - The QR Code can tolerate about 25% erroneous codewords
+  - ``HIGH`` - The QR Code can tolerate about 30% erroneous codewords
+
+To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
+              it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
+
 Images
 ******
 
@@ -507,6 +543,8 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
+    will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
 
 - **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
@@ -600,10 +638,10 @@ Configuration variables:
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
 
-- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GREYSCALE and BINARY type image.
+- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GRAYSCALE and BINARY type image.
   Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
   and `here <https://en.wikipedia.org/wiki/Dither>`__.
 

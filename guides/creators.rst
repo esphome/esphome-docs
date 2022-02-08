@@ -14,7 +14,7 @@ Example configuration
 
     # These substitutions allow the end user to override certain values
     substitutions:
-      name: "jesses-temperature-monitor"
+      name: "project-template-32"
 
     esphome:
       name: "${name}"
@@ -25,17 +25,25 @@ Example configuration
       # This will allow for (future) project identification,
       # configuration and updates.
       project:
-        name: jesse.temperature_monitor
+        name: esphome.project-template
         version: "1.0"
+
+    # To be able to get logs from the device via serial and api.
+    logger:
+
+    # API is a requirement of the dashboard import.
+    api:
+
+    # OTA is required for Over-the-Air updating
+    ota:
 
     # This should point to the public location of this yaml file.
     dashboard_import:
-      package_import_url: github://jesserockz/dummy-esphome-configs/temperature-monitor.yaml@v6
+      package_import_url: github://esphome/esphome-project-template/project-template-esp32.yaml@v6
 
     wifi:
       # Set up a wifi access point
       ap:
-        ssid: jesses_temperature_monitor
         password: "12345678"
 
     # In combination with the `ap` this allows the user
@@ -47,8 +55,7 @@ Example configuration
     esp32_improv:
       authorizer: none
 
-    logger:
-
+    # Sets up the improv via serial client for Wi-Fi provisioning
     improv_serial:
 
 

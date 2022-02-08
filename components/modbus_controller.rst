@@ -7,10 +7,6 @@ Modbus Controller
 
 The ``modbus_controller`` component creates a RS485 connection to control a modbus device
 
-.. warning::
-
-    If you are using the :doc:`logger` uart logging might interfere especially on esp8266. You can disable the uart logging with the ``baud_rate: 0`` option.
-
 .. figure:: /images/modbus.png
     :align: center
     :width: 25%
@@ -29,21 +25,40 @@ See [How is this RS485 Module Working?](https://electronics.stackexchange.com/qu
 
 The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PIN 17 to RXD are the default ports but any other pins can be used as well . 3.3V to VCC and GND to GND.
 
+.. note::
+
+    If you are using an ESP8266, serial logging may cause problems reading from UART. For best results, hardware serial is recommended. Software serial may not be able to read all received data if other components spend a lot of time in the ``loop()``.
+    
+    For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
+    
+    The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the modbus device and cause errors.
+    
+    Serial logging can be disabled by setting ``baud_rate: 0``.
+    
+    See :doc:`logger` for more details
+
+    .. code-block:: yaml
+
+        logger:
+            level: <level>
+            baud_rate: 0
+
+
 
 Configuration variables:
 ------------------------
 
 - **modbus_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the modbus hub.
 
-- **address** (*Required*, :ref:`config-id`): The modbus address of the device
+- **address** (**Required**, :ref:`config-id`): The modbus address of the device
   Specify the modbus device address of the.
 
 - **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the device. Default is 0ms
   Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
 
 
-Getting started with Home Assistant
------------------------------------
+Example
+-------
 The following code create a modbus_controller hub talking to a modbus device at address 1 with 115200 bps
 
 

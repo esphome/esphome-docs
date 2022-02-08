@@ -3,7 +3,7 @@ ST7789V TFT LCD
 
 .. seo::
     :description: Instructions for setting up ST7789V TFT LCD display drivers.
-    :image: st7789v-full.jpg
+    :image: st7789v.jpg
 
 .. _st7789v:
 
@@ -96,7 +96,7 @@ To bring in color images:
       - file: "image.jpg"
         id: my_image
         resize: 200x200
-        type: RGB565
+        type: RGB24
 
     ...
 

@@ -5,7 +5,7 @@ Automations and Templates
 
 .. seo::
     :description: Getting started guide for automations in ESPHome.
-    :image: auto-fix.png
+    :image: auto-fix.svg
 
 Automations and templates are two very powerful aspects of ESPHome. Automations
 allow you to perform actions under certain conditions and templates are a way to easily
@@ -381,6 +381,7 @@ All Actions
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
+- :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
 - :ref:`number.set <number-set_action>`
 
 .. _config-condition:
@@ -531,9 +532,9 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 Configuration variables:
 
 - **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
-- **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
+- **then** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to true.
   Defaults to doing nothing.
-- **else** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to false.
+- **else** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to false.
   Defaults to doing nothing.
 
 .. _while_action:
@@ -559,7 +560,7 @@ a block until a given condition evaluates to false.
 Configuration variables:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
-- **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform until the condition evaluates to false.
 
 .. _repeat_action:
 
@@ -582,8 +583,8 @@ For example, the automation below will flash the light five times.
 
 Configuration variables:
 
-- **count** (**Required**, integer): The number of times the action should be repeated.
-- **then** (**Required**, :ref:`config-action`): The action to repeat.
+- **count** (**Required**, int): The number of times the action should be repeated.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to repeat.
 
 .. _wait_until_action:
 
@@ -677,9 +678,9 @@ Configuration variables:
     - ``queued``: Start a new run after previous runs complete.
     - ``parallel``: Start a new, independent run in parallel with previous runs.
 
-- **max_runs** (*Optional*, integer): Allows limiting the maxiumun number of runs when using script
+- **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
-- **then** (**Required**, :ref:`config-action`): The action to perform.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
 .. _script-execute_action:
@@ -816,7 +817,7 @@ trigger, but this technique is more light-weight and user-friendly.
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
-- **then** (**Required**, :ref:`config-action`): The action to perform.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
 Timers and timeouts

@@ -5,7 +5,7 @@ UART Bus
 
 .. seo::
     :description: Instructions for setting up a UART serial bus on ESPs
-    :image: uart.png
+    :image: uart.svg
     :keywords: UART, serial bus
 
 UART is a common serial protocol for a lot of devices. For example, when uploading a binary to your ESP
@@ -51,18 +51,14 @@ Configuration variables:
 ------------------------
 
 - **baud_rate** (**Required**, int): The baud rate of the UART bus.
-- **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective.
-- **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective.
+- **tx_pin** (*Optional*, :ref:`config-pin`): The pin to send data to from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
+- **rx_pin** (*Optional*, :ref:`config-pin`): The pin to receive data on from the ESP's perspective. Use the full pin schema and set ``inverted: true`` to invert logic levels.
 - **rx_buffer_size** (*Optional*, int): The size of the buffer used for receiving UART messages. Increase if you use an integration that needs to read big payloads from UART. Defaults to ``256``.
 - **data_bits** (*Optional*, int): The number of data bits used on the UART bus. Options: 5 to 8. Defaults to 8.
 - **parity** (*Optional*): The parity used on the UART bus. Options: ``NONE``, ``EVEN``, ``ODD``. Defaults to ``NONE``.
 - **stop_bits** (*Optional*, int): The number of stop bits to send. Options: 1, 2. Defaults to 1.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this UART hub if you need multiple UART hubs.
 - **debug** (*Optional*, mapping): Options for debugging communication on the UART hub, see :ref:`uart-debugging`.
-
-ESP32 options:
-
-- **invert** (*Optional*, boolean): Invert the logic levels of the RX and TX pins. Options: ``true`` or ``false``. Defaults to ``false``.
 
 .. _uart-hardware_uarts:
 
@@ -128,9 +124,14 @@ of the debugging feature.
         direction: BOTH
         dummy_receiver: false
         after:
-          bytes: 60
+          delimiter: "\n"
         sequence:
-          - lambda: UARTDebug::log_hex(direction, bytes, ':');
+          - lambda: UARTDebug::log_string(direction, bytes);
+
+    # Minimal configuration example, logs hex strings by default
+    uart:
+      baud_rate: 9600
+      debug:
 
 - **direction** (*Optional*, enum): The direction of communication to debug, one of: "RX" (receive, incoming),
   "TX" (send, outgoing) or "BOTH". Defaults to "BOTH".
@@ -142,14 +143,14 @@ of the debugging feature.
 - **after** (*Optional*, mapping): The debugger accumulates bytes of communication. This option defines when
   to trigger publishing the accumulated bytes. The possible options are:
 
-  - **bytes** (*Optional*, int): Trigger after accumulating the specified number of bytes. Defaults to 256.
+  - **bytes** (*Optional*, int): Trigger after accumulating the specified number of bytes. Defaults to 150.
   - **timeout** (*Optional*, :ref:`config-time`): Trigger after no communication has been seen during the
     specified timeout, while one or more bytes have been accumulated. Defaults to 100ms.
-  - **sequence** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
+  - **delimiter** (*Optional*, string or list of bytes): Trigger after the specified sequence of bytes is
     detected in the communication.
 
-- **sequence** (*Required*, :ref:`config-action`): Action(s) to perform for publishing debugging data. The
-  actions can make use of the following variables:
+- **sequence** (*Optional*, :ref:`Action <config-action>`): Action(s) to perform for publishing debugging data.
+  Defaults to an action that logs the bytes in hex format. The actions can make use of the following variables:
 
   - **direction**: ``uart::UART_DIRECTION_RX`` or ``uart::UART_DIRECTION_TX``
   - **bytes**: ``std::vector<uint8_t>`` containing the accumulated bytes

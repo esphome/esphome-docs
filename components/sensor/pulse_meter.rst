@@ -3,7 +3,7 @@ Pulse Meter Sensor
 
 .. seo::
     :description: Instructions for setting up pulse meter sensors.
-    :image: pulse.png
+    :image: pulse.svg
 
 The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement
 for :doc:`integration sensor </components/sensor/pulse_counter>`, but offering better resolution.
@@ -27,7 +27,7 @@ Configuration variables:
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume 0 pulses/sec. Defaults to ``5 min``.
-- **total** (*Optional*, :ref:`Sensor <config-sensor>`): An additional sensor that outputs the total number of pulses counted.
+- **total** (*Optional*, :ref:`config-id`): An additional sensor that outputs the total number of pulses counted.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Converting units

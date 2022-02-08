@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy Beacon
 
 .. seo::
     :description: Instructions for setting up Bluetooth Low Energy iBeacons using the BLE feature on ESP32s.
-    :image: bluetooth.png
+    :image: bluetooth.svg
 
 The ``esp32_ble_beacon`` component creates a Bluetooth Low Energy Beacon with your ESP32 device.
 Beacons are BLE devices that repeatedly just send out a pre-defined packet of data. This packet
@@ -27,10 +27,10 @@ Configuration variables:
 
 Advanced options:
 
-- **major** (*Optional*, integer): The iBeacon major identifier of this beacon. Usually used to
+- **major** (*Optional*, int): The iBeacon major identifier of this beacon. Usually used to
   group beacons, for example for grouping all beacons in the same building, but has no effect if
   the BLE receiver doesn't use it. Defaults to ``10167``.
-- **minor** (*Optional*, integer): The iBeacon minor identifier of this beacon. Usually used to
+- **minor** (*Optional*, int): The iBeacon minor identifier of this beacon. Usually used to
   identify beacons within an iBeacon group. Defaults to ``61958``.
 
 Setting Up

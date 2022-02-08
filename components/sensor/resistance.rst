@@ -3,7 +3,7 @@ Resistance Sensor
 
 .. seo::
     :description: Instructions for setting up resistance sensors in ESPHome
-    :image: omega.png
+    :image: omega.svg
 
 The ``resistance`` platform is a helper sensor that allows you to convert readings
 from a voltage sensor (such as the :doc:`ADC Sensor <adc>`) into resistance readings

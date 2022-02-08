@@ -92,6 +92,7 @@ Configuration variables:
   - ``4.20in-bV2`` (B/W rendering only)
   - ``5.83in``
   - ``7.50in``
+  - ``7.50in-bV2`` (also supports v3, B/W rendering only)
   - ``7.50in-bc`` (display with version sticker '(C)' on the back, B/W rendering only)
   - ``7.50inV2`` (Can't use with an ESP8266 as it runs out of RAM)
 
@@ -107,6 +108,8 @@ Configuration variables:
   because artifacts accumulate. On the ``1.54in``, ``1.54inv2``, ``2.13in``, ``2.90in`` and ``2.90inv2`` models you have the option to switch only
   do a full-redraw every x-th time using this option. Defaults to ``30`` on the described models and a full update for
   all other models.
+- **reset_duration** (*Optional*, :ref:`config-time`): Duration for the display reset operation. Defaults to ``200ms``.
+  Setting this value to ``2ms`` may resolve issues with newer e-Paper Driver modules (e.g. Rev 2.1).
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``, use ``never`` to only manually update the screen via ``component.update``.

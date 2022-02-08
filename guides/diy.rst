@@ -3,7 +3,7 @@ DIY Examples
 
 .. seo::
     :description: Community curated list of DIY creations and custom code for ESPHome.
-    :image: earth.png
+    :image: earth.svg
 
 This is a curated list of awesome creations with ESPHome containing various
 custom components, blog posts, videos and sample configurations. It should serve as a means of
@@ -109,3 +109,6 @@ Sample Configurations
 - `ESPHome WF-DS01 TuyaMCU based dimmable bedside touch lamp <https://github.com/davet2001/miscellaneous/blob/master/tuyamcu_ws-df01_touchlamp.yaml>`__ by :ghuser:`davet2001`
 - `Universal menu system for devices with rotary encoder with push and SSD1306 I2C display <https://github.com/mikosoft83/pithy_screen_menu_system>`__ by :ghuser:`mikosoft83`
 - `Show heart rate sensor values sent over Bluetooth Low Energy on a display <https://github.com/koenvervloesem/ESPHome-Heart-Rate-Display>`__ by :ghuser:`koenvervloesem`
+- `ESPHome floor heating controller (proportional valves) <https://github.com/nliaudat/floor-heating-controller>`__ by :ghuser:`nliaudat`
+- `ESPHome Curtain/Cover/Shutter Switch from a noname Tuya switch <https://github.com/ludrao/esphome-shutterswitch>`__ by :ghuser:`ludrao`
+- `ESPHome Free your Thomson Guardian gate controller <https://github.com/ludrao/esphome-guardian>`__ by :ghuser:`ludrao`

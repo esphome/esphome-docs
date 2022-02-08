@@ -2,8 +2,8 @@ MCP23Sxx I/O Expander
 =====================
 
 .. seo::
-    :description: Instructions for setting up MCP23S08, MCP23S16 or MCP23S17 digital port expander in ESPHome. This is exactly the same API as the MCP23SXX I/O Expander except talks on the SPI bus
-    :image: mcp23Sxx.png
+    :description: Instructions for setting up MCP23S08, MCP23S16 or MCP23S17 digital port expander in ESPHome. This is exactly the same API as the MCP230XX I/O Expander except talks on the SPI bus
+    :image: mcp230xx.svg
 
 The Microchip MCP23Sxx series of general purpose, parallel I/O expansion for SPI bus applications.
 This is exactly the same API as the MCP23SXX I/O Expander except talks on the SPI bus
@@ -62,7 +62,7 @@ Configuration variables:
 - **cs_pin** (**Required**, int): The SPI chip select pin to use
 - **deviceaddress** (*Optional*, int): The address of the chip.
   Defaults to ``0``.
-- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+- **open_drain_interrupt** (*Optional*, boolean): Configure interrupt pins to open-drain mode.
   Useful when the MCP23S08's power supply is greater than 3.3 volts. Note that these pins
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 
@@ -130,7 +130,7 @@ Configuration variables:
 - **cs_pin** (**Required**, int): The SPI chip select pin to use.
 - **deviceaddress** (*Optional*, int): The address of the chip.
   Defaults to ``0``.
-- **open_drain_interrupt** (*Optional*, bool): Configure interrupt pins to open-drain mode.
+- **open_drain_interrupt** (*Optional*, boolean): Configure interrupt pins to open-drain mode.
   Useful when the MCP23S17's power supply is greater than 3.3 volts. Note that these pins
   will require pull-up resistors (to 3.3 volts) when this mode is enabled.
 

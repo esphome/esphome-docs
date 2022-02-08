@@ -3,7 +3,7 @@ Total Daily Energy Sensor
 
 .. seo::
     :description: Instructions for setting up sensors that track the total daily energy usage per day and accumulate the power usage.
-    :image: sigma.png
+    :image: sigma.svg
 
 The ``total_daily_energy`` sensor is a helper sensor that can use the energy value of
 other sensors like the :doc:`HLW8012 <hlw8012>`, :doc:`CSE7766 <cse7766>`, :doc:`ATM90E32 <atm90e32>`, etc and integrate
@@ -38,6 +38,9 @@ Configuration variables:
   to integrate over time.
 - **name** (**Required**, string): The name of the sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **restore** (*Optional*, boolean): Whether to store the intermediate result on the device so
+  that the value can be restored upon power cycle or reboot.
+  Defaults to ``true``.
 - **min_save_interval** (*Optional*, :ref:`config-time`): The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to ``0s``.
 - **method** (*Optional*, string): The method to use for calculating the total daily energy. One of
   ``trapezoid``, ``left`` or ``right``. Defaults to ``right``.

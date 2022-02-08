@@ -43,6 +43,10 @@ Configuration variables:
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
+- **discovery_unique_id_generator** (*Optional*, string): The unique_id generator
+  to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
+  generates unique_id in format ``ESP<component_type><default_object_id>``.
+  ``mac`` generator uses format ``<mac_address>-<component_type>-<fnv1_hash(friendly_name)>``.
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
@@ -60,7 +64,7 @@ Configuration variables:
 - **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
   for more information.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
@@ -262,6 +266,7 @@ MQTT can have some overrides for specific options.
       payload_not_available: offline
     state_topic: livingroom/custom_state_topic
     command_topic: livingroom/custom_command_topic
+    command_retain: false
 
 Configuration variables:
 
@@ -280,6 +285,8 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+-  **command_retain** (*Optional*, boolean): Whether MQTT command messages
+   sent to the device should be retained or not. Default to ``false``.
 
 .. warning::
 
@@ -310,7 +317,7 @@ Configuration variables:
 - **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
   messages on. Every time a message with **this exact topic** is received, the automation will trigger.
 
-- **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+- **qos** (*Optional*, int): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
 
 - **payload** (*Optional*, string): Optionally set a payload to match. Only if exactly the payload
@@ -343,7 +350,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe("the/topic", [=](const std::string &payload) {
+        id(mqtt_client).subscribe("the/topic", [=](const std::string &topic, const std::string &payload) {
             // do something with payload
         });
 
@@ -392,7 +399,7 @@ Configuration variables:
 - **topic** (**Required**, string): The MQTT topic to subscribe to and listen for MQTT
   messages on. Every time a message with **this exact topic** is received, the automation will trigger.
 
-- **qos** (*Optional*, integer): The MQTT Quality of Service to subscribe to the topic with. Defaults
+- **qos** (*Optional*, int): The MQTT Quality of Service to subscribe to the topic with. Defaults
   to 0.
 
 .. note::
@@ -412,7 +419,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).subscribe_json("the/topic", [=](const std::string &topic, JsonObject root) {
             // do something with JSON-decoded value root
         });
 
@@ -514,7 +521,7 @@ Configuration options:
 
     .. code-block:: cpp
 
-        id(mqtt_client).publish_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).publish_json("the/topic", [=](JsonObject root) {
           root["something"] = id(my_sensor).state;
         });
 

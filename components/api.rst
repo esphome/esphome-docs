@@ -3,7 +3,7 @@ Native API Component
 
 .. seo::
     :description: Instructions for setting up the native ESPHome API for communication with Home Assistant.
-    :image: server-network.png
+    :image: server-network.svg
     :keywords: Native API, ESPHome, Home Assistant
 
 The ESPHome native API is used to communicate with clients directly, with a highly-optimized
@@ -28,7 +28,7 @@ A Python library that implements this protocol is `aioesphomeapi <https://github
 Configuration variables:
 ------------------------
 
-- **port** (*Optional*, integer): The port to run the API Server on. Defaults to ``6053``.
+- **port** (*Optional*, int): The port to run the API Server on. Defaults to ``6053``.
 - **password** (*Optional*, string): The password to protect the API Server with. Defaults to no password.
 - **encryption** (*Optional*): Enable transport encryption of the API layer.
 
@@ -63,7 +63,7 @@ Configuration variables:
         </script>
 
 - **services** (*Optional*, list): A list of user-defined services. See :ref:`api-services`.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   client connects to the API. This is needed because sometimes the low level ESP functions report that
   the ESP is connected to the network, when in fact it is not - only a full reboot fixes it.
   Can be disabled by setting this to ``0s``. Defaults to ``15min``.

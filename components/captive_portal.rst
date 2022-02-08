@@ -3,7 +3,7 @@ Captive Portal
 
 .. seo::
     :description: Instructions for setting up the Captive Portal fallback mechanism in ESPHome.
-    :image: wifi-strength-alert-outline.png
+    :image: wifi-strength-alert-outline.svg
 
 The captive portal component in ESPHome is a fallback mechanism for when connecting to the
 configured :doc:`WiFi <wifi>` fails.

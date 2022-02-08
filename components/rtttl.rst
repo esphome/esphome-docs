@@ -3,7 +3,7 @@ Rtttl Buzzer
 
 .. seo::
     :description: Instructions for setting up a buzzer to play tones and rtttl songs with ESPHome.
-    :image: crosshair-gps.png
+    :image: buzzer.jpg
 
 The ``rtttl``, component allows you to easily connect a passive piezo buzzer to your microcontroller
 and play monophonic songs. It accepts the Ring Tone Text Transfer Language, rtttl format (`Wikipedia

@@ -54,7 +54,7 @@ Configuration variables:
   compensation of those effects by setting a temperature offset. Defaults to
   ``4°C``.
 
-- **automatic_self_calibration** (*Optional*, bool): Whether to enable
+- **automatic_self_calibration** (*Optional*, boolean): Whether to enable
   automatic self calibration (ASC). Defaults to ``true``.
 
 - **ambient_pressure_compensation** (*Optional*, int): Enable compensation

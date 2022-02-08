@@ -3,7 +3,7 @@ MCP4725 Output
 
 .. seo::
     :description: Instructions for setting up MCP4725 outputs on the ESP.
-    :image: mcp4725.png
+    :image: mcp4725.jpg
 
 The MCP4725 output component allows to use `12bit external DAC
 <https://learn.sparkfun.com/tutorials/mcp4725-digital-to-analog-converter-hookup-guide/all>`__

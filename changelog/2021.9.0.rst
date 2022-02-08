@@ -24,12 +24,12 @@ If you use the ``web_server`` and rely on the credentials for security, then you
 disable the ``web_server`` completely. The `Security Advisory on GitHub <https://github.com/esphome/esphome/security/advisories/GHSA-48mj-p7x2-5jfm>`__
 has been given ``CVE-2021-41104``.
 
-`Home Assistant Amber <https://home-assistant.io/amber>`__
-----------------------------------------------------------
+`Home Assistant Yellow <https://home-assistant.io/yellow>`__
+------------------------------------------------------------
 
 You get the most out of your ESPHome devices when you combine it with Home Assistant,
 which offers a seamless and local integration to control and manage all your ESPHome devices.
-Today Home Assistant launched a crowdfunding campaign for the `Home Assistant Amber <https://home-assistant.io/amber>`__,
+Today Home Assistant launched a crowdfunding campaign for the `Home Assistant Yellow <https://home-assistant.io/yellow>`__,
 the easiest way to get started with Home Assistant and a privacy focused smart home.
 
 API Encryption
@@ -222,21 +222,18 @@ All changes
 Past Changelogs
 ---------------
 
-.. toctree::
-    :maxdepth: 1
-
-    2021.8.0
-    v1.20.0
-    v1.19.0
-    v1.18.0
-    v1.17.0
-    v1.16.0
-    v1.15.0
-    v1.14.0
-    v1.13.0
-    v1.12.0
-    v1.11.0
-    v1.10.0
-    v1.9.0
-    v1.8.0
-    v1.7.0
+- :doc:`2021.8.0`
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`

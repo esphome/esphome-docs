@@ -43,7 +43,7 @@ Configuration variables:
 - **background_pressed_color** (*Optional*, :ref:`config-color`):  The background color when pressed
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
 - **foreground_pressed_color** (*Optional*, :ref:`config-color`):  The foreground color when pressed
-- **visible** (*Optional*, boolean ):  Visible or not
+- **visible** (*Optional*, boolean):  Visible or not
 - All other options from :ref:`Switch <config-switch>`.
 
 **Only one** *component_name* **or** *variable_name* **can be set**
