@@ -188,6 +188,7 @@ Air Quality
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
+    RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
@@ -296,6 +297,7 @@ Environmental
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
+    RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
