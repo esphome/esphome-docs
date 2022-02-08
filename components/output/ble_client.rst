@@ -25,7 +25,6 @@ For more information on BLE services and characteristics, see
         ble_client_id: itag_black
         service_uuid: "10110000-5354-4F52-5A26-4249434B454C"
         characteristic_uuid: "10110013-5354-4f52-5a26-4249434b454c"
-        require_response: false
 
 Configuration variables:
 ------------------------
@@ -34,8 +33,6 @@ Configuration variables:
 - **service_uuid** (**Required**, UUID): UUID of the service on the device.
 - **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to write to.
 - **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
-- **require_response** (*Optional*, boolean): Control whether to require a remote response from the device when writing. 
-  Whether or not this is required will vary by device. Defaults to ``false``
 - All other options from :ref:`Output <config-output>`.
 
 See Also
