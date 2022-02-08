@@ -80,7 +80,7 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **mcp4728_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
-  :ref:`mcp4728-component`.
+  :ref:`MCP4728 <mcp4728-component>`.
   Use this if you have multiple MCP4728 chains you want to use at the same time.
 - **channel** (**Required**, string): Chose the channel of the MCP4728 chain of
   this output component. One of ``A``, ``B``, ``C`` or ``D``.
