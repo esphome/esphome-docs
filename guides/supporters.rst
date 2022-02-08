@@ -69,6 +69,7 @@ Contributors
 - `arantius (@arantius) <https://github.com/arantius>`__
 - `arunderwood (@arunderwood) <https://github.com/arunderwood>`__
 - `Ash McKenzie (@ashmckenzie) <https://github.com/ashmckenzie>`__
+- `Ashton Kemerling (@AshtonKem) <https://github.com/AshtonKem>`__
 - `Pavel Pletenev (@ASMfreaK) <https://github.com/ASMfreaK>`__
 - `Andreas Soehlke (@asoehlke) <https://github.com/asoehlke>`__
 - `Mike Dunston (@atanisoft) <https://github.com/atanisoft>`__
@@ -257,6 +258,7 @@ Contributors
 - `frippe75 (@frippe75) <https://github.com/frippe75>`__
 - `Fritz Mueller (@fritzm) <https://github.com/fritzm>`__
 - `Marc Egli (@frog32) <https://github.com/frog32>`__
+- `functionpointer (@functionpointer) <https://github.com/functionpointer>`__
 - `mr G1K (@G1K) <https://github.com/G1K>`__
 - `Aljaž Srebrnič (@g5pw) <https://github.com/g5pw>`__
 - `Gabe Cook (@gabe565) <https://github.com/gabe565>`__
@@ -331,6 +333,7 @@ Contributors
 - `Jason2866 (@Jason2866) <https://github.com/Jason2866>`__
 - `Jason Hines (@jasonehines) <https://github.com/jasonehines>`__
 - `Jas Strong (@jasstrong) <https://github.com/jasstrong>`__
+- `Jonas Bergler (@jbergler) <https://github.com/jbergler>`__
 - `JbLb (@jblb) <https://github.com/jblb>`__
 - `James Callaghan (@jcallaghan) <https://github.com/jcallaghan>`__
 - `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
@@ -338,6 +341,7 @@ Contributors
 - `JeeCee1 (@JeeCee1) <https://github.com/JeeCee1>`__
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__
 - `Jeffrey Borg (@jeffborg) <https://github.com/jeffborg>`__
+- `Jeff Eberl (@jeffeb3) <https://github.com/jeffeb3>`__
 - `Jeff Rescignano (@JeffResc) <https://github.com/JeffResc>`__
 - `Jej (@jej) <https://github.com/jej>`__
 - `Jérôme Laban (@jeromelaban) <https://github.com/jeromelaban>`__
@@ -459,6 +463,7 @@ Contributors
 - `Matthew Mazzanti (@matthewmazzanti) <https://github.com/matthewmazzanti>`__
 - `Maurice Schleußinger (@maurice-schleussinger) <https://github.com/maurice-schleussinger>`__
 - `mbo18 (@mbo18) <https://github.com/mbo18>`__
+- `mckaymatthew (@mckaymatthew) <https://github.com/mckaymatthew>`__
 - `Me No Dev (@me-no-dev) <https://github.com/me-no-dev>`__
 - `Alexandr Zarubkin (@me21) <https://github.com/me21>`__
 - `Joseph Mearman (@Mearman) <https://github.com/Mearman>`__
@@ -785,7 +790,6 @@ Contributors
 - `Zebble (@Zebble) <https://github.com/Zebble>`__
 - `ZJY (@zhangjingye03) <https://github.com/zhangjingye03>`__
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
-- `ZTX18 (@ZTX18) <https://github.com/ZTX18>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated February 2, 2022.*
+*This page was last updated February 9, 2022.*
