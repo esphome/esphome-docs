@@ -49,7 +49,7 @@ Configuration variables:
   ``mac`` generator uses format ``<mac_address>-<component_type>-<fnv1_hash(friendly_name)>``.
 - **discovery_object_id_generator** (*Optional*, string): The object_id generator
   to use. Can be one of ``none`` or ``device_name``. Defaults to ``none`` which
-  does not generate unique_id. ``device_name`` generator uses format ``<device_name>_<friendly_name>``.
+  does not generate object_id. ``device_name`` generator uses format ``<device_name>_<friendly_name>``.
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
