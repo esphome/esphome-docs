@@ -1,0 +1,96 @@
+MCP4728 Output
+==============
+
+.. seo::
+    :description: Instructions for setting up MCP4728 outputs on the ESP.
+    :image: mcp4728.jpg
+
+The MCP4728 output component allows to use `12bit external quad DAC
+<https://www.adafruit.com/product/4470>`__
+in order to have analog outputs on any board by using I²C. Devices default address is ``0x60``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+
+    # Set a global I²C connection
+    i2c:
+      sda: 21
+      scl: 22
+      scan: true
+
+    # Set the component with default (address: 0x60 / global I²C)
+    mcp4728:
+      - platform: mcp4728
+        id: dac_output
+
+Configuration variables:
+------------------------
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this output component.
+- **address** (*Optional*, int): Manually specify the I2C address of
+  the DAC. Defaults to ``0x60``.
+- **eeprom** (*Optional*, boolean): Use SEQ_WRITE mode to also write to EEPROM sequentially.
+- All other options from :ref:`Output <config-output>`.
+
+Output
+******
+
+The MCP4728 output component exposes 4 MCP4728 channels of a global
+:ref:`MCP4728-component` as float outputs.
+
+.. code-block:: yaml
+
+    # Individual outputs
+    output:
+    - platform: mcp4728
+      id: ac_dimmer_1
+      mcp4728_id: dac_output
+      channel: A
+      vref: vdd
+      power_down: normal # default
+    - platform: mcp4728
+      id: ac_dimmer_2
+      mcp4728_id: dac_output
+      channel: B
+      vref: vdd
+      power_down: gnd_1k
+    - platform: mcp4728
+      id: ac_dimmer_3
+      mcp4728_id: dac_output
+      channel: C
+      vref: internal
+      gain: X1
+      power_down: normal # default
+    - platform: mcp4728
+      id: ac_dimmer_4
+      mcp4728_id: dac_output
+      channel: D
+      vref: internal
+      gain: X2
+
+    on_...:
+      then:
+        - output.set_level:
+            id: ac_dimmer_1
+            level: 100%
+
+Configuration variables:
+------------------------
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this output component.
+- **mcp4728_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
+  :ref:`mcp4728-component`.
+  Use this if you have multiple MCP4728 chains you want to use at the same time.
+- **channel** (**Required**, string): Chose the channel of the MCP4728 chain of
+  this output component. One of ``A``, ``B``, ``C`` or ``D``.
+- **vref** (**Optional**, string): Chose the VREF source. One of ``vdd`` or ``internal``.
+- **gain** (**Optional**, string): Chose the GAIN multiplier. One of ``X1`` or ``X2``. Only useful when ``vdd=internal``
+- **power_down** (**Optional**, string): Chose the power down mode. One of ``normal``, ``gnd_1k``, ``gnd_100k`` or ``gnd_500k``.
+- All other options from :ref:`Output <config-output>`.
+
+See Also
+--------
+
+- :doc:`/components/output/esp32_dac`
+- :ghedit:`Edit`

@@ -429,6 +429,7 @@ Output Components
     SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
+    MCP4728, components/output/mcp4728, mcp4728.jpg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
