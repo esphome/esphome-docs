@@ -100,8 +100,7 @@ Once your configuration is installed on your ESP device and is online, it will b
 
     <a href="https://my.home-assistant.io/redirect/config_flow_start/?domain=esphome" target="_blank"><img src="https://my.home-assistant.io/badges/config_flow_start.svg" alt="Open your Home Assistant instance and start setting up a new integration." /></a>
 
-Alternatively, you can manually add the device by clicking "CONFIGURE" on the ESPHome integration
-and entering "<NODE_NAME>.local" as the host.
+Alternatively, you can manually add the device on the Home Assistant Integrations page.  Click on the "Add Integration" button (bottom right), search for esphome, and enter the host name, eg: "<NODE_NAME>.local" as the host.  Use the same process to add multiple esphome devices.
 
 .. figure:: /components/switch/images/gpio-ui.png
     :align: center
