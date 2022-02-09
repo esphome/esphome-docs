@@ -107,10 +107,17 @@ Configuration variables:
           port: 80
           js_include: "./v2/www.js"
           js_url: ""
-          version: 2        
+          version: 2
           
         Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
-        Version 2 will support compressed files to minimise flash usage in a release shortly
+        
+        # Example configuration entry V2 - no internet required
+        web_server:
+          port: 80
+          version: 2
+          local: true
+          
+        All of the assets are inlined, compressed and served from flash
 
 See Also
 --------
