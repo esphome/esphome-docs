@@ -142,6 +142,7 @@ Core Components
     Core, components/esphome, cloud-circle.svg
     WiFi, components/wifi, network-wifi.svg
     MQTT, components/mqtt, mqtt.png
+    Network, components/network, network-wifi.svg
 
     I²C Bus, components/i2c, i2c.svg
     SPI Bus, components/spi, spi.svg
@@ -187,6 +188,7 @@ Air Quality
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
+    RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
@@ -261,6 +263,7 @@ Electricity
     INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
     INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
+    MAX9611, components/sensor/max9611, max9611.jpg, +60VDC Voltage & Current & Power & Temperature
     PZEM AC, components/sensor/pzemac, pzem-ac.jpg, Voltage & Current & Power
     PZEM DC, components/sensor/pzemdc, pzem-dc.jpg, Voltage & Current & Power
     PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
@@ -295,6 +298,7 @@ Environmental
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
+    RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
@@ -326,6 +330,7 @@ Magnetic
 
     ESP32 Hall Sensor, components/sensor/esp32_hall, magnet.svg, ESP internal
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg, 3-Axis magnetometer
+    MLX90393, components/sensor/mlx90393, mlx90393.jpg, 3-Axis magnetometer
     QMC5883L, components/sensor/qmc5883l, qmc5883l.jpg, 3-Axis magnetometer
 
 
@@ -401,6 +406,7 @@ Binary Sensor Components
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
     XPT2046, components/binary_sensor/xpt2046, xpt2046.jpg
     CAP1188 Capacitive Touch Sensor, components/binary_sensor/cap1188, cap1188.jpg
+    Touchscreen, components/touchscreen/index, touch.svg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
 Output Components
@@ -483,7 +489,9 @@ Button Components
 
     Button Core, components/button/index, folder-open.svg
     Template Button, components/button/template, description.svg
+    Generic Output Button, components/button/output, upload.svg
     Restart Button, components/button/restart, restart.svg
+    Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
 --------------
@@ -521,6 +529,15 @@ Display Components
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
+
+Touchscreen Components
+----------------------
+
+.. imgtable::
+
+    Touchscreen Core, components/touchscreen/index, folder-open.svg
+    EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
+    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.png
 
 Cover Components
 ----------------
@@ -585,6 +602,16 @@ Select Components
 
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
+    Modbus Select, components/select/modbus_controller, modbus.png
+
+Lock Components
+-----------------
+
+.. imgtable::
+
+    Lock Core, components/lock/index, folder-open.svg
+    Generic Output Lock, components/lock/output, upload.svg
+    Template Lock, components/lock/template, description.svg
 
 Misc Components
 ---------------
