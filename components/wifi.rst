@@ -26,6 +26,13 @@ dramatically improve connection times.
         gateway: 10.0.0.1
         subnet: 255.255.255.0
 
+.. code-block:: yaml
+
+    # It is highly recommended to use secrets
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+
 .. _wifi-configuration_variables:
 
 Configuration variables:
