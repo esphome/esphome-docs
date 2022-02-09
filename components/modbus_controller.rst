@@ -371,8 +371,6 @@ Then battery charge settings are sent.
               controller->queue_command(set_battery2_command);
               ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
 
-
-
     uart:
       id: mod_bus
       tx_pin: 19
