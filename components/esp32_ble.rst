@@ -23,7 +23,7 @@ Advertisement
 ``esp32_ble`` handles Bluetooth LE Advertisement configuration, that is used to let nearby devices know about the
 instance. Besides basic things like the device name and MAC address, this message can hold up to 31 byte of arbitrary
 payload. This portion of advertisement message is called manufacturer data, and used in ultra-low energy setups for
-istributing low quantities of information without need to establish a connection.
+distributing low quantities of information without need to establish a connection.
 
 By default this section is empty but can be set via ``esp32_ble`` API:
 
