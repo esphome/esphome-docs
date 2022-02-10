@@ -20,7 +20,8 @@ managed to build a fully working esphome configuration. This assumes you have a 
 
     esphome:
       name: wifi_smart_fish_feeder
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:

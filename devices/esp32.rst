@@ -16,7 +16,8 @@ asks you for the board type.
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP32
+
+    esp32:
       board: <BOARD_TYPE>
 
 .. note::
@@ -43,7 +44,8 @@ Some notes about the pins on the ESP32:
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP32
+
+    esp32:
       board: <BOARD_TYPE>
 
     binary_sensor:
