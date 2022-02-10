@@ -485,6 +485,43 @@ Configuration example:
         illuminance:
           name: "CGPR1 Illuminance"
 
+RTCGQ02LM - Mi Motion Sensor 2
+******************************
+
+Motion & ambient light sensor. Broadcasts motion detection, light/dark and battery status. Also has a button that broadcasts when pressed.
+Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
+
+.. figure:: images/xiaomi_rtcgq02lm.png
+    :align: center
+    :width: 30.0%
+
+Configuration example:
+
+.. code-block:: yaml
+
+    xiaomi_rtcgq02lm:
+      - id: motion_one
+        mac_address: 01:23:45:67:89:AB
+        bindkey: fe39106baeedb7c801e3d63c4396f97e
+
+    binary_sensor:
+      - platform: xiaomi_rtcgq02lm
+        id: motion_one
+        motion:
+          name: "Mi Motion"
+        light:
+          name: "Mi Motion Sensor Light"
+        button:
+          name: "Mi Motion Sensor Button"
+
+    sensor:
+      - platform: xiaomi_rtcgq02lm
+        id: motion_one
+        battery_level:
+          name: "Mi Motion Sensor Battery Level"
+
+
+
 Setting Up Devices
 ------------------
 
