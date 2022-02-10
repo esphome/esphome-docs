@@ -32,7 +32,7 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **address** (*Optional*, int): Manually specify the I2C address of
   the DAC. Defaults to ``0x60``.
-- **eeprom** (*Optional*, boolean): Use SEQ_WRITE mode to also write to EEPROM sequentially.
+- **store_in_eeprom** (*Optional*, boolean): Use SEQ_WRITE mode to also write to EEPROM sequentially.
 
 Output
 ******
