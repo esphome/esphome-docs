@@ -42,7 +42,7 @@ Possible return values for the lambda:
 
  - ``return <true / false>;`` the new value for the sensor.
  - ``return <anything>; and fill payload with data`` if the payload is added from the lambda then these bytes will be sent.
- - *No return value* in the case the lambda handles the sending of the value itself.
+ - ``return {};`` in the case the lambda handles the sending of the value itself.
 
 **Example**
 
