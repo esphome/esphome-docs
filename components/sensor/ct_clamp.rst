@@ -38,7 +38,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **sensor** (**Required**, :ref:`config-id`): The source sensor to measure voltage values from.
 - **sample_duration** (*Optional*, :ref:`config-time`): The time duration to sample the current clamp
-  with. Higher values can increase accuracy. Defaults to ``200ms`` which would be 10 whole cycles on a 50Hz system.
+  with. Higher values can increase accuracy. Gathered data are then root mean squared (RMS). Defaults to ``200ms`` which would be 10 whole cycles on a 50Hz system.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
