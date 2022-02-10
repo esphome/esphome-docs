@@ -23,7 +23,7 @@ Logging+WiFi+OTA are initialized, so that you can upload a new binary.
     # Example configuration entry
     ota:
       safe_mode: true
-      password: VERYSECURE
+      password: !secret ota_password
 
 Configuration variables:
 ------------------------

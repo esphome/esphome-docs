@@ -54,8 +54,6 @@ Then you need to set it up with yaml.
 
     esphome:
       name: ifan02
-      platform: ESP8266
-      board: esp8285
       includes:
         - ifan02.h
       on_boot:
@@ -64,9 +62,12 @@ Then you need to set it up with yaml.
         then:
           - light.turn_off: ifan02_light
 
+    esp8266:
+      board: esp8285
+
     wifi:
-      ssid: <YOUR_SSID>
-      password: <YOUR_PASSWORD>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 

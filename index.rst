@@ -40,7 +40,7 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <pre class="guide-code">
                 esphome:
                 &nbsp;&nbsp;name: awesome
-                &nbsp;&nbsp;platform: ESP32
+                esp32:
                 &nbsp;&nbsp;board: nodemcu-32s
             </pre>
         </div>

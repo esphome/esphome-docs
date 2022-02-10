@@ -28,13 +28,13 @@ The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PI
 .. note::
 
     If you are using an ESP8266, serial logging may cause problems reading from UART. For best results, hardware serial is recommended. Software serial may not be able to read all received data if other components spend a lot of time in the ``loop()``.
-    
+
     For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
-    
+
     The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the modbus device and cause errors.
-    
+
     Serial logging can be disabled by setting ``baud_rate: 0``.
-    
+
     See :doc:`logger` for more details
 
     .. code-block:: yaml
@@ -66,26 +66,6 @@ Modbus sensors can be directly defined (inline) under the modbus_controller hub 
 Technically there is no difference between the "inline" and the standard definitions approach.
 
 .. code-block:: yaml
-
-    esphome:
-      name: solarstation
-      platform: ESP32
-      board: esp32dev
-
-    substitutions:
-      updates: 30s
-
-    wifi:
-      ssid: !secret wifi_sid
-      password: !secret wifi_password
-      reboot_timeout: 2min
-
-    logger:
-      level: INFO
-      baud_rate: 0
-
-    api:
-      password: !secret api_password
 
     uart:
       id: mod_bus
@@ -324,12 +304,6 @@ Then battery charge settings are sent.
 .. code-block:: yaml
 
     esphome:
-      name: solarstation-test
-      platform: ESP32
-      board: esp32dev
-
-      ## send config values at startup
-      ## configure rtc clock and battery charge settings
       on_boot:
         ## configure controller settings at setup
         ## make sure priority is lower than setup_priority of modbus_controller

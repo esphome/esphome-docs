@@ -128,14 +128,19 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 
 .. code-block:: yaml
 
-    esphome:
+    substitutions:
       name: brilliant_smart_plug
-      platform: ESP8266
+      friendly_name: Brilliant Smart Plug
+
+    esphome:
+      name: ${name}
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -151,12 +156,9 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
             input: true
             pullup: true
           inverted: true
-        name: "Power Button"
+        name: "${friendly_name} Power Button"
         on_press:
           - switch.toggle: relay
-
-      - platform: status
-        name: "Status"
 
     switch:
       - platform: gpio
@@ -166,7 +168,7 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
           inverted: true
 
       - platform: gpio
-        name: "Brilliant Smart Plug"
+        name: "${friendly_name}"
         pin: GPIO5
         id: relay
 
@@ -185,14 +187,19 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 
 .. code-block:: yaml
 
-    esphome:
+    substitutions:
       name: mirabella_genio_smart_plug
-      platform: ESP8266
+      friendly_name: Mirabella Genio Smart Plug
+
+    esphome:
+      name: ${name}
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -208,11 +215,9 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
             input: true
             pullup: true
           inverted: true
-        name: "Power Button"
+        name: "${friendly_name} Button"
         on_press:
           - switch.toggle: relay
-      - platform: status
-        name: Status
 
     switch:
       - platform: gpio
@@ -222,7 +227,7 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
           inverted: true
 
       - platform: gpio
-        name: "Mirabella Genio Smart Plug"
+        name: "${friendly_name}"
         pin: GPIO12
         id: relay
 
@@ -239,14 +244,19 @@ which these adaptions created by `@cryptelli <https://community.home-assistant.i
 
 .. code-block:: yaml
 
+    substitutions:
+      name: gosund_sp1_smart_plug
+      friendly_name: Gosund SP1
+
     esphome:
       name: gosund_sp1_smart_plug
-      platform: ESP8266
+
+    esp8266:
       board: esp8285
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -306,14 +316,19 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
 
 .. code-block:: yaml
 
-    esphome:
+    substitutions:
       name: topersun_smart_plug
-      platform: ESP8266
+      friendly_name: Topersun Smart Plug
+
+    esphome:
+      name: ${name}
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -329,12 +344,9 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
             input: true
             pullup: true
           inverted: true
-        name: "Power Button"
+        name: "${friendly_name} Power Button"
         on_press:
           - switch.toggle: relay
-
-      - platform: status
-        name: "Status"
 
     switch:
       - platform: gpio
@@ -344,7 +356,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
           inverted: true
 
       - platform: gpio
-        name: "Brilliant Smart Plug"
+        name: "friendly_name Relay"
         pin: GPIO12
         id: relay
 
@@ -362,20 +374,22 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
 .. code-block:: yaml
 
     substitutions:
-      plug_name: coolcam_plug1
+      name: coolcam_plug1
+      friendly_name: Coolcam Smart Plug
       # Higher value gives lower watt readout
       current_res: "0.00221"
       # Lower value gives lower voltage readout
       voltage_div: "800"
 
     esphome:
-      name: ${plug_name}
-      platform: ESP8266
+      name: ${name}
+
+    esp8266:
       board: esp8285
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -388,20 +402,20 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
         pin:
           number: GPIO0
           inverted: true
-        name: "${plug_name}_button"
+        name: "${friendly_name} Button"
         on_press:
           - switch.toggle: relay
 
     switch:
       - platform: gpio
-        name: "${plug_name}_LED_Red"
+        name: "${friendly_name} LED Red"
         pin: GPIO13
         inverted: true
         restore_mode: ALWAYS_OFF
         id: red_led
 
       - platform: gpio
-        name: "${plug_name}_Relay"
+        name: "${friendly_name} Relay"
         pin: GPIO14
         restore_mode: ALWAYS_ON
         id: relay
@@ -422,28 +436,26 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
         current_resistor: ${current_res}
         voltage_divider: ${voltage_div}
         current:
-          name: "${plug_name}_Amperage"
+          name: "${friendly_name} Amperage"
           unit_of_measurement: A
         voltage:
-          name: "${plug_name}_Voltage"
+          name: "${friendly_name} Voltage"
           unit_of_measurement: V
         power:
-          name: "${plug_name}_Wattage"
+          name: "${friendly_name} Power"
           unit_of_measurement: W
-          id: "${plug_name}_Wattage"
+          id: power_sensor
         change_mode_every: 8
         update_interval: 10s
+
       - platform: total_daily_energy
-        name: "${plug_name}_Total Daily Energy"
-        power_id: "${plug_name}_Wattage"
+        name: "${friendly_name} Total Daily Energy"
+        power_id: power_sensor
         filters:
             # Multiplication factor from W to kW is 0.001
             - multiply: 0.001
         unit_of_measurement: kWh
 
-    # Extra sensor to keep track of plug uptime
-      - platform: uptime
-        name: ${plug_name}_Uptime SensorPreformatted text
 
 3.6 Arlec Grid Connect Smart Plug In Socket With 2.1A USB Charger
 *****************************************************************
@@ -451,20 +463,21 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
 .. code-block:: yaml
 
     substitutions:
-      item_name: "arlec_pc389ha_001"
+      name: arlec_pc389ha_001
+      friendly_name: Arlec Smart Plug
 
     esphome:
-      name: ${item_name}
-      platform: ESP8266
+      name: ${name}
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
       # Enable fallback hotspot (captive portal) in case wifi connection fails
-      ap:
-        ssid: ${item_name}
+      ap: {}
 
     captive_portal:
 
@@ -484,12 +497,9 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
             input: true
             pullup: true
           inverted: true
-        name: "${item_name}_button"
+        name: "${friendly_name} Button"
         on_press:
           - switch.toggle: relay
-
-      - platform: status
-        name: "${item_name}_status"
 
     switch:
       - platform: gpio
@@ -505,7 +515,7 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
           inverted: true
 
       - platform: gpio
-        name: "${item_name}_power"
+        name: "${friendly_name} Power"
         pin: GPIO12
         id: relay
         on_turn_on:
@@ -516,11 +526,6 @@ Check the following page for calibrating the measurements: :ref:`sensor-filter-c
           # Turns on the blue LED once the plug is turned off
           - switch.turn_off: blue_led
           - switch.turn_on: red_led
-
-    sensor:
-      - platform: wifi_signal
-        name: "${item_name}_wifi_signal"
-        update_interval: 60s
 
 
 4. Adding to Home Assistant
