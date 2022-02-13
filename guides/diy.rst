@@ -3,7 +3,7 @@ DIY Examples
 
 .. seo::
     :description: Community curated list of DIY creations and custom code for ESPHome.
-    :image: earth.png
+    :image: earth.svg
 
 This is a curated list of awesome creations with ESPHome containing various
 custom components, blog posts, videos and sample configurations. It should serve as a means of
@@ -32,6 +32,7 @@ Blog Posts & Videos
 - `Count Water Bottles <https://vigonotion.com/blog/monitor-remainding-water-bottles/>`__ by `vigonotion <https://vigonotion.com>`__
 - `ESPHome Weather Station with Nextion display <https://github.com/bruxy70/Home-Assistant-ESPHome-Weather-Station>`__ by :ghuser:`bruxy70`
 - `ESPHome Wall Mount with Nextion Display <https://github.com/Andoramb/Nextion-wall-mount>`__ by :ghuser:`Andoramb` (`video <https://www.youtube.com/watch?v=TL8wZNnS4jI>`__)
+- `ESPHome 12v Fan Controller with PID Climate <https://github.com/patrickcollins12/esphome-fan-controller>`__ by :ghuser:`patrickcollins12`
 - `Sonoff 4CH Irrigation Controller with Nextion Display <https://github.com/bruxy70/Irrigation-with-display>`__ by :ghuser:`bruxy70`
 - `Automated Bathroom Ventilation <https://www.youtube.com/watch?v=weBDnmrQYOs>`__ by `Intermittent Technology <https://intermit.tech>`__
 - `ESPHome MP3 Sound Machine <https://selfhostedhome.com/esp8266-mp3-sound-machine/>`__ by `Self Hosted Home <https://selfhostedhome.com>`__
@@ -49,6 +50,7 @@ Blog Posts & Videos
 - `Office Doorbell <https://github.com/shish/esphome-projects/blob/master/office-doorbell.md>`__ by :ghuser:`shish`
 - `Display TM1637 with ESPHome and MQTT showing Youtube subscribers count and other info <https://youtu.be/27JZEky0h1Q>`__ by :ghuser:`electrofun-smart`
 - `Automate your garage door with ESP8266 lysignal Yunshan 7v-30v <https://www.haade.fr/en/blog/home-automation-smarthome-jeedom-homeassistant/tutos-haade-lab/domotiser-sa-porte-de-garage-pour-5e/>`__ by :ghuser:`haade-administrator`
+- `Embedded controller for Audioengine A5+ <https://github.com/chatziko/audioengine-a5-controller/>`__ by :ghuser:`chatziko`
 
 Custom Components & Code
 ------------------------
@@ -108,3 +110,6 @@ Sample Configurations
 - `ESPHome WF-DS01 TuyaMCU based dimmable bedside touch lamp <https://github.com/davet2001/miscellaneous/blob/master/tuyamcu_ws-df01_touchlamp.yaml>`__ by :ghuser:`davet2001`
 - `Universal menu system for devices with rotary encoder with push and SSD1306 I2C display <https://github.com/mikosoft83/pithy_screen_menu_system>`__ by :ghuser:`mikosoft83`
 - `Show heart rate sensor values sent over Bluetooth Low Energy on a display <https://github.com/koenvervloesem/ESPHome-Heart-Rate-Display>`__ by :ghuser:`koenvervloesem`
+- `ESPHome floor heating controller (proportional valves) <https://github.com/nliaudat/floor-heating-controller>`__ by :ghuser:`nliaudat`
+- `ESPHome Curtain/Cover/Shutter Switch from a noname Tuya switch <https://github.com/ludrao/esphome-shutterswitch>`__ by :ghuser:`ludrao`
+- `ESPHome Free your Thomson Guardian gate controller <https://github.com/ludrao/esphome-guardian>`__ by :ghuser:`ludrao`

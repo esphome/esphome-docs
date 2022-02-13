@@ -3,7 +3,7 @@ PMSA003I Particulate Matter Sensor
 
 .. seo::
     :description: Instructions for setting up PMSX003 Particulate matter sensors
-    :image: images/pmsa003i-full.jpg
+    :image: pmsa003i-full.jpg
 
 The ``pmsa003i`` sensor platform  allows you to use your Plantower PMSA003I
 particulate matter sensor
@@ -63,7 +63,7 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **pmc_10_0** (*Optional*): Count of particles with diameter > 10 um in 0.1 L of air (#/0.1L).
   All options from :ref:`Sensor <config-sensor>`.
-- **standard_units** (*Optional*, bool): ``True`` to use standard units or ``False`` to use  environmental units. Defaults to ``True``.
+- **standard_units** (*Optional*, boolean): ``True`` to use standard units or ``False`` to use  environmental units. Defaults to ``True``.
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x12``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the

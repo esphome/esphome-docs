@@ -3,7 +3,7 @@ Peacefair PZEM-00X DC Energy Monitor
 
 .. seo::
     :description: Instructions for setting up DC PZEM power monitors.
-    :image: pzemdc.png
+    :image: pzem-dc.jpg
 
 .. note::
 

@@ -3,7 +3,7 @@ Display Component
 
 .. seo::
     :description: Instructions for setting up the display integration.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
@@ -35,7 +35,9 @@ individually.
 
 So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
 option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
-In there, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
+In each cycle, the display is automatically cleared before the lambda is executed. You can disable
+this behavior by setting ``auto_clear_enabled: false``.
+In the lambda, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
 .. code-block:: yaml
@@ -177,7 +179,7 @@ Configuration variables:
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 
 
 .. note::
@@ -305,7 +307,7 @@ To display a text string from a ``text_sensor``, append ``.c_str()`` to the end 
         # ...
         lambda: |-
           it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
-          
+
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to
@@ -369,6 +371,116 @@ Configuration variables:
 - **white** (*Optional*, percentage): The percentage of the white component. Defaults to ``100%``.
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
+
+.. _display-graphs:
+
+Graphs
+******
+
+You can display a graph of a sensor value(s) using this component. Examples:
+
+.. figure:: images/graph_screen.png
+    :align: center
+    :width: 60.0%
+
+.. figure:: images/graph_dualtrace.png
+    :align: center
+    :width: 60.0%
+
+Graph component with options for grids, border and line-types.
+
+.. code-block:: yaml
+
+    graph:
+      # Show bare-minimum auto-ranged graph
+      - id: single_temperature_graph
+        sensor: my_temperature
+        duration: 1h
+        width: 151
+        height: 51
+      # Show multi-trace graph
+      - id: multi_temperature_graph
+        duration: 1h
+        x_grid: 10min
+        y_grid: 1.0     # degC/div
+        width: 151
+        height: 51
+        traces:
+          - sensor: my_inside_temperature
+            line_type: DASHED
+            line_thickness: 2
+            color: my_red
+          - sensor: my_outside_temperature
+            line_type: SOLID
+            line_thickness: 3
+            color: my_blue
+          - sensor: my_beer_temperature
+            line_type: DOTTED
+            line_thickness: 2
+            color: my_green
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
+  in your display code.
+- **width** (**Required**, int): The graph width in pixels
+- **height** (**Required**, int): The graph height in pixels
+- **duration** (**Required**, :ref:`config-time`): The total graph history duration.
+- **border** (*Optional*, boolean): Specifies if a border will be drawn around the graph. Default is True.
+- **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
+- **y_grid** (*Optional*, float): Specifies the number of units per division. If not specified, no horizontal grid will be drawn.
+- **max_range** (*Optional*): Specifies the maximum Y-axis range.
+- **min_range** (*Optional*): Specifies the minimum Y-axis range.
+- **max_value** (*Optional*): Specifies the maximum Y-axis value.
+- **min_value** (*Optional*): Specifies the minimum Y-axis value.
+- **traces** (*Optional*): Use this to specify more than a single trace.
+
+Trace specific fields:
+- **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
+- **line_thickness** (*Optional*): Defaults to 3
+- **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **color** (*Optional*): Sets the color of the sensor trace.
+
+And then later in code:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(single_temperature_graph));
+          - id: page2
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(multi_temperature_graph), my_yellow);
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 0%
+        blue: 0%
+      - id: my_green
+        red: 0%
+        green: 100%
+        blue: 0%
+      - id: my_blue
+        red: 0%
+        green: 0%
+        blue: 100%
+      - id: my_yellow
+        red: 100%
+        green: 100%
+        blue: 0%
+.. note::
+
+    Here are some things to note:
+    - Setting ``y_grid`` will expand any specified range to the nearest multiple of grid spacings.
+    - Axis labels are currently not possible without manually placing them.
+    - The grid and border color is set with it.graph(), while the traces are defined separately.
 
 Images
 ******
@@ -488,10 +600,10 @@ Configuration variables:
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
 
-- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GREYSCALE and BINARY type image.
+- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GRAYSCALE and BINARY type image.
   Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
   and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
@@ -609,7 +721,7 @@ You can then switch between these with three different actions:
 - **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
 
 Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
-              
+
 See Also
 --------
 

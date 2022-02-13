@@ -1,12 +1,14 @@
-Inkplate 6
-==========
+Inkplate 6 and Inkplate 10
+==========================
 
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
     :image: inkplate6.jpg
 
-All-in-one e-paper display  ``Inkplate 6``
-Inkplate 6 is a powerful, Wi-Fi enabled ESP32 based six-inch e-paper display – recycled from a Kindle e-reader. Its main feature is simplicity.
+All-in-one e-paper display  ``Inkplate 6`` and ``Inkplate 10``.
+
+The Inkplate 6 and Inkplate 10 are powerful, Wi-Fi enabled ESP32 based six-inch e-paper displays – recycled from a Kindle e-reader. Its main feature is simplicity.
+
 Learn more at `Inkplate's website <https://inkplate.io/>`__
 
 .. figure:: images/inkplate6.jpg
@@ -30,6 +32,7 @@ Learn more at `Inkplate's website <https://inkplate.io/>`__
       greyscale: false
       partial_updating: false
       update_interval: 60s
+      model: inkplate_6
 
       ckv_pin: 32
       sph_pin: 33
@@ -70,6 +73,7 @@ Configuration variables:
 ************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **model** (*Optional*, enum): Specify the model ``inkplate_6`` or ``inkplate_10``. Defaults to ``inkplate_6``.
 - **greyscale** (*Optional*, boolean): Makes the screen display 3 bit colors. Defaults to ``false``
 - **partial_updating** (*Optional*, boolean): Makes the screen update partially, which is faster, but leaves burnin. Defaults to ``false``
 - **full_update_every** (*Optional*, int): When partial updating is enabled, forces a full screen update after chosen number of updates. Defaults to ``10``
@@ -120,17 +124,16 @@ Wi-Fi, API, and OTA configuration.
     # Example configuration entry
     esphome:
       name: inkplate
-      platform: ESP32
+
+    esp32:
       board: esp-wrover-kit
 
     logger:
 
     wifi:
-      ssid: <YOUR WIFI SSID>
-      password: <YOUR WIFI PASSWORD>
-      ap:
-        ssid: Inkplate-AP
-        password: '12345678'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      ap: {}
 
     captive_portal:
 

@@ -3,7 +3,7 @@ SGP30 CO₂ and Volatile Organic Compound Sensor
 
 .. seo::
     :description: Instructions for setting up SGP30 CO₂eq and Volatile Organic Compound sensor
-    :image: sgp30.png
+    :image: sgp30.jpg
 
 The ``sgp30`` sensor platform allows you to use your Sensirion SGP30 multi-pixel gas
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Datasheets/Sensirion_Gas_Sensors_SGP30_Datasheet.pdf>`__) sensors or the SVM30 breakout-boards  (`product page <https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/>`__) with ESPHome.

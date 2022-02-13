@@ -3,7 +3,7 @@ Tuya Climate
 
 .. seo::
     :description: Instructions for setting up a Tuya climate device.
-    :image: air-conditioner.png
+    :image: air-conditioner.svg
 
 The ``tuya`` climate platform creates a climate device from a tuya component.
 
@@ -27,7 +27,7 @@ On this controller, the data points are:
 - 3 represents the target temperature.
 - 4 represents the current temperature.
 - 5 represents the timer but is not yet available to be used in ESPHome.
-- 7 represents the eco mode switch. (use the :doc:`/components/switch/tuya` component to control this)
+- 7 represents the eco mode switch.
 
 Based on this, you can create the climate device as follows:
 
@@ -39,6 +39,8 @@ Based on this, you can create the climate device as follows:
         switch_datapoint: 1
         target_temperature_datapoint: 3
         current_temperature_datapoint: 4
+        eco_datapoint: 7
+        eco_temperature: 20 °C
 
 Configuration variables:
 ------------------------
@@ -56,6 +58,8 @@ Configuration variables:
 - **target_temperature_datapoint** (**Required**, int): The datapoint id number of the target temperature.
 - **current_temperature_datapoint** (**Required**, int): The datapoint id number of the current temperature.
 - **temperature_multiplier** (*Optional*, float): A multiplier to modify the incoming and outgoing temperature values - :ref:`see below <temperature-multiplier>`.
+- **eco_datapoint** (*Optional*, int): The datapoint id number of the eco mode state.
+- **eco_temperature** (*Optional*, float): The target temperature the controller uses while the eco mode is active.
 
 If the device has different multipliers for current and target temperatures, **temperature_multiplier** can be replaced with both of:
 

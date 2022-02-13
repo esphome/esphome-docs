@@ -3,7 +3,7 @@ Fan Component
 
 .. seo::
     :description: Instructions for setting up the base fan component.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 With the ``fan`` domain you can create components that appear as fans in
 the Home Assistant frontend. A fan can be switched ON or OFF, optionally
@@ -29,12 +29,17 @@ Base Fan Configuration
 Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
+- **icon** (*Optional*, icon): Manually set the icon to use for the fan in the frontend.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 MQTT options:
 
@@ -42,10 +47,14 @@ MQTT options:
   publish fan oscillation state changes to.
 - **oscillation_command_topic** (*Optional*, string): The topic to
   receive oscillation commands on.
+- **speed_level_state_topic** (*Optional*, int): The topic to publish
+  numeric fan speed state changes to (range: 0 to speed count).
+- **speed_level_command_topic** (*Optional*, int): The topic to receive
+  numeric speed commands on (range: 0 to speed count).
 - **speed_state_topic** (*Optional*, string): The topic to publish fan
-  speed state changes to.
+  speed state changes to (options: LOW, MEDIUM, HIGH).
 - **speed_command_topic** (*Optional*, string): The topic to receive
-  speed commands on.
+  speed commands on (options: LOW, MEDIUM, HIGH).
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Automation triggers:
@@ -108,6 +117,20 @@ Configuration options:
   Set the speed level of the fan. Can be a number between 1 and the maximum speed level of the fan.
 - **direction** (*Optional*, string, :ref:`templatable <config-templatable>`):
   Set the diretion of the fan. Can be either ``forward`` or ``reverse``. Defaults to not changing the direction.
+
+.. _fan-cycle_speed_action:
+
+``fan.cycle_speed`` Action
+--------------------------
+
+Increments through speed levels of the fan with the given ID when executed. If the fan's speed level is set to maximum when executed, turns fan off.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - fan.cycle_speed: fan_1
+
 
 .. _fan-is_on_condition:
 .. _fan-is_off_condition:

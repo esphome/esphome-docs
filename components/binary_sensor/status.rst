@@ -3,7 +3,7 @@ Status Binary Sensor
 
 .. seo::
     :description: Instructions for setting up MQTT status binary sensors.
-    :image: server-network.png
+    :image: server-network.svg
 
 The Status Binary Sensor exposes the node state (if it’s connected to via MQTT/native API)
 for Home Assistant.

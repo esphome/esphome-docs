@@ -10,6 +10,7 @@ The TCA9548A component allows you to use TCA9548A as a I²C multiplexer
 `AdaFruit`_) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
 
 Once configured, you can use any of the 8 channels (TCA9548A) as separated channels for your projects.
+Every Channel acts for all connected components as a virtual I²C Bus.
 
 
 .. figure:: images/tca9548a.jpg
@@ -27,15 +28,16 @@ Once configured, you can use any of the 8 channels (TCA9548A) as separated chann
       - address: 0x70
         id: multiplex0
         i2c_id: i2c0
-        scan: true
+        channels: 
+          - bus_id: multiplex0channel0
+            channel: 0
+          - bus_id: multiplex0channel1
+            channel: 1
 
     # Individual I2C Devices
     sensor:
       - platform: bmp280
-        multiplexer:
-          id: multiplex0
-          channel: 0
-          ...
+        i2c_id: multiplex0channel1
 
 Configuration variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,8 +46,11 @@ Configuration variables:
 - **address** (*Optional*, int): The I²C address of the Multiplexer.
   Defaults to ``0x70``.
 - **i2c_id** (*Optional*): The I²C Bus ID
-- **scan** (*Optional*, bool): if the channel should be scanned 
   Defaults to ``false`` 
+- **channels** (*Optional*): The I²C Bus Channels
+
+  - **bus_id** (**Required**, :ref:`config-id`): The id to use for this virtual I2C Bus.
+  - **channel** (**Required**): The channel (0-7) to use for this virtual I2C Bus.
 
 See Also
 --------

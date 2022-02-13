@@ -3,7 +3,7 @@ Grow Fingerprint Reader
 
 .. seo::
     :description: Instructions for setting up Grow Fingerprint Reader integration in ESPHome.
-    :image: fingerprint.png
+    :image: fingerprint.svg
 
 The ``fingerprint_grow`` component allows you to use your R307, R503, ZFM-20, ... fingerprint sensors with ESPHome.
 
@@ -39,61 +39,16 @@ If available on your reader model, it's recommended to connect 3.3VT (touch indu
     fingerprint_grow:
       sensing_pin: GPIO12
       on_finger_scan_matched:
-        - text_sensor.template.publish:
-            id: fingerprint_state
-            state: "Authorized finger"
-        - switch.turn_on: gate
-        - delay: 500ms
-        - switch.turn_off: gate
+        ...
       on_finger_scan_unmatched:
-        - text_sensor.template.publish:
-            id: fingerprint_state
-            state: "Unauthorized finger"
+        ...
       on_enrollment_scan:
-        - text_sensor.template.publish:
-            id: fingerprint_state
-            state: "Finger scanned"
+        ...
       on_enrollment_done:
-        - text_sensor.template.publish:
-            id: fingerprint_state
-            state: "Enrolled fingerprint"
+        ...
       on_enrollment_failed:
-        - text_sensor.template.publish:
-            id: fingerprint_state
-            state: "Failed to enroll fingerprint"
+        ...
 
-    # Optional template text sensor for visual feedback
-    text_sensor:
-      - platform: template
-        id: fingerprint_state
-        name: "Fingerprint State"
-
-    # Optional component (GPIO switch, lock etc.) to control in on_finger_scan_matched trigger
-    switch:
-      - platform: gpio
-        pin: GPIO14
-        id: gate
-
-    # Optional sensors
-    binary_sensor:
-      - platform: fingerprint_grow
-        id: fingerprint_enrolling
-        name: "Fingerprint Enrolling"
-
-    sensor:
-      - platform: fingerprint_grow
-        fingerprint_count:
-          name: "Fingerprint Count"
-        last_finger_id:
-          name: "Fingerprint Last Finger ID"
-        last_confidence:
-          name: "Fingerprint Last Confidence"
-        status:
-          name: "Fingerprint Status"
-        capacity:
-          name: "Fingerprint Capacity"
-        security_level:
-          name: "Fingerprint Security Level"
 
 
 Configuration variables:
@@ -457,17 +412,6 @@ Sample code
 ***********
 
 .. code-block:: yaml
-
-    esphome:
-      name: test_node
-      platform: ESP8266
-      board: nodemcu
-
-    wifi:
-      ssid: !secret wifi_ssid
-      password: !secret wifi_pass
-
-    logger:
 
     uart:
       rx_pin: GPIO13

@@ -3,7 +3,7 @@ Select Component
 
 .. seo::
     :description: Instructions for setting up select components in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for components to create a select entity. A select entity is
 basically an option list that can be set by either yaml, hardware or the user/frontend.
@@ -38,6 +38,10 @@ Configuration variables:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 Automations:
 

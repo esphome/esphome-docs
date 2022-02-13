@@ -5,7 +5,7 @@ CAN bus
 
 .. seo::
     :description: Instructions for setting up an CAN bus in ESPHome
-    :image: canbus.png
+    :image: canbus.svg
     :keywords: CAN
 
 Controller Area Network (CAN bus) is a serial bus protocol to connect individual systems and sensors
@@ -25,7 +25,7 @@ transmitted data.
 
 The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
 CAN bus to work you need to select the device that has the physical CAN bus implemented.
-At this moment only the MCP2515 driver is supported. You can configure multiple buses.
+You can configure multiple buses.
 
 Any can bus node can transmit data at any time, and any node can send any ``can_id`` value and any
 node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can
@@ -52,32 +52,37 @@ Each canbus platform extends this configuration schema.
               std::string b(x.begin(), x.end());
               ESP_LOGD("can id 500", "%s", &b[0] );
 
+.. _config-canbus:
+
 Configuration variables:
+************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **can_id** (**Required**, integer): default *can id* used for transmitting frames.
+- **can_id** (**Required**, int): default *can id* used for transmitting frames.
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
+  Bitrates marked with * are not supported by the internal ESP32 CAN controller.
 
-    - 5KBPS
-    - 10KBPS
-    - 20KBPS
-    - 31K25BPS
-    - 33KBPS
-    - 40KBPS
+    - 5KBPS *
+    - 10KBPS *
+    - 20KBPS *
+    - 31K25BPS *
+    - 33KBPS *
+    - 40KBPS *
     - 50KBPS
-    - 80KBPS
-    - 83K3BPS
-    - 95KBPS
+    - 80KBPS *
+    - 83K3BPS *
+    - 95KBPS *
     - 100KBPS
     - 125KBPS
-    - 200KBPS
+    - 200KBPS *
     - 250KBPS
     - 500KBPS
     - 1000KBPS
 
 Automations:
+------------
 
 - **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
   CAN Frame is received. See :ref:`canbus-on-frame`.
@@ -141,6 +146,31 @@ Configuration variables:
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
 
+ESP32 CAN Component
+-------------------
+
+The ESP32 has an integrated CAN controller and therefore doesn't need an external controller necessarily.
+You only need to specify the RX and TX pins.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    canbus:
+      - platform: esp32_can
+        tx_pin: GPIO1
+        rx_pin: GPIO3
+        can_id: 4
+        bit_rate: 50kbps
+        on_frame:
+          ...
+
+Configuration variables:
+************************
+
+- **rx_pin** (**Required**, :ref:`Pin <config-pin>`): Receive pin.
+- **tx_pin** (**Required**, :ref:`Pin <config-pin>`): Transmit pin.
+- All other options from :ref:`Canbus <config-canbus>`.
+
 MCP2515 Component
 -----------------
 
@@ -148,20 +178,6 @@ The MCP2515 is a spi device and therefore you must first add the configuration f
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
 For wiring up the MSP2515 please refer to the section below.
-
-Configuration variables:
-************************
-
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
-  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
-  Sometimes also called ``SS``.
-- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
-  Defaults to ``8MHZ``.
-- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
-
-  - NORMAL: Normal operation
-  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
-  - LISTENONLY: only receive data
 
 .. code-block:: yaml
 
@@ -183,6 +199,22 @@ Configuration variables:
             - light.turn_on:
                 id: light_1
                 brightness: !lambda "return (x.size() > 0) ? (float) x[0]/255 : 0;"
+
+Configuration variables:
+************************
+
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
+  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
+  Sometimes also called ``SS``.
+- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
+  Defaults to ``8MHZ``.
+- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
+
+  - NORMAL: Normal operation
+  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
+  - LISTENONLY: only receive data
+
+- All other options from :ref:`Canbus <config-canbus>`.
 
 Wiring options
 ---------------

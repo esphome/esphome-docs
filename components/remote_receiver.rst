@@ -3,7 +3,7 @@ Remote Receiver
 
 .. seo::
     :description: Instructions for setting up remote receiver binary sensors for infrared and RF codes.
-    :image: remote.png
+    :image: remote.svg
     :keywords: RF, infrared
 
 The ``remote_receiver`` component lets you receive and decode any remote signal, these can
@@ -30,19 +30,22 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
+  - **coolix**: Decode and dump Coolix infrared codes.
+  - **dish**: Decode and dump Dish infrared codes.
+  - **jvc**: Decode and dump JVC infrared codes.
   - **lg**: Decode and dump LG infrared codes.
   - **midea**: Decode and dump Midea infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
+  - **nexa**: Decode and dump Nexa (RF) codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
   - **pioneer**: Decode and dump Pioneer infrared codes.
-  - **jvc**: Decode and dump JVC infrared codes.
+  - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
+  - **rc5**: Decode and dump RC5 IR codes.
+  - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **samsung**: Decode and dump Samsung infrared codes.
   - **samsung36**: Decode and dump Samsung36 infrared codes.
   - **sony**: Decode and dump Sony infrared codes.
   - **toshiba_ac**: Decode and dump Toshiba AC infrared codes.
-  - **rc_switch**: Decode and dump RCSwitch RF codes.
-  - **rc5**: Decode and dump RC5 IR codes.
-  - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
 
 - **tolerance** (*Optional*, int): The percentage that the remote signal lengths can deviate in the
   decoding process. Defaults to ``25%``.
@@ -50,15 +53,22 @@ Configuration variables:
   on the ESP32 and ``1kB`` on the ESP8266.
 - **memory_blocks** (*Optional*, int): The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to
   ``3``.
-- **filter** (*Optional*, :ref:`time <config-time>`): Filter any pulses that are shorter than this. Useful for removing
-  glitches from noisy signals. Defaults to ``10us``.
-- **idle** (*Optional*, :ref:`time <config-time>`): The amount of time that a signal should remain stable (i.e. not
+- **filter** (*Optional*, :ref:`config-time`): Filter any pulses that are shorter than this. Useful for removing
+  glitches from noisy signals. Defaults to ``50us``.
+- **idle** (*Optional*, :ref:`config-time`): The amount of time that a signal should remain stable (i.e. not
   change) for it to be considered complete. Defaults to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this if you have
   multiple remote receivers.
 
 Automations:
 
+- **on_coolix** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Coolix remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::CoolixData`
+  is passed to the automation for use in lambdas.
+- **on_dish** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
+  is passed to the automation for use in lambdas.
+  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
   is passed to the automation for use in lambdas.
@@ -71,11 +81,21 @@ Automations:
 - **on_nec** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   NEC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::NECData`
   is passed to the automation for use in lambdas.
-- **on_sony** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Sony remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SonyData`
+
+  .. note::
+
+      In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
+      Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+      For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
+
+- **on_nexa** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Nexa RF code has been decoded. A variable ``x`` of type :apiclass:`remote_base::NexaData`
   is passed to the automation for use in lambdas.
-- **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
+- **on_panasonic** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Panasonic remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PanasonicData`
+  is passed to the automation for use in lambdas.
+- **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  pioneer remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PioneerData`
   is passed to the automation for use in lambdas.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   raw remote code has been decoded. A variable ``x`` of type ``std::vector<int>``
@@ -92,16 +112,12 @@ Automations:
 - **on_samsung36** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Samsung36 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::Samsung36Data`
   is passed to the automation for use in lambdas.
-- **on_panasonic** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Panasonic remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PanasonicData`
+- **on_sony** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Sony remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SonyData`
   is passed to the automation for use in lambdas.
-- **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  pioneer remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PioneerData`
+- **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
   is passed to the automation for use in lambdas.
-  - **on_dish** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
-  is passed to the automation for use in lambdas.
-  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 
 .. _remote-receiver-binary-sensor:
 
@@ -136,6 +152,16 @@ Configuration variables:
 
 Remote code selection (exactly one of these has to be included):
 
+- **coolix**: Trigger on a decoded Coolix remote code with the given data.
+
+  - **data** (**Required**, int): The 24-bit Coolix code to trigger on, see dumper output for more info.
+
+- **dish**: Trigger on a decoded Dish Network remote code with the given data.
+  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+
+  - **address** (*Optional*, int): The number of the receiver to target, between 1 and 16 inclusive. Defaults to ``1``.
+  - **command** (**Required**, int): The Dish command to listen for, between 0 and 63 inclusive.
+
 - **jvc**: Trigger on a decoded JVC remote code with the given data.
 
   - **data** (**Required**, int): The JVC code to trigger on, see dumper output for more info.
@@ -152,38 +178,22 @@ Remote code selection (exactly one of these has to be included):
 
 - **nec**: Trigger on a decoded NEC remote code with the given data.
 
+  .. note::
+
+      In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
+      Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+      For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
+
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **command** (**Required**, int): The NEC command to listen for.
 
-- **sony**: Trigger on a decoded Sony remote code with the given data.
+- **nexa**: Trigger on a decoded Nexa RF code with the given data.
 
-  - **data** (**Required**, int): The Sony code to trigger on, see dumper output for more info.
-  - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``12``.
-
-- **toshiba_ac**: Trigger on a decoded Toshiba AC remote code with the given data.
-
-  - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
-  - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
-
-- **raw**: Trigger on a raw remote code with the given code.
-
-  - **code** (**Required**, list): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
-    for more info. Usually you only need to copy this directly from the dumper output.
-
-- **rc5**: Trigger on a decoded RC5 remote code with the given data.
-
-  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
-  - **command** (**Required**, int): The RC5 command to listen for.
-
-- **samsung**: Trigger on a decoded Samsung remote code with the given data.
-
-  - **data** (**Required**, int): The data to trigger on, see dumper output for more info.
-  - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``32``.
-
-- **samsung36**: Trigger on a decoded Samsung36 remote code with the given data.
-
-  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
-  - **command** (**Required**, int): The command.
+  - **device** (**Required**, int): The Nexa device code to trigger on, see dumper output for more info.
+  - **group** (**Required**, int): The Nexa group code to trigger on, see dumper output for more info.
+  - **state** (**Required**, int): The Nexa state code to trigger on, see dumper output for more info.
+  - **channel** (**Required**, int): The Nexa channel code to trigger on, see dumper output for more info.
+  - **level** (**Required**, int): The Nexa level code to trigger on, see dumper output for more info.
 
 - **panasonic**: Trigger on a decoded Panasonic remote code with the given data.
 
@@ -194,11 +204,15 @@ Remote code selection (exactly one of these has to be included):
 
   - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
 
-- **dish**: Trigger on a decoded Dish Network remote code with the given data.
-  Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
+- **raw**: Trigger on a raw remote code with the given code.
 
-  - **address** (*Optional*, int, 1-16): The number of the receiver to target. Defaults to ``1``.
-  - **command** (**Required**, int, 0-63): The Dish command to listen for.
+  - **code** (**Required**, list): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
+    for more info. Usually you only need to copy this directly from the dumper output.
+
+- **rc5**: Trigger on a decoded RC5 remote code with the given data.
+
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The RC5 command to listen for.
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
@@ -235,6 +249,26 @@ Remote code selection (exactly one of these has to be included):
   - **state** (**Required**, boolean): The on/off state to trigger on.
   - **protocol** (*Optional*): The RC Switch protocol to use, see :ref:`remote_transmitter-rc_switch-protocol` for more info.
 
+- **samsung**: Trigger on a decoded Samsung remote code with the given data.
+
+  - **data** (**Required**, int): The data to trigger on, see dumper output for more info.
+  - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``32``.
+
+- **samsung36**: Trigger on a decoded Samsung36 remote code with the given data.
+
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The command.
+
+- **sony**: Trigger on a decoded Sony remote code with the given data.
+
+  - **data** (**Required**, int): The Sony code to trigger on, see dumper output for more info.
+  - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``12``.
+
+- **toshiba_ac**: Trigger on a decoded Toshiba AC remote code with the given data.
+
+  - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
+  - **rc_code_2** (*Optional*, int): The second part of the remote control code to trigger on, see dumper output for more details.
+
 .. note::
 
     For the Sonoff RF Bridge you can use `this hack <https://github.com/xoseperez/espurna/wiki/Hardware-Itead-Sonoff-RF-Bridge---Direct-Hack>`__
@@ -260,7 +294,9 @@ Remote code selection (exactly one of these has to be included):
           pin:
             number: D4
             inverted: true
-            mode: INPUT_PULLUP
+            mode:
+              input: true
+              pullup: true
           dump: all
 
 

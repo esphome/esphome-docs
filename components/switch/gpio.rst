@@ -3,7 +3,7 @@ GPIO Switch
 
 .. seo::
     :description: Instructions for setting up GPIO pin switches in ESPHome that control GPIO outputs.
-    :image: pin.png
+    :image: pin.svg
 
 The ``gpio`` switch platform allows you to use any pin on your node as a
 switch. You can for example hook up a relay to a GPIO pin and use it
@@ -34,8 +34,8 @@ Configuration variables:
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
-    - ``RESTORE_INVERTED_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
-    - ``RESTORE_INVERTED_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the pin as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the pin as ON on bootup.
 

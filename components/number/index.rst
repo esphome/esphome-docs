@@ -3,7 +3,7 @@ Number Component
 
 .. seo::
     :description: Instructions for setting up number components in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for components to create a number entity. A number entity is
 like a sensor that can read a value from a device, but is useful when that value
@@ -38,6 +38,16 @@ Configuration variables:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
+- **unit_of_measurement** (*Optional*, string): Manually set the unit
+  of measurement for the number. Requires Home Assistant Core 2021.12 or newer.
+- **mode** (*Optional*, string): Defines how the number should be displayed in the frontend.
+  See https://developers.home-assistant.io/docs/core/entity/number/#properties
+  for a list of available options. Requires Home Assistant Core 2021.12 or newer.
+  Defaults to ``"auto"``.
 
 Automations:
 

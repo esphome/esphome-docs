@@ -3,7 +3,7 @@ Logger Component
 
 .. seo::
     :description: Instructions for setting up the central logging component in ESPHome.
-    :image: file-document-box.png
+    :image: file-document-box.svg
 
 The logger component automatically logs all log messages through the
 serial port and through MQTT topics. By default, all logs with a
@@ -188,7 +188,7 @@ using ``message`` (``const char *``), ``level`` (``int``) and ``tag`` (``const c
           - mqtt.publish:
               topic: some/topic
               payload: !lambda |-
-                return "Triggered on_message with level " + std::to_string(level) + ", tag " + tag + " and message " + message;
+                return "Triggered on_message with level " + to_string(level) + ", tag " + tag + " and message " + message;
 
 .. note::
 

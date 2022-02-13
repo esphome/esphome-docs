@@ -22,7 +22,7 @@ ESPHome 2021.8.0 - 18th August 2021
     RGBCT Light, components/light/rgbct, rgbw.png
     SDP3x, components/sensor/sdp3x, sdp31.jpg
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg
-    T6613/15, components/sensor/t6615, t6615.png
+    T6613/15, components/sensor/t6615, t6615.jpg
     TLC5947, components/output/tlc5947, tlc5947.jpg
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
@@ -279,20 +279,17 @@ All changes
 Past Changelogs
 ---------------
 
-.. toctree::
-    :maxdepth: 1
-
-    v1.20.0
-    v1.19.0
-    v1.18.0
-    v1.17.0
-    v1.16.0
-    v1.15.0
-    v1.14.0
-    v1.13.0
-    v1.12.0
-    v1.11.0
-    v1.10.0
-    v1.9.0
-    v1.8.0
-    v1.7.0
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`

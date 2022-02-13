@@ -3,7 +3,7 @@ ADE7953 Power Sensor
 
 .. seo::
     :description: Instructions for setting up ADE7953 power sensors
-    :image: ade7953.png
+    :image: ade7953.svg
 
 .. note::
 

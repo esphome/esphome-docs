@@ -3,7 +3,7 @@ ST7789V TFT LCD
 
 .. seo::
     :description: Instructions for setting up ST7789V TFT LCD display drivers.
-    :image: st7789v-full.jpg
+    :image: st7789v.jpg
 
 .. _st7789v:
 
@@ -96,7 +96,7 @@ To bring in color images:
       - file: "image.jpg"
         id: my_image
         resize: 200x200
-        type: RGB565
+        type: RGB24
 
     ...
 
@@ -108,8 +108,7 @@ To bring in color images:
 Complete example
 ****************
 
-The following is a complete example YAML configuration that does a few things beyond the usual
-Wi-Fi, API, and OTA configuration. It defines:
+The following is an example YAML configuration that you can add to your base device configuration. It defines:
 
 - three fonts (well, one font in three sizes)
 - a ``binary_sensor`` that indicates the state of connectivity to the API
@@ -133,32 +132,6 @@ into the same directory as the YAML configuration file itself. Comment/Uncomment
 appropriate lines of C code in the lambda to hide or show the image or text as you wish.
 
 .. code-block:: yaml
-
-    esphome:
-      name: esp_tdisplay
-      platform: ESP32
-      board: featheresp32
-
-    wifi:
-      ssid: "ssid"
-      password: "password"
-
-      # Enable fallback hotspot (captive portal) in case wifi connection fails
-      ap:
-        ssid: "esp_tdisplay"
-        password: "some_password"
-
-    captive_portal:
-
-    # Enable logging
-    logger:
-
-    # Enable Home Assistant API
-    api:
-      password: "some_api_password"
-
-    ota:
-      password: "some_ota_password"
 
     color:
       - id: my_red
@@ -201,7 +174,9 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
         pin:
           number: GPIO0
           inverted: true
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
         name: "T-Display Button Input 0"
         id: tdisplay_button_input_0
       - platform: gpio

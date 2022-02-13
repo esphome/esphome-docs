@@ -3,7 +3,7 @@ ESP32 Camera Component
 
 .. seo::
     :description: Instructions for setting up the ESP32 Cameras in ESPHome
-    :image: camera.png
+    :image: camera.svg
 
 The ``esp32_camera`` component allows you to use ESP32-based camera boards in ESPHome that
 directly integrate into Home Assistant through the native API.
@@ -31,9 +31,17 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the camera.
+- **icon** (*Optional*, icon): Manually set the icon to use for the camera in the frontend.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 Connection Options:
 
@@ -86,8 +94,11 @@ Frame Settings:
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
-- **vertical_flip** (*Optional*, bool): Whether to flip the image vertically. Defaults to ``true``.
-- **horizontal_mirror** (*Optional*, bool): Whether to mirror the image horizontally. Defaults to ``true``.
+- **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
+- **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
+- **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Defaults to ``false``.
+- **ae_level** (*Optional*, int): The auto exposure level to apply to the picture, from -2 to 2. Defaults to ``0``.
+- **aec_value** (*Optional*, int): The Auto Exposure Control 2 value to apply to the picture, from 0 to 1200. Defaults to ``300``.
 
 .. note::
 
@@ -149,6 +160,28 @@ Configuration for M5Stack Camera
       name: My Camera
       # ...
 
+Configuration for M5Stack Timer Camera X/F
+------------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+
+      # Image settings
+      name: My Camera
+      # ...
 
 Configuration for Wrover Kit Boards
 -----------------------------------
@@ -214,6 +247,9 @@ Configuration for TTGO T-Camera V162
       jpeg_quality: 10
       vertical_flip: true
       horizontal_mirror: false
+
+      # Image settings
+      name: My Camera
       # ...
 
 Configuration for TTGO T-Camera V17
@@ -259,7 +295,6 @@ Configuration for TTGO T-Journal
       href_pin: GPIO26
       pixel_clock_pin: GPIO21
 
-
       # Image settings
       name: My Camera
       # ...
@@ -285,7 +320,6 @@ Configuration for TTGO-Camera Plus
       vertical_flip: false
       horizontal_mirror: false
 
-
       # Image settings
       name: My Camera
       # ...
@@ -308,11 +342,32 @@ Configuration for TTGO-Camera Mini
       href_pin: GPIO25
       pixel_clock_pin: GPIO19
 
+      # Image settings
+      name: My Camera
+      # ...
 
+Configuration for ESP-EYE
+----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO4
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO18
+        scl: GPIO23
+      data_pins: [GPIO34, GPIO13, GPIO14, GPIO35, GPIO39, GPIO38, GPIO37, GPIO36]
+      vsync_pin: GPIO5
+      href_pin: GPIO27
+      pixel_clock_pin: GPIO25
 
       # Image settings
       name: My Camera
       # ...
+
 
 See Also
 --------

@@ -5,7 +5,7 @@ SPI Bus
 
 .. seo::
     :description: Instructions for setting up an SPI bus in ESPHome
-    :image: spi.png
+    :image: spi.svg
     :keywords: SPI
 
 SPI is a very common high-speed protocol for a lot of devices. The SPI bus usually consists of 4 wires:

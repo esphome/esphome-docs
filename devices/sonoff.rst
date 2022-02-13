@@ -3,7 +3,7 @@ Generic Sonoff
 
 .. seo::
     :description: Instructions for using generic Sonoff devices with ESPHome.
-    :image: sonoff.png
+    :image: sonoff.svg
 
 In principle ESPHome supports all Sonoff devices, but as these devices are quite cheap
 and shipping from China takes a long time, I've only set up dedicated guides for the
@@ -13,7 +13,8 @@ and shipping from China takes a long time, I've only set up dedicated guides for
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
+
+    esp8266:
       board: esp8285
 
 After that use the following list of pin to function mappings to set up your Sonoff device.
@@ -101,6 +102,22 @@ Sonoff Dual R2 v1.4
     GPIO5, Relay #2,
     GPIO10, Button on the case,
     GPIO13, Blue LED (inverted)
+
+Sonoff Dual R3 v1.x
+-------------------
+
+.. pintable::
+
+    GPIO27, Relay #1,
+    GPIO14, Relay #2,
+    GPIO0, Button,
+    GPIO13, Blue LED (inverted),
+    GPIO32, SW Input #1 (inverted),
+    GPIO33, SW Input #2 (inverted),
+    GPIO25, UART TX pin (for power sensor)
+    GPIO26, UART RX pin (for power sensor)
+
+See :doc:`/components/sensor/cse7761` for measuring power.
 
 Sonoff Pow R1
 -------------

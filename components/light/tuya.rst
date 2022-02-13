@@ -3,7 +3,7 @@ Tuya Dimmer
 
 .. seo::
     :description: Instructions for setting up a Tuya dimmer switch.
-    :image: brightness-medium.png
+    :image: brightness-medium.svg
 
 The ``tuya`` light platform creates a simple brightness-only light from a
 tuya serial component.
@@ -16,36 +16,7 @@ tuya serial component.
     The dimmer switch I got would hang if the logger was configured to use the serial port
     which meant it was bricked until I cut it open.
 
-There are two components, the Tuya bus and the dimmer that uses it.  The :doc:`/components/tuya`
-component requires a :ref:`UART bus <uart>` to be configured.  Put the ``tuya`` component in
-the config and it will list the possible devices for you in the config log.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    # Make sure your WiFi will connect
-    wifi:
-      ssid: "ssid"
-      password: "password"
-
-    # Make sure logging is not using the serial port
-    logger:
-      baud_rate: 0
-
-    # Enable Home Assistant API
-    api:
-
-    # Make sure you can upload new firmware OTA
-    ota:
-
-    # My dimmer used the hardware serial port on the alternate pins
-    uart:
-      rx_pin: GPIO13
-      tx_pin: GPIO15
-      baud_rate: 9600
-
-    # Register the Tuya MCU connection
-    tuya:
+This requires the :doc:`/components/tuya` component to be set up before you can use this platform.
 
 Here is an example output for a Tuya dimmer:
 
@@ -81,21 +52,29 @@ Configuration variables:
   change the brightness and would have to toggle the light using the physical buttons.
 - **color_temperature_datapoint** (*Optional*, int): The datapoint id number of the color
   temperature value.
-- **min_value** (*Optional*, int, default 0): The lowest dimmer value allowed.  My dimmer had a
+- **rgb_datapoint** (*Optional*, int): The datapoint id number of the RGB (red/green/blue) value.
+  If this is set then ESPHome will set the color using a 6 digit hex RGB value.
+- **hsv_datapoint** (*Optional*, int): The datapoint id number of the HSV (hue/saturation/value) value.
+  If this is set then ESPHome will set the color using a 12 digit hex HSV value.
+- **min_value** (*Optional*, int): The lowest dimmer value allowed.  My dimmer had a
   minimum of 25 and wouldn't even accept anything lower, but this option is available if necessary.
-- **max_value** (*Optional*, int, default 255): The highest dimmer value allowed.  Most dimmers have a
+  Defaults to 0.
+- **max_value** (*Optional*, int): The highest dimmer value allowed.  Most dimmers have a
   maximum of 255, but dimmers with a maximum of 1000 can also be found. Try what works best.
-- **color_temperature_max_value** (*Optional*, int, default 255): The highest color temperature
-  value allowed. Some ceiling fans have a value of 100 (also for `max_value`).
-- **color_temperature_invert** (*Optional*, boolean, default false): Control how color temperature
-  values are sent to the MCU. If this is set to true ESPHome will treat 0 as warm white and
+  Defaults to 255.
+- **color_temperature_max_value** (*Optional*, int): The highest color temperature
+  value allowed. Some ceiling fans have a value of 100 (also for `max_value`). Defaults to 255.
+- **color_temperature_invert** (*Optional*, boolean): Control how color temperature values are
+  sent to the MCU. If this is set to true ESPHome will treat 0 as warm white and
   **color_temperature_max_value** as cool white when setting **color_temperature_datapoint**.
+  Defaults to false.
 - **cold_white_color_temperature** (*Optional*, float): The color temperature (in `mireds
   <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the cold white channel.
 - **warm_white_color_temperature** (*Optional*, float): The color temperature (in `mireds
   <https://en.wikipedia.org/wiki/Mired>`__ or Kelvin) of the warm white channel.
 - All other options from :ref:`Light <config-light>`.
-- At least one of *dimmer_datapoint* or *switch_datapoint* must be provided.
+- At least one of *dimmer_datapoint*, *switch_datapoint*, *rgb_datapoint*, or *hsv_datapoint* must be provided.
+- Only one of *rgb_datapoint* or *hsv_datapoint* can be provided for one light.
 
 .. note::
 

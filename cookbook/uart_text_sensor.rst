@@ -3,7 +3,7 @@ Custom UART Text Sensor
 
 .. seo::
     :description: Instructions for setting up a custom uart text sensor.
-    :image: language-cpp.png
+    :image: language-cpp.svg
 
 Lots of devices communicate using the UART protocol. If you want to read 
 lines from uart to a Text Sensor you can do so using this code example.

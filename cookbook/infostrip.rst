@@ -3,7 +3,7 @@ Infostripe
 
 .. seo::
     :description: Simple visualisation of Home Assistant states using a Neopixel stripe
-    :image: infostrip-detai.jpg
+    :image: /cookbook/images/infostrip-detail.jpg
     :keywords: Neopixel
 
 Showing the current status of sensor states using a Neopixel (WS2812B) strip is a simple way to communicate states to the user.
@@ -27,16 +27,17 @@ ESPHome configuration
 .. code-block:: yaml
 
     esphome:
-    name: esp_infostrip
-    platform: ESP8266
-    board: d1_mini
+      name: esp_infostrip
+
+    esp8266:
+      board: d1_mini
 
     # TODO -> add your personal wifi, logging, api, ota settings here
 
     uart:
-    rx_pin: 4
-    tx_pin: 5
-    baud_rate: 9600
+      rx_pin: 4
+      tx_pin: 5
+      baud_rate: 9600
 
     sensor:
       - platform: mhz19
@@ -46,7 +47,7 @@ ESPHome configuration
           name: "MH-Z19 Temperature"
         update_interval: 30s
 
-    # Monitor the Wifi connection status 
+    # Monitor the Wifi connection status
     binary_sensor:
       - platform: status
         name: "Infostrip Status"
@@ -54,12 +55,12 @@ ESPHome configuration
     # Configure each pixel as a single light (attention memory consuming)
     light:
       - platform: fastled_clockless
-        chipset: WS2812B 
+        chipset: WS2812B
         id: light_fastled
         pin: D4
         num_leds: 4
         rgb_order: GRB
-        name: "Infostrip"   
+        name: "Infostrip"
         effects:
           - strobe:
           - random:
@@ -95,10 +96,10 @@ ESPHome configuration
               to: 3
         effects:
           - strobe:
-  
+
 .. warning::
 
-    Consider the warning in :doc:`/components/light/partition` regarging the increased memory usage. 
+    Consider the warning in :doc:`/components/light/partition` regarging the increased memory usage.
 
 Home Assistant configuration
 ----------------------------

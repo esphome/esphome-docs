@@ -3,7 +3,7 @@ Midea Air Conditioner
 
 .. seo::
     :description: Instructions for setting up a Midea climate device
-    :image: air-conditioner.png
+    :image: air-conditioner.svg
 
 The ``midea`` component creates a Midea air conditioner climate device.
 
@@ -17,6 +17,7 @@ The ``midea`` component creates a Midea air conditioner climate device.
         - `Carrier <https://www.carrier.com/>`_
         - `Comfee <http://www.comfee-russia.ru/>`_
         - `Inventor <https://www.inventorairconditioner.com/>`_
+        - `Senville <https://senville.com/>`_
         - and maybe others
 
     Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_.
@@ -83,9 +84,9 @@ Configuration variables:
   to use multiple UART buses.
 - **name** (**Required**, string): The name of the climate device.
 - **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
-- **period** (*Optional*, :ref:`time <config-time>`): Minimal period between requests to the appliance. Defaults to ``1s``.
-- **timeout** (*Optional*, :ref:`time <config-time>`): Request response timeout until next request attempt. Defaults to ``2s``.
-- **num_attempts** (*Optional*, integer 1-5): Number of request attempts. Defaults to ``3``.
+- **period** (*Optional*, :ref:`config-time`): Minimal period between requests to the appliance. Defaults to ``1s``.
+- **timeout** (*Optional*, :ref:`config-time`): Request response timeout until next request attempt. Defaults to ``2s``.
+- **num_attempts** (*Optional*, int): Number of request attempts between 1 and 5 inclusive. Defaults to ``3``.
 - **autoconf** (*Optional*, boolean): Get capabilities automatically. Allows you not to manually define most of the capabilities of the appliance.
   Defaults to ``True``.
 - **beeper** (*Optional*, boolean): Beeper feedback on command. Defaults to ``False``.
@@ -164,7 +165,7 @@ Configuration variables:
 
 - **temperature** (**Required**, float, :ref:`templatable <config-templatable>`): Set the
   value of a internal temperature sensor.
-- **beeper** (*Optional*, bool, :ref:`templatable <config-templatable>`): set beep on update.
+- **beeper** (*Optional*, boolean, :ref:`templatable <config-templatable>`): set beep on update.
   Defaults to ``False``
 
 
@@ -251,17 +252,17 @@ component, as well as control the light of the LED display.
             temperature: !lambda "return x;"
             beeper: false               # Optional. Beep on update.
 
-    # template momentary switches for sending display control command and swing step actions
-    switch:
+    # template buttons for sending display control command and swing step actions
+    button:
       - platform: template
         name: Display Toggle
         icon: mdi:theme-light-dark
-        turn_on_action:
+        on_press:
           midea_ac.display_toggle:
       - platform: template
         name: Swing Step
         icon: mdi:tailwind
-        turn_on_action:
+        on_press:
           midea_ac.swing_step:
 
 

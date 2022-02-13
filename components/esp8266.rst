@@ -1,0 +1,45 @@
+ESP8266 Platform
+================
+
+.. seo::
+    :description: Configuration for the ESP8266 platform for ESPHome.
+    :image: esp8266.svg
+
+This component contains platform-specific options for the ESP8266 platform.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp8266:
+      board: nodemcuv2
+      framework:
+        version: recommended
+
+Configuration variables:
+------------------------
+
+- **board** (**Required**, string): The PlatformIO board ID that should
+  be used. Choose the appropriate board from
+  `this list <https://registry.platformio.org/platforms/platformio/espressif8266/boards>`__ (the icon next to the 
+  name can be used to copy the board ID). *This only affects pin aliases, flash size and some internal settings*, if unsure
+  choose a generic board from Espressif such as ``esp01_1m``.
+- **framework** (*Optional*): Options for the underlying framework used by ESPHome.
+
+  - **version** (*Optional*, string): The base framework version number to use, from
+    `esp8266 arduino releases <https://github.com/esp8266/Arduino/releases>`__. Defaults to ``recommended``. Additional values
+
+    - ``dev``: Use the latest commit from https://github.com/esp8266/Arduino, note this may break at any time
+    - ``latest``: Use the latest *release* from https://github.com/esp8266/Arduino/releases, even if it hasn't been recommended yet.
+    - ``recommended``: Use the recommended framework version.
+
+  - **source** (*Optional*, string): The PlatformIO package or repository to use for the framework. This can be used to use a custom or patched version of the framework.
+  - **platform_version** (*Optional*, string): The version of the `platformio/espressif8266 <https://github.com/platformio/platform-espressif8266/releases/>`__ package to use.
+
+- **restore_from_flash** (*Optional*, boolean): Whether to store some persistent preferences in flash memory. Defaults to ``false``.
+- **board_flash_mode** (*Optional*, string): The SPI mode of the flash chip. One of ``qio``, ``qout``, ``dio`` and ``dout``. Defaults to ``dout`` for compatibility with all chips. Note: on the next OTA update the actual flash mode is automatically detected and changed to the appropriate one.
+
+See Also
+--------
+
+- :doc:`esphome`
+- :ghedit:`Edit`
