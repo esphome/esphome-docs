@@ -20,6 +20,7 @@ required to be set up in your configuration for this sensor to work.
     sensor:
 
       - platform: ezo
+        name: "pH"
         id: ph_ezo
         address: 99
         unit_of_measurement: "pH"
@@ -37,6 +38,7 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
+- **name** (**Required**, string): Specify the name of the sensor.
 - **address** (**Required**, int): Specify the I²C address of the sensor.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
