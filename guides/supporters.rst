@@ -68,6 +68,7 @@ Contributors
 - `Andy Allsopp (@arallsopp) <https://github.com/arallsopp>`__
 - `arantius (@arantius) <https://github.com/arantius>`__
 - `arunderwood (@arunderwood) <https://github.com/arunderwood>`__
+- `Borys Pierov (@ashald) <https://github.com/ashald>`__
 - `Ash McKenzie (@ashmckenzie) <https://github.com/ashmckenzie>`__
 - `Ashton Kemerling (@AshtonKem) <https://github.com/AshtonKem>`__
 - `Pavel Pletenev (@ASMfreaK) <https://github.com/ASMfreaK>`__
@@ -88,6 +89,7 @@ Contributors
 - `bazuchan (@bazuchan) <https://github.com/bazuchan>`__
 - `Viktr (@BbIKTOP) <https://github.com/BbIKTOP>`__
 - `J. Nick Koston (@bdraco) <https://github.com/bdraco>`__
+- `Benno Pütz (@bennop) <https://github.com/bennop>`__
 - `Ben Suffolk (@bensuffolk) <https://github.com/bensuffolk>`__
 - `Arturo Casal (@berfenger) <https://github.com/berfenger>`__
 - `Ivan Bessarabov (@bessarabov) <https://github.com/bessarabov>`__
@@ -317,7 +319,6 @@ Contributors
 - `igg (@igg) <https://github.com/igg>`__
 - `Petko Bordjukov (@ignisf) <https://github.com/ignisf>`__
 - `ikatkov (@ikatkov) <https://github.com/ikatkov>`__
-- `Michael (@imeekle) <https://github.com/imeekle>`__
 - `imgbot[bot] (@imgbot[bot]) <https://github.com/imgbot[bot]>`__
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
@@ -326,6 +327,7 @@ Contributors
 - `Ivo-tje (@Ivo-tje) <https://github.com/Ivo-tje>`__
 - `Jan Harkes (@jaharkes) <https://github.com/jaharkes>`__
 - `Jakob Reiter (@jakommo) <https://github.com/jakommo>`__
+- `James Braid (@jamesbraid) <https://github.com/jamesbraid>`__
 - `James Gao (@jamesgao) <https://github.com/jamesgao>`__
 - `János Rusiczki (@janosrusiczki) <https://github.com/janosrusiczki>`__
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__
@@ -503,6 +505,7 @@ Contributors
 - `Murilo (@murilobaliego) <https://github.com/murilobaliego>`__
 - `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__
 - `Martin Weinelt (@mweinelt) <https://github.com/mweinelt>`__
+- `myhomeiot (@myhomeiot) <https://github.com/myhomeiot>`__
 - `Igor Scheller (@MyIgel) <https://github.com/MyIgel>`__
 - `Mynasru (@Mynasru) <https://github.com/Mynasru>`__
 - `Niels Ulrik Andersen (@myplacedk) <https://github.com/myplacedk>`__
@@ -584,6 +587,7 @@ Contributors
 - `probonopd (@probonopd) <https://github.com/probonopd>`__
 - `Peter Stuifzand (@pstuifzand) <https://github.com/pstuifzand>`__
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__
+- `Patrick Toal (@ptoal) <https://github.com/ptoal>`__
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__
 - `puuu (@puuu) <https://github.com/puuu>`__
 - `Qc (@qc24) <https://github.com/qc24>`__
@@ -790,4 +794,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated February 10, 2022.*
+*This page was last updated February 15, 2022.*
