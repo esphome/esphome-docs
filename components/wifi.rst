@@ -276,5 +276,6 @@ See Also
 --------
 
 - :doc:`captive_portal`
+- :doc:`network`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`
