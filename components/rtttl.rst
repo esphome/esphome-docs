@@ -129,12 +129,13 @@ Sample code
 
     esphome:
       name: test_esp8266
-      platform: ESP8266
+
+    esp8266:
       board: nodemcuv2
 
     wifi:
       ssid: !secret wifi_ssid
-      password: !secret wifi_pass
+      password: !secret wifi_password
 
     output:
       - platform: esp8266_pwm

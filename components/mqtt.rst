@@ -22,7 +22,7 @@ in which case this is not needed.
     mqtt:
       broker: 10.0.0.2
       username: livingroom
-      password: MyMQTTPassword
+      password: !secret mqtt_password
 
 Configuration variables:
 ------------------------

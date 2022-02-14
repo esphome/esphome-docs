@@ -13,7 +13,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
-- **modbus_functioncode** (**Required**): type of the modbus register.
+- **register_type** (**Required**): type of the modbus register.
 - **address**: (**Required**, int): start address of the first register in a range
 - **offset**: (*Optional*, int): not required in most cases
   offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type
@@ -41,7 +41,8 @@ Configuration variables:
 Possible return values for the lambda:
 
  - ``return <true / false>;`` the new value for the sensor.
- - ``return <anything>; and fill payload with data`` if the payload is added from the lambda then these bytes will be sent
+ - ``return <anything>; and fill payload with data`` if the payload is added from the lambda then these bytes will be sent.
+ - ``return {};`` in the case the lambda handles the sending of the value itself.
 
 **Example**
 
@@ -63,6 +64,7 @@ Possible return values for the lambda:
           payload.push_back(0x6);  // low byte address of the coil
           payload.push_back(0xFF); // ON = 0xFF00 OFF=0000
           payload.push_back(0x00);
+          return true;
 
 
 

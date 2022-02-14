@@ -23,7 +23,7 @@ A Python library that implements this protocol is `aioesphomeapi <https://github
 
     # Example configuration entry
     api:
-      password: 'MyPassword'
+      password: !secret api_password
 
 Configuration variables:
 ------------------------
