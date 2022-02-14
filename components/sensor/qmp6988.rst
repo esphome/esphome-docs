@@ -10,11 +10,11 @@ The ``qmp6988`` sensor platform allows you to use your QMP6988
 `M5Stack`_) temperature and pressure sensors with ESPHome. The :ref:`I²C <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-.. figure:: images/qmp6988_env3.png
+.. figure:: ../../images/qmp6988_env3.png
     :align: center
     :width: 40.0%
 
-    BMP280 Temperature and Pressure Sensor.
+    QMP6988 Temperature and Pressure Sensor.
 
 .. _M5Stack: https://docs.m5stack.com/en/unit/envIII
 
