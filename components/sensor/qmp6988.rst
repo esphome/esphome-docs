@@ -59,7 +59,7 @@ Configuration variables:
 Oversampling Options
 --------------------
 
-By default, the QMP6988 sensor measures each value 8 times when requesting a new value. You can, however,
+By default, the QMP6988 sensor has been configured to measure each value 8 times when requesting a new value. You can, however,
 configure this amount. Possible oversampling values:
 
 -  ``NONE`` (value is skipped)
