@@ -295,6 +295,7 @@ Environmental
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
+    QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
