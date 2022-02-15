@@ -86,7 +86,7 @@ Configuration variables:
    should be treated as inverted. Defaults to ``false``.
 -  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
    modes like input or output. The default value depends on the context.
-   Accepts either a shorthand string or a mapping where each feature can be individually 
+   Accepts either a shorthand string or a mapping where each feature can be individually
    enabled/disabled:
 
    - **input** (*Optional*, boolean): If true, configure the pin as an input.
@@ -313,7 +313,7 @@ merged with the services definitions from main config file.
 
     # In wifi.yaml
     wifi:
-      ssid: "your_ssid"
+      ssid: !secret wifi_ssid
       password: !secret wifi_password
       domain: .yourdomain.lan
       fast_connect: true
@@ -339,7 +339,8 @@ merged with the services definitions from main config file.
       level: ${log_level}
 
     api:
-      password: !secret hass_api_key
+      encryption:
+        key: !secret api_encryption_key
       reboot_timeout: 1h
 
     sensor:

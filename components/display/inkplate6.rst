@@ -129,17 +129,16 @@ Wi-Fi, API, and OTA configuration.
     # Example configuration entry
     esphome:
       name: inkplate
-      platform: ESP32
+
+    esp32:
       board: esp-wrover-kit
 
     logger:
 
     wifi:
-      ssid: <YOUR WIFI SSID>
-      password: <YOUR WIFI PASSWORD>
-      ap:
-        ssid: Inkplate-AP
-        password: '12345678'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      ap: {}
 
     captive_portal:
 
