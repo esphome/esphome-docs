@@ -3,7 +3,7 @@ ESPHome 2022.2.0 - 16th February 2022
 
 .. seo::
     :description: Changelog for ESPHome 2022.2.0.
-    :image: /_static/changelog-2022.1.0.png
+    :image: /_static/changelog-2022.2.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
@@ -42,13 +42,14 @@ FastLED
 
 Due to the Arduino bump, the FastLED library suffers issues when running on ESP8266 on Arduino 3+.
 Because of this there is now a restriction on the ``fastled_clockless`` and ``fastled_spi`` components to only allow using them if you change the arduino version
-back to 2.7.4 or lower. This will be in place until the library can update and fix the issues.
+back to 2.7.4 or lower. This will be in place until the library can update and fix the issues. See the :doc:`documentation </components/light/fastled>` for
+information on how to continue using the lights.
 
 
-Improv serial wifi scan
------------------------
+Improv serial Wi-Fi scan
+------------------------
 
-Improv serial has been updated to be able to start a wifi scan and send the results back to the improv client so the user can select the network SSID instead of having to type it in.
+Improv serial has been updated to be able to start a Wi-Fi scan and send the results back to the improv client so the user can select the network SSID instead of having to type it in.
 
 
 Tuya Multi multi-datapoint
@@ -117,6 +118,8 @@ Beta Changes
 - Clamp rotary_encoder restored value to min and max :esphomepr:`3184` by :ghuser:`jesserockz`
 - Make generating combined binary output verbose :esphomepr:`3127` by :ghuser:`OttoWinter`
 - Allow framework version validator to be maximum version  :esphomepr:`3197` by :ghuser:`jesserockz` (breaking-change)
+- Fix strlcpy() uses to make long SSIDs and passwords work :esphomepr:`3199` by :ghuser:`mmakaay`
+- Update HA addon token :esphomepr:`3200` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -205,6 +208,8 @@ All changes
 - Clamp rotary_encoder restored value to min and max :esphomepr:`3184` by :ghuser:`jesserockz`
 - Make generating combined binary output verbose :esphomepr:`3127` by :ghuser:`OttoWinter`
 - Allow framework version validator to be maximum version  :esphomepr:`3197` by :ghuser:`jesserockz` (breaking-change)
+- Fix strlcpy() uses to make long SSIDs and passwords work :esphomepr:`3199` by :ghuser:`mmakaay`
+- Update HA addon token :esphomepr:`3200` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
