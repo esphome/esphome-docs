@@ -52,6 +52,17 @@ Some notes about the pins on the ESP32:
       - platform: gpio
         name: "Pin GPIO23"
         pin: GPIO23
+        
+** Note **
+
+Espp32 devices can sometime come without any flash layout. Just use esphome-flasher 117 to flash you bin for the first time via serial - it takes care of partitioning the esp32s.
+If you get the following in the logs repeatedly try using esphome-flasher (This does involved over ridding chrome safe browsing to download it)
+
+```
+rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+flash read err, 1000
+ets_main.c 371
+```
 
 See Also
 --------
