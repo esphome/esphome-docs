@@ -234,13 +234,9 @@ If you want to retrieve the value for the ``vol`` key and assign it to a templat
         on_response:
           then:
             - lambda: |-
-                DynamicJsonDocument doc(1024);
-                DeserializationError error = deserializeJson(doc, id(http_request_data).get_string());
-                if (error)
-                  return;
-                float vol = doc["vol"];
-                id(number_player_volume).publish_state(vol);
-
+                json::parse_json(id(http_request_data).get_string(), [](JsonObject root) {
+                    id(number_player_volume).publish_state(root["vol"]);
+                });
 
 **Note:** don't forget to set the ``id`` for the main ``http_request`` component, to ``http_request_data``.
 
