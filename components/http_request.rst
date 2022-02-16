@@ -14,7 +14,6 @@ The ``http_request`` component lets you make HTTP/HTTPS requests. First, you nee
     # Example configuration entry
     http_request:
       useragent: esphome/device
-      id: http_request_data
       timeout: 10s
 
 Configuration variables:
