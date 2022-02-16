@@ -14,6 +14,7 @@ The ``http_request`` component lets you make HTTP/HTTPS requests. First, you nee
     # Example configuration entry
     http_request:
       useragent: esphome/device
+      id: http_request_data
       timeout: 10s
 
 Configuration variables:
@@ -174,8 +175,8 @@ Templatable values
             return id(my_sensor).state;
 
 
-Body in JSON format (syntax 1)
-******************************
+POST Body in JSON format (syntax 1)
+***********************************
 
 **Note:** all values of the map should be a strings.
 It's impossible to send ``boolean`` or ``numbers`` with this syntax.
@@ -194,8 +195,8 @@ It's impossible to send ``boolean`` or ``numbers`` with this syntax.
         # Will send:
         # {"key": "42.0", "greeting": "Hello World"}
 
-Body in JSON format (syntax 2)
-******************************
+POST Body in JSON format (syntax 2)
+***********************************
 
 **Note:** use this syntax to send ``boolean`` or ``numbers`` in JSON.
 
@@ -216,6 +217,33 @@ as seen below.
 
         # Will send:
         # {"key": 42.0, "greeting": "Hello World"}
+
+GET values from a JSON body response
+************************************
+
+The server returns a response in a JSON object over HTTP like this:
+``{"type":"0","ch":"0","mode":"40","loop":"0","eq":"0","status":"play","curpos":"7133","offset_pts":"7133","totlen":"0","Title":"556E6B6E6F776E","Artist":"556E6B6E6F776E","Album":"556E6B6E6F776E","alarmflag":"0","plicount":"0","plicurr":"0","vol":"42","mute":"0"}``
+
+If you want to retrieve the value for the ``vol`` key and assign it to a template ``number`` component (with ``id`` set to ``number_player_volume``):
+
+.. code-block:: yaml
+
+    on_...:
+    - http_request.get:
+        url: http://192.168.1.10/httpapi.asp?command=getPlayerStatus
+        on_response:
+          then:
+            - lambda: |-
+                DynamicJsonDocument doc(1024);
+                DeserializationError error = deserializeJson(doc, id(http_request_data).get_string());
+                if (error)
+                  return;
+                float vol = doc["vol"];
+                id(number_player_volume).publish_state(vol);
+
+
+**Note:** don't forget to set the ``id`` for the main ``http_request`` component, to ``http_request_data``.
+
 
 See Also
 --------
