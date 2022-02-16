@@ -224,7 +224,7 @@ GET values from a JSON body response
 The server returns a response in a JSON object over HTTP like this:
 ``{"type":"0","ch":"0","mode":"40","loop":"0","eq":"0","status":"play","curpos":"7133","offset_pts":"7133","totlen":"0","Title":"556E6B6E6F776E","Artist":"556E6B6E6F776E","Album":"556E6B6E6F776E","alarmflag":"0","plicount":"0","plicurr":"0","vol":"42","mute":"0"}``
 
-If you want to retrieve the value for the ``vol`` key and assign it to a template ``number`` component (with ``id`` set to ``number_player_volume``):
+If you want to retrieve the value for the ``vol`` key and assign it to a template ``sensor`` or ``number`` component (with ``id`` set to ``player_volume``):
 
 .. code-block:: yaml
 
@@ -235,7 +235,7 @@ If you want to retrieve the value for the ``vol`` key and assign it to a templat
           then:
             - lambda: |-
                 json::parse_json(id(http_request_data).get_string(), [](JsonObject root) {
-                    id(number_player_volume).publish_state(root["vol"]);
+                    id(player_volume).publish_state(root["vol"]);
                 });
 
 **Note:** don't forget to set the ``id`` for the main ``http_request`` component, to ``http_request_data``.
