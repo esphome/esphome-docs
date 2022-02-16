@@ -68,6 +68,7 @@ Contributors
 - `Andy Allsopp (@arallsopp) <https://github.com/arallsopp>`__
 - `arantius (@arantius) <https://github.com/arantius>`__
 - `arunderwood (@arunderwood) <https://github.com/arunderwood>`__
+- `Borys Pierov (@ashald) <https://github.com/ashald>`__
 - `Ash McKenzie (@ashmckenzie) <https://github.com/ashmckenzie>`__
 - `Ashton Kemerling (@AshtonKem) <https://github.com/AshtonKem>`__
 - `Pavel Pletenev (@ASMfreaK) <https://github.com/ASMfreaK>`__
@@ -88,6 +89,7 @@ Contributors
 - `bazuchan (@bazuchan) <https://github.com/bazuchan>`__
 - `Viktr (@BbIKTOP) <https://github.com/BbIKTOP>`__
 - `J. Nick Koston (@bdraco) <https://github.com/bdraco>`__
+- `Benno Pütz (@bennop) <https://github.com/bennop>`__
 - `Ben Suffolk (@bensuffolk) <https://github.com/bensuffolk>`__
 - `Arturo Casal (@berfenger) <https://github.com/berfenger>`__
 - `Ivan Bessarabov (@bessarabov) <https://github.com/bessarabov>`__
@@ -314,10 +316,10 @@ Contributors
 - `Arjan Filius (@iafilius) <https://github.com/iafilius>`__
 - `Adrián Panella (@ianchi) <https://github.com/ianchi>`__
 - `Ian Leeder (@ianleeder) <https://github.com/ianleeder>`__
+- `Jan Pobořil (@iBobik) <https://github.com/iBobik>`__
 - `igg (@igg) <https://github.com/igg>`__
 - `Petko Bordjukov (@ignisf) <https://github.com/ignisf>`__
 - `ikatkov (@ikatkov) <https://github.com/ikatkov>`__
-- `Michael (@imeekle) <https://github.com/imeekle>`__
 - `imgbot[bot] (@imgbot[bot]) <https://github.com/imgbot[bot]>`__
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
@@ -586,6 +588,7 @@ Contributors
 - `probonopd (@probonopd) <https://github.com/probonopd>`__
 - `Peter Stuifzand (@pstuifzand) <https://github.com/pstuifzand>`__
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__
+- `Patrick Toal (@ptoal) <https://github.com/ptoal>`__
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__
 - `puuu (@puuu) <https://github.com/puuu>`__
 - `Qc (@qc24) <https://github.com/qc24>`__
@@ -783,7 +786,6 @@ Contributors
 - `Pavel (@yekm) <https://github.com/yekm>`__
 - `Atsuko Ito (@yottatsa) <https://github.com/yottatsa>`__
 - `Nico B (@youknow0) <https://github.com/youknow0>`__
-- `YuanL.Lee (@yuanl) <https://github.com/yuanl>`__
 - `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
 - `zaluthar (@zaluthar) <https://github.com/zaluthar>`__
 - `david reid (@zathras777) <https://github.com/zathras777>`__
@@ -792,4 +794,4 @@ Contributors
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated February 9, 2022.*
+*This page was last updated February 16, 2022.*
