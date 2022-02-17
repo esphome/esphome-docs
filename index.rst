@@ -393,6 +393,7 @@ Binary Sensor Components
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
+    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
