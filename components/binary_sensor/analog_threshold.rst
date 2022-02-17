@@ -7,11 +7,18 @@ Analog Threshold Binary Sensor
 
 The ``analog_threshold`` binary sensor platform allows you to convert analog values 
 (i.e. :doc:`sensor </components/sensor/index>` readings) 
-into boolean values, using a threshold as a reference.
+into boolean values, using a threshold as a reference. 
+When the signal is above or equal to the threshold the binary sensor is `true` 
+(this behavior can be changed adding and `invert` filter).
 
-It provides some options to reduce instability when the source signal is noisy:
-*hysteresis* (using different limits depending on the current state) 
-and *delay* (only change after a new state has been kept a minimum time).
+It provides an *hysteresis* option to reduce instability when the source signal is noisy
+using different limits depending on the current state. 
+Additionally a :ref:`delay filter <binary_sensor-filters>` could be used to only change 
+after a new state has been kept a minimum time.
+
+If the source sensor is uninitialized at the moment of component creation, the initial
+state of the binary sensor wil be `false`, if later it has some reading errors, those
+invalid source updates will be ignored, and the binary sensor will keep it´s last state.
 
 For example, below configuration would turn the readings of current sensor into
 a binary sensor.
@@ -38,16 +45,6 @@ Configuration variables
 
    -  **upper** (**Required**, float): Upper threshold, that needs to be crossed to transition from ``low`` to ``high`` states.
    -  **lower** (**Required**, float): Lower threshold, that needs to be crossed to transition from ``high`` to ``low`` states.
--  **inverted** (*Optional*, boolean): If comparison against the threshold should be treated as inverted. In normal comparison,
-   when the signal is greater or equal to the threshold (``high`` state) the binary sensor is consider as ``True``. 
-   Defaults to ``false``.
--  **delay** (*Optional*, :ref:`config-time` or mapping): Minimum amount of time a prospective new state has to be kept
-   in order to actually change the output. It can be a shorthand single value, 
-   or a mapping with different delays for high and low states. Defaults to ``0ms``.
-
-   -  **high** (**Required**, :ref:`config-time`): time delay to keep the high value before changing the binary state.
-   -  **low** (**Required**, :ref:`config-time`): time delay to keep the low value before changing the binary state.
-
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
@@ -58,5 +55,5 @@ See Also
 - :doc:`/components/binary_sensor/index`
 - :doc:`/components/sensor/index`
 - :ref:`automation`
-- :apiref:`analog_trheshold/analog_threshold_binary_sensor.h`
+- :apiref:`analog_threshold/analog_threshold_binary_sensor.h`
 - :ghedit:`Edit`
