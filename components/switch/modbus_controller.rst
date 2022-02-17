@@ -86,7 +86,20 @@ The write command to be constructed uses the function code to determine the writ
 Because the write command only touches one register start_address and offset have to be corrected.
 The final command will be write_single_coil address 5 (start_address+offset) value 1 or 0
 
-For holding registers the write command will be write_single_register. Because the offset for holding registers is given in bytes and the size of a register is 16 bytes the start_address is calculated as start_address + offset/2
+For holding registers the write command will be write_single_register. Because the offset for holding registers is given in bytes and the size of a register is 16 bytes the start_address is calculated as ``start_address + offset/2``
+
+.. code-block:: yaml
+
+    switch:
+    - platform: modbus_controller
+      modbus_controller_id: ventilation_system
+      name: "enable turn off"
+      register_type: holding
+      address: 25
+      bitmask: 1
+      entity_category: config
+      icon: "mdi:toggle-switch"
+
 
 See Also
 --------
