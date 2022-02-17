@@ -118,6 +118,11 @@ Release 2022.2.2 - February 18
 - Fix platformio docker version mismstch :esphomepr:`3215` by :ghuser:`OttoWinter`
 - Add LONG LONG flag for arduinojson :esphomepr:`3212` by :ghuser:`jesserockz`
 
+Release 2022.2.3 - February 18
+------------------------------
+
+- Bump platformio from 5.2.4 to 5.2.5 :esphomepr:`3188` by :ghuser:`dependabot[bot]`
+
 Full list of changes
 --------------------
 
