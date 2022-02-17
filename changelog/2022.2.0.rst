@@ -60,6 +60,10 @@ And then install the latest ESPHome addon here:
              alt="Open your Home Assistant instance and show the dashboard of a Supervisor add-on." />
     </a>
 
+Locks
+-----
+
+Lock Entities have been added to ESPHome. These will be available after Home Assistant 2022.3 is released. Thanks :ghuser:`kbickar`.
 
 ESP8266 recommended framework bump
 ----------------------------------
@@ -102,6 +106,10 @@ Debug Sensors Breaking change
 The sub-sensors of the ``debug`` have been moved to their respective component platforms.
 Please see the :doc:`documentation </components/debug>` page for the new way to configure them.
 
+Release 2022.2.1 - February 17
+------------------------------
+
+- Fix missed ARDUINO_VERSION_CODE to USE_ARDUINO_VERSION_CODE changes :esphomepr:`3206` by :ghuser:`stewiem2000`
 
 Full list of changes
 --------------------
@@ -253,6 +261,7 @@ All changes
 - Allow framework version validator to be maximum version  :esphomepr:`3197` by :ghuser:`jesserockz` (breaking-change)
 - Fix strlcpy() uses to make long SSIDs and passwords work :esphomepr:`3199` by :ghuser:`mmakaay`
 - Update HA addon token :esphomepr:`3200` by :ghuser:`jesserockz`
+- Fix missed ARDUINO_VERSION_CODE to USE_ARDUINO_VERSION_CODE changes :esphomepr:`3206` by :ghuser:`stewiem2000`
 
 Past Changelogs
 ---------------
