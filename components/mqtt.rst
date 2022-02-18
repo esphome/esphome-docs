@@ -22,7 +22,7 @@ in which case this is not needed.
     mqtt:
       broker: 10.0.0.2
       username: livingroom
-      password: MyMQTTPassword
+      password: !secret mqtt_password
 
 Configuration variables:
 ------------------------
@@ -47,6 +47,9 @@ Configuration variables:
   to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
   generates unique_id in format ``ESP<component_type><default_object_id>``.
   ``mac`` generator uses format ``<mac_address>-<component_type>-<fnv1_hash(friendly_name)>``.
+- **discovery_object_id_generator** (*Optional*, string): The object_id generator
+  to use. Can be one of ``none`` or ``device_name``. Defaults to ``none`` which
+  does not generate object_id. ``device_name`` generator uses format ``<device_name>_<friendly_name>``.
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
@@ -160,6 +163,17 @@ This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
 topic, simply add ``--topic <your_topic>`` to the command.
 
+Home Assistant generates entity names for all discovered devices based on entity type and
+entity name (e.g. ``sensor.uptime``). Numeric suffixes are appended to entity names when
+multiple devices use the same name for a sensor, making it harder to distinguish between
+similar sensors on different devices. Home Assistant 2021.12 allows MQTT devices to change
+this behaviour by specifying ``object_id`` discovery attribute which replaces the sensor
+name part of the generated entity name. Setting ``discovery_object_id_generator: device_name``
+in ESPHome MQTT integration configuration will cause Home Assistant to include device name
+in the generated entity names (e.g. ``sensor.uptime`` becomes ``sensor.<device name>_uptime``),
+making it easier to distinguish the entities in various entity lists.
+
+
 .. _mqtt-defaults:
 
 Defaults
@@ -266,6 +280,7 @@ MQTT can have some overrides for specific options.
       payload_not_available: offline
     state_topic: livingroom/custom_state_topic
     command_topic: livingroom/custom_command_topic
+    command_retain: false
 
 Configuration variables:
 
@@ -284,6 +299,8 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+-  **command_retain** (*Optional*, boolean): Whether MQTT command messages
+   sent to the device should be retained or not. Default to ``false``.
 
 .. warning::
 
@@ -347,7 +364,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe("the/topic", [=](const std::string &payload) {
+        id(mqtt_client).subscribe("the/topic", [=](const std::string &topic, const std::string &payload) {
             // do something with payload
         });
 
@@ -416,7 +433,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).subscribe_json("the/topic", [=](const std::string &topic, JsonObject root) {
             // do something with JSON-decoded value root
         });
 
@@ -518,7 +535,7 @@ Configuration options:
 
     .. code-block:: cpp
 
-        id(mqtt_client).publish_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).publish_json("the/topic", [=](JsonObject root) {
           root["something"] = id(my_sensor).state;
         });
 

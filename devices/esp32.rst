@@ -8,7 +8,7 @@ Generic ESP32
 
 All devices based on the original ESP32 are supported by ESPHome. Simply select ``ESP32`` when
 the ESPHome wizard asks you for your platform and choose a board type
-from `this link <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif32>`__ when the wizard
+from `this link <https://registry.platformio.org/platforms/platformio/espressif32/boards>`__ when the wizard
 asks you for the board type.
 
 .. code-block:: yaml
@@ -16,7 +16,8 @@ asks you for the board type.
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP32
+
+    esp32:
       board: <BOARD_TYPE>
 
 .. note::
@@ -43,7 +44,8 @@ Some notes about the pins on the ESP32:
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP32
+
+    esp32:
       board: <BOARD_TYPE>
 
     binary_sensor:

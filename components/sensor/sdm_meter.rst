@@ -3,7 +3,7 @@ Eastron SDM Energy Monitor
 
 .. seo::
     :description: Instructions for setting up SDM power monitors.
-    :image: sdm220m.png
+    :image: sdm220m.jpg
     :keywords: SDM220M, SDM220, SDM630
 
 The ``sdm_meter`` sensor platform allows you to use Eastron SDM modbus energy monitors
@@ -49,6 +49,8 @@ to some pins on your board and the baud rate set to 9600.
             name: "SDM220M Phase Angle"
         frequency:
           name: "SDM220M Frequency"
+        total_power:
+          name: "SDM220M Total Power"
         import_active_energy:
           name: "SDM220M Import Active Energy"
         export_active_energy:
@@ -89,6 +91,8 @@ Configuration variables:
   - All options from **phase_a**
 
 - **frequency** (*Optional*): Use the frequency value of the sensor in hertz.
+  All options from :ref:`Sensor <config-sensor>`.
+- **total_power** (*Optional*): Use the total power value of the sensor in watts (W).
   All options from :ref:`Sensor <config-sensor>`.
 - **import_active_energy** (*Optional*): Use the import active energy value of the sensor in kilowatt
   hours (kWh). All options from :ref:`Sensor <config-sensor>`.

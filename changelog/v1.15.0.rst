@@ -29,7 +29,7 @@ Changelog - Version 1.15.0 - September 13, 2020
     Tuya Sensor, components/sensor/tuya, tuya.png
     Tuya Switch, components/switch/tuya, tuya.png
     Tuya Climate, components/climate/tuya, tuya.png
-    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     SSD1351, components/display/ssd1351, ssd1351.jpg
     ST7789V, components/display/st7789v, st7789v.jpg
@@ -626,14 +626,11 @@ Release 1.15.3 - October 22
 Past Changelogs
 ---------------
 
-.. toctree::
-    :maxdepth: 1
-
-    v1.14.0
-    v1.13.0
-    v1.12.0
-    v1.11.0
-    v1.10.0
-    v1.9.0
-    v1.8.0
-    v1.7.0
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`

@@ -7,36 +7,7 @@ Tuya Cover
 The ``tuya`` cover platform creates a simple position-only cover from a
 tuya serial component.
 
-There are two components, the Tuya bus and the cover that uses it.  The :doc:`/components/tuya`
-component requires a :ref:`UART bus <uart>` to be configured.  Put the ``tuya`` component in
-the config and it will list the possible devices for you in the config log.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    # Make sure your WiFi will connect
-    wifi:
-      ssid: "ssid"
-      password: "password"
-
-    # Make sure logging is not using the serial port
-    logger:
-      baud_rate: 0
-
-    # Enable Home Assistant API
-    api:
-
-    # Make sure you can upload new firmware OTA
-    ota:
-
-    # My cover used the hardware serial port on the alternate pins
-    uart:
-      rx_pin: GPIO13
-      tx_pin: GPIO15
-      baud_rate: 9600
-
-    # Register the Tuya MCU connection
-    tuya:
+This requires the :doc:`/components/tuya` component to be set up before you can use this platform.
 
 Here is an example output for a Tuya M515EGWT (motor for chain roller blinds):
 
@@ -81,7 +52,7 @@ Tuya cover devices known to be supported by this integration:
   - Only the ``position`` datapoint (2) is used for this device.
   - Datapoint 5's function is not currently known.
 
-- Zemismart ``ZM79E-DT`` (curtain motor)
+- Zemismart ``ZM79E-DT`` and ``YH002`` (curtain motor)
 
   - Supported datapoints: ``control`` (1), ``position`` (2), ``position_report`` (3) and ``direction`` (5).
   - The direction of travel is persisted to the Tuya MCU, so doesn't need to be set if you've already configured it via the remote control.
