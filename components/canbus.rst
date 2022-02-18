@@ -165,7 +165,8 @@ You only need to specify the RX and TX pins which can be every GPIO.
           ...
 
 Wiring options
----------------
+**************
+
 5V Can transceivers are cheap and generate complient levels.
 If you power your board with 5V this is the preferred option.
 R501 is important to reduce the 5V Logic level down to 3.3V for the ESP32 otherwise the ESP32 gets damaged.
@@ -235,7 +236,8 @@ Configuration variables:
 - All other options from :ref:`Canbus <config-canbus>`.
 
 Wiring options
----------------
+**************
+
 Easiest approach is to just use fully assembled boards and just add one resistor in the MISO line.
 This runs MOSI, SCK and CS out of specification which is nearly never a problem.
 
