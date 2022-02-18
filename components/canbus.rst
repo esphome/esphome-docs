@@ -150,19 +150,37 @@ ESP32 CAN Component
 -------------------
 
 The ESP32 has an integrated CAN controller and therefore doesn't need an external controller necessarily.
-You only need to specify the RX and TX pins.
+You only need to specify the RX and TX pins which can be every GPIO.
 
 .. code-block:: yaml
 
     # Example configuration entry
     canbus:
       - platform: esp32_can
-        tx_pin: GPIO1
-        rx_pin: GPIO3
+        tx_pin: GPIO5
+        rx_pin: GPIO4
         can_id: 4
         bit_rate: 50kbps
         on_frame:
           ...
+
+Wiring options
+---------------
+5V Can transceivers are cheap and generate complient levels.
+If you power your board with 5V this is the preferred option.
+R501 is important to reduce the 5V Logic level down to 3.3V for the ESP32 otherwise the ESP32 gets damaged.
+(Alternative option: Voltage divider 330Ohm / 680Ohm.)
+
+.. figure:: images/canbus_esp32_5v.png
+    :align: center
+    :target: ../_images/canbus_esp32_5v.png
+
+If you prefere only 3.3V Power suppyl special 3.3V Transceivers are available.
+
+.. figure:: images/canbus_esp32_3v3.png
+    :align: center
+    :target: ../_images/canbus_esp32_3v3.png
+
 
 Configuration variables:
 ************************
