@@ -57,10 +57,10 @@ master_doc = "index"
 
 # General information about the project.
 project = "ESPHome"
-copyright = "2019, Otto Winter"
+copyright = "2022, Nabu Casa"
 html_show_copyright = False
 html_show_sphinx = False
-author = "Otto Winter"
+author = "ESPHome"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -81,7 +81,16 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", 'env', 'venv', 'ENV', '.venv', '.env']
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "env",
+    "venv",
+    "ENV",
+    ".venv",
+    ".env",
+]
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 # default_role = 'cpp:any'
@@ -179,7 +188,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "esphome.tex", "ESPHome Documentation", "Otto Winter", "manual"),
+    (master_doc, "esphome.tex", "ESPHome Documentation", author, "manual"),
 ]
 
 latex_engine = "xelatex"
