@@ -539,7 +539,7 @@ Touchscreen Components
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
-    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.png
+    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
 
 Cover Components
 ----------------
@@ -720,7 +720,6 @@ documentation for others to copy. See :doc:`Contributing </guides/contributing>`
     :hidden:
 
     web-api/index
-    misc/index
     components/index
     cookbook/index
     devices/index

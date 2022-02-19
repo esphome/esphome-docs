@@ -51,7 +51,7 @@ copy-svg2png:
 netlify: netlify-dependencies netlify-api html copy-svg2png
 
 lint: html-strict
-	python3 travis.py
+	python3 lint.py
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
