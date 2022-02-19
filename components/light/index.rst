@@ -43,6 +43,8 @@ Configuration variables:
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``RESTORE_AND_OFF`` - Attempt to restore state but initialize the light as OFF.
+    - ``RESTORE_AND_ON`` - Attempt to restore state but initialize the light as ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
