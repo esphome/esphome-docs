@@ -17,23 +17,18 @@ and the :doc:`ESP8266 Software PWM output </components/output/esp8266_pwm>` comp
 
     esphome:
       name: h801light
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
+
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
-      manual_ip:
-        static_ip: x.x.x.x
-        gateway: x.x.x.x
-        subnet: 255.255.255.0
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+
     logger:
     api:
     ota:
-    sensor:
-      - platform: wifi_signal
-        name: "WiFi Signal h801light"
-        update_interval: 60s
-    #RGBWarm
+
     output:
       - platform: esp8266_pwm
         pin: 12
@@ -107,8 +102,8 @@ The example below uses the TX pin as a PIR motion sensor input:
 
 H801 shown with PIR connected to header pins
 
-The following can be appended to the YAML file for your H801 to configure the TX pin as a motion 
-sensor input. 
+The following can be appended to the YAML file for your H801 to configure the TX pin as a motion
+sensor input.
 
 .. code-block:: yaml
 

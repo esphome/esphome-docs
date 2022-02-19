@@ -13,7 +13,8 @@ and shipping from China takes a long time, I've only set up dedicated guides for
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
+
+    esp8266:
       board: esp8285
 
 After that use the following list of pin to function mappings to set up your Sonoff device.

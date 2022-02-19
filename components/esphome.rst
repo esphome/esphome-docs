@@ -15,7 +15,8 @@ where you specify the **name** of the node.
     esphome:
         name: livingroom
         comment: Living room ESP32 controller
-        platform: ESP32
+
+    esp32:
         board: nodemcu-32s
 
 .. _esphome-configuration_variables:
@@ -50,8 +51,8 @@ Advanced options:
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
 
-Old-style platform options, which have been moved to the platform-specific :doc:`esp32 </components/esp32>` and 
-:doc:`esp8266 </components/esp8266>` sections but are still accepted here for compatibility reasons (usage not 
+Old-style platform options, which have been moved to the platform-specific :doc:`esp32 </components/esp32>` and
+:doc:`esp8266 </components/esp8266>` sections but are still accepted here for compatibility reasons (usage not
 recommended for new projects):
 
 - **platform** (**Required**, string): The platform used, either ``esp8266`` or ``esp32``.

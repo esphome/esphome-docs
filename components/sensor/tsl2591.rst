@@ -30,6 +30,9 @@ The TSL2591 device is available on breakout boards from a few vendors
 
 The sensor claims a dynamic range of 600 million to 1 with an effective maximum of 88000 lux.
 It achieves that large range by having a configurable ``gain`` value.
+For many applications, you can use AUTO gain to have the ESP select a suitable gain setting based on
+the previous measurement. If light levels change dramatically this may cause the next reading to saturate,
+after which the gain will adjust down and subsequent readings will be in range.
 Use a higher gain value when measuring less intense light sources.
 On the other hand, if you get ADC readings of 65,535 for either physical sensor,
 you may be saturating that sensor and need to reduce the gain.
@@ -121,9 +124,10 @@ For the TSL2591 device:
   You cannot specify an arbitrary gain multiplier. It must be one of:
 
   - ``low``, ``1x``
-  - ``medium``, ``med``, ``25x``   *(default)*
+  - ``medium``, ``med``, ``25x``
   - ``high``, ``400x``
   - ``maximum``, ``max``, ``9500x``
+  - ``auto`` *(default)*
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval for checking the sensors.
   Defaults to ``60s``.

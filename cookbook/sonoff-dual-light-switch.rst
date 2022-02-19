@@ -31,7 +31,8 @@ The R1 version of the Dual controls the relays via the UART, so the code gets a 
 
     esphome:
       name: dual_ls
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
@@ -182,7 +183,8 @@ It's basically the same as the :doc:`T2 </cookbook/sonoff-t1-3>`
 
     esphome:
       name: dual_ls
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:

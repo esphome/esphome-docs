@@ -21,6 +21,23 @@ AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
 
     docker pull esphome/esphome
 
+If you want to use `docker-compose` instead, here's a sample file:
+
+.. code-block:: yaml
+
+    version: '3'
+    services:
+      esphome:
+        container_name: esphome
+        image: esphome/esphome
+        volumes:
+          - /path/to/esphome/config:/config
+          - /etc/localtime:/etc/localtime:ro
+        restart: always
+        privileged: true
+        network_mode: host
+
+
 Connecting the ESP Device
 -------------------------
 
