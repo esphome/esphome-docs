@@ -35,8 +35,8 @@ Configuration variables:
 - **descriptor_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
 - **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
 - **notify** (*Optional*, boolean): Instruct the server to send notifications for this
-  characteristic.
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
+  characteristic. Defaults to ``false``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device. Defaults to ``60s``.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
 Automations:
