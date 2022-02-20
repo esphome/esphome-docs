@@ -1,5 +1,5 @@
 HTU21D | Si7021 | SHT21 Temperature & Humidity Sensor
-==================================
+=====================================================
 
 .. seo::
     :description: Instructions for setting up HTU21D temperature and humidity sensors.
