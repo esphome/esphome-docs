@@ -24,27 +24,27 @@ required to be set up in your configuration for this sensor to work
     sensor:
     - platform: honeywellabp
         pressure:
-            name: "Honeywell pressure"
-            unit_of_measurement: "psi"
-            min_pressure: 0
-            max_pressure: 15
+          name: "Honeywell pressure"
+          unit_of_measurement: "psi"
+          min_pressure: 0
+          max_pressure: 15
         temperature:
-            name: "Honeywell temperature"
+          name: "Honeywell temperature"
         cs_pin: GPIO5 #D5
-        update_interval: 2s
 
 Configuration variables:
 ------------------------
 
-min_pressure and max_pressure are from the device datasheet. These are used to calculate the pressure reading published by the sensor.
+The values for ``min_pressure`` and ``max_pressure`` can be found in the device datasheet for the specific device. These are used to calculate 
+the pressure reading published by the sensor. Some sensors measure pressure in ``bar`` or ``kPa``; set ``min_pressure`` and ``max_pressure`` to 
+the measurement range and ``unit_of_measurement`` to the appropriate unit for your device.
 
 - **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
-  - **min_pressure** (**Required**, int or float): Minumim pressure for the pressure sensor.
-  - **max_pressure** (**Required**, int or float): Maximum pressure for the pressure sensor.
+  - **min_pressure** (**Required**, int or float): Minumim pressure for the pressure sensor, default unit ``psi``.
+  - **max_pressure** (**Required**, int or float): Maximum pressure for the pressure sensor, default unit ``psi``.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  - **unit_of_measurement** (*Optional*, string): Defaults to ``psi``
   - All other options from :ref:`Sensor <config-sensor>`.
 
 Some sensors do not have temperature sensing ability, see datasheet. In some cases the sensor may return a valid temperature even though the 
