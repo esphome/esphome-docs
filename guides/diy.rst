@@ -23,6 +23,7 @@ unless it's truly exceptional, etc.
 Blog Posts & Videos
 -------------------
 - `Build a cheap air quality sensor <https://www.pieterbrinkman.com/2021/02/03/build-a-cheap-air-quality-meter-using-esphome-home-assistant-and-a-particulate-matter-sensor/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
+- `Track your water usage using a proximity sensor <https://www.pieterbrinkman.com/2022/02/02/build-a-cheap-water-usage-sensor-using-esphome-home-assistant-and-a-proximity-sensor/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Collecting Temperature Data from ELA Bluetooth Puck with ESPHome <https://blog.weinreich.org/posts/2020/2020-12-14-esphome-ble-ela/>`__ by `lairsdragon <https://www.weinreich.org/>`__
 - `Make your fireplace smart (blog series) <http://www.pieterbrinkman.com/category/home-automation/make-your-bellfire-fireplace-smart/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Ultrasonic Salt Level Sensor <https://adonno.com/salt-level-sensor/>`__ by `Adonno <https://adonno.com>`__

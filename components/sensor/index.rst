@@ -38,7 +38,8 @@ override them if you want to.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the sensor.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
