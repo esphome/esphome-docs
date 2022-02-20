@@ -665,6 +665,7 @@ Misc Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     Demo, components/demo, description.svg
+    Copy, components/copy, content-copy.svg
 
 Additional Custom Components
 ----------------------------
