@@ -75,5 +75,5 @@ See Also
 - :doc:`/components/sensor/modbus_controller`
 - :doc:`/components/text_sensor/modbus_controller`
 - https://www.modbustools.com/modbus.html
-- - :ghsources:`esphome/components/modbus_controller`
+- :ghsources:`esphome/components/modbus_controller`
 - :ghedit:`Edit`
