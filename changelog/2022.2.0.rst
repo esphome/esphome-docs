@@ -17,7 +17,7 @@ ESPHome 2022.2.0 - 16th February 2022
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg
-    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.png
+    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     MLX90393, components/sensor/mlx90393, mlx90393.jpg
 
     Wake-on-LAN Button, components/button/wake_on_lan, power_settings.svg
