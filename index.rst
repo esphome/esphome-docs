@@ -359,6 +359,7 @@ Motion
 
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
+    MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
 
 
