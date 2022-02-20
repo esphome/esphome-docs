@@ -1,4 +1,4 @@
-HTU21D Temperature+Humidity Sensor
+HTU21D | Si7021 | SHT21 Temperature & Humidity Sensor
 ==================================
 
 .. seo::
@@ -6,10 +6,11 @@ HTU21D Temperature+Humidity Sensor
     :image: htu21d.jpg
     :keywords: HTU21D
 
-The HTU21D Temperature+Humidity sensor allows you to use your HTU21D
-(`Adafruit <https://www.adafruit.com/product/1899>`__) sensors with
-ESPHome. The :ref:`I²C Bus <i2c>` is
-required to be set up in your configuration for this sensor to work.
+The HTU21D Temperature+Humidity sensor allows you to use HTU21D, Si7021 and SHT21 sensors with
+ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
+
+Example sensors:
+- (`Adafruit <https://www.adafruit.com/product/1899>`__)
 
 .. figure:: images/htu21d-full.jpg
     :align: center
@@ -22,10 +23,6 @@ required to be set up in your configuration for this sensor to work.
 .. figure:: images/temperature-humidity.png
     :align: center
     :width: 80.0%
-
-.. note::
-
-    The **SI7021** sensor also works with this integration.
 
 .. code-block:: yaml
 
