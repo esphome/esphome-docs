@@ -123,6 +123,16 @@ Release 2022.2.3 - February 18
 
 - Bump platformio from 5.2.4 to 5.2.5 :esphomepr:`3188` by :ghuser:`dependabot[bot]`
 
+Release 2022.2.4 - February 21
+------------------------------
+
+- Publish NAN when dallas conversion failed :esphomepr:`3227` by :ghuser:`OttoWinter`
+- Fix ESP8266 climate memaccess warning :esphomepr:`3226` by :ghuser:`OttoWinter`
+- Improve ESP8266 iram usage :esphomepr:`3223` by :ghuser:`OttoWinter`
+- ESP32-C3 deep sleep fix :esphomepr:`3066` by :ghuser:`Troublebrewing`
+- Fix lilygo touchscreen rotation :esphomepr:`3221` by :ghuser:`jesserockz`
+- Fix fatal erroring in addon startup script :esphomepr:`3244` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
