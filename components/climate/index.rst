@@ -203,7 +203,7 @@ This trigger is activated each time the state of the climate device is updated
 See Also
 --------
 
-- :apiref:`climate/climate.h`
+- :ghsources:`esphome/components/climate`
 - :ghedit:`Edit`
 
 .. toctree::

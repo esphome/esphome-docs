@@ -91,7 +91,7 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`bme680`
 - :doc:`bmp085`
-- :apiref:`bme280/bme280.h`
+- :ghsources:`esphome/components/bme280`
 - `Adafruit BME280 Library <https://github.com/adafruit/Adafruit_BME280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `SparkFun BME280 Library <https://github.com/sparkfun/SparkFun_BME280_Arduino_Library>`__ by `SparkFun <https://www.sparkfun.com/>`__
 - :ghedit:`Edit`

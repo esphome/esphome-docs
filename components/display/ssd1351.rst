@@ -102,6 +102,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ssd1351_base/ssd1351_base.h`
+- :ghsources:`esphome/components/ssd1351_base`
 - `SSD1351 Library <https://github.com/adafruit/Adafruit-SSD1351-library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

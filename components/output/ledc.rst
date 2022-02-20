@@ -134,6 +134,6 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`ledc/ledc_output.h`
+- :ghsources:`esphome/components/ledc`
 - `esp-idf LEDC API docs <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html>`__
 - :ghedit:`Edit`

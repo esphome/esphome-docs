@@ -79,5 +79,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/cover/index`
-- :apiref:`tuya/cover/tuya_cover.h`
+- :ghsources:`esphome/components/tuya/cover`
 - :ghedit:`Edit`

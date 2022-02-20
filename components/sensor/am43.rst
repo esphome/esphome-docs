@@ -67,5 +67,5 @@ See Also
 - :doc:`index`
 - :doc:`/components/cover/am43`
 - :ref:`automation`
-- :apiref:`sensor/am43/am43.h`
+- :ghsources:`esphome/components/sensor/am43`
 - :ghedit:`Edit`

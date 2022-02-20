@@ -60,7 +60,7 @@ Configuration variables:
 
   - All options from :ref:`Switch <config-switch>`.
 
-See :apiclass:`Switch <switch_::Switch>`
+See :ghsources:`Switch <esphome/components/switch/switch.h>`
 
 See Also
 --------

@@ -45,7 +45,7 @@ In ESPHome, a **sensor** is some hardware device (like a BMP180) that periodical
 sends out numbers, for example a temperature sensor that periodically publishes its temperature **state**.
 
 Another important abstraction in ESPHome is the concept of a **component**. In ESPHome,
-a **component** is an object with a *lifecycle* managed by the :apiclass:`Application` class.
+a **component** is an object with a *lifecycle* managed by the :ghsources:`Application <esphome/core/application.h>` class.
 What does this mean? Well if you've coded in Arduino before you might know the two special methods
 ``setup()`` and ``loop()``. ``setup()`` is called one time when the node boots up and ``loop()`` is called
 very often and this is where you can do things like read out sensors etc.
@@ -79,7 +79,7 @@ Let's now also take a closer look at this line, which you might not be too used 
     class MyCustomSensor : public Component, public Sensor {
 
 What this line is essentially saying is that we're defining our own class that's called ``MyCustomSensor``
-which is also a subclass of :apiclass:`Component` and :apiclass:`Sensor <sensor::Sensor>`.
+which is also a subclass of :ghsources:`Component <esphome/core/component.h>` and :ghsources:`Sensor <esphome/components/sensor/sensor.h>`.
 As described before, these two "parent" classes have special semantics that we will make use of.
 
 We *could* go implement our own sensor code now by replacing the contents of ``setup()`` and ``loop()``.
@@ -89,9 +89,9 @@ the latest values.
 However, there's a small problem with that approach: ``loop()`` gets called very often (about 60 times per second).
 If we would publish a new state each time that method is called we would quickly make the node unresponsive.
 
-So lets fix this, we will use an alternative class to :apiclass:`Component`: :apiclass:`PollingComponent`.
+So lets fix this, we will use an alternative class to :ghsources:`Component <esphome/core/component.h>`: :ghsources:`PollingComponent <esphome/core/component.h>`.
 This class is for situations where you have something that should get called repeatedly with some **update interval**.
-In the code above, we can simply replace :apiclass:`Component` by :apiclass:`PollingComponent` and
+In the code above, we can simply replace :ghsources:`Component <esphome/core/component.h>` by :ghsources:`PollingComponent <esphome/core/component.h>` and
 ``loop()`` by a special method ``update()`` which will be called with an interval we can specify.
 
 .. code-block:: cpp
@@ -110,11 +110,11 @@ In the code above, we can simply replace :apiclass:`Component` by :apiclass:`Pol
     };
 
 
-Our code has slightly changed, as explained above we're now inheriting from :apiclass:`PollingComponent` instead of
-just :apiclass:`Component`. Additionally, we now have a new line: the constructor. You also don't really need to
+Our code has slightly changed, as explained above we're now inheriting from :ghsources:`PollingComponent <esphome/core/component.h>` instead of
+just :ghsources:`Component <esphome/core/component.h>`. Additionally, we now have a new line: the constructor. You also don't really need to
 know much about constructors here, so to simplify let's just say this is where we "initialize" the custom sensor.
 
-In this constructor we're telling the compiler that we want :apiclass:`PollingComponent` to be instantiated with an
+In this constructor we're telling the compiler that we want :ghsources:`PollingComponent <esphome/core/component.h>` to be instantiated with an
 *update interval* of 15s, or 15000 milliseconds (ESPHome uses milliseconds internally).
 
 Let's also now make our sensor actually publish values in the ``update()`` method:
@@ -132,7 +132,7 @@ Every time ``update`` is called we will now **publish** a new value to the front
 The rest of ESPHome will then take care of processing this value and ultimately publishing it
 to the outside world (for example using MQTT).
 
-One last thing. Some sensors, such as the BMP180 were are going to explain later, require some other component before they can be used. Remember how we talked about the ``setup()`` method? Well just like when writing in the Arduino IDE, components need to be set up in the right order. For that ESPHome introduces another method in the :apiclass:`Component` class.
+One last thing. Some sensors, such as the BMP180 were are going to explain later, require some other component before they can be used. Remember how we talked about the ``setup()`` method? Well just like when writing in the Arduino IDE, components need to be set up in the right order. For that ESPHome introduces another method in the :ghsources:`Component <esphome/core/component.h>` class.
 
 .. code-block:: cpp
 

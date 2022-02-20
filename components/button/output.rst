@@ -45,5 +45,5 @@ See Also
 --------
 
 - :doc:`/components/output/index`
-- :apiref:`output/button/output_button.h`
+- :ghsources:`esphome/components/output/button`
 - :ghedit:`Edit`

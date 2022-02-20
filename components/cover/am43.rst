@@ -73,5 +73,5 @@ See Also
 
 - :doc:`index`
 - :ref:`automation`
-- :apiref:`am43/am43_cover.h`
+- :ghsources:`esphome/components/am43`
 - :ghedit:`Edit`

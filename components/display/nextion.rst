@@ -109,7 +109,7 @@ Lambda Calls
 ************
 
 Several methods are available for use within :ref:`lambdas <config-lambda>` ; these permit advanced functionality beyond simple
-display updates. See the full :apiref:`nextion/nextion.h` for more info. 
+display updates. See the full :ghsources:`esphome/components/nextion` for more info. 
 
 .. _nextion_upload_tft:
 
@@ -263,7 +263,7 @@ See Also
 - :doc:`../switch/nextion`
 - :doc:`../text_sensor/nextion`
 - :doc:`../uart`
-- :apiref:`nextion/nextion.h`
+- :ghsources:`esphome/components/nextion`
 - `Simple Nextion Library <https://github.com/bborncr/nextion>`__ by `Bentley Born <https://github.com/bborncr>`__
 - `Official Nextion Library <https://github.com/itead/ITEADLIB_Arduino_Nextion>`__ by `iTead <https://www.itead.cc/>`__
 - :ghedit:`Edit`

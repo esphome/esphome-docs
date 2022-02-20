@@ -199,5 +199,5 @@ See Also
 --------
 
 - :doc:`/components/uart`
-- :apiref:`logger/logger.h`
+- :ghsources:`esphome/components/logger`
 - :ghedit:`Edit`

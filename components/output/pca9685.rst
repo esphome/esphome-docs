@@ -90,6 +90,6 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`pca9685/pca9685_output.h`
+- :ghsources:`esphome/components/pca9685`
 - `PCA9685 Arduino Library <https://github.com/NachtRaveVL/PCA9685-Arduino>`__ by `@NachtRaveVL <https://github.com/NachtRaveVL>`__
 - :ghedit:`Edit`

@@ -42,4 +42,5 @@ See Also
 --------
 
 - :doc:`esphome`
+- :ghsources:`esphome/components/esp8266`
 - :ghedit:`Edit`

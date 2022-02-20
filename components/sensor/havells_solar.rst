@@ -181,4 +181,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :ghsources:`esphome/components/havells_solar`
 - :ghedit:`Edit`

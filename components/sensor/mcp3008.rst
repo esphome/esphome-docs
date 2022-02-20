@@ -88,5 +88,5 @@ See Also
 --------
 
 - :ref:`spi`
-- :apiref:`mcp3008/mcp3008.h`
+- :ghsources:`esphome/components/mcp3008`
 - :ghedit:`Edit`

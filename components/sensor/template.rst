@@ -87,5 +87,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :ref:`automation`
-- :apiref:`template/sensor/template_sensor.h`
+- :ghsources:`esphome/components/template/sensor`
 - :ghedit:`Edit`

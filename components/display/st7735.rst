@@ -89,5 +89,5 @@ See Also
 
 - :ref:`spi`
 - :doc:`/components/display/index`
-- :apiref:`st7735/st7735.h`
+- :ghsources:`esphome/components/st7735`
 - :ghedit:`Edit`

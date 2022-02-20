@@ -70,5 +70,5 @@ See Also
 
 - :ref:`sensor-filters`
 - `UART Protocol Documentation <https://amphenol-sensors.com/en/component/edocman/561-telaire-co2-sensors-uart-communications-protocol/download?Itemid=8486%20%27>`__
-- :apiref:`t6615/t6615.h`
+- :ghsources:`esphome/components/t6615`
 - :ghedit:`Edit`

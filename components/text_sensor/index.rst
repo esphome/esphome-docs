@@ -283,7 +283,7 @@ advanced stuff (see the full API Reference for more info).
 See Also
 --------
 
-- :apiref:`text_sensor/text_sensor.h`
+- :ghsources:`esphome/components/text_sensor`
 - :ghedit:`Edit`
 
 .. toctree::

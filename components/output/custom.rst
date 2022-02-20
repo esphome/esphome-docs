@@ -84,7 +84,7 @@ Configuration variables:
 
     - All options from :ref:`Output <config-output>`.
 
-See :apiclass:`output::BinaryOutput` and :apiclass:`output::FloatOutput`.
+See :ghsources:`BinaryOutput <esphome/components/output/binary_output.h>` and :ghsources:`FloatOutput <esphome/components/output/float_output.h>`.
 
 See Also
 --------

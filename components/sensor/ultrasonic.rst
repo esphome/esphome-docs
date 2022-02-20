@@ -64,5 +64,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`template`
-- :apiref:`ultrasonic/ultrasonic_sensor.h`
+- :ghsources:`esphome/components/ultrasonic`
 - :ghedit:`Edit`

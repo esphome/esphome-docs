@@ -42,5 +42,5 @@ See Also
 --------
 
 - :doc:`/components/uart`
-- :apiref:`uart/switch/uart_switch.h`
+- :ghsources:`esphome/components/uart/switch`
 - :ghedit:`Edit`

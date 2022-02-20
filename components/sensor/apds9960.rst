@@ -103,5 +103,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`apds9960/apds9960.h`
+- :ghsources:`esphome/components/apds9960`
 - :ghedit:`Edit`

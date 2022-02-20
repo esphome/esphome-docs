@@ -76,5 +76,5 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`slow_pwm/slow_pwm_output.h`
+- :ghsources:`esphome/components/slow_pwm`
 - :ghedit:`Edit`

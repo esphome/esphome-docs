@@ -94,5 +94,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/climate/index`
-- :apiref:`tuya/climate/tuya_climate.h`
+- ::ghsources:`esphome/components/tuya/climate`
 - :ghedit:`Edit`

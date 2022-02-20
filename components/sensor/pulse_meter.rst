@@ -101,5 +101,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`/components/sensor/pulse_counter`
-- :apiref:`pulse_meter/pulse_meter_sensor.h`
+- :ghsources:`esphome/components/pulse_meter`
 - :ghedit:`Edit`

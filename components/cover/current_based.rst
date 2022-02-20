@@ -258,5 +258,5 @@ See Also
 - :doc:`/components/cover/template`
 - :doc:`/components/sensor/ade7953`
 - :ref:`automation`
-- :apiref:`current_based/current_based_cover.h`
+- :ghsources:`esphome/components/current_based`
 - :ghedit:`Edit`

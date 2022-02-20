@@ -66,5 +66,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`uptime/uptime_sensor.h`
+- :ghsources:`esphome/components/uptime`
 - :ghedit:`Edit`

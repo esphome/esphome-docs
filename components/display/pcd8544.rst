@@ -68,7 +68,7 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`pcd8544/pcd8544.h`
+- :ghsources:`esphome/components/pcd8544`
 - `Tutorial from Adafruit <https://learn.adafruit.com/nokia-5110-3310-monochrome-lcd>`__
 - `PCD8544 Library <https://github.com/adafruit/Adafruit-PCD8544-Nokia-5110-LCD-library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

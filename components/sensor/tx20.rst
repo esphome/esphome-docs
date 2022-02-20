@@ -78,7 +78,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`tx20/tx20.h`
+- :ghsources:`esphome/components/tx20`
 - `Amazon Tx20 <https://www.amazon.de/Technoline-Tx-20/dp/B01HXZ3KLA>`__
 - `La Crosse Tx23 <https://www.lacrossetechnology.com/tx23-wind-sensor>`__
 - `Datagram Tx20 <http://www.sdpro.eu/jm/images/allegati/TX20_Documentazione.pdf>`__

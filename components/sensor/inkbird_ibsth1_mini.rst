@@ -111,6 +111,6 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
-- :apiref:`inkbird_ibsth1_mini/inkbird_ibsth1_mini.h`
+- :ghsources:`esphome/components/inkbird_ibsth1_mini`
 - `OpenMQTTGateway <https://github.com/1technophile/OpenMQTTGateway>`__ by `@1technophile <https://github.com/1technophile>`__
 - :ghedit:`Edit`

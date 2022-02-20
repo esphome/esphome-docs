@@ -236,5 +236,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`st7789v_base/st7789v_base.h`
+- :ghsources:`esphome/components/st7789v_base`
 - :ghedit:`Edit`

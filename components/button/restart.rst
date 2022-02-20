@@ -27,5 +27,5 @@ See Also
 
 - :doc:`/components/switch/restart`
 - :doc:`template`
-- :apiref:`restart/button/restart_button.h`
+- :ghsources:`esphome/components/restart/button`
 - :ghedit:`Edit`

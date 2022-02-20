@@ -64,5 +64,5 @@ See Also
 --------
 
 - :doc:`/components/text_sensor/index`
-- :apiclass:`API Reference <text_sensor::TextSensor>`
+- :ghsources:`esphome/components/custom/text_sensor`
 - :ghedit:`Edit`

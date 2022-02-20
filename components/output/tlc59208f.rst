@@ -116,5 +116,5 @@ See Also
 - :doc:`/components/light/rgb`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`tlc59208f/tlc59208f_output.h`
+- :ghsources:`esphome/components/tlc59208f`
 - :ghedit:`Edit`

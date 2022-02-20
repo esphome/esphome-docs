@@ -44,5 +44,5 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/text_sensor/index`
-- :apiref:`ble_scanner/ble_scanner.h`
+- :ghsources:`esphome/components/ble_scanner`
 - :ghedit:`Edit`

@@ -63,23 +63,23 @@ Configuration variables:
 Automations:
 
 - **on_coolix** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Coolix remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::CoolixData`
+  Coolix remote code has been decoded. A variable ``x`` of type :ghsources:`CoolixData <esphome/components/remote_base/coolix_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_dish** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  dish network remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::DishData`
+  dish network remote code has been decoded. A variable ``x`` of type :ghsources:`DishData <esphome/components/remote_base/dish_protocol.h>`
   is passed to the automation for use in lambdas.
   Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don't decode.
 - **on_jvc** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  JVC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::JVCData`
+  JVC remote code has been decoded. A variable ``x`` of type :ghsources:`JVCData <esphome/components/remote_base/jvc_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
+  LG remote code has been decoded. A variable ``x`` of type :ghsources:`LGData <esphome/components/remote_base/lg_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_midea** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Midea remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::MideaData`
+  Midea remote code has been decoded. A variable ``x`` of type :ghsources:`MideaData <esphome/components/remote_base/midea_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_nec** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  NEC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::NECData`
+  NEC remote code has been decoded. A variable ``x`` of type :ghsources:`NECData <esphome/components/remote_base/nec_protocol.h>`
   is passed to the automation for use in lambdas.
 
   .. note::
@@ -89,34 +89,34 @@ Automations:
       For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 - **on_nexa** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Nexa RF code has been decoded. A variable ``x`` of type :apiclass:`remote_base::NexaData`
+  Nexa RF code has been decoded. A variable ``x`` of type :ghsources:`NexaData <esphome/components/remote_base/nexa_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_panasonic** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Panasonic remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PanasonicData`
+  Panasonic remote code has been decoded. A variable ``x`` of type :ghsources:`PanasonicData <esphome/components/remote_base/panasonic_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  pioneer remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PioneerData`
+  pioneer remote code has been decoded. A variable ``x`` of type :ghsources:`PioneerData <esphome/components/remote_base/pioneer_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   raw remote code has been decoded. A variable ``x`` of type ``std::vector<int>``
   is passed to the automation for use in lambdas.
 - **on_rc5** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  RC5 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RC5Data`
+  RC5 remote code has been decoded. A variable ``x`` of type :ghsources:`RC5Data <esphome/components/remote_base/rc5_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  RCSwitch RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RCSwitchData`
+  RCSwitch RF code has been decoded. A variable ``x`` of type :ghsources:`RCSwitchData <esphome/components/remote_base/rc_switch_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_samsung** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Samsung remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SamsungData`
+  Samsung remote code has been decoded. A variable ``x`` of type :ghsources:`SamsungData <esphome/components/remote_base/samsung_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_samsung36** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Samsung36 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::Samsung36Data`
+  Samsung36 remote code has been decoded. A variable ``x`` of type :ghsources:`Samsung36Data <esphome/components/remote_base/samsung36_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_sony** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Sony remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::SonyData`
+  Sony remote code has been decoded. A variable ``x`` of type :ghsources:`SonyData <esphome/components/remote_base/sony_protocol.h>`
   is passed to the automation for use in lambdas.
 - **on_toshiba_ac** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
-  Toshiba AC remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::ToshibaAcData`
+  Toshiba AC remote code has been decoded. A variable ``x`` of type :ghsources:`ToshibaAcData <esphome/components/remote_base/toshiba_ac_protocol.h>`
   is passed to the automation for use in lambdas.
 
 .. _remote-receiver-binary-sensor:
@@ -307,5 +307,5 @@ See Also
 - :doc:`/components/remote_transmitter`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
-- :apiref:`remote/remote_receiver.h`
+- :ghsources:`esphome/components/remote`
 - :ghedit:`Edit`

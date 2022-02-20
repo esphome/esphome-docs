@@ -215,6 +215,6 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`my9231/my9231.h`
+- :ghsources:`esphome/components/my9231`
 - `MY92XX LED driver library for Arduino AVR and ESP8266 <https://github.com/xoseperez/my92xx>`__ by `@xoseperez <https://github.com/xoseperez>`__
 - :ghedit:`Edit`

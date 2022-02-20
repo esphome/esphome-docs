@@ -66,6 +66,6 @@ See Also
 - :doc:`dht12`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`hdc1080/hdc1080.h`
+- :ghsources:`esphome/components/hdc1080`
 - `HDC1080 Library <https://github.com/closedcube/ClosedCube_HDC1080_Arduino>`__ by `ClosedCube <https://www.tindie.com/stores/closedcube/>`__
 - :ghedit:`Edit`

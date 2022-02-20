@@ -113,4 +113,5 @@ See Also
 - :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/output/modbus_controller`
 - https://www.modbustools.com/modbus.html
+- :ghsources:`esphome/components/modbus_controller/number`
 - :ghedit:`Edit`

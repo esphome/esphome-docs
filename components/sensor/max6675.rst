@@ -60,5 +60,5 @@ See Also
 - :doc:`adc`
 - :doc:`sht3xd`
 - `MAX6675 Library <https://github.com/adafruit/MAX6675-library>`__ by `Adafruit <https://www.adafruit.com/>`__
-- :apiref:`max6675/max6675.h`
+- :ghsources:`esphome/components/max6675`
 - :ghedit:`Edit`

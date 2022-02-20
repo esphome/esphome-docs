@@ -46,5 +46,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`spi/spi.h`
+- :ghsources:`esphome/components/spi`
 - :ghedit:`Edit`

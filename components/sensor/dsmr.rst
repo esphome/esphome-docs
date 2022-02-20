@@ -420,5 +420,5 @@ actually make it work, serial logging must be disabled to keep the hardware UART
 See Also
 --------
 
-- :apiref:`dsmr/dsmr.h`
+- :ghsources:`esphome/components/dsmr`
 - :ghedit:`Edit`

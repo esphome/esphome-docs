@@ -91,5 +91,5 @@ See Also
 - :doc:`/components/binary_sensor/index`
 - :doc:`/components/sensor/template`
 - :ref:`automation`
-- :apiref:`template/binary_sensor/template_binary_sensor.h`
+- :ghsources:`esphome/components/template/binary_sensor`
 - :ghedit:`Edit`

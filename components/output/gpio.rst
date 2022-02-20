@@ -40,5 +40,5 @@ See Also
 - :doc:`/components/light/binary`
 - :doc:`/components/fan/binary`
 - :doc:`/components/power_supply`
-- :apiref:`gpio/output/gpio_binary_output.h`
+- :ghsources:`esphome/components/gpio/output`
 - :ghedit:`Edit`

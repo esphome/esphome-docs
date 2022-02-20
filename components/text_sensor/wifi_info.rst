@@ -41,5 +41,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`wifi_info/wifi_info_text_sensor.h`
+- :ghsources:`esphome/components/wifi_info`
 - :ghedit:`Edit`

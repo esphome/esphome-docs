@@ -159,6 +159,6 @@ See Also
 --------
 
 - :doc:`/components/binary_sensor/index`
-- :apiref:`esp32_touch/esp32_touch.h`
 - `esp-idf Touch Sensor API <https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/touch_pad.html>`__
+- - :ghsources:`esphome/components/esp32_touch`
 - :ghedit:`Edit`

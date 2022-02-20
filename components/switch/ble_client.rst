@@ -37,5 +37,5 @@ See Also
 --------
 
 - :doc:`/components/ble_client`
-- :apiref:`ble_client/switch/ble_switch.h`
+- :ghsources:`esphome/components/ble_client/switch`
 - :ghedit:`Edit`

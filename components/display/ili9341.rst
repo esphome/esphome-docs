@@ -125,5 +125,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ili9341/ili9341_display.h`
+- :ghsources:`esphome/components/ili9341`
 - :ghedit:`Edit`

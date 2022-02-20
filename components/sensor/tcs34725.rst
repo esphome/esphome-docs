@@ -76,5 +76,5 @@ See Also
 
 - :ref:`sensor-filters`
 - `TCS34725 library <https://github.com/adafruit/Adafruit_TCS34725>`__ by `Adafruit <https://www.adafruit.com/>`__
-- :apiref:`tcs34725/tcs34725.h`
+- :ghsources:`esphome/components/tcs34725`
 - :ghedit:`Edit`

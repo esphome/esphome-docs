@@ -56,4 +56,5 @@ See Also
 --------
 
 - :ref:`i2c`
+- :ghsources:`esphome/components/tca9548a`
 - :ghedit:`Edit`

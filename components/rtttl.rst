@@ -159,5 +159,5 @@ Sample code
 See Also
 --------
 
-- :apiref:`rtttl/rtttl.h`
+- :ghsources:`esphome/components/rtttl`
 - :ghedit:`Edit`

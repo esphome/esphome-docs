@@ -151,4 +151,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :ghsources:`esphome/components/growatt_solar`
 - :ghedit:`Edit`

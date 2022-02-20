@@ -55,5 +55,5 @@ See Also
 --------
 
 - :ref:`automation`
-- :apiref:`template/select/template_select.h`
+- :ghsources:`esphome/components/template/select`
 - :ghedit:`Edit`

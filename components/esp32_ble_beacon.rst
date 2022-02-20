@@ -75,6 +75,6 @@ See Also
 
 - :doc:`esp32_ble_tracker`
 - :doc:`binary_sensor/ble_presence`
-- :apiref:`esp32_ble_beacon/esp32_ble_beacon.h`
+- :ghsources:`esphome/components/esp32_ble_beacon`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - :ghedit:`Edit`

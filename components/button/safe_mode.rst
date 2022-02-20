@@ -34,5 +34,5 @@ See Also
 - :doc:`shutdown`
 - :doc:`restart`
 - :doc:`template`
-- :apiref:`safe_mode/safe_mode_button.h`
+- :ghsources:`esphome/components/safe_mode`
 - :ghedit:`Edit`

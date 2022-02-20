@@ -35,5 +35,5 @@ See Also
 --------
 
 - :doc:`/components/output/index`
-- :apiref:`output/lock/output_lock.h`
+- :ghsources:`esphome/components/output/lock`
 - :ghedit:`Edit`

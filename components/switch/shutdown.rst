@@ -33,5 +33,5 @@ See Also
 
 - :doc:`restart`
 - :doc:`template`
-- :apiref:`shutdown/shutdown_switch.h`
+- :ghsources:`esphome/components/shutdown`
 - :ghedit:`Edit`

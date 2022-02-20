@@ -223,13 +223,11 @@ This runs MOSI, SCK and CS out of specification which is nearly never a problem.
 
 .. figure:: images/canbus_mcp2515_resistor.png
     :align: center
-    :target: ../_images/canbus_mcp2515_resistor.png
 
 A more advanced option is to fully convert the 5V and 3.3V logic levels with a level shifter.
 
 .. figure:: images/canbus_mcp2515_txs0108e.png
     :align: center
-    :target: ../_images/canbus_mcp2515_txs0108e.png
 
 Extended ID
 -----------
@@ -400,5 +398,5 @@ Buttons are connected on the CAN-Node and also the motor is connected via CAN.
 See Also
 --------
 
-- :apiref:`spi/spi.h`
+- :ghsources:`esphome/components/spi`
 - :ghedit:`Edit`

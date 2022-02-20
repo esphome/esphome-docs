@@ -340,4 +340,5 @@ See Also
 --------
 
 - :ref:`uart`
+- :ghsources:`esphome/components/pipsolar`
 - :ghedit:`Edit`

@@ -68,11 +68,12 @@ Possible return values for the lambda:
 
 See Also
 --------
-- :apiclass:`:modbus_controller::ModbusBinarySensor`
+
 - :doc:`/components/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
 - :doc:`/components/output/modbus_controller`
 - :doc:`/components/sensor/modbus_controller`
 - :doc:`/components/text_sensor/modbus_controller`
 - https://www.modbustools.com/modbus.html
+- - :ghsources:`esphome/components/modbus_controller`
 - :ghedit:`Edit`

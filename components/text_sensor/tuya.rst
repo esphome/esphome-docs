@@ -31,5 +31,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/text_sensor/index`
-- :apiref:`tuya/text_sensor/tuya_text_sensor.h`
+- :ghsources:`esphome/components/tuya/text_sensor`
 - :ghedit:`Edit`

@@ -34,5 +34,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`esp32_camera_web_server/esp32_camera_web_server.h`
+- :ghsources:`esphome/components/esp32_camera_web_server`
 - :ghedit:`Edit`

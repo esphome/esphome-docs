@@ -440,5 +440,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`atm90e32/atm90e32.h`
+- :ghsources:`esphome/components/atm90e32`
 - :ghedit:`Edit`

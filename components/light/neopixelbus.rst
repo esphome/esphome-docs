@@ -167,6 +167,6 @@ See Also
 - :doc:`/components/light/index`
 - :doc:`/components/light/fastled`
 - :doc:`/components/power_supply`
-- :apiref:`neopixelbus/neopixelbus_light.h`
+- :ghsources:`esphome/components/neopixelbus`
 - `NeoPixelBus library <https://github.com/Makuna/NeoPixelBus/wiki/ESP8266-NeoMethods>`__
 - :ghedit:`Edit`

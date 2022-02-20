@@ -57,5 +57,5 @@ See Also
 - :doc:`/components/output/pca9685`
 - :doc:`/components/output/tlc59208f`
 - :doc:`/components/output/my9231`
-- :apiref:`monochromatic/monochromatic_light_output.h`
+- :ghsources:`esphome/components/monochromatic`
 - :ghedit:`Edit`

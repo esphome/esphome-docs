@@ -123,5 +123,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`ade7953/ade7953.h`
+- :ghsources:`esphome/components/ade7953`
 - :ghedit:`Edit`

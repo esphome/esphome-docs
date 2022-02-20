@@ -100,5 +100,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`logger`
-- :apiref:`debug/debug_component.h`
+- :ghsources:`esphome/components/debug`
 - :ghedit:`Edit`

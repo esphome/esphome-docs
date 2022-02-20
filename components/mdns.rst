@@ -26,3 +26,9 @@ Configuration variables:
 ------------------------
 
 - **disabled** (*Optional*, boolean): Set to true to disable mDNS usage. Defaults to false.
+
+See Also
+--------
+
+- :ghsources:`esphome/components/mdns`
+- :ghedit:`Edit`

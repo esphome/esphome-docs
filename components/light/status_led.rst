@@ -59,5 +59,5 @@ See Also
 - :doc:`/components/status_led`
 - :doc:`/components/light/binary`
 - :doc:`/components/light/index`
-- :apiref:`status_led/light/status_led_light.h`
+- :ghsources:`esphome/components/status_led/light`
 - :ghedit:`Edit`

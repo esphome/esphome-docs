@@ -295,6 +295,5 @@ See Also
   Proceedings of IFAC 9th World Congress, Budapest, 1867-1872
 - :doc:`/components/climate/index`
 - :doc:`/components/output/slow_pwm`
-- :apiref:`pid/pid_climate.h`
-- :apiref:`PID Autotuner <pid/pid_autotune.h>`
+- :ghsources:`esphome/components/pid`
 - :ghedit:`Edit`

@@ -189,5 +189,5 @@ See Also
 - :doc:`index`
 - :doc:`rdm6300`
 - :doc:`pn532`
-- :apiref:`rc522/rc522.h`
+- :ghsources:`esphome/components/rc522`
 - :ghedit:`Edit`

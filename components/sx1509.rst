@@ -202,5 +202,5 @@ See Also
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
 - :doc:`/components/light/monochromatic`
-- :apiref:`sx1509/sx1509.h`
+- :ghsources:`esphome/components/sx1509`
 - :ghedit:`Edit`

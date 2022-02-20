@@ -64,6 +64,6 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`ina219`
 - :doc:`ina3221`
-- :apiref:`ina226/ina226.h`
+- :ghsources:`esphome/components/ina226`
 - `INA226 Arduino Library <https://github.com/SV-Zanshin/INA226>`__
 - :ghedit:`Edit`

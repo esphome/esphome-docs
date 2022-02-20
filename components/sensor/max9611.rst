@@ -75,4 +75,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :ghsources:`esphome/components/max9611`
 - :ghedit:`Edit`

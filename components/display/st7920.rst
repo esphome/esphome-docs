@@ -60,5 +60,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`st7920/st7920.h`
+- :ghsources:`esphome/components/st7920`
 - :ghedit:`Edit`

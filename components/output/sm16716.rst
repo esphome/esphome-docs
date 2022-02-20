@@ -184,6 +184,6 @@ See Also
 - :doc:`/components/light/rgbw`
 - :doc:`/components/light/rgbww`
 - :doc:`/components/power_supply`
-- :apiref:`output/sm16716_output_component.h`
+- :ghsources:`esphome/components/output`
 - `An Arduino controller for SM16716-based LED strings. <https://github.com/sowbug/sm16716>`__ by `@snowbug <https://github.com/sowbug>`__
 - :ghedit:`Edit`

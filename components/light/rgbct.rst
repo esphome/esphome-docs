@@ -60,5 +60,5 @@ See Also
 - :doc:`/components/output/tlc59208f`
 - :doc:`/components/output/my9231`
 - :doc:`/components/output/sm16716`
-- :apiref:`rgbct/rgbct_light_output.h`
+- :ghsources:`esphome/components/rgbct`
 - :ghedit:`Edit`

@@ -30,5 +30,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/binary_sensor/index`
-- :apiref:`tuya/binary_sensor/tuya_binary_sensor.h`
+- :ghsources:`esphome/components/tuya/binary_sensor`
 - :ghedit:`Edit`

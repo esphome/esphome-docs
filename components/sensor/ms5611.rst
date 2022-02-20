@@ -64,5 +64,5 @@ See Also
 - :doc:`bme280`
 - :doc:`bmp085`
 - `Arduino MS5611 Library <https://github.com/jarzebski/Arduino-MS5611>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
-- :apiref:`ms5611/ms5611.h`
+- :ghsources:`esphome/components/ms5611`
 - :ghedit:`Edit`

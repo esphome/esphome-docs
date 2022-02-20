@@ -145,6 +145,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ssd1325_base/ssd1325_base.h`
+- :ghsources:`esphome/components/ssd1325_base`
 - `SSD1325 Library <https://github.com/adafruit/Adafruit_SSD1325>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

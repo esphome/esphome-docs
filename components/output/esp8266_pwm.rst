@@ -71,5 +71,5 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`esp8266_pwm/esp8266_pwm.h`
+- :ghsources:`esphome/components/esp8266_pwm`
 - :ghedit:`Edit`

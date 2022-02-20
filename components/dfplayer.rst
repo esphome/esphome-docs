@@ -413,5 +413,5 @@ Sample code
 See Also
 --------
 
-- :apiref:`dfplayer/dfplayer.h`
+- :ghsources:`esphome/components/dfplayer`
 - :ghedit:`Edit`

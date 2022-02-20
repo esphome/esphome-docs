@@ -87,5 +87,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/light/index`
-- :apiref:`tuya/light/tuya_light.h`
+- :ghsources:`esphome/components/tuya/light`
 - :ghedit:`Edit`

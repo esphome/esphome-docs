@@ -95,6 +95,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ssd1331_base/ssd1331_base.h`
+- :ghsources:`esphome/components/ssd1331_base`
 - `SSD1331 Library <https://github.com/adafruit/Adafruit-SSD1331-OLED-Driver-Library-for-Arduino>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

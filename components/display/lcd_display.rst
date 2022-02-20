@@ -210,6 +210,8 @@ See Also
 - :doc:`/components/switch/gpio`
 - :doc:`/components/binary_sensor/gpio`
 - :doc:`/components/pcf8574`
-- :apiref:`lcd_base/lcd_display.h`
+- :ghsources:`esphome/components/lcd_base`
+- :ghsources:`View lcd_pcf8574 sources <esphome/components/lcd_pcf8574>`
+- :ghsources:`View lcd_gpio sources <esphome/components/lcd_gpio>`
 - `Arduino LiquidCrystal Library <https://www.arduino.cc/en/Reference/LiquidCrystal>`__
 - :ghedit:`Edit`

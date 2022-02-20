@@ -61,5 +61,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`total_daily_energy`
 - :doc:`/cookbook/power_meter`
-- :apiref:`integration/integration_sensor.h`
+- :ghsources:`esphome/components/integration`
 - :ghedit:`Edit`

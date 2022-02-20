@@ -114,4 +114,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
+- :ghsources:`esphome/components/selec_meter`
 - :ghedit:`Edit`

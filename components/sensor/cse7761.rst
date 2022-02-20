@@ -70,5 +70,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`cse7761/cse7761.h`
+- :ghsources:`esphome/components/cse7761`
 - :ghedit:`Edit`

@@ -79,5 +79,5 @@ See Also
 
 - :doc:`/components/sensor/sds011`
 - :ref:`sensor-filters`
-- :apiref:`pmsx003/pmsx003.h`
+- :ghsources:`esphome/components/pmsx003`
 - :ghedit:`Edit`

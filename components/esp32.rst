@@ -95,4 +95,5 @@ See Also
 --------
 
 - :doc:`esphome`
+- :ghsources:`esphome/components/esp32`
 - :ghedit:`Edit`

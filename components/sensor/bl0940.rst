@@ -71,5 +71,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`bl0940/bl0940.h`
+- :ghsources:`esphome/components/bl0940`
 - :ghedit:`Edit`

@@ -80,7 +80,7 @@ See Also
 - :doc:`bmp280`
 - :doc:`bme680`
 - :doc:`bmp085`
-- :apiref:`bmp3xx/bmp3xx.h`
+- :ghsources:`esphome/components/bmp3xx`
 - `BMP3 sensor API <https://github.com/BoschSensortec/BMP3-Sensor-API>`__
 - `BMP388/BMP390 Library <https://github.com/MartinL1/BMP388_DEV>`__ by  Martin Lindupp
 - :ghedit:`Edit`

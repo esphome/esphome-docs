@@ -118,4 +118,5 @@ See Also
 - :doc:`adc`
 - :doc:`ads1115`
 - :doc:`ct_clamp`
+- :ghsources:`esphome/components/cd74hc4067`
 - :ghedit:`Edit`

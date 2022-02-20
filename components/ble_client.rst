@@ -210,5 +210,5 @@ See Also
 
 - :doc:`/components/sensor/ble_client`
 - :ref:`Automation <automation>`
-- :apiref:`ble_client/ble_client.h`
+- :ghsources:`esphome/components/ble_client`
 - :ghedit:`Edit`

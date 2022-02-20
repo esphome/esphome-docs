@@ -43,5 +43,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`sdp3x/sdp3x.h`
+- :ghsources:`esphome/components/sdp3x`
 - :ghedit:`Edit`

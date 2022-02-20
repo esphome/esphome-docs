@@ -78,5 +78,5 @@ See Also
 
 - :doc:`/components/output/index`
 - :doc:`/components/light/monochromatic`
-- :apiref:`ac_dimmer/ac_dimmer.h`
+- :ghsources:`esphome/components/ac_dimmer`
 - :ghedit:`Edit`

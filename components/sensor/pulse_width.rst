@@ -32,5 +32,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`pulse_width/pulse_width.h`
+- :ghsources:`esphome/components/pulse_width`
 - :ghedit:`Edit`

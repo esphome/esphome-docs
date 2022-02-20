@@ -60,5 +60,5 @@ See Also
 - :ref:`sensor-filters`
 - :ref:`uart`
 - :doc:`template`
-- :apiref:`hrxl_maxsonar_wr/hrxl_maxsonar_wr.h`
+- :ghsources:`esphome/components/hrxl_maxsonar_wr`
 - :ghedit:`Edit`

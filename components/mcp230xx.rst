@@ -206,7 +206,7 @@ See Also
 - :ref:`i2c`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
-- :apiref:`API Reference (MCP23008) <mcp23008/mcp23008.h>`
-- :apiref:`API Reference (MCP23016) <mcp23016/mcp23016.h>`
-- :apiref:`API Reference (MCP23017) <mcp23017/mcp23017.h>`
+- :ghsources:`View mcp23008 sources <esphome/components/mcp23008>`
+- :ghsources:`View mcp23016 sources <esphome/components/mcp23016>`
+- :ghsources:`View mcp23017 sources <esphome/components/mcp23017>`
 - :ghedit:`Edit`

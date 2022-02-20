@@ -100,5 +100,5 @@ See Also
 
 - :doc:`/components/binary_sensor/index`
 - :ref:`config-pin_schema`
-- :apiref:`gpio/binary_sensor/gpio_binary_sensor.h`
+- :ghsources:`esphome/components/switch/binary_sensor`
 - :ghedit:`Edit`

@@ -60,6 +60,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ssd1322_base/ssd1322_base.h`
+- :ghsources:`esphome/components/ssd1322_base`
 - `SSD1322 Display documentation <https://www.newhavendisplay.com/specs/NHD-3.12-25664UCW2.pdf>`__ at `Newhaven Display <https://www.newhavendisplay.com/nhd31225664ucw2-p-9583.html>`__
 - :ghedit:`Edit`

@@ -83,5 +83,5 @@ See Also
 
 - :doc:`/components/text_sensor/index`
 - :ref:`automation`
-- :apiref:`template/text_sensor/template_text_sensor.h`
+- :ghsources:`esphome/components/template/text_sensor`
 - :ghedit:`Edit`

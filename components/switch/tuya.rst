@@ -44,5 +44,5 @@ See Also
 --------
 
 - :doc:`/components/switch/index`
-- :apiref:`tuya/switch/tuya_switch.h`
+- :ghsources:`esphome/components/tuya/switch`
 - :ghedit:`Edit`

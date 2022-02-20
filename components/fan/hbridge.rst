@@ -78,6 +78,6 @@ See Also
 - :doc:`/components/fan/index`
 - :doc:`/components/output/ledc`
 - :doc:`/components/output/esp8266_pwm`
-- :apiref:`fan/fan_state.h`
+- :ghsources:`esphome/components/fan`
 - `Adafruit's excellent H-bridge tutorial <https://learn.adafruit.com/improve-brushed-dc-motor-performance>`__
 - :ghedit:`Edit`

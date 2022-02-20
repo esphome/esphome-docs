@@ -74,5 +74,5 @@ See Also
 
 - :doc:`index`
 - :ref:`automation`
-- :apiref:`endstop/endstop_cover.h`
+- :ghsources:`esphome/components/endstop`
 - :ghedit:`Edit`

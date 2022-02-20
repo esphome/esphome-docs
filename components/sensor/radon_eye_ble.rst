@@ -100,3 +100,8 @@ Here is an example to use pCi/L (to match the value on the device display):
           filters:
             - lambda: return x / 37;
 
+See Also
+--------
+
+- :ghsources:`esphome/components/radon_eye_ble`
+- :ghedit:`Edit`

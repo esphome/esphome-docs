@@ -87,4 +87,5 @@ See Also
 - :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/number/modbus_controller`
 - https://www.modbustools.com/modbus.html
+- :ghsources:`esphome/components/modbus_controller/output`
 - :ghedit:`Edit`

@@ -424,5 +424,5 @@ Configuration for ESP-EYE
 See Also
 --------
 
-- :apiref:`esp32_camera/esp32_camera.h`
+- :ghsources:`esphome/components/esp32_camera`
 - :ghedit:`Edit`

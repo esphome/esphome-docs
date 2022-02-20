@@ -130,6 +130,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`tm1637/tm1637.h`
+- :ghsources:`esphome/components/tm1637`
 - `TD1637 Library <https://github.com/avishorp/TM1637>`__ by `Avishay <https://github.com/avishorp>`__
 - :ghedit:`Edit`

@@ -72,5 +72,5 @@ See Also
 - :doc:`hlw8012`
 - :doc:`cse7766`
 - :doc:`/cookbook/power_meter`
-- :apiref:`total_daily_energy/total_daily_energy.h`
+- :ghsources:`esphome/components/total_daily_energy`
 - :ghedit:`Edit`

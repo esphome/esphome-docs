@@ -8,11 +8,11 @@ Please first read :doc:`/components/sensor/custom` guide,
 the same principles apply here.
 
 The example below is an example of a custom climate device - all climate devices must override
-two methods (:apiclass:`Climate <climate::Climate>`):
+two methods (:ghsources:`Climate <esphome/components/climate/climate.h>`):
 
-- ``traits``: This should return a :apiclass:`ClimateTraits <climate::ClimateTraits>` object
+- ``traits``: This should return a :ghsources:`ClimateTraits <esphome/components/remote_base/climate_traits.h>` object
   representing the capabilities of the climate device.
-- ``control``: This receives a :apiclass:`ClimateCall <climate::ClimateCall>` object that contains
+- ``control``: This receives a :ghsources:`ClimateCall <esphome/components/climate/climate.h>` object that contains
   the command the user tried to set.
 
 .. code-block:: cpp
@@ -81,9 +81,10 @@ Configuration variables:
 
   - All options from :ref:`Climate <config-climate>`.
 
-See :apiclass:`Climate <climate::Climate>`
+See :ghsources:`Climate <esphome/components/climate/climate.h>`
 
 See Also
 --------
 
+- :ghsources:`esphome/components/custom/climate`
 - :ghedit:`Edit`

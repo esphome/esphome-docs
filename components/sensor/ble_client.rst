@@ -107,5 +107,5 @@ See Also
 
 - :doc:`/components/ble_client`
 - :ref:`sensor-filters`
-- :apiref:`ble_sensor/ble_sensor.h`
+- :ghsources:`esphome/components/ble_sensor`
 - :ghedit:`Edit`

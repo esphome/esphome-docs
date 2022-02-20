@@ -128,6 +128,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`hlw8012/hlw8012.h`
+- :ghsources:`esphome/components/hlw8012`
 - `HLW8012 Library <https://github.com/xoseperez/hlw8012>`__ by `Xose Pérez <https://github.com/xoseperez>`__
 - :ghedit:`Edit`

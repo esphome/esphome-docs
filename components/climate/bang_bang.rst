@@ -184,5 +184,5 @@ See Also
 --------
 
 - :doc:`/components/climate/index`
-- :apiref:`bang_bang/bang_bang_climate.h`
+- :ghsources:`esphome/components/bang_bang`
 - :ghedit:`Edit`

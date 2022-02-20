@@ -8,7 +8,7 @@ Addressable Light
 The ``addressable_light`` display platform allows to display text and graphics on an addressable
 light that has been arranged in a display matrix.
 
-The display requires that an :apiclass:`AddressableLight <light::AddressableLight>` component, such as
+The display requires that an :ghsources:`AddressableLight <esphome/components/light/addressable_light.h>` component, such as
 :doc:`/components/light/fastled` or :doc:`/components/light/neopixelbus`, be defined.
 
 .. figure:: images/addressable_light.jpg
@@ -63,7 +63,7 @@ Configuration variables:
 - **pixel_mapper** (*Optional*, :ref:`lambda <config-lambda>`): A lambda that returns the integer address of the LED
   given the supplied the ``x`` and ``y`` pixel coordinate. By default, a left-to-right direct pixel mapper is used. 
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
-  ``it`` will be an instance of :apiclass:`DisplayBuffer <display::DisplayBuffer>`.
+  ``it`` will be an instance of :ghsources:`DisplayBuffer <esphome/components/display/display_buffer.h>`.
   See :ref:`display-engine` for more information. 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -138,7 +138,7 @@ Below is a definition that includes a pixel_mapper suitable for these 8x32 matri
 See Also
 --------
 
-- :apiref:`addressable_light/addressable_light_display.h`
+- :ghsources:`esphome/components/addressable_light`
 - :doc:`/components/light/index`
 - :doc:`/components/light/fastled`
 - :doc:`/components/light/neopixelbus`

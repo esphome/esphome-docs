@@ -62,6 +62,6 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`bme280`
 - :doc:`bme680`
-- :apiref:`bmp085/bmp085.h`
+- :ghsources:`esphome/components/bmp085`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`

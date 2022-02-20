@@ -210,4 +210,5 @@ Likewise, you can set this setting to ``never`` and ESPHome will never
 See Also
 --------
 
+:ghsources:`esphome/components/external_components`
 - :ghedit:`Edit`

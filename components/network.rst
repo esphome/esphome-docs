@@ -20,3 +20,9 @@ Configuration variables:
 
 - **enable_ipv6** (*Optional*, boolean): Enables IPv6 support. Defaults to ``false``. Only available on ESP32 with ESP-IDF framework.
 
+
+See Also
+--------
+
+- :ghsources:`esphome/components/network`
+- :ghedit:`Edit`

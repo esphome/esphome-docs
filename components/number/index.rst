@@ -191,7 +191,7 @@ advanced stuff (see the full API Reference for more info).
 See Also
 --------
 
-- :apiref:`number/number.h`
+- :ghsources:`esphome/components/number`
 - :ghedit:`Edit`
 
 .. toctree::

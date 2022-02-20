@@ -277,5 +277,5 @@ See Also
 
 - :doc:`captive_portal`
 - :doc:`network`
-- :apiref:`wifi/wifi_component.h`
+- :ghsources:`esphome/components/wifi`
 - :ghedit:`Edit`

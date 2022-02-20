@@ -133,5 +133,5 @@ See Also
 - :doc:`/components/light/rgbw`
 - :doc:`/components/light/rgbww`
 - :doc:`/components/power_supply`
-- :apiref:`output/sm2135_output_component.h`
+- :ghsources:`esphome/components/output`
 - :ghedit:`Edit`

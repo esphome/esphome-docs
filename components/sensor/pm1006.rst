@@ -74,5 +74,5 @@ See Also
 
 - :doc:`/components/sensor/pmsx003`
 - :ref:`sensor-filters`
-- :apiref:`pm1006/pm1006.h`
+- :ghsources:`esphome/components/pm1006`
 - :ghedit:`Edit`

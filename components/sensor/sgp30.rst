@@ -127,5 +127,5 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`sgp30/sgp30.h`
+- :ghsources:`esphome/components/sgp30`
 - :ghedit:`Edit`

@@ -111,5 +111,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`sdm220m/sdm220m.h`
+- :ghsources:`esphome/components/sdm220m`
 - :ghedit:`Edit`

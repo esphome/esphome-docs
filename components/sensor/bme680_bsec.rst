@@ -277,7 +277,7 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`bme680`
-- :apiref:`bme680_bsec/bme680_bsec.h`
+- :ghsources:`esphome/components/bme680_bsec`
 - `BSEC Arduino Library <https://github.com/BoschSensortec/BSEC-Arduino-library>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
 - `Bosch Sensortec Community <https://community.bosch-sensortec.com/>`__
 - :ghedit:`Edit`

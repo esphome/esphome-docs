@@ -62,8 +62,7 @@ On the ESP32 the voltage measured with the ADC caps out at ~1.1V by default as t
 Measuring higher voltages requires setting ``attenuation`` to one of the following values: ``0db``, ``2.5db``, ``6db``, ``11db``.
 There's more information `at the manufacturer's website <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
 
-To simplify this, we provide the setting ``attenuation: auto`` for an automatic/seamless transition among scales. `Our implementation
-<https://github.com/esphome/esphome/blob/dev/esphome/components/adc/adc_sensor.cpp>`__ combines all available ranges to allow the best resolution without having to compromise on a specific attenuation.
+To simplify this, we provide the setting ``attenuation: auto`` for an automatic/seamless transition among scales. :ghsources:`Our implementation <esphome/components/adc/adc_sensor.cpp>` combines all available ranges to allow the best resolution without having to compromise on a specific attenuation.
 
 .. note::
 
@@ -126,5 +125,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`ads1115`
 - :doc:`max6675`
-- :apiref:`adc/adc_sensor.h`
+- :ghsources:`esphome/components/adc`
 - :ghedit:`Edit`

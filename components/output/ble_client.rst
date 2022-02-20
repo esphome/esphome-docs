@@ -43,4 +43,5 @@ See Also
 
 - :doc:`/components/output/index`
 - :doc:`/components/ble_client`
+- :ghsources:`esphome/components/ble_client/output`
 - :ghedit:`Edit`

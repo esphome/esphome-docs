@@ -51,5 +51,5 @@ See Also
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/pca9685`
 - :doc:`/components/output/tlc59208f`
-- :apiref:`color_temperature/ct_light_output.h`
+- :ghsources:`esphome/components/color_temperature`
 - :ghedit:`Edit`

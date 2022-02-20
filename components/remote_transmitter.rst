@@ -772,5 +772,5 @@ See Also
 - :doc:`/components/remote_receiver`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
-- :apiref:`remote_transmitter/remote_transmitter.h`
+- :ghsources:`esphome/components/remote_transmitter`
 - :ghedit:`Edit`

@@ -101,5 +101,5 @@ See Also
 - :doc:`/components/output/index`
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/power_supply`
-- :apiref:`tlc5947/tlc5947.h`
+- :ghsources:`esphome/components/tlc5947`
 - :ghedit:`Edit`

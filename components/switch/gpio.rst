@@ -149,5 +149,5 @@ See Also
 - :doc:`/components/output/gpio`
 - :doc:`/components/cover/template`
 - :doc:`/cookbook/garage-door`
-- :apiref:`gpio/switch/gpio_switch.h`
+- :ghsources:`esphome/components/gpio/switch`
 - :ghedit:`Edit`

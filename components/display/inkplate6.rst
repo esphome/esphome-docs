@@ -306,4 +306,5 @@ See Also
 - :doc:`index`
 - :doc:`/components/touchscreen/ektf2232`
 - `Arduino Inkplate 6 library <https://github.com/e-radionicacom/Inkplate-6-Arduino-library>`__ by `E-radionica.com <https://e-radionica.com/>`__
+- :ghsources:`esphome/components/inkplate6`
 - :ghedit:`Edit`

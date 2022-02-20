@@ -471,5 +471,5 @@ with the current time representation of that format option.
 See Also
 --------
 
-- :apiref:`time/real_time_clock.h`
+- :ghsources:`esphome/components/time`
 - :ghedit:`Edit`

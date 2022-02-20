@@ -66,4 +66,5 @@ See Also
 
 - `b-parasite on GitHub <https://github.com/rbaron/b-parasite>`__
 - :doc:`/components/esp32_ble_tracker`
+- :ghsources:`esphome/components/b_parasite`
 - :ghedit:`Edit`

@@ -128,7 +128,7 @@ Note your ``address`` and ``model`` might be different, use the scan option to f
 Rendering
 ---------
 
-- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in :apiref:`display/display_buffer.h`.
+- Alignment of text can use different reference points, for example ``TOP_RIGHT`` or ``BASELINE_LEFT``, which all are defined in `TextAlign <https://github.com/esphome/esphome/blob/8dae7f82252ed6815910090c413437865d1c3656/esphome/components/display/display_buffer.h#L24-L73>`__.
 - The property ``has_state()`` on a sensor is useful as it can take some seconds to get the data from Home Assistant and you may not want to display ``Nan``
 - Refer to the rendering engine :ref:`display-engine` for more features (it can draw lines and circles too!)
 

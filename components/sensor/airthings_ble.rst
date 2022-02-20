@@ -111,3 +111,9 @@ Configuration example:
 .. note::
 
     The sensor uses active polling of devices every 5 minutes as per the device reported internal refresh timeout.
+
+See Also
+--------
+
+- :ghsources:`esphome/components/airthings_ble`
+- :ghedit:`Edit`

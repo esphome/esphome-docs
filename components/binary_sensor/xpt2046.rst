@@ -271,6 +271,7 @@ See Also
 --------
 
 - :ref:`Binary Sensor Filters <binary_sensor-filters>`
-- :apiref:`xpt2046/xpt2046.h`
+- :ghsources:`esphome/components/xpt2046`
+- :ghsources:`esphome/components/xpt2046`
 - `XPT2046 Library <https://platformio.org/lib/show/542/XPT2046_Touchscreen>`__ by `Paul Stoffregen <https://github.com/PaulStoffregen>`__
 - :ghedit:`Edit`

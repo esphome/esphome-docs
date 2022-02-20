@@ -164,6 +164,6 @@ See Also
 
 - :doc:`/components/light/index`
 - :doc:`/components/power_supply`
-- :apiref:`fastled_base/fastled_light.h`
+- :ghsources:`esphome/components/fastled_base`
 - `Arduino FastLED library <https://github.com/FastLED/FastLED>`__
 - :ghedit:`Edit`

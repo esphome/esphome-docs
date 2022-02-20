@@ -59,5 +59,5 @@ See Also
 
 - :doc:`/components/ble_client`
 - :doc:`/components/climate/index`
-- :apiref:`anova/anova.h`
+- :ghsources:`esphome/components/anova`
 - :ghedit:`Edit`

@@ -86,6 +86,6 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`web_server/web_server.h`
+- :ghsources:`esphome/components/web_server`
 - :doc:`prometheus`
 - :ghedit:`Edit`

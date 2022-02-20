@@ -10,9 +10,9 @@ the same principles apply here.
 The example below is an example of a custom cover - all covers must override
 two methods:
 
-- ``get_traits``: This should return a :apiclass:`CoverTraits <cover::CoverTraits>` object
+- ``get_traits``: This should return a :ghsources:`CoverTraits <esphome/components/cover/cover_traits.h>` object
   representing the capabilities of the cover.
-- ``control``: This receives a :apiclass:`CoverCall <cover::CoverCall>` object that contains
+- ``control``: This receives a :ghsources:`CoverCall <esphome/components/cover/cover.h>` object that contains
   the command the user tried to set.
 
 .. code-block:: cpp
@@ -79,9 +79,10 @@ Configuration variables:
 
   - All options from :ref:`Cover <config-cover>`.
 
-See :apiclass:`Cover <cover::Cover>`
+See :ghsources:`Cover <esphome/components/cover/cover.h>`
 
 See Also
 --------
 
+- :ghsources:`esphome/components/custom/cover`
 - :ghedit:`Edit`

@@ -48,5 +48,5 @@ See Also
 - :doc:`hdc1080`
 - :doc:`sht3xd`
 - :doc:`htu21d`
-- :apiref:`tmp102/tmp102.h`
+- :ghsources:`esphome/components/tmp102`
 - :ghedit:`Edit`

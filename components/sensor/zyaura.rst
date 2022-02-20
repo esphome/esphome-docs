@@ -80,5 +80,5 @@ See Also
 - `CO2mon-esp firmware <https://github.com/Anonym-tsk/co2mon-esp>`__ by `@anonym-tsk <https://github.com/Anonym-tsk>`__
 - `Some information about hacking MT8060 <https://habr.com/ru/company/dadget/blog/394333/>`__
 - `CO2MeterHacking project <https://revspace.nl/CO2MeterHacking>`__
-- :apiref:`zyaura/zyaura.h`
+- :ghsources:`esphome/components/zyaura`
 - :ghedit:`Edit`

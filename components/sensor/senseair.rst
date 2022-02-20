@@ -140,5 +140,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`senseair/senseair.h`
+- :ghsources:`esphome/components/senseair`
 - :ghedit:`Edit`

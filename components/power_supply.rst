@@ -69,5 +69,5 @@ See Also
 --------
 
 - :doc:`output/index`
-- :apiref:`power_supply/power_supply.h`
+- :ghsources:`esphome/components/power_supply`
 - :ghedit:`Edit`

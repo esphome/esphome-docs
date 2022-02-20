@@ -649,7 +649,7 @@ advanced stuff (see the full API Reference for more info).
 See Also
 --------
 
-- :apiref:`sensor/sensor.h`
+- :ghsources:`esphome/components/sensor`
 - :ghedit:`Edit`
 
 .. toctree::

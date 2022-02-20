@@ -125,7 +125,7 @@ advanced stuff (see the full API Reference for more info).
 See Also
 --------
 
-- :apiref:`select/select.h`
+- :ghsources:`esphome/components/select`
 - :ghedit:`Edit`
 
 .. toctree::

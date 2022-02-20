@@ -125,5 +125,5 @@ Text Sensor
 See Also
 --------
 
-- :apiref:`teleinfo/teleinfo.h`
+- :ghsources:`esphome/components/teleinfo`
 - :ghedit:`Edit`

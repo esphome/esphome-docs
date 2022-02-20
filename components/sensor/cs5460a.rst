@@ -150,5 +150,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`cs5460a/cs5460a.h`
+- :ghsources:`esphome/components/cs5460a`
 - :ghedit:`Edit`

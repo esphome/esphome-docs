@@ -202,6 +202,6 @@ Relay management commands received from an authorized sender:
 See Also
 --------
 
-- :apiref:`sim800l/sim800l.h`
+- :ghsources:`esphome/components/sim800l`
 - :doc:`/components/uart`
 - :ghedit:`Edit`

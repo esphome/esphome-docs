@@ -81,6 +81,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`ina219`
-- :apiref:`ina3221/ina3221.h`
+- :ghsources:`esphome/components/ina3221`
 - `INA3221 Arduino Library <https://github.com/switchdoclabs/SDL_Arduino_INA3221>`__ by `SwitchDoc Labs <https://github.com/switchdoclabs>`__
 - :ghedit:`Edit`

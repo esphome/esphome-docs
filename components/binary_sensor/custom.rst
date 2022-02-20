@@ -63,9 +63,10 @@ Configuration variables:
 
     - All options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-See :apiclass:`BinarySensor <binary_sensor::BinarySensor>`
+See :ghsources:`BinarySensor <esphome/components/binary_sensor/binary_sensor.h>`
 
 See Also
 --------
 
+- :ghsources:`esphome/components/custom/switch`
 - :ghedit:`Edit`

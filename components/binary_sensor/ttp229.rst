@@ -94,6 +94,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`ttp229_lsf/ttp229_lsf.h`
-- :apiref:`ttp229_bsf/ttp229_bsf.h`
+- :ghsources:`View ttp229_lsf Sources <esphome/components/ttp229_lsf>`
+- :ghsources:`View ttp229_bsf Sources <esphome/components/ttp229_bsf>`
 - :ghedit:`Edit`

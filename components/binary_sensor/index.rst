@@ -415,7 +415,7 @@ advanced stuff.
 See Also
 --------
 
-- :apiref:`binary_sensor/binary_sensor.h`
+- :ghsources:`esphome/components/binary_sensor`
 - :ghedit:`Edit`
 
 .. toctree::

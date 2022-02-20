@@ -140,4 +140,5 @@ See Also
 - :doc:`/components/output/modbus_controller`
 - :ref:`automation`
 - https://www.modbustools.com/modbus.html
+- :ghsources:`esphome/components/modbus_controller/select`
 - :ghedit:`Edit`

@@ -83,5 +83,5 @@ See Also
 
 - :doc:`/components/sensor/sds011`
 - :ref:`sensor-filters`
-- :apiref:`hm3301/hm3301.h`
+- :ghsources:`esphome/components/hm3301`
 - :ghedit:`Edit`

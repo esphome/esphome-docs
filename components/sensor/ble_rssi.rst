@@ -47,5 +47,5 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
-- :apiref:`ble_rssi/ble_rssi_sensor.h`
+- :ghsources:`esphome/components/ble_rssi`
 - :ghedit:`Edit`

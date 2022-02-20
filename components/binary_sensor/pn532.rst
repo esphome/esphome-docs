@@ -306,5 +306,5 @@ See Also
 - :doc:`index`
 - :doc:`rdm6300`
 - :doc:`rc522`
-- :apiref:`pn532/pn532.h`
+- :ghsources:`esphome/components/pn532`
 - :ghedit:`Edit`

@@ -472,7 +472,7 @@ Sample code
 See Also
 --------
 
-- :apiref:`fingerprint_grow/fingerprint_grow.h`
+- :ghsources:`esphome/components/fingerprint_grow`
 - `Tutorial from Adafruit <https://learn.adafruit.com/adafruit-optical-fingerprint-sensor>`__
 - `Adafruit Fingerprint Sensor Library <https://github.com/adafruit/Adafruit-Fingerprint-Sensor-Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

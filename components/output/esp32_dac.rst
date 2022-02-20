@@ -66,5 +66,5 @@ See Also
 - :doc:`/components/light/monochromatic`
 - :doc:`/components/fan/speed`
 - :doc:`/components/power_supply`
-- :apiref:`esp32_dac/esp32_dac.h`
+- :ghsources:`esphome/components/esp32_dac`
 - :ghedit:`Edit`

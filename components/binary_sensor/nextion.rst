@@ -94,7 +94,7 @@ Lambda Calls
 ************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods to access some
-more advanced functions (see the full :apiref:`nextion/binary_sensor/nextion_binarysensor.h` for more info).
+more advanced functions (see the full :ghsources:`esphome/components/nextion/binary_sensor` for more info).
 
 .. _nextion_binary_sensor_set_state:
 
@@ -169,5 +169,5 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`nextion/binary_sensor/nextion_binarysensor.h`
+- :ghsources:`esphome/components/nextion/binary_sensor`
 - :ghedit:`Edit`

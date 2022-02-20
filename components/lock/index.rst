@@ -156,7 +156,7 @@ right after the lock component has acknowledged the state (e.g. after it LOCKED/
 See Also
 --------
 
-- :apiref:`lock/lock.h`
+- :ghsources:`esphome/components/lock`
 - :ghedit:`Edit`
 
 .. toctree::

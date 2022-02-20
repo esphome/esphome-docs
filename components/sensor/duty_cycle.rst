@@ -37,5 +37,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`duty_cycle/duty_cycle_sensor.h`
+- :ghsources:`esphome/components/duty_cycle`
 - :ghedit:`Edit`

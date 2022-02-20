@@ -103,7 +103,7 @@ Lambda Calls
 ************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods to access
-some more advanced functions (see the full :apiref:`nextion/sensor/nextion_sensor.h` for more info).
+some more advanced functions (see the full :ghsources:`esphome/components/nextion/sensor` for more info).
 
 .. _nextion_sensor_set_state:
 
@@ -174,5 +174,5 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`nextion/sensor/nextion_sensor.h`
+- :ghsources:`esphome/components/nextion/sensor`
 - :ghedit:`Edit`

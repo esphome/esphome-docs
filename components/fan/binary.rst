@@ -39,5 +39,5 @@ See Also
 - :doc:`/components/output/index`
 - :doc:`/components/output/gpio`
 - :doc:`/components/fan/index`
-- :apiref:`fan/fan_state.h`
+- :ghsources:`esphome/components/fan`
 - :ghedit:`Edit`

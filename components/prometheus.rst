@@ -42,5 +42,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`prometheus/prometheus_handler.h`
+- :ghsources:`esphome/components/prometheus`
 - :ghedit:`Edit`

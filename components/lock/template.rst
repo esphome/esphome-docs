@@ -111,5 +111,5 @@ See Also
 - :doc:`/guides/automations`
 - :doc:`/components/lock/index`
 - :doc:`/components/binary_sensor/index`
-- :apiref:`template/lock/template_lock.h`
+- :ghsources:`esphome/components/template/lock`
 - :ghedit:`Edit`

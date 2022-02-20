@@ -45,5 +45,5 @@ See Also
 - :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
 - `Modbus RTU Protocol Description <https://www.modbustools.com/modbus.html>`__
 - :ref:`uart`
-- :apiref:`modbus/modbus.h`
+- :ghsources:`esphome/components/modbus`
 - :ghedit:`Edit`

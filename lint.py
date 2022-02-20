@@ -393,6 +393,18 @@ def lint_esphome_io_link(fname, match):
     )
 
 
+@lint_content_check(
+    include=["components/**.rst"],
+    exclude=[
+        "components/index.rst",
+    ]
+)
+def lint_contains_ghsources(fname: str, content: str):
+    if ":ghsources:" not in content:
+        return f"File contains no link to sources with {highlight(':ghsources:')}"
+    return None
+
+
 def highlight(s):
     return f"\033[36m{s}\033[0m"
 

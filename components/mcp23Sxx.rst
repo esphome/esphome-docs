@@ -148,6 +148,6 @@ See Also
 - :ref:`spi`
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
-- :apiref:`API Reference (MCP23S08) <mcp23S08/mcp23S08.h>`
-- :apiref:`API Reference (MCP23S17) <mcp23S17/mcp23S17.h>`
+- :ghsources:`View mcp23s08 sources <esphome/components/mcp23s08>`
+- :ghsources:`View mcp23s17 sources <esphome/components/mcp23s17>`
 - :ghedit:`Edit`

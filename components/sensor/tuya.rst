@@ -45,5 +45,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/sensor/index`
-- :apiref:`tuya/sensor/tuya_sensor.h`
+- :ghsources:`esphome/components/tuya/sensor`
 - :ghedit:`Edit`

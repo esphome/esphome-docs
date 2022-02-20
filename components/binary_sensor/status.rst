@@ -31,5 +31,5 @@ See Also
 
 - :doc:`/components/binary_sensor/index`
 - :doc:`/components/mqtt`
-- :apiref:`status/status_binary_sensor.h`
+- :ghsources:`esphome/components/status`
 - :ghedit:`Edit`

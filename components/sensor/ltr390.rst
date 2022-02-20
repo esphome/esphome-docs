@@ -113,5 +113,5 @@ See Also
 - :doc:`/components/sensor/tsl2561`
 - :doc:`/cookbook/temt6000`
 - :ref:`sensor-filters`
-- :apiref:`ltr390/ltr390.h`
+- :ghsources:`esphome/components/ltr390`
 - :ghedit:`Edit`

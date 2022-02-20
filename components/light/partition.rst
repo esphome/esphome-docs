@@ -125,5 +125,5 @@ See Also
 - :doc:`/components/light/index`
 - :doc:`/components/light/fastled`
 - :doc:`/components/light/neopixelbus`
-- :apiref:`partition/light_partition.h`
+- :ghsources:`esphome/components/partition`
 - :ghedit:`Edit`

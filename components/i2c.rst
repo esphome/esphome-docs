@@ -71,5 +71,5 @@ Configuration variables:
 See Also
 --------
 
-- :apiref:`i2c/i2c.h`
+- :ghsources:`esphome/components/i2c`
 - :ghedit:`Edit`

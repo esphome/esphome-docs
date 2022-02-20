@@ -83,6 +83,6 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`dht/dht.h`
+- :ghsources:`esphome/components/dht`
 - `Arduino DHTLib <https://playground.arduino.cc/Main/DHTLib>`__
 - :ghedit:`Edit`

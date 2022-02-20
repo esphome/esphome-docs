@@ -48,5 +48,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`tof10120/tof10120_sensor.h`
+- :ghsources:`esphome/components/tof10120`
 - :ghedit:`Edit`

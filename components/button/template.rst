@@ -29,4 +29,5 @@ See Also
 
 - :doc:`/guides/automations`
 - :doc:`/components/button/index`
+- :ghsources:`esphome/components/template/button`
 - :ghedit:`Edit`

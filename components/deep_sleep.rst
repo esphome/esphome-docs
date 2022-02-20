@@ -153,5 +153,5 @@ See Also
 
 - :doc:`switch/shutdown`
 - :ref:`automation`
-- :apiref:`deep_sleep/deep_sleep_component.h`
+- :ghsources:`esphome/components/deep_sleep`
 - :ghedit:`Edit`

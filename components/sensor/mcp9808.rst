@@ -47,6 +47,6 @@ See Also
 - :doc:`htu21d`
 - :doc:`sht3xd`
 - :doc:`hdc1080`
-- :apiref:`mcp9808/mcp9808.h`
+- :ghsources:`esphome/components/mcp9808`
 - `MCP9808 Library <https://github.com/adafruit/Adafruit_MCP9808_Library>`__ by `AdaFruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

@@ -29,3 +29,9 @@ built in display.
 
 Configuration Variables:
 ------------------------
+
+See Also
+--------
+
+- :ghsources:`esphome/components/nspanel`
+- :ghedit:`Edit`

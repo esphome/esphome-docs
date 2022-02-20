@@ -93,6 +93,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`template`
-- :apiref:`hmc5883l/hmc5883l.h`
+- :ghsources:`esphome/components/hmc5883l`
 - `HMC5883L Library <https://github.com/jarzebski/Arduino-HMC5883L>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
 - :ghedit:`Edit`

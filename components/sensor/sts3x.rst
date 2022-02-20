@@ -44,5 +44,5 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`sts3x/sts3x.h`
+- :ghsources:`esphome/components/sts3x`
 - :ghedit:`Edit`

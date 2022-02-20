@@ -841,13 +841,13 @@ This effect allows you to access each LED individually in a custom light effect.
 
 Available variables in the lambda:
 
-- **it** - :apiclass:`AddressableLight <light::AddressableLight>` instance (see API reference for more info).
-- **current_color**  - :apistruct:`ESPColor <light::ESPColor>` instance (see API reference for more info).
+- **it** - :ghsources:`AddressableLight <esphome/components/light/addressable_light.h>` instance (see API reference for more info).
+- **current_color**  - :ghsources:`Color <esphome/components/color/color.h>` instance (see API reference for more info).
 - **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
 
   .. note::
 
-      ESPColor has been migrated to Color. See :apistruct:`Color <Color>` for more information.
+      ESPColor has been migrated to Color. See :ghsources:`Color <esphome/components/color/color.h>` for more information.
 
 .. code-block:: yaml
 
@@ -902,8 +902,7 @@ Available variables in the lambda:
               }
 
 
-Examples of this API can be found here:
-https://github.com/esphome/esphome/blob/dev/esphome/components/light/addressable_light_effect.h
+Examples of this API can be found here: :ghsources:`esphome/components/light/addressable_light_effect.h`
 (the built-in addressable light effects).
 
 Automation Light Effect
@@ -1079,7 +1078,7 @@ WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.
 See Also
 --------
 
-- :apiref:`light/light_state.h`
+- :ghsources:`esphome/components/light`
 - `WS2812FX library <https://github.com/kitesurfer1404/WS2812FX>`__ by `@kitesurfer1404 <https://github.com/kitesurfer1404>`__
 - :ghedit:`Edit`
 

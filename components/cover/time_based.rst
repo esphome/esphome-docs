@@ -70,5 +70,5 @@ See Also
 
 - :doc:`index`
 - :ref:`automation`
-- :apiref:`time_based/time_based_cover.h`
+- :ghsources:`esphome/components/time_based`
 - :ghedit:`Edit`

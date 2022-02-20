@@ -401,6 +401,6 @@ To trigger the automation from Home Assistant you can invoke the service with th
 See Also
 --------
 
-- :apiref:`rf_bridge/rf_bridge.h`
+- :ghsources:`esphome/components/rf_bridge`
 - :doc:`/components/uart`
 - :ghedit:`Edit`

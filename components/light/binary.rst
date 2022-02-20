@@ -43,5 +43,5 @@ See Also
 - :doc:`/components/light/index`
 - :doc:`/components/output/gpio`
 - :doc:`/components/power_supply`
-- :apiref:`binary/light/binary_light_output.h`
+- :ghsources:`esphome/components/binary/light`
 - :ghedit:`Edit`

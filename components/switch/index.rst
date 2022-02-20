@@ -164,7 +164,7 @@ ON/OFF itself).
 See Also
 --------
 
-- :apiref:`switch/switch.h`
+- :ghsources:`esphome/components/switch`
 - :ghedit:`Edit`
 
 .. toctree::

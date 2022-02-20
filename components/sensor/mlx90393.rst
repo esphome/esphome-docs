@@ -112,4 +112,5 @@ See Also
 
 - :ref:`sensor-filters`
 - `arduino-MLX90393 <https://github.com/functionpointer/arduino-MLX90393>`__
+- :ghsources:`esphome/components/mlx90393`
 - :ghedit:`Edit`

@@ -82,5 +82,5 @@ See Also
 - :doc:`dht12`
 - :doc:`hdc1080`
 - :doc:`htu21d`
-- :apiref:`scd30/scd30.h`
+- :ghsources:`esphome/components/scd30`
 - :ghedit:`Edit`

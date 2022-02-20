@@ -82,5 +82,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`pzemac`
 - :doc:`pzemdc`
-- :apiref:`pzem004t/pzem004t.h`
+- :ghsources:`esphome/components/pzem004t`
 - :ghedit:`Edit`

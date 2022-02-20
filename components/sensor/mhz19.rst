@@ -147,5 +147,5 @@ See Also
 
 - :ref:`sensor-filters`
 - `MH-Z19 library <https://github.com/nara256/mhz19_uart>`__ by `@nara356 <https://github.com/nara256>`__
-- :apiref:`mhz19/mhz19.h`
+- :ghsources:`esphome/components/mhz19`
 - :ghedit:`Edit`

@@ -64,5 +64,5 @@ See Also
 - :doc:`adc`
 - :doc:`ntc`
 - :ref:`sensor-filters`
-- :apiref:`resistance/resistance_sensor.h`
+- :ghsources:`esphome/components/resistance`
 - :ghedit:`Edit`

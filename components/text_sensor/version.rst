@@ -46,5 +46,5 @@ This will, for example, change the output of the senser from:
 See Also
 --------
 
-- :apiref:`version/version_text_sensor.h`
+- :ghsources:`esphome/components/version`
 - :ghedit:`Edit`

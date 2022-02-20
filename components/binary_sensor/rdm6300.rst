@@ -137,5 +137,5 @@ See Also
 
 - :doc:`pn532`
 - :doc:`/components/binary_sensor/index`
-- :apiref:`rdm6300/rdm6300.h`
+- :ghsources:`esphome/components/rdm6300`
 - :ghedit:`Edit`

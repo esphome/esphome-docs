@@ -138,5 +138,5 @@ allow you to check if the sun is currently above or below the horizon.
 See Also
 --------
 
-- :apiref:`sun/sun.h`
+- :ghsources:`esphome/components/sun`
 - :ghedit:`Edit`

@@ -296,5 +296,5 @@ See Also
 --------
 
 - :doc:`/components/climate/index`
-- :apiref:`climate/midea_ac.h`
+- :ghsources:`esphome/components/midea_ac`
 - :ghedit:`Edit`

@@ -22,5 +22,5 @@ See Also
 
 - :doc:`esp32_ble_server`
 - :doc:`esp32_improv`
-- :apiref:`esp32_ble/ble.h`
+- :ghsources:`esphome/components/esp32_ble`
 - :ghedit:`Edit`

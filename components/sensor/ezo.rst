@@ -61,5 +61,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`ezo/ezo.h`
+- :ghsources:`esphome/components/ezo`
 - :ghedit:`Edit`

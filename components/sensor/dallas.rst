@@ -152,5 +152,5 @@ See Also
 - :doc:`max6675`
 - `Arduino DallasTemperature library <https://github.com/milesburton/Arduino-Temperature-Control-Library>`__
   by `Miles Burton <https://github.com/milesburton>`__
-- :apiref:`dallas/dallas_component.h`
+- :ghsources:`esphome/components/dallas`
 - :ghedit:`Edit`

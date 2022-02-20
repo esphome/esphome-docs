@@ -45,4 +45,5 @@ See Also
 - :doc:`/components/output/mcp4725`
 - :doc:`/components/output/esp32_dac`
 - :doc:`/components/output/esp8266_pwm`
+- :ghsources:`esphome/components/mcp47a1`
 - :ghedit:`Edit`

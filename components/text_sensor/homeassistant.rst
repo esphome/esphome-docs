@@ -43,5 +43,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :ref:`automation`
-- :apiref:`homeassistant/text_sensor/homeassistant_text_sensor.h`
+- :ghsources:`esphome/components/homeassistant/text_sensor`
 - :ghedit:`Edit`

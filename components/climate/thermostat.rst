@@ -394,4 +394,5 @@ See Also
 - :doc:`/components/climate/index`
 - :doc:`/components/sensor/index`
 - :ref:`config-action`
+- :ghsources:`esphome/components/thermostat`
 - :ghedit:`Edit`

@@ -191,5 +191,5 @@ through an ``on_boot`` trigger:
 See Also
 --------
 
-- :apiref:`ota/ota_component.h`
+- :ghsources:`esphome/components/ota`
 - :ghedit:`Edit`

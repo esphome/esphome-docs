@@ -70,5 +70,5 @@ See Also
 
 - :doc:`/components/tuya`
 - :doc:`/components/fan/index`
-- :apiref:`tuya/fan/tuya_fan.h`
+- :ghsources:`esphome/components/tuya/fan`
 - :ghedit:`Edit`

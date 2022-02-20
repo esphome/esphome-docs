@@ -28,5 +28,5 @@ See Also
 --------
 
 - :doc:`template`
-- :apiref:`wake_on_lan/wake_on_lan.h`
+- :ghsources:`esphome/components/wake_on_lan`
 - :ghedit:`Edit`

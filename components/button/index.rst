@@ -118,7 +118,7 @@ From :ref:`lambdas <config-lambda>`, you can press a button.
 See Also
 --------
 
-- :apiref:`button/button.h`
+- :ghsources:`esphome/components/button`
 - :ghedit:`Edit`
 
 .. toctree::

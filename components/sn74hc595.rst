@@ -68,5 +68,5 @@ See Also
 - :doc:`switch/gpio`
 - :doc:`binary_sensor/gpio`
 - `Serial to Parallel Shifting-Out with a 74HC595 <https://www.arduino.cc/en/tutorial/ShiftOut>`__
-- :apiref:`sn74hc595/sn74hc595.h`
+- :ghsources:`esphome/components/sn74hc595`
 - :ghedit:`Edit`

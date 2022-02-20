@@ -66,7 +66,7 @@ Lambda Calls
 ************
 
 From :ref:`lambdas <config-lambda>`, you can call several methods to access
-some more advanced functions (see the full :apiref:`nextion/nextion_switch.h` for more info).
+some more advanced functions (see the full :ghsources:`esphome/components/nextion` for more info).
 
 .. _nextion_switch_set_state:
 
@@ -139,5 +139,5 @@ See Also
 
 - :doc:`/components/display/nextion`
 - :doc:`index`
-- :apiref:`nextion/switch/nextion_switch.h`
+- :ghsources:`esphome/components/nextion/switch`
 - :ghedit:`Edit`

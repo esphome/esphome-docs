@@ -68,5 +68,5 @@ See Also
 - :doc:`max31855`
 - :doc:`max31856`
 - `MAX31865 Library <https://github.com/adafruit/Adafruit_MAX31865>`__ by `Adafruit <https://www.adafruit.com/>`__
-- :apiref:`max31865/max31865.h`
+- :ghsources:`esphome/components/max31865`
 - :ghedit:`Edit`

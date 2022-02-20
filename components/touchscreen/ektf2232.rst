@@ -33,5 +33,5 @@ See Also
 
 - :doc:`Touchscreen <index>`
 - :doc:`Inkplate 6 Plus </components/display/inkplate6>`
-- :apiref:`ektf2232/ektf2232.h`
+- :ghsources:`esphome/components/ektf2232`
 - :ghedit:`Edit`

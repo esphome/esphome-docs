@@ -38,7 +38,7 @@ Configuration variables:
 
 This automation will be triggered when the touchscreen detects a touch.
 
-This trigger provides one arguments of type :apistruct:`touchscreen::TouchPoint` which has two integer members: ``x`` and ``y`` which
+This trigger provides one arguments of type :ghsources:`touchscreen::TouchPoint <esphome/components/touchscreen/touchscreen.h>` which has two integer members: ``x`` and ``y`` which
 represent the position of the touch in relation to the display width and height. It also has optional members that will be set
 depending on the touchscreen platform.
 
@@ -79,8 +79,8 @@ See Also
 - :doc:`Inkplate 6 Plus </components/display/inkplate6>`
 - :doc:`EKTF2232 </components/touchscreen/ektf2232>`
 - :doc:`XPT2046 </components/binary_sensor/xpt2046>`
-- :apiref:`touchscreen/touchscreen.h`
-- :apiref:`touchscreen/binary_sensor/touchscreen_binary_sensor.h`
+- :ghsources:`esphome/components/touchscreen`
+- :ghsources:`esphome/components/touchscreen/binary_sensor`
 - :ghedit:`Edit`
 
 .. toctree::

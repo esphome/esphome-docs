@@ -61,5 +61,5 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`shtcx/shtcx.h`
+- :ghsources:`esphome/components/shtcx`
 - :ghedit:`Edit`

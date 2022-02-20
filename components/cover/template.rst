@@ -127,5 +127,5 @@ See Also
 - :doc:`/components/cover/index`
 - :ref:`automation`
 - :doc:`/cookbook/garage-door`
-- :apiref:`template/cover/template_cover.h`
+- :ghsources:`esphome/components/template/cover`
 - :ghedit:`Edit`

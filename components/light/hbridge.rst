@@ -60,5 +60,5 @@ See Also
 
 - :doc:`/components/light/index`
 - :doc:`/components/output/esp8266_pwm`
-- :apiref:`hbridge/light/hbridge_light.h`
+- :ghsources:`esphome/components/hbridge/light`
 - :ghedit:`Edit`

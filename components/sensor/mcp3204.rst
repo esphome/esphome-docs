@@ -77,5 +77,5 @@ See Also
 --------
 
 - :ref:`spi`
-- :apiref:`mcp3204/mcp3204.h`
+- :ghsources:`esphome/components/mcp3204`
 - :ghedit:`Edit`

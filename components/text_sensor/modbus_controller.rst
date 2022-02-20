@@ -82,4 +82,5 @@ See Also
 - :doc:`/components/binary_sensor/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
 - https://www.modbustools.com/modbus.html
+- :ghsources:`esphome/components/modbus_controller/text_sensor`
 - :ghedit:`Edit`

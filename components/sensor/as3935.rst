@@ -190,7 +190,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`as3935/as3935.h`
+- :ghsources:`esphome/components/as3935`
 - `AliExpress <https://de.aliexpress.com/af/as3935.html?SearchText=as3935>`__
 - `Data Sheet <https://www.embeddedadventures.com/datasheets/AS3935_Datasheet_EN_v2.pdf>`__
 - `Little Arduino Projects <https://github.com/tardate/LittleArduinoProjects/tree/master/playground/AS3935>`__

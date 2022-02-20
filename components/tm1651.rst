@@ -151,4 +151,5 @@ See Also
 --------
 
 - :doc:`index`
+- :ghsources:`esphome/components/tm1651`
 - :ghedit:`Edit`

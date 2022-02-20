@@ -119,5 +119,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`sm300d2/sm300d2.h`
+- :ghsources:`esphome/components/sm300d2`
 - :ghedit:`Edit`

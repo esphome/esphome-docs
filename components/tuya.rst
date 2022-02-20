@@ -71,7 +71,7 @@ The type of ``x`` variable is depending on ``datapoint_type`` configuration vari
 - *uint*: ``x`` is ``uint32_t``
 - *enum*: ``x`` is ``uint8_t``
 - *bitmask*: ``x`` is ``uint32_t``
-- *any*: ``x`` is :apistruct:`tuya::TuyaDatapoint`
+- *any*: ``x`` is :ghsources:`tuya::TuyaDatapoint <esphome/components/tuya/tuya.h>`
 
 .. code-block:: yaml
 
@@ -122,5 +122,5 @@ See Also
 - :doc:`/components/binary_sensor/tuya`
 - :doc:`/components/sensor/tuya`
 - :doc:`/components/text_sensor/tuya`
-- :apiref:`tuya/tuya.h`
+- :ghsources:`esphome/components/tuya`
 - :ghedit:`Edit`

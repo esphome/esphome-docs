@@ -81,6 +81,7 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`mpr121/mpr121.h`
+- :ghsources:`esphome/components/mpr121`
 - `Adafruit MPR121 Library <https://github.com/adafruit/Adafruit_MPR121_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
+- :ghsources:`esphome/components/mpr121`
 - :ghedit:`Edit`

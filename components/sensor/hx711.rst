@@ -78,6 +78,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`adc`
-- :apiref:`hx711/hx711.h`
+- :ghsources:`esphome/components/hx711`
 - `HX711 Library <https://github.com/bogde/HX711>`__ by `@bogde <https://github.com/bogde>`__
 - :ghedit:`Edit`

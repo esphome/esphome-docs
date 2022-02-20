@@ -266,7 +266,7 @@ advanced stuff (see the full API Reference for more info).
 Full Fan Index
 --------------
 
-- :apiref:`fan/fan_state.h`
+- :ghsources:`esphome/components/fan`
 - :ghedit:`Edit`
 
 .. toctree::

@@ -68,5 +68,5 @@ See Also
 - :doc:`hdc1080`
 - :doc:`htu21d`
 - :doc:`sht3xd`
-- :apiref:`sgp40/sgp40.h`
+- :ghsources:`esphome/components/sgp40`
 - :ghedit:`Edit`

@@ -79,5 +79,5 @@ See Also
 - `CT Clamp Guide <https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/introduction>`__
 - :doc:`adc`
 - :doc:`ads1115`
-- :apiref:`sensor/ct_clamp.h`
+- :ghsources:`esphome/components/sensor`
 - :ghedit:`Edit`

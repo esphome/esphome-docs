@@ -58,13 +58,13 @@ Configuration variables:
   must equal the number of items in the ``return`` statement of the ``lambda``. This is useful
   if you need to give an ``id`` to the component you created.
 
-See also :apiclass:`Component`.
+See also :ghsources:`Component <esphome/core/component.h>`.
 
 Native API Custom Component
 ---------------------------
 
 If you want to communicate directly with Home Assistant via the :doc:`native API </components/api>`
-you can use the :apiclass:`CustomAPIDevice` class to declare services that can be executed from
+you can use the :ghsources:`CustomAPIDevice <esphome/components/api/custom_api_device.h>` class to declare services that can be executed from
 Home Assistant, as well as starting services in Home Assistant.
 
 .. code-block:: cpp
@@ -120,13 +120,13 @@ Home Assistant, as well as starting services in Home Assistant.
       }
     };
 
-See also :apiclass:`CustomAPIDevice`.
+See also :ghsources:`CustomAPIDevice <esphome/components/api/custom_api_device.h>`.
 
 MQTT Custom Component
 ---------------------
 
 In many cases however components should communicate with other appliances using the network.
-That's why there is :apiclass:`mqtt::CustomMQTTDevice`. It is a helper class to create
+That's why there is :ghsources:`CustomMQTTDevice <esphome/components/mqtt/custom_mqtt_device.h>`. It is a helper class to create
 custom components that communicate using MQTT.
 
 .. code-block:: cpp
@@ -168,7 +168,7 @@ custom components that communicate using MQTT.
       }
     };
 
-See also :apiclass:`mqtt::CustomMQTTDevice`.
+See also :ghsources:`CustomMQTTDevice <esphome/components/mqtt/custom_mqtt_device.h>`.
 
 See Also
 --------

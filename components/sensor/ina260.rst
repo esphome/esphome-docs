@@ -53,6 +53,6 @@ See Also
 - :doc:`ina219`
 - :doc:`ina226`
 - :doc:`ina3221`
-- :apiref:`ina260/ina260.h`
+- :ghsources:`esphome/components/ina260`
 - `INA260 Arduino Library <https://github.com/adafruit/Adafruit_INA260>`__
 - :ghedit:`Edit`

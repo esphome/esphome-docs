@@ -223,5 +223,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`daly_bms/daly_bms.h`
+- :ghsources:`esphome/components/daly_bms`
 - :ghedit:`Edit`

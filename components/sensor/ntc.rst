@@ -124,5 +124,5 @@ See Also
 - :doc:`adc`
 - :doc:`resistance`
 - :ref:`sensor-filters`
-- :apiref:`ntc/ntc.h`
+- :ghsources:`esphome/components/ntc`
 - :ghedit:`Edit`

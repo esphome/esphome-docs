@@ -42,5 +42,5 @@ See Also
 --------
 
 - :ref:`automation`
-- :apiref:`homeassistant/binary_sensor/homeassistant_binary_sensor.h`
+- :ghsources:`esphome/components/homeassistant/binary_sensor`
 - :ghedit:`Edit`

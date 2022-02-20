@@ -259,7 +259,7 @@ This trigger is activated each time the cover reaches a fully closed state.
 See Also
 --------
 
-- :apiref:`cover/cover.h`
+- :ghsources:`esphome/components/cover`
 - :ghedit:`Edit`
 
 .. toctree::

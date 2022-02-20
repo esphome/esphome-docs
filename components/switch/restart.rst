@@ -33,5 +33,5 @@ See Also
 - :doc:`shutdown`
 - :doc:`safe_mode`
 - :doc:`template`
-- :apiref:`restart/switch/restart_switch.h`
+- :ghsources:`esphome/components/restart/switch`
 - :ghedit:`Edit`

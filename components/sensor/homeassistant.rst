@@ -52,5 +52,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :ref:`automation`
-- :apiref:`homeassistant/sensor/homeassistant_sensor.h`
+- :ghsources:`esphome/components/homeassistant/sensor`
 - :ghedit:`Edit`

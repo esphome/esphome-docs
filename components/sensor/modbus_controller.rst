@@ -263,10 +263,12 @@ SDM-120 returns the values as floats using 32 bits in 2 registers.
 
 See Also
 --------
+
 - :doc:`/components/modbus_controller`
 - :doc:`/components/number/modbus_controller`
 - :doc:`/components/binary_sensor/modbus_controller`
 - :doc:`/components/text_sensor/modbus_controller`
 - :doc:`/components/switch/modbus_controller`
 - :doc:`EPEVER MPPT Solar Charge Controller Tracer-AN Series</cookbook/tracer-an>`
+- :ghsources:`esphome/components/modbus_controller/sensor`
 - :ghedit:`Edit`

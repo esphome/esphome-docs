@@ -184,6 +184,6 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
-- :apiref:`ruuvitag/ruuvitag.h`
+- :ghsources:`esphome/components/ruuvitag`
 - `Ruuvi <https://ruuvi.com>`__
 - :ghedit:`Edit`

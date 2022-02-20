@@ -42,5 +42,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`/components/wifi`
-- :apiref:`wifi_signal/wifi_signal_sensor.h`
+- :ghsources:`esphome/components/wifi_signal`
 - :ghedit:`Edit`

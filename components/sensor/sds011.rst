@@ -76,5 +76,5 @@ See Also
 - :doc:`/components/sensor/pmsx003`
 - :ref:`sensor-filters`
 - `Laser Dust Sensor Control Protocol <https://nettigo.pl/attachments/415>`__
-- :apiref:`sds011/sds011.h`
+- :ghsources:`esphome/components/sds011`
 - :ghedit:`Edit`

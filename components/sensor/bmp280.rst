@@ -88,6 +88,6 @@ See Also
 - :doc:`bme280`
 - :doc:`bme680`
 - :doc:`bmp085`
-- :apiref:`bmp280/bmp280.h`
+- :ghsources:`esphome/components/bmp280`
 - `BMP280 Library <https://github.com/adafruit/Adafruit_BMP280_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

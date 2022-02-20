@@ -56,3 +56,9 @@ change the i²c address.
 -  If the address pin is pulled to VCC, the address is ``0x49``.
 -  If the address pin is tied to SDA, the address is ``0x4A``.
 -  If the address pin is tied to SCL, the address is ``0x4B``.
+
+See Also
+--------
+
+- :ghsources:`esphome/components/tmp117`
+- :ghedit:`Edit`

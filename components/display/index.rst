@@ -763,7 +763,12 @@ Additionally the old page will be given as the variable ``from`` and the new one
 See Also
 --------
 
-- :apiref:`display/display_buffer.h`
+- :ghsources:`esphome/components/display`
+- :ghsources:`esphome/components/display`
+- :ghsources:`View font sources <esphome/components/font>`
+- :ghsources:`View font sources <esphome/components/color>`
+- :ghsources:`View font sources <esphome/components/graph>`
+- :ghsources:`View font sources <esphome/components/image>`
 - :ghedit:`Edit`
 
 .. toctree::

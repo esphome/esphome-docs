@@ -57,5 +57,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`kalman_combinator/kalman_combinator.h`
+- :ghsources:`esphome/components/kalman_combinator`
 - :ghedit:`Edit`

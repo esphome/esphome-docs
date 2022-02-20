@@ -36,5 +36,5 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`mqtt_subscribe/sensor/mqtt_subscribe_sensor.h`
+- :ghsources:`esphome/components/mqtt_subscribe/sensor`
 - :ghedit:`Edit`

@@ -70,7 +70,7 @@ Configuration variables:
 
   - All options from :ref:`Light <config-light>`.
 
-See :apiclass:`Light <light::LightOutput>`
+See :ghsources:`Light <esphome/components/light/light_output.h>`
 
 See Also
 --------

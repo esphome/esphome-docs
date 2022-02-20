@@ -66,5 +66,5 @@ See Also
 
 - :doc:`/components/binary_sensor/mpr121`
 - :ref:`sensor-filters`
-- :apiref:`binary_sensor_map/binary_sensor_map.h`
+- :ghsources:`esphome/components/binary_sensor_map`
 - :ghedit:`Edit`

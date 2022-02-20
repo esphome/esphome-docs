@@ -64,6 +64,6 @@ See Also
 - :doc:`dht12`
 - :doc:`hdc1080`
 - :doc:`sht3xd`
-- :apiref:`htu21d/htu21d.h`
+- :ghsources:`esphome/components/htu21d`
 - `i2cdevlib <https://github.com/jrowberg/i2cdevlib>`__ by `Jeff Rowberg <https://github.com/jrowberg>`__
 - :ghedit:`Edit`

@@ -221,5 +221,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`http_request/http_request.h`
+- :ghsources:`esphome/components/http_request`
 - :ghedit:`Edit`

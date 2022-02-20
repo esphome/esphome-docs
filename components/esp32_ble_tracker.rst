@@ -96,7 +96,7 @@ ESP32 Bluetooth Low Energy Tracker Automation
 ********************
 
 This automation will be triggered when a Bluetooth advertising is received. A variable ``x`` of type
-:apiclass:`esp32_ble_tracker::ESPBTDevice` is passed to the automation for use in lambdas.
+:ghsources:`ESPBTDevice <esphome/components/esp32_ble_tracker/esp32_ble_tracker.h>` is passed to the automation for use in lambdas.
 
 .. code-block:: yaml
 
@@ -189,6 +189,6 @@ See Also
 --------
 
 - :doc:`binary_sensor/ble_presence`
-- :apiref:`esp32_ble_tracker/esp32_ble_tracker.h`
+- :ghsources:`esphome/components/esp32_ble_tracker`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - :ghedit:`Edit`

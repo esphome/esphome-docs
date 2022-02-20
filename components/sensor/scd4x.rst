@@ -78,5 +78,5 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`scd30`
-- :apiref:`scd4x/scd4x.h`
+- :ghsources:`esphome/components/scd4x`
 - :ghedit:`Edit`

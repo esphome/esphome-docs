@@ -53,5 +53,5 @@ to use it in ``printf`` expressions.
 See Also
 --------
 
-- :apiref:`mqtt_subscribe/text_sensor/mqtt_subscribe_text_sensor.h`
+- :ghsources:`esphome/components/mqtt_subscribe/text_sensor`
 - :ghedit:`Edit`

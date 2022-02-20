@@ -25,8 +25,8 @@ Version 1.8.0
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
 
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
-    Xiaomi HHCCJCY01, components/sensor/xiaomi_hhccjcy01, xiaomi_hhccjcy01.jpg
-    Xiaomi LYWSDCGQ, components/sensor/xiaomi_lywsdcgq, xiaomi_lywsdcgq.jpg
+    Xiaomi HHCCJCY01, components/sensor/xiaomi_ble, xiaomi_hhccjcy01.jpg
+    Xiaomi LYWSDCGQ, components/sensor/xiaomi_ble, xiaomi_lywsdcgq.jpg
 
     HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
     HX711, components/sensor/hx711, hx711.jpg
@@ -55,7 +55,7 @@ This release mainly focuses on these new features:
   of bugs with a lot of integrations.
 - :doc:`Displays! </components/display/index>`
 - NFC/RFID Readers (:doc:`PN532 </components/binary_sensor/pn532>` and :doc:`RDM6300 </components/binary_sensor/rdm6300>`)
-- New :doc:`ESP32 BLE integrations </components/esp32_ble_tracker>` like :doc:`Xiaomi HHCCJCY01 </components/sensor/xiaomi_hhccjcy01>`
+- New :doc:`ESP32 BLE integrations </components/esp32_ble_tracker>` like :doc:`Xiaomi HHCCJCY01 </components/sensor/xiaomi_ble>`
 - Core Changes like the addition of the :ref:`SPI bus <spi>` and :ref:`UART bus <uart>`
 - Lots of new :ref:`light effects <light-effects>` and support for cold-white/warm-white lights.
 - A LOGO FOR THIS PROJECT!!! Thanks a lot to `@messimore <https://github.com/messismore>`__ for

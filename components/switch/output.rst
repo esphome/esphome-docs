@@ -46,5 +46,5 @@ See Also
 --------
 
 - :doc:`/components/output/index`
-- :apiref:`output/switch/output_switch.h`
+- :ghsources:`esphome/components/output/switch`
 - :ghedit:`Edit`

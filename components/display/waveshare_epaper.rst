@@ -122,6 +122,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`waveshare_epaper/waveshare_epaper.h`
+- :ghsources:`esphome/components/waveshare_epaper`
 - `Arduino Waveshare E-Paper library <https://github.com/soonuse/epd-library-arduino>`__ by `Yehui (@soonuse) <https://github.com/soonuse>`__
 - :ghedit:`Edit`

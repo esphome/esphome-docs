@@ -207,6 +207,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`max7219/max7219.h`
+- :ghsources:`esphome/components/max7219digit`
 - `MAX7219 Library <https://github.com/nickgammon/MAX7219>`__ by `Nick Gammon <https://github.com/nickgammon>`__
 - :ghedit:`Edit`

@@ -332,4 +332,5 @@ should be ``author_name.project_name``.
 See Also
 --------
 
+- :ghsources:`esphome/core`
 - :ghedit:`Edit`

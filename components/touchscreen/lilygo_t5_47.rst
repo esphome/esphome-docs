@@ -31,5 +31,5 @@ See Also
 --------
 
 - :doc:`Touchscreen <index>`
-- :apiref:`lilygo_t5_47/touchscreen/lilygo_t5_47_touchscreen.h`
+- :ghsources:`esphome/components/lilygo_t5_47/touchscreen`
 - :ghedit:`Edit`

@@ -48,5 +48,5 @@ See Also
 --------
 
 - :doc:`/components/light/status_led`
-- :apiref:`status_led/status_led.h`
+- :ghsources:`esphome/components/status_led`
 - :ghedit:`Edit`

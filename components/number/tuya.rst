@@ -63,5 +63,5 @@ See Also
 --------
 
 - :doc:`/components/number/index`
-- :apiref:`tuya/number/tuya_number.h`
+- :ghsources:`esphome/components/tuya/number`
 - :ghedit:`Edit`

@@ -54,5 +54,5 @@ See Also
 --------
 
 - :ref:`automation`
-- :apiref:`template/number/template_number.h`
+- :ghsources:`esphome/components/template/number`
 - :ghedit:`Edit`

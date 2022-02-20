@@ -575,5 +575,5 @@ the MQTT broker.
 See Also
 --------
 
-- :apiref:`mqtt/mqtt_client.h`
+- :ghsources:`esphome/components/mqtt`
 - :ghedit:`Edit`

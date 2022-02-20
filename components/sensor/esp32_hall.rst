@@ -51,5 +51,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`adc`
 - :doc:`/devices/esp32`
-- :apiref:`esp32_hall/esp32_hall.h`
+- :ghsources:`esphome/components/esp32_hall`
 - :ghedit:`Edit`

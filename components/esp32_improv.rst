@@ -38,5 +38,5 @@ See Also
 - :doc:`improv_serial`
 - :doc:`captive_portal`
 - `Improv Wi-Fi <https://www.improv-wifi.com/>`__
-- :apiref:`esp32_improv/esp32_improv_component.h`
+- :ghsources:`esphome/components/esp32_improv`
 - :ghedit:`Edit`

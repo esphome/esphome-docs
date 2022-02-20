@@ -91,5 +91,5 @@ See Also
 
 - :ref:`sensor-filters`
 - `TinyGPS++ library <http://arduiniana.org/libraries/tinygpsplus/>`__
-- :apiref:`gps/gps.h`
+- :ghsources:`esphome/components/gps`
 - :ghedit:`Edit`

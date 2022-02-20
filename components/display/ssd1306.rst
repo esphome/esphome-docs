@@ -165,7 +165,7 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ssd1306_base/ssd1306_base.h`
+- :ghsources:`esphome/components/ssd1306_base`
 - `SSD1306 Library <https://github.com/adafruit/Adafruit_SSD1306>`__ by `Adafruit <https://www.adafruit.com/>`__
 - `SSD1305 Library <https://github.com/adafruit/Adafruit_SSD1305>`__ by `Adafruit <https://www.adafruit.com/>`__
 - :ghedit:`Edit`

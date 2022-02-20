@@ -80,6 +80,6 @@ See Also
 --------
 
 - :ref:`sensor-filters`
-- :apiref:`cap1188/cap1188.h`
 - `Adafruit CAP1188 Library <https://github.com/adafruit/Adafruit_CAP1188_Library>`__ by `Adafruit <https://www.adafruit.com/>`__
+- :ghsources:`esphome/components/cap1188`
 - :ghedit:`Edit`

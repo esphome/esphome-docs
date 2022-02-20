@@ -25,5 +25,5 @@ This integration has no configuration variables
 See Also
 --------
 
-- :apiref:`demo/demo_sensor.h`
+- :ghsources:`esphome/components/demo`
 - :ghedit:`Edit`

@@ -149,5 +149,5 @@ See Also
 - :doc:`pmsx003`
 - :doc:`ccs811`
 - :doc:`sgp30`
-- :apiref:`sps30/sps30.h`
+- :ghsources:`esphome/components/sps30`
 - :ghedit:`Edit`

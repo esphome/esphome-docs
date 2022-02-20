@@ -200,5 +200,5 @@ See Also
 - :doc:`tsl2561`
 - :doc:`bh1750`
 - `The Water Watcher (a DIY project using a TSL2591) <https://hackaday.io/project/176690-the-water-watcher>`__
-- :apiref:`tsl2591/tsl2591.h`
+- :ghsources:`esphome/components/tsl2591`
 - :ghedit:`Edit`
