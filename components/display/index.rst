@@ -766,9 +766,9 @@ See Also
 - :ghsources:`esphome/components/display`
 - :ghsources:`esphome/components/display`
 - :ghsources:`View font sources <esphome/components/font>`
-- :ghsources:`View font sources <esphome/components/color>`
-- :ghsources:`View font sources <esphome/components/graph>`
-- :ghsources:`View font sources <esphome/components/image>`
+- :ghsources:`View color sources <esphome/components/color>`
+- :ghsources:`View graph sources <esphome/components/graph>`
+- :ghsources:`View image sources <esphome/components/image>`
 - :ghedit:`Edit`
 
 .. toctree::
