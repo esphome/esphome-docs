@@ -15,7 +15,7 @@ The basic principal is that you are switching something based on switching an ap
 
 This component can be used for (but not limited to):
 
-.. figure:: images/switch_hbridge_valve_manipulator.webp
+.. figure:: images/switch_hbridge_valve_manipulator.png
     :alt: valve manipulator module
     :align: center
     :width: 25.0%
@@ -23,7 +23,7 @@ This component can be used for (but not limited to):
     Valve-actuator / Valve manipulator motor assembly
     
 
-.. figure:: images/switch_hbridge_liniear_actuator.webp
+.. figure:: images/switch_hbridge_liniear_actuator.png
     :alt: linear actuator module
     :align: center
     :width: 25.0%
