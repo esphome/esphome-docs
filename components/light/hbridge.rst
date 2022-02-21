@@ -36,11 +36,11 @@ Configuration
       - platform: ... # PWM Capable output platform
         id: output_light_a
         pin: ... # Output pin assignment
-        frequency: 1000 Hz
+        frequency: 100 Hz
       - platform: ... # PWM Capable output platform
         id: output_light_b
         pin: ... # Output pin assignment
-        frequency: 1000 Hz
+        frequency: 100 Hz
 
     # Create a light using the hbridge
     light:

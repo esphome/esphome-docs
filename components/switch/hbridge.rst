@@ -41,15 +41,15 @@ Configuration
       - platform: ... # PWM Capable output platform
           id: output_switch_a
           pin: ... # Output pin assignment
-          frequency: 1000 Hz
+          frequency: 50 Hz
       - platform: ... # PWM Capable output platform
           id: output_switch_b
           pin: ... # Output pin assignment
-          frequency: 1000 Hz
+          frequency: 50 Hz
       - platform: ... # PWM Capable output platform
           id: output_switch_enable
           pin: ... # Output pin assignment
-          frequency: 1000 Hz
+          frequency: 50 Hz
 
     # Switch test config    
     switch:

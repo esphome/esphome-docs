@@ -36,14 +36,15 @@ Configuration
       - platform: ... # PWM Capable output platform
         id: output_fan_a
         pin: ... # Output pin assignment
-        frequency: 1000 Hz
+        frequency: 50 Hz
       - platform: ... # PWM Capable output platform
         id: output_fan_b
         pin: ... # Output pin assignment
-        frequency: 1000 Hz
+        frequency: 50 Hz
       - platform: ... # PWM Capable output platform
         id: output_fan_enable
         pin: ... # Output pin assignment
+        frequency: 50 Hz
       - platform: gpio
         id: output_fan_oscillating
         pin: ... # Output pin assignment
