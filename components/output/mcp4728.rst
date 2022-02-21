@@ -84,7 +84,7 @@ Configuration variables:
   Use this if you have multiple MCP4728 chains you want to use at the same time.
 - **channel** (**Required**, string): Chose the channel of the MCP4728 chain of
   this output component. One of ``A``, ``B``, ``C`` or ``D``.
-- **vref** (**Optional**, string): Chose the VREF source. One of ``vdd`` or ``internal``.
+- **vref** (**Optional**, string): Chose the VREF source. One of ``vdd`` or ``internal``. Defaults to ``vdd``.
 - **gain** (**Optional**, string): Chose the GAIN multiplier. One of ``X1`` or ``X2``. Only useful when ``vdd=internal``. Defaults to ``X1``.
 - **power_down** (**Optional**, string): Chose the power down mode. One of ``normal``, ``gnd_1k``, ``gnd_100k`` or ``gnd_500k``. Defaults to ``normal``.
 - All other options from :ref:`Output <config-output>`.
