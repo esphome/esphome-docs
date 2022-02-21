@@ -3,7 +3,7 @@ Daly BMS
 
 .. seo::
     :description: Instructions for setting up a Daly Smart BMS
-    :image: daly_bms.png
+    :image: daly_bms.jpg
 
 The ``daly_bms`` sensor platform allows you to use a Daly Smart BMS
 (`more info <https://dalyelec.en.made-in-china.com/>`__)
@@ -59,6 +59,14 @@ The BMS communicates via :ref:`UART <uart>`.
           name: "Temperature 1"
         temperature_2:
           name: "Temperature 2"
+        cell_1_voltage:
+          name: "Cell 1 Voltage"
+        cell_2_voltage:
+          name: "Cell 2 Voltage"
+        cell_3_voltage:
+          name: "Cell 3 Voltage"
+        cell_4_voltage:
+          name: "Cell 4 Voltage"
 
     text_sensor:
       - platform: daly_bms
@@ -174,6 +182,12 @@ Configuration variables:
 - **temperature_2** (*Optional*): The second temperature sensor.
 
   - **name** (**Required**, string): The name for the second temperature sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+  
+- **cell_x_voltage** (*Optional*): The voltage of cell x.
+
+  - **name** (**Required**, string): The name for the cell voltage sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 

@@ -47,10 +47,9 @@ Configuration variables:
 
     .. code-block:: yaml
 
-        status_led:
-          pin:
-            number: GPIO2
-            inverted: true
+        pin:
+          number: GPIO2
+          inverted: true
 
 
 

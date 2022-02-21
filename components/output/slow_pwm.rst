@@ -37,7 +37,9 @@ Configuration variables:
 - **state_change_action**  (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is switched. If a lambda is used the boolean ``state`` parameter holds the new status.
 - **turn_on_action**  (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned on. Can be used to control for example a switch or output component.
 - **turn_off_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned off. ``turn_on_action`` and ``turn_off_action`` must be configured together.
-
+- **restart_cycle_on_state_change** (*Optional*, boolean): Restart a timer of a cycle
+  when new state is set. Defaults to ``false``.
+  
 - All other options from :ref:`Output <config-output>`.
 
 

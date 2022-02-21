@@ -12,7 +12,7 @@ ESPHome 2021.10.0 - 20th October 2021
 
     AirThings Wave Mini, components/sensor/airthings_ble, airthings_logo.png
     Current-Based Cover, components/cover/current_based, flash.svg
-    Daly BMS, components/sensor/daly_bms, daly_bms.png
+    Daly BMS, components/sensor/daly_bms, daly_bms.jpg
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     LTR390, components/sensor/ltr390, ltr390.jpg
     Modbus Controller, components/modbus_controller, modbus.png

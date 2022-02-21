@@ -67,6 +67,28 @@ Example:
     JsonObject blah = root.createNestedObject("blah");
 
 
+Release 2022.1.1 - January 20
+-----------------------------
+
+- Add ``*.py.script`` files to distributions :esphomepr:`3074` by :ghuser:`jesserockz`
+
+Release 2022.1.2 - January 25
+-----------------------------
+
+- [modbus_controller] fix incorrect start address for number write :esphomepr:`3073` by :ghuser:`martgras`
+- Set the wrapped single light in light partition to internal :esphomepr:`3092` by :ghuser:`placidorevilla`
+
+Release 2022.1.3 - February 2
+-----------------------------
+
+- Fix backwards string case helpers :esphomepr:`3126` by :ghuser:`jesserockz` (breaking-change)
+
+Release 2022.1.4 - February 9
+-----------------------------
+
+- Enable mDNS during OTA safe mode :esphomepr:`3146` by :ghuser:`OttoWinter`
+- Try fix canbus config validation :esphomepr:`3173` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
@@ -99,6 +121,7 @@ Breaking Changes
 
 - Modbus: use multiply for publishing number :esphomepr:`2916` by :ghuser:`martgras` (breaking-change)
 - Upgrade ArduinoJson to 6.18.5 and migrate code :esphomepr:`2844` by :ghuser:`jesserockz` (breaking-change)
+- Fix backwards string case helpers :esphomepr:`3126` by :ghuser:`jesserockz` (breaking-change)
 
 Beta Changes
 ^^^^^^^^^^^^

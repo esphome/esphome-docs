@@ -10,6 +10,7 @@ to control a fan or generic dc-motor.
 
 Home assistant has no generic component for a motor. The ``Fan`` component is the closest match.
 
+
 .. figure:: images/L298N_module.jpg
     :alt: hbdrige module
     :align: center

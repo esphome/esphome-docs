@@ -23,6 +23,7 @@ unless it's truly exceptional, etc.
 Blog Posts & Videos
 -------------------
 - `Build a cheap air quality sensor <https://www.pieterbrinkman.com/2021/02/03/build-a-cheap-air-quality-meter-using-esphome-home-assistant-and-a-particulate-matter-sensor/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
+- `Track your water usage using a proximity sensor <https://www.pieterbrinkman.com/2022/02/02/build-a-cheap-water-usage-sensor-using-esphome-home-assistant-and-a-proximity-sensor/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Collecting Temperature Data from ELA Bluetooth Puck with ESPHome <https://blog.weinreich.org/posts/2020/2020-12-14-esphome-ble-ela/>`__ by `lairsdragon <https://www.weinreich.org/>`__
 - `Make your fireplace smart (blog series) <http://www.pieterbrinkman.com/category/home-automation/make-your-bellfire-fireplace-smart/>`__ by `Pieter <http://www.pieterbrinkman.com>`__
 - `Ultrasonic Salt Level Sensor <https://adonno.com/salt-level-sensor/>`__ by `Adonno <https://adonno.com>`__
@@ -32,6 +33,7 @@ Blog Posts & Videos
 - `Count Water Bottles <https://vigonotion.com/blog/monitor-remainding-water-bottles/>`__ by `vigonotion <https://vigonotion.com>`__
 - `ESPHome Weather Station with Nextion display <https://github.com/bruxy70/Home-Assistant-ESPHome-Weather-Station>`__ by :ghuser:`bruxy70`
 - `ESPHome Wall Mount with Nextion Display <https://github.com/Andoramb/Nextion-wall-mount>`__ by :ghuser:`Andoramb` (`video <https://www.youtube.com/watch?v=TL8wZNnS4jI>`__)
+- `ESPHome 12v Fan Controller with PID Climate <https://github.com/patrickcollins12/esphome-fan-controller>`__ by :ghuser:`patrickcollins12`
 - `Sonoff 4CH Irrigation Controller with Nextion Display <https://github.com/bruxy70/Irrigation-with-display>`__ by :ghuser:`bruxy70`
 - `Automated Bathroom Ventilation <https://www.youtube.com/watch?v=weBDnmrQYOs>`__ by `Intermittent Technology <https://intermit.tech>`__
 - `ESPHome MP3 Sound Machine <https://selfhostedhome.com/esp8266-mp3-sound-machine/>`__ by `Self Hosted Home <https://selfhostedhome.com>`__

@@ -17,7 +17,8 @@ asks you for the board type.
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP8266
+
+    esp8266:
       board: <BOARD_TYPE>
 
 Many boards have a pin numbering for the exposed pins that is different from the internally used
@@ -39,7 +40,8 @@ Some notes on the pins:
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP8266
+
+    esp8266:
       board: nodemcuv2
 
     binary_sensor:

@@ -23,7 +23,7 @@ A Python library that implements this protocol is `aioesphomeapi <https://github
 
     # Example configuration entry
     api:
-      password: 'MyPassword'
+      password: !secret api_password
 
 Configuration variables:
 ------------------------
@@ -85,7 +85,7 @@ calls straight from ESPHome :ref:`Automations <automation>`.
       - homeassistant.service:
           service: notify.html5
           data:
-            title: Button was pressed
+            message: Button was pressed
       # With templates and variables
       - homeassistant.service:
           service: notify.html5
@@ -262,7 +262,7 @@ straight from ESPHome :ref:`Automations <automation>`.
       - homeassistant.event:
           event: esphome.button_pressed
           data:
-            title: Button was pressed
+            message: Button was pressed
 
 Configuration options:
 

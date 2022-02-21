@@ -17,24 +17,24 @@ The ``modbus_controller`` component uses the modbus component
 
 Hardware setup
 --------------
-I'm using a RS 485 module connected to an ESP32
+A RS 485 module connected to an ESP32, for example:
 
 .. figure:: /images/rs485.jpg
 
-See [How is this RS485 Module Working?](https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working) on stackexchange for more details
+See `How is this RS485 Module Working? <https://electronics.stackexchange.com/questions/244425/how-is-this-rs485-module-working>`__ on stackexchange for more details
 
-The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PIN 17 to RXD are the default ports but any other pins can be used as well . 3.3V to VCC and GND to GND.
+The controller connects to the UART of the MCU. For ESP32  GPIO PIN 16 to TXD PIN 17 to RXD are the default ports but any other pins can be used as well. 3.3V to VCC and GND to GND.
 
 .. note::
 
     If you are using an ESP8266, serial logging may cause problems reading from UART. For best results, hardware serial is recommended. Software serial may not be able to read all received data if other components spend a lot of time in the ``loop()``.
-    
+
     For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
-    
+
     The disadvantage of using the hardware uart is that you can't use serial logging because the serial logs would be sent to the modbus device and cause errors.
-    
+
     Serial logging can be disabled by setting ``baud_rate: 0``.
-    
+
     See :doc:`logger` for more details
 
     .. code-block:: yaml
@@ -66,26 +66,6 @@ Modbus sensors can be directly defined (inline) under the modbus_controller hub 
 Technically there is no difference between the "inline" and the standard definitions approach.
 
 .. code-block:: yaml
-
-    esphome:
-      name: solarstation
-      platform: ESP32
-      board: esp32dev
-
-    substitutions:
-      updates: 30s
-
-    wifi:
-      ssid: !secret wifi_sid
-      password: !secret wifi_password
-      reboot_timeout: 2min
-
-    logger:
-      level: INFO
-      baud_rate: 0
-
-    api:
-      password: !secret api_password
 
     uart:
       id: mod_bus
@@ -324,85 +304,72 @@ Then battery charge settings are sent.
 .. code-block:: yaml
 
     esphome:
-      name: solarstation-test
-      platform: ESP32
-      board: esp32dev
-
-      ## send config values at startup
-      ## configure rtc clock and battery charge settings
       on_boot:
+        ## configure controller settings at setup
+        ## make sure priority is lower than setup_priority of modbus_controller
         priority: -100
         then:
           - lambda: |-
+              // get local time and sync to controller
+              time_t now = ::time(nullptr);
+              struct tm *time_info = ::localtime(&now);
+              int seconds = time_info->tm_sec;
+              int minutes = time_info->tm_min;
+              int hour = time_info->tm_hour;
+              int day = time_info->tm_mday;
+              int month = time_info->tm_mon + 1;
+              int year = time_info->tm_year % 100;
+              esphome::modbus_controller::ModbusController *controller = id(epever);
+              // if there is no internet connection localtime returns year 70
+              if (year != 70) {
+                // create the payload
+                std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
+                                                  uint16_t((year << 8) | month)};
+                // Create a modbus command item with the time information as the payload
+                esphome::modbus_controller::ModbusCommandItem set_rtc_command =
+                    esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9013, 3, rtc_data);
+                // Submit the command to the send queue
+                epever->queue_command(set_rtc_command);
+                ESP_LOGI("ModbusLambda", "EPSOLAR RTC set to %02d:%02d:%02d %02d.%02d.%04d", hour, minutes, seconds, day, month,
+                        year + 2000);
+              }
+              // Battery settings
+              // Note: these values are examples only and apply my AGM Battery
+              std::vector<uint16_t> battery_settings1 = {
+                  0,       // 9000 Battery Type 0 =  User
+                  0x0073,  // 9001 Battery Cap 0x55 == 115AH
+                  0x012C,  // 9002 Temp compensation -3V /°C/2V
+                  0x05DC,  // 9003 0x5DC == 1500 Over Voltage Disconnect Voltage 15,0
+                  0x058C,  // 9004 0x58C == 1480 Charging Limit Voltage 14,8
+                  0x058C,  // 9005 Over Voltage Reconnect Voltage 14,8
+                  0x05BF,  // 9006 Equalize Charging Voltage 14,6
+                  0x05BE,  // 9007 Boost Charging Voltage 14,7
+                  0x0550,  // 9008 Float Charging Voltage 13,6
+                  0x0528,   // 9009 Boost Reconnect Charging Voltage 13,2
+                  0x04C4,  // 900A Low Voltage Reconnect Voltage 12,2
+                  0x04B0,  // 900B Under Voltage Warning Reconnect Voltage 12,0
+                  0x04BA,  // 900c Under Volt. Warning Volt 12,1
+                  0x04BA,  // 900d Low Volt. Disconnect Volt. 11.8
+                  0x04BA   // 900E Discharging Limit Voltage 11.8
+              };
 
-    on_boot:
-      ## configure controller settings at setup
-      ## make sure priority is lower than setup_priority of modbus_controller
-      priority: -100
-      then:
-        - lambda: |-
-            // get local time and sync to controller
-            time_t now = ::time(nullptr);
-            struct tm *time_info = ::localtime(&now);
-            int seconds = time_info->tm_sec;
-            int minutes = time_info->tm_min;
-            int hour = time_info->tm_hour;
-            int day = time_info->tm_mday;
-            int month = time_info->tm_mon + 1;
-            int year = time_info->tm_year % 100;
-            esphome::modbus_controller::ModbusController *controller = id(epever);
-            // if there is no internet connection localtime returns year 70
-            if (year != 70) {
-              // create the payload
-              std::vector<uint16_t> rtc_data = {uint16_t((minutes << 8) | seconds), uint16_t((day << 8) | hour),
-                                                uint16_t((year << 8) | month)};
-              // Create a modbus command item with the time information as the payload
-              esphome::modbus_controller::ModbusCommandItem set_rtc_command =
-                  esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9013, 3, rtc_data);
-              // Submit the command to the send queue
-              epever->queue_command(set_rtc_command);
-              ESP_LOGI("ModbusLambda", "EPSOLAR RTC set to %02d:%02d:%02d %02d.%02d.%04d", hour, minutes, seconds, day, month,
-                      year + 2000);
-            }
-            // Battery settings
-            // Note: these values are examples only and apply my AGM Battery
-            std::vector<uint16_t> battery_settings1 = {
-                0,       // 9000 Battery Type 0 =  User
-                0x0073,  // 9001 Battery Cap 0x55 == 115AH
-                0x012C,  // 9002 Temp compensation -3V /°C/2V
-                0x05DC,  // 9003 0x5DC == 1500 Over Voltage Disconnect Voltage 15,0
-                0x058C,  // 9004 0x58C == 1480 Charging Limit Voltage 14,8
-                0x058C,  // 9005 Over Voltage Reconnect Voltage 14,8
-                0x05BF,  // 9006 Equalize Charging Voltage 14,6
-                0x05BE,  // 9007 Boost Charging Voltage 14,7
-                0x0550,  // 9008 Float Charging Voltage 13,6
-                0x0528,   // 9009 Boost Reconnect Charging Voltage 13,2
-                0x04C4,  // 900A Low Voltage Reconnect Voltage 12,2
-                0x04B0,  // 900B Under Voltage Warning Reconnect Voltage 12,0
-                0x04BA,  // 900c Under Volt. Warning Volt 12,1
-                0x04BA,  // 900d Low Volt. Disconnect Volt. 11.8
-                0x04BA   // 900E Discharging Limit Voltage 11.8
-            };
+              // Boost and equalization periods
+              std::vector<uint16_t> battery_settings2 = {
+                  0x0000,  // 906B Equalize Duration (min.) 0
+                  0x0075   // 906C Boost Duration (aka absorb) 117 mins
+              };
+              esphome::modbus_controller::ModbusCommandItem set_battery1_command =
+                  esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9000, battery_settings1.size() ,
+                                                                                              battery_settings1);
 
-            // Boost and equalization periods
-            std::vector<uint16_t> battery_settings2 = {
-                0x0000,  // 906B Equalize Duration (min.) 0
-                0x0075   // 906C Boost Duration (aka absorb) 117 mins
-            };
-            esphome::modbus_controller::ModbusCommandItem set_battery1_command =
-                esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x9000, battery_settings1.size() ,
-                                                                                            battery_settings1);
-
-            esphome::modbus_controller::ModbusCommandItem set_battery2_command =
-                esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x906B, battery_settings3.size(),
-                                                                                            battery_settings2);
-            delay(200) ;
-            controller->queue_command(set_battery1_command);
-            delay(200) ;
-            controller->queue_command(set_battery2_command);
-            ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
-
-
+              esphome::modbus_controller::ModbusCommandItem set_battery2_command =
+                  esphome::modbus_controller::ModbusCommandItem::create_write_multiple_command(controller, 0x906B, battery_settings3.size(),
+                                                                                              battery_settings2);
+              delay(200) ;
+              controller->queue_command(set_battery1_command);
+              delay(200) ;
+              controller->queue_command(set_battery2_command);
+              ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
 
     uart:
       id: mod_bus
