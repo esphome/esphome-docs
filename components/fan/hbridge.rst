@@ -57,6 +57,7 @@ Configuration
         pin_a: output_fan_a
         pin_b: output_fan_b
         enable_pin: output_fan_enable
+        decay_mode: SLOW
         oscillation_output: output_fan_oscillating
         transition_delta_per_ms: 0.001
         transition_short_buildup_duration: 5000ms
@@ -70,9 +71,12 @@ Output assignment
   connected to Pin A (alternatively IN1, etc.) of the h-bridge.
 - **pin_b** (**Required**, :ref:`config-id`): The id of the :ref:`float output <output>` 
   connected to Pin B (alternatively IN2, etc.) of the h-bridge.
-
 - **enable_pin** (*Optional*, :ref:`config-id`): The id of the :ref:`float output <output>` 
   connected to the Enable pin of the h-bridge (if h-bridge uses enable). Default is ``null`` (not used)
+- **decay_mode** (*Optional*, string): The current decay mode you want to use with
+  the h-bridge. Either ``SLOW`` (braking) or ``FAST`` (coasting). Defaults to ``SLOW``.
+  For more information on current decay see `this link <https://learn.adafruit.com/improve-brushed-dc-motor-performance/current-decay-mode>`__
+
 - **oscillation_output** (*Optional*, :ref:`config-id`): The id of the :ref:`output <output>` 
   to use for the oscillation state of this fan. Default is ``null`` (not used)
 
@@ -103,14 +107,13 @@ Transitions explained
 
 When changing speeds (especially on a motor driving a large load) inertia will play its part.
 Trying to speed up the motor inertia will require to motor to use large amounts of current to get things going.
-You can reduce the current/load on your system by gradually increasing the speed. Use the *transition_delta_per_ms* parameter for this.
+You can reduce the load on your system by gradually increasing the speed. Use the *transition_delta_per_ms* parameter for this.
 This will increment the speed with the set value every millisecond until the set speed has been reached.
 For example use ``0.001`` to stretch a 0 (still) to 1 (full speed) increment over 1 second.
 This parameter also applies to slowing down.
 
 The reverse is true for stopping/reducing speed. Inertia will cause the motor to keep going (coasting).
 To reduce the speed faster you need to brake. Fortunately you can electrically brake a motor by shorting its windings.
-Just as driving a car the slamming on the brakes is not very pleasant experience for your circuit.
 Use the *transition_short_buildup_duration* to set a duration to buildup the braking/shorting. from a bit to full. 
 You can skip this step (set it to ``0``) if you need to.
 How long to apply the brake/short (when reaching full brake/short) is set by the *transition_full_short_duration* parameter. 

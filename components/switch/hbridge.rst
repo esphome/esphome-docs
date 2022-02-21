@@ -59,6 +59,7 @@ Configuration
         pin_a: output_switch_a
         pin_b: output_switch_b
         enable_pin: output_switch_enable
+        decay_mode: SLOW
         duration: 10000ms
     
 Output assignment
@@ -68,12 +69,14 @@ Output assignment
   connected to Pin A (alternatively IN1, etc.) of the h-bridge.
 - **pin_b** (**Required**, :ref:`config-id`): The id of the :ref:`float output <output>` 
   connected to Pin B (alternatively IN2, etc.) of the h-bridge.
-
 - **enable_pin** (*Optional*, :ref:`config-id`): The id of the :ref:`float output <output>` 
   connected to the Enable pin of the h-bridge (if h-bridge uses enable). Default is ``null`` (not used)
+- **decay_mode** (*Optional*, string): The current decay mode you want to use with
+  the h-bridge. Either ``SLOW`` (braking) or ``FAST`` (coasting). Defaults to ``SLOW``.
+  For more information on current decay see `this link <https://learn.adafruit.com/improve-brushed-dc-motor-performance/current-decay-mode>`__
+
 - **duration** (*Optional*, float): Switching duration. Duration to apply switching current when changing state. 
   Set this timeout to prevent burning your motor/electronics when the assembly gets stuck.
-  
   Defaults to ``0`` (No limit, signal always applied)
 
 switch configuration
