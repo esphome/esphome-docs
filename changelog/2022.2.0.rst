@@ -133,6 +133,12 @@ Release 2022.2.4 - February 21
 - Fix lilygo touchscreen rotation :esphomepr:`3221` by :ghuser:`jesserockz`
 - Fix fatal erroring in addon startup script :esphomepr:`3244` by :ghuser:`jesserockz`
 
+Release 2022.2.5 - February 23
+------------------------------
+
+- Respect ESPHOME_USE_SUBPROCESS in esp32 post_build script :esphomepr:`3246` by :ghuser:`mweinelt`
+- Fix regression caused by TSL2591 auto gain :esphomepr:`3249` by :ghuser:`Azimath`
+
 Full list of changes
 --------------------
 
