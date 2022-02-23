@@ -491,6 +491,8 @@ Button Components
     Template Button, components/button/template, description.svg
     Generic Output Button, components/button/output, upload.svg
     Restart Button, components/button/restart, restart.svg
+    Safe Mode Button, components/button/safe_mode, restart-alert.svg
+    Shutdown Button, components/button/shutdown, power_settings.svg
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
@@ -537,7 +539,7 @@ Touchscreen Components
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg, Inkplate 6 Plus
-    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.png
+    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
 
 Cover Components
 ----------------
@@ -718,7 +720,6 @@ documentation for others to copy. See :doc:`Contributing </guides/contributing>`
     :hidden:
 
     web-api/index
-    misc/index
     components/index
     cookbook/index
     devices/index

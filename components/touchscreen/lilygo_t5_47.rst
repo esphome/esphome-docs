@@ -3,7 +3,7 @@ Lilygo T5 4.7" Touchscreen
 
 .. seo::
     :description: Instructions for setting up the Lilygo T5 4.7" Touchscreen with ESPHome
-    :image: lilygo_t5_47_touch.png
+    :image: lilygo_t5_47_touch.jpg
     :keywords: Lilygo T5 4.7" Touchscreen
 
 The ``liygo_t5_47`` touchscreen platform allows using the touchscreen controller
