@@ -553,6 +553,7 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
+    Feedback Cover, components/cover/feedback, feedback_cover.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Current-Based Cover, components/cover/current_based, flash.svg
     Time-Based Cover, components/cover/time_based, timer.svg
