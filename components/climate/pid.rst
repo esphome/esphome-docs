@@ -138,14 +138,14 @@ calmly make minor adjustments over a 20x longer timeframe to stay within the dea
 
 .. code-block:: yaml
 
-  default_target_temperature: 21°C
-  ...
-  deadband_parameters:
-    threshold: 0.5       # deadband of +/-0.5°C
-    kp_multiplier: 0.05  # proportional gain is 5% of normal value
-    kp_multiplier: 0.05  # integral accumulates at only 5% of normal
-    kd_multiplier: 0.0   # derviative is turned off inside deadband
-    output_samples: 30   # average the output over 30 samples within the deadband
+    default_target_temperature: 21°C
+    ...
+    deadband_parameters:
+      threshold: 0.5       # deadband of +/-0.5°C
+      kp_multiplier: 0.05  # proportional gain is 5% of normal value
+      kp_multiplier: 0.05  # integral accumulates at only 5% of normal
+      kd_multiplier: 0.0   # derviative is turned off inside deadband
+      output_samples: 30   # average the output over 30 samples within the deadband
 
 Deadband Output samples
 ***********************
