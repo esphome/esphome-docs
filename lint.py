@@ -357,7 +357,7 @@ def lint_directive_formatting(fname, content):
         if lines[j]:
             errors.append(
                 "Directive '{}' is not followed by an empty line. Please insert an "
-                "empty line after {}:{}".format(directive_name, f, j)
+                "empty line after {}:{}".format(directive_name, fname, j)
             )
             continue
 
