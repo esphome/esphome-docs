@@ -137,7 +137,7 @@ kp and ki multipliers to a small gain like ``0.05`` and set derivative to 0. Thi
 calmly make minor adjustments over a 20x longer timeframe to stay within the deadband zone. 
 
 .. code-block:: yaml
-  
+
   default_target_temperature: 21°C
   ...
   deadband_parameters:
