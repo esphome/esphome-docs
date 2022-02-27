@@ -356,8 +356,12 @@ def lint_directive_formatting(fname, content):
         # Empty line must follow
         if lines[j]:
             errors.append(
-                "Directive '{}' is not followed by an empty line. Please insert an "
-                "empty line after {}:{}".format(directive_name, f, j)
+                (
+                    j,
+                    1,
+                    "Directive '{}' is not followed by an empty line. Please insert an "
+                    "empty line after {}:{}".format(directive_name, fname, j),
+                )
             )
             continue
 
@@ -374,10 +378,16 @@ def lint_directive_formatting(fname, content):
             num_indent = num_spaces - base_indentation
             if j == k and num_indent != 4:
                 errors.append(
-                    "Directive '{}' must be indented with 4 spaces, not {}. See "
-                    "{}:{}".format(directive_name, num_indent, f, j + 1)
+                    (
+                        j + 1,
+                        num_indent,
+                        "Directive '{}' must be indented with 4 spaces, not {}. See "
+                        "{}:{}".format(directive_name, num_indent, fname, j + 1),
+                    )
                 )
                 break
+
+    return errors
 
 
 @lint_re_check(
