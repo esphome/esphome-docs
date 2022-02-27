@@ -73,33 +73,21 @@ Configuration variables:
 
 - **level** (*Optional*): The percentage of full for the tank sensor
 
-  - **name** (**Required**, string): The name for the level sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
-    in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **distance** (*Optional*): The raw distance/depth of the liquid for the sensor in mm.
 
-  - **name** (**Required**, string): The name for the distance sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
-    in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **temperature** (*Optional*): The information for the temperature sensor.
   This temperature is on the sensor and is not calibrated to ambient temperature.
 
-  - **name** (**Required**, string): The name for the temperature sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
-    in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 - **battery_level** (*Optional*): The information for the battery percentage
   sensor.  Sensor uses a standard CR2032 battery.
 
-  - **name** (**Required**, string): The name for the battery level sensor.
-  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use
-    in lambdas.
-  - All other options from :ref:`Sensor <config-sensor>`.
+  - All options from :ref:`Sensor <config-sensor>`.
 
 Tank Types
 ----------
