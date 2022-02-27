@@ -379,6 +379,8 @@ def lint_directive_formatting(fname, content):
                 )
                 break
 
+    return errors
+
 
 @lint_re_check(
     r"https://esphome.io/",
