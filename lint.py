@@ -375,7 +375,7 @@ def lint_directive_formatting(fname, content):
             if j == k and num_indent != 4:
                 errors.append(
                     "Directive '{}' must be indented with 4 spaces, not {}. See "
-                    "{}:{}".format(directive_name, num_indent, f, j + 1)
+                    "{}:{}".format(directive_name, num_indent, fname, j + 1)
                 )
                 break
 
