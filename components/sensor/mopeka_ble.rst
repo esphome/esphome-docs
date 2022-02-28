@@ -62,8 +62,7 @@ Configuration variables:
 - **mac_address** (**Required**, MAC Address): The MAC address of the Mopeka
   device.
 
-- **tank_type** (*Optional*, Default: 20LB_V): The tank type the sensor is
-  measuring.
+- **tank_type** (**Required**): The tank type the sensor is measuring. See below.
 
 - **custom_distance_full** (*Optional*): distance sensor will read when it should be
   considered full (100%).  This is only used when tank_type = CUSTOM
