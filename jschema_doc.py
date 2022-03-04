@@ -6,7 +6,7 @@ from typing import MutableMapping
 from sphinx.util import logging
 from docutils import nodes
 
-SCHEMA_PATH = "../esphome-vscode/server/src/schema/"
+SCHEMA_PATH = "schema.json"
 CONFIGURATION_VARIABLES = "Configuration variables:"
 PIN_CONFIGURATION_VARIABLES = "Pin configuration variables:"
 COMPONENT_HUB = "Component/Hub"
@@ -21,13 +21,16 @@ def setup(app):
 
     import os
 
-    if not os.path.isfile(SCHEMA_PATH + "esphome.json"):
+    if not os.path.isfile(SCHEMA_PATH):
         logger = logging.getLogger(__name__)
         logger.info(f"{SCHEMA_PATH} not found. Not documenting schema.")
     else:
         app.connect("doctree-resolved", doctree_resolved)
         app.connect("build-finished", build_finished)
-        app.files = {}
+
+        f = open(SCHEMA_PATH, "r", encoding="utf-8-sig")
+        str = f.read()
+        app.jschema = json.loads(str)
 
     return {"version": "1.0.0", "parallel_read_safe": True, "parallel_write_safe": True}
 
@@ -83,7 +86,7 @@ CUSTOM_DOCS = {
         ],
     },
     "components/binary_sensor/index": {
-        "Binary Sensor Filters": "binary_sensor.registry.filter",
+        "Binary Sensor Filters": "binary_sensor.FILTER_REGISTRY",
     },
     "components/climate/ir_climate": {
         "IR Remote Climate": [
@@ -112,7 +115,7 @@ CUSTOM_DOCS = {
             "definitions/light.BRIGHTNESS_ONLY_LIGHT_SCHEMA",
             "definitions/light.LIGHT_SCHEMA",
         ],
-        "Light Effects": "light.registry.effects",
+        "Light Effects": "light.EFFECTS_REGISTRY",
     },
     "components/light/fastled": {
         "Clockless": "properties/light/fastled_clockless",
@@ -134,7 +137,7 @@ CUSTOM_DOCS = {
         "Remote Transmitter Actions": "definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA",
     },
     "components/sensor/index": {
-        "Sensor Filters": "sensor.registry.filter",
+        "Sensor Filters": "sensor.FILTER_REGISTRY",
     },
     "components/time": {
         "Home Assistant Time Source": "properties/time/homeassistant",
@@ -156,12 +159,6 @@ def get_node_title(node):
     return list(node.traverse(nodes.title))[0].astext()
 
 
-def read_file(fileName):
-    f = open(SCHEMA_PATH + fileName + ".json", "r", encoding="utf-8-sig")
-    str = f.read()
-    return json.loads(str)
-
-
 class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def __init__(self, app, doctree, docname):
         nodes.NodeVisitor.__init__(self, doctree)
@@ -178,14 +175,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.props_section_title = None
         self.find_registry = None
         self.section_level = 0
-        self.file_schema = None
         if self.path[0] == "components":
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
                 component = docname[11:]
-                self.file_schema = get_component_file(app, component)
-                self.json_component = self.file_schema[component]["schemas"][
-                    "CONFIG_SCHEMA"
-                ]
+                self.json_component = app.jschema["properties"].get(component)
             else:  # sub component, e.g. output/esp8266_pwm
 
                 # components here might have a core / hub, eg. dallas, ads1115
@@ -199,12 +192,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.platform = self.path[1]
                 if component == "index":
                     # these are e.g. sensor, binary sensor etc.
-                    component = self.platform.replace(" ", "_").lower()
-                    self.file_schema = get_component_file(app, component)
-                    self.json_component = self.file_schema[component]["schemas"][
-                        component.upper() + "_SCHEMA"
-                    ]
-                    self.json_base_config = None
+                    p = self.platform.replace(" ", "_").lower()
+                    self.json_component = find_component(
+                        self.app.jschema, self.platform
+                    )
+                    self.json_base_config = self.app.jschema["definitions"].get(
+                        p + "." + p.upper() + "_SCHEMA"
+                    )
+
                 else:
                     self.json_component = find_component(self.app.jschema, component)
 
@@ -258,7 +253,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if self.json_platform_component:
             self.json_platform_component["markdownDescription"] = description
         elif self.json_component:
-            self.json_component["docs"] = description
+            self.json_component["markdownDescription"] = description
 
         if self.json_base_config:
             self.json_component = self.json_base_config
@@ -548,29 +543,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
                 )
 
-    def get_component_schema(self, name):
-        parts = name.split(".")
-        schema_file = get_component_file(self.app, parts[0])
-        if parts[1] == "registry":
-            schema = schema_file.get(parts[0], {}).get(parts[2], {})
-        else:
-            schema = schema_file.get(parts[0], {}).get("schemas", {}).get(parts[1], {})
-        return schema
-
-    def get_component_config_var(self, name, key):
-        c = self.get_component_schema(name)
-        if key in c:
-            return c[key]
-        if key in c["config_vars"]:
-            return c["config_vars"][c]
-
     def find_registry_prop(self, registry_name, key, description):
-        cv = self.get_component_config_var(registry_name, key)
-        if cv is not None:
-            cv["docs"] = description
-            self.props = self.find_props(cv.get("schema", {}))
-        return
-
         registry = self.app.jschema["definitions"][registry_name]["anyOf"]
         for item in registry:
             if "$ref" in item:
@@ -860,21 +833,13 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             ]:
                 jprop = props[k] = {}
             else:
-                if self.path[1] == "esphome" and k in [
-                    # deprecated esphome
-                    "platform",
-                    "board",
-                    "arduino_version",
-                    "esp8266_restore_from_flash",
-                ]:
-                    return prop_name
                 raise ValueError(f"Cannot find property {k}")
 
         desc = markdown[markdown.index(": ") + 2 :].strip()
         if param_type:
             desc = "**" + param_type + "**: " + desc
 
-        jprop["docs"] = desc
+        jprop["markdownDescription"] = desc
         global props_documented
         props_documented = props_documented + 1
 
@@ -919,18 +884,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.parent = None
 
         def _get_props(self, component):
-            # component is a 'schema' dict which has 'config_vars' and 'extends'
-            assert (
-                "config_vars" in component
-                or "extends" in component
-                or len(component) == 0
-            )
-
             # find properties
             if "then" in component:
                 component = component["then"]
-
-            props = component.get("config_vars")
+            props = component.get("properties")
             ref = None
             if not props:
                 arr = component.get("anyOf", component.get("allOf"))
@@ -948,36 +905,9 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 props = self._get_props(ref)
             return props
 
-        def _find_extended(self, component, key):
-            for extended in component.get("extends", []):
-                schema = self.visitor.get_component_schema(extended)
-                for k, cv in schema.get("config_vars", {}).items():
-                    if k == key:
-                        return SetObservable(
-                            cv,
-                            setitem_callback=self._set_extended,
-                            inner_key=key,
-                            original_dict=schema.get("config_vars"),
-                        )
-                return self._find_extended(schema, key)
-
-        def _set_extended(self, inner_key, original_dict, key, value):
-            original_dict[inner_key][key] = value
-
-        def _iter_extended(self, component):
-            for extended in component.get("extends", []):
-                schema = self.visitor.get_component_schema(extended)
-                for s in self._iter_extended(schema):
-                    yield s
-                yield schema
-
         def __getitem__(self, key):
             if self.store and key in self.store:
                 return self.store[key]
-
-            extended = self._find_extended(self.component, key)
-            if extended is not None:
-                return extended
 
             if "then" in self.component:
                 # check if it's typed
@@ -1032,10 +962,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return iter(self.store)
 
         def __len__(self):
-            len_extended = 0
-            for s in self._iter_extended(self.component):
-                len_extended += len(s.get("config_vars", {}))
-            return len_extended + (len(self.store) if self.store else 0)
+            return len(self.store) if self.store else 0
 
     def find_props(self, component):
         props = self.Props(self, component)
@@ -1062,9 +989,8 @@ def handle_component(app, doctree, docname):
 def build_finished(app, exception):
     # TODO: create report of missing descriptions
 
-    for fname, contents in app.files.items():
-        f = open(SCHEMA_PATH + fname + ".json", "w")
-        f.write(json.dumps(contents))
+    f = open(SCHEMA_PATH, "w")
+    f.write(json.dumps(app.jschema))
 
     str = f"Documented: {props_documented}"
     logger = logging.getLogger(__name__)
@@ -1078,29 +1004,12 @@ class SetObservable(dict):
     MyDict instance was created
     """
 
-    def __init__(
-        self,
-        value,
-        setitem_callback=None,
-        inner_key=None,
-        original_dict=None,
-        *args,
-        **kwargs,
-    ):
+    def __init__(self, value, setitem_callback=None, inner_key=None, *args, **kwargs):
         super(SetObservable, self).__init__(value, *args, **kwargs)
         self._setitem_callback = setitem_callback
         self.inner_key = inner_key
-        self.original_dict = original_dict
 
     def __setitem__(self, key, value):
         if self._setitem_callback:
-            self._setitem_callback(self.inner_key, self.original_dict, key, value)
+            self._setitem_callback(self.inner_key, key, value)
         super(SetObservable, self).__setitem__(key, value)
-
-
-def get_component_file(app: SchemaGeneratorVisitor, component):
-    if component == "core":
-        component = "esphome"
-    if component not in app.files:
-        app.files[component] = read_file(component)
-    return app.files[component]
