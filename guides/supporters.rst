@@ -52,6 +52,7 @@ Contributors
 - `Alex Iribarren (@alexiri) <https://github.com/alexiri>`__
 - `Alex Mekkering (@AlexMekkering) <https://github.com/AlexMekkering>`__
 - `Alex (@alexyao2015) <https://github.com/alexyao2015>`__
+- `alva (@alva-seal) <https://github.com/alva-seal>`__
 - `Amish Vishwakarma (@amishv) <https://github.com/amishv>`__
 - `Jason Nader (@ammgws) <https://github.com/ammgws>`__
 - `anatoly-savchenkov (@anatoly-savchenkov) <https://github.com/anatoly-savchenkov>`__
@@ -141,6 +142,7 @@ Contributors
 - `Cougar (@Cougar) <https://github.com/Cougar>`__
 - `Connor Prussin (@cprussin) <https://github.com/cprussin>`__
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__
+- `cstaahl (@cstaahl) <https://github.com/cstaahl>`__
 - `Chris Talkington (@ctalkington) <https://github.com/ctalkington>`__
 - `cvwillegen (@cvwillegen) <https://github.com/cvwillegen>`__
 - `cwitting (@cwitting) <https://github.com/cwitting>`__
@@ -211,6 +213,7 @@ Contributors
 - `Ermanno Baschiera (@ebaschiera) <https://github.com/ebaschiera>`__
 - `Robert Resch (@edenhaus) <https://github.com/edenhaus>`__
 - `Niclas Larsson (@edge90) <https://github.com/edge90>`__
+- `EdJoPaTo (@EdJoPaTo) <https://github.com/EdJoPaTo>`__
 - `Eduardo Pérez (@eduperez) <https://github.com/eduperez>`__
 - `Eenoo (@Eenoo) <https://github.com/Eenoo>`__
 - `Eli Fidler (@efidler) <https://github.com/efidler>`__
@@ -482,6 +485,7 @@ Contributors
 - `Michael Gorven (@mgorven) <https://github.com/mgorven>`__
 - `mhentschke (@mhentschke) <https://github.com/mhentschke>`__
 - `Michaël Arnauts (@michaelarnauts) <https://github.com/michaelarnauts>`__
+- `Micha Nordmann (@Michanord) <https://github.com/Michanord>`__
 - `micronen (@micronen) <https://github.com/micronen>`__
 - `Pauline Middelink (@middelink) <https://github.com/middelink>`__
 - `Mikko Tervala (@MikkoTervala) <https://github.com/MikkoTervala>`__
@@ -533,6 +537,7 @@ Contributors
 - `Joakim Vindgard (@nigobo) <https://github.com/nigobo>`__
 - `nikito7 (@nikito7) <https://github.com/nikito7>`__
 - `niklasweber (@niklasweber) <https://github.com/niklasweber>`__
+- `Niorix (@Niorix) <https://github.com/Niorix>`__
 - `Zvonimir Haramustek (@nitko12) <https://github.com/nitko12>`__
 - `Nikolay Kitanov (@nkitanov) <https://github.com/nkitanov>`__
 - `nldroid (@nldroid) <https://github.com/nldroid>`__
@@ -540,7 +545,6 @@ Contributors
 - `Niccolò Maggioni (@nmaggioni) <https://github.com/nmaggioni>`__
 - `Jan Sandbrink (@NobodysNightmare) <https://github.com/NobodysNightmare>`__
 - `Łukasz Śliwiński (@nonameplum) <https://github.com/nonameplum>`__
-- `ffabi (@norges) <https://github.com/norges>`__
 - `Greg Johnson (@notgwj) <https://github.com/notgwj>`__
 - `nouser2013 (@nouser2013) <https://github.com/nouser2013>`__
 - `Stanislav Meduna (@numo68) <https://github.com/numo68>`__
@@ -693,6 +697,7 @@ Contributors
 - `Strixx76 (@Strixx76) <https://github.com/Strixx76>`__
 - `stubs12 (@stubs12) <https://github.com/stubs12>`__
 - `Jordan Vohwinkel (@sublime93) <https://github.com/sublime93>`__
+- `sveip (@sveip) <https://github.com/sveip>`__
 - `Sympatron GmbH (@Sympatron) <https://github.com/Sympatron>`__
 - `synco (@synco) <https://github.com/synco>`__
 - `Marcel Feix (@Syndlex) <https://github.com/Syndlex>`__
@@ -800,4 +805,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated February 21, 2022.*
+*This page was last updated March 2, 2022.*
