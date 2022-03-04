@@ -361,6 +361,11 @@ Packages can also be loaded from a git repository by utilizing the correct confi
 :ref:`config-substitutions` can be used inside the remote packages which allows users to override
 them locally with their own subsitution value.
 
+.. note::
+
+    Remote packages cannot have ``secret`` lookups in them. They should instead make use of substitutions with an
+    optional default in the packaged YAML, which the local device YAML can set using values from the local secrets.
+
 .. code-block:: yaml
 
     packages:
