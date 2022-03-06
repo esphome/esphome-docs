@@ -22,7 +22,7 @@ required to be set up in your configuration for this sensor to work
 
     # Example configuration entry
     sensor:
-    - platform: honeywellabp
+      - platform: honeywellabp
         pressure:
           name: "Honeywell pressure"
           unit_of_measurement: "psi"
