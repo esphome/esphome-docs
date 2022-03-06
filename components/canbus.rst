@@ -174,6 +174,8 @@ Configuration variables:
   the can bus device.
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
+- **remote_transmission_request** (*Optional*, boolean): Set to send CAN bus frame to request data from another node
+  (defaults to *false*). If a certain data length code needs to be sent, provide as many (dummy) bytes in *data*.
 
 ESP32 CAN Component
 -------------------
