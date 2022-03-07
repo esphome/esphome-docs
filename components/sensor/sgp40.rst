@@ -5,6 +5,11 @@ SGP40 Volatile Organic Compound Sensor
     :description: Instructions for setting up SGP40 Volatile Organic Compound sensor
     :image: sgp40.jpg
 
+.. note::
+
+    This component is superseeded by the :doc:`sgp4x <sgp4x>` component supporting both SGP40 and SGP41
+
+
 The ``sgp40`` sensor platform allows you to use your Sensirion SGP40 VOC sensor
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf>`__) with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
@@ -62,6 +67,7 @@ Example With Compensation
 See Also
 --------
 
+- :doc:`sgp4x`
 - :ref:`sensor-filters`
 - :doc:`dht`
 - :doc:`dht12`

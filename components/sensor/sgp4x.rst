@@ -6,8 +6,8 @@ SGP40 Volatile Organic Compound Sensor and SGP41 VOC and NOx Sensor
     :image: sgp40.jpg
 
 The ``sgp4x`` sensor platform allows you to use your Sensirion SGP40 
-(`SGP40 datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf>`__) or SGP41 
-(`SGP41 datasheet <https://sensirion.com/media/documents/5FE8673C/61E96F50/Sensirion_Gas_Sensors_Datasheet_SGP41.pdf>`__) with ESPHome.
+(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf>`__) or SGP41 
+(`datasheet <https://sensirion.com/media/documents/5FE8673C/61E96F50/Sensirion_Gas_Sensors_Datasheet_SGP41.pdf>`__) with ESPHome.
 The type of sensor used is automatically detected.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
 
@@ -38,11 +38,13 @@ Configuration variables:
 ------------------------
 
 - **voc** (*Optional*): VOC Index
+
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **nox** (*Optional*): NOx Index. Only available with SGP41. If a SGP40 sensor is detected this sensor will be ignored
+
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
   - All other options from :ref:`Sensor <config-sensor>`.
