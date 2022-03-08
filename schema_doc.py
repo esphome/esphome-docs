@@ -1,6 +1,8 @@
+from msilib.schema import Error
 import re
 import json
 import urllib
+import traceback
 
 from typing import MutableMapping
 from sphinx.util import logging
@@ -8,6 +10,7 @@ from docutils import nodes
 
 SCHEMA_PATH = "../esphome-vscode/server/src/schema/"
 CONFIGURATION_VARIABLES = "Configuration variables:"
+CONFIGURATION_OPTIONS = "Configuration options:"
 PIN_CONFIGURATION_VARIABLES = "Pin configuration variables:"
 COMPONENT_HUB = "Component/Hub"
 
@@ -32,19 +35,13 @@ def setup(app):
     return {"version": "1.0.0", "parallel_read_safe": True, "parallel_write_safe": True}
 
 
-def find_component(jschema, component):
-    return jschema["properties"].get(component)
+def find_component(schema, component):
+    return schema["properties"].get(component)
 
 
-def find_platform_component(jschema, platform, component):
-    platform_items = jschema["properties"][platform].get("items")
-    if not platform_items:
-        return None
-    ar = platform_items["allOf"]
-    for p in ar:
-        if "if" in p:
-            if p["if"]["properties"]["platform"]["const"] == component:
-                return p
+def find_platform_component(app, platform, component):
+    file_data = get_component_file(app, component)
+    return file_data[f"{component}.{platform}"]["schemas"]["CONFIG_SCHEMA"]
 
 
 def doctree_resolved(app, doctree, docname):
@@ -58,6 +55,7 @@ def doctree_resolved(app, doctree, docname):
         err_str = f"In {docname}: {str(e)}"
         logger = logging.getLogger(__name__)
         logger.warning(err_str)
+        traceback.print_exc()
 
 
 PLATFORMS_TITLES = {
@@ -162,6 +160,10 @@ def read_file(fileName):
     return json.loads(str)
 
 
+def is_config_vars_title(title_text):
+    return title_text == CONFIGURATION_VARIABLES or title_text == CONFIGURATION_OPTIONS
+
+
 class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def __init__(self, app, doctree, docname):
         nodes.NodeVisitor.__init__(self, doctree)
@@ -177,13 +179,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.title_id = None
         self.props_section_title = None
         self.find_registry = None
+        self.component = None
         self.section_level = 0
         self.file_schema = None
         if self.path[0] == "components":
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
-                component = docname[11:]
-                self.file_schema = get_component_file(app, component)
-                self.json_component = self.file_schema[component]["schemas"][
+                self.component = docname[11:]
+                self.file_schema = get_component_file(app, self.component)
+                self.json_component = self.file_schema[self.component]["schemas"][
                     "CONFIG_SCHEMA"
                 ]
             else:  # sub component, e.g. output/esp8266_pwm
@@ -191,25 +194,24 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # components here might have a core / hub, eg. dallas, ads1115
                 # and then they can be a binary_sensor, sensor, etc.
 
-                component = self.path[2]
+                self.component = self.path[2]
 
-                if component == "ssd1331":
-                    component = "ssd1331_spi"
+                if self.component == "ssd1331":
+                    self.component = "ssd1331_spi"
 
                 self.platform = self.path[1]
-                if component == "index":
+                if self.component == "index":
                     # these are e.g. sensor, binary sensor etc.
-                    component = self.platform.replace(" ", "_").lower()
-                    self.file_schema = get_component_file(app, component)
-                    self.json_component = self.file_schema[component]["schemas"][
-                        component.upper() + "_SCHEMA"
+                    self.component = self.platform.replace(" ", "_").lower()
+                    self.file_schema = get_component_file(app, self.component)
+                    self.json_component = self.file_schema[self.component]["schemas"][
+                        self.component.upper() + "_SCHEMA"
                     ]
                     self.json_base_config = None
                 else:
-                    self.json_component = find_component(self.app.jschema, component)
-
+                    self.json_component = get_component_file(app, self.component)
                     self.json_platform_component = find_platform_component(
-                        self.app.jschema, self.platform, component
+                        app, self.platform, self.component
                     )
 
         self.custom_doc = CUSTOM_DOCS.get(docname)
@@ -256,9 +258,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         description = self.getMarkdownParagraph(node)
 
         if self.json_platform_component:
-            self.json_platform_component["markdownDescription"] = description
+            platform = get_component_file(self.app, self.platform)
+            platform[self.platform]["components"][self.component]["docs"] = description
         elif self.json_component:
-            self.json_component["docs"] = description
+            core = get_component_file(self.app, "esphome")["core"]
+            if self.component in core["components"]:
+                core["components"][self.component]["docs"] = description
+            elif self.component in core["platforms"]:
+                core["platforms"][self.component]["docs"] = description
 
         if self.json_base_config:
             self.json_component = self.json_base_config
@@ -328,9 +335,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if not json_component:
                 return
 
-            json_component["markdownDescription"] = self.getMarkdownParagraph(
-                node.parent
-            )
+            json_component["docs"] = self.getMarkdownParagraph(node.parent)
             self.props_section_title = title_text
             self.props = self.find_props(json_component)
 
@@ -344,17 +349,15 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if json_component:
                 self.props = self.find_props(json_component)
 
-                json_component["markdownDescription"] = self.getMarkdownParagraph(
-                    node.parent
-                )
+                json_component["docs"] = self.getMarkdownParagraph(node.parent)
 
             # mark this to retrieve components instead of platforms
             self.is_component_hub = True
 
-        if title_text == CONFIGURATION_VARIABLES:
+        if is_config_vars_title(title_text):
             if not self.props and self.multi_component is None:
                 raise ValueError(
-                    f'Found a "{CONFIGURATION_VARIABLES}": title after {self.previous_title_text}. Unknown object.'
+                    f'Found a "{title_text}": title after {self.previous_title_text}. Unknown object.'
                 )
 
         if title_text == "Over SPI" or title_text == "Over I²C":
@@ -379,9 +382,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.props = self.find_props(json_platform_component)
 
                 # Document first paragraph is description of this thing
-                json_platform_component[
-                    "markdownDescription"
-                ] = self.getMarkdownParagraph(node.parent)
+                json_platform_component["docs"] = self.getMarkdownParagraph(node.parent)
 
             else:
                 json_component = find_component(self.app.jschema, component)
@@ -392,9 +393,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.props = self.find_props(json_component)
 
                 # Document first paragraph is description of this thing
-                json_component["markdownDescription"] = self.getMarkdownParagraph(
-                    node.parent
-                )
+                json_component["docs"] = self.getMarkdownParagraph(node.parent)
 
         # Title is description of platform component, those ends with Sensor, Binary Sensor, Cover, etc.
         if (
@@ -423,13 +422,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     # Some general title which does not locate a component directly
                     return
                 self.props_section_title = title_text
-            c = find_platform_component(
-                self.app.jschema, platform_name, component_name.lower()
-            )
+            c = find_platform_component(self.app, platform_name, component_name.lower())
             if c:
                 self.json_platform_component = c
 
-                c["markdownDescription"] = self.getMarkdownParagraph(node.parent)
+                c["docs"] = self.getMarkdownParagraph(node.parent)
 
             # Now fill props for the platform element
             try:
@@ -520,8 +517,24 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                         self.props = self.find_props(ref)
                         return
 
-            registry_name = f"automation.{split_text[1].upper()}_REGISTRY"
-            self.find_registry_prop(registry_name, key, description)
+            component_parts = split_text[0].split(".")
+            if len(component_parts) == 3:
+                cv = get_component_file(self.app, component_parts[1])[
+                    component_parts[1] + "." + component_parts[0]
+                ][split_text[1].lower()][component_parts[2]]
+                if cv is not None:
+                    cv["docs"] = description
+                    self.props = self.find_props(cv.get("schema", {}))
+            elif len(component_parts) == 2:
+                registry_name = ".".join(
+                    [component_parts[0], "registry", split_text[1].lower()]
+                )
+                key = component_parts[1]
+                self.find_registry_prop(registry_name, key, description)
+            else:
+                registry_name = f"core.{title_text.lower()}"
+                # f"automation.{split_text[1].upper()}_REGISTRY"
+                self.find_registry_prop(registry_name, key, description)
 
         if self.section_level == 3 and self.find_registry:
             name = title_text
@@ -561,6 +574,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         c = self.get_component_schema(name)
         if key in c:
             return c[key]
+        if "config_vars" not in c:
+            return c
         if key in c["config_vars"]:
             return c["config_vars"][c]
 
@@ -570,17 +585,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             cv["docs"] = description
             self.props = self.find_props(cv.get("schema", {}))
         return
-
-        registry = self.app.jschema["definitions"][registry_name]["anyOf"]
-        for item in registry:
-            if "$ref" in item:
-                item = self.get_ref(item)
-            if key in item["properties"]:
-                item["properties"][key]["markdownDescription"] = description
-                self.props = self.find_props(item["properties"][key])
-
-                return
-        raise ValueError(f"Cannot find {registry_name} {key}")
 
     def depart_title(self, node):
         if self.filled_props:
@@ -608,12 +612,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def visit_Text(self, node):
         if self.multi_component:
             return
-        if node.astext() == CONFIGURATION_VARIABLES:
+        if is_config_vars_title(node.astext()):
             if not self.props:
                 self.find_props_previous_title()
             if not self.props:
                 raise ValueError(
-                    f'Found a "{CONFIGURATION_VARIABLES}" entry for unknown object after {self.previous_title_text}'
+                    f'Found a "{node.astext()}" entry for unknown object after {self.previous_title_text}'
                 )
             self.accept_props = True
 
@@ -623,12 +627,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         pass
 
     def visit_paragraph(self, node):
-        if node.astext() == CONFIGURATION_VARIABLES:
+        if is_config_vars_title(node.astext()):
             if not self.props and not self.multi_component:
                 self.find_props_previous_title()
             if not self.props and not self.multi_component:
                 raise ValueError(
-                    f'Found a "{CONFIGURATION_VARIABLES}" entry for unknown object after {self.previous_title_text}'
+                    f'Found a "{node.astext()}" entry for unknown object after {self.previous_title_text}'
                 )
             self.accept_props = True
 
@@ -682,7 +686,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                         "enum" in prop
                         # or custom components has list of sensors/binary sensors, etc.
                         or (
-                            prop.get("markdownDescription", "").startswith("**list**")
+                            prop.get("docs", "").startswith("**list**")
                             and self.docname.endswith("/custom")
                         )
                     ):
@@ -920,11 +924,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         def _get_props(self, component):
             # component is a 'schema' dict which has 'config_vars' and 'extends'
-            assert (
+            if not (
                 "config_vars" in component
                 or "extends" in component
                 or len(component) == 0
-            )
+            ):
+                raise Error("Unepexted component data to get props")
 
             # find properties
             if "then" in component:
@@ -1038,6 +1043,9 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return len_extended + (len(self.store) if self.store else 0)
 
     def find_props(self, component):
+        if component.get("type") == "trigger":
+            # can have schema
+            component = component.get("schema")
         props = self.Props(self, component)
 
         if props:
@@ -1099,7 +1107,7 @@ class SetObservable(dict):
 
 
 def get_component_file(app: SchemaGeneratorVisitor, component):
-    if component == "core":
+    if component == "core" or component == "automation":
         component = "esphome"
     if component not in app.files:
         app.files[component] = read_file(component)
