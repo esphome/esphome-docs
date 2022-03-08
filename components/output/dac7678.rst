@@ -52,12 +52,6 @@ The DAC7678 output component exposes a DAC7678 DAC channel of a global
 :ref:`DAC7678 hub <dac7678-component>` as a float
 output.
 
-.. figure:: images/dac7678-full.jpg
-    :align: center
-    :width: 75.0%
-
-    DAC7678 8-Channel DAC Driver.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -75,7 +69,7 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - **channel** (**Required**, int): Chose the channel of the DAC7678 of
-  this output component. Must be in range from 0 to 15.
+  this output component. Must be in range from 0 to 7.
 - **dac7678_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
   :ref:`DAC7678 hub <dac7678-component>`.
   Use this if you have multiple DAC7678s you want to use at the same time.
@@ -85,11 +79,5 @@ See Also
 --------
 
 - :doc:`/components/output/index`
-- :doc:`/components/output/esp8266_pwm`
-- :doc:`/components/output/ledc`
-- :doc:`/components/light/monochromatic`
-- :doc:`/components/fan/speed`
-- :doc:`/components/power_supply`
 - :apiref:`dac7678/dac7678_output.h`
-- `DAC7678 Arduino Library <https://github.com/NachtRaveVL/DAC7678-Arduino>`__ by `@NachtRaveVL <https://github.com/NachtRaveVL>`__
 - :ghedit:`Edit`
