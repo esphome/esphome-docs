@@ -440,6 +440,7 @@ Output Components
     MCP4725, components/output/mcp4725, mcp4725.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
+	DAC7678, components/output/dac7678, dac7678.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
