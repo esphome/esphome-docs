@@ -3,7 +3,7 @@ DAC7678
 
 .. seo::
     :description: Instructions for setting up the DAC7678.
-    :image: dac7678.jpg
+    :image: dac7678.svg
     :keywords: DAC7678
 
 .. _dac7678-component:
