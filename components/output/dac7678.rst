@@ -79,5 +79,4 @@ See Also
 --------
 
 - :doc:`/components/output/index`
-- :apiref:`dac7678/dac7678_output.h`
 - :ghedit:`Edit`
