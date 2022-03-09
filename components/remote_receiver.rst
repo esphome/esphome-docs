@@ -34,6 +34,7 @@ Configuration variables:
   - **dish**: Decode and dump Dish infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **lg**: Decode and dump LG infrared codes.
+  - **magiquest**: Decode and dump MagiQuest wand infrared codes.
   - **midea**: Decode and dump Midea infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **nexa**: Decode and dump Nexa (RF) codes.
@@ -74,6 +75,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
+  is passed to the automation for use in lambdas.
+- **on_magiquest** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  MagiQuest wand remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::MagiQuestData`
   is passed to the automation for use in lambdas.
 - **on_midea** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Midea remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::MideaData`
@@ -170,6 +174,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **data** (**Required**, int): The LG code to trigger on, see dumper output for more info.
   - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``28``.
+
+- **magiquest**: Trigger on a decoded MagiQuest wand remote code with the given wand ID.
+
+  - **wand_id** (**Required**, int): The MagiQuest wand ID to trigger on, see dumper output for more info.
+  - **magnitude** (*Optional*, int): The magnitude of swishes and swirls of the wand.  If omitted, will match on any activation of the wand.
 
 - **midea**: Trigger on a Midea remote code with the given code.
 

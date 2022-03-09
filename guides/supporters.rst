@@ -339,6 +339,7 @@ Contributors
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__
 - `Jason2866 (@Jason2866) <https://github.com/Jason2866>`__
 - `Jason Hines (@jasonehines) <https://github.com/jasonehines>`__
+- `JasperPlant (@JasperPlant) <https://github.com/JasperPlant>`__
 - `Jas Strong (@jasstrong) <https://github.com/jasstrong>`__
 - `Jonas Bergler (@jbergler) <https://github.com/jbergler>`__
 - `JbLb (@jblb) <https://github.com/jblb>`__
@@ -747,8 +748,8 @@ Contributors
 - `tony (@tony-fav) <https://github.com/tony-fav>`__
 - `David Kiliani (@torfbolt) <https://github.com/torfbolt>`__
 - `Torwag (@torwag) <https://github.com/torwag>`__
+- `Teemu Simola (@tpssim) <https://github.com/tpssim>`__
 - `Felix Eckhofer (@tribut) <https://github.com/tribut>`__
-- `Trick van Staveren (@trickv) <https://github.com/trickv>`__
 - `Tobias (@tripplet) <https://github.com/tripplet>`__
 - `Troon (@Troon) <https://github.com/Troon>`__
 - `Tyler Bules (@Troublebrewing) <https://github.com/Troublebrewing>`__
@@ -805,4 +806,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated March 2, 2022.*
+*This page was last updated March 9, 2022.*
