@@ -14,6 +14,8 @@ CONFIGURATION_OPTIONS = "Configuration options:"
 PIN_CONFIGURATION_VARIABLES = "Pin configuration variables:"
 COMPONENT_HUB = "Component/Hub"
 
+JSON_DUMP_PRETTY = True
+
 props_missing = 0
 props_verified = 0
 props_documented = 0
@@ -1099,7 +1101,10 @@ def build_finished(app, exception):
 
     for fname, contents in app.files.items():
         f = open(SCHEMA_PATH + fname + ".json", "w")
-        f.write(json.dumps(contents))
+        if JSON_DUMP_PRETTY:
+            f.write(json.dumps(contents, indent=2))
+        else:
+            f.write(json.dumps(contents, separators=(",", ":")))
 
     str = f"Documented: {props_documented}"
     logger = logging.getLogger(__name__)
