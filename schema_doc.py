@@ -71,7 +71,7 @@ PLATFORMS_TITLES = {
 
 CUSTOM_DOCS = {
     "guides/automations": {
-        "Global Variables": "properties/globals",
+        "Global Variables": "globals.schemas.CONFIG_SCHEMA",
     },
     "guides/configuration-types": {
         "Color": "properties/color",
@@ -240,6 +240,19 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         self.props_level = 0
 
+    def set_component_description(self, description, componentName, platformName=None):
+        if platformName is not None:
+            platform = get_component_file(self.app, platformName)
+            platform[platformName]["components"][componentName]["docs"] = description
+        else:
+            core = get_component_file(self.app, "esphome")["core"]
+            if componentName in core["components"]:
+                core["components"][componentName]["docs"] = description
+            elif componentName in core["platforms"]:
+                core["platforms"][componentName]["docs"] = description
+            else:
+                raise Error("Cannot set description for component " + componentName)
+
     def visit_document(self, node):
         # ESPHome page docs follows strict formatting guidelines which allows
         # for docs to be parsed directly into yaml schema
@@ -258,14 +271,16 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         description = self.getMarkdownParagraph(node)
 
         if self.json_platform_component:
-            platform = get_component_file(self.app, self.platform)
-            platform[self.platform]["components"][self.component]["docs"] = description
+            self.set_component_description(description, self.component, self.platform)
+            # platform = get_component_file(self.app, self.platform)
+            # platform[self.platform]["components"][self.component]["docs"] = description
         elif self.json_component:
-            core = get_component_file(self.app, "esphome")["core"]
-            if self.component in core["components"]:
-                core["components"][self.component]["docs"] = description
-            elif self.component in core["platforms"]:
-                core["platforms"][self.component]["docs"] = description
+            self.set_component_description(description, self.component)
+            # core = get_component_file(self.app, "esphome")["core"]
+            # if self.component in core["components"]:
+            #     core["components"][self.component]["docs"] = description
+            # elif self.component in core["platforms"]:
+            #     core["platforms"][self.component]["docs"] = description
 
         if self.json_base_config:
             self.json_component = self.json_base_config
@@ -319,9 +334,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def visit_title(self, node):
         title_text = node.astext()
-
-        if "interval" in title_text:
-            title_text = title_text
         if self.custom_doc is not None and title_text in self.custom_doc:
             if isinstance(self.custom_doc[title_text], list):
                 self.multi_component = self.custom_doc[title_text]
@@ -446,17 +458,26 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 component_name = split_text[0].lower().replace(".", "")
                 if component_name.lower() == self.platform:
                     return
-                c = find_component(self.app.jschema, component_name)
-                if c:
-                    self.json_component = c
-                    try:
-                        self.props = self.find_props(self.json_component)
-                        self.multi_component = None
-                    except KeyError:
-                        raise ValueError(
-                            "Cannot find props for component " + component_name
-                        )
-                    return
+                f = get_component_file(self.app, component_name)
+                if f:
+
+                    # Document first paragraph is description of this thing
+                    description = self.getMarkdownParagraph(node.parent)
+                    self.set_component_description(description, component_name)
+
+                    c = f[component_name]
+                    # c = find_component(self.app.jschema, component_name)
+                    if c:
+                        self.json_component = c["schemas"]["CONFIG_SCHEMA"]
+                        try:
+                            self.props = self.find_props(self.json_component)
+                            self.multi_component = None
+                        except KeyError:
+                            raise ValueError(
+                                "Cannot find props for component " + component_name
+                            )
+                        return
+
                 c = find_platform_component(
                     self.app.jschema, self.path[1], component_name
                 )
@@ -532,7 +553,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 key = component_parts[1]
                 self.find_registry_prop(registry_name, key, description)
             else:
-                registry_name = f"core.{title_text.lower()}"
+                registry_name = f"core.registry.{split_text[1].lower()}"
                 # f"automation.{split_text[1].upper()}_REGISTRY"
                 self.find_registry_prop(registry_name, key, description)
 
@@ -631,9 +652,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if not self.props and not self.multi_component:
                 self.find_props_previous_title()
             if not self.props and not self.multi_component:
-                raise ValueError(
-                    f'Found a "{node.astext()}" entry for unknown object after {self.previous_title_text}'
+                logging.getLogger(__name__).info(
+                    f"In {self.docname} / {self.previous_title_text} found a {node.astext()} title and there are no props."
                 )
+                # raise ValueError(
+                #     f'Found a "{node.astext()}" entry for unknown object after {self.previous_title_text}'
+                # )
             self.accept_props = True
 
         raise nodes.SkipChildren
@@ -890,11 +914,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return self.app.jschema["definitions"][ref[14:]]
 
     def find_component(self, component_path):
-        path = component_path.split("/")
-        if path[0] not in ("properties", "definitions"):
+        path = component_path.split(".")
+        if path[1] not in ("schemas", "definitions"):
             return None
-        json_component = self.app.jschema[path[0]][path[1]]
-
+        json_component = get_component_file(self.app, path[0])[path[0]][path[1]][
+            path[2]
+        ]
+        # note see below
+        return json_component
         if len(path) > 2:
             # a property path
             props = self.find_props(json_component)
