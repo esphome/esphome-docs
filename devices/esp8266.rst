@@ -8,7 +8,7 @@ Generic ESP8266
 
 All ESP8266-based devices are supported by ESPHome. Simply select ``ESP8266`` when
 the ESPHome wizard asks you for your platform and choose a board type
-from `this link <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ when the wizard
+from `this link <https://registry.platformio.org/platforms/platformio/espressif8266/boards>`__ when the wizard
 asks you for the board type.
 
 
