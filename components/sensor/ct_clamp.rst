@@ -40,7 +40,7 @@ Configuration variables:
 - **sample_duration** (*Optional*, :ref:`config-time`): The time duration to sample the current clamp
   with. Higher values can increase accuracy. Defaults to ``200ms`` which would be 10 whole cycles on a 50Hz system.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
-  to check the sensor. Defaults to ``60s``. **update_interval** for ct_clamp have to be greater than **sample_duration**
+  to check the sensor. Defaults to ``60s``. The **update_interval** for ``ct_clamp`` has to be greater than **sample_duration**.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 
