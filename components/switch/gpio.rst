@@ -29,8 +29,8 @@ Configuration variables:
 - **name** (**Required**, string): The name for the switch.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **restore_mode** (*Optional*): Control how the GPIO Switch attempts to restore state on bootup.
-  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
-  :doc:`esphome section </components/esphome>`.
+  For restoring on ESP8266s, also see ``restore_from_flash`` in the
+  :doc:`esphome section </components/esp8266>`.
 
     - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
