@@ -220,8 +220,8 @@ as seen below.
 GET values from a JSON body response
 ************************************
 
-The server returns a response in a JSON object over HTTP like this:
-``{"type":"0","ch":"0","mode":"40","loop":"0","eq":"0","status":"play","curpos":"7133","offset_pts":"7133","totlen":"0","Title":"556E6B6E6F776E","Artist":"556E6B6E6F776E","Album":"556E6B6E6F776E","alarmflag":"0","plicount":"0","plicurr":"0","vol":"42","mute":"0"}``
+Assuming that the server returns a response in a JSON object over HTTP similar to this:
+``{"status":"play","vol":"42","mute":"0"}``
 
 If you want to retrieve the value for the ``vol`` key and assign it to a template ``sensor`` or ``number`` component (with ``id`` set to ``player_volume``):
 
@@ -229,7 +229,7 @@ If you want to retrieve the value for the ``vol`` key and assign it to a templat
 
     on_...:
     - http_request.get:
-        url: http://192.168.1.10/httpapi.asp?command=getPlayerStatus
+        url: https://esphome.io
         on_response:
           then:
             - lambda: |-
