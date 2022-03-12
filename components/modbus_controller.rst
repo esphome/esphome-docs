@@ -158,7 +158,7 @@ Some devices use decimal values in read registers to show multiple binary states
 | bit 15     | Binary Sensor 15 | 32768     | 8000      |
 +------------+------------------+-----------+-----------+ 
 
-For example, at read register ``15``, a decimal value of ``12288`` is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12` and ``13`` are ``1``, the rest a re ``0``. 
+For example, when reading register ``15``, a decimal value of ``12288`` is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``. 
 
 To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
 
