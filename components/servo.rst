@@ -17,11 +17,6 @@ servo is connected to. Then connect that output to the servo component by assign
 Please note the frequency of the output must be around 50Hz, as most servo controllers
 only operate in this frequency range.
 
-.. note::
-
-    This component will not show up in the Home Assistant front-end automatically because
-    Home Assistant doesn't have support for servos. Please see :ref:`servo-ha-config`.
-
 .. code-block:: yaml
 
     # Example configuration entry
@@ -141,46 +136,23 @@ this will make the servo motor stop immediately and disable its active control.
 Home Assistant Configuration
 ----------------------------
 
-This component will not show up in the Home Assistant frontend automatically because Home Assistant
-does not support servos natively (raise this issue in Home Assistant forums to make this a
-higher priority for Home Assistant). You can add this to your Home Assistant configuration to
-be able to control the servo from the frontend.
+The easiest way to control your servo from Home Assistant is to add a ``number`` to your ESPHome 
+configuration. This will automatically show up in Home Assistant and you can control its value 
+through the ``number.set_value`` service. See :ref:`Number <config-number>` for more information.
 
 .. code-block:: yaml
 
-    # Home Assistant configuration
-    input_number:
-      servo_control:
+    number:
+      - platform: template
         name: Servo Control
-        initial: 0
-        min: -100
-        max: 100
+        min_value: -100
+        max_value: 100
         step: 1
-        mode: slider
-
-    automation:
-      - alias: Write Servo Value to ESP
-        trigger:
-          platform: state
-          entity_id: input_number.servo_control
-        action:
-          # Replace livingroom with the name you gave the ESP
-          - service: esphome.livingroom_control_servo
-            data_template:
-              level: '{{ trigger.to_state.state | int }}'
-
-.. code-block:: yaml
-
-    # ESPHome configuration
-    api:
-      services:
-        - service: control_servo
-          variables:
-            level: float
+        set_action:
           then:
             - servo.write:
                 id: my_servo
-                level: !lambda 'return level / 100.0;'
+                level: !lambda 'return x / 100.0;'
 
     servo:
       - platform: ...
