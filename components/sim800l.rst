@@ -75,7 +75,7 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 
-Binary sensor
+Binary Sensor
 -------------
 
 Configuration variables:
@@ -127,6 +127,20 @@ Send a SMS message to a phone recipient using this action in automations.
             message: !lambda |-
               return id(reed_switch).state ? "Door is now OPEN" : "Hey door just CLOSED";
 
+Configuration options:
+
+- **recipient** (**Required**, string, :ref:`templatable <config-templatable>`): The message recipient.
+  number.
+- **message** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(sim800l1).send_sms("+15551234567", "The message content");
 
 .. _sim800l-dial_action:
 
@@ -144,7 +158,7 @@ Dial to a phone recipient using this action in automations.
 
 Configuration options:
 
-- **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The number to dial.
+- **recipient** (**Required**, string, :ref:`templatable <config-templatable>`): The number to dial.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
 
 .. note::

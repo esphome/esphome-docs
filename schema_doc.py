@@ -38,6 +38,7 @@ def setup(app):
 
 
 def find_component(schema, component):
+    # replace by self.get_component_schema(component, "CONFIG_SCHEMA")
     return schema["properties"].get(component)
 
 
@@ -69,6 +70,7 @@ PLATFORMS_TITLES = {
     "Climate": "climate",
     "CAN Bus": "canbus",
     "Stepper": "stepper",
+    "I²C": "i2c",
 }
 
 CUSTOM_DOCS = {
@@ -107,10 +109,10 @@ CUSTOM_DOCS = {
     },
     "components/light/index": {
         "Base Light Configuration": [
-            "definitions/light.ADDRESSABLE_LIGHT_SCHEMA",
-            "definitions/light.BINARY_LIGHT_SCHEMA",
-            "definitions/light.BRIGHTNESS_ONLY_LIGHT_SCHEMA",
-            "definitions/light.LIGHT_SCHEMA",
+            "light.schemas.ADDRESSABLE_LIGHT_SCHEMA",
+            "light.schemas.BINARY_LIGHT_SCHEMA",
+            "light.schemas.BRIGHTNESS_ONLY_LIGHT_SCHEMA",
+            "light.schemas.LIGHT_SCHEMA",
         ],
         "Light Effects": "light.registry.effects",
     },
@@ -143,8 +145,8 @@ CUSTOM_DOCS = {
         "DS1307 Time Source": "properties/time/ds1307",
     },
     "components/wifi": {
-        "Connecting to Multiple Networks": "definitions/wifi-networks",
-        "Enterprise Authentication": "definitions/wifi-networks/eap",
+        "Connecting to Multiple Networks": "wifi.schemas.WIFI_NETWORK_STA",
+        "Enterprise Authentication": "wifi.schemas.EAP_AUTH_SCHEMA",
     },
     "custom/custom_component": {
         "Generic Custom Component": "properties/custom_component"
@@ -240,7 +242,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         # Found a Configuration variables: heading, this is to increase docs consistency
         self.accept_props = False
 
-        self.props_level = 0
+        self.bullet_list_level = 0
 
     def set_component_description(self, description, componentName, platformName=None):
         if platformName is not None:
@@ -359,11 +361,13 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # here comes docs for the component, make sure we have props of the component
             # Needed for e.g. ads1115
             self.props_section_title = f"{self.path[-1]} {title_text}"
-            json_component = find_component(self.app.jschema, self.path[-1])
+            json_component = self.get_component_schema(self.path[-1] + ".CONFIG_SCHEMA")
             if json_component:
                 self.props = self.find_props(json_component)
 
-                json_component["docs"] = self.getMarkdownParagraph(node.parent)
+                self.set_component_description(
+                    self.getMarkdownParagraph(node.parent), self.path[-1]
+                )
 
             # mark this to retrieve components instead of platforms
             self.is_component_hub = True
@@ -457,7 +461,9 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if len(split_text) == 2:
                 # some components are several components in a single platform doc
                 # e.g. ttp229 binary_sensor has two different named components.
-                component_name = split_text[0].lower().replace(".", "")
+                component_name = (
+                    split_text[0].lower().replace(".", "").replace("i²c", "i2c")
+                )
                 if component_name.lower() == self.platform:
                     return
                 f = get_component_file(self.app, component_name)
@@ -668,8 +674,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         pass
 
     def visit_bullet_list(self, node):
-        self.props_level = self.props_level + 1
-        if self.current_prop and self.props and self.props_level > 1:
+        self.bullet_list_level = self.bullet_list_level + 1
+        if self.current_prop and self.props and self.bullet_list_level > 1:
 
             # if '$ref' in self.props[self.current_prop]:
             #     if self.props[self.current_prop]['$ref'].endswith('_SCHEMA'):
@@ -684,7 +690,16 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # if this prop has a reference
             prop = self.props[self.current_prop]
             if isinstance(prop, dict):
-                if "$ref" in prop:
+                if prop.get("type") == "schema":
+                    self.prop_stack.append((self.props, node))
+                    self.props = self.find_props(prop["schema"])
+                    self.accept_props = True
+                elif prop.get("type") == "enum":
+                    # fill enum descriptions if available
+                    pass
+
+                # older jschema stuff, should be cleaned up
+                elif "$ref" in prop:
                     ref = self.get_ref(prop)
                     self.prop_stack.append(self.props)
                     self.props = self.find_props(ref)
@@ -733,10 +748,13 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             raise nodes.SkipChildren
 
     def depart_bullet_list(self, node):
-        self.props_level = self.props_level - 1
+        self.bullet_list_level = self.bullet_list_level - 1
         if len(self.prop_stack) > 0:
-            self.props = self.prop_stack.pop()
-            self.filled_props = True
+            stack_props, stack_node = self.prop_stack[-1]
+            if stack_node == node:
+                self.prop_stack.pop()
+                self.props = stack_props
+                self.filled_props = True
 
     def visit_list_item(self, node):
         if self.accept_props and self.props:
@@ -873,6 +891,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 "effects",
                 "gamma_correct",
                 "default_transition_length",
+                "flash_transition_length",
                 "color_correct",
                 # display
                 "lambda",
@@ -917,7 +936,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def find_component(self, component_path):
         path = component_path.split(".")
-        if path[1] not in ("schemas", "definitions"):
+        if path[1] not in ("schemas"):
             return None
         json_component = get_component_file(self.app, path[0])[path[0]][path[1]][
             path[2]
@@ -1074,7 +1093,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def find_props(self, component):
         if component.get("type") == "trigger":
             # can have schema
+            if "schema" not in component:
+                return None
             component = component.get("schema")
+
         props = self.Props(self, component)
 
         if props:
