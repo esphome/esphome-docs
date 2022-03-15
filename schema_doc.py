@@ -78,34 +78,20 @@ CUSTOM_DOCS = {
         "Global Variables": "globals.schemas.CONFIG_SCHEMA",
     },
     "guides/configuration-types": {
-        "Color": "properties/color",
         "Pin Schema": [
-            "definitions/PIN.INPUT_INTERNAL",
-            "definitions/PIN.OUTPUT_INTERNAL",
+            "esp32.pin",
+            "esp8266.pin",
         ],
     },
     "components/binary_sensor/index": {
         "Binary Sensor Filters": "binary_sensor.registry.filter",
     },
-    "components/climate/ir_climate": {
-        "IR Remote Climate": [
-            "properties/climate/coolix",
-            "properties/climate/daikin",
-            "properties/climate/fujitsu_general",
-            "properties/climate/mitsubishi",
-            "properties/climate/tcl112",
-            "properties/climate/toshiba",
-            "properties/climate/yashima",
-            "properties/climate/whirlpool",
-            "properties/climate/climate_ir_lg",
-            "properties/climate/hitachi_ac344",
-        ]
-    },
+    "components/climate/climate_ir": {"IR Remote Climate": []},
     "components/display/index": {
-        "Images": "properties/image",
-        "Drawing Static Text": "properties/font",
-        "Color": "properties/color",
-        "Animation": "properties/animation",
+        "Images": "image.schemas.CONFIG_SCHEMA",
+        "Drawing Static Text": "font.schemas.FONT_SCHEMA",
+        "Color": "color.schemas.CONFIG_SCHEMA",
+        "Animation": "animation.schemas.CONFIG_SCHEMA",
     },
     "components/light/index": {
         "Base Light Configuration": [
@@ -208,15 +194,16 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     # these are e.g. sensor, binary sensor etc.
                     self.component = self.platform.replace(" ", "_").lower()
                     self.file_schema = get_component_file(app, self.component)
-                    self.json_component = self.file_schema[self.component]["schemas"][
-                        self.component.upper() + "_SCHEMA"
-                    ]
+                    self.json_component = self.file_schema[self.component][
+                        "schemas"
+                    ].get(self.component.upper() + "_SCHEMA")
                     self.json_base_config = None
                 else:
                     self.json_component = get_component_file(app, self.component)
-                    self.json_platform_component = find_platform_component(
-                        app, self.platform, self.component
-                    )
+                    if self.component != "climate_ir":
+                        self.json_platform_component = find_platform_component(
+                            app, self.platform, self.component
+                        )
 
         self.custom_doc = CUSTOM_DOCS.get(docname)
 
@@ -265,6 +252,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             # temporarily not supported
             raise nodes.SkipChildren
 
+        if self.docname in ["components/climate/climate_ir"]:
+            # not much to do on the visit to the document, component will be found by title
+            return
+
         if len(list(node.traverse(nodes.paragraph))) == 0:
             # this is empty, not much to do
             raise nodes.SkipChildren
@@ -308,6 +299,23 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     )
                     if self.json_base_config:
                         self.props = self.find_props(self.json_base_config)
+
+    def visit_table(self, node):
+        if (
+            self.docname == "components/climate/climate_ir"
+            and len(CUSTOM_DOCS["components/climate/climate_ir"]["IR Remote Climate"])
+            == 0
+        ):
+            # figure out multi components from table
+            table_rows = node[0][4]
+            for row in table_rows:
+                components_paths = [
+                    components + ".platform.climate.schemas.CONFIG_SCHEMA"
+                    for components in row[1].astext().split("\n")
+                ]
+                CUSTOM_DOCS["components/climate/climate_ir"][
+                    "IR Remote Climate"
+                ] += components_paths
 
     def depart_document(self, node):
         pass
@@ -675,47 +683,25 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def visit_bullet_list(self, node):
         self.bullet_list_level = self.bullet_list_level + 1
-        if self.current_prop and self.props and self.bullet_list_level > 1:
+        if (
+            self.current_prop
+            and (self.props or self.multi_component)
+            and self.bullet_list_level > 1
+        ):
 
-            # if '$ref' in self.props[self.current_prop]:
-            #     if self.props[self.current_prop]['$ref'].endswith('_SCHEMA'):
-            # nowhere put this props info...
-            # raise nodes.SkipChildren
+            self.prop_stack.append((self.current_prop, node))
+            self.accept_props = True
+            return
 
-            # this can be list of values, list of subproperties
-
-            # deep configs
-            # e.g. wifi manual_ip, could also be a enum list
-
-            # if this prop has a reference
             prop = self.props[self.current_prop]
             if isinstance(prop, dict):
                 if prop.get("type") == "schema":
-                    self.prop_stack.append((self.props, node))
-                    self.props = self.find_props(prop["schema"])
+                    self.prop_stack.append((self.current_prop, node))
                     self.accept_props = True
                 elif prop.get("type") == "enum":
                     # fill enum descriptions if available
                     pass
 
-                # older jschema stuff, should be cleaned up
-                elif "$ref" in prop:
-                    ref = self.get_ref(prop)
-                    self.prop_stack.append(self.props)
-                    self.props = self.find_props(ref)
-                    self.accept_props = True
-                elif "properties" in prop:
-                    self.prop_stack.append(self.props)
-                    self.props = prop["properties"]
-                elif (
-                    "anyOf" in prop
-                    and len(prop["anyOf"]) > 0
-                    and isinstance(self.get_ref(prop["anyOf"][0]), dict)
-                    and "$ref" in self.get_ref(prop["anyOf"][0])
-                ):
-                    ref = self.get_ref(prop["anyOf"][0])
-                    self.prop_stack.append(self.props)
-                    self.props = self.find_props(ref)
                 else:
                     # TODO: if the list items are formatted like:
                     #   - ``value`` <optional description>
@@ -750,19 +736,15 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def depart_bullet_list(self, node):
         self.bullet_list_level = self.bullet_list_level - 1
         if len(self.prop_stack) > 0:
-            stack_props, stack_node = self.prop_stack[-1]
+            _, stack_node = self.prop_stack[-1]
             if stack_node == node:
                 self.prop_stack.pop()
-                self.props = stack_props
                 self.filled_props = True
 
     def visit_list_item(self, node):
         if self.accept_props and self.props:
             self.filled_props = True
-            try:
-                self.current_prop = self.update_prop(node, self.props)
-            except Exception as e:
-                raise ValueError(f"In '{self.previous_title_text}' {str(e)}")
+            self.current_prop = self.update_prop(node, self.props)
 
         elif self.multi_component:
             # update prop for each component
@@ -825,6 +807,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def update_prop(self, node, props):
         prop_name = None
 
+        for s_prop, n in self.prop_stack:
+            inner = props.get(s_prop)
+            if inner is not None and "schema" in inner:
+                props = self.Props(self, inner["schema"])
+            else:
+                # nothing to do?
+                return
+
         raw = node.rawsource  # this has the full raw rst code for this property
 
         if not raw.startswith("**"):
@@ -839,7 +829,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         try:
             name_type = markdown[: markdown.index(": ") + 2]
         except ValueError:
-            raise ValueError(f'Property format error. Missing ": " in {raw}')
+            logger = logging.getLogger(__name__)
+            logger.info(
+                f"In '{self.docname} {self.previous_title_text} Property format error. Missing ': ' in {raw}'"
+            )
+            return
 
         # Example properties formats are:
         # **name** (**Required**, string): Long Description...
@@ -868,11 +862,17 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 prop_name = s3.group(1)
                 param_type = None
             else:
-                raise ValueError(f"Invalid property format: {node.rawsource}")
+                logger = logging.getLogger(__name__)
+                logger.info(
+                    f"In '{self.docname} {self.previous_title_text} Invalid property format: {node.rawsource}"
+                )
+                return
 
         k = str(prop_name)
-        jprop = props.get(k)
-        if not jprop:
+
+        config_var = props.get(k)
+
+        if not config_var:
             # Create docs for common properties when descriptions are overridden
             # in the most specific component.
 
@@ -895,7 +895,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 "color_correct",
                 # display
                 "lambda",
-                "dither",
                 "pages",
                 "rotation",
                 # spi
@@ -907,7 +906,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # climate
                 "receiver_id",
             ]:
-                jprop = props[k] = {}
+                config_var = props[k] = {}
             else:
                 if self.path[1] == "esphome" and k in [
                     # deprecated esphome
@@ -917,13 +916,17 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     "esp8266_restore_from_flash",
                 ]:
                     return prop_name
-                raise ValueError(f"Cannot find property {k}")
+                logger = logging.getLogger(__name__)
+                logger.info(
+                    f"In '{self.docname} {self.previous_title_text} Cannot find property {k}"
+                )
+                return
 
         desc = markdown[markdown.index(": ") + 2 :].strip()
         if param_type:
             desc = "**" + param_type + "**: " + desc
 
-        jprop["docs"] = desc
+        config_var["docs"] = desc
         global props_documented
         props_documented = props_documented + 1
 
@@ -936,11 +939,13 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def find_component(self, component_path):
         path = component_path.split(".")
-        if path[1] not in ("schemas"):
-            return None
-        json_component = get_component_file(self.app, path[0])[path[0]][path[1]][
-            path[2]
-        ]
+        file_content = get_component_file(self.app, path[0])
+        if path[1] == "schemas":
+            json_component = file_content[path[0]][path[1]][path[2]]
+        elif path[1] == "pin":
+            json_component = file_content[path[0]][path[1]]["schema"]
+        elif path[1] == "platform":
+            json_component = file_content[path[0] + "." + path[2]][path[3]][path[4]]
         # note see below
         return json_component
         if len(path) > 2:
@@ -977,7 +982,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 or "extends" in component
                 or len(component) == 0
             ):
-                raise Error("Unepexted component data to get props")
+                raise Error("Unexpected component data to get props")
 
             # find properties
             if "then" in component:
