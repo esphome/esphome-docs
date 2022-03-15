@@ -32,6 +32,8 @@ Advanced options:
   the BLE receiver doesn't use it. Defaults to ``10167``.
 - **minor** (*Optional*, int): The iBeacon minor identifier of this beacon. Usually used to
   identify beacons within an iBeacon group. Defaults to ``61958``.
+- **tx_power** (*Optional*, int): The [ESP32 Power level](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/bluetooth/controller_vhci.html#_CPPv417esp_power_level_t). This should be in the range of 0 to 7 (0=minimal power). Defaults to ``7``.
+
 
 Setting Up
 ----------
