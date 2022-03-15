@@ -108,16 +108,15 @@ CUSTOM_DOCS = {
         "SPI": "fastled_spi.platform.light.schemas.CONFIG_SCHEMA",
     },
     "components/mcp230xx": {
-        PIN_CONFIGURATION_VARIABLES: [
-            "definitions/PIN.INPUT_mcp23xxx",
-            "definitions/PIN.OUTPUT_mcp23xxx",
-        ]
+        "_LoadSchema": False,
+        PIN_CONFIGURATION_VARIABLES: "mcp23xxx.pin",
     },
     "components/mqtt": {
-        "MQTT Component Base Configuration": "definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA",
+        "MQTT Component Base Configuration": "core.schemas.MQTT_COMMAND_COMPONENT_SCHEMA",
+        "MQTTMessage": "mqtt.schemas.MQTT_MESSAGE_BASE",
     },
     "components/output/index": {
-        "Base Output Configuration": "definitions/output.FLOAT_OUTPUT_SCHEMA",
+        "Base Output Configuration": "output.schemas.FLOAT_OUTPUT_SCHEMA",
     },
     "components/remote_transmitter": {
         "Remote Transmitter Actions": "definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA",
@@ -177,10 +176,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if self.path[0] == "components":
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
                 self.component = docname[11:]
-                self.file_schema = get_component_file(app, self.component)
-                self.json_component = self.file_schema[self.component]["schemas"][
-                    "CONFIG_SCHEMA"
-                ]
+                if not self.custom_doc or self.custom_doc.get("_LoadSchema", True):
+                    self.file_schema = get_component_file(app, self.component)
+                    self.json_component = self.file_schema[self.component]["schemas"][
+                        "CONFIG_SCHEMA"
+                    ]
             else:  # sub component, e.g. output/esp8266_pwm
 
                 # components here might have a core / hub, eg. dallas, ads1115
