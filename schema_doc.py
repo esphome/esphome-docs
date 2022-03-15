@@ -86,7 +86,7 @@ CUSTOM_DOCS = {
     "components/binary_sensor/index": {
         "Binary Sensor Filters": "binary_sensor.registry.filter",
     },
-    "components/climate/climate_ir": {"IR Remote Climate": []},
+    "components/climate/climate_ir": {"_LoadSchema": False, "IR Remote Climate": []},
     "components/display/index": {
         "Images": "image.schemas.CONFIG_SCHEMA",
         "Drawing Static Text": "font.schemas.FONT_SCHEMA",
@@ -103,8 +103,9 @@ CUSTOM_DOCS = {
         "Light Effects": "light.registry.effects",
     },
     "components/light/fastled": {
-        "Clockless": "properties/light/fastled_clockless",
-        "SPI": "properties/light/fastled_spi",
+        "_LoadSchema": False,
+        "Clockless": "fastled_clockless.platform.light.schemas.CONFIG_SCHEMA",
+        "SPI": "fastled_spi.platform.light.schemas.CONFIG_SCHEMA",
     },
     "components/mcp230xx": {
         PIN_CONFIGURATION_VARIABLES: [
@@ -172,6 +173,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.component = None
         self.section_level = 0
         self.file_schema = None
+        self.custom_doc = CUSTOM_DOCS.get(docname)
         if self.path[0] == "components":
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
                 self.component = docname[11:]
@@ -183,29 +185,26 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
                 # components here might have a core / hub, eg. dallas, ads1115
                 # and then they can be a binary_sensor, sensor, etc.
-
+                self.platform = self.path[1]
                 self.component = self.path[2]
 
                 if self.component == "ssd1331":
                     self.component = "ssd1331_spi"
 
-                self.platform = self.path[1]
-                if self.component == "index":
-                    # these are e.g. sensor, binary sensor etc.
-                    self.component = self.platform.replace(" ", "_").lower()
-                    self.file_schema = get_component_file(app, self.component)
-                    self.json_component = self.file_schema[self.component][
-                        "schemas"
-                    ].get(self.component.upper() + "_SCHEMA")
-                    self.json_base_config = None
-                else:
-                    self.json_component = get_component_file(app, self.component)
-                    if self.component != "climate_ir":
+                if not self.custom_doc or self.custom_doc.get("_LoadSchema", True):
+                    if self.component == "index":
+                        # these are e.g. sensor, binary sensor etc.
+                        self.component = self.platform.replace(" ", "_").lower()
+                        self.file_schema = get_component_file(app, self.component)
+                        self.json_component = self.file_schema[self.component][
+                            "schemas"
+                        ].get(self.component.upper() + "_SCHEMA")
+                        self.json_base_config = None
+                    else:
+                        self.json_component = get_component_file(app, self.component)
                         self.json_platform_component = find_platform_component(
                             app, self.platform, self.component
                         )
-
-        self.custom_doc = CUSTOM_DOCS.get(docname)
 
         self.previous_title_text = "No title"
 
@@ -325,13 +324,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         section_title = get_node_title(node)
         if self.custom_doc and section_title in self.custom_doc:
             r = self.custom_doc[section_title]
-            if (
-                isinstance(r, list)
-                or r.startswith("properties")
-                or r.startswith("definitions")
-            ):
-                return
-            self.find_registry = r
+            if ".registry." in r:
+                self.find_registry = r
 
     def depart_section(self, node):
         self.section_level -= 1
@@ -940,6 +934,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def find_component(self, component_path):
         path = component_path.split(".")
         file_content = get_component_file(self.app, path[0])
+        json_component = None
         if path[1] == "schemas":
             json_component = file_content[path[0]][path[1]][path[2]]
         elif path[1] == "pin":
