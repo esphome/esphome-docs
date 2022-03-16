@@ -58,6 +58,13 @@ Notable Changes
 
 - Webserver v2 :esphomepr:`2688` by :ghuser:`wilberforce` (notable-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Add optimistic config flag to modbus select. :esphomepr:`3267` by :ghuser:`stegm`
+- Add helper overloads for hex print 16-bit :esphomepr:`3297` by :ghuser:`jesserockz`
+- Allow custom register type for modbus number :esphomepr:`3202` by :ghuser:`jesserockz`
+
 All changes
 ^^^^^^^^^^^
 
@@ -110,6 +117,9 @@ All changes
 - Add entity_category_diagnostics to SGP30 baseline sensors :esphomepr:`3272` by :ghuser:`JasperPlant`
 - Bump esphome-dashboard to 20220309.0 :esphomepr:`3277` by :ghuser:`jesserockz`
 - Add visual step/min/max for webserver climate :esphomepr:`3275` by :ghuser:`wilberforce`
+- Add optimistic config flag to modbus select. :esphomepr:`3267` by :ghuser:`stegm`
+- Add helper overloads for hex print 16-bit :esphomepr:`3297` by :ghuser:`jesserockz`
+- Allow custom register type for modbus number :esphomepr:`3202` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
