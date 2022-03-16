@@ -117,6 +117,90 @@ Technically there is no difference between the "inline" and the standard definit
         value_type: U_WORD
 
 
+Bitmasks
+--------
+
+Some devices use decimal values in read registers to show multiple binary states occupying only one register address. To decode them, you can use bitmasks according to the table below. The decimal value corresponding to a bit is always double of the previous one in the row. Multiple bits can be represented in a single register by making a sum of all the values corresponding to the bits.
+
++------------+------------------+-----------+-----------+ 
+| Alarm  bit | Description      | DEC value | HEX value |
++============+==================+===========+===========+ 
+| bit 0      | Binary Sensor 0  | 1         | 1         |
++------------+------------------+-----------+-----------+ 
+| bit 1      | Binary Sensor 1  | 2         | 2         |
++------------+------------------+-----------+-----------+ 
+| bit 2      | Binary Sensor 2  | 4         | 4         |
++------------+------------------+-----------+-----------+ 
+| bit 3      | Binary Sensor 3  | 8         | 8         |
++------------+------------------+-----------+-----------+ 
+| bit 4      | Binary Sensor 4  | 16        | 10        |
++------------+------------------+-----------+-----------+ 
+| bit 5      | Binary Sensor 5  | 32        | 20        |
++------------+------------------+-----------+-----------+ 
+| bit 6      | Binary Sensor 6  | 64        | 40        |
++------------+------------------+-----------+-----------+ 
+| bit 7      | Binary Sensor 7  | 128       | 80        |
++------------+------------------+-----------+-----------+ 
+| bit 8      | Binary Sensor 8  | 256       | 100       |
++------------+------------------+-----------+-----------+ 
+| bit 9      | Binary Sensor 9  | 512       | 200       |
++------------+------------------+-----------+-----------+ 
+| bit 10     | Binary Sensor 10 | 1024      | 400       |
++------------+------------------+-----------+-----------+ 
+| bit 11     | Binary Sensor 11 | 2048      | 800       |
++------------+------------------+-----------+-----------+ 
+| bit 12     | Binary Sensor 12 | 4096      | 1000      |
++------------+------------------+-----------+-----------+ 
+| bit 13     | Binary Sensor 13 | 8192      | 2000      |
++------------+------------------+-----------+-----------+ 
+| bit 14     | Binary Sensor 14 | 16384     | 4000      |
++------------+------------------+-----------+-----------+ 
+| bit 15     | Binary Sensor 15 | 32768     | 8000      |
++------------+------------------+-----------+-----------+ 
+
+For example, when reading register ``15``, a decimal value of ``12288`` is the sum of ``4096`` + ``8192``, meaning the corresponding bits ``12`` and ``13`` are ``1``, the other bits are ``0``. 
+
+To gather some of these bits as binary sensors in ESPHome, use ``bitmask``:
+
+.. code-block:: yaml
+
+    binary_sensor:
+    - platform: modbus_controller
+      modbus_controller_id: ventilation_system
+      name: Alarm bit0
+      entity_category: diagnostic
+      device_class: problem
+      register_type: read
+      address: 15
+      bitmask: 0x1
+    - platform: modbus_controller
+      modbus_controller_id: ventilation_system
+      name: Alarm bit1
+      entity_category: diagnostic
+      device_class: problem
+      register_type: read
+      address: 15
+      bitmask: 0x2
+    - platform: modbus_controller
+      modbus_controller_id: ventilation_system
+      name: Alarm bit10
+      entity_category: diagnostic
+      device_class: problem
+      register_type: read
+      address: 15
+      bitmask: 0x400
+    - platform: modbus_controller
+      modbus_controller_id: ventilation_system
+      name: Alarm bit15
+      entity_category: diagnostic
+      device_class: problem
+      register_type: read
+      address: 15
+      bitmask: 0x8000
+
+
+
+
 Protocol decoding example
 -------------------------
 
@@ -231,6 +315,7 @@ The response is mapped to the sensor based on register_count and offset in bytes
 +-----------+-----------------------------------------+
 | 0xc  (12) | crc                                     |
 +-----------+-----------------------------------------+
+
 
 
 **Response**
