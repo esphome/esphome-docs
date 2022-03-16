@@ -1,4 +1,4 @@
-ESPHome 2022.3.0 - 16th March 2022
+mESPHome 2022.3.0 - 16th March 2022
 ==================================
 
 .. seo::
@@ -53,17 +53,17 @@ Breaking Changes
 - Add class as first positional arg to sensor_schema :esphomepr:`3216` by :ghuser:`jesserockz` (breaking-change)
 - BH1750 dynamically calculate options :esphomepr:`3214` by :ghuser:`OttoWinter` (breaking-change)
 
-Notable Changes
-^^^^^^^^^^^^^^^
-
-- Webserver v2 :esphomepr:`2688` by :ghuser:`wilberforce` (notable-change)
-
 Beta Changes
 ^^^^^^^^^^^^
 
 - Add optimistic config flag to modbus select. :esphomepr:`3267` by :ghuser:`stegm`
 - Add helper overloads for hex print 16-bit :esphomepr:`3297` by :ghuser:`jesserockz`
 - Allow custom register type for modbus number :esphomepr:`3202` by :ghuser:`jesserockz`
+
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- Webserver v2 :esphomepr:`2688` by :ghuser:`wilberforce` (notable-change)
 
 All changes
 ^^^^^^^^^^^
