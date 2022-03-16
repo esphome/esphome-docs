@@ -221,6 +221,7 @@ Bluetooth Low Energy (BLE)
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
+    Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
 
@@ -292,6 +293,7 @@ Environmental
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
+    Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
@@ -319,6 +321,7 @@ Light
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     BH1750, components/sensor/bh1750, bh1750.jpg, Lux
     LTR390, components/sensor/ltr390, ltr390.jpg, Lux & UV
+    MAX44009, components/sensor/max44009, max44009.svg, Lux
     TCS34725, components/sensor/tcs34725, tcs34725.jpg, Lux & RGB colour
     TSL2561, components/sensor/tsl2561, tsl2561.jpg, Lux
     TSL2591, components/sensor/tsl2591, tsl2591.jpg, Lux
@@ -358,6 +361,7 @@ Motion
 
     APDS9960, components/sensor/apds9960, apds9960.jpg, Colour & Gesture
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
+    MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
 
 
@@ -393,6 +397,7 @@ Binary Sensor Components
     GPIO, components/binary_sensor/gpio, pin.svg
     Home Assistant, components/binary_sensor/homeassistant, home-assistant.svg
     Status, components/binary_sensor/status, server-network.svg
+    Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
@@ -428,6 +433,7 @@ Output Components
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
+    MCP4728, components/output/mcp4728, mcp4728.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
@@ -665,6 +671,7 @@ Misc Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     Demo, components/demo, description.svg
+    Copy, components/copy, content-copy.svg
 
 Additional Custom Components
 ----------------------------
