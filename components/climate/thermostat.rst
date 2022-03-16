@@ -315,6 +315,95 @@ Set Point Options/Behavior
 **If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified in the away mode configuration.**
 
+Presets
+*******
+
+Presets allow you to preconfigure different modes for your thermostat. These will show up in the HomeAssistant
+UI where they can change temperature set points, fan modes, fan swing modes, and operating modes all with one
+operation.
+
+- Presets should be one of:
+
+  - ``eco``
+  - ``away``
+  - ``boost``
+  - ``comfort``
+  - ``home``
+  - ``sleep``
+  - ``activity``
+
+- **preset**: (*Optional*)
+
+  - **default_target_temperature_low** (*Optional*, float): The default low target temperature when switching to 
+    this preset
+  - **default_target_temperature_high** (*Optional*, float): The default high target temperature when switching
+    to this preset.
+  - **mode** (*Optional*, climate mode): The default mode to switch the thermostat when switching to this preset
+    If not specified it will remain on the mode it was on prior to switching. One of:
+  
+    - ``heat_cool``
+    - ``cool``
+    - ``heat``
+    - ``dry``
+    - ``fan_only``
+    - ``auto``
+  - **fan_mode** (*Optional*, climate fan mode): The default fan mode to switch the thermostat to when switching
+    to this preset. If not specified it will remain on the fan mode it was on prior to switching. One of:
+
+    - ``on``
+    - ``off``
+    - ``auto``
+    - ``low``
+    - ``medium``
+    - ``high``
+    - ``middle``
+    - ``focus``
+    - ``diffuse``
+  - **swing_mode** (*Optional*, climate swing mode): The default fan swing mode to switch the thermostat to when
+    switching to this preset. If not specified it will remain on the fan mode it was on prior to switching. One of:
+    
+    - ``off``
+    - ``both``
+    - ``horizontal``
+    - ``vertical``
+
+.. code-block:: yaml
+
+    # Example climate controller with presets
+    climate:
+      - platform: thermostat
+        name: "Thermostat with Presets"
+        preset:
+          sleep:
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: LOw
+            swing_mode: OFF
+          boost:
+            default_target_temperature_low: 21
+            default_target_temperature_high: 23
+            fan_mode: HIGH
+            mode: HEAT_COOL
+
+- **preset_change**: (*Optional*, :ref:`Action <config-action>`): The action to call when the preset is changed. This
+  will be called either when a user changes the mode through the HomeAssistant UI or through a call to ``climate.control``
+
+.. code-block:: yaml
+
+    # Example climate controller with presets actions
+    climate:
+      - platform: thermostat
+        name: "Thermostat with Presets Actions"
+        preset:
+          sleep:
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: LOw
+            swing_mode: OFF
+        preset_change:
+          - logger.log: Preset has been changed!
+
+
 Additional Actions/Behavior
 ***************************
 
