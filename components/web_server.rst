@@ -52,7 +52,7 @@ Configuration variables:
 
 - **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
   web interface. Defaults to ``false``.
-- **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Default: `true`
+- **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. note::

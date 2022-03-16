@@ -119,7 +119,7 @@ CUSTOM_DOCS = {
         "Base Output Configuration": "output.schemas.FLOAT_OUTPUT_SCHEMA",
     },
     "components/remote_transmitter": {
-        "Remote Transmitter Actions": "definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA",
+        "Remote Transmitter Actions": "remote_base.schemas.BASE_REMOTE_TRANSMITTER_SCHEMA",
     },
     "components/sensor/index": {
         "Sensor Filters": "sensor.registry.filter",
@@ -405,7 +405,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 json_platform_component["docs"] = self.getMarkdownParagraph(node.parent)
 
             else:
-                json_component = find_component(self.app.jschema, component)
+                json_component = self.get_component_schema(component + ".CONFIG_SCHEMA")
                 if not json_component:
                     raise ValueError(
                         f"Cannot find component '{component}' after found title: '{title_text}'."
@@ -413,10 +413,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.props = self.find_props(json_component)
 
                 # Document first paragraph is description of this thing
-                json_component["docs"] = self.getMarkdownParagraph(node.parent)
+                self.set_component_description(
+                    self.getMarkdownParagraph(node.parent), component
+                )
 
         # Title is description of platform component, those ends with Sensor, Binary Sensor, Cover, etc.
-        if (
+        elif (
             len(
                 list(
                     filter(
@@ -519,15 +521,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.props_section_title = title_text
 
         if title_text == PIN_CONFIGURATION_VARIABLES:
-            self.multi_component = []
-            if self.app.jschema["definitions"].get(f"PIN.INPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.INPUT_{self.path[-1]}")
-            if self.app.jschema["definitions"].get(f"PIN.OUTPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.OUTPUT_{self.path[-1]}")
+            self.component = self.find_component(self.path[-1] + ".pin")
+            self.props = self.find_props(self.component)
             self.accept_props = True
-            self.filled_props = False
-            self.props = None
-            if len(self.multi_component) == 0:
+            if not self.component:
                 raise ValueError(
                     f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
                 )
@@ -577,20 +574,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             description = self.getMarkdownParagraph(node.parent)
             self.find_registry_prop(self.find_registry, key, description)
             self.props_section_title = title_text
-
-        if title_text == PIN_CONFIGURATION_VARIABLES:
-            self.multi_component = []
-            if self.app.jschema["definitions"].get(f"PIN.INPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.INPUT_{self.path[-1]}")
-            if self.app.jschema["definitions"].get(f"PIN.OUTPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.OUTPUT_{self.path[-1]}")
-            self.accept_props = True
-            self.filled_props = False
-            self.props = None
-            if len(self.multi_component) == 0:
-                raise ValueError(
-                    f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
-                )
 
     def get_component_schema(self, name):
         parts = name.split(".")
