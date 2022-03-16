@@ -14,8 +14,13 @@ interface to the Arduino Servo library.
 
 First, create an :ref:`output component <output>` (here ``esp8266_pwm``) for the pin the
 servo is connected to. Then connect that output to the servo component by assigning an ID.
-Please note the frequency of the output must be around 50Hz, as most servo controllers
+Please note the frequency of the output should be around 50Hz, as most servo controllers
 only operate in this frequency range.
+
+.. note::
+
+    This component will not show up in the Home Assistant front-end automatically because
+    Home Assistant doesn't have support for servos. Please see :ref:`servo-ha-config`.
 
 .. code-block:: yaml
 
@@ -137,8 +142,7 @@ Home Assistant Configuration
 ----------------------------
 
 The easiest way to control your servo from Home Assistant is to add a ``number`` to your ESPHome 
-configuration. This will automatically show up in Home Assistant and you can control its value 
-through the ``number.set_value`` service. See :ref:`Number <config-number>` for more information.
+configuration. See :ref:`Number <config-number>` for more information.
 
 .. code-block:: yaml
 
