@@ -3,7 +3,7 @@ BL0939 Power Sensor
 
 .. seo::
     :description: Instructions for setting up BL0939 power sensors for the Sonoff Dual R3 v2
-    :image: bl0939.svg
+    :image: bl0939.png
     :keywords: bl0939, Sonoff Dual R3 v2
 
 The ``bl0939`` sensor platform allows you to use your BL0939 voltage/current/power and energy
