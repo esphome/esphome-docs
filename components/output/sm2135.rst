@@ -14,11 +14,11 @@ The SM2135 component represents a SM2135 LED diver chain
 (`SM2135 description <https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf>`__,
 `SM2135 description <https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf>`__) in
 ESPHome. Communication is done with two GPIO pins (MOSI and SCLK).
-It is used in some smart light bulbs:
+It is used in some smart lights:
 
 - Calex Smart RGB Reflector LED lamp (GU10)
 - LSC Smart GU10
-- LSC Smart Ceiling Light RGB/CW
+- some LSC Smart Ceiling Light RGB/CW
 
 To use the channels of this components, you first need to setup the
 global ``sm2135`` hub and give it an id, and then define the
@@ -62,11 +62,21 @@ Configuration variables:
 -  **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for MOSI.
 -  **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin which SCLK is
    connected to.
--  **rgb_current** (**Required**): Sets the current for the RGB LEDs (in milliamperes)
--  **cw_current** (**Required**): Sets the current for the cold white / warm white LEDs (in milliamperes)
+-  **rgb_current** (**Required**): Sets the current for the RGB LEDs (in milliamperes; 10-45 in steps of 5 mA)
+-  **cw_current** (**Required**): Sets the current for the cold white / warm white LEDs (in milliamperes; 10-60 in steps of 5 mA)
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``sm2135`` component. Use this if you have multiple SM2135 chains
    connected at the same time.
+
+
+Known values for cw_current / rgw_current:
+
++--------------------------+------------+-------------+
+| Lamp                     | cw_current | rgb_current |
++==========================+============+=============+
+| LSC Ceiling Light CW/RGB | 60         | 20          |
++--------------------------+------------+-------------+
+
 
 .. _sm2135-output:
 
