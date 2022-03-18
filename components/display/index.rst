@@ -374,8 +374,8 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 
 .. _display-graphs:
 
-Graphs
-******
+Graph Component
+***************
 
 You can display a graph of a sensor value(s) using this component. Examples:
 
@@ -482,8 +482,8 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
-QR Codes
-********
+QR Code Component
+*****************
 
 Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
 
@@ -640,14 +640,6 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
-
-- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GRAYSCALE and BINARY type image.
-  Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
-  and `here <https://en.wikipedia.org/wiki/Dither>`__.
-
-  - ``NONE``: Every pixel convert to its nearest color.
-  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
-
 
 .. _display-pages:
 

@@ -26,12 +26,13 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the Select.
-- **address**: (**Required**, int): The start address of the first or only register 
+- **address** (**Required**, int): The start address of the first or only register
   of the Select.
-- **optionsmap**: (**Required**, Map[str, int]): Provide a mapping from options (str) of 
+- **optionsmap** (**Required**, Map[str, int]): Provide a mapping from options (str) of
   this Select to values (int) of the modbus register and vice versa. All options and
   all values have to be unique.
-- **value_type**: (*Optional*): The datatype of the modbus data. Defaults to ``U_WORD``.
+- **value_type** (*Optional*): The datatype of the modbus data. Defaults to ``U_WORD``.
+
     - ``U_WORD`` (unsigned 16 bit integer from 1 register = 16bit)
     - ``S_WORD`` (signed 16 bit integer from 1 register = 16bit)
     - ``U_DWORD`` (unsigned 32 bit integer from 2 registers = 32bit)
@@ -42,42 +43,45 @@ Configuration variables:
     - ``S_QWORD`` (unsigned 64 bit integer from 4 registers = 64bit)
     - ``U_QWORD_R`` (unsigned 64 bit integer from 4 registers low word first)
     - ``U_QWORD_R`` (signed 64 bit integer from 4 registers low word first)
-- **register_count**: (*Optional*): The number of registers which are used for this Select. Only 
-  required for uncommon response encodings or to 
-  :ref:`optimize modbus communications<modbus_register_count>`. Overrides the defaults determined 
+
+- **register_count** (*Optional*): The number of registers which are used for this Select. Only
+  required for uncommon response encodings or to
+  :ref:`optimize modbus communications<modbus_register_count>`. Overrides the defaults determined
   by ``value_type``.
-- **skip_updates**: (*Optional*, int): By default all sensors of of a modbus_controller are 
+- **skip_updates** (*Optional*, int): By default all sensors of a modbus_controller are
   updated together. For data points that don't change very frequently updates can be skipped. A
   value of 5 would only update this sensor range in every 5th update cycle. Defaults to ``0``.
   Note: The modbus_controller merges several registers into groups which are updated together. For
   each group the smallest update cycle is used.
-- **force_new_range**: (*Optional*, boolean): If possible sensors with sequential addresses are 
-  grouped together and requested in one range. Setting this to ``true`` enforces the start of a new 
+- **force_new_range** (*Optional*, boolean): If possible sensors with sequential addresses are
+  grouped together and requested in one range. Setting this to ``true`` enforces the start of a new
   range at that address.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): Lambda to be evaluated every update interval
   to get the current option of the select.
+
+  Parameters passed into lambda
+
+  - **x** (``int64_t``): The parsed integer value of the modbus data.
+  - **data** (``const std::vector<uint8_t>&``): vector containing the complete raw modbus response bytes for this
+    sensor. Note: because the response contains data for all registers in the same range you have to
+    use ``data[item->offset]`` to get the first response byte for your sensor.
+  - **item** (``ModbusSelect*const``):  The sensor object itself.
+
+  Possible return values for the lambda:
+
+  - ``return <std::string>;`` The new option for this Select.
+  - ``return {};`` Use default mapping (see ``optionsmap``).
+
 - **write_lambda** (*Optional*, :ref:`lambda <config-lambda>`): Lambda to be evaluated on every update
   of the Sensor, before the new value is written to the modbus registers.
-- **use_write_multiple**: (*Optional*, boolean): By default the modbus command ``Preset Single Registers``
+- **use_write_multiple** (*Optional*, boolean): By default the modbus command ``Preset Single Registers``
   (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports *Preset Multiple Registers* (function code 16) set this option to ``true``. Defaults
   to ``false``.
 - All other options from :ref:`Select <config-select>`.
 
 
-Parameters passed into ``lambda``
----------------------------------
 
-- **x** (``int64_t``): The parsed integer value of the modbus data.
-- **data** (``const std::vector<uint8_t>&``): vector containing the complete raw modbus response bytes for this 
-  sensor. Note: because the response contains data for all registers in the same range you have to 
-  use ``data[item->offset]`` to get the first response byte for your sensor.
-- **item** (``ModbusSelect*const``):  The sensor object itself.
-
-Possible return values for the lambda:
-
- - ``return <std::string>;`` The new option for this Select.
- - ``return {};`` Use default mapping (see ``optionsmap``).
 
 .. code-block:: yaml
 

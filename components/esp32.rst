@@ -23,7 +23,7 @@ Configuration variables:
   choose a generic board from Espressif such as ``esp32dev``.
 - **framework** (*Optional*): Options for the underlying framework used by ESPHome.
   See :ref:`esp32-arduino_framework` and :ref:`esp32-espidf_framework`.
-- **variant** (*Optional*, boolean): The variant of the ESP32 that is used on this board. One of ``esp32``, 
+- **variant** (*Optional*, boolean): The variant of the ESP32 that is used on this board. One of ``esp32``,
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board, if
   a board that's unknown to ESPHome is used, this option is mandatory.
 
@@ -42,6 +42,9 @@ This is the default framework for ESP32 chips at the moment.
       framework:
         type: arduino
         version: 2.0.0
+
+Configuration variables:
+------------------------
 
 - **version** (*Optional*, string): The base framework version number to use, from
   `ESP32 arduino releases <https://github.com/espressif/arduino-esp32/releases>`__. Defaults to ``recommended``. Additional values are:
@@ -75,6 +78,9 @@ of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.
         # Advanced tweaking options
         advanced:
           ignore_efuse_mac_crc: false
+
+Configuration variables:
+------------------------
 
 - **version** (*Optional*, string): The base framework version number to use, from
   `ESP32 ESP-IDF releases <https://github.com/espressif/esp-idf/releases>`__. Defaults to ``recommended``. Additional values are:
