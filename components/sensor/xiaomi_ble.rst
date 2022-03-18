@@ -191,7 +191,7 @@ There are the following possibilities to operate this sensor:
      You have to have to be using the custom advertisement and solder on wires. See the section “
      Reed Switch on GPIO PA6 (label on the "P8" pin)” on the pvvx github readme.
      The state is only updated whenever the BLE is advertised.
-     Do not use it if timming is critical, for example, door or window sensors.
+     Do not use it if timing is critical, for example, door or window sensors.
 
 Configuration example for Xiaomi stock firmware or ATC MiThermometer firmware set to "Mi Like" advertisement:
 
