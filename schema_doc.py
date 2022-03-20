@@ -105,7 +105,7 @@ CUSTOM_DOCS = {
     "components/climate/climate_ir": {"_LoadSchema": False, "IR Remote Climate": []},
     "components/display/index": {
         "Images": "image.schemas.CONFIG_SCHEMA",
-        "Drawing Static Text": "font.schemas.FONT_SCHEMA",
+        "Drawing Static Text": "font.schemas.CONFIG_SCHEMA",
         "Color": "color.schemas.CONFIG_SCHEMA",
         "Animation": "animation.schemas.CONFIG_SCHEMA",
     },
@@ -153,33 +153,15 @@ CUSTOM_DOCS = {
         "DS1307 Time Source": "ds1307.platform.time.schemas.CONFIG_SCHEMA",
     },
     "components/wifi": {
-        "Connecting to Multiple Networks": "wifi.schemas.WIFI_NETWORK_STA",
+        "Connecting to Multiple Networks": "wifi.schemas.CONFIG_SCHEMA.schema.config_vars.networks.schema",
         "Enterprise Authentication": "wifi.schemas.EAP_AUTH_SCHEMA",
     },
     "custom/custom_component": {
         "Generic Custom Component": "custom_component.schemas.CONFIG_SCHEMA"
     },
-    "components/output/custom": {
-        "Custom Output": [
-            "custom.platform.output.schemas.CONFIG_SCHEMA.types.binary",
-            "custom.platform.output.schemas.CONFIG_SCHEMA.types.float",
-        ]
-    },
-    "components/output/template": {
-        "Template Output": [
-            "template.platform.output.schemas.CONFIG_SCHEMA.types.binary",
-            "template.platform.output.schemas.CONFIG_SCHEMA.types.float",
-        ]
-    },
     "components/esp32": {
         "Arduino framework": "esp32.schemas.CONFIG_SCHEMA.schema.config_vars.framework.types.arduino",
         "ESP-IDF framework": "esp32.schemas.CONFIG_SCHEMA.schema.config_vars.framework.types.esp-idf",
-    },
-    "components/output/modbus_controller": {
-        "Modbus Controller Output": [
-            "modbus_controller.platform.output.schemas.CONFIG_SCHEMA.types.holding",
-            "modbus_controller.platform.output.schemas.CONFIG_SCHEMA.types.coil",
-        ]
     },
     "components/sensor/airthings_ble": {
         "_LoadSchema": False,
@@ -231,7 +213,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.props = None
         self.platform = None
         self.json_platform_component = None
-        self.json_base_config = None
         self.title_id = None
         self.props_section_title = None
         self.find_registry = None
@@ -265,7 +246,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                         self.json_component = self.file_schema[self.component][
                             "schemas"
                         ].get(self.component.upper() + "_SCHEMA")
-                        self.json_base_config = None
+                        pass
                     else:
                         self.json_component = get_component_file(app, self.component)
                         self.json_platform_component = find_platform_component(
@@ -336,18 +317,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         if self.json_platform_component:
             self.set_component_description(description, self.component, self.platform)
-            # platform = get_component_file(self.app, self.platform)
-            # platform[self.platform]["components"][self.component]["docs"] = description
         elif self.json_component:
             self.set_component_description(description, self.component)
-            # core = get_component_file(self.app, "esphome")["core"]
-            # if self.component in core["components"]:
-            #     core["components"][self.component]["docs"] = description
-            # elif self.component in core["platforms"]:
-            #     core["platforms"][self.component]["docs"] = description
-
-        if self.json_base_config:
-            self.json_component = self.json_base_config
 
         # for most components / platforms get the props, this allows for a less restrictive
         # first title on the page
@@ -620,11 +591,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 return
             key = split_text[0]
 
-            c = self.json_base_config or self.json_component
-            if c:
-                trigger_schema = self.find_props(c).get(key)
-                if trigger_schema is not None:
-                    self.props = self.find_props(trigger_schema)
+            if (
+                not self.props or not self.props.typed
+            ):  # props are right for typed components so far
+                c = self.json_component
+                if c:
+                    trigger_schema = self.find_props(c).get(key)
+                    if trigger_schema is not None:
+                        self.props = self.find_props(trigger_schema)
             self.props_section_title = title_text
 
         elif title_text == PIN_CONFIGURATION_VARIABLES:
@@ -770,7 +744,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             and (self.props or self.multi_component)
             and self.bullet_list_level > 1
         ):
-
             self.prop_stack.append((self.current_prop, node))
             self.accept_props = True
             return
@@ -818,10 +791,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def depart_bullet_list(self, node):
         self.bullet_list_level = self.bullet_list_level - 1
         if len(self.prop_stack) > 0:
-            _, stack_node = self.prop_stack[-1]
+            stack_prop, stack_node = self.prop_stack[-1]
             if stack_node == node:
                 self.prop_stack.pop()
                 self.filled_props = True
+                self.current_prop = stack_prop
 
     def visit_list_item(self, node):
         if self.accept_props and self.props:
@@ -907,6 +881,9 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             inner = props.get(s_prop)
             if inner is not None and "schema" in inner:
                 props = self.Props(self, inner["schema"])
+            elif inner is not None and inner.get("type") == "typed":
+                # this is used in external_components
+                props = self.Props(self, inner)
             else:
                 # nothing to do?
                 return prop_name, False
@@ -1024,11 +1001,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         return prop_name, True
 
-    def get_ref(self, node):
-        ref = node.get("$ref")
-        if ref and ref.startswith("#/definitions/"):
-            return self.app.jschema["definitions"][ref[14:]]
-
     def find_component(self, component_path):
         path = component_path.split(".")
         file_content = get_component_file(self.app, path[0])
@@ -1057,6 +1029,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.component = component
             self.store = self._get_props(component, fail_silently)
             self.parent = None
+            self.typed = self.component.get("type") == "typed"
 
         def _get_props(self, component, fail_silently):
             # component is a 'schema' dict which has 'config_vars' and 'extends'
@@ -1064,15 +1037,11 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 "config_vars" in component
                 or "extends" in component
                 or len(component) == 0
-                or component.get("type") != "typed"
+                or component.get("type") == "typed"
             ):
                 if fail_silently:
                     return None
                 raise ValueError("Unexpected component data to get props")
-
-            # find properties
-            if "then" in component:
-                component = component["then"]
 
             props = component.get("config_vars")
             return props
@@ -1110,6 +1079,23 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if extended is not None:
                 return extended
 
+            if self.component.get("type") == "typed":
+                return SetObservable(
+                    {key: {"type": "string"}},
+                    setitem_callback=self._set_typed,
+                    inner_key=key,
+                    original_dict={},
+                )
+
+        def _set_typed(self, inner_key, original_dict, key, value):
+            if inner_key == self.component.get("typed_key"):
+                self.component[key] = value
+            else:
+                for tk, tv in self.component["types"].items():
+                    for cv_k, cv_v in tv["config_vars"].items():
+                        if cv_k == inner_key:
+                            cv_v[key] = value
+
         def __setitem__(self, key, value):
             self.store[key] = value
 
@@ -1121,6 +1107,15 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
         def __len__(self):
             len_extended = 0
+
+            if self.component.get("type"):
+                types = self.component.get("types")
+                for t, tv in types.items():
+                    for s in self._iter_extended(types.get(t, {})):
+                        len_extended += len(s.get("config_vars", {}))
+                    len_extended += len(tv.get("config_vars", {}))
+                return len_extended
+
             for s in self._iter_extended(self.component):
                 len_extended += len(s.get("config_vars", {}))
             return len_extended + (len(self.store) if self.store else 0)
