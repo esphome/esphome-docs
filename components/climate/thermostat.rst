@@ -318,7 +318,7 @@ Set Point Options/Behavior
 Presets
 *******
 
-Presets allow you to preconfigure different modes for your thermostat. These will show up in the HomeAssistant
+Presets allow you to preconfigure different modes for your thermostat. These will show up in the Home Assistant
 UI where they can change temperature set points, fan modes, fan swing modes, and operating modes all with one
 operation.
 
@@ -377,7 +377,7 @@ operation.
           sleep:
             default_target_temperature_low: 17
             default_target_temperature_high: 26
-            fan_mode: LOw
+            fan_mode: LOW
             swing_mode: OFF
           boost:
             default_target_temperature_low: 21
@@ -386,7 +386,7 @@ operation.
             mode: HEAT_COOL
 
 - **preset_change**: (*Optional*, :ref:`Action <config-action>`): The action to call when the preset is changed. This
-  will be called either when a user changes the mode through the HomeAssistant UI or through a call to ``climate.control``
+  will be called either when a user changes the mode through the Home Assistant UI or through a call to ``climate.control``
 
 .. code-block:: yaml
 
@@ -398,7 +398,7 @@ operation.
           sleep:
             default_target_temperature_low: 17
             default_target_temperature_high: 26
-            fan_mode: LOw
+            fan_mode: LOW
             swing_mode: OFF
         preset_change:
           - logger.log: Preset has been changed!
