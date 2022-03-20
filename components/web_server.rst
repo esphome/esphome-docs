@@ -172,7 +172,7 @@ ESPHome will output the detected media type for a file when adding the file to f
 
 .. code-block::
 
-  INFO Adding web app file: www/index.html as app/index.html (size 2087, text/html, encoding none)
+    INFO Adding web app file: www/index.html as app/index.html (size 2087, text/html, encoding none)
 
 
 Compression
@@ -198,7 +198,7 @@ ESPHome will output the detected compression algorithm for a file when adding th
 
 .. code-block::
 
-  INFO Adding web app file: www/index.html.gz as app/index.html (size 1057, text/html, encoding gzip)
+    INFO Adding web app file: www/index.html.gz as app/index.html (size 1057, text/html, encoding gzip)
 
 Multiple compression algorithms are detected (gzip, compress, bzip2, xz, br) but it is recommended to use ``gzip``
 as it is currently the most widely supported one in web browsers.
@@ -223,40 +223,40 @@ A production build of an Angular application produces the following static files
 
 .. code-block::
 
-  index.html
-  main.14bf39656ae912e1.js
-  polyfills.5902314ff3f2eac9.js
-  runtime.f7d50caa802bfcbd.js
-  styles.42da88a97f9b7241.css
+    index.html
+    main.14bf39656ae912e1.js
+    polyfills.5902314ff3f2eac9.js
+    runtime.f7d50caa802bfcbd.js
+    styles.42da88a97f9b7241.css
 
 Files are compressed using ``gzip`` compression utility by running ``gzip *.html *.css *.js``, producing:
 
 .. code-block::
 
-  index.html.gz
-  main.14bf39656ae912e1.js.gz
-  polyfills.5902314ff3f2eac9.js.gz
-  runtime.f7d50caa802bfcbd.js.gz
-  styles.42da88a97f9b7241.css.gz
+    index.html.gz
+    main.14bf39656ae912e1.js.gz
+    polyfills.5902314ff3f2eac9.js.gz
+    runtime.f7d50caa802bfcbd.js.gz
+    styles.42da88a97f9b7241.css.gz
 
 ESPHome is configured with the following code block:
 
 .. code-block:: yaml
 
-  # Web app configuration
-  web_server:
-    app:
-      source: ../dist/my_app
+    # Web app configuration
+    web_server:
+      app:
+        source: ../dist/my_app
 
 ESPHome ``compile`` inlines (embeds) the files in firmware and makes them available under ``/app/`` URL prefix:
 
 .. code-block::
 
-  INFO Adding web app file: ../dist/my_app/index.html.gz as app/index.html (size 1057, text/html, encoding gzip)
-  INFO Adding web app file: ../dist/my_app/polyfills.5902314ff3f2eac9.js.gz as app/polyfills.5902314ff3f2eac9.js (size 12248, application/javascript, encoding gzip)
-  INFO Adding web app file: ../dist/my_app/main.14bf39656ae912e1.js.gz as app/main.14bf39656ae912e1.js (size 154552, application/javascript, encoding gzip)
-  INFO Adding web app file: ../dist/my_app/styles.42da88a97f9b7241.css.gz as app/styles.42da88a97f9b7241.css (size 23125, text/css, encoding gzip)
-  INFO Adding web app file: ../dist/my_app/runtime.f7d50caa802bfcbd.js.gz as app/runtime.f7d50caa802bfcbd.js (size 669, application/javascript, encoding gzip)
+    INFO Adding web app file: ../dist/my_app/index.html.gz as app/index.html (size 1057, text/html, encoding gzip)
+    INFO Adding web app file: ../dist/my_app/polyfills.5902314ff3f2eac9.js.gz as app/polyfills.5902314ff3f2eac9.js (size 12248, application/javascript, encoding gzip)
+    INFO Adding web app file: ../dist/my_app/main.14bf39656ae912e1.js.gz as app/main.14bf39656ae912e1.js (size 154552, application/javascript, encoding gzip)
+    INFO Adding web app file: ../dist/my_app/styles.42da88a97f9b7241.css.gz as app/styles.42da88a97f9b7241.css (size 23125, text/css, encoding gzip)
+    INFO Adding web app file: ../dist/my_app/runtime.f7d50caa802bfcbd.js.gz as app/runtime.f7d50caa802bfcbd.js (size 669, application/javascript, encoding gzip)
 
 Navigating browser to ``http://<node_name>.local/app/index.html`` or ``http://<node_name>.local/app/`` or ``http://<node_name>.local/app`` will
 open the application.
