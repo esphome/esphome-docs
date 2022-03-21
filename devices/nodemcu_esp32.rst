@@ -16,9 +16,10 @@ the ESPHome wizard asks you for your platform and |nodemcu-32s|_ as the board ty
 
     # Example configuration entry
     esphome:
-        name: livingroom
-        platform: ESP32
-        board: nodemcu-32s
+      name: livingroom
+
+    esp32:
+      board: nodemcu-32s
 
 The ESP32 boards often use the internal GPIO pin numbering on the board, this means that
 you don't have to worry about other kinds of pin numberings, yay!
@@ -48,7 +49,8 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP32
+
+    esp32:
       board: nodemcu-32s
 
     binary_sensor:

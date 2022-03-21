@@ -66,9 +66,9 @@ Relevant Documentation
 - ``project`` - :ref:`esphome-creators_project`
 - ``esp32_improv`` - :doc:`/components/esp32_improv`
 - ``captive_portal`` - :doc:`/components/captive_portal`
-- ``wifi`` -> ``networks: []`` allows you to flash a device that will not contain any
+- ``wifi`` -> ``ap`` allows you to flash a device that will not contain any
   credentials and they must be set by the user via either the ``ap`` + ``captive_portal`` or
-  the ``esp32_improv`` components.
+  the ``esp32_improv`` / ``improv_serial`` components.
 - ``dashboard_import`` -> ``package_import_url`` - This should point to the public repository containing
   the configuration for the device so that the user's ESPHome dashboard can autodetect this device and
   create a minimal YAML using :ref:`config-git_packages`.

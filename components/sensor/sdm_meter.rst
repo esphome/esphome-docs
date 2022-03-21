@@ -3,7 +3,7 @@ Eastron SDM Energy Monitor
 
 .. seo::
     :description: Instructions for setting up SDM power monitors.
-    :image: sdm220m.png
+    :image: sdm220m.jpg
     :keywords: SDM220M, SDM220, SDM630
 
 The ``sdm_meter`` sensor platform allows you to use Eastron SDM modbus energy monitors

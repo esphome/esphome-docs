@@ -1,10 +1,12 @@
 ESPHOME_PATH = ../esphome
 ESPHOME_REF = dev
 
-.PHONY: html html-strict cleanhtml deploy help webserver Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
+.PHONY: html html-strict cleanhtml deploy help live-html Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
 html:
 	sphinx-build -M html . _build -j auto -n $(O)
+live-html:
+	sphinx-autobuild . _build -j auto -n $(O) --host 0.0.0.0
 
 html-strict:
 	sphinx-build -M html . _build -W -j auto -n $(O)
@@ -48,11 +50,8 @@ copy-svg2png:
 
 netlify: netlify-dependencies netlify-api html copy-svg2png
 
-webserver: html
-	cd "_build/html" && python3 -m http.server
-
 lint: html-strict
-	python3 travis.py
+	python3 lint.py
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

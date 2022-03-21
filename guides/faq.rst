@@ -52,8 +52,8 @@ Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
-installs you can use the ``COMPILE`` button (click the overflow icon with the three dots)
-and then press ``Download Binary``. For command line based installs you can access the
+installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
+and then select ``Manual download``). For command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
@@ -97,8 +97,8 @@ How to submit an issue report
 -----------------------------
 
 First of all, thank you very much to everybody submitting issue reports! While we try to test ESPHome/YAML as much as
-we can using our available hardware, we don't own every single device type and rely on testing done by the community 
-and the contributors. When doing some changes in the core, it can quickly happen that something somewhere breaks. 
+we can using our available hardware, we don't own every single device type and rely on testing done by the community
+and the contributors. When doing some changes in the core, it can quickly happen that something somewhere breaks.
 Issue reports are a great way for us to track and (hopefully) fix issues, so thank you!
 
 For us to fix the issue quickly, there are some things that would be really helpful:
@@ -160,7 +160,7 @@ If you find some, please do however report them.
 
 To install the dev version of ESPHome:
 
-- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__
+- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/home-assistant-addon <https://github.com/esphome/home-assistant-addon>`__
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
@@ -230,7 +230,7 @@ Some steps that can help with the issue:
   logged via serial. If you see ``ack timeout 4`` right before a disconnect, this might be because
   of a bug in the AsyncTCP library, for which a fix was included in ESPHome version 1.18.0.
   If you are running an ESPHome version, prior to 1.18.0, then upgrade ESPHome and build fresh
-  firmware for your devices. 
+  firmware for your devices.
 - We have seen an increase in disconnects while the log level was set to ``VERY_VERBOSE``,
   especially on single-core devices, where the logging code might be interfering with the operation
   of the networking code. For this reason, we advise using a lower log level for production
@@ -324,7 +324,7 @@ And a docker compose file looks like this:
     with the Home Assistant add-on ``"status_use_ping": true,`` option or with
     Docker ``-e ESPHOME_DASHBOARD_USE_PING=true``.
     See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
-    
+
 .. _faq-notes_on_disabling_mdns:
 
 Notes on disabling mDNS
@@ -352,7 +352,7 @@ Always back up all your files!
 Why shouldn't I use underscores in my device name?
 --------------------------------------------------
 
-The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.  
+The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
 
@@ -369,10 +369,10 @@ Note that some boards connect pins such as GPIO0 to a builtin tactile switch. In
 How can I test a Pull Request?
 ------------------------------
 
-By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull 
-Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components 
-that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page 
-of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and 
+By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull
+Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components
+that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page
+of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and
 flash your device, the code from the Pull Request will be used for the components changed by the Pull Request.
 
 .. code-block:: yaml
@@ -382,11 +382,11 @@ flash your device, the code from the Pull Request will be used for the component
       - source: github://pr#1234
         components:
           # list all components modified by this Pull Request here
-          - ccs811  
+          - ccs811
 
 
-Note that this only works for Pull Requests that only change files within components. If any files outside 
-``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled 
+Note that this only works for Pull Requests that only change files within components. If any files outside
+``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled
 with the "core" label on GitHub.
 
 See Also

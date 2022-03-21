@@ -43,6 +43,8 @@ Configuration variables:
     - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
     - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``RESTORE_AND_OFF`` - Attempt to restore state but initialize the light as OFF.
+    - ``RESTORE_AND_ON`` - Attempt to restore state but initialize the light as ON.
     - ``ALWAYS_OFF`` - Always initialize the light as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the light as ON on bootup.
 
@@ -405,10 +407,10 @@ with the behavior of the ``light.is_on`` and ``light.is_off`` condition above.
 ``light.on_state`` Trigger
 **************************
 
-This trigger is activated each time the set light state is changed. It is not triggered 
+This trigger is activated each time the set light state is changed. It is not triggered
 based on current state, but rather, it triggers on the set state which can differ from
 the current state due to transitions. For example, the ``light.on_state`` trigger can
-be used for immediate action when the light is set to off; while ``light.on_turn_off`` 
+be used for immediate action when the light is set to off; while ``light.on_turn_off``
 does not trigger until the light actually achieves the off state.
 
 .. code-block:: yaml
@@ -586,6 +588,10 @@ Lambda Effect
 
 This effect allows you to write completely custom light effects yourself using :ref:`lambdas <config-lambda>`.
 
+Available variable in the lambda:
+
+- **initial_run** - A bool which is true on the first execution of the lambda. Useful to reset static variables when restarting an effect.
+
 .. code-block:: yaml
 
     light:
@@ -621,6 +627,7 @@ Configuration variables:
   A value of ``0ms`` means that the lambda is always executed, without a cool-down. Defaults to ``0ms``.
 - **lambda** (**Required**, :ref:`lambda <config-lambda>`): The code to execute. ``static`` variables are
   especially useful.
+
 
 Addressable Rainbow Effect
 **************************

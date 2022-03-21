@@ -20,13 +20,13 @@ will not show up in Home Assistant. See :doc:`/components/switch/gpio`.
 Configuration variables:
 ------------------------
 
-- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to use PWM on.
+- **pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin to turn on and off.
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
 - All other options from :ref:`Output <config-output>`.
 
 .. warning::
 
-    This is an **output component** and will not visible from the frontend. Output components are intermediary
+    This is an **output component** and will not be visible from the frontend. Output components are intermediary
     components that can be attached to for example lights. To have a GPIO pin in the Home Assistant frontend, please
     see the :doc:`/components/switch/gpio`.
 
