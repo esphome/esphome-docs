@@ -322,18 +322,14 @@ Presets allow you to preconfigure different modes for your thermostat. These wil
 UI where they can change temperature set points, fan modes, fan swing modes, and operating modes all with one
 operation.
 
-- Presets should be one of:
+- **preset**: (*Optional*, list)
 
-  - ``eco``
-  - ``away``
-  - ``boost``
-  - ``comfort``
-  - ``home``
-  - ``sleep``
-  - ``activity``
-
-- **preset**: (*Optional*)
-
+  - **name** (*Required*, string): Name of the preset. If this is one of the *standard* presets (``eco``, ``away``, 
+    ``boost``, ``comfort``, ``home``, ``sleep``, or ``activity``) it is considered a *standard_*preset. Any other
+    string will make the preset a *custom* preset. *Standard* and *custom* presets are functionally equivalent
+    the only difference is that when switching the mode via :ref:`climate.control Action <climate-control_action>`
+    you will need to use the `preset` or `custom_preset` property as appropriate. The Home Assistant 
+    `climate.set_preset_mode` service treats them identically
   - **default_target_temperature_low** (*Optional*, float): The default low target temperature when switching to 
     this preset
   - **default_target_temperature_high** (*Optional*, float): The default high target temperature when switching
@@ -374,12 +370,14 @@ operation.
       - platform: thermostat
         name: "Thermostat with Presets"
         preset:
-          sleep:
+          # Standard Preset
+          - name: sleep
             default_target_temperature_low: 17
             default_target_temperature_high: 26
             fan_mode: LOW
             swing_mode: OFF
-          boost:
+          # Custom preset
+          - name: A custom preset
             default_target_temperature_low: 21
             default_target_temperature_high: 23
             fan_mode: HIGH
@@ -395,7 +393,7 @@ operation.
       - platform: thermostat
         name: "Thermostat with Presets Actions"
         preset:
-          sleep:
+          - name: sleep
             default_target_temperature_low: 17
             default_target_temperature_high: 26
             fan_mode: LOW
