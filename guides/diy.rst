@@ -54,6 +54,7 @@ Blog Posts & Videos
 - `Embedded controller for Audioengine A5+ <https://github.com/chatziko/audioengine-a5-controller/>`__ by :ghuser:`chatziko`
 - `Cheap 10$ Air quality monitor WP6003: ESP32, Bluetooth & Home assistant <https://omarghader.github.io/esp32-airquality-box-wp6003-homeassistant/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `ESP32 AM312 motion sensor : light automation <https://omarghader.github.io/esp32-am312-pir-motion-sensor/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
+- `Little thermostat based on AZ-Touch hardware and esphome <https://github.com/ingbenna/AZ-Touch_esphome_thermostat/>`_ by ingbenna
 
 Custom Components & Code
 ------------------------
