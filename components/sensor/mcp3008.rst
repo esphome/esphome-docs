@@ -1,5 +1,5 @@
 MCP3008 8-Channel 10-Bit A/D Converter
-====================
+======================================
 
 .. seo::
     :description: Instructions for setting up MCP3008 10 Bit Analog to Digital Converter in ESPHome.
