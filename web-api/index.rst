@@ -171,6 +171,7 @@ creating a POST request at ``/light/<id>/turn_on?brightness=128&transition=2`` w
 ``turn_on`` optional URL parameters:
 
 -  **brightness**: The brightness of the light, from 0 to 255.
+-  **color_brightness**: The brightness of the RGB channels, from 0 to 255. Does not affect the white channel.
 -  **r**: The red color channel of the light, from 0 to 255.
 -  **g**: The green color channel of the light, from 0 to 255.
 -  **b**: The blue color channel of the light, from 0 to 255.
