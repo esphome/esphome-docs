@@ -46,6 +46,10 @@ with the following:
     > esphome version
     Version: 2021.12.3
 
+
+.. note::
+    The `ESPHome dashboard <https://esphome.io/guides/getting_started_command_line.html#bonus-esphome-dashboard>`_ doesn't work on windows
+
 Mac
 ---
 
