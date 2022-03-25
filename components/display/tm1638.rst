@@ -1,19 +1,19 @@
-TM1637 7-Segment Display
+TM1638 7 Segment Display Keypad & LED Module
 ========================
 
 .. seo::
-    :description: Instructions for setting up TM1637 7-segment displays.
-    :image: tm1637.jpg
+    :description: Instructions for setting up TM1638 7 Segment Display Keypad & LED Module
+    :image: tm1638.jpg
 
-The ``tm1637`` display platform allows you to use the popular TM1637 7-segment display drivers with ESPHome.
+The ``tm1638`` display platform allows you to use the popular TM1638 7 Segment Display Keypad & LED Module with ESPHome.
 
-.. figure:: images/tm1637-full.jpg
+.. figure:: images/tm1638-full.jpg
     :align: center
     :width: 75.0%
 
-    TM1637 7-Segment Display.
+    TM1637 8-Segment Display Keypad & LED Module.
 
-The module can be powered with 5v or with 3.3v too. To display the colon punctuation use the
+The module can be powered with 5v DC. To display the colon punctuation use the
 ``.`` in the colon place. (See clock example below)
 
 
@@ -21,49 +21,46 @@ The module can be powered with 5v or with 3.3v too. To display the colon punctua
 
     # Example configuration entry
     display:
-        platform: tm1637
-        id: tm1637_display
+        platform: tm1638
+        id: tm1638_display
+        stb_pin: D7 (fix me)
         clk_pin: D6
         dio_pin: D5
-        inverted: true
-        length: 4
         lambda: |-
-          it.print("0123");
+          it.print("0123");  (verify that this works)
 
 
 Configuration variables:
 ------------------------
 
+- **stb_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the STB line hooked up to.
 - **clk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the CLK line hooked up to.
 - **dio_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have the DIO line hooked up to.
-- **intensity** (*Optional*, int): The intensity with which the TM1637 should drive the outputs. Range is from
-  0 (least intense) to 7 (the default).
-- **inverted** (*Optional*, bool): Invert character rendering to the TM1637 so you can physically flip the display around.
-- **length** (*Optional*, int): The amount of digits your TM1637 is driving. Only required when `inverted: true`
-  Range is from 1 to 6 (the default).
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the TM1637.
-  See :ref:`display-tm1637_lambda` for more information.
+- **intensity** (*Optional*, int): The intensity with which the TM1638 should drive the outputs. Range is from
+  0 (least intense) to 7 (the default).  This setting will affect the 7 segment display and the 8 indivdual LED lights.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the TM1638.
+  See :ref:`display-tm1638_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
-.. _display-tm1637_lambda:
+.. _display-tm1638_lambda:
 
 Rendering Lambda
 ----------------
 
-The TM1637 has a similar API to the fully fledged :ref:`display-engine`, but it's only a subset as the TM1637
-7-segment displays don't have a concept of individual pixels. In the lambda you're passed a variable called ``it``
-as with all other displays. In this case however, ``it`` is a TM1637 instance (see API Reference).
+The TM1638 has a similar API to the fully fledged :ref:`display-engine`, but it's only a subset as the TM1638
+7-segment Display Keypad & LED Module does not have a concept of individual pixels. In the lambda you're passed a variable called ``it``
+as with all other displays. In this case however, ``it`` is a TM1638 instance (see API Reference).
 
-The most basic operation with the TM1637 is wiring a simple number to the screen as in the configuration example
+The most basic operation with the TM1638 is wiring a simple number to the screen as in the configuration example
 at the top of this page. But even though you're passing in a string (here ``"0123"``), ESPHome converts it
-into a representation that the TM1637 can understand: The exact pixels that should be turned on. And of course,
+into a representation that the TM1638 can understand: The exact pixels that should be turned on. And of course,
 not all characters can be represented. You can see a full list of characters :ref:`at the MAX7219 docs <display-max7219_characters>`.
 
 Each of the three methods (``print``, ``printf`` and ``strftime``) all optionally take a position argument at the
 beginning which can be used to print the text at a specific position. This argument is ``0`` by default which
-means the first character of the first TM1637. For example to start the first character of your text at
-the end of the TM1637, you would write ``it.print(3, "0");``.
+means the first character of the first TM1638. For example to start the first character of your text at
+the end of the TM1638, you would write ``it.print(3, "0");``.
 
 Also note that the ``.`` (dot) character is special because when ESPHome encounters it in the string the dot
 segment of the previous position will be enabled.
@@ -71,7 +68,7 @@ segment of the previous position will be enabled.
 .. code-block:: yaml
 
     display:
-      - platform: tm1637
+      - platform: tm1638
         # ...
         lambda: |-
           // Print 0 at position 0 (left)
@@ -113,7 +110,7 @@ The following example creates a typical digital clock with the ``:`` colon flash
         id: homeassistant_time
 
     display:
-      platform: tm1637
+      platform: tm1638
       clk_pin: D6
       dio_pin: D5
       update_interval: 500ms
@@ -126,10 +123,23 @@ The following example creates a typical digital clock with the ``:`` colon flash
             it.strftime("%H%M", id(homeassistant_time).now());
 
 
+
+LEDs
+----------------
+The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top or middle of the display, depending on the board.  These LEDs are exposed as light components and can be accessed via the binary light component configuration.   See binary light component (link)
+
+(light example)
+
+
+Buttons
+----------------
+The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or middle of the display, depending on the board.  These buttons are exposed as buttons components and can be accessed via the button component configuration.   See buttons component (link)
+
+
 See Also
 --------
 
 - :doc:`index`
-- :apiref:`tm1637/tm1637.h`
-- `TD1637 Library <https://github.com/avishorp/TM1637>`__ by `Avishay <https://github.com/avishorp>`__
+- :apiref:`tm1638/tm1638.h`
+- `TD1638 Library <https://github.com/avishorp/TM1638>`__ by `Avishay <https://github.com/avishorp>`__
 - :ghedit:`Edit`
