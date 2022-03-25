@@ -500,10 +500,10 @@ Configuration variables:
 - **value** (**Required**, string): The string which you want to encode in the QR-code.
 - **ecc** (*Optional*, string): The error correction code level you want to use. Defaults to ``LOW``. You can use one of the following values:
 
-  - ``LOW`` - The QR Code can tolerate about 7% erroneous codewords
-  - ``MEDIUM`` - The QR Code can tolerate about 15% erroneous codewords
-  - ``QUARTILE`` - The QR Code can tolerate about 25% erroneous codewords
-  - ``HIGH`` - The QR Code can tolerate about 30% erroneous codewords
+  - ``LOW``: The QR Code can tolerate about 7% erroneous codewords
+  - ``MEDIUM``: The QR Code can tolerate about 15% erroneous codewords
+  - ``QUARTILE``: The QR Code can tolerate about 25% erroneous codewords
+  - ``HIGH``: The QR Code can tolerate about 30% erroneous codewords
 
 To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
 

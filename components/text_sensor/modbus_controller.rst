@@ -14,10 +14,10 @@ Configuration variables:
 - **name** (**Required**, string): The name of the sensor.
 - **register_type** (**Required**): type of the modbus register.
 
-    - coil: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access
-    - discrete_input: discrete input register (read only coil) are similar to coils but can only be read.
-    - holding: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access
-    - read: Read Input Registers - registers are 16-bit registers used for input, and may only be read
+    - ``coil``: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access
+    - ``discrete_input``: discrete input register (read only coil) are similar to coils but can only be read.
+    - ``holding``: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access
+    - ``read``: Read Input Registers - registers are 16-bit registers used for input, and may only be read
 
 - **address** (**Required**, int): start address of the first register in a range
 - **skip_updates** (*Optional*, int): By default all sensors of a modbus_controller are updated together. For data points that don't change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle

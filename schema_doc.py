@@ -28,16 +28,22 @@ COMPONENT_HUB = "Component/Hub"
 
 JSON_DUMP_PRETTY = True
 
-props_missing = 0
-props_verified = 0
-props_documented = 0
+
+class Statistics:
+    props_documented = 0
+    enums_good = 0
+    enums_bad = 0
+
+
+statistics = Statistics()
+
+logger = logging.getLogger(__name__)
 
 
 def setup(app):
     import os
 
     if not os.path.isfile(SCHEMA_PATH + "esphome.json"):
-        logger = logging.getLogger(__name__)
         logger.info(f"{SCHEMA_PATH} not found. Not documenting schema.")
         return
 
@@ -62,7 +68,6 @@ def doctree_resolved(app, doctree, docname):
 
     except Exception as e:
         err_str = f"In {docname}: {str(e)}"
-        logger = logging.getLogger(__name__)
         logger.warning(err_str)
         traceback.print_exc()
 
@@ -724,7 +729,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if not self.props and not self.multi_component:
                 self.find_props_previous_title()
             if not self.props and not self.multi_component:
-                logging.getLogger(__name__).info(
+                logger.info(
                     f"In {self.docname} / {self.previous_title_text} found a {node.astext()} title and there are no props."
                 )
                 # raise ValueError(
@@ -744,46 +749,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             and (self.props or self.multi_component)
             and self.bullet_list_level > 1
         ):
+
             self.prop_stack.append((self.current_prop, node))
             self.accept_props = True
             return
-
-            prop = self.props[self.current_prop]
-            if isinstance(prop, dict):
-                if prop.get("type") == "schema":
-                    self.prop_stack.append((self.current_prop, node))
-                    self.accept_props = True
-                elif prop.get("type") == "enum":
-                    # fill enum descriptions if available
-                    pass
-
-                else:
-                    # TODO: if the list items are formatted like:
-                    #   - ``value`` <optional description>
-                    #   - ``other value`` <optional description>
-                    # then we could ensure these are enum values (or populate enum values double check.)
-                    # Currently some enum values are also in the **value** format.
-                    if (
-                        # most likely an enum, the values are most likely retrieved from ESPHome validation schema
-                        "enum" in prop
-                        # or custom components has list of sensors/binary sensors, etc.
-                        or (
-                            prop.get("docs", "").startswith("**list**")
-                            and self.docname.endswith("/custom")
-                        )
-                    ):
-                        raise nodes.SkipChildren
-                    # nowhere put this props info...
-                    # otherwise inner bullet list will be interpreted as property list
-                    logger = logging.getLogger(__name__)
-                    logger.info(
-                        f"In {self.docname} / {self.previous_title_text} property {self.current_prop} a unknown info sub bullet list."
-                    )
-                    raise nodes.SkipChildren
-            else:
-                # nowhere put this props info...
-                # otherwise inner bullet list will be interpreted as property list
-                raise nodes.SkipChildren
 
         if not self.props and self.multi_component is None:
             raise nodes.SkipChildren
@@ -802,7 +771,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.filled_props = True
             self.current_prop, found = self.update_prop(node, self.props)
             if self.current_prop and not found:
-                logger = logging.getLogger(__name__)
                 logger.info(
                     f"In '{self.docname} {self.previous_title_text} Cannot find property {self.current_prop}"
                 )
@@ -817,7 +785,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 if self.current_prop and found:
                     found_any = True
             if self.current_prop and not found_any:
-                logger = logging.getLogger(__name__)
                 logger.info(
                     f"In '{self.docname} {self.previous_title_text} Cannot find property {self.current_prop}"
                 )
@@ -840,7 +807,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.doctree,
         )
         node.walkabout(t)
-        return t.output
+        return t.output.strip("\n")
 
     def getMarkdownParagraph(self, node):
         paragraph = list(node.traverse(nodes.paragraph))[0]
@@ -875,6 +842,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         return markdown
 
     def update_prop(self, node, props):
+
         prop_name = None
 
         for s_prop, n in self.prop_stack:
@@ -884,6 +852,38 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             elif inner is not None and inner.get("type") == "typed":
                 # this is used in external_components
                 props = self.Props(self, inner)
+            elif inner is not None and inner.get("type") == "enum":
+                enum_raw = self.getMarkdown(node)
+                # the regex allow the format to have either a ":" or a " -" as the value / docs separator, value must be in `back ticks`
+                # also description is optional
+                enum_match = re.search(
+                    r"\* `([^`]*)`((:| -) (.*))*", enum_raw, re.IGNORECASE
+                )
+                if enum_match:
+                    enum_value = enum_match.group(1)
+                    enum_docs = enum_match.group(4)
+                    found = False
+                    for name in inner["values"]:
+                        if enum_value.upper().replace(" ", "_") == str(name).upper():
+                            found = True
+                            if enum_docs:
+                                enum_docs = enum_docs.strip()
+                                if "values_docs" not in inner:
+                                    inner["values_docs"] = {name: enum_docs}
+                                else:
+                                    inner["values_docs"][name] = enum_docs
+                                statistics.props_documented += 1
+                                statistics.enums_good += 1
+                    if not found:
+                        logger.info(
+                            f"In '{self.docname} {self.previous_title_text} Property {s_prop} cannot find enum value {enum_value}"
+                        )
+                else:
+                    statistics.enums_bad += 1
+                    logger.info(
+                        f"In '{self.docname} {self.previous_title_text} Property {s_prop} unexpected enum member description format"
+                    )
+
             else:
                 # nothing to do?
                 return prop_name, False
@@ -902,7 +902,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         try:
             name_type = markdown[: markdown.index(": ") + 2]
         except ValueError:
-            logger = logging.getLogger(__name__)
             logger.info(
                 f"In '{self.docname} {self.previous_title_text} Property format error. Missing ': ' in {raw}'"
             )
@@ -935,7 +934,6 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 prop_name = s3.group(1)
                 param_type = None
             else:
-                logger = logging.getLogger(__name__)
                 logger.info(
                     f"In '{self.docname} {self.previous_title_text} Invalid property format: {node.rawsource}"
                 )
@@ -996,8 +994,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             desc = "**" + param_type + "**: " + desc
 
         config_var["docs"] = desc
-        global props_documented
-        props_documented = props_documented + 1
+
+        statistics.props_documented += 1
 
         return prop_name, True
 
@@ -1158,8 +1156,7 @@ def build_finished(app, exception):
         else:
             f.write(json.dumps(contents, separators=(",", ":")))
 
-    str = f"Documented: {props_documented}"
-    logger = logging.getLogger(__name__)
+    str = f"Documented: {statistics.props_documented} Enums: {statistics.enums_good}/{statistics.enums_bad}"
     logger.info(str)
 
 

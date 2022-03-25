@@ -62,24 +62,23 @@ Configuration variables:
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
-  Bitrates marked with * are not supported by the internal ESP32 CAN controller.
 
-    - 5KBPS *
-    - 10KBPS *
-    - 20KBPS *
-    - 31K25BPS *
-    - 33KBPS *
-    - 40KBPS *
-    - 50KBPS
-    - 80KBPS *
-    - 83K3BPS *
-    - 95KBPS *
-    - 100KBPS
-    - 125KBPS
-    - 200KBPS *
-    - 250KBPS
-    - 500KBPS
-    - 1000KBPS
+    - ``5KBPS`` - Not supported by ``esp32_can``
+    - ``10KBPS`` - Not supported by ``esp32_can``
+    - ``20KBPS`` - Not supported by ``esp32_can``
+    - ``31K25BPS`` - Not supported by ``esp32_can``
+    - ``33KBPS`` - Not supported by ``esp32_can``
+    - ``40KBPS`` - Not supported by ``esp32_can``
+    - ``50KBPS``
+    - ``80KBPS`` - Not supported by ``esp32_can``
+    - ``83K3BPS`` - Not supported by ``esp32_can``
+    - ``95KBPS`` - Not supported by ``esp32_can``
+    - ``100KBPS``
+    - ``125KBPS`` - (Default)
+    - ``200KBPS`` - Not supported by ``esp32_can``
+    - ``250KBPS``
+    - ``500KBPS``
+    - ``1000KBPS``
 
 Automations:
 ------------
@@ -210,9 +209,9 @@ Configuration variables:
   Defaults to ``8MHZ``.
 - **mode** (*Optional*): Operation mode. Default to ``NORMAL``
 
-  - NORMAL: Normal operation
-  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
-  - LISTENONLY: only receive data
+  - ``NORMAL``: Normal operation
+  - ``LOOPBACK``: Loopback mode can be used to just test you spi connections to the device
+  - ``LISTENONLY``: only receive data
 
 - All other options from :ref:`Canbus <config-canbus>`.
 
