@@ -7,8 +7,9 @@ WiFi Component
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
 This core ESPHome component sets up WiFi connections to access points
-for you. It needs to be in your configuration or otherwise ESPHome
-will fail in the config validation stage.
+for you. You need to have a network configuration in your sketch (either Wifi ou Ethernet)
+or ESPHome will fail in the config validation stage. You also can't have both Wifi
+and Ethernet setup in same time (even if your ESP has both wired).
 
 It’s recommended to provide a static IP for your node, as it can
 dramatically improve connection times.
