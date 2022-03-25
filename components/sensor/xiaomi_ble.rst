@@ -580,6 +580,7 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
+- :doc:`/components/display/pvvx_mithermometer`
 - :apiref:`xiaomi_lywsd03mmc/xiaomi_ble.h`
 - Passive BLE monitor integration for Home Assistant (ble_monitor custom component) `<https://github.com/custom-components/ble_monitor>`__
   by `@Magalex2x14 <https://github.com/Magalex2x14>`__ and `@Ernst79 <https://github.com/Ernst79>`__

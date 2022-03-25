@@ -525,6 +525,7 @@ Display Components
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
+    PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
