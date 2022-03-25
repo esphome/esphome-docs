@@ -161,6 +161,7 @@ The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top
 Buttons
 ----------------
 The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or middle of the display, depending on the board.  These buttons are exposed as buttons components and can be accessed via the button component configuration.   See buttons component (link)
+
 .. code-block:: yaml
 
     display:
