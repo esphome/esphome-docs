@@ -678,11 +678,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return c["config_vars"][c]
 
     def find_registry_prop(self, registry_name, key, description):
-        cv = self.get_component_config_var(registry_name, key)
-        if cv is not None:
-            cv["docs"] = description
-            self.props = self.find_props(cv.get("schema", {}))
-        return
+        c = self.get_component_schema(registry_name)
+        if key in c:
+            cv = c[key]
+            if cv is not None:
+                cv["docs"] = description
+                self.props = self.find_props(cv.get("schema", {}))
 
     def depart_title(self, node):
         if self.filled_props:
