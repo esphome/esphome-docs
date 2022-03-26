@@ -488,8 +488,18 @@ the result of the lambda is used as the output (use ``return``).
       - lambda: return x * (9.0/5.0) + 32.0;
 
 
-Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
-result in integers (not floating point values).
+Make sure to add ``.0`` to all values in the lambda or cast the result to float (with ``return (float) (...);``,
+otherwise divisions of integers will result in integers (not floating point values).
+
+To discard a value, return ``{}``. The following example will discard everything above 100:
+
+.. code-block:: yaml
+
+    filters:
+      - lambda: |-
+          if (x>100) return {};
+          return x;
+
 
 Example: Converting Celsius to Fahrenheit
 -----------------------------------------
