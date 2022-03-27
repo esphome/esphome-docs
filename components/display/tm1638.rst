@@ -23,11 +23,13 @@ The module can be powered with 5v DC. To display the colon punctuation use the
     display:
         platform: tm1638
         id: tm1638_display
-        stb_pin: D7 (fix me)
-        clk_pin: D6
-        dio_pin: D5
+        stb_pin: 5
+        clk_pin: 18
+        dio_pin: 23
+        intensity: 5
+        update_interval: 5s
         lambda: |-
-          it.print("0123");  (verify that this works)
+          it.print("0123");
 
 
 Configuration variables:
@@ -126,69 +128,35 @@ The following example creates a typical digital clock with the ``:`` colon flash
 
 LEDs
 ----------------
-The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top or middle of the display, depending on the board.  These LEDs are exposed as light components and can be accessed via the binary light component configuration.   See binary light component (link)
+The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top or middle of the display, depending on the board.  These LEDs are exposed as switches with the led property set between 0-7.  The board has the LEDs labled 1-8, but the leds use zero based addressing.
 
 .. code-block:: yaml
 
-    display:
+   switch:                 
       - platform: tm1638
-        # ...
-        lambda: |-
-          // Print 0 at position 0 (left)
-          it.print("0");
-          // Result: "0   "
-
-          // Print 1 at position 1 (second character)
-          it.print(1, "1");
-          // Result: "01  "
-
-          // Let's write a sensor value (let's assume it's 42.1)
-          it.printf(0, "%.1f", id(my_sensor).state);
-          // Result: "42.1 " (the dot will appear on the "2" segment)
-
-          // Overwrite the previous content with blank
-          it.print("    ");
-          // Print a right-padded sensor value with 0 digits after the decimal
-          it.printf("S%3.0f", id(my_sensor).state);
-          // Result: "S 42"
-
-          // Print the current time
-          it.strftime("%H.%M");
-          // Result for 10:06:42 -> "10:06" on a display with : and "10.06" on a display with .
-
+        id: MyLed
+        led: 0
 
 
 Buttons
 ----------------
-The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or middle of the display, depending on the board.  These buttons are exposed as buttons components and can be accessed via the button component configuration.   See buttons component (link)
+The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or middle of the display, depending on the board.  These buttons are exposed as binary sensor components and can be accessed via the binary sensor component configuration.   See binary sensor component (link)
 
 .. code-block:: yaml
 
-    display:
+    binary_sensor:
       - platform: tm1638
-        # ...
-        lambda: |-
-          // Print 0 at position 0 (left)
-          it.print("0");
-          // Result: "0   "
-
-          // Print 1 at position 1 (second character)
-          it.print(1, "1");
-          // Result: "01  "
-
-          // Let's write a sensor value (let's assume it's 42.1)
-          it.printf(0, "%.1f", id(my_sensor).state);
-          // Result: "42.1 " (the dot will appear on the "2" segment)
-
-          // Overwrite the previous content with blank
-          it.print("    ");
-          // Print a right-padded sensor value with 0 digits after the decimal
-          it.printf("S%3.0f", id(my_sensor).state);
-          // Result: "S 42"
-
-          // Print the current time
-          it.strftime("%H.%M");
-          // Result for 10:06:42 -> "10:06" on a display with : and "10.06" on a display with .
+        name: "My Button"
+        id: MyButton
+        key: 0
+        filters:
+          - delayed_on: 10ms
+        on_press:
+         then:
+            - switch.turn_on: MyLed
+        on_relase
+         then:
+            - switch.turn_off: MeLed
 
 
 See Also
