@@ -11,7 +11,7 @@ The ``tm1638`` display platform allows you to use the popular TM1638 7 Segment D
     :align: center
     :width: 75.0%
 
-    TM1637 8-Segment Display Keypad & LED Module.
+    TM1638 8-Segment Display Keypad & LED Module.
 
 The module can be powered with 5v DC. To display the colon punctuation use the
 ``.`` in the colon place. (See clock example below)
