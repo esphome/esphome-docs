@@ -113,8 +113,9 @@ The following example creates a typical digital clock with the ``:`` colon flash
 
     display:
       platform: tm1638
-      clk_pin: D6
-      dio_pin: D5
+      clk_pin: 18
+      dio_pin: 23
+      stb_pin: 5
       update_interval: 500ms
       lambda: |-
           static int i = 0;
