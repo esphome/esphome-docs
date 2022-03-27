@@ -1,5 +1,5 @@
 TM1638 7 Segment Display Keypad & LED Module
-========================
+============================================
 
 .. seo::
     :description: Instructions for setting up TM1638 7 Segment Display Keypad & LED Module
