@@ -143,8 +143,8 @@ You can view the full API documentation for the rendering engine in the "API Ref
 
 .. _display-static_text:
 
-Drawing Static Text
-*******************
+Fonts
+*****
 
 The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
 Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
@@ -164,13 +164,44 @@ Next, create a ``font:`` section in your configuration:
         id: my_font
         size: 20
 
+      # gfonts://family[@weight]
+      - file: "gfonts://Roboto"
+        id: roboto
+        size: 20
+
     display:
       # ...
 
 Configuration variables:
 
-- **file** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font
-  file.
+- **file** (**Required**): The path (relative to where the .yaml file is) of the TrueType font
+  file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
+
+  - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
+
+    **Google Fonts**:
+
+    Each Google Font will be downloaded once and cached for future use.
+
+  - **family** (**Required**, string): The name of the Google Font family.
+  - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
+
+    - **thin**: 100
+    - **extra-light**: 200
+    - **light**: 300
+    - **regular**: 400 (**default**)
+    - **medium**: 500
+    - **semi-bold**: 600
+    - **bold**: 700
+    - **extra-bold**: 800
+    - **black**: 900
+
+  - **italic** (*Optional*, boolean): Whether the font should be italic.
+
+    **Local Fonts**:
+
+  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font file.
+
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
@@ -190,8 +221,10 @@ Configuration variables:
     to install it using
     ``pip install pillow``.
 
+Drawing Static Text
+*******************
 
-Then, in your display code just reference the font like so:
+In your display code, you can render static text by referencing the font and just entering your string:
 
 .. code-block:: yaml
 
