@@ -133,7 +133,7 @@ The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top
 
 .. code-block:: yaml
 
-   switch:                 
+    switch:                 
       - platform: tm1638
         id: MyLed
         led: 0
