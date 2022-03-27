@@ -11,7 +11,7 @@ DAC7678
 Component/Hub
 -------------
 
-The DAC7678 component represents a DAC7678 12-bit DAC with internal reference
+The DAC7678 component represents a DAC7678 12-bit 8 channel DAC with internal reference
 (`datasheet <https://www.ti.com/lit/ds/symlink/dac7678.pdf>`__) in ESPHome. It
 uses the :ref:`I²C Bus <i2c>` for communication.
 
@@ -56,13 +56,37 @@ output.
 
     # Example configuration entry
     dac7678:
-      - frequency: 500
+	  address: 0x4A
+	  id: dac7678_hub1
+	  internal_reference: true
 
     # Individual outputs
     output:
       - platform: dac7678
         id: 'dac7678_output1'
         channel: 0
+	  - platform: dac7678
+        id: 'dac7678_output2'
+        channel: 1
+      - platform: dac7678
+        id: 'dac7678_output3'
+        channel: 2
+	  - platform: dac7678
+        id: 'dac7678_output4'
+        channel: 3
+	  - platform: dac7678
+        id: 'dac7678_output5'
+        channel: 4
+	  - platform: dac7678
+        id: 'dac7678_output6'
+        channel: 5
+      - platform: dac7678
+        id: 'dac7678_output7'
+        channel: 6
+	  - platform: dac7678
+        id: 'dac7678_output8'
+        channel: 7
+
 
 Configuration variables:
 ************************
