@@ -31,8 +31,8 @@ but there's a nice article explaining the function principle `here <https://blog
           output_samples: 5      # smooth the output over 5 samples
           derivative_samples: 5  # smooth the derivative value over 10 samples
         deadband_parameters:
-          threshold_high: 0.5       # deadband within +0.5°C of target_temperature
-          threshold_low: -1.0       # deadband within -1.0°C of target_temperature
+          threshold_high: 0.5°C       # deadband within +0.5°C of target_temperature
+          threshold_low: -1.0°C       # deadband within -1.0°C of target_temperature
           
 Configuration variables:
 ------------------------
@@ -73,8 +73,10 @@ Configuration variables:
 - **deadband_parameters** (**Optional**): Enables a deadband to stabilise and minimise changes in the 
   output when the temperature is close to the target temperature. See ``Deadband Setup`` below.
 
-  - **threshold_low/threshold_high** (**Required**, float): Specifies a +/- threshold defining the deadband 
-    around the target temperature. For instance with `default_target_temperature` of ``21°C`` and threshold of ``0.5``, the deadband will be 
+  - **threshold_low/threshold_high** (**Required**, float): Specifies a high/low 
+    threshold defining the deadband 
+    around the target temperature. For instance with `default_target_temperature` of ``21°C`` and 
+    thresholds of ``+/-0.5°C``, the deadband will be 
     between ``20.5°C - 21.5°C``. The PID controller will limit output changes within the deadband.
 
   - **kp_multiplier** (**Optional**, float): Set the ``kp`` gain when inside the deadband. Defaults to ``0.1``.
@@ -114,17 +116,17 @@ Deadband Setup
 --------------
 A deadband is used to quieten the PID controller's output variance 
 once the temperature has settled close to the target temperature. We do this by specifying 
-a high/low threshold of the target temperature (setpoint). 
+a high/low threshold of the target temperature. 
 
-The most basic setup specifies the threshold around the set-point as follows:
+The most basic setup specifies the threshold around the target temperature as follows:
 
 .. code-block:: yaml
 
     default_target_temperature: 21°C
     ...
     deadband_parameters:
-      threshold_low: -1.0
-      threshold_high: 0.5
+      threshold_high: 0.5°C
+      threshold_low: -1.0°C
       
 In this example the deadband is between ``20.0°C - 21.5°C``. The PID controller will limit any output 
 variation inside this deadband.
@@ -150,8 +152,8 @@ calmly make minor adjustments over a 20x longer timeframe to stay within the dea
     default_target_temperature: 21°C
     ...
     deadband_parameters:
-      threshold_low: -1.0
-      threshold_high: 0.5
+      threshold_high: 0.5°C
+      threshold_low: -1.0°C
       kp_multiplier: 0.05  # proportional gain is 5% of normal value
       kp_multiplier: 0.05  # integral accumulates at only 5% of normal
       kd_multiplier: 0.0   # derviative is turned off inside deadband
