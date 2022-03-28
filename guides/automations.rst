@@ -270,6 +270,11 @@ global variables can be used to store the state of a garage door.
         type: int
         restore_value: no
         initial_value: '0'
+      # Example for global string variable
+      - id: my_global_string
+        type: std::string
+        restore_value: no    
+        initial_value: '"hello world"'
 
    # In an automation
    on_press:
