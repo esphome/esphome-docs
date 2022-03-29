@@ -33,6 +33,11 @@ Release 2022.3.1 - March 23
 - Reserve less memory for json :esphomepr:`3289` by :ghuser:`jesserockz`
 - Add small delay before setting up app in safe mode :esphomepr:`3323` by :ghuser:`jesserockz`
 
+Release 2022.3.2 - March 30
+---------------------------
+
+- Actually increase request memory for json parsing :esphomepr:`3331` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
