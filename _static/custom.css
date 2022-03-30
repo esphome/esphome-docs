@@ -20,17 +20,17 @@ div.sphinxsidebar {
 
 img.component-image {
   border: none;
-  vertical-align: middle;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
   height: 85px;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 table.docutils {
   width: 100%;
+  box-shadow: 4px 4px 8px -4px #00000075;
 }
 
 .blink-tag {
