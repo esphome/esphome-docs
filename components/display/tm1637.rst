@@ -69,7 +69,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor.
 - **name** (*Optional*, string): The name for the binary sensor.
-- **tm1637_id** (**Required**, ::ref:`config-id`): The id of the tm1637 that should be used to scan the keys.
+- **tm1637_id** (*Optional*, ::ref:`config-id`): The id of the tm1637 that should be used to scan the keys in case you are using multiple devices.
 - **key** (**Required**, integer): The keycode for the connected key (Seg0 = 0, Seg1 = 1 etc,). Range is from
   0 to 15.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
