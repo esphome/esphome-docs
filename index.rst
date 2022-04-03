@@ -589,7 +589,7 @@ Climate Components
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
     PID Controller, components/climate/pid, function.svg
-    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
     Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png

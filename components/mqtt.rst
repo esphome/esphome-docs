@@ -58,6 +58,12 @@ Configuration variables:
   ``<APP_NAME>``.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
   messages to.
+
+  The ``log_topic`` has an additional configuration option:
+
+  - **level** (*Optional*, string): The log level to use for MQTT logs. See
+    :ref:`logger-log_levels` for options.
+
 - **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
 - **will_message** (*Optional*, :ref:`mqtt-message`): The message to send when
@@ -112,12 +118,6 @@ Configuration options:
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean): If the published message should
    have a retain flag on or not. Defaults to ``true``.
-
-
-The ``log_topic`` has an additional configuration option:
-
-- **level** (*Optional*, string): The log level to use for MQTT logs. See
-  :ref:`logger-log_levels` for options.
 
 .. _mqtt-using_with_home_assistant:
 
