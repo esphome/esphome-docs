@@ -32,7 +32,7 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 60s
         moisture:
           name: "rain"
-          expire_after: 30s  
+          expire_after: 120s  
           
     binary_sensor:
       - platform: hydreon_rgxx
