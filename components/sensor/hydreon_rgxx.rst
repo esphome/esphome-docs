@@ -29,7 +29,7 @@ required to be set up in your configuration for this sensor to work.
     sensor:
       - platform: hydreon_rgxx
         model: "RG_9"
-        update_interval: 1s
+        update_interval: 60s
         moisture:
           name: "rain"
           expire_after: 30s  
@@ -51,7 +51,7 @@ required to be set up in your configuration for this sensor to work.
     sensor:
       - platform: hydreon_rgxx
         model: "RG_15"
-        update_interval: 1s
+        update_interval: 60s
         acc:
           name: "rain"
         event_acc:
@@ -99,7 +99,7 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 
 See Also
