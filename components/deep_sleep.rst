@@ -127,7 +127,7 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
-    ``OFF``. To enter the the deep sleep again after the OTA update send a message on the topic ``livingroom/sleep_mode``
+    ``OFF``. To enter the deep sleep again after the OTA update send a message on the topic ``livingroom/sleep_mode``
     with payload ``ON``. Deep sleep will start immediately. Don't forget to delete the payload before the node
     wakes up again.
 
