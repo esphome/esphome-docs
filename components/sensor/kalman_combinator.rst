@@ -45,7 +45,7 @@ Configuration variables:
   source must have either **error** or **error_function** set. These work like
   the **process_std_dev** parameter, with low values marking accurate data.
 
-  - **sensor** (**Required**, :ref:`config-id` of a :doc:`/components/sensor/index`): The
+  - **source** (**Required**, :ref:`config-id` of a :doc:`/components/sensor/index`): The
     sensor that is used as sample source
   - **error** (**Required**, float, :ref:`templatable <config-templatable>`): The standard deviation of the
     sensor's measurements. If implemented as a template, the measurement is in

@@ -25,6 +25,18 @@ Webserver
 Thanks to :ghuser:`wilberforce` for doing a massive bunch of work on giving new life to the frontend of
 the :doc:`webserver </components/web_server>`.
 
+Release 2022.3.1 - March 23
+---------------------------
+
+- Fix WDT reset during dallas search algorithm :esphomepr:`3293` by :ghuser:`wysiwyng`
+- Webserver utilize Component Iterator to not overload eventstream :esphomepr:`3310` by :ghuser:`jesserockz`
+- Reserve less memory for json :esphomepr:`3289` by :ghuser:`jesserockz`
+- Add small delay before setting up app in safe mode :esphomepr:`3323` by :ghuser:`jesserockz`
+
+Release 2022.3.2 - March 30
+---------------------------
+
+- Actually increase request memory for json parsing :esphomepr:`3331` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
