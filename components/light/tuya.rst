@@ -63,7 +63,7 @@ Configuration variables:
   maximum of 255, but dimmers with a maximum of 1000 can also be found. Try what works best.
   Defaults to 255.
 - **color_temperature_max_value** (*Optional*, int): The highest color temperature
-  value allowed. Some ceiling fans have a value of 100 (also for `max_value`). Defaults to 255.
+  value allowed. Some ceiling fans have a value of 100 (also for ``max_value``). Defaults to 255.
 - **color_temperature_invert** (*Optional*, boolean): Control how color temperature values are
   sent to the MCU. If this is set to true ESPHome will treat 0 as warm white and
   **color_temperature_max_value** as cool white when setting **color_temperature_datapoint**.
@@ -79,7 +79,7 @@ Configuration variables:
 .. note::
 
     The MCU on the Tuya dimmer handles transitions and gamma correction on its own.
-    Therefore the ``gamma_correct`` setting default is ``1.0`` and the the
+    Therefore the ``gamma_correct`` setting default is ``1.0`` and the
     ``default_transition_length`` parameter is ``0s`` by default.
 
 See Also

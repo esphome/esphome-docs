@@ -1,12 +1,12 @@
 Mopeka Pro Check BLE Sensor
-===============================
+===========================
 
 .. seo::
     :description: Instructions for setting up Mopeka Pro Check bluetooth-based sensors in ESPHome.
     :image: mopeka_pro_check.jpg
     :keywords: Mopeka, Mopeka Pro Check, BLE, Bluetooth
 
-The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka 
+The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka
 Pro Check LP Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`.
 This component will track the tank level, distance, temperature, and battery
 percentage of a Mopeka Pro Check LP device every time the sensor sends
@@ -27,33 +27,33 @@ out a BLE broadcast.
     esp32_ble_tracker:
 
     sensor:
-    # Example using 20lb vertical propane tank.
-    - platform: mopeka_pro_check
-      mac_address: D3:75:F2:DC:16:91
-      tank_type: 20LB_V
-      temperature:
-          name: "Propane test temp"
-      level:
-          name: "Propane test level"
-      distance:
-          name: "Propane test distance"
-      battery_level:
-          name: "Propane test battery level"
+      # Example using 20lb vertical propane tank.
+      - platform: mopeka_pro_check
+        mac_address: D3:75:F2:DC:16:91
+        tank_type: 20LB_V
+        temperature:
+            name: "Propane test temp"
+        level:
+            name: "Propane test level"
+        distance:
+            name: "Propane test distance"
+        battery_level:
+            name: "Propane test battery level"
 
-    # Custom example - user defined empty / full points
-    - platform: mopeka_pro_check
-      mac_address: D3:75:F2:DC:16:91
-      tank_type: CUSTOM
-      custom_distance_full: 40cm
-      custom_distance_empty: 10mm
-      temperature:
-          name: "Propane c test temp"
-      level:
-          name: "Propane c test level"
-      distance:
-          name: "Propane c test distance"
-      battery_level:
-          name: "Propane c test battery level"
+      # Custom example - user defined empty / full points
+      - platform: mopeka_pro_check
+        mac_address: D3:75:F2:DC:16:91
+        tank_type: CUSTOM
+        custom_distance_full: 40cm
+        custom_distance_empty: 10mm
+        temperature:
+            name: "Propane c test temp"
+        level:
+            name: "Propane c test level"
+        distance:
+            name: "Propane c test distance"
+        battery_level:
+            name: "Propane c test battery level"
 
 
 Configuration variables:

@@ -50,7 +50,7 @@ Configuration variables:
 
 Automations:
 
-- **on_datapoint_update**: (*Optional*): An automation to perform when a Tuya datapoint update is received. See :ref:`tuya-on_datapoint_update`.
+- **on_datapoint_update** (*Optional*): An automation to perform when a Tuya datapoint update is received. See :ref:`tuya-on_datapoint_update`.
 
 Tuya Automation
 ---------------
@@ -107,8 +107,8 @@ The type of ``x`` variable is depending on ``datapoint_type`` configuration vari
 
 Configuration variables:
 
-- **sensor_datapoint** (*Required*, int): The datapoint id number of the sensor.
-- **datapoint_type** (*Required*, string): The datapoint type one of *raw*, *string*, *bool*, *int*, *uint*, *enum*, *bitmask* or *any*.
+- **sensor_datapoint** (**Required**, int): The datapoint id number of the sensor.
+- **datapoint_type** (**Required**, string): The datapoint type one of *raw*, *string*, *bool*, *int*, *uint*, *enum*, *bitmask* or *any*.
 - See :ref:`Automation <automation>`.
 
 
