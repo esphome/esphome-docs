@@ -155,7 +155,7 @@ The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or
         on_press:
          then:
             - switch.turn_on: MyLed
-        on_relase
+        on_release:
          then:
             - switch.turn_off: MyLed
 
