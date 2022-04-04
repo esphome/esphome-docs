@@ -67,7 +67,6 @@ all non-alphanumeric characters, making everything lowercase and replacing all s
 To confirm the ``<id>`` to use, you can set the :ref:`log level <logger-log_levels>`
 to ``VERY_VERBOSE`` and check the ``object_id:`` in the logs.
 
-
 By creating a simple GET request for a URL of the form ``/<domain>/<id>`` you will get a JSON payload
 describing the current state of the component. This payload is equivalent to the ones sent by the
 event source API.
@@ -76,6 +75,10 @@ To actually *control* the state of a component you need to send a POST request w
 ``turn_on``. For example, to turn on a light, you would send a POST request to
 ``/light/livingroom_lights/turn_on``. Some components also optionally accept URL parameters to control
 some other aspects of a component, for example the brightness of a light.
+
+You can obtain an overview of the current state of all components available on the device by sending a GET request to ``/states``. The result will be a JSON array with the elements being objects like shown below.
+
+**Note:** On devices with lots of components, this list can become rather long and potentially eat up all of the devices memory. It might even crash the device.
 
 Sensor
 ******
