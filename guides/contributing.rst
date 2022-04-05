@@ -347,6 +347,8 @@ guidelines below.
 All PRs are automatically checked for some basic formatting/code mistakes with Github Actions.
 These checks *must* pass for your PR to be mergeable.
 
+.. _setup_git_env:
+
 Setting Up Git Environment
 --------------------------
 
@@ -678,8 +680,80 @@ Standard for the esphome-core codebase:
         # Run lint only over changed files from powershell
         docker run --rm -v "$($current_dir):/esphome" -it esphome/esphome-lint script/quicklint
 
+Alternative Development Environments
+------------------------------------
+
+ESPHome with VS Code and Docker
+*******************************
+
+As an alternative to setting up a local build environment, the build can be done within a provided docker container and developed through VS Code with the Remote Container extension.
+
+First setup up `Docker Engine (Linux) or Docker Desktop (MacOS and Windows) <https://docs.docker.com/engine/install/>`__.
+
+Before continuing, verify that the Docker daemon is running with ``docker ps``. This should not show any warnings and (unless some other container has been started) an empty list.
+
+.. code-block:: bash
+
+    $ docker ps
+    CONTAINER ID   IMAGE                  COMMAND            CREATED          STATUS          PORTS                    NAMES
 
 
+Setup your :ref:`git environment <setup_git_env>` (fork & clone)
+
+Setup VS Code with the `Remote - Containers <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers>`__ extension.
+
+Open your cloned fork (e.g. ``esphome``) directory in VS Code:
+
+.. code-block:: bash
+
+    $ cd esphome
+    $ code .
+
+VS Code should recognize that the git contains a ``.devcontainer/devcontainer.json`` by showing a message:
+
+``Folder contains a Dev Container configuration file. Reopen folder to develop in a container (learn more).``
+
+| **Either** click ``Reopen in Container`` in the message,
+| **or** left-click in the green area in lower-left corner and select:
+|   ``Reopen in Container``
+| **or** press ``Ctrl+Shift+P`` (Linux&Windows) / ``Cmd+Shift+P`` (MacOS) and:
+|   ``Remote Containers: Reopen in Container``
+
+The devcontainer (a Docker container) startup script will install all dependencies and setup the enviroment (No need to bother with PlatformIO extensions in VS Code, esphome will handle the cross-compiling etc.).
+
+You can verify that the container is running with the ``docker ps`` command.
+
+.. code-block:: bash
+
+    $ docker ps
+    CONTAINER ID   IMAGE                      COMMAND                  CREATED       STATUS          PORTS                      NAMES
+    <container-id> esphome/esphome-lint:dev   "/bin/sh -c 'echo Co…"   11 days ago   Up 15 minutes   127.0.0.1:6052->6052/tcp   sharp_allen
+
+The default esphome-dashboard port (6052) is forwarded between localhost and the docker container but the esphome-dashboard is **not** started automatically.
+
+| You can open a terminal into the docker container from VSCode menu:
+|   ``Terminal`` → ``New Terminal``
+| and there start the ``esphome dashboard <path-to-config>``.
+
+The directory ``config`` (/workspaces/esphome/config) is gitignored so it is a good location for the configs.
+
+.. code-block:: bash
+
+    root@<container-id>:/workspaces/esphome#
+    root@<container-id>:/workspaces/esphome# esphome dashboard ./config
+    YYYY-MM-DD HH:mm:ss,SSS INFO Starting dashboard web server on http://0.0.0.0:6052 and configuration dir ./config...
+
+If you prefer, you can also open a terminal into the devcontainer from your command line with the docker-command.
+
+.. code-block:: bash
+
+    $ docker exec -it <container-id> /bin/bash
+    root@<container-id>:/esphome# pwd
+    /esphome
+    root@<container-id>:/esphome# cd /workspaces/esphome
+    root@<container-id>:/workspaces/esphome# esphome dashboard ./config
+
+Browse to ``http://localhost:6052`` to see the esphome-dashboard running.
 
 ESPHome via Gitpod
 ******************
