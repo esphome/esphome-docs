@@ -13,9 +13,15 @@ The ``pvvx_mithermometer`` display platform allows you to use devices running th
 
     Xiaomi LYWSD03MMC.
 
-The data to be displayed is transmitted via BLE. To do this, a ``ble_client`` component must be set up. This component can also synchronize the time of the pvvx device on each connect.
+The data to be displayed is transmitted as external data via BLE.
+To do this, a ``ble_client`` component must be set up.
+This component can also synchronize the time of the pvvx device by transmitting a timestamp on each connection.
 After the data has been transmitted, the BLE connection is terminated in order to be able to receive the advertising data required for the ``pvvx_mithermometer`` sensor platform.
-In order to show the time, you need to enable it in the pvvx firmware.
+
+The pvvx firmware refreshes the screen periodically (can be set as minimum LCD refresh rate in the firmware configuration).
+By default, the internal sensor data and, if available and valid (``validity_period``), the external data are switched every 2.5 s.
+Further firmware configuration makes it possible to activate other display modes such as time and battery status.
+The firmware configuration can be changed via browser using `TelinkMiFlasher.html <https://pvvx.github.io/ATC_MiThermometer/TelinkMiFlasher.html>`__.
 
 .. code-block:: yaml
 
