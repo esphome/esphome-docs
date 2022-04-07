@@ -1078,7 +1078,7 @@ WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.
 .. _UDP Realtime Control: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
 .. _WLED: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
 .. _Prismatik: https://github.com/psieg/Lightpack
-.. _LedFx: hhttps://github.com/LedFx/LedFx
+.. _LedFx: https://github.com/LedFx/LedFx
 
 See Also
 --------
