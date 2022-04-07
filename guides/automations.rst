@@ -600,8 +600,11 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
     on_...:
       - logger.log: "Waiting for binary sensor"
       - wait_until:
-          binary_sensor.is_on: some_binary_sensor
+          condition: 
+            binary_sensor.is_on: some_binary_sensor
+          timeout: 8s    
       - logger.log: "Binary sensor is ready"
+   
 
 Configuration variables:
 
