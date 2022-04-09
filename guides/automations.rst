@@ -350,8 +350,8 @@ All Actions
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
-- :ref:`homeassistant.event <homeassistant_event_action>`
-- :ref:`homeassistant.tag_scanned <homeassistant_tag_scanned_action>`
+- :ref:`homeassistant.event <api-homeassistant_event_action>`
+- :ref:`homeassistant.tag_scanned <api-homeassistant_tag_scanned_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>` / :ref:`switch.turn_off <switch-turn_off_action>` / :ref:`switch.turn_on <switch-turn_on_action>`
 - :ref:`light.toggle <light-toggle_action>` / :ref:`light.turn_off <light-turn_off_action>` / :ref:`light.turn_on <light-turn_on_action>`
