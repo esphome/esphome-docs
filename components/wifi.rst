@@ -24,7 +24,7 @@ dramatically improve connection times.
       manual_ip:
         static_ip: 10.0.0.42
         gateway: 10.0.0.1
-        subnet: 255.255.255.0
+        subnet: 255.0.0.0
 
 .. code-block:: yaml
 
