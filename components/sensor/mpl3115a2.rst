@@ -1,5 +1,5 @@
 MPL3115A2 Barometric Pressure/Altitude/Temperature Sensor
-==================================
+=========================================================
 
 .. seo::
     :description: Instructions for setting up MPL3115A2 atmospheric pressure sensors.
