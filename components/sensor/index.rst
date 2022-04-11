@@ -38,7 +38,8 @@ override them if you want to.
 
 Configuration variables:
 
-- **name** (**Required**, string): The name for the sensor.
+- **id** (*Optional*, string): Manually specify the ID for code generation. At least one of **id** and **name** must be specified.
+- **name** (*Optional*, string): The name for the sensor. At least one of **id** and **name** must be specified.
 - **unit_of_measurement** (*Optional*, string): Manually set the unit
   of measurement the sensor should advertise its values with. This does
   not actually do any maths (conversion between units).
@@ -196,7 +197,8 @@ the value the sensor shows.
 
 The arguments are a list of data points, each in the form ``MEASURED -> TRUTH``. ESPHome will
 then fit a linear equation to the values (using least squares). So you need to supply at least
-two values.
+two values. If more than two values are given a linear solution will be calculated and may not
+represent each value exactly.
 
 .. _sensor-calibrate_polynomial:
 
@@ -384,6 +386,8 @@ Configuration variables:
   published. With this parameter you can specify when the very first value is to be sent.
   Defaults to ``1``.
 
+.. _sensor-filter-exponential_moving_average:
+
 ``exponential_moving_average``
 ******************************
 
@@ -396,6 +400,9 @@ Configuration variables:
 
 - **alpha** (*Optional*, float): The forget factor/alpha value of the filter. Defaults to ``0.1``.
 - **send_every** (*Optional*, int): How often a sensor value should be pushed out. Defaults to ``15``.
+- **send_first_at** (*Optional*, int): By default, the very first raw value on boot is immediately
+  published. With this parameter you can specify when the very first value is to be sent.
+  Defaults to ``1``.
 
 ``throttle``
 ************
@@ -429,7 +436,10 @@ In comparison to the ``throttle`` filter it won't discard any values. In compari
 ``heartbeat``
 *************
 
-Send the last value that this sensor in the specified time interval.
+Send the value periodically with the specified time interval.
+If the sensor value changes during the interval the interval will not reset.
+The last value of the sensor will be sent.
+
 So a value of ``10s`` will cause the filter to output values every 10s regardless
 of the input values.
 

@@ -203,6 +203,45 @@ turns off 90 seconds after the last activation of the sensor.
             - lambda: |-
                 id(mydisplay).no_backlight();
 
+User Defined Characters
+-----------------------
+
+The LCD display has the possibility to define up to eight user defined characters occupying the characters
+``0`` to ``7`` and mirrored at ``8`` to ``15`` (i.e. ``\x08`` can be used instead of the ``\0`` that can
+be problematic in strings). Each character has eight lines of five bits, with the first line on the top
+and the most significant bit on the left, meaning that ``0b10000`` followed by six zeros and a ``0b00001``
+defines a dot at the upper left and lower right of the character.
+
+.. code-block:: yaml
+
+    display:
+      - platform: lcd_pcf8574
+        id: mydisplay
+        # ...
+        user_characters:
+          - position: 0
+            data:
+              - 0b00000
+              - 0b01010
+              - 0b00000
+              - 0b00100
+              - 0b00100
+              - 0b10001
+              - 0b01110
+              - 0b00000
+          - position: 7
+            data:
+              - 0b00000
+              - 0b01010
+              - 0b00000
+              - 0b00100
+              - 0b00100
+              - 0b00000
+              - 0b01110
+              - 0b10001
+        lambda: |-
+          it.print("Hello, world \x08 \x07!");
+
 See Also
 --------
 

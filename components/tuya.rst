@@ -16,21 +16,9 @@ Put the ``tuya`` component in the config and it will list the possible devices f
 
 .. code-block:: yaml
 
-    # Example configuration entry
-    # Make sure your wifi will connect
-    wifi:
-      ssid: "ssid"
-      password: "password"
-
     # Make sure logging is not using the serial port
     logger:
       baud_rate: 0
-
-    # Enable Home Assistant API
-    api:
-
-    # Make sure you can upload new firmware OTA
-    ota:
 
     uart:
       rx_pin: GPIO3
@@ -55,14 +43,14 @@ Here is an example output for a Tuya fan controller:
 Configuration variables:
 ------------------------
 
-- **time_id** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome. 
+- **time_id** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome.
   Specify the ID of the :ref:`Time Component <time>` which will be used.
 
 - **ignore_mcu_update_on_datapoints** (*Optional*, list): A list of datapoints to ignore MCU updates for.  Useful for certain broken/erratic hardware and debugging.
 
 Automations:
 
-- **on_datapoint_update**: (*Optional*): An automation to perform when a Tuya datapoint update is received. See :ref:`tuya-on_datapoint_update`.
+- **on_datapoint_update** (*Optional*): An automation to perform when a Tuya datapoint update is received. See :ref:`tuya-on_datapoint_update`.
 
 Tuya Automation
 ---------------
@@ -72,8 +60,8 @@ Tuya Automation
 ``on_datapoint_update``
 ***********************
 
-This automation will be triggered when a a Tuya datapoint update is received. 
-A variable ``x`` is passed to the automation for use in lambdas. 
+This automation will be triggered when a a Tuya datapoint update is received.
+A variable ``x`` is passed to the automation for use in lambdas.
 The type of ``x`` variable is depending on ``datapoint_type`` configuration variable:
 
 - *raw*: ``x`` is ``std::vector<uint8_t>``
@@ -106,7 +94,7 @@ The type of ``x`` variable is depending on ``datapoint_type`` configuration vari
           datapoint_type: bool
           then:
             - lambda: |-
-                ESP_LOGD("main", "on_datapoint_update %s", ONOFF(x)); 
+                ESP_LOGD("main", "on_datapoint_update %s", ONOFF(x));
         - sensor_datapoint: 6
           datapoint_type: any # this is optional
           then:
@@ -119,8 +107,8 @@ The type of ``x`` variable is depending on ``datapoint_type`` configuration vari
 
 Configuration variables:
 
-- **sensor_datapoint** (*Required*, int): The datapoint id number of the sensor.
-- **datapoint_type** (*Required*, string): The datapoint type one of *raw*, *string*, *bool*, *int*, *uint*, *enum*, *bitmask* or *any*.
+- **sensor_datapoint** (**Required**, int): The datapoint id number of the sensor.
+- **datapoint_type** (**Required**, string): The datapoint type one of *raw*, *string*, *bool*, *int*, *uint*, *enum*, *bitmask* or *any*.
 - See :ref:`Automation <automation>`.
 
 

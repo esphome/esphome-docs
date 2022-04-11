@@ -32,12 +32,13 @@ for some motors.
 
     esphome:
       name: cover
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: '***'
-      password: '***'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 

@@ -6,6 +6,9 @@ Sim800L Component
     :image: sim800l.jpg
     :keywords: SMS SIM800L GSM
 
+Component/Hub
+-------------
+
 The ``SIM800L`` Component provides the ability to dial, send and receive SMS text messages. The device must be
 connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line.
 The UART bus must be configured at the same speed of the module which is by default 9600bps.
@@ -40,16 +43,48 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
 
+    sensor:
+      - platform: sim800l
+        rssi:
+          name: "Sim800L RSSI"
+
+    binary_sensor:
+      - platform: sim800l
+        registered:
+          name: "Sim800L Registered"
+
     logger:
       baud_rate: 0 # disable uart logger on esp 8266
 
 Configuration variables:
-------------------------
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **on_sms_received** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when an SMS is received. See :ref:`sim800l-on_sms_received`.
+
+Sensor
+------
+
+Configuration variables:
+
+- **rssi** (*Optional*): The informed Received signal strength indication (RSSI) in dBm.
+
+  - **name** (**Required**, string): The name for the rssi sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+
+Binary Sensor
+-------------
+
+Configuration variables:
+
+- **registered** (*Optional*): Indicates if the SIM800L has successfully registered in the cellular network.
+
+  - **name** (**Required**, string): The name for the registered binary sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _sim800l-on_sms_received:
 
@@ -92,6 +127,20 @@ Send a SMS message to a phone recipient using this action in automations.
             message: !lambda |-
               return id(reed_switch).state ? "Door is now OPEN" : "Hey door just CLOSED";
 
+Configuration options:
+
+- **recipient** (**Required**, string, :ref:`templatable <config-templatable>`): The message recipient.
+  number.
+- **message** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(sim800l1).send_sms("+15551234567", "The message content");
 
 .. _sim800l-dial_action:
 
@@ -109,7 +158,7 @@ Dial to a phone recipient using this action in automations.
 
 Configuration options:
 
-- **recipient** (***Required**, string, :ref:`templatable <config-templatable>`): The number to dial.
+- **recipient** (**Required**, string, :ref:`templatable <config-templatable>`): The number to dial.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
 
 .. note::

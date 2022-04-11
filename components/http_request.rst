@@ -22,6 +22,8 @@ Configuration variables:
 - **useragent** (*Optional*, string): User-Agent header for requests. Defaults to ``ESPHome``.
 - **timeout** (*Optional*, :ref:`config-time`): Timeout for request. Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **follow_redirects** (*Optional*, boolean): Enable following HTTP redirects. Defaults to ``true``.
+- **redirect_limit** (*Optional*, integer): Maximum amount of redirects to follow when enabled. Defaults to ``3``.
 
 ESP8266 Options:
 
@@ -172,8 +174,8 @@ Templatable values
             return id(my_sensor).state;
 
 
-Body in JSON format (syntax 1)
-******************************
+POST Body in JSON format (syntax 1)
+***********************************
 
 **Note:** all values of the map should be a strings.
 It's impossible to send ``boolean`` or ``numbers`` with this syntax.
@@ -192,8 +194,8 @@ It's impossible to send ``boolean`` or ``numbers`` with this syntax.
         # Will send:
         # {"key": "42.0", "greeting": "Hello World"}
 
-Body in JSON format (syntax 2)
-******************************
+POST Body in JSON format (syntax 2)
+***********************************
 
 **Note:** use this syntax to send ``boolean`` or ``numbers`` in JSON.
 
@@ -214,6 +216,29 @@ as seen below.
 
         # Will send:
         # {"key": 42.0, "greeting": "Hello World"}
+
+GET values from a JSON body response
+************************************
+
+Assuming that the server returns a response in a JSON object over HTTP similar to this:
+``{"status":"play","vol":"42","mute":"0"}``
+
+If you want to retrieve the value for the ``vol`` key and assign it to a template ``sensor`` or ``number`` component (with ``id`` set to ``player_volume``):
+
+.. code-block:: yaml
+
+    on_...:
+    - http_request.get:
+        url: https://esphome.io
+        on_response:
+          then:
+            - lambda: |-
+                json::parse_json(id(http_request_data).get_string(), [](JsonObject root) {
+                    id(player_volume).publish_state(root["vol"]);
+                });
+
+**Note:** don't forget to set the ``id`` for the main ``http_request`` component, to ``http_request_data``.
+
 
 See Also
 --------
