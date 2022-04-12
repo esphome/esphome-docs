@@ -83,9 +83,9 @@ Configuration variables:
 
     .. code-block:: yaml
 
-          firmware:
-            version: "51.6" #<-- set version here
-            update: true
+        firmware:
+          version: "51.6" #<-- set version here
+          update: true
 
 
 - All other options from :ref:`Light <config-light>`.
