@@ -40,7 +40,7 @@ Before using this components make sure:
 
 - board is configured to ``esp8285``
 - :ref:`UART bus <uart>` is configured with default RX / TX pins and 9600 baud rate
-- :doc:`logger </components/logger>` to the serial port is disabled by setting ``baud_rate0`` to ``0``
+- :doc:`logger </components/logger>` to the serial port is disabled by setting ``baud_rate`` to ``0``
 - in case you need light state restoration on power up, make sure ``restore_from_flash`` is set to ``true`` in the :doc:`ESP8266 platform </components/esp8266>`
 
 
