@@ -82,6 +82,7 @@ Configuration variables:
     When flashing Shelly Dimmer with esphome for the first time, flashing the STM firmware is necessary too for the dimmer to work:
 
     .. code-block:: yaml
+
           firmware:
             version: "51.6" #<-- set version here
             update: true
