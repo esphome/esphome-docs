@@ -311,18 +311,6 @@ Sample code
 
 .. code-block:: yaml
 
-    esphome:
-      name: test_node
-      platform: ESP8266
-      board: nodemcu
-
-    wifi:
-      ssid: !secret wifi_ssid
-      password: !secret wifi_pass
-
-    logger:
-      level: VERBOSE
-
     uart:
       tx_pin: GPIO2
       rx_pin: GPIO5

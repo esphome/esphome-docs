@@ -22,7 +22,13 @@ in which case this is not needed.
     mqtt:
       broker: 10.0.0.2
       username: livingroom
-      password: MyMQTTPassword
+      password: !secret mqtt_password
+
+
+.. note::
+
+    Support for esp-idf is still experminental. Please report issues you have with mqtt using the esp-idf framework.
+
 
 Configuration variables:
 ------------------------
@@ -47,6 +53,9 @@ Configuration variables:
   to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
   generates unique_id in format ``ESP<component_type><default_object_id>``.
   ``mac`` generator uses format ``<mac_address>-<component_type>-<fnv1_hash(friendly_name)>``.
+- **discovery_object_id_generator** (*Optional*, string): The object_id generator
+  to use. Can be one of ``none`` or ``device_name``. Defaults to ``none`` which
+  does not generate object_id. ``device_name`` generator uses format ``<device_name>_<friendly_name>``.
 - **use_abbreviations** (*Optional*, boolean): Whether to use
   `Abbreviations <https://www.home-assistant.io/docs/mqtt/discovery/>`__
   in discovery messages. Defaults to ``true``.
@@ -55,6 +64,12 @@ Configuration variables:
   ``<APP_NAME>``.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
   messages to.
+
+  The ``log_topic`` has an additional configuration option:
+
+  - **level** (*Optional*, string): The log level to use for MQTT logs. See
+    :ref:`logger-log_levels` for options.
+
 - **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
 - **will_message** (*Optional*, :ref:`mqtt-message`): The message to send when
@@ -62,8 +77,13 @@ Configuration variables:
 - **shutdown_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   the node shuts down and the connection is closed cleanly. See :ref:`mqtt-last_will_birth` for more information.
 - **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
-  for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
+  for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`.
   for more information.
+- **certificate_authority** *(Optional*, string): Only with `esp-idf`. CA certificate in PEM format. See :ref:`mqtt-tls-idf` for more information
+- **skip_cert_cn_check** (*Optional*, bool): Only with `esp-idf`. Don't verify if the common name in the server certificate matches the value of ``broker``.
+- **idf_send_async** (*Optional*, bool): Only with `esp-idf`. Default is false. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. 
+  The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
+  Set this to true if ypi send large amounts of of data over mqtt. 
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
@@ -110,12 +130,6 @@ Configuration options:
 -  **retain** (*Optional*, boolean): If the published message should
    have a retain flag on or not. Defaults to ``true``.
 
-
-The ``log_topic`` has an additional configuration option:
-
-- **level** (*Optional*, string): The log level to use for MQTT logs. See
-  :ref:`logger-log_levels` for options.
-
 .. _mqtt-using_with_home_assistant:
 
 Using with Home Assistant
@@ -159,6 +173,17 @@ With Docker:
 This will remove all retained messages with the topic
 ``<DISCOVERY_PREFIX>/+/NODE_NAME/#``. If you want to purge on another
 topic, simply add ``--topic <your_topic>`` to the command.
+
+Home Assistant generates entity names for all discovered devices based on entity type and
+entity name (e.g. ``sensor.uptime``). Numeric suffixes are appended to entity names when
+multiple devices use the same name for a sensor, making it harder to distinguish between
+similar sensors on different devices. Home Assistant 2021.12 allows MQTT devices to change
+this behaviour by specifying ``object_id`` discovery attribute which replaces the sensor
+name part of the generated entity name. Setting ``discovery_object_id_generator: device_name``
+in ESPHome MQTT integration configuration will cause Home Assistant to include device name
+in the generated entity names (e.g. ``sensor.uptime`` becomes ``sensor.<device name>_uptime``),
+making it easier to distinguish the entities in various entity lists.
+
 
 .. _mqtt-defaults:
 
@@ -248,6 +273,56 @@ then run the ``mqtt-fingerprint`` script of ESPHome to get the certificate:
 
 .. _config-mqtt-component:
 
+
+.. _mqtt-tls-idf:
+
+TLS with esp-idf (esp32)
+------------------------
+
+If used with the esp-idf framework a TLS connection to a mqtt broker can be established. 
+The servers CA certificate is required to validate the connection. 
+
+You have to download the server CA certficiate in PEM format and add it to ``certificate_authority``.
+Usually these are .crt files and you can open them with any text editor. 
+Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 8883 for TLS connections.
+
+.. code-block:: yaml
+
+    mqtt:
+      broker: test.mymqtt.local
+      port: 8883
+      discovery: true
+      discovery_prefix: ${mqtt_prefix}/homeassistant
+      log_topic: ${mqtt_prefix}/logs 
+      skip_cert_cn_check: true
+      idf_send_async: false
+      certificate_authority: |
+        -----BEGIN CERTIFICATE-----
+        MIIEAzCCAuugAwIBAgIUBY1hlCGvdj4NhBXkZ/uLUZNILAwwDQYJKoZIhvcNAQEL
+        BQAwgZAxCzAJBgNVBAYTAkdCMRcwFQYDVQQIDA5Vbml0ZWQgS2luZ2RvbTEOMAwG
+        A1UEBwwFRGVyYnkxEjAQBgNVBAoMCU1vc3F1aXR0bzELMAkGA1UECwwCQ0ExFjAU
+        BgNVBAMMDW1vc3F1aXR0by5vcmcxHzAdBgkqhkiG9w0BCQEWEHJvZ2VyQGF0Y2hv
+        by5vcmcwHhcNMjAwNjA5MTEwNjM5WhcNMzAwNjA3MTEwNjM5WjCBkDELMAkGA1UE
+        BhMCR0IxFzAVBgNVBAgMDlVuaXRlZCBLaW5nZG9tMQ4wDAYDVQQHDAVEZXJieTES
+        MBAGA1UECgwJTW9zcXVpdHRvMQswCQYDVQQLDAJDQTEWMBQGA1UEAwwNbW9zcXVp
+        dHRvLm9yZzEfMB0GCSqGSIb3DQEJARYQcm9nZXJAYXRjaG9vLm9yZzCCASIwDQYJ
+        KoZIhvcNAQEBBQADggEPADCCAQoCggEBAME0HKmIzfTOwkKLT3THHe+ObdizamPg
+        UZmD64Tf3zJdNeYGYn4CEXbyP6fy3tWc8S2boW6dzrH8SdFf9uo320GJA9B7U1FW
+        Te3xda/Lm3JFfaHjkWw7jBwcauQZjpGINHapHRlpiCZsquAthOgxW9SgDgYlGzEA
+        s06pkEFiMw+qDfLo/sxFKB6vQlFekMeCymjLCbNwPJyqyhFmPWwio/PDMruBTzPH
+        3cioBnrJWKXc3OjXdLGFJOfj7pP0j/dr2LH72eSvv3PQQFl90CZPFhrCUcRHSSxo
+        E6yjGOdnz7f6PveLIB574kQORwt8ePn0yidrTC1ictikED3nHYhMUOUCAwEAAaNT
+        MFEwHQYDVR0OBBYEFPVV6xBUFPiGKDyo5V3+Hbh4N9YSMB8GA1UdIwQYMBaAFPVV
+        6xBUFPiGKDyo5V3+Hbh4N9YSMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
+        BQADggEBAGa9kS21N70ThM6/Hj9D7mbVxKLBjVWe2TPsGfbl3rEDfZ+OKRZ2j6AC
+        6r7jb4TZO3dzF2p6dgbrlU71Y/4K0TdzIjRj3cQ3KSm41JvUQ0hZ/c04iGDg/xWf
+        +pp58nfPAYwuerruPNWmlStWAXf0UTqRtg4hQDWBuUFDJTuWuuBvEXudz74eh/wK
+        sMwfu1HFvjy5Z0iMDU8PUDepjVolOCue9ashlS4EB5IECdSR2TItnAIiIwimx839
+        LdUdRudafMu5T5Xma182OC0/u/xRlEm+tvKGGmfFcN0piqVl8OrSPBgIlb+1IKJE
+        m/XriWr/Cq4h/JfB7NTsezVslgkBaoU=
+        -----END CERTIFICATE-----
+
+
 MQTT Component Base Configuration
 ---------------------------------
 
@@ -266,6 +341,7 @@ MQTT can have some overrides for specific options.
       payload_not_available: offline
     state_topic: livingroom/custom_state_topic
     command_topic: livingroom/custom_command_topic
+    command_retain: false
 
 Configuration variables:
 
@@ -284,6 +360,8 @@ Configuration variables:
 -  **command_topic** (*Optional*, string): The topic to subscribe to for
    commands from the remote. Defaults to
    ``<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command``.
+-  **command_retain** (*Optional*, boolean): Whether MQTT command messages
+   sent to the device should be retained or not. Default to ``false``.
 
 .. warning::
 
@@ -347,7 +425,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe("the/topic", [=](const std::string &payload) {
+        id(mqtt_client).subscribe("the/topic", [=](const std::string &topic, const std::string &payload) {
             // do something with payload
         });
 
@@ -416,7 +494,7 @@ Configuration variables:
 
     .. code-block:: cpp
 
-        id(mqtt_client).subscribe_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).subscribe_json("the/topic", [=](const std::string &topic, JsonObject root) {
             // do something with JSON-decoded value root
         });
 
@@ -518,7 +596,7 @@ Configuration options:
 
     .. code-block:: cpp
 
-        id(mqtt_client).publish_json("the/topic", [=](JsonObject &root) {
+        id(mqtt_client).publish_json("the/topic", [=](JsonObject root) {
           root["something"] = id(my_sensor).state;
         });
 

@@ -25,7 +25,7 @@ transmitted data.
 
 The CAN bus itself has only two wires named Can High and Can Low or CanH and CanL. For the ESPHome
 CAN bus to work you need to select the device that has the physical CAN bus implemented.
-At this moment only the MCP2515 controller is supported. You can configure multiple buses.
+You can configure multiple buses.
 
 Any can bus node can transmit data at any time, and any node can send any ``can_id`` value and any
 node can receive any can_id too. Is up to you how to organize the can_id values. You can setup a can
@@ -52,7 +52,10 @@ Each canbus platform extends this configuration schema.
               std::string b(x.begin(), x.end());
               ESP_LOGD("can id 500", "%s", &b[0] );
 
+.. _config-canbus:
+
 Configuration variables:
+************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **can_id** (**Required**, int): default *can id* used for transmitting frames.
@@ -60,35 +63,37 @@ Configuration variables:
   *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
 
-    - 5KBPS
-    - 10KBPS
-    - 20KBPS
-    - 31K25BPS
-    - 33KBPS
-    - 40KBPS
-    - 50KBPS
-    - 80KBPS
-    - 83K3BPS
-    - 95KBPS
-    - 100KBPS
-    - 125KBPS
-    - 200KBPS
-    - 250KBPS
-    - 500KBPS
-    - 1000KBPS
+    - ``5KBPS`` - Not supported by ``esp32_can``
+    - ``10KBPS`` - Not supported by ``esp32_can``
+    - ``20KBPS`` - Not supported by ``esp32_can``
+    - ``31K25BPS`` - Not supported by ``esp32_can``
+    - ``33KBPS`` - Not supported by ``esp32_can``
+    - ``40KBPS`` - Not supported by ``esp32_can``
+    - ``50KBPS``
+    - ``80KBPS`` - Not supported by ``esp32_can``
+    - ``83K3BPS`` - Not supported by ``esp32_can``
+    - ``95KBPS`` - Not supported by ``esp32_can``
+    - ``100KBPS``
+    - ``125KBPS`` - (Default)
+    - ``200KBPS`` - Not supported by ``esp32_can``
+    - ``250KBPS``
+    - ``500KBPS``
+    - ``1000KBPS``
 
 Automations:
+------------
 
-- **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
-  CAN Frame is received. See :ref:`canbus-on-frame`.
+- **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  CAN frame is received. See :ref:`canbus-on-frame`.
 
 .. _canbus-on-frame:
 
 ``on_frame``
 ************
 
-This automation will be triggered when a can frame is  received. A variable ``x`` of type
-``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
+This automation will be triggered when a CAN frame is received. A variable ``x`` of type
+``std::vector<uint8_t>`` containing the frame data and a variable ``can_id`` of type ``uint32_t``
+containing the actual received CAN id are passed to the automation for use in lambdas.
 
 .. note::
 
@@ -106,6 +111,34 @@ This automation will be triggered when a can frame is  received. A variable ``x`
                   lambda: 'return (x.size() > 0) ? x[0] == 0x11 : false;'
                 then:
                   light.toggle: light1
+        - can_id:      0b00000000000000000000001000000
+          can_id_mask: 0b11111000000000011111111000000
+          use_extended_id: true
+          then:
+            - lambda: |-
+                auto pdo_id = can_id >> 14;
+                switch (pdo_id)
+                {
+                  case 117:
+                    ESP_LOGD("canbus", "exhaust_fan_duty");
+                    break;
+                  case 118:
+                    ESP_LOGD("canbus", "supply_fan_duty");
+                    break;
+                  case 119:
+                    ESP_LOGD("canbus", "supply_fan_flow");
+                    break;
+                  // to be continued...
+                }
+
+
+Configuration variables:
+************************
+
+- **can_id** (**Required**, int): The received CAN id to trigger this automation on.
+- **can_id_mask** (*Optional*, int): The bit mask to apply to the received CAN id before trying to match it
+  with *can_id*, defaults to ``0x1fffffff`` (all bits of received CAN id are compared with *can_id*).
+- **use_extended_id** (*Optional*, boolean): Identifies the type of *can_id* to match on, defaults to *false*.
 
 ``canbus.send`` Action
 **********************
@@ -140,6 +173,52 @@ Configuration variables:
   the can bus device.
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
+- **remote_transmission_request** (*Optional*, boolean): Set to send CAN bus frame to request data from another node
+  (defaults to *false*). If a certain data length code needs to be sent, provide as many (dummy) bytes in *data*.
+
+ESP32 CAN Component
+-------------------
+
+The ESP32 has an integrated CAN controller and therefore doesn't need an external controller necessarily.
+You only need to specify the RX and TX pins. Any GPIO will work.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    canbus:
+      - platform: esp32_can
+        tx_pin: GPIO5
+        rx_pin: GPIO4
+        can_id: 4
+        bit_rate: 50kbps
+        on_frame:
+          ...
+
+Wiring options
+**************
+
+5V CAN transceivers are cheap and generate compliant levels. If you power your
+board with 5V this is the preferred option. R501 is important to reduce the 5V
+logic level down to 3.3V, to avoid damaging the ESP32. You can alternatively
+use a voltage divider here instead.
+
+.. figure:: images/canbus_esp32_5v.png
+    :align: center
+    :target: ../_images/canbus_esp32_5v.png
+
+If you prefer to only have a 3.3V power supply, special 3.3V CAN transceivers are available.
+
+.. figure:: images/canbus_esp32_3v3.png
+    :align: center
+    :target: ../_images/canbus_esp32_3v3.png
+
+
+Configuration variables:
+************************
+
+- **rx_pin** (**Required**, :ref:`Pin <config-pin>`): Receive pin.
+- **tx_pin** (**Required**, :ref:`Pin <config-pin>`): Transmit pin.
+- All other options from :ref:`Canbus <config-canbus>`.
 
 MCP2515 Component
 -----------------
@@ -148,20 +227,6 @@ The MCP2515 is a spi device and therefore you must first add the configuration f
 You need to have an :ref:`SPI bus <spi>` in your configuration with both the **mosi_pin** and **miso_pin** set.
 
 For wiring up the MSP2515 please refer to the section below.
-
-Configuration variables:
-************************
-
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
-  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
-  Sometimes also called ``SS``.
-- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
-  Defaults to ``8MHZ``.
-- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
-
-  - NORMAL: Normal operation
-  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
-  - LISTENONLY: only receive data
 
 .. code-block:: yaml
 
@@ -184,8 +249,25 @@ Configuration variables:
                 id: light_1
                 brightness: !lambda "return (x.size() > 0) ? (float) x[0]/255 : 0;"
 
+Configuration variables:
+************************
+
+- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Is used to tell the receiving SPI device
+  when it should listen for data on the SPI bus. Each device has an individual ``CS`` line.
+  Sometimes also called ``SS``.
+- **clock** (*Optional*): One of ``8MHZ``, ``16MHZ`` or ``20MHZ``. Clock crystal used on the MCP2515 device.
+  Defaults to ``8MHZ``.
+- **mode** (*Optional*): Operation mode. Default to ``NORMAL``
+
+  - ``NORMAL``: Normal operation
+  - ``LOOPBACK``: Loopback mode can be used to just test you spi connections to the device
+  - ``LISTENONLY``: only receive data
+
+- All other options from :ref:`Canbus <config-canbus>`.
+
 Wiring options
----------------
+**************
+
 Easiest approach is to just use fully assembled boards and just add one resistor in the MISO line.
 This runs MOSI, SCK and CS out of specification which is nearly never a problem.
 

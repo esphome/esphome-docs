@@ -127,12 +127,13 @@ variable ``output_component1``.
 
     esphome:
       name: mirabella_genio_cw_1
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -154,7 +155,7 @@ variable ``output_component1``.
         id: output_component1
         # May need to use GPIO14 instead for certain globes
         pin: GPIO13
-        
+
 
 3.2 Cold + Warm White Bulbs
 ***************************
@@ -163,12 +164,13 @@ variable ``output_component1``.
 
     esphome:
       name: mirabella_genio_cwww_1
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -203,12 +205,13 @@ variable ``output_component1``.
 
     esphome:
       name: rgbw_e27_01
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -253,12 +256,13 @@ A `project by ssieb <https://github.com/ssieb/custom_components/tree/master/cwww
 
     esphome:
       name: rgbw_e27_01
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: 'WIFI'
-      password: 'WIFIPASS'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     logger:
 
@@ -285,8 +289,8 @@ A `project by ssieb <https://github.com/ssieb/custom_components/tree/master/cwww
 
         # Ensure the light turns on by default if the physical switch is actuated.
         restore_mode: ALWAYS_ON
-        
-        
+
+
 4. Adding to Home Assistant
 ---------------------------
 

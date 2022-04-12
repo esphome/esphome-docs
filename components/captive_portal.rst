@@ -31,7 +31,7 @@ manually in your browser.
       # ...
       ap:
         ssid: "Livingroom Fallback Hotspot"
-        password: "W1PBGyrokfLz"
+        password: !secret wifi_ap_password
 
     captive_portal:
 
