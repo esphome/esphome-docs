@@ -37,6 +37,9 @@ An example of a configuration of this component:
           current:
             name: Shelly Dimmer 2 Light Current
           max_brightness: 500
+          firmware:
+            version: "51.6"
+            update: true
 
 
 Configuration variables:
@@ -68,7 +71,22 @@ Configuration variables:
   :ref:`Sensor <config-sensor>`.
 - **voltage** (**Optional**): Sensor of the voltage in Volts. Only accurate if neutral is connected. All options from :ref:`Sensor <config-sensor>`.
 - **power** (**Optional**): Sensor of the active power in Watts. Only accurate if neutral is connected. All options from :ref:`Sensor <config-sensor>`.
-- **firmware**  (**Optional**, string) Version string of the `firmware <https://github.com/jamesturton/shelly-dimmer-stm32>`_ that will be flashed on the microcontroller. The default is "51.5".
+- **firmware**  (**Optional**):
+    - **version**  (**Optional**): Version string of the `firmware <https://github.com/jamesturton/shelly-dimmer-stm32>`_ that will be expected on the microcontroller. The default is "51.6", another known-good firmware is "51.5".
+    - **url** (**Optional**): An URL to download the firmware from. Defaults to github for known firmware versions.
+    - **sha256** (**Optional**):  A hash to compare the downloaded firmware against. Defaults a proper hash of known firmware versions.
+    - **update** (**Optional**):  Should the firmware of the STM be updated if necessary? The default is false.
+
+.. note::
+
+    When flashing Shelly Dimmer with esphome for the first time, flashing the STM firmware is necessary too for the dimmer to work:
+
+    .. code-block:: yaml
+          firmware:
+            version: "51.6" #<-- set version here
+            update: true
+
+
 - All other options from :ref:`Light <config-light>`.
 
 
