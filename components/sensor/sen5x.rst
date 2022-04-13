@@ -154,11 +154,20 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x69``.
 
+.. note::
+
+    The sensor needs about a minute "warm-up". The VOC and NOx gas index algorithm needs a number of samples before the values stabilize.
+
 
 Wiring:
 -------
 
-The sensor has a JST GHR-06V-S 6 pin type connector, with a 1.5mm pitch.
+The sensor has a JST GHR-06V-S 6 pin type connector, with a 1.5mm pitch. The cable needs this connector:
+
+.. figure:: images/jst6pin.png
+    :align: center
+    :width: 50.0%
+
 To force the sensor into I²C mode, the SEL pin (Interface Select pin no.5) must be shorted to ground (pin no.2). Pin 6 is not used.
 
 For better stability, the SDA and SCL lines require suitable pull-up resistors.
@@ -181,8 +190,8 @@ The default automatic-cleaning interval is 168 hours (1 week) of uninterrupted u
 
 .. _start_autoclean_fan_action:
 
-``sen5x.start_autoclean_fan`` Action
----------------------
+``sen5x.start_fan_autoclean`` Action
+------------------------------------
 
 This :ref:`action <config-action>` manually starts fan-cleaning.
 
@@ -190,7 +199,7 @@ This :ref:`action <config-action>` manually starts fan-cleaning.
 
     on_...:
       then:
-        - sen5x.start_autoclean_fan: sen54
+        - sen5x.start_fan_autoclean: sen54
 
 
 
