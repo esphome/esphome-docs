@@ -5,9 +5,14 @@ Button Component
     :description: Instructions for setting up button components in ESPHome.
     :image: folder-open.svg
 
-ESPHome has support for components to create a button entity. A button entity is
-basically a momentary switch with no state and can be triggered by either YAML or
-the user/frontend.
+.. note::
+
+  To attach a physical buttons to ESPHome, see
+  :doc:`GPIO Binary Sensor </components/binary_sensor/gpio>`.
+
+ESPHome has support for components to create button entities in Home Assistant. A button entity is
+represented in ESPHome as a momentary switch with no state and can be triggered in Home Assistant
+via the UI or automations.
 
 .. note::
 
@@ -96,8 +101,8 @@ Configuration variables:
 
 .. note::
 
-    Buttons are designed to trigger an action on a device from Home Assistant, and have an unidirectional flow from 
-    Home Assistant to ESPHome. If you press a button using this action, no button press event will be triggered in Home 
+    Buttons are designed to trigger an action on a device from Home Assistant, and have an unidirectional flow from
+    Home Assistant to ESPHome. If you press a button using this action, no button press event will be triggered in Home
     Assistant. If you want to trigger an automation in Home Assistant, you should use a
     :ref:`Home Assistant event <api-homeassistant_event_action>` instead.
 
