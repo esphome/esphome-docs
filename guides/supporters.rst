@@ -55,10 +55,12 @@ Contributors
 - `alva (@alva-seal) <https://github.com/alva-seal>`__
 - `Amish Vishwakarma (@amishv) <https://github.com/amishv>`__
 - `Jason Nader (@ammgws) <https://github.com/ammgws>`__
+- `Branden Cash (@ammmze) <https://github.com/ammmze>`__
 - `anatoly-savchenkov (@anatoly-savchenkov) <https://github.com/anatoly-savchenkov>`__
 - `andig (@andig) <https://github.com/andig>`__
 - `András Bíró (@andrasbiro) <https://github.com/andrasbiro>`__
 - `Andreas Hergert (@andreashergert1984) <https://github.com/andreashergert1984>`__
+- `Andrew J.Swan (@andrewjswan) <https://github.com/andrewjswan>`__
 - `andrewpc (@andrewpc) <https://github.com/andrewpc>`__
 - `Andrzej (@andriej) <https://github.com/andriej>`__
 - `Andreas (@anduchs) <https://github.com/anduchs>`__
@@ -115,6 +117,7 @@ Contributors
 - `buddydvd (@buddydvd) <https://github.com/buddydvd>`__
 - `buxtronix (@buxtronix) <https://github.com/buxtronix>`__
 - `bvansambeek (@bvansambeek) <https://github.com/bvansambeek>`__
+- `calco88 (@calco88) <https://github.com/calco88>`__
 - `Carlos Gustavo Sarmiento (@carlos-sarmiento) <https://github.com/carlos-sarmiento>`__
 - `Carlos Garcia Saura (@CarlosGS) <https://github.com/CarlosGS>`__
 - `Carlos Ruiz (@CarlosRDomin) <https://github.com/CarlosRDomin>`__
@@ -190,6 +193,7 @@ Contributors
 - `Mark  (@Diramu) <https://github.com/Diramu>`__
 - `Dirk Heinke (@DirkHeinke) <https://github.com/DirkHeinke>`__
 - `Dirk Jahnke (@dirkj) <https://github.com/dirkj>`__
+- `djwlindenaar (@djwlindenaar) <https://github.com/djwlindenaar>`__
 - `Marcos Pérez Ferro (@djwmarcx) <https://github.com/djwmarcx>`__
 - `Dan Mannock (@dmannock) <https://github.com/dmannock>`__
 - `Dmitriy Lopatko (@dmitriy5181) <https://github.com/dmitriy5181>`__
@@ -210,6 +214,7 @@ Contributors
 - `Sergey V. DUDANOV (@dudanov) <https://github.com/dudanov>`__
 - `Duncan Findlay (@duncf) <https://github.com/duncf>`__
 - `dyarkovoy (@dyarkovoy) <https://github.com/dyarkovoy>`__
+- `Janez Troha (@dz0ny) <https://github.com/dz0ny>`__
 - `Dimitris Zervas (@dzervas) <https://github.com/dzervas>`__
 - `Dan Jackson (@e28eta) <https://github.com/e28eta>`__
 - `Ermanno Baschiera (@ebaschiera) <https://github.com/ebaschiera>`__
@@ -272,6 +277,7 @@ Contributors
 - `Gabe Cook (@gabe565) <https://github.com/gabe565>`__
 - `Gareth Cooper (@gaco79) <https://github.com/gaco79>`__
 - `GeekVisit (@GeekVisit) <https://github.com/GeekVisit>`__
+- `Ian Reinhart Geiser (@geiseri) <https://github.com/geiseri>`__
 - `R Huish (@genestealer) <https://github.com/genestealer>`__
 - `Geoff Davis (@geoffdavis) <https://github.com/geoffdavis>`__
 - `Geoffrey Van Landeghem (@geoffrey-vl) <https://github.com/geoffrey-vl>`__
@@ -325,6 +331,7 @@ Contributors
 - `igg (@igg) <https://github.com/igg>`__
 - `Petko Bordjukov (@ignisf) <https://github.com/ignisf>`__
 - `ikatkov (@ikatkov) <https://github.com/ikatkov>`__
+- `Tim Smeets (@ikilledmypc) <https://github.com/ikilledmypc>`__
 - `imgbot[bot] (@imgbot[bot]) <https://github.com/imgbot[bot]>`__
 - `ImSorryButWho (@ImSorryButWho) <https://github.com/ImSorryButWho>`__
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__
@@ -613,6 +620,7 @@ Contributors
 - `Richard Miles (@r89m) <https://github.com/r89m>`__
 - `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__
 - `Aaron Zhang (@rabbit-aaron) <https://github.com/rabbit-aaron>`__
+- `RadekHvizdos (@RadekHvizdos) <https://github.com/RadekHvizdos>`__
 - `Radim Karniš (@radimkarnis) <https://github.com/radimkarnis>`__
 - `Florian Ragwitz (@rafl) <https://github.com/rafl>`__
 - `Rai-Rai (@Rai-Rai) <https://github.com/Rai-Rai>`__
@@ -648,6 +656,7 @@ Contributors
 - `Robbie Page (@rorpage) <https://github.com/rorpage>`__
 - `rotarykite (@rotarykite) <https://github.com/rotarykite>`__
 - `rradar (@rradar) <https://github.com/rradar>`__
+- `rrooggiieerr (@rrooggiieerr) <https://github.com/rrooggiieerr>`__
 - `rspaargaren (@rspaargaren) <https://github.com/rspaargaren>`__
 - `rsumner (@rsumner) <https://github.com/rsumner>`__
 - `Rubén G. (@rubengargar) <https://github.com/rubengargar>`__
@@ -808,4 +817,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated March 30, 2022.*
+*This page was last updated April 13, 2022.*
