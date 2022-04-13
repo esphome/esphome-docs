@@ -491,7 +491,7 @@ RTCGQ02LM - Mi Motion Sensor 2
 Motion & ambient light sensor. Broadcasts motion detection, light/dark and battery status. Also has a button that broadcasts when pressed.
 Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
 
-.. figure:: /images/xiaomi_rtcgq02lm.jpg
+.. figure:: xiaomi_rtcgq02lm.jpg
     :align: center
     :width: 30.0%
 
