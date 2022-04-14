@@ -15,7 +15,7 @@ ESPHome 2022.4.0 - 20th April 2022
     Mi Motion Sensor 2, components/sensor/xiaomi_ble, xiaomi_rtcgq02lm.jpg
     Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
     MCP3208, components/sensor/mcp3204, mcp3204.jpg
-
+    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
 
 
 Home Assistant Addon Repo
@@ -56,6 +56,11 @@ Please upgrade your local python if you are unable to update ESPHome further.
 This is taken care of automatically if you are using the Home Assistant Add-on, or the
 ESPHome docker container.
 
+Shelly Dimmer 2
+---------------
+
+Support for the STM32 chip of the Shelly Dimmer has been added in this release. The component also supports flashing custom firmware to the
+stm32 via ESPHome which is required to use the component. See the :doc:`documentation </components/light/shelly_dimmer>` for more details.
 
 Google Fonts
 ------------
