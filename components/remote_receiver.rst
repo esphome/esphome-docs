@@ -34,12 +34,14 @@ Configuration variables:
   - **dish**: Decode and dump Dish infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
   - **lg**: Decode and dump LG infrared codes.
+  - **magiquest**: Decode and dump MagiQuest wand infrared codes.
   - **midea**: Decode and dump Midea infrared codes.
   - **nec**: Decode and dump NEC infrared codes.
   - **nexa**: Decode and dump Nexa (RF) codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
   - **pioneer**: Decode and dump Pioneer infrared codes.
-  - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
+  - **pronto**: Print remote code in Pronto form. Useful for using arbitrary protocols.
+  - **raw**: Print all remote codes in their raw form. Also useful for using arbitrary protocols.
   - **rc5**: Decode and dump RC5 IR codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **samsung**: Decode and dump Samsung infrared codes.
@@ -75,6 +77,9 @@ Automations:
 - **on_lg** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   LG remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::LGData`
   is passed to the automation for use in lambdas.
+- **on_magiquest** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  MagiQuest wand remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::MagiQuestData`
+  is passed to the automation for use in lambdas.
 - **on_midea** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Midea remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::MideaData`
   is passed to the automation for use in lambdas.
@@ -85,7 +90,7 @@ Automations:
   .. note::
 
       In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-      Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+      Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
       For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 - **on_nexa** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
@@ -96,6 +101,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   pioneer remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PioneerData`
+  is passed to the automation for use in lambdas.
+- **on_pronto** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Pronto remote code has been decoded. A variable ``x`` of type ``std::string``
   is passed to the automation for use in lambdas.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   raw remote code has been decoded. A variable ``x`` of type ``std::vector<int>``
@@ -171,6 +179,11 @@ Remote code selection (exactly one of these has to be included):
   - **data** (**Required**, int): The LG code to trigger on, see dumper output for more info.
   - **nbits** (*Optional*, int): The number of bits of the remote code. Defaults to ``28``.
 
+- **magiquest**: Trigger on a decoded MagiQuest wand remote code with the given wand ID.
+
+  - **wand_id** (**Required**, int): The MagiQuest wand ID to trigger on, see dumper output for more info.
+  - **magnitude** (*Optional*, int): The magnitude of swishes and swirls of the wand.  If omitted, will match on any activation of the wand.
+
 - **midea**: Trigger on a Midea remote code with the given code.
 
   - **code** (**Required**, 5-bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_midea`
@@ -181,7 +194,7 @@ Remote code selection (exactly one of these has to be included):
   .. note::
 
       In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-      Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+      Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
       For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
@@ -203,6 +216,11 @@ Remote code selection (exactly one of these has to be included):
 - **pioneer**: Trigger on a decoded Pioneer remote code with the given data.
 
   - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
+
+- **pronto**: Trigger on a Pronto remote code with the given code.
+
+  - **data** (**Required**, string): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
+    for more info. Usually you only need to copy this directly from the dumper output.
 
 - **raw**: Trigger on a raw remote code with the given code.
 

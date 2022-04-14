@@ -46,6 +46,9 @@ Configuration variables:
   - **name** (**Required**, string): The name for the impedance sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **clear_impedance** (*Optional*): Clear the impedance information if a weight reading without impedance is received. Defaults to ``false``. **Only available on MiScale2**
+
+  Useful in the example below if a person steps onto the scale without waiting for the complete measurement. Without setting the flag the impedance reading of the measurement before will be used for the currently measured person.
 
 Configuration example with multiple users:
 ******************************************
