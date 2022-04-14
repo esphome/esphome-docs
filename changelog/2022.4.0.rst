@@ -119,6 +119,7 @@ New Components
 - Add Xiaomi RTCGQ02LM - Mi Motion Sensor 2 :esphomepr:`3186` by :ghuser:`jesserockz` (new-integration)
 - Add Sonoff D1 Dimmer support :esphomepr:`2775` by :ghuser:`anatoly-savchenkov` (new-integration)
 - Refactor Sensirion Sensors :esphomepr:`3374` by :ghuser:`martgras` (new-integration)
+- Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
