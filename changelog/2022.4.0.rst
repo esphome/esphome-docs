@@ -15,7 +15,7 @@ ESPHome 2022.4.0 - 20th April 2022
     Mi Motion Sensor 2, components/sensor/xiaomi_ble, xiaomi_rtcgq02lm.jpg
     Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
     MCP3208, components/sensor/mcp3204, mcp3204.jpg
-
+    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
 
 
 Home Assistant Addon Repo
@@ -56,6 +56,11 @@ Please upgrade your local python if you are unable to update ESPHome further.
 This is taken care of automatically if you are using the Home Assistant Add-on, or the
 ESPHome docker container.
 
+Shelly Dimmer 2
+---------------
+
+Support for the STM32 chip of the Shelly Dimmer has been added in this release. The component also supports flashing custom firmware to the
+stm32 via ESPHome which is required to use the component. See the :doc:`documentation </components/light/shelly_dimmer>` for more details.
 
 Google Fonts
 ------------
@@ -119,6 +124,7 @@ New Components
 - Add Xiaomi RTCGQ02LM - Mi Motion Sensor 2 :esphomepr:`3186` by :ghuser:`jesserockz` (new-integration)
 - Add Sonoff D1 Dimmer support :esphomepr:`2775` by :ghuser:`anatoly-savchenkov` (new-integration)
 - Refactor Sensirion Sensors :esphomepr:`3374` by :ghuser:`martgras` (new-integration)
+- Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
 
 Breaking Changes
 ^^^^^^^^^^^^^^^^
@@ -129,6 +135,13 @@ Notable Changes
 ^^^^^^^^^^^^^^^
 
 - Font allow using google fonts directly :esphomepr:`3243` by :ghuser:`OttoWinter` (new-feature) (notable-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- Changes accuracy of single cell voltage :esphomepr:`3387` by :ghuser:`matthias882`
+- Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
+- Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
 
 All changes
 ^^^^^^^^^^^
@@ -185,6 +198,9 @@ All changes
 - Fix silent config errors :esphomepr:`3380` by :ghuser:`jesserockz`
 - Move PN532OnTagTrigger to nfc::NfcOnTagTrigger :esphomepr:`3379` by :ghuser:`jesserockz`
 - Allow specifying deep sleep wakup clock time :esphomepr:`3312` by :ghuser:`jesserockz` (new-feature)
+- Changes accuracy of single cell voltage :esphomepr:`3387` by :ghuser:`matthias882`
+- Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
+- Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
 
 Past Changelogs
 ---------------

@@ -364,6 +364,7 @@ Contributors
 - `Jérôme Laban (@jeromelaban) <https://github.com/jeromelaban>`__
 - `Jesse Hills (@jesserockz) <https://github.com/jesserockz>`__
 - `Yuval Brik (@jhamhader) <https://github.com/jhamhader>`__
+- `Joe (@jhansche) <https://github.com/jhansche>`__
 - `Jim Bauwens (@jimbauwens) <https://github.com/jimbauwens>`__
 - `Jérémy JOURDIN (@JJK801) <https://github.com/JJK801>`__
 - `Jonathan Jefferies (@jjok) <https://github.com/jjok>`__
@@ -478,6 +479,7 @@ Contributors
 - `matt123p (@matt123p) <https://github.com/matt123p>`__
 - `Matteo Franceschini (@matteofranceschini) <https://github.com/matteofranceschini>`__
 - `Matthew Mazzanti (@matthewmazzanti) <https://github.com/matthewmazzanti>`__
+- `matthias882 (@matthias882) <https://github.com/matthias882>`__
 - `Maurice Schleußinger (@maurice-schleussinger) <https://github.com/maurice-schleussinger>`__
 - `mbo18 (@mbo18) <https://github.com/mbo18>`__
 - `mckaymatthew (@mckaymatthew) <https://github.com/mckaymatthew>`__
@@ -727,7 +729,6 @@ Contributors
 - `Tempura San (@tempura-san) <https://github.com/tempura-san>`__
 - `testbughub (@testbughub) <https://github.com/testbughub>`__
 - `Greg Lincoln (@tetious) <https://github.com/tetious>`__
-- `Thane Gill (@thanegill) <https://github.com/thanegill>`__
 - `Nejc (@thedexboy) <https://github.com/thedexboy>`__
 - `Thomas Eckerstorfer (@TheEggi) <https://github.com/TheEggi>`__
 - `TheGroundZero (@TheGroundZero) <https://github.com/TheGroundZero>`__
@@ -817,4 +818,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated April 13, 2022.*
+*This page was last updated April 14, 2022.*
