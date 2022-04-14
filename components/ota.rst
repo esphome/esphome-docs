@@ -16,7 +16,10 @@ ESPHome also has an "OTA safe mode". If for some reason your
 node gets into a boot loop, ESPHome will automatically try to detect
 this and will go over into a safe mode after the configured unsuccessful boot
 attempts (Defaults to ``10``). In that mode, all components are disabled and only Serial
-Logging+WiFi+OTA are initialized, so that you can upload a new binary.
+Logging + Network(WiFi or Ethernet) + OTA are initialized, so that you can upload a new 
+binary. You can trigger entering safe mode by either configuring a dedicated button or 
+switch to do that or by pressing the reset button on the board for ``num_attempts`` times.
+
 
 .. code-block:: yaml
 
@@ -192,4 +195,6 @@ See Also
 --------
 
 - :apiref:`ota/ota_component.h`
+- :doc:`/components/button/safe_mode`
+- :doc:`/components/switch/safe_mode`
 - :ghedit:`Edit`
