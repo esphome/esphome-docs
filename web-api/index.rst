@@ -291,9 +291,19 @@ a GET request to ``/number/desired_delay`` could yield this payload:
     }
 
 POST requests on the other hand allow setting the number, the available
-method is ``set``. The following parameter can be used:
+methods are ``set``, ``increment`` and ``toggle``. The following parameter can be used with ``set``:
 
 -  **value**: The value you want to set the number to. The value must be within the
    minimum and maximum range of the number otherwise it will be ignored.
 
 For example POST ``/number/desired_delay/set?value=24`` will set the number to 24.
+
+The following parameters can be used with ``increment``:
+
+-  **value**: The value you want to add to the number, can be negative. If the addition results in a value outside of the range of the number, it will be clamped to the minimum or maximum value of the range.
+
+For example POST ``/number/desired_delay/increment?value=-10`` will decrement the number by 10.
+
+The method ``toggle`` does not have any parameters. If the current value of number is closer to the minimum of the range, then the number will be set to the maximum value of the range. If the current value of number is closer to the maximum of the range, then the number will be set to the minimum of the range. Note, that if minimum and maximum of the range are not defined, then the method ``toggle`` will have no effect.
+
+For example POST ``/number/desired_delay/toggle`` would set the number to either min_value or max_value (if both are defined).

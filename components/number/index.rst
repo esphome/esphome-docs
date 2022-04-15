@@ -164,6 +164,41 @@ Configuration variables:
 - **value** (**Required**, float, :ref:`templatable <config-templatable>`):
   The value to set the number to.
 
+.. _number-increment_action:
+
+``number.increment`` Action
+***************************
+
+This is an :ref:`Action <config-action>` for incrementing a number state.
+
+.. code-block:: yaml
+
+    - number.increment:
+        id: my_number
+        value: -10
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the number to set.
+- **value** (**Required**, float, :ref:`templatable <config-templatable>`):
+  The value to add to the number.
+
+.. _number-toggle_action:
+
+``number.toggle`` Action
+************************
+
+This is an :ref:`Action <config-action>` for toggling a number state. It requires that both min_value and max_value of the number are defined. If the current value is closer to min_value, the number will be set to max_value. If the current value is closer to max_value, the number will be set to min_valie.
+
+.. code-block:: yaml
+
+    - number.toggle:
+        id: my_number
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the number to set.
+
 .. _number-lambda_calls:
 
 lambda calls
@@ -179,6 +214,8 @@ advanced stuff (see the full API Reference for more info).
       // Within lambda, push a value of 42
       auto call = id(my_number).make_call();
       call.set_value(42);
+      // call.set_increment(-10); // would decrement by 10
+      // call.set_toggle(true); // would toggle the number between min and max value
       call.perform();
 
 - ``.state``: Retrieve the current value of the number. Is ``NAN`` if no value has been read or set.
