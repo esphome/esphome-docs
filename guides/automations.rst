@@ -383,6 +383,7 @@ All Actions
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
 - :ref:`number.set <number-set_action>`
+- :ref:`ble_client.ble_write <ble_client-ble_write_action>`
 
 .. _config-condition:
 
