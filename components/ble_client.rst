@@ -110,6 +110,7 @@ Example usage:
 
     switch:
       - platform: template
+        name: "My Switch"
         turn_on_action:
           - ble_client.ble_write:
               id: my_ble_client
