@@ -638,6 +638,7 @@ Misc Components
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
+    LCD Menu, components/lcd-menu, lcd-menu.png
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
