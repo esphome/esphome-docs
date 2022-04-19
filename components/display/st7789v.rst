@@ -16,6 +16,10 @@ ST7789V (`datasheet <https://github.com/Xinyuan-LilyGO/TTGO-T-Display>`__,
 displays with ESPHome. Note that this component utilizes the 4-Wire :ref:`SPI bus <spi>`; the physical
 connection is already in place on the TTGO T-Display module as shown below.
 
+.. note::
+
+    Currently this only supports 135x240 pixel ST7789V displays. Other sizes (e.g. 240x320, 240x240) are not supported.
+
 .. figure:: images/st7789v-full.jpg
     :align: center
     :width: 75.0%
