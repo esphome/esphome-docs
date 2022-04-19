@@ -77,6 +77,25 @@ out of spec, you might want to try that.
         - type: label
           text: 'Label 1'
 
+    # Encoder to provide navigation
+    sensor:
+      - platform: rotary_encoder
+        ...
+        on_anticlockwise:
+          - lcd_menu.up:
+        on_clockwise:
+          - lcd_menu.down:
+
+    # A de-bounced GPIO is used to 'click'
+    binary_sensor:
+      - platform: gpio
+        ...
+        filters:
+          - delayed_on: 10ms
+          - delayed_off: 10ms
+        on_press:
+          - lcd_menu.enter:
+
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -105,27 +124,216 @@ Automations:
 Menu Items
 ----------
 
-Overview
-********
+The component manages a hierarchy of menu items. The common configuration variables are: 
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **type** (**Required**, string): The type of the menu item (see below).
+- **text** (*Optional*, string): The text displayed on the LCD.
 
 Label
 *****
 
+.. code-block:: yaml
+
+    menu:
+      - id: my_label
+        type: label
+        text: 'My Label'
+
+The menu item of the type ``label`` just displays a text. There is no configuration and
+no interaction is possible.
+
 Menu
 ****
+
+.. code-block:: yaml
+
+    menu:
+      - type: menu
+        text: 'My Submenu'
+        on_enter:
+          then:
+            lambda: 'ESP_LOGI("lcd_menu", "enter: %s", it->get_text().c_str());'
+        on_leave:
+          then:
+            lambda: 'ESP_LOGI("lcd_menu", "leave: %s", it->get_text().c_str());'
+        menu:
+          - type: label
+            text: 'Label'
+          - type: back
+            text: 'Back'
+
+The menu item of the type ``menu`` defines a list of child menu items. When the item
+is clicked the LCD displays the new menu level.
+
+Configuration variables:
+
+- **menu** (**Required**): Defines the child menu items.
+
+Automations:
+
+- **on_enter** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the menu level is entered. See :ref:`lcd_menu-on_enter`.
+- **on_leave** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the menu level is not displayed anymore.
+  See :ref:`lcd_menu-on_leave`.
 
 Back
 ****
 
+.. code-block:: yaml
+
+    menu:
+      - type: back
+        text: 'Back'
+
+The menu item of the type ``back`` closes the current menu level and goes up in
+the menu level hierarchy. The ``on_leave`` automation of the current level and
+``on_enter`` one of the higher one are invoked. There is no configuration.
+
 Enum
 ****
+
+.. code-block:: yaml
+
+    lcd_menu:
+      menu:
+        - type: enum
+          immediate_edit: False
+          text: 'My Color'
+          enum:
+            - 'Red'
+            - 'Green'
+            - 'Blue'
+          variable: my_color
+          on_enter:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "enum enter: %s, %d, %s", it->get_text().c_str(), id(my_color), it->get_enum_text().c_str());'
+          on_leave:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "enum leave: %s, %d, %s", it->get_text().c_str(), id(my_color), it->get_enum_text().c_str());'
+          on_value:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "enum value: %s, %d, %s", it->get_text().c_str(), id(my_color), it->get_enum_text().c_str());'
+
+    globals:
+      - id: my_color
+        type: int
+        restore_value: no
+        initial_value: '0'
+
+The menu item of the type ``enum`` allows cycling through a set of values described by
+a textual description.
+
+Configuration variables:
+
+- **immediate_edit** (*Optional*, boolean): If ``False``, the item has to be clicked for the
+  editing. On the click the ``on_enter`` automation is called and the item is marked
+  as editable (the ``>`` selection marker changes to ``*`` as default). Up and down
+  events then cycle through the values and the editing mode is exited by another click.
+  If ``True`` the values are cycled through by clicking. No activation of the editing
+  mode is necessary. Defaults to ``False``.
+- **enum** (**Required**): An array of strings describing the enum values.
+- **variable** (**Required**, :ref:`config-id`): A global integer variable storing the edited value, with
+  zero corresponding to the first value in the ``enum`` configuration. If the value
+  of the variable is outside of the defined range it is capped to an allowed one
+  on activating the editing mode or on the first change of the value if ``immediate_edit``
+  is true.
+
+Automations:
+
+- **on_enter** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is activated. See :ref:`lcd_menu-on_enter`.
+- **on_leave** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is exited.
+  See :ref:`lcd_menu-on_leave`.
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the value is changed.
+  See :ref:`lcd_menu-on_value`.
 
 Number
 ******
 
+.. code-block:: yaml
+
+    lcd_menu:
+      menu:
+        - type: number
+          text: 'My Number'
+          min_value: 10.0
+          max_value: 20.0
+          step: 0.5
+          format: '%.2f'
+          variable: my_number
+          on_enter:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "number enter: %s, %f", it->get_text().c_str(), id(my_number));'
+          on_leave:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "number leave: %s, %f", it->get_text().c_str(), id(my_number));'
+          on_value:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "number value: %s, %f", it->get_text().c_str(), id(my_number));'
+
+    globals:
+      - id: my_number
+        type: float
+        restore_value: no
+        initial_value: '0'
+
+The menu item of the type ``number`` allows editing a floating point number.
+On click the ``on_enter`` automation is called and the item is marked as editable
+(the ``>`` selection marker changes to ``*`` as default). Up and down events
+then increase and decrease the value by defined steps. The editing mode is exited
+by another click.
+
+Note that the fractional floating point values do not necessarily add nicely and
+ten times ``0.100000`` is not necessarily ``1.000000``. Use steps that are
+powers of two (such as ``0.125``) or take care of the rounding explicitly.
+
+Configuration variables:
+
+- **variable** (**Required**:ref:`config-id`): A global floating point variable storing
+  the edited value. If on entering the value is less than ``min_value`` or more than
+  ``max_value``, the value is capped to fall into the range.
+- **min_value** (*Optional*, float): The minimum value. Defaults to ``0.0``.
+- **min_value** (*Optional*, float): The maximum value. Defaults to ``100.0``.
+- **step** (*Optional*, float): The step to change the value. Defaults to ``1.0``.
+- **format** (*Optional*, string): A ``printf``-like format string specifying
+  exactly one ``f`` or ``g``-type conversion used to display the current value.
+  Defaults to ``%.1f``.
+
+Automations:
+
+- **on_enter** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is activated. See :ref:`lcd_menu-on_enter`.
+- **on_leave** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is exited.
+  See :ref:`lcd_menu-on_leave`.
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the value is changed.
+  See :ref:`lcd_menu-on_value`.
+
 Command
 *******
 
+.. code-block:: yaml
+
+    menu:
+      - type: command
+        text: 'Hide'
+        on_value:
+          then:
+            - lcd_menu.hide:  
+
+The menu item of the type ``command`` allows triggering commands. There is no
+additional configuration.
+
+Automations:
+
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the menu item is clicked.
+  See :ref:`lcd_menu-on_value`.
 
 Automations
 -----------
@@ -181,7 +389,7 @@ the submenu or going back to the parent menu.
 ``on_value``
 ************
 
-This automation will be triggered when the value edited through the menu changed value
+This automation will be triggered when the value edited through the menu changed
 or a command was triggered.
 
 .. code-block:: yaml
