@@ -352,6 +352,7 @@ Contributors
 - `Jas Strong (@jasstrong) <https://github.com/jasstrong>`__
 - `Jonas Bergler (@jbergler) <https://github.com/jbergler>`__
 - `JbLb (@jblb) <https://github.com/jblb>`__
+- `Jonathan Burns (@jburns20) <https://github.com/jburns20>`__
 - `James Callaghan (@jcallaghan) <https://github.com/jcallaghan>`__
 - `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
 - `jddonovan (@jddonovan) <https://github.com/jddonovan>`__
@@ -523,6 +524,7 @@ Contributors
 - `MrZetor (@MrZetor) <https://github.com/MrZetor>`__
 - `mtl010957 (@mtl010957) <https://github.com/mtl010957>`__
 - `Murilo (@murilobaliego) <https://github.com/murilobaliego>`__
+- `Michel van de Wetering (@mvdwetering) <https://github.com/mvdwetering>`__
 - `Michiel van Turnhout (@mvturnho) <https://github.com/mvturnho>`__
 - `Martin Weinelt (@mweinelt) <https://github.com/mweinelt>`__
 - `myhomeiot (@myhomeiot) <https://github.com/myhomeiot>`__
@@ -726,7 +728,6 @@ Contributors
 - `TBobsin (@TBobsin) <https://github.com/TBobsin>`__
 - `Team Super Panda (@teamsuperpanda) <https://github.com/teamsuperpanda>`__
 - `Ryan Hoffman (@tekmaven) <https://github.com/tekmaven>`__
-- `Tempura San (@tempura-san) <https://github.com/tempura-san>`__
 - `testbughub (@testbughub) <https://github.com/testbughub>`__
 - `Greg Lincoln (@tetious) <https://github.com/tetious>`__
 - `Nejc (@thedexboy) <https://github.com/thedexboy>`__
@@ -759,8 +760,8 @@ Contributors
 - `Tom Price (@tomtom5152) <https://github.com/tomtom5152>`__
 - `tony (@tony-fav) <https://github.com/tony-fav>`__
 - `David Kiliani (@torfbolt) <https://github.com/torfbolt>`__
-- `Teemu Simola (@tpssim) <https://github.com/tpssim>`__
 - `Felix Eckhofer (@tribut) <https://github.com/tribut>`__
+- `Trick van Staveren (@trickv) <https://github.com/trickv>`__
 - `Tobias (@tripplet) <https://github.com/tripplet>`__
 - `Troon (@Troon) <https://github.com/Troon>`__
 - `Tyler Bules (@Troublebrewing) <https://github.com/Troublebrewing>`__
@@ -780,6 +781,7 @@ Contributors
 - `Nad (@valordk) <https://github.com/valordk>`__
 - `André Lademann (@vergissberlin) <https://github.com/vergissberlin>`__
 - `Víctor Ferrer García (@vicfergar) <https://github.com/vicfergar>`__
+- `Vincèn (@vincegre) <https://github.com/vincegre>`__
 - `VitaliyKurokhtin (@VitaliyKurokhtin) <https://github.com/VitaliyKurokhtin>`__
 - `voibit (@voibit) <https://github.com/voibit>`__
 - `Xuming Feng (@voicevon) <https://github.com/voicevon>`__
@@ -818,4 +820,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated April 14, 2022.*
+*This page was last updated April 19, 2022.*

@@ -142,6 +142,8 @@ Beta Changes
 - Changes accuracy of single cell voltage :esphomepr:`3387` by :ghuser:`matthias882`
 - Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
 - Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
+- Fix power_delivered/produced_phase sensor deviceclass in DSMR :esphomepr:`3395` by :ghuser:`mvdwetering`
+- Shelly Dimmer: Delete obsolete LICENSE.txt :esphomepr:`3394` by :ghuser:`rnauber`
 
 All changes
 ^^^^^^^^^^^
@@ -201,6 +203,8 @@ All changes
 - Changes accuracy of single cell voltage :esphomepr:`3387` by :ghuser:`matthias882`
 - Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
 - Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
+- Fix power_delivered/produced_phase sensor deviceclass in DSMR :esphomepr:`3395` by :ghuser:`mvdwetering`
+- Shelly Dimmer: Delete obsolete LICENSE.txt :esphomepr:`3394` by :ghuser:`rnauber`
 
 Past Changelogs
 ---------------
