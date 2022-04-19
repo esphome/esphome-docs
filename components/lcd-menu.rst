@@ -76,6 +76,9 @@ out of spec, you might want to try that.
           text: 'Back'
         - type: label
           text: 'Label 1'
+        - type: label
+          text: 'My'
+          lambda: 'return std::string(it->get_text() + std::string(" Label"));'
 
     # Encoder to provide navigation
     sensor:
@@ -100,6 +103,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **display_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the LCD display.
+- **root_item_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the root menu item.
 - **dimensions** (**Required**, string): The dimensions of the display with the ``COLUMNSxROWS``
   format. This should match dimensions of the LCD display, you can however for example specify
   fewer lines and use the last one for a status one.
@@ -129,6 +133,12 @@ The component manages a hierarchy of menu items. The common configuration variab
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **type** (**Required**, string): The type of the menu item (see below).
 - **text** (*Optional*, string): The text displayed on the LCD.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda returning a string to be displayed on the LCD. The lambda gets an ``it`` argument
+  pointing to the ``MenuItem`` that is being drawn and has to return a complete string
+  excluding the first and last columns that are used to mark selection, editing
+  and navigation. No other formatting such as printing the referenced ``select`` or
+  ``number`` values is performed.
 
 Label
 *****
@@ -191,39 +201,38 @@ The menu item of the type ``back`` closes the current menu level and goes up in
 the menu level hierarchy. The ``on_leave`` automation of the current level and
 ``on_enter`` one of the higher one are invoked. There is no configuration.
 
-Enum
-****
+Select
+******
 
 .. code-block:: yaml
 
     lcd_menu:
       menu:
-        - type: enum
+        - type: select
           immediate_edit: False
           text: 'My Color'
-          enum:
-            - 'Red'
-            - 'Green'
-            - 'Blue'
-          variable: my_color
+          select: my_color
           on_enter:
             then:
-              lambda: 'ESP_LOGI("lcd_menu", "enum enter: %s, %d, %s", it->get_text().c_str(), id(my_color), it->get_enum_text().c_str());'
+              lambda: 'ESP_LOGI("lcd_menu", "select enter: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
           on_leave:
             then:
-              lambda: 'ESP_LOGI("lcd_menu", "enum leave: %s, %d, %s", it->get_text().c_str(), id(my_color), it->get_enum_text().c_str());'
+              lambda: 'ESP_LOGI("lcd_menu", "select leave: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
           on_value:
             then:
-              lambda: 'ESP_LOGI("lcd_menu", "enum value: %s, %d, %s", it->get_text().c_str(), id(my_color), it->get_enum_text().c_str());'
+              lambda: 'ESP_LOGI("lcd_menu", "select value: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
 
-    globals:
-      - id: my_color
-        type: int
-        restore_value: no
-        initial_value: '0'
+    select:
+      - platform: template
+        id: my_color
+        optimistic: True
+        options:
+          - 'Red'
+          - 'Green'
+          - 'Blue'
 
-The menu item of the type ``enum`` allows cycling through a set of values described by
-a textual description.
+The menu item of the type ``select`` allows cycling through a set of values defined by the
+associated ``select`` component.
 
 Configuration variables:
 
@@ -233,12 +242,8 @@ Configuration variables:
   events then cycle through the values and the editing mode is exited by another click.
   If ``True`` the values are cycled through by clicking. No activation of the editing
   mode is necessary. Defaults to ``False``.
-- **enum** (**Required**): An array of strings describing the enum values.
-- **variable** (**Required**, :ref:`config-id`): A global integer variable storing the edited value, with
-  zero corresponding to the first value in the ``enum`` configuration. If the value
-  of the variable is outside of the defined range it is capped to an allowed one
-  on activating the editing mode or on the first change of the value if ``immediate_edit``
-  is true.
+- **select** (**Required**, :ref:`config-id`): A ``select`` component managing
+  the edited value..
 
 Automations:
 
@@ -260,31 +265,34 @@ Number
       menu:
         - type: number
           text: 'My Number'
-          min_value: 10.0
-          max_value: 20.0
-          step: 0.5
           format: '%.2f'
-          variable: my_number
+          number: my_number
           on_enter:
             then:
-              lambda: 'ESP_LOGI("lcd_menu", "number enter: %s, %f", it->get_text().c_str(), id(my_number));'
+              lambda: 'ESP_LOGI("lcd_menu", "number enter: %s, %f", it->get_text().c_str(), it->get_number_value());'
           on_leave:
             then:
-              lambda: 'ESP_LOGI("lcd_menu", "number leave: %s, %f", it->get_text().c_str(), id(my_number));'
+              lambda: 'ESP_LOGI("lcd_menu", "number leave: %s, %f", it->get_text().c_str(), it->get_number_value());'
           on_value:
             then:
-              lambda: 'ESP_LOGI("lcd_menu", "number value: %s, %f", it->get_text().c_str(), id(my_number));'
+              lambda: 'ESP_LOGI("lcd_menu", "number value: %s, %f", it->get_text().c_str(), it->get_number_value());'
 
-    globals:
-      - id: my_number
-        type: float
-        restore_value: no
-        initial_value: '0'
+    number:
+      - platform: template
+        id: my_number_1
+        optimistic: True
+        min_value: 10.0
+        max_value: 20.0
+        step: 0.5
+        on_value:
+          then:
+            lambda: 'ESP_LOGI("number", "value: %f", x);'
 
 The menu item of the type ``number`` allows editing a floating point number.
 On click the ``on_enter`` automation is called and the item is marked as editable
 (the ``>`` selection marker changes to ``*`` as default). Up and down events
-then increase and decrease the value by defined steps. The editing mode is exited
+then increase and decrease the value by steps defined in the ``number``,
+respecting the ``min_value`` and ``max_value``. The editing mode is exited
 by another click.
 
 Note that the fractional floating point values do not necessarily add nicely and
@@ -293,12 +301,9 @@ powers of two (such as ``0.125``) or take care of the rounding explicitly.
 
 Configuration variables:
 
-- **variable** (**Required**:ref:`config-id`): A global floating point variable storing
+- **number** (**Required**, :ref:`config-id`): A ``number`` component managing
   the edited value. If on entering the value is less than ``min_value`` or more than
   ``max_value``, the value is capped to fall into the range.
-- **min_value** (*Optional*, float): The minimum value. Defaults to ``0.0``.
-- **min_value** (*Optional*, float): The maximum value. Defaults to ``100.0``.
-- **step** (*Optional*, float): The step to change the value. Defaults to ``1.0``.
 - **format** (*Optional*, string): A ``printf``-like format string specifying
   exactly one ``f`` or ``g``-type conversion used to display the current value.
   Defaults to ``%.1f``.
@@ -397,16 +402,12 @@ or a command was triggered.
     lcd_menu:
       ...
       menu:
-        - type: enum
-          text: 'Enum Item'
-          enum:
-            - 'Red'
-            - 'Green'
-            - 'Blue'
-          variable: my_enum_1
+        - type: select
+          text: 'Select Item'
+          select: my_select_1
           on_value:
             then:
-              lambda: 'ESP_LOGI("lcd_menu", "enum value: %s, %d, %s", it->get_text().c_str(), id(my_enum_1), it->get_enum_text().c_str());'
+              lambda: 'ESP_LOGI("lcd_menu", "select value: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
 
 .. lcd_menu-up_action:
 
