@@ -209,7 +209,7 @@ Analogue
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
-    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
+    MCP3204/MCP3208, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
@@ -295,11 +295,13 @@ Environmental
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
+    QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
     RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
@@ -400,6 +402,7 @@ Binary Sensor Components
     Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
@@ -462,9 +465,11 @@ Light Components
     Light Partition, components/light/partition, color_lens.svg
 
     Tuya Dimmer, components/light/tuya, tuya.png
+    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg    
     Custom Light, components/light/custom, language-cpp.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg
+    Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
