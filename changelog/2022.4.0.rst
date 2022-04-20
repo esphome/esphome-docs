@@ -144,6 +144,7 @@ Beta Changes
 - Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
 - Fix power_delivered/produced_phase sensor deviceclass in DSMR :esphomepr:`3395` by :ghuser:`mvdwetering`
 - Shelly Dimmer: Delete obsolete LICENSE.txt :esphomepr:`3394` by :ghuser:`rnauber`
+- Dont require empty object for wifi ap with defaults :esphomepr:`3404` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -205,6 +206,7 @@ All changes
 - Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
 - Fix power_delivered/produced_phase sensor deviceclass in DSMR :esphomepr:`3395` by :ghuser:`mvdwetering`
 - Shelly Dimmer: Delete obsolete LICENSE.txt :esphomepr:`3394` by :ghuser:`rnauber`
+- Dont require empty object for wifi ap with defaults :esphomepr:`3404` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
