@@ -111,6 +111,7 @@ New Features
 
 - Allow to set user defined characters on LCD :esphomepr:`3322` by :ghuser:`numo68` (new-feature)
 - Font allow using google fonts directly :esphomepr:`3243` by :ghuser:`OttoWinter` (new-feature) (notable-change)
+- Add mqtt for idf :esphomepr:`2930` by :ghuser:`martgras` (new-feature)
 - Extend mcp3204 to support 8 channels (mcp3208 variant) :esphomepr:`3332` by :ghuser:`RadekHvizdos` (new-feature)
 - Add cover toggle support to endstop cover :esphomepr:`3358` by :ghuser:`rrooggiieerr` (new-feature)
 - Remote base pronto receive :esphomepr:`2826` by :ghuser:`cvwillegen` (new-feature)
@@ -131,20 +132,22 @@ Breaking Changes
 
 - Make home_assistant imported sensors internal by default :esphomepr:`3372` by :ghuser:`jesserockz` (breaking-change)
 
-Notable Changes
-^^^^^^^^^^^^^^^
-
-- Font allow using google fonts directly :esphomepr:`3243` by :ghuser:`OttoWinter` (new-feature) (notable-change)
-
 Beta Changes
 ^^^^^^^^^^^^
 
+- Actually increase request memory for json parsing :esphomepr:`3331` by :ghuser:`jesserockz`
+- Actually increase request memory for json parsing :esphomepr:`3331` by :ghuser:`jesserockz`
 - Changes accuracy of single cell voltage :esphomepr:`3387` by :ghuser:`matthias882`
 - Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
 - Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
 - Fix power_delivered/produced_phase sensor deviceclass in DSMR :esphomepr:`3395` by :ghuser:`mvdwetering`
 - Shelly Dimmer: Delete obsolete LICENSE.txt :esphomepr:`3394` by :ghuser:`rnauber`
 - Dont require empty object for wifi ap with defaults :esphomepr:`3404` by :ghuser:`jesserockz`
+
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- Font allow using google fonts directly :esphomepr:`3243` by :ghuser:`OttoWinter` (new-feature) (notable-change)
 
 All changes
 ^^^^^^^^^^^
@@ -160,13 +163,15 @@ All changes
 - Bump esptool from 3.2 to 3.3 :esphomepr:`3327` by :ghuser:`dependabot[bot]`
 - Allow to set user defined characters on LCD :esphomepr:`3322` by :ghuser:`numo68` (new-feature)
 - Font allow using google fonts directly :esphomepr:`3243` by :ghuser:`OttoWinter` (new-feature) (notable-change)
+- Actually increase request memory for json parsing :esphomepr:`3331` by :ghuser:`jesserockz`
+- Actually increase request memory for json parsing :esphomepr:`3331` by :ghuser:`jesserockz`
 - Change beginning of file comments to avoid creating doxygen tag for `esphome` namespace :esphomepr:`3314` by :ghuser:`e28eta`
 - Publish custom data when modbus number lambda fills vector :esphomepr:`3295` by :ghuser:`jesserockz`
 - Define touchscreen support when in use. :esphomepr:`3296` by :ghuser:`geiseri`
 - New vscode schema gen :esphomepr:`3336` by :ghuser:`glmnet`
 - protobuf: fix incomplete 64 bits implementation :esphomepr:`3341` by :ghuser:`ianchi`
 - feat: support ble_client that use security w/o pin codes :esphomepr:`3320` by :ghuser:`ammmze`
-- Add mqtt for idf :esphomepr:`2930` by :ghuser:`martgras`
+- Add mqtt for idf :esphomepr:`2930` by :ghuser:`martgras` (new-feature)
 - Added a function to load custom characters in LCD display :esphomepr:`3279` by :ghuser:`andrewjswan`
 - CAN bus: support remote transmission request flag for canbus.send :esphomepr:`3193` by :ghuser:`felixstorm`
 - Tm1637 binarysensor :esphomepr:`2792` by :ghuser:`mvturnho`
