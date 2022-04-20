@@ -243,7 +243,7 @@ Configuration variables:
   If ``True`` the values are cycled through by clicking. No activation of the editing
   mode is necessary. Defaults to ``False``.
 - **select** (**Required**, :ref:`config-id`): A ``select`` component managing
-  the edited value..
+  the edited value.
 
 Automations:
 
@@ -307,6 +307,60 @@ Configuration variables:
 - **format** (*Optional*, string): A ``printf``-like format string specifying
   exactly one ``f`` or ``g``-type conversion used to display the current value.
   Defaults to ``%.1f``.
+
+Automations:
+
+- **on_enter** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is activated. See :ref:`lcd_menu-on_enter`.
+- **on_leave** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is exited.
+  See :ref:`lcd_menu-on_leave`.
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the value is changed.
+  See :ref:`lcd_menu-on_value`.
+
+Switch
+******
+
+.. code-block:: yaml
+
+    lcd_menu:
+      menu:
+        - type: switch
+          immediate_edit: False
+          text: 'My Switch'
+          on_text: 'Bright'
+          off_text: 'Dark'
+          select: my_switch
+          on_enter:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "switch enter: %s, %s", it->get_text().c_str(), it->get_switch_text().c_str());'
+          on_leave:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "switch leave: %s, %s", it->get_text().c_str(), it->get_switch_text().c_str());'
+          on_value:
+            then:
+              lambda: 'ESP_LOGI("lcd_menu", "switch value: %s, %s", it->get_text().c_str(), it->get_switch_text().c_str());'
+
+    switch:
+      - platform: template
+        id: my_switch
+        optimistic: True
+
+The menu item of the type ``switch`` allows toggling the associated ``switch`` component.
+
+Configuration variables:
+
+- **immediate_edit** (*Optional*, boolean): If ``False``, the item has to be clicked for the
+  editing. On the click the ``on_enter`` automation is called and the item is marked
+  as editable (the ``>`` selection marker changes to ``*`` as default). Up and down
+  events then toggle and the editing mode is exited by another click.
+  If ``True`` the switch is toggled by clicking. No activation of the editing
+  mode is necessary. Defaults to ``False``.
+- **on_text** (*Optional*, string): The text for the ``ON`` state. Defaults to ``On``.
+- **off_text** (*Optional*, string): The text for the ``OFF`` state. Defaults to ``Off``.
+- **switch** (**Required**, :ref:`config-id`): A ``switch`` component managing
+  the edited value.
 
 Automations:
 
