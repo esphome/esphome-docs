@@ -47,7 +47,7 @@ Configuration variables:
 Wiring
 ------
 For i2c communication the `PSEL` pin should be grounded (via 10k). PWM can be disabled by grounding the `PWM_DIS` pin.
-The sensor needs 12V to operate the laser and 3.3V for the logic part. The peak current on the 12V supply is 150ma (average 0.8ma).
+The sensor needs 12V to operate the laser and 3.3V for the logic part. The peak current on the 12V supply is 150ma (average is 0.8ma).
 I2C runs at 3.3V (average current is 6.1ma).
 
 
