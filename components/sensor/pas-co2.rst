@@ -79,5 +79,5 @@ See Also
 - `Registermap description of XENSIV™ PAS CO2 sensor<https://www.infineon.com/cms/en/product/sensor/co2-sensors/pasco2v01/#!?fileId=5546d4627600a6bc017604238d967785>`__
 - `Programming guide for XENSIV™ PAS CO2<https://www.infineon.com/dgdl/Infineon-programming_guide_PAS_CO2_evaluationkit-ApplicationNotes-v02_00-EN.pdf?fileId=5546d4627600a6bc0176041139e77780>`__
 - :ref:`sensor-filters`
-- :apiref:`pas-co2/pas-co2.h`
+- :apiref:`pas_co2/pas_co2.h`
 - :ghedit:`Edit`
