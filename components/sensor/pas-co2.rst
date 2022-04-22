@@ -66,8 +66,8 @@ will use the 3 next measurements to calculate the compensation offset. The user 
 The sensor is operated at 1 measurement per 10 seconds while implementing the forced compensation scheme. When the 3 measurement sequences are completed, the device automatically reconfigures itself with the newly computed offset applied to the
 subsequent CO2 concentration measurement results and the previous measurement rateis retored
 
-
 .. code-block:: yaml
+
     on_...:
       then:
         pas_co2._perform_forced_calibration_action
