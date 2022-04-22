@@ -54,7 +54,7 @@ I2C runs at 3.3V (average current is 6.1ma).
 Actions:
 --------
 
-.. _pas_perform_forced_calibration_action:
+.. _perform_forced_calibration_action:
 
 ``_perform_forced_calibration_action`` Action
 ---------------------------------------------
