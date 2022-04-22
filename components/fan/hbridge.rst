@@ -58,11 +58,13 @@ Configuration
         pin_a: output_fan_a
         pin_b: output_fan_b
         enable_pin: output_fan_enable
-        decay_mode: SLOW
         oscillation_output: output_fan_oscillating
-        transition_delta_per_ms: 0.001
-        transition_short_buildup_duration: 5000ms
-        transition_full_short_duration: 3000ms
+        decay_mode: SLOW
+        min_speed: 0.1
+        acceleration: 10000ms
+        deceleration: 5000ms
+        brake_when_stopped: 2000ms
+        brake_buildup_when_stopped: 3000ms
 
 
 Output assignment
@@ -74,10 +76,6 @@ Output assignment
   connected to Pin B (alternatively IN2, etc.) of the h-bridge.
 - **enable_pin** (*Optional*, :ref:`config-id`): The id of the :ref:`float output <output>` 
   connected to the Enable pin of the h-bridge (if h-bridge uses enable). Default is ``null`` (not used)
-- **decay_mode** (*Optional*, string): The current decay mode you want to use with
-  the h-bridge. Either ``SLOW`` (braking) or ``FAST`` (coasting). Defaults to ``SLOW``.
-  For more information on current decay see `this link <https://learn.adafruit.com/improve-brushed-dc-motor-performance/current-decay-mode>`__
-
 - **oscillation_output** (*Optional*, :ref:`config-id`): The id of the :ref:`output <output>` 
   to use for the oscillation state of this fan. Default is ``null`` (not used)
 
@@ -91,34 +89,27 @@ Fan configuration
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Fan Component <config-fan>`.
 
-Transition configuration
-********************************
 
-- **transition_delta_per_ms** (*Optional*, float): Delta to apply each millisecond  when changing the set speed. 
-  Defaults to ``2`` (no transition)
-- **transition_short_buildup_duration** (*Optional*, float): duration in milliseconds to buildup from no to full short.
-  Defaults to ``0`` (no shorting/braking = coasting)
-- **transition_full_short_duration** (*Optional*, float): duration in milliseconds to apply full short (after optional buildup).
-  Defaults to ``0`` (no shorting/braking = coasting)
-
-
-
-Transitions explained
----------------------
-
-When changing speeds (especially on a motor driving a large load) inertia will play its part.
-Trying to speed up the motor inertia will require to motor to use large amounts of current to get things going.
-You can reduce the load on your system by gradually increasing the speed. Use the *transition_delta_per_ms* parameter for this.
-This will increment the speed with the set value every millisecond until the set speed has been reached.
-For example use ``0.001`` to stretch a 0 (still) to 1 (full speed) increment over 1 second.
-This parameter also applies to slowing down.
-
-The reverse is true for stopping/reducing speed. Inertia will cause the motor to keep going (coasting).
-To reduce the speed faster you need to brake. Fortunately you can electrically brake a motor by shorting its windings.
-Use the *transition_short_buildup_duration* to set a duration to buildup the braking/shorting. from a bit to full. 
-You can skip this step (set it to ``0``) if you need to.
-How long to apply the brake/short (when reaching full brake/short) is set by the *transition_full_short_duration* parameter. 
-Depending on your application you want to make sure you handle a full-speed to standstill stop with this duration.
+Motor drive options
+*****************
+- **decay_mode** (*Optional*, string): The current decay mode you want to use with
+  the h-bridge. Either ``SLOW`` (braking) or ``FAST`` (coasting). 
+  For more information on current decay see `this link <https://learn.adafruit.com/improve-brushed-dc-motor-performance/current-decay-mode>`__.
+  Defaults to ``SLOW``.
+- **min_speed** (*Optional*, float): The minimum dutycycle your motor needs to run.
+  This is the minimum speed dutycycle the motor will be driven at for the lowest speed.
+  Defaults to ``0``.
+- **acceleration** (*Optional*, int): Time a 0 to 100% acceleration will be extended over. 
+  If for example the speed is increased from 40% to 50% it will be extended over 10% of the set value respectively.
+  Defaults to ``0``, meaning change power at once. 
+- **deceleration** (*Optional*, int): Time a 0 to 100% deceleration will be extended over. 
+  If for example the speed is increased from 70% to 60% it will be extended over 10% of the set value respectively.
+  Defaults to ``0``, meaning change power at once. 
+- **brake_when_stopped** (*Optional*, int): Time the motor is braked (short windings) after it is stopped (set speed to 0%)
+  Defaults to ``0`` (no braking)
+- **brake_buildup_when_stopped** (*Optional*, int): Time the braking (shorting of windings) is gradually increased from 0% to 100% after it is stopped (set speed to 0%)
+  This duration is the gradual buildup time only, it does not include the full brake time. This option is ignored when **decay_mode** is set to ``SLOW``.
+  Defaults to ``0`` (skip gradual buildup)
 
 .. note::
 

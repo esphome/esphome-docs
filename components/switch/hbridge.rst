@@ -87,13 +87,6 @@ switch configuration
 - All other options from :ref:`switch Component <config-switch>`.
 
 
-Current limiting / Transitions
-------------------------------
-
-The component is based on the same H-Bridge software driver as the :doc:`/components/fan/hbridge` component.
-Therefore it can also apply the "transitions" parameters. In practice they can be put to (limited) use.
-
-
 See Also
 --------
 - :doc:`/components/switch/index`
