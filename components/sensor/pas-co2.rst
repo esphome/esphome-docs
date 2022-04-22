@@ -54,9 +54,9 @@ I2C runs at 3.3V (average current is 6.1ma).
 Actions:
 --------
 
-.. _perform_forced_calibration_action:
+.. _pas_co2.perform_forced_calibration_action:
 
-``_perform_forced_calibration_action`` Action
+``perform_forced_calibration_action`` Action
 ---------------------------------------------
 
 This :ref:`action <config-action>` triggers a forced calibration. 
@@ -76,8 +76,8 @@ subsequent CO2 concentration measurement results and the previous measurement ra
 
 See Also
 --------
-- `Registermap description of XENSIV™ PAS CO2 sensor<https://www.infineon.com/cms/en/product/sensor/co2-sensors/pasco2v01/#!?fileId=5546d4627600a6bc017604238d967785>`__
-- `Programming guide for XENSIV™ PAS CO2<https://www.infineon.com/dgdl/Infineon-programming_guide_PAS_CO2_evaluationkit-ApplicationNotes-v02_00-EN.pdf?fileId=5546d4627600a6bc0176041139e77780>`__
+- `Registermap description of XENSIV™ PAS CO2 sensor <https://www.infineon.com/cms/en/product/sensor/co2-sensors/pasco2v01/#!?fileId=5546d4627600a6bc017604238d967785>`__
+- `Programming guide for XENSIV™ PAS CO2 <https://www.infineon.com/dgdl/Infineon-programming_guide_PAS_CO2_evaluationkit-ApplicationNotes-v02_00-EN.pdf?fileId=5546d4627600a6bc0176041139e77780>`__
 - :ref:`sensor-filters`
 - :apiref:`pas_co2/pas_co2.h`
 - :ghedit:`Edit`
