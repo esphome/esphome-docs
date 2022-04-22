@@ -44,6 +44,13 @@ Configuration variables:
   The sensors internal measurement rate is aligned with ``update_interval`` 
 
 
+Wiring
+------
+For i2c communication the `PSEL` pin should be grounded (via 10k). PWM can be disabled by grounding the `PWM_DIS` pin.
+The sensor needs 12V to operate the laser and 3.3V for the logic part. The peak current on the 12V supply is 150ma (average 0.8ma).
+I2C runs at 3.3V (average current is 6.1ma).
+
+
 Actions:
 --------
 
@@ -59,6 +66,7 @@ will use the 3 next measurements to calculate the compensation offset. The user 
 The sensor is operated at 1 measurement per 10 seconds while implementing the forced compensation scheme. When the 3 measurement sequences are completed, the device automatically reconfigures itself with the newly computed offset applied to the
 subsequent CO2 concentration measurement results and the previous measurement rateis retored
 
+
 .. code-block:: yaml
     on_...:
       then:
@@ -68,7 +76,8 @@ subsequent CO2 concentration measurement results and the previous measurement ra
 
 See Also
 --------
-- `Registermap description of XENSIV™ PAS CO2 sensor <https://www.infineon.com/cms/en/product/sensor/co2-sensors/pasco2v01/#!?fileId=5546d4627600a6bc017604238d967785>`__
+- `Registermap description of XENSIV™ PAS CO2 sensor<https://www.infineon.com/cms/en/product/sensor/co2-sensors/pasco2v01/#!?fileId=5546d4627600a6bc017604238d967785>`__
+- `Programming guide for XENSIV™ PAS CO2<https://www.infineon.com/dgdl/Infineon-programming_guide_PAS_CO2_evaluationkit-ApplicationNotes-v02_00-EN.pdf?fileId=5546d4627600a6bc0176041139e77780>`__
 - :ref:`sensor-filters`
 - :apiref:`pas-co2/pas-co2.h`
 - :ghedit:`Edit`
