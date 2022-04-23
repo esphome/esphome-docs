@@ -17,7 +17,7 @@ ESPHome 2022.2.0 - 16th February 2022
 
     Touchscreen Core, components/touchscreen/index, folder-open.svg
     EKTF2232, components/touchscreen/ektf2232, ektf2232.svg
-    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.png
+    Lilygo T5 4.7", components/touchscreen/lilygo_t5_47, lilygo_t5_47_touch.jpg
     MLX90393, components/sensor/mlx90393, mlx90393.jpg
 
     Wake-on-LAN Button, components/button/wake_on_lan, power_settings.svg
@@ -110,6 +110,39 @@ Release 2022.2.1 - February 17
 ------------------------------
 
 - Fix missed ARDUINO_VERSION_CODE to USE_ARDUINO_VERSION_CODE changes :esphomepr:`3206` by :ghuser:`stewiem2000`
+
+Release 2022.2.2 - February 18
+------------------------------
+
+- Set entity-category to diagnostic for debug component :esphomepr:`3209` by :ghuser:`stewiem2000`
+- Fix platformio docker version mismstch :esphomepr:`3215` by :ghuser:`OttoWinter`
+- Add LONG LONG flag for arduinojson :esphomepr:`3212` by :ghuser:`jesserockz`
+
+Release 2022.2.3 - February 18
+------------------------------
+
+- Bump platformio from 5.2.4 to 5.2.5 :esphomepr:`3188` by :ghuser:`dependabot[bot]`
+
+Release 2022.2.4 - February 21
+------------------------------
+
+- Publish NAN when dallas conversion failed :esphomepr:`3227` by :ghuser:`OttoWinter`
+- Fix ESP8266 climate memaccess warning :esphomepr:`3226` by :ghuser:`OttoWinter`
+- Improve ESP8266 iram usage :esphomepr:`3223` by :ghuser:`OttoWinter`
+- ESP32-C3 deep sleep fix :esphomepr:`3066` by :ghuser:`Troublebrewing`
+- Fix lilygo touchscreen rotation :esphomepr:`3221` by :ghuser:`jesserockz`
+- Fix fatal erroring in addon startup script :esphomepr:`3244` by :ghuser:`jesserockz`
+
+Release 2022.2.5 - February 23
+------------------------------
+
+- Respect ESPHOME_USE_SUBPROCESS in esp32 post_build script :esphomepr:`3246` by :ghuser:`mweinelt`
+- Fix regression caused by TSL2591 auto gain :esphomepr:`3249` by :ghuser:`Azimath`
+
+Release 2022.2.6 - March 2
+--------------------------
+
+- Only get free memory size from internal :esphomepr:`3259` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------

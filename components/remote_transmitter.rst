@@ -159,7 +159,7 @@ Configuration variables:
 ``remote_transmitter.transmit_magiquest`` Action
 ************************************************
 
-This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter. 
+This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter.
 
 .. code-block:: yaml
 
@@ -200,7 +200,7 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
 .. note::
 
     In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-    Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+    Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
     For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 .. code-block:: yaml
@@ -576,6 +576,10 @@ Configuration variables:
 
 This :ref:`action <config-action>` sends a Toshiba AC infrared remote code to a remote transmitter.
 
+.. note::
+
+    This action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+
 .. code-block:: yaml
 
     on_...:
@@ -588,7 +592,7 @@ Configuration variables:
 - **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
 - **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
   two parts.
-- **Note:** this action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 

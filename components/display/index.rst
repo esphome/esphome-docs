@@ -143,8 +143,8 @@ You can view the full API documentation for the rendering engine in the "API Ref
 
 .. _display-static_text:
 
-Drawing Static Text
-*******************
+Fonts
+*****
 
 The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
 Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
@@ -164,13 +164,44 @@ Next, create a ``font:`` section in your configuration:
         id: my_font
         size: 20
 
+      # gfonts://family[@weight]
+      - file: "gfonts://Roboto"
+        id: roboto
+        size: 20
+
     display:
       # ...
 
 Configuration variables:
 
-- **file** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font
-  file.
+- **file** (**Required**): The path (relative to where the .yaml file is) of the TrueType font
+  file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
+
+  - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
+
+    **Google Fonts**:
+
+    Each Google Font will be downloaded once and cached for future use.
+
+  - **family** (**Required**, string): The name of the Google Font family.
+  - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
+
+    - **thin**: 100
+    - **extra-light**: 200
+    - **light**: 300
+    - **regular**: 400 (**default**)
+    - **medium**: 500
+    - **semi-bold**: 600
+    - **bold**: 700
+    - **extra-bold**: 800
+    - **black**: 900
+
+  - **italic** (*Optional*, boolean): Whether the font should be italic.
+
+    **Local Fonts**:
+
+  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font file.
+
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
@@ -190,8 +221,10 @@ Configuration variables:
     to install it using
     ``pip install pillow``.
 
+Drawing Static Text
+*******************
 
-Then, in your display code just reference the font like so:
+In your display code, you can render static text by referencing the font and just entering your string:
 
 .. code-block:: yaml
 
@@ -374,10 +407,13 @@ RGB displays use red, green, and blue, while grayscale displays may use white.
 
 .. _display-graphs:
 
-Graphs
-******
+Graph Component
+***************
 
-You can display a graph of a sensor value(s) using this component. Examples:
+You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in 
+memory at the time the sensor updates and will be lost when the device reboots.
+
+Examples:
 
 .. figure:: images/graph_screen.png
     :align: center
@@ -482,8 +518,8 @@ And then later in code:
     - Axis labels are currently not possible without manually placing them.
     - The grid and border color is set with it.graph(), while the traces are defined separately.
 
-QR Codes
-********
+QR Code Component
+*****************
 
 Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
 
@@ -500,10 +536,10 @@ Configuration variables:
 - **value** (**Required**, string): The string which you want to encode in the QR-code.
 - **ecc** (*Optional*, string): The error correction code level you want to use. Defaults to ``LOW``. You can use one of the following values:
 
-  - ``LOW`` - The QR Code can tolerate about 7% erroneous codewords
-  - ``MEDIUM`` - The QR Code can tolerate about 15% erroneous codewords
-  - ``QUARTILE`` - The QR Code can tolerate about 25% erroneous codewords
-  - ``HIGH`` - The QR Code can tolerate about 30% erroneous codewords
+  - ``LOW``: The QR Code can tolerate about 7% erroneous codewords
+  - ``MEDIUM``: The QR Code can tolerate about 15% erroneous codewords
+  - ``QUARTILE``: The QR Code can tolerate about 25% erroneous codewords
+  - ``HIGH``: The QR Code can tolerate about 30% erroneous codewords
 
 To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
 
@@ -642,14 +678,6 @@ Configuration variables:
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
   - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
-
-- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GRAYSCALE and BINARY type image.
-  Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
-  and `here <https://en.wikipedia.org/wiki/Dither>`__.
-
-  - ``NONE``: Every pixel convert to its nearest color.
-  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
-
 
 .. _display-pages:
 

@@ -32,10 +32,10 @@ which is 19200bps.
         - homeassistant.event:
             event: esphome.rf_code_received
             data:
-              sync: !lambda 'char buffer [10];return itoa(data.sync,buffer,16);'
-              low: !lambda 'char buffer [10];return itoa(data.low,buffer,16);'
-              high: !lambda 'char buffer [10];return itoa(data.high,buffer,16);'
-              code: !lambda 'char buffer [10];return itoa(data.code,buffer,16);'
+              sync: !lambda 'return format_hex(data.sync);'
+              low: !lambda 'return format_hex(data.low);'
+              high: !lambda 'return format_hex(data.high);'
+              code: !lambda 'return format_hex(data.code);'
 
 Configuration variables:
 ------------------------
@@ -61,10 +61,10 @@ variables named ``code``, ``sync``, ``high`` and ``low``.
       - homeassistant.event:
           event: esphome.rf_code_received
           data:
-            sync: !lambda 'char buffer [10];return itoa(data.sync,buffer,16);'
-            low: !lambda 'char buffer [10];return itoa(data.low,buffer,16);'
-            high: !lambda 'char buffer [10];return itoa(data.high,buffer,16);'
-            code: !lambda 'char buffer [10];return itoa(data.code,buffer,16);'
+            sync: !lambda 'return format_hex(data.sync);'
+            low: !lambda 'return format_hex(data.low);'
+            high: !lambda 'return format_hex(data.high);'
+            code: !lambda 'return format_hex(data.code);'
 
 
 .. _rf_bridge-send_code_action:
@@ -182,8 +182,8 @@ are available inside that lambda under the variables named ``code``, ``protocol`
       - homeassistant.event:
           event: esphome.rf_advanced_code_received
           data:
-            length: !lambda 'char buffer [10];return itoa(data.length,buffer,16);'
-            protocol: !lambda 'char buffer [10];return itoa(data.protocol,buffer,16);'
+            length: !lambda 'return format_hex(data.length);'
+            protocol: !lambda 'return format_hex(data.protocol);'
             code: !lambda 'return data.code;'
 
 
@@ -321,7 +321,7 @@ Activate the internal buzzer to make a beep.
     on_...:
       then:
         - rf_bridge.beep:
-            duration: 100 
+            duration: 100
 
 Configuration options:
 
@@ -335,7 +335,7 @@ Configuration options:
     .. code-block:: cpp
 
         id(rf_bridge).beep(100);
-         
+
 Getting started with Home Assistant
 -----------------------------------
 
@@ -376,10 +376,10 @@ Home Assistant as events and will also setup a service so you can send codes wit
           - homeassistant.event:
               event: esphome.rf_code_received
               data:
-                sync: !lambda 'char buffer [10];return itoa(data.sync,buffer,16);'
-                low: !lambda 'char buffer [10];return itoa(data.low,buffer,16);'
-                high: !lambda 'char buffer [10];return itoa(data.high,buffer,16);'
-                code: !lambda 'char buffer [10];return itoa(data.code,buffer,16);'
+                sync: !lambda 'return format_hex(data.sync);'
+                low: !lambda 'return format_hex(data.low);'
+                high: !lambda 'return format_hex(data.high);'
+                code: !lambda 'return format_hex(data.code);'
 
 
 Now your latest received code will be in an event.

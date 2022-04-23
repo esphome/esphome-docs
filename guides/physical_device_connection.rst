@@ -231,7 +231,7 @@ require different parts and tools.
         .. _jumper-wires:
     * - :ref:`Jumper wires <jumper-wires>`
       - Used to connect two things together electrically. The male end has metal
-        protuding and is plugged into the the female end of a wire or board.
+        protuding and is plugged into the female end of a wire or board.
         They come in varying lengths too, but for our purposes, any length will
         do.
       - $3 to $8 for a pack
