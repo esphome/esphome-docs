@@ -91,7 +91,7 @@ Fan configuration
 
 
 Motor drive options
-*****************
+*******************
 - **decay_mode** (*Optional*, string): The current decay mode you want to use with
   the h-bridge. Either ``SLOW`` (braking) or ``FAST`` (coasting). 
   For more information on current decay see `this link <https://learn.adafruit.com/improve-brushed-dc-motor-performance/current-decay-mode>`__.
@@ -122,7 +122,7 @@ Motor drive options
 ``fan.hbridge.brake`` Action
 ----------------------------
 
-Initiate a brake/short action (see transition description for further information).
+Initiate a brake action (see transition description for further information).
 
 .. code-block:: yaml
 
