@@ -52,6 +52,7 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
+        default_mode: heat_cool
         default_target_temperature_low: 20 °C
         default_target_temperature_high: 22 °C
         min_cooling_off_time: 300s
@@ -74,6 +75,7 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
+        default_mode: heat
         default_target_temperature_low: 20 °C
         min_heating_off_time: 300s
         min_heating_run_time: 300s
@@ -90,6 +92,7 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
+        default_mode: cool
         default_target_temperature_high: 22 °C
         min_cooling_off_time: 300s
         min_cooling_run_time: 300s
@@ -173,6 +176,10 @@ These configuration items determine default values the thermostat controller sho
   - ``dry``
   - ``fan_only``
   - ``auto``
+  
+  This value is used if you flash your device for the first time. This means that if you want
+  your thermostat configuration to start in a certain state, you should configure this. If
+  not configured, you have to change the mode (once) via e.g. the UI of Home Assistant.
 
 - **default_target_temperature_low** (*Optional*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
