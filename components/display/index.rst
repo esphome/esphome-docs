@@ -579,6 +579,7 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
   - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
     will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
 
@@ -676,6 +677,7 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
 
 .. _display-pages:
 
