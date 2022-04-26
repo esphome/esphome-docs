@@ -390,6 +390,7 @@ All Actions
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
 - :ref:`number.set <number-set_action>`
+- :ref:`select.set <select-set_action>` / :ref:`select.first <select-first_action>` / :ref:`select.last <select-last_action>` / :ref:`select.previous <select-previous_action>`  / :ref:`select.next <select-next_action>`  / :ref:`select.to <select-to_action>` 
 
 .. _config-condition:
 
