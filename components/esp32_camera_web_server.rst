@@ -32,7 +32,7 @@ Configuration variables:
   - ``stream``
 
 Integrating the mjpeg web service into an NVR:
-------------------------
+----------------------------------------------
 
 **Zoneminder**
 
