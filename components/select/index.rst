@@ -105,7 +105,7 @@ the select is left as-is.
 .. _select-set_index_action:
 
 ``select.set_index`` Action
-*********************
+***************************
 
 This is an :ref:`Action <config-action>` for setting the active option using its index offset.
 
