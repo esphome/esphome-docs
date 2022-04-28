@@ -65,7 +65,7 @@ For more information on using lambdas with select, see :ref:`select-lambda_calls
 ************
 
 This automation will be triggered when a new value is published. In :ref:`Lambdas <config-lambda>`
-you can get the value from the trigger with ``x``.
+you can get the value from the trigger with ``x`` and the index offset of the selected value with ``i``.
 
 .. code-block:: yaml
 
@@ -75,8 +75,8 @@ you can get the value from the trigger with ``x``.
         on_value:
           then:
             - logger.log:
-                format: "Chosen option: %s"
-                args: ["x.c_str()"]
+                format: "Chosen option: %s (index %d)"
+                args: ["x.c_str()", "i"]
 
 Configuration variables: See :ref:`Automation <automation>`.
 
