@@ -102,6 +102,28 @@ Configuration variables:
 When a non-existing option value is used, a warning is logged and the state of
 the select is left as-is.
 
+.. _select-set_index_action:
+
+``select.set_index`` Action
+*********************
+
+This is an :ref:`Action <config-action>` for setting the active option using its index offset.
+
+.. code-block:: yaml
+
+    - select.set_index:
+        id: my_select
+        index: 3
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the select to set.
+- **index** (**Required**, int, :ref:`templatable <config-templatable>`):
+  The index offset of the option to be activated.
+
+When a non-existing index value is used, a warning is logged and the state of
+the select is left as-is.
+
 .. _select-next_action:
 
 ``select.next`` Action
