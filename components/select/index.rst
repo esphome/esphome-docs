@@ -253,33 +253,46 @@ advanced stuff (see the full API Reference for more info).
       auto state = id(my_select).state.c_str();
       ESP_LOGI("main", "Option of my select: %s", state);
 
-- ``.get_number_of_options()``: Retrieve the number of options in the select.
+- ``.size()``: Retrieve the number of options in the select.
 
   .. code-block:: cpp
 
-      auto nr = id(my_select).get_number_of_options();
-      ESP_LOGI("main", "Select has %d options", nr);
+      auto size = id(my_select).size();
+      ESP_LOGI("main", "Select has %d options", size);
 
-- ``.get_index_of_option(<option name>)``: Find the index offset for an option value.
+- ``.index_of(<option name>)``: Retrieve the index offset for an option value.
 
   .. code-block:: cpp
 
-      auto i = id(my_select).get_index_of_option("Happy");
-      if (i.has_value()) {
-        ESP_LOGI("main", "'Happy' is at index: %d", i.value());
+      auto index = id(my_select).index_of("Happy");
+      if (index.has_value()) {
+        ESP_LOGI("main", "'Happy' is at index: %d", index.value());
       } else {
         ESP_LOGE("main", "There is no option 'Happy'");
       }
 
-- ``.get_option_at(<index offset>)``: Retrieve the option value at a given index offset.
+- ``.active_index()``: Retrieve the index of the currently active option.
+
+  .. code-block:: cpp
+
+      auto index = id(my_select).active_index();
+      if (index.has_value()) {
+        ESP_LOGI("main", "Option at index %d is active", index);
+      } else {
+        ESP_LOGI("main", "No option is active");
+      }
+
+- ``.at(<index offset>)``: Retrieve the option value at a given index offset.
 
   .. code-block:: cpp
 
       auto index = 1;
-      auto option = id(my_select).get_option_at(index);
+      auto option = id(my_select).at(index);
       if (option.has_value()) {
         auto value = option.value();
         ESP_LOGI("main", "Option at %d is: %s", index, value);
+      } else {
+        ESP_LOGE("main", "Index %d does not exist", index);
       }
 
 See Also
