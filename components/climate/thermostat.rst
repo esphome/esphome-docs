@@ -177,9 +177,11 @@ These configuration items determine default values the thermostat controller sho
   - ``fan_only``
   - ``auto``
   
-  This value is used if you flash your device for the first time. This means that if you want
-  your thermostat configuration to start in a certain state, you should configure this. If
-  not configured, you have to change the mode (once) via e.g. the UI of Home Assistant.
+This value is used the first time your device starts after ESPHome is initially installed onto it. Add
+this option into your configuration if you want your thermostat component to start in a climate mode other
+than ``off``.  If this option is not configured, you'll need to manually change the climate mode later via
+the front end (Home Assistant), an ESPHome action, automation, or from within a lambda elsewhere in your
+device's configuration.
 
 - **default_target_temperature_low** (*Optional*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
