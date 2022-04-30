@@ -52,7 +52,6 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
-        default_mode: heat_cool
         default_target_temperature_low: 20 °C
         default_target_temperature_high: 22 °C
         min_cooling_off_time: 300s
@@ -75,7 +74,6 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
-        default_mode: heat
         default_target_temperature_low: 20 °C
         min_heating_off_time: 300s
         min_heating_run_time: 300s
@@ -92,7 +90,6 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
-        default_mode: cool
         default_target_temperature_high: 22 °C
         min_cooling_off_time: 300s
         min_cooling_run_time: 300s
