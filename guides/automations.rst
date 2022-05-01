@@ -389,7 +389,7 @@ All Actions
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
-- :ref:`number.set <number-set_action>`
+- :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
 
 .. _config-condition:
 
