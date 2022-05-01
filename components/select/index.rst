@@ -209,10 +209,10 @@ Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the select to set.
 
-.. _select-to_action:
+.. _select-operation_action:
 
-``select.to`` Action
-********************
+``select.operation`` Action
+***************************
 
 This is an :ref:`Action <config-action>` that can be used to change the active
 option in a select component (first, last, previous or next), using a generic
@@ -221,22 +221,22 @@ templatable action call.
 .. code-block:: yaml
 
     # Using values
-    - select.to:
+    - select.operation:
         id: my_select
-        to: Next
+        operation: Next
         cycle: true
 
     # Or templated (lambdas)
-    - select.to:
+    - select.operation:
         id: my_select
-        to: !lambda "return SELECT_OP_NEXT;"
+        operation: !lambda "return SELECT_OP_NEXT;"
         cycle: !lambda "return true;"
 
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the select to set.
-- **to** (**Required**, string, :ref:`templatable <config-templatable>`): Where
-  to move the option selection to. One of ``FIRST``, ``LAST``, ``PREVIOUS`` or
+- **operation** (**Required**, string, :ref:`templatable <config-templatable>`): The
+  operation to perform. One of ``FIRST``, ``LAST``, ``PREVIOUS`` or
   ``NEXT`` (case insensitive). When writing a lambda for this field, then return
   one of the following enum values: ``SELECT_OP_FIRST``, ``SELECT_OP_LAST``,
   ``SELECT_OP_PREVIOUS`` or ``SELECT_OP_NEXT``.
