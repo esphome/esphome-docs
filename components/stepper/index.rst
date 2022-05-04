@@ -126,7 +126,7 @@ Configuration variables:
 -----------------------------
 
 To use your stepper motor in :ref:`automations <automation>` or templates, you can use this action to set the target
-position (in steps). The stepper will always run towards the target position and stop once it has reached the target. When the stepper is currently running the other way, it will automatically decelerate and reverse direction.
+position (in steps). The stepper will always run towards the target position and stop once it has reached the target. The stepper will automatically decelerate in order to reverse the direction when necessary.
 
 .. code-block:: yaml
 
