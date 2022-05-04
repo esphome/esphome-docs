@@ -126,7 +126,7 @@ Configuration variables:
 -----------------------------
 
 To use your stepper motor in :ref:`automations <automation>` or templates, you can use this action to set the target
-position (in steps). The stepper will always run towards the target position and stop once it has reached the target.
+position (in steps). The stepper will always run towards the target position and stop once it has reached the target. When the stepper is currently running the other way, it will automatically decelerate and reverse direction.
 
 .. code-block:: yaml
 
@@ -390,6 +390,14 @@ advanced stuff (see the full API Reference for more info).
     .. code-block:: cpp
 
         int pos = id(my_stepper).target_position;
+        
+- ``request_stop``: Stop the stepper using the deceleration value.
+
+    .. code-block:: cpp
+
+        // Stop the stepper smoothly
+        id(my_stepper).request_stop();
+
 
 See Also
 --------
