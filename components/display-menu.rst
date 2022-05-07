@@ -77,8 +77,8 @@ in your ``i2c`` configuration.
         - type: label
           text: 'Label 1'
         - type: label
-          text: 'My'
-          lambda: 'return std::string(it->get_text() + std::string(" Label"));'
+          text: !lambda |-
+            return "Templated label";
 
     # Encoder to provide navigation
     sensor:
@@ -132,13 +132,9 @@ The component manages a hierarchy of menu items. The common configuration variab
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **type** (**Required**, string): The type of the menu item (see below).
-- **text** (*Optional*, string): The text displayed on the display.
-- **lambda** (*Optional*, :ref:`lambda <config-lambda>`):
-  Lambda returning a string to be displayed. The lambda gets an ``it`` argument
-  pointing to the ``MenuItem`` that is being drawn and has to return a complete string
-  excluding the first and last columns that are used to mark selection, editing
-  and navigation. No other formatting such as printing the referenced ``select`` or
-  ``number`` values is performed.
+- **text** (*Optional*, string, :ref:`templatable <config-templatable>`): The text displayed
+  for the menu item. If a lambda is specified it gets an ``it`` argument pointing to
+  the ``MenuItem`` that is being drawn.
 
 Label
 *****
@@ -214,13 +210,13 @@ Select
           select: my_color
           on_enter:
             then:
-              lambda: 'ESP_LOGI("display_menu", "select enter: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
+              lambda: 'ESP_LOGI("display_menu", "select enter: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
           on_leave:
             then:
-              lambda: 'ESP_LOGI("display_menu", "select leave: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
+              lambda: 'ESP_LOGI("display_menu", "select leave: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
           on_value:
             then:
-              lambda: 'ESP_LOGI("display_menu", "select value: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
+              lambda: 'ESP_LOGI("display_menu", "select value: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
 
     select:
       - platform: template
@@ -244,6 +240,10 @@ Configuration variables:
   mode is necessary. Defaults to ``False``.
 - **select** (**Required**, :ref:`config-id`): A ``select`` component managing
   the edited value.
+- **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda returning a string to be displayed as value. The lambda gets an ``it`` argument
+  pointing to the ``MenuItem``. If not specified the selected option name of the ``select``
+  component is used as the value.
 
 Automations:
 
@@ -307,6 +307,10 @@ Configuration variables:
 - **format** (*Optional*, string): A ``printf``-like format string specifying
   exactly one ``f`` or ``g``-type conversion used to display the current value.
   Defaults to ``%.1f``.
+- **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda returning a string to be displayed as value. The lambda gets an ``it`` argument
+  pointing to the ``MenuItem``. If not specified the value of the ``number`` component
+  formatted according to the ``format`` is used as the value.
 
 Automations:
 
@@ -334,13 +338,13 @@ Switch
           select: my_switch
           on_enter:
             then:
-              lambda: 'ESP_LOGI("display_menu", "switch enter: %s, %s", it->get_text().c_str(), it->get_switch_text().c_str());'
+              lambda: 'ESP_LOGI("display_menu", "switch enter: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
           on_leave:
             then:
-              lambda: 'ESP_LOGI("display_menu", "switch leave: %s, %s", it->get_text().c_str(), it->get_switch_text().c_str());'
+              lambda: 'ESP_LOGI("display_menu", "switch leave: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
           on_value:
             then:
-              lambda: 'ESP_LOGI("display_menu", "switch value: %s, %s", it->get_text().c_str(), it->get_switch_text().c_str());'
+              lambda: 'ESP_LOGI("display_menu", "switch value: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
 
     switch:
       - platform: template
@@ -361,6 +365,9 @@ Configuration variables:
 - **off_text** (*Optional*, string): The text for the ``OFF`` state. Defaults to ``Off``.
 - **switch** (**Required**, :ref:`config-id`): A ``switch`` component managing
   the edited value.
+- **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda returning a string to be displayed as value. The lambda gets an ``it`` argument
+  pointing to the ``MenuItem``. If not specified the ``on_text`` / ``off_text`` is used.
 
 Automations:
 
@@ -393,6 +400,57 @@ Automations:
 - **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the menu item is clicked.
   See :ref:`display_menu-on_value`.
+
+Custom
+******
+
+.. code-block:: yaml
+
+    lcd_menu:
+      menu:
+        - type: custom
+          immediate_edit: False
+          text: 'My Custom'
+          value_lambda: 'return to_string(some_state);'
+      on_next:
+        then:
+          lambda: 'some_state++;'
+      on_prev:
+        then:
+          lambda: 'some_state--;'
+
+The menu item of the type ``custom`` delegates navigating the values to the automations
+and displaying the value to the ``value_lambda``.
+
+Configuration variables:
+
+- **immediate_edit** (*Optional*, boolean): If ``False``, the item has to be clicked for the
+  editing. On the click the ``on_enter`` automation is called and the item is marked
+  as editable (the ``>`` selection marker changes to ``*`` as default).
+  If ``True`` the item is editable by clicking and no activation of the editing
+  mode is necessary. Defaults to ``False``.
+- **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
+  Lambda returning a string to be displayed as value. The lambda gets an ``it`` argument
+  pointing to the ``MenuItem``.
+
+Automations:
+
+- **on_enter** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is activated. See :ref:`display_menu-on_enter`.
+- **on_leave** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the editing mode is exited.
+  See :ref:`display_menu-on_leave`.
+- **on_value** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the value is changed.
+  See :ref:`display_menu-on_value`.
+- **on_next** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the user navigates to the next value, either by turning the knob clockwise
+  while in the editing mode, or by clicking if ``immediate_edit`` is ``True``.
+  See :ref:`display_menu-on_next`.
+- **on_prev** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when the user navigates to the previous value by turning the knob counterclockwise
+  shile in editing mode.
+  See :ref:`display_menu-on_prev`.
 
 Automations
 -----------
@@ -461,7 +519,45 @@ or a command was triggered.
           select: my_select_1
           on_value:
             then:
-              lambda: 'ESP_LOGI("display_menu", "select value: %s, %s", it->get_text().c_str(), it->get_option_text().c_str());'
+              lambda: 'ESP_LOGI("display_menu", "select value: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
+
+.. _display_menu-on_next:
+
+``on_next``
+***********
+
+This automation will be triggered when the user requested to set the value to the next one.
+
+.. code-block:: yaml
+
+    lcd_menu:
+      ...
+      menu:
+        - type: custom
+          text: 'Custom Item'
+          value_lambda: 'return to_string(some_state);'
+          on_next:
+            then:
+              lambda: 'some_state++;'
+
+.. _display_menu-on_prev:
+
+``on_prev``
+***********
+
+This automation will be triggered when the user requested to set the value to the previous one.
+
+.. code-block:: yaml
+
+    lcd_menu:
+      ...
+      menu:
+        - type: custom
+          text: 'Custom Item'
+          value_lambda: 'return to_string(some_state);'
+          on_prev:
+            then:
+              lambda: 'some_state--;'
 
 .. display_menu-up_action:
 
