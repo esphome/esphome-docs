@@ -72,6 +72,32 @@ Configuration variables:
   sensor. Defaults to ``60s``.
 
 
+``scd4x.perform_forced_calibration`` Action
+-------------------------------------------
+
+Performs a forced calibration, making the currently measured CO₂ value match the provided target value.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - scd4x.perform_forced_calibration: 450
+
+Configuration options:
+
+- **co2** (*Optional*, int, :ref:`templatable <config-templatable>`): The target CO₂ value in parts per million.
+  Defaults to ``410`` which is the approximate atmospheric co2 level as of 2018 (`source <https://en.wikipedia.org/wiki/Carbon_dioxide_in_Earth%27s_atmosphere#Current_concentration>`__).
+
+Requires the sensor to be fully initialized and running, fails otherwise.
+If successful, difference in current calibration will be written to the log.
+
+Use this if ``automatic_self_calibration`` is not applicable and was therefore turned off.
+This is useful if it can't be guaranteed that the sensor is exposed to outside air at least once every 7 days.
+For details, check the `sensor's datasheet <https://sensirion.com/media/documents/C4B87CE6/61652F80/Sensirion_CO2_Sensors_SCD4x_Datasheet.pdf>`__ under `3.7 Field Calibration`.
+
+Note that using this action alone does **not** turn off automatic self calibration.
+I.e. if ``automatic_self_calibration`` was not set to ``false``, self calibration will overwrite the calibration eventually.
+
 
 See Also
 --------
