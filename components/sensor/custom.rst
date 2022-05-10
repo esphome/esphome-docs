@@ -3,7 +3,7 @@ Custom Sensor Component
 
 .. seo::
     :description: Instructions for setting up Custom C++ sensors with ESPHome.
-    :image: language-cpp.png
+    :image: language-cpp.svg
     :keywords: C++, Custom
 
 .. warning::

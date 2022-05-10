@@ -3,7 +3,7 @@ T6613/15 CO2 Sensors
 
 .. seo::
     :description: Instructions for setting up T6613 and T6615 sensors for ESPHome
-    :image: images/t6615.png
+    :image: t6615.jpg
     :keywords: t6613 t6615
 
 The ``t6615`` sensor platform allows you to use T6613 and T6615 family sensors

@@ -1,5 +1,5 @@
 AirThings BLE Sensors
-========================
+=====================
 
 .. seo::
     :description: Instructions for setting up AirThings bluetooth-based sensors in ESPHome.
@@ -26,18 +26,18 @@ To find out your device's MAC address, add the following to your ESPHome configu
 
 The device will then listen for nearby devices, and display a message like this one:
 
-``
-[D][airthings_ble:019]: 
-Found AirThings device Serial: 123456789 (MAC: 01:02:03:04:05:06)
-``
+.. code-block:: text
 
-Once the device is found, **remove the ``airthings_ble:`` device tracker** from your configuration and take note of the device MAC address, and use it when configuring a sensor below.
+    [D][airthings_ble:019]:
+    Found AirThings device Serial: 123456789 (MAC: 01:02:03:04:05:06)
+
+Once the device is found, remove the ``airthings_ble`` device tracker from your configuration and take note of the device MAC address, and use it when configuring a sensor below.
 
 Supported Devices
 -----------------
 
-Wave Plus
-*********
+Airthings Wave Plus Sensor
+**************************
 
 AirThings Wave Plus tracks radon (24h and long term), airborne chemicals, CO2, temperature, atmospheric pressure and humidity.
 
@@ -46,6 +46,8 @@ AirThings Wave Plus tracks radon (24h and long term), airborne chemicals, CO2, t
     :width: 60.0%
 
 Configuration example:
+**********************
+
 
 .. code-block:: yaml
 
@@ -74,8 +76,8 @@ Configuration example:
 
     esp32_ble_tracker:
 
-Wave Mini
-*********
+Airthings Wave Mini Sensor
+**************************
 
 AirThings Wave Mini tracks airborne chemicals, temperature, pressure and humidity.
 

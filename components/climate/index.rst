@@ -3,7 +3,7 @@ Climate Component
 
 .. seo::
     :description: Information about the base representation of all climate devices.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for climate devices. Climate devices can represent different types of
 hardware, but the defining factor is that climate devices have a settable target temperature
@@ -53,6 +53,10 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 MQTT options:
 
@@ -180,6 +184,21 @@ advanced stuff.
       // etc. see API reference
       call.perform();
 
+.. _climate-on_state_trigger:
+
+``climate.on_state`` Trigger
+******************************************************
+
+This trigger is activated each time the state of the climate device is updated 
+(for example, if the current temperature measurement or the mode set by the users changes).
+
+.. code-block:: yaml
+
+    climate:
+      - platform: midea  # or any other platform
+        # ...
+        on_state:
+        - logger.log: "State updated!"
 
 See Also
 --------

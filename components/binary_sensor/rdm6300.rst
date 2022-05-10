@@ -68,7 +68,7 @@ unsigned integer.
         then:
           - mqtt.publish:
               topic: rdm6300/tag
-              payload: !lambda 'return uint32_to_string(x);'
+              payload: !lambda 'return to_string(x);'
 
 A tag scanned event can also be sent to the Home Assistant tag component
 using :ref:`api-homeassistant_tag_scanned_action`.
@@ -79,7 +79,7 @@ using :ref:`api-homeassistant_tag_scanned_action`.
       # ...
       on_tag:
         then:
-          - homeassistant.tag_scanned: !lambda 'return uint32_to_string(x);'
+          - homeassistant.tag_scanned: !lambda 'return to_string(x);'
 
 .. _rdm6300-tag:
 
@@ -106,7 +106,7 @@ unique id (``uid``) is currently being detected by the RDM6300 or not.
 Configuration variables:
 ************************
 
-- **uid** (**Required**, integer): The unique ID of the NFC/RFID tag.
+- **uid** (**Required**, int): The unique ID of the NFC/RFID tag.
 - **name** (**Required**, string): The name of the binary sensor.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.

@@ -3,7 +3,7 @@ Cold White + Warm White Light
 
 .. seo::
     :description: Instructions for setting up Cold White + Warm White lights.
-    :image: brightness-medium.png
+    :image: brightness-medium.svg
 
 The ``cwww`` light platform creates a cold white + warm white light from 2
 :ref:`float output components <output>` (one for each channel). The two channels
@@ -29,7 +29,7 @@ Mixing
 The two channels of this light can be controlled individually by using the ``cold_white`` and ``warm_white`` options of
 the :ref:`light control actions <light-turn_on_action>`.
 
-If the color temperature of both lights is supplied, it is also possible to control the the two channels together by
+If the color temperature of both lights is supplied, it is also possible to control the two channels together by
 setting a color temperature, using the ``white`` (interpreted as brightness) and ``color_temperature`` options. This
 calculation assumes that both lights have the same illuminance, which might not always be accurate.
 

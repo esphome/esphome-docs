@@ -3,7 +3,7 @@ Havells Solar
 
 .. seo::
     :description: Instructions for setting up Havells inverter reading on modbus.
-    :image: images/havellsgti5000d.jpg
+    :image: havellsgti5000d_s.jpg
     :keywords: Havells Enviro, Havells GTI
 
 The ``Havells Inverter`` sensor platform allows you to use Havells inverter data reading on modbus

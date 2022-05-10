@@ -3,7 +3,7 @@ Template Output
 
 .. seo::
     :description: Instructions for setting up template outputs with ESPHome.
-    :image: description.png
+    :image: description.svg
 
 The ``template`` output component can be used to create templated binary and float outputs in ESPHome.
 

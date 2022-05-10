@@ -3,7 +3,7 @@ SHT4X Temperature and Humidity Sensor
 
 .. seo::
     :description: Instructions for setting up SHT4X temperature and humidity sensor
-    :image: images/sht4x-full.jpg
+    :image: sht4x.jpg
 
 The ``sht4x`` sensor platform  allows you to use your SHT4X temperature and humidity sensor
 (`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Datasheets/Sensirion_Humidity_Sensors_SHT4x_Datasheet.pdf>`__, `Adafruit`_) with ESPHome.

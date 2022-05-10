@@ -3,12 +3,13 @@ WiFi Component
 
 .. seo::
     :description: Instructions for setting up the WiFi configuration for your ESP node in ESPHome.
-    :image: network-wifi.png
+    :image: network-wifi.svg
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
 This core ESPHome component sets up WiFi connections to access points
-for you. It needs to be in your configuration or otherwise ESPHome
-will fail in the config validation stage.
+for you. You need to have a network configuration (either Wifi or Ethernet)
+or ESPHome will fail in the config validation stage. You also can't have both Wifi
+and Ethernet setup in same time (even if your ESP has both wired).
 
 It’s recommended to provide a static IP for your node, as it can
 dramatically improve connection times.
@@ -22,9 +23,16 @@ dramatically improve connection times.
 
       # Optional manual IP
       manual_ip:
-        static_ip: 10.0.0.42
-        gateway: 10.0.0.1
+        static_ip: 192.168.0.123
+        gateway: 192.168.0.1
         subnet: 255.255.255.0
+
+.. code-block:: yaml
+
+    # It is highly recommended to use secrets
+    wifi:
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
 .. _wifi-configuration_variables:
 
@@ -59,20 +67,19 @@ Configuration variables:
     Defaults to 1.
   - **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as
     manual_ip for station mode.
-  - **ap_timeout** (*Optional*, :ref:`time <config-time>`): The time after which to enable the
+  - **ap_timeout** (*Optional*, :ref:`config-time`): The time after which to enable the
     configured fallback hotspot. Defaults to ``1min``.
 
-- **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presence and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname which can break certain functionalities. Please see :ref:`notes on disabling mDNS <faq-notes_on_disabling_mdns>`. Defaults to ``true``.
 - **domain** (*Optional*, string): Set the domain of the node hostname used for uploading.
   For example, if it's set to ``.local``, all uploads will be sent to ``<HOSTNAME>.local``.
   Defaults to ``.local``.
-- **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when no
+- **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   WiFi connection exists. Can be disabled by setting this to ``0s``, but note that the low level IP stack currently
   seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to ``15min``.
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
 
-- **output_power** (*Optional*, string): The amount of TX power for the WiFi interface from 10dB to 20.5dB. Default for ESP8266 is 20dB, 20.5dB might cause unexpected restarts.
+- **output_power** (*Optional*, string): The amount of TX power for the WiFi interface from 8.5dB to 20.5dB. Default for ESP8266 is 20dB, 20.5dB might cause unexpected restarts.
 - **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
@@ -191,6 +198,16 @@ Configuration variables:
 
 - **ssid** (*Optional*, string): The SSID or WiFi network name.
 - **password** (*Optional*, string): The password to use for authentication. Leave empty for no password.
+- **manual_ip** (*Optional*): Manually configure the static IP of the node when using this network. Note that
+  when using different static IP addresses on each network, it is required to set ``use_address``, as ESPHome
+  cannot infer to which network the node is connected.
+
+  - **static_ip** (**Required**, IPv4 address): The static IP of your node.
+  - **gateway** (**Required**, IPv4 address): The gateway of the local network.
+  - **subnet** (**Required**, IPv4 address): The subnet of the local network.
+  - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
+  - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
+
 - **eap** (*Optional*): See :ref:`eap`.
 - **channel** (*Optional*, int): The channel of the network (1-14). If given, only connects to networks
   that are on this channel.
@@ -260,5 +277,6 @@ See Also
 --------
 
 - :doc:`captive_portal`
+- :doc:`network`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`

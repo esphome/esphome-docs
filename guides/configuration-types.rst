@@ -3,7 +3,7 @@ Configuration Types
 
 .. seo::
     :description: Documentation of different configuration types in ESPHome
-    :image: settings.png
+    :image: settings.svg
 
 ESPHome’s configuration files have several configuration types. This
 page describes them.
@@ -75,39 +75,41 @@ In some places, ESPHome also supports a more advanced “pin schema”.
       pin:
         number: D0
         inverted: true
-        mode: INPUT_PULLUP
+        mode:
+          input: true
+          pullup: true
 
 Configuration variables:
 
 -  **number** (**Required**, pin): The pin number.
 -  **inverted** (*Optional*, boolean): If all read and written values
    should be treated as inverted. Defaults to ``false``.
--  **mode** (*Optional*, string): A pin mode to set for the pin at
-   startup, corresponds to Arduino’s ``pinMode`` call.
+-  **mode** (*Optional*, string or mapping): Configures the pin to behave in different
+   modes like input or output. The default value depends on the context.
+   Accepts either a shorthand string or a mapping where each feature can be individually
+   enabled/disabled:
 
-Available Pin Modes:
+   - **input** (*Optional*, boolean): If true, configure the pin as an input.
+   - **output** (*Optional*, boolean): If true, configure the pin as an output.
+   - **pullup** (*Optional*, boolean): Activate internal pullup resistors on the pin.
+   - **pulldown** (*Optional*, boolean): Activate internal pulldown resistors on the pin.
+   - **open_drain** (*Optional*, boolean): Set the pin to open-drain (as opposed to push-pull).
+     The active pin state will then result in a high-impedance state.
 
--  ``INPUT``
--  ``OUTPUT``
--  ``OUTPUT_OPEN_DRAIN``
--  ``ANALOG`` (only on ESP32)
--  ``INPUT_PULLUP``
--  ``INPUT_PULLDOWN`` (only on ESP32)
--  ``INPUT_PULLDOWN_16`` (only on ESP8266 and only on GPIO16)
+   For compatibility some shorthand modes can also be used.
 
-More exotic Pin Modes are also supported, but rarely used:
+   - ``INPUT``
+   - ``OUTPUT``
+   - ``OUTPUT_OPEN_DRAIN``
+   - ``ANALOG``
+   - ``INPUT_PULLUP``
+   - ``INPUT_PULLDOWN``
 
--  ``WAKEUP_PULLUP`` (only on ESP8266)
--  ``WAKEUP_PULLDOWN`` (only on ESP8266)
--  ``SPECIAL``
--  ``FUNCTION_0`` (only on ESP8266)
--  ``FUNCTION_1``
--  ``FUNCTION_2``
--  ``FUNCTION_3``
--  ``FUNCTION_4``
--  ``FUNCTION_5`` (only on ESP32)
--  ``FUNCTION_6`` (only on ESP32)
+Advanced options:
 
+- **drive_strength** (*Optional*, string): On ESP32s with esp-idf framework the pad drive strength,
+  i.e. the maximum amount of current can additionally be set. Defaults to ``20mA``.
+  Options are ``5mA``, ``10mA``, ``20mA``, ``40mA``.
 
 .. _config-time:
 
@@ -311,7 +313,7 @@ merged with the services definitions from main config file.
 
     # In wifi.yaml
     wifi:
-      ssid: "your_ssid"
+      ssid: !secret wifi_ssid
       password: !secret wifi_password
       domain: .yourdomain.lan
       fast_connect: true
@@ -337,7 +339,8 @@ merged with the services definitions from main config file.
       level: ${log_level}
 
     api:
-      password: !secret hass_api_key
+      encryption:
+        key: !secret api_encryption_key
       reboot_timeout: 1h
 
     sensor:
@@ -357,6 +360,11 @@ Remote/git Packages
 Packages can also be loaded from a git repository by utilizing the correct config syntax.
 :ref:`config-substitutions` can be used inside the remote packages which allows users to override
 them locally with their own subsitution value.
+
+.. note::
+
+    Remote packages cannot have ``secret`` lookups in them. They should instead make use of substitutions with an
+    optional default in the packaged YAML, which the local device YAML can set using values from the local secrets.
 
 .. code-block:: yaml
 

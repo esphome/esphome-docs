@@ -51,7 +51,7 @@ and direction binary sensors.
 
 Base Configuration:
 
-- **address** (*Optional*, integer): The I²C address of the sensor. Defaults to ``0x39``.
+- **address** (*Optional*, int): The I²C address of the sensor. Defaults to ``0x39``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 
@@ -66,11 +66,11 @@ Configuration variables:
 - **name** (**Required**, string): The name for the sensor.
 - **type** (**Required**, string): The type of sensor measurement. One of
 
-  - **CLEAR**
-  - **RED**
-  - **GREEN**
-  - **BLUE**
-  - **PROXIMITY**
+  - ``CLEAR``
+  - ``RED``
+  - ``GREEN``
+  - ``BLUE``
+  - ``PROXIMITY``
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
@@ -86,10 +86,10 @@ Configuration variables:
 - **name** (**Required**, string): The name for the binary sensor.
 - **direction** (**Required**, string): The direction to measure. One of:
 
-  - **UP**
-  - **DOWN**
-  - **LEFT**
-  - **RIGHT**
+  - ``UP``
+  - ``DOWN``
+  - ``LEFT``
+  - ``RIGHT``
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.

@@ -3,7 +3,7 @@ SM16716 LED driver
 
 .. seo::
     :description: Instructions for setting up SM16716 LED drivers in ESPHome.
-    :image: sm16716.png
+    :image: sm16716.svg
     :keywords: SM16716, Feit Electric A19 Smart WiFi Bulb, Merkury Innovations A21 Smart Wi-Fi Bulb
 
 .. _sm16716-component:
@@ -48,8 +48,8 @@ global ``sm16716`` hub and give it an id, and then define the
 Configuration variables:
 ************************
 
--  **data_pin** (**Required**, :ref:`config-pin_schema`): The pin used for MOSI.
--  **clock_pin** (**Required**, :ref:`config-pin_schema`): The pin which SCLK is
+-  **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin used for MOSI.
+-  **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin which SCLK is
    connected to.
 -  **num_channels** (*Optional*, int): Total number of channels of the whole
    chain. Must be in range from 3 to 255. Defaults to 3.
@@ -111,20 +111,21 @@ A complete configuration for a Feit Electric A19 looks like:
 .. code-block:: yaml
 
     esphome:
-      name: <NAME_OF_NODE>
-      platform: ESP8266
+      name: REPLACEME
+      friendly_name: REPLACEME
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: <YOUR_SSID>
-      password: <YOUR_WIFI_PASSPHRASE>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 
     logger:
 
     ota:
-      password: <YOUR_OTA_PASSWORD>
 
     sm16716:
       data_pin: GPIO14

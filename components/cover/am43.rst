@@ -3,7 +3,7 @@ AM43 Cover
 
 .. seo::
     :description: Setting up AM43/BLE covers in ESPHome.
-    :image: am43.png
+    :image: am43.jpg
 
 The ``am43`` cover platform allows you to control an AM43 based
 BLE cover motor. These devices are sold under various brands, such
@@ -27,7 +27,7 @@ and state of the motor.
     esp32_ble_tracker:
 
     ble_client:
-      - mac: AA:BB:CC:DD:EE:FF
+      - mac_address: AA:BB:CC:DD:EE:FF
         id: am43_kitchen
 
     cover:
@@ -58,6 +58,7 @@ Configuration variables:
 - **pin** (*Optional*, int): The pin for the device, as
   set in the app. The default is usually printed on the
   device. Defaults to ``8888``.
+- **invert_position** (*Optional*, boolean): Inverts the position value to and from the device. Set if ESPHome is swapping around the open/close state of the cover.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 

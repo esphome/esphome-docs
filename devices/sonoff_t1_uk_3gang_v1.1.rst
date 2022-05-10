@@ -126,12 +126,13 @@ or alternatively, you can just take the below configuration file and modify it t
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
-      board: esp01_1m
+
+    esp8266:
+      board: esp8285
 
     wifi:
-      ssid: <YOUR_SSID>
-      password: <YOUR_PASSWORD>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 
@@ -229,12 +230,13 @@ of the basic functions.
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: <YOUR_SSID>
-      password: <YOUR_PASSWORD>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 
@@ -246,19 +248,25 @@ of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff T1 UK 3 Gang Touchpad 1"
       - platform: gpio
         pin:
           number: GPIO9
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff T1 UK 3 Gang Touchpad 2"
       - platform: gpio
         pin:
           number: GPIO10
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff T1 UK 3 Gang Touchpad 3"
       - platform: status

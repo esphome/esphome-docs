@@ -43,7 +43,8 @@ and calculating the current with `Ohm's law <https://en.wikipedia.org/wiki/Ohm%2
 
     esphome:
       name: voltson
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     ### you wifi and other settings here ###
@@ -57,7 +58,7 @@ and calculating the current with `Ohm's law <https://en.wikipedia.org/wiki/Ohm%2
     # D7 GPIO13 | HLW8012/CF  | cf_pin
 
     status_led:
-      pin: 
+      pin:
         number: GPIO5
 
     output:
@@ -83,7 +84,9 @@ and calculating the current with `Ohm's law <https://en.wikipedia.org/wiki/Ohm%2
         id: button1
         pin:
           number: GPIO14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         on_press:
           - switch.toggle: switch1

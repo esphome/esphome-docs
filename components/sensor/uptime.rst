@@ -3,7 +3,7 @@ Uptime Sensor
 
 .. seo::
     :description: Instructions for setting up a sensor that tracks the uptime of the ESP.
-    :image: timer.png
+    :image: timer.svg
 
 The ``uptime`` sensor allows you to track the time the ESP has stayed up for in seconds.
 Time rollovers are automatically handled.
@@ -56,10 +56,10 @@ with human readable output.
                   int minutes = seconds /  60;
                   seconds = seconds % 60;
                   return (
-                    (days ? String(days) + "d " : "") +
-                    (hours ? String(hours) + "h " : "") +
-                    (minutes ? String(minutes) + "m " : "") +
-                    (String(seconds) + "s") 
+                    (days ? to_string(days) + "d " : "") +
+                    (hours ? to_string(hours) + "h " : "") +
+                    (minutes ? to_string(minutes) + "m " : "") +
+                    (to_string(seconds) + "s") 
                   ).c_str();
 
 See Also

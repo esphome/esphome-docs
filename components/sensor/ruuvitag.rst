@@ -153,11 +153,13 @@ Setting Up Devices
 
 To set up RuuviTag devices you first need to find their MAC Address so that
 ESPHome can identify them. So first, create a simple configuration without any
-``ruuvitag`` entries like so:
+``ruuvitag`` entries but with ``ruuvi_ble`` enabled like so:
 
 .. code-block:: yaml
 
     esp32_ble_tracker:
+
+    ruuvi_ble:
 
 After uploading the ESP32 will immediately try to scan for BLE devices.
 When it detects these sensors, it will automatically parse the BLE message

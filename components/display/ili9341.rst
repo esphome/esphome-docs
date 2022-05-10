@@ -3,7 +3,7 @@ ILI9341 TFT LCD
 
 .. seo::
     :description: Instructions for setting up ILI9341 TFT LCD display drivers.
-    :image: ili9341-full.jpg
+    :image: ili9341.jpg
 
 .. _ili9341:
 
@@ -12,7 +12,7 @@ Usage
 
 The ``ili9341`` display platform allows you to use
 ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
-`Aliexpress <https://s.click.aliexpress.com/e/_dTKH6Mt>`__)
+`Aliexpress <https://www.aliexpress.com/af/Ili9341.html>`__)
 displays with ESPHome. As this is a somewhat higher resolution display and may require pins
 beyond the typical SPI connections, it is better suited for use with the ESP32.
 
@@ -56,6 +56,8 @@ Configuration variables:
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-engine` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``5s``.
+- **auto_clear_enabled** (*Optional*, boolean): Whether to automatically clear the display in each loop (''true'', default),
+  or to keep the existing display content (must overwrite explicitly, e.g., only on data change).
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
@@ -123,5 +125,5 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`ili9341/ili9341.h`
+- :apiref:`ili9341/ili9341_display.h`
 - :ghedit:`Edit`

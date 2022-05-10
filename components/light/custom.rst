@@ -26,8 +26,7 @@ The example below is an example of a custom light output.
       LightTraits get_traits() override {
         // return the traits this light supports
         auto traits = LightTraits();
-        traits.set_supports_brightness(true);
-        traits.set_supports_color_modes({ColorMode::RGB});
+        traits.set_supported_color_modes({ColorMode::RGB, ColorMode::BRIGHTNESS});
         return traits;
       }
 

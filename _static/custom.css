@@ -13,15 +13,19 @@ div.body {
   min-width: initial;
 }
 
+div.sphinxsidebar {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
 img.component-image {
   border: none;
-  vertical-align: middle;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
   height: 85px;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 table.docutils {

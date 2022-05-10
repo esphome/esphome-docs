@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy Scanner
 
 .. seo::
     :description: Instructions for setting up BLE text sensors for the ESP32.
-    :image: bluetooth.png
+    :image: bluetooth.svg
     :keywords: ESP32
 
 The ``ble_scanner`` text sensor platform lets you track reachable BLE devices.

@@ -3,7 +3,7 @@ Text Sensor Component
 
 .. seo::
     :description: Instructions for setting up text sensors that represent their state as a string of text.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 Text sensors are a lot like normal :doc:`sensors </components/sensor/index>`.
 But where the "normal" sensors only represent sensors that output **numbers**, this
@@ -32,6 +32,10 @@ Configuration variables:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Automations:
@@ -62,8 +66,8 @@ Filters are processed in the order they are defined in your configuration.
     filters:
       - to_upper:
       - to_lower:
-      - append: "_prefix"
-      - prepend: "suffix_"
+      - append: "_suffix"
+      - prepend: "prefix_"
       - substitute:
         - "suf -> foo"
         - "pre -> bar"
@@ -106,7 +110,7 @@ Adds a string to the end of the current string.
     - platform: template
       # ...
       filters:
-        - append: "_prefix"
+        - append: "_suffix"
 
 ``prepend``
 ***********
@@ -119,7 +123,7 @@ Adds a string to the start of the current string.
     - platform: template
       # ...
       filters:
-        - prepend: "suffix_"
+        - prepend: "prefix_"
 
 ``substitute``
 **************
@@ -137,6 +141,25 @@ Search the current value of the text sensor for a string, and replace it with an
           - "pre -> bar"
 
 The arguments are a list of substitutions, each in the form ``TO_FIND -> REPLACEMENT``.
+
+``map``
+*******
+
+Lookup the current value of the text sensor in a list, and return the matching item if found. 
+Does not change the value of the text sensor if the current value wasn't found.
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: template
+      # ...
+      filters:
+        - map:
+          - high -> On
+          - low -> Off
+
+The arguments are a list of substitutions, each in the form ``LOOKUP -> REPLACEMENT``.
 
 ``lambda``
 **********

@@ -2,7 +2,7 @@ EPEVER® MPPT Solar Charge Controller Tracer-AN Series
 =====================================================
 .. seo::
     :description: ESPHome configuration for EPEVER® MPPT Solar Charge Controller Tracer-AN Series
-    :image: images/mages/tracer-an.jpg
+    :image: tracer-an.jpg
     :keywords: EPEVER Tracer
 
 .. figure:: images/tracer-an.jpg
@@ -24,16 +24,13 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
     substitutions:
       updates: 30s
-      unique_id: solarstation-x
+      name: solarstation-x
 
     esphome:
-      name: ${unique_id}
-      platform: ESP32
-      board: pico32
-      arduino_version: latest
+      name: ${name}
       platformio_options:
         ## larger stack size required with all registers enable_load_test
-        ## reduce registers or wait for integration of 2.0.0 arduinoespressif32 
+        ## reduce registers or wait for integration of 2.0.0 arduinoespressif32
         ## not yet working needs 2.0
         build_flags:
           - -DCONFIG_ARDUINO_LOOP_STACK_SIZE=32768
@@ -110,7 +107,11 @@ Below is the ESPHome configuration file that will get you up and running. This a
               controller->queue_command(set_battery3_command);
               ESP_LOGI("ModbusLambda", "EPSOLAR Battery set");
 
-
+    esp32:
+      board: pico32
+      framework:
+        type: arduino
+        version: latest
 
     wifi:
       ssid: !secret wifi_sid
@@ -128,15 +129,10 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
     # Enable Home Assistant API
     api:
-      password: !secret api_password
       reboot_timeout: 0s
 
     ota:
-      password: !secret ota_password
 
-    mqtt:
-      id: mqtt_client
-    
     uart:
       id: mod_bus
       tx_pin: 19
@@ -163,7 +159,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
       tracer-real-time: !include tracer-real-time.yaml
       tracer-stats: !include tracer-stats.yaml
       #tracer-settings: !include tracer-settings.yaml
-      
+
     sensor:
       - platform: template
         accuracy_decimals: 0
@@ -305,7 +301,7 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
 The definitions for most sensors is included using Packages
 
-Rated Datum registers 
+Rated Datum registers
 
 tracer-rated-datum.yaml
 
@@ -531,7 +527,7 @@ tracer-real-time.yaml
         address: 0x3110
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -543,7 +539,7 @@ tracer-real-time.yaml
         address: 0x3111
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -555,7 +551,7 @@ tracer-real-time.yaml
         address: 0x3112
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -577,7 +573,7 @@ tracer-real-time.yaml
         address: 0x311B
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -588,7 +584,7 @@ tracer-real-time.yaml
         address: 0x311D
         unit_of_measurement: "°C"
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -624,7 +620,7 @@ tracer-real-time.yaml
 
     Statistic registers
     tracer-stats.yaml
-    
+
     .. code-block:: yaml
 
     sensor:
@@ -987,7 +983,7 @@ tracer-settings.yaml
         name: "Battery temperature warning upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         # new range add 'skip_updates' again
         skip_updates: 50
         filters:
@@ -1000,7 +996,7 @@ tracer-settings.yaml
         name: "Battery temperature warning lower limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1011,7 +1007,7 @@ tracer-settings.yaml
         name: "Controller inner temperature upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1022,7 +1018,7 @@ tracer-settings.yaml
         name: "Controller inner temperature upper limit recover"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1033,7 +1029,7 @@ tracer-settings.yaml
         name: "Power component temperature upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1044,7 +1040,7 @@ tracer-settings.yaml
         name: "Power component temperature upper limit recover"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 

@@ -3,7 +3,7 @@ Light Partition
 
 .. seo::
     :description: Instructions for setting up light partitions.
-    :image: color_lens.png
+    :image: color_lens.svg
 
 The ``partition`` light platform allows you to combine multiple addressable light segments
 (like :doc:`fastled` or :doc:`neopixelbus`) and/or individual lights (like :doc:`rgb`) into a single addressable light.
@@ -99,11 +99,11 @@ Configuration variables:
   - **from** (**Required**, int): The index of the first LED to address in the segment. Counting starts with 0,
     so first LED is 0.
   - **to** (**Required**, int): The index of the last LED to address in this segment.
-  - **reversed** (**Optional**, boolean): Whether to reverse the order of LEDs in this segment. Defaults to ``false``.
+  - **reversed** (*Optional*, boolean): Whether to reverse the order of LEDs in this segment. Defaults to ``false``.
 
   *For single light segments:*
 
-  - **single_light_id** (**required**, :ref:`config-id`): The ID of a single addressable or non-addressable light.
+  - **single_light_id** (**Required**, :ref:`config-id`): The ID of a single addressable or non-addressable light.
     If an addressable light is specified, it will be treated as a single light in the partition.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.

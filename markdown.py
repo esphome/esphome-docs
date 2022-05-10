@@ -172,6 +172,19 @@ class Translator(nodes.NodeVisitor):
     def depart_block_quote(self, node):
         pass
 
+    def visit_raw(self, node):
+        pass
+
+    def depart_raw(self, node):
+        pass
+
+    def visit_note(self, node):
+        self.write("\n > ")
+        pass
+
+    def depart_note(self, node):
+        pass
+
 
 class MDWriter(writers.Writer):
     """GitHub-flavored markdown writer"""
