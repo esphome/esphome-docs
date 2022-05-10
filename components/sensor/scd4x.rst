@@ -101,7 +101,7 @@ As of April 2022 the average fresh air Co² concentration is 419 ppm.
 
     on_...:
       then:
-        - scd4x.perform_forced_calibration_action:
+        - scd4x.perform_forced_calibration:
           value: 419   # outside average April 2022
           id: my_scd41
 
