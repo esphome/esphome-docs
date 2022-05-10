@@ -215,16 +215,6 @@ Known working with:
 - Delonghi PAC WE 120HP
 
 
-
-.. _delonghi_ir:
-
-``delonghi`` Climate
--------------------------
-
-Currently supports the protocol used by some delonghi portable units. Known to work with:
-
-- PAC WE 120HP.
-
 .. _toshiba:
 
 ``toshiba`` Climate
