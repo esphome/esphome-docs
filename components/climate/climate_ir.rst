@@ -32,6 +32,8 @@ submit a feature request (see FAQ).
 | Hitachi                               | ``hitachi_ac344``   | yes                  |
 |                                       | ``hitachi_ac424``   |                      |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Insignia<insignia>`             | ``insignia``        | no                   |
++---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Midea                                 | ``midea_ir``        | yes                  |
@@ -150,6 +152,30 @@ IR receiver.
       - platform: coolix
         name: "Living Room AC"
         receiver_id: rcvr
+
+.. _insignia:
+
+Insignia Portal AC
+------------------
+
+The ``insignia`` platform supports the Insignia NS-AC08PWH1 branded portable air conditioner. It's possible other makes and models uses these codes, but haven't been tested.
+
+Refer to https://github.com/andrewmv/ac-control-stuff#device-insignia-ns-ac08pwh1 for more information about the device and the IR codes it uses.
+
+This AC unit supports a "Follow Me" feature, in which the factory remote control regularly samples the air temperature, and transmits this to the air conditioner. The AC unit then uses this transmitted value as the room temperature, and ignores its own sensor.
+
+By specifying a sensor and a follow_me switch in your configuration, this platform can emulate the Follow Me feature of the remote, and regularly send the sensor information to the air conditioner. Specify ``update_interval`` to control how frequently this happens. Must be a value less than 7 minutes, otherwise the AC will conclude the remote control is out of range, disable Follow Me, and ignore subsequent temperature updates.
+
+This AC unit supports an LED toggle feature, where all the LEDs on the unit are disabled. You can access this feature by specifying an led_switch.
+
+Additional configuration may be specified for this platform:
+
+- **sensor** (*Optional*, :ref:`config-id`): The sensor that is used to measure the ambient temperature. This is the temperature that will be transmitted to the AC unit if Follow Me is enabled.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval with which to transmit the value of the sensor when Follow Me is enabled.
+- **supports_heat** (*Optional*, boolean): Enables setting heating mode for this climate device. Defaults to ``true``.
+- **follow_me_switch** (*Optional*, :ref:`config-id`): The ID of a switch component (for example, a template switch) which will be used to enable / disable the Follow Me feature. If not provided, Follow Me will be disabled. If provided, sensor must also be provided.
+- **led_switch** (*Optional*, :ref:`config-id`): The ID of a switch component (for example, a template switch) which will be used to enable / disable the LEDs on the AC unit. If not provided, there will be no way to control this feature without using the factory remote. Using ``assumed_state: true`` is advised, since the command sent by this switch is not idempotent.
+
 
 .. _midea_ir:
 
