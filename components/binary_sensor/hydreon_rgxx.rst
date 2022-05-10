@@ -12,7 +12,7 @@ For this sensor to work, a :doc:`/components/sensor/hydreon_rgxx` must be set up
 .. code-block:: yaml
 
     # Example RG-9 entry
-    
+
     uart:
       rx_pin: GPIO16
       tx_pin: GPIO17
@@ -25,8 +25,8 @@ For this sensor to work, a :doc:`/components/sensor/hydreon_rgxx` must be set up
         update_interval: 1s
         moisture:
           name: "rain"
-          expire_after: 30s  
-          
+          expire_after: 30s
+
     binary_sensor:
       - platform: hydreon_rgxx
         hydreon_rgxx_id: "hydreon_1"
@@ -38,12 +38,12 @@ Configuration variables:
 
 - **hydreon_rgxx_id** (*Optional*, :ref:`config-id`): The ID of the Hydreon Rain Sensor display.
 
-- **too_cold** (*Optional*): `true` if the sensor reports being too cold. Hydreon only mentions this feature for the RG-9.
+- **too_cold** (*Optional*): ``true`` if the sensor reports being too cold. Hydreon only mentions this feature for the RG-9.
 
   - **name** (**Required**, string): The name for the voltage sensor.
-  
+
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
-  
+
   - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 

@@ -8,7 +8,7 @@ Sonoff D1 Dimmer
 The ``sonoff_d1`` light platform creates a simple brightness-only light for the
 hardware found in `Sonoff D1 dimmer <https://itead.cc/product/sonoff-d1-smart-dimmer-switch/>`__. Installations with Sonoff RM433 433MHz radio
 remotes are also supported. Use this component to integrate Sonoff D1 dimmer into
-ESPHome / Home Assistant ecosystem. 
+ESPHome / Home Assistant ecosystem.
 
 .. figure:: images/sonoff_d1.jpg
     :align: center
@@ -16,11 +16,11 @@ ESPHome / Home Assistant ecosystem.
 
     Sonoff D1 dimmer front and back view. Image by `ITEAD <https://itead.cc/product/sonoff-d1-smart-dimmer-switch/>`__.
 
-Sonoff D1 uses another MCU for light dimming and handling of radio commands. 
+Sonoff D1 uses another MCU for light dimming and handling of radio commands.
 It's hooked up to ESP8266 via UART bus with default RX / TX pins being used on
 ESP8266 side. Bi-directional symmetric request / response protocol is implemented
 between ESP8266 and MCU. ``sonoff_d1`` component implements this protocol and
-translates between HA light commands and serial messages. 
+translates between HA light commands and serial messages.
 
 For detailed instructions on how to replace the stock firmware with ESPHome see :doc:`/devices/sonoff_s20`.
 You will need to locate GPIO0 pin and serial port. Photos below should help.
@@ -52,7 +52,7 @@ This component is useless for devices other than Sonoff D1 dimmer.
     # Example configuration entry
     esphome:
       name: my-d1-dimmer
-  
+
     # Restore from flash if you want to keep the last state at power up
     esp8266:
       board: esp8285
@@ -91,15 +91,15 @@ This component is useless for devices other than Sonoff D1 dimmer.
         default_transition_length: 1s
 
 
-Configuration variables
------------------------
+Configuration variables:
+------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the light.
 - **use_rm433_remote** (*Optional*, boolean): Set to ``True`` if your setup uses Sonoff RM433
   or any other radio remote control. Properly setting this parameter allows the platform to
   identify what to do with incoming UART commands. RF chip is known to catch random commands
-  if not paired with a real remote (so called ghost commands). This problem is observed even 
+  if not paired with a real remote (so called ghost commands). This problem is observed even
   with the stock firmware and most probably is a bug in the MCU firmware or in the RF chip
   firmware. Setting this to ``False`` instructs the platform to properly ignore such commands
   and thus prevent unexpected switches or light intensity changes.

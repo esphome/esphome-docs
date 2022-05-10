@@ -88,8 +88,8 @@ Automations:
 
 .. _canbus-on-frame:
 
-``on_frame``
-************
+``on_frame`` Trigger
+********************
 
 This automation will be triggered when a CAN frame is received. The variables ``x`` (of type
 ``std::vector<uint8_t>``) containing the frame data, ``can_id`` (of type ``uint32_t``) containing the actual
