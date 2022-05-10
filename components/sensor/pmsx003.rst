@@ -74,7 +74,7 @@ Configuration variables:
 - **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003S`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*): Amount of time to wait between generating measurements. If this is longer than 30
-  seconds, and if ``tx_pin`` is set in the UART configuration, the fan will be spun down between measurements.
+  seconds, and if ``tx_pin`` is set in the UART configuration, the fan will be spun down between measurements. Default to ``0s`` (forward data as it's coming in from the sensor).
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
