@@ -158,15 +158,15 @@ IR receiver.
 Insignia Portable AC
 ------------------
 
-The ``insignia`` platform supports the Insignia NS-AC08PWH1 branded portable air conditioner. It's possible other makes and models uses these codes, but haven't been tested.
+The ``insignia`` platform supports the Insignia NS-AC08PWH1 portable air conditioner. It's possible other makes and models uses these codes, but haven't been tested.
 
 Refer to https://github.com/andrewmv/ac-control-stuff#device-insignia-ns-ac08pwh1 for more information about the device and the IR codes it uses.
 
 This AC unit supports a "Follow Me" feature, in which the factory remote control regularly samples the air temperature, and transmits this to the air conditioner. The AC unit then uses this transmitted value as the room temperature, and ignores its own sensor.
 
-By specifying a ```sensor``` and a ```follow_me``` switch in your configuration, this platform can emulate the Follow Me feature of the remote, and regularly send the sensor information to the air conditioner. Specify ``update_interval`` to control how frequently this happens. Must be a value less than 7 minutes, otherwise the AC will conclude the remote control is out of range, disable Follow Me, and ignore subsequent temperature updates.
+By specifying a ``sensor`` and a ``follow_me`` switch in your configuration, this platform can emulate the Follow Me feature of the remote, and regularly send the sensor information to the air conditioner. Specify ``update_interval`` to control how frequently this happens. The default is every 1 minute, and should be adequate for most situations. Must be a value less than 7 minutes, otherwise the AC will conclude the remote control is out of range, disable Follow Me, and ignore subsequent temperature updates.
 
-This AC unit supports an LED toggle feature, where all the LEDs on the unit are disabled. You can access this feature by specifying an led_switch.
+This AC unit supports an LED toggle feature, where all the LEDs on the unit are disabled. You can access this feature by specifying an ``led_switch``.
 
 Additional configuration may be specified for this platform:
 
