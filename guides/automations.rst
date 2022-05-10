@@ -270,6 +270,11 @@ global variables can be used to store the state of a garage door.
         type: int
         restore_value: no
         initial_value: '0'
+      # Example for global string variable
+      - id: my_global_string
+        type: std::string
+        restore_value: no  # Strings cannot be saved/restored
+        initial_value: '"hello world"'
 
    # In an automation
    on_press:
@@ -350,6 +355,8 @@ All Actions
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
+- :ref:`homeassistant.event <api-homeassistant_event_action>`
+- :ref:`homeassistant.tag_scanned <api-homeassistant_tag_scanned_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>` / :ref:`switch.turn_off <switch-turn_off_action>` / :ref:`switch.turn_on <switch-turn_on_action>`
 - :ref:`light.toggle <light-toggle_action>` / :ref:`light.turn_off <light-turn_off_action>` / :ref:`light.turn_on <light-turn_on_action>`
@@ -382,7 +389,8 @@ All Actions
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
-- :ref:`number.set <number-set_action>`
+- :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
+- :ref:`select.set <select-set_action>` / :ref:`select.set_index <select-set_index_action>` / :ref:`select.first <select-first_action>` / :ref:`select.last <select-last_action>` / :ref:`select.previous <select-previous_action>`  / :ref:`select.next <select-next_action>`  / :ref:`select.operation <select-operation_action>` 
 
 .. _config-condition:
 

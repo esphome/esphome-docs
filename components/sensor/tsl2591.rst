@@ -131,13 +131,13 @@ For the TSL2591 device:
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval for checking the sensors.
   Defaults to ``60s``.
-- **power_save_mode** (*Optional*, boolean) Should the device be powered down between update intervals?
+- **power_save_mode** (*Optional*, boolean): Should the device be powered down between update intervals?
   Defaults to ``True``.
-- **device_factor** (*Optional*, float) The default is ``53.0``.
+- **device_factor** (*Optional*, float): The default is ``53.0``.
   The device factor to be used as part of the lux equation for ``calculated_lux``.
-- **glass_attenuation_factor** (*Optional*, float) The default is ``7.7``.
+- **glass_attenuation_factor** (*Optional*, float): The default is ``7.7``.
   The glass attenuation factor to be used as part of the lux equation for ``calculated_lux``.
-  
+
 
 - All other options for I²C devices described at :ref:`I²C Bus <i2c>`.
 

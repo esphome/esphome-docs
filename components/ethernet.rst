@@ -8,6 +8,7 @@ Ethernet Component
 
 This core ESPHome component sets up ethernet connections for ESP32s.
 Ethernet for ESP8266 is not supported.
+This component can't be used in same time than Wifi one, even if your ESP32 has both wired.
 
 .. code-block:: yaml
 
@@ -54,7 +55,6 @@ Configuration variables:
   - **dns1** (*Optional*, IPv4 address): The main DNS server to use.
   - **dns2** (*Optional*, IPv4 address): The backup DNS server to use.
 
-- **enable_mdns** (*Optional*, boolean): Controls if your node should advertise its presence and services using mDNS. When set to ``false`` you won't be able to access your node using its hostname which can break certain functionalities. Please see :ref:`notes on disabling mDNS <faq-notes_on_disabling_mdns>`. Defaults to ``true``.
 - **use_address** (*Optional*, string): Manually override what address to use to connect
   to the ESP. Defaults to auto-generated value. For example, if you have changed your
   static IP and want to flash OTA to the previously configured IP address.
@@ -69,7 +69,7 @@ Configuration variables:
     If your ethernet board is not designed with an ESP32 built in, chances are that you are going
     to use flying leads, dupont wires, etc. to connect the ethernet to the ESP32. This is
     probably to fail as the ethernet interface uses a high frequency clock signal. For more
-    information and wiring details refer to the the link in the *See also* section.
+    information and wiring details refer to the link in the *See also* section.
 
 Configuration for wESP32 board
 ------------------------------

@@ -221,7 +221,7 @@ Bluetooth Low Energy (BLE)
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
-    Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
+    Mopeka Pro Check LP, components/sensor/mopeka_ble, mopeka_pro_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
 
@@ -252,6 +252,7 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
@@ -292,14 +293,17 @@ Environmental
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
+    ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
-    HTU21D, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
+    QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
     RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
@@ -400,6 +404,7 @@ Binary Sensor Components
     Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
@@ -462,9 +467,11 @@ Light Components
     Light Partition, components/light/partition, color_lens.svg
 
     Tuya Dimmer, components/light/tuya, tuya.png
+    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg    
     Custom Light, components/light/custom, language-cpp.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg
+    Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
@@ -588,10 +595,11 @@ Climate Components
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
     PID Controller, components/climate/pid, function.svg
-    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
     Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
+    BedJet Climate System, components/climate/bedjet, bedjet.png
 
 Number Components
 -----------------

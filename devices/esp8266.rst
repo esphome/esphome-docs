@@ -8,7 +8,7 @@ Generic ESP8266
 
 All ESP8266-based devices are supported by ESPHome. Simply select ``ESP8266`` when
 the ESPHome wizard asks you for your platform and choose a board type
-from `this link <https://platformio.org/boards?count=1000&filter%5Bplatform%5D=espressif8266>`__ when the wizard
+from `this link <https://registry.platformio.org/platforms/platformio/espressif8266/boards>`__ when the wizard
 asks you for the board type.
 
 
@@ -113,7 +113,7 @@ This means effectively only the following pins can be used as general purpose GP
 ---------- ------------------------------ ------------------------------
 ``GPIO15`` If LOW on boot                 Weak Pull Up
 ---------- ------------------------------ ------------------------------
-``GPIO16`` Has pull-down (but no pull-up  Weak Pull Down
+``GPIO16`` Has pull-down (but no pull-up) Weak Pull Down
            resistor
 ========== ============================== ==============================
 
@@ -141,7 +141,7 @@ in the ``boot mode:`` line tells you what mode was selected
     ets Jan  8 2013,rst cause:4, boot mode:(3,6)
 
 The first lines when viewing the UART logs might have unrecognized characters. This is
-because the ESP8266 bootloader uses a baudrate of 76800, whereas the program uses 115200.
+because the effective baudrate of the ESP8266 bootloader is 74800, whereas the program uses 115200.
 
 Reset Causes
 ------------

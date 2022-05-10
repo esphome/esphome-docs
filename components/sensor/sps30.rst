@@ -117,6 +117,8 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
+- **auto_cleaning_interval** (Optional): The interval in seconds of the periodic fan-cleaning.
+
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x69``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
@@ -140,6 +142,21 @@ Automatic Cleaning:
 The SPS30 sensor has an automatic fan-cleaning which will accelerate the built-in fan to maximum speed for 10 seconds in order to blow out the dust accumulated inside the fan.
 The default automatic-cleaning interval is 168 hours (1 week) of uninterrupted use. Switching off the sensor resets this time counter.
 Disabling of automatic-cleaning or setting a manual interval is not supported at the moment.
+
+
+.. _sps30_start_autoclean_fan_action:
+
+``sps30.start_fan_autoclean`` Action
+------------------------------------
+
+This :ref:`action <config-action>` manually starts fan-cleaning.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sps30.start_fan_autoclean: my_sps30
+
 
 See Also
 --------
