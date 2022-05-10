@@ -159,6 +159,19 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
               then:
                 - deep_sleep.enter: deep_sleep_1
 
+.. _deep_sleep-allow_action:
+
+``deep_sleep.allow`` Action
+-----------------------------
+
+This action allows the given deep sleep component to enter deep sleep, after previously being prevented.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - deep_sleep.allow: deep_sleep_1
+
 See Also
 --------
 
