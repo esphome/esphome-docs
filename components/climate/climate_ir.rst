@@ -168,11 +168,55 @@ By specifying a ``sensor`` and a ``follow_me`` switch in your configuration, thi
 
 This AC unit supports an LED toggle feature, where all the LEDs on the unit are disabled. You can access this feature by specifying an ``led_switch``.
 
+.. note::
+
+    - The IR timing for this platform is very precise, and using an ESP8266 as the target platform doesn't work reliably. An ESP32 is recommended.
+
 Additional configuration may be specified for this platform:
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval with which to transmit the value of the sensor when Follow Me is enabled.
 - **follow_me_switch** (*Optional*, :ref:`config-id`): The ID of a switch component (for example, a template switch) which will be used to enable / disable the Follow Me feature. If not provided, Follow Me will be disabled. If provided, sensor must also be provided.
 - **led_switch** (*Optional*, :ref:`config-id`): The ID of a switch component (for example, a template switch) which will be used to enable / disable the LEDs on the AC unit. If not provided, there will be no way to control this feature without using the factory remote. Using ``assumed_state: true`` is advised, since the command sent by this switch is not idempotent.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: insignia
+        name: Insignia AC
+        update_interval: 60s
+        sensor: temperature_sensor
+        follow_me_switch: insignia_follow_me_switch
+        led_switch: insignia_led_switch
+        supports_heat: false
+
+    remote_transmitter:
+      pin: 
+        number: GPIO23
+        inverted: false
+      carrier_duty_percent: 50%
+
+    sensor:
+      platform: dht 
+      model: DHT22
+      pin: GPIO22
+      temperature:
+        name: Temperature Sensor
+        id: temperature_sensor
+      humidity:
+        name: Humidity Sensor
+        id: humidity_sensor
+
+    switch:
+      - platform: template
+        name: Follow Me Switch
+        id: insignia_follow_me_switch
+        optimistic: true
+      - platform: template
+        name: Insignia LED Switch
+        id: insignia_led_switch
+        optimistic: true
+        assumed_state: true
 
 
 .. _midea_ir:
