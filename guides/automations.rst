@@ -600,6 +600,17 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
     on_...:
       - logger.log: "Waiting for binary sensor"
       - wait_until:
+          binary_sensor.is_on: some_binary_sensor 
+      - logger.log: "Binary sensor is ready"
+
+If you want to use a timeout, the term "condition" is required: 
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - logger.log: "Waiting for binary sensor"
+      - wait_until:
           condition: 
             binary_sensor.is_on: some_binary_sensor
           timeout: 8s    
