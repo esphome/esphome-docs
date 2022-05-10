@@ -91,9 +91,10 @@ Automations:
 ``on_frame``
 ************
 
-This automation will be triggered when a CAN frame is received. A variable ``x`` of type
-``std::vector<uint8_t>`` containing the frame data and a variable ``can_id`` of type ``uint32_t``
-containing the actual received CAN id are passed to the automation for use in lambdas.
+This automation will be triggered when a CAN frame is received. The variables ``x`` (of type
+``std::vector<uint8_t>``) containing the frame data, ``can_id`` (of type ``uint32_t``) containing the actual
+received CAN id and ``remote_transmission_request`` (of type ``bool``) containing the corresponding field
+from the CAN frame are passed to the automation for use in lambdas.
 
 .. note::
 
@@ -114,6 +115,7 @@ containing the actual received CAN id are passed to the automation for use in la
         - can_id:      0b00000000000000000000001000000
           can_id_mask: 0b11111000000000011111111000000
           use_extended_id: true
+          remote_transmission_request: false
           then:
             - lambda: |-
                 auto pdo_id = can_id >> 14;
@@ -139,6 +141,8 @@ Configuration variables:
 - **can_id_mask** (*Optional*, int): The bit mask to apply to the received CAN id before trying to match it
   with *can_id*, defaults to ``0x1fffffff`` (all bits of received CAN id are compared with *can_id*).
 - **use_extended_id** (*Optional*, boolean): Identifies the type of *can_id* to match on, defaults to *false*.
+- **remote_transmission_request** (*Optional*, boolean): Whether to run for CAN frames with the "remote
+  transmission request" bit set or not set, defaults to not checking, i.e. to run for both cases.
 
 ``canbus.send`` Action
 **********************
