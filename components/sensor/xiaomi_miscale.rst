@@ -73,7 +73,7 @@ You have to replace the numbers in the lambdas to determine your weight which is
 
         impedance:
           name: "Xiaomi Mi Scale Impedance"
-          id: impedance_xiaomi
+          id: impedance_miscale
           on_value:
             then:
               - lambda: |-

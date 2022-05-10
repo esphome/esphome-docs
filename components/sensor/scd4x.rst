@@ -65,6 +65,7 @@ Configuration variables:
   *altitude_compensation* is ignored if *ambient_pressure_compensation*
   is set.
 
+
 - **measurement_mode** (*Optional*): Set measurement mode for scd4x. 
 
   - **periodic** : The sensor takes a new measurement every 5 seconds. This is the default mode.
@@ -74,6 +75,9 @@ Configuration variables:
     To reduce noise levels, you can can perform several single shot measurements in a row and average the output values using a :ref:`sensor-filters`.
   - **single_shot_rht_only**: A measurement is started in every update interval. A measurement takes 50 ms. Only humidity and temperature is measured. CO2 is reported as 0 ppm. This mode is only available on scd41 and useful if low power consumption is required. 
 
+
+- **ambient_pressure_compensation_source** (*Optional*, :ref:`config-id`): Set an external pressure sensor ID used for ambient pressure compensation.
+  The pressure sensor must report pressure in hPa. the correction is applied before updating the state of the co2 sensor.
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x62``.
@@ -124,6 +128,40 @@ This :ref:`action <config-action>` triggers a factory reset of the sensor. Calib
     on_...:
       then:
         - scd4x._factory_reset_action: my_scd41
+
+Automation
+-----------------
+
+Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
+
+
+``set_ambient_pressure_compensation(  <pressure in bar)"``
+
+
+
+Example
+*******
+
+Note: that the pressure from bme280 is in hPa and must be converted to bar.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: scd4x
+        id: scd41
+        i2c_id: bus_a
+        co2:
+            name: co2
+            id: co2
+
+        - platform: bme280
+          pressure:
+            name: "BME280-Pressure"
+            id: bme280_pressure
+            oversampling: 1x
+          on_value:
+            then:
+                - lambda: "id(scd41)->set_ambient_pressure_compensation(x / 1000.0);"
 
 
 See Also
