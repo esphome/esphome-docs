@@ -65,12 +65,48 @@ Configuration variables:
   *altitude_compensation* is ignored if *ambient_pressure_compensation*
   is set.
 
+- **ambient_pressure_compensation_source** (*Optional*, :ref:`config-id`): Set an external pressure sensor ID used for ambient pressure compensation.
+  The pressure sensor must report pressure in hPa. the correction is applied before updating the state of the co2 sensor.
+
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x62``.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
+Automation
+-----------------
+
+Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
+
+
+``set_ambient_pressure_compensation(  <pressure in bar)"``
+
+
+
+Example
+*******
+
+Note: that the pressure from bme280 is in hPa and must be converted to bar.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: scd4x
+        id: scd41
+        i2c_id: bus_a
+        co2:
+            name: co2
+            id: co2
+
+        - platform: bme280
+          pressure:
+            name: "BME280-Pressure"
+            id: bme280_pressure
+            oversampling: 1x
+          on_value:
+            then:
+                - lambda: "id(scd41)->set_ambient_pressure_compensation(x / 1000.0);"
 
 
 See Also
