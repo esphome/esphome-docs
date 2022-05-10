@@ -135,7 +135,7 @@ Automation
 Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
 
 
-``set_ambient_pressure_compensation(  <pressure in bar)"``
+``set_ambient_pressure_compensation(  <pressure in bar)``
 
 
 
