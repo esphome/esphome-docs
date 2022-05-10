@@ -90,7 +90,7 @@ Actions:
 
 .. _perform_forced_calibration_action:
 
-``_perform_forced_calibration_action`` Action
+``perform_forced_calibration`` Action
 ---------------------------------------------
 
 This :ref:`action <config-action>` manually calibrates the sensor to the provided value in ppm.
@@ -101,7 +101,7 @@ As of April 2022 the average fresh air Co² concentration is 419 ppm.
 
     on_...:
       then:
-        - scd4x._perform_forced_calibration_action:
+        - scd4x.perform_forced_calibration_action:
           value: 419   # outside average April 2022
           id: my_scd41
 
@@ -118,7 +118,7 @@ value can be a template
 
 .. _factory_reset_action:
 
-``_factory_reset_action`` Action
+``factory_reset`` Action
 --------------------------------
 
 This :ref:`action <config-action>` triggers a factory reset of the sensor. Calibration settings are restored from factory settings.
@@ -127,7 +127,7 @@ This :ref:`action <config-action>` triggers a factory reset of the sensor. Calib
 
     on_...:
       then:
-        - scd4x._factory_reset_action: my_scd41
+        - scd4x.factory_reset: my_scd41
 
 Automation
 -----------------
