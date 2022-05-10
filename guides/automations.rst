@@ -614,7 +614,7 @@ If you want to use a timeout, the term "condition" is required:
           condition:
             binary_sensor.is_on: some_binary_sensor
           timeout: 8s
-      - logger.log: "Binary sensor is ready"
+      - logger.log: "Binary sensor might be ready"
 
 
 Configuration variables:
