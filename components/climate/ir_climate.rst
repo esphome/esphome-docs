@@ -203,6 +203,18 @@ Configuration variables:
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
 
+.. _delonghi_ir:
+
+``delonghi`` Climate
+-------------------------
+
+Currently supports the protocol used by some Delonghi portable units
+
+Known working with:
+
+- Delonghi PAC WE 120HP
+
+
 
 .. _delonghi_ir:
 

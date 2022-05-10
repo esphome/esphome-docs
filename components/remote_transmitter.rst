@@ -154,6 +154,26 @@ Configuration variables:
 - **nbits** (*Optional*, int): The number of bits to send. Defaults to ``28``.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_magiquest:
+
+``remote_transmitter.transmit_magiquest`` Action
+************************************************
+
+This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter. 
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_magiquest:
+          wand_id: 0x01234567
+          magnitude: 0x080C
+
+Configuration variables:
+
+- **wand_id** (**Required**, int): The wand ID to send, as a hex integer.  See the dumper output for your wand ID.
+- **magnitude** (*Optional*, int): The magnitude of swishes and swirls of the want to transmit.  See the dumper output for examples.  If omitted, sends 0xFFFF (which the real wand never uses).
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_midea:
 
 ``remote_transmitter.transmit_midea`` Action
