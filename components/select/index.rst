@@ -282,7 +282,7 @@ advanced stuff (see the full API Reference for more info).
       auto size = id(my_select).size();
       ESP_LOGI("main", "Select has %d options", size);
 
-- ``.index_of(<option name>)``: Retrieve the index offset for an option value.
+- ``.index_of(<option value>)``: Retrieve the index offset for an option value.
 
   .. code-block:: cpp
 
@@ -315,6 +315,24 @@ advanced stuff (see the full API Reference for more info).
         ESP_LOGI("main", "Option at %d is: %s", index, value);
       } else {
         ESP_LOGE("main", "Index %d does not exist", index);
+      }
+
+- ``.has_option(<option value>)``: Check if the select contains the given option value.
+
+  .. code-block:: cpp
+
+      auto option = "Happy";
+      if (id(my_select).has_option(option)) {
+        ESP_LOGI("main", "Select has option '%s'", option);
+      }
+
+- ``.has_index(<index offset>)``: Check if the select contains an option value for the given index offset.
+
+  .. code-block:: cpp
+
+      auto index = 3;
+      if (id(my_select).has_index(index)) {
+        ESP_LOGI("main", "Select has index offset %d", index);
       }
 
 See Also
