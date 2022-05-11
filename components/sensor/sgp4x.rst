@@ -98,7 +98,6 @@ Example With Compensation
 See Also
 --------
 
-- :doc:`sgp40`
 - :ref:`sensor-filters`
 - :doc:`dht`
 - :doc:`dht12`
