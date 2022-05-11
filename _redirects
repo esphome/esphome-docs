@@ -2,4 +2,4 @@
 
 # Moved components
 # e.g: /components/sensors/abc.html /components/sensors/xyz.html 301
-components/sensor/sgp40.html components/sensor/sgp4x.html
+/components/sensor/sgp40.html /components/sensor/sgp4x.html
