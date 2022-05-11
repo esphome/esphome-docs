@@ -1,0 +1,4 @@
+/esphomeyaml/* /:splat 301
+
+# Moved components
+# e.g: /components/sensors/abc.html /components/sensors/xyz.html 301
