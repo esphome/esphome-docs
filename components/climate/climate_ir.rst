@@ -158,7 +158,7 @@ IR receiver.
 .. _insignia:
 
 Insignia Portable AC
-------------------
+--------------------
 
 The ``insignia`` platform supports the Insignia NS-AC08PWH1 portable air conditioner. It's possible other makes and models uses these codes, but haven't been tested.
 
