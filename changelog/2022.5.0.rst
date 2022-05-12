@@ -54,6 +54,15 @@ Notable Changes
 
 - Enable api transport encryption for new projects :esphomepr:`3142` by :ghuser:`OttoWinter` (notable-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Restore RealTimeClock's local TZ after epoch sync :esphomepr:`3462` by :ghuser:`mmakaay`
+- Shelly dimmer: Use unique_ptr to handle the lifetime of stm32_t :esphomepr:`3400` by :ghuser:`edge90`
+- Use heat mode for heat. Move EXT HT to custom presets. :esphomepr:`3437` by :ghuser:`jgissend10`
+- Make custom_fan and custom_preset templatable as per documentation :esphomepr:`3330` by :ghuser:`MrMDavidson`
+- Update captive portal canHandle function :esphomepr:`3360` by :ghuser:`bkaufx`
+
 All changes
 ^^^^^^^^^^^
 
