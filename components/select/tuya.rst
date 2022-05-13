@@ -3,7 +3,7 @@ Tuya Select
 
 .. seo::
     :description: Instructions for setting up a Tuya device select.
-    :image: upload.svg
+    :image: tuya.png
 
 The ``tuya`` select platform creates a select from a tuya serial component
 and requires :doc:`/components/tuya` to be configured.
@@ -42,9 +42,9 @@ Based on this, you can create the select as follows:
         select_datapoint: 2
         optimistic: true
         options:
-          - Internal
-          - Floor
-          - Both
+          Internal: 0
+          Floor: 1
+          Both: 2
 
 Configuration variables:
 ------------------------
@@ -52,18 +52,14 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the switch.
 - **select_datapoint** (**Required**, int): The datapoint id number of the select.
-- **options** (**Required**, list): The list of options this Select has.
-  At runtime, a zero based index will be automatically associated with each option in the order they are declared in config.
-  This means than `Internal` will get index 0, `Floor` will get 1 and so on. The corresponding to the selected value
-  associated index will be sent to datapoint.
+- **options** (**Required**, Map[str, int]): Provide a mapping from options (str) of
+  this Select to values (int) of the *select_datapoint* and vice versa. All options and
+  all values have to be unique.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
-  any command sent to the Template Select will immediately update the reported state.
+  any command sent to the Select will immediately update the reported state.
 
 - All other options from :ref:`Select <config-select>`.
 
-.. note::
-
-    
 
 See Also
 --------
