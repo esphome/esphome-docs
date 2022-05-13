@@ -39,21 +39,21 @@ Based on this, you can create the select as follows:
     select:
       - platform: "tuya"
         name: "Sensor selection"
-        select_datapoint: 2
+        enum_datapoint: 2
         optimistic: true
         options:
-          Internal: 0
-          Floor: 1
-          Both: 2
+          0: Internal:
+          1: Floor:
+          2: Both:
 
 Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the switch.
-- **select_datapoint** (**Required**, int): The datapoint id number of the select.
-- **options** (**Required**, Map[str, int]): Provide a mapping from options (str) of
-  this Select to values (int) of the *select_datapoint* and vice versa. All options and
+- **enum_datapoint** (**Required**, int): The enum datapoint id number for the select.
+- **options** (**Required**, Map[int, str]): Provide a mapping from values (int) of
+  this Select to options (str) of the *enum_datapoint* and vice versa. All options and
   all values have to be unique.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the Select will immediately update the reported state.
