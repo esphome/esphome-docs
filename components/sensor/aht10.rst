@@ -4,10 +4,10 @@ AHT10 Temperature+Humidity Sensor
 .. seo::
     :description: Instructions for setting up AHT10 temperature and humidity sensors
     :image: aht10.jpg
-    :keywords: aht10
+    :keywords: aht10 aht20 aht21
 
-The ``aht10`` Temperature+Humidity sensor allows you to use your aht10
-(`datasheet <http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf>`__) i2c-based sensor with ESPHome.
+The ``aht10`` Temperature+Humidity sensor allows you to use your AHT10
+(`datasheet <http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf>`__), AHT20 (`datasheet <https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915>`__), AHT21(`datasheet <https://asairsensors.com/wp-content/uploads/2021/09/Data-Sheet-AHT21-Humidity-and-Temperature-Sensor-ASAIR-V1.0.03.pdf>`__) i2c-based sensor with ESPHome.
 
 .. figure:: images/aht10-full.jpg
     :align: center
