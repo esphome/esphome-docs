@@ -655,7 +655,7 @@ Configuration variables:
 .. _display_menu-right_action:
 
 ``display_menu.right`` Action
-****************************
+*****************************
 
 This is an :ref:`Action <config-action>` usually wired to the right button
 of the joystick. In the ``joystick`` mode it is used to set the next
