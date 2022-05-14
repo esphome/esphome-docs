@@ -17,11 +17,11 @@ integration.
 Overview
 --------
 
-The integration provides a menu primarily intended to be controlled by a rotary encoder
-with a button. It allows to navigate a hierarchy of items and submenus with the ability
-to change enumeration and numeric values and execute commands. The menu can be activated
-and deactivated on demand, allowing alternating between using the screen for the menu
-and other information.
+The integration provides a menu primarily intended to be controlled either by a rotary encoder
+with a button or a five-button joystick controller. It allows to navigate a hierarchy of items and submenus
+with the ability to change enumeration and numeric values and execute commands. The menu can
+be activated and deactivated on demand, allowing alternating between using the screen for
+the menu and other information.
 
 The component needs to be connected to an instance of a character based LCD display, which
 at the moment are :ref:`lcd-pcf8574` or a :ref:`lcd-gpio`. For the best results the GPIO
@@ -61,6 +61,7 @@ in your ``i2c`` configuration.
       display_id: my_lcd
       dimensions: 20x4
       active: True
+      mode: rotary
       mark_back: 0x08
       mark_selected: 0x3e
       mark_editing: 0x2a
@@ -109,6 +110,14 @@ Configuration variables:
   fewer lines and use the last one for a status one.
 - **active** (*Optional*, boolean): Whether the menu should start as active, meaning accepting
   user interactions and displaying output. Defaults to ``True``.
+- **mode** (*Optional*, string): Defines the navigation logic. The ``rotary`` mode expects
+  the clockwise movement wired to :ref:`display_menu.down <display_menu-down_action>`,
+  the anticlockwise one to :ref:`display_menu.up <display_menu-up_action>` and the switch
+  to :ref:`display_menu.enter <display_menu-enter_action>` action. The ``joystick`` mode
+  expects the up, down, left and right buttons wired to the :ref:`display_menu.up <display_menu-up_action>`,
+  :ref:`display_menu.down <display_menu-down_action>`, :ref:`display_menu.left <display_menu-left_action>`
+  and :ref:`display_menu.right <display_menu-right_action>` actions and the middle button
+  to the :ref:`display_menu.enter <display_menu-enter_action>` action. Defaults to ``rotary``.
 - **mark_back**, **mark_selected**, **mark_editing**, **mark_submenu** (*Optional*, 0-255):
   Code of the character used to mark menu items going back one level, a selected one,
   the editing mode and item leading to a submenu. Defaults to ``0x5e`` (``^``), ``0x3e`` (``>``),
@@ -135,6 +144,32 @@ The component manages a hierarchy of menu items. The common configuration variab
 - **text** (*Optional*, string, :ref:`templatable <config-templatable>`): The text displayed
   for the menu item. If a lambda is specified it gets an ``it`` argument pointing to
   the ``MenuItem`` that is being drawn.
+
+
+.. _display_menu-edit_mode:
+
+Editing values
+**************
+
+Some of the menu items provide a way to edit values either by selecting from a list of options
+or changing a numeric one. Such items can be configured in two ways.
+
+If the ``immediate_edit`` configuration is ``False``, the editing mode has to be activated
+first by activating the rotary encoder's switch or the joystick's center button.
+On the activation the ``on_enter`` automation is called and the item is marked as editable
+(the ``>`` selection marker changes to ``*`` as default). The value can be then
+iterated through the rotary wheel (in the ``rotary`` mode) or the joystick left
+and right buttons (in the ``joystick`` one). The editing mode is deactivated
+by another clicking of the switch, the ``on_leave`` automation is called and the selection
+marker changes back.
+
+If the ``immediate_edit`` configuration is ``True`` the menu item is editable immediately
+when it is selected. The ``on_enter`` and ``on_leave`` are not called. In the ``joystick`` mode
+the left and right buttons iterate through the values; the items that are editable
+show the editable marker to signal that the buttons can be used. In the ``rotary`` mode
+activating the switch iterates to the next value. The selection marker does not change
+(here it is used to signal whether rotating the knob navigates the menu or changes the value).
+The menu item of the ``number`` type can be only immediately editable in the ``joystick`` mode.
 
 Label
 *****
@@ -232,12 +267,8 @@ associated ``select`` component.
 
 Configuration variables:
 
-- **immediate_edit** (*Optional*, boolean): If ``False``, the item has to be clicked for the
-  editing. On the click the ``on_enter`` automation is called and the item is marked
-  as editable (the ``>`` selection marker changes to ``*`` as default). Up and down
-  events then cycle through the values and the editing mode is exited by another click.
-  If ``True`` the values are cycled through by clicking. No activation of the editing
-  mode is necessary. Defaults to ``False``.
+- **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
+  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``False``.
 - **select** (**Required**, :ref:`config-id`): A ``select`` component managing
   the edited value.
 - **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
@@ -301,6 +332,9 @@ powers of two (such as ``0.125``) or take care of the rounding explicitly.
 
 Configuration variables:
 
+- **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
+  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Ignored in the ``rotary`` mode.
+  Defaults to ``False``.
 - **number** (**Required**, :ref:`config-id`): A ``number`` component managing
   the edited value. If on entering the value is less than ``min_value`` or more than
   ``max_value``, the value is capped to fall into the range.
@@ -355,12 +389,8 @@ The menu item of the type ``switch`` allows toggling the associated ``switch`` c
 
 Configuration variables:
 
-- **immediate_edit** (*Optional*, boolean): If ``False``, the item has to be clicked for the
-  editing. On the click the ``on_enter`` automation is called and the item is marked
-  as editable (the ``>`` selection marker changes to ``*`` as default). Up and down
-  events then toggle and the editing mode is exited by another click.
-  If ``True`` the switch is toggled by clicking. No activation of the editing
-  mode is necessary. Defaults to ``False``.
+- **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
+  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``False``.
 - **on_text** (*Optional*, string): The text for the ``ON`` state. Defaults to ``On``.
 - **off_text** (*Optional*, string): The text for the ``OFF`` state. Defaults to ``Off``.
 - **switch** (**Required**, :ref:`config-id`): A ``switch`` component managing
@@ -424,11 +454,8 @@ and displaying the value to the ``value_lambda``.
 
 Configuration variables:
 
-- **immediate_edit** (*Optional*, boolean): If ``False``, the item has to be clicked for the
-  editing. On the click the ``on_enter`` automation is called and the item is marked
-  as editable (the ``>`` selection marker changes to ``*`` as default).
-  If ``True`` the item is editable by clicking and no activation of the editing
-  mode is necessary. Defaults to ``False``.
+- **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
+  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``False``.
 - **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda returning a string to be displayed as value. The lambda gets an ``it`` argument
   pointing to the ``MenuItem``.
@@ -559,13 +586,14 @@ This automation will be triggered when the user requested to set the value to th
             then:
               lambda: 'some_state--;'
 
-.. display_menu-up_action:
+.. _display_menu-up_action:
 
 ``display_menu.up`` Action
 **************************
 
 This is an :ref:`Action <config-action>` for navigating up in a menu. The action
-is usually wired to an anticlockwise turn of a rotary encoder.
+is usually wired to an anticlockwise turn of a rotary encoder or to the upper
+button of the joystick.
 
 .. code-block:: yaml
 
@@ -579,13 +607,14 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The ID of the menu to navigate.
 
-.. display_menu-down_action:
+.. _display_menu-down_action:
 
 ``display_menu.down`` Action
 ****************************
 
 This is an :ref:`Action <config-action>` for navigating down in a menu. The action
-is usually wired to a clockwise turn of a rotary encoder.
+is usually wired to a clockwise turn of a rotary encoder or to the lower
+button of the joystick.
 
 .. code-block:: yaml
 
@@ -599,7 +628,54 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): The ID of the menu to navigate.
 
-.. display_menu-enter_action:
+.. _display_menu-left_action:
+
+``display_menu.left`` Action
+****************************
+
+This is an :ref:`Action <config-action>` usually wired to the left button
+of the joystick. In the ``joystick`` mode it is used to set the previous
+value or to decrement the numeric one; depending on the ``immediate_edit``
+flag entering the edit mode is required or not. If used in the ``rotary``
+mode it exits the editing. In both modes it can be also used to navigate
+back one level when used with the ``back`` menu item.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        ...
+        on_press:
+          - display_menu.left:
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The ID of the menu to navigate.
+
+.. _display_menu-right_action:
+
+``display_menu.right`` Action
+****************************
+
+This is an :ref:`Action <config-action>` usually wired to the right button
+of the joystick. In the ``joystick`` mode it is used to set the next
+value or to increment the numeric one; depending on the ``immediate_edit``
+flag entering the edit mode is required or not. In both modes it can
+be also used to enter the submenu when used with the ``menu`` menu item.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        ...
+        on_press:
+          - display_menu.right:
+
+Configuration variables:
+
+- **id** (*Optional*, :ref:`config-id`): The ID of the menu to navigate.
+
+.. _display_menu-enter_action:
 
 ``display_menu.enter`` Action
 *****************************
@@ -607,8 +683,7 @@ Configuration variables:
 This is an :ref:`Action <config-action>` for triggering a selected menu item, resulting
 in an action depending on the type of the item - entering a submenu, starting/stopping
 editing or triggering a command. The action is usually wired to a press button
-of a rotary encoder. In case of mechanical one it is strongly advisable to debounce
-it using a filter.
+of a rotary encoder or to the center button of the joystick.
 
 .. code-block:: yaml
 
