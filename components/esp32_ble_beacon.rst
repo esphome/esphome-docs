@@ -32,6 +32,11 @@ Advanced options:
   the BLE receiver doesn't use it. Defaults to ``10167``.
 - **minor** (*Optional*, int): The iBeacon minor identifier of this beacon. Usually used to
   identify beacons within an iBeacon group. Defaults to ``61958``.
+- **tx_power** (*Optional*, int): The level of transmitting power where 0 is the lowest power 
+  and 7 is the highest. Defaults to ``7``.
+- **measured_power** (*Optional*, int): The measured power in db of the beacon at 1m distance. 
+  Used to tweak distance measurement of the beacon. Defaults to ``-59``.
+
 
 Setting Up
 ----------
