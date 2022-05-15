@@ -471,12 +471,10 @@ Automations:
   when the value is changed.
   See :ref:`display_menu-on_value`.
 - **on_next** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the user navigates to the next value, either by turning the knob clockwise
-  while in the editing mode, or by clicking if ``immediate_edit`` is ``True``.
+  when the user navigates to the next value.
   See :ref:`display_menu-on_next`.
 - **on_prev** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the user navigates to the previous value by turning the knob counterclockwise
-  shile in editing mode.
+  when the user navigates to the previous value.
   See :ref:`display_menu-on_prev`.
 
 Automations
