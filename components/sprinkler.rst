@@ -3,7 +3,7 @@ Sprinkler Controller
 
 .. seo::
     :description: Instructions for setting up the sprinkler controller component in ESPHome to control sprinkler valves.
-    :image: sprinkler-variant.png
+    :image: sprinkler-variant.svg
 
 .. figure:: images/sprinkler.png
     :align: center
