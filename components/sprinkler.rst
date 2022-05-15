@@ -3,7 +3,10 @@ Sprinkler Controller
 
 .. seo::
     :description: Instructions for setting up the sprinkler controller component in ESPHome to control sprinkler valves.
-    :image: sprinkler.png
+    :image: sprinkler-variant.png
+
+.. figure:: images/sprinkler.png
+    :align: center
 
 The ``sprinkler`` controller component aims to behave like a sprinkler system/valve controller, much
 like those made by companies such as Rain Bird or Hunter. It does so by automating control of a
