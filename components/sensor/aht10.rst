@@ -4,10 +4,12 @@ AHT10 Temperature+Humidity Sensor
 .. seo::
     :description: Instructions for setting up AHT10 temperature and humidity sensors
     :image: aht10.jpg
-    :keywords: aht10 aht20 aht21
+    :keywords: aht10 aht20 aht21 dht20
 
 The ``aht10`` Temperature+Humidity sensor allows you to use your AHT10
-(`datasheet <http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf>`__), AHT20 (`datasheet <https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915>`__), AHT21(`datasheet <https://asairsensors.com/wp-content/uploads/2021/09/Data-Sheet-AHT21-Humidity-and-Temperature-Sensor-ASAIR-V1.0.03.pdf>`__) i2c-based sensor with ESPHome.
+(`datasheet <http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf>`__), AHT20 (`datasheet <https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915>`__), AHT21 (`datasheet <https://asairsensors.com/wp-content/uploads/2021/09/Data-Sheet-AHT21-Humidity-and-Temperature-Sensor-ASAIR-V1.0.03.pdf>`__) :ref:`I²C <i2c>`-based sensor with ESPHome.
+
+The DHT20 (`datasheet <https://cdn.sparkfun.com/assets/8/a/1/5/0/DHT20.pdf>`__) sensor has the packaging of the :doc:`dht` series, but has the AHT20 inside and is speaking :ref:`I²C <i2c>` as well.
 
 .. figure:: images/aht10-full.jpg
     :align: center
