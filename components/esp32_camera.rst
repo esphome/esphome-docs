@@ -150,7 +150,7 @@ White Balance Setting:
 Automations:
 
 - **on_stream_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the stream start.
+  when a stream starts.
 - **on_stream_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the stream stop.
 
