@@ -62,6 +62,8 @@ Beta Changes
 - Use heat mode for heat. Move EXT HT to custom presets. :esphomepr:`3437` by :ghuser:`jgissend10`
 - Make custom_fan and custom_preset templatable as per documentation :esphomepr:`3330` by :ghuser:`MrMDavidson`
 - Update captive portal canHandle function :esphomepr:`3360` by :ghuser:`bkaufx`
+- Increase JSON buffer size on overflow :esphomepr:`3475` by :ghuser:`pyos`
+- Mark improv_serial and ESP-IDF usb based serial on c3/s2/s3 unsupported :esphomepr:`3477` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -121,6 +123,13 @@ All changes
 - Enable api transport encryption for new projects :esphomepr:`3142` by :ghuser:`OttoWinter` (notable-change)
 - Implement allow_deep_sleep :esphomepr:`3282` by :ghuser:`rubdos`
 - Add deep_sleep.allow YAML action :esphomepr:`3459` by :ghuser:`jesserockz`
+- Restore RealTimeClock's local TZ after epoch sync :esphomepr:`3462` by :ghuser:`mmakaay`
+- Shelly dimmer: Use unique_ptr to handle the lifetime of stm32_t :esphomepr:`3400` by :ghuser:`edge90`
+- Use heat mode for heat. Move EXT HT to custom presets. :esphomepr:`3437` by :ghuser:`jgissend10`
+- Make custom_fan and custom_preset templatable as per documentation :esphomepr:`3330` by :ghuser:`MrMDavidson`
+- Update captive portal canHandle function :esphomepr:`3360` by :ghuser:`bkaufx`
+- Increase JSON buffer size on overflow :esphomepr:`3475` by :ghuser:`pyos`
+- Mark improv_serial and ESP-IDF usb based serial on c3/s2/s3 unsupported :esphomepr:`3477` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
