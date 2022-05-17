@@ -64,6 +64,8 @@ Beta Changes
 - Update captive portal canHandle function :esphomepr:`3360` by :ghuser:`bkaufx`
 - Increase JSON buffer size on overflow :esphomepr:`3475` by :ghuser:`pyos`
 - Mark improv_serial and ESP-IDF usb based serial on c3/s2/s3 unsupported :esphomepr:`3477` by :ghuser:`jesserockz`
+- ESP32: Only save to NVS if data was changed :esphomepr:`3479` by :ghuser:`martgras`
+- Retry Tuya init commands :esphomepr:`3482` by :ghuser:`ssieb`
 
 All changes
 ^^^^^^^^^^^
@@ -130,6 +132,8 @@ All changes
 - Update captive portal canHandle function :esphomepr:`3360` by :ghuser:`bkaufx`
 - Increase JSON buffer size on overflow :esphomepr:`3475` by :ghuser:`pyos`
 - Mark improv_serial and ESP-IDF usb based serial on c3/s2/s3 unsupported :esphomepr:`3477` by :ghuser:`jesserockz`
+- ESP32: Only save to NVS if data was changed :esphomepr:`3479` by :ghuser:`martgras`
+- Retry Tuya init commands :esphomepr:`3482` by :ghuser:`ssieb`
 
 Past Changelogs
 ---------------
