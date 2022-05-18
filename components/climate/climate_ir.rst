@@ -27,6 +27,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Daikin                                | ``daikin``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Delonghi<delonghi_ir>`          | ``delonghi``        | yes                  |
++---------------------------------------+---------------------+----------------------+
 | Fujitsu General                       | ``fujitsu_general`` | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Hitachi                               | ``hitachi_ac344``   | yes                  |
@@ -204,6 +206,17 @@ Configuration variables:
         sensor: room_temperature
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
+
+.. _delonghi_ir:
+
+``delonghi`` Climate
+-------------------------
+
+Currently supports the protocol used by some Delonghi portable units
+
+Known working with:
+
+- Delonghi PAC WE 120HP
 
 
 .. _toshiba:
