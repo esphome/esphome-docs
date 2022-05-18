@@ -20,14 +20,27 @@ ESPHome 2022.5.0 - 18th May 2022
 Rename
 ------
 
-Something here...
+ESPHome now offers a way for people to rename their devices automatically. This is done by creating a new YAML file with the new
+filename, changing the ``name`` inside the YAML, and then OTA uploading to the device to its existing hostname. If all is successful,
+the old YAML file will be removed and you can continue configuring your newly named device.
+
+This is particularly useful if you have received a pre-installed device, or are installing pre-configured ESPHome from a website for example.
+
+API Transport Encryption
+------------------------
+
+API transport encryption is now enabled by default when you create a new device in ESPHome. This will autogenerate a random encryption key in the device YAML file
+that you will need to retrieve when you attempt to add the device to Home Assistant. Simply remove the encryption key lines from your YAML should you choose to not
+use encryption.
 
 Select & Number changes
 -----------------------
 
 The ``select`` component has had a bunch of new features and actions added.
 ``select.first``, ``select.last``, ``select.next``, and ``select.previous``.
-More text here maybe...
+
+Alongside these new changes were some removals of internal (but public) functions on ``select`` and ``number`` components that might break
+``external_components`` or ``lambdas`` that might have been using them. See :esphomepr:`3457` and :esphomepr:`3458` for more details.
 
 
 Full list of changes
@@ -36,6 +49,7 @@ Full list of changes
 New Components
 ^^^^^^^^^^^^^^
 
+- Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
 - Add BedJet BLE climate component :esphomepr:`2452` by :ghuser:`jhansche` (new-integration)
 - Add support for BL0939 (Sonoff Dual R3 V2 powermeter) :esphomepr:`3300` by :ghuser:`ziceva` (new-integration)
 - Add ENS210 Humidity & Temperature sensor component :esphomepr:`2942` by :ghuser:`itn3rd77` (new-integration)
@@ -48,11 +62,6 @@ Breaking Changes
 
 - Code cleanup fixes for the select component :esphomepr:`3457` by :ghuser:`mmakaay` (breaking-change)
 - Code cleanup fixes for the number component :esphomepr:`3458` by :ghuser:`mmakaay` (breaking-change)
-
-Notable Changes
-^^^^^^^^^^^^^^^
-
-- Enable api transport encryption for new projects :esphomepr:`3142` by :ghuser:`OttoWinter` (notable-change)
 
 Beta Changes
 ^^^^^^^^^^^^
@@ -67,17 +76,16 @@ Beta Changes
 - ESP32: Only save to NVS if data was changed :esphomepr:`3479` by :ghuser:`martgras`
 - Retry Tuya init commands :esphomepr:`3482` by :ghuser:`ssieb`
 
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- Enable api transport encryption for new projects :esphomepr:`3142` by :ghuser:`OttoWinter` (notable-change)
+
 All changes
 ^^^^^^^^^^^
 
-- Changes accuracy of single cell voltage :esphomepr:`3387` by :ghuser:`matthias882`
 - Add default object_id_generator for mqtt :esphomepr:`3389` by :ghuser:`jesserockz`
-- Add support for Shelly Dimmer 2 :esphomepr:`2954` by :ghuser:`rnauber` (new-integration)
 - Add BedJet BLE climate component :esphomepr:`2452` by :ghuser:`jhansche` (new-integration)
-- Allocate smaller amount of buffer for JSON :esphomepr:`3384` by :ghuser:`dz0ny`
-- Fix power_delivered/produced_phase sensor deviceclass in DSMR :esphomepr:`3395` by :ghuser:`mvdwetering`
-- Shelly Dimmer: Delete obsolete LICENSE.txt :esphomepr:`3394` by :ghuser:`rnauber`
-- Dont require empty object for wifi ap with defaults :esphomepr:`3404` by :ghuser:`jesserockz`
 - Multi conf for Teleinfo component :esphomepr:`3401` by :ghuser:`parats15`
 - Add support for Mopeka Pro+ Residential sensor :esphomepr:`3393` by :ghuser:`jamesduke`
 - Add support for BL0939 (Sonoff Dual R3 V2 powermeter) :esphomepr:`3300` by :ghuser:`ziceva` (new-integration)
