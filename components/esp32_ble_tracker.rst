@@ -74,6 +74,15 @@ Configuration variables:
     after having received an advertising packet. With some devices this is necessary to receive all data,
     but also drains those devices' power a (tiny) bit more. Defaults to ``true``.
 
+- **security_parameters** (*Optional*): Advanced parameters for configuring the BLE security behavior of the ESP32.
+  See also `this guide by Espressif <https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_security_server/tutorial/Gatt_Security_Server_Example_Walkthrough.md#setting-security-parameters>`__
+  for reference.
+
+  - **io_capability** (*Optional*, :ref:`config-time`): IO Capability of the ESP32. Defaults to ``ESP_IO_CAP_NONE``.
+  - **key_size** (*Optional*, int`): Maximum Encryption Key Size, in bytes. Should be between 7~16. Defaults to ``7``
+  - **authentication_mode** (*Optional*, :ref:`config-time`): The duration of each complete scan. This has no real
+    impact on the device but can be used to debug the BLE stack. Defaults to ``ESP_LE_AUTH_NO_BOND``.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
 
 Automations:
@@ -86,6 +95,36 @@ Automations:
 - **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a Bluetooth advertising with service data is received. See
   :ref:`esp32_ble_tracker-on_ble_service_data_advertise`.
+
+ESP32 Bluetooth Low Energy Tracker Security
+-------------------------------------------
+
+.. note::
+
+    Modifying the BLE Tracker Security Parameters is an advanced option that is likely to only be required when connecting to BLE Devices with specific authentication requirements.
+    Learn all about ESP32 BLE `Security Parameters here <https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_security_server/tutorial/Gatt_Security_Server_Example_Walkthrough.md#setting-security-parameters>`__
+
+**BLE IO Capability**: describes if the device has input/output capabilities such as a display or a keyboard:
+
+``io_capability`` possible options:
+
+- ``ESP_IO_CAP_OUT`` (0, Display Only)
+- ``ESP_IO_CAP_IO`` (1, Display Yes/No)
+- ``ESP_IO_CAP_IN`` (2, Keyboard Only)
+- ``ESP_IO_CAP_NONE`` (3, No Input, No Output (default))
+- ``ESP_IO_CAP_KBDISP`` (4, Keyboard display)
+
+**BLE Authorization Request**: indicates the requested security properties such as Bonding, Secure Connections (SC), MITM protection or none that will be present in the Pairing Request and Response packets:
+
+``authentication_mode`` possible options:
+
+- ``ESP_LE_AUTH_NO_BOND``: No bonding.
+- ``ESP_LE_AUTH_BOND``: Bonding is performed.
+- ``ESP_LE_AUTH_REQ_MITM``: MITM Protection is enabled.
+- ``ESP_LE_AUTH_REQ_SC_ONLY``: Secure Connections without bonding enabled.
+- ``ESP_LE_AUTH_REQ_SC_BOND``: Secure Connections with bonding enabled.
+- ``ESP_LE_AUTH_REQ_SC_MITM``: Secure Connections with MITM Protection and no bonding enabled.
+- ``ESP_LE_AUTH_REQ_SC_MITM_BOND``: Secure Connections with MITM Protection and bonding enabled.
 
 ESP32 Bluetooth Low Energy Tracker Automation
 ---------------------------------------------
