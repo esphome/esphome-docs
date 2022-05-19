@@ -78,9 +78,9 @@ Configuration variables:
   See also `this guide by Espressif <https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_security_server/tutorial/Gatt_Security_Server_Example_Walkthrough.md#setting-security-parameters>`__
   for reference.
 
-  - **io_capability** (*Optional*, :ref:`config-time`): IO Capability of the ESP32. Defaults to ``ESP_IO_CAP_NONE``.
+  - **io_capability** (*Optional*, :ref:`BLE IO Capability <ble_io_capablity>`): IO Capability of the ESP32. Defaults to ``ESP_IO_CAP_NONE``.
   - **key_size** (*Optional*, int`): Maximum Encryption Key Size, in bytes. Should be between 7~16. Defaults to ``7``
-  - **authentication_mode** (*Optional*, :ref:`config-time`): The duration of each complete scan. This has no real
+  - **authentication_mode** (*Optional*, :ref:`BLE Authorization Request <ble_auth_req>`): The duration of each complete scan. This has no real
     impact on the device but can be used to debug the BLE stack. Defaults to ``ESP_LE_AUTH_NO_BOND``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
@@ -104,6 +104,8 @@ ESP32 Bluetooth Low Energy Tracker Security
     Modifying the BLE Tracker Security Parameters is an advanced option that is likely to only be required when connecting to BLE Devices with specific authentication requirements.
     Learn all about ESP32 BLE `Security Parameters here <https://github.com/espressif/esp-idf/blob/master/examples/bluetooth/bluedroid/ble/gatt_security_server/tutorial/Gatt_Security_Server_Example_Walkthrough.md#setting-security-parameters>`__
 
+.. _ble_io_capablity:
+
 **BLE IO Capability**: describes if the device has input/output capabilities such as a display or a keyboard:
 
 ``io_capability`` possible options:
@@ -113,6 +115,8 @@ ESP32 Bluetooth Low Energy Tracker Security
 - ``ESP_IO_CAP_IN`` (2, Keyboard Only)
 - ``ESP_IO_CAP_NONE`` (3, No Input, No Output (default))
 - ``ESP_IO_CAP_KBDISP`` (4, Keyboard display)
+
+.. _ble_auth_req:
 
 **BLE Authorization Request**: indicates the requested security properties such as Bonding, Secure Connections (SC), MITM protection or none that will be present in the Pairing Request and Response packets:
 
