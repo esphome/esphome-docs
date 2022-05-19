@@ -128,7 +128,7 @@ To configure a dimmable backlight:
         id: back_light
         restore_mode: ALWAYS_ON
 
-To configure an image adaptive color pallet to show greater tha 8 bit color depth with a RAM limited screen buffer:
+To configure an image adaptive color pallet to show greater than 8 bit color depth with a RAM limited screen buffer:
 
 .. code-block:: yaml
 
