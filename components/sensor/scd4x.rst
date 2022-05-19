@@ -66,14 +66,14 @@ Configuration variables:
   is set.
 
 
-- **measurement_mode** (*Optional*): Set measurement mode for scd4x. 
+- **measurement_mode** (*Optional*): Set measurement mode for scd4x.
 
-  - **periodic** : The sensor takes a new measurement every 5 seconds. This is the default mode.
-  - **low_power_periodic**: The sensor takes a new measurement every 30 seconds. Make sure ``update_interval`` is at least 30 seconds.
-  - **single_shot**: A measurement is started in every update interval. A measurement takes 5 seconds. This mode is only available on scd41 and useful if low power consumption is required. 
+  - ``periodic``: The sensor takes a new measurement every 5 seconds. This is the default mode.
+  - ``low_power_periodic``: The sensor takes a new measurement every 30 seconds. Make sure ``update_interval`` is at least 30 seconds.
+  - ``single_shot``: A measurement is started in every update interval. A measurement takes 5 seconds. This mode is only available on scd41 and useful if low power consumption is required.
     The automatic self-calibration is optimized for single shot measurements performed every 5 minutes.
     To reduce noise levels, you can can perform several single shot measurements in a row and average the output values using a :ref:`sensor-filters`.
-  - **single_shot_rht_only**: A measurement is started in every update interval. A measurement takes 50 ms. Only humidity and temperature is measured. CO2 is reported as 0 ppm. This mode is only available on scd41 and useful if low power consumption is required. 
+  - ``single_shot_rht_only``: A measurement is started in every update interval. A measurement takes 50 ms. Only humidity and temperature is measured. CO2 is reported as 0 ppm. This mode is only available on scd41 and useful if low power consumption is required.
 
 
 - **ambient_pressure_compensation_source** (*Optional*, :ref:`config-id`): Set an external pressure sensor ID used for ambient pressure compensation.
