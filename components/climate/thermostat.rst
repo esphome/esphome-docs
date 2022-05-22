@@ -163,8 +163,8 @@ Default Target Temperatures and Mode
 
 These configuration items determine default values the thermostat controller should use when it starts.
 
-- **default_mode** (*Optional*, climate mode): The default climate mode the controller should use if it 
-  is unable to restore it from memory. One of:
+- **default_mode** (*Optional*, *Deprecated*, climate mode): The default climate mode the controller should 
+  use if it is unable to restore it from memory. One of:
 
   - ``off`` (default)
   - ``heat_cool``
@@ -174,13 +174,18 @@ These configuration items determine default values the thermostat controller sho
   - ``fan_only``
   - ``auto``
 
-- **default_target_temperature_low** (*Optional*, float): The default low target
+- **default_target_temperature_low** (*Optional*, *Deprecated*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
-- **default_target_temperature_high** (*Optional*, float): The default high target
+- **default_target_temperature_high** (*Optional*, *Deprecated*, float): The default high target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
 
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
+
+.. note::
+    **default_mode**, **default_target_temperature_low**, and **default_target_temperature_high** are
+    deprecated and will be removed in a future release. You should migrate your configuration to using
+    a :ref:`preset <thermostat-preset>` which allows for more flexibility and customisation 
 
 Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
 the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
@@ -303,7 +308,7 @@ Set Point Options/Behavior
 - **supplemental_heating_delta** (*Required with* ``supplemental_heating_action``, float): When the temperature
   difference between the lower set point and the current temperature exceeds this value,
   ``supplemental_heating_action`` will be called immediately.
-- **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
+- **away_config** (*Optional*, *Deprecated*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
 
@@ -314,6 +319,12 @@ Set Point Options/Behavior
 
 **If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified in the away mode configuration.**
+
+.. note::
+    **away_config** is deprecated and will be removed in a future release. You should migrate your configuration
+    to using a :ref:`preset <thermostat-preset>` which allows for more flexibility and customisation 
+
+.. _thermostat-preset:
 
 Presets
 *******
