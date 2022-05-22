@@ -318,15 +318,15 @@ Set Point Options/Behavior
 Presets
 *******
 
-Presets allow you to preconfigure different modes for your thermostat. These will show up in the Home Assistant
-UI where they can change temperature set points, fan modes, fan swing modes, and operating modes all with one
-operation.
+Presets allow you to define a combination of set points, climate, fan, and swing modes that can be recalled from
+the front end (Home Assistant) as a single operation for quick and easy access. This can simplify the user
+experience and automation.
 
 - **preset**: (*Optional*, list)
 
   - **name** (*Required*, string): Name of the preset. If this is one of the *standard* presets (``eco``, ``away``, 
-    ``boost``, ``comfort``, ``home``, ``sleep``, or ``activity``) it is considered a *standard_*preset. Any other
-    string will make the preset a *custom* preset. *Standard* and *custom* presets are functionally equivalent
+    ``boost``, ``comfort``, ``home``, ``sleep``, or ``activity``) it is considered a *standard* preset. Any other
+    string will make the preset a *custom* preset. *Standard* and *custom* presets are functionally equivalent,
     the only difference is that when switching the mode via :ref:`climate.control Action <climate-control_action>`
     you will need to use the `preset` or `custom_preset` property as appropriate. The Home Assistant 
     `climate.set_preset_mode` service treats them identically
@@ -334,8 +334,8 @@ operation.
     this preset
   - **default_target_temperature_high** (*Optional*, float): The default high target temperature when switching
     to this preset.
-  - **mode** (*Optional*, climate mode): The default mode to switch the thermostat when switching to this preset
-    If not specified it will remain on the mode it was on prior to switching. One of:
+  - **mode** (*Optional*, climate mode): The mode the thermostat should switch to when this preset is activated.
+    If not specified, the thermostat's mode will remain unchanged when the preset is activated. One of:
   
     - ``heat_cool``
     - ``cool``
@@ -343,8 +343,9 @@ operation.
     - ``dry``
     - ``fan_only``
     - ``auto``
-  - **fan_mode** (*Optional*, climate fan mode): The default fan mode to switch the thermostat to when switching
-    to this preset. If not specified it will remain on the fan mode it was on prior to switching. One of:
+  - **fan_mode** (*Optional*, climate fan mode): The fan mode the thermostat should switch to when this preset
+    is activated. If not specified, the thermostat's fan mode will remain unchanged when the preset is activated.
+    One of:
 
     - ``on``
     - ``off``
@@ -355,8 +356,9 @@ operation.
     - ``middle``
     - ``focus``
     - ``diffuse``
-  - **swing_mode** (*Optional*, climate swing mode): The default fan swing mode to switch the thermostat to when
-    switching to this preset. If not specified it will remain on the fan mode it was on prior to switching. One of:
+  - **swing_mode** (*Optional*, climate swing mode): The fan swing mode the thermostat should switch to when this
+    preset is activated. If not specified, the thermostat's fan swing mode will remain unchanged when the preset
+    is activated. One of:
     
     - ``off``
     - ``both``
