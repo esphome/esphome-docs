@@ -183,6 +183,7 @@ These configuration items determine default values the thermostat controller sho
 **must be specified.**
 
 .. note::
+
     **default_mode**, **default_target_temperature_low**, and **default_target_temperature_high** are
     deprecated and will be removed in a future release. You should migrate your configuration to using
     a :ref:`preset <thermostat-preset>` which allows for more flexibility and customisation 
@@ -321,6 +322,7 @@ Set Point Options/Behavior
 **must be specified in the away mode configuration.**
 
 .. note::
+
     **away_config** is deprecated and will be removed in a future release. You should migrate your configuration
     to using a :ref:`preset <thermostat-preset>` which allows for more flexibility and customisation 
 
@@ -401,7 +403,7 @@ experience and automation.
 
 .. code-block:: yaml
 
-    # Example climate controller with presets actions
+    # Example climate controller with preset and change action
     climate:
       - platform: thermostat
         name: "Thermostat with Presets Actions"
