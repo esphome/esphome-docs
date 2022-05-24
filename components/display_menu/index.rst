@@ -3,34 +3,24 @@ Display Menu
 
 .. seo::
     :description: Instructions for setting up a simple hierarchical menu on displays.
-    :image: lcd-menu.png
+    :image: lcd_menu.png
 
-The component provides an infrastructure for setting up a hierarchical menu.
-At the moment the character based LCD displays are supported using the ``lcd_menu``
-integration.
+.. _display_menu:
 
-
-.. figure:: images/lcd-menu.png
-    :align: center
-    :width: 50.0%
+The integration provides a menu primarily intended to be controlled either by a rotary encoder
+with a button or a five-button joystick controller. It allows to navigate a hierarchy of items
+and submenus with the ability to change the values and execute commands. The menu can
+be activated and deactivated on demand, allowing alternating between using the screen for
+the menu and other information.
 
 Overview
 --------
 
-The integration provides a menu primarily intended to be controlled either by a rotary encoder
-with a button or a five-button joystick controller. It allows to navigate a hierarchy of items and submenus
-with the ability to change enumeration and numeric values and execute commands. The menu can
-be activated and deactivated on demand, allowing alternating between using the screen for
-the menu and other information.
+This document describes the configuration and automations common for the components implementing
+this integration. At the moment the character based LCD displays are supported using
+the :ref:`lcd_menu <lcd_menu>` integration and an instance of this is used in the configuration
+examples.
 
-The component needs to be connected to an instance of a character based LCD display, which
-at the moment are :ref:`lcd-pcf8574` or a :ref:`lcd-gpio`. For the best results the GPIO
-connection is recommended; the I²C one running at the speed according to the datasheet
-(usually 100 kHz) or even ESPHome default (50 kHz) will create perceptible delays especially
-when changing a numeric value using the rotary encoder. Most PCF8574 adapters used with
-these displays will happily run at 200 or even 400 kHz though so if you are comfortable
-accepting risks from running your hardware out of spec, you might want to try that
-in your ``i2c`` configuration.
 
 .. code-block:: yaml
 
@@ -39,17 +29,6 @@ in your ``i2c`` configuration.
     - platform: lcd_pcf8574
         id: my_lcd
         ...
-        user_characters:
-          - position: 0
-            data:
-              - 0b00100
-              - 0b01110
-              - 0b10101
-              - 0b00100
-              - 0b00100
-              - 0b00100
-              - 0b11100
-              - 0b00000
         lambda: |-
           id(my_lcd_menu).draw();
           if (!id(my_lcd_menu).is_active())
@@ -59,13 +38,8 @@ in your ``i2c`` configuration.
     lcd_menu:
       id: my_lcd_menu
       display_id: my_lcd
-      dimensions: 20x4
-      active: True
+      active: true
       mode: rotary
-      mark_back: 0x08
-      mark_selected: 0x3e
-      mark_editing: 0x2a
-      mark_submenu: 0x7e
       on_enter:
         then:
           lambda: 'ESP_LOGI("display_menu", "root enter");'
@@ -102,14 +76,9 @@ in your ``i2c`` configuration.
 
 Configuration variables:
 
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **display_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the LCD display.
 - **root_item_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the root menu item.
-- **dimensions** (**Required**, string): The dimensions of the display with the ``COLUMNSxROWS``
-  format. This should match dimensions of the LCD display, you can however for example specify
-  fewer lines and use the last one for a status one.
 - **active** (*Optional*, boolean): Whether the menu should start as active, meaning accepting
-  user interactions and displaying output. Defaults to ``True``.
+  user interactions and displaying output. Defaults to ``true``.
 - **mode** (*Optional*, string): Defines the navigation logic. The ``rotary`` mode expects
   the clockwise movement wired to :ref:`display_menu.down <display_menu-down_action>`,
   the anticlockwise one to :ref:`display_menu.up <display_menu-up_action>` and the switch
@@ -118,12 +87,6 @@ Configuration variables:
   :ref:`display_menu.down <display_menu-down_action>`, :ref:`display_menu.left <display_menu-left_action>`
   and :ref:`display_menu.right <display_menu-right_action>` actions and the middle button
   to the :ref:`display_menu.enter <display_menu-enter_action>` action. Defaults to ``rotary``.
-- **mark_back**, **mark_selected**, **mark_editing**, **mark_submenu** (*Optional*, 0-255):
-  Code of the character used to mark menu items going back one level, a selected one,
-  the editing mode and item leading to a submenu. Defaults to ``0x5e`` (``^``), ``0x3e`` (``>``),
-  ``0x2a`` (``*``) and ``0x7e`` (a right arrow). As the character set lacks a good looking
-  up arrow, using a user defined character is advisable (use ``8`` to reference one at
-  position ``0`` to avoid problems with zeros in a string).
 - **menu** (**Required**): The first level of the menu.
 
 Automations:
@@ -154,7 +117,7 @@ Editing values
 Some of the menu items provide a way to edit values either by selecting from a list of options
 or changing a numeric one. Such items can be configured in two ways.
 
-If the ``immediate_edit`` configuration is ``False``, the editing mode has to be activated
+If the ``immediate_edit`` configuration is ``false``, the editing mode has to be activated
 first by activating the rotary encoder's switch or the joystick's center button.
 On the activation the ``on_enter`` automation is called and the item is marked as editable
 (the ``>`` selection marker changes to ``*`` as default). The value can be then
@@ -163,7 +126,7 @@ and right buttons (in the ``joystick`` one). The editing mode is deactivated
 by another clicking of the switch, the ``on_leave`` automation is called and the selection
 marker changes back.
 
-If the ``immediate_edit`` configuration is ``True`` the menu item is editable immediately
+If the ``immediate_edit`` configuration is ``true`` the menu item is editable immediately
 when it is selected. The ``on_enter`` and ``on_leave`` are not called. In the ``joystick`` mode
 the left and right buttons iterate through the values; the items that are editable
 show the editable marker to signal that the buttons can be used. In the ``rotary`` mode
@@ -240,7 +203,7 @@ Select
     lcd_menu:
       menu:
         - type: select
-          immediate_edit: False
+          immediate_edit: false
           text: 'My Color'
           select: my_color
           on_enter:
@@ -256,7 +219,7 @@ Select
     select:
       - platform: template
         id: my_color
-        optimistic: True
+        optimistic: true
         options:
           - 'Red'
           - 'Green'
@@ -268,7 +231,7 @@ associated ``select`` component.
 Configuration variables:
 
 - **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
-  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``False``.
+  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``false``.
 - **select** (**Required**, :ref:`config-id`): A ``select`` component managing
   the edited value.
 - **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
@@ -300,18 +263,18 @@ Number
           number: my_number
           on_enter:
             then:
-              lambda: 'ESP_LOGI("display_menu", "number enter: %s, %f", it->get_text().c_str(), it->get_number_value());'
+              lambda: 'ESP_LOGI("display_menu", "number enter: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
           on_leave:
             then:
-              lambda: 'ESP_LOGI("display_menu", "number leave: %s, %f", it->get_text().c_str(), it->get_number_value());'
+              lambda: 'ESP_LOGI("display_menu", "number leave: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
           on_value:
             then:
-              lambda: 'ESP_LOGI("display_menu", "number value: %s, %f", it->get_text().c_str(), it->get_number_value());'
+              lambda: 'ESP_LOGI("display_menu", "number value: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
 
     number:
       - platform: template
         id: my_number_1
-        optimistic: True
+        optimistic: true
         min_value: 10.0
         max_value: 20.0
         step: 0.5
@@ -334,7 +297,7 @@ Configuration variables:
 
 - **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
   selected. See :ref:`Editing Values <display_menu-edit_mode>`. Ignored in the ``rotary`` mode.
-  Defaults to ``False``.
+  Defaults to ``false``.
 - **number** (**Required**, :ref:`config-id`): A ``number`` component managing
   the edited value. If on entering the value is less than ``min_value`` or more than
   ``max_value``, the value is capped to fall into the range.
@@ -365,7 +328,7 @@ Switch
     lcd_menu:
       menu:
         - type: switch
-          immediate_edit: False
+          immediate_edit: false
           text: 'My Switch'
           on_text: 'Bright'
           off_text: 'Dark'
@@ -383,14 +346,14 @@ Switch
     switch:
       - platform: template
         id: my_switch
-        optimistic: True
+        optimistic: true
 
 The menu item of the type ``switch`` allows toggling the associated ``switch`` component.
 
 Configuration variables:
 
 - **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
-  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``False``.
+  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``false``.
 - **on_text** (*Optional*, string): The text for the ``ON`` state. Defaults to ``On``.
 - **off_text** (*Optional*, string): The text for the ``OFF`` state. Defaults to ``Off``.
 - **switch** (**Required**, :ref:`config-id`): A ``switch`` component managing
@@ -439,7 +402,7 @@ Custom
     lcd_menu:
       menu:
         - type: custom
-          immediate_edit: False
+          immediate_edit: false
           text: 'My Custom'
           value_lambda: 'return to_string(some_state);'
       on_next:
@@ -455,7 +418,7 @@ and displaying the value to the ``value_lambda``.
 Configuration variables:
 
 - **immediate_edit** (*Optional*, boolean): Whether the item can be immediately edited when
-  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``False``.
+  selected. See :ref:`Editing Values <display_menu-edit_mode>`. Defaults to ``false``.
 - **value_lambda** (*Optional*, :ref:`lambda <config-lambda>`):
   Lambda returning a string to be displayed as value. The lambda gets an ``it`` argument
   pointing to the ``MenuItem``.
@@ -488,7 +451,7 @@ Automations
 This automation will be triggered when the menu level is entered, i.e. the component
 draws its items on the display. The ``it`` parameter points to a ``MenuItem`` class
 with the information of the menu item describing the displayed child items.
-If present at the ``lcd_menu`` level it is an internally generated root menu item,
+If present at the top level it is an internally generated root menu item,
 otherwise an user defined one. 
 
 
@@ -511,7 +474,7 @@ otherwise an user defined one.
 This automation will be triggered when the menu level is exited, i.e. the component
 does not draw its items on the display anymore. The ``it`` parameter points to
 a ``MenuItem`` class with the information of the menu item. If present at the
-``lcd_menu`` level it is an internally generated root menu item, otherwise
+top level it is an internally generated root menu item, otherwise
 an user defined one. It does not matter whether the level was left due to entering
 the submenu or going back to the parent menu.
 
@@ -788,4 +751,9 @@ See Also
 --------
 
 - :apiref:`display_menu_base/display_menu_base.h`
-- :apiref:`lcd_menu/lcd_menu.h`
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    *

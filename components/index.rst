@@ -20,4 +20,5 @@ Components
     stepper/index
     touchscreen/index
     lock/index
+    display_menu/index
     *
