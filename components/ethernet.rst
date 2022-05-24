@@ -74,6 +74,8 @@ Configuration variables:
 Configuration for wESP32 board
 ------------------------------
 
+**Release 7 and upwards of the wESP32 board does not have a LAN8720 chip. Until support for the replacement RTL8201 is included in esphome, the wESP board will not work with the below configuration.**
+
 .. code-block:: yaml
 
     ethernet:
