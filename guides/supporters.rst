@@ -286,6 +286,7 @@ Contributors
 - `Aljaž Srebrnič (@g5pw) <https://github.com/g5pw>`__
 - `Gabe Cook (@gabe565) <https://github.com/gabe565>`__
 - `Gareth Cooper (@gaco79) <https://github.com/gaco79>`__
+- `gazoodle (@gazoodle) <https://github.com/gazoodle>`__
 - `GeekVisit (@GeekVisit) <https://github.com/GeekVisit>`__
 - `Ian Reinhart Geiser (@geiseri) <https://github.com/geiseri>`__
 - `R Huish (@genestealer) <https://github.com/genestealer>`__
@@ -398,6 +399,7 @@ Contributors
 - `Jonathan Treffler (@JonathanTreffler) <https://github.com/JonathanTreffler>`__
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__
 - `Joppy (@JoppyFurr) <https://github.com/JoppyFurr>`__
+- `joseph douce (@josephdouce) <https://github.com/josephdouce>`__
 - `Joshua Spence (@joshuaspence) <https://github.com/joshuaspence>`__
 - `Joscha Wagner (@jowgn) <https://github.com/jowgn>`__
 - `jsuanet (@jsuanet) <https://github.com/jsuanet>`__
@@ -535,7 +537,6 @@ Contributors
 - `Moritz Glöckl (@moritzgloeckl) <https://github.com/moritzgloeckl>`__
 - `Matthew Pettitt (@mpettitt) <https://github.com/mpettitt>`__
 - `Sam Hughes (@MrEditor97) <https://github.com/MrEditor97>`__
-- `Simon Sasburg (@MrHacky) <https://github.com/MrHacky>`__
 - `Mariusz Kryński (@mrk-its) <https://github.com/mrk-its>`__
 - `Michael Davidson (@MrMDavidson) <https://github.com/MrMDavidson>`__
 - `Ryan Matthews (@mrrsm) <https://github.com/mrrsm>`__
@@ -547,6 +548,7 @@ Contributors
 - `Martin Weinelt (@mweinelt) <https://github.com/mweinelt>`__
 - `myhomeiot (@myhomeiot) <https://github.com/myhomeiot>`__
 - `Igor Scheller (@MyIgel) <https://github.com/MyIgel>`__
+- `myml (@myml) <https://github.com/myml>`__
 - `Mynasru (@Mynasru) <https://github.com/Mynasru>`__
 - `Niels Ulrik Andersen (@myplacedk) <https://github.com/myplacedk>`__
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__
@@ -696,10 +698,8 @@ Contributors
 - `Silvio (@s1lvi0) <https://github.com/s1lvi0>`__
 - `Jan Čermák (@sairon) <https://github.com/sairon>`__
 - `sascha lammers (@sascha432) <https://github.com/sascha432>`__
-- `Sascha (@Scarbous) <https://github.com/Scarbous>`__
 - `Nils Schulte (@Schnilz) <https://github.com/Schnilz>`__
 - `Ville Skyttä (@scop) <https://github.com/scop>`__
-- `Seganku (@seganku) <https://github.com/seganku>`__
 - `sekkr1 (@sekkr1) <https://github.com/sekkr1>`__
 - `SenexCrenshaw (@SenexCrenshaw) <https://github.com/SenexCrenshaw>`__
 - `Sergio (@sergio303) <https://github.com/sergio303>`__
@@ -759,7 +759,6 @@ Contributors
 - `Mateusz Soszyński (@TheLastGimbus) <https://github.com/TheLastGimbus>`__
 - `Zixuan Wang (@TheNetAdmin) <https://github.com/TheNetAdmin>`__
 - `Dominik Bruhn (@theomega) <https://github.com/theomega>`__
-- `Simon (@theOzzieRat) <https://github.com/theOzzieRat>`__
 - `Florian Gareis (@TheZoker) <https://github.com/TheZoker>`__
 - `Thomas Klingbeil (@thomasklingbeil) <https://github.com/thomasklingbeil>`__
 - `Thomas Dietrich (@ThomDietrich) <https://github.com/ThomDietrich>`__
@@ -798,6 +797,7 @@ Contributors
 - `Tyler Menezes (@tylermenezes) <https://github.com/tylermenezes>`__
 - `ukewea (@ukewea) <https://github.com/ukewea>`__
 - `Unai (@unaiur) <https://github.com/unaiur>`__
+- `user897943 (@user897943) <https://github.com/user897943>`__
 - `Vc (@Valcob) <https://github.com/Valcob>`__
 - `Nad (@valordk) <https://github.com/valordk>`__
 - `André Lademann (@vergissberlin) <https://github.com/vergissberlin>`__
@@ -824,6 +824,7 @@ Contributors
 - `Rick van Hattem (@WoLpH) <https://github.com/WoLpH>`__
 - `workingmanrob (@workingmanrob) <https://github.com/workingmanrob>`__
 - `Wojtek Strzalka (@wstrzalka) <https://github.com/wstrzalka>`__
+- `Wumpf (@Wumpf) <https://github.com/Wumpf>`__
 - `wysiwyng (@wysiwyng) <https://github.com/wysiwyng>`__
 - `Mike (@xsnoopy) <https://github.com/xsnoopy>`__
 - `Yaroslav (@Yarikx) <https://github.com/Yarikx>`__
@@ -842,4 +843,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated May 18, 2022.*
+*This page was last updated May 24, 2022.*
