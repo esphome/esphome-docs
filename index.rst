@@ -602,6 +602,15 @@ Climate Components
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
 
+Humidifier Components
+---------------------
+
+.. imgtable::
+
+    Humidifier Core, components/humidifier/index, folder-open.svg
+    Hygrostat Controller, components/humidifier/hygrostat, humidifier.svg
+    Custom Humidifier, components/humidifier/custom, language-cpp.svg
+
 Number Components
 -----------------
 

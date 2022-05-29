@@ -97,7 +97,6 @@ Advanced options:
 .. note::
 
     While this platform uses the term temperature everywhere, it can also be used for other values.
-    For example, controlling humidity is also possible with this platform.
 
 Bang-bang vs. Thermostat
 ------------------------
