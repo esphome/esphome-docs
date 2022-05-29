@@ -13,6 +13,41 @@ Tips for using ESPHome
    ``!include`` and ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
 
+   An enhancement to Home Assistant's ``!include`` accepts a list of variables that can be
+   substituted within the included file.
+
+   .. code-block:: yaml
+
+       binary_sensor:
+         - platform: gpio
+           id: button1
+           pin: GPIO16
+           on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
+         - platform: gpio
+           id: button2
+           pin: GPIO4
+           on_multi_click: !include
+             # multi-line syntax
+             file: on-multi-click.yaml
+             vars:
+               id: 2
+
+   ``on-multi-click.yaml``:
+
+   .. code-block:: yaml
+
+       - timing: !include click-single.yaml 
+         then:
+           - mqtt.publish:
+               topic: ${device_name}/button${id}/status
+               payload: single
+       - timing: !include click-double.yaml
+         then:
+           - mqtt.publish:
+               topic: ${device_name}/button${id}/status
+               payload: double
+
+
    For even more configuration templating, take a look at :ref:`config-substitutions`.
 
 2. If you want to see how ESPHome interprets your configuration, run
