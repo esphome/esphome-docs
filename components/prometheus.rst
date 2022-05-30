@@ -27,6 +27,8 @@ Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
+  web interface. Defaults to ``false``.
 
 .. note::
 
