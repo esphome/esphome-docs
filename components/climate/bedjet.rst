@@ -70,6 +70,7 @@ From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced st
             then:
             - lambda: |-
                 id(my_bedjet_fan).send_local_time();
+
 - ``.set_clock``: Set the BedJet clock to a specified time; works with or without a `time_id`.
 
   .. code-block:: yaml
