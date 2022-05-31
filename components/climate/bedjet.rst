@@ -5,8 +5,8 @@ BedJet
     :description: Instructions for setting up a BedJet climate device.
     :image: bedjet.png
 
-The ``bedjet`` climate platform creates a climate device which can be used to control
-a BedJet V3 Climate Comfort Sleep System.
+The ``bedjet`` component allows you to communicate with a BedJet V3 Climate Comfort
+Sleep System.
 
 This component supports the following functionality:
 
@@ -16,36 +16,40 @@ This component supports the following functionality:
 - Start one of the saved memory presets, including "Biorhythm" programs
 - Show the current status of the BedJet
 
-This platform uses the BLE peripheral on an ESP32, so you also need to enable
+This component uses the BLE peripheral on an ESP32, so you also need to enable
 this component. Please see the :doc:`/components/ble_client` docs for how to discover the MAC
 address of your BedJet device, or you can find the list of paired MAC addresses in
 the "DEVICE LIST" section of the BedJet mobile application.
 
+Component/Hub
+-------------
+
+This component is a global hub that maintains the connection to the BedJet device
+and delegates status updates to individual platform components.
+
 .. code-block:: yaml
 
-    ble_client:
-      - mac_address: 11:22:33:aa:bb:cc
-        id: ble_bedjet
+    esp32_ble_tracker:
 
-    climate:
-      - platform: bedjet
-        id: my_bedjet_fan
-        name: "My BedJet Fan"
-        ble_client_id: ble_bedjet
+    ble_client:
+      - mac_address: C4:4F:33:00:00:01
+        id: bedjet_ble_id1
+
+    bedjet:
+      - id: bedjet_1
+        ble_client_id: bedjet_ble_id1
 
 Configuration variables:
-------------------------
+************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the climate device.
 - **ble_client_id** (**Required**, :ref:`config-id`): The ID of the BLE Client.
 - **time_id** (*Optional*, :ref:`config-id`): The ID of a :ref:`Time Component <time>` which
   can be used to set the time on the BedJet device.
-- **heat_mode** (*Optional*, string): The primary heating mode to use for `HVACMode.HEAT`:
-  - ``"heat"`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
-  - ``"extended"`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
-  - Whichever is not selected will be made available as a custom preset.
-- All other options from :ref:`Climate <config-climate>`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to dispatch status
+  changes to child components. Defaults to ``5s``. Each child component can decide whether to
+  publish its own updated state on this interval, or use another (longer) update interval to
+  throttle its own updates.
 
 lambda calls
 ************
@@ -58,11 +62,37 @@ From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced st
 
       button:
         - platform: template
-          name: "Check Bedjet Firmware"
+          name: "Check Bedjet(1) Firmware"
           on_press:
             then:
             - lambda: |-
-                id(my_bedjet_fan).upgrade_firmware();
+                id(bedjet_1).upgrade_firmware();
+
+``bedjet`` Climate Platform
+---------------------------
+
+The `climate` platform exposes the BedJet's climate-related functionality, including
+setting the mode and target temperature.
+
+.. code-block:: yaml
+
+    climate:
+      - platform: bedjet
+        id: my_bedjet_climate_entity
+        name: "My BedJet"
+        bedjet_id: bedjet_1
+
+Configuration variables:
+************************
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **name** (**Required**, string): The name of the climate device.
+- **bedjet_id** (**Required**, :ref:`config-id`): The ID of the Bedjet component.
+- **heat_mode** (*Optional*, string): The primary heating mode to use for ``HVACMode.HEAT``:
+    - ``"heat"`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
+    - ``"extended"`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
+    - Whichever is not selected will be made available as a custom preset.
+- All other options from :ref:`Climate <config-climate>`.
 
 - ``.send_local_time``: If `time_id` is set, attempt to sync the clock now.
 
