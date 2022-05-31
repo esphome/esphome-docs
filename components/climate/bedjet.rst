@@ -41,6 +41,10 @@ Configuration variables:
 - **ble_client_id** (**Required**, :ref:`config-id`): The ID of the BLE Client.
 - **time_id** (*Optional*, :ref:`config-id`): The ID of a :ref:`Time Component <time>` which
   can be used to set the time on the BedJet device.
+- **heat_mode** (*Optional*, string): The primary heating mode to use for `HVACMode.HEAT`:
+  - ``"heat"`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
+  - ``"extended"`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
+  - Whichever is not selected will be made available as a custom preset.
 - All other options from :ref:`Climate <config-climate>`.
 
 lambda calls
