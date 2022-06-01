@@ -87,6 +87,8 @@ Custom Components & Code
 - `ADEMCO/VISTA/Honeywell alarm system custom component <https://github.com/Dilbert66/esphome-vistaECP>`__ by :ghuser:`Dilbert66`
 - `Winsen ZE08-CH2O (Formaldehyde sensor) custom component <https://gist.github.com/cretep/f96606dc6a4eae0d85993d6085959220>`__ by :ghuser:`cretep`
 - `ZclMqttBridge custom component <https://github.com/HyperReap/zcl_mqtt_bridge>`__ by :ghuser:`HyperReap`
+- `Use Xtronical's WAV Player with ESPHOME <https://github.com/jn3va/ESPHomeXTronicalWAVPlayer>`__ by :ghuser:`jn3va`
+
 
 Sample Configurations
 ---------------------
