@@ -37,7 +37,7 @@ Possible return values for the optional lambda:
  - ``return LOCK_STATE_LOCKING;`` if the lock should be reported as LOCKING.
  - ``return LOCK_STATE_UNLOCKING;`` if the lock should be reported as UNLOCKING.
  - ``return {};`` if the last state should be repeated.
- 
+
 .. note::
 
     Only ``LOCK_STATE_LOCKED`` and ``LOCK_STATE_UNLOCKED`` are supported by the MQTT component in Home Assistant
@@ -52,8 +52,6 @@ Configuration variables:
   be performed when the remote (like Home Assistant's frontend) requests the lock to be locked.
 - **unlock_action** (*Optional*, :ref:`Action <config-action>`): The action that should
   be performed when the remote (like Home Assistant's frontend) requests the lock to be unlocked.
-- **restore_state** (*Optional*, boolean): Sets whether ESPHome should attempt to restore the
-  state on boot-up and call the lock/unlock actions with the recovered values. Defaults to ``no``.
 - **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the template lock will immediately update the reported state.
   Defaults to ``false``.

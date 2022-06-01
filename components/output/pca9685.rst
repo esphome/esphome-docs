@@ -45,8 +45,8 @@ Configuration variables:
 
 .. _pca9685-output:
 
-PWM Output
-----------
+PCA9685 Output
+--------------
 
 The PCA9685 output component exposes a PCA9685 PWM channel of a global
 :ref:`PCA9685 hub <pca9685-component>` as a float

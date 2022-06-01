@@ -1,21 +1,21 @@
 Mopeka Pro Check BLE Sensor
-===============================
+===========================
 
 .. seo::
     :description: Instructions for setting up Mopeka Pro Check bluetooth-based sensors in ESPHome.
     :image: mopeka_pro_check.jpg
-    :keywords: Mopeka, Mopeka Pro Check, BLE, Bluetooth
+    :keywords: Mopeka, Mopeka Pro Check, Mopeka Pro Plus, BLE, Bluetooth
 
-The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka 
-Pro Check LP Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`.
-This component will track the tank level, distance, temperature, and battery
-percentage of a Mopeka Pro Check LP device every time the sensor sends
-out a BLE broadcast.
+The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka
+Pro Check LP and Mopeka Pro Plus Bluetooth Low Energy devices using the 
+:doc:`/components/esp32_ble_tracker`. This component will track the tank level, 
+distance, temperature, and battery percentage of a Mopeka Pro Check LP or Mopeka
+Pro Plus Residential BLE device every time the sensor sends out a BLE broadcast.
 
 .. warning::
 
-    This sensor component only supports the Mopeka Pro Check device.  The original
-    Mopeka Check sensors are not supported.
+    This sensor component only supports the Mopeka Pro Check and Pro Plus devices.
+    The original Mopeka Check sensors are not supported.
 
 .. figure:: images/mopeka_pro_check.jpg
     :align: center
@@ -27,33 +27,33 @@ out a BLE broadcast.
     esp32_ble_tracker:
 
     sensor:
-    # Example using 20lb vertical propane tank.
-    - platform: mopeka_pro_check
-      mac_address: D3:75:F2:DC:16:91
-      tank_type: 20LB_V
-      temperature:
-          name: "Propane test temp"
-      level:
-          name: "Propane test level"
-      distance:
-          name: "Propane test distance"
-      battery_level:
-          name: "Propane test battery level"
+      # Example using 20lb vertical propane tank.
+      - platform: mopeka_pro_check
+        mac_address: D3:75:F2:DC:16:91
+        tank_type: 20LB_V
+        temperature:
+            name: "Propane test temp"
+        level:
+            name: "Propane test level"
+        distance:
+            name: "Propane test distance"
+        battery_level:
+            name: "Propane test battery level"
 
-    # Custom example - user defined empty / full points
-    - platform: mopeka_pro_check
-      mac_address: D3:75:F2:DC:16:91
-      tank_type: CUSTOM
-      custom_distance_full: 40cm
-      custom_distance_empty: 10mm
-      temperature:
-          name: "Propane c test temp"
-      level:
-          name: "Propane c test level"
-      distance:
-          name: "Propane c test distance"
-      battery_level:
-          name: "Propane c test battery level"
+      # Custom example - user defined empty / full points
+      - platform: mopeka_pro_check
+        mac_address: D3:75:F2:DC:16:91
+        tank_type: CUSTOM
+        custom_distance_full: 40cm
+        custom_distance_empty: 10mm
+        temperature:
+            name: "Propane c test temp"
+        level:
+            name: "Propane c test level"
+        distance:
+            name: "Propane c test distance"
+        battery_level:
+            name: "Propane c test battery level"
 
 
 Configuration variables:
@@ -101,7 +101,7 @@ Currently supported Tank types are:
 Setting Up Devices
 ------------------
 
-To set up Mopeka Pro Check devices you first need to find their MAC Address so that
+To set up Mopeka Pro Check / Pro Plus devices you first need to find their MAC Address so that
 ESPHome can identify them. So first, create a simple configuration with the ``esp32_ble_tracker``
 and the ``mopeka_ble`` component like so:
 
@@ -112,8 +112,8 @@ and the ``mopeka_ble`` component like so:
     mopeka_ble:
 
 After uploading, the ESP32 will immediately try to scan for BLE devices.  For Mopeka Pro
-Check devices you must press and hold the green sync button for it to be identified.  For all sensors
-found the ``mopeka_ble`` component will print a message like this one:
+Check / Pro Plus devices you must press and hold the green sync button for it to be identified.
+For all sensors found the ``mopeka_ble`` component will print a message like this one:
 
 .. code::
 

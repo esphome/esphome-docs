@@ -40,7 +40,6 @@ The ``midea`` component creates a Midea air conditioner climate device.
     climate:
       - platform: midea
         name: Midea Climate         # Use a unique name.
-        transmitter_id:             # Optional. Add this option to use IR transmitter.
         period: 1s                  # Optional
         timeout: 2s                 # Optional
         num_attempts: 3             # Optional
@@ -83,7 +82,7 @@ Configuration variables:
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :doc:`../uart` if you want
   to use multiple UART buses.
 - **name** (**Required**, string): The name of the climate device.
-- **transmitter_id** (*Optional*, :ref:`config-id`): Set if you use :doc:`../remote_transmitter` component for IR commands transmit.
+- **transmitter_id** (*Optional*, :ref:`config-id`): Defined and used automatically when using :doc:`../remote_transmitter` component for IR commands transmit.
 - **period** (*Optional*, :ref:`config-time`): Minimal period between requests to the appliance. Defaults to ``1s``.
 - **timeout** (*Optional*, :ref:`config-time`): Request response timeout until next request attempt. Defaults to ``2s``.
 - **num_attempts** (*Optional*, int): Number of request attempts between 1 and 5 inclusive. Defaults to ``3``.
@@ -121,7 +120,7 @@ Automations
 .. _midea_ac-power_on_action:
 
 ``midea_ac.power_on`` Action
-******************************
+****************************
 
 This action turn on power. The mode and preset will be restored to the last state before turned off.
 
@@ -134,7 +133,7 @@ This action turn on power. The mode and preset will be restored to the last stat
 .. _midea_ac-power_off_action:
 
 ``midea_ac.power_off`` Action
-******************************
+*****************************
 
 This action turn off power.
 
@@ -143,6 +142,19 @@ This action turn off power.
     on_...:
       then:
         - midea_ac.power_off:
+
+.. _midea_ac-power_toggle_action:
+
+``midea_ac.power_toggle`` Action
+********************************
+
+This action toggle the power state. Identical to pressing the power button on the remote control.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - midea_ac.power_toggle:
 
 
 .. _midea_ac-follow_me_action:
@@ -200,7 +212,7 @@ This action adjust the louver by one step. :doc:`../remote_transmitter` required
 .. _midea_ac-beeper_on_action:
 
 ``midea_ac.beeper_on`` Action
-******************************
+*****************************
 
 This action turn on beeper feedback.
 

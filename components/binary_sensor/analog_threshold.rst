@@ -5,19 +5,19 @@ Analog Threshold Binary Sensor
     :description: Instructions for setting up an analog threshold binary sensors.
     :image: analog_threshold.svg
 
-The ``analog_threshold`` binary sensor platform allows you to convert analog values 
-(i.e. :doc:`sensor </components/sensor/index>` readings) 
-into boolean values, using a threshold as a reference. 
-When the signal is above or equal to the threshold the binary sensor is `true` 
-(this behavior can be changed adding and `invert` filter).
+The ``analog_threshold`` binary sensor platform allows you to convert analog values
+(i.e. :doc:`sensor </components/sensor/index>` readings)
+into boolean values, using a threshold as a reference.
+When the signal is above or equal to the threshold the binary sensor is ``true``
+(this behavior can be changed by adding an ``invert`` filter).
 
 It provides an *hysteresis* option to reduce instability when the source signal is noisy
-using different limits depending on the current state. 
-Additionally a :ref:`delay filter <binary_sensor-filters>` could be used to only change 
+using different limits depending on the current state.
+Additionally a :ref:`delay filter <binary_sensor-filters>` could be used to only change
 after a new state has been kept a minimum time.
 
 If the source sensor is uninitialized at the moment of component creation, the initial
-state of the binary sensor wil be `false`, if later it has some reading errors, those
+state of the binary sensor wil be ``false``, if later it has some reading errors, those
 invalid source updates will be ignored, and the binary sensor will keep it´s last state.
 
 For example, below configuration would turn the readings of current sensor into
@@ -39,8 +39,8 @@ Configuration variables
 -  **name** (**Required**, string): The name of the binary sensor.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 -  **sensor_id** (**Required**, :ref:`config-id`): The ID of the source sensor.
--  **threshold** (**Required**, float or mapping): Configures the reference for comparison. Accepts either a shorthand 
-   float number that will be used as both upper/lower threshold, or a mapping to define different values for each (to 
+-  **threshold** (**Required**, float or mapping): Configures the reference for comparison. Accepts either a shorthand
+   float number that will be used as both upper/lower threshold, or a mapping to define different values for each (to
    use hysteresis).
 
    -  **upper** (**Required**, float): Upper threshold, that needs to be crossed to transition from ``low`` to ``high`` states.

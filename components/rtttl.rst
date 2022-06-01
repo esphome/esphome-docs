@@ -59,7 +59,7 @@ Plays an rtttl tone.
 
 Configuration options:
 
-- **play** (**Required**, string, :ref:`templatable <config-templatable>`): The rtttl string.
+- **rtttl** (**Required**, string, :ref:`templatable <config-templatable>`): The rtttl string.
 
 You can find many rtttl strings online on the web, they must start with a name, then a colon: ``:`` symbol
 and more codes of the song itself. Tip: you can try playing with the values of d=16,o=6,b=95 and make the

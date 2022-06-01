@@ -1050,6 +1050,7 @@ This effect enables controlling addressable lights using UDP-based
 lighting effects.
 
 Prismatik_ can be used to control addressable lights over network on ESPHome.
+It is also possible to use LedFx_ to control the lights. Please use the connection type ``udp`` on the default port and add the Data Prefix ``0201``.
 
 .. code-block:: yaml
 
@@ -1077,6 +1078,7 @@ WARLS, DRGB, DRGBW, DNRGB and WLED Notifier.
 .. _UDP Realtime Control: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
 .. _WLED: https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control
 .. _Prismatik: https://github.com/psieg/Lightpack
+.. _LedFx: https://github.com/LedFx/LedFx
 
 See Also
 --------

@@ -527,7 +527,7 @@ tracer-real-time.yaml
         address: 0x3110
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -539,7 +539,7 @@ tracer-real-time.yaml
         address: 0x3111
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -551,7 +551,7 @@ tracer-real-time.yaml
         address: 0x3112
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -573,7 +573,7 @@ tracer-real-time.yaml
         address: 0x311B
         unit_of_measurement: °C
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -584,7 +584,7 @@ tracer-real-time.yaml
         address: 0x311D
         unit_of_measurement: "°C"
         register_type: read
-        value_type: U_WORD
+        value_type: S_WORD
         accuracy_decimals: 1
         filters:
           - multiply: 0.01
@@ -983,7 +983,7 @@ tracer-settings.yaml
         name: "Battery temperature warning upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         # new range add 'skip_updates' again
         skip_updates: 50
         filters:
@@ -996,7 +996,7 @@ tracer-settings.yaml
         name: "Battery temperature warning lower limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1007,7 +1007,7 @@ tracer-settings.yaml
         name: "Controller inner temperature upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1018,7 +1018,7 @@ tracer-settings.yaml
         name: "Controller inner temperature upper limit recover"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1029,7 +1029,7 @@ tracer-settings.yaml
         name: "Power component temperature upper limit"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 
@@ -1040,7 +1040,7 @@ tracer-settings.yaml
         name: "Power component temperature upper limit recover"
         unit_of_measurement: "°C"
         register_type: holding
-        value_type: U_WORD
+        value_type: S_WORD
         filters:
           - multiply: 0.01
 

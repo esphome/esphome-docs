@@ -48,8 +48,8 @@ Configuration variables:
 
 - **model** (**Required**): The model of the display. Options are:
 
-  - ``SSD1351 128x128`` (SSD1351 with 128 columns and 128 rows)
-  - ``SSD1351 128x96`` (SSD1351 with 128 columns and 96 rows)
+  - ``SSD1351 128x128`` - SSD1351 with 128 columns and 128 rows
+  - ``SSD1351 128x96`` - SSD1351 with 128 columns and 96 rows
 
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin on the ESP that that the CS line is connected to.
