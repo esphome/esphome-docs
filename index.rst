@@ -631,6 +631,14 @@ Lock Components
     Generic Output Lock, components/lock/output, upload.svg
     Template Lock, components/lock/template, description.svg
 
+Media Player Components
+-----------------------
+
+.. imgtable::
+
+    Media Player Core, components/media_player/index, folder-open.svg
+    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
+
 Misc Components
 ---------------
 
