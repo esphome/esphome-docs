@@ -124,7 +124,7 @@ Configuration variables:
 - **away** (*Optional*, boolean, :ref:`templatable <config-templatable>`): Set the away mode
   of the humidifier device.
 - **preset** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the preset
-  of the humidifier device. One of ``NONE``,``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
+  of the humidifier device. One of ``NORMAL``, ``ECO``, ``AWAY``, ``BOOST``, ``COMFORT``, ``HOME``, ``SLEEP``,
   ``ACTIVITY``.
 
 .. _humidifier-lambda_calls:
