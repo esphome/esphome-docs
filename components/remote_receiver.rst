@@ -43,6 +43,7 @@ Configuration variables:
   - **pronto**: Print remote code in Pronto form. Useful for using arbitrary protocols.
   - **raw**: Print all remote codes in their raw form. Also useful for using arbitrary protocols.
   - **rc5**: Decode and dump RC5 IR codes.
+  - **rc6**: Decode and dump RC6 IR codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **samsung**: Decode and dump Samsung infrared codes.
   - **samsung36**: Decode and dump Samsung36 infrared codes.
@@ -110,6 +111,9 @@ Automations:
   is passed to the automation for use in lambdas.
 - **on_rc5** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RC5 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RC5Data`
+  is passed to the automation for use in lambdas.
+- **on_rc6** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  RC6 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RC6Data`
   is passed to the automation for use in lambdas.
 - **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RCSwitch RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RCSwitchData`
@@ -231,6 +235,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **command** (**Required**, int): The RC5 command to listen for.
+
+- **rc6**: Trigger on a decoded RC6 remote code with the given data.
+
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The RC6 command to listen for.
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 
