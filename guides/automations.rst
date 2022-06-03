@@ -330,7 +330,8 @@ All Triggers
 - :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
 - :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
-- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
+- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>` / 
+  :ref:`mqtt.on_connect / mqtt.on_disconnect <mqtt-on_connect_disconnect>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
