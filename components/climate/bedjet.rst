@@ -64,6 +64,30 @@ From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced st
             - lambda: |-
                 id(my_bedjet_fan).upgrade_firmware();
 
+- ``.send_local_time``: If `time_id` is set, attempt to sync the clock now.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Sync Clock"
+          on_press:
+            then:
+            - lambda: |-
+                id(my_bedjet_fan).send_local_time();
+
+- ``.set_clock``: Set the BedJet clock to a specified time; works with or without a `time_id`.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Set Clock to 10:10pm"
+          on_press:
+            then:
+            - lambda: |-
+                id(my_bedjet_fan).set_clock(22, 10);
+
 Known issues:
 -------------
 
