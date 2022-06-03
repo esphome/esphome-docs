@@ -30,8 +30,8 @@ See :doc:`/components/display/nextion` for setting up the display
       - platform: nextion
         name: "Current Humidity"
         component_name: humidity # pageX.humidity for a global
-        nextion_precision: 1
-        interval: 4s
+        precision: 1
+        update_interval: 4s
       - platform: nextion
         nextion_id: nextion1
         name: "Current Temperature"
