@@ -28,6 +28,8 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the fan.
 - **icon** (*Optional*, icon): Manually set the icon to use for the fan in the frontend.
+- **metric_id** (*Optional*, string): Manually set the value of the `id` label of the Prometheus metric.
+- **metric_name** (*Optional*, string): Manually set the value of the `name` label of the Prometheus metric.
 - **restore_mode** (*Optional*): Control how the fan attempts to restore state on boot.
 
     - ``NO_RESTORE`` - Don't restore any state.

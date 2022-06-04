@@ -27,6 +27,8 @@ All light configuration schemas inherit these options.
 Configuration variables:
 
 - **icon** (*Optional*, icon): Manually set the icon to use for the light in the frontend.
+- **metric_id** (*Optional*, string): Manually set the value of the `id` label of the Prometheus metric.
+- **metric_name** (*Optional*, string): Manually set the value of the `name` label of the Prometheus metric.
 - **effects** (*Optional*, list): A list of :ref:`light effects <light-effects>` to use for this light.
 - **gamma_correct** (*Optional*, float): Apply a `gamma correction
   factor <https://en.wikipedia.org/wiki/Gamma_correction>`__ to the light channels.

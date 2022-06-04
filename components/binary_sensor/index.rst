@@ -31,6 +31,8 @@ Configuration variables:
   sensor. See https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes
   for a list of available options.
 - **icon** (*Optional*, icon): Manually set the icon to use for the binary sensor in the frontend.
+- **metric_id** (*Optional*, string): Manually set the value of the `id` label of the Prometheus metric.
+- **metric_name** (*Optional*, string): Manually set the value of the `name` label of the Prometheus metric.
 - **filters** (*Optional*, list): A list of filters to apply on the binary sensor values such as
   inverting signals. See :ref:`binary_sensor-filters`.
 

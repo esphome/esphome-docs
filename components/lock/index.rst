@@ -6,7 +6,7 @@ Lock Component
     :image: folder-open.svg
 
 The ``lock`` domain includes all platforms that should function like a lock
-with lock/unlock actions. 
+with lock/unlock actions.
 
 .. note::
 
@@ -28,6 +28,8 @@ Configuration variables:
 - **name** (**Required**, string): The name of the lock.
 - **icon** (*Optional*, icon): Manually set the icon to use for the
   lock in the frontend.
+- **metric_id** (*Optional*, string): Manually set the value of the `id` label of the Prometheus metric.
+- **metric_name** (*Optional*, string): Manually set the value of the `name` label of the Prometheus metric.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.

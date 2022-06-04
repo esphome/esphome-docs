@@ -25,6 +25,8 @@ Configuration variables:
 - **name** (**Required**, string): The name of the switch.
 - **icon** (*Optional*, icon): Manually set the icon to use for the
   sensor in the frontend.
+- **metric_id** (*Optional*, string): Manually set the value of the `id` label of the Prometheus metric.
+- **metric_name** (*Optional*, string): Manually set the value of the `name` label of the Prometheus metric.
 - **inverted** (*Optional*, boolean): Whether to invert the binary
   state, i.e. report ON states as OFF and vice versa. Defaults
   to ``false``.
