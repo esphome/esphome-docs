@@ -184,10 +184,10 @@ step size (default: 1).
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the number component to update.
-- **cycle** (**Optional**, boolean): Whether or not to set the number to its minimum
+- **cycle** (*Optional*, boolean): Whether or not to set the number to its minimum
   value when the increment pushes the value beyond its maximum value. This will only
   work when the number component uses a minimum and maximum value.
-  Defaults to ``true``. 
+  Defaults to ``true``.
 
 .. _number-decrement_action:
 
@@ -209,10 +209,10 @@ step size (default: 1).
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the number component to update.
-- **cycle** (**Optional**, boolean): Whether or not to set the number to its maximum
+- **cycle** (*Optional*, boolean): Whether or not to set the number to its maximum
   value when the decrement pushes the value below its minimum value. This will only
   work when the number component uses a minimum and maximum value.
-  Defaults to ``true``. 
+  Defaults to ``true``.
 
 .. _number-to-min_action:
 
@@ -286,7 +286,7 @@ Configuration variables:
   lambda for this field, then return one of the following enum values:
   ``NUMBER_OP_TO_MIN``, ``NUMBER_OP_TO_MAX``, ``NUMBER_OP_DECREMENT`` or
   ``NUMBER_OP_INCREMENT``.
-- **cycle** (**Optional**, bool, :ref:`templatable <config-templatable>`):
+- **cycle** (*Optional*, bool, :ref:`templatable <config-templatable>`):
   Can be used with ``DECREMENT`` or ``INCREMENT`` to specify whether or not to
   wrap around the value when respectively the minimum or maximum value of the
   number is exceeded.
