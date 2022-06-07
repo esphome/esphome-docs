@@ -85,6 +85,9 @@ Configuration variables:
 - **valve_overlap** (*Optional*, :ref:`config-time`): The delay in seconds from when a valve/zone
   is activated to when the previous valve/switch will be turned off. This may help prevent pipes from
   banging as the valves close. May not be used with *valve_open_delay*.
+- **pump_switch_off_during_valve_open_delay** (*Optional*, boolean): If set to ``true``, the pump will be
+  switched off during the ``valve_open_delay`` interval; otherwise, it remains on. This may only be
+  specified when ``valve_open_delay`` is configured (see above). Defaults to ``false``.
 - **repeat** (*Optional*, int): The number of times a full cycle should be repeated. Defaults to 0.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
   this is necessary to call controller actions (see below) such as ``start_full_cycle`` or ``shutdown``.
