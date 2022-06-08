@@ -143,8 +143,8 @@ This is an :ref:`Action <config-action>` for selecting the next option in a sele
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the select to set.
-- **cycle** (**Optional**, boolean): Whether or not to jump back to the first option
-  of the select when the last option is currently selected. Defaults to ``true``. 
+- **cycle** (*Optional*, boolean): Whether or not to jump back to the first option
+  of the select when the last option is currently selected. Defaults to ``true``.
 
 .. _select-previous_action:
 
@@ -166,8 +166,8 @@ a select component.
 Configuration variables:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the select to set.
-- **cycle** (**Optional**, boolean): Whether or not to jump to the last option
-  of the select when the first option is currently selected. Defaults to ``true``. 
+- **cycle** (*Optional*, boolean): Whether or not to jump to the last option
+  of the select when the first option is currently selected. Defaults to ``true``.
 
 .. _select-first_action:
 
@@ -240,7 +240,7 @@ Configuration variables:
   ``NEXT`` (case insensitive). When writing a lambda for this field, then return
   one of the following enum values: ``SELECT_OP_FIRST``, ``SELECT_OP_LAST``,
   ``SELECT_OP_PREVIOUS`` or ``SELECT_OP_NEXT``.
-- **cycle** (**Optional**, bool, :ref:`templatable <config-templatable>`):
+- **cycle** (*Optional*, bool, :ref:`templatable <config-templatable>`):
   Can be used for options ``NEXT`` and ``PREVIOUS`` to specify whether or not to
   wrap around the options list when respectively the last or first option in
   the select is currently active.

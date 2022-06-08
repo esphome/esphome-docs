@@ -111,13 +111,13 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **pm_size** (*Optional*): Typical particle size in μm. 
+- **pm_size** (*Optional*): Typical particle size in μm.
 
   - **name** (**Required**, string): The name for this sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in automation and lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **auto_cleaning_interval** (Optional): The interval in seconds of the periodic fan-cleaning.
+- **auto_cleaning_interval** (*Optional*): The interval in seconds of the periodic fan-cleaning.
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor.
   Defaults to ``0x69``.
