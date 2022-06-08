@@ -90,7 +90,8 @@ Configuration variables:
   specified when ``valve_open_delay`` is configured (see above). Defaults to ``false``.
 - **repeat** (*Optional*, int): The number of times a full cycle should be repeated. Defaults to 0.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
-  this is necessary to call controller actions (see below) such as ``start_full_cycle`` or ``shutdown``.
+  this is necessary to identify the controller instance (particularly in cases where more than one is
+  defined) when calling controller actions (see below) such as ``start_full_cycle`` or ``shutdown``.
 - **valves** (**Required**, *list*): A list of valves the controller should use. Each valve consists of:
 
   - **enable_switch_name** (*Optional*, *string*): The name for the switch component to be used to enable
