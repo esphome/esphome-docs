@@ -1,5 +1,5 @@
 ESPHOME_PATH = ../esphome
-ESPHOME_REF = 2022.5.1
+ESPHOME_REF = 2022.6.0b1
 
 .PHONY: html html-strict cleanhtml deploy help live-html Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
@@ -48,7 +48,7 @@ netlify-dependencies:
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
 
-netlify: netlify-dependencies netlify-api html copy-svg2png
+netlify: netlify-dependencies netlify-api html svg2png copy-svg2png
 
 lint: html-strict
 	python3 lint.py

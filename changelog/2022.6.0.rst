@@ -1,0 +1,178 @@
+ESPHome 2022.6.0 - 15th June 2022
+=================================
+
+.. seo::
+    :description: Changelog for ESPHome 2022.6.0.
+    :image: /_static/changelog-2022.5.0.png
+    :author: Jesse Hills
+    :author_twitter: @jesserockz
+
+.. imgtable::
+    :columns: 2
+
+    Tuya Select, components/select/tuya, tuya.png
+    SGP41, components/sensor/sgp4x, sgp40.jpg
+    Media Player Core, components/media_player/index, folder-open.svg
+    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
+
+
+We are almost half way through 2022 already! My, how fast time flies when we
+are having fun with ESPHome. This release is kind of small, but packs some big features.
+There will be no 2022.7.0 (July) release next month as I (:ghuser:`jesserockz`) will be away
+around that time. So lets hope we can make 2022.8.0 worth the wait.
+
+🎶🎶🎶 Media Players
+--------------------
+
+More info here...
+
+Link to `Media Players <https://esphome.github.io/media-players>`_.
+
+Join us in a live stream all about Audio in the Open Home!
+
+When: Thursday, June 16, at 7pm UTC / 12pm PST / 9pm CET
+
+.. raw:: html
+
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SEH-DxOsywg"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+
+Includes with vars
+------------------
+
+:ghuser:`jimtng` is a newcomer to ESPHome. While migrating everything from a certain other
+firmware, they found that they had to duplicate lots of yaml configuration for their many devices.
+Basically, they decided to upgrade the ``!include`` yaml "directive" to allow variables.
+
+.. code-block:: yaml
+
+    # device.yaml
+    binary_sensor:
+      - <<: !include
+          file: bin-sensor.yaml
+          vars:
+            pin: GPIO1
+            name: "Binary Sensor 1"
+            switch: my_switch_1_id
+            delay: 10s
+      - <<: !include
+          file: bin-sensor.yaml
+          vars:
+            pin: GPIO1
+            name: "Binary Sensor 2"
+            switch: my_switch_2_id
+            delay: 60s
+
+    # bin-sensor.yaml
+    platform: gpio
+    pin: ${pin}
+    name: ${name}
+    on_press:
+      - switch.turn_on: ${switch}
+      - delay: ${delay}
+      - switch.turn_off: ${switch}
+
+Now while this is probably not the best example, the variables act as ``substitutions``
+and can be used anywhere in the underlying yaml file and can very much DRY out your configurations.
+
+
+
+Flesh out breaking changes here (see list below)
+
+
+Full list of changes
+--------------------
+
+New Components
+^^^^^^^^^^^^^^
+
+- Add Tuya select :esphomepr:`3469` by :ghuser:`bearpawmaxim` (new-integration)
+- Add support for SGP41 :esphomepr:`3382` by :ghuser:`martgras` (new-integration) (breaking-change)
+- Implement Media Player and I2S Media player :esphomepr:`3487` by :ghuser:`jesserockz` (new-integration)
+
+Breaking Changes
+^^^^^^^^^^^^^^^^
+
+- Tcs34725 automatic sampling settings for improved dynamics and accuracy :esphomepr:`3258` by :ghuser:`swifty99` (breaking-change)
+- Add support for SGP41 :esphomepr:`3382` by :ghuser:`martgras` (new-integration) (breaking-change)
+- Remove deprecated fan speeds :esphomepr:`3397` by :ghuser:`kbickar` (breaking-change)
+- Output a true RMS voltage % :esphomepr:`3494` by :ghuser:`josephdouce` (breaking-change)
+- Add display_type property to DisplayBuffer :esphomepr:`3430` by :ghuser:`guillempages` (breaking-change)
+
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- Add variable substitutions for !include :esphomepr:`3510` by :ghuser:`jimtng` (notable-change)
+
+All changes
+^^^^^^^^^^^
+
+- Tcs34725 automatic sampling settings for improved dynamics and accuracy :esphomepr:`3258` by :ghuser:`swifty99` (breaking-change)
+- Remove duplicate convert_to_8bit_color function. :esphomepr:`2469` by :ghuser:`davet2001`
+- Bump esptool from 3.3 to 3.3.1 :esphomepr:`3468` by :ghuser:`dependabot[bot]`
+- Bump pylint from 2.13.8 to 2.13.9 :esphomepr:`3470` by :ghuser:`dependabot[bot]`
+- Tuya status gpio support :esphomepr:`3466` by :ghuser:`bearpawmaxim`
+- Add Tuya select :esphomepr:`3469` by :ghuser:`bearpawmaxim` (new-integration)
+- MQTT cover: send state even if position is available :esphomepr:`3473` by :ghuser:`pyos`
+- Ili9341 8bit indexed mode pt1 :esphomepr:`2490` by :ghuser:`davet2001`
+- feat: esp32-camera add stream event :esphomepr:`3285` by :ghuser:`myml`
+- Add support for SGP41 :esphomepr:`3382` by :ghuser:`martgras` (new-integration) (breaking-change)
+- add support user-defined modbus functions :esphomepr:`3461` by :ghuser:`gazoodle`
+- Remove deprecated fan speeds :esphomepr:`3397` by :ghuser:`kbickar` (breaking-change)
+- Fix compile issues on windows :esphomepr:`3491` by :ghuser:`jesserockz`
+- midea: New power_toggle action. Auto-use remote transmitter. :esphomepr:`3496` by :ghuser:`dudanov`
+- Output a true RMS voltage % :esphomepr:`3494` by :ghuser:`josephdouce` (breaking-change)
+- [scd4x] Fix not passing arguments to templatable value for perform_forced_calibration :esphomepr:`3495` by :ghuser:`Wumpf`
+- Thermostat preset with modes :esphomepr:`3298` by :ghuser:`MrMDavidson`
+- Allow Prometheus component to export internal components :esphomepr:`3508` by :ghuser:`jangrewe`
+- [BedJet] Add configurable heating strategy :esphomepr:`3519` by :ghuser:`jhansche`
+- Add variable substitutions for !include :esphomepr:`3510` by :ghuser:`jimtng` (notable-change)
+- Change rain intensity sensor string :esphomepr:`3511` by :ghuser:`wtremmel`
+- Implement Media Player and I2S Media player :esphomepr:`3487` by :ghuser:`jesserockz` (new-integration)
+- Add mqtt.on_connect and mqtt.on_disconnect triggers :esphomepr:`3520` by :ghuser:`jimtng`
+- Refactor clock syncing :esphomepr:`3503` by :ghuser:`jhansche`
+- Added RC6 protocol support :esphomepr:`3514` by :ghuser:`Emrvb`
+- Add display_type property to DisplayBuffer :esphomepr:`3430` by :ghuser:`guillempages` (breaking-change)
+- Correct ADC auto-range for ESP32-S2 variant (13 bit adc) :esphomepr:`3158` by :ghuser:`CarlosGS`
+- Suppress first rotary encoder event :esphomepr:`3532` by :ghuser:`mmakaay`
+- Fix endless 'WiFi Unknown connection status 0' loop :esphomepr:`3530` by :ghuser:`mmakaay`
+- support rotated ILI9341 (ILI9342) :esphomepr:`3526` by :ghuser:`ssieb`
+- Fix sdp3x error checking :esphomepr:`3531` by :ghuser:`Azimath`
+- Fix percentage validation for wrong data type input :esphomepr:`3524` by :ghuser:`mmakaay`
+- Block Tuya light from reacting to dp changes if transitioning :esphomepr:`3076` by :ghuser:`VitaliyKurokhtin`
+- Cleanup deprecated EntityBase::hash_base() :esphomepr:`3525` by :ghuser:`mmakaay`
+- Fix bogus reading on no communication with MAX31865 :esphomepr:`3505` by :ghuser:`DAVe3283`
+- Implement the media player actions :esphomepr:`3534` by :ghuser:`jesserockz`
+- RG15 data is float/double, not int :esphomepr:`3512` by :ghuser:`wtremmel`
+
+
+Past Changelogs
+---------------
+
+- :doc:`2022.5.0`
+- :doc:`2022.4.0`
+- :doc:`2022.3.0`
+- :doc:`2022.2.0`
+- :doc:`2022.1.0`
+- :doc:`2021.12.0`
+- :doc:`2021.11.0`
+- :doc:`2021.10.0`
+- :doc:`2021.9.0`
+- :doc:`2021.8.0`
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`

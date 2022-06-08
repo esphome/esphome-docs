@@ -213,6 +213,6 @@ See Also
 - :doc:`ccs811`
 - :doc:`scd4x`
 - :doc:`sps30`
-- :doc:`sgp40`
+- :doc:`sgp4x`
 - :apiref:`sen5x/sen5x.h`
 - :ghedit:`Edit`

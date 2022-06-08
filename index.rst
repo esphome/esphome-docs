@@ -195,7 +195,7 @@ Air Quality
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
-    SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
+    SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics and NOx
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     T6613/15, components/sensor/t6615, t6615.jpg, CO2
@@ -620,6 +620,7 @@ Select Components
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
     Modbus Select, components/select/modbus_controller, modbus.png
+    Tuya Select, components/select/tuya, tuya.png
 
 Lock Components
 -----------------
@@ -629,6 +630,14 @@ Lock Components
     Lock Core, components/lock/index, folder-open.svg
     Generic Output Lock, components/lock/output, upload.svg
     Template Lock, components/lock/template, description.svg
+
+Media Player Components
+-----------------------
+
+.. imgtable::
+
+    Media Player Core, components/media_player/index, folder-open.svg
+    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
 Misc Components
 ---------------
