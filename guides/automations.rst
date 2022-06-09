@@ -704,8 +704,44 @@ Configuration variables:
 
 - **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
+- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one 
+  or more parameters that must be provided in order to execute. All parameters defined here are 
+  mandatory and must be given when calling the script.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
+
+.. _script-parameters:
+
+``Script Parameters``
+---------------------
+
+Scripts can be defined with parameters. The arguments given when calling the script can be used within 
+the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
+and specify the data type for that parameter.
+
+Supported data types:
+
+* `bool`: A boolean true/false. C++ type: `bool`
+* `int`: An integer. C++ type: `int32_t`
+* `float`: A floating point number. C++ type: `float`
+* `string`: A string. C++ type: `std::string`
+
+Each of these also exist in array form:
+
+* `bool[]`: An array of boolean values. C++ type: `std::vector<bool>`
+* Same for other types.
+
+.. code-block:: yaml
+
+    script:
+      - id: blink_light
+        parameters:
+          delay_ms: int
+        then:
+          - light.turn_on: status_light
+          # The param delay_ms is accessible using a lambda
+          - delay: !lambda return delay_ms;
+          - light.turn_off: status_light
 
 .. _script-execute_action:
 
@@ -721,6 +757,15 @@ script was already running.
     on_...:
       then:
         - script.execute: my_script
+
+        # Calling a script with parameters
+        - script.execute:
+            id: blink_light
+            delay_ms: 500
+
+        # Calling a script inside a lambda
+        - lambda: |-
+            id(blink_light)->execute(1000);
 
 .. _script-stop_action:
 
