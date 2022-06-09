@@ -107,6 +107,12 @@ Notable Changes
 
 - Add variable substitutions for !include :esphomepr:`3510` by :ghuser:`jimtng` (notable-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- publish fan speed count for discovery :esphomepr:`3537` by :ghuser:`ssieb`
+- Nextion brightness setting requires an assignment :esphomepr:`3533` by :ghuser:`nagyv`
+
 All changes
 ^^^^^^^^^^^
 
@@ -147,6 +153,8 @@ All changes
 - Fix bogus reading on no communication with MAX31865 :esphomepr:`3505` by :ghuser:`DAVe3283`
 - Implement the media player actions :esphomepr:`3534` by :ghuser:`jesserockz`
 - RG15 data is float/double, not int :esphomepr:`3512` by :ghuser:`wtremmel`
+- publish fan speed count for discovery :esphomepr:`3537` by :ghuser:`ssieb`
+- Nextion brightness setting requires an assignment :esphomepr:`3533` by :ghuser:`nagyv`
 
 
 Past Changelogs
