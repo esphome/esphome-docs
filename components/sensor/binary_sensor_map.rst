@@ -55,36 +55,36 @@ You need to specify which type of mapping you want with the ``type:`` configurat
 
     # Example configuration entry
     sensor:
-  - platform: binary_sensor_map
-    id: group_0
-    name: 'Group Map 0'
-    type: sum
-    channels:
-      - binary_sensor: bit0
-        value: 1
-      - binary_sensor: bit1
-        value: 2
-      - binary_sensor: bit2
-        value: 4
-      - binary_sensor: bit3
-        value: 8
+      - platform: binary_sensor_map
+        id: group_0
+        name: 'Group Map 0'
+        type: sum
+        channels:
+          - binary_sensor: bit0
+            value: 1
+          - binary_sensor: bit1
+            value: 2
+          - binary_sensor: bit2
+            value: 4
+          - binary_sensor: bit3
+            value: 8
 
-binary_sensor:
-  - platform: gpio
-    pin: 4
-    id: bit0
+    binary_sensor:
+      - platform: gpio
+        pin: 4
+        id: bit0
 
-  - platform: gpio
-    pin: 5
-    id: bit1
+      - platform: gpio
+        pin: 5
+        id: bit1
 
-  - platform: gpio
-    pin: 6
-    id: bit2
+      - platform: gpio
+        pin: 6
+        id: bit2
 
-  - platform: gpio
-    pin: 7
-    id: bit3
+      - platform: gpio
+        pin: 7
+        id: bit3
       # ...
 
 Configuration variables:
