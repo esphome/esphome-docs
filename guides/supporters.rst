@@ -562,6 +562,7 @@ Contributors
 - `Kevin Uhlir (@n0bel) <https://github.com/n0bel>`__
 - `Erik Näsström (@Naesstrom) <https://github.com/Naesstrom>`__
 - `H. Árkosi Róbert (@nagyrobi) <https://github.com/nagyrobi>`__
+- `Viktor Nagy (@nagyv) <https://github.com/nagyv>`__
 - `Oskar Napieraj (@napieraj) <https://github.com/napieraj>`__
 - `Nate Lust (@natelust) <https://github.com/natelust>`__
 - `ueno (@nayuta-ueno) <https://github.com/nayuta-ueno>`__
@@ -685,6 +686,7 @@ Contributors
 - `Robert Alfaro (@robert-alfaro) <https://github.com/robert-alfaro>`__
 - `Rob Gridley (@robgridley) <https://github.com/robgridley>`__
 - `Robin Smidsrød (@robinsmidsrod) <https://github.com/robinsmidsrod>`__
+- `RoboMagus (@RoboMagus) <https://github.com/RoboMagus>`__
 - `RockBomber (@RockBomber) <https://github.com/RockBomber>`__
 - `RoganDawes (@RoganDawes) <https://github.com/RoganDawes>`__
 - `Roi Tagar (@roitagar) <https://github.com/roitagar>`__
@@ -810,7 +812,6 @@ Contributors
 - `Tyler Menezes (@tylermenezes) <https://github.com/tylermenezes>`__
 - `ukewea (@ukewea) <https://github.com/ukewea>`__
 - `Unai (@unaiur) <https://github.com/unaiur>`__
-- `user897943 (@user897943) <https://github.com/user897943>`__
 - `UT2UH (@UT2UH) <https://github.com/UT2UH>`__
 - `Vc (@Valcob) <https://github.com/Valcob>`__
 - `Nad (@valordk) <https://github.com/valordk>`__
@@ -818,7 +819,6 @@ Contributors
 - `Víctor Ferrer García (@vicfergar) <https://github.com/vicfergar>`__
 - `Vincèn (@vincegre) <https://github.com/vincegre>`__
 - `VitaliyKurokhtin (@VitaliyKurokhtin) <https://github.com/VitaliyKurokhtin>`__
-- `voibit (@voibit) <https://github.com/voibit>`__
 - `Xuming Feng (@voicevon) <https://github.com/voicevon>`__
 - `vxider (@Vxider) <https://github.com/Vxider>`__
 - `WallyCZ (@WallyCZ) <https://github.com/WallyCZ>`__
@@ -855,4 +855,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 8, 2022.*
+*This page was last updated June 9, 2022.*
