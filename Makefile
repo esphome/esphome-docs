@@ -48,7 +48,7 @@ netlify-dependencies:
 copy-svg2png:
 	cp svg2png/*.png _build/html/_images/
 
-netlify: netlify-dependencies netlify-api html svg2png copy-svg2png
+netlify: netlify-dependencies netlify-api html copy-svg2png
 
 lint: html-strict
 	python3 lint.py
