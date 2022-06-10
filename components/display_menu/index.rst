@@ -332,7 +332,7 @@ Switch
           text: 'My Switch'
           on_text: 'Bright'
           off_text: 'Dark'
-          select: my_switch
+          switch: my_switch
           on_enter:
             then:
               lambda: 'ESP_LOGI("display_menu", "switch enter: %s, %s", it->get_text().c_str(), it->get_value_text().c_str());'
