@@ -62,7 +62,9 @@ Possible Hardware UART configurations:
 - ``UART0_SWAP`` - TX: GPIO15, RX: GPIO13  (Only on ESP8266)
 - ``UART1`` - TX: GPIO2, RX: None  (Only on ESP8266)
 - ``UART1`` - TX: GPIO9, RX: GPIO10  (Only on ESP32)
-- ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP32)
+- ``UART2`` - TX: GPIO16, RX: GPIO17  (Only on ESP32 but not ESP32S2, ESP32S3 or ESP32C3)
+- ``USB_CDC`` - uses the USB CDC driver (Only on ESP32S2 and ESP32S3)
+- ``USB_SERIAL_JTAG`` - uses the USB Serial/JTAG driver (Only on ESP32S3 and ESP32C3)
 
 .. _logger-log_levels:
 

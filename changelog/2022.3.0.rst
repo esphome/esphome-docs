@@ -16,8 +16,12 @@ ESPHome 2022.3.0 - 16th March 2022
     MPU6886, components/sensor/mpu6886, mpu6886.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg
-    Mopeka Pro Check LP, components/sensor/mopeka_ble, mopeka_pro_check.jpg
+    Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg
 
+Python 3.8 Minimum
+------------------
+
+This release sets the minimum Python version to 3.8. Please upgrade your local python if you are unable to update further.
 
 Webserver
 ---------

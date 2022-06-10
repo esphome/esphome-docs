@@ -78,7 +78,7 @@ Configuration variables:
 - **use_write_multiple** (*Optional*, boolean): By default the modbus command ``Preset Single Registers``
   (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports *Preset Multiple Registers* (function code 16) set this option to ``true``. Defaults
   to ``false``.
-- **optimistic**: (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
+- **optimistic** (*Optional*, boolean): Whether to operate in optimistic mode - when in this mode,
   any command sent to the Modbus Select will immediately update the reported state. Defaults
   to ``false``.
 - All other options from :ref:`Select <config-select>`.

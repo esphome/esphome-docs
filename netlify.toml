@@ -11,8 +11,3 @@
 
 [context.production]
   environment = { BASE_URL = "https://esphome.io", PRODUCTION = "YES" }
-
-# A basic redirect rule
-[[redirects]]
-  from = "/esphomeyaml/*"
-  to = "/:splat"

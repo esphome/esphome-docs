@@ -57,7 +57,7 @@ Advanced features:
   wake up on multiple pins. This cannot be used together with wakeup pin.
 
   - **pins** (**Required**, list of pin numbers): The pins to wake up on.
-  - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
+  - **mode** (**Required**): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
 .. note::
@@ -97,9 +97,20 @@ This action makes the given deep sleep component enter deep sleep immediately.
             id: deep_sleep_1
             sleep_duration: 20min
 
+
+    # ESP32 can sleep until a specific time of day.
+    on_...:
+      then:
+        - deep_sleep.enter:
+            id: deep_sleep_1
+            until: "16:00:00"
+            time_id: sntp_id
+
 Configuration options:
 
 - **sleep_duration** (*Optional*, :ref:`templatable <config-templatable>`, :ref:`config-time`): The time duration to stay in deep sleep mode.
+- **until** (*Optional*, string): The time of day to wake up. Only on ESP32.
+- **time_id** (*Optional*, :ref:`config-id`): The ID of the time component to use for the ``until`` option. Only on ESP32.
 
 
 .. _deep_sleep-prevent_action:
@@ -147,6 +158,19 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
               payload: 'ON'
               then:
                 - deep_sleep.enter: deep_sleep_1
+
+.. _deep_sleep-allow_action:
+
+``deep_sleep.allow`` Action
+-----------------------------
+
+This action allows the given deep sleep component to enter deep sleep, after previously being prevented.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - deep_sleep.allow: deep_sleep_1
 
 See Also
 --------

@@ -76,7 +76,7 @@ To simplify this, we provide the setting ``attenuation: auto`` for an automatic/
 Different ESP32-ADC behavior since 2021.11
 ------------------------------------------
 
-The ADC output reads voltage very accurately since 2021.11 where manufacturer calibration was incorporated. Before this every ESP32 would read different voltages and be largely innacurate/nonlinear. Users with a manually calibrated setup are encouraged to check their the installations to ensure proper output.
+The ADC output reads voltage very accurately since 2021.11 where manufacturer calibration was incorporated. Before this every ESP32 would read different voltages and be largely inaccurate/nonlinear. Users with a manually calibrated setup are encouraged to check their installations to ensure proper output.
 For users that don't need a precise voltage reading, the "raw" output option allows to have the raw ADC values (0-4095 for ESP32) prior to manufacturer calibration. It is possible to get the old uncalibrated measurements with a filter multiplier:
 
 .. code-block:: yaml
