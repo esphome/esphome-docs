@@ -65,7 +65,7 @@ in your ``i2c`` configuration.
       mark_selected: 0x3e
       mark_editing: 0x2a
       mark_submenu: 0x7e
-      menu:
+      items:
         ...
 
     # Encoder to provide navigation

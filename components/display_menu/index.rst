@@ -46,7 +46,7 @@ examples.
       on_leave:
         then:
           lambda: 'ESP_LOGI("display_menu", "root leave");'
-      menu:
+      items:
         - type: back
           text: 'Back'
         - type: label
@@ -139,7 +139,7 @@ Label
 
 .. code-block:: yaml
 
-    menu:
+    items:
       - id: my_label
         type: label
         text: 'My Label'
@@ -152,7 +152,7 @@ Menu
 
 .. code-block:: yaml
 
-    menu:
+    items:
       - type: menu
         text: 'My Submenu'
         on_enter:
@@ -161,7 +161,7 @@ Menu
         on_leave:
           then:
             lambda: 'ESP_LOGI("display_menu", "leave: %s", it->get_text().c_str());'
-        menu:
+        items:
           - type: label
             text: 'Label'
           - type: back
@@ -187,7 +187,7 @@ Back
 
 .. code-block:: yaml
 
-    menu:
+    items:
       - type: back
         text: 'Back'
 
@@ -201,7 +201,7 @@ Select
 .. code-block:: yaml
 
     lcd_menu:
-      menu:
+      items:
         - type: select
           immediate_edit: false
           text: 'My Color'
@@ -256,7 +256,7 @@ Number
 .. code-block:: yaml
 
     lcd_menu:
-      menu:
+      items:
         - type: number
           text: 'My Number'
           format: '%.2f'
@@ -326,7 +326,7 @@ Switch
 .. code-block:: yaml
 
     lcd_menu:
-      menu:
+      items:
         - type: switch
           immediate_edit: false
           text: 'My Switch'
@@ -378,7 +378,7 @@ Command
 
 .. code-block:: yaml
 
-    menu:
+    items:
       - type: command
         text: 'Hide'
         on_value:
@@ -400,17 +400,17 @@ Custom
 .. code-block:: yaml
 
     lcd_menu:
-      menu:
+      items:
         - type: custom
           immediate_edit: false
           text: 'My Custom'
           value_lambda: 'return to_string(some_state);'
-      on_next:
-        then:
-          lambda: 'some_state++;'
-      on_prev:
-        then:
-          lambda: 'some_state--;'
+          on_next:
+            then:
+              lambda: 'some_state++;'
+          on_prev:
+            then:
+              lambda: 'some_state--;'
 
 The menu item of the type ``custom`` delegates navigating the values to the automations
 and displaying the value to the ``value_lambda``.
@@ -459,7 +459,7 @@ otherwise an user defined one.
 
     lcd_menu:
       ...
-      menu:
+      items:
         - type: menu
           text: 'Submenu 1'
           on_enter:
@@ -482,7 +482,7 @@ the submenu or going back to the parent menu.
 
     lcd_menu:
       ...
-      menu:
+      items:
         - type: menu
           text: 'Submenu 1'
           on_leave:
@@ -501,7 +501,7 @@ or a command was triggered.
 
     lcd_menu:
       ...
-      menu:
+      items:
         - type: select
           text: 'Select Item'
           select: my_select_1
@@ -520,7 +520,7 @@ This automation will be triggered when the user requested to set the value to th
 
     lcd_menu:
       ...
-      menu:
+      items:
         - type: custom
           text: 'Custom Item'
           value_lambda: 'return to_string(some_state);'
@@ -539,7 +539,7 @@ This automation will be triggered when the user requested to set the value to th
 
     lcd_menu:
       ...
-      menu:
+      items:
         - type: custom
           text: 'Custom Item'
           value_lambda: 'return to_string(some_state);'
@@ -698,7 +698,7 @@ does not react to ``draw()`` and does not process navigation actions.
 
     lcd_menu:
       ...
-      menu:
+      items:
         - type: command
           text: 'Hide'
           on_value:
@@ -720,7 +720,7 @@ This is an :ref:`Action <config-action>` for showing the root level of the menu.
 
     lcd_menu:
       ...
-      menu:
+      items:
         - type: command
           text: 'Show Main'
           on_value:
