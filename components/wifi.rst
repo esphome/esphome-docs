@@ -7,8 +7,9 @@ WiFi Component
     :keywords: WiFi, WLAN, ESP8266, ESP32
 
 This core ESPHome component sets up WiFi connections to access points
-for you. It needs to be in your configuration or otherwise ESPHome
-will fail in the config validation stage.
+for you. You need to have a network configuration (either Wifi or Ethernet)
+or ESPHome will fail in the config validation stage. You also can't have both Wifi
+and Ethernet setup in same time (even if your ESP has both wired).
 
 It’s recommended to provide a static IP for your node, as it can
 dramatically improve connection times.
@@ -22,8 +23,8 @@ dramatically improve connection times.
 
       # Optional manual IP
       manual_ip:
-        static_ip: 10.0.0.42
-        gateway: 10.0.0.1
+        static_ip: 192.168.0.123
+        gateway: 192.168.0.1
         subnet: 255.255.255.0
 
 .. code-block:: yaml
@@ -78,7 +79,7 @@ Configuration variables:
 - **power_save_mode** (*Optional*, string): The power save mode for the WiFi interface.
   See :ref:`wifi-power_save_mode`
 
-- **output_power** (*Optional*, string): The amount of TX power for the WiFi interface from 10dB to 20.5dB. Default for ESP8266 is 20dB, 20.5dB might cause unexpected restarts.
+- **output_power** (*Optional*, string): The amount of TX power for the WiFi interface from 8.5dB to 20.5dB. Default for ESP8266 is 20dB, 20.5dB might cause unexpected restarts.
 - **fast_connect** (*Optional*, boolean): If enabled, directly connects to WiFi network without doing a full scan
   first. This is required for hidden networks and can significantly improve connection times. Defaults to ``off``.
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
