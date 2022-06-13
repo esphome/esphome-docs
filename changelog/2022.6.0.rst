@@ -112,6 +112,7 @@ Beta Changes
 
 - publish fan speed count for discovery :esphomepr:`3537` by :ghuser:`ssieb`
 - Nextion brightness setting requires an assignment :esphomepr:`3533` by :ghuser:`nagyv`
+- Implement media player volume actions :esphomepr:`3551` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -155,6 +156,7 @@ All changes
 - RG15 data is float/double, not int :esphomepr:`3512` by :ghuser:`wtremmel`
 - publish fan speed count for discovery :esphomepr:`3537` by :ghuser:`ssieb`
 - Nextion brightness setting requires an assignment :esphomepr:`3533` by :ghuser:`nagyv`
+- Implement media player volume actions :esphomepr:`3551` by :ghuser:`jesserockz`
 
 
 Past Changelogs

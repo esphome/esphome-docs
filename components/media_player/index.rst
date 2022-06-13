@@ -38,10 +38,21 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Set to ``""`` to remove the default entity category.
 
+Media Player Actions
+--------------------
+
+All ``media_player`` actions can be used without specifying an ``id`` if you have only one ``media_player`` in
+your configuration YAML.
+
+Configuration variables:
+
+**id** (*Optional*, :ref:`config-id`): The media player to control. Defaults to the only one in YAML.
+
+
 .. _media_player-play:
 
 ``media_player.play`` Action
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action will resume playing the media player.
 A future change will allow specifying the ``media_url`` for starting
@@ -50,24 +61,62 @@ a new stream.
 .. _media_player-pause:
 
 ``media_player.pause`` Action
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action pauses the current playback.
 
 .. _media_player-stop:
 
 ``media_player.stop`` Action
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action stops the current playback.
 
 .. _media_player-toggle:
 
 ``media_player.toggle`` Action
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action will pause or resume the current playback.
 
+.. _media_player-volume_up:
+
+``media_player.volume_up`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will increase the volume of the media player.
+
+.. _media_player-volume_down:
+
+``media_player.volume_down`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will decrease the volume of the media player.
+
+.. _media_player-volume_set:
+
+``media_player.volume_set`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will set the volume of the media player.
+
+.. code-block::
+
+    on_...:
+      # Simple
+      - media_player.volume_set: 50%
+
+      # Full
+      - media_player.volume_set:
+          id: media_player_id
+          volume: 50%
+
+      # Simple with lambda
+      - media_player.volume_set: !lambda "return 0.5;"
+
+Configuration variables:
+
+**volume** (**Required**, percentage): The volume to set the media player to.
 
 See Also
 --------
