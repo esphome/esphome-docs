@@ -1,0 +1,65 @@
+cd74hc4067 Analog Multiplexer
+=============================
+
+.. seo::
+    :description: Instructions for setting up cd74hc4051 Analog Multiplexer and sensors.
+
+
+The ``cd74hc4051`` Analog Multiplexer component allows you to attach up to 8 analog input sensors to a single ADC pin.
+The component is used to activate the right multiplexer pin for each of the defined cd74hc4051 sensors.
+
+For further information about the cd74hc4067 chip see the `spec sheet  <https://www.ti.com/lit/ds/symlink/cd74hc4051.pdf>`__.
+
+Actually, the chip is bidirectional and could also be used as output, but this is not supported by the component yet.
+
+First, you need to configure the component with the digital pins that control the multiplexer.
+Then you need to set up a voltage sensor source (e.g. :doc:`ADC sensor <adc>`) and pass it to the cd74hc4051 sensors with the ``sensor`` option.
+Each cd74hc4051 sensor is configured for one of the 8 input pins of the multiplexer.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    cd74hc4051:
+      - id: my_multiplexer
+        pin_s0: D0
+        pin_s1: D1
+        pin_s2: D2
+
+    sensor:
+      - platform: adc
+        id: adc_sensor
+        pin: A0
+      - platform: cd74hc4051
+        id: adc_0
+        number: 0
+        sensor: adc_sensor
+      - platform: cd74hc4051
+        id: adc_1
+        number: 1
+        sensor: adc_sensor
+
+Component/Hub
+-------------
+
+Configuration Variables:
+************************
+
+- **pin_s0** to **pin_s2** (**Required**, :ref:`config-pin`): The I/O pins connected to the S0 to S2 channel selection pins
+- **delay** (*Optional*, :ref:`config-time`): A small delay duration needed for the chip to switch inputs, defaults to 2ms.
+
+Sensor
+------
+
+Configuration Variables:
+************************
+
+- **sensor** (**Required**, :ref:`config-id`): The source sensor to measure voltage values from, e.g. :doc:`ADC sensor <adc>`.
+- **cd74hc4051_id** (**Required**, :ref:`config-id`): The id of the cd74hc4051 component to use for this sensor.
+- **number** (*Required*, int): The number of the cd74hc4051 input pin (0-7)
+- All other options from :ref:`Sensor <config-sensor>`.
+
+See Also
+--------
+
+- :doc:`adc`
+- :ghedit:`Edit`
