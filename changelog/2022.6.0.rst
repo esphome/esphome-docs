@@ -113,6 +113,8 @@ Beta Changes
 - publish fan speed count for discovery :esphomepr:`3537` by :ghuser:`ssieb`
 - Nextion brightness setting requires an assignment :esphomepr:`3533` by :ghuser:`nagyv`
 - Implement media player volume actions :esphomepr:`3551` by :ghuser:`jesserockz`
+- Fix compilation with ESP32-S3 :esphomepr:`3543` by :ghuser:`misery`
+- Bm3xx: Fix typo :esphomepr:`3559` by :ghuser:`martgras`
 
 All changes
 ^^^^^^^^^^^
@@ -157,7 +159,8 @@ All changes
 - publish fan speed count for discovery :esphomepr:`3537` by :ghuser:`ssieb`
 - Nextion brightness setting requires an assignment :esphomepr:`3533` by :ghuser:`nagyv`
 - Implement media player volume actions :esphomepr:`3551` by :ghuser:`jesserockz`
-
+- Fix compilation with ESP32-S3 :esphomepr:`3543` by :ghuser:`misery`
+- Bm3xx: Fix typo :esphomepr:`3559` by :ghuser:`martgras`
 
 Past Changelogs
 ---------------
