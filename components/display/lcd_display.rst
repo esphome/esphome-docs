@@ -242,6 +242,36 @@ defines a dot at the upper left and lower right of the character.
         lambda: |-
           it.print("Hello, world \x08 \x07!");
 
+
+Transform Lambda
+----------------
+
+The LCD displays are produced with several ROM variants defining different character sets.
+On the other hand the native character encoding of the yaml configuration and most of code
+editors is UTF-8. An `it.printf("Temp %4.1f °C", id(temp).state);` lambda cannot be used
+as is.
+
+The `transform` lambda allows the user to define a transformation function run immediately
+before the string is output to the LCD. The input string is supplied in the argument `x`
+and the lambda needs to return the result in the LDC's character set. The following snippet
+transforms the degree character to the `0xdf` byte needed for the LCD.
+
+.. code-block:: yaml
+
+    display:
+      - platform: lcd_pcf8574
+        ...
+        translate: |-
+          std::string str = x;
+          static const std::string degree = "°";
+          for (size_t index = str.find(degree, 0);
+              index != std::string::npos;
+              index = str.find(degree, index + 1) )
+            str.replace(index, degree.length(), "\xdf");
+          return str;
+        lambda: |-
+          it.printf("Temp %4.1f °C", id(temp).state);
+
 See Also
 --------
 
