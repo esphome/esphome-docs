@@ -53,6 +53,10 @@ Configuration variables:
   See :ref:`display-lcd_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **user_characters** (*Optional*, list): The list of user-defined characters. See :ref:`display-user_defined_characters`
+  for more information.
+- **transform** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to transform the printed string before
+  sending to the LCD. See :ref:`display-transformation_lambda` for more information.
 
 .. _lcd-gpio:
 
@@ -104,6 +108,10 @@ Configuration variables:
   See :ref:`display-lcd_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **user_characters** (*Optional*, list): The list of user-defined characters. See :ref:`display-user_defined_characters`
+  for more information.
+- **transform** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to transform the printed string before
+  sending to the LCD. See :ref:`display-transformation_lambda` for more information.
 
 .. _display-lcd_lambda:
 
@@ -203,6 +211,8 @@ turns off 90 seconds after the last activation of the sensor.
             - lambda: |-
                 id(mydisplay).no_backlight();
 
+.. _display-user_defined_characters:
+
 User Defined Characters
 -----------------------
 
@@ -242,6 +252,8 @@ defines a dot at the upper left and lower right of the character.
         lambda: |-
           it.print("Hello, world \x08 \x07!");
 
+
+.. _display-transformation_lambda:
 
 Transformation Lambda
 ---------------------
