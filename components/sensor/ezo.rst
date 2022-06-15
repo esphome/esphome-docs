@@ -136,7 +136,7 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
       id(ph_ezo).set_led_state(true);
 
 
-- ``send_custom(const std::string &to_send)``: Runs a custom command. This sends exactly what is in ``to_send``
+- ``send_custom(const std::string &payload, uint16_t delay_ms = 300, bool response_expected = false)``: Runs a custom command. This sends exactly what is in ``payload``. Optionally you can set a ``delay`` and if a response is expected that should be parsed. Defaults to ``false`` for custom commands.
 
   .. code-block:: cpp
 
