@@ -264,9 +264,14 @@ editors is UTF-8. An ``it.printf("Temp %4.1f °C", id(temp).state);`` lambda can
 as is.
 
 The ``transform`` lambda allows the user to define a transformation function run immediately
-before the string is output to the LCD. The input string is supplied in the argument `x`
+before the string is output to the LCD. The input string is supplied in the argument ``x``
 and the lambda needs to return the result in the LDC's character set. The following snippet
-transforms the degree character to the `0xdf` byte needed for the LCD.
+transforms the degree character to the ``0xdf`` byte needed for the LCD.
+
+Note that such transformation will change the length of the string, making calculation
+of the precise column positions difficult. If you for example want to compute the
+starting position to righ-align a string on the LCD, you will most probably need
+to implement a rudimentary UTF-8 parser to calculate the correct length.
 
 .. code-block:: yaml
 
