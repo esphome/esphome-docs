@@ -1,0 +1,32 @@
+WL-134 Text Sensor
+=====================
+
+.. seo::
+    :description: Instructions for setting up WL-134 text sensors.
+    :image: fingerprint.svg
+
+The ``wl_134`` text sensor platform exposes the last readed pet tag as text sensor.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    uart:
+      rx_pin: GPIO17
+      baud_rate: 9600
+
+    text_sensor:
+      - platform: wl_134
+        name: Transponder Code
+        reset: true
+
+Configuration variables:
+------------------------
+
+- **reset** (*Optional*, boolean): Reset the readed tag immediately after reading. Defaults to ``false``.
+- All options from :ref:`Text Sensor <config-text_sensor>`.
+
+See Also
+--------
+
+- :apiref:`wl_134/wl_134.h`
+- :ghedit:`Edit`
