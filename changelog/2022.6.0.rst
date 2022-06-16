@@ -27,12 +27,12 @@ around that time. So lets hope we can make 2022.8.0 worth the wait.
 ESPHome can now become a media player target for Home Assistant. This allows users to buy or build
 ESP32 based speakers and place them around the house.
 
-Link to `Media Players <https://esphome.github.io/media-players>`_.
+We made a small website showing you a few tested `Media Players <https://esphome.github.io/media-players>`_ and you can
+install ESPHome directly to them via the browser using ESP Web Tools.
 
 Join us in a live stream all about Audio in the Open Home!
 
 When: Thursday, June 16, at 7pm UTC / 12pm PST / 9pm CET
-More info here...
 
 .. raw:: html
 
