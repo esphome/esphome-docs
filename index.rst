@@ -668,6 +668,7 @@ Misc Components
     Servo, components/servo, servo.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
+    MAX6956 I/O expander - I²C Bus, components/max6956, max6956.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
