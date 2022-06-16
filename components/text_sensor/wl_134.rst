@@ -1,4 +1,4 @@
-WL-134 Text Sensor
+WL-134 Pet Tag Sensor
 =====================
 
 .. seo::
