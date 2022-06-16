@@ -366,6 +366,7 @@ Contributors
 - `János Rusiczki (@janosrusiczki) <https://github.com/janosrusiczki>`__
 - `Jan Pieper (@janpieper) <https://github.com/janpieper>`__
 - `Jarek.P (@JaroslawPrzybyl) <https://github.com/JaroslawPrzybyl>`__
+- `Jason-nz (@Jason-nz) <https://github.com/Jason-nz>`__
 - `Jason2866 (@Jason2866) <https://github.com/Jason2866>`__
 - `Jason Hines (@jasonehines) <https://github.com/jasonehines>`__
 - `JasperPlant (@JasperPlant) <https://github.com/JasperPlant>`__
@@ -855,4 +856,4 @@ Contributors
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated June 14, 2022.*
+*This page was last updated June 16, 2022.*
