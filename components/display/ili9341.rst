@@ -45,6 +45,7 @@ Configuration variables:
 
   - ``M5STACK``
   - ``TFT 2.4``
+  - ``TFT 2.4R``  (ILI9342)
 
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
@@ -60,6 +61,10 @@ Configuration variables:
   or to keep the existing display content (must overwrite explicitly, e.g., only on data change).
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **color_palette** (*Optional*): The type of color pallet that will be used in the ESP's internal 8-bits-per-pixel buffer.  This can be used to improve color depth quality of the image.  For example if you know that the display will only be showing grayscale images, the clarity of the display can be improved by targeting the available colors to monochrome only.  Options are:
+  
+  - ``NONE`` (default)
+  - ``GRAYSCALE``
 
 Configuration examples
 **********************
