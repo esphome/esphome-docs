@@ -121,7 +121,7 @@ Configuration variables:
 .. _media_player-on_state_trigger:
 
 ``media_player.on_state`` Trigger
-******************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This trigger is activated each time the state of the media player is updated 
 (for example, if the player is stop playing audio or received some command).
@@ -132,7 +132,7 @@ This trigger is activated each time the state of the media player is updated
       - platform: i2s_audio  # or any other platform
         # ...
         on_state:
-        - logger.log: "State updated!"
+          - logger.log: "State updated!"
 
 See Also
 --------
