@@ -149,10 +149,11 @@ Fonts
 The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
 Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
 specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
-at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
+at **any** size, as well as fixed-size `PCF<https://en.wikipedia.org/wiki/Portable_Compiled_Format>`__ and `BDF<https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`__ bitmap fonts! Granted the reason for it is
+actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf`` file from somewhere on the internet and place it, for example,
+a ``.ttf``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
 inside a ``fonts`` folder next to your configuration file.
 
 Next, create a ``font:`` section in your configuration:
@@ -169,12 +170,15 @@ Next, create a ``font:`` section in your configuration:
         id: roboto
         size: 20
 
+      - file: "fonts/tom-thumb.bdf"
+        id: tomthumb
+
     display:
       # ...
 
 Configuration variables:
 
-- **file** (**Required**): The path (relative to where the .yaml file is) of the TrueType font
+- **file** (**Required**): The path (relative to where the .yaml file is) of the font
   file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
 
   - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
@@ -200,12 +204,13 @@ Configuration variables:
 
     **Local Fonts**:
 
-  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font file.
+  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
 
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
-  If you want to use the same font in different sizes, create two font objects. Defaults to ``20``.
+  If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
+  by bitmap fonts. Defaults to ``20``.
 - **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
@@ -216,7 +221,7 @@ Configuration variables:
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
     ``pip install pillow``.
