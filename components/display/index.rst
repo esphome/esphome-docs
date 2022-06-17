@@ -149,7 +149,7 @@ Fonts
 The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
 Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
 specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
-at **any** size, as well as fixed-size `PCF<https://en.wikipedia.org/wiki/Portable_Compiled_Format>`__ and `BDF<https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`__ bitmap fonts! Granted the reason for it is
+at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! Granted the reason for it is
 actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
