@@ -55,8 +55,31 @@ Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action will resume playing the media player.
-A future change will allow specifying the ``media_url`` for starting
-a new stream.
+
+.. _media_player-play-media:
+
+``media_player.play_media`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will start playing the specified media.
+
+.. code-block::
+
+    on_...:
+      # Simple
+      - media_player.play_media: 'http://media-url/media.mp3'
+
+      # Full
+      - media_player.play_media:
+          id: media_player_id
+          media_url: 'http://media-url/media.mp3'
+
+      # Simple with lambda
+      - media_player.play_media: !lambda 'return "http://media-url/media.mp3";'
+
+Configuration variables:
+
+**media_url** (**Required**, string): The media url to play.
 
 .. _media_player-pause:
 
