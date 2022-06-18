@@ -207,7 +207,7 @@ This trigger is activated every time the media player finishes playing.
 ``media_player.is_idle`` Condition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This :ref:`Condition <config-condition>` checks if the media player is idle.
+This condition checks if the media player is idle.
 
 .. code-block:: yaml
 
@@ -222,7 +222,7 @@ This :ref:`Condition <config-condition>` checks if the media player is idle.
 ``media_player.is_playing`` Condition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This :ref:`Condition <config-condition>` checks if the media player is playing media.
+This condition checks if the media player is playing media.
 
 .. code-block:: yaml
 
