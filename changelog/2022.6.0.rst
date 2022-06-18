@@ -81,6 +81,13 @@ Basically, they decided to upgrade the ``!include`` yaml "directive" to allow va
 Now while this is probably not the best example, the variables act as ``substitutions``
 and can be used anywhere in the underlying yaml file and can very much DRY out your configurations.
 
+Release 2022.6.1 - June 18
+--------------------------
+
+- Setup the mute pin if configured :esphomepr:`3568` by :ghuser:`jesserockz`
+- Bugfix for ExternalRAMAllocator copy constructor :esphomepr:`3571` by :ghuser:`bnw`
+- Media Player: added triggers :esphomepr:`3576` by :ghuser:`dudanov`
+
 Breaking Changes
 ----------------
 
