@@ -232,6 +232,20 @@ This condition checks if the media player is playing media.
         condition:
           media_player.is_playing:
 
+Play media in order
+-------------------
+
+You can use wait automation to play files one after the other:
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      then:
+        - media_player.play_media: 'http://media-url/one.mp3'
+        - wait_until:
+            media_player.is_idle:
+        - media_player.play_media: 'http://media-url/two.mp3'
 
 See Also
 --------
