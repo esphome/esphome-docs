@@ -202,6 +202,37 @@ This trigger is activated every time the media player finishes playing.
         on_idle:
           - logger.log: "Playback finished!"
 
+.. _media_player-is_idle_condition:
+
+``media_player.is_idle`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This :ref:`Condition <config-condition>` checks if the media player is idle.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_idle:
+
+.. _media_player-is_playing_condition:
+
+``media_player.is_playing`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This :ref:`Condition <config-condition>` checks if the media player is playing media.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_playing:
+
+
 See Also
 --------
 
