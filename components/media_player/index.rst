@@ -118,6 +118,67 @@ Configuration variables:
 
 **volume** (**Required**, percentage): The volume to set the media player to.
 
+.. _media_player-on_state_trigger:
+
+``media_player.on_state`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated each time the state of the media player is updated 
+(for example, if the player is stop playing audio or received some command).
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_state:
+          - logger.log: "State updated!"
+
+.. _media_player-on_play_trigger:
+
+``media_player.on_play`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated each time then the media player is started playing.
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_play:
+          - logger.log: "Playback started!"
+
+.. _media_player-on_pause_trigger:
+
+``media_player.on_pause`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated every time the media player pauses playback.
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_pause:
+          - logger.log: "Playback paused!"
+
+.. _media_player-on_idle_trigger:
+
+``media_player.on_idle`` Trigger
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This trigger is activated every time the media player finishes playing.
+
+.. code-block:: yaml
+
+    media_player:
+      - platform: i2s_audio  # or any other platform
+        # ...
+        on_idle:
+          - logger.log: "Playback finished!"
+
 See Also
 --------
 
