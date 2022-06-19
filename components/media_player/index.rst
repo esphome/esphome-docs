@@ -56,7 +56,7 @@ Configuration variables:
 
 This action will resume playing the media player.
 
-.. _media_player-play-media:
+.. _media_player-play_media:
 
 ``media_player.play_media`` Action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
