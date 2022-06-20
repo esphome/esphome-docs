@@ -691,6 +691,7 @@ Misc Components
     SML, components/sml, sml.svg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
+    OpenHaystack, components/openhaystack, openhaystack.png
 
 Additional Custom Components
 ----------------------------
