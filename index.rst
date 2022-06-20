@@ -281,7 +281,7 @@ Environmental
 
 .. imgtable::
 
-    AHT10, components/sensor/aht10, aht10.jpg, Temperature & Humidity
+    AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
@@ -649,6 +649,7 @@ Misc Components
     ESP32, components/esp32, esp32.svg
 
     Remote Receiver, components/remote_receiver, remote.svg
+    Remote Receiver NF, components/remote_receiver_nf, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
     HTTP Request, components/http_request, connection.svg
