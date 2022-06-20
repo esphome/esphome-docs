@@ -211,7 +211,7 @@ Configuration variables:
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
   ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
-
+  **update_interval** (*Optional*): This is the freq of updating screen, Default is 5s, can set to time for seconds use s, for ms use ms
 
 .. note::
 
