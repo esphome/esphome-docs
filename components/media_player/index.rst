@@ -55,8 +55,31 @@ Configuration variables:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This action will resume playing the media player.
-A future change will allow specifying the ``media_url`` for starting
-a new stream.
+
+.. _media_player-play_media:
+
+``media_player.play_media`` Action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This action will start playing the specified media.
+
+.. code-block::
+
+    on_...:
+      # Simple
+      - media_player.play_media: 'http://media-url/media.mp3'
+
+      # Full
+      - media_player.play_media:
+          id: media_player_id
+          media_url: 'http://media-url/media.mp3'
+
+      # Simple with lambda
+      - media_player.play_media: !lambda 'return "http://media-url/media.mp3";'
+
+Configuration variables:
+
+**media_url** (**Required**, string): The media url to play.
 
 .. _media_player-pause:
 
@@ -178,6 +201,51 @@ This trigger is activated every time the media player finishes playing.
         # ...
         on_idle:
           - logger.log: "Playback finished!"
+
+.. _media_player-is_idle_condition:
+
+``media_player.is_idle`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if the media player is idle.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_idle:
+
+.. _media_player-is_playing_condition:
+
+``media_player.is_playing`` Condition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This condition checks if the media player is playing media.
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      if:
+        condition:
+          media_player.is_playing:
+
+Play media in order
+-------------------
+
+You can use wait automation to play files one after the other:
+
+.. code-block:: yaml
+
+    # In some trigger:
+    on_...:
+      then:
+        - media_player.play_media: 'http://media-url/one.mp3'
+        - wait_until:
+            media_player.is_idle:
+        - media_player.play_media: 'http://media-url/two.mp3'
 
 See Also
 --------
