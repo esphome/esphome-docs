@@ -146,7 +146,7 @@ Configuration variables:
 ``media_player.on_state`` Trigger
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This trigger is activated each time the state of the media player is updated 
+This trigger is activated each time the state of the media player is updated
 (for example, if the player is stop playing audio or received some command).
 
 .. code-block:: yaml
