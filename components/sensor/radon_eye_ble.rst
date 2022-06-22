@@ -100,3 +100,33 @@ Here is an example to use pCi/L (to match the value on the device display):
           filters:
             - lambda: return x / 37;
 
+Radon Eye RD200+2 Sensor
+************************
+
+Radon Eye RD200+2 tracks radon concentration, temperature, and humidity.
+
+.. figure:: images/RD200P2.jpg
+    :align: center
+    :width: 20.0%
+
+Configuration example:
+**********************
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+
+    ble_client:
+      - mac_address: 01:02:03:04:05:06
+        id: radon_eye_ble_id
+
+    sensor:
+      - platform: radon_eye_rd200_p2
+        ble_client_id: radon_eye_ble_id
+        update_interval: 10min
+        radon:
+          name: "Radon"
+        temperature:
+          name: "Temperature"
+        humidity:
+          name: "Humidity"
