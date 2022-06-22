@@ -28,8 +28,8 @@ but there's a nice article explaining the function principle `here <https://blog
           kp: 0.49460
           ki: 0.00487
           kd: 12.56301
-          output_samples: 5      # smooth the output over 5 samples
-          derivative_samples: 5  # smooth the derivative value over 10 samples
+          output_averaging_samples: 5      # smooth the output over 5 samples
+          derivative_averaging_samples: 5  # smooth the derivative value over 10 samples
         deadband_parameters:
           threshold_high: 0.5°C       # deadband within +0.5°C of target_temperature
           threshold_low: -1.0°C       # deadband within -1.0°C of target_temperature
@@ -58,13 +58,16 @@ Configuration variables:
     ``ki`` to prevent windup. Defaults to ``-1``.
   - **max_integral** (*Optional*, float): The minimum value of the integral term multiplied by
     ``ki`` to prevent windup. Defaults to ``1``.
+  - **starting_integral_term** (*Optional*, float): Set the initial output, by priming the integral 
+    term. This is useful for when your system is rebooted and you don't want to wait 
+    for it to get back equilibrium.
 
-  - **output_samples** (*Optional*, int): average the output over this many samples. PID controllers 
+  - **output_averaging_samples** (*Optional*, int): average the output over this many samples. PID controllers 
     can be quite sensitive to small changes on the input sensor. By averaging the last X output samples,  
     the temperature can be more stable. However, the larger the sampling window, the less responsive the 
     PID controller. Defaults to ``1`` which is no sampling/averaging.
 
-  - **derivative_samples** (*Optional*, int): average the derivative term over this many samples. Many 
+  - **derivative_averaging_samples** (*Optional*, int): average the derivative term over this many samples. Many 
     controllers don't use the derivative term because it is sensitive to slight changes in the input sensor. 
     By taking an average of the derivative term it might become more useful for you. Most PID controllers call 
     this derivative filtering. The derivative term is used to pre-act so don't filter too much. Defaults to ``1`` 
@@ -84,7 +87,7 @@ Configuration variables:
   - **kd_multiplier** (**Optional**, float): Set the ``kd`` gain when inside the deadband. Recommended this
     is set to 0. Defaults to ``0``.
 
-  - **deadband_output_samples** (**Optional**, int): Typically when inside the deadband the PID Controller has 
+  - **deadband_output_averaging_samples** (**Optional**, int): Typically when inside the deadband the PID Controller has 
     reached a state of equilibrium, so it advantageous to use a higher number of output samples 
     like 10-30 samples. Defaults to ``1`` which is no sampling/averaging.
 
@@ -110,7 +113,7 @@ To set up a PID climate controller, you need a couple of components:
     interval of the sensor. Set a short ``update_interval`` like ``1s`` on the sensor.
 
     We recommend putting a filter on the sensor (see filters in :doc:`/components/sensor/index`) and 
-    using ``output_samples`` to calm the PID sensor from a noisy input sensor.
+    using ``output_averaging_samples`` to calm the PID sensor from a noisy input sensor.
 
 Deadband Setup
 --------------
@@ -157,7 +160,7 @@ calmly make minor adjustments over a 20x longer timeframe to stay within the dea
       kp_multiplier: 0.05  # proportional gain is 5% of normal value
       kp_multiplier: 0.05  # integral accumulates at only 5% of normal
       kd_multiplier: 0.0   # derviative is turned off inside deadband
-      deadband_output_samples: 15   # average the output over 15 samples within the deadband
+      deadband_output_averaging_samples: 15   # average the output over 15 samples within the deadband
 
 Deadband Output samples
 ***********************
