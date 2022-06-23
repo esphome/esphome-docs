@@ -130,3 +130,4 @@ Configuration example:
           name: "Temperature"
         humidity:
           name: "Humidity"
+          
