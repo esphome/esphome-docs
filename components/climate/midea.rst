@@ -20,7 +20,7 @@ The ``midea`` component creates a Midea air conditioner climate device.
         - `Senville <https://senville.com/>`_
         - and maybe others
 
-    Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_.
+    Control is possible with a custom dongle. Example of hardware implementation is `IoT Uni Dongle <https://github.com/dudanov/iot-uni-dongle>`_ or `Midea SLWF-01pro <https://www.ebay.com/itm/164956459539>`_ (`store <https://smartlight.me/smart-home-devices/wifi-devices/wifi-dongle-air-conditioners-midea-idea-electrolux-for-home-assistant>`_, `Tindie <https://www.tindie.com/products/smartlightme/wifi-dongle-for-air-conditioners-midea-electrolux>`_).
 
 .. code-block:: yaml
 
