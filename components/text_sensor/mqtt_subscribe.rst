@@ -23,7 +23,7 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the text sensor.
-- **topic** (**Required**, string): The MQTT topic to listen for numeric messages.
+- **topic** (**Required**, string): The MQTT topic to listen for string data.
 - **qos** (*Optional*, int): The MQTT QoS to subscribe with. Defaults to ``0``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.

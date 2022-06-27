@@ -190,11 +190,12 @@ Air Quality
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
+    SEN5x, components/sensor/sen5x, sen54.jpg, Temperature & Humidity, Volatile organics and NOx
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
-    SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
+    SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics and NOx
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     T6613/15, components/sensor/t6615, t6615.jpg, CO2
@@ -221,7 +222,7 @@ Bluetooth Low Energy (BLE)
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
-    Mopeka Pro Check LP, components/sensor/mopeka_ble, mopeka_pro_check.jpg, tank level
+    Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
 
@@ -252,6 +253,7 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
@@ -292,6 +294,7 @@ Environmental
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
+    ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
@@ -465,7 +468,7 @@ Light Components
     Light Partition, components/light/partition, color_lens.svg
 
     Tuya Dimmer, components/light/tuya, tuya.png
-    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg    
+    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
     Custom Light, components/light/custom, language-cpp.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg
@@ -597,6 +600,7 @@ Climate Components
     Tuya Climate, components/climate/tuya, tuya.png
     Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
+    BedJet Climate System, components/climate/bedjet, bedjet.png
 
 Number Components
 -----------------
@@ -616,6 +620,7 @@ Select Components
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
     Modbus Select, components/select/modbus_controller, modbus.png
+    Tuya Select, components/select/tuya, tuya.png
 
 Lock Components
 -----------------
@@ -625,6 +630,14 @@ Lock Components
     Lock Core, components/lock/index, folder-open.svg
     Generic Output Lock, components/lock/output, upload.svg
     Template Lock, components/lock/template, description.svg
+
+Media Player Components
+-----------------------
+
+.. imgtable::
+
+    Media Player Core, components/media_player/index, folder-open.svg
+    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
 Misc Components
 ---------------
@@ -675,6 +688,7 @@ Misc Components
     Prometheus, components/prometheus, prometheus.svg
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    SML, components/sml, sml.svg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
 

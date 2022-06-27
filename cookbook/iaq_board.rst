@@ -53,7 +53,7 @@ See Also
 - :doc:`/components/sensor/pmsx003`
 - :doc:`/components/sensor/mhz19`
 - :doc:`/components/sensor/sgp30`
-- :doc:`/components/sensor/sgp40`
+- :doc:`/components/sensor/sgp4x`
 - :doc:`/components/sensor/tsl2561`
 - :doc:`/components/binary_sensor/gpio`
 - :doc:`/components/sensor/template`
