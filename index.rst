@@ -464,6 +464,7 @@ Light Components
     RGBCT Light, components/light/rgbct, rgbw.png
 
     FastLED Light, components/light/fastled, color_lens.svg
+    FastLED Bus Light, components/light/fastledbus, color_lens.svg
     NeoPixelBus Light, components/light/neopixelbus, color_lens.svg
     Light Partition, components/light/partition, color_lens.svg
 
@@ -475,7 +476,7 @@ Light Components
     Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
-:doc:`FastLED Light </components/light/fastled>`.
+:doc:`FastLED Light </components/light/fastled>` or :doc:`FastLED Light </components/light/fastledbus>`.
 
 Switch Components
 -----------------

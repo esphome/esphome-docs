@@ -121,6 +121,12 @@ CUSTOM_DOCS = {
         "Clockless": "fastled_clockless.platform.light.schemas.CONFIG_SCHEMA",
         "SPI": "fastled_spi.platform.light.schemas.CONFIG_SCHEMA",
     },
+    "components/light/fastledbus": {
+        "_LoadSchema": False,
+        "SPI-Bus": "fastled_spi.platform.light.schemas.CONFIG_SCHEMA",
+        "Output": "output.schemas.FLOAT_OUTPUT_SCHEMA",
+    },
+    },
     "components/binary_sensor/ttp229": {
         "_LoadSchema": False,
     },
