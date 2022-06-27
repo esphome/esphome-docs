@@ -173,7 +173,7 @@ Adds a constant value to each sensor value.
 Multiplies each value by a constant value.
 
 ``min_value``
-************
+*************
 
 Minimum value limit value for the ``min`` value. 
 
@@ -184,7 +184,7 @@ Minimum value limit value for the ``min`` value.
       - min_value: 0
 
 ``max_value``
-************
+*************
 
 Maximum value limit value for the ``max`` value. 
 
