@@ -172,7 +172,6 @@ Adds a constant value to each sensor value.
 
 Multiplies each value by a constant value.
 
-
 ``min_value``
 ************
 
