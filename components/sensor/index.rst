@@ -121,6 +121,8 @@ Filters are processed in the order they are defined in your configuration.
     filters:
       - offset: 2.0
       - multiply: 1.2
+      - min_value: 0
+      - max_value: 50
       - calibrate_linear:
           - 0.0 -> 0.0
           - 40.0 -> 45.0
@@ -171,6 +173,29 @@ Adds a constant value to each sensor value.
 Multiplies each value by a constant value.
 
 .. _sensor-filter-calibrate_linear:
+
+``min_value``
+************
+
+Minimum value limit value for the ``min`` value. 
+
+.. code-block:: yaml
+
+    # Example filters:
+    filters:
+      - min_value: 0
+
+``max_value``
+************
+
+Maximum value limit value for the ``max`` value. 
+
+.. code-block:: yaml
+
+    # Example filters:
+    filters:
+      - max_value: 50
+
 
 ``calibrate_linear``
 ********************
