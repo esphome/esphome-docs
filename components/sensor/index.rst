@@ -172,7 +172,6 @@ Adds a constant value to each sensor value.
 
 Multiplies each value by a constant value.
 
-.. _sensor-filter-calibrate_linear:
 
 ``min_value``
 ************
@@ -196,6 +195,7 @@ Maximum value limit value for the ``max`` value.
     filters:
       - max_value: 50
 
+.. _sensor-filter-calibrate_linear:
 
 ``calibrate_linear``
 ********************
