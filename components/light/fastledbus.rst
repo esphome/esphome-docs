@@ -7,7 +7,7 @@ FastLED Bus Light
 
 .. warning::
 
-    FastLED Bus does **not** work as expected with Arduino 3 or newer for ESP8266. 
+    FastLED Bus does **not** work as expected with Arduino 3 or newer for ESP8266.
     For now, you can either downgrade the arduino version or use :doc:`neopixelbus`.
 
     .. code-block:: yaml
@@ -53,11 +53,12 @@ Configuration variables:
 ************************
 
 * **name** (**Required**, string): The name of the light.
-* **chipset** (**Required**, string): Set a chipset to use. 
-  
+* **chipset** (**Required**, string): Set a chipset to use.
+
 * **data_pin** (**Required**, :ref:`config-pin`): The pin for the data line of the FastLED light.
 * **clock_pin** (**Required**, :ref:`config-pin`): The pin for the clock line of the FastLED light.
 * **num_chips** (**Required**, int): The number of Chips attached to the Bus.
+* **chip_channels** (*Optional*, int, default 3): The number of channels per chip, if you use SK6812 set to four.
 * **max_refresh_rate** (*Optional*, :ref:`config-time`):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to the default value for the used chipset.
@@ -91,9 +92,10 @@ Which is used for single wire chips like WS2811.
     # Example configuration entry
     fastled_bus_clockless:
       - id: blaClock
-        chipset: WS2811
+        chipset: SK6812
         pin: GPIO18
-        num_chips: 2 
+        chip_channels: 4
+        num_chips: 2
 
 Configuration variables:
 ************************
@@ -101,7 +103,8 @@ Configuration variables:
 - **name** (**Required**, string): The name of the light.
 - **chipset** (**Required**, string): Set a chipset to use.
 - **pin** (**Required**, :ref:`config-pin`): The pin for the data line of the FastLED light.
-- **num_leds** (**Required**, int): The number of LEDs attached.
+- **num_chips** (**Required**, int): The number of LEDs attached.
+- **chip_channels** (*Optional*, int, default 3): The number of channels per chip, if you use SK6812 set to four.
 - **max_refresh_rate** (*Optional*, :ref:`config-time`):
   A time interval used to limit the number of commands a light can handle per second. For example
   16ms will limit the light to a refresh rate of about 60Hz. Defaults to the default value for the used chipset.
@@ -207,19 +210,19 @@ The Output Mapping is Configured with ``fastled_bus`` platform:
       num_chips: 2
       byte_offset: 5
       byte_distance: 6
-  
+
 
 The ``offset`` defines the chip offset in the bus where the mapping starts.
-If you have e.g. six chips and you want to have a RGBWW light connected on 
-3rd and 4th chip you need to set the offset to 2. Then you need to define 
-on how many chips the output should applied in our case we need two chips 
+If you have e.g. six chips and you want to have a RGBWW light connected on
+3rd and 4th chip you need to set the offset to 2. Then you need to define
+on how many chips the output should applied in our case we need two chips
 for one RGBWW (5channels) so we set num_chips to 2. If you use a offset and
-num_chips combination which addresses more chips than defined in the bus 
+num_chips combination which addresses more chips than defined in the bus
 ``bad`` things will happen(memory corruption).
 You need to set the ``byte_offset`` which defines the channel in the chip.
-Theses chips have typical 3 bytes (RGB). If you want to set the output to 
+Theses chips have typical 3 bytes (RGB). If you want to set the output to
 the Blue Channel on the second chip set the offset to 5. If you have want
-to replicate the state to multiple chips you set the ``byte_distance`` for 
+to replicate the state to multiple chips you set the ``byte_distance`` for
 one chip to 3 or two chip configuration to 6.
 
 Configuration variables:
