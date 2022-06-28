@@ -140,7 +140,7 @@ Configuration variables:
   supported custom_presets of the climate device.
 - **fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the fan mode
   of the climate device. One of ``ON``, ``OFF``, ``AUTO``, ``LOW``, ``MEDIUM``, ``HIGH``, ``MIDDLE``,
-  ``FOCUS``, ``DIFFUSE``.
+  ``FOCUS``, ``DIFFUSE``, ``QUIET``.
 - **custom_fan_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set one of the
   supported custom_fan_modes of the climate device.
 - **swing_mode** (*Optional*, string, :ref:`templatable <config-templatable>`): Set the swing mode
