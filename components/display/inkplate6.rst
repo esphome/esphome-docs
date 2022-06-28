@@ -284,6 +284,7 @@ The Inkplate 6 Plus has a built in touchscreen supported by ESPHome. Note you ne
 Below is a config example with touchscreen power swtich:
 
 .. code-block:: yaml
+
     switch:
       - platform: gpio
         name: 'Inkplate Touchscreen Enabled'
