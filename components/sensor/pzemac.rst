@@ -21,6 +21,11 @@ with ESPHome.
 The sensor can be connected in various configurations - please see the `manufacturer's website <https://innovatorsguru.com/pzem-004t-v3/>`__
 for more information.
 
+.. warning::
+
+    Please note that metering chip inside of PZEM module is powered from AC side and it has to be on during startup of ESPHome device, othervise measure results won't be visible. 
+
+
 .. figure:: images/pzem-ac.png
     :align: center
     :width: 80.0%

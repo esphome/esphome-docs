@@ -579,6 +579,7 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
   - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
     will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
 
@@ -624,7 +625,7 @@ Animation
 *********
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
-It adds an additional lambda method: ``next_frame()`` to change the shown picture of a gif.
+It adds additional lambda methods: ``next_frame()`` and ``prev_frame()`` to change the shown picture of a gif.
 
 .. code-block:: yaml
 
@@ -635,7 +636,7 @@ It adds an additional lambda method: ``next_frame()`` to change the shown pictur
 
 The animation can be rendered just like the image component with the ``image()`` function of the display component.
 
-To show the next frame of the animation call ``id(my_animation).next_frame()``
+To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``.
 This can be combined with all Lambdas:
 
 .. code-block:: yaml
@@ -676,6 +677,7 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
 
 .. _display-pages:
 

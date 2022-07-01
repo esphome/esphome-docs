@@ -41,7 +41,7 @@ Automations:
 - **on_release** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is released. See :ref:`binary_sensor-on_release`.
 - **on_state** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a state is published. See :ref:`binary_sensor-on_state`.
+  when a state change is published. See :ref:`binary_sensor-on_state`.
 - **on_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is held down for a specified period of time.
   See :ref:`binary_sensor-on_click`.

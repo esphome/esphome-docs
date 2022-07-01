@@ -358,6 +358,26 @@ Configuration variables:
 - **command** (**Required**, int): The RC5 command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
+.. _remote_transmitter-transmit_rc6:
+
+``remote_transmitter.transmit_rc6`` Action
+******************************************
+
+This :ref:`action <config-action>` sends an RC6 infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_rc6:
+          address: 0x1F
+          command: 0x3F
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send, see dumper output for more details.
+- **command** (**Required**, int): The RC6 command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_rc_switch_raw:
 
 ``remote_transmitter.transmit_rc_switch_raw`` Action

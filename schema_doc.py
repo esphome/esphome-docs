@@ -2,7 +2,6 @@ from genericpath import exists
 import re
 import json
 import urllib
-import traceback
 
 from typing import MutableMapping
 from sphinx.util import logging
@@ -63,13 +62,7 @@ def doctree_resolved(app, doctree, docname):
     if docname == "components/index":
         # nothing useful here
         return
-    try:
-        handle_component(app, doctree, docname)
-
-    except Exception as e:
-        err_str = f"In {docname}: {str(e)}"
-        logger.warning(err_str)
-        traceback.print_exc()
+    handle_component(app, doctree, docname)
 
 
 PLATFORMS_TITLES = {
@@ -110,7 +103,7 @@ CUSTOM_DOCS = {
     "components/climate/climate_ir": {"_LoadSchema": False, "IR Remote Climate": []},
     "components/display/index": {
         "Images": "image.schemas.CONFIG_SCHEMA",
-        "Drawing Static Text": "font.schemas.CONFIG_SCHEMA",
+        "Fonts": "font.schemas.CONFIG_SCHEMA",
         "Color": "color.schemas.CONFIG_SCHEMA",
         "Animation": "animation.schemas.CONFIG_SCHEMA",
     },
@@ -396,6 +389,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             json_component = self.find_component(self.custom_doc[title_text])
             if not json_component:
                 return
+            if self.json_component is None:
+                self.json_component = json_component
 
             parts = self.custom_doc[title_text].split(".")
             if parts[0] not in ["core", "remote_base"] and parts[-1] != "pin":
@@ -1144,14 +1139,20 @@ def handle_component(app, doctree, docname):
         return
 
     v = SchemaGeneratorVisitor(app, doctree, docname)
-    doctree.walkabout(v)
+    try:
+        doctree.walkabout(v)
+    except Exception as e:
+        err_str = f"In {docname}.rst: {str(e)}"
+        logger.warning(err_str)
+        # print stack
+        # traceback.print_exc()
 
 
 def build_finished(app, exception):
     # TODO: create report of missing descriptions
 
     for fname, contents in app.files.items():
-        f = open(SCHEMA_PATH + fname + ".json", "w")
+        f = open(SCHEMA_PATH + fname + ".json", "w", newline="\n")
         if JSON_DUMP_PRETTY:
             f.write(json.dumps(contents, indent=2))
         else:

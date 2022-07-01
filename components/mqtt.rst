@@ -79,16 +79,20 @@ Configuration variables:
 - **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
   for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`.
   for more information.
-- **certificate_authority** *(Optional*, string): Only with `esp-idf`. CA certificate in PEM format. See :ref:`mqtt-tls-idf` for more information
-- **skip_cert_cn_check** (*Optional*, bool): Only with `esp-idf`. Don't verify if the common name in the server certificate matches the value of ``broker``.
-- **idf_send_async** (*Optional*, bool): Only with `esp-idf`. Default is false. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. 
+- **certificate_authority** (*Optional*, string): Only with ``esp-idf``. CA certificate in PEM format. See :ref:`mqtt-tls-idf` for more information
+- **skip_cert_cn_check** (*Optional*, bool): Only with ``esp-idf``. Don't verify if the common name in the server certificate matches the value of ``broker``.
+- **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
   The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
-  Set this to true if ypi send large amounts of of data over mqtt. 
+  Set this to true if ypi send large amounts of of data over mqtt.
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
   WiFi traffic with more pings. Defaults to 15 seconds.
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a connection
+  to the broker is established.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the connection
+  to the broker is dropped.
 - **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a message on a specific MQTT topic is received. See :ref:`mqtt-on_message`.
 - **on_json_message** (*Optional*, :ref:`Automation <automation>`): An action to be
@@ -279,11 +283,11 @@ then run the ``mqtt-fingerprint`` script of ESPHome to get the certificate:
 TLS with esp-idf (esp32)
 ------------------------
 
-If used with the esp-idf framework a TLS connection to a mqtt broker can be established. 
-The servers CA certificate is required to validate the connection. 
+If used with the esp-idf framework a TLS connection to a mqtt broker can be established.
+The servers CA certificate is required to validate the connection.
 
 You have to download the server CA certficiate in PEM format and add it to ``certificate_authority``.
-Usually these are .crt files and you can open them with any text editor. 
+Usually these are .crt files and you can open them with any text editor.
 Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 8883 for TLS connections.
 
 .. code-block:: yaml
@@ -293,7 +297,7 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
       port: 8883
       discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
-      log_topic: ${mqtt_prefix}/logs 
+      log_topic: ${mqtt_prefix}/logs
       skip_cert_cn_check: true
       idf_send_async: false
       certificate_authority: |
@@ -367,6 +371,22 @@ Configuration variables:
 
     When changing these options and you're using MQTT discovery, you will need to restart Home Assistant.
     This is because Home Assistant only discovers a device once in every Home Assistant start.
+
+.. _mqtt-on_connect_disconnect:
+
+``on_connect`` / ``on_disconnect`` Trigger
+------------------------------------------
+
+This trigger is activated when a connection to the MQTT broker is established or dropped.
+
+.. code-block:: yaml
+
+    mqtt:
+      # ...
+      on_connect:
+        - switch.turn_on: switch1
+      on_disconnect:
+        - switch.turn_off: switch1
 
 .. _mqtt-on_message:
 

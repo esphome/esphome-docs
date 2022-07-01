@@ -57,7 +57,7 @@ Advanced features:
   wake up on multiple pins. This cannot be used together with wakeup pin.
 
   - **pins** (**Required**, list of pin numbers): The pins to wake up on.
-  - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
+  - **mode** (**Required**): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
 .. note::
@@ -158,6 +158,19 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
               payload: 'ON'
               then:
                 - deep_sleep.enter: deep_sleep_1
+
+.. _deep_sleep-allow_action:
+
+``deep_sleep.allow`` Action
+-----------------------------
+
+This action allows the given deep sleep component to enter deep sleep, after previously being prevented.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - deep_sleep.allow: deep_sleep_1
 
 See Also
 --------
