@@ -65,6 +65,34 @@ Some sensors such as the :doc:`HLW8012 <hlw8012>` expose their power sensor with
             - multiply: 0.001
           unit_of_measurement: kW
 
+Add as Individual device to the Home Assistant Energy Dashboard
+-----------------------
+Add device_class ``energy`` and add unit of measuremment ``kWh`` to make it appear in the dropdown list of the Individual devices in the Home Assistant Energy Dashboard.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: total_daily_energy
+        name: "Total Daily Energy"
+        power_id: my_power
+        filters:
+            - multiply: 0.001
+        unit_of_measurement: kWh
+        device_class: energy
+
+      # The power sensor to convert, can be any power sensor
+      - platform: hlw8012
+        # ...
+        power:
+          id: my_power
+
+    # Enable time component to reset energy at midnight
+    time:
+      - platform: sntp
+        id: my_time
+
+
 See Also
 --------
 
