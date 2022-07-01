@@ -9,7 +9,7 @@ CSE7766 Power Sensor
 The ``cse7766`` sensor platform allows you to use your CSE7766 voltage/current and power sensors
 (`datasheet <http://dl.itead.cc/S31/CSE7766.pdf>`__) sensors with
 ESPHome. This sensor is commonly found in Sonoff POW R2. CSE7759B is similar to CSE7766
-and works with this integration.
+and works with this integration. Optionally :doc:`Total Daily Energy Sensor <total_daily_energy>` can be used to convert power ``W`` into ``kWh``, for example to add to the Home Assistant Energy Dashboard.
 
 .. note::
 
