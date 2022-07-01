@@ -66,7 +66,7 @@ Some sensors such as the :doc:`HLW8012 <hlw8012>` expose their power sensor with
           unit_of_measurement: kW
 
 Add as Individual device to the Home Assistant Energy Dashboard
------------------------
+---------------------------------------------------------------
 Add device_class ``energy`` and add unit of measuremment ``kWh`` to make it appear in the dropdown list of the Individual devices in the Home Assistant Energy Dashboard.
 
 .. code-block:: yaml
