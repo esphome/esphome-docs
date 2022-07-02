@@ -32,6 +32,25 @@ global ``pca9685`` hub and give it an id, and then define the
         pca9685_id: 'pca9685_hub1'
         channel: 0
 
+.. code-block:: yaml
+Note:
+****
+    This output can be used for different functions. E.g. from output for light, ventiator etc. 
+
+    Example:
+    pca9685:
+      - frequency: 1500 # Must be in range from 24Hz to 1525.88Hz.
+
+    output:
+      - platform: pca9685
+        id: pwm01
+        channel: 0        
+
+    light:
+      - platform: monochromatic
+        name: "main light"
+        output: pwm01
+
 Configuration variables:
 ************************
 
