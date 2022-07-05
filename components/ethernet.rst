@@ -100,6 +100,7 @@ Configuration for Olimex ESP32-GATEWAY
 --------------------------------------
 
 .. code-block:: yaml
+
     ethernet:
       type: LAN8720
       mdc_pin: GPIO23
