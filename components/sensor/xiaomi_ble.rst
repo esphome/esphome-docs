@@ -616,8 +616,8 @@ The ``bind_key`` is the 32 digits "value" item in the above output which needs t
 Improving reception performance
 -------------------------------
 
-Use a board with Ethernet connection to the network, to offload ESP32's radio module from WiFi traffic, this gains performance on bluetooth side. 
-To maximize the chances of catching advertisments of the sensors, you can set ``interval`` equal to ``window`` in :doc:`/components/esp32_ble_tracker` scan parameter settings:
+Use a board with an Ethernet connection to the network, to offload ESP32's radio module from WiFi traffic, this gains performance on Bluetooth side.
+To maximize the chances of catching advertisements of the sensors, you can set ``interval`` equal to ``window`` in :doc:`/components/esp32_ble_tracker` scan parameter settings:
 
 .. code-block:: yaml
 
@@ -627,7 +627,7 @@ To maximize the chances of catching advertisments of the sensors, you can set ``
         window: 5s # try with 300ms if you don't have LAN module
         active: false
 
-Avoid placing the ESP node in racks, close to routers/switches or other network equipment as EMI interference will degrade bluetooth signal reception. For best results put as far away as possible, at least 3 meters distance from any other such equipment.
+Avoid placing the ESP node in racks, close to routers/switches or other network equipment as EMI interference will degrade Bluetooth signal reception. For best results put as far away as possible, at least 3 meters distance from any other such equipment.
 
 
 Security considerations
