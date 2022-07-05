@@ -35,8 +35,10 @@ External DAC
 
 - **i2s_lrclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S LRCLK (Word Select or Left/Right Clock) signal.
 - **i2s_dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S DOUT (Data Out) signal.
-- **i2s_bclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S BCLK signal (Bit Clock).
+- **i2s_bclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S BCLK (Bit Clock) signal.
 - **mode** (*Optional*, string): The mode of the I2S bus. Can be ``mono`` or ``stereo``. Defaults to ``mono``.
+
+For best results, keep the wires as short as possible.
 
 Internal DAC
 ************
