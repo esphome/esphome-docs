@@ -648,6 +648,7 @@ Misc Components
     ESP32, components/esp32, esp32.svg
 
     Remote Receiver, components/remote_receiver, remote.svg
+    Remote Receiver NF, components/remote_receiver_nf, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
     HTTP Request, components/http_request, connection.svg
