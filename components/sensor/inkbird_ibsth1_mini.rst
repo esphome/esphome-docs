@@ -1,5 +1,5 @@
 Inkbird IBS-TH1, IBS-TH1, IBS-P02B Mini BLE Sensor
-===========================================
+==================================================
 
 .. seo::
     :description: Instructions for setting up Inkbird IBS-TH1 Bluetooth-based temperature and humidity sensors in ESPHome.
