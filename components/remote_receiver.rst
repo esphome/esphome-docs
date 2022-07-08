@@ -329,7 +329,7 @@ Remote code selection (exactly one of these has to be included):
 
 .. note::
 
-     There is an alternative remote receiver that could handle noisy RF receiver, see :ref:`remote_receiver_nf` for more info.
+    There is an alternative remote receiver that could handle noisy RF receiver, see :ref:`remote_receiver_nf` for more info.
 
 .. note::
 
