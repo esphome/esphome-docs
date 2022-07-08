@@ -42,6 +42,8 @@ to some pins on your board and the baud rate set to 9600.
           name: "PZEM-003 Voltage"
         power:
           name: "PZEM-003 Power"
+        energy:
+          name: "PZEM-003 Energy"
         update_interval: 60s
 
 Configuration variables:
@@ -52,6 +54,8 @@ Configuration variables:
 - **power** (*Optional*): Use the power value of the sensor in watts. All options from
   :ref:`Sensor <config-sensor>`.
 - **voltage** (*Optional*): Use the voltage value of the sensor in volts.
+  All options from :ref:`Sensor <config-sensor>`.
+- **energy** (*Optional*): Use the energy value of the sensor in kWh.
   All options from :ref:`Sensor <config-sensor>`.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
