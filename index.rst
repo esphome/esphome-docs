@@ -529,6 +529,7 @@ Display Components
     Display Core, components/display/index, folder-open.svg
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
+    GC9A01, components/display/gc9a01, gc9a01.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
