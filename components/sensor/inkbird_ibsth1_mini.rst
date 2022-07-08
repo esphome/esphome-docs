@@ -17,7 +17,7 @@ many IBS-TH1 devices at once as you want.
     If an external temperature sensor is connected to the IBS-TH1, measurement from the internal sensor is not sent.
     Only one sensor will work at a time.
     
-    The IPS-P02B only sends temperature so you should only define the temperature sensor
+    The IPS-P02B only sends temperature value so you should only define the temperature sensor in the configuration.
 
 .. figure:: images/inkbird_isbth1_mini-full.jpg
     :align: center
