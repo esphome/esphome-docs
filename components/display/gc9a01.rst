@@ -62,4 +62,5 @@ See Also
 
 - :doc:`index`
 - :apiref:`gc9a01/gc9a01.h`
+- `Arduino GC9A01 Library <https://github.com/PaintYourDragon/Adafruit_GC9A01A>`__ by `@PaintYourDragon <https://github.com/PaintYourDragon>`__
 - :ghedit:`Edit`
