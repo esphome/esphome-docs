@@ -28,13 +28,15 @@ Recommendation on choosing between ``remote_receiver`` and ``remote_receiver_nf`
 .. code-block:: yaml
 
     # Example configuration entry
-    remote_receiver:
+    remote_receiver_nf:
       pin: GPIO12
+      idle: 10ms
       sync_space_min: 8300us
       sync_space_max: 9500us
       early_check_thres: 100
       sync_space_is_high: false
       repeat_space_min: 1100us
+      num_edge_min: 16
 
 Configuration variables:
 ------------------------
@@ -67,9 +69,9 @@ However, ``GAP`` for some protocol is very short, it leads to possible buffer ov
 - **repeat_space_min** (**Optional**,int): the minimum timing of ``GAP`` between repeating codes. If ``IDLE`` and ``GAP``
   can be treated the same, set to a number larger than ``idle``
 - **early_check_thres** (**Optional**,int): Typically, received data are sent to decoders after ``IDLE`` being detected.
-  However, for a protocol with small ``GAP`` and large number of  repeating codes could lead to buffer overflow, also much
-  longer latency. This setting is to trigger decoding before ``IDLE`` is detected. The number should be higher than number
-  of edges of a validate code.  Set to 0 to disable this, not recommendated if ``repate_space_min`` is smaller than ``idle``
+  However, for a protocol with small ``GAP`` and large number of repeating codes could lead to buffer overflow, also much
+  longer latency. This setting is to trigger decoding before ``IDLE`` is detected. The number should be equal or higher than number
+  of edges of a validate code plus 2.  Set to 0 to disable this, not recommendated if ``repate_space_min`` is smaller than ``idle``
 
 Automations:
 
