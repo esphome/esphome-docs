@@ -4,13 +4,13 @@ DHT Temperature+Humidity Sensor
 .. seo::
     :description: Instructions for setting up DHT11 and DHT22 temperature and humidity sensors.
     :image: dht.jpg
-    :keywords: DHT11, DHT21, DHT22, AMS2301, AM2302, RHT03, SI7021
+    :keywords: DHT11, DHT22, AM2302, RHT03, SI7021
 
 The DHT Temperature+Humidity sensor allows you to use your DHT11
 (`datasheet <https://akizukidenshi.com/download/ds/aosong/DHT11.pdf>`__,
-`Adafruit <https://www.adafruit.com/product/386>`__), DHT21/DHT22
+`Adafruit <https://www.adafruit.com/product/386>`__), DHT22
 (`datasheet <https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf>`__,
-`Adafruit <https://www.adafruit.com/product/385>`__), AMS2301/AM2302
+`Adafruit <https://www.adafruit.com/product/385>`__), AM2302
 (`datasheet <https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf>`__,
 `Adafruit <https://www.adafruit.com/product/393>`__), RHT03
 (`datasheet <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__,

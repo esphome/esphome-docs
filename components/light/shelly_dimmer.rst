@@ -8,10 +8,6 @@ Shelly Dimmer
 The ``shelly_dimmer`` component adds support for the dimming and power-metering functionality that can be found the `Shelly Dimmer 2 <https://shelly.cloud/knowledge-base/devices/shelly-dimmer-2/>`_. The interaction with mains is done via an STM32 microcontroller that is flashed with an `open source firmware <https://github.com/jamesturton/shelly-dimmer-stm32>`_.
 A detailed analysis of the Shelly Dimmer 2 hardware is given `here <https://github.com/arendst/Tasmota/issues/6914>`_.
 
-Warning!!! At the time of writing there seems to be no way to revert back to the "stock firmware", because there seems to be no way to revert to firmware of the STM32 co-processor.
-
-The 
-
 .. figure:: ../../images/shellydimmer2.jpg
     :align: center
     :width: 40.0%

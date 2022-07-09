@@ -24,7 +24,7 @@ If your SSD1306/SSD1305 or SH1106 is connected via the 4-Wire :ref:`SPI bus <spi
 
     SSD1306 OLED Display
 
-Connect D2 to the SCL pin you chose for the :ref:`I²C Bus <i2c>`, and connect D1 to the SDA pin. For power, connect
+Connect D0 to the SCL pin you chose for the :ref:`I²C Bus <i2c>`, and connect D1 to the SDA pin. For power, connect
 VCC to 3.3V and GND to GND. Optionally you can also connect the ``RESET`` pin to a pin on the ESP which may
 improve reliability.
 
