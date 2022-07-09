@@ -74,6 +74,7 @@ Configuration variables:
   have multiple VL53L0X on the same i2c bus. In this case you have to assign a different pin to each VL53L0X.
 - **timeout** (*Optional*, :ref:`config-time`): Sensor setup timeout. Default to ``10ms``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **measurement_mode** (*Optional*, standard | high_accuracy | high_speed): Optionally set the measurement mode of the device to standard (default if not set), high_accuracy, or high_speed. This manipulates the timing budget as follows: standard (~33ms - driver default), high_speed (20ms), high_accuracy (200ms).
 - All other options from :ref:`Sensor <config-sensor>`.
 
 
@@ -99,6 +100,7 @@ Configuration variables:
         timeout: 200us
         update_interval: 500ms
         unit_of_measurement: "m"
+        measurement_mode: high_accuracy
 
 
 
