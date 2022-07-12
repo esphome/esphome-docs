@@ -760,6 +760,7 @@ or as lambda
 
 .. code-block:: yaml
     
+    
     lambda: 'id(my_script).stop();'
 
 
@@ -790,6 +791,7 @@ of the script are running in parallel, this will block until all of them have te
         - script.wait: my_script
 
 or as lambda
+
 
 .. code-block:: yaml
     
