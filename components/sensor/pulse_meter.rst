@@ -31,6 +31,8 @@ Configuration variables:
 
 - **timeout** (*Optional*, :ref:`config-time`): If we don't see a pulse for this length of time, we assume 0 pulses/sec. Defaults to ``5 min``.
 - **total** (*Optional*, :ref:`config-id`): An additional sensor that outputs the total number of pulses counted.
+  - **restore_value** (*Optional*, boolean): default *false*. Saves and loads the total number of pulses to RTC/Flash.
+  - **min_save_interval** (*Optional*, :ref:`config-time`): The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to ``0s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 Converting units
@@ -75,6 +77,8 @@ measure the total consumed energy in kWh.
           name: "Electricity Total"
           unit_of_measurement: "kWh"
           accuracy_decimals: 3
+          restore_value: True
+          min_save_interval: 5min
           filters:
             - multiply: 0.001
 
