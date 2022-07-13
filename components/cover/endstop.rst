@@ -7,8 +7,8 @@ Endstop Cover
 
 The ``endstop`` cover platform allows you to create covers with position control that have
 endstops at both ends of the cover to detect the fully-open and fully-closed states.
-When any of these endstops are reached, the cover is stopped (via ``stop_action``)
-and the corresponding state is sent out.
+When any of these endstops are reached, the cover is stopped (via ``stop_action``
+unless ``has_built_in_endstop: true``) and the corresponding state is sent out.
 
 This cover platform is mainly intended for DIY cover setups: Two endstops at either end and a motor
 controlling the cover. The user just needs to enter what to do when the platform wants to move the
@@ -54,18 +54,19 @@ Configuration variables:
   to open up from the fully-closed state.
 - **open_endstop** (**Required**, :ref:`config-id`): The ID of the
   :ref:`Binary Sensor <config-binary_sensor>` that turns on when the open position is reached.
-
 - **close_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed.
 - **close_duration** (**Required**, :ref:`config-time`): The amount of time it takes the cover
   to close from the fully-open state.
 - **close_endstop** (**Required**, :ref:`config-id`): The ID of the
   :ref:`Binary Sensor <config-binary_sensor>` that turns on when the closed position is reached.
-
 - **stop_action** (**Required**, :ref:`Action <config-action>`): The action that should
   be performed when the remote requests the cover to be closed or an endstop is reached.
 - **max_duration** (*Optional*, :ref:`config-time`): The maximum duration the cover should be opening
   or closing. Useful for protecting from dysfunctional endstops.
+- **has_built_in_endstop** (*Optional*, boolean): Indicates that the cover has built in end stop
+  detectors. In this configuration the ``stop_action`` is not performed when the open or close
+  time is completed. Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
 
