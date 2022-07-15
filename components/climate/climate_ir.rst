@@ -273,7 +273,7 @@ Configuration variables:
 .. _mitsubishi_ir:
 
 ``Mitsubishi`` Climate
----------------------
+----------------------
 
 The Mitsubishi IR Protocoll is also used by some Stiebel Eltron devices.
 
