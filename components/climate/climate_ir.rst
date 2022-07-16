@@ -279,7 +279,7 @@ The Mitsubishi IR Protocoll is also used by some Stiebel Eltron devices.
 
 Tested with:
 
-- Stibel Eltron IR-Remote ``KM07F`` and inhouse unit ``ACW 25 i``
+- Stiebel Eltron IR-Remote ``KM07F`` and inhouse unit ``ACW 25 i``
 
 
 See Also
