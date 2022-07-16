@@ -344,6 +344,7 @@ All Triggers
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
 - :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
+- :ref:`wifi.on_connect / wifi.on_disconnect <wifi-on_connect_disconnect>`
 
 All Actions
 -----------
