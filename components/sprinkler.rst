@@ -290,8 +290,9 @@ cycle (equivalent to ``sprinkler.start_full_cycle``).
 
 Adds the specified valve into the controller's queue. Valves in the queue will automatically be
 activated after the current active valve's run duration is reached, regardless of the state of the
-auto-advance feature. Please see :ref:`sprinkler-controller-sprinkler_controller_queue` section
-below for more detail and examples.
+auto-advance feature. If ``run_duration`` is not specified or is zero, the sprinkler controller will
+use the valve's configured run duration. Please see :ref:`sprinkler-controller-sprinkler_controller_queue`
+section below for more detail and examples.
 
 .. code-block:: yaml
 
