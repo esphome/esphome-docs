@@ -272,6 +272,8 @@ Configuration variables:
   - ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
   - ``DG11J1-91``: Temperature range is from 16 to 30
 
+.. _whynter:
+
 ``whynter`` Climate
 -------------------------
 
