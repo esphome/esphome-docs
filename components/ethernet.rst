@@ -8,7 +8,7 @@ Ethernet Component
 
 This core ESPHome component sets up ethernet connections for ESP32s.
 Ethernet for ESP8266 is not supported.
-This component can't be used in same time than Wifi one, even if your ESP32 has both wired.
+The Ethernet Component can't be used while WiFi is enabled, even if your ESP32 has the capabillity for both.
 
 .. code-block:: yaml
 
