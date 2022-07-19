@@ -126,11 +126,15 @@ too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or th
         then:
           - switch.turn_off: switch_1
 
-Configuration variables: See :ref:`Automation <automation>`.
+Configuration variables:
 
-- **priority** (*Optional*, float): The priority to execute your custom initialization code. A higher value
-  means a high priority and in case of shutdown triggers that the code is executed **later**. Priority is used primarily for the initialization order of components. Shutdowns for these components are handled in *reverse* order, such that e.g. sensors (600) are shutdown before the hardware components (800) they depend on.
-  Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. Defaults to ``600``. For priority values refer to the list in the :ref:`esphome-on_boot` section.
+- **priority** (*Optional*, float): The priority to execute your custom shutdown code. A higher value
+  means a high priority and in case of shutdown triggers that the code is executed **later**. 
+  Priority is used primarily for the initialization order of components. Shutdowns for these components are handled in *reverse* order, such that e.g. sensors (600) are shutdown before the hardware components (800) they depend on.
+  Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. 
+  Defaults to ``600``. For priority values refer to the list in the :ref:`esphome-on_boot` section.
+  
+- See :ref:`Automation <automation>`.
 
 .. _esphome-on_loop:
 
