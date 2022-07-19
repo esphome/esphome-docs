@@ -62,8 +62,6 @@ required to be set up in your configuration for this sensor to work.
           name: "rain total"
         r_int:
           name: "rain intensity"
-        temperature:
-          name: "outside temperature"
 
 Configuration variables:
 ------------------------
