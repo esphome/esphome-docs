@@ -17,6 +17,7 @@ Base Input Text Configuration
 All input texts in ESPHome have a name and an optional icon.
 
 .. code-block:: yaml
+
     # Example input text configuration
     name: Greeting
 
