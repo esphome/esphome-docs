@@ -727,7 +727,7 @@ or as lambda
 
 .. code-block:: yaml
 
-        lambda: 'id(my_script).execute();
+    lambda: 'id(my_script).execute();
 
 .. _script-stop_action:
 
