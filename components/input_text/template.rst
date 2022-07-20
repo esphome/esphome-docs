@@ -1,5 +1,5 @@
 Template Input Text
-===============
+===================
 
 .. seo::
     :description: Instructions for setting up template input texts with ESPHome.
@@ -37,7 +37,7 @@ Configuration variables:
 - All other options from :ref:`Input Text <config-input_text>`.
 
 ``input_text.set`` Action
----------------------
+-------------------------
 
 You can also set the input text for the template input text from elsewhere in your YAML file
 with the :ref:`input_text-set_action`.
