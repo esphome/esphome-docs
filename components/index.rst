@@ -17,6 +17,7 @@ Components
     button/index
     display/index
     text_sensor/index
+    input_text/index
     stepper/index
     touchscreen/index
     lock/index

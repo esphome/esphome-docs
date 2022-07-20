@@ -34,6 +34,7 @@ actions = [
 multi_actions = [
     ["select", "option"],
     ["number", "value"],
+    ["input_text", "value"],
     ];
 
 source.addEventListener('state', function (e) {

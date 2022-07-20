@@ -191,6 +191,24 @@ Configuration variables:
 - **name** (**Required**, string): The name of the text sensor.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
+Copy Input Text
+---------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    input_text:
+      - platform: copy
+        source_id: source_input_text
+        name: "Copy of source_input_text"
+
+Configuration variables:
+************************
+
+- **source_id** (**Required**, :ref:`config-id`): The input text that should be mirrored.
+- **name** (**Required**, string): The name of the input text.
+- All other options from :ref:`Input Text <config-input_text>`.
+
 See Also
 --------
 
