@@ -727,7 +727,7 @@ or as lambda
 
 .. code-block:: yaml
 
-    lambda: 'id(my_script).execute();
+        lambda: 'id(my_script).execute();
 
 .. _script-stop_action:
 
@@ -758,11 +758,9 @@ will not be executed.
 
 or as lambda
 
-.. code-block:: yaml
-    
-    
-    lambda: 'id(my_script).stop();'
+.. code-block:: yaml   
 
+    lambda: 'id(my_script).stop();'
 
 .. _script-wait_action:
 
@@ -792,9 +790,8 @@ of the script are running in parallel, this will block until all of them have te
 
 or as lambda
 
-
 .. code-block:: yaml
-    
+
     lambda: |-
         id(my_script).execute();
         id(my_script).wait();
