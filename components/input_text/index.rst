@@ -1,5 +1,5 @@
 Input Text Component
-================
+====================
 
 .. seo::
     :description: Instructions for setting up input text components in ESPHome.
@@ -12,11 +12,12 @@ can be set by the user/frontend.
 .. _config-input_text:
 
 Base Input Text Configuration
--------------------------
+-----------------------------
 
 All input texts in ESPHome have a name and an optional icon.
 
 .. code-block:: yaml
+
     # Example input text configuration
     name: Greeting
 
@@ -52,7 +53,7 @@ MQTT Options:
 - All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Input Text Automation
------------------
+---------------------
 
 You can access the most recent state of the input text in :ref:`lambdas <config-lambda>` using
 ``id(input_text_id).state``.
@@ -81,7 +82,7 @@ Configuration variables: See :ref:`Automation <automation>`.
 .. _input_text-set_action:
 
 ``input_text.set`` Action
-*********************
+*************************
 
 This is an :ref:`Action <config-action>` for setting a input text state.
 
