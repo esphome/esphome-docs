@@ -11,27 +11,32 @@ Sprinkler Controller
 The ``sprinkler`` controller component aims to behave like a sprinkler system/valve controller, much
 like those made by companies such as Rain Bird or Hunter. It does so by automating control of a
 number of :ref:`switch <config-switch>` components, each of which would typically be used to control
-an individual electric valve via a relay or other switching device. It offers support for:
+an individual electric valve via a relay or other switching device. It provides a number of features
+you'd expect of a sprinkler controller, including:
 
-- Up to 256 valves/zones per controller instance
-- Multiple controller instances on a single device
-- Multiple pumps, which may be shared across controller instances
-- Running only a single valve/zone for its configured run duration
-- Pausing and resuming a cycle
+- Up to 256 zones (sections of the sprinkler system) per controller instance
+- The ability to run:
+
+  - One or more full cycles (iterations through all zones) of the system
+  - Only a single zone
+
 - Automatic cycle repeating
-- Iterating through valves/zones in forward or reverse order
+- Support for pumps/main valves located upstream of distribution valves
+- A multiplier value to proportionally increase or decrease the run duration for all zones
+- Pausing and resuming a zone/cycle
+- Iterating through zones in forward or reverse order
 
-In addition, it provides:
+It reaches even further, however, offering several more advanced features, as well:
 
-- Enable/disable for each individual valve, allowing valves to be omitted from a full cycle of the system
+- Multiple sprinkler controller instances can operate simultaneously on a single (ESP) device
+- Multiple pumps, each of which may be shared across controller instances
+- Enable/disable switches for each individual zone, allowing zones to be omitted from full cycles of the system
 - A valve/zone queuing mechanism aimed at providing advanced support for automation
-- A multiplier value to proportionally increase or decrease the run duration for all valves/zones
-  within a given controller instance
-- Valve management strategies to accommodate varying types of hardware:
+- Several valve management strategies to accommodate varying types of hardware/installations:
 
   - Adjustable "valve open delay" to help ensure valves are fully closed before the next one is opened
   - Adjustable "valve overlap" to help minimize banging of pipes due to water hammer
-  - Adjustable delay intervals to coordinate pump starting and stopping relative to valve opening and closing
+  - Adjustable delay intervals to coordinate pump starting and stopping relative to distribution valve opening and closing
 
 .. note::
 
@@ -473,7 +478,7 @@ Single Controller, Single Valve, No Pump
 
 This first example illustrates a complete, single-valve system with no pump/upstream valve(s). It
 could be useful for controlling a single valve independent of any other sprinkler controllers. A pump
-could easily be added by adding the ``pump_switch`` parameter and a :ref:`switch <config-switch>`.
+could easily be added by adding the ``pump_switch_id`` parameter and a :ref:`switch <config-switch>`.
 
 .. code-block:: yaml
 
@@ -696,15 +701,13 @@ valves, each of which are shared between the two controllers:
 Extending the Sprinkler Controller's Switches
 *********************************************
 
-It's worth noting that the various switches in the sprinkler controller's configuration are each effectively a
-:doc:`/components/switch/template`. (If you are not familiar with the concept of ESPHome's template switches,
-it's very much worth taking a few minutes to learn about them as they provide a powerful mechanism that allows
-the implementation of (much) more advanced automation.) Each switch's configuration may be extended in a manner
-similar to the following example:
+It is worth noting that each of the various switches in the sprinkler controller's configuration are standard
+ESPHome :ref:`switch <config-switch>` components. Their configuration may be extended in a manner similar to
+the following example:
 
 .. code-block:: yaml
 
-    # Advanced switch example
+    # Extended switch configuration for 'main_switch'
     sprinkler:
       - id: sprinkler_ctrlr
         main_switch:
@@ -714,13 +717,15 @@ similar to the following example:
             light.turn_on: my_light
         ...
 
-This arrangement is possible for any other switch within the sprinkler controller's configuration block. In
-addition, specifying each switch ID enables the ability to refer to any of the sprinkler controller's switches
-from elsewhere in your configuration. Here's another brief example:
+This arrangement is possible for any other switch within the sprinkler controller's configuration block, with
+the exception of ``pump_switch_id`` and ``valve_switch_id`` (because these two are the IDs of other switch
+components already defined elsewhere in your configuration). In addition, specifying each switch ID enables
+the ability to refer to any of the sprinkler controller's switches from elsewhere in your configuration. Here's
+another brief example:
 
 .. code-block:: yaml
 
-    # Advanced switch example
+    # Template switch as a secondary main switch
     switch:
       - platform: template
         id: my_switch
@@ -747,7 +752,8 @@ extreme flexibility of both ESPHome and Home Assistant. Given the extensive ecos
 the sprinkler controller's queuing mechanism provides an advanced feature aimed at allowing even more advanced automation.
 
 In general, it comes down to flexibility: the more traditional "run full cycle" and "run single valve" functionality
-is intended for use by humans while the queuing mechanism is aimed at supporting automation.
+is intended for use by humans (via the front end or physical control interface) while the queuing mechanism is aimed
+at supporting automation.
 
 Here's a practical example:
 
