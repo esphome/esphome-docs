@@ -380,10 +380,9 @@ by the multiplier value (see above) to determine the valve's actual run duration
     - The ``next_valve``, ``previous_valve`` and ``start_single_valve`` actions ignore whether a valve
       is enabled via its enable switch.
     - The ``next_valve`` and ``previous_valve`` actions may not appear to respond immediately if any of
-      the various delay mechanisms described above (such as ``valve_open_delay``, ``valve_overlap``,
-      ``pump_start_pump_delay``, ``pump_start_valve_delay``, ``pump_stop_pump_delay``, or
-      ``pump_stop_valve_delay``) are configured. If you are using any of these, be sure to allow the
-      delay intervals to elapse before assuming something isn't working!
+      the various delay mechanisms described in the :ref:`sprinkler-controller-pump_and_distribution_valve_coordination`
+      section below are configured. If you are using any of these configuration options, be sure to
+      allow the delay intervals to elapse before assuming something isn't working!
     - If a valve is active when its ``run_duration`` or the multiplier value is changed, the active
       valve's run duration will remain unaffected until the next time it is started.
 
