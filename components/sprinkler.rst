@@ -379,10 +379,11 @@ by the multiplier value (see above) to determine the valve's actual run duration
 
     - The ``next_valve``, ``previous_valve`` and ``start_single_valve`` actions ignore whether a valve
       is enabled via its enable switch.
-    - The ``next_valve`` and ``previous_valve`` actions may not appear to respond immediately if any of
-      the various delay mechanisms described in the :ref:`sprinkler-controller-pump_and_distribution_valve_coordination`
-      section below are configured. If you are using any of these configuration options, be sure to
-      allow the delay intervals to elapse before assuming something isn't working!
+    - The ``next_valve`` and ``previous_valve`` actions may not appear to respond immediately if either
+      ``manual_selection_delay`` or any of the various delay mechanisms described in the
+      :ref:`sprinkler-controller-pump_and_distribution_valve_coordination` section below are configured.
+      If you are using any of these configuration options, be sure to allow the delay intervals to elapse
+      before assuming something isn't working!
     - If a valve is active when its ``run_duration`` or the multiplier value is changed, the active
       valve's run duration will remain unaffected until the next time it is started.
 
@@ -453,7 +454,7 @@ address either of these complaints/concerns:
 - ``valve_open_delay``
 - ``pump_switch_off_during_valve_open_delay``
 
-The first option, ``valve_overlap``, causes the current valve and the next valve (as the controller is Iterating
+The first option, ``valve_overlap``, causes the current valve and the next valve (as the controller is iterating
 through valves) to run simultaneously for the duration specified. The idea here is that this causes a reduction
 in water pressure as the next zone starts up, therefore minimizing banging pipes (aka the "water hammer" effect)
 when the valve that is finishing up finally closes.
