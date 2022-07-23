@@ -129,7 +129,10 @@ Configuration variables:
     valve for its ``run_duration`` multiplied by the controller's multiplier value. When this switch is
     turned off, the ``sprinkler.shutdown`` action is called (see below).
   - **pump_switch_id** (*Optional*, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
-    component to be used to control the valve's pump or upstream electric valve.
+    component to be used to control the valve's pump or upstream electric valve. Typically this would be a
+    :doc:`GPIO switch <switch/gpio>` wired to control a relay or other switching device which in turn would
+    activate the respective pump/valve. *It is not recommended to expose this switch to the front end; please
+    see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control` *below for more detail.*
   - **run_duration** (**Required**, :ref:`config-time`): The duration in seconds this valve should
     remain on/open after it is activated. When a given valve is activated, the controller's multiplier value
     is multiplied by this value to determine the actual run duration for the valve, thus allowing the run
@@ -138,8 +141,58 @@ Configuration variables:
     component to be used to control the valve that operates the given section or zone of the sprinkler
     system. Typically this would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay
     or other switching device which in turn would activate the respective valve. *It is not recommended
-    to expose this switch to the front end; the sprinkler controller only switches the state of this switch
-    as it is scheduled. It does NOT continuously monitor and/or otherwise enforce the state of this switch.*
+    to expose this switch to the front end; please see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control`
+    *below for more detail.*
+
+.. _sprinkler-controller-an_important_note_about_gpio_switches_and_control:
+
+An Important Note about GPIO Switches and Control
+-------------------------------------------------
+
+The savvy and/or seasoned ESPHome user will quickly realize that ``pump_switch_id`` and ``valve_switch_id`` (as
+described above) are really just pointers to other (GPIO) switches elsewhere in the ESPHome yaml configuration.
+
+It might seem reasonable to assume that these :doc:`GPIO switches <switch/gpio>` may be used to switch the various
+sprinkler zones on and off, however, this is **not** the case. It's important to note that the sprinkler controller
+provides a switch for each configured zone -- ultimately, this switch is to be used to switch any given zone on or
+off, **not** the :doc:`GPIO switch <switch/gpio>` the zone is configured with.
+
+Keep in mind that a :doc:`GPIO switch <switch/gpio>` directly controls the state of the GPIO pin it is associated
+with. While it's technically feasible to "override" this behavior, it might not always be desirable. For example,
+if you *wanted* to control the state of the switch/pin manually during testing of your system/configuration, this
+would make that impossible (or at least more difficult than necessary), presenting other complications. Ultimately,
+flexibility is key, as we've learned from any number of conversations on the ESPHome Discord server.
+
+As mentioned in the introduction, the sprinkler controller automates control of the :doc:`GPIO switches <switch/gpio>`
+you provide it with -- it does not "override" control of these switches or alter how they behave beyond simply
+switching them on or off as required based on the configured scheduling.
+
+So why not just use the :doc:`GPIO switch <switch/gpio>` to control the various sprinkler zones directly? As it relates
+to the sprinkler controller itself, the primary reason relates to *state* -- that is, we need to be able to ensure
+that the :doc:`GPIO switch <switch/gpio>` state(s) are kept consistent with the configuration of the sprinkler
+controller. While it's less important for systems that simply consist of one valve per zone, it becomes very important
+for systems with some additional complexity. Consider the example of a system with a pump and multiple distribution
+valves attached to said pump; the controller in this case is configured to switch the pump off three seconds *before*
+switching off any given distribution valve. If you suddenly manually switch off a :doc:`GPIO switch <switch/gpio>`
+connected to one of these distribution valves, what happens to the pump? What should the sprinkler controller do? Should
+it switch the distribution valve back on?...or maybe just switch the pump off, too? In either case, based on its
+configuration, the pump was supposed be shut down before the valve, but you just went and turned off the valve. The pump
+could be damaged. There are many other similar situations such as this that may occur, the simplest of which is little
+more than ensuring that any given valve is switched off after some duration and does not remain on/open perpetually.
+
+With all of this in mind, to ensure that your sprinkler system consistently operates as expected:
+
+- Only use the switches provided by the sprinkler controller component to switch any given sprinkler zone on or off.
+- Do not use the :doc:`GPIO switches <switch/gpio>` you have in your configuration to control sprinkler zones/valves
+  outside of initial testing of your device configuration.
+- To help prevent accidents, it's probably best if the :doc:`GPIO switches <switch/gpio>` for each sprinkler zone are
+  **not** exposed to the front end. This can be accomplished in two ways:
+
+  - Do not provide a ``name:`` parameter to your :doc:`GPIO switches <switch/gpio>`, or
+  - Add ``internal: true`` to each of your :doc:`GPIO switch <switch/gpio>` configurations
+
+These simple configuration tweaks will help prevent any number of errors (human, automation, or otherwise) and may help
+to avert disaster!
 
 .. _sprinkler-controller-actions:
 
