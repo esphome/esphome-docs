@@ -45,6 +45,13 @@ It reaches even further, however, offering several more advanced features, as we
     valves (often known in the industry as a "main" or "master" valve). The pump or upstream valve
     simply controls the water supply to other downstream valves.
 
+.. figure:: images/sprinkler-ui.jpg
+    :align: center
+    :width: 60.0%
+
+    Example Sprinkler Controller UI -- Note that this example leverages :ref:`number <config-number>` components
+    for setting run durations, repeat and multiplier values. More details below.
+
 .. code-block:: yaml
 
     # Example minimal configuration entry
