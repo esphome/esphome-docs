@@ -211,7 +211,7 @@ Configuration variables:
 
 - None
 
-- See :ref:`Trigger <trigger>`.
+- See :ref:`Automation <automation>`.
 
 ``esp32_ble_tracker.start_scan`` Action
 ************************************************
