@@ -100,7 +100,7 @@ ESP32 Bluetooth Low Energy Tracker Automation
 .. _esp32_ble_tracker-on_ble_advertise:
 
 ``on_ble_advertise`` Trigger
-********************
+************************************************
 
 This automation will be triggered when a Bluetooth advertising is received. A variable ``x`` of type
 :apiclass:`esp32_ble_tracker::ESPBTDevice` is passed to the automation for use in lambdas.
@@ -136,7 +136,7 @@ Configuration variables:
 .. _esp32_ble_tracker-on_ble_manufacturer_data_advertise:
 
 ``on_ble_manufacturer_data_advertise`` Trigger
-**************************************
+************************************************
 
 This automation will be triggered when a Bluetooth advertising with manufcaturer data is received. A
 variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
@@ -167,7 +167,7 @@ Configuration variables:
 .. _esp32_ble_tracker-on_ble_service_data_advertise:
 
 ``on_ble_service_data_advertise`` Trigger
-*********************************
+************************************************
 
 This automation will be triggered when a Bluetooth advertising with service data is received. A
 variable ``x`` of type ``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
@@ -193,7 +193,7 @@ Configuration variables:
 - See :ref:`Automation <automation>`.
 
 ``on_ble_scan_end`` Trigger
-*********************************
+************************************************
 
 This automation will be triggered when a Bluetooth scanning sequence has completed. If running
 with continuous set to true, this will trigger every time the scan completes (the duration of 
@@ -214,7 +214,7 @@ Configuration variables:
 - See :ref:`Trigger <trigger>`.
 
 ``esp32_ble_tracker.start_scan`` Action
-*********************************
+************************************************
 
 Start a single Bluetooth scan. If there is a scan already in progress, then the action is ignored.
 This should be used with continuous set to false.
