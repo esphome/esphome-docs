@@ -789,11 +789,13 @@ another brief example:
     switch:
       - platform: template
         id: my_switch
-        name: "My ESP Switch"
+        name: "My Special Sprinkler Switch"
         on_turn_off:
-          - sprinkler.shutdown: sprinkler_ctrlr
+          - switch.turn_off: sprinkler_ctrlr_main_switch_id
+          - light.turn_off: sprinkler_indicator_light
         on_turn_on:
-          - sprinkler.resume_or_start_full_cycle: sprinkler_ctrlr
+          - switch.turn_on: sprinkler_ctrlr_main_switch_id
+          - light.turn_on: sprinkler_indicator_light
         ...
 
 While the above example illustrates creating a secondary "main" switch, this method could be extended to take
