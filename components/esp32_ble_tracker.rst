@@ -73,6 +73,8 @@ Configuration variables:
   - **active** (*Optional*, boolean): Whether to actively send scan requests to request more data
     after having received an advertising packet. With some devices this is necessary to receive all data,
     but also drains those devices' power a (tiny) bit more. Defaults to ``true``.
+  - **continuous** (*Optional*, boolean): Whether to scan continuously (forever) or to only scan when
+    asked to start a scan (with start_scan action). Defaults to ``true``.
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
 
@@ -86,13 +88,18 @@ Automations:
 - **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a Bluetooth advertising with service data is received. See
   :ref:`esp32_ble_tracker-on_ble_service_data_advertise`.
+- **on_ble_scan_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when
+  a BLE scan has completed (the duration of the scan). This works with continuous set to true or false.
+  
+Actions:
+- **esp32_ble_tracker.start_scan()**: An action to start a scan when continuous mode is false/disabled.
 
 ESP32 Bluetooth Low Energy Tracker Automation
 ---------------------------------------------
 
 .. _esp32_ble_tracker-on_ble_advertise:
 
-``on_ble_advertise``
+``on_ble_advertise`` Trigger
 ********************
 
 This automation will be triggered when a Bluetooth advertising is received. A variable ``x`` of type
@@ -128,7 +135,7 @@ Configuration variables:
 
 .. _esp32_ble_tracker-on_ble_manufacturer_data_advertise:
 
-``on_ble_manufacturer_data_advertise``
+``on_ble_manufacturer_data_advertise`` Trigger
 **************************************
 
 This automation will be triggered when a Bluetooth advertising with manufcaturer data is received. A
@@ -159,7 +166,7 @@ Configuration variables:
 
 .. _esp32_ble_tracker-on_ble_service_data_advertise:
 
-``on_ble_service_data_advertise``
+``on_ble_service_data_advertise`` Trigger
 *********************************
 
 This automation will be triggered when a Bluetooth advertising with service data is received. A
@@ -184,6 +191,62 @@ Configuration variables:
 - **mac_address** (*Optional*, MAC Address): The MAC address to filter for this automation.
 - **service_uuid** (**Required**, string): 16 bit, 32 bit, or 128 bit BLE Service UUID.
 - See :ref:`Automation <automation>`.
+
+``on_ble_scan_end`` Trigger
+*********************************
+
+This automation will be triggered when a Bluetooth scanning sequence has completed. If running
+with continuous set to true, this will trigger every time the scan completes (the duration of 
+a scan).
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      on_ble_scan_end:
+        - then:
+            - lambda: |-
+                 ESP_LOGD("ble_auto", "The scan has ended!");
+
+Configuration variables:
+
+- None
+
+- See :ref:`Trigger <trigger>`.
+
+``esp32_ble_tracker.start_scan`` Action
+*********************************
+
+Start a single Bluetooth scan. If there is a scan already in progress, then the action is ignored.
+This should be used with continuous set to false.
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      scan_parameters:
+        continuous: false
+
+    time:
+      - platform: sntp
+        on_time: 
+          - seconds: 1
+            minutes: /1
+            then:
+              - esp32_ble_tracker.start_scan
+
+Configuration variables:
+
+- None
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      id: ble_tracker_id
+
+.. code-block:: cpp
+    id(ble_tracker_id).start_scan()
 
 See Also
 --------
