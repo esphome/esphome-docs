@@ -246,6 +246,7 @@ Configuration variables:
       id: ble_tracker_id
 
 .. code-block:: cpp
+
     id(ble_tracker_id).start_scan()
 
 See Also
