@@ -88,7 +88,7 @@ Automations:
 - **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a Bluetooth advertising with service data is received. See
   :ref:`esp32_ble_tracker-on_ble_service_data_advertise`.
-- **on_ble_scan_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when
+- **on_scan_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when
   a BLE scan has completed (the duration of the scan). This works with continuous set to true or false.
   
 Actions:
@@ -192,7 +192,7 @@ Configuration variables:
 - **service_uuid** (**Required**, string): 16 bit, 32 bit, or 128 bit BLE Service UUID.
 - See :ref:`Automation <automation>`.
 
-``on_ble_scan_end`` Trigger
+``on_scan_end`` Trigger
 ************************************************
 
 This automation will be triggered when a Bluetooth scanning sequence has completed. If running
@@ -202,7 +202,7 @@ a scan).
 .. code-block:: yaml
 
     esp32_ble_tracker:
-      on_ble_scan_end:
+      on_scan_end:
         - then:
             - lambda: |-
                  ESP_LOGD("ble_auto", "The scan has ended!");
