@@ -86,12 +86,18 @@ Configuration variables:
   turned on while a valve is active, when the valve's ``run_duration`` is reached, the sprinkler
   controller will automatically advance to the next enabled valve as a part of a "full cycle" of the
   system. When turned off, the sprinkler controller will shut down after the active valve's
-  ``run_duration`` is reached (unless there are valves in the queue -- more on this later). This switch
-  will not appear in the front end if the controller is configured with only one valve.
+  ``run_duration`` is reached (unless there are valves in the queue -- see
+  :ref:`sprinkler-controller-sprinkler_controller_queue` section below for more detail). This switch will
+  not appear in the front end if the controller is configured with only one valve.
 - **manual_selection_delay** (*Optional*, :ref:`config-time`): The amount of time the controller should
   wait to activate a valve after the ``next_valve`` and ``previous_valve`` actions are called. Useful
   if the control interface consists of only forward/reverse buttons as the button(s) may be pressed
   multiple times to make the selection.
+- **queue_enable_switch** (*Optional*, *string*): The name for the sprinkler controller's queue enable
+  switch as it will appear in the front end. When this switch is turned on or not provided, the controller
+  will select the next valve/zone to run based on the contents of the queue; the queue takes precedence over
+  valves that would otherwise run as a part of a full cycle of the system (when auto-advance is on/enabled).
+  See :ref:`sprinkler-controller-sprinkler_controller_queue` section below for more detail.
 - **reverse_switch** (*Optional*, *string*): The name for the sprinkler controller's reverse switch
   as it will appear in the front end. When this switch is turned on, the controller will iterate through
   the valves in reverse order (last-to-first as they appear in the controller's configuration). When
@@ -211,10 +217,10 @@ Controller Actions
 ``sprinkler.start_full_cycle`` action
 *************************************
 
-Starts a full cycle of the system. This enables the controller's "auto-advance" feature and the
-controller will iterate through all enabled valves/zones. They will each run for their configured
-``run_duration`` multiplied by the controller's multiplier value. *Note that if NO valves are enabled
-when this action is called, the controller will automatically enable all valves.*
+Starts a full cycle of the system. This enables the controller's "auto-advance" feature and disables
+the queue. The controller will iterate through all enabled valves/zones. They will each run for their
+configured ``run_duration`` multiplied by the controller's multiplier value. *Note that if NO valves
+are enabled when this action is called, the controller will automatically enable all valves.*
 
 .. code-block:: yaml
 
@@ -227,14 +233,14 @@ when this action is called, the controller will automatically enable all valves.
 ``sprinkler.start_from_queue`` action
 *************************************
 
-Starts the controller running valves from its queue. This disables the controller's "auto-advance"
-feature so that only queued valves/zones will run. Queued valves will remain on for either the amount
-of time specified in the queue request or for their configured ``run_duration`` multiplied by the
-controller's multiplier value (if the queue request run duration is not specified or is zero). If no
-valves are in the queue, this action does nothing. *Note that queued valves ignore whether the valve
-is enabled; that is, queued valves will always run once the controller is started, unless, of course,
-the queue is (manually) cleared prior to the queue reaching them. Also note that, at present, the
-queue has a hard-coded limit of 100 entries to limit memory use.*
+Starts the controller running valves from its queue. If no valves are in the queue, this action does
+nothing; otherwise, this disables the controller's "auto-advance" feature so that only queued
+valves/zones will run. Queued valves will remain on for either the amount of time specified in the
+queue request or for their configured ``run_duration`` multiplied by the controller's multiplier value
+(if the queue request run duration is not specified or is zero). *Note that queued valves ignore whether
+the valve is enabled; that is, queued valves will always run once the controller is started, unless, of
+course, the queue is (manually) cleared prior to the queue reaching them. Also note that, at present,
+the queue has a hard-coded limit of 100 entries to limit memory use.*
 See :ref:`sprinkler-controller-sprinkler_controller_queue` section below for more detail.
 
 .. code-block:: yaml
@@ -249,11 +255,11 @@ See :ref:`sprinkler-controller-sprinkler_controller_queue` section below for mor
 ``sprinkler.start_single_valve`` action
 ***************************************
 
-Starts a single valve. This disables the controller's "auto-advance" feature so that only this
-valve/zone will run. The valve will remain on for its configured ``run_duration`` multiplied by
-the controller's multiplier value. *Note that this action ignores whether the valve is enabled;
-that is, when called, the specified valve will always run.* Valves are numbered in the order they
-appear in the sprinkler controller's configuration starting at zero (0).
+Starts a single valve. This disables the controller's "auto-advance" and queue features so that
+only this valve/zone will run. The valve will remain on for its configured ``run_duration``
+multiplied by the controller's multiplier value. *Note that this action ignores whether the valve
+is enabled; that is, when called, the specified valve will always run.* Valves are numbered in the
+order they appear in the sprinkler controller's configuration starting at zero (0).
 
 .. code-block:: yaml
 
@@ -268,7 +274,8 @@ appear in the sprinkler controller's configuration starting at zero (0).
 ``sprinkler.shutdown`` action
 *****************************
 
-Immediately turns off all valves, effectively shutting down the system.
+Immediately (begins to) turns off all valves, effectively shutting down the system, respecting any
+configured pump or valve stop delays.
 
 .. code-block:: yaml
 
@@ -353,11 +360,12 @@ cycle (equivalent to ``sprinkler.start_full_cycle``).
 ``sprinkler.queue_valve`` action
 ********************************
 
-Adds the specified valve into the controller's queue. Valves in the queue will automatically be
-activated after the current active valve's run duration is reached, regardless of the state of the
-auto-advance feature. If ``run_duration`` is not specified or is zero, the sprinkler controller will
-use the valve's configured run duration. Valves are numbered in the order they appear in the sprinkler
-controller's configuration starting at zero (0). Please see :ref:`sprinkler-controller-sprinkler_controller_queue`
+Adds the specified valve into the controller's queue. When the queue is enabled, valves in the queue
+take precedence over valves scheduled as a part of a full cycle of the system (when auto-advance is
+enabled). If ``run_duration`` is not specified or is zero, the sprinkler controller will use the
+valve's configured run duration. Valves are numbered in the order they appear in the sprinkler
+controller's configuration starting at zero (0). *Note that, at present, the queue has a hard-coded
+limit of 100 entries to limit memory use.* Please see :ref:`sprinkler-controller-sprinkler_controller_queue`
 section below for more detail and examples.
 
 .. code-block:: yaml
@@ -830,12 +838,12 @@ Because the run duration may be specified as a part of the queue request, this c
 specific run duration for each zone depending on the specific moisture level of the soil on any given day. The
 possibilities are endless and are only limited by your creativity!
 
-**An important aspect of the queuing mechanism is that queued valves take priority over other valves** that would
-run as a part of a full cycle of the system. In other words, if a valve is entered into the queue while a full cycle
-is active, at the next valve transition, the queue entry will be picked up *before* the next valve that would run
-as a part of the full cycle. In addition, if a full cycle was started when there are valves in the queue, the
-queued valves will run first. At present, this behavior cannot be modified, but perhaps this could be changed in
-a future release.
+It is important to note that, if *both* the auto-advance and queue switches are turned on/enabled, **queued valves
+take precedence over valves that would run as a part of a full cycle of the system.** In other words, if the queue
+is enabled and a valve is entered into the queue while a full cycle is active, at the next valve transition, the
+queue entry will be picked up *before* the next valve that would run as a part of the full cycle. At present, this
+behavior cannot be changed. It should also be noted that the queue has a hard-coded limit of 100 entries to limit
+memory use.
 
 Additional Tricks
 *****************
