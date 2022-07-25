@@ -101,10 +101,37 @@ measure the total consumed energy in kWh.
           filters:
             - multiply: 0.001  # (1/1000 pulses per kWh)
 
+(Re)Setting the total pulse count
+---------------------------------
+
+Using this action, you are able to reset/set the total pulse count. This can be useful
+if you would like the ``total`` sensor to match what you see on your meter you are
+trying to match.
+
+.. code-block:: yaml
+
+    # Set pulse counter total from home assistant using this service call:
+    api:
+      services:
+        - service: set_pulse_total
+          variables:
+            new_pulse_total: int
+          then:
+            - pulse_counter.set_total_pulses:
+                id: pulse_counter_id
+                value: !lambda 'return new_pulse_total;'
+
+.. note::
+
+    This value is the raw count of pulses, and not the value you see after the filters
+    are applied.
+
+
 See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`/components/sensor/pulse_meter`
 - :doc:`rotary_encoder`
 - `esp-idf Pulse Counter API <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__.
 - :apiref:`pulse_counter/pulse_counter_sensor.h`
