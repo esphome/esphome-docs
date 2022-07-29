@@ -80,6 +80,22 @@ Configuration variables:
             dir_pin:
               number: D1
               inverted: true
+              
+.. note::
+
+    If you want to replace the A4988 with a TMC2208 module, there are some minor changes to do:
+    
+    - The TMC2208 only has two microstepping pins (MS1, MS2). Check online for the configuration you want to have them in.
+    - There is no physical ``SLEEP`` pin anymore. You need to use the ``ENABLE`` pin, which has an inverted logic. So you should use this block and connect it to the ``ENABLE`` pin of the module:
+
+    .. code-block:: yaml
+
+        stepper:
+          - platform: a4988
+            # ...
+            sleep_pin:
+              number: D2
+              inverted: true
 
 ULN2003 Component
 -----------------
