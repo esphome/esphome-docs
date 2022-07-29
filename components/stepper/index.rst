@@ -86,17 +86,17 @@ Configuration variables:
     If you want to replace the A4988 with a TMC2208 module, there are some minor changes to do:
     
     - The TMC2208 only has two microstepping pins (MS1, MS2). The configuration is slightly counter-intuitive:
-      +---+---+--------+
-      |MS2|MS1|Stepping|
-      +===+===+========+
-      |GND|GND|1/8     |
-      +---+---+--------+
-      |GND|VIO|1/2     |
-      +---+---+--------+
-      |VIO|GND|1/4     |
-      +---+---+--------+
-      |VIO|VIO|1/16    |
-      +---+---+--------+
+    +---+---+--------+
+    |MS2|MS1|Stepping|
+    +===+===+========+
+    |GND|GND|1/8     |
+    +---+---+--------+
+    |GND|VIO|1/2     |
+    +---+---+--------+
+    |VIO|GND|1/4     |
+    +---+---+--------+
+    |VIO|VIO|1/16    |
+    +---+---+--------+
 
     - There is no physical ``SLEEP`` pin anymore. You need to use the ``ENABLE`` pin, which has an inverted logic. So you should use this block and connect it to the ``ENABLE`` pin of the module:
 
