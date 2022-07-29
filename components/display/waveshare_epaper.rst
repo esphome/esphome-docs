@@ -86,7 +86,7 @@ Configuration variables:
   - ``2.13in-ttgo-dke`` - T5_V2.3 with DKE group display (DEPG0213BN) tested
   - ``2.70in`` - currently not working with the HAT Rev 2.1 version
   - ``2.90in``
-  - ``2.90inv2`` - currently only working with the board Rev 2.1 version using ``full_update_every: 1`` (no partial refresh)
+  - ``2.90inv2`` - board rev 2.1 version currently only working using ``full_update_every: 1`` (no partial refresh)
   - ``2.90in-b`` - B/W rendering only
   - ``4.20in``
   - ``4.20in-bV2`` - B/W rendering only
