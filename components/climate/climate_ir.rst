@@ -38,7 +38,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Midea                                 | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Mitsubishi                            | ``mitsubishi``      |                      |
+| :ref:`Mitsubishi<mitsubishi_ir>`      | ``mitsubishi``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | TCL112, Fuego                         | ``tcl112``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -256,7 +256,6 @@ Configuration variables:
 
 .. _whirlpool:
 
-
 ``whirlpool`` Climate
 ---------------------
 
@@ -269,6 +268,18 @@ Configuration variables:
 
   - ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
   - ``DG11J1-91``: Temperature range is from 16 to 30
+
+
+.. _mitsubishi_ir:
+
+``Mitsubishi`` Climate
+----------------------
+
+The Mitsubishi IR Protocoll is also used by some Stiebel Eltron devices.
+
+Tested with:
+
+- Stiebel Eltron IR-Remote ``KM07F`` and inhouse unit ``ACW 25 i``
 
 
 See Also
