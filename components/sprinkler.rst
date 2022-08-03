@@ -25,6 +25,7 @@ you'd expect of a sprinkler controller, including:
 - A multiplier value to proportionally increase or decrease the run duration for all zones
 - Pausing and resuming a zone/cycle
 - Iterating through zones in forward or reverse order
+- Support for both latching ("pulsed") and non-latching valves
 
 It reaches even further, however, offering several more advanced features, as well:
 
@@ -126,6 +127,20 @@ Configuration variables:
   deactivated to when the respective distribution valve is closed. Useful to ensure pressure does not build
   up from running the pump when no distribution valves are open or to allow the main line out to distribution
   valves to drain. May not be used with *pump_stop_pump_delay*.
+- **pump_pulse_duration** (*Optional*, :ref:`config-time`): The *minimum* length of the pulse generated to
+  operate a pump in milliseconds. Required when a latching pump is configured; may not be used when a
+  non-latching pump is configured with *pump_switch_id* (see below). Note that the *exact* length of the pulse
+  is determined by the frequency of the main application loop (as are other ``delay`` timers used in ESPHome).
+  Typically this is expected to provide a resolution of approximately 16 milliseconds, however this may vary
+  somewhat depending on your exact configuration. Regardless, it should provide more-than-sufficient precision
+  to operate any such valve.
+- **valve_pulse_duration** (*Optional*, :ref:`config-time`): The *minimum* length of the pulse generated to
+  operate a valve in milliseconds. Required when a latching valve is configured; may not be used when a
+  non-latching valve is configured with *valve_switch_id* (see below). Note that the *exact* length of the pulse
+  is determined by the frequency of the main application loop (as are other ``delay`` timers used in ESPHome).
+  Typically this is expected to provide a resolution of approximately 16 milliseconds, however this may vary
+  somewhat depending on your exact configuration. Regardless, it should provide more-than-sufficient precision
+  to operate any such valve.
 - **repeat** (*Optional*, int): The number of times a full cycle should be repeated. Defaults to 0.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
   this is necessary to identify the controller instance (particularly in cases where more than one is
@@ -146,6 +161,19 @@ Configuration variables:
     :doc:`GPIO switch <switch/gpio>` wired to control a relay or other switching device which in turn would
     activate the respective pump/valve. *It is not recommended to expose this switch to the front end; please
     see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control` *below for more detail.*
+    May not be specified with *pump_off_switch_id* or *pump_on_switch_id*.
+  - **pump_off_switch_id** (*Optional*, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
+    component to be used to *turn off* the valve's pump or upstream electric *latching* valve. Typically this
+    would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay or other switching device which in turn
+    would *switch off* the respective pump/valve. *It is not recommended to expose this switch to the front end; please
+    see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control` *below for more detail.*
+    May not be specified with *pump_switch_id*.
+  - **pump_on_switch_id** (*Optional*, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
+    component to be used to *turn on* the valve's pump or upstream electric *latching* valve. Typically this
+    would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay or other switching device which in turn
+    would *switch on* the respective pump/valve. *It is not recommended to expose this switch to the front end; please
+    see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control` *below for more detail.*
+    May not be specified with *pump_switch_id*.
   - **run_duration** (**Required**, :ref:`config-time`): The duration in seconds this valve should
     remain on/open after it is activated. When a given valve is activated, the controller's multiplier value
     is multiplied by this value to determine the actual run duration for the valve, thus allowing the run
@@ -155,7 +183,19 @@ Configuration variables:
     system. Typically this would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay
     or other switching device which in turn would activate the respective valve. *It is not recommended
     to expose this switch to the front end; please see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control`
-    *below for more detail.*
+    *below for more detail.* May not be specified with *valve_off_switch_id* or *valve_on_switch_id*.
+  - **valve_off_switch_id** (**Required**, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
+    component to be used to *turn off* the *latching* valve that operates the given section or zone of the
+    sprinkler system. Typically this would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay
+    or other switching device which in turn would *switch off* the respective valve. *It is not recommended
+    to expose this switch to the front end; please see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control`
+    *below for more detail.* May not be specified with *valve_switch_id*.
+  - **valve_on_switch_id** (**Required**, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
+    component to be used to *turn on* the *latching* valve that operates the given section or zone of the
+    sprinkler system. Typically this would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay
+    or other switching device which in turn would *switch on* the respective valve. *It is not recommended
+    to expose this switch to the front end; please see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control`
+    *below for more detail.* May not be specified with *valve_switch_id*.
 
 .. _sprinkler-controller-an_important_note_about_gpio_switches_and_control:
 
@@ -676,6 +716,91 @@ This example illustrates a complete three-valve system with a single pump/upstre
       - platform: gpio
         id: lawn_sprinkler_valve_sw2
         pin: 4
+
+Single Controller, Three Latching Valves, Single Latching Pump
+**************************************************************
+
+This example is similar to the previous example, however it illustrates how a "latching" or "pulsed"
+valve can be configured. This type of valve requires two :doc:`GPIO switches <switch/gpio>` to
+operate -- one to switch the valve on and one to switch the valve off. To switch on the valve, the
+"on" :doc:`GPIO switch <switch/gpio>` is switched on for the configured duration and then switched
+off. To switch the valve off, the "off" :doc:`GPIO switch <switch/gpio>` is switched on for the
+configured duration and then switched off.
+
+Note that, while this example illustrates a configuration that uses exclusively latching valves,
+latching and non-latching valves may be mixed and matched in any configuration, even if attached to
+a common pump/upstream valve.
+
+.. code-block:: yaml
+
+    esphome:
+      name: esp-sprinkler-controller
+      platform: ESP32
+      board: featheresp32
+
+    wifi:
+      ssid: "wifi_ssid"
+      password: "wifi_password"
+
+    logger:
+
+    sprinkler:
+      - id: lawn_sprinkler_ctrlr
+        main_switch: "Lawn Sprinklers"
+        auto_advance_switch: "Lawn Sprinklers Auto Advance"
+        queue_enable_switch: "Lawn Sprinklers Queue Enable"
+        reverse_switch: "Lawn Sprinklers Reverse"
+        pump_pulse_duration: 250ms
+        valve_pulse_duration: 250ms
+        valve_open_delay: 5s
+        valves:
+          - valve_switch: "Front Lawn"
+            enable_switch: "Enable Front Lawn"
+            pump_off_switch_id: sprinkler_pump_sw_off
+            pump_on_switch_id: sprinkler_pump_sw_on
+            run_duration: 900s
+            valve_off_switch_id: lawn_sprinkler_valve_sw0_off
+            valve_on_switch_id: lawn_sprinkler_valve_sw0_on
+          - valve_switch: "Side Lawn"
+            enable_switch: "Enable Side Lawn"
+            pump_off_switch_id: sprinkler_pump_sw_off
+            pump_on_switch_id: sprinkler_pump_sw_on
+            run_duration: 900s
+            valve_off_switch_id: lawn_sprinkler_valve_sw1_off
+            valve_on_switch_id: lawn_sprinkler_valve_sw1_on
+          - valve_switch: "Back Lawn"
+            enable_switch: "Enable Back Lawn"
+            pump_off_switch_id: sprinkler_pump_sw_off
+            pump_on_switch_id: sprinkler_pump_sw_on
+            run_duration: 900s
+            valve_off_switch_id: lawn_sprinkler_valve_sw2_off
+            valve_on_switch_id: lawn_sprinkler_valve_sw2_on
+
+    switch:
+      - platform: gpio
+        id: sprinkler_pump_sw_off
+        pin: 14
+      - platform: gpio
+        id: sprinkler_pump_sw_on
+        pin: 15
+      - platform: gpio
+        id: lawn_sprinkler_valve_sw0_off
+        pin: 0
+      - platform: gpio
+        id: lawn_sprinkler_valve_sw0_on
+        pin: 2
+      - platform: gpio
+        id: lawn_sprinkler_valve_sw1_off
+        pin: 4
+      - platform: gpio
+        id: lawn_sprinkler_valve_sw1_on
+        pin: 5
+      - platform: gpio
+        id: lawn_sprinkler_valve_sw2_off
+        pin: 12
+      - platform: gpio
+        id: lawn_sprinkler_valve_sw2_on
+        pin: 13
 
 Dual Controller, Five Valves, Two Pumps
 ***************************************
