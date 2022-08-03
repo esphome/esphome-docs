@@ -128,19 +128,17 @@ Configuration variables:
   up from running the pump when no distribution valves are open or to allow the main line out to distribution
   valves to drain. May not be used with *pump_stop_pump_delay*.
 - **pump_pulse_duration** (*Optional*, :ref:`config-time`): The *minimum* length of the pulse generated to
-  operate a pump in milliseconds. Required when a latching pump is configured; may not be used when a
-  non-latching pump is configured with *pump_switch_id* (see below). Note that the *exact* length of the pulse
-  is determined by the frequency of the main application loop (as are other ``delay`` timers used in ESPHome).
-  Typically this is expected to provide a resolution of approximately 16 milliseconds, however this may vary
-  somewhat depending on your exact configuration. Regardless, it should provide more-than-sufficient precision
-  to operate any such valve.
+  operate a pump in milliseconds. *Required* when one or more latching pumps is configured. Note that the *exact*
+  length of the pulse is determined by the frequency of the main application loop (as are other ``delay`` timers
+  used in ESPHome). Typically this is expected to provide a resolution of approximately 16 milliseconds, however
+  this may vary somewhat depending on your exact configuration. Regardless, it should provide
+  more-than-sufficient precision to operate any such valve.
 - **valve_pulse_duration** (*Optional*, :ref:`config-time`): The *minimum* length of the pulse generated to
-  operate a valve in milliseconds. Required when a latching valve is configured; may not be used when a
-  non-latching valve is configured with *valve_switch_id* (see below). Note that the *exact* length of the pulse
-  is determined by the frequency of the main application loop (as are other ``delay`` timers used in ESPHome).
-  Typically this is expected to provide a resolution of approximately 16 milliseconds, however this may vary
-  somewhat depending on your exact configuration. Regardless, it should provide more-than-sufficient precision
-  to operate any such valve.
+  operate a valve in milliseconds. *Required* when one or more latching valves is configured. Note that the *exact*
+  length of the pulse is determined by the frequency of the main application loop (as are other ``delay`` timers
+  used in ESPHome). Typically this is expected to provide a resolution of approximately 16 milliseconds, however
+  this may vary somewhat depending on your exact configuration. Regardless, it should provide more-than-sufficient
+  precision to operate any such valve.
 - **repeat** (*Optional*, int): The number of times a full cycle should be repeated. Defaults to 0.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
   this is necessary to identify the controller instance (particularly in cases where more than one is
@@ -202,8 +200,9 @@ Configuration variables:
 An Important Note about GPIO Switches and Control
 -------------------------------------------------
 
-The savvy and/or seasoned ESPHome user will quickly realize that ``pump_switch_id`` and ``valve_switch_id`` (as
-described above) are really just pointers to other (GPIO) switches elsewhere in the ESPHome yaml configuration.
+The savvy and/or seasoned ESPHome user will quickly realize that ``pump_switch_id``, ``pump_off_switch_id``,
+``pump_on_switch_id``, ``valve_switch_id``, ``valve_off_switch_id`` and ``valve_on_switch_id`` (as described above)
+are really just pointers to other (GPIO) switches elsewhere in the ESPHome yaml configuration.
 
 It might seem reasonable to assume that these :doc:`GPIO switches <switch/gpio>` may be used to switch the various
 sprinkler zones on and off, however, this is **not** the case. It's important to note that the sprinkler controller
