@@ -911,10 +911,10 @@ the following example:
         ...
 
 This arrangement is possible for any other switch within the sprinkler controller's configuration block, with
-the exception of ``pump_switch_id`` and ``valve_switch_id`` (because these two are the IDs of other switch
-components already defined elsewhere in your configuration). In addition, specifying each switch ID enables
-the ability to refer to any of the sprinkler controller's switches from elsewhere in your configuration. Here's
-another brief example:
+the exception of ``pump_off_switch_id``, ``pump_on_switch_id``, ``pump_switch_id``, ``valve_off_switch_id``,
+``valve_on_switch_id`` and ``valve_switch_id`` (because these are the IDs of other switch components already
+defined elsewhere in your configuration). In addition, specifying each switch ID enables the ability to refer
+to any of the sprinkler controller's switches from elsewhere in your configuration. Here's another brief example:
 
 .. code-block:: yaml
 
