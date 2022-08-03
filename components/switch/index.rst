@@ -98,10 +98,11 @@ This :ref:`Condition <config-condition>` checks if the given switch is ON (or OF
 
     # In some trigger:
     on_...:
-      if:
-        condition:
-          # Same syntax for is_off
-          switch.is_on: my_switch
+      then:
+        if:
+          condition:
+            # Same syntax for is_off
+            switch.is_on: my_switch
 
 .. _switch-lambda_calls:
 
