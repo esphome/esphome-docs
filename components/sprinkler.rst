@@ -14,7 +14,8 @@ number of :ref:`switch <config-switch>` components, each of which would typicall
 an individual electric valve via a relay or other switching device. It provides a number of features
 you'd expect of a sprinkler controller, including:
 
-- Up to 256 zones (sections of the sprinkler system) per controller instance
+- Virtually any number of zones (sections of the sprinkler system) per controller instance, limited only by
+  available memory and/or GPIO (including I/O expanders!) pin availability on the ESP
 - The ability to run:
 
   - One or more full cycles (iterations through all zones) of the system
