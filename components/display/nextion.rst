@@ -63,13 +63,14 @@ Configuration variables:
   Defaults to ``5s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **tft_url** (*Optional*, string): The URL to download the TFT file from for updates. See :ref:`Nextion Upload <nextion_upload_tft>`.
-- **on_sleep** (*Optional*, :ref:`Action <config-action>`): An automation to perform when the Nextion goes to sleep.
-- **on_wake** (*Optional*, :ref:`Action <config-action>`): An automation to perform when the Nextion wakes up.
 - **touch_sleep_timeout** (*Optional*, int): Sets internal No-touch-then-sleep timer in seconds.
 - **wake_up_page** (*Optional*, int): Sets the page to display after waking up
 - **auto_wake_on_touch** (*Optional*, boolean): Sets if Nextion should auto-wake from sleep when touch press occurs.
+- **on_setup** (*Optional*, :ref:`Action <config-action>`): An action to be performed after ESPHome connects to the Nextion. See :ref:`Nextion Automation <nextion-on_setup>`.
+- **on_sleep** (*Optional*, :ref:`Action <config-action>`): An action to be performed when the Nextion goes to sleep. See :ref:`Nextion Automation <nextion-on_sleep>`.
+- **on_wake** (*Optional*, :ref:`Action <config-action>`): An action to be performed when the Nextion wakes up. See :ref:`Nextion Automation <nextion-on_sleep>`.
+- **on_page** (*Optional*, :ref:`Action <config-action>`): An action to be performed after a page change. See :ref:`Nextion Automation <nextion-on_page>`.
   
-
 .. _display-nextion_lambda:
 
 Rendering Lambda
@@ -108,7 +109,7 @@ Please see :ref:`display-printf` for a quick introduction into the ``printf`` fo
 Lambda Calls
 ************
 
-Several methods are available for use within :ref:`lambdas <config-lambda>` ; these permit advanced functionality beyond simple
+Several methods are available for use within :ref:`lambdas <config-lambda>`; these permit advanced functionality beyond simple
 display updates. See the full :apiref:`nextion/nextion.h` for more info. 
 
 .. _nextion_upload_tft:
@@ -181,6 +182,99 @@ The developer tools in Home Assistant can be used to trigger the update. The bel
   - TEXT_SENSOR       3
   - WAVEFORM_SENSOR   4
   - NO_RESULT         5
+
+.. _display-nextion_automation:
+
+Nextion Automation
+------------------
+
+With Nextion displays, it's possible to define several automation actions. Depending on your setup, you may or may not need to use some of them.
+
+.. _nextion-on_setup:
+
+``on_setup``
+************
+
+This automation will be triggered once ESP establishes a connection with Nextion. This happens after a boot up and may take some
+noticeable time (e.g. hundreds of milliseconds) to establish a connection over UART. Typical use scenario for this automation is choosing of the initial
+page to display depending on some runtime conditions or simply showing a page with a non-zero index (Nextion shows page 0 by default).
+
+.. code-block:: yaml
+
+    wifi:
+      ap: {} # This spawns an AP with the device name and mac address with no password.
+
+    captive_portal:
+
+    display:
+      - platform: nextion
+        id: disp
+        on_setup:
+          then:
+            lambda: |-
+              // Check if WiFi hot-spot is configured
+              if (wifi::global_wifi_component->has_sta()) {
+                // Show the main page
+                id(disp).goto_page("main_page");
+              } else {
+                // Show WiFi Access Point QR code for captive portal, see https://qifi.org/
+                id(disp).goto_page("wifi_qr_page");
+              }
+
+.. _nextion-on_sleep:
+
+``on_sleep / on_wake``
+**********************
+
+The action is called before and after Nextion goes to sleep mode. Nextion is not responsive while in sleep mode. Use these triggers to prepare your code
+for that and :ref:`force-update <nextion_update_all_components>` the on-screen content once it's back.
+
+.. _nextion-on_page:
+
+``on_page``
+***********
+
+This automation is triggered when a page is changed on the Nextion display. This includes both ESP and Nextion initiated page changes.
+ESP initiates a page change by calling ``goto_page("page_name")`` function. Nextion can change pages as a reaction to user's activity (e.g. clicks) or using a timer.
+In either case, this automation can be helpful to update on-screen controls for the newly displayed page.
+
+If you fully own your Nextoin HMI design and follow the best practice of setting the components' vscope to global in the Nextion Editor, you'll probably never need this trigger.
+However, if this is not the case and all / some of your UI components have local visibility scope, ``on_page`` will be your remedy. Here you can initiate updates of the relevant components.
+
+Before actually updating components, you need to understand which page Nextion was switched to. For ESP initiated page changes ``x`` argument will contain a string
+(``std::string`` to be precise) with the new page name. In case of Nextion initiated change, page names are not available and ``x`` will be a page id as string.
+If the same page can be enabled both from ESP and from Nextion, be prepared to parse both the name and the id of that page.
+
+.. code-block:: yaml
+
+    on_page:
+      then:
+        lambda: |-
+          // x contains an std::string with a page name or page id.
+          //   Both can be used for goto_page() function
+          int page_id = std::atoi(x.c_str());
+          if (page_id == 0 && x != "0") {
+            // manually convert page names to ids
+            if      (x == "main_page")    page_id = 0x01;
+            else if (x == "wifi_qr_page") page_id = 0x02;
+            ...
+          }
+
+Once you know the page id, it's time to update the components. Two strategies would be possible. The first one is to use :ref:`Nextion Sensors <nextion_sensor>` for every UI field and use one of the
+:ref:`update functions <nextion_update_all_components>`. The second is to manually set component text or value for each field.
+
+.. code-block:: yaml
+
+    on_page:
+      then:
+        lambda: |-
+          ...
+          switch (page_id) {
+            case 0x02: // wifi_qr_page
+              // Manually trigger update for controls on page 0x02 here
+              id(disp).set_component_text_printf("qr_wifi", "WIFI:T:nopass;S:%s;P:;;", wifi::global_wifi_component->get_ap().get_ssid().c_str());
+              break;
+          }
 
 .. _nextion_upload_tft_file:
 
