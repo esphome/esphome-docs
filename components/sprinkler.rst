@@ -8,8 +8,8 @@ Sprinkler Controller
 .. figure:: images/sprinkler.png
     :align: center
 
-The ``sprinkler`` controller component aims to behave like a sprinkler system/valve controller, much
-like those made by companies such as Rain Bird or Hunter. It does so by automating control of a
+The ``sprinkler`` controller component aims to behave like a sprinkler/irrigation valve controller,
+much like those made by companies such as Rain Bird or Hunter. It does so by automating control of a
 number of :ref:`switch <config-switch>` components, each of which would typically be used to control
 an individual electric valve via a relay or other switching device. It provides a number of features
 you'd expect of a sprinkler controller, including:
@@ -22,11 +22,11 @@ you'd expect of a sprinkler controller, including:
   - Only a single zone
 
 - Automatic cycle repeating
-- Support for pumps/main valves located upstream of distribution valves
 - A multiplier value to proportionally increase or decrease the run duration for all zones
+- Support for pumps/main valves located upstream of distribution valves
 - Pausing and resuming a zone/cycle
 - Iterating through zones in forward or reverse order
-- Support for both latching ("pulsed") and non-latching valves
+- Support for both latching ("pulsed") and non-latching valves (which can be arbitrarily mixed!)
 
 It reaches even further, however, offering several more advanced features, as well:
 
@@ -231,9 +231,9 @@ connected to one of these distribution valves, what happens to the pump? What sh
 it switch the distribution valve back on?...or maybe just switch the pump off, too? In either case, based on its
 configuration, the pump was supposed be shut down before the valve, but you just went and turned off the valve. The pump
 could be damaged. There are many other similar situations such as this that may occur, the simplest of which is little
-more than ensuring that any given valve is switched off after some duration and does not remain on/open perpetually.
+more than ensuring that any given valve is switched off after *some* duration and does not remain on/open perpetually.
 
-With all of this in mind, to ensure that your sprinkler system consistently operates as expected:
+In summary, to ensure that your sprinkler controller consistently operates as expected:
 
 - Only use the switches provided by the sprinkler controller component to switch any given sprinkler zone on or off.
 - Do not use the :doc:`GPIO switches <switch/gpio>` you have in your configuration to control sprinkler zones/valves
@@ -931,10 +931,10 @@ to any of the sprinkler controller's switches from elsewhere in your configurati
           - light.turn_on: sprinkler_indicator_light
         ...
 
-While the above example illustrates creating a secondary "main" switch, this method could be extended to take
-advantage of other devices such as a moisture :ref:`sensor <config-sensor>` -- when the moisture level is too
-low (look for ``on_value`` or ``on_value_range``), the sprinkler controller (or a specific valve) could be
-activated by calling one of the controller's start-up actions, such as ``sprinkler.start_full_cycle``,
+While the above example simply illustrates creating a secondary "main" switch, this approach could be extended
+to take advantage of other devices such as a moisture :ref:`sensor <config-sensor>` -- when the moisture level
+is too low (look for ``on_value`` or ``on_value_range``), the sprinkler controller (or a specific valve) could
+be activated by calling one of the controller's start-up actions, such as ``sprinkler.start_full_cycle``,
 ``sprinkler.start_from_queue``, ``sprinkler.start_single_valve``, or ``sprinkler.resume_or_start_full_cycle``.
 
 .. _sprinkler-controller-sprinkler_controller_queue:
