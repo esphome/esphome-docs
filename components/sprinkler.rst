@@ -985,11 +985,11 @@ the controller's multiplier value:
       - platform: template
         id: sprinkler_ctrlr_multiplier
         name: "Sprinkler Controller Multiplier"
-        optimistic: true
         min_value: 0.1
         max_value: 10.0
         step: 0.1
         initial_value: 1.0
+        lambda: "return id(lawn_sprinkler_ctrlr).multiplier();"
         set_action:
           - sprinkler.set_multiplier:
               id: lawn_sprinkler_ctrlr
