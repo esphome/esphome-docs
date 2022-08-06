@@ -558,10 +558,16 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
       - platform: dallas
         # ...
         on_value_range:
-          above: 5
-          below: 10
-          then:
-            - switch.turn_on: relay_1
+          - below: 5.0
+            then:
+              - switch.turn_on: relay_1
+          - above: 5.0
+            below: 10.0
+            then:
+              - switch.turn_on: relay_2
+          - above: 10.0
+            then:
+              - switch.turn_on: relay_3
 
 Configuration variables:
 
