@@ -241,35 +241,16 @@ In either case, this automation can be helpful to update on-screen controls for 
 If you fully own your Nextoin HMI design and follow the best practice of setting the components' vscope to global in the Nextion Editor, you'll probably never need this trigger.
 However, if this is not the case and all / some of your UI components have local visibility scope, ``on_page`` will be your remedy. Here you can initiate updates of the relevant components.
 
-Before actually updating components, you need to understand which page Nextion was switched to. For ESP initiated page changes ``x`` argument will contain a string
-(``std::string`` to be precise) with the new page name. In case of Nextion initiated change, page names are not available and ``x`` will be a page id as string.
-If the same page can be enabled both from ESP and from Nextion, be prepared to parse both the name and the id of that page.
-
-.. code-block:: yaml
-
-    on_page:
-      then:
-        lambda: |-
-          // x contains an std::string with a page name or page id.
-          //   Both can be used for goto_page() function
-          int page_id = std::atoi(x.c_str());
-          if (page_id == 0 && x != "0") {
-            // manually convert page names to ids
-            if      (x == "main_page")    page_id = 0x01;
-            else if (x == "wifi_qr_page") page_id = 0x02;
-            ...
-          }
-
+Before actually updating components, you need to understand which page Nextion was switched to. ``x`` argument will contain a page id ingeger.
 Once you know the page id, it's time to update the components. Two strategies would be possible. The first one is to use :ref:`Nextion Sensors <nextion_sensor>` for every UI field and use one of the
-:ref:`update functions <nextion_update_all_components>`. The second is to manually set component text or value for each field.
+:ref:`update functions <nextion_update_all_components>`. The second is to manually set component text or value for each field:
 
 .. code-block:: yaml
 
     on_page:
       then:
         lambda: |-
-          ...
-          switch (page_id) {
+          switch (x) {
             case 0x02: // wifi_qr_page
               // Manually trigger update for controls on page 0x02 here
               id(disp).set_component_text_printf("qr_wifi", "WIFI:T:nopass;S:%s;P:;;", wifi::global_wifi_component->get_ap().get_ssid().c_str());
