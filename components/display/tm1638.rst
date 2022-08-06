@@ -141,7 +141,7 @@ The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top
 
 Buttons
 ----------------
-The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or middle of the display, depending on the board.  These buttons are exposed as binary sensor components with the key property set between 0 and 7,  They can be accessed via the binary sensor component configuration.  As with the LEDs the buttons are labeled 1-8 on the board, but use zero based addressing.  Therefore the button labelled "1" is key 0 in the configuraiton.   See binary sensor component (link)
+The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or middle of the display, depending on the board.  These buttons are exposed as binary sensor components with the key property set between 0 and 7,  They can be accessed via the binary sensor component configuration.  As with the LEDs the buttons are labeled 1-8 on the board, but use zero based addressing.  Therefore the button labelled "1" is key 0 in the configuration.   See binary sensor component (link)
 
 .. code-block:: yaml
 
