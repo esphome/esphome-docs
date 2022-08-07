@@ -97,6 +97,15 @@ Release 2022.6.2 - June 23
 - Media Player: added play_media action :esphomepr:`3579` by :ghuser:`dudanov`
 - Fix 2 small issues in BLEClient :esphomepr:`3544` by :ghuser:`jhansche`
 
+Release 2022.6.3 - August 8
+---------------------------
+
+- FIX: Modbus queue deduplicator deleting custom commands :esphomepr:`3650` by :ghuser:`jpeletier`
+- Update inkbird_ibsth1_mini.cpp :esphomepr:`3664` by :ghuser:`ssieb`
+- Add CO device class to binary_sensor :esphomepr:`3656` by :ghuser:`berg`
+- Use application/json instead of text/json :esphomepr:`3671` by :ghuser:`ssieb`
+- Use correct struct members. :esphomepr:`3672` by :ghuser:`ssieb`
+
 Breaking Changes
 ----------------
 
