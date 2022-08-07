@@ -20,7 +20,7 @@ required to be set up in your configuration for this sensor to work.
 .. code-block:: yaml
 
     # Example RG-9 entry
-    
+
     uart:
       rx_pin: GPIO16
       tx_pin: GPIO17
@@ -32,8 +32,8 @@ required to be set up in your configuration for this sensor to work.
         update_interval: 60s
         moisture:
           name: "rain"
-          expire_after: 120s  
-          
+          expire_after: 120s
+
     binary_sensor:
       - platform: hydreon_rgxx
         too_cold:
@@ -64,38 +64,38 @@ required to be set up in your configuration for this sensor to work.
 Configuration variables:
 ------------------------
 
-- **model**: (**Required**, int): Specify which rain sensor you have connected. Must be either ``RG_9`` or ``RG_15``.
+- **model** (**Required**, int): Specify which rain sensor you have connected. Must be either ``RG_9`` or ``RG_15``.
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
 - **moisture** (*Optional*): Rain intensity level from 0-7. Only on RG-9.
 
-  - **name** (**Required**, string): The name for the voltage sensor.
+  - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **acc** (*Optional*): Amount of rain since last message (see `update_interval`), in `mm`. Only on RG-15.
+- **acc** (*Optional*): Amount of rain since last message (see ``update_interval``), in ``mm``. Only on RG-15.
 
-  - **name** (**Required**, string): The name for the voltage sensor.
+  - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **event_acc** (*Optional*): Amount of rain for this event (i.e. since it last stopped raining), in `mm`. Only on RG-15.
+- **event_acc** (*Optional*): Amount of rain for this event (i.e. since it last stopped raining), in ``mm``. Only on RG-15.
 
-  - **name** (**Required**, string): The name for the voltage sensor.
+  - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **total_acc** (*Optional*): Total amount of rain this sensor has ever measured, in `mm`. Only on RG-15.
+- **total_acc** (*Optional*): Total amount of rain this sensor has ever measured, in ``mm``. Only on RG-15.
 
-  - **name** (**Required**, string): The name for the voltage sensor.
+  - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **r_int** (*Optional*): Current rain intensity in `mm/h`. Only on RG-15.
+- **r_int** (*Optional*): Current rain intensity in ``mm/h``. Only on RG-15.
 
-  - **name** (**Required**, string): The name for the voltage sensor.
+  - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 

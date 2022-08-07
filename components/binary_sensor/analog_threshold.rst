@@ -9,7 +9,7 @@ The ``analog_threshold`` binary sensor platform allows you to convert analog val
 (i.e. :doc:`sensor </components/sensor/index>` readings)
 into boolean values, using a threshold as a reference.
 When the signal is above or equal to the threshold the binary sensor is ``true``
-(this behavior can be changed adding and ``invert`` filter).
+(this behavior can be changed by adding an ``invert`` filter).
 
 It provides an *hysteresis* option to reduce instability when the source signal is noisy
 using different limits depending on the current state.

@@ -55,6 +55,7 @@ Blog Posts & Videos
 - `Cheap 10$ Air quality monitor WP6003: ESP32, Bluetooth & Home assistant <https://omarghader.github.io/esp32-airquality-box-wp6003-homeassistant/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `ESP32 AM312 motion sensor : light automation <https://omarghader.github.io/esp32-am312-pir-motion-sensor/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Little thermostat based on AZ-Touch hardware and esphome <https://github.com/ingbenna/AZ-Touch_esphome_thermostat/>`_ by ingbenna
+- `Converting a Carro Home DC Fan to ESPHome <https://1projectaweek.com/blog/2022/2/8/converting-a-carro-home-dc-fan-to-esp-home>`__ by `Bill Church <https://1projectaweek.com>`__
 
 Custom Components & Code
 ------------------------

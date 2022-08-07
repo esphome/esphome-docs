@@ -41,6 +41,10 @@ Configuration variables:
 - **ble_client_id** (**Required**, :ref:`config-id`): The ID of the BLE Client.
 - **time_id** (*Optional*, :ref:`config-id`): The ID of a :ref:`Time Component <time>` which
   can be used to set the time on the BedJet device.
+- **heat_mode** (*Optional*, string): The primary heating mode to use for `HVACMode.HEAT`:
+  - ``"heat"`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
+  - ``"extended"`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
+  - Whichever is not selected will be made available as a custom preset.
 - All other options from :ref:`Climate <config-climate>`.
 
 lambda calls
@@ -59,6 +63,30 @@ From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced st
             then:
             - lambda: |-
                 id(my_bedjet_fan).upgrade_firmware();
+
+- ``.send_local_time``: If `time_id` is set, attempt to sync the clock now.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Sync Clock"
+          on_press:
+            then:
+            - lambda: |-
+                id(my_bedjet_fan).send_local_time();
+
+- ``.set_clock``: Set the BedJet clock to a specified time; works with or without a `time_id`.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Set Clock to 10:10pm"
+          on_press:
+            then:
+            - lambda: |-
+                id(my_bedjet_fan).set_clock(22, 10);
 
 Known issues:
 -------------

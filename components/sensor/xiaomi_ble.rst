@@ -236,6 +236,8 @@ Configuration example for PVVX MiThermometer firmware set to "Custom" advertisem
           name: "PVVX Battery-Level"
         battery_voltage:
           name: "PVVX Battery-Voltage"
+        signal_strength:
+          name: "PVVX Signal"
 
 MHO-C303
 ********
