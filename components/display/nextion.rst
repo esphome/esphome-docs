@@ -241,7 +241,7 @@ In either case, this automation can be helpful to update on-screen controls for 
 If you fully own your Nextoin HMI design and follow the best practice of setting the components' vscope to global in the Nextion Editor, you'll probably never need this trigger.
 However, if this is not the case and all / some of your UI components have local visibility scope, ``on_page`` will be your remedy. Here you can initiate updates of the relevant components.
 
-Before actually updating components, you need to understand which page Nextion was switched to. ``x`` argument will contain a page id ingeger.
+Before actually updating components, you need to understand which page Nextion was switched to. ``x`` argument will contain a page id integer.
 Once you know the page id, it's time to update the components. Two strategies would be possible. The first one is to use :ref:`Nextion Sensors <nextion_sensor>` for every UI field and use one of the
 :ref:`update functions <nextion_update_all_components>`. The second is to manually set component text or value for each field:
 
