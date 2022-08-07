@@ -38,10 +38,13 @@ Configuration variables:
   - **falling_edge** (*Optional*): What to do when a falling edge is
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
+    
+
+- **use_pcnt** (*Optional*, boolean): Use hardware ``PCNT`` pulse counter. Only supported on ESP32.
 
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
-  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32,
-  this value can not be higher than ``13us``, for the ESP8266 you can use larger intervals too.
+  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32, when using the hardware pulse counter
+  this value can not be higher than ``13us``, for the ESP8266 or with ``use_pcnt: false`` you can use larger intervals too.
   If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
