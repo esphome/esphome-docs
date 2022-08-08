@@ -625,7 +625,7 @@ Animation
 *********
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
-It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame() to change the shown picture of a gif.
+It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame()`` to change the shown picture of a gif.
 
 .. code-block:: yaml
 
