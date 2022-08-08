@@ -636,7 +636,7 @@ It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_
 
 The animation can be rendered just like the image component with the ``image()`` function of the display component.
 
-To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``. To show a specific picture use ``id(my_animation).set_frame()``.
+To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``. To show a specific picture use ``id(my_animation).set_frame(int frame)``.
 This can be combined with all Lambdas:
 
 .. code-block:: yaml
