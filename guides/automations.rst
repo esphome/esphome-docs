@@ -394,6 +394,7 @@ All Actions
 - :ref:`select.set <select-set_action>` / :ref:`select.set_index <select-set_index_action>` / :ref:`select.first <select-first_action>` / :ref:`select.last <select-last_action>` / :ref:`select.previous <select-previous_action>`  / :ref:`select.next <select-next_action>`  / :ref:`select.operation <select-operation_action>`
 - :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
   / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
+- :ref:`ble_client.ble_write <ble_client-ble_write_action>`
 
 .. _config-condition:
 
