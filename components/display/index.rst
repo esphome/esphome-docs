@@ -625,7 +625,7 @@ Animation
 *********
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
-It adds additional lambda methods: ``next_frame()`` and ``prev_frame()`` to change the shown picture of a gif.
+It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame() to change the shown picture of a gif.
 
 .. code-block:: yaml
 
@@ -636,7 +636,7 @@ It adds additional lambda methods: ``next_frame()`` and ``prev_frame()`` to chan
 
 The animation can be rendered just like the image component with the ``image()`` function of the display component.
 
-To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``.
+To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``. To show a specific picture use ``id(my_animation).set_frame()``.
 This can be combined with all Lambdas:
 
 .. code-block:: yaml
