@@ -29,19 +29,18 @@ Further notes:
 * TOC image parsing is limited to things in /images/<name>.
 """
 
-from sphinx.transforms import SphinxContentsFilter
 
-from os import path
 import os
+from os import path
 from docutils.parsers.rst.states import Inliner
 from docutils.parsers.rst import Directive, directives
 from docutils.nodes import Element, Node, system_message
 from docutils import nodes, utils
-from multiprocessing.sharedctypes import Value
 from itertools import zip_longest
 from sphinx.domains import Domain
 from sphinx.environment.adapters.toctree import TocTree
 from sphinx.roles import XRefRole
+from sphinx.transforms import SphinxContentsFilter
 from sphinx.util.docutils import SphinxDirective, SphinxRole
 from sphinx.util.nodes import make_refnode
 from sphinx.util import logging
@@ -49,7 +48,6 @@ from sphinx import addnodes
 from typing import (TYPE_CHECKING, Dict, List, Tuple, Type, TypeVar, cast)
 
 N = TypeVar('N')
-
 
 if TYPE_CHECKING:
     from sphinx.environment import BuildEnvironment
@@ -966,6 +964,6 @@ def setup(app):
 
     return {
         'version': '0.1',
-        'parallel_read_safe': False,
-        'parallel_write_safe': False,
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
     }
