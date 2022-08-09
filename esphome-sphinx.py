@@ -45,7 +45,7 @@ from sphinx.util.docutils import SphinxDirective, SphinxRole
 from sphinx.util.nodes import make_refnode
 from sphinx.util import logging
 from sphinx import addnodes
-from typing import (TYPE_CHECKING, Dict, List, Tuple, Type, TypeVar, cast)
+from typing import (TYPE_CHECKING, Dict, List, Tuple, Type, TypeVar, Iterable, cast)
 
 N = TypeVar('N')
 
@@ -571,6 +571,23 @@ class ESPHomeDomain(Domain):
         _COOKBOOK_KEY: {},
     }
 
+    def merge_domaindata(self, docnames: Iterable[str], otherdata: Dict) -> None:
+        for fullname, obj in otherdata[_COMPONENTS_KEY].items():
+            if obj.docname in docnames:
+                self.data[_COMPONENTS_KEY] = obj
+        for fullname, obj in otherdata[_COMPONENTS_TOC_KEY].items():
+            if obj.docname in docnames:
+                self.data[_COMPONENTS_TOC_KEY] = obj
+        for fullname, obj in otherdata[_DEVICE_KEY].items():
+            if obj.docname in docnames:
+                self.data[_DEVICE_KEY] = obj
+        for fullname, obj in otherdata[_DEVICE_TOC_KEY].items():
+            if obj.docname in docnames:
+                self.data[_DEVICE_TOC_KEY] = obj
+        for fullname, obj in otherdata[_COOKBOOK_KEY].items():
+            if obj.docname in docnames:
+                self.data[_COOKBOOK_KEY] = obj
+
     def get_full_qualified_name(self, node):
         """Gets the path to the internally registered type.
 
@@ -963,7 +980,7 @@ def setup(app):
     app.connect('doctree-resolved', _on_doctree_resolved)
 
     return {
-        'version': '0.1',
+        'version': '0.1.1',
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
