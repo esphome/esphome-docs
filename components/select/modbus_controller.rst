@@ -7,7 +7,7 @@ Modbus Controller Select
    :friendly_name: Modbus Select
    :toc_group: Select Components
    :toc_image: modbus.png
-   
+
 .. seo::
     :description: Instructions for setting up Modbus Controller Select(s) with ESPHome.
 
