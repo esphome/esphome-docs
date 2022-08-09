@@ -1,6 +1,14 @@
 Havells Solar
 =============
 
+.. esphome:component-definition::
+   :alias: havells-solar
+   :category: sensor-miscellaneous
+   :friendly_name: Havells Solar
+   :toc_group: Miscellaneous Sensors
+   :toc_image: havellsgti5000d_s.jpg
+   :descriptor: Solar Rooftop
+
 .. seo::
     :description: Instructions for setting up Havells inverter reading on modbus.
     :image: havellsgti5000d_s.jpg

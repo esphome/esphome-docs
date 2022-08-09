@@ -1,6 +1,14 @@
 INA3221 3-Channel DC Current Sensor
 ===================================
 
+.. esphome:component-definition::
+   :alias: ina3221
+   :category: sensor-electrical
+   :friendly_name: INA3221
+   :toc_group: Electrical Sensors
+   :toc_image: ina3221.jpg
+   :descriptor: 3-Ch DC Current
+
 .. seo::
     :description: Instructions for setting up INA3221 3-channel DC current sensors.
     :image: ina3221.jpg

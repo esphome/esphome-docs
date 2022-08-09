@@ -1,6 +1,14 @@
 Honeywell ABP Pressure Sensors
 ==============================
 
+.. esphome:component-definition::
+   :alias: honeywellabp
+   :category: sensor-environmental
+   :friendly_name: Honeywell ABP
+   :toc_group: Environmental Sensors
+   :toc_image: honeywellabp.jpg
+   :descriptor: Pressure and Temperature
+
 .. seo::
     :description: Instructions for setting up Honeywell ABP Pressure sensors
     :image: honeywellabp.jpg

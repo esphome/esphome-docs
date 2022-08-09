@@ -1,6 +1,13 @@
 Using With Sonoff T1 UK 3 Gang
 ==============================
 
+.. esphome:device-definition::
+   :alias: sonoff-t1-uk-3-gang-v1-1
+   :category: sonoff
+   :friendly_name: Sonoff T1 UK 3 Gang V1.1
+   :toc_group: Sonoff
+   :toc_image: sonoff_t1_uk_3g_v1.1.jpg
+
 .. seo::
     :description: Instructions for putting Sonoff T1 UK 3 Gang devices into flash mode and installing ESPHome on them.
     :image: sonoff_t1_uk_3g_v1.1.jpg

@@ -1,6 +1,14 @@
 Binary Sensor Map
 =================
 
+.. esphome:component-definition::
+   :alias: binary-sensor-map
+   :category: sensor-miscellaneous
+   :friendly_name: Binary Sensor Map
+   :toc_group: Miscellaneous Sensors
+   :toc_image: binary_sensor_map.jpg
+   :descriptor: Map Binary to Value
+
 .. seo::
     :description: Instructions for setting up a Binary Sensor Map
     :image: binary_sensor_map.jpg

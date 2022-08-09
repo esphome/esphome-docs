@@ -1,6 +1,13 @@
 Using With Sonoff 4CH
 =====================
 
+.. esphome:device-definition::
+   :alias: sonoff-4ch
+   :category: sonoff
+   :friendly_name: Sonoff 4CH
+   :toc_group: Sonoff
+   :toc_image: sonoff_4ch.jpg
+
 .. seo::
     :description: Instructions for putting Sonoff 4CH devices into flash mode and installing ESPHome on them.
     :image: sonoff_4ch.jpg

@@ -1,6 +1,13 @@
 Grow Fingerprint Reader
 =======================
 
+.. esphome:component-definition::
+   :alias: fingerprint-grow
+   :category: miscellaneous-components
+   :friendly_name: Grow Fingerprint Reader
+   :toc_group: Miscellaneous Components
+   :toc_image: fingerprint.svg
+
 .. seo::
     :description: Instructions for setting up Grow Fingerprint Reader integration in ESPHome.
     :image: fingerprint.svg

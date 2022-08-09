@@ -1,6 +1,14 @@
 AM43 Sensor
 ===========
 
+.. esphome:component-definition::
+   :alias: am43
+   :category: sensor-ble;sensor-light
+   :friendly_name: AM43
+   :toc_group: Bluetooth Low Energy (BLE) Sensors;Light Sensors
+   :toc_image: am43.jpg
+   :descriptor: Lux and Battery level
+
 .. seo::
     :description: Sensors on AM43/BLE covers in ESPHome.
     :image: am43.jpg

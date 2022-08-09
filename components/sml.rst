@@ -1,6 +1,13 @@
 SML (Smart Message Language)
 ============================
 
+.. esphome:component-definition::
+   :alias: sml
+   :category: miscellaneous-components
+   :friendly_name: SML
+   :toc_group: Miscellaneous Components
+   :toc_image: sml.svg
+
 .. seo::
     :description: Instructions for setting up SML sensors
     :image: sml.svg

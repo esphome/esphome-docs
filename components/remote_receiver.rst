@@ -1,6 +1,13 @@
 Remote Receiver
 ===============
 
+.. esphome:component-definition::
+   :alias: remote-receiver
+   :category: miscellaneous-components
+   :friendly_name: Remote Receiver
+   :toc_group: Miscellaneous Components
+   :toc_image: remote.svg
+
 .. seo::
     :description: Instructions for setting up remote receiver binary sensors for infrared and RF codes.
     :image: remote.svg

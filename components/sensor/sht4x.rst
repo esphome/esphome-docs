@@ -1,6 +1,14 @@
 SHT4X Temperature and Humidity Sensor
 =====================================
 
+.. esphome:component-definition::
+   :alias: sht4x
+   :category: sensor-environmental
+   :friendly_name: SHT4X
+   :toc_group: Environmental Sensors
+   :toc_image: sht4x.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up SHT4X temperature and humidity sensor
     :image: sht4x.jpg

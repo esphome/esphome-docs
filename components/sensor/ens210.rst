@@ -1,6 +1,14 @@
 ENS210 Temperature+Humidity Sensor
 ==================================
 
+.. esphome:component-definition::
+   :alias: ens210
+   :category: sensor-environmental
+   :friendly_name: ENS210
+   :toc_group: Environmental Sensors
+   :toc_image: ens210.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up ENS210 temperature and humidity sensors
     :image: ens210.jpg

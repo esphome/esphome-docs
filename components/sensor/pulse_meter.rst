@@ -1,6 +1,13 @@
 Pulse Meter Sensor
 ==================
 
+.. esphome:component-definition::
+   :alias: pulse-meter
+   :category: sensor-digital-signal
+   :friendly_name: Pulse Meter
+   :toc_group: Digital Signal Sensors
+   :toc_image: pulse.svg
+
 .. seo::
     :description: Instructions for setting up pulse meter sensors.
     :image: pulse.svg

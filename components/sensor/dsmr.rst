@@ -1,6 +1,14 @@
 DSMR Component
 ==============
 
+.. esphome:component-definition::
+   :alias: dsmr
+   :category: sensor-electrical
+   :friendly_name: DSMR
+   :toc_group: Electrical Sensors
+   :toc_image: dsmr.svg
+   :descriptor: Electrical Counter
+
 .. seo::
     :description: Instructions for setting up DSMR Meter component in ESPHome.
     :image: dsmr.svg

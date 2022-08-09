@@ -1,6 +1,14 @@
 BME680 Temperature+Pressure+Humidity+Gas Sensor via BSEC
 ========================================================
 
+.. esphome:component-definition::
+   :alias: bme680-bsec
+   :category: sensor-environmental
+   :friendly_name: BME680 via BSEC
+   :toc_group: Environmental Sensors
+   :toc_image: bme680.jpg
+   :descriptor: Temperature, Humidity, VOC, and Pressure
+
 .. seo::
     :description: Instructions for setting up BME680 temperature, humidity, pressure and gas sensors via BSEC.
     :image: bme680.jpg

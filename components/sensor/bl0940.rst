@@ -1,6 +1,14 @@
 Belling BL0940 Energy Monitor
 ==================================
 
+.. esphome:component-definition::
+   :alias: bl0940
+   :category: sensor-electrical
+   :friendly_name: BL0940
+   :toc_group: Electrical Sensors
+   :toc_image: bl0940.png
+   :descriptor: Voltage and Current and Power
+
 .. seo::
     :description: Instructions for setting up BL0940 power monitors.
     :image: bl0940.png

@@ -1,6 +1,13 @@
 BLE Client Switch
 =================
 
+.. esphome:component-definition::
+   :alias: ble-client
+   :category: switch-components
+   :friendly_name: BLE Client Switch
+   :toc_group: Switch Components
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Control the state of BLE clients.
     :image: bluetooth.svg

@@ -1,6 +1,13 @@
 IR Remote Climate
 =================
 
+.. esphome:component-definition::
+   :alias: ir
+   :category: climate-components
+   :friendly_name: IR Remote Climate
+   :toc_group: Climate Components
+   :toc_image: air-conditioner-ir.svg
+
 .. seo::
     :description: Controls a variety of compatible Climate devices via IR
     :image: air-conditioner-ir.svg

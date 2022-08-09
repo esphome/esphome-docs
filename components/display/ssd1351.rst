@@ -1,6 +1,13 @@
 SSD1351 OLED Display
 ====================
 
+.. esphome:component-definition::
+   :alias: ssd1351
+   :category: display-components
+   :friendly_name: SSD1351
+   :toc_group: Display Components
+   :toc_image: ssd1351.jpg
+
 .. seo::
     :description: Instructions for setting up SSD1351 OLED display drivers.
     :image: ssd1351.jpg

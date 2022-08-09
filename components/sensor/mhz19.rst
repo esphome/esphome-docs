@@ -1,6 +1,14 @@
 MH-Z19 CO_2 and Temperature Sensor
 ==================================
 
+.. esphome:component-definition::
+   :alias: mh-z19
+   :category: sensor-air-quality;sensor-environmental
+   :friendly_name: MH-Z19
+   :toc_group: Air Quality Sensors;Environmental Sensors
+   :toc_image: mhz19.jpg
+   :descriptor: CO₂ and Temperature
+
 .. seo::
     :description: Instructions for setting up MH-Z19 CO2 and temperature sensors
     :image: mhz19.jpg

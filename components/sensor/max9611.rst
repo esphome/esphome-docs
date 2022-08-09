@@ -1,6 +1,14 @@
 MAX9611/9612 High Side Current+Voltage+Temperature Sensor
 =========================================================
 
+.. esphome:component-definition::
+   :alias: max9611
+   :category: sensor-electrical
+   :friendly_name: MAX9611
+   :toc_group: Electrical Sensors
+   :toc_image: max9611.jpg
+   :descriptor: +60VDC Voltage and Current and Power and Temperature
+
 .. seo::
     :description: Instructions for setting up MAX9611 MAX9612 High-Side Current-Sense Amplifier
     :image: max9611.jpg

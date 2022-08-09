@@ -1,6 +1,13 @@
 DF-Player mini
 ==============
 
+.. esphome:component-definition::
+   :alias: dfplayer
+   :category: miscellaneous-components
+   :friendly_name: DFPlayer
+   :toc_group: Miscellaneous Components
+   :toc_image: dfplayer.svg
+
 .. seo::
     :description: Instructions for setting up DF Player Mini integration in ESPHome.
     :image: dfplayer.svg

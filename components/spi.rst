@@ -3,6 +3,13 @@
 SPI Bus
 =======
 
+.. esphome:component-definition::
+   :alias: spi
+   :category: core
+   :friendly_name: SPI Bus
+   :toc_group: Core Components
+   :toc_image: spi.svg
+
 .. seo::
     :description: Instructions for setting up an SPI bus in ESPHome
     :image: spi.svg

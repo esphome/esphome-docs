@@ -1,6 +1,13 @@
 Modbus Controller Text Sensor
 =============================
 
+.. esphome:component-definition::
+   :alias: modbus-controller
+   :category: text-sensor-components
+   :friendly_name: Modbus Text Sensor
+   :toc_group: Text Sensor Components
+   :toc_image: modbus.png
+
 .. seo::
     :description: Instructions for setting up a modbus_controller modbus text sensor.
 

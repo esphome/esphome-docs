@@ -1,6 +1,13 @@
 ST7735 Display
 ==============
 
+.. esphome:component-definition::
+   :alias: st7735
+   :category: display-components
+   :friendly_name: ST7735
+   :toc_group: Display Components
+   :toc_image: st7735.jpg
+
 .. seo::
     :description: Instructions for setting up a ST7735 display drivers.
     :keywords: ST7735

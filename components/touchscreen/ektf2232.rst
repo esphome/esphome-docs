@@ -1,6 +1,15 @@
 EKTF2232 Touchscreen Controller
 ================================
 
+.. esphome:component-definition::
+   :alias: ektf2232
+   :category: touchscreen-components
+   :friendly_name: EKTF2232
+   :toc_group: Touchscreen Components
+   :toc_image: ektf2232.svg
+   :descriptor: Inkplate 6 Plus
+
+
 .. seo::
     :description: Instructions for setting up EKTF2232 touchscreen controller with ESPHome
     :image: ektf2232.svg

@@ -1,6 +1,14 @@
 Hydreon Rain Sensor
 ===================
 
+.. esphome:component-definition::
+   :alias: hydreon-rgxx
+   :category: sensor-environmental
+   :friendly_name: Hydreon Rain Sensor
+   :toc_group: Environmental Sensors
+   :toc_image: hydreon_rg9.jpg
+   :descriptor: Rain
+
 .. seo::
     :description: Instructions for setting up Hydreon rain sensors
     :image: hydreon_rg9.jpg

@@ -1,6 +1,13 @@
 RF Bridge Component
 ===================
 
+.. esphome:component-definition::
+   :alias: rf-bridge
+   :category: miscellaneous-components
+   :friendly_name: RF Bridge
+   :toc_group: Miscellaneous Components
+   :toc_image: rf_bridge.jpg
+
 .. seo::
     :description: Instructions for setting up the RF Bridge in ESPHome.
     :image: rf_bridge.jpg

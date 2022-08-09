@@ -1,6 +1,13 @@
 Light Partition
 ===============
 
+.. esphome:component-definition::
+   :alias: partition
+   :category: light-component
+   :friendly_name: Light Partition
+   :toc_group: Light Components
+   :toc_image: color_lens.svg
+
 .. seo::
     :description: Instructions for setting up light partitions.
     :image: color_lens.svg

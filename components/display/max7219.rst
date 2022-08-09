@@ -1,6 +1,13 @@
 MAX7219 7-Segment Display
 =========================
 
+.. esphome:component-definition::
+   :alias: max7219
+   :category: display-components
+   :friendly_name: MAX7219
+   :toc_group: Display Components
+   :toc_image: max7219.jpg
+
 .. seo::
     :description: Instructions for setting up MAX7219 7-segment displays.
     :image: max7219.jpg

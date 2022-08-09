@@ -1,6 +1,13 @@
 Lilygo T5 4.7" Touchscreen
 ==========================
 
+.. esphome:component-definition::
+   :alias: lilygo-t5-47
+   :category: touchscreen-components
+   :friendly_name: Lilygo T5 4.7"
+   :toc_group: Touchscreen Components
+   :toc_image: lilygo_t5_47_touch.jpg
+
 .. seo::
     :description: Instructions for setting up the Lilygo T5 4.7" Touchscreen with ESPHome
     :image: lilygo_t5_47_touch.jpg

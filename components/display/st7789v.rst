@@ -1,6 +1,13 @@
 ST7789V TFT LCD
 ===============
 
+.. esphome:component-definition::
+   :alias: st7789v
+   :category: display-components
+   :friendly_name: ST7789V
+   :toc_group: Display Components
+   :toc_image: st7789v.jpg
+
 .. seo::
     :description: Instructions for setting up ST7789V TFT LCD display drivers.
     :image: st7789v.jpg

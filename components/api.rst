@@ -1,6 +1,13 @@
 Native API Component
 ====================
 
+.. esphome:component-definition::
+   :alias: native-api
+   :category: core
+   :friendly_name: Native API
+   :toc_group: Core Components
+   :toc_image: server-network.svg
+
 .. seo::
     :description: Instructions for setting up the native ESPHome API for communication with Home Assistant.
     :image: server-network.svg

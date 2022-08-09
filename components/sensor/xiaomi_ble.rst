@@ -1,6 +1,14 @@
 Xiaomi Mijia BLE Sensors
 ========================
 
+.. esphome:component-definition::
+   :alias: xiaomi-ble
+   :category: sensor-ble
+   :friendly_name: Xiaomi BLE
+   :toc_group: Bluetooth Low Energy (BLE) Sensors
+   :toc_image: xiaomi_mijia_logo.jpg
+   :descriptor: Various
+
 .. seo::
     :description: Instructions for setting up Xiaomi Mi Home (Mijia) bluetooth-based sensors in ESPHome.
     :image: xiaomi_mijia_logo.jpg

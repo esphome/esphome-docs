@@ -1,6 +1,14 @@
 ATM90E32 Power Sensor
 =====================
 
+.. esphome:component-definition::
+   :alias: atm90e32
+   :category: sensor-electrical
+   :friendly_name: ATM90E32
+   :toc_group: Electrical Sensors
+   :toc_image: atm90e32.jpg
+   :descriptor: Voltage and Current and Power
+
 .. seo::
     :description: Instructions for setting up ATM90E32 energy metering sensors
     :image: atm90e32.jpg

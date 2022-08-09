@@ -1,6 +1,13 @@
 PCA9685
 =======
 
+.. esphome:component-definition::
+   :alias: pca9685
+   :category: output-components
+   :friendly_name: PCA9685
+   :toc_group: Output Components
+   :toc_image: pca9685.jpg
+
 .. seo::
     :description: Instructions for setting up PCA9685 LED PWM drivers.
     :image: pca9685.jpg

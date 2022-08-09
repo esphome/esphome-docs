@@ -1,6 +1,15 @@
 NTC Sensor
 ==========
 
+.. esphome:component-definition::
+   :alias: ntc
+   :category: sensor-environmental
+   :friendly_name: NTC Thermistor
+   :toc_group: Environmental Sensors
+   :toc_image: ntc.jpg
+   :descriptor: Temperature
+
+
 .. seo::
     :description: Instructions for setting up NTC thermistor sensor in ESPHome
     :image: ntc.jpg

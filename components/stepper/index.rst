@@ -1,6 +1,13 @@
 Stepper Component
 =================
 
+.. esphome:component-definition::
+   :alias: stepper
+   :category: miscellaneous-components
+   :friendly_name: Stepper
+   :toc_group: Miscellaneous Components
+   :toc_image: stepper.svg
+
 .. seo::
     :description: Instructions for setting up stepper motor drivers in ESPHome
     :image: folder-open.svg

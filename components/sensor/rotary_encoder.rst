@@ -1,6 +1,13 @@
 Rotary Encoder Sensor
 =====================
 
+.. esphome:component-definition::
+   :alias: rotary-encoder
+   :category: sensor-miscellaneous
+   :friendly_name: Rotary Encoder
+   :toc_group: Miscellaneous Sensors
+   :toc_image: rotary_encoder.jpg
+
 .. seo::
     :description: Instructions for setting up rotary encoders.
     :image: rotary_encoder.jpg

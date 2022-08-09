@@ -1,6 +1,14 @@
 Text Sensor Component
 =====================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: text-sensor-components
+   :friendly_name: Text Sensor Core
+   :toc_group: Text Sensor Components
+   :toc_image: folder-open.svg
+
+
 .. seo::
     :description: Instructions for setting up text sensors that represent their state as a string of text.
     :image: folder-open.svg

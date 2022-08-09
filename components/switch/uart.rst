@@ -1,6 +1,13 @@
 UART Switch
 ===========
 
+.. esphome:component-definition::
+   :alias: uart
+   :category: switch-components
+   :friendly_name: UART Switch
+   :toc_group: Switch Components
+   :toc_image: uart.svg
+
 .. seo::
     :description: Instructions for setting up UART switches in ESPHome that can output arbitrary UART sequences when activated.
     :image: uart.svg

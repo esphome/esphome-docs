@@ -1,6 +1,13 @@
 MAX7219 Digit Display
 =====================
 
+.. esphome:component-definition::
+   :alias: max7219digit
+   :category: display-components
+   :friendly_name: MAX7219 Dot Matrix
+   :toc_group: Display Components
+   :toc_image: max7219digit.jpg
+
 .. seo::
     :description: Instructions for setting up MAX7219 Digit displays.
     :image: max7219digit.jpg

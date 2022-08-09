@@ -1,6 +1,13 @@
 Template Button
 ===============
 
+.. esphome:component-definition::
+   :alias: template
+   :category: button-components
+   :friendly_name: Template Button
+   :toc_group: Button Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template buttons that can execute arbitrary actions when pressed.
     :image: description.svg

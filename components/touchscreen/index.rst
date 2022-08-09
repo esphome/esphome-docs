@@ -1,6 +1,13 @@
 Touchscreen Components
 ======================
 
+.. esphome:component-definition::
+   :alias: touchscreen
+   :category: binary-sensor;touchscreen-components
+   :friendly_name: Touchscreen Core
+   :toc_group: Binary Sensor Components;Touchscreen Components
+   :toc_image: touch.svg
+
 .. seo::
     :description: Instruction for using touchscreen components.
     :image: folder-open.svg

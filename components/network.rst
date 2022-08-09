@@ -1,6 +1,13 @@
 Network component
 =================
 
+.. esphome:component-definition::
+   :alias: network
+   :category: core
+   :friendly_name: Network
+   :toc_group: Core Components
+   :toc_image: network-wifi.svg
+
 .. seo::
     :description:
     :image: network-wifi.svg

@@ -1,6 +1,13 @@
 Custom Output
 =============
 
+.. esphome:component-definition::
+   :alias: custom
+   :category: output-components
+   :friendly_name: Custom Output
+   :toc_group: Output Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create custom binary and float :doc:`outputs </components/output/index>`
 in ESPHome using the C++ (Arduino) API.
 

@@ -1,6 +1,13 @@
 Template Select
 ===============
 
+.. esphome:component-definition::
+   :alias: template
+   :category: select-components
+   :friendly_name: Template Select
+   :toc_group: Select Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up Template Select(s) with ESPHome.
     :image: description.svg

@@ -1,6 +1,14 @@
 CSE7766 Power Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: cse7766
+   :category: sensor-electrical
+   :friendly_name: CSE7766
+   :toc_group: Electrical Sensors
+   :toc_image: cse7766.svg
+   :descriptor: Voltage and Current and Power
+
 .. seo::
     :description: Instructions for setting up CSE7766 power sensors for the Sonoff Pow R2
     :image: cse7766.svg

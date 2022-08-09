@@ -1,6 +1,13 @@
 WiFi Component
 ==============
 
+.. esphome:component-definition::
+   :alias: wifi
+   :category: core
+   :friendly_name: WiFi
+   :toc_group: Core Components
+   :toc_image: network-wifi.svg
+
 .. seo::
     :description: Instructions for setting up the WiFi configuration for your ESP node in ESPHome.
     :image: network-wifi.svg

@@ -1,6 +1,13 @@
 Binary Fan
 ==========
 
+.. esphome:component-definition::
+   :alias: binary
+   :category: fan-components
+   :friendly_name: Binary Fan
+   :toc_group: Fan Components
+   :toc_image: fan.svg
+
 .. seo::
     :description: Instructions for setting up binary fans.
     :image: fan.svg

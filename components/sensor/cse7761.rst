@@ -1,6 +1,15 @@
 CSE7761 Power Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: cse7761
+   :category: sensor-electrical
+   :friendly_name: CSE7761
+   :toc_group: Electrical Sensors
+   :toc_image: cse7761.svg
+   :descriptor: Voltage and Current and Power
+
+
 .. seo::
     :description: Instructions for setting up CSE7761 power sensors for the Sonoff Dual R3 v1.x
     :image: cse7761.svg

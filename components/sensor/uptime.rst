@@ -1,6 +1,13 @@
 Uptime Sensor
 =============
 
+.. esphome:component-definition::
+   :alias: uptime-sensor
+   :category: sensor-core
+   :friendly_name: Uptime Sensor
+   :toc_group: Core Sensors
+   :toc_image: timer.svg
+
 .. seo::
     :description: Instructions for setting up a sensor that tracks the uptime of the ESP.
     :image: timer.svg

@@ -1,6 +1,13 @@
 Light Component
 ===============
 
+.. esphome:component-definition::
+   :alias: light
+   :category: light-component
+   :friendly_name: Light Core
+   :toc_group: Light Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up lights and light effects in ESPHome.
     :image: folder-open.svg

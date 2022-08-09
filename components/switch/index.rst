@@ -1,6 +1,13 @@
 Switch Component
 ================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: switch-components
+   :friendly_name: Switch Core
+   :toc_group: Switch Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up generic switches in ESPHome.
     :image: folder-open.svg

@@ -1,6 +1,13 @@
 ESP32 Camera Component
 ======================
 
+.. esphome:component-definition::
+   :alias: esp32-camera
+   :category: miscellaneous-components
+   :friendly_name: ESP32 Camera
+   :toc_group: Miscellaneous Components
+   :toc_image: camera.svg
+
 .. seo::
     :description: Instructions for setting up the ESP32 Cameras in ESPHome
     :image: camera.svg

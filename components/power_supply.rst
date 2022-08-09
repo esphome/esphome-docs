@@ -1,6 +1,13 @@
 Power Supply Component
 ======================
 
+.. esphome:component-definition::
+   :alias: power-supply
+   :category: core
+   :friendly_name: Power Supply
+   :toc_group: Core Components
+   :toc_image: power.svg
+
 .. seo::
     :description: Instructions for setting up power supplies which will automatically turn on together with outputs.
     :image: power.svg

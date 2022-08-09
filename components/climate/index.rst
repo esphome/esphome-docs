@@ -1,6 +1,13 @@
 Climate Component
 =================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: climate-components
+   :friendly_name: Climate Core
+   :toc_group: Climate Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Information about the base representation of all climate devices.
     :image: folder-open.svg

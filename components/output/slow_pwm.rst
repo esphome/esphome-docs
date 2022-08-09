@@ -1,6 +1,13 @@
 Slow PWM Output
 ===============
 
+.. esphome:component-definition::
+   :alias: slow-pwm
+   :category: output-components
+   :friendly_name: Slow PWM
+   :toc_group: Output Components
+   :toc_image: pwm.png
+
 .. seo::
     :description: Instructions for setting up slow pwm outputs for GPIO pins.
     :image: pwm.png

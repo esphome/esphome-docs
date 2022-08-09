@@ -1,6 +1,14 @@
 TCS34725 RGB Color Sensor
 =========================
 
+.. esphome:component-definition::
+   :alias: tcs34725
+   :category: sensor-light
+   :friendly_name: TCS34725
+   :toc_group: Light Sensors
+   :toc_image: tcs34725.jpg
+   :descriptor: Lux, RGB, and Colour
+
 .. seo::
     :description: Instructions for setting up TCS34725 RGB color sensors.
     :image: tcs34725.jpg

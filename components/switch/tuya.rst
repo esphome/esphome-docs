@@ -1,6 +1,13 @@
 Tuya Switch
 ===========
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: switch-components
+   :friendly_name: Tuya Switch
+   :toc_group: Switch Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya device switch.
     :image: upload.svg

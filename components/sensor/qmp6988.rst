@@ -1,6 +1,14 @@
 QMP6988 Temperature+Pressure Sensor
 ===================================
 
+.. esphome:component-definition::
+   :alias: qmp6988
+   :category: sensor-environmental
+   :friendly_name: QMP6988
+   :toc_group: Environmental Sensors
+   :toc_image: qmp6988_env3.png
+   :descriptor: Temperature and Pressure
+
 .. seo::
     :description: Instructions for setting up QMP6988 temperature and pressure sensors with ESPHome
     :keywords: QMP6988

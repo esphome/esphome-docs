@@ -1,6 +1,13 @@
 Anova Cooker
 =============
 
+.. esphome:component-definition::
+   :alias: anova
+   :category: climate-components
+   :friendly_name: Anova Cooker
+   :toc_group: Climate Components
+   :toc_image: anova.png
+
 .. seo::
     :description: Instructions for setting up an Anova sous-vide cooker.
     :image: anova.png

@@ -1,6 +1,14 @@
 Mopeka Pro Check BLE Sensor
 ===========================
 
+.. esphome:component-definition::
+   :alias: mopeka-pro-check
+   :category: sensor-ble
+   :friendly_name: Mopeka Pro Check LP
+   :toc_group: Bluetooth Low Energy (BLE) Sensors
+   :toc_image: mopeka_pro_check.jpg
+   :descriptor: Tank Level
+
 .. seo::
     :description: Instructions for setting up Mopeka Pro Check bluetooth-based sensors in ESPHome.
     :image: mopeka_pro_check.jpg

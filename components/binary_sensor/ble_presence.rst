@@ -1,6 +1,13 @@
 ESP32 Bluetooth Low Energy Device
 =================================
 
+.. esphome:component-definition::
+   :alias: ble-presence
+   :category: binary-sensor
+   :friendly_name: ESP32 BLE Presence
+   :toc_group: Binary Sensor Components
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Instructions for setting up BLE binary sensors for the ESP32.
     :image: bluetooth.svg

@@ -1,6 +1,13 @@
 Home Assistant Binary Sensor
 ============================
 
+.. esphome:component-definition::
+   :alias: homeassistant
+   :category: binary-sensor
+   :friendly_name: Home Assistant
+   :toc_group: Binary Sensor Components
+   :toc_image: home-assistant.svg
+
 .. seo::
     :description: Instructions for setting up Home Assistant binary sensors with ESPHome that import states from your Home Assistant instance.
     :image: home-assistant.svg

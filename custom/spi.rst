@@ -1,6 +1,13 @@
 Custom SPI Device
 =================
 
+.. esphome:component-definition::
+   :alias: spi
+   :category: additional-custom-components
+   :friendly_name: Custom SPI Component
+   :toc_group: Additional Custom Components
+   :toc_image: language-cpp.svg
+
 Lots of devices communicate using the SPI protocol. If you want to integrate
 a device into ESPHome that uses this protocol you can pretty much use almost
 all Arduino-based code because the ``SPI`` library is also available in ESPHome.

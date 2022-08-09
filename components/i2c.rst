@@ -3,6 +3,13 @@
 I²C Bus
 =======
 
+.. esphome:component-definition::
+   :alias: i2c
+   :category: core
+   :friendly_name: I²C Bus
+   :toc_group: Core Components
+   :toc_image: i2c.svg
+
 .. seo::
     :description: Instructions for setting up the I²C bus to communicate with 2-wire devices in ESPHome
     :image: i2c.svg

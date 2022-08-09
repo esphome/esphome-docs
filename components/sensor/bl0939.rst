@@ -1,6 +1,14 @@
 BL0939 Power Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: bl0939
+   :category: sensor-electrical
+   :friendly_name: BL0939
+   :toc_group: Electrical Sensors
+   :toc_image: bl0939.png
+   :descriptor: Voltage and Current and Power and Energy
+
 .. seo::
     :description: Instructions for setting up BL0939 power sensors for the Sonoff Dual R3 v2
     :image: bl0939.png

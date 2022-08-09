@@ -1,6 +1,14 @@
 Radon Eye BLE Sensors
 =====================
 
+.. esphome:component-definition::
+   :alias: radon-eye-ble
+   :category: sensor-air-quality;sensor-environmental
+   :friendly_name: RadonEye BLE
+   :toc_group: Air Quality Sensors;Environmental Sensors
+   :toc_image: radon_eye_logo.png
+   :descriptor: Radon, Temperature, and Pressure
+
 .. seo::
     :description: Instructions for setting up Radon Eye bluetooth-based sensors in ESPHome.
     :keywords: Radon, RadonEye, RD200, BLE, Bluetooth, Wave Plus, Wave Mini

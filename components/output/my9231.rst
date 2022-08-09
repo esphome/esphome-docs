@@ -1,6 +1,13 @@
 MY9231/MY9291 LED driver
 ========================
 
+.. esphome:component-definition::
+   :alias: my9231
+   :category: output-components
+   :friendly_name: MY9231/MY9291
+   :toc_group: Output Components
+   :toc_image: my9231.svg
+
 .. seo::
     :description: Instructions for setting up MY9231 and MY9291 LED drives in ESPHome.
     :image: my9231.svg

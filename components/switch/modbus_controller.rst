@@ -1,6 +1,13 @@
 Modbus Controller Switch
 ========================
 
+.. esphome:component-definition::
+   :alias: modbus-controller
+   :category: switch-components
+   :friendly_name: Modbus Switch
+   :toc_group: Switch Components
+   :toc_image: modbus.png
+
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
 

@@ -1,6 +1,13 @@
 Generic Sonoff
 ==============
 
+.. esphome:device-definition::
+   :alias: sonoff-generic
+   :category: sonoff
+   :friendly_name: Generic Sonoff
+   :toc_group: Sonoff
+   :toc_image: sonoff.svg
+
 .. seo::
     :description: Instructions for using generic Sonoff devices with ESPHome.
     :image: sonoff.svg

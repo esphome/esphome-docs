@@ -1,6 +1,13 @@
 PCF8574 I/O Expander
 ====================
 
+.. esphome:component-definition::
+   :alias: pcf8574
+   :category: miscellaneous-components
+   :friendly_name: PCF8574 I/O Expander
+   :toc_group: Miscellaneous Components
+   :toc_image: pcf8574.jpg
+
 .. seo::
     :description: Instructions for setting up PCF8574 digital port expanders in ESPHome.
     :image: pcf8574.jpg

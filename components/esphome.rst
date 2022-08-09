@@ -1,6 +1,13 @@
 ESPHome Core Configuration
 ==========================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: core
+   :friendly_name: Core
+   :toc_group: Core Components
+   :toc_image: cloud-circle.svg
+
 .. seo::
     :description: Instructions for setting up the core ESPHome configuration.
     :image: cloud-circle.svg

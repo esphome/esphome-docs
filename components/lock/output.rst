@@ -1,6 +1,13 @@
 Generic Output Lock
 =====================
 
+.. esphome:component-definition::
+   :alias: output
+   :category: lock-components
+   :friendly_name: Generic Output Lock
+   :toc_group: Lock Components
+   :toc_image: upload.svg
+
 .. seo::
     :description: Instructions for setting up generic output locks in ESPHome that control an output component.
     :image: upload.svg

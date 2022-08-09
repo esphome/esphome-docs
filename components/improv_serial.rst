@@ -1,6 +1,13 @@
 Improv via Serial
 =================
 
+.. esphome:component-definition::
+   :alias: improv-serial
+   :category: miscellaneous-components
+   :friendly_name: Improv via Serial
+   :toc_group: Miscellaneous Components
+   :toc_image: improv.svg
+
 .. seo::
     :description: Instructions for setting up Improv via Serial in ESPHome.
     :image: improv-social.png

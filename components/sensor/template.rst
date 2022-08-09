@@ -1,6 +1,14 @@
 Template Sensor
 ===============
 
+.. esphome:component-definition::
+   :alias: template-sensor
+   :category: sensor-core
+   :friendly_name: Template Sensor
+   :toc_group: Core Sensors
+   :toc_image: description.svg
+
+
 .. seo::
     :description: Instructions for setting up template sensors with ESPHome.
     :image: description.svg

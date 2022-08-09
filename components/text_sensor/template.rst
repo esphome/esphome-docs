@@ -1,6 +1,13 @@
 Template Text Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: template
+   :category: text-sensor-components
+   :friendly_name: Template Text Sensor
+   :toc_group: Text Sensor Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template text sensors in ESPHome
     :image: description.svg

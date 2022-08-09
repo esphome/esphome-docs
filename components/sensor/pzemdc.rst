@@ -1,6 +1,14 @@
 Peacefair PZEM-00X DC Energy Monitor
 ====================================
 
+.. esphome:component-definition::
+   :alias: pzemdc
+   :category: sensor-electrical
+   :friendly_name: PZEM DC
+   :toc_group: Electrical Sensors
+   :toc_image: pzem-dc.jpg
+   :descriptor: Voltage and Current and Power
+
 .. seo::
     :description: Instructions for setting up DC PZEM power monitors.
     :image: pzem-dc.jpg

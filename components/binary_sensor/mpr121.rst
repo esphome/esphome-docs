@@ -1,6 +1,13 @@
 MPR121 Capacitive Touch Sensor
 ==============================
 
+.. esphome:component-definition::
+   :alias: mpr121
+   :category: binary-sensor
+   :friendly_name: MPR121 Capacitive Touch Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: mpr121.jpg
+
 .. seo::
     :description: Instructions for setting up MPR121 Capacitive Touch Sensor
     :image: mpr121.jpg

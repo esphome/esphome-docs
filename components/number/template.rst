@@ -1,6 +1,13 @@
 Template Number
 ===============
 
+.. esphome:component-definition::
+   :alias: template
+   :category: number-components
+   :friendly_name: Template Number
+   :toc_group: Number Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template numbers with ESPHome.
     :image: description.svg

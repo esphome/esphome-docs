@@ -1,6 +1,14 @@
 Analog To Digital Sensor
 ========================
 
+.. esphome:component-definition::
+   :alias: adc
+   :category: sensor-analogue
+   :friendly_name: ADC
+   :toc_group: Analogue Sensors
+   :toc_image: flash.svg
+   :descriptor: ESP internal
+
 .. seo::
     :description: Instructions for setting up built-in analog voltage sensors.
     :image: flash.svg

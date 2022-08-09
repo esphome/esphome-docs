@@ -1,6 +1,13 @@
 MCP230xx I/O Expander
 =====================
 
+.. esphome:component-definition::
+   :alias: mcp230xx
+   :category: miscellaneous-components
+   :friendly_name: MCP230XX I/O Expander - I²C Bus
+   :toc_group: Miscellaneous Components
+   :toc_image: mcp230xx.svg
+
 .. seo::
     :description: Instructions for setting up MCP23008, MCP23016 or MCP23017 digital port expander in ESPHome.
     :image: mcp230xx.svg

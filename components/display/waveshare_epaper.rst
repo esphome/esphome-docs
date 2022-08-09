@@ -1,6 +1,13 @@
 Waveshare E-Paper Display
 =========================
 
+.. esphome:component-definition::
+   :alias: waveshare-epaper
+   :category: display-components
+   :friendly_name: Waveshare E-Paper
+   :toc_group: Display Components
+   :toc_image: waveshare_epaper.jpg
+
 .. seo::
     :description: Instructions for setting up Waveshare E-Paper displays in ESPHome.
     :image: waveshare_epaper.jpg

@@ -1,6 +1,14 @@
 CS5460A Power Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: cs5460a
+   :category: sensor-electrical
+   :friendly_name: CS5460A
+   :toc_group: Electrical Sensors
+   :toc_image: cs5460a.png
+   :descriptor: Voltage and Current and Power
+
 .. seo::
     :description: CS5460A component configuration
     :image: cs5460a.png

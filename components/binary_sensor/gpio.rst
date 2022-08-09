@@ -1,6 +1,13 @@
 GPIO Binary Sensor
 ==================
 
+.. esphome:component-definition::
+   :alias: gpio
+   :category: binary-sensor
+   :friendly_name: GPIO
+   :toc_group: Binary Sensor Components
+   :toc_image: pin.svg
+
 .. seo::
     :description: Instructions for setting up GPIO binary sensors with ESPHome.
     :image: pin.svg

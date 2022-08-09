@@ -1,6 +1,14 @@
 MAX31865 Platinum RTD Temperature Sensor
 ========================================
 
+.. esphome:component-definition::
+   :alias: max31865
+   :category: sensor-thermocouple
+   :friendly_name: MAX31865
+   :toc_group: Thermocouple Sensors
+   :toc_image: max31865.jpg
+   :descriptor: Platinum RTD
+
 .. seo::
     :description: Instructions for setting up MAX31865 platinum RTD temperature sensors.
     :image: max31865.jpg

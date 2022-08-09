@@ -1,6 +1,13 @@
 Integration Sensor
 ==================
 
+.. esphome:component-definition::
+   :alias: integration
+   :category: sensor-core
+   :friendly_name: Integration
+   :toc_group: Core Sensors
+   :toc_image: sigma.svg
+
 .. seo::
     :description: Instructions for setting up sensors that integrate values over time.
     :image: sigma.svg

@@ -1,6 +1,14 @@
 PM1006 Particulate Matter Sensor
 ================================
 
+.. esphome:component-definition::
+   :alias: pm1006
+   :category: sensor-air-quality
+   :friendly_name: PM1006 Sensor
+   :toc_group: Air Quality Sensors
+   :toc_image: pm1006.jpg
+   :descriptor: Particulate
+
 .. seo::
     :description: Instructions for setting up PM1006 Particulate matter sensors, such as in the IKEA VINDRIKTNING
     :image: pm1006.jpg

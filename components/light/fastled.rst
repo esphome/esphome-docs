@@ -1,6 +1,13 @@
 FastLED Light
 =============
 
+.. esphome:component-definition::
+   :alias: fastled
+   :category: light-component
+   :friendly_name: FastLED Light
+   :toc_group: Light Components
+   :toc_image: color_lens.svg
+
 .. seo::
     :description: Instructions for setting up FastLED addressable lights like NEOPIXEL.
     :image: color_lens.svg

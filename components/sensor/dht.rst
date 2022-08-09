@@ -1,6 +1,14 @@
 DHT Temperature+Humidity Sensor
 ===============================
 
+.. esphome:component-definition::
+   :alias: dht
+   :category: sensor-environmental
+   :friendly_name: DHT
+   :toc_group: Environmental Sensors
+   :toc_image: dht.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up DHT11 and DHT22 temperature and humidity sensors.
     :image: dht.jpg

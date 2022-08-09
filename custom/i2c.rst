@@ -1,6 +1,13 @@
 Custom I²C Device
 =================
 
+.. esphome:component-definition::
+   :alias: i2c
+   :category: additional-custom-components
+   :friendly_name: Custom I²C Component
+   :toc_group: Additional Custom Components
+   :toc_image: language-cpp.svg
+
 Lots of devices communicate using the I²C protocol. If you want to integrate
 a device into ESPHome that uses this protocol you can pretty much use almost
 all Arduino-based code because the ``Wire`` library is also available in ESPHome.

@@ -1,6 +1,13 @@
 PipSolar PV Inverter
 ====================
 
+.. esphome:component-definition::
+   :alias: pipsolar
+   :category: miscellaneous-components
+   :friendly_name: PipSolar - compatible PV Inverter
+   :toc_group: Miscellaneous Components
+   :toc_image: pipsolar.jpg
+
 .. seo::
     :description: Instructions for setting up PipSolar Compatible PV Inverter in ESPHome.
     :image: pipsolar.jpg

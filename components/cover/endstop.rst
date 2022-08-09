@@ -1,6 +1,13 @@
 Endstop Cover
 =============
 
+.. esphome:component-definition::
+   :alias: endstop
+   :category: cover-components
+   :friendly_name: Endstop Cover
+   :toc_group: Cover Components
+   :toc_image: electric-switch.svg
+
 .. seo::
     :description: Instructions for setting up time-based covers in ESPHome.
     :image: electric-switch.svg

@@ -3,6 +3,13 @@
 UART Bus
 ========
 
+.. esphome:component-definition::
+   :alias: uart
+   :category: core
+   :friendly_name: UART Bus
+   :toc_group: Core Components
+   :toc_image: uart.svg
+
 .. seo::
     :description: Instructions for setting up a UART serial bus on ESPs
     :image: uart.svg

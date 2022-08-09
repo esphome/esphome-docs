@@ -1,6 +1,13 @@
 Custom Light Output
 ===================
 
+.. esphome:component-definition::
+   :alias: custom
+   :category: light-component
+   :friendly_name: Custom Light
+   :toc_group: Light Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create custom lights in ESPHome
 using the C++ (Arduino) API.
 

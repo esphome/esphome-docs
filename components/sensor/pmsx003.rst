@@ -1,6 +1,14 @@
 PMSX003 Particulate Matter Sensor
 =================================
 
+.. esphome:component-definition::
+   :alias: pmsx003
+   :category: sensor-air-quality
+   :friendly_name: PMSX003
+   :toc_group: Air Quality Sensors
+   :toc_image: pmsx003.svg
+   :descriptor: Particulate
+
 .. seo::
     :description: Instructions for setting up PMSX003 Particulate matter sensors
     :image: pmsx003.svg

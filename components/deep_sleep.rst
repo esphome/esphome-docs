@@ -3,6 +3,14 @@
 Deep Sleep Component
 ====================
 
+.. esphome:component-definition::
+   :alias: deep-sleep
+   :category: core
+   :friendly_name: Deep Sleep
+   :toc_group: Core Components
+   :toc_image: hotel.svg
+
+
 .. seo::
     :description: Instructions for setting up the deep sleep support for minimizing power consumption on ESPs.
     :image: hotel.svg

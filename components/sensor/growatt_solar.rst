@@ -1,6 +1,14 @@
 Growatt Solar
 =============
 
+.. esphome:component-definition::
+   :alias: growatt-solar
+   :category: sensor-miscellaneous
+   :friendly_name: Growatt Solar
+   :toc_group: Miscellaneous Sensors
+   :toc_image: growatt.jpg
+   :descriptor: Solar Rooftop
+
 .. seo::
     :description: Instructions for setting up a Growatt inverter reading on modbus.
     :image: growatt.jpg

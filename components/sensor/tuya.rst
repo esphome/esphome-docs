@@ -1,6 +1,13 @@
 Tuya Sensor
 ===========
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: sensor-miscellaneous
+   :friendly_name: Tuya Sensor
+   :toc_group: Miscellaneous Sensors
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya device sensor.
     :image: tuya.png

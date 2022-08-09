@@ -1,6 +1,13 @@
 ESP32 Bluetooth Low Energy Tracker Hub
 ======================================
 
+.. esphome:component-definition::
+   :alias: esp32-ble-tracker
+   :category: miscellaneous-components
+   :friendly_name: ESP32 BLE Tracker
+   :toc_group: Miscellaneous Components
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Instructions for setting up ESP32 bluetooth low energy device trackers using ESPHome.
     :image: bluetooth.svg

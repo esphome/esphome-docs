@@ -1,6 +1,13 @@
 RC522 RFID
 ==========
 
+.. esphome:component-definition::
+   :alias: rc522
+   :category: binary-sensor
+   :friendly_name: RC522
+   :toc_group: Binary Sensor Components
+   :toc_image: rc522.jpg
+
 .. seo::
     :description: Instructions for setting up RC522 RFID tag readers and tags in ESPHome
     :image: rc522.jpg

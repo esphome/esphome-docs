@@ -1,6 +1,14 @@
 CT Clamp Current Sensor
 =======================
 
+.. esphome:component-definition::
+   :alias: ct-clamp
+   :category: sensor-electrical
+   :friendly_name: CT Clamp
+   :toc_group: Electrical Sensors
+   :toc_image: ct_clamp.jpg
+   :descriptor: AC Current
+
 .. seo::
     :description: Instructions for setting up ct clamp sensors.
     :image: ct_clamp.jpg

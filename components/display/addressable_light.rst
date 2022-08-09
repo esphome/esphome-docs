@@ -1,6 +1,13 @@
 Addressable Light
 =================
 
+.. esphome:component-definition::
+   :alias: addressable-light
+   :category: display-components
+   :friendly_name: Addressable Light
+   :toc_group: Display Components
+   :toc_image: addressable_light.jpg
+
 .. seo::
     :description: Instructions for setting up displays using addressable lights and LED matrix
     :image: addressable_light.jpg

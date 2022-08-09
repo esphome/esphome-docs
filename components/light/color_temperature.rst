@@ -1,6 +1,13 @@
 Color Temperature Light
 =======================
 
+.. esphome:component-definition::
+   :alias: colour-temperature
+   :category: light-component
+   :friendly_name: Colour Temperature Light
+   :toc_group: Light Components
+   :toc_image: brightness-medium.svg
+
 .. seo::
     :description: Instructions for setting up Color Temperature lights.
     :image: brightness-medium.svg

@@ -1,6 +1,13 @@
 SSD1325/7 OLED Display
 ======================
 
+.. esphome:component-definition::
+   :alias: ssd1325
+   :category: display-components
+   :friendly_name: SSD1325
+   :toc_group: Display Components
+   :toc_image: ssd1325.jpg
+
 .. seo::
     :description: Instructions for setting up SSD1325/7 OLED display drivers.
     :image: ssd1325.jpg

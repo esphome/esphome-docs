@@ -1,6 +1,13 @@
 I2S Audio Media Player
 ======================
 
+.. esphome:component-definition::
+   :alias: i2s-audio
+   :category: media-player-components
+   :friendly_name: I2S Audio
+   :toc_group: Media Player Components
+   :toc_image: i2s_audio.svg
+
 .. seo::
     :description: Instructions for setting up I2S based media players in ESPHome.
     :image: i2s_audio.svg

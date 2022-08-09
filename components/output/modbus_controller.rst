@@ -1,6 +1,14 @@
 Modbus Controller Output
 ========================
 
+.. esphome:component-definition::
+   :alias: modbus-controller
+   :category: output-components
+   :friendly_name: Modbus Output
+   :toc_group: Output Components
+   :toc_image: modbus.png
+
+
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
 

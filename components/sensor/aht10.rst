@@ -1,6 +1,14 @@
 AHT10 Temperature+Humidity Sensor
 =================================
 
+.. esphome:component-definition::
+   :alias: aht10
+   :category: sensor-environmental
+   :friendly_name: AHT10 / AHT20 / AHT21 / DHT20
+   :toc_group: Environmental Sensors
+   :toc_image: aht10.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up AHT10 temperature and humidity sensors
     :image: aht10.jpg

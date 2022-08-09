@@ -1,6 +1,14 @@
 SCD30 CO₂, Temperature and Relative Humidity Sensor
 ===================================================
 
+.. esphome:component-definition::
+   :alias: scd30
+   :category: sensor-air-quality;sensor-environmental
+   :friendly_name: SCD30
+   :toc_group: Air Quality Sensors;Environmental Sensors
+   :toc_image: scd30.jpg
+   :descriptor: Temperature, Humidity, and CO₂
+
 .. seo::
     :description: Instructions for setting up SCD30 CO₂ Temperature and Relative Humidity Sensor
     :image: scd30.jpg

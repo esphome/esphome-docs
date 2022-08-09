@@ -3,6 +3,13 @@
 Nextion Binary Sensor Component
 ===============================
 
+.. esphome:component-definition::
+   :alias: nextion
+   :category: binary-sensor
+   :friendly_name: Nextion Binary Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: nextion.jpg
+
 .. seo::
     :description: Instructions for setting up Nextion binary sensor.
     :image: nextion.jpg

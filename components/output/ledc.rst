@@ -1,6 +1,13 @@
 ESP32 LEDC Output
 =================
 
+.. esphome:component-definition::
+   :alias: ledc
+   :category: output-components
+   :friendly_name: ESP32 LEDC
+   :toc_group: Output Components
+   :toc_image: pwm.png
+
 .. seo::
     :description: Instructions for setting up LEDC hardware PWM outputs on the ESP32.
     :image: pwm.png

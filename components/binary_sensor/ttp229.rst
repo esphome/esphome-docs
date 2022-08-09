@@ -1,6 +1,13 @@
 TTP229 Capacitive Touch Sensor
 ==============================
 
+.. esphome:component-definition::
+   :alias: ttp229
+   :category: binary-sensor
+   :friendly_name: TTP229
+   :toc_group: Binary Sensor Components
+   :toc_image: ttp229.jpg
+
 .. seo::
     :description: Instructions for setting up TTP229 Capacitive Touch Sensor
     :image: ttp229.jpg

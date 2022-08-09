@@ -1,6 +1,13 @@
 NeoPixelBus Light
 =================
 
+.. esphome:component-definition::
+   :alias: neopixelbus
+   :category: light-component
+   :friendly_name: NeoPixelBus Light
+   :toc_group: Light Components
+   :toc_image: color_lens.svg
+
 .. seo::
     :description: Instructions for setting up Neopixel addressable lights.
     :image: color_lens.svg

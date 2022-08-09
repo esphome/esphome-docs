@@ -1,6 +1,13 @@
 Custom Binary Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: custom
+   :category: binary-sensor
+   :friendly_name: Custom Binary Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create custom binary sensors in ESPHome
 using the C++ (Arduino) API.
 

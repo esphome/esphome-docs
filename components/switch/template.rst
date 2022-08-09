@@ -1,6 +1,13 @@
 Template Switch
 ===============
 
+.. esphome:component-definition::
+   :alias: template
+   :category: switch-components
+   :friendly_name: Template Switch
+   :toc_group: Switch Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template switches that can execute arbitrary actions when turned on or off.
     :image: description.svg

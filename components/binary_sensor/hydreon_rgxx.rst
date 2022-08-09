@@ -1,6 +1,13 @@
 Hydreon Rain Sensor Binary Sensor
 =================================
 
+.. esphome:component-definition::
+   :alias: hydreon-rgxx
+   :category: binary-sensor
+   :friendly_name: Hydreon Rain Sensor Binary Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: hydreon_rg9.jpg
+
 .. seo::
     :description: Instructions for setting up Hydreon rain sensors
     :image: hydreon_rg9.jpg

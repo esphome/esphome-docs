@@ -1,6 +1,14 @@
 cd74hc4067 Analog Multiplexer
 =============================
 
+.. esphome:component-definition::
+   :alias: cd74hc4067
+   :category: sensor-analogue
+   :friendly_name: CD74HC4067
+   :toc_group: Analogue Sensors
+   :toc_image: cd74hc4067.jpg
+   :descriptor: 16-channel analog multiplexer
+
 .. seo::
     :description: Instructions for setting up cd74hc4067 Analog Multiplexer and sensors.
     :image: cd74hc4067.jpg

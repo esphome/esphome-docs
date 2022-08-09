@@ -1,6 +1,13 @@
 Cold White + Warm White Light
 =============================
 
+.. esphome:component-definition::
+   :alias: cwww
+   :category: light-component
+   :friendly_name: Cold+Warm White Light
+   :toc_group: Light Components
+   :toc_image: brightness-medium.svg
+
 .. seo::
     :description: Instructions for setting up Cold White + Warm White lights.
     :image: brightness-medium.svg

@@ -1,6 +1,13 @@
 Generic Output Button
 =====================
 
+.. esphome:component-definition::
+   :alias: output
+   :category: button-components
+   :friendly_name: Generic Output Button
+   :toc_group: Button Components
+   :toc_image: upload.svg
+
 .. seo::
     :description: Instructions for setting up generic output buttons in ESPHome that control an output component.
     :image: upload.svg

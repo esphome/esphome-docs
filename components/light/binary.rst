@@ -1,6 +1,13 @@
 Binary Light
 ============
 
+.. esphome:component-definition::
+   :alias: binary
+   :category: light-component
+   :friendly_name: Binary Light
+   :toc_group: Light Components
+   :toc_image: lightbulb.svg
+
 .. seo::
     :description: Instructions for setting up binary ON/OFF lights in ESPHome.
     :image: lightbulb.svg

@@ -1,6 +1,13 @@
 H-bridge Light
 ==============
 
+.. esphome:component-definition::
+   :alias: hbridge
+   :category: light-component
+   :friendly_name: H-bridge Light
+   :toc_group: Light Components
+   :toc_image: brightness-medium.svg
+
 .. seo::
     :description: Instructions for setting up a hbridge light.
     :image: brightness-medium.svg

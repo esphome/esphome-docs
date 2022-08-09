@@ -1,6 +1,13 @@
 ESP32 Bluetooth Low Energy RSSI Sensor
 ======================================
 
+.. esphome:component-definition::
+   :alias: ble-rssi
+   :category: sensor-ble
+   :friendly_name: BLE RSSI
+   :toc_group: Bluetooth Low Energy (BLE) Sensors
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Instructions for setting up RSSI sensors for the ESP32 BLE.
     :image: bluetooth.svg

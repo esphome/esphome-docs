@@ -1,6 +1,14 @@
 Dallas Temperature Sensor
 =========================
 
+.. esphome:component-definition::
+   :alias: ds18b20
+   :category: sensor-environmental
+   :friendly_name: Dallas DS18B20
+   :toc_group: Environmental Sensors
+   :toc_image: dallas.jpg
+   :descriptor: Temperature
+
 .. seo::
     :description: Instructions for setting up Dallas temperature sensor hubs that can
       expose many temperature sensors on a single pin using the 1-Wire protocol.

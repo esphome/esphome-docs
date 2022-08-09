@@ -3,6 +3,13 @@
 Nextion Switch Component
 ===============================
 
+.. esphome:component-definition::
+   :alias: nextion
+   :category: switch-components
+   :friendly_name: Nextion Switch
+   :toc_group: Switch Components
+   :toc_image: nextion.jpg
+
 .. seo::
     :description: Instructions for setting up Nextion Switch.
     :image: nextion.jpg

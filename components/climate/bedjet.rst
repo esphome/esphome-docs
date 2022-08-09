@@ -1,6 +1,13 @@
 BedJet
 ======
 
+.. esphome:component-definition::
+   :alias: bedjet
+   :category: climate-components
+   :friendly_name: BedJet Climate System
+   :toc_group: Climate Components
+   :toc_image: bedjet.png
+
 .. seo::
     :description: Instructions for setting up a BedJet climate device.
     :image: bedjet.png

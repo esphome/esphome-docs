@@ -1,6 +1,13 @@
 Sensor Component
 ================
 
+.. esphome:component-definition::
+   :alias: sensor-core
+   :category: sensor-core
+   :friendly_name: Sensor Core
+   :toc_group: Core Sensors
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up sensor components in ESPHome.
     :image: folder-open.svg

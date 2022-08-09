@@ -1,6 +1,13 @@
 Shelly Dimmer
 =============
 
+.. esphome:component-definition::
+   :alias: shelly-dimmer
+   :category: light-component
+   :friendly_name: Shelly Dimmer
+   :toc_group: Light Components
+   :toc_image: shellydimmer2.jpg
+
 .. seo::
     :description: Instructions for setting up a Shelly Dimmer 2.
     :image: shellydimmer2.jpg

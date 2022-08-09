@@ -1,6 +1,14 @@
 STS3X Temperature Sensor
 ========================
 
+.. esphome:component-definition::
+   :alias: sts3x
+   :category: sensor-environmental
+   :friendly_name: STS3X
+   :toc_group: Environmental Sensors
+   :toc_image: sts3x.jpg
+   :descriptor: Temperature
+
 .. seo::
     :description: Instructions for setting up STS3x-DIS temperature sensors
     :image: sts3x.jpg

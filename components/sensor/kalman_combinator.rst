@@ -1,6 +1,13 @@
 Kalman filter-based sensor fusion
 =================================
 
+.. esphome:component-definition::
+   :alias: kalman-combinator
+   :category: sensor-miscellaneous
+   :friendly_name: Kalman Combinator
+   :toc_group: Miscellaneous Sensors
+   :toc_image: function.svg
+
 .. seo::
     :description: Instructions for setting up a kalman_combinator sensor
 

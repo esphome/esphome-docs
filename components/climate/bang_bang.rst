@@ -1,6 +1,13 @@
 Bang Bang Climate Controller
 ============================
 
+.. esphome:component-definition::
+   :alias: bang-bang
+   :category: climate-components
+   :friendly_name: Bang Bang Controller
+   :toc_group: Climate Components
+   :toc_image: air-conditioner.svg
+
 .. seo::
     :description: Instructions for setting up Bang Bang climate controllers with ESPHome.
     :image: air-conditioner.svg

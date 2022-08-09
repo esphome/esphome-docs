@@ -1,6 +1,13 @@
 ESP8266 Software PWM Output
 ===========================
 
+.. esphome:component-definition::
+   :alias: esp8266-pwm
+   :category: output-components
+   :friendly_name: ESP8266 Software PWM
+   :toc_group: Output Components
+   :toc_image: pwm.png
+
 .. seo::
     :description: Instructions for setting up ESP8266 software-based PWMs.
     :image: pwm.png

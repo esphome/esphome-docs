@@ -1,6 +1,13 @@
 TLC5947 LED driver
 ==================
 
+.. esphome:component-definition::
+   :alias: tlc5947
+   :category: output-components
+   :friendly_name: TLC5947
+   :toc_group: Output Components
+   :toc_image: tlc5947.jpg
+
 .. seo::
     :description: Instructions for setting up TLC5947 LED drivers in ESPHome.
     :image: tlc5947.jpg

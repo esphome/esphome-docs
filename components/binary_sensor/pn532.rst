@@ -1,6 +1,13 @@
 PN532 NFC/RFID
 ==============
 
+.. esphome:component-definition::
+   :alias: pn532
+   :category: binary-sensor
+   :friendly_name: PN532
+   :toc_group: Binary Sensor Components
+   :toc_image: pn532.jpg
+
 .. seo::
     :description: Instructions for setting up PN532 NFC tag readers and tags in ESPHome
     :image: pn532.jpg

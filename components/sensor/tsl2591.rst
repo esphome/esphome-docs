@@ -1,6 +1,14 @@
 TSL2591 Ambient Light Sensor
 ============================
 
+.. esphome:component-definition::
+   :alias: tsl2591
+   :category: sensor-light
+   :friendly_name: TSL2591
+   :toc_group: Light Sensors
+   :toc_image: tsl2591.jpg
+   :descriptor: Lux
+
 .. seo::
     :description: Instructions for setting up TSL2591 ambient light sensors in ESPHome.
     :image: tsl2591.jpg

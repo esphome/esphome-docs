@@ -1,6 +1,13 @@
 Rtttl Buzzer
 ============
 
+.. esphome:component-definition::
+   :alias: rtttl
+   :category: miscellaneous-components
+   :friendly_name: RTTTL Buzzer
+   :toc_group: Miscellaneous Components
+   :toc_image: buzzer.jpg
+
 .. seo::
     :description: Instructions for setting up a buzzer to play tones and rtttl songs with ESPHome.
     :image: buzzer.jpg

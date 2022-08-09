@@ -1,6 +1,13 @@
 Captive Portal
 ==============
 
+.. esphome:component-definition::
+   :alias: captive-portal
+   :category: miscellaneous-components
+   :friendly_name: Captive Portal
+   :toc_group: Miscellaneous Components
+   :toc_image: wifi-strength-alert-outline.svg
+
 .. seo::
     :description: Instructions for setting up the Captive Portal fallback mechanism in ESPHome.
     :image: wifi-strength-alert-outline.svg

@@ -1,6 +1,13 @@
 Tuya Fan
 ========
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: fan-components
+   :friendly_name: Tuya Fan
+   :toc_group: Fan Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya ceiling fan switch.
     :image: fan.svg

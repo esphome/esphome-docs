@@ -1,6 +1,13 @@
 Demo Integration
 ================
 
+.. esphome:component-definition::
+   :alias: demo
+   :category: miscellaneous-components
+   :friendly_name: Demo
+   :toc_group: Miscellaneous Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up the demo integration in ESPHome
     :image: description.svg

@@ -1,6 +1,13 @@
 Sim800L Component
 =================
 
+.. esphome:component-definition::
+   :alias: sim800l
+   :category: miscellaneous-components
+   :friendly_name: SIM800L
+   :toc_group: Miscellaneous Components
+   :toc_image: sim800l.jpg
+
 .. seo::
     :description: Instructions for setting up the SIM800L GSM module to dial, send and receive SMS in ESPHome.
     :image: sim800l.jpg

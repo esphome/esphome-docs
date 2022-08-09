@@ -1,6 +1,13 @@
 Cover Component
 ===============
 
+.. esphome:component-definition::
+   :alias: core
+   :category: cover-components
+   :friendly_name: Cover Core
+   :toc_group: Cover Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up base covers in ESPHome.
     :image: folder-open.svg

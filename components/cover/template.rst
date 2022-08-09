@@ -1,6 +1,13 @@
 Template Cover
 ==============
 
+.. esphome:component-definition::
+   :alias: template
+   :category: cover-components
+   :friendly_name: Template Cover
+   :toc_group: Cover Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template covers in ESPHome.
     :image: description.svg

@@ -1,6 +1,13 @@
 AC Dimmer Component
 ===================
 
+.. esphome:component-definition::
+   :alias: ac-dimmer
+   :category: output-components
+   :friendly_name: AC Dimmer
+   :toc_group: Output Components
+   :toc_image: ac_dimmer.svg
+
 .. seo::
     :description: Instructions for setting up AC Dimmer integration in ESPHome.
     :image: ac_dimmer.svg

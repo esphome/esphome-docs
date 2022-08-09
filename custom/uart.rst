@@ -1,6 +1,13 @@
 Custom UART Device
 ==================
 
+.. esphome:component-definition::
+   :alias: uart
+   :category: additional-custom-components
+   :friendly_name: Custom UART Component
+   :toc_group: Additional Custom Components
+   :toc_image: language-cpp.svg
+
 Lots of devices communicate using the UART protocol. If you want to integrate
 a device into ESPHome that uses this protocol you can pretty much use almost
 all Arduino-based code because ESPHome has a nice abstraction over the UART bus.

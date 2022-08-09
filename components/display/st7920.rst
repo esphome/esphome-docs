@@ -1,6 +1,13 @@
 ST7920 LCD Graphic Display
 ==========================
 
+.. esphome:component-definition::
+   :alias: st7920
+   :category: display-components
+   :friendly_name: ST7920
+   :toc_group: Display Components
+   :toc_image: st7920.jpg
+
 .. seo::
     :description: Instructions for setting up ST7920 LCD display drivers.
     :image: st7920.jpg

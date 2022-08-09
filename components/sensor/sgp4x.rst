@@ -1,6 +1,14 @@
 SGP40 Volatile Organic Compound Sensor and SGP41 VOC and NOx Sensor
 ===================================================================
 
+.. esphome:component-definition::
+   :alias: sgp4x
+   :category: sensor-air-quality
+   :friendly_name: SGP4x
+   :toc_group: Air Quality Sensors
+   :toc_image: sgp40.jpg
+   :descriptor: Volatile Organics and NOx
+
 .. seo::
     :description: Instructions for setting up SGP40/SGP41 Volatile Organic Compound and NOx sensor
     :image: sgp40.jpg

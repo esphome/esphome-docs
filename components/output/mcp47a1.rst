@@ -1,6 +1,13 @@
 MCP47A1 Output
 ==============
 
+.. esphome:component-definition::
+   :alias: mcp47a1
+   :category: output-components
+   :friendly_name: MCP47A1
+   :toc_group: Output Components
+   :toc_image: mcp47a1.svg
+
 .. seo::
     :description: Instructions for setting up MCP47A1 outputs on the ESP.
     :image: mcp47a1.svg

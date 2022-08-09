@@ -1,6 +1,13 @@
 H-bridge Fan
 ============
 
+.. esphome:component-definition::
+   :alias: h-bridge
+   :category: fan-components
+   :friendly_name: H-Bridge Fan
+   :toc_group: Fan Components
+   :toc_image: fan.svg
+
 .. seo::
     :description: Instructions for setting up hbridge controlled fans (or motors).
     :image: fan.svg

@@ -1,6 +1,14 @@
 Xiaomi Miscale Sensors
 ========================
 
+.. esphome:component-definition::
+   :alias: xiaomi-miscale
+   :category: sensor-weight
+   :friendly_name: Xiaomi Miscale
+   :toc_group: Weight Sensors
+   :toc_image: xiaomi_miscale1&2.jpg
+   :descriptor: Load Cell Amplifier
+
 .. seo::
     :description: Instructions for setting up Xiaomi Miscale bluetooth-based sensors in ESPHome.
     :image: xiaomi_miscale.jpg

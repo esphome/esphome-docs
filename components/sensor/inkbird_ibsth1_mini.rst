@@ -1,6 +1,14 @@
 Inkbird IBS-TH1, IBS-TH1 Mini, and IBS-TH2 BLE Sensor
 =====================================================
 
+.. esphome:component-definition::
+   :alias: inkbird-ibsth1-mini
+   :category: sensor-ble;sensor-environmental
+   :friendly_name: Inkbird IBS-TH1 Mini
+   :toc_group: Bluetooth Low Energy (BLE) Sensors;Environmental Sensors
+   :toc_image: inkbird_isbth1_mini.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up Inkbird IBS-TH1/TH2 Bluetooth-based temperature and humidity sensors in ESPHome.
     :image: inkbird_isbth1_mini.jpg

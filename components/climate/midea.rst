@@ -1,6 +1,13 @@
 Midea Air Conditioner
 =====================
 
+.. esphome:component-definition::
+   :alias: midea
+   :category: climate-components
+   :friendly_name: Midea
+   :toc_group: Climate Components
+   :toc_image: midea.svg
+
 .. seo::
     :description: Instructions for setting up a Midea climate device
     :image: air-conditioner.svg

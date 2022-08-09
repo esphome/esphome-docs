@@ -1,6 +1,13 @@
 Fan Component
 =============
 
+.. esphome:component-definition::
+   :alias: core
+   :category: fan-components
+   :friendly_name: Fan Core
+   :toc_group: Fan Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up the base fan component.
     :image: folder-open.svg

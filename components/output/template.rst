@@ -1,6 +1,13 @@
 Template Output
 ===============
 
+.. esphome:component-definition::
+   :alias: template
+   :category: output-components
+   :friendly_name: Template Output
+   :toc_group: Output Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template outputs with ESPHome.
     :image: description.svg

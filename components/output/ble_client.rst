@@ -1,6 +1,13 @@
 BLE Client Binary Output
 ========================
 
+.. esphome:component-definition::
+   :alias: ble-client
+   :category: output-components
+   :friendly_name: BLE Binary Output
+   :toc_group: Output Components
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Writes a binary value to a BLE device.
     :image: bluetooth.svg

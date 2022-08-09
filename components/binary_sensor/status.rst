@@ -1,6 +1,13 @@
 Status Binary Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: status
+   :category: binary-sensor
+   :friendly_name: Status
+   :toc_group: Binary Sensor Components
+   :toc_image: server-network.svg
+
 .. seo::
     :description: Instructions for setting up MQTT status binary sensors.
     :image: server-network.svg

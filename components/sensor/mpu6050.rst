@@ -1,6 +1,15 @@
 MPU6050 Accelerometer/Gyroscope Sensor
 ======================================
 
+.. esphome:component-definition::
+   :alias: mpu6050
+   :category: sensor-motion
+   :friendly_name: MPU6050
+   :toc_group: Motion Sensors
+   :toc_image: mpu6050.jpg
+   :descriptor: Accelerometer and Gyroscope
+
+
 .. seo::
     :description: Instructions for setting up MPU6050 Accelerometer and Gyroscope sensors.
     :image: mpu6050.jpg

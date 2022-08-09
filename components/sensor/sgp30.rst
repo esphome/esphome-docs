@@ -1,6 +1,14 @@
 SGP30 CO₂ and Volatile Organic Compound Sensor
 ==============================================
 
+.. esphome:component-definition::
+   :alias: sgp30
+   :category: sensor-air-quality
+   :friendly_name: SGP30
+   :toc_group: Air Quality Sensors
+   :toc_image: sgp30.jpg
+   :descriptor: CO₂ and Volatile Organics
+
 .. seo::
     :description: Instructions for setting up SGP30 CO₂eq and Volatile Organic Compound sensor
     :image: sgp30.jpg

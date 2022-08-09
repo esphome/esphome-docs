@@ -1,6 +1,14 @@
 BMP085 Temperature+Pressure Sensor
 ==================================
 
+.. esphome:component-definition::
+   :alias: bmp085
+   :category: sensor-environmental
+   :friendly_name: BMP085
+   :toc_group: Environmental Sensors
+   :toc_image: bmp180.jpg
+   :descriptor: Temperature and Pressure
+
 .. seo::
     :description: Instructions for setting up BMP085 temperature and temperature sensors
     :image: bmp180.jpg

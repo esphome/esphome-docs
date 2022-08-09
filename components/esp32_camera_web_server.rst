@@ -1,6 +1,13 @@
 ESP32 Camera Web Server Component
 =================================
 
+.. esphome:component-definition::
+   :alias: esp32-camera-web-server
+   :category: miscellaneous-components
+   :friendly_name: ESP32 Camera Web Server
+   :toc_group: Miscellaneous Components
+   :toc_image: camera.svg
+
 .. seo::
     :description: Instructions for setting up the ESP32 Camera Web Server in ESPHome
     :image: camera.svg

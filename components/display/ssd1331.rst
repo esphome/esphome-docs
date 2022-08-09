@@ -1,6 +1,13 @@
 SSD1331 OLED Display
 ====================
 
+.. esphome:component-definition::
+   :alias: ssd1331
+   :category: display-components
+   :friendly_name: SSD1331
+   :toc_group: Display Components
+   :toc_image: ssd1331.jpg
+
 .. seo::
     :description: Instructions for setting up SSD1331 OLED display drivers.
     :image: ssd1331.jpg

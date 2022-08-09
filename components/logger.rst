@@ -1,6 +1,13 @@
 Logger Component
 ================
 
+.. esphome:component-definition::
+   :alias: logger
+   :category: core
+   :friendly_name: Logger
+   :toc_group: Core Components
+   :toc_image: file-document-box.svg
+
 .. seo::
     :description: Instructions for setting up the central logging component in ESPHome.
     :image: file-document-box.svg

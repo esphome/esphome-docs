@@ -1,6 +1,13 @@
 NodeMCU ESP8266
 ===============
 
+.. esphome:device-definition::
+   :alias: nodemcu-esp8266
+   :category: nodemcu
+   :friendly_name: NodeMCU ESP8266
+   :toc_group: NodeMCU
+   :toc_image: nodemcu_esp8266.jpg
+
 .. seo::
     :description: Instructions for using nodemcu ESP8266 boards in ESPHome together with a description of their pins and uses.
     :image: nodemcu_esp8266.jpg
@@ -73,6 +80,6 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
 See Also
 --------
 
-- :doc:`esp8266`
-- :doc:`nodemcu_esp32`
+- :esphome:device:`espressif:esp8266`
+- :esphome:device:`nodemcu:nodemcu-esp32`
 - :ghedit:`Edit`

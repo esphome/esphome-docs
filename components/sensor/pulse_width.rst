@@ -1,6 +1,13 @@
 Pulse Width Sensor
 ==================
 
+.. esphome:component-definition::
+   :alias: pulse-width
+   :category: sensor-digital-signal
+   :friendly_name: Pulse Width
+   :toc_group: Digital Signal Sensors
+   :toc_image: pulse.svg
+
 .. seo::
     :description: Instructions for setting up pulse width sensors in ESPHome
     :image: pulse.svg

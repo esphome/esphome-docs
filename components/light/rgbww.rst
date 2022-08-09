@@ -1,6 +1,13 @@
 RGBWW Light
 ===========
 
+.. esphome:component-definition::
+   :alias: rgbww
+   :category: light-component
+   :friendly_name: RGBWW Light
+   :toc_group: Light Components
+   :toc_image: rgbw.png
+
 .. seo::
     :description: Instructions for setting up RGBWW lights.
     :image: rgbw.png

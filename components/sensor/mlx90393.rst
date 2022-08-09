@@ -1,6 +1,14 @@
 MLX90393 Triple-axis Magnetometer
 =================================
 
+.. esphome:component-definition::
+   :alias: mlx90393
+   :category: sensor-magnetic
+   :friendly_name: MLX90393
+   :toc_group: Magnetic Sensors
+   :toc_image: mlx90393.jpg
+   :descriptor: 3-Axis Magnetometer
+
 .. seo::
     :description: Instructions for setting up MLX90393 Triple-Axis magnetometer sensor.
     :image: mlx90393.jpg

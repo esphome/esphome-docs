@@ -1,6 +1,14 @@
 HTU21D | Si7021 | SHT21 Temperature & Humidity Sensor
 =====================================================
 
+.. esphome:component-definition::
+   :alias: htu21d
+   :category: sensor-environmental
+   :friendly_name: HTU21D / Si7021 / SHT21
+   :toc_group: Environmental Sensors
+   :toc_image: htu21d.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up HTU21D temperature and humidity sensors.
     :image: htu21d.jpg

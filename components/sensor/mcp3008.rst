@@ -1,6 +1,14 @@
 MCP3008 8-Channel 10-Bit A/D Converter
 ======================================
 
+.. esphome:component-definition::
+   :alias: mcp3008
+   :category: sensor-analogue
+   :friendly_name: MCP3008
+   :toc_group: Analogue Sensors
+   :toc_image: mcp3008.jpg
+   :descriptor: 8-channel ADC
+
 .. seo::
     :description: Instructions for setting up MCP3008 10 Bit Analog to Digital Converter in ESPHome.
     :keywords: MCP3008

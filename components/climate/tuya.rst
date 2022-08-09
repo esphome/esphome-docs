@@ -1,6 +1,13 @@
 Tuya Climate
 ============
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: climate-components
+   :friendly_name: Tuya Climate
+   :toc_group: Climate Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya climate device.
     :image: air-conditioner.svg

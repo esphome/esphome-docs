@@ -1,6 +1,13 @@
 Character-Based LCD Display
 ===========================
 
+.. esphome:component-definition::
+   :alias: lcd-display
+   :category: display-components
+   :friendly_name: LCD Display
+   :toc_group: Display Components
+   :toc_image: lcd.jpg
+
 .. seo::
     :description: Instructions for setting up character-based LCD displays.
     :image: lcd.jpg

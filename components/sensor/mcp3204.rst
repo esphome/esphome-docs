@@ -1,6 +1,15 @@
 MCP3204 & MCP3208 12-Bit A/D Converters
 =======================================
 
+.. esphome:component-definition::
+   :alias: mcp3204
+   :category: sensor-analogue
+   :friendly_name: MCP3204/MCP3208
+   :toc_group: Analogue Sensors
+   :toc_image: mcp3204.jpg
+   :descriptor: 4-channel ADC
+
+
 .. seo::
     :description: Instructions for setting up MCP3204 & MCP3208 12-Bit Analog to Digital Converter in ESPHome.
     :keywords: MCP3204 MCP3208

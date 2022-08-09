@@ -1,6 +1,14 @@
 BMP388 / BMP390 Temperature+Pressure Sensor
 ===========================================
 
+.. esphome:component-definition::
+   :alias: bmp3xx
+   :category: sensor-environmental
+   :friendly_name: BMP388 and BMP390
+   :toc_group: Environmental Sensors
+   :toc_image: bmp388.jpg
+   :descriptor: Temperature and Pressure
+
 .. seo::
     :description: Instructions for setting up BMP388 or BMP390 temperature and pressure sensors with ESPHome
     :image: bmp388.jpg

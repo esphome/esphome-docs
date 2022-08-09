@@ -1,6 +1,13 @@
 MQTT Client Component
 =====================
 
+.. esphome:component-definition::
+   :alias: mqtt
+   :category: core
+   :friendly_name: MQTT
+   :toc_group: Core Components
+   :toc_image: mqtt.png
+
 .. seo::
     :description: Instructions for setting up the MQTT client to communicate with the local network in ESPHome.
     :image: mqtt.png

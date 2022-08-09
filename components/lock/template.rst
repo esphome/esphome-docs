@@ -1,6 +1,13 @@
 Template Lock
 ===============
 
+.. esphome:component-definition::
+   :alias: template
+   :category: lock-components
+   :friendly_name: Template Lock
+   :toc_group: Lock Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template locks that can execute arbitrary actions when locked, unlocked, or opened
     :image: description.svg

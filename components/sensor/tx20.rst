@@ -1,6 +1,14 @@
 TX20/TX23 Wind Speed/Direction Sensor
 =====================================
 
+.. esphome:component-definition::
+   :alias: tx20
+   :category: sensor-miscellaneous
+   :friendly_name: TX20
+   :toc_group: Miscellaneous Sensors
+   :toc_image: tx20.jpg
+   :descriptor: Wind Speed and Wind Direction
+
 .. seo::
     :description: Instructions for setting up TX20/TX23 wind speed and direction sensors
     :image: tx20.jpg

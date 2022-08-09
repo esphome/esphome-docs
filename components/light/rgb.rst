@@ -1,6 +1,13 @@
 RGB Light
 =========
 
+.. esphome:component-definition::
+   :alias: rgb
+   :category: light-component
+   :friendly_name: RGB Light
+   :toc_group: Light Components
+   :toc_image: rgb.png
+
 .. seo::
     :description: Instructions for setting up RGB lights in ESPHome.
     :image: rgb.png

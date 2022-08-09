@@ -1,6 +1,13 @@
 RGBCT Light
 ===========
 
+.. esphome:component-definition::
+   :alias: rgbct
+   :category: light-component
+   :friendly_name: RGBCT Light
+   :toc_group: Light Components
+   :toc_image: rgbw.png
+
 .. seo::
     :description: Instructions for setting up RGBCT lights.
     :image: rgbw.png

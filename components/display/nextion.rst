@@ -1,6 +1,13 @@
 Nextion TFT LCD Display
 =======================
 
+.. esphome:component-definition::
+   :alias: nextion
+   :category: display-components
+   :friendly_name: Nextion
+   :toc_group: Display Components
+   :toc_image: nextion.jpg
+
 .. seo::
     :description: Instructions for setting up Nextion TFT LCD displays
     :image: nextion.jpg

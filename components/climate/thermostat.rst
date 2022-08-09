@@ -1,6 +1,13 @@
 Thermostat Climate Controller
 =============================
 
+.. esphome:component-definition::
+   :alias: thermostat
+   :category: climate-components
+   :friendly_name: Thermostat Controller
+   :toc_group: Climate Components
+   :toc_image: air-conditioner.svg
+
 .. seo::
     :description: Instructions for setting up Thermostat climate controllers with ESPHome.
     :image: air-conditioner.svg

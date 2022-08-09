@@ -1,6 +1,13 @@
 Restart Switch
 ==============
 
+.. esphome:component-definition::
+   :alias: restart
+   :category: switch-components
+   :friendly_name: Restart Switch
+   :toc_group: Switch Components
+   :toc_image: restart.svg
+
 .. seo::
     :description: Instructions for setting up switches that can remotely reboot the ESP in ESPHome.
     :image: restart.svg

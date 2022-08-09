@@ -1,6 +1,13 @@
 Sonoff D1 Dimmer
 ================
 
+.. esphome:component-definition::
+   :alias: sonoff-d1
+   :category: light-component
+   :friendly_name: Sonoff D1 Dimmer
+   :toc_group: Light Components
+   :toc_image: sonoff_d1.jpg
+
 .. seo::
     :description: Instructions for setting up a Sonoff D1 dimmer switch.
     :image: brightness-medium.svg

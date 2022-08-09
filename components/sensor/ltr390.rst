@@ -1,6 +1,15 @@
 LTR390 UV and Ambient Light Sensor
 ==================================================
 
+.. esphome:component-definition::
+   :alias: ltr390
+   :category: sensor-light
+   :friendly_name: LTR390
+   :toc_group: Light Sensors
+   :toc_image: ltr390.jpg
+   :descriptor: Lux and UV
+
+
 .. seo::
     :description: Instructions for setting up LTR390 UV and light sensor
     :image: ltr390.jpg

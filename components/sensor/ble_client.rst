@@ -1,6 +1,13 @@
 BLE Client Sensor
 =================
 
+.. esphome:component-definition::
+   :alias: ble-client
+   :category: sensor-ble
+   :friendly_name: BLE Client Sensor
+   :toc_group: Bluetooth Low Energy (BLE) Sensors
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Fetch numeric values from BLE devices.
     :image: bluetooth.svg

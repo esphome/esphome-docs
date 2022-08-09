@@ -1,6 +1,13 @@
 Time Based Cover
 ================
 
+.. esphome:component-definition::
+   :alias: time-based
+   :category: cover-components
+   :friendly_name: Time-Based Cover
+   :toc_group: Cover Components
+   :toc_image: timer.svg
+
 .. seo::
     :description: Instructions for setting up time-based covers in ESPHome.
     :image: timer.svg

@@ -1,6 +1,13 @@
 Binary Sensor Component
 =======================
 
+.. esphome:component-definition::
+   :alias: binary-sensor
+   :category: binary-sensor
+   :friendly_name: Binary Sensor Core
+   :toc_group: Binary Sensor Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Information about the base representation of all binary sensors.
     :image: folder-open.svg

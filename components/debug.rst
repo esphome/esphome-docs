@@ -1,6 +1,13 @@
 Debug Component
 ===============
 
+.. esphome:component-definition::
+   :alias: debug
+   :category: miscellaneous-components
+   :friendly_name: Debug Component
+   :toc_group: Miscellaneous Components
+   :toc_image: bug-report.svg
+
 .. seo::
     :description: Instructions for setting up the debug component in ESPHome
     :image: bug-report.svg

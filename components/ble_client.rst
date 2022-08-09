@@ -1,6 +1,13 @@
 BLE Client
 ==========
 
+.. esphome:component-definition::
+   :alias: ble-client
+   :category: miscellaneous-components
+   :friendly_name: ESP32 BLE Client
+   :toc_group: Miscellaneous Components
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Configuration of the BLE client on ESP32.
     :image: bluetooth.svg

@@ -1,6 +1,13 @@
 Analog Threshold Binary Sensor
 ==============================
 
+.. esphome:component-definition::
+   :alias: analog_threshold
+   :category: binary_sensor
+   :friendly_name: Analog Threshold
+   :toc_group: Binary Sensor Components
+   :toc_image: analog_threshold.svg
+
 .. seo::
     :description: Instructions for setting up an analog threshold binary sensors.
     :image: analog_threshold.svg

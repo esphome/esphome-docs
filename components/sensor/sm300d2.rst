@@ -1,6 +1,14 @@
 SM300D2 7-in-1 Air Quality Sensor
 =================================
 
+.. esphome:component-definition::
+   :alias: sm300d2
+   :category: sensor-air-quality
+   :friendly_name: SM300D2
+   :toc_group: Air Quality Sensors
+   :toc_image: sm300d2.jpg
+   :descriptor: Air Quality
+
 .. seo::
     :description: Instructions for setting up SM300D2 sensor to work with ESPHome
     :image: sm300d2.jpg

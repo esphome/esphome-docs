@@ -1,6 +1,14 @@
 INA260 DC Current and Power sensor
 ==================================
 
+.. esphome:component-definition::
+   :alias: ina260
+   :category: sensor-electrical
+   :friendly_name: INA260
+   :toc_group: Electrical Sensors
+   :toc_image: ina260.jpg
+   :descriptor: DC Current and Power
+
 .. seo::
     :description: Instructions for setting up INA260 DC current and power sensors
     :image: ina260.jpg

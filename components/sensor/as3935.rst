@@ -1,6 +1,14 @@
 AMS AS3935 Franklin Lightning Sensor
 ====================================
 
+.. esphome:component-definition::
+   :alias: as3935
+   :category: sensor-miscellaneous
+   :friendly_name: AS3935
+   :toc_group: Miscellaneous Sensors
+   :toc_image: as3935.jpg
+   :descriptor: Storm Lightning
+
 .. seo::
     :description: Instructions for setting up AS3935 lightning sensor
     :image: as3935.jpg

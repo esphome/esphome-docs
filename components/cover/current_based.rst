@@ -1,6 +1,13 @@
 Current Based Cover
 ===================
 
+.. esphome:component-definition::
+   :alias: current-based
+   :category: cover-components
+   :friendly_name: Current-Based Cover
+   :toc_group: Cover Components
+   :toc_image: flash.svg
+
 .. seo::
     :description: Instructions for setting up current-based covers in ESPHome.
     :image:  window-open.svg

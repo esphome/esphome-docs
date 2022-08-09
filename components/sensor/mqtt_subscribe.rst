@@ -1,6 +1,13 @@
 MQTT Subscribe Sensor
 =====================
 
+.. esphome:component-definition::
+   :alias: mqtt-subscribe
+   :category: sensor-core
+   :friendly_name: MQTT Subscribe
+   :toc_group: Core Sensors
+   :toc_image: mqtt.png
+
 .. seo::
     :description: Instructions for setting up MQTT subscribe sensors
     :image: mqtt.png

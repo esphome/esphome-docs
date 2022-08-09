@@ -1,6 +1,14 @@
 HRXL MaxSonar WR Series
 =======================
 
+.. esphome:component-definition::
+   :alias: hrxl-maxsonar-wr
+   :category: sensor-distance
+   :friendly_name: HRXL MaxSonar WR
+   :toc_group: Distance Sensors
+   :toc_image: hrxl_maxsonar_wr.jpg
+   :descriptor: Acoustic distance
+
 .. seo::
     :description: Instructions for setting up MaxBotix HRXL MaxSonar WR ultrasonic distance measurement sensors in ESPHome.
     :image: hrxl_maxsonar_wr.jpg

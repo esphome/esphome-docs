@@ -1,6 +1,13 @@
 Modbus Controller Number
 ========================
 
+.. esphome:component-definition::
+   :alias: modbus-controller
+   :category: number-components
+   :friendly_name: Modbus Number
+   :toc_group: Number Components
+   :toc_image: modbus.png
+
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
 

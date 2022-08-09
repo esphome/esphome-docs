@@ -1,6 +1,13 @@
 Modbus Controller Binary Sensor
 ===============================
 
+.. esphome:component-definition::
+   :alias: modbus-controller
+   :category: binary-sensor
+   :friendly_name: Modbus Binary Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: modbus.png
+
 .. seo::
     :description: Instructions for setting up a modbus_controller device binary sensor.
     :image: modbus.png

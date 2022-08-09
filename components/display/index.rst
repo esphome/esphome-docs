@@ -1,6 +1,13 @@
 Display Component
 =================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: display-components
+   :friendly_name: Display Core
+   :toc_group: Display Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up the display integration.
     :image: folder-open.svg

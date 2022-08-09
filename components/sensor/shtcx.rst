@@ -1,6 +1,14 @@
 SHTCx Temperature+Humidity Sensors
 ==================================
 
+.. esphome:component-definition::
+   :alias: shtcx
+   :category: sensor-environmental
+   :friendly_name: SHTCx
+   :toc_group: Environmental Sensors
+   :toc_image: shtc3.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up SHTC1 and SHTC3 temperature and humidity sensors
     :image: shtc3.jpg

@@ -1,6 +1,13 @@
 RDM6300 NFC/RFID
 ================
 
+.. esphome:component-definition::
+   :alias: rdm6300
+   :category: binary-sensor
+   :friendly_name: RDM6300
+   :toc_group: Binary Sensor Components
+   :toc_image: rdm6300.jpg
+
 .. seo::
     :description: Instructions for setting up RDM6300 NFC/RFID tag readers and tags in ESPHome.
     :image: rdm6300.jpg

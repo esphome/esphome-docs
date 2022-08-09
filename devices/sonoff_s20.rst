@@ -1,6 +1,13 @@
 Using With Sonoff S20
 =====================
 
+.. esphome:device-definition::
+   :alias: sonoff-s20
+   :category: sonoff
+   :friendly_name: Sonoff S20
+   :toc_group: Sonoff
+   :toc_image: sonoff_s20.jpg
+
 .. seo::
     :description: Instructions for putting Sonoff S20 devices into flash mode and installing ESPHome on them.
     :image: sonoff_s20.jpg

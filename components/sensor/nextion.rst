@@ -3,6 +3,14 @@
 Nextion Sensor Component
 ========================
 
+.. esphome:component-definition::
+   :alias: nextion
+   :category: sensor-miscellaneous
+   :friendly_name: Nextion
+   :toc_group: Miscellaneous Sensors
+   :toc_image: nextion.jpg
+   :descriptor: Sensors from Display
+
 .. seo::
     :description: Instructions for setting up Nextion sensor.
     :image: nextion.jpg

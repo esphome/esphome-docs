@@ -1,6 +1,13 @@
 Speed Fan
 =========
 
+.. esphome:component-definition::
+   :alias: speed
+   :category: fan-components
+   :friendly_name: Speed Fan
+   :toc_group: Fan Components
+   :toc_image: fan.svg
+
 .. seo::
     :description: Instructions for setting up speed-controllable fans.
     :image: fan.svg

@@ -1,6 +1,13 @@
 Improv via BLE
 ==============
 
+.. esphome:component-definition::
+   :alias: esp32-improv
+   :category: miscellaneous-components
+   :friendly_name: Improv via BLE
+   :toc_group: Miscellaneous Components
+   :toc_image: improv.svg
+
 .. seo::
     :description: Instructions for setting up Improv via BLE in ESPHome.
     :image: improv-social.png

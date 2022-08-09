@@ -1,6 +1,13 @@
 ESP32 Bluetooth Low Energy Scanner
 ==================================
 
+.. esphome:component-definition::
+   :alias: ble-scanner
+   :category: text-sensor-components
+   :friendly_name: BLE Scanner
+   :toc_group: Text Sensor Components
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Instructions for setting up BLE text sensors for the ESP32.
     :image: bluetooth.svg

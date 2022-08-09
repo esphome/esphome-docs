@@ -1,6 +1,13 @@
 Using With Sonoff Basic
 =======================
 
+.. esphome:device-definition::
+   :alias: sonoff-basic
+   :category: sonoff
+   :friendly_name: Sonoff Basic
+   :toc_group: Sonoff
+   :toc_image: sonoff_basic.jpg
+
 .. seo::
     :description: Instructions for putting Sonoff basic devices into flash mode and installing ESPHome on them.
     :image: sonoff_basic.jpg

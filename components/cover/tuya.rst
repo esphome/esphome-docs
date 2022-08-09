@@ -1,6 +1,13 @@
 Tuya Cover
 ==========
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: cover-components
+   :friendly_name: Tuya Cover
+   :toc_group: Cover Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya cover motor.
 

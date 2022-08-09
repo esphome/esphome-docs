@@ -1,6 +1,13 @@
 Status LED Light
 ================
 
+.. esphome:component-definition::
+   :alias: status-led
+   :category: light-component
+   :friendly_name: Status LED
+   :toc_group: Light Components
+   :toc_image: led-on.svg
+
 .. seo::
     :description: Instructions for setting up a Status LED shared also as binary ON/OFF light in ESPHome.
     :image: led-on.svg

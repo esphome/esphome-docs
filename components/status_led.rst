@@ -1,6 +1,13 @@
 Status LED
 ==========
 
+.. esphome:component-definition::
+   :alias: status-led
+   :category: miscellaneous-components
+   :friendly_name: Status LED
+   :toc_group: Miscellaneous Components
+   :toc_image: led-on.svg
+
 .. seo::
     :description: Instructions for setting up status LEDs in ESPHome to monitor the status of an ESP.
     :image: led-on.svg

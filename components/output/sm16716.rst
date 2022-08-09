@@ -1,6 +1,13 @@
 SM16716 LED driver
 ==================
 
+.. esphome:component-definition::
+   :alias: sm16716
+   :category: output-components
+   :friendly_name: SM16716
+   :toc_group: Output Components
+   :toc_image: sm16716.svg
+
 .. seo::
     :description: Instructions for setting up SM16716 LED drivers in ESPHome.
     :image: sm16716.svg

@@ -1,6 +1,13 @@
 Button Component
 ================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: button-components
+   :friendly_name: Button Core
+   :toc_group: Button Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up button components in ESPHome.
     :image: folder-open.svg

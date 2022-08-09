@@ -1,6 +1,13 @@
 Exposure Notification Listener
 ==============================
 
+.. esphome:component-definition::
+   :alias: exposure-notifications
+   :category: miscellaneous-components
+   :friendly_name: Exposure Notifications
+   :toc_group: Miscellaneous Components
+   :toc_image: exposure_notifications.png
+
 .. seo::
     :description: Instructions for setting up exposure notification listeners for ESPHome.
     :image: exposure_notifications.png

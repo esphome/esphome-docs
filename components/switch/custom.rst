@@ -1,6 +1,13 @@
 Custom Switch
 =============
 
+.. esphome:component-definition::
+   :alias: custom
+   :category: switch-components
+   :friendly_name: Custom Switch
+   :toc_group: Switch Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create custom switches in ESPHome
 using the C++ (Arduino) API.
 

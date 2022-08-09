@@ -1,6 +1,14 @@
 HX711 Load Cell Amplifier
 =========================
 
+.. esphome:component-definition::
+   :alias: hx711
+   :category: sensor-weight
+   :friendly_name: HX711
+   :toc_group: Weight Sensors
+   :toc_image: hx711.jpg
+   :descriptor: Load Cell Amplifier
+
 .. seo::
     :description: Instructions for setting up HX711 load cell amplifiers with ESPHome
     :image: hx711.jpg

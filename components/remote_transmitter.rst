@@ -1,6 +1,13 @@
 Remote Transmitter
 ==================
 
+.. esphome:component-definition::
+   :alias: remote-transmitter
+   :category: miscellaneous-components
+   :friendly_name: Remote Transmitter
+   :toc_group: Miscellaneous Components
+   :toc_image: remote.svg
+
 .. seo::
     :description: Instructions for setting up switches that send out pre-defined sequences of IR or RF signals
     :image: remote.svg

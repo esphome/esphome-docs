@@ -1,6 +1,14 @@
 TOF10120 Time Of Flight Distance Sensor
 =======================================
 
+.. esphome:component-definition::
+   :alias: tof10120
+   :category: sensor-distance
+   :friendly_name: TOF10120
+   :toc_group: Distance Sensors
+   :toc_image: tof10120.jpg
+   :descriptor: IR Optical Distance
+
 .. seo::
     :description: Instructions for setting up TOF10120 distance sensors in ESPHome.
     :image: tof10120.jpg

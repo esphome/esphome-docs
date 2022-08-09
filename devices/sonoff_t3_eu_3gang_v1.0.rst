@@ -1,6 +1,13 @@
 Using With Sonoff T3 EU 3 Gang
 =====================================
 
+.. esphome:device-definition::
+   :alias: sonoff-t3-eu-3-gang-v1-0
+   :category: sonoff
+   :friendly_name: Sonoff T3 EU 3 Gang V1.0
+   :toc_group: Sonoff
+   :toc_image: sonoff_t3_eu_3g_v1.0.jpg
+
 .. seo::
     :description: Instructions for putting Sonoff T3 EU 3C devices into flash mode and installing ESPHome on them.
     :image: sonoff_t3_eu_3g_v1.0.jpg

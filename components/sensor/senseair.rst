@@ -1,19 +1,27 @@
-SenseAir CO_2 Sensor
+SenseAir CO₂ Sensor
 ====================
+
+.. esphome:component-definition::
+   :alias: senseair
+   :category: sensor-air-quality
+   :friendly_name: SenseAir
+   :toc_group: Air Quality Sensors
+   :toc_image: senseair_s8.jpg
+   :descriptor: CO₂
 
 .. seo::
     :description: Instructions for setting up SenseAir S8 CO2 sensor
     :image: senseair_s8.jpg
     :keywords: senseair_s8
 
-The ``senseair`` sensor platform allows you to use SenseAir CO_2 sensor
+The ``senseair`` sensor platform allows you to use SenseAir CO₂ sensor
 (`website`_) with ESPHome.
 
 .. figure:: images/senseair_s8-full.jpg
     :align: center
     :width: 50.0%
 
-    SenseAir S8 CO_2 Sensor.
+    SenseAir S8 CO₂ Sensor.
 
 .. _website: https://senseair.com/products/size-counts/senseair-s8-residential/
 
@@ -40,9 +48,9 @@ Configuration variables:
 ------------------------
 
 
-- **co2** (**Required**): The CO_2 data from the sensor in parts per million (ppm).
+- **co2** (**Required**): The CO₂ data from the sensor in parts per million (ppm).
 
-  - **name** (**Required**, string): The name for the CO_2 sensor.
+  - **name** (**Required**, string): The name for the CO₂ sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 

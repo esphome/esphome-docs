@@ -1,6 +1,13 @@
 External Components
 ===================
 
+.. esphome:component-definition::
+   :alias: external-components
+   :category: core
+   :friendly_name: External Components
+   :toc_group: Core Components
+   :toc_image: external_components.svg
+
 .. seo::
     :description: Instructions for setting up ESPHome External Components.
     :keywords: External, Custom, Components, ESPHome

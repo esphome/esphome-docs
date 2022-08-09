@@ -1,6 +1,14 @@
 The Grove - Laser PM2.5 Sensor (HM3301)
 =======================================
 
+.. esphome:component-definition::
+   :alias: hm3301
+   :category: sensor-air-quality
+   :friendly_name: HM3301
+   :toc_group: Air Quality Sensors
+   :toc_image: hm3301.jpg
+   :descriptor: Particulate
+
 .. seo::
     :description: Instructions for setting up HM3301 Particulate matter sensor
     :image: hm3301.jpg

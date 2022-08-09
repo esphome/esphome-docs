@@ -1,6 +1,13 @@
 Tuya Dimmer
 ===========
 
+.. esphome:component-definition::
+   :alias: tuya-dimmer
+   :category: light-component
+   :friendly_name: Tuya Dimmer
+   :toc_group: Light Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya dimmer switch.
     :image: brightness-medium.svg

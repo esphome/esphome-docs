@@ -1,6 +1,13 @@
 GPIO Switch
 ===========
 
+.. esphome:component-definition::
+   :alias: gpio
+   :category: switch-components
+   :friendly_name: GPIO Switch
+   :toc_group: Switch Components
+   :toc_image: pin.svg
+
 .. seo::
     :description: Instructions for setting up GPIO pin switches in ESPHome that control GPIO outputs.
     :image: pin.svg

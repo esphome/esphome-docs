@@ -1,6 +1,15 @@
 MAX31855 K-Type Thermocouple Temperature Sensor
 ===============================================
 
+.. esphome:component-definition::
+   :alias: max31855
+   :category: sensor-thermocouple
+   :friendly_name: MAX31855
+   :toc_group: Thermocouple Sensors
+   :toc_image: max31855.jpg
+   :descriptor: K-Type
+
+
 .. seo::
     :description: Instructions for setting up MAX31855 Thermocouple temperature sensors.
     :image: max31855.jpg

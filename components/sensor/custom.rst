@@ -1,6 +1,13 @@
 Custom Sensor Component
 =======================
 
+.. esphome:component-definition::
+   :alias: custom-sensor
+   :category: sensor-core
+   :friendly_name: Custom Sensor
+   :toc_group: Core Sensors
+   :toc_image: language-cpp.svg
+
 .. seo::
     :description: Instructions for setting up Custom C++ sensors with ESPHome.
     :image: language-cpp.svg

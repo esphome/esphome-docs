@@ -1,6 +1,14 @@
 ILI9341 TFT LCD
 ===============
 
+.. esphome:component-definition::
+   :alias: ili9341
+   :category: display-components
+   :friendly_name: ILI9341
+   :toc_group: Display Components
+   :toc_image: ili9341.jpg
+
+
 .. seo::
     :description: Instructions for setting up ILI9341 TFT LCD display drivers.
     :image: ili9341.jpg

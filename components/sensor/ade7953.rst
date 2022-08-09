@@ -1,6 +1,14 @@
 ADE7953 Power Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: ade7953
+   :category: sensor-electrical
+   :friendly_name: ADE7953
+   :toc_group: Electrical Sensors
+   :toc_image: ade7953.svg
+   :descriptor: Power
+
 .. seo::
     :description: Instructions for setting up ADE7953 power sensors
     :image: ade7953.svg

@@ -1,6 +1,14 @@
 BH1750 Ambient Light Sensor
 ===========================
 
+.. esphome:component-definition::
+   :alias: bh1750
+   :category: sensor-light
+   :friendly_name: BH1750
+   :toc_group: Light Sensors
+   :toc_image: bh1750.jpg
+   :descriptor: Lux
+
 .. seo::
     :description: Instructions for setting up BH1750 ambient light sensors in ESPHome.
     :image: bh1750.jpg

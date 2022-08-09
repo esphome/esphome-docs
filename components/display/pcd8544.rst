@@ -1,6 +1,13 @@
 PCD 8544 Display (Nokia 5110/3310)
 ==================================
 
+.. esphome:component-definition::
+   :alias: pcd8544
+   :category: display-components
+   :friendly_name: PCD8544 (Nokia 5110/ 3310)
+   :toc_group: Display Components
+   :toc_image: pcd8544.jpg
+
 .. seo::
     :description: Instructions for setting up PCD8544 display drivers.
     :image: pcd8544.jpg

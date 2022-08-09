@@ -1,6 +1,13 @@
 XPT2046 Touch Screen Controller
 ==================================
 
+.. esphome:component-definition::
+   :alias: xpt2046
+   :category: binary-sensor
+   :friendly_name: XPT2046
+   :toc_group: Binary Sensor Components
+   :toc_image: xpt2046.jpg
+
 .. seo::
     :description: Instructions for setting up XPT2046 touch screen controller with ESPHome
     :image: xpt2046.jpg

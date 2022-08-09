@@ -1,6 +1,14 @@
 SDP3x / SDP800 Series Differential Pressure Sensor
 ===================================================
 
+.. esphome:component-definition::
+   :alias: sdp3x
+   :category: sensor-environmental
+   :friendly_name: SDP3x / SDP800 Series
+   :toc_group: Environmental Sensors
+   :toc_image: sdp31.jpg
+   :descriptor: Pressure
+
 .. seo::
     :description: Instructions for setting up the SDP3x or SDP800 Series Differential Pressure sensor.
     :image: sdp31.jpg

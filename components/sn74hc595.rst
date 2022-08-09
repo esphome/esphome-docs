@@ -1,6 +1,13 @@
 SN74HC595 I/O Expander (shift register)
 =======================================
 
+.. esphome:component-definition::
+   :alias: sn74hc595
+   :category: miscellaneous-components
+   :friendly_name: SN74HC595 I/O Expander
+   :toc_group: Miscellaneous Components
+   :toc_image: sn74hc595.jpg
+
 .. seo::
     :description: Instructions for setting up SN74HC595 shift registers as digital port expanders in ESPHome.
 

@@ -1,6 +1,13 @@
 SSD1322 OLED Display
 ====================
 
+.. esphome:component-definition::
+   :alias: ssd1322
+   :category: display-components
+   :friendly_name: SSD1322
+   :toc_group: Display Components
+   :toc_image: ssd1322.jpg
+
 .. seo::
     :description: Instructions for setting up SSD1322 OLED display drivers.
     :image: ssd1322.jpg

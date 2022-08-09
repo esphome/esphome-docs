@@ -1,6 +1,13 @@
 GPIO Output
 ===========
 
+.. esphome:component-definition::
+   :alias: gpio
+   :category: output-components
+   :friendly_name: GPIO Output
+   :toc_group: Output Components
+   :toc_image: pin.svg
+
 .. seo::
     :description: Instructions for setting up binary outputs for GPIO pins.
     :image: pin.svg

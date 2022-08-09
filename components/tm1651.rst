@@ -1,6 +1,13 @@
 TM1651 Battery Display
 ======================
 
+.. esphome:component-definition::
+   :alias: tm1651
+   :category: miscellaneous-components
+   :friendly_name: TM1651 Battery Display
+   :toc_group: Miscellaneous Components
+   :toc_image: tm1651_battery_display.jpg
+
 .. seo::
     :description: Instructions for setting up TM1651 Battery Display.
     :image: tm1651_battery_display.jpg

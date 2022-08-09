@@ -1,6 +1,13 @@
 Generic ESP32
 =============
 
+.. esphome:device-definition::
+   :alias: esp32
+   :category: espressif
+   :friendly_name: Generic ESP32
+   :toc_group: Espressif
+   :toc_image: esp32.svg
+
 .. seo::
     :description: Information about how to use generic ESP32 boards in ESPHome.
     :image: esp32.svg
@@ -56,5 +63,5 @@ Some notes about the pins on the ESP32:
 See Also
 --------
 
-- :doc:`nodemcu_esp32`
+- :esphome:device:`nodemcu:nodemcu-esp32`
 - :ghedit:`Edit`

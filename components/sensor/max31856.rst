@@ -1,6 +1,14 @@
 MAX31856 Thermocouple Temperature Sensor
 ========================================
 
+.. esphome:component-definition::
+   :alias: max31856
+   :category: sensor-thermocouple
+   :friendly_name: MAX31856
+   :toc_group: Thermocouple Sensors
+   :toc_image: max31856.jpg
+   :descriptor: All types
+
 .. seo::
     :description: Instructions for setting up MAX31856 Thermocouple temperature sensors.
     :image: max31856.jpg

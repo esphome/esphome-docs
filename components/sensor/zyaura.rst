@@ -1,6 +1,14 @@
 ZyAura CO2 & Temperature & Humidity Sensor
 ==========================================
 
+.. esphome:component-definition::
+   :alias: zyaura
+   :category: sensor-air-quality
+   :friendly_name: ZyAura
+   :toc_group: Air Quality Sensors
+   :toc_image: zgm053.jpg
+   :descriptor: CO₂ and Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up ZyAura co2, temperature and humidity monitors.
     :image: zgm053.jpg

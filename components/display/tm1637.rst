@@ -1,6 +1,13 @@
 TM1637 7-Segment Display
 ========================
 
+.. esphome:component-definition::
+   :alias: tm1637
+   :category: display-components
+   :friendly_name: TM1637
+   :toc_group: Display Components
+   :toc_image: tm1637.jpg
+
 .. seo::
     :description: Instructions for setting up TM1637 7-segment displays.
     :image: tm1637.jpg

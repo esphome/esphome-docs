@@ -1,6 +1,14 @@
 b-parasite
 ==========
 
+.. esphome:component-definition::
+   :alias: b-parasite
+   :category: sensor-environmental;sensor-miscellaneous
+   :friendly_name: b-parasite
+   :toc_group: Environmental Sensors;Miscellaneous Sensors
+   :toc_image: b_parasite.jpg
+   :descriptor: Moisture, Temperature, Humidity, and Light
+
 .. seo::
     :description: Instructions for setting up the b-parasite soil moisture sensor in ESPHome.
     :image: b_parasite.jpg

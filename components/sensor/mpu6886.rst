@@ -1,6 +1,14 @@
 MPU6886 Accelerometer/Gyroscope Sensor
 ======================================
 
+.. esphome:component-definition::
+   :alias: mpu6886
+   :category: sensor-motion
+   :friendly_name: MPU6886
+   :toc_group: Motion Sensors
+   :toc_image: mpu6886.jpg
+   :descriptor: Accelerometer and Gyroscope
+
 .. seo::
     :description: Instructions for setting up MPU6886 Accelerometer and Gyroscope sensors.
     :image: mpu6886.jpg

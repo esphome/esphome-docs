@@ -3,6 +3,13 @@
 Time
 ====
 
+.. esphome:component-definition::
+   :alias: time
+   :category: miscellaneous-components
+   :friendly_name: Time
+   :toc_group: Miscellaneous Components
+   :toc_image: clock-outline.svg
+
 .. seo::
     :description: Instructions for setting up real time clock sources in ESPHome like network based time.
     :image: clock-outline.svg

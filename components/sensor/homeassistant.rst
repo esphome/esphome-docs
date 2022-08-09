@@ -1,6 +1,13 @@
 Home Assistant Sensor
 =====================
 
+.. esphome:component-definition::
+   :alias: home-assistant-sensor
+   :category: sensor-core
+   :friendly_name: Home Assistant
+   :toc_group: Core Sensors
+   :toc_image: home-assistant.svg
+
 .. seo::
     :description: Instructions for setting up Home Assistant sensors with ESPHome that import states from your Home Assistant instance.
     :image: home-assistant.svg

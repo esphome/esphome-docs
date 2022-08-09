@@ -1,6 +1,13 @@
 Wake-on-LAN Button
 ====================
 
+.. esphome:component-definition::
+   :alias: wake-on-lan
+   :category: button-components
+   :friendly_name: Wake-on-LAN
+   :toc_group: Button Components
+   :toc_image: power_settings.svg
+
 .. seo::
     :description: Instructions for setting up buttons that can send wakeup packets to computers on the network.
     :image: radio-tower.svg

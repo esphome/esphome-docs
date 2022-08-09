@@ -1,6 +1,14 @@
 T6613/15 CO2 Sensors
 ==================================
 
+.. esphome:component-definition::
+   :alias: t6615
+   :category: sensor-air-quality
+   :friendly_name: T6613/15
+   :toc_group: Air Quality Sensors
+   :toc_image: t6615.jpg
+   :descriptor: CO₂
+
 .. seo::
     :description: Instructions for setting up T6613 and T6615 sensors for ESPHome
     :image: t6615.jpg

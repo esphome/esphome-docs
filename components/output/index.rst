@@ -3,6 +3,13 @@
 Output Component
 ================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: output-components
+   :friendly_name: Output Core
+   :toc_group: Output Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up generic outputs in ESPHome
     :image: folder-open.svg

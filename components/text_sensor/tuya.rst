@@ -1,6 +1,13 @@
 Tuya Text Sensor
 ================
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: text-sensor-components
+   :friendly_name: Tuya Text Sensor
+   :toc_group: Text Sensor Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya device sensor.
     :image: tuya.png

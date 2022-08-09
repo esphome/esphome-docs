@@ -3,6 +3,13 @@
 CAN bus
 =======
 
+.. esphome:component-definition::
+   :alias: canbus
+   :category: core
+   :friendly_name: CAN Bus
+   :toc_group: Core Components
+   :toc_image: canbus.svg
+
 .. seo::
     :description: Instructions for setting up an CAN bus in ESPHome
     :image: canbus.svg

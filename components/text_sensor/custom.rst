@@ -1,6 +1,13 @@
 Custom Text Sensor
 ==================
 
+.. esphome:component-definition::
+   :alias: custom
+   :category: text-sensor-components
+   :friendly_name: Custom Text Sensor
+   :toc_group: Text Sensor Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create custom text sensors in ESPHome
 using the C++ (Arduino) API.
 

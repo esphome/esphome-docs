@@ -1,6 +1,13 @@
 Generic ESP8266
 ===============
 
+.. esphome:device-definition::
+   :alias: esp8266
+   :category: espressif
+   :friendly_name: Generic ESP8266
+   :toc_group: Espressif
+   :toc_image: esp8266.svg
+
 .. seo::
     :description: Instructions for using generic ESP8266s with ESPHome.
     :image: esp8266.svg
@@ -195,5 +202,5 @@ The internal pull up/down resistors have values of 30kΩ to 100kΩ
 See Also
 --------
 
-- :doc:`nodemcu_esp8266`
+- :esphome:device:`nodemcu:nodemcu-esp8266`
 - :ghedit:`Edit`

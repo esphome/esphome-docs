@@ -3,6 +3,13 @@
 Nextion Text Sensor Component
 ===============================
 
+.. esphome:component-definition::
+   :alias: nextion
+   :category: text-sensor-components
+   :friendly_name: Nextion Text Sensor
+   :toc_group: Text Sensor Components
+   :toc_image: nextion.jpg
+
 .. seo::
     :description: Instructions for setting up Nextion text sensor.
     :image: nextion.jpg

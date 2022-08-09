@@ -1,6 +1,14 @@
 Sun
 ===
 
+.. esphome:component-definition::
+   :alias: sun
+   :category: miscellaneous-components
+   :friendly_name: Sun
+   :toc_group: Miscellaneous Components
+   :toc_image: weather-sunny.svg
+
+
 .. seo::
     :description: Instructions for setting up tracking the sun position in ESPHome.
     :image: weather-sunny.svg

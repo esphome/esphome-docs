@@ -1,6 +1,14 @@
 SM2135 LED driver
 ==================
 
+.. esphome:component-definition::
+   :alias: sm2135
+   :category: output-components
+   :friendly_name: SM2135
+   :toc_group: Output Components
+   :toc_image: sm2135.svg
+
+
 .. seo::
     :description: Instructions for setting up SM2135 LED drivers in ESPHome.
     :keywords: SM2135, Calex Smart RGB Reflector

@@ -1,6 +1,13 @@
 TLC59208F
 =========
 
+.. esphome:component-definition::
+   :alias: tlc59208f
+   :category: output-components
+   :friendly_name: TLC59208F
+   :toc_group: Output Components
+   :toc_image: tlc59208f.jpg
+
 .. seo::
     :description: Instructions for setting up TLC59208F LED PWM drivers.
     :image: tlc59208f.jpg

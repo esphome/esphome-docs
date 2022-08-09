@@ -1,6 +1,13 @@
 mDNS Component
 ==============
 
+.. esphome:component-definition::
+   :alias: mdns
+   :category: miscellaneous-components
+   :friendly_name: mDNS
+   :toc_group: Miscellaneous Components
+   :toc_image: radio-tower.svg
+
 .. seo::
     :description: Instructions for setting up the mDNS configuration for your ESP node in ESPHome.
     :image: radio-tower.svg

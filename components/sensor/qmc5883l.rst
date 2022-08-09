@@ -1,6 +1,14 @@
 QMC5883L Magnetometer
 =====================
 
+.. esphome:component-definition::
+   :alias: qmc5883l
+   :category: sensor-magnetic
+   :friendly_name: QMC5883L
+   :toc_group: Magnetic Sensors
+   :toc_image: qmc5883l.jpg
+   :descriptor: 3-Axis Magnetometer
+
 .. seo::
     :description: Instructions for setting up QMC5883L IMU compass sensors.
     :image: qmc5883l.jpg

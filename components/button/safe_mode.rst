@@ -1,6 +1,13 @@
 Safe Mode Button
 ================
 
+.. esphome:component-definition::
+   :alias: safe-mode
+   :category: button-components
+   :friendly_name: Safe Mode Button
+   :toc_group: Button Components
+   :toc_image: restart-alert.svg
+
 .. seo::
     :description: Instructions for setting up buttons that can remotely reboot the ESP in ESPHome into safe mode.
     :image: restart.svg

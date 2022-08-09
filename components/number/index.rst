@@ -1,6 +1,13 @@
 Number Component
 ================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: number-components
+   :friendly_name: Number Core
+   :toc_group: Number Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up number components in ESPHome.
     :image: folder-open.svg

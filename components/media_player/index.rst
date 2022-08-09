@@ -1,6 +1,13 @@
 Media Player Components
 =======================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: media-player-components
+   :friendly_name: Media Player Core
+   :toc_group: Media Player Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up generic media players in ESPHome.
     :image: folder-open.svg

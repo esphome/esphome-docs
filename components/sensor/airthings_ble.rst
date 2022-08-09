@@ -1,6 +1,14 @@
 AirThings BLE Sensors
 =====================
 
+.. esphome:component-definition::
+   :alias: airthings-ble
+   :category: sensor-air-quality;sensor-environmental
+   :friendly_name: AirThings BLE
+   :toc_group: Air Quality Sensors;Environmental Sensors
+   :toc_image: airthings_logo.png
+   :descriptor: Radon, CO₂, Volatile Organics, Temperature, Humidity, and Pressure
+
 .. seo::
     :description: Instructions for setting up AirThings bluetooth-based sensors in ESPHome.
     :keywords: AirThings, BLE, Bluetooth, Wave Plus, Wave Mini

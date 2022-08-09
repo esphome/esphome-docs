@@ -1,6 +1,14 @@
 DHT12 Temperature+Humidity Sensor
 =================================
 
+.. esphome:component-definition::
+   :alias: dht12
+   :category: sensor-environmental
+   :friendly_name: DHT12
+   :toc_group: Environmental Sensors
+   :toc_image: dht12.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up DHT12 temperature and humidity sensors
     :image: dht12.jpg

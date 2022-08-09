@@ -1,6 +1,13 @@
 Custom Climate
 ==============
 
+.. esphome:component-definition::
+   :alias: custom
+   :category: climate-components
+   :friendly_name: Custom Climate Component
+   :toc_group: Climate Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create custom climate devices in ESPHome
 using the C++ (Arduino) API.
 

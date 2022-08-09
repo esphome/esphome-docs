@@ -1,6 +1,13 @@
 Modbus Controller
 =================
 
+.. esphome:component-definition::
+   :alias: modbus-controller
+   :category: miscellaneous-components
+   :friendly_name: Modbus Controller
+   :toc_group: Miscellaneous Components
+   :toc_image: modbus.png
+
 .. seo::
     :description: Instructions for setting up the Modbus Controller component.
     :image: modbus.png

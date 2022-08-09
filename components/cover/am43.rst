@@ -1,6 +1,13 @@
 AM43 Cover
 ==========
 
+.. esphome:component-definition::
+   :alias: am43
+   :category: cover-components
+   :friendly_name: AM43 Cover
+   :toc_group: Cover Components
+   :toc_image: am43.jpg
+
 .. seo::
     :description: Setting up AM43/BLE covers in ESPHome.
     :image: am43.jpg

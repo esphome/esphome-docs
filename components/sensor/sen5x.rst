@@ -1,6 +1,14 @@
 Sen5x Series Environmental sensor
 =================================
 
+.. esphome:component-definition::
+   :alias: sen5x
+   :category: sensor-air-quality
+   :friendly_name: SEN5x
+   :toc_group: Air Quality Sensors
+   :toc_image: sen54.jpg
+   :descriptor: Temperature, Humidity, Volatile Organics and NOx
+
 .. seo::
     :description: Instructions for setting up Sen5x Series Environmental sensor for PM, RH/T, VOC, and NOx measurements.
     :image: sen54.jpg

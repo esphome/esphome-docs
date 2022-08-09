@@ -1,6 +1,13 @@
 Select Component
 ================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: select-components
+   :friendly_name: Select Core
+   :toc_group: Select Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up select components in ESPHome.
     :image: folder-open.svg

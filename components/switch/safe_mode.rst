@@ -1,6 +1,13 @@
 Safe Mode Switch
 ================
 
+.. esphome:component-definition::
+   :alias: safe-mode
+   :category: switch-components
+   :friendly_name: Safe Mode Switch
+   :toc_group: Switch Components
+   :toc_image: restart-alert.svg
+
 .. seo::
     :description: Instructions for setting up switches that can remotely reboot the ESP in ESPHome into safe mode.
     :image: restart.svg

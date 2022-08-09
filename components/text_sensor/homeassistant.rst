@@ -1,6 +1,13 @@
 Home Assistant Text Sensor
 ==========================
 
+.. esphome:component-definition::
+   :alias: homeassistant
+   :category: text-sensor-components
+   :friendly_name: Home Assistant
+   :toc_group: Text Sensor Components
+   :toc_image: home-assistant.svg
+
 .. seo::
     :description: Instructions for setting up Home Assistant text sensors with ESPHome that import states from your Home Assistant instance.
     :image: home-assistant.svg

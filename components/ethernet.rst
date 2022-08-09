@@ -1,6 +1,14 @@
 Ethernet Component
 ==================
 
+.. esphome:component-definition::
+   :alias: ethernet
+   :category: miscellaneous-components
+   :friendly_name: ESP32 Ethernet
+   :toc_group: Miscellaneous Components
+   :toc_image: ethernet.svg
+
+
 .. seo::
     :description: Instructions for setting up the Ethernet configuration for your ESP32 node in ESPHome.
     :image: ethernet.svg

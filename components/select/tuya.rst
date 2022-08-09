@@ -1,6 +1,13 @@
 Tuya Select
 ===========
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: select-components
+   :friendly_name: Tuya Select
+   :toc_group: Select Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya device select.
     :image: tuya.png

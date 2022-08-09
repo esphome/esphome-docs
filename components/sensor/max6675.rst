@@ -1,6 +1,14 @@
 MAX6675 K-Type Thermocouple Temperature Sensor
 ==============================================
 
+.. esphome:component-definition::
+   :alias: max6675
+   :category: sensor-thermocouple
+   :friendly_name: MAX6675
+   :toc_group: Thermocouple Sensors
+   :toc_image: max6675.jpg
+   :descriptor: K-Type
+
 .. seo::
     :description: Instructions for setting up MAX6675 Thermocouple temperature sensors.
     :image: max6675.jpg

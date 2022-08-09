@@ -1,6 +1,13 @@
 WiFi Signal Sensor
 ==================
 
+.. esphome:component-definition::
+   :alias: wifi-signal
+   :category: sensor-core
+   :friendly_name: WiFi Signal Strength
+   :toc_group: Core Sensors
+   :toc_image: network-wifi.svg
+
 .. seo::
     :description: Instructions for setting up WiFi signal sensors that track the RSSI connection strength value to the network.
     :image: network-wifi.svg

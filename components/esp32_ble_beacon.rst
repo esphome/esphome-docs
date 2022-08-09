@@ -1,6 +1,13 @@
 ESP32 Bluetooth Low Energy Beacon
 =================================
 
+.. esphome:component-definition::
+   :alias: esp32-ble-beacon
+   :category: miscellaneous-components
+   :friendly_name: ESP32 BLE Beacon
+   :toc_group: Miscellaneous Components
+   :toc_image: bluetooth.svg
+
 .. seo::
     :description: Instructions for setting up Bluetooth Low Energy iBeacons using the BLE feature on ESP32s.
     :image: bluetooth.svg

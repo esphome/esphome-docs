@@ -1,6 +1,13 @@
 OTA Update Component
 ====================
 
+.. esphome:component-definition::
+   :alias: ota
+   :category: core
+   :friendly_name: OTA Updates
+   :toc_group: Core Components
+   :toc_image: system-update.svg
+
 .. seo::
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to upload firmwares remotely.
     :image: system-update.svg

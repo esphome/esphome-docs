@@ -1,6 +1,13 @@
 MCP4725 Output
 ==============
 
+.. esphome:component-definition::
+   :alias: mcp4725
+   :category: output-components
+   :friendly_name: MCP4725
+   :toc_group: Output Components
+   :toc_image: mcp4725.jpg
+
 .. seo::
     :description: Instructions for setting up MCP4725 outputs on the ESP.
     :image: mcp4725.jpg

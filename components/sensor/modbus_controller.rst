@@ -1,6 +1,13 @@
 Modbus Controller Sensor
 ========================
 
+.. esphome:component-definition::
+   :alias: modbus-controller
+   :category: sensor-miscellaneous
+   :friendly_name: Modbus Sensor
+   :toc_group: Miscellaneous Sensors
+   :toc_image: modbus.png
+
 .. seo::
     :description: Instructions for setting up a modbus_controller device sensor.
     :image: modbus.png

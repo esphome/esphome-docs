@@ -1,6 +1,13 @@
 Custom Cover
 ============
 
+.. esphome:component-definition::
+   :alias: custom
+   :category: cover-components
+   :friendly_name: Custom Cover
+   :toc_group: Cover Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create custom covers in ESPHome
 using the C++ (Arduino) API.
 

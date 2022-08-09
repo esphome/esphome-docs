@@ -1,6 +1,14 @@
 ESP32 Hall Sensor
 =================
 
+.. esphome:component-definition::
+   :alias: esp32-hall
+   :category: sensor-magnetic
+   :friendly_name: ESP32 Hall Sensor
+   :toc_group: Magnetic Sensors
+   :toc_image: magnet.svg
+   :descriptor: ESP Internal
+
 .. seo::
     :description: Instructions for setting up the integrated hall-effect sensor of the ESP32.
     :image: magnet.svg

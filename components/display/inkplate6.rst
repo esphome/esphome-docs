@@ -1,6 +1,13 @@
 Inkplate 6, 10 and 6 Plus
 =========================
 
+.. esphome:component-definition::
+   :alias: inkplate6
+   :category: display-components
+   :friendly_name: Inkplate
+   :toc_group: Display Components
+   :toc_image: inkplate6.jpg
+
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
     :image: inkplate6.jpg

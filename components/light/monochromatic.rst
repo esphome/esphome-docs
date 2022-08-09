@@ -1,6 +1,13 @@
 Monochromatic Light
 ===================
 
+.. esphome:component-definition::
+   :alias: monochromatic
+   :category: light-component
+   :friendly_name: Monochromatic Light
+   :toc_group: Light Components
+   :toc_image: brightness-medium.svg
+
 .. seo::
     :description: Instructions for setting up monochromatic (brightness-only) lights.
     :image: brightness-medium.svg

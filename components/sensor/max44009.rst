@@ -1,6 +1,14 @@
 MAX44009 Ambient Light Sensor
 =============================
 
+.. esphome:component-definition::
+   :alias: max44009
+   :category: sensor-light
+   :friendly_name: MAX44009
+   :toc_group: Light Sensors
+   :toc_image: max44009.svg
+   :descriptor: Lux
+
 .. seo::
     :description: Instructions for setting up MAX44009 ambient light sensors in ESPHome.
     :image: max44009.svg

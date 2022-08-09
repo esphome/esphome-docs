@@ -1,6 +1,14 @@
 SPS30 Particulate Matter Sensor
 ===============================
 
+.. esphome:component-definition::
+   :alias: sps30
+   :category: sensor-air-quality
+   :friendly_name: SPS30
+   :toc_group: Air Quality Sensors
+   :toc_image: sps30.jpg
+   :descriptor: Particulate
+
 .. seo::
     :description: Instructions for setting up SPS30 PM1.0, PM2.5, PM4, PM10 Particulate Matter sensors
     :image: sps30.jpg

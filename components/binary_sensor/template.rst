@@ -1,6 +1,13 @@
 Template Binary Sensor
 ======================
 
+.. esphome:component-definition::
+   :alias: template
+   :category: binary-sensor
+   :friendly_name: Template Binary Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: description.svg
+
 .. seo::
     :description: Instructions for setting up template binary sensors.
     :image: description.svg

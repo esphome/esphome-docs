@@ -1,6 +1,13 @@
 Total Daily Energy Sensor
 =========================
 
+.. esphome:component-definition::
+   :alias: total-daily-energy
+   :category: sensor-electrical
+   :friendly_name: Total Daily Energy
+   :toc_group: Electrical Sensors
+   :toc_image: sigma.svg
+
 .. seo::
     :description: Instructions for setting up sensors that track the total daily energy usage per day and accumulate the power usage.
     :image: sigma.svg

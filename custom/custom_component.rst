@@ -1,6 +1,13 @@
 Generic Custom Component
 ========================
 
+.. esphome:component-definition::
+   :alias: generic
+   :category: additional-custom-components
+   :friendly_name: Generic Custom Component
+   :toc_group: Additional Custom Components
+   :toc_image: language-cpp.svg
+
 This integration can be used to create generic custom components in ESPHome
 using the C++ (Arduino) API. This integration should be used in cases where
 none of ESPHome's abstraction layers (for example the "sensor", "binary sensor",

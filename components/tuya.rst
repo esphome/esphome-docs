@@ -1,6 +1,13 @@
 Tuya MCU
 ========
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: miscellaneous-components
+   :friendly_name: Tuya MCU
+   :toc_group: Miscellaneous Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up the Tuya component.
     :image: tuya.png

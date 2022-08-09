@@ -1,6 +1,14 @@
 Peacefair PZEM-004T V3 Energy Monitor
 =====================================
 
+.. esphome:component-definition::
+   :alias: pzemac
+   :category: sensor-electrical
+   :friendly_name: PZEM AC
+   :toc_group: Electrical Sensors
+   :toc_image: pzem-ac.jpg
+   :descriptor: Voltage and Current and Power
+
 .. seo::
     :description: Instructions for setting up PZEM-004T power monitors.
     :image: pzem-ac.jpg

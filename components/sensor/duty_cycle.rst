@@ -1,6 +1,13 @@
 Duty Cycle Sensor
 =================
 
+.. esphome:component-definition::
+   :alias: duty-cycle
+   :category: sensor-digital-signal
+   :friendly_name: Duty Cycle
+   :toc_group: Digital Signal Sensors
+   :toc_image: percent.svg
+
 .. seo::
     :description: Instructions for setting up duty cycle sensors in ESPHome
     :image: percent.svg

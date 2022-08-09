@@ -1,6 +1,14 @@
 Teleinformation from Linky electrical counter.
 ==============================================
 
+.. esphome:component-definition::
+   :alias: teleinfo
+   :category: sensor-electrical
+   :friendly_name: Teleinfo
+   :toc_group: Electrical Sensors
+   :toc_image: teleinfo.jpg
+   :descriptor: Electrical Counter
+
 .. seo::
     :description: Instructions for setting up French Teleinformation
     :image: teleinfo.jpg

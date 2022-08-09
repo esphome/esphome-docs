@@ -1,6 +1,13 @@
 MQTT Subscribe Text Sensor
 ==========================
 
+.. esphome:component-definition::
+   :alias: mqtt-subscribe
+   :category: text-sensor-components
+   :friendly_name: MQTT Subscribe Text
+   :toc_group: Text Sensor Components
+   :toc_image: mqtt.png
+
 .. seo::
     :description: Instructions for setting up MQTT Subscribe text sensors that show the content of a MQTT message as their state.
     :image: mqtt.png

@@ -1,6 +1,15 @@
 EZO sensor circuits
 ===================
 
+.. esphome:component-definition::
+   :alias: ezo
+   :category: sensor-miscellaneous
+   :friendly_name: EZO Sensor Circuits
+   :toc_group: Miscellaneous Sensors
+   :toc_image: ezo-ph-circuit.png
+   :descriptor: (pH)
+
+
 .. seo::
     :description: Instructions for setting up EZO sensor circuits in esphome
     :image: ezo-ph-circuit.png

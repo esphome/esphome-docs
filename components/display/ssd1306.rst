@@ -1,6 +1,13 @@
 SSD1306 OLED Display
 ====================
 
+.. esphome:component-definition::
+   :alias: ssd1306
+   :category: display-components
+   :friendly_name: SSD1306
+   :toc_group: Display Components
+   :toc_image: ssd1306.jpg
+
 .. seo::
     :description: Instructions for setting up SSD1306 OLED display drivers.
     :image: ssd1306.jpg

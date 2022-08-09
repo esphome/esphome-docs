@@ -1,6 +1,14 @@
 APDS9960 Sensor
 ===============
 
+.. esphome:component-definition::
+   :alias: apds9960
+   :category: sensor-light;sensor-motion
+   :friendly_name: APDS9960
+   :toc_group: Light Sensors;Motion Sensors
+   :toc_image: apds9960.jpg
+   :descriptor: Colour and Gesture
+
 .. seo::
     :description: Instructions for setting up APDS9960 sensors.
     :image: apds9960.jpg

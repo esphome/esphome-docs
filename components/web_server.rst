@@ -1,6 +1,13 @@
 Web Server Component
 ====================
 
+.. esphome:component-definition::
+   :alias: webserver
+   :category: core
+   :friendly_name: Web Server
+   :toc_group: Core Components
+   :toc_image: http.svg
+
 .. seo::
     :description: Instructions for setting up a web server in ESPHome.
     :image: http.svg

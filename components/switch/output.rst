@@ -1,6 +1,13 @@
 Generic Output Switch
 =====================
 
+.. esphome:component-definition::
+   :alias: output
+   :category: switch-components
+   :friendly_name: Generic Output Switch
+   :toc_group: Switch Components
+   :toc_image: upload.svg
+
 .. seo::
     :description: Instructions for setting up generic output switches in ESPHome that control an output component.
     :image: upload.svg

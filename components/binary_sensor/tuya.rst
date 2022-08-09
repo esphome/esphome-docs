@@ -1,6 +1,13 @@
 Tuya Binary Sensor
 ==================
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: binary-sensor
+   :friendly_name: Tuya Binary Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya device binary sensor.
 

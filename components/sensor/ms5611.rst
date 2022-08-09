@@ -1,6 +1,14 @@
 MS5611 Atmospheric Pressure Sensor
 ==================================
 
+.. esphome:component-definition::
+   :alias: ms5611
+   :category: sensor-environmental
+   :friendly_name: MS5611
+   :toc_group: Environmental Sensors
+   :toc_image: ms5611.jpg
+   :descriptor: Pressure
+
 .. seo::
     :description: Instructions for setting up MS5611 atmospheric pressure sensors.
     :image: ms5611.jpg

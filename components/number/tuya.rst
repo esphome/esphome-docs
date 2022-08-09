@@ -1,6 +1,13 @@
 Tuya Number
 ===========
 
+.. esphome:component-definition::
+   :alias: tuya
+   :category: number-components
+   :friendly_name: Tuya Number
+   :toc_group: Number Components
+   :toc_image: tuya.png
+
 .. seo::
     :description: Instructions for setting up a Tuya device integer or enum datapoint..
     :image: upload.svg

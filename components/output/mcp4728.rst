@@ -1,6 +1,13 @@
 MCP4728 Component
 =================
 
+.. esphome:component-definition::
+   :alias: mcp4728
+   :category: output-components
+   :friendly_name: MCP4728
+   :toc_group: Output Components
+   :toc_image: mcp4728.jpg
+
 .. seo::
     :description: Instructions for setting up MCP4728 outputs on the ESP.
     :image: mcp4728.jpg

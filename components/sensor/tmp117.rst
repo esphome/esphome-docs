@@ -1,6 +1,14 @@
 TMP117 Temperature Sensor
 =========================
 
+.. esphome:component-definition::
+   :alias: tmp117
+   :category: sensor-environmental
+   :friendly_name: TMP117
+   :toc_group: Environmental Sensors
+   :toc_image: tmp117.jpg
+   :descriptor: Temperature
+
 .. seo::
     :description: Instructions for setting up the TMP117 Temperature sensor.
     :image: tmp117.jpg

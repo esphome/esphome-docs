@@ -1,6 +1,14 @@
 AM2320 Temperature+Humidity Sensor
 ==================================
 
+.. esphome:component-definition::
+   :alias: am2320
+   :category: sensor-environmental
+   :friendly_name: AM2320
+   :toc_group: Environmental Sensors
+   :toc_image: am2320.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up AM2320 temperature and humidity sensors
     :image: am2320.jpg

@@ -1,6 +1,13 @@
 Shutdown Switch
 ===============
 
+.. esphome:component-definition::
+   :alias: shutdown
+   :category: switch-components
+   :friendly_name: Shutdown Switch
+   :toc_group: Switch Components
+   :toc_image: power_settings.svg
+
 .. seo::
     :description: Instructions for setting up switches that can remotely shut down the ESP.
     :image: power_settings.svg

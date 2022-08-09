@@ -1,6 +1,13 @@
 Restart Button
 ==============
 
+.. esphome:component-definition::
+   :alias: restart
+   :category: button-components
+   :friendly_name: Restart Button
+   :toc_group: Button Components
+   :toc_image: restart.svg
+
 .. seo::
     :description: Instructions for setting up buttons that can remotely reboot the ESP in ESPHome.
     :image: restart.svg

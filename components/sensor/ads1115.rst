@@ -1,6 +1,14 @@
 ADS1115 Sensor
 ==============
 
+.. esphome:component-definition::
+   :alias: ads1115
+   :category: sensor-analogue
+   :friendly_name: ADS1115
+   :toc_group: Analogue Sensors
+   :toc_image: ads1115.jpg
+   :descriptor: 4-channel ADC
+
 .. seo::
     :description: Instructions for setting up ADS1115 multiplexed analog voltage sensors.
     :image: ads1115.jpg

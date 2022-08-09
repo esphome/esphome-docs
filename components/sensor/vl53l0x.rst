@@ -1,6 +1,14 @@
 VL53L0X Time Of Flight Distance Sensor
 ======================================
 
+.. esphome:component-definition::
+   :alias: vl53l0x
+   :category: sensor-distance
+   :friendly_name: VL53L0x
+   :toc_group: Distance Sensors
+   :toc_image: vl53l0x.jpg
+   :descriptor: IR Optical Distance
+
 .. seo::
     :description: Instructions for setting up VL53L0X distance sensors in ESPHome.
     :image: vl53l0x.jpg

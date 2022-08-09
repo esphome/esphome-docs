@@ -1,6 +1,13 @@
 PID Climate
 ===========
 
+.. esphome:component-definition::
+   :alias: pid
+   :category: climate-components
+   :friendly_name: PID Controller
+   :toc_group: Climate Components
+   :toc_image: function.svg
+
 .. seo::
     :description: Instructions for setting up PID climate controllers with ESPHome.
     :image: function.svg

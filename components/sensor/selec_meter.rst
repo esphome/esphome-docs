@@ -1,6 +1,14 @@
 Selec Energy Monitor
 ==========================
 
+.. esphome:component-definition::
+   :alias: selec-meter
+   :category: sensor-electrical
+   :friendly_name: Select Meter
+   :toc_group: Electrical Sensors
+   :toc_image: selec_meter_em2m.jpg
+   :descriptor: Modbus Energy Monitor
+
 .. seo::
     :description: Instructions for setting up Selec power monitors.
     :image: selec_meter_em2m.jpg

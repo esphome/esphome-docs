@@ -1,6 +1,13 @@
 ESP32 Platform
 ==============
 
+.. esphome:component-definition::
+   :alias: esp32
+   :category: miscellaneous-components
+   :friendly_name: ESP32
+   :toc_group: Miscellaneous Components
+   :toc_image: esp32.svg
+
 .. seo::
     :description: Configuration for the ESP32 platform for ESPHome.
     :image: esp32.svg

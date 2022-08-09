@@ -1,6 +1,13 @@
 CAP1188 Capacitive Touch Sensor
 ===============================
 
+.. esphome:component-definition::
+   :alias: cap1188
+   :category: binary-sensor
+   :friendly_name: CAP1188 Capacitive Touch Sensor
+   :toc_group: Binary Sensor Components
+   :toc_image: cap1188.jpg
+
 .. seo::
     :description: Instructions for setting up CAP1188 Capacitive Touch Sensor
     :image: cap1188.jpg

@@ -1,6 +1,13 @@
 Servo Component
 ===============
 
+.. esphome:component-definition::
+   :alias: servo
+   :category: miscellaneous-components
+   :friendly_name: Servo
+   :toc_group: Miscellaneous Components
+   :toc_image: servo.svg
+
 .. seo::
     :description: Instructions for setting up servos in ESPHome
     :image: servo.svg

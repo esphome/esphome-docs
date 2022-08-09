@@ -1,6 +1,13 @@
 Version Text Sensor
 ===================
 
+.. esphome:component-definition::
+   :alias: version
+   :category: text-sensor-components
+   :friendly_name: Version
+   :toc_group: Text Sensor Components
+   :toc_image: new-box.svg
+
 .. seo::
     :description: Instructions for setting up version text sensors.
     :image: new-box.svg

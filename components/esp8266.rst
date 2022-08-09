@@ -1,6 +1,13 @@
 ESP8266 Platform
 ================
 
+.. esphome:component-definition::
+   :alias: esp8266
+   :category: miscellaneous-components
+   :friendly_name: ESP8266
+   :toc_group: Miscellaneous Components
+   :toc_image: esp8266.svg
+
 .. seo::
     :description: Configuration for the ESP8266 platform for ESPHome.
     :image: esp8266.svg

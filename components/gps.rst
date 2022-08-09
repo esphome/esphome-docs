@@ -1,6 +1,13 @@
 GPS Component
 =============
 
+.. esphome:component-definition::
+   :alias: gps
+   :category: miscellaneous-components
+   :friendly_name: GPS
+   :toc_group: Miscellaneous Components
+   :toc_image: crosshairs-gps.svg
+
 .. seo::
     :description: Instructions for setting up GPS integration in ESPHome.
     :image: crosshairs-gps.svg

@@ -1,6 +1,14 @@
 SHT3X-D Temperature+Humidity Sensor
 ===================================
 
+.. esphome:component-definition::
+   :alias: sht3xd
+   :category: sensor-environmental
+   :friendly_name: SHT3X-D
+   :toc_group: Environmental Sensors
+   :toc_image: sht3xd.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up SHT31-D temperature and humidity sensors
     :image: sht3xd.jpg

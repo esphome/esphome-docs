@@ -1,6 +1,13 @@
 Resistance Sensor
 =================
 
+.. esphome:component-definition::
+   :alias: resistance
+   :category: sensor-analogue
+   :friendly_name: Resistance
+   :toc_group: Analogue Sensors
+   :toc_image: omega.svg
+
 .. seo::
     :description: Instructions for setting up resistance sensors in ESPHome
     :image: omega.svg

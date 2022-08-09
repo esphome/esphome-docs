@@ -1,6 +1,13 @@
 HTTP Request
 ============
 
+.. esphome:component-definition::
+   :alias: http-request
+   :category: miscellaneous-components
+   :friendly_name: HTTP Request
+   :toc_group: Miscellaneous Components
+   :toc_image: connection.svg
+
 .. seo::
     :description: Instructions for setting up HTTP Requests in ESPHome
     :image: connection.svg

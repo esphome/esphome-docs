@@ -1,6 +1,13 @@
 Prometheus Component
 ====================
 
+.. esphome:component-definition::
+   :alias: prometheus
+   :category: miscellaneous-components
+   :friendly_name: Prometheus
+   :toc_group: Miscellaneous Components
+   :toc_image: prometheus.svg
+
 .. seo::
     :description: Instructions for setting up a prometheus exporter with ESPHome.
     :image: prometheus.svg

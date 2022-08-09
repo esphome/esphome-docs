@@ -1,6 +1,14 @@
 SCD4X CO₂, Temperature and Relative Humidity Sensor
 ===================================================
 
+.. esphome:component-definition::
+   :alias: scd4x
+   :category: sensor-air-quality;sensor-environmental
+   :friendly_name: SCD4X
+   :toc_group: Air Quality Sensors;Environmental Sensors
+   :toc_image: scd4x.jpg
+   :descriptor: Temperature, Humidity, and CO₂
+
 .. seo::
     :description: Instructions for setting up SCD4X CO₂ Temperature and Relative Humidity Sensor
     :image: scd4x.jpg

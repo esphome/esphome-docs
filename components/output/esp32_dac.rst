@@ -1,6 +1,13 @@
 ESP32 DAC
 =========
 
+.. esphome:component-definition::
+   :alias: esp32-dac
+   :category: output-components
+   :friendly_name: ESP32 DAC
+   :toc_group: Output Components
+   :toc_image: dac.svg
+
 .. seo::
     :description: Instructions for setting up ESP32 digital-to-analog converter.
     :image: dac.svg

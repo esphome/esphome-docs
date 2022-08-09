@@ -1,6 +1,14 @@
 RuuviTag Open Source BLE Sensor
 ===============================
 
+.. esphome:component-definition::
+   :alias: ruuvitag
+   :category: sensor-ble;sensor-environmental;sensor-motion
+   :friendly_name: RuuviTag
+   :toc_group: Bluetooth Low Energy (BLE) Sensors;Environmental Sensors;Motion Sensors
+   :toc_image: ruuvitag.jpg
+   :descriptor: Temperature, Humidity, and Accelerometer
+
 .. seo::
     :description: Instructions for setting up RuuviTag bluetooth-based sensors in ESPHome.
     :image: ruuvitag.jpg

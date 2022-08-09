@@ -1,6 +1,13 @@
 Lock Component
 ================
 
+.. esphome:component-definition::
+   :alias: core
+   :category: lock-components
+   :friendly_name: Lock Core
+   :toc_group: Lock Components
+   :toc_image: folder-open.svg
+
 .. seo::
     :description: Instructions for setting up generic locks in ESPHome.
     :image: folder-open.svg

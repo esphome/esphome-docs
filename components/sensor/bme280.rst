@@ -1,6 +1,14 @@
 BME280 Temperature+Pressure+Humidity Sensor
 ===========================================
 
+.. esphome:component-definition::
+   :alias: bme280
+   :category: sensor-environmental
+   :friendly_name: BME280
+   :toc_group: Environmental Sensors
+   :toc_image: bme280.jpg
+   :descriptor: Temperature, Humidity, and Pressure
+
 .. seo::
     :description: Instructions for setting up BME280 temperature, pressure and humidity sensors
     :image: bme280.jpg

@@ -1,6 +1,13 @@
 ESP32 Touch Pad
 ===============
 
+.. esphome:component-definition::
+   :alias: esp32-touch
+   :category: binary-sensor
+   :friendly_name: ESP32 Touch Pad
+   :toc_group: Binary Sensor Components
+   :toc_image: touch.svg
+
 .. seo::
     :description: Instructions for setting up the touch pad on the ESP32.
     :image: touch.svg

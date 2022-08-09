@@ -1,6 +1,14 @@
 TMP102 Temperature Sensor
 =========================
 
+.. esphome:component-definition::
+   :alias: tmp102
+   :category: sensor-environmental
+   :friendly_name: TMP102
+   :toc_group: Environmental Sensors
+   :toc_image: tmp102.jpg
+   :descriptor: Temperature
+
 .. seo::
     :description: Instructions for setting up TMP102 temperature sensors.
     :image: tmp102.jpg

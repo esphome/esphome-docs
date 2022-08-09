@@ -1,6 +1,14 @@
 Eastron SDM Energy Monitor
 ==========================
 
+.. esphome:component-definition::
+   :alias: sdm-meter
+   :category: sensor-electrical
+   :friendly_name: SDM Meter
+   :toc_group: Electrical Sensors
+   :toc_image: sdm220m.jpg
+   :descriptor: Modbus Energy Monitor
+
 .. seo::
     :description: Instructions for setting up SDM power monitors.
     :image: sdm220m.jpg

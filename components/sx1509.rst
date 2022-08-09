@@ -1,6 +1,13 @@
 SX1509 16 channel I/O Expander with LED driver and keypad engine
 ================================================================
 
+.. esphome:component-definition::
+   :alias: sx1509
+   :category: miscellaneous-components
+   :friendly_name: SX1509 I/O Expander
+   :toc_group: Miscellaneous Components
+   :toc_image: sx1509.jpg
+
 .. seo::
     :description: Instructions for setting up SX1509 16 channel I/O expander in ESPHome.
     :image: sx1509.jpg

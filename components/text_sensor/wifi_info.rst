@@ -1,6 +1,13 @@
 WiFi Info Text Sensor
 =====================
 
+.. esphome:component-definition::
+   :alias: wifi-info
+   :category: text-sensor-components
+   :friendly_name: WiFi Info
+   :toc_group: Text Sensor Components
+   :toc_image: network-wifi.svg
+
 .. seo::
     :description: Instructions for setting up WiFi info text sensors.
     :image: network-wifi.svg

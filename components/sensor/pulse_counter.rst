@@ -1,6 +1,13 @@
 Pulse Counter Sensor
 ====================
 
+.. esphome:component-definition::
+   :alias: pulse-counter
+   :category: sensor-digital-signal
+   :friendly_name: Pulse Counter
+   :toc_group: Digital Signal Sensors
+   :toc_image: pulse.svg
+
 .. seo::
     :description: Instructions for setting up pulse counter sensors.
     :image: pulse.svg

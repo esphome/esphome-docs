@@ -1,6 +1,14 @@
 HDC1080 Temperature+Humidity Sensor
 ===================================
 
+.. esphome:component-definition::
+   :alias: hdc1080
+   :category: sensor-environmental
+   :friendly_name: HDC1080
+   :toc_group: Environmental Sensors
+   :toc_image: hdc1080.jpg
+   :descriptor: Temperature and Humidity
+
 .. seo::
     :description: Instructions for setting up HDC1080 temperature and humidity sensors.
     :image: hdc1080.jpg

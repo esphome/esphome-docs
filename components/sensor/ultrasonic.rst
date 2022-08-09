@@ -1,6 +1,14 @@
 Ultrasonic Distance Sensor
 ==========================
 
+.. esphome:component-definition::
+   :alias: ultrasonic
+   :category: sensor-distance
+   :friendly_name: Ultrasonic Sensor
+   :toc_group: Distance Sensors
+   :toc_image: ultrasonic.jpg
+   :descriptor: Acoustic Distance
+
 .. seo::
     :description: Instructions for setting up ultrasonic distance measurement sensors in ESPHome.
     :image: ultrasonic.jpg

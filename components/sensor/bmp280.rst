@@ -1,6 +1,14 @@
 BMP280 Temperature+Pressure Sensor
 ==================================
 
+.. esphome:component-definition::
+   :alias: bmp280
+   :category: sensor-environmental
+   :friendly_name: BMP280
+   :toc_group: Environmental Sensors
+   :toc_image: bmp280.jpg
+   :descriptor: Temperature and Pressure
+
 .. seo::
     :description: Instructions for setting up BMP280 temperature and pressure sensors with ESPHome
     :image: bmp280.jpg

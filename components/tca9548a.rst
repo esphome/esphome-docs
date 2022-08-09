@@ -1,6 +1,13 @@
 TCA9548A I²C Multiplexer
 ========================
 
+.. esphome:component-definition::
+   :alias: tca9548a
+   :category: miscellaneous-components
+   :friendly_name: TCA9548A I²C Multiplexer
+   :toc_group: Miscellaneous Components
+   :toc_image: tca9548a.jpg
+
 .. seo::
     :description: Instructions for setting up TCA9548A I²C multiplexer in ESPHome.
     :image: tca9548a.jpg

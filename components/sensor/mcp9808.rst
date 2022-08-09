@@ -1,6 +1,15 @@
 MCP9808 Temperature Sensor
 ==========================
 
+.. esphome:component-definition::
+   :alias: mcp9808
+   :category: sensor-environmental
+   :friendly_name: MCP9808
+   :toc_group: Environmental Sensors
+   :toc_image: mcp9808.jpg
+   :descriptor: Temperature
+
+
 .. seo::
     :description: Instructions for setting up MCP9808 temperature sensor.
     :image: mcp9808.jpg

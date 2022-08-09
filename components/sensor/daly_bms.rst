@@ -1,6 +1,14 @@
 Daly BMS Sensor
 ===============
 
+.. esphome:component-definition::
+   :alias: daly-bms
+   :category: sensor-electrical
+   :friendly_name: Daly BMS
+   :toc_group: Electrical Sensors
+   :toc_image: daly_bms.jpg
+   :descriptor: Voltage and Current and Power
+
 .. seo::
     :description: Instructions for setting up a Daly Smart BMS
     :image: daly_bms.jpg

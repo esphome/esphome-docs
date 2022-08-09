@@ -1,6 +1,13 @@
 Copy Integration
 ================
 
+.. esphome:component-definition::
+   :alias: copy
+   :category: miscellaneous-components
+   :friendly_name: Copy
+   :toc_group: Miscellaneous Components
+   :toc_image: content-copy.svg
+
 .. seo::
     :description: Instructions for setting up the copy integration in ESPHome
     :image: content-copy.svg
