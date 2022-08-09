@@ -30,6 +30,7 @@ Further notes:
 """
 
 
+from copy import deepcopy
 import os
 from os import path
 from docutils.parsers.rst.states import Inliner
@@ -572,21 +573,24 @@ class ESPHomeDomain(Domain):
     }
 
     def merge_domaindata(self, docnames: Iterable[str], otherdata: Dict) -> None:
-        for fullname, obj in otherdata[_COMPONENTS_KEY].items():
-            if obj.docname in docnames:
-                self.data[_COMPONENTS_KEY] = obj
-        for fullname, obj in otherdata[_COMPONENTS_TOC_KEY].items():
-            if obj.docname in docnames:
-                self.data[_COMPONENTS_TOC_KEY] = obj
-        for fullname, obj in otherdata[_DEVICE_KEY].items():
-            if obj.docname in docnames:
-                self.data[_DEVICE_KEY] = obj
-        for fullname, obj in otherdata[_DEVICE_TOC_KEY].items():
-            if obj.docname in docnames:
-                self.data[_DEVICE_TOC_KEY] = obj
-        for fullname, obj in otherdata[_COOKBOOK_KEY].items():
-            if obj.docname in docnames:
-                self.data[_COOKBOOK_KEY] = obj
+        def _inner_merge(src: Dict, dst: Dict):
+            """Merge standard {k: v}"""
+            for k, v in src.items():
+                if isinstance(v, dict):
+                    nv = dst.setdefault(k, {})
+                    _inner_merge(v, nv)
+                else:
+                    dst[k] = v
+            return dst
+
+        targets = [_COMPONENTS_KEY,
+                   _COMPONENTS_TOC_KEY,
+                   _DEVICE_KEY,
+                   _DEVICE_TOC_KEY,
+                   _COOKBOOK_KEY]
+
+        for target in targets:
+            self.data[target] = _inner_merge(otherdata[target], self.data[target])
 
     def get_full_qualified_name(self, node):
         """Gets the path to the internally registered type.
@@ -980,7 +984,7 @@ def setup(app):
     app.connect('doctree-resolved', _on_doctree_resolved)
 
     return {
-        'version': '0.1.1',
+        'version': '0.1.2',
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
