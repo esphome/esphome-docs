@@ -1,0 +1,137 @@
+ESPHome 2022.8.0 - 17th August 2022
+===================================
+
+.. seo::
+    :description: Changelog for ESPHome 2022.8.0.
+    :image: /_static/changelog-2022.8.0.png
+    :author: Jesse Hills
+    :author_twitter: @jesserockz
+
+.. imgtable::
+    :columns: 3
+
+    DAC7678, components/output/dac7678, dac7678.svg
+    Sprinkler, components/sprinkler, sprinkler-variant.svg
+    Feedback Cover, components/cover/feedback, feedback_cover.svg
+    SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
+    Whynter IR Climate, components/climate/climate_ir, air-conditioner-ir.svg
+
+
+Full list of changes
+--------------------
+
+New Components
+^^^^^^^^^^^^^^
+
+- DAC7678 support :esphomepr:`3441` by :ghuser:`NickB1` (new-integration)
+- Add support for SMT100 Soil Moisture Sensor :esphomepr:`3654` by :ghuser:`piechade` (new-integration)
+- Adding support for Whynter ARC-14S/SH Air Conditioners :esphomepr:`3641` by :ghuser:`aeonsablaze` (new-integration)
+- Sprinkler controller component :esphomepr:`2249` by :ghuser:`kbx81` (new-integration)
+- Create feedback cover component :esphomepr:`3253` by :ghuser:`ianchi` (new-integration)
+
+Breaking Changes
+^^^^^^^^^^^^^^^^
+
+- Remove min_save_interval from intergration and total_daily_energy :esphomepr:`3498` by :ghuser:`jesserockz` (breaking-change)
+- Rework NaN handling in sensor filters :esphomepr:`3610` by :ghuser:`DAVe3283` (breaking-change)
+- Extend ST7789V component to support additional displays :esphomepr:`3651` by :ghuser:`kbx81` (breaking-change)
+- Refactor BedJet climate into Hub component :esphomepr:`3522` by :ghuser:`jhansche` (breaking-change)
+
+All changes
+^^^^^^^^^^^
+
+- Refactor vl53l0x to remove code from header. :esphomepr:`3536` by :ghuser:`RoboMagus`
+- Fix modbus user-defined function handling :esphomepr:`3527` by :ghuser:`gazoodle`
+- Language schema 202204 :esphomepr:`3492` by :ghuser:`glmnet`
+- Fix / Reverse order shutdown :esphomepr:`3585` by :ghuser:`RoboMagus`
+- RestoringGlobalsComponent: Store value on shutdown :esphomepr:`3586` by :ghuser:`RoboMagus`
+- Map LOLIN C3 mini board pins :esphomepr:`3587` by :ghuser:`mateusdemboski`
+- Bump platformio to 6.0.2 :esphomepr:`3566` by :ghuser:`jesserockz`
+- Bump pylint from 2.13.9 to 2.14.3 :esphomepr:`3589` by :ghuser:`dependabot[bot]`
+- DAC7678 support :esphomepr:`3441` by :ghuser:`NickB1` (new-integration)
+- Correcting ESP32 flash save/load key calculation algorithm :esphomepr:`3416` by :ghuser:`cinadr`
+- Bump aioesphomeapi from 10.8.2 to 10.10.0 :esphomepr:`3590` by :ghuser:`dependabot[bot]`
+- Do two substitutions passes to allow substitutions inside substitutions :esphomepr:`3583` by :ghuser:`jesserockz`
+- Update actions :esphomepr:`3592` by :ghuser:`wrt54g`
+- Add github-actions to dependabot :esphomepr:`3595` by :ghuser:`jesserockz`
+- Fix some typos found by codespell :esphomepr:`3598` by :ghuser:`misery`
+- #3358 Correct temperature validity detection issue in some conditions of pu… :esphomepr:`3545` by :ghuser:`Benoit3`
+- Remove min_save_interval from intergration and total_daily_energy :esphomepr:`3498` by :ghuser:`jesserockz` (breaking-change)
+- Bump zeroconf from 0.38.4 to 0.38.7 :esphomepr:`3562` by :ghuser:`dependabot[bot]`
+- fix EDict to dict mapping in helpers.py :esphomepr:`3599` by :ghuser:`jpeletier`
+- Fix slow_pwm output glitch :esphomepr:`3601` by :ghuser:`marshn`
+- Bump pyupgrade from 2.32.1 to 2.34.0 :esphomepr:`3591` by :ghuser:`dependabot[bot]`
+- Bump black from 22.3.0 to 22.6.0 :esphomepr:`3613` by :ghuser:`dependabot[bot]`
+- Bump colorama from 0.4.4 to 0.4.5 :esphomepr:`3614` by :ghuser:`dependabot[bot]`
+- Bump pylint from 2.14.3 to 2.14.4 :esphomepr:`3617` by :ghuser:`dependabot[bot]`
+- Bump pytest-mock from 3.7.0 to 3.8.1 :esphomepr:`3616` by :ghuser:`dependabot[bot]`
+- Update dfplayer condition function name :esphomepr:`3619` by :ghuser:`dab0g`
+- Added more sensor device classes :esphomepr:`3624` by :ghuser:`lal12`
+- Improvement pipsolar crc :esphomepr:`3316` by :ghuser:`andreashergert1984`
+- Fix configuration constants in core. :esphomepr:`3652` by :ghuser:`RoboMagus`
+- FIX: NVS preferences being written even if unchanged :esphomepr:`3647` by :ghuser:`jpeletier`
+- Add 'set_total_pulses' action to 'pulse_counter' sensor. :esphomepr:`3640` by :ghuser:`RoboMagus`
+- add option to publish initial state of binary sensors :esphomepr:`3636` by :ghuser:`ssieb`
+- update packages: nginx-light-1.18.0-6.1+deb11u2 nano-5.4-2+deb11u1 :esphomepr:`3631` by :ghuser:`peterg79`
+- Add support for SMT100 Soil Moisture Sensor :esphomepr:`3654` by :ghuser:`piechade` (new-integration)
+- Rework NaN handling in sensor filters :esphomepr:`3610` by :ghuser:`DAVe3283` (breaking-change)
+- Remove deprecated adc init call. :esphomepr:`3667` by :ghuser:`ssieb`
+- List webserver service on MDNS if enabled. :esphomepr:`3662` by :ghuser:`RoboMagus`
+- Show changes from python linting :esphomepr:`3677` by :ghuser:`jesserockz`
+- dalybms: support changing the address :esphomepr:`3676` by :ghuser:`ssieb`
+- Upgrade rweather/Crypto from 0.2.0 to 0.4.0 :esphomepr:`3593` by :ghuser:`sybrenstuvel`
+- Allow GPIO20 for ESP32 :esphomepr:`3680` by :ghuser:`ashald`
+- Remove old unused code in mcp23xxx_base :esphomepr:`3685` by :ghuser:`jesserockz`
+- Adding option to report signal strength on pvvx_mithermometer :esphomepr:`3688` by :ghuser:`doolbneerg`
+- Pass optional args to 'new_Pvariable' when creating new entities :esphomepr:`3690` by :ghuser:`RoboMagus`
+- fix sx1509 use of pullup and pulldown :esphomepr:`3689` by :ghuser:`ssieb`
+- Add a soft reset in setup() for bme280. :esphomepr:`3615` by :ghuser:`dbaarda`
+- Add get_ap() method to WiFi :esphomepr:`3684` by :ghuser:`anatoly-savchenkov`
+- Extend ST7789V component to support additional displays :esphomepr:`3651` by :ghuser:`kbx81` (breaking-change)
+- Fix panic abort when BLEClient reconnects :esphomepr:`3594` by :ghuser:`dentra`
+- Introduces ble_client.ble_write Action :esphomepr:`3398` by :ghuser:`rbaron`
+- Add helpers to switch python for schema and codegen :esphomepr:`3693` by :ghuser:`jesserockz`
+- Refactor BedJet climate into Hub component :esphomepr:`3522` by :ghuser:`jhansche` (breaking-change)
+- Added support for setting the current animation frame :esphomepr:`3681` by :ghuser:`davestubbs`
+- Adding support for Whynter ARC-14S/SH Air Conditioners :esphomepr:`3641` by :ghuser:`aeonsablaze` (new-integration)
+- Sprinkler controller component :esphomepr:`2249` by :ghuser:`kbx81` (new-integration)
+- add gradient color  :esphomepr:`3687` by :ghuser:`nielsnl68`
+- [Nextion] Add on_page trigger :esphomepr:`3673` by :ghuser:`anatoly-savchenkov`
+- Bump pyupgrade from 2.34.0 to 2.37.3 :esphomepr:`3670` by :ghuser:`dependabot[bot]`
+- Bump aioesphomeapi from 10.10.0 to 10.11.0 :esphomepr:`3669` by :ghuser:`dependabot[bot]`
+- Create feedback cover component :esphomepr:`3253` by :ghuser:`ianchi` (new-integration)
+- Bump pytest-asyncio from 0.18.3 to 0.19.0 :esphomepr:`3695` by :ghuser:`dependabot[bot]`
+- Bump zeroconf from 0.38.7 to 0.39.0 :esphomepr:`3694` by :ghuser:`dependabot[bot]`
+- Bump pytest-mock from 3.8.1 to 3.8.2 :esphomepr:`3622` by :ghuser:`dependabot[bot]`
+- Bump flake8 from 4.0.1 to 5.0.4 :esphomepr:`3703` by :ghuser:`dependabot[bot]`
+- Bump pylint from 2.14.4 to 2.14.5 :esphomepr:`3697` by :ghuser:`dependabot[bot]`
+- Add priority to on_shutdown trigger :esphomepr:`3644` by :ghuser:`RoboMagus`
+
+Past Changelogs
+---------------
+
+- :doc:`2022.6.0`
+- :doc:`2022.5.0`
+- :doc:`2022.4.0`
+- :doc:`2022.3.0`
+- :doc:`2022.2.0`
+- :doc:`2022.1.0`
+- :doc:`2021.12.0`
+- :doc:`2021.11.0`
+- :doc:`2021.10.0`
+- :doc:`2021.9.0`
+- :doc:`2021.8.0`
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`

@@ -218,6 +218,8 @@ Configuration example for PVVX MiThermometer firmware set to "Custom" advertisem
           name: "PVVX Battery-Level"
         battery_voltage:
           name: "PVVX Battery-Voltage"
+        signal_strength:
+          name: "PVVX Signal"
 
 Configuration example for ATC MiThermometer firmware set to "Custom" advertisement:
 
@@ -622,7 +624,7 @@ To maximize the chances of catching advertisements of the sensors, you can set `
 .. code-block:: yaml
 
     esp32_ble_tracker:
-      scan_parameters: 
+      scan_parameters:
         interval: 5s # try with 300ms if you don't have LAN module
         window: 5s # try with 300ms if you don't have LAN module
         active: false

@@ -313,6 +313,7 @@ Environmental
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
+    SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
@@ -356,6 +357,7 @@ Miscellaneous
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
 
@@ -441,6 +443,7 @@ Output Components
     MCP4725, components/output/mcp4725, mcp4725.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
+    DAC7678, components/output/dac7678, dac7678.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
@@ -562,6 +565,7 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
+    Feedback Cover, components/cover/feedback, feedback_cover.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Current-Based Cover, components/cover/current_based, flash.svg
     Time-Based Cover, components/cover/time_based, timer.svg
@@ -666,6 +670,7 @@ Misc Components
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
+    Sprinkler, components/sprinkler, sprinkler-variant.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
