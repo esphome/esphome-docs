@@ -134,7 +134,8 @@ This example logs the value as parsed and the raw modbus bytes received for this
             ESP_LOGI("","Sensor properties: adress = 0x%X, offset = 0x%X value type=%d",item->start_address,item->offset,item->sensor_value_type);
             int i=0 ;
             for (auto val : data) {
-              ESP_LOGI("","data[%d]=0x%02X (%d)",i++ ,data[i],data[i]);
+              ESP_LOGI("","data[%d]=0x%02X (%d)",i,data[i],data[i]);
+              i++;
             }
             return x ;
 
