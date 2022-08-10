@@ -119,6 +119,24 @@ Multiple ADC Sensors
 You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see above) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
 
 
+Measuring battery voltage on the Firebeetle ESP32-E
+---------------------------------------------------
+
+This board has a internal voltage divider and the battery voltage can easily be measured like this using 11dB attenuation
+on GPIO34
+
+.. code-block:: yaml
+
+  - platform: adc
+    name: "Battery voltage"
+    pin: GPIO34
+    accuracy_decimals: 2
+    update_interval: 60s
+    attenuation: 11dB
+    filters:
+      - multiply: 2.0  # The voltage divider requires us to multiply by 2
+
+This works on SKU:DFR0654. For more information see: `manufacturer's website <https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654>`__
 
 See Also
 --------
