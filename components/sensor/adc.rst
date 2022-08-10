@@ -123,7 +123,7 @@ Measuring battery voltage on the Firebeetle ESP32-E
 ---------------------------------------------------
 
 This board has a internal voltage divider and the battery voltage can easily be measured like this using 11dB attenuation
-on GPIO34
+on GPIO34.
 
 .. code-block:: yaml
 
@@ -136,7 +136,7 @@ on GPIO34
       filters:
         - multiply: 2.0  # The voltage divider requires us to multiply by 2
 
-This works on SKU:DFR0654. For more information see: `manufacturer's website <https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654>`__
+This works on SKU:DFR0654. For more information see: `manufacturer's website <https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654>`__.
 
 See Also
 --------
