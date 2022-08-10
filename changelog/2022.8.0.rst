@@ -3,7 +3,7 @@ ESPHome 2022.8.0 - 17th August 2022
 
 .. seo::
     :description: Changelog for ESPHome 2022.8.0.
-    :image: /_static/changelog-2022.6.0.png
+    :image: /_static/changelog-2022.8.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
