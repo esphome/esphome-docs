@@ -127,14 +127,14 @@ on GPIO34
 
 .. code-block:: yaml
 
-  - platform: adc
-    name: "Battery voltage"
-    pin: GPIO34
-    accuracy_decimals: 2
-    update_interval: 60s
-    attenuation: 11dB
-    filters:
-      - multiply: 2.0  # The voltage divider requires us to multiply by 2
+    - platform: adc
+      name: "Battery voltage"
+      pin: GPIO34
+      accuracy_decimals: 2
+      update_interval: 60s
+      attenuation: 11dB
+      filters:
+        - multiply: 2.0  # The voltage divider requires us to multiply by 2
 
 This works on SKU:DFR0654. For more information see: `manufacturer's website <https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654>`__
 
