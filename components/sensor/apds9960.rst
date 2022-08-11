@@ -54,6 +54,9 @@ Base Configuration:
 - **address** (*Optional*, int): The I²C address of the sensor. Defaults to ``0x39``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
+- **led_drive** (*Optional*, int): The LED drive level in mA. One of 100, 50, 25, 12.5. Defaults to ``100``.
+- **proximity_gain** (*Optional*, int): The proximity gain level. One of 1, 2, 4, 8. Defaults to ``4``.
+- **ambient_light_gain** (*Optional*, int): The ambient light gain level. One of 1, 4, 16, 64. Defaults to ``4``.
 
 Sensor
 ------
