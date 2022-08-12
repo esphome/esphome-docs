@@ -50,7 +50,7 @@ Configuration variables:
 lambda calls
 ------------
 
-From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in various ways. For any ``get`` command a trigger will be called with the information retrieved from the sensor. See :ref:`evo_callbacks`.
+From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in various ways. For any ``get`` command a trigger will be called with the information retrieved from the sensor. See :ref:`evo_callbacks`. For more information on the command specifics, refer to the datasheet.
 
 - ``set_i2c()``: Set I2C mode
 
@@ -73,25 +73,18 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
       id(ph_ezo).set_sleep();
 
 
+- ``get_state()``: Performs a read on the current sensor.
+
+  .. code-block:: cpp
+
+      id(ph_ezo).get_state();
+
+
 - ``get_slope()``: Sensor retrieves slope and triggers ``on_slope:`` once done
 
   .. code-block:: cpp
 
       id(ph_ezo).get_slope();
-
-
-- ``set_tempcomp_value(float temp)``: Send the given temperature (in Celcius) to the sensor.
-
-  .. code-block:: cpp
-
-      id(ph_ezo).set_tempcomp_value(id(rtd_ezo).state);
-
-
-- ``set_t(std::string value)``: Send the given temperature (in Celcius) to the sensor.
-
-  .. code-block:: cpp
-
-      id(ph_ezo).set_t("27.00");
 
 
 - ``get_t()``: Sensor retrieves temperature compensation value (in Celcius) and triggers ``on_t:`` once done
@@ -101,11 +94,18 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
       id(ph_ezo).get_t();
 
 
-- ``set_calibration(std::string point, std::string value)``: Sets calibration. Point is one of "low,mid,high". Refer to the datasheet for more information
+- ``set_t(float value)``: Send the given temperature (in Celcius) to the sensor.
 
   .. code-block:: cpp
 
-      id(ph_ezo).set_calibration("mid", "7.00");
+      id(ph_ezo).set_t("27.00");
+
+
+- ``set_tempcomp_value(float temp)``: Send the given temperature (in Celcius) to the sensor (this is an alias of `set_t()` for backwards compatibility)
+
+  .. code-block:: cpp
+
+      id(ph_ezo).set_tempcomp_value(id(rtd_ezo).state);
 
 
 - ``get_calibration()``: Sensor retrieves calibration and triggers ``on_calibration:`` once done
@@ -115,7 +115,28 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
       id(ph_ezo).get_calibration();
 
 
-- ``clear_calibration()``: Clears calibration
+- ``set_calibration_point_low(float value)``: Sets the low calibration point.
+
+  .. code-block:: cpp
+
+      id(ph_ezo).set_calibration_point_low(4.00);
+
+
+- ``set_calibration_point_mid(float value)``: Sets the medium calibration point.
+
+  .. code-block:: cpp
+
+      id(ph_ezo).set_calibration_point_mid(7.00);
+
+
+- ``set_calibration_point_high(float value)``: Sets the high calibration point.
+
+  .. code-block:: cpp
+
+      id(ph_ezo).set_calibration_point_low(10.00);
+
+
+- ``clear_calibration()``: Clears all calibration points.
 
   .. code-block:: cpp
 
