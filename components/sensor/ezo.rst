@@ -52,11 +52,11 @@ lambda calls
 
 From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in various ways. For any ``get`` command a trigger will be called with the information retrieved from the sensor. See :ref:`evo_callbacks`. For more information on the command specifics, refer to the datasheet.
 
-- ``set_i2c()``: Set I2C mode
+- ``set_i2c(uint address)``: Set I2C address of the device, must be an integer between 1 and 127
 
   .. code-block:: cpp
 
-      id(ph_ezo).set_i2c();
+      id(ph_ezo).set_i2c(100);
 
 
 - ``get_device_information()``: Sensor retrieves calibration and triggers ``on_device_information:`` once done
@@ -113,6 +113,13 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
   .. code-block:: cpp
 
       id(ph_ezo).get_calibration();
+
+
+- ``set_calibration_generic(float value)``: Sets the calibration with no point.
+
+  .. code-block:: cpp
+
+      id(ph_ezo).set_calibration_generic(750.0);
 
 
 - ``set_calibration_point_low(float value)``: Sets the low calibration point.
