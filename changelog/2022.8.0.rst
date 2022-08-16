@@ -44,6 +44,10 @@ Beta Changes
 - Add vector include :esphomepr:`3707` by :ghuser:`jesserockz`
 - Add state_class total :esphomepr:`3608` by :ghuser:`peterg79`
 - add gradient color V2.0 :esphomepr:`3709` by :ghuser:`nielsnl68`
+- Webui small fixes :esphomepr:`3713` by :ghuser:`anatoly-savchenkov`
+- Only trigger ble_client on_connect after discovering services :esphomepr:`3710` by :ghuser:`buxtronix`
+- Fixes BLE remote address type when connecting :esphomepr:`3702` by :ghuser:`rbaron`
+- Makes ble_client.ble_write's action value templatable :esphomepr:`3715` by :ghuser:`rbaron`
 
 
 All changes
