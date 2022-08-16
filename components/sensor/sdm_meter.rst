@@ -4,7 +4,7 @@ Eastron SDM Energy Monitor
 .. seo::
     :description: Instructions for setting up SDM power monitors.
     :image: sdm220m.jpg
-    :keywords: SDM220M, SDM220, SDM630
+    :keywords: SDM230M, SDM220, SDM630, SDM120M, SDM72
 
 The ``sdm_meter`` sensor platform allows you to use Eastron SDM modbus energy monitors
 (`website <http://www.eastrongroup.com/product_detail.php?id=170&menu1=&menu2=>`__)
@@ -14,13 +14,13 @@ with ESPHome.
     :align: center
     :width: 50.0%
 
-    SDM220M Energy Monitor.
+    SDM230M Energy Monitor.
 
 The communication with this integration is done over a :ref:`UART bus <uart>` using the :ref:`Modbus protocol <modbus>` 
 over RS485 wiring. You will need an RS485 to UART converter for communication.
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
-to some pins on your board and the baud rate set to 9600 bps. 
-! For the SDM230M Energy Monitor the default factory baud rate is 2400 bps.
+to some pins on your board and the baud rate set to 9600bps. 
+! For the SDM230M, SDM120M Energy Monitor the default factory baud rate is 2400bps. For more information search for your model: https://www.eastroneurope.com/products/category/din-rail-mounted-metering .
 
 .. code-block:: yaml
 
@@ -35,31 +35,31 @@ to some pins on your board and the baud rate set to 9600 bps.
       - platform: sdm_meter
         phase_a:
           current:
-            name: "SDM220M Current"
+            name: "SDM230M Current"
           voltage:
-            name: "SDM220M Voltage"
+            name: "SDM230M Voltage"
           active_power:
-            name: "SDM220M Power"
+            name: "SDM230M Power"
           power_factor:
-            name: "SDM220M Power Factor"
+            name: "SDM230M Power Factor"
           apparent_power:
-            name: "SDM220M Apparent Power"
+            name: "SDM230M Apparent Power"
           reactive_power:
-            name: "SDM220M Reactive Power"
+            name: "SDM230M Reactive Power"
           phase_angle:
-            name: "SDM220M Phase Angle"
+            name: "SDM230M Phase Angle"
         frequency:
-          name: "SDM220M Frequency"
+          name: "SDM230M Frequency"
         total_power:
-          name: "SDM220M Total Power"
+          name: "SDM230M Total Power"
         import_active_energy:
-          name: "SDM220M Import Active Energy"
+          name: "SDM230M Import Active Energy"
         export_active_energy:
-          name: "SDM220M Export Active Energy"
+          name: "SDM230M Export Active Energy"
         import_reactive_energy:
-          name: "SDM220M Import Reactive Energy"
+          name: "SDM230M Import Reactive Energy"
         export_reactive_energy:
-          name: "SDM220M Export Reactive Energy"
+          name: "SDM230M Export Reactive Energy"
         update_interval: 60s
 
 
