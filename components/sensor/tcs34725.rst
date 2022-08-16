@@ -13,7 +13,7 @@ required to be set up in your configuration for this sensor to work.
 
 Note: If the `integration_time` is set too long for the light conditions, the sensor will overexpose.
 In this case the sensor may not show 100% on its clear channel. With an `integration_time` of `614ms`
-and a `gain` of `1x` the sensor will max out at around 4100 lx. If this case the individual color
+and a `gain` of `1x` the sensor will max out at around 4100 lx. In this case the individual color
 channels will show `100%`, the clear channel `25%`. The illumination in lux is shown as `0` as well
 as the color temperature in kelvin will show `0`.
 
