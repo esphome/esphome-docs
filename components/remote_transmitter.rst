@@ -224,7 +224,7 @@ This :ref:`action <config-action>` a Nexa RF remote code to a remote transmitter
 .. code-block:: yaml
 
     on_...:
-      - remote_transmitter.nexa:
+      - remote_transmitter.transmit_nexa:
           device: 0x38DDB4A
           state: 1
           group: 0
