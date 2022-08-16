@@ -19,7 +19,8 @@ with ESPHome.
 The communication with this integration is done over a :ref:`UART bus <uart>` using the :ref:`Modbus protocol <modbus>` 
 over RS485 wiring. You will need an RS485 to UART converter for communication.
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
-to some pins on your board and the baud rate set to 9600.
+to some pins on your board and the baud rate set to 9600 bps. 
+! For the SDM230M Energy Monitor the default factory baud rate is 2400 bps.
 
 .. code-block:: yaml
 
