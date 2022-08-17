@@ -17,6 +17,27 @@ ESPHome 2022.8.0 - 17th August 2022
     Whynter IR Climate, components/climate/climate_ir, air-conditioner-ir.svg
 
 
+Sprinkler controller
+--------------------
+
+:ghuser:`kbx81` has written a beast of a sprinkler controller to help organise and schedule all of your sprinkler valves
+and keep those plants and veggies thriving. Check out the docs at :doc:`/components/sprinkler`.
+
+ST7789V
+-------
+
+The :doc:`/components/display/st7789v` display platform has had an update which adds a ``model`` configuration option.
+With this comes custom width and heights to allow you to use this with any display using this driver now.
+
+Breaking Changes
+----------------
+
+There are a few breaking changes this release, including removing ``min_save_interval`` from
+the :doc:`/components/sensor/integration` and :doc:`/components/sensor/total_daily_energy`.
+The BedJet climate introduced recently has also undergone a refactoring to allow different
+platforms to extend the functionality available from ESPHome.
+
+
 Full list of changes
 --------------------
 
@@ -48,7 +69,6 @@ Beta Changes
 - Only trigger ble_client on_connect after discovering services :esphomepr:`3710` by :ghuser:`buxtronix`
 - Fixes BLE remote address type when connecting :esphomepr:`3702` by :ghuser:`rbaron`
 - Makes ble_client.ble_write's action value templatable :esphomepr:`3715` by :ghuser:`rbaron`
-
 
 All changes
 ^^^^^^^^^^^
@@ -123,6 +143,10 @@ All changes
 - Add vector include :esphomepr:`3707` by :ghuser:`jesserockz`
 - Add state_class total :esphomepr:`3608` by :ghuser:`peterg79`
 - add gradient color V2.0 :esphomepr:`3709` by :ghuser:`nielsnl68`
+- Webui small fixes :esphomepr:`3713` by :ghuser:`anatoly-savchenkov`
+- Only trigger ble_client on_connect after discovering services :esphomepr:`3710` by :ghuser:`buxtronix`
+- Fixes BLE remote address type when connecting :esphomepr:`3702` by :ghuser:`rbaron`
+- Makes ble_client.ble_write's action value templatable :esphomepr:`3715` by :ghuser:`rbaron`
 
 Past Changelogs
 ---------------
