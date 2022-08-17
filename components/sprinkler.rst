@@ -988,7 +988,6 @@ the controller's multiplier value:
         min_value: 0.1
         max_value: 10.0
         step: 0.1
-        initial_value: 1.0
         lambda: "return id(lawn_sprinkler_ctrlr).multiplier();"
         set_action:
           - sprinkler.set_multiplier:
