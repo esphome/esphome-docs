@@ -48,6 +48,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Yashima                               | ``yashima``         |                      |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Whynter<whynter>`               | ``whynter``         | yes                  |
++---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
 
@@ -269,6 +271,29 @@ Configuration variables:
 
   - ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
   - ``DG11J1-91``: Temperature range is from 16 to 30
+
+.. _whynter:
+
+``whynter`` Climate
+-------------------------
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: whynter
+        name: "AC"
+        sensor: room_temperature
+        use_fahrenheit: true
+        supports_heat: true
+
 
 
 See Also
