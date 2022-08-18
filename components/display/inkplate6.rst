@@ -280,11 +280,20 @@ Wi-Fi, API, and OTA configuration.
 Inkplate 6 Plus Touchscreen
 ***************************
 
-The Inkplate 6 Plus has a built in touchscreen supported by ESPHome.
-Below is a config example:
+The Inkplate 6 Plus has a built in touchscreen supported by ESPHome. Note you need to enable pin 12 on the mcp23017 to enable the touchscreen
+Below is a config example with touchscreen power swtich:
 
 .. code-block:: yaml
 
+    switch:
+      - platform: gpio
+        name: 'Inkplate Touchscreen Enabled'
+        restore_mode: ALWAYS_ON
+        pin:
+          mcp23xxx: mcp23017_hub
+          number: 12
+          inverted: true
+          
     touchscreen:
       - platform: ektf2232
         interrupt_pin: GPIO36
@@ -293,13 +302,37 @@ Below is a config example:
           number: 10
         on_touch:
           - logger.log:
-              format: "Touch: {x}, {y}"
-              args:
-                - touch.x
-                - touch.y
+              format: "touch x=%d, y=%d"
+              args: ['touch.x', 'touch.y']
 
+Inkplate 6 Plus Backlight
+***************************
 
+The Inkplate 6 Plus has a built in backlight supported by ESPHome.
+Below is a config example:
 
+.. code-block:: yaml
+
+    power_supply:
+      - id: backlight_power
+        keep_on_time: 0.2s
+        enable_time: 0s
+        pin:
+          mcp23xxx: mcp23017_hub
+          number: 11
+
+    output:
+      - platform: mcp47a1
+        id: backlight_brightness_output
+        power_supply: backlight_power
+
+    light:
+      - platform: monochromatic
+        output: backlight_brightness_output
+        id: backlight
+        default_transition_length: 0.2s
+        name: '${friendly_name} Backlight'
+        
 See Also
 --------
 

@@ -27,12 +27,12 @@ around that time. So lets hope we can make 2022.8.0 worth the wait.
 ESPHome can now become a media player target for Home Assistant. This allows users to buy or build
 ESP32 based speakers and place them around the house.
 
-Link to `Media Players <https://esphome.github.io/media-players>`_.
+We made a small website showing you a few tested `Media Players <https://esphome.github.io/media-players>`_ and you can
+install ESPHome directly to them via the browser using ESP Web Tools.
 
 Join us in a live stream all about Audio in the Open Home!
 
 When: Thursday, June 16, at 7pm UTC / 12pm PST / 9pm CET
-More info here...
 
 .. raw:: html
 
@@ -80,6 +80,31 @@ Basically, they decided to upgrade the ``!include`` yaml "directive" to allow va
 
 Now while this is probably not the best example, the variables act as ``substitutions``
 and can be used anywhere in the underlying yaml file and can very much DRY out your configurations.
+
+Release 2022.6.1 - June 18
+--------------------------
+
+- Setup the mute pin if configured :esphomepr:`3568` by :ghuser:`jesserockz`
+- Bugfix for ExternalRAMAllocator copy constructor :esphomepr:`3571` by :ghuser:`bnw`
+- Media Player: added triggers :esphomepr:`3576` by :ghuser:`dudanov`
+
+Release 2022.6.2 - June 23
+--------------------------
+
+- Move gas mbus config option being a define to being a build flag :esphomepr:`3575` by :ghuser:`lkomurcu`
+- Fix: Make MQTT over TLS actually work :esphomepr:`3580` by :ghuser:`ShellAddicted`
+- Fix wrong type for voc_state*_ in sgp4x component :esphomepr:`3581` by :ghuser:`kahrendt`
+- Media Player: added play_media action :esphomepr:`3579` by :ghuser:`dudanov`
+- Fix 2 small issues in BLEClient :esphomepr:`3544` by :ghuser:`jhansche`
+
+Release 2022.6.3 - August 8
+---------------------------
+
+- FIX: Modbus queue deduplicator deleting custom commands :esphomepr:`3650` by :ghuser:`jpeletier`
+- Update inkbird_ibsth1_mini.cpp :esphomepr:`3664` by :ghuser:`ssieb`
+- Add CO device class to binary_sensor :esphomepr:`3656` by :ghuser:`berg`
+- Use application/json instead of text/json :esphomepr:`3671` by :ghuser:`ssieb`
+- Use correct struct members. :esphomepr:`3672` by :ghuser:`ssieb`
 
 Breaking Changes
 ----------------

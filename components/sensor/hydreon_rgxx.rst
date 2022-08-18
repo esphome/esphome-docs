@@ -38,6 +38,8 @@ required to be set up in your configuration for this sensor to work.
       - platform: hydreon_rgxx
         too_cold:
           name: "too cold"
+        lens_bad:
+          name: "lens bad"
 
 .. code-block:: yaml
 
@@ -94,6 +96,12 @@ Configuration variables:
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **r_int** (*Optional*): Current rain intensity in ``mm/h``. Only on RG-15.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **temperature** (*Optional*): Temperature +-5°C. Only on RG-9 Version 1.100 or later.
 
   - **name** (**Required**, string): The name for the sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.

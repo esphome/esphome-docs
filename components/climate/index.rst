@@ -174,6 +174,8 @@ advanced stuff.
       id(my_climate).fan_mode
       // Swing mode, type: SwingMode (enum)
       id(my_climate).swing_mode
+      // Current action (currentl on idle, cooling, heating, etc.), ClimateAction (enum)
+      id(my_climate).action
 
 - ``.make_call``: Control the climate device
 
