@@ -13,7 +13,7 @@ This sensor is **mostly used for touch** devices but could be used for any ``bin
 Add your binary sensors as ``channels`` to the binary sensor map. The binary sensor map then publishes a value depending
 on the type of the binary sensor map and the values specified with each channel.
 
-This platform currently supports two measurement types: ``GROUP`` and ``SUM``, but others might get added later.
+This platform currently supports two measurement types: ``GROUP`` and ``SUM``, and others might get added later.
 You need to specify which type of mapping you want with the ``type:`` configuration value:
 
 - ``GROUP`` Each channel has its own value. The sensor publishes the average value of all active
