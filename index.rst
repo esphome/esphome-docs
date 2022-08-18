@@ -294,6 +294,7 @@ Environmental
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
+    DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
