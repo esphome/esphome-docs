@@ -249,6 +249,77 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
           name: "BME680 IAQ Accuracy"
 
 
+Multiple sensors
+----------------------
+
+The following configuration shows how to set up multiple BME680 devices. Devices are currently identified by this component using their I2C address, and the BME680 can only be set to operate on I2C address 0x76 or 0x77. This effectively limits the component to a maximum of two devices. They can be configured to use the same I2C bus or to use different busses, but the limitation to set up different I2C addresses for each device must still be obeyed.
+
+
+.. code-block:: yaml
+
+    # I2C bus for the BME680 devices
+    i2c:
+      - id: "i2cbus_bme"
+        sda: GPIO18
+        scl: GPIO19
+        scan: true
+
+    # BME680 devices using BSEC library
+    bme680_bsec:
+      - id: bme680_internal
+        i2c_id: "i2cbus_bme"
+        address: 0x76
+      - id: bme680_external
+        i2c_id: "i2cbus_bme"
+        address: 0x77
+
+    sensor:
+      # Sensors for the internal BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_internal
+        temperature:
+          name: "IN_Temp"
+        pressure:
+          name: "IN_Press"
+        humidity:
+          name: "IN_RH"
+        iaq:
+          name: "IN_IAQ"
+        co2_equivalent:
+          name: "IN_CO2eq"
+        breath_voc_equivalent:
+          name: "IN_VOCeq"
+
+      # Sensors for the external BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_external
+        temperature:
+          name: "OUT_Temperatura"
+        pressure:
+          name: "OUT_Pressione"
+        humidity:
+          name: "OUT_RH"
+        iaq:
+          name: "OUT_IAQ"
+        co2_equivalent:
+          name: "OUT_CO2eq"
+        breath_voc_equivalent:
+          name: "OUT_VOCeq"
+
+    text_sensor:
+      # Text sensor for the internal BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_internal
+        iaq_accuracy:
+          name: "IN_IAQaccuracy"
+
+      # Text sensor for the external BME680 device
+      - platform: bme680_bsec
+        bme680_bsec_id: bme680_external
+        iaq_accuracy:
+          name: "OUT_IAQaccuracy"
+
+
 Indoor Air Quality (IAQ) Measurement
 ------------------------------------
 
