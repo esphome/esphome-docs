@@ -62,7 +62,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
 
 Configuration variables:
 
-- **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
+- **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 
 - **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high.
   Defaults to ``0``.
@@ -252,7 +252,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
 Multiple sensors
 ----------------------
 
-The following configuration shows how to set up multiple BME680 devices. Devices are currently identified by this component using their I2C address, and the BME680 can only be set to operate on I2C address 0x76 or 0x77. This effectively limits the component to a maximum of two devices. They can be configured to use the same I2C bus or to use different busses, but the limitation to set up different I2C addresses for each device must still be obeyed.
+The following configuration shows how to set up multiple BME680 devices. Devices are currently identified by this component using their I²C address, and the BME680 can only be set to operate on I²C address 0x76 or 0x77. This effectively limits the component to a maximum of two devices. They can be configured to use the same I²C bus or to use different busses, but the limitation to set up different I²C addresses for each device must still be obeyed.
 
 
 .. code-block:: yaml
