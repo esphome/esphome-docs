@@ -294,6 +294,7 @@ Environmental
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
+    DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
@@ -535,6 +536,7 @@ Display Components
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
+    PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
