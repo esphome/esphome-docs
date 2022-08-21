@@ -281,7 +281,7 @@ Environmental
 
 .. imgtable::
 
-    AHT10, components/sensor/aht10, aht10.jpg, Temperature & Humidity
+    AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
@@ -294,6 +294,7 @@ Environmental
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
+    DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
@@ -535,6 +536,7 @@ Display Components
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
+    PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
@@ -565,6 +567,7 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
+    Feedback Cover, components/cover/feedback, feedback_cover.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Current-Based Cover, components/cover/current_based, flash.svg
     Time-Based Cover, components/cover/time_based, timer.svg
@@ -669,6 +672,7 @@ Misc Components
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
+    Sprinkler, components/sprinkler, sprinkler-variant.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg

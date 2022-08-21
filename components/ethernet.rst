@@ -71,18 +71,6 @@ Configuration variables:
     probably to fail as the ethernet interface uses a high frequency clock signal. For more
     information and wiring details refer to the link in the *See also* section.
 
-Configuration for wESP32 board
-------------------------------
-
-.. code-block:: yaml
-
-    ethernet:
-      type: LAN8720
-      mdc_pin: GPIO16
-      mdio_pin: GPIO17
-      clk_mode: GPIO0_IN
-      phy_addr: 0
-
 Configuration for Olimex ESP32-POE
 ----------------------------------
 
@@ -108,6 +96,18 @@ Configuration for Olimex ESP32-EVB
       clk_mode: GPIO0_IN
       phy_addr: 0
 
+Configuration for Olimex ESP32-GATEWAY
+--------------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO17_OUT
+      phy_addr: 0
+
 Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
 ----------------------------------------------------------------------
 
@@ -119,20 +119,6 @@ Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
       mdio_pin: GPIO18
       clk_mode: GPIO17_OUT
       phy_addr: 0
-
-Configuration for OpenHacks LAN8720
------------------------------------
-
-.. code-block:: yaml
-
-    ethernet:
-      type: LAN8720
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
-      phy_addr: 1
-
-Note: This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure you are monitoring the
-serial output and reboot the device several times to see if it boots into the program properly.
 
 Configuration for Wireless Tag WT32-ETH01
 -----------------------------------------
@@ -146,6 +132,40 @@ Configuration for Wireless Tag WT32-ETH01
       clk_mode: GPIO0_IN
       phy_addr: 1
       power_pin: GPIO16
+
+Configuration for OpenHacks LAN8720
+-----------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      phy_addr: 1
+
+.. note::
+
+    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure 
+    you are monitoring the serial output and reboot the device several times to see if it boots into the 
+    program properly.
+
+Configuration for wESP32 board (up to rev.6)
+-------------------------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO16
+      mdio_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+
+.. note::
+
+    Revision 7 and upwards of the wESP32 board does not have a LAN8720 chip. Until support for the 
+    replacement RTL8201 is included in ESPHome, the wESP board rev.7 will not work with the above configuration.
 
 See Also
 --------
