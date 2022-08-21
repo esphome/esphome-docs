@@ -20,7 +20,7 @@ The communication with this integration is done over a :ref:`UART bus <uart>` us
 over RS485 wiring. You will need an RS485 to UART converter for communication.
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
 to some pins on your board and the baud rate set to 9600bps. 
-! For the SDM230M, SDM120M Energy Monitor the default factory baud rate is 2400bps. You either need to change the code to 2400bps for these models or change the settings on your Energy Meter For more information search for your model: https://www.eastroneurope.com/products/category/din-rail-mounted-metering .
+! For the SDM230M, SDM120M Energy Monitor the default factory baud rate is 2400bps. You either need to change the code to 2400bps for these models or change the settings on your Energy Meter For more information search for your model: (`eastron's website <https://www.eastroneurope.com/products/category/din-rail-mounted-metering>`__).
 
 .. code-block:: yaml
 
@@ -114,3 +114,4 @@ See Also
 - :ref:`sensor-filters`
 - :apiref:`sdm220m/sdm220m.h`
 - :ghedit:`Edit`
+
