@@ -28,7 +28,7 @@ to some pins on your board and the baud rate set to 9600bps.
     uart:
       rx_pin: D1
       tx_pin: D2
-      baud_rate: 9600
+      baud_rate: 9600 #if your energy meter is SDM230M or SDM120M than the change the baud_rate: 2400
       stop_bits: 1
 
     sensor:
