@@ -272,6 +272,10 @@ config in the main yaml file. All definitions from packages will be merged with 
 config in non-destructive way so you could always override some bits and pieces of package
 configuration.
 
+Dictionaries are merged key-by-key. Lists of components are merged by component
+ID if specified. Other lists are merged by concatenation. All other config
+values are replaced with the later value.
+
 Local packages
 **************
 
