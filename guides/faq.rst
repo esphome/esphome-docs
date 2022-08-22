@@ -281,6 +281,22 @@ Some steps that can help with the issue:
   although it may also increase power (and possibly battery) usage of other devices also using power
   save mode.
 
+Component states not restored after reboot
+------------------------------------------
+
+If you notice that some components, like ``climate`` or some switches are randomly not restoring their
+state after a reboot, or you get periodic ``ESP_ERR_NVS_NOT_ENOUGH_SPACE`` errors in your debug log,
+it could be that the NVS portion of the flash memory is full due to repeatedly testing multiple
+configurations (usually large) in the same ESP32 board. Try wiping NVS with the following commands:
+
+.. code-block:: bash
+
+    dd if=/dev/zero of=nvs_zero bs=1 count=20480
+    esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash 0x009000 nvs_zero
+
+Change ``/dev/ttyUSB0`` above to your serial port. If you have changed the partition layout, please adjust the
+above offsets and sizes accordingly.
+
 Docker Reference
 ----------------
 
@@ -334,8 +350,13 @@ And a docker compose file looks like this:
           - ./:/config:rw
           # Use local time for logging timestamps
           - /etc/localtime:/etc/localtime:ro
+        devices:
+          # if needed, add esp device(s) as in command line examples above
+          - /dev/ttyUSB0:/dev/ttyUSB0
+          - /dev/ttyACM0:/dev/ttyACM0
         network_mode: host
         restart: always
+        
 
 .. _docker-reference-notes:
 .. note::

@@ -59,6 +59,7 @@ Configuration variables:
   web interface. Defaults to ``false``.
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
 - **version** (*Optional*, string): ``1`` or ``2``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to ``2``.
 
 .. note::
