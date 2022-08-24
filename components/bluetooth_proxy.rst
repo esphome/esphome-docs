@@ -10,6 +10,8 @@ the Bluetooth proxy component in ESPHome. Place your ESPHome devices close to th
 Bluetooth devices that you want to interact with for the best
 experience.
 
+If you're looking to create a device that is just a Bluetooth Proxy, see our `Bluetooth Proxy installer <https://esphome.github.io/bluetooth-proxies/>`__ website.
+
 The Bluetooth proxy depends on :doc:`esp32_ble_tracker` so make sure to add that to your configuration.
 
 .. code-block::
