@@ -1,0 +1,26 @@
+Bluetooth Proxy
+===============
+
+.. seo::
+    :description: Instructions for setting up the Bluetooth Proxy in ESPHome.
+    :image: bluetooth.svg
+
+Home Assistant can expand it's Bluetooth reach by communicating through
+Bluetooth proxy devices. Place your Bluetooth proxies close to the
+Bluetooth devices that you want to interact with for the best
+experience.
+
+The Bluetooth proxy depends on :doc:`esp32_ble_tracker` so make sure to add that to your configuration.
+
+.. code-block::
+
+    bluetooth_proxy:
+
+No configuration variables.
+
+See Also
+--------
+
+- :doc:`esp32_ble_tracker`
+- :apiref:`bluetooth_proxy/bluetooth_proxy.h`
+- :ghedit:`Edit`
