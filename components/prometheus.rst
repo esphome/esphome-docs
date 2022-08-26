@@ -29,6 +29,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
   web interface. Defaults to ``false``.
+- **relabel** (*Optional*): Override metric labels. See :ref:`prometheus-relabel`
 
 .. note::
 
@@ -47,25 +48,24 @@ Metric Relabeling
 ESPHome allows you to do some basic relabeling of Prometheus metrics.
 This is useful if you want to have different metric names or IDs than those shown in Home Assistant or the web interface.
 
-You can relabel metric names or IDs it by adding a ``relabel`` block in the ``prometheus`` configuration,
-and then adding key-value pairs with the string to be replaced and its replacement string.
+You can relabel metric name or ID labels by adding a ``relabel`` block in the ``prometheus`` configuration,
+and then adding a block with ``id`` and/or ``name`` fields for each sensor whose labels your want to override.
 
+.. _prometheus-relabel:
 
 ``relabel``
 ***********
 
-Lookup the current value of the metric name or ID, and return the replacement if found.
-Does not change the value of the metric name or ID if the current value wasn't found.
+Set the the ``id`` and ``name`` label values of the Prometheus metric for the sensor with the specified ID.
 
 .. code-block:: yaml
 
     # Example configuration entry
     prometheus:
       relabel:
-        "Wifi Signal": RSSI
-        wifi_signal: rssi
-        "Status: Light": Light
-        status_light: light
+        my_voltage_sensor:
+          id: angry_pixies
+          name: "Angry Pixies"
 
 
 See Also
