@@ -380,7 +380,8 @@ Thermocouple
     MAX31855, components/sensor/max31855, max31855.jpg, K-Type
     MAX31856, components/sensor/max31856, max31856.jpg, All types
     MAX31865, components/sensor/max31865, max31865.jpg, Platinum RTD
-    MAX6675, components/sensor/max6675, max6675.jpg, K-Type
+    MAX6675, components/sensor/max6675, max6675.jpg, K-Type,
+    MCP9600, components/sensor/mcp9600, mcp9600.jpg, All types
 
 
 Weight
@@ -664,13 +665,15 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg
     ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    ESP32 Ethernet, components/ethernet, ethernet.svg
 
+    ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
+
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg
