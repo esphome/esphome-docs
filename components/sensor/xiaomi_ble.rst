@@ -523,6 +523,29 @@ Configuration example:
         battery_level:
           name: "Mi Motion Sensor Battery Level"
 
+MCCGQ02HL - Mi Door Window Sensor 2
+******************************
+
+Doors & windows and ambient light sensors. Broadcast switch detection, bright/dark. There is also a button that does nothing when pressed.
+Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
+
+.. figure:: images/xiaomi_mccg102hl.jpg
+    :align: center
+    :width: 30.0%
+
+Configuration example:
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: xiaomi_mccgq02hl
+        name: 'MCCGQ02HL Activation State'
+        mac_address: '12:34:56:12:34:56'
+        bindkey: '48403ebe2d385db8d0c187f81e62cb64'
+        on_lock:
+          name: 'Mi Door Window 2 Door'
+        light:
+          name: 'Mi Door Window 2 Light'
 
 
 Setting Up Devices
