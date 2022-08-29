@@ -95,7 +95,7 @@ This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
 Configuration variables:
 
 - **address** (**Required**, int): The address to send the command to, see dumper output for more details.
-- **data** (**Required**, list): The command to send, A length of 3-35 bytes can be specified for one packet.
+- **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
