@@ -466,7 +466,7 @@ For the button present on the meter, it must be configured with the following co
 External Status Led 
 -------------------
 
-For the status led present on the meter, it must be configured with the following code. :ref:`Status Led <config-status-led>`
+For the status led present on the meter, it must be configured with the following code.
 
 .. code-block:: yaml
 
