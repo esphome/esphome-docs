@@ -691,6 +691,7 @@ Misc Components
     Exposure Notifications, components/exposure_notifications, exposure_notifications.png
     RTTTL Buzzer, components/rtttl, buzzer.jpg
     Prometheus, components/prometheus, prometheus.svg
+    DDS238-4 W and DTS238-7 W Energy Meters, components/dxs238xw, dxs238xw.jpg
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     SML, components/sml, sml.svg

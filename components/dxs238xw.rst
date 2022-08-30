@@ -292,7 +292,7 @@ Configuration variables:
 - **meter_id** (*Optional*): Indicates the internal serial number of the energy meter.
 
 Common for all Text Sensor:
-**********************
+***************************
 - **name** (**Required**, string): The name for the Text Sensor.
 
 All other options from :ref:`Text Sensor <config-text_sensor>`. The Text Sensors are already configured with all default values, but you can override them if necessary.
@@ -370,7 +370,7 @@ Configuration variables:
 - **meter_state** (*Optional*): Meter State (Active - inactive).
 
 Common for all Binary Sensor:
-**********************
+*****************************
 - **name** (**Required**, string): The name for the Binary Sensor.
 
 All other options from :ref:`Binary Sensor <config-binary_sensor>`. The Binary Sensor are already configured with all default values, but you can override them if necessary.
