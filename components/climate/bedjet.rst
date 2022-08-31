@@ -68,8 +68,33 @@ From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced st
             - lambda: |-
                 id(bedjet_1).upgrade_firmware();
 
-``bedjet`` Climate Platform
----------------------------
+- ``.send_local_time``: If `time_id` is set, attempt to sync the clock now.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Sync Clock"
+          on_press:
+            then:
+            - lambda: |-
+                id(my_bedjet_fan).send_local_time();
+
+- ``.set_clock``: Set the BedJet clock to a specified time; works with or without a `time_id`.
+
+  .. code-block:: yaml
+
+      button:
+        - platform: template
+          name: "Set Clock to 10:10pm"
+          on_press:
+            then:
+            - lambda: |-
+                id(my_bedjet_fan).set_clock(22, 10);
+
+
+``bedjet`` Climate
+------------------
 
 The `climate` platform exposes the BedJet's climate-related functionality, including
 setting the mode and target temperature.
@@ -94,29 +119,30 @@ Configuration variables:
     - Whichever is not selected will be made available as a custom preset.
 - All other options from :ref:`Climate <config-climate>`.
 
-- ``.send_local_time``: If `time_id` is set, attempt to sync the clock now.
+``bedjet`` Fan
+--------------
 
-  .. code-block:: yaml
+The `fan` platform exposes the BedJet's fan-related functionality, including
+on/off and speed control.
 
-      button:
-        - platform: template
-          name: "Sync Clock"
-          on_press:
-            then:
-            - lambda: |-
-                id(my_bedjet_fan).send_local_time();
+When the BedJet is already on, turning the Fan component off will set the BedJet unit's mode to
+``OFF``. If it was not already on, it will be turned on to mode ``FAN_ONLY``.
 
-- ``.set_clock``: Set the BedJet clock to a specified time; works with or without a `time_id`.
+.. code-block:: yaml
 
-  .. code-block:: yaml
+    fan:
+      - platform: bedjet
+        id: my_bedjet_fan_entity
+        name: "My BedJet Fan"
+        bedjet_id: bedjet_1
 
-      button:
-        - platform: template
-          name: "Set Clock to 10:10pm"
-          on_press:
-            then:
-            - lambda: |-
-                id(my_bedjet_fan).set_clock(22, 10);
+Configuration variables:
+************************
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **name** (**Required**, string): The name of the fan device.
+- **bedjet_id** (**Required**, :ref:`config-id`): The ID of the Bedjet component.
+- Other options from :ref:`Fan <config-fan>`.
 
 Known issues:
 -------------
