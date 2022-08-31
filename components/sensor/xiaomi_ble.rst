@@ -524,7 +524,7 @@ Configuration example:
           name: "Mi Motion Sensor Battery Level"
 
 MCCGQ02HL - Mi Door Window Sensor 2
-******************************
+***********************************
 
 Doors & windows and ambient light sensors. Broadcast switch detection, bright/dark. There is also a button that does nothing when pressed.
 Requires a bindkey in order to decrypt the received data (see :ref:`obtaining_the_bindkey`).
