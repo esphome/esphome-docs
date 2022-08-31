@@ -97,7 +97,7 @@ This automation is triggered when the client disconnects from a BLE device.
 -------------------------------
 
 This action triggers a write to a specified BLE characteristic. The write is attempted in
-a best-effort fashion and will only succeed if the `ble_client`'s  connection has been
+a best-effort fashion and will only succeed if the ``ble_client``'s  connection has been
 established and the peripheral exposes the expected BLE service and characteristic.
 
 Example usage:

@@ -96,7 +96,7 @@ From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced st
 ``bedjet`` Climate
 ------------------
 
-The `climate` platform exposes the BedJet's climate-related functionality, including
+The ``climate`` platform exposes the BedJet's climate-related functionality, including
 setting the mode and target temperature.
 
 .. code-block:: yaml
@@ -114,9 +114,12 @@ Configuration variables:
 - **name** (**Required**, string): The name of the climate device.
 - **bedjet_id** (**Required**, :ref:`config-id`): The ID of the Bedjet component.
 - **heat_mode** (*Optional*, string): The primary heating mode to use for ``HVACMode.HEAT``:
-    - ``"heat"`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
-    - ``"extended"`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
-    - Whichever is not selected will be made available as a custom preset.
+
+    - ``heat`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
+    - ``extended`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
+
+    Whichever is not selected will be made available as a custom preset.
+
 - All other options from :ref:`Climate <config-climate>`.
 
 ``bedjet`` Fan
