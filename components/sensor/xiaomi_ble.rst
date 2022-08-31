@@ -539,11 +539,9 @@ Configuration example:
 
     binary_sensor:
       - platform: xiaomi_mccgq02hl
-        name: 'MCCGQ02HL Activation State'
+        name: 'Mi Door Window 2 Door'
         mac_address: '12:34:56:12:34:56'
         bindkey: '48403ebe2d385db8d0c187f81e62cb64'
-        on_lock:
-          name: 'Mi Door Window 2 Door'
         light:
           name: 'Mi Door Window 2 Light'
 
