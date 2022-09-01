@@ -37,6 +37,11 @@ the :doc:`/components/sensor/integration` and :doc:`/components/sensor/total_dai
 The BedJet climate introduced recently has also undergone a refactoring to allow different
 platforms to extend the functionality available from ESPHome.
 
+Release 2022.8.1 - September 1
+------------------------------
+
+- fix grow password setting :esphomepr:`3722` by :ghuser:`ssieb`
+- Fix SPI HW selection for ESP32 variants :esphomepr:`3728` by :ghuser:`kbx81`
 
 Full list of changes
 --------------------
