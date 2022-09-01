@@ -14,17 +14,17 @@ The MQTT Room Component uses the :doc:`/components/esp32_ble_tracker` and :doc:`
 
 .. code-block:: yaml
 
-  # Example configuration entry
-  sensor:
-    - platform: ble_rssi
-      ibeacon_uuid: '11223344-5566-7788-99aa-bbccddeeff00'
-      id: my_own_tracker
+    # Example configuration entry
+    sensor:
+      - platform: ble_rssi
+        ibeacon_uuid: '11223344-5566-7788-99aa-bbccddeeff00'
+        id: my_own_tracker
 
-  mqtt_room:
-    room: Living room
-    trackers:
-      - device_id: my_own_tracker
-        name: My own tracker
+    mqtt_room:
+      room: Living room
+      trackers:
+        - device_id: my_own_tracker
+          name: My own tracker
 
 .. note::
 
