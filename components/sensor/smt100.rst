@@ -42,12 +42,12 @@ The communication with this integration is done over a UART bus using a simple A
 Configuration variables:
 ------------------------
 
-- **counts** (*Optional*): Raw measurement data from the sensor electronics (dimensionless quantity). Higher counts mean less moisture. May be used for material specific calibrations. 
+- **counts** (*Optional*): Raw measurement data from the sensor electronics (dimensionless quantity). Higher counts mean less moisture. May be used for material specific calibrations.
 
   - **name** (**Required**): Sensor name.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **Permittivity** (*Optional*): Permittivity or dielectric coefficient of the material to be measured (dimensionless quantity. Higher permittivity means higher water content. May be used for material specific calibration.
+- **dielectric_constant** (*Optional*): Dielectric coefficient or permittivity of the material to be measured (dimensionless quantity). Higher permittivity means higher water content. May be used for material specific calibration.
 
   - **name** (**Required**): Sensor name.
   - All other options from :ref:`Sensor <config-sensor>`.
@@ -66,7 +66,7 @@ Configuration variables:
 
   - **name** (**Required**): Sensor name.
   - All other options from :ref:`Sensor <config-sensor>`.
-  
+
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 
