@@ -146,6 +146,7 @@ so the ``calibration_x_min`` needs to be larger than ``calibration_x_max``.
 The vertical direction is fine. The configuration would thus be
 
 .. code-block:: yaml
+
     touchscreen:
       platform: xpt2046
       calibration_x_min: 3848
