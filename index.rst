@@ -671,6 +671,7 @@ Misc Components
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg
+    MQTT Room, components/mqtt_room, room_mqtt.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
