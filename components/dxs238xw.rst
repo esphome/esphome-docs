@@ -381,7 +381,7 @@ Actions
 Three actions related to the change of state of the energy meter have been configured.
 
 ``dxs238xw.meter_state_on`` Action
-********************************
+**********************************
 
 This action change the state of the energy meter to On.
 
@@ -401,7 +401,7 @@ This action change the state of the energy meter to On.
         
 
 ``dxs238xw.meter_state_off`` Action
-*********************************
+***********************************
 
 This action change the state of the energy meter to Off.
 
@@ -421,7 +421,7 @@ This action change the state of the energy meter to Off.
         
 
 ``dxs238xw.meter_state_toggle`` Action
-************************************
+**************************************
 
 This action toggle the state of the energy meter between on off.
 
