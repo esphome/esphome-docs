@@ -380,7 +380,7 @@ Actions
 
 Three actions related to the change of state of the energy meter have been configured.
 
-``dxs238xw.meterStateOn`` Action
+``dxs238xw.meter_state_on`` Action
 ********************************
 
 This action change the state of the energy meter to On.
@@ -389,7 +389,7 @@ This action change the state of the energy meter to On.
 
     on_...:
       then:
-        - dxs238xw.meterStateOn
+        - dxs238xw.meter_state_on
 
 .. note::
 
@@ -397,10 +397,10 @@ This action change the state of the energy meter to On.
 
     .. code-block:: cpp
 
-        id(smart_meter).set_meter_state_on();
+        id(smart_meter).meter_state_on();
         
 
-``dxs238xw.meterStateOff`` Action
+``dxs238xw.meter_state_off`` Action
 *********************************
 
 This action change the state of the energy meter to Off.
@@ -409,7 +409,7 @@ This action change the state of the energy meter to Off.
 
     on_...:
       then:
-        - dxs238xw.meterStateOff
+        - dxs238xw.meter_state_off
 
 .. note::
 
@@ -417,19 +417,19 @@ This action change the state of the energy meter to Off.
 
     .. code-block:: cpp
 
-        id(smart_meter).set_meter_state_off();
+        id(smart_meter).meter_state_off();
         
 
-``dxs238xw.meterStateToogle`` Action
+``dxs238xw.meter_state_toggle`` Action
 ************************************
 
-This action toogle the state of the energy meter between on off.
+This action toggle the state of the energy meter between on off.
 
 .. code-block:: yaml
 
     on_...:
       then:
-        - dxs238xw.meterStateToogle
+        - dxs238xw.meter_state_toggle
 
 .. note::
 
@@ -437,12 +437,13 @@ This action toogle the state of the energy meter between on off.
 
     .. code-block:: cpp
 
-        id(smart_meter).set_meter_state_toogle();
+        id(smart_meter).meter_state_toggle();
 
 External Button
 ---------------
 
-For the button present on the meter, it must be configured with the following code and call the action ``dxs238xw.meterStateToogle``. :ref:`Binary Sensor <config-binary_sensor>`
+For the button present on the meter, it must be configured with the following code and call the action ``dxs238xw.meter_state_toggle``.
+:ref:`Binary Sensor <config-binary_sensor>`
 
 .. code-block:: yaml
 
@@ -460,7 +461,7 @@ For the button present on the meter, it must be configured with the following co
         - timing:
             - ON for at least 1s
           then:
-            - dxs238xw.meterStateToogle
+            - dxs238xw.meter_state_toggle
           invalid_cooldown: 0ms
 
 External Status Led 
