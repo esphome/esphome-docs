@@ -128,14 +128,20 @@ The following example creates a typical digital clock with the ``:`` colon flash
 
 LEDs
 ----------------
-The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top or middle of the display, depending on the board.  These LEDs are exposed as :doc:`switches </components/switch/index>` with the led property set between 0 and 7.  The board has the LEDs labelled 1-8, but the leds use zero based addressing.   The LED labelled "1" is LED 0 in the configuration.
+The TM1638 7 Segment Display Keypad & LED Module has 8 LED lights across the top or middle of the display, depending on the board.  These LEDs can be exposed as :doc:`switches </components/switch/index>` or :doc:'outputs </components/output/index>' with the led property set between 0 and 7.  The board has the LEDs labelled 1-8, but the leds use zero based addressing.   The LED labelled "1" is LED 0 in the configuration.
 
 .. code-block:: yaml
 
     switch:                 
       - platform: tm1638
-        id: MyLed
+        id: TM1638Led1
         led: 0
+        
+    output:
+      - platform: tm1638
+        id: TM1638Led2
+        led: 1
+    
 
 
 Buttons
@@ -146,17 +152,30 @@ The TM1638 7 Segment Display Keypad & LED Module has 8 buttons across the top or
 
     binary_sensor:
       - platform: tm1638
-        name: "My Button"
-        id: MyButton
+        name: "TM1638 Button 1"
+        id: TM1638BUtton1
         key: 0
         filters:
           - delayed_on: 10ms
         on_press:
          then:
-            - switch.turn_on: MyLed
+            - switch.turn_on: TM1638Led1
         on_release:
          then:
-            - switch.turn_off: MyLed
+            - switch.turn_off: TM1638Led1
+            
+      - platform: tm1638
+        name: "TM1638 Button 2"
+        id: TM1638BUtton2
+        key: 1
+        filters:
+          - delayed_on: 10ms
+        on_press:
+         then:
+            - output.turn_on: TM1638Led2
+        on_release:
+         then:
+            - output.turn_off: TM1638Led2
 
 
 See Also
