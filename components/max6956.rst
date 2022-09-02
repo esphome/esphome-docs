@@ -255,7 +255,7 @@ See Also
 - :ref:`i2c`
 - :doc:`switch/gpio`
 - :doc:`/components/binary_sensor/index`
-- :doc:`binary_sensor/gpio
+- :doc:`binary_sensor/gpio`
 - :doc:`light/binary`
 - :doc:`light/rgb`
 - :apiref:`max6956/max6956.h`
