@@ -60,6 +60,8 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **publish_initial_state** (*Optional*, boolean): If true, then the sensor will publish its initial state at boot or when
+  HA first connects, depending on the platform.  This means that any applicable triggers will be run. Defaults to ``false``.
 - **entity_category** (*Optional*, string): The category of the entity.
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.

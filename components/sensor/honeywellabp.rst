@@ -42,7 +42,7 @@ the measurement range and ``unit_of_measurement`` to the appropriate unit for yo
 - **pressure** (*Optional*): The information for the pressure sensor.
 
   - **name** (**Required**, string): The name for the pressure sensor.
-  - **min_pressure** (**Required**, int or float): Minumim pressure for the pressure sensor, default unit ``psi``.
+  - **min_pressure** (**Required**, int or float): Minimum pressure for the pressure sensor, default unit ``psi``.
   - **max_pressure** (**Required**, int or float): Maximum pressure for the pressure sensor, default unit ``psi``.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
