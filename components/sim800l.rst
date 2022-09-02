@@ -42,6 +42,19 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
         - logger.log:
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
+      on_incoming_call:
+        - logger.log:
+            format: "Incoming call from '%s'"
+            args: ["caller_id.c_str()"]
+        - lambda: |-
+            id(caller_id_text_sensor).publish_state(caller_id);
+        - sim800l.disconnect
+        - homeassistant.event:
+            event: esphome.incoming_call_event
+            data:
+              payload: !lambda 'return id(caller_id_text_sensor).state;'
+        - delay: 5s
+
 
     sensor:
       - platform: sim800l
@@ -52,6 +65,17 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
       - platform: sim800l
         registered:
           name: "Sim800L Registered"
+   
+    text_sensor:
+      - platform: template
+        id: caller_id_text_sensor
+        name: "Caller ID"
+      - platform: template
+        id: sms_sender
+        name: "Sms Sender"
+      - platform: template
+        id: sms_message
+        name: "Sms Message"
 
     logger:
       baud_rate: 0 # disable uart logger on esp 8266
@@ -103,6 +127,50 @@ under the variables named ``message`` and ``sender`` respectively.
           id(sms_sender).publish_state(sender);
           id(sms_message).publish_state(message);
 
+
+``on_incoming_call`` Trigger
+---------------------------
+
+With this configuration option you can write complex automations whenever an incoming call
+is received. To use the call content, use a :ref:`lambda <config-lambda>`
+template, the incoming call caller phone number is available inside that lambda
+under the variables named ``caller_id``.
+
+.. code-block:: yaml
+
+    on_incoming_call:
+    - logger.log:
+        format: "Incoming call from '%s'"
+        args: ["caller_id.c_str()"]
+    - lambda: |-
+        id(caller_id_text_sensor).publish_state(caller_id);
+    - sim800l.disconnect
+    - homeassistant.event:
+        event: esphome.incoming_call_event
+        data:
+          payload: !lambda 'return id(caller_id_text_sensor).state;'
+    - delay: 5s
+
+
+``on_call_connected`` Trigger
+---------------------------
+
+With this configuration option you can write complex automations whenever the current incoming call
+is connected. 
+
+.. code-block:: yaml
+
+    on_call_connected:
+      
+``on_call_disconnected`` Trigger
+---------------------------
+
+With this configuration option you can write complex automations whenever the current incoming call
+is disconnected. 
+
+.. code-block:: yaml
+
+    on_call_disconnected:
 
 .. _sim800l-send_sms_action:
 
@@ -168,6 +236,47 @@ Configuration options:
     .. code-block:: cpp
 
         id(sim800l1).dial("+15551234567");
+    
+  ``sim800l.connect`` Action
+---------------------------
+
+Connect current call imediately.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sim800l.connect
+
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(sim800l1).connect();
+
+  ``sim800l.disconnect`` Action
+---------------------------
+
+Diconnect current call imediately.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sim800l.disconnect
+
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(sim800l1).disconnect();
+
 
 
 Getting started with Home Assistant
@@ -196,12 +305,15 @@ on Home Assistant and will also setup a service so you can send messages and dia
             recipient: !lambda 'return recipient;'
 
     text_sensor:
-    - platform: template
-      id: sms_sender
-      name: "Sms Sender"
-    - platform: template
-      id: sms_message
-      name: "Sms Message"
+      - platform: template
+        id: caller_id_text_sensor
+        name: "Caller ID"
+      - platform: template
+        id: sms_sender
+        name: "Sms Sender"
+      - platform: template
+        id: sms_message
+        name: "Sms Message"
 
     uart:
       baud_rate: 9600
