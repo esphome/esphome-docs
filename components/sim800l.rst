@@ -237,7 +237,7 @@ Configuration options:
 
         id(sim800l1).dial("+15551234567");
     
-  ``sim800l.connect`` Action
+``sim800l.connect`` Action
 ------------------------------
 
 Connect current call imediately.
