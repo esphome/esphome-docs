@@ -113,7 +113,7 @@ Configuration variables:
 .. _sim800l-on_sms_received:
 
 ``on_sms_received`` Trigger
----------------------------
+-----------------------------
 
 With this configuration option you can write complex automations whenever an SMS message
 is received. To use the message content, use a :ref:`lambda <config-lambda>`
@@ -129,7 +129,7 @@ under the variables named ``message`` and ``sender`` respectively.
 
 
 ``on_incoming_call`` Trigger
----------------------------
+------------------------------
 
 With this configuration option you can write complex automations whenever an incoming call
 is received. To use the call content, use a :ref:`lambda <config-lambda>`
@@ -153,7 +153,7 @@ under the variables named ``caller_id``.
 
 
 ``on_call_connected`` Trigger
----------------------------
+------------------------------
 
 With this configuration option you can write complex automations whenever the current incoming call
 is connected. 
@@ -163,7 +163,7 @@ is connected.
     on_call_connected:
       
 ``on_call_disconnected`` Trigger
----------------------------
+---------------------------------
 
 With this configuration option you can write complex automations whenever the current incoming call
 is disconnected. 
@@ -238,7 +238,7 @@ Configuration options:
         id(sim800l1).dial("+15551234567");
     
   ``sim800l.connect`` Action
----------------------------
+------------------------------
 
 Connect current call imediately.
 
@@ -258,7 +258,7 @@ Connect current call imediately.
         id(sim800l1).connect();
 
   ``sim800l.disconnect`` Action
----------------------------
+---------------------------------
 
 Diconnect current call imediately.
 
