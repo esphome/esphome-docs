@@ -257,7 +257,7 @@ Connect current call imediately.
 
         id(sim800l1).connect();
 
-  ``sim800l.disconnect`` Action
+``sim800l.disconnect`` Action
 ---------------------------------
 
 Diconnect current call imediately.
