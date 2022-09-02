@@ -90,7 +90,7 @@ Calibration
 To match the point of the touch to the display coordinates the touch screen has to be calibrated.
 The XPT2046 component returns raw values in the 0 to 4095 range. Those raw values are available
 as the ``x_raw`` and ``y_raw`` member variables and for example write them out as in the example
-:ref:`_touchscreen-on_touch`. The goal of the calibration is to identify the raw values corresponding
+:ref:`touchscreen-on_touch`. The goal of the calibration is to identify the raw values corresponding
 to the edges of the screen.
 
 The calibration assumes a display oriented in a way that you will be using it, i.e. your
