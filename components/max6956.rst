@@ -9,9 +9,9 @@ The MAX6956 component allows you to use MAX6956 I/O expanders
 (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX6956.pdf>`__) in ESPHome. It uses :ref:`I²C Bus <i2c>` for communication.
 
 Once configured, you can use any of the 28 pins for your projects. Within ESPHome they emulate a real internal GPIO pin
-and can therefore be used with many of ESPHome's components such as the GPIO binary sensor or GPIO switch. Interrupt-on-change for inputs is not currently implemented.
+and can therefore be used with many of ESPHome's components such as the GPIO binary sensor or GPIO switch. Interrupt-on-change for inputs is not possible.
 
-Pins can also be individualy configured as led driver and used with Light components. Current value can be set globaly or for each pin, through 16 possible levels.Driving RGB 
+Pins can also be individualy configured as led driver and used with Light components. Current value can be set globaly or for each pin, through 16 possible levels. Driving RGB 
 led requires 3 pins.
 
 Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically be used.
@@ -245,7 +245,7 @@ Pin configuration variables:
 ****************************
 
 - **max6956** (**Required**, :ref:`config-id`): The id of the MAX6956 component of the pin.
-- **number** (**Required**, int): The pin number.
+- **number** (**Required**, int): The pin number. Must be in the range from 4 to 31.
 - All other options from Binary Sensor.
 
 
@@ -254,7 +254,8 @@ See Also
 
 - :ref:`i2c`
 - :doc:`switch/gpio`
-- :doc:`binary_sensor/gpio`
+- :doc:`/components/binary_sensor/index`
+- :doc:`binary_sensor/gpio
 - :doc:`light/binary`
 - :doc:`light/rgb`
 - :apiref:`max6956/max6956.h`
