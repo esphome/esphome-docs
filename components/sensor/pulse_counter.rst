@@ -40,7 +40,7 @@ Configuration variables:
     Defaults to ``DISABLE``.
     
 
-- **use_pcnt** (*Optional*, boolean): Use hardware ``PCNT`` pulse counter. Only supported on ESP32.
+- **use_pcnt** (*Optional*, boolean): Use hardware ``PCNT`` pulse counter. Only supported on ESP32. Defaults to ``true``.
 
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
   time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32, when using the hardware pulse counter
