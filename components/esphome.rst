@@ -174,6 +174,13 @@ You can view a full list of PlatformIO options here: https://docs.platformio.org
       platformio_options:
         upload_speed: 115200
         board_build.f_flash: 80000000L
+        platform_packages:
+          value: ""
+          override: true
+
+.. note::
+    Forcefully overriding values in ``platformio_options`` is concidered an advanced feature and should generally not be used unless you know what you're doing.
+
 
 .. _esphome-includes:
 
