@@ -82,6 +82,8 @@ Base Configuration:
 - All other options from :ref:`config-touchscreen`.
 
 
+.. _xpt2046-calibration:
+
 Calibration
 -----------
 
