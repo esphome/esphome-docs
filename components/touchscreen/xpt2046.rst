@@ -1,5 +1,5 @@
-XPT2046 Touch Screen Controller
-==================================
+XPT2046 Touch Screen Controller (Updated version)
+==================================================
 
 .. seo::
     :description: Instructions for setting up XPT2046 touch screen controller with ESPHome
@@ -8,10 +8,7 @@ XPT2046 Touch Screen Controller
 
 .. _xpt2046-component:
 
-Component/Hub
--------------
-
-The ``xpt2046`` component allows using the touch screen controllers
+The ``xpt2046`` touchscreen platform allows using the touch screen controllers
 based on the XPT2046 chip
 (`datasheet <https://datasheetspdf.com/pdf-file/746665/XPTEK/XPT2046/1>`__,
 `AZ-Delivery`_) with ESPHome. Many cheap LCD displays contain this controller.
@@ -28,32 +25,20 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
 .. code-block:: yaml
 
     # Example configuration entry
-    xpt2046:
+    touchscreen:
+      platform: xpt2046
       id: touchscreen
       cs_pin: 17
-      irq_pin: 16
+      interupt_pin: 16
       update_interval: 50ms
       report_interval: 1s
       threshold: 400
-      dimension_x: 240
-      dimension_y: 320
       calibration_x_min: 3860
       calibration_x_max: 280
       calibration_y_min: 340
       calibration_y_max: 3860
       swap_x_y: false
 
-    binary_sensor:
-      - platform: xpt2046
-        xpt2046_id: touchscreen
-        id: touch_key0
-        x_min: 80
-        x_max: 160
-        y_min: 106
-        y_max: 212
-        on_state:
-          - lambda: 'ESP_LOGI("main", "key0: %s", (x ? "touch" : "release"));'
-  
 
 Configuration variables:
 ------------------------
@@ -66,24 +51,18 @@ Base Configuration:
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The chip select pin.
   Often marked ``T_CS`` on the board.
 
-- **irq_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
+- **interupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
   Often marked ``T_IRQ`` on the board. If not specified the component will use polling
-  via SPI.
+  via SPI. This key is renamed from **irq_pin**
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. If ``irq_pin`` is specified the touch will be detected nearly instantaneously and this setting 
+  sensor. If ``interupt_pin`` is specified the touch will be detected nearly instantaneously and this setting 
   will be used only for the release detection. Defaults to ``50ms``.
 
 - **report_interval** (*Optional*, :ref:`config-time`): The interval to periodically
   report the coordinates while the touch screen is touched. Defaults to ``never``.
 
 - **threshold** (*Optional*, int): The value to detect the touch or release. Defaults to ``400``.
-
-- **dimension_x** (*Optional*, int): The dimension of the display in the horizontal
-  direction. Usually in pixels but a percentage can be useful as well. Defaults to ``100``.
-
-- **dimension_y** (*Optional*, int): The dimension of the display in the vertical
-  direction. Usually in pixels but a percentage can be useful as well. Defaults to ``100``.
 
 - **calibration_x_min** (*Optional*, int): The raw value corresponding to the left
   (or top if ``swap_x_y`` is specified) edge of the display. See :ref:`xpt2046-calibration`
@@ -100,65 +79,8 @@ Base Configuration:
 
 - **swap_x_y** (*Optional*, boolean): If true the x and y axes are swapped. Defaults to ``false``.
 
-- **on_state** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when the touch screen is pressed or released. See :ref:`xpt2046-on_state`.
+- All other options from :ref:`config-touchscreen`.
 
-.. _xpt2046-on_state:
-
-``on_state`` Action
--------------------
-
-This automation will be triggered when the XPT2046 touch screen detects a touch, a release
-or periodically each ``report_interval`` while touched.
-
-This trigger provides three arguments: ``x`` and ``y`` are of the type int and specify the
-coordinates of the touch and a bool ``touched`` specifying whether a touch or release was
-detected.
-
-Additionally to the coordinates, the touch status and the raw values needed for the calibration
-can be accessed as member variables.
-
-The following code
-
-.. code-block:: yaml
-
-    xpt2046:
-      on_state:
-        - lambda: |-
-            ESP_LOGI("main", "args x=%d, y=%d, touched=%s", x, y, (touched ? "touch" : "release"));
-            ESP_LOGI("main", "member x=%d, y=%d, touched=%d, x_raw=%d, y_raw=%d, z_raw=%d",
-                id(touchscreen).x,
-                id(touchscreen).y,
-                (int) id(touchscreen).touched,
-                id(touchscreen).x_raw,
-                id(touchscreen).y_raw,
-                id(touchscreen).z_raw
-                );
-
-produces
-
-.. code-block:: none
-
-    [20:17:37][I][main:065]: args x=145, y=261, touched=touch
-    [20:17:37][I][main:073]: member x=145, y=261, touched=1, x_raw=1686, y_raw=3218, z_raw=424
-    [20:17:37][I][main:065]: args x=145, y=261, touched=release
-    [20:17:37][I][main:073]: member x=145, y=261, touched=0, x_raw=0, y_raw=0, z_raw=0
-
-Binary Sensor
--------------
-
-The ``xpt2046`` binary sensor allows you to setup areas on the touch screen as virtual
-buttons. First, setup a :ref:`xpt2046-component` and then use this binary sensor platform
-to create individual binary sensors for each virtual button.
-
-- **name** (*Optional*, string): The name for the binary sensor.
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **xpt2046_id** (*Optional*, :ref:`config-id`): Specify the ID of the component the sensor is part of. Useful when you have more than one touch screen.
-- **x_min** (**Required**, int): Left coordinate of the screen area to be detected as the virtual button.
-- **x_max** (**Required**, int): Right coordinate of the screen area to be detected as the virtual button.
-- **y_min** (**Required**, int): Top coordinate of the screen area to be detected as the virtual button.
-- **y_max** (**Required**, int): Bottom coordinate of the screen area to be detected as the virtual button.
-- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 .. _xpt2046-calibration:
 
@@ -179,16 +101,13 @@ values nor ``swap_x_y``.
 .. code-block:: yaml
 
     # Touchscreen
-    xpt2046:
+    touchscreen:
+      platform: xpt2046
       id: touchscreen
       cs_pin: 17
-      irq_pin: 16
-      dimension_x: 240
-      dimension_y: 320
-      on_state:
+      on_touch:
         - lambda: |-
-            if (touched)
-              ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%d",
+              ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
                   id(touchscreen).x,
                   id(touchscreen).y,
                   id(touchscreen).x_raw,
@@ -230,7 +149,8 @@ The vertical direction is fine. The configuration would thus be
 
 .. code-block:: yaml
 
-    xpt2046:
+    touchscreen:
+      platform: xpt2046
       calibration_x_min: 3848
       calibration_x_max: 281
       calibration_y_min: 347
@@ -250,7 +170,7 @@ Note that the touch screen is not extremely precise and there might be nonlinear
 or similar errors so don't expect a pixel-perfect precision. You can verify the touchpoint
 using a display lambda similar to the following.
 
-.. code-block:: none
+.. code-block:: yaml
 
     display:
       - platform: ili9341
