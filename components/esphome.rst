@@ -179,8 +179,8 @@ You can view a full list of PlatformIO options here: https://docs.platformio.org
           override: true
 
 .. note::
-    Forcefully overriding values in ``platformio_options`` is concidered an advanced feature and should generally not be used unless you know what you're doing.
 
+    Forcefully overriding values in ``platformio_options`` is concidered an advanced feature and should generally not be used unless you know what you're doing.
 
 .. _esphome-includes:
 
