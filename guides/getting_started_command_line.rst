@@ -40,6 +40,21 @@ If you want to use `docker-compose` instead, here's a sample file:
         privileged: true
         network_mode: host
 
+The project provides multiple docker tags; please pick the one that suits you
+better:
+
+- ``latest`` and ``stable`` point to the latest stable release available. It's
+  not recommended to automatically update the container based on those tags
+  because of the possible breaking changes between releases.
+- Release-tracking tag ``YEAR.MONTH`` (e.g. ``2022.8``) points to the latest
+  stable patch release available within the required version. There should
+  never be a breaking change when upgrading the containers based on tags like
+  that.
+- ``beta`` points to the latest released beta version, and to the latest stable
+  release when there is no fresh beta release.
+- ``dev`` is the bleeding edge release; built daily based on the latest changes
+  in the ``dev`` branch.
+
 
 Connecting the ESP Device
 -------------------------
