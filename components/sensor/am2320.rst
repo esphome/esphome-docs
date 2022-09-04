@@ -24,6 +24,13 @@ The ``am2320`` Temperature+Humidity sensor allows you to use your AM2320
     Logs might include some warnings about receiving a NACK from the sensor.
     This is due to a wake call to the sensor which the sensor never acknowledges by design.
 
+.. note::
+
+    If there seems to be an issue with the ESP setting up a connection, the
+    sensor might not be fully started up. This can occur on a cold start of
+    your node. Check if a delay helps you by adding ``setup_priority: -1000``
+    in your sensor description.
+
 .. code-block:: yaml
 
     # Example configuration entry
