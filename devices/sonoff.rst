@@ -350,6 +350,28 @@ Sonoff Mini
     GPIO16, Optional sensor
 
 
+Sonoff THR316D
+-----------
+
+.. pintable::
+
+    GPIO0, Button,
+    GPIO21, Relay 1,
+    GPIO4, Relay 2,
+    GPIO27, Optionnal sensor power ON/OFF,
+    GPIO25, sensor,
+    GPIO16, Power LED,
+    GPIO15, Wifi LED (inverted),
+    GPIO13, Cycle LED (inverted),
+    GPIO23, Display Read,
+    GPIO18, Display Write,
+    GPIO5, Display Data,
+    GPIO17, Display CS,
+    
+    GPIO1, UART TX pin (for log)
+    GPIO3, UART RX pin (for log)
+
+
 Shelly 1
 --------
 
