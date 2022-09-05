@@ -151,7 +151,7 @@ Automations:
 
 - **on_stream_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a stream starts.
-- **on_stream_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+- **on_stream_stop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a stream stops.
 
 Test Setting:
