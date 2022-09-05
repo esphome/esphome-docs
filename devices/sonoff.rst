@@ -351,7 +351,7 @@ Sonoff Mini
 
 
 Sonoff THR316D
------------
+--------------
 
 .. pintable::
 
