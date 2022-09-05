@@ -790,7 +790,7 @@ of the script are running in parallel, this will block until all of them have te
 
 This :ref:`condition <config-condition>` allows you to check if a given script is running.
 In case scripts are run in ``parallel``, this condition only tells you if at least one script
-of the given id is running, not how many.
+of the given id is running, not how many. Not designed for use with :ref:`while <while_action>`, instead try :ref:`script.wait <script-wait_action>`.
 
 .. code-block:: yaml
 
