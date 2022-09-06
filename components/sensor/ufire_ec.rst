@@ -56,8 +56,8 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - **temperature_sensor** (*Optional*, :ref:`config-id`): Set the ID of the temperature
   sensor. Only needed if the onboard temperature sensor is not used.
-- **ec** (*Optional*, :ref:`<config-sensor>`): Set the EC sensor configuration.
-- **temperature** (*Optional*, :ref:`<config-sensor>`): Set the onboard temperature sensor configuration.
+- **ec** (*Optional*, :ref:`Sensor <config-sensor>`): Set the EC sensor configuration.
+- **temperature** (*Optional*, :ref:`Sensor <config-sensor>`): Set the onboard temperature sensor configuration.
   Can't be used together with ``temperature_sensor``.
 - **temperature_compensation** (*Optional*, float): Set the temperature compensation for the EC
   sensor. Defaults to ``21.0``.
