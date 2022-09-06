@@ -3,7 +3,7 @@ Analog To Digital Sensor
 
 .. seo::
     :description: Instructions for setting up built-in analog voltage sensors.
-    :image: flash.png
+    :image: flash.svg
 
 The Analog To Digital (``adc``) Sensor allows you to use the built-in
 ADC in your device to measure a voltage on certain pins. On the ESP8266
@@ -30,7 +30,8 @@ Configuration variables:
   Or on the ESP8266 alternatively also ``VCC``, see :ref:`adc-esp8266_vcc`.
 - **name** (**Required**, string): The name of the voltage sensor.
 - **attenuation** (*Optional*): Only on ESP32. Specify the ADC
-  attenuation to use. See :ref:`adc-esp32_attenuation`.
+  attenuation to use. See :ref:`adc-esp32_attenuation`. Defaults to ``0db``.
+- **raw** (*Optional*): Allows to read the raw ADC output without any conversion or calibration. See :ref:`adc-raw`. Defaults to ``false``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
@@ -52,22 +53,44 @@ Configuration variables:
               - multiply: 3.3
 
 
-
 .. _adc-esp32_attenuation:
 
 ESP32 Attenuation
 -----------------
 
-On the ESP32, the voltage measured with the ADC caps out at 1.1V by default as the sensing range
-or the attenuation of the ADC is set to ``0db`` by default.
+On the ESP32 the voltage measured with the ADC caps out at ~1.1V by default as the sensing range (attenuation of the ADC) is set to ``0db`` by default.
+Measuring higher voltages requires setting ``attenuation`` to one of the following values: ``0db``, ``2.5db``, ``6db``, ``11db``.
+There's more information `at the manufacturer's website <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/adc.html#_CPPv425adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__.
 
-To measure voltages higher than 1.1V, set ``attenuation`` to one of the `following values
-<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/adc.html#_CPPv225adc1_config_channel_atten14adc1_channel_t11adc_atten_t>`__:
+To simplify this, we provide the setting ``attenuation: auto`` for an automatic/seamless transition among scales. `Our implementation
+<https://github.com/esphome/esphome/blob/dev/esphome/components/adc/adc_sensor.cpp>`__ combines all available ranges to allow the best resolution without having to compromise on a specific attenuation.
 
-- ``0db`` for a full-scale voltage of 1.1V (default)
-- ``2.5db`` for a full-scale voltage of 1.5V
-- ``6db`` for a full-scale voltage of 2.2V
-- ``11db`` for a full-scale voltage of 3.9V
+.. note::
+
+    In our tests, the usable ADC range was from ~0.075V to ~3.12V (with the ``attenuation: auto`` setting), and anything outside that range capped out at either end.
+    Even though the measurements are calibrated, the range *limits* are variable among chips due to differences in the internal voltage reference.
+
+
+.. _adc-raw:
+
+Different ESP32-ADC behavior since 2021.11
+------------------------------------------
+
+The ADC output reads voltage very accurately since 2021.11 where manufacturer calibration was incorporated. Before this every ESP32 would read different voltages and be largely inaccurate/nonlinear. Users with a manually calibrated setup are encouraged to check their installations to ensure proper output.
+For users that don't need a precise voltage reading, the "raw" output option allows to have the raw ADC values (0-4095 for ESP32) prior to manufacturer calibration. It is possible to get the old uncalibrated measurements with a filter multiplier:
+
+.. code-block:: yaml
+
+    # To replicate old uncalibrated output, set raw:true and keep only one of the multiplier lines.
+    raw: true
+    filters:
+      - multiply: 0.00026862 # 1.1/4095, for attenuation 0db
+      - multiply: 0.00036630 # 1.5/4095, for attenuation 2.5db
+      - multiply: 0.00053724 # 2.2/4095, for attenuation 6db
+      - multiply: 0.00095238 # 3.9/4095, for attenuation 11db
+      # your existing filters would go here
+
+Note we don't recommend this method as it will change between chips, and newer ESP32 modules have different ranges (i.e. 0-8191); it is better to use the new calibrated voltages and update any existing filters accordingly.
 
 .. _adc-esp8266_vcc:
 
@@ -93,9 +116,27 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
 Multiple ADC Sensors
 ---------------------
 
-You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see below) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
+You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see above) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
 
 
+Measuring battery voltage on the Firebeetle ESP32-E
+---------------------------------------------------
+
+This board has a internal voltage divider and the battery voltage can easily be measured like this using 11dB attenuation
+on GPIO34.
+
+.. code-block:: yaml
+
+    - platform: adc
+      name: "Battery voltage"
+      pin: GPIO34
+      accuracy_decimals: 2
+      update_interval: 60s
+      attenuation: 11dB
+      filters:
+        - multiply: 2.0  # The voltage divider requires us to multiply by 2
+
+This works on SKU:DFR0654. For more information see: `manufacturer's website <https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654>`__.
 
 See Also
 --------

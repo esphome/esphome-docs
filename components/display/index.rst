@@ -3,7 +3,7 @@ Display Component
 
 .. seo::
     :description: Instructions for setting up the display integration.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 The ``display`` component houses ESPHome's powerful rendering and display
 engine. Fundamentally, there are these types of displays:
@@ -35,7 +35,9 @@ individually.
 
 So, first a few basics: When setting up a display platform in ESPHome there will be a configuration
 option called ``lambda:`` which will be called every time ESPHome wants to re-render the display.
-In there, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
+In each cycle, the display is automatically cleared before the lambda is executed. You can disable
+this behavior by setting ``auto_clear_enabled: false``.
+In the lambda, you can write code like in any :ref:`lambda <config-lambda>` in ESPHome. Display
 lambdas are additionally passed a variable called ``it`` which represents the rendering engine object.
 
 .. code-block:: yaml
@@ -89,8 +91,7 @@ and circles:
           it.filled_circle(25, 25, 10);
 
 All the above methods can optionally also be called with an argument at the end which specifies in which
-color to draw. Currently, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported because
-ESPHome only has implemented binary displays.
+color to draw. For monochrome displays, only ``COLOR_ON`` (the default if color is not given) and ``COLOR_OFF`` are supported.
 
 .. code-block:: yaml
 
@@ -109,6 +110,23 @@ ESPHome only has implemented binary displays.
           // Turn off a whole display portion.
           it.rectangle(50, 50, 30, 42, COLOR_OFF);
 
+For color displays (e.g. TFT displays), you can use the Color class.
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        lambda: |-
+          auto red = Color(255, 0, 0);
+          auto green = Color(0, 255, 0);
+          auto blue = Color(0, 0, 255);
+          auto white = Color(255, 255, 255);
+          it.rectangle(20, 50, 30, 30, white);
+          it.rectangle(25, 55, 30, 30, red);
+          it.rectangle(30, 60, 30, 30, green);
+          it.rectangle(35, 65, 30, 30, blue);
+
 Additionally, you have access to two helper methods which will fetch the width and height of the display:
 
 .. code-block:: yaml
@@ -125,16 +143,17 @@ You can view the full API documentation for the rendering engine in the "API Ref
 
 .. _display-static_text:
 
-Drawing Static Text
-*******************
+Fonts
+*****
 
 The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome.
 Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very
 specific sizes, with ESPHome you have the option to use **any** TrueType (``.ttf``) font file
-at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)
+at **any** size, as well as fixed-size `PCF <https://en.wikipedia.org/wiki/Portable_Compiled_Format>`_ and `BDF <https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format>`_ bitmap fonts! Granted the reason for it is
+actually not having to worry about the licensing of font files :)
 
 To use fonts you first have to define a font object in your ESPHome configuration file. Just grab
-a ``.ttf`` file from somewhere on the internet and place it, for example,
+a ``.ttf``, ``.pcf``, or ``.bdf`` file from somewhere on the internet and place it, for example,
 inside a ``fonts`` folder next to your configuration file.
 
 Next, create a ``font:`` section in your configuration:
@@ -146,34 +165,71 @@ Next, create a ``font:`` section in your configuration:
         id: my_font
         size: 20
 
+      # gfonts://family[@weight]
+      - file: "gfonts://Roboto"
+        id: roboto
+        size: 20
+
+      - file: "fonts/tom-thumb.bdf"
+        id: tomthumb
+
     display:
       # ...
 
 Configuration variables:
 
-- **file** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType font
-  file.
+- **file** (**Required**): The path (relative to where the .yaml file is) of the font
+  file. You can use the ``gfonts://`` short form to use Google Fonts, or use the below structure:
+
+  - **type** (**Required**, string): Can be ``gfonts`` or ``local``.
+
+    **Google Fonts**:
+
+    Each Google Font will be downloaded once and cached for future use.
+
+  - **family** (**Required**, string): The name of the Google Font family.
+  - **weight** (*Optional*, enum): The weight of the font. Can be either the text name or the integer value:
+
+    - **thin**: 100
+    - **extra-light**: 200
+    - **light**: 300
+    - **regular**: 400 (**default**)
+    - **medium**: 500
+    - **semi-bold**: 600
+    - **bold**: 700
+    - **extra-bold**: 800
+    - **black**: 900
+
+  - **italic** (*Optional*, boolean): Whether the font should be italic.
+
+    **Local Fonts**:
+
+  - **path** (**Required**, string): The path (relative to where the .yaml file is) of the TrueType or bitmap font file.
+
 - **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the font later
   in your display code.
 - **size** (*Optional*, int): The size of the font in pt (not pixel!).
-  If you want to use the same font in different sizes, create two font objects. Defaults to ``20``.
+  If you want to use the same font in different sizes, create two font objects. Note: *size* is ignored
+  by bitmap fonts. Defaults to ``20``.
 - **glyphs** (*Optional*, list): A list of characters you plan to use. Only the characters you specify
   here will be compiled into the binary. Adjust this if you need some special characters or want to
   reduce the size of the binary if you don't plan to use some glyphs. The items in the list can also
   be more than one character long if you for example want to use font ligatures. Defaults to
-  ``!"%()+,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
+  ``!"%()+=,-_.:°0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz``.
 
 
 .. note::
 
     To use fonts you will need to have the python ``pillow`` package installed, as ESPHome uses that package
-    to translate the TrueType files into an internal format. If you're running this as a Home Assistant
+    to translate the TrueType and bitmap font files into an internal format. If you're running this as a Home Assistant
     add-on or with the official ESPHome docker image, it should already be installed. Otherwise you need
     to install it using
     ``pip install pillow``.
 
+Drawing Static Text
+*******************
 
-Then, in your display code just reference the font like so:
+In your display code, you can render static text by referencing the font and just entering your string:
 
 .. code-block:: yaml
 
@@ -289,7 +345,7 @@ To display a text string from a ``text_sensor``, append ``.c_str()`` to the end 
         # ...
         lambda: |-
           it.printf(0, 0, id(my_font), "Text to follow: %s", id(template_text).state.c_str());
-          
+
 The last printf tip for use in displays I will discuss here is how to display binary sensor values. You
 *could* of course just check the state with an ``if`` statement as the first few lines in the example below, but if
 you want to be efficient you can use an *inline if* too. With the ``%s`` print specifier you can tell it to
@@ -354,6 +410,155 @@ Configuration variables:
 
 RGB displays use red, green, and blue, while grayscale displays may use white.
 
+.. _display-graphs:
+
+Graph Component
+***************
+
+You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in 
+memory at the time the sensor updates and will be lost when the device reboots.
+
+Examples:
+
+.. figure:: images/graph_screen.png
+    :align: center
+    :width: 60.0%
+
+.. figure:: images/graph_dualtrace.png
+    :align: center
+    :width: 60.0%
+
+Graph component with options for grids, border and line-types.
+
+.. code-block:: yaml
+
+    graph:
+      # Show bare-minimum auto-ranged graph
+      - id: single_temperature_graph
+        sensor: my_temperature
+        duration: 1h
+        width: 151
+        height: 51
+      # Show multi-trace graph
+      - id: multi_temperature_graph
+        duration: 1h
+        x_grid: 10min
+        y_grid: 1.0     # degC/div
+        width: 151
+        height: 51
+        traces:
+          - sensor: my_inside_temperature
+            line_type: DASHED
+            line_thickness: 2
+            color: my_red
+          - sensor: my_outside_temperature
+            line_type: SOLID
+            line_thickness: 3
+            color: my_blue
+          - sensor: my_beer_temperature
+            line_type: DOTTED
+            line_thickness: 2
+            color: my_green
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the graph later
+  in your display code.
+- **width** (**Required**, int): The graph width in pixels
+- **height** (**Required**, int): The graph height in pixels
+- **duration** (**Required**, :ref:`config-time`): The total graph history duration.
+- **border** (*Optional*, boolean): Specifies if a border will be drawn around the graph. Default is True.
+- **x_grid** (*Optional*): Specifies the time per division. If not specified, no vertical grid will be drawn.
+- **y_grid** (*Optional*, float): Specifies the number of units per division. If not specified, no horizontal grid will be drawn.
+- **max_range** (*Optional*): Specifies the maximum Y-axis range.
+- **min_range** (*Optional*): Specifies the minimum Y-axis range.
+- **max_value** (*Optional*): Specifies the maximum Y-axis value.
+- **min_value** (*Optional*): Specifies the minimum Y-axis value.
+- **traces** (*Optional*): Use this to specify more than a single trace.
+
+Trace specific fields:
+- **sensor** (*Optional*, :ref:`config-id`): The sensor value to plot
+- **line_thickness** (*Optional*): Defaults to 3
+- **line_type** (*Optional*): Specifies the plot line-type. Can be one of the following: ``SOLID``, ``DOTTED``, ``DASHED``. Defaults to ``SOLID``.
+- **color** (*Optional*): Sets the color of the sensor trace.
+
+And then later in code:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(single_temperature_graph));
+          - id: page2
+            lambda: |-
+              // Draw the graph at position [x=10,y=20]
+              it.graph(10, 20, id(multi_temperature_graph), my_yellow);
+
+    color:
+      - id: my_red
+        red: 100%
+        green: 0%
+        blue: 0%
+      - id: my_green
+        red: 0%
+        green: 100%
+        blue: 0%
+      - id: my_blue
+        red: 0%
+        green: 0%
+        blue: 100%
+      - id: my_yellow
+        red: 100%
+        green: 100%
+        blue: 0%
+.. note::
+
+    Here are some things to note:
+    - Setting ``y_grid`` will expand any specified range to the nearest multiple of grid spacings.
+    - Axis labels are currently not possible without manually placing them.
+    - The grid and border color is set with it.graph(), while the traces are defined separately.
+
+QR Code Component
+*****************
+
+Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.
+
+.. code-block:: yaml
+
+    qr_code:
+      - id: homepage_qr
+        value: esphome.io
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID with which you will be able to reference the QR-code later
+  in your display code.
+- **value** (**Required**, string): The string which you want to encode in the QR-code.
+- **ecc** (*Optional*, string): The error correction code level you want to use. Defaults to ``LOW``. You can use one of the following values:
+
+  - ``LOW``: The QR Code can tolerate about 7% erroneous codewords
+  - ``MEDIUM``: The QR Code can tolerate about 15% erroneous codewords
+  - ``QUARTILE``: The QR Code can tolerate about 25% erroneous codewords
+  - ``HIGH``: The QR Code can tolerate about 30% erroneous codewords
+
+To draw the QR-code, call the ``it.qr_code`` function from your render lambda:
+
+.. code-block:: yaml
+
+    display:
+      - platform: ...
+        # ...
+        pages:
+          - id: page1
+            lambda: |-
+              // Draw the QR-code at position [x=50,y=0] with white color and a 2x scale
+              it.qr_code(50, 0, id(homepage_qr), Color(255,255,255), 2);
+
 Images
 ******
 
@@ -379,6 +584,9 @@ Configuration variables:
     per pixel, 8 pixels per byte.
   - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
+  - ``TRANSPARENT_BINARY``: One color, any pixel that is fully transparent will not be drawn, and any other pixel
+    will be the on color. Uses 1 bit per pixel, 8 pixels per byte.
 
 - **dither** (*Optional*): Specifies which dither method used to process the image, only used in GRAYSCALE and BINARY type image. Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__ and `here <https://en.wikipedia.org/wiki/Dither>`__.
 
@@ -422,7 +630,7 @@ Animation
 *********
 
 Allows to use animated images on displays. Animation inherits all options from the image component.
-It adds an additional lambda method: ``next_frame()`` to change the shown picture of a gif.
+It adds additional lambda methods: ``next_frame()``, ``prev_frame()`` and ``set_frame()`` to change the shown picture of a gif.
 
 .. code-block:: yaml
 
@@ -433,7 +641,7 @@ It adds an additional lambda method: ``next_frame()`` to change the shown pictur
 
 The animation can be rendered just like the image component with the ``image()`` function of the display component.
 
-To show the next frame of the animation call ``id(my_animation).next_frame()``
+To show the next frame of the animation call ``id(my_animation).next_frame()``, to show the previous picture use ``id(my_animation).prev_frame()``. To show a specific picture use ``id(my_animation).set_frame(int frame)``.
 This can be combined with all Lambdas:
 
 .. code-block:: yaml
@@ -472,16 +680,9 @@ Configuration variables:
 
   - ``BINARY``: Two colors, suitable for 1 color displays or 2 color image in color displays. Uses 1 bit
     per pixel, 8 pixels per byte.
-  - ``GREYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
+  - ``GRAYSCALE``: Full scale grey. Uses 8 bits per pixel, 1 pixel per byte.
   - ``RGB24``: Full RGB color stored. Uses 3 bytes per pixel.
-
-- **dither** (*Optional*): Specifies which dither method used to process each frame, only used in GREYSCALE and BINARY type image.
-  Defaults to ``NONE``. You can read more about it `here <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=Dither#PIL.Image.Image.convert>`__
-  and `here <https://en.wikipedia.org/wiki/Dither>`__.
-
-  - ``NONE``: Every pixel convert to its nearest color.
-  - ``FLOYDSTEINBERG``: Uses Floyd-Steinberg dither to approximate the original image luminosity levels.
-
+  - ``RGB565``: Lossy RGB color stored. Uses 2 bytes per pixel.
 
 .. _display-pages:
 
@@ -593,7 +794,7 @@ You can then switch between these with three different actions:
 - **to** (*Optional*, :ref:`config-id`): A page id. If set the automation is only triggered if changing to this page. Defaults to all pages.
 
 Additionally the old page will be given as the variable ``from`` and the new one as the variable ``to``.
-              
+
 See Also
 --------
 

@@ -8,6 +8,7 @@ MH-Z19 CO_2 and Temperature Sensor
 
 The ``mhz19`` sensor platform allows you to use MH-Z19 CO_2 and temperature sensors
 (`refspace`_) with ESPHome.
+The CO_2 measurement also works with the MH-Z16 sensor.
 
 .. figure:: images/mhz19-full.jpg
     :align: center
@@ -26,8 +27,8 @@ TX/RX labels are from the perspective of the MH-Z19). Additionally, you need to 
 
     # Example configuration entry
     uart:
-      rx_pin: D0
-      tx_pin: D1
+      rx_pin: GPIO3
+      tx_pin: GPIO1
       baud_rate: 9600
 
     sensor:

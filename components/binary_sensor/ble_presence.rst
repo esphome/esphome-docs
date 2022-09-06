@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy Device
 
 .. seo::
     :description: Instructions for setting up BLE binary sensors for the ESP32.
-    :image: bluetooth.png
+    :image: bluetooth.svg
 
 The ``ble_presence`` binary sensor platform lets you track the presence of a
 Bluetooth Low Energy device.
@@ -51,10 +51,10 @@ Configuration variables:
 -  **ibeacon_uuid** (*Optional*, string): The `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`__
    to identify the beacon that needs to be tracked. Note that exactly one of ``mac_address``,
    ``service_uuid`` or ``ibeacon_uuid`` must be present.
--  **ibeacon_major** (*Optional*, integer): The iBeacon major identifier of the beacon that needs
+-  **ibeacon_major** (*Optional*, int): The iBeacon major identifier of the beacon that needs
    to be tracked. Usually used to group beacons, for example for grouping all beacons in the
    same building.
--  **ibeacon_minor** (*Optional*, integer): The iBeacon minor identifier of the beacon that needs
+-  **ibeacon_minor** (*Optional*, int): The iBeacon minor identifier of the beacon that needs
    to be tracked. Usually used to identify beacons within an iBeacon group.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify
    the ID used for code generation.

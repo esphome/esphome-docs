@@ -51,9 +51,15 @@ and direction binary sensors.
 
 Base Configuration:
 
-- **address** (*Optional*, integer): The I²C address of the sensor. Defaults to ``0x39``.
+- **address** (*Optional*, int): The I²C address of the sensor. Defaults to ``0x39``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval
   to check the sensor. Defaults to ``60s``.
+- **led_drive** (*Optional*, int): The LED drive level in mA. One of 100mA, 50mA, 25mA, 12.5mA. Defaults to ``100mA``.
+- **proximity_gain** (*Optional*, int): The proximity gain level. One of 1x, 2x, 4x, 8x. Defaults to ``4x``.
+- **ambient_light_gain** (*Optional*, int): The ambient light gain level. One of 1x, 4x, 16x, 64x. Defaults to ``4x``.
+- **gesture_led_drive** (*Optional*, int): The gesture LED drive level in mA. One of 100mA, 50mA, 25mA, 12.5mA. Defaults to ``100mA``.
+- **gesture_gain** (*Optional*, int): The proximity gain level. One of 1x, 2x, 4x, 8x. Defaults to ``4x``.
+- **gesture_wait_time** (*Optional*, int): The gesture wait time in ms. One of 0ms, 2.8ms, 5.6ms, 8.4ms, 14ms, 22.4ms, 30.8ms, 39.2ms. Defaults to ``2.8ms``.
 
 Sensor
 ------
@@ -66,11 +72,11 @@ Configuration variables:
 - **name** (**Required**, string): The name for the sensor.
 - **type** (**Required**, string): The type of sensor measurement. One of
 
-  - **CLEAR**
-  - **RED**
-  - **GREEN**
-  - **BLUE**
-  - **PROXIMITY**
+  - ``CLEAR``
+  - ``RED``
+  - ``GREEN``
+  - ``BLUE``
+  - ``PROXIMITY``
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
@@ -86,10 +92,10 @@ Configuration variables:
 - **name** (**Required**, string): The name for the binary sensor.
 - **direction** (**Required**, string): The direction to measure. One of:
 
-  - **UP**
-  - **DOWN**
-  - **LEFT**
-  - **RIGHT**
+  - ``UP``
+  - ``DOWN``
+  - ``LEFT``
+  - ``RIGHT``
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.

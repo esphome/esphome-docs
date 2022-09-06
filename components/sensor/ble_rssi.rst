@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy RSSI Sensor
 
 .. seo::
     :description: Instructions for setting up RSSI sensors for the ESP32 BLE.
-    :image: bluetooth.png
+    :image: bluetooth.svg
     :keywords: ESP32
 
 The ``ble_rssi`` sensor platform lets you track the RSSI value or signal strength of a
@@ -24,6 +24,10 @@ instructions for setting up this platform.
       - platform: ble_rssi
         service_uuid: '11aa'
         name: "BLE Test Service 16 bit RSSI value"
+      # RSSI based on iBeacon UUID
+      - platform: ble_rssi
+        ibeacon_uuid: '68586f1e-89c2-11eb-8dcd-0242ac130003'
+        name: "BLE Test Service iBeacon RSSI value"
 
 .. note::
 
@@ -35,10 +39,18 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the sensor.
 - **mac_address** (*Optional*, MAC Address): The MAC address to track for this
-  sensor. Either this or ''service_uuid'' has to be present.
+  sensor. Note that exactly one of ``mac_address``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
 - **service_uuid** (*Optional*, 16 bit, 32 bit, or 128 bit BLE Service UUID): The BLE
-  Service UUID which can be tracked if the device randomizes the MAC address. Either
-  this or ''mac_address'' has to be present.
+  Service UUID which can be tracked if the device randomizes the MAC address. Note that exactly one of
+  ``mac_address``, ``service_uuid`` or ``ibeacon_uuid`` must be present.
+- **ibeacon_uuid** (*Optional*, string): The `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`__
+  to identify the beacon that needs to be tracked. Note that exactly one of ``mac_address``,
+  ``service_uuid`` or ``ibeacon_uuid`` must be present.
+- **ibeacon_major** (*Optional*, int): The iBeacon major identifier of the beacon that needs
+  to be tracked. Usually used to group beacons, for example for grouping all beacons in the
+  same building.
+- **ibeacon_minor** (*Optional*, int): The iBeacon minor identifier of the beacon that needs
+  to be tracked. Usually used to identify beacons within an iBeacon group.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 

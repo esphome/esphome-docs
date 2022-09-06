@@ -3,7 +3,7 @@ Frequently Asked Questions
 
 .. seo::
     :description: Frequently asked questions in ESPHome.
-    :image: question_answer.png
+    :image: question_answer.svg
 
 Tips for using ESPHome
 ----------------------
@@ -12,6 +12,41 @@ Tips for using ESPHome
    <https://www.home-assistant.io/docs/configuration/splitting_configuration/>`__ like
    ``!include`` and ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
+
+   An enhancement to Home Assistant's ``!include`` accepts a list of variables that can be
+   substituted within the included file.
+
+   .. code-block:: yaml
+
+       binary_sensor:
+         - platform: gpio
+           id: button1
+           pin: GPIO16
+           on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
+         - platform: gpio
+           id: button2
+           pin: GPIO4
+           on_multi_click: !include
+             # multi-line syntax
+             file: on-multi-click.yaml
+             vars:
+               id: 2
+
+   ``on-multi-click.yaml``:
+
+   .. code-block:: yaml
+
+       - timing: !include click-single.yaml 
+         then:
+           - mqtt.publish:
+               topic: ${device_name}/button${id}/status
+               payload: single
+       - timing: !include click-double.yaml
+         then:
+           - mqtt.publish:
+               topic: ${device_name}/button${id}/status
+               payload: double
+
 
    For even more configuration templating, take a look at :ref:`config-substitutions`.
 
@@ -52,8 +87,8 @@ Starting with ESPHome 1.9.0, the ESPHome suite provides
 `esphome-flasher <https://github.com/esphome/esphome-flasher>`__, a tool to flash ESPs over USB.
 
 First, you need to get the firmware file to flash. For the Home Assistant add-on based
-installs you can use the ``COMPILE`` button (click the overflow icon with the three dots)
-and then press ``Download Binary``. For command line based installs you can access the
+installs you can use the ``Manual download`` method (click ``Install`` in the overflow icon with the three dots
+and then select ``Manual download``). For command line based installs you can access the
 file under ``<CONFIG_DIR>/<NODE_NAME>/.pioenvs/<NODE_NAME>/firmware.bin``.
 
 Then, install esphome-flasher by going to the `releases page <https://github.com/esphome/esphome-flasher/releases>`__
@@ -97,8 +132,8 @@ How to submit an issue report
 -----------------------------
 
 First of all, thank you very much to everybody submitting issue reports! While we try to test ESPHome/YAML as much as
-we can using our available hardware, we don't own every single device type and rely on testing done by the community 
-and the contributors. When doing some changes in the core, it can quickly happen that something somewhere breaks. 
+we can using our available hardware, we don't own every single device type and rely on testing done by the community
+and the contributors. When doing some changes in the core, it can quickly happen that something somewhere breaks.
 Issue reports are a great way for us to track and (hopefully) fix issues, so thank you!
 
 For us to fix the issue quickly, there are some things that would be really helpful:
@@ -160,7 +195,7 @@ If you find some, please do however report them.
 
 To install the dev version of ESPHome:
 
-- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/hassio <https://github.com/esphome/hassio>`__
+- In Home Assistant: Add the ESPHome repository `https://github.com/esphome/home-assistant-addon <https://github.com/esphome/home-assistant-addon>`__
   in Add-on store -> Repositories. Then install the add-on  ``ESPHome Dev``
 - From ``pip``: Run ``pip3 install https://github.com/esphome/esphome/archive/dev.zip``
 - From docker, use the `esphome/esphome:dev <https://hub.docker.com/r/esphome/esphome/tags?page=1&name=dev>`__ image
@@ -196,7 +231,7 @@ I have a question... How can I contact you?
 Sure! We are happy to help :) You can contact us here:
 
 -  `Discord <https://discord.gg/KhAMKrd>`__
--  `Home Assistant Community Forums <https://community.home-assistant.io/c/third-party/esphome>`__
+-  `Home Assistant Community Forums <https://community.home-assistant.io/c/esphome>`__
 -  ESPHome `issue <https://github.com/esphome/issues>`__ and
    `feature request <https://github.com/esphome/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
@@ -230,7 +265,7 @@ Some steps that can help with the issue:
   logged via serial. If you see ``ack timeout 4`` right before a disconnect, this might be because
   of a bug in the AsyncTCP library, for which a fix was included in ESPHome version 1.18.0.
   If you are running an ESPHome version, prior to 1.18.0, then upgrade ESPHome and build fresh
-  firmware for your devices. 
+  firmware for your devices.
 - We have seen an increase in disconnects while the log level was set to ``VERY_VERBOSE``,
   especially on single-core devices, where the logging code might be interfering with the operation
   of the networking code. For this reason, we advise using a lower log level for production
@@ -240,6 +275,27 @@ Some steps that can help with the issue:
   the log viewer on the web dashboard. In production, you will likely only have a single connection from
   Home Assistant, making this less of an issue. But beware that attaching a log viewer might
   have impact.
+- Reducing the Delivery Traffic Indication Message (DTIM) interval in the WiFi access point may help
+  improve the ESP's WiFi reliability and responsiveness.  This will cause WiFi devices in power
+  save mode, such as the ESP, to be woken up more frequently.  This may improve things for the ESP,
+  although it may also increase power (and possibly battery) usage of other devices also using power
+  save mode.
+
+Component states not restored after reboot
+------------------------------------------
+
+If you notice that some components, like ``climate`` or some switches are randomly not restoring their
+state after a reboot, or you get periodic ``ESP_ERR_NVS_NOT_ENOUGH_SPACE`` errors in your debug log,
+it could be that the NVS portion of the flash memory is full due to repeatedly testing multiple
+configurations (usually large) in the same ESP32 board. Try wiping NVS with the following commands:
+
+.. code-block:: bash
+
+    dd if=/dev/zero of=nvs_zero bs=1 count=20480
+    esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash 0x009000 nvs_zero
+
+Change ``/dev/ttyUSB0`` above to your serial port. If you have changed the partition layout, please adjust the
+above offsets and sizes accordingly.
 
 Docker Reference
 ----------------
@@ -294,8 +350,13 @@ And a docker compose file looks like this:
           - ./:/config:rw
           # Use local time for logging timestamps
           - /etc/localtime:/etc/localtime:ro
+        devices:
+          # if needed, add esp device(s) as in command line examples above
+          - /dev/ttyUSB0:/dev/ttyUSB0
+          - /dev/ttyACM0:/dev/ttyACM0
         network_mode: host
         restart: always
+        
 
 .. _docker-reference-notes:
 .. note::
@@ -319,7 +380,7 @@ And a docker compose file looks like this:
     with the Home Assistant add-on ``"status_use_ping": true,`` option or with
     Docker ``-e ESPHOME_DASHBOARD_USE_PING=true``.
     See also https://github.com/esphome/issues/issues/641#issuecomment-534156628.
-    
+
 .. _faq-notes_on_disabling_mdns:
 
 Notes on disabling mDNS
@@ -347,9 +408,42 @@ Always back up all your files!
 Why shouldn't I use underscores in my device name?
 --------------------------------------------------
 
-The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.  
+The top level ``name:`` field in your .yaml file defines the node name(/hostname) on the local network.  According to `RFC1912 <https://datatracker.ietf.org/doc/html/rfc1912>`_, underscore characters (``_``) in hostnames are not valid.  In reality some local DNS/DHCP setups will be ok with underscores and some will not.  If connecting via a static IP address, there will probably be no issues.  In some cases, initial setup using an underscore works, but later the connection might fail when Home Assistant restarts or if you change router hardware.  Recommendation: use hyphen (``-``) instead of underscore if you can.
 
 Important: follow these `instructions </components/esphome.html#changing-esphome-node-name>`_ to use the ``use_address`` parameter when renaming a live device, as the connection to an existing device will only work with the old name until the name change is complete.
+
+Why am I getting a warning about strapping pins?
+--------------------------------------------------
+
+The ESP chips have special "strapping pins" that are read during the bootup procedure and determine how it boots up. They define whether the ESP boots into a special "flashing mode" or normal boot and a couple of other internal settings.
+If an external pullup/down changes the configured voltage levels boot failures or hard to diagnose issues can happen.
+While the use of them in software is not a problem, if there's something attached to the pins (particularly if they're not floating during the bootup) you may run into problems.
+It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
+
+Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely. 
+
+How can I test a Pull Request?
+------------------------------
+
+By leveraging the :doc:`external components </components/external_components>` feature, it's possible to test most Pull
+Requests by simply adding a few lines to your YAML! You need the number of the Pull Request, as well as the components
+that have been added or changed by the Pull Request (they are listed with the "integration:" labels on the GitHub page
+of the Pull Request). Then, if you add a block of code like the following to your YAML file, once you recompile and
+flash your device, the code from the Pull Request will be used for the components changed by the Pull Request.
+
+.. code-block:: yaml
+
+    external_components:
+      # replace 1234 with the number of the Pull Request
+      - source: github://pr#1234
+        components:
+          # list all components modified by this Pull Request here
+          - ccs811
+
+
+Note that this only works for Pull Requests that only change files within components. If any files outside
+``esphome/components/`` are added or changed, this method unfortunately doesn't work. Those Pull Requests are labeled
+with the "core" label on GitHub.
 
 See Also
 --------

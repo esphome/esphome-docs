@@ -3,7 +3,7 @@ Arduino Port Expander
 
 .. seo::
     :description: Instructions on using an Arduino board, like the Pro Mini for expanding ports of an ESPHome node
-    :image: arduino_pro_mini.jpg
+    :image: arduino_logo.svg
     :keywords: Arduino port expander extender ESPHome
 
 With this sketch you can control pins of a remote Arduino board through ESPHome. The Arduino acts as a port
@@ -28,7 +28,7 @@ Currently it is supported:
 The Arduino sketch can be retrieved from `here <https://gist.github.com/glmnet/49ca3d6a9742fc3649f4fbdeaa4cdf5d#file-arduino_port_expander_sketch-ino>`__
 you can rename it to ``.ino`` and use the Arduino IDE to program it.
 
-You need to download `arduino_port_expander.h <https://gist.github.com/glmnet/49ca3d6a9742fc3649f4fbdeaa4cdf5d#file-arduino_port_expander-h>`__ 
+You need to download `arduino_port_expander.h <https://gist.github.com/glmnet/49ca3d6a9742fc3649f4fbdeaa4cdf5d#file-arduino_port_expander-h>`__
 and include the arduino_port_expander.h in the ESPHome configuration.
 
 .. code-block:: yaml
@@ -190,14 +190,15 @@ spares I/Os.
 
     esphome:
       name: test_arduino
-      platform: ESP8266
-      board: nodemcu
       includes:
-      - arduino_port_expander.h
+        - arduino_port_expander.h
+
+    esp8266:
+      board: nodemcu
 
     wifi:
       ssid: !secret wifi_ssid
-      password: !secret wifi_pass
+      password: !secret wifi_password
 
     api:
 

@@ -37,7 +37,7 @@
   </div>
   <script>
     var old = window.localStorage.getItem("version");
-    if (old === null) { window.localStorage.setItem("version", "{{ version }}");
+    if (old === null || window.location.pathname.lastIndexOf("/changelog/", 0) === 0) { window.localStorage.setItem("version", "{{ version }}");
     } else if (old !== "{{ version }}") {
       const footerEl = document.getElementById("upgrade-footer");
       footerEl.classList.add("not-hidden");

@@ -13,14 +13,15 @@ firmware can be uploaded allowing you to control the Wifi Smart Fish Feeder via 
 Wifi Smart Fish Feeder Configuration
 ------------------------------------
 
-Thanks to the amazing `Tasmota template <https://templates.blakadder.com/ilonda_L88.html>`__, 
+Thanks to the amazing `Tasmota template <https://templates.blakadder.com/ilonda_L88.html>`__,
 managed to build a fully working esphome configuration. This assumes you have a secret.yaml with ssid and password keys.
 
 .. code-block:: yaml
 
     esphome:
       name: wifi_smart_fish_feeder
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
@@ -39,7 +40,9 @@ managed to build a fully working esphome configuration. This assumes you have a 
         id: button
         pin:
           number: GPIO4
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: True
         name: 'Switch feeder'
         on_press:

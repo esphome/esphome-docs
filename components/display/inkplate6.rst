@@ -1,12 +1,15 @@
-Inkplate 6
-==========
+Inkplate 6, 10 and 6 Plus
+=========================
 
 .. seo::
     :description: Instructions for setting up Inkplate E-Paper displays in ESPHome.
     :image: inkplate6.jpg
 
-All-in-one e-paper display  ``Inkplate 6``
-Inkplate 6 is a powerful, Wi-Fi enabled ESP32 based six-inch e-paper display – recycled from a Kindle e-reader. Its main feature is simplicity.
+All-in-one e-paper display ``Inkplate 6``, ``Inkplate 10`` and ``Inkplate 6 Plus``.
+
+The Inkplate 6, 10 and 6 Plus are powerful, Wi-Fi enabled ESP32 based six-inch e-paper displays -
+recycled from a Kindle e-reader. Its main feature is simplicity.
+
 Learn more at `Inkplate's website <https://inkplate.io/>`__
 
 .. figure:: images/inkplate6.jpg
@@ -30,6 +33,7 @@ Learn more at `Inkplate's website <https://inkplate.io/>`__
       greyscale: false
       partial_updating: false
       update_interval: 60s
+      model: inkplate_6
 
       ckv_pin: 32
       sph_pin: 33
@@ -70,6 +74,11 @@ Configuration variables:
 ************************
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **model** (*Optional*, enum): Specify the model. Defaults to ``inkplate_6``.
+  - ``inkplate_6``
+  - ``inkplate_10``
+  - ``inkplate_6_plus``
+
 - **greyscale** (*Optional*, boolean): Makes the screen display 3 bit colors. Defaults to ``false``
 - **partial_updating** (*Optional*, boolean): Makes the screen update partially, which is faster, but leaves burnin. Defaults to ``false``
 - **full_update_every** (*Optional*, int): When partial updating is enabled, forces a full screen update after chosen number of updates. Defaults to ``10``
@@ -109,8 +118,8 @@ Configuration variables:
   Defaults to GPIO27.
 
 
-Complete example
-****************
+Complete Inkplate 6 example
+***************************
 
 The following is a complete example YAML configuration that does a few things beyond the usual
 Wi-Fi, API, and OTA configuration.
@@ -120,17 +129,16 @@ Wi-Fi, API, and OTA configuration.
     # Example configuration entry
     esphome:
       name: inkplate
-      platform: ESP32
+
+    esp32:
       board: esp-wrover-kit
 
     logger:
 
     wifi:
-      ssid: <YOUR WIFI SSID>
-      password: <YOUR WIFI PASSWORD>
-      ap:
-        ssid: Inkplate-AP
-        password: '12345678'
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      ap: {}
 
     captive_portal:
 
@@ -269,9 +277,66 @@ Wi-Fi, API, and OTA configuration.
         }
 
 
+Inkplate 6 Plus Touchscreen
+***************************
+
+The Inkplate 6 Plus has a built in touchscreen supported by ESPHome. Note you need to enable pin 12 on the mcp23017 to enable the touchscreen
+Below is a config example with touchscreen power swtich:
+
+.. code-block:: yaml
+
+    switch:
+      - platform: gpio
+        name: 'Inkplate Touchscreen Enabled'
+        restore_mode: ALWAYS_ON
+        pin:
+          mcp23xxx: mcp23017_hub
+          number: 12
+          inverted: true
+          
+    touchscreen:
+      - platform: ektf2232
+        interrupt_pin: GPIO36
+        rts_pin:
+          mcp23xxx: mcp23017_hub
+          number: 10
+        on_touch:
+          - logger.log:
+              format: "touch x=%d, y=%d"
+              args: ['touch.x', 'touch.y']
+
+Inkplate 6 Plus Backlight
+***************************
+
+The Inkplate 6 Plus has a built in backlight supported by ESPHome.
+Below is a config example:
+
+.. code-block:: yaml
+
+    power_supply:
+      - id: backlight_power
+        keep_on_time: 0.2s
+        enable_time: 0s
+        pin:
+          mcp23xxx: mcp23017_hub
+          number: 11
+
+    output:
+      - platform: mcp47a1
+        id: backlight_brightness_output
+        power_supply: backlight_power
+
+    light:
+      - platform: monochromatic
+        output: backlight_brightness_output
+        id: backlight
+        default_transition_length: 0.2s
+        name: '${friendly_name} Backlight'
+        
 See Also
 --------
 
 - :doc:`index`
+- :doc:`/components/touchscreen/ektf2232`
 - `Arduino Inkplate 6 library <https://github.com/e-radionicacom/Inkplate-6-Arduino-library>`__ by `E-radionica.com <https://e-radionica.com/>`__
 - :ghedit:`Edit`

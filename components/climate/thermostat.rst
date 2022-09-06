@@ -3,7 +3,7 @@ Thermostat Climate Controller
 
 .. seo::
     :description: Instructions for setting up Thermostat climate controllers with ESPHome.
-    :image: air-conditioner.png
+    :image: air-conditioner.svg
 
 The ``thermostat`` climate platform allows you to control a climate control system in much the same manner as a
 physical thermostat. Its operation is similar to the :doc:`bang-bang <bang_bang>` controller; a sensor measures a value
@@ -163,8 +163,8 @@ Default Target Temperatures and Mode
 
 These configuration items determine default values the thermostat controller should use when it starts.
 
-- **default_mode** (*Optional*, climate mode): The default climate mode the controller should use if it 
-  is unable to restore it from memory. One of:
+- **default_mode** (*Optional*, *Deprecated*, climate mode): The default climate mode the controller should 
+  use if it is unable to restore it from memory. One of:
 
   - ``off`` (default)
   - ``heat_cool``
@@ -173,14 +173,26 @@ These configuration items determine default values the thermostat controller sho
   - ``dry``
   - ``fan_only``
   - ``auto``
+  
+This value is used the first time your device starts after ESPHome is initially installed onto it. Add
+this option into your configuration if you want your thermostat component to start in a climate mode other
+than ``off``.  If this option is not configured, you'll need to manually change the climate mode later via
+the front end (Home Assistant), an ESPHome action, automation, or from within a lambda elsewhere in your
+device's configuration.
 
-- **default_target_temperature_low** (*Optional*, float): The default low target
+- **default_target_temperature_low** (*Optional*, *Deprecated*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
-- **default_target_temperature_high** (*Optional*, float): The default high target
+- **default_target_temperature_high** (*Optional*, *Deprecated*, float): The default high target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
 
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
+
+.. note::
+
+    **default_mode**, **default_target_temperature_low**, and **default_target_temperature_high** are
+    deprecated and will be removed in a future release. You should migrate your configuration to using
+    a :ref:`preset <thermostat-preset>` which allows for more flexibility and customisation 
 
 Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
 the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
@@ -303,7 +315,7 @@ Set Point Options/Behavior
 - **supplemental_heating_delta** (*Required with* ``supplemental_heating_action``, float): When the temperature
   difference between the lower set point and the current temperature exceeds this value,
   ``supplemental_heating_action`` will be called immediately.
-- **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
+- **away_config** (*Optional*, *Deprecated*): Additionally specify target temperature range settings for away mode.
   Away mode can be used to have a second set of target temperatures (for example, while the user is
   away or sleeping/at night).
 
@@ -314,6 +326,102 @@ Set Point Options/Behavior
 
 **If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified in the away mode configuration.**
+
+.. note::
+
+    **away_config** is deprecated and will be removed in a future release. You should migrate your configuration
+    to using a :ref:`preset <thermostat-preset>` which allows for more flexibility and customisation 
+
+.. _thermostat-preset:
+
+Presets
+*******
+
+Presets allow you to define a combination of set points, climate, fan, and swing modes that can be recalled from
+the front end (Home Assistant) as a single operation for quick and easy access. This can simplify the user
+experience and automation.
+
+- **preset**: (*Optional*, list)
+
+  - **name** (*Required*, string): Name of the preset. If this is one of the *standard* presets (``eco``, ``away``, 
+    ``boost``, ``comfort``, ``home``, ``sleep``, or ``activity``) it is considered a *standard* preset. Any other
+    string will make the preset a *custom* preset. *Standard* and *custom* presets are functionally equivalent,
+    the only difference is that when switching the mode via :ref:`climate.control Action <climate-control_action>`
+    you will need to use the `preset` or `custom_preset` property as appropriate. The Home Assistant 
+    `climate.set_preset_mode` service treats them identically
+  - **default_target_temperature_low** (*Optional*, float): The default low target temperature when switching to 
+    this preset
+  - **default_target_temperature_high** (*Optional*, float): The default high target temperature when switching
+    to this preset.
+  - **mode** (*Optional*, climate mode): The mode the thermostat should switch to when this preset is activated.
+    If not specified, the thermostat's mode will remain unchanged when the preset is activated. One of:
+  
+    - ``heat_cool``
+    - ``cool``
+    - ``heat``
+    - ``dry``
+    - ``fan_only``
+    - ``auto``
+  - **fan_mode** (*Optional*, climate fan mode): The fan mode the thermostat should switch to when this preset
+    is activated. If not specified, the thermostat's fan mode will remain unchanged when the preset is activated.
+    One of:
+
+    - ``on``
+    - ``off``
+    - ``auto``
+    - ``low``
+    - ``medium``
+    - ``high``
+    - ``middle``
+    - ``focus``
+    - ``diffuse``
+  - **swing_mode** (*Optional*, climate swing mode): The fan swing mode the thermostat should switch to when this
+    preset is activated. If not specified, the thermostat's fan swing mode will remain unchanged when the preset
+    is activated. One of:
+    
+    - ``off``
+    - ``both``
+    - ``horizontal``
+    - ``vertical``
+
+.. code-block:: yaml
+
+    # Example climate controller with presets
+    climate:
+      - platform: thermostat
+        name: "Thermostat with Presets"
+        preset:
+          # Standard Preset
+          - name: sleep
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: LOW
+            swing_mode: OFF
+          # Custom preset
+          - name: A custom preset
+            default_target_temperature_low: 21
+            default_target_temperature_high: 23
+            fan_mode: HIGH
+            mode: HEAT_COOL
+
+- **preset_change**: (*Optional*, :ref:`Action <config-action>`): The action to call when the preset is changed. This
+  will be called either when a user changes the mode through the Home Assistant UI or through a call to ``climate.control``
+
+.. code-block:: yaml
+
+    # Example climate controller with preset and change action
+    climate:
+      - platform: thermostat
+        name: "Thermostat with Presets Actions"
+        preset:
+          - name: sleep
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: LOW
+            swing_mode: OFF
+        preset_change:
+          - logger.log: Preset has been changed!
+
 
 Additional Actions/Behavior
 ***************************
@@ -358,7 +466,7 @@ Additional Actions/Behavior
   must be disengaged before it may be engaged.
 - **min_heating_run_time** (*Required with* ``heat_action``, :ref:`config-time`): Minimum duration the heating action
   must be engaged before it may be disengaged.
-- **min_idle_time** (*Required*, :ref:`config-time`): Minimum duration the idle action must be active before calling
+- **min_idle_time** (**Required**, :ref:`config-time`): Minimum duration the idle action must be active before calling
   another climate action.
 - **min_fan_mode_switching_time** (*Required with any* ``fan_mode`` *action*, :ref:`config-time`): Minimum duration
   any given fan mode must be active before it may be changed.

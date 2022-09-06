@@ -24,7 +24,8 @@ global ``pca9685`` hub and give it an id, and then define the
 
     # Example configuration entry
     pca9685:
-      frequency: 500
+      - id: pca9685_hub1
+        frequency: 500
 
     # Individual outputs
     output:
@@ -45,8 +46,8 @@ Configuration variables:
 
 .. _pca9685-output:
 
-PWM Output
-----------
+PCA9685 Output
+--------------
 
 The PCA9685 output component exposes a PCA9685 PWM channel of a global
 :ref:`PCA9685 hub <pca9685-component>` as a float

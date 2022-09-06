@@ -1,9 +1,9 @@
-Getting Started with ESPHome
-============================
+Getting Started with the ESPHome Command Line
+=============================================
 
 .. seo::
     :description: Getting Started guide for installing ESPHome using the command line and creating a basic configuration.
-    :image: console.png
+    :image: console.svg
 
 ESPHome is the perfect solution for creating custom firmwares for
 your ESP8266/ESP32 boards. In this guide we’ll go through how to set up a
@@ -12,26 +12,61 @@ basic “node” in a few simple steps.
 Installation
 ------------
 
-Installing ESPHome is very easy. All you need to do is have `Python
-<https://www.python.org/>`__ installed and install the console script through
-``pip3``.
+See :doc:`installing_esphome`.
 
-.. note::
+If you're familiar with Docker, you can use that instead! 
+Note that on macOS Docker `can not pass USB devices through <https://github.com/moby/hyperkit/issues/149>`__. 
+You will not be able to flash ESP devices through USB on Mac, all other features will work. Flashing with web dashboard is still possible.
 
-    Python 3.7 or above is required to install ESPHome 1.18.0 or above.
-    
-
-.. code-block:: bash
-
-    pip3 install esphome
-
-Alternatively, there’s also a Docker image available for easy
-installation (the Docker hub image is available for AMD64, ARM and ARM64(AARCH64) right now; if you have
-another architecture, please install ESPHome through ``pip`` or use :doc:`the Home Assistant add-on <getting_started_hassio>`:
+Our image supports AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
 
 .. code-block:: bash
 
     docker pull esphome/esphome
+
+If you want to use `docker-compose` instead, here's a sample file:
+
+.. code-block:: yaml
+
+    version: '3'
+    services:
+      esphome:
+        container_name: esphome
+        image: esphome/esphome
+        volumes:
+          - /path/to/esphome/config:/config
+          - /etc/localtime:/etc/localtime:ro
+        restart: always
+        privileged: true
+        network_mode: host
+
+The project provides multiple docker tags; please pick the one that suits you
+better:
+
+- ``latest`` and ``stable`` point to the latest stable release available. It's
+  not recommended to automatically update the container based on those tags
+  because of the possible breaking changes between releases.
+- Release-tracking tag ``YEAR.MONTH`` (e.g. ``2022.8``) points to the latest
+  stable patch release available within the required version. There should
+  never be a breaking change when upgrading the containers based on tags like
+  that.
+- ``beta`` points to the latest released beta version, and to the latest stable
+  release when there is no fresh beta release.
+- ``dev`` is the bleeding edge release; built daily based on the latest changes
+  in the ``dev`` branch.
+
+
+Connecting the ESP Device
+-------------------------
+
+Follow the instructions in :doc:`physical_device_connection` to connect to your
+ESP device.
+
+.. note::
+
+    The most difficult part of setting up a new ESPHome device is the initial
+    installation. Installation requires that your ESP device is connected with
+    a cable to a computer. Later updates can be installed wirelessly.
 
 Creating a Project
 ------------------
@@ -94,7 +129,7 @@ new folder with the name of your node. This is a new PlatformIO project
 that you can modify afterwards and play around with.
 
 If you are running docker on Linux you can add ``--device=/dev/ttyUSB0``
-to your docker command to map a local USB device.
+to your docker command to map a local USB device. Docker on Mac will not be able to access host USB devices.
 
 .. code-block:: bash
 
@@ -127,7 +162,9 @@ Sensor </components/binary_sensor/gpio>`.
         pin:
           number: 16
           inverted: true
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
 
 This is an advanced feature of ESPHome. Almost all pins can
 optionally have a more complicated configuration schema with options for
@@ -187,7 +224,7 @@ To start the ESPHome dashboard, simply start ESPHome with the following command
 
 After that, you will be able to access the dashboard through ``localhost:6052``.
 
-.. figure:: images/dashboard.png
+.. figure:: images/dashboard_states.png
 
 See Also
 --------

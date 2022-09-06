@@ -3,7 +3,7 @@ TECKIN SB50 LED Bulb
 
 .. seo::
     :description: ESPHome configuration for Teckin SB50 LED Bulb.
-    :image: images/teckin_sb50.jpg
+    :image: teckin_sb50.jpg
     :keywords: Teckin SB50
 
 .. figure:: images/teckin_sb50.jpg
@@ -25,7 +25,8 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
     esphome:
       name: $devicename
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
@@ -39,11 +40,9 @@ Below is the ESPHome configuration file that will get you up and running. This a
 
     # Enable Home Assistant API
     api:
-      password: !secret api_password
 
-    # Setup OTA password
+    # Setup OTA
     ota:
-      password: !secret ota_password
 
     # Define output pins
     output:

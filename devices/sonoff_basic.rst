@@ -53,12 +53,13 @@ exposes all of the basic functions.
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
+
+    esp8266:
       board: esp8285
 
     wifi:
-      ssid: <YOUR_SSID>
-      password: <YOUR_PASSWORD>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 
@@ -70,7 +71,9 @@ exposes all of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff Basic Button"
         on_press:

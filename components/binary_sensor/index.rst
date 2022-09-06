@@ -3,7 +3,7 @@ Binary Sensor Component
 
 .. seo::
     :description: Information about the base representation of all binary sensors.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 With ESPHome you can use different types of binary sensors. They will
 automatically appear in the Home Assistant front-end and have several
@@ -28,8 +28,9 @@ you can always override it.
 Configuration variables:
 
 - **device_class** (*Optional*, string): The device class for the
-  sensor. See https://www.home-assistant.io/components/binary_sensor/
+  sensor. See https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes
   for a list of available options.
+- **icon** (*Optional*, icon): Manually set the icon to use for the binary sensor in the frontend.
 - **filters** (*Optional*, list): A list of filters to apply on the binary sensor values such as
   inverting signals. See :ref:`binary_sensor-filters`.
 
@@ -40,7 +41,7 @@ Automations:
 - **on_release** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is released. See :ref:`binary_sensor-on_release`.
 - **on_state** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a state is published. See :ref:`binary_sensor-on_state`.
+  when a state change is published. See :ref:`binary_sensor-on_state`.
 - **on_click** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when the button is held down for a specified period of time.
   See :ref:`binary_sensor-on_click`.
@@ -59,6 +60,12 @@ Advanced options:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **publish_initial_state** (*Optional*, boolean): If true, then the sensor will publish its initial state at boot or when
+  HA first connects, depending on the platform.  This means that any applicable triggers will be run. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 - If MQTT enabled, all other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 .. _binary_sensor-filters:

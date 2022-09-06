@@ -4,7 +4,6 @@ ESP32 Water Leak Detector (with notification)
 
 .. seo::
     :description: Water leak detector with ESPHome on an M5StickC ESP32
-    :image: images/leak-detector-m5stickC_dry.jpg
     :keywords: Leak Detector M5StickC M5Stack M5Atom
 
 Using the ESP32's capacitive touch GPIOs, it's relatively easy to build a water leak detector using ESPHome.  M5StickC was chosen as a platform due to the integrated Grove connector for clean connections and the fact it's well housed.  The built-in display is a bonus, but not strictly necessary.  Notifications are performed via HomeAssistant's 'alert' and 'notify' facilities, which send via Pushover to iOS & Android.
@@ -15,11 +14,11 @@ Using the ESP32's capacitive touch GPIOs, it's relatively easy to build a water 
 Things you'll need
 ==================
 
-- M5Stick esphome components
-    https://github.com/airy10/esphome-m5stickC/issues/4
+-  `M5Stick axp192 custom component <https://github.com/airy10/esphome-m5stickC>`__
+    This is needed to power up the display.  You don't need the st7735 display driver, as it is already included with ESPHome >1.16.0.
 
 - M5StickC ESP32 development kit
-    `M5Stack Link <https://m5stack.com/collections/m5-core/products/stick-c>`__
+   `M5Stack Link <https://m5stack.com/collections/m5-core/products/stick-c>`__
 
 .. figure:: images/leak-detector-m5stickC-m5stickC.png
     :align: center
@@ -69,23 +68,6 @@ Display Font
 
 You'll need to place the `OpenSans-Regular <https://fonts.google.com/specimen/Open+Sans>`__ font (or another of your choosing) alongside your ESPHome yaml file.  See - :doc:`/components/display/index`.
 
-Flashing
-========
-
-I initially had trouble flashing the M5StickC; this is the procedure that I've found to work well with these devices.
-
-You must provide the ESP32 bootloader during the initial flash over USB.  Compile your ESPHome binary, and flash it along with the required bootloader (bootloader_dio_80m.bin), `available here <https://github.com/espressif/arduino-esp32/tree/master/tools/sdk/bin>`__, from the commandline (example under macos):
-
-``cd /Applications/ESPHome-Flasher-1.2.0-macOS.app/Contents/MacOS``
-
-``./ESPHome-Flasher ~/Desktop/basement_leak_detector.bin --bootloader ~/Desktop/bootloader_dio_80m.bin  --upload-baud-rate=115200``
-
-I also needed this procedure to flash M5Stack ATOM Lite and ATOM Matrix modules, which you also might consider using for this project.  Both are smaller and more cost-effective than the M5stickC, and a generation newer -- though they lack the TFT display.
-
-.. figure:: images/leak-detector-m5stickC_atom_matrix.jpg
-
-.. figure:: images/leak-detector-m5stickC_atom_lite.jpg
-
 Calibration & Testing
 =====================
 
@@ -128,25 +110,17 @@ ESPHome configuration
     esphome:
       name: $devicename
       comment: ${device_description}
-      platform: ESP32
+
+    esp32:
       board: m5stick-c
-      platformio_options:
-        upload_speed: 115200
 
     wifi:
       ssid: !secret wifi_ssid
       password: !secret wifi_password
-      domain: .lan
 
       # Enable fallback hotspot (captive portal) in case wifi connection fails
       ap:
-        ssid: "Basement Leak Det. Fallback AP"
         password: !secret fallback_ap_password
-
-      manual_ip:
-        static_ip: x.x.x.x
-        gateway: x.x.x.x
-        subnet: x.x.x.x
 
     captive_portal:
 
@@ -154,9 +128,7 @@ ESPHome configuration
 
     # Enable Home Assistant API & OTA Updates
     api:
-      password: !secret api_password
     ota:
-      password: !secret ota_password
 
     status_led:
       pin:
@@ -252,23 +224,43 @@ ESPHome configuration
         id: font1
         size: 66
 
+    color:
+        - id: color_wet
+          red: 100%
+          green: 0%
+          blue: 0%
+        - id: color_dry
+          red: 0%
+          green: 100%
+          blue: 0%
+
     # built-in 80x160 TFT
     display:
       - platform: st7735
+        model: "INITR_MINI160X80"
+        device_height: 160
+        device_width: 82
+        col_start: 0
+        row_start: 0
+        eight_bit_color: false
         cs_pin: GPIO5
         dc_pin: GPIO23
         reset_pin: GPIO18
-        rotation: 180
+        invert_colors: true
+        use_bgr: true
         lambda: |-
           if (id(leak).state) {
-            it.print(38, -24, id(font1), ST77XX_RED, TextAlign::TOP_CENTER, "W");
-            it.print(38, 32, id(font1), ST77XX_RED, TextAlign::TOP_CENTER, "E");
-            it.print(38, 85, id(font1), ST77XX_RED, TextAlign::TOP_CENTER, "T");
+            it.fill(COLOR_OFF);
+            it.print(42, -24, id(font1), id(color_wet), TextAlign::TOP_CENTER, "W");
+            it.print(42, 32, id(font1), id(color_wet), TextAlign::TOP_CENTER, "E");
+            it.print(42, 85, id(font1), id(color_wet), TextAlign::TOP_CENTER, "T");
           } else {
-            it.print(38, -24, id(font1), ST77XX_GREEN, TextAlign::TOP_CENTER, "D");
-            it.print(38, 32, id(font1), ST77XX_GREEN, TextAlign::TOP_CENTER, "R");
-            it.print(38, 85, id(font1), ST77XX_GREEN, TextAlign::TOP_CENTER, "Y");
+            it.fill(COLOR_OFF);
+            it.print(42, -24, id(font1), id(color_dry), TextAlign::TOP_CENTER, "D");
+            it.print(42, 32, id(font1), id(color_dry), TextAlign::TOP_CENTER, "R");
+            it.print(42, 85, id(font1), id(color_dry), TextAlign::TOP_CENTER, "Y");
           }
+
 
 
 HomeAssistant configuration
@@ -314,5 +306,6 @@ See Also
 ========
 
 - :doc:`/components/display/index`
+- :doc:`/components/display/st7735`
 - :doc:`/components/binary_sensor/esp32_touch`
 - :ghedit:`Edit`

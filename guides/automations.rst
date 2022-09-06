@@ -5,7 +5,7 @@ Automations and Templates
 
 .. seo::
     :description: Getting started guide for automations in ESPHome.
-    :image: auto-fix.png
+    :image: auto-fix.svg
 
 Automations and templates are two very powerful aspects of ESPHome. Automations
 allow you to perform actions under certain conditions and templates are a way to easily
@@ -270,6 +270,11 @@ global variables can be used to store the state of a garage door.
         type: int
         restore_value: no
         initial_value: '0'
+      # Example for global string variable
+      - id: my_global_string
+        type: std::string
+        restore_value: no  # Strings cannot be saved/restored
+        initial_value: '"hello world"'
 
    # In an automation
    on_press:
@@ -302,7 +307,7 @@ Configuration variables:
 Do Automations Work Without a Network Connection
 ------------------------------------------------
 
-YES! All automations you define in ESPHome are execute on the ESP itself and will continue to
+YES! All automations you define in ESPHome are executed on the ESP itself and will continue to
 work even if the WiFi network is down or the MQTT server is not reachable.
 
 There is one caveat though: ESPHome automatically reboots if no connection to the MQTT broker can be
@@ -325,19 +330,20 @@ All Triggers
 - :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
 - :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
-- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
+- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>` /
+  :ref:`mqtt.on_connect / mqtt.on_disconnect <mqtt-on_connect_disconnect>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 - :doc:`remote_receiver.on_* </components/remote_receiver>`
 - :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
-- :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
 - :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
   :ref:`ota.on_end <ota-on_end>` / :ref:`ota.on_error <ota-on_error>` /
   :ref:`ota.on_state_change <ota-on_state_change>`
 - :ref:`display.on_page_change <display-on_page_change-trigger>`
+- :ref:`cover.on_open <cover-on_open_trigger>` / :ref:`cover.on_closed <cover-on_closed_trigger>`
 
 All Actions
 -----------
@@ -349,6 +355,8 @@ All Actions
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
+- :ref:`homeassistant.event <api-homeassistant_event_action>`
+- :ref:`homeassistant.tag_scanned <api-homeassistant_tag_scanned_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>` / :ref:`switch.turn_off <switch-turn_off_action>` / :ref:`switch.turn_on <switch-turn_on_action>`
 - :ref:`light.toggle <light-toggle_action>` / :ref:`light.turn_off <light-turn_off_action>` / :ref:`light.turn_on <light-turn_on_action>`
@@ -358,13 +366,20 @@ All Actions
   :ref:`cover.control <cover-control_action>`
 - :ref:`fan.toggle <fan-toggle_action>` / :ref:`fan.turn_off <fan-turn_off_action>` / :ref:`fan.turn_on <fan-turn_on_action>`
 - :ref:`output.turn_off <output-turn_off_action>` / :ref:`output.turn_on <output-turn_on_action>` / :ref:`output.set_level <output-set_level_action>`
-- :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
+- :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>` / :ref:`deep_sleep.allow <deep_sleep-allow_action>`
 - :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>`
   / :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>`
   / :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
 - :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
   / :ref:`stepper.set_speed <stepper-set_speed_action>`
 - :ref:`servo.write <servo-write_action>` / :ref:`servo.detach <servo-detach_action>`
+- :ref:`sprinkler.start_full_cycle <sprinkler-controller-action_start_full_cycle>` /   :ref:`sprinkler.start_from_queue <sprinkler-controller-action_start_from_queue>` /
+  :ref:`sprinkler.start_single_valve <sprinkler-controller-action_start_single_valve>` /   :ref:`sprinkler.shutdown <sprinkler-controller-action_shutdown>` /
+  :ref:`sprinkler.next_valve <sprinkler-controller-action_next_valve>` /   :ref:`sprinkler.previous_valve <sprinkler-controller-action_previous_valve>` /
+  :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` /
+  :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /   :ref:`sprinkler.queue_valve <sprinkler-controller-action_queue_valve>` /
+  :ref:`sprinkler.clear_queued_valves <sprinkler-controller-action_clear_queued_valves>` /   :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` /
+  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
@@ -380,7 +395,12 @@ All Actions
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
-- :ref:`number.set <number-set_action>`
+- :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
+- :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
+- :ref:`select.set <select-set_action>` / :ref:`select.set_index <select-set_index_action>` / :ref:`select.first <select-first_action>` / :ref:`select.last <select-last_action>` / :ref:`select.previous <select-previous_action>`  / :ref:`select.next <select-next_action>`  / :ref:`select.operation <select-operation_action>`
+- :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
+  / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
+- :ref:`ble_client.ble_write <ble_client-ble_write_action>`
 
 .. _config-condition:
 
@@ -530,9 +550,9 @@ turns on a light for 5 seconds. Otherwise, the light is turned off immediately.
 Configuration variables:
 
 - **condition** (**Required**, :ref:`config-condition`): The condition to check which branch to take. See :ref:`Conditions <config-condition>`.
-- **then** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to true.
+- **then** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to true.
   Defaults to doing nothing.
-- **else** (*Optional*, :ref:`config-action`): The action to perform if the condition evaluates to false.
+- **else** (*Optional*, :ref:`Action <config-action>`): The action to perform if the condition evaluates to false.
   Defaults to doing nothing.
 
 .. _while_action:
@@ -558,7 +578,31 @@ a block until a given condition evaluates to false.
 Configuration variables:
 
 - **condition** (**Required**): The condition to check whether to execute. See :ref:`Conditions <config-condition>`.
-- **then** (**Required**, :ref:`config-action`): The action to perform until the condition evaluates to false.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform until the condition evaluates to false.
+
+.. _repeat_action:
+
+``repeat`` Action
+-----------------
+
+This action allows you to repeat a block a given number of times.
+For example, the automation below will flash the light five times.
+
+.. code-block:: yaml
+
+    on_...:
+      - repeat:
+          count: 5
+          then:
+            - light.turn_on: some_light
+            - delay: 1s
+            - light.turn_off: some_light
+            - delay: 10s
+
+Configuration variables:
+
+- **count** (**Required**, int): The number of times the action should be repeated.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to repeat.
 
 .. _wait_until_action:
 
@@ -577,7 +621,24 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
           binary_sensor.is_on: some_binary_sensor
       - logger.log: "Binary sensor is ready"
 
-Configuration option: A :ref:`Condition <config-condition>`.
+If you want to use a timeout, the term "condition" is required:
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - logger.log: "Waiting for binary sensor"
+      - wait_until:
+          condition:
+            binary_sensor.is_on: some_binary_sensor
+          timeout: 8s
+      - logger.log: "Binary sensor might be ready"
+
+
+Configuration variables:
+
+- **condition** (**Required**): The condition to wait to become true. See :ref:`Conditions <config-condition>`.
+- **timeout** (*Optional*, :ref:`config-time`): Time to wait before timing out. Defaults to never timing out.
 
 .. _component-update_action:
 
@@ -649,9 +710,9 @@ Configuration variables:
     - ``queued``: Start a new run after previous runs complete.
     - ``parallel``: Start a new, independent run in parallel with previous runs.
 
-- **max_runs** (*Optional*, integer): Allows limiting the maxiumun number of runs when using script
+- **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
-- **then** (**Required**, :ref:`config-action`): The action to perform.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
 .. _script-execute_action:
@@ -788,7 +849,7 @@ trigger, but this technique is more light-weight and user-friendly.
 Configuration variables:
 
 - **interval** (**Required**, :ref:`config-time`): The interval to execute the action with.
-- **then** (**Required**, :ref:`config-action`): The action to perform.
+- **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
 
 Timers and timeouts

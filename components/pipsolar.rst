@@ -5,14 +5,14 @@ PipSolar PV Inverter
     :description: Instructions for setting up PipSolar Compatible PV Inverter in ESPHome.
     :image: pipsolar.jpg
 
-The PipSolar component allows you to integrate PIP-compatible Inverters in ESPHome. 
+The PipSolar component allows you to integrate PIP-compatible Inverters in ESPHome.
 It uses :ref:`UART <uart>` for communication.
 
 Once configured, you can use sensors, binary sensors, switches and outputs as described below for your projects.
 
 .. warning::
 
-    All functionality is working fine on esp8266 and esp32 chips. 
+    All functionality is working fine on esp8266 and esp32 chips.
     If you configure a lot of the possible sensors etc. from below it could be that you run out of memory (on esp8266).
     If you configure more than one if this devices with nearly all sensors etc. you run in a stack-size issue. In this case you have to increase stack size.
 
@@ -32,7 +32,7 @@ This component will poll the needed polling commands in a loop. If there is a co
 There is a buffer to buffer up to 10 commands.
 
 .. |here| replace:: ``here``
-.. _here: https://github.com/jblance/mpp-solar/raw/master/docs/PI30_PIP-GK_MK-Protocol.pdf
+.. _here: https://github.com/jblance/mpp-solar/tree/master/docs
 
 .. code-block:: yaml
 
@@ -54,8 +54,8 @@ Configuration variables:
 - **id** (**Required**, :ref:`config-id`): The id to use for this pipsolar component.
 - **uart_id** (*Optional*): The uart Bus ID
 
-Sensors
--------
+Sensor
+------
 .. code-block:: yaml
 
     # Example configuration entry
@@ -121,15 +121,13 @@ All sensors are normal sensors... so all sensor variables are working to.
 - **pv_input_voltage** (*Optional*): pv input voltage
 - **battery_voltage_scc** (*Optional*): battery voltage from scc
 - **battery_discharge_current** (*Optional*): battery discharge current
-- **add_sbu_priority_version** (*Optional*): add sbu priority status
-- **configuration_status** (*Optional*): configuration status
-- **scc_firmware_version** (*Optional*): scc firmware version
 - **battery_voltage_offset_for_fans_on** (*Optional*): battery voltage offset for fans on
 - **eeprom_version** (*Optional*): eeprom version
 - **pv_charging_power** (*Optional*): pc charging power
 
-Binary Sensors
---------------
+Binary Sensor
+-------------
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -205,8 +203,9 @@ All sensors are normal binary sensors... so all binary sensor variables are work
 - **warning_high_ac_input_during_bus_soft_start** (*Optional*): warning high ac input during bus soft start
 - **warning_battery_equalization** (*Optional*): warning battery equalization
 
-Text Sensors
-------------
+Text Sensor
+-----------
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -234,9 +233,10 @@ All sensors are normal text sensors... so all text sensor variables are working 
 - **last_qt** (*Optional*): last qt reponse
 - **last_qmn** (*Optional*): last qmn reponse
 
-Switches
---------
-Not all possible switches are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself. 
+Switch
+------
+
+Not all possible switches are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself.
 
 .. code-block:: yaml
 
@@ -265,12 +265,13 @@ All sensors are normal text sensors... so all text sensor variables are working 
 - **output_source_priority_solar** (*Optional*): output source priority solar
 - **output_source_priority_battery** (*Optional*): output source priority battery
 - **input_voltage_range** (*Optional*): input voltage range
-- **pv_ok_condition_for_parallel** (*Optional*): pv ok condition for parallel 
+- **pv_ok_condition_for_parallel** (*Optional*): pv ok condition for parallel
 - **pv_power_balance** (*Optional*): pv power balance
 
-Outputs
---------------
-Not all possible outputs are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself. 
+Output
+------
+
+Not all possible outputs are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself.
 
 .. code-block:: yaml
 
@@ -287,31 +288,31 @@ All sensors are normal text sensors... so all text sensor variables are working 
 
 - **battery_recharge_voltage** (*Optional*): battery recharge voltage;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 44.0,45.0,46.0,47.0,48.0,49.0,50.0,51.0
+  - **possible_values** (*Optional*, list): a list of possible values default: 44.0,45.0,46.0,47.0,48.0,49.0,50.0,51.0
 - **battery_under_voltage** (*Optional*): battery under voltage;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 40.0,40.1,42,43,44,45,46,47,48.0
+  - **possible_values** (*Optional*, list): a list of possible values default: 40.0,40.1,42,43,44,45,46,47,48.0
 - **battery_float_voltage** (*Optional*): battery float voltage;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 48.0,49.0,50.0,51.0
+  - **possible_values** (*Optional*, list): a list of possible values default: 48.0,49.0,50.0,51.0
 - **battery_type** (*Optional*): battery type;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 0,1,2
+  - **possible_values** (*Optional*, list): a list of possible values default: 0,1,2
 - **current_max_ac_charging_current** (*Optional*): current max ac charging current;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 2,10,20
+  - **possible_values** (*Optional*, list): a list of possible values default: 2,10,20
 - **current_max_charging_current** (*Optional*): current max charging current;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 10,20,30,40
+  - **possible_values** (*Optional*, list): a list of possible values default: 10,20,30,40
 - **output_source_priority** (*Optional*): output source priority;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 0,1,2
+  - **possible_values** (*Optional*, list): a list of possible values default: 0,1,2
 - **charger_source_priority** (*Optional*): charger source priority;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 0,1,2,3
+  - **possible_values** (*Optional*, list): a list of possible values default: 0,1,2,3
 - **battery_redischarge_voltage** (*Optional*): battery redischarge voltage;
 
-  - **possible_values** (*Optional*,list): a list of possible values default: 00.0,48.0,49,50.0,51.0,52,53,54,55,56,57,58
+  - **possible_values** (*Optional*, list): a list of possible values default: 00.0,48.0,49,50.0,51.0,52,53,54,55,56,57,58
 
 .. _pipsolaroutput_set_level_action:
 
@@ -333,7 +334,7 @@ target level of the output.
 Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the output.
-- **level** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The target level.
+- **value** (*Optional*, percentage, :ref:`templatable <config-templatable>`): The target level.
 
 
 See Also

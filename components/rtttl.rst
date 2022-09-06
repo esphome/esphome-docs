@@ -3,7 +3,7 @@ Rtttl Buzzer
 
 .. seo::
     :description: Instructions for setting up a buzzer to play tones and rtttl songs with ESPHome.
-    :image: crosshair-gps.png
+    :image: buzzer.jpg
 
 The ``rtttl``, component allows you to easily connect a passive piezo buzzer to your microcontroller
 and play monophonic songs. It accepts the Ring Tone Text Transfer Language, rtttl format (`Wikipedia
@@ -59,7 +59,7 @@ Plays an rtttl tone.
 
 Configuration options:
 
-- **play** (**Required**, string, :ref:`templatable <config-templatable>`): The rtttl string.
+- **rtttl** (**Required**, string, :ref:`templatable <config-templatable>`): The rtttl string.
 
 You can find many rtttl strings online on the web, they must start with a name, then a colon: ``:`` symbol
 and more codes of the song itself. Tip: you can try playing with the values of d=16,o=6,b=95 and make the
@@ -129,12 +129,13 @@ Sample code
 
     esphome:
       name: test_esp8266
-      platform: ESP8266
+
+    esp8266:
       board: nodemcuv2
 
     wifi:
       ssid: !secret wifi_ssid
-      password: !secret wifi_pass
+      password: !secret wifi_password
 
     output:
       - platform: esp8266_pwm

@@ -24,7 +24,8 @@ the ESPHome wizard asks you for your platform and |nodemcuv2|_ as the board type
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP8266
+
+    esp8266:
       board: nodemcuv2
 
 The NodeMCU's pin numbering as seen on the board (the ``D0`` etc pins) is different from
@@ -60,7 +61,8 @@ Note that in certain conditions you *can* use the pins marked as ``INTERNAL`` in
     # Example configuration entry
     esphome:
       name: livingroom
-      platform: ESP8266
+
+    esp8266:
       board: nodemcuv2
 
     binary_sensor:

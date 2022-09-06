@@ -3,7 +3,7 @@ Number Component
 
 .. seo::
     :description: Instructions for setting up number components in ESPHome.
-    :image: folder-open.png
+    :image: folder-open.svg
 
 ESPHome has support for components to create a number entity. A number entity is
 like a sensor that can read a value from a device, but is useful when that value
@@ -38,6 +38,16 @@ Configuration variables:
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
+- **unit_of_measurement** (*Optional*, string): Manually set the unit
+  of measurement for the number. Requires Home Assistant Core 2021.12 or newer.
+- **mode** (*Optional*, string): Defines how the number should be displayed in the frontend.
+  See https://developers.home-assistant.io/docs/core/entity/number/#properties
+  for a list of available options. Requires Home Assistant Core 2021.12 or newer.
+  Defaults to ``"auto"``.
 
 Automations:
 
@@ -154,6 +164,133 @@ Configuration variables:
 - **value** (**Required**, float, :ref:`templatable <config-templatable>`):
   The value to set the number to.
 
+.. _number-increment_action:
+
+``number.increment`` Action
+***************************
+
+This is an :ref:`Action <config-action>` for incrementing a number value by its
+step size (default: 1).
+
+.. code-block:: yaml
+
+    - number.increment:
+        id: my_number
+        cycle: false
+
+    # Shorthand
+    - number.increment: my_number
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the number component to update.
+- **cycle** (*Optional*, boolean): Whether or not to set the number to its minimum
+  value when the increment pushes the value beyond its maximum value. This will only
+  work when the number component uses a minimum and maximum value.
+  Defaults to ``true``.
+
+.. _number-decrement_action:
+
+``number.decrement`` Action
+***************************
+
+This is an :ref:`Action <config-action>` for decrementing a number value by its
+step size (default: 1).
+
+.. code-block:: yaml
+
+    - number.decrement:
+        id: my_number
+        cycle: false
+
+    # Shorthand
+    - number.decrement: my_number
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the number component to update.
+- **cycle** (*Optional*, boolean): Whether or not to set the number to its maximum
+  value when the decrement pushes the value below its minimum value. This will only
+  work when the number component uses a minimum and maximum value.
+  Defaults to ``true``.
+
+.. _number-to-min_action:
+
+``number.to_min`` Action
+************************
+
+This is an :ref:`Action <config-action>` seting a number to its minimum value, given
+a number component that has a minimum value defined for it.
+
+.. code-block:: yaml
+
+    - number.to_min:
+        id: my_number
+
+    # Shorthand
+    - number.to_min: my_number
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the number component to update.
+
+.. _number-to-max_action:
+
+``number.to_max`` Action
+************************
+
+This is an :ref:`Action <config-action>` seting a number to its maximum value (given
+a number component that has a maximum value defined for it.
+
+.. code-block:: yaml
+
+    - number.to_max:
+        id: my_number
+
+    # Shorthand
+    - number.to_max: my_number
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the number component to update.
+
+.. _number-operation_action:
+
+``number.operation`` Action
+***************************
+
+This is an :ref:`Action <config-action>` that can be used to perform an operation
+on a number component (set to minimum or maximum value, decrement, increment),
+using a generic templatable action call.
+
+.. code-block:: yaml
+
+    # Using values
+    - number.operation:
+        id: my_number
+        operation: Increment
+        cycle: true
+
+    # Or templated (lambda)
+    - number.operation:
+        id: my_number
+        operation: !lambda "return NUMBER_OP_INCREMENT;"
+        cycle: !lambda: "return true;"
+
+Configuration variables:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the number to update.
+- **operation** (**Required**, string, :ref:`templatable <config-templatable>`):
+  What operation to perform on the number component. One of ``TO_MIN``,
+  ``TO_MAX``, ``DECREMENT`` or ``INCREMENT`` (case insensitive). When writing a
+  lambda for this field, then return one of the following enum values:
+  ``NUMBER_OP_TO_MIN``, ``NUMBER_OP_TO_MAX``, ``NUMBER_OP_DECREMENT`` or
+  ``NUMBER_OP_INCREMENT``.
+- **cycle** (*Optional*, bool, :ref:`templatable <config-templatable>`):
+  Can be used with ``DECREMENT`` or ``INCREMENT`` to specify whether or not to
+  wrap around the value when respectively the minimum or maximum value of the
+  number is exceeded.
+
 .. _number-lambda_calls:
 
 lambda calls
@@ -162,7 +299,7 @@ lambda calls
 From :ref:`lambdas <config-lambda>`, you can call several methods on all numbers to do some
 advanced stuff (see the full API Reference for more info).
 
-- ``make_call()``: Set the number value.
+- ``.make_call()``: Make a call for updating the number value.
 
   .. code-block:: cpp
 
@@ -170,6 +307,11 @@ advanced stuff (see the full API Reference for more info).
       auto call = id(my_number).make_call();
       call.set_value(42);
       call.perform();
+
+  Check the API reference for information on the methods that are available for
+  the ``NumberCall`` object. You can for example also use ``call.to_min()``
+  to set the number to its minimum value or ``call.increment(true)`` to increment
+  the number by its step size with the cycle feature enabled.
 
 - ``.state``: Retrieve the current value of the number. Is ``NAN`` if no value has been read or set.
 
@@ -181,7 +323,8 @@ advanced stuff (see the full API Reference for more info).
 See Also
 --------
 
-- :apiref:`number/number.h`
+- :apiref:`Number <number/number.h>`
+- :apiref:`NumberCall <number/number_call.h>`
 - :ghedit:`Edit`
 
 .. toctree::

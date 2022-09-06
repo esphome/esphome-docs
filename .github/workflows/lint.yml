@@ -6,19 +6,31 @@ on:
     branches: [current, next]
 
   pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3.0.2
     - name: Set up Python 3.8
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.8
     - name: Install dependencies
-      run: pip install -r requirements.txt
-    - name: Lint
+      run: pip install -r requirements.txt -r requirements_test.txt
+    - name: Register problem matchers
       run: |
-        python travis.py
-        make html-strict
+        echo "::add-matcher::.github/workflows/matchers/ci-custom.json"
+
+    - name: Lint
+      run: python lint.py
+    - name: html-strict
+      run: make html-strict

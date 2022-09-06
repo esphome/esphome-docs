@@ -3,8 +3,9 @@ OTA Update Component
 
 .. seo::
     :description: Instructions for setting up Over-The-Air (OTA) updates for ESPs to upload firmwares remotely.
-    :image: system-update.png
-    :keywords: Xiaomi, Mi Flora, BLE, Bluetooth
+    :image: system-update.svg
+
+.. _config-ota:
 
 With the OTA (Over The Air) update component you can upload your
 firmware binaries to your node without having to use a USB cable for
@@ -15,14 +16,17 @@ ESPHome also has an "OTA safe mode". If for some reason your
 node gets into a boot loop, ESPHome will automatically try to detect
 this and will go over into a safe mode after the configured unsuccessful boot
 attempts (Defaults to ``10``). In that mode, all components are disabled and only Serial
-Logging+WiFi+OTA are initialized, so that you can upload a new binary.
+Logging + Network(WiFi or Ethernet) + OTA are initialized, so that you can upload a new 
+binary. You can trigger entering safe mode by either configuring a dedicated button or 
+switch to do that or by pressing the reset button on the board for ``num_attempts`` times.
+
 
 .. code-block:: yaml
 
     # Example configuration entry
     ota:
       safe_mode: true
-      password: VERYSECURE
+      password: !secret ota_password
 
 Configuration variables:
 ------------------------
@@ -33,7 +37,7 @@ Configuration variables:
 -  **port** (*Optional*, int): The port to use for OTA updates. Defaults
    to ``3232`` for the ESP32 and ``8266`` for the ESP8266.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
--  **reboot_timeout** (*Optional*, :ref:`time <config-time>`): The amount of time to wait before rebooting when in
+-  **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when in
    safe mode. Defaults to ``5min``.
 -  **num_attempts** (*Optional*, int): The number of attempts to wait before entering safe mode. Defaults to ``10``.
 -  **on_begin** (*Optional*, :ref:`Automation<automation>`): An action to be
@@ -165,7 +169,7 @@ enum. These values are:
       on_state_change:
         then:
           - if:
-              condition: 
+              condition:
                 lambda: return state == ota::OTA_STARTED
               then:
                 - logger.log: "OTA start"
@@ -191,4 +195,6 @@ See Also
 --------
 
 - :apiref:`ota/ota_component.h`
+- :doc:`/components/button/safe_mode`
+- :doc:`/components/switch/safe_mode`
 - :ghedit:`Edit`

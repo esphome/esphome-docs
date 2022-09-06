@@ -3,7 +3,6 @@ DIY Light switch using a Sonoff Basic
 
 .. seo::
     :description: An example of how to integrate a light switch into Home Assistant using ESPHome
-    :image: sonoff_light_switch.png
     :keywords: Relay, Sonoff Basic, Sonoff Dual Dual R1, Light, HASS, Home Assistant, ESPHome
 
 .. note::
@@ -100,7 +99,8 @@ Now you have a pair of wires from the GPIO and 0V to your retractive switch lets
 
     esphome:
       name: my_ls
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
@@ -117,7 +117,9 @@ Now you have a pair of wires from the GPIO and 0V to your retractive switch lets
       - platform: gpio
         pin:
           number: GPIO14
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         id: button_1
         on_press:

@@ -37,7 +37,8 @@ for example the `RobotDyn dimmer
         gate_pin: D7
         zero_cross_pin:
           number: D6
-          mode: INPUT
+          mode:
+            input: true
           inverted: yes
 
     light:
@@ -55,7 +56,7 @@ Configuration variables:
   detector, in such case duplicate the ``zero_cross_pin`` config on each output.
 - **method** (*Optional*): Set the method for dimming, can be:
 
-  - ``leading pulse`` (default): a short pulse to trigger a triac.
+  - ``leading pulse``: (default) a short pulse to trigger a triac.
   - ``leading``: gate pin driven high until the zero cross is detected
   - ``trailing``: gate pin driven high from zero cross until dim period, this method
     is suitable for mosfet dimmers only.

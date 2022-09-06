@@ -3,7 +3,7 @@ ESP32 Bluetooth Low Energy Tracker Hub
 
 .. seo::
     :description: Instructions for setting up ESP32 bluetooth low energy device trackers using ESPHome.
-    :image: bluetooth.png
+    :image: bluetooth.svg
 
 The ``esp32_ble_tracker`` component creates a global hub so that you can track bluetooth low
 energy devices using your ESP32 node.
@@ -59,7 +59,7 @@ Configuration variables:
 
 
 - **scan_parameters** (*Optional*): Advanced parameters for configuring the scan behavior of the ESP32.
-  See also `this guide by Texas Instruments <http://dev.ti.com/tirex/content/simplelink_academy_cc2640r2sdk_1_12_01_16/modules/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning>`__
+  See also `this guide by Texas Instruments <https://dev.ti.com/tirex/explore/content/simplelink_academy_cc2640r2sdk_5_10_02_00/modules/blestack/ble_scan_adv_basic/ble_scan_adv_basic.html#scanning-basics>`__
   for reference.
 
   - **interval** (*Optional*, :ref:`config-time`): The interval between each consecutive scan window.
@@ -67,7 +67,7 @@ Configuration variables:
     Defaults to ``320ms``.
   - **window** (*Optional*, :ref:`config-time`): The time the ESP is actively listening for packets
     on a channel during each scan interval. If this is close to the ``interval`` value, the ESP will
-    spend more time listening to packets (but also consume more power).
+    spend more time listening to packets (but also consume more power). Defaults to ``30ms``
   - **duration** (*Optional*, :ref:`config-time`): The duration of each complete scan. This has no real
     impact on the device but can be used to debug the BLE stack. Defaults to ``5min``.
   - **active** (*Optional*, boolean): Whether to actively send scan requests to request more data
@@ -81,7 +81,7 @@ Automations:
 - **on_ble_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to perform
   when a Bluetooth advertising is received. See :ref:`esp32_ble_tracker-on_ble_advertise`.
 - **on_ble_manufacturer_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
-  perform when a Bluetooth advertising with manufcaturer data is received. See
+  perform when a Bluetooth advertising with manufacturer data is received. See
   :ref:`esp32_ble_tracker-on_ble_manufacturer_data_advertise`.
 - **on_ble_service_data_advertise** (*Optional*, :ref:`Automation <automation>`): An automation to
   perform when a Bluetooth advertising with service data is received. See

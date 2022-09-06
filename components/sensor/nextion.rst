@@ -30,13 +30,12 @@ See :doc:`/components/display/nextion` for setting up the display
       - platform: nextion
         name: "Current Humidity"
         component_name: humidity # pageX.humidity for a global
-        nextion_precision: 1
+        precision: 1
         update_interval: 4s
       - platform: nextion
         nextion_id: nextion1
         name: "Current Temperature"
         variable_name: temperature
-        hass_component_name: sensor.temperature
       - platform: nextion
         id: s01
         component_id: 2
@@ -60,18 +59,18 @@ Configuration variables:
 - **component_name** (*Optional*, string): Manually specify the name of the Nextion component.
 - **variable_name** (*Optional*, string): Manually specify the name of the Nextion variable.
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor
-- **precision** (*Optional*, uint8_t):  This is for Nextion float components. This sets
+- **precision** (*Optional*, int):  This is for Nextion float components. This sets
   the precision that the component is set to. This typically is the ``vvs1`` setting of the component.
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
-- **visible** (*Optional*, boolean ):  Visible or not
+- **visible** (*Optional*, boolean):  Visible or not
 
 Waveform Settings
 *****************
-- **wave_channel_id** (*Optional*, uint8_t): The waveform ID in a range of 0-3
-- **wave_max_value** (*Optional*, uint8_t): The max value. Set ``dis`` to the height of the component in the Nextion editor
+- **wave_channel_id** (*Optional*, int): The waveform ID in a range of 0-3
+- **wave_max_value** (*Optional*, int): The max value. Set ``dis`` to the height of the component in the Nextion editor
   and this to the max value that will be sent. This will set up the proper scaling.
-- **waveform_send_last_value** (*Optional*, uint8_t): This will send the last value set during an update interval. Setting to true will give a timeseries style graph
+- **waveform_send_last_value** (*Optional*, int): This will send the last value set during an update interval. Setting to true will give a timeseries style graph
 - **wave_max_length** (*Optional*, int): How many data points to store. Typically this is the width of the component in the Nextion
 - **update_interval** (*Optional*, :ref:`config-time`):  The duration to update the sensor. This typically should be set for waveforms to send periodic updates.
 

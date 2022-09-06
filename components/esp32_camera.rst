@@ -3,7 +3,7 @@ ESP32 Camera Component
 
 .. seo::
     :description: Instructions for setting up the ESP32 Cameras in ESPHome
-    :image: camera.png
+    :image: camera.svg
 
 The ``esp32_camera`` component allows you to use ESP32-based camera boards in ESPHome that
 directly integrate into Home Assistant through the native API.
@@ -31,9 +31,17 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the camera.
+- **icon** (*Optional*, icon): Manually set the icon to use for the camera in the frontend.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.
+- **entity_category** (*Optional*, string): The category of the entity.
+  See https://developers.home-assistant.io/docs/core/entity/#generic-properties
+  for a list of available options. Requires Home Assistant 2021.11 or newer.
+  Set to ``""`` to remove the default entity category.
 
 Connection Options:
 
@@ -66,6 +74,9 @@ Frame Settings:
   Up to 60Hz is possible (with reduced frame sizes), but beware of overheating. Defaults to ``10 fps``.
 - **idle_framerate** (*Optional*, float): The framerate to capture images at when no client
   is requesting a full stream. Defaults to ``0.1 fps``.
+
+Image Settings:
+
 - **resolution** (*Optional*, enum): The resolution the camera will capture images at. Higher
   resolutions require more memory, if there's not enough memory you will see an error during startup.
 
@@ -82,12 +93,71 @@ Frame Settings:
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
   From 10 (best) to 63 (worst). Defaults to ``10``.
-
+- **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
+- **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **brightness** (*Optional*, int): The brightness to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
-- **vertical_flip** (*Optional*, bool): Whether to flip the image vertically. Defaults to ``true``.
-- **horizontal_mirror** (*Optional*, bool): Whether to mirror the image horizontally. Defaults to ``true``.
+- **special_effect** (*Optional*, enum): The effect to apply to the picture. Defaults to ``none`` (picture without effect).
+
+    - ``none``: Picture without effect
+    - ``negative``: Colors of picture are inverted
+    - ``grayscale``: Only luminance of picture is kept
+    - ``red_tint``: Picture appear red-tinted
+    - ``green_tint``: Picture appear green-tinted
+    - ``blue_tint``: Picture appear blue-tinted
+    - ``sepia``: Sepia effect is applied to picture
+
+Exposure Settings:
+
+- **aec_mode** (*Optional*, enum): The mode of exposure module. Defaults to ``auto`` (leave camera to automatically adjust exposure).
+
+    - ``manual``: Exposure can be manually set, with **aec_value** parameter. **ae_level** has no effect here
+    - ``auto``: Camera manage exposure automatically. Compensation can be applied, thanks to **ae_level** parameter. **aec_value** has no effect here
+
+- **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Seems to change computation method of automatic exposure. Defaults to ``false``.
+- **ae_level** (*Optional*, int): The auto exposure level to apply to the picture (when **aec_mode** is set to ``auto``), from -2 to 2. Defaults to ``0``.
+- **aec_value** (*Optional*, int): The Exposure value to apply to the picture (when **aec_mode** is set to ``manual``), from 0 to 1200. Defaults to ``300``.
+
+Sensor Gain Settings:
+
+- **agc_mode** (*Optional*, enum): The mode of gain control module. Defaults to ``auto`` (leave camera to automatically adjust sensor gain).
+
+    - ``manual``: Gain can be manually set, with **agc_value** parameter. **agc_gain_ceiling** has no effect here
+    - ``auto``: Camera manage sensor gain automatically. Maximum gain can be defined, thanks to **agc_gain_ceiling** parameter. **agc_value** has no effect here
+
+- **agc_value** (*Optional*, int): The gain value to apply to the picture (when **aec_mode** is set to ``manual``), from 0 to 30. Defaults to ``0``.
+- **agc_gain_ceiling** (*Optional*, enum): The maximum gain allowed, when **agc_mode** is set to ``auto``. This parameter seems act as "ISO" setting. Defaults to ``2x``.
+
+    - ``2x``: Camera is less sensitive, picture is clean (without visible noise)
+    - ``4x``
+    - ``8x``
+    - ``16x``
+    - ``32x``
+    - ``64x``
+    - ``128x``: Camera is more sensitive, but picture contain lot of noise
+
+White Balance Setting:
+
+- **wb_mode** (*Optional*, enum): The mode of white balace module. Defaults to ``auto``.
+
+    - ``auto``: Camera choose best white balance setting
+    - ``sunny``: White balance sunny mode
+    - ``cloudy``: White balance cloudy mode
+    - ``office``: White balance office mode
+    - ``home``: White balance home mode
+
+Automations:
+
+- **on_stream_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a stream starts.
+- **on_stream_stop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a stream stops.
+
+Test Setting:
+
+- **test_pattern** (*Optional*, boolean): For tests purposes, it's possible to replace picture get from sensor by a test color pattern. Defaults to ``false``.
+
 
 .. note::
 
@@ -149,6 +219,28 @@ Configuration for M5Stack Camera
       name: My Camera
       # ...
 
+Configuration for M5Stack Timer Camera X/F
+------------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+
+      # Image settings
+      name: My Camera
+      # ...
 
 Configuration for Wrover Kit Boards
 -----------------------------------
@@ -214,6 +306,9 @@ Configuration for TTGO T-Camera V162
       jpeg_quality: 10
       vertical_flip: true
       horizontal_mirror: false
+
+      # Image settings
+      name: My Camera
       # ...
 
 Configuration for TTGO T-Camera V17
@@ -259,7 +354,6 @@ Configuration for TTGO T-Journal
       href_pin: GPIO26
       pixel_clock_pin: GPIO21
 
-
       # Image settings
       name: My Camera
       # ...
@@ -285,7 +379,6 @@ Configuration for TTGO-Camera Plus
       vertical_flip: false
       horizontal_mirror: false
 
-
       # Image settings
       name: My Camera
       # ...
@@ -308,11 +401,32 @@ Configuration for TTGO-Camera Mini
       href_pin: GPIO25
       pixel_clock_pin: GPIO19
 
+      # Image settings
+      name: My Camera
+      # ...
 
+Configuration for ESP-EYE
+----------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO4
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO18
+        scl: GPIO23
+      data_pins: [GPIO34, GPIO13, GPIO14, GPIO35, GPIO39, GPIO38, GPIO37, GPIO36]
+      vsync_pin: GPIO5
+      href_pin: GPIO27
+      pixel_clock_pin: GPIO25
 
       # Image settings
       name: My Camera
       # ...
+
 
 See Also
 --------

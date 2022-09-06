@@ -3,7 +3,7 @@ Migrating from ESPurna
 
 .. seo::
     :description: Migration guide for installing ESPHome on ESPs running ESPurna.
-    :image: espurna.png
+    :image: espurna.svg
 
 Migrating from previous ESPurna setups is very easy. You just need to have
 ESPHome create a binary for you and then upload that in the ESPurna web interface.

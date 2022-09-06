@@ -3,7 +3,7 @@ Prometheus Component
 
 .. seo::
     :description: Instructions for setting up a prometheus exporter with ESPHome.
-    :image: prometheus.png
+    :image: prometheus.svg
 
 The ``prometheus`` component enables an HTTP endpoint for the
 :doc:`web_server` in order to integrate a `Prometheus <https://prometheus.io/>`__ installation.
@@ -27,6 +27,9 @@ Configuration variables:
 ------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
+  web interface. Defaults to ``false``.
+- **relabel** (*Optional*): Override metric labels. See :ref:`prometheus-relabel`
 
 .. note::
 
@@ -38,6 +41,32 @@ Configuration variables:
           - job_name: esphome
             static_configs:
               - targets: [<ip or node_name.local>]
+
+Metric Relabeling
+-----------------
+
+ESPHome allows you to do some basic relabeling of Prometheus metrics.
+This is useful if you want to have different metric names or IDs than those shown in Home Assistant or the web interface.
+
+You can relabel metric name or ID labels by adding a ``relabel`` block in the ``prometheus`` configuration,
+and then adding a block with ``id`` and/or ``name`` fields for each sensor whose labels your want to override.
+
+.. _prometheus-relabel:
+
+``relabel``
+***********
+
+Set the the ``id`` and ``name`` label values of the Prometheus metric for the sensor with the specified ID.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    prometheus:
+      relabel:
+        my_voltage_sensor:
+          id: angry_pixies
+          name: "Angry Pixies"
+
 
 See Also
 --------

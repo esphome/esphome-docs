@@ -1,9 +1,11 @@
+.. _deep_sleep-component:
+
 Deep Sleep Component
 ====================
 
 .. seo::
     :description: Instructions for setting up the deep sleep support for minimizing power consumption on ESPs.
-    :image: hotel.png
+    :image: hotel.svg
 
 The ``deep_sleep`` component can be used to automatically enter a deep sleep mode on the
 ESP8266/ESP32 after a certain amount of time. This is especially useful with nodes that operate
@@ -32,7 +34,16 @@ Configuration variables:
 ------------------------
 
 - **run_duration** (*Optional*, :ref:`config-time`): The time duration the node should be active, i.e. run code.
+
+  Only on ESP32, instead of time, it is possible to specify run duration according to the wakeup reason from deep-sleep:
+
+  - **default** (**Required**, :ref:`config-time`): default run duration for timer wakeup and any unspecified wakeup reason.
+  - **gpio_wakeup_reason** (*Optional*, :ref:`config-time`): run duration if woken up by GPIO.
+  - **touch_wakeup_reason** (*Optional*, :ref:`config-time`): run duration if woken up by touch.
+
 - **sleep_duration** (*Optional*, :ref:`config-time`): The time duration to stay in deep sleep mode.
+- **touch_wakeup** (*Optional*, boolean): Only on ESP32. Use a touch event to wakeup from deep sleep. To be able
+  to wakeup from a touch event, :ref:`esp32-touch-binary-sensor` must be configured properly.
 - **wakeup_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Only on ESP32. A pin to wake up to once
   in deep sleep mode. Use the inverted property to wake up to LOW signals.
 - **wakeup_pin_mode** (*Optional*): Only on ESP32. Specify how to handle waking up from a ``wakeup_pin`` if
@@ -46,7 +57,7 @@ Advanced features:
   wake up on multiple pins. This cannot be used together with wakeup pin.
 
   - **pins** (**Required**, list of pin numbers): The pins to wake up on.
-  - **mode** (*Optional*): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
+  - **mode** (**Required**): The mode to use for the wakeup source. Must be one of ``ALL_LOW`` (wake up when
     all pins go LOW) or ``ANY_HIGH`` (wake up when any pin goes HIGH).
 
 .. note::
@@ -86,9 +97,20 @@ This action makes the given deep sleep component enter deep sleep immediately.
             id: deep_sleep_1
             sleep_duration: 20min
 
+
+    # ESP32 can sleep until a specific time of day.
+    on_...:
+      then:
+        - deep_sleep.enter:
+            id: deep_sleep_1
+            until: "16:00:00"
+            time_id: sntp_id
+
 Configuration options:
 
 - **sleep_duration** (*Optional*, :ref:`templatable <config-templatable>`, :ref:`config-time`): The time duration to stay in deep sleep mode.
+- **until** (*Optional*, string): The time of day to wake up. Only on ESP32.
+- **time_id** (*Optional*, :ref:`config-id`): The ID of the time component to use for the ``until`` option. Only on ESP32.
 
 
 .. _deep_sleep-prevent_action:
@@ -116,7 +138,7 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
     it will no longer enter deep sleep mode and you can upload your OTA update.
 
     Remember to turn "OTA mode" off again after the OTA update by sending a MQTT message with the payload
-    ``OFF``. To enter the the deep sleep again after the OTA update send a message on the topic ``livingroom/sleep_mode``
+    ``OFF``. To enter the deep sleep again after the OTA update send a message on the topic ``livingroom/sleep_mode``
     with payload ``ON``. Deep sleep will start immediately. Don't forget to delete the payload before the node
     wakes up again.
 
@@ -136,6 +158,19 @@ Useful for keeping the ESP active during data transfer or OTA updating (See note
               payload: 'ON'
               then:
                 - deep_sleep.enter: deep_sleep_1
+
+.. _deep_sleep-allow_action:
+
+``deep_sleep.allow`` Action
+-----------------------------
+
+This action allows the given deep sleep component to enter deep sleep, after previously being prevented.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - deep_sleep.allow: deep_sleep_1
 
 See Also
 --------

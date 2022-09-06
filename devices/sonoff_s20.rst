@@ -127,13 +127,13 @@ or alternatively, you can just take the below configuration file and modify it t
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
+
+    esp8266:
       board: esp8285
-      arduino_version: 2.4.2
 
     wifi:
-      ssid: <YOUR_SSID>
-      password: <YOUR_PASSWORD>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 
@@ -147,7 +147,7 @@ pre-compile the firmware.
 .. note::
 
     After this step, you will be able to find the compiled binary under
-    ``<NAME_OF_NODE>/.pioenvs/<NAME_OF_NODE>/firmware.bin``. If you're having trouble with
+    ``.esphome/builds/<NAME_OF_NODE>/.pioenvs/<NAME_OF_NODE>/firmware.bin``. If you're having trouble with
     uploading, you can also try uploading this file directly with other tools.
 
 Step 4: Uploading Firmware
@@ -208,12 +208,13 @@ of the basic functions.
 
     esphome:
       name: <NAME_OF_NODE>
-      platform: ESP8266
+
+    esp8266:
       board: esp01_1m
 
     wifi:
-      ssid: <YOUR_SSID>
-      password: <YOUR_PASSWORD>
+      ssid: !secret wifi_ssid
+      password: !secret wifi_password
 
     api:
 
@@ -225,7 +226,9 @@ of the basic functions.
       - platform: gpio
         pin:
           number: GPIO0
-          mode: INPUT_PULLUP
+          mode:
+            input: true
+            pullup: true
           inverted: true
         name: "Sonoff S20 Button"
       - platform: status

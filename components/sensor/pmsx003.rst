@@ -3,7 +3,7 @@ PMSX003 Particulate Matter Sensor
 
 .. seo::
     :description: Instructions for setting up PMSX003 Particulate matter sensors
-    :image: pmsx003.png
+    :image: pmsx003.svg
 
 The ``pmsx003`` sensor platform allows you to use your PMS5003, PMS7003, ... particulate matter
 (`datasheet <http://www.aqmd.gov/docs/default-source/aq-spec/resources-page/plantower-pms5003-manual_v2-3.pdf>`__)
@@ -17,6 +17,7 @@ This platform supports three sensor types, which you need to specify using the `
 value:
 
 - ``PMSX003`` for generic PMS5003, PMS7003, ...; these sensors support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` output.
+- ``PMS5003S`` for PMS5003ST. These support ``pm_1_0``, ``pm_2_5`` and ``pm_10_0`` and ``formaldehyde``.
 - ``PMS5003T`` for PMS5003T. These support ``pm_2_5``, ``temperature`` and ``humidity``.
 - ``PMS5003ST`` for PMS5003ST. These support ``pm_2_5``, ``temperature``, ``humidity`` and ``formaldehyde``.
 
@@ -25,6 +26,7 @@ value:
     # Example configuration entry
     uart:
       rx_pin: GPIO23
+      tx_pin: GPIO22
       baud_rate: 9600
 
     sensor:
@@ -36,6 +38,7 @@ value:
           name: "Particulate Matter <2.5µm Concentration"
         pm_10_0:
           name: "Particulate Matter <10.0µm Concentration"
+        update_interval: 60000ms
 
 Configuration variables:
 ------------------------
@@ -68,8 +71,10 @@ Configuration variables:
   All options from :ref:`Sensor <config-sensor>`.
 - **humidity** (*Optional*): Use the humidity value in % for the ``PMS5003T`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
-- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003ST``.
+- **formaldehyde** (*Optional*): Use the formaldehyde (HCHO) concentration in µg per cubic meter for the ``PMS5003S`` and ``PMS5003ST``.
   All options from :ref:`Sensor <config-sensor>`.
+- **update_interval** (*Optional*): Amount of time to wait between generating measurements. If this is longer than 30
+  seconds, and if ``tx_pin`` is set in the UART configuration, the fan will be spun down between measurements. Default to ``0s`` (forward data as it's coming in from the sensor).
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the :ref:`UART Component <uart>` if you want
   to use multiple UART buses.
 

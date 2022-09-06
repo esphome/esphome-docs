@@ -3,7 +3,7 @@ ESP32 Touch Pad
 
 .. seo::
     :description: Instructions for setting up the touch pad on the ESP32.
-    :image: touch.png
+    :image: touch.svg
 
 .. _esp32-touch-component:
 
@@ -95,6 +95,10 @@ Configuration variables:
 -  **id** (*Optional*,
    :ref:`config-id`): Manually specify
    the ID used for code generation.
+-  **wakeup_threshold** (*Optional*, int): The threshold to use to detect touch events to wakeup from deep
+   sleep. Smaller values mean a higher probability that the pad is being touched. All touch pad sensors that
+   should trigger a wakeup from deep sleep must specify this value. The :ref:`deep_sleep-component` must also
+   be configured to enable a wakeup from a touch event. Note that no filter is active during deep sleep.
 -  All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 Touch Pad Pins

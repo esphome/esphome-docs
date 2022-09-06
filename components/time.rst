@@ -5,7 +5,7 @@ Time
 
 .. seo::
     :description: Instructions for setting up real time clock sources in ESPHome like network based time.
-    :image: clock-outline.png
+    :image: clock-outline.svg
     :keywords: GPS, NTP, RTC, SNTP
 
 The ``time`` component allows you to set up real time clock time sources for ESPHome.

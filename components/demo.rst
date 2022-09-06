@@ -3,7 +3,7 @@ Demo Integration
 
 .. seo::
     :description: Instructions for setting up the demo integration in ESPHome
-    :image: description.png
+    :image: description.svg
 
 The ``demo`` integration can be used for testing to generate sample instances of many
 different integrations (sensors, lights, ...)

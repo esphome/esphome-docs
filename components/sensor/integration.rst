@@ -3,7 +3,7 @@ Integration Sensor
 
 .. seo::
     :description: Instructions for setting up sensors that integrate values over time.
-    :image: sigma.png
+    :image: sigma.svg
 
 The ``integration`` sensor is a helper sensor that can integrate values from other sensors over
 time. This can for example be useful to integrate the values of a water flow sensor (in m^3/s) over
@@ -38,7 +38,6 @@ Configuration variables:
   that the value can be restored upon power cycle or reboot.
   Warning: this option can wear out your flash. Defaults to ``false``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **min_save_interval** (*Optional*, :ref:`config-time`): The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to ``0s``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
 .. _sensor-integration-reset_action:

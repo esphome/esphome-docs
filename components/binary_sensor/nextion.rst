@@ -48,7 +48,7 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The duration to update the sensor. If using a :ref:`nextion_custom_binary_sensor_protocol` this should not be used
 - **background_color** (*Optional*, :ref:`config-color`):  The background color
 - **foreground_color** (*Optional*, :ref:`config-color`):  The foreground color
-- **visible** (*Optional*, boolean ):  Visible or not
+- **visible** (*Optional*, boolean):  Visible or not
 - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 **Touch Sensor:**

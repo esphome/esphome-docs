@@ -32,10 +32,10 @@ which is 19200bps.
         - homeassistant.event:
             event: esphome.rf_code_received
             data:
-              sync: !lambda 'char buffer [10];return itoa(data.sync,buffer,16);'
-              low: !lambda 'char buffer [10];return itoa(data.low,buffer,16);'
-              high: !lambda 'char buffer [10];return itoa(data.high,buffer,16);'
-              code: !lambda 'char buffer [10];return itoa(data.code,buffer,16);'
+              sync: !lambda 'return format_hex(data.sync);'
+              low: !lambda 'return format_hex(data.low);'
+              high: !lambda 'return format_hex(data.high);'
+              code: !lambda 'return format_hex(data.code);'
 
 Configuration variables:
 ------------------------
@@ -61,10 +61,10 @@ variables named ``code``, ``sync``, ``high`` and ``low``.
       - homeassistant.event:
           event: esphome.rf_code_received
           data:
-            sync: !lambda 'char buffer [10];return itoa(data.sync,buffer,16);'
-            low: !lambda 'char buffer [10];return itoa(data.low,buffer,16);'
-            high: !lambda 'char buffer [10];return itoa(data.high,buffer,16);'
-            code: !lambda 'char buffer [10];return itoa(data.code,buffer,16);'
+            sync: !lambda 'return format_hex(data.sync);'
+            low: !lambda 'return format_hex(data.low);'
+            high: !lambda 'return format_hex(data.high);'
+            code: !lambda 'return format_hex(data.code);'
 
 
 .. _rf_bridge-send_code_action:
@@ -170,7 +170,7 @@ ESPHome is able to receive the extra protocols that can be decoded as well as ac
 .. _rf_bridge-on_advanced_code_received:
 
 ``on_advanced_code_received`` Trigger
--------------------------------------
+*************************************
 
 Similar to :ref:`rf_bridge-on_code_received`, this trigger receives the codes after advanced sniffing is started.
 To use the code, use a :ref:`lambda <config-lambda>` template, the code and the corresponding protocol and length
@@ -182,15 +182,15 @@ are available inside that lambda under the variables named ``code``, ``protocol`
       - homeassistant.event:
           event: esphome.rf_advanced_code_received
           data:
-            length: !lambda 'char buffer [10];return itoa(data.length,buffer,16);'
-            protocol: !lambda 'char buffer [10];return itoa(data.protocol,buffer,16);'
+            length: !lambda 'return format_hex(data.length);'
+            protocol: !lambda 'return format_hex(data.protocol);'
             code: !lambda 'return data.code;'
 
 
 .. _rf_bridge-send_advanced_code_action:
 
 ``rf_bridge.send_advanced_code`` Action
----------------------------------------
+***************************************
 
 Send an  RF code using this action in automations.
 
@@ -222,7 +222,7 @@ Configuration options:
 .. _rf_bridge-start_advanced_sniffing_action:
 
 ``rf_bridge.start_advanced_sniffing`` Action
---------------------------------------------
+********************************************
 
 Tell the RF Bridge to listen for the advanced/extra protocols defined in the portisch firmware.
 The decoded codes with length and protocol will be returned to :ref:`rf_bridge-on_advanced_code_received`
@@ -249,7 +249,7 @@ Configuration options:
 .. _rf_bridge-stop_advanced_sniffing_action:
 
 ``rf_bridge.stop_advanced_sniffing`` Action
--------------------------------------------
+*******************************************
 
 Tell the RF Bridge to stop listening for the advanced/extra protocols defined in the portisch firmware.
 
@@ -274,7 +274,7 @@ Configuration options:
 .. _rf_bridge-start_bucket_sniffing_action:
 
 ``rf_bridge.start_bucket_sniffing`` Action
-------------------------------------------
+******************************************
 
 Tell the RF Bridge to dump raw sniffing data. Useful for getting codes for unsupported protocols.
 The raw data will be available in the log and can later be used with :ref:`rf_bridge-send_raw_action` action.
@@ -311,7 +311,7 @@ Configuration options:
 .. _rf_bridge-beep_action:
 
 ``rf_bridge.beep`` Action
--------------------------------------------
+*************************
 
 Activate the internal buzzer to make a beep.
 
@@ -321,7 +321,7 @@ Activate the internal buzzer to make a beep.
     on_...:
       then:
         - rf_bridge.beep:
-            duration: 100 
+            duration: 100
 
 Configuration options:
 
@@ -335,7 +335,7 @@ Configuration options:
     .. code-block:: cpp
 
         id(rf_bridge).beep(100);
-         
+
 Getting started with Home Assistant
 -----------------------------------
 
@@ -376,10 +376,10 @@ Home Assistant as events and will also setup a service so you can send codes wit
           - homeassistant.event:
               event: esphome.rf_code_received
               data:
-                sync: !lambda 'char buffer [10];return itoa(data.sync,buffer,16);'
-                low: !lambda 'char buffer [10];return itoa(data.low,buffer,16);'
-                high: !lambda 'char buffer [10];return itoa(data.high,buffer,16);'
-                code: !lambda 'char buffer [10];return itoa(data.code,buffer,16);'
+                sync: !lambda 'return format_hex(data.sync);'
+                low: !lambda 'return format_hex(data.low);'
+                high: !lambda 'return format_hex(data.high);'
+                code: !lambda 'return format_hex(data.code);'
 
 
 Now your latest received code will be in an event.

@@ -1,3 +1,4 @@
+from genericpath import exists
 import re
 import json
 import urllib
@@ -6,61 +7,62 @@ from typing import MutableMapping
 from sphinx.util import logging
 from docutils import nodes
 
-SCHEMA_PATH = "schema.json"
+# Instructions for building
+# you must have checked out this project in the same folder of
+# esphome and esphome-vscode so the SCHEMA_PATH below can find the source schemas
+
+# This file is not processed by default as extension unless added.
+# To add this extension from command line use:
+#   -Dextensions=github,seo,sitemap,schema_doc"
+
+# also for improve performance running old version
+#   -d_build/.doctrees-schema
+# will put caches in another dir and not overwrite the ones without schema
+
+SCHEMA_PATH = "../esphome-vscode/server/src/schema/"
 CONFIGURATION_VARIABLES = "Configuration variables:"
+CONFIGURATION_OPTIONS = "Configuration options:"
 PIN_CONFIGURATION_VARIABLES = "Pin configuration variables:"
 COMPONENT_HUB = "Component/Hub"
 
-props_missing = 0
-props_verified = 0
-props_documented = 0
+JSON_DUMP_PRETTY = True
+
+
+class Statistics:
+    props_documented = 0
+    enums_good = 0
+    enums_bad = 0
+
+
+statistics = Statistics()
+
+logger = logging.getLogger(__name__)
 
 
 def setup(app):
-    """Setup connects events to the sitemap builder"""
-
     import os
 
-    if not os.path.isfile(SCHEMA_PATH):
-        logger = logging.getLogger(__name__)
+    if not os.path.isfile(SCHEMA_PATH + "esphome.json"):
         logger.info(f"{SCHEMA_PATH} not found. Not documenting schema.")
-    else:
-        app.connect("doctree-resolved", doctree_resolved)
-        app.connect("build-finished", build_finished)
+        return
 
-        f = open(SCHEMA_PATH, "r", encoding="utf-8-sig")
-        str = f.read()
-        app.jschema = json.loads(str)
+    app.connect("doctree-resolved", doctree_resolved)
+    app.connect("build-finished", build_finished)
+    app.files = {}
 
     return {"version": "1.0.0", "parallel_read_safe": True, "parallel_write_safe": True}
 
 
-def find_component(jschema, component):
-    return jschema["properties"].get(component)
-
-
-def find_platform_component(jschema, platform, component):
-    platform_items = jschema["properties"][platform].get("items")
-    if not platform_items:
-        return None
-    ar = platform_items["allOf"]
-    for p in ar:
-        if "if" in p:
-            if p["if"]["properties"]["platform"]["const"] == component:
-                return p
+def find_platform_component(app, platform, component):
+    file_data = get_component_file(app, component)
+    return file_data[f"{component}.{platform}"]["schemas"]["CONFIG_SCHEMA"]
 
 
 def doctree_resolved(app, doctree, docname):
     if docname == "components/index":
         # nothing useful here
         return
-    try:
-        handle_component(app, doctree, docname)
-
-    except Exception as e:
-        err_str = f"In {docname}: {str(e)}"
-        logger = logging.getLogger(__name__)
-        logger.warning(err_str)
+    handle_component(app, doctree, docname)
 
 
 PLATFORMS_TITLES = {
@@ -69,94 +71,133 @@ PLATFORMS_TITLES = {
     "Text Sensor": "text_sensor",
     "Output": "output",
     "Cover": "cover",
+    "Button": "button",
+    "Select": "select",
+    "Fan": "fan",
+    "Lock": "lock",
+    "Number": "number",
     "Climate": "climate",
     "CAN Bus": "canbus",
     "Stepper": "stepper",
+    "Switch": "switch",
+    "I²C": "i2c",
 }
 
 CUSTOM_DOCS = {
     "guides/automations": {
-        "Global Variables": "properties/globals",
+        "Global Variables": "globals.schemas.CONFIG_SCHEMA",
     },
     "guides/configuration-types": {
-        "Color": "properties/color",
         "Pin Schema": [
-            "definitions/PIN.INPUT_INTERNAL",
-            "definitions/PIN.OUTPUT_INTERNAL",
+            "esp32.pin.schema",
+            "esp8266.pin.schema",
         ],
     },
     "components/binary_sensor/index": {
-        "Binary Sensor Filters": "binary_sensor.FILTER_REGISTRY",
+        "Binary Sensor Filters": "binary_sensor.registry.filter",
     },
-    "components/climate/ir_climate": {
-        "IR Remote Climate": [
-            "properties/climate/coolix",
-            "properties/climate/daikin",
-            "properties/climate/fujitsu_general",
-            "properties/climate/mitsubishi",
-            "properties/climate/tcl112",
-            "properties/climate/toshiba",
-            "properties/climate/yashima",
-            "properties/climate/whirlpool",
-            "properties/climate/climate_ir_lg",
-            "properties/climate/hitachi_ac344",
-        ]
+    "components/canbus": {
+        "_LoadSchema": False,
+        "Base CAN Bus Configuration": "canbus.schemas.CANBUS_SCHEMA",
     },
+    "components/climate/climate_ir": {"_LoadSchema": False, "IR Remote Climate": []},
     "components/display/index": {
-        "Images": "properties/image",
-        "Drawing Static Text": "properties/font",
-        "Color": "properties/color",
-        "Animation": "properties/animation",
+        "Images": "image.schemas.CONFIG_SCHEMA",
+        "Fonts": "font.schemas.CONFIG_SCHEMA",
+        "Color": "color.schemas.CONFIG_SCHEMA",
+        "Animation": "animation.schemas.CONFIG_SCHEMA",
     },
     "components/light/index": {
         "Base Light Configuration": [
-            "definitions/light.ADDRESSABLE_LIGHT_SCHEMA",
-            "definitions/light.BINARY_LIGHT_SCHEMA",
-            "definitions/light.BRIGHTNESS_ONLY_LIGHT_SCHEMA",
-            "definitions/light.LIGHT_SCHEMA",
+            "light.schemas.ADDRESSABLE_LIGHT_SCHEMA",
+            "light.schemas.BINARY_LIGHT_SCHEMA",
+            "light.schemas.BRIGHTNESS_ONLY_LIGHT_SCHEMA",
+            "light.schemas.LIGHT_SCHEMA",
         ],
-        "Light Effects": "light.EFFECTS_REGISTRY",
+        "Light Effects": "light.registry.effects",
     },
     "components/light/fastled": {
-        "Clockless": "properties/light/fastled_clockless",
-        "SPI": "properties/light/fastled_spi",
+        "_LoadSchema": False,
+        "Clockless": "fastled_clockless.platform.light.schemas.CONFIG_SCHEMA",
+        "SPI": "fastled_spi.platform.light.schemas.CONFIG_SCHEMA",
+    },
+    "components/binary_sensor/ttp229": {
+        "_LoadSchema": False,
     },
     "components/mcp230xx": {
-        PIN_CONFIGURATION_VARIABLES: [
-            "definitions/PIN.INPUT_mcp23xxx",
-            "definitions/PIN.OUTPUT_mcp23xxx",
-        ]
+        "_LoadSchema": False,
+        PIN_CONFIGURATION_VARIABLES: "mcp23xxx.pin",
     },
     "components/mqtt": {
-        "MQTT Component Base Configuration": "definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA",
+        "MQTT Component Base Configuration": "core.schemas.MQTT_COMMAND_COMPONENT_SCHEMA",
+        "MQTTMessage": "mqtt.schemas.MQTT_MESSAGE_BASE",
     },
     "components/output/index": {
-        "Base Output Configuration": "definitions/output.FLOAT_OUTPUT_SCHEMA",
+        "Base Output Configuration": "output.schemas.FLOAT_OUTPUT_SCHEMA",
     },
     "components/remote_transmitter": {
-        "Remote Transmitter Actions": "definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA",
+        "Remote Transmitter Actions": "remote_base.schemas.BASE_REMOTE_TRANSMITTER_SCHEMA",
     },
     "components/sensor/index": {
-        "Sensor Filters": "sensor.FILTER_REGISTRY",
+        "Sensor Filters": "sensor.registry.filter",
     },
     "components/time": {
-        "Home Assistant Time Source": "properties/time/homeassistant",
-        "SNTP Time Source": "properties/time/sntp",
-        "GPS Time Source": "properties/time/gps",
-        "DS1307 Time Source": "properties/time/ds1307",
+        "_LoadSchema": False,
+        "Base Time Configuration": "time.schemas.TIME_SCHEMA",
+        "on_time Trigger": "time.schemas.TIME_SCHEMA.schema.config_vars.on_time.schema",
+        "Home Assistant Time Source": "homeassistant.platform.time.schemas.CONFIG_SCHEMA",
+        "SNTP Time Source": "sntp.platform.time.schemas.CONFIG_SCHEMA",
+        "GPS Time Source": "gps.platform.time.schemas.CONFIG_SCHEMA",
+        "DS1307 Time Source": "ds1307.platform.time.schemas.CONFIG_SCHEMA",
     },
     "components/wifi": {
-        "Connecting to Multiple Networks": "definitions/wifi-networks",
-        "Enterprise Authentication": "definitions/wifi-networks/eap",
+        "Connecting to Multiple Networks": "wifi.schemas.CONFIG_SCHEMA.schema.config_vars.networks.schema",
+        "Enterprise Authentication": "wifi.schemas.EAP_AUTH_SCHEMA",
     },
     "custom/custom_component": {
-        "Generic Custom Component": "properties/custom_component"
+        "Generic Custom Component": "custom_component.schemas.CONFIG_SCHEMA"
     },
+    "components/esp32": {
+        "Arduino framework": "esp32.schemas.CONFIG_SCHEMA.schema.config_vars.framework.types.arduino",
+        "ESP-IDF framework": "esp32.schemas.CONFIG_SCHEMA.schema.config_vars.framework.types.esp-idf",
+    },
+    "components/sensor/airthings_ble": {
+        "_LoadSchema": False,
+    },
+    "components/sensor/radon_eye_ble": {
+        "_LoadSchema": False,
+    },
+    "components/sensor/xiaomi_ble": {
+        "_LoadSchema": False,
+    },
+    "components/sensor/xiaomi_miscale2": {
+        "_LoadSchema": False,
+    },
+    "components/mcp23Sxx": {
+        "_LoadSchema": False,
+    },
+    "components/display/lcd_display": {"_LoadSchema": False},
+    "components/display/ssd1306": {"_LoadSchema": False},
+    "components/display/ssd1322": {"_LoadSchema": False},
+    "components/display/ssd1325": {"_LoadSchema": False},
+    "components/display/ssd1327": {"_LoadSchema": False},
+    "components/display/ssd1351": {"_LoadSchema": False},
+    "components/copy": {"_LoadSchema": False},
 }
 
 
 def get_node_title(node):
     return list(node.traverse(nodes.title))[0].astext()
+
+
+def read_file(fileName):
+    f = open(SCHEMA_PATH + fileName + ".json", "r", encoding="utf-8-sig")
+    str = f.read()
+    return json.loads(str)
+
+
+def is_config_vars_title(title_text):
+    return title_text == CONFIGURATION_VARIABLES or title_text == CONFIGURATION_OPTIONS
 
 
 class SchemaGeneratorVisitor(nodes.NodeVisitor):
@@ -170,44 +211,45 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         self.props = None
         self.platform = None
         self.json_platform_component = None
-        self.json_base_config = None
         self.title_id = None
         self.props_section_title = None
         self.find_registry = None
+        self.component = None
         self.section_level = 0
+        self.file_schema = None
+        self.custom_doc = CUSTOM_DOCS.get(docname)
         if self.path[0] == "components":
             if len(self.path) == 2:  # root component, e.g. dfplayer, logger
-                component = docname[11:]
-                self.json_component = app.jschema["properties"].get(component)
+                self.component = docname[11:]
+                if not self.custom_doc or self.custom_doc.get("_LoadSchema", True):
+                    self.file_schema = get_component_file(app, self.component)
+                    self.json_component = self.file_schema[self.component]["schemas"][
+                        "CONFIG_SCHEMA"
+                    ]
             else:  # sub component, e.g. output/esp8266_pwm
 
                 # components here might have a core / hub, eg. dallas, ads1115
                 # and then they can be a binary_sensor, sensor, etc.
-
-                component = self.path[2]
-
-                if component == "ssd1331":
-                    component = "ssd1331_spi"
-
                 self.platform = self.path[1]
-                if component == "index":
-                    # these are e.g. sensor, binary sensor etc.
-                    p = self.platform.replace(" ", "_").lower()
-                    self.json_component = find_component(
-                        self.app.jschema, self.platform
-                    )
-                    self.json_base_config = self.app.jschema["definitions"].get(
-                        p + "." + p.upper() + "_SCHEMA"
-                    )
+                self.component = self.path[2]
 
-                else:
-                    self.json_component = find_component(self.app.jschema, component)
+                if self.component == "ssd1331":
+                    self.component = "ssd1331_spi"
 
-                    self.json_platform_component = find_platform_component(
-                        self.app.jschema, self.platform, component
-                    )
-
-        self.custom_doc = CUSTOM_DOCS.get(docname)
+                if not self.custom_doc or self.custom_doc.get("_LoadSchema", True):
+                    if self.component == "index":
+                        # these are e.g. sensor, binary sensor etc.
+                        self.component = self.platform.replace(" ", "_").lower()
+                        self.file_schema = get_component_file(app, self.component)
+                        self.json_component = self.file_schema[self.component][
+                            "schemas"
+                        ].get(self.component.upper() + "_SCHEMA")
+                        pass
+                    else:
+                        self.json_component = get_component_file(app, self.component)
+                        self.json_platform_component = find_platform_component(
+                            app, self.platform, self.component
+                        )
 
         self.previous_title_text = "No title"
 
@@ -231,7 +273,24 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         # Found a Configuration variables: heading, this is to increase docs consistency
         self.accept_props = False
 
-        self.props_level = 0
+        self.bullet_list_level = 0
+
+    def set_component_description(self, description, componentName, platformName=None):
+        if platformName is not None:
+            platform = get_component_file(self.app, platformName)
+            platform[platformName]["components"][componentName.lower()][
+                "docs"
+            ] = description
+        else:
+            core = get_component_file(self.app, "esphome")["core"]
+            if componentName in core["components"]:
+                core["components"][componentName]["docs"] = description
+            elif componentName in core["platforms"]:
+                core["platforms"][componentName]["docs"] = description
+            else:
+                raise ValueError(
+                    "Cannot set description for component " + componentName
+                )
 
     def visit_document(self, node):
         # ESPHome page docs follows strict formatting guidelines which allows
@@ -240,6 +299,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         if self.docname in ["components/sensor/binary_sensor_map"]:
             # temporarily not supported
             raise nodes.SkipChildren
+
+        if self.docname in ["components/climate/climate_ir"]:
+            # not much to do on the visit to the document, component will be found by title
+            return
 
         if len(list(node.traverse(nodes.paragraph))) == 0:
             # this is empty, not much to do
@@ -251,32 +314,40 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         description = self.getMarkdownParagraph(node)
 
         if self.json_platform_component:
-            self.json_platform_component["markdownDescription"] = description
+            self.set_component_description(description, self.component, self.platform)
         elif self.json_component:
-            self.json_component["markdownDescription"] = description
-
-        if self.json_base_config:
-            self.json_component = self.json_base_config
+            self.set_component_description(description, self.component)
 
         # for most components / platforms get the props, this allows for a less restrictive
         # first title on the page
         if self.json_component or self.json_platform_component:
-            self.props = self.find_props(
-                self.json_platform_component
-                if self.json_platform_component
-                else self.json_component
-            )
+            if is_component_file(
+                self.app,
+                self.component,
+            ):
+                self.props = self.find_props(
+                    self.json_platform_component
+                    if self.json_platform_component
+                    else self.json_component,
+                    True,
+                )
 
-            if not self.props:
-                # get props for base components, Sensor, Binary Sensor, Light, etc.
-
-                if len(self.path) == 2:
-                    # "#/definitions/schema_canbus.CONFIG_SCHEMA"
-                    self.json_base_config = self.app.jschema["definitions"].get(
-                        f"{self.path[1]}.{self.path[1].upper()}_SCHEMA"
-                    )
-                    if self.json_base_config:
-                        self.props = self.find_props(self.json_base_config)
+    def visit_table(self, node):
+        if (
+            self.docname == "components/climate/climate_ir"
+            and len(CUSTOM_DOCS["components/climate/climate_ir"]["IR Remote Climate"])
+            == 0
+        ):
+            # figure out multi components from table
+            table_rows = node[0][4]
+            for row in table_rows:
+                components_paths = [
+                    components + ".platform.climate.schemas.CONFIG_SCHEMA"
+                    for components in row[1].astext().split("\n")
+                ]
+                CUSTOM_DOCS["components/climate/climate_ir"][
+                    "IR Remote Climate"
+                ] += components_paths
 
     def depart_document(self, node):
         pass
@@ -286,13 +357,8 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         section_title = get_node_title(node)
         if self.custom_doc and section_title in self.custom_doc:
             r = self.custom_doc[section_title]
-            if (
-                isinstance(r, list)
-                or r.startswith("properties")
-                or r.startswith("definitions")
-            ):
-                return
-            self.find_registry = r
+            if ".registry." in r:
+                self.find_registry = r
 
     def depart_section(self, node):
         self.section_level -= 1
@@ -307,52 +373,65 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
     def visit_title(self, node):
         title_text = node.astext()
-
-        if "interval" in title_text:
-            title_text = title_text
         if self.custom_doc is not None and title_text in self.custom_doc:
             if isinstance(self.custom_doc[title_text], list):
                 self.multi_component = self.custom_doc[title_text]
                 self.filled_props = False
                 self.props = None
-                # TODO: add same markdown description to each?
+
+                desc = self.getMarkdownParagraph(node.parent)
+                for c in self.multi_component:
+                    if len(c.split(".")) == 2:
+                        self.set_component_description(desc, c.split(".")[0])
 
                 return
 
             json_component = self.find_component(self.custom_doc[title_text])
             if not json_component:
                 return
+            if self.json_component is None:
+                self.json_component = json_component
 
-            json_component["markdownDescription"] = self.getMarkdownParagraph(
-                node.parent
-            )
+            parts = self.custom_doc[title_text].split(".")
+            if parts[0] not in ["core", "remote_base"] and parts[-1] != "pin":
+                if parts[1] == "platform":
+                    self.set_component_description(
+                        self.getMarkdownParagraph(node.parent), parts[0], parts[2]
+                    )
+                else:
+                    self.set_component_description(
+                        self.getMarkdownParagraph(node.parent),
+                        parts[0],
+                    )
             self.props_section_title = title_text
             self.props = self.find_props(json_component)
 
             return
 
-        if title_text == COMPONENT_HUB:
+        elif title_text == COMPONENT_HUB:
             # here comes docs for the component, make sure we have props of the component
             # Needed for e.g. ads1115
             self.props_section_title = f"{self.path[-1]} {title_text}"
-            json_component = find_component(self.app.jschema, self.path[-1])
+            json_component = self.get_component_schema(
+                self.path[-1] + ".CONFIG_SCHEMA"
+            ).get("schema", {})
             if json_component:
                 self.props = self.find_props(json_component)
 
-                json_component["markdownDescription"] = self.getMarkdownParagraph(
-                    node.parent
+                self.set_component_description(
+                    self.getMarkdownParagraph(node.parent), self.path[-1]
                 )
 
             # mark this to retrieve components instead of platforms
             self.is_component_hub = True
 
-        if title_text == CONFIGURATION_VARIABLES:
+        elif is_config_vars_title(title_text):
             if not self.props and self.multi_component is None:
                 raise ValueError(
-                    f'Found a "{CONFIGURATION_VARIABLES}": title after {self.previous_title_text}. Unknown object.'
+                    f'Found a "{title_text}": title after {self.previous_title_text}. Unknown object.'
                 )
 
-        if title_text == "Over SPI" or title_text == "Over I²C":
+        elif title_text == "Over SPI" or title_text == "Over I²C":
             suffix = "_spi" if "SPI" in title_text else "_i2c"
 
             # these could be platform components, like the display's ssd1306
@@ -365,7 +444,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
             if self.platform is not None and not self.is_component_hub:
                 json_platform_component = find_platform_component(
-                    self.app.jschema, self.platform, component
+                    self.app, self.platform, component
                 )
                 if not json_platform_component:
                     raise ValueError(
@@ -374,12 +453,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.props = self.find_props(json_platform_component)
 
                 # Document first paragraph is description of this thing
-                json_platform_component[
-                    "markdownDescription"
-                ] = self.getMarkdownParagraph(node.parent)
+                json_platform_component["docs"] = self.getMarkdownParagraph(node.parent)
 
             else:
-                json_component = find_component(self.app.jschema, component)
+                json_component = self.get_component_schema(
+                    component + ".CONFIG_SCHEMA"
+                ).get("schema", {})
                 if not json_component:
                     raise ValueError(
                         f"Cannot find component '{component}' after found title: '{title_text}'."
@@ -387,12 +466,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.props = self.find_props(json_component)
 
                 # Document first paragraph is description of this thing
-                json_component["markdownDescription"] = self.getMarkdownParagraph(
-                    node.parent
+                self.set_component_description(
+                    self.getMarkdownParagraph(node.parent), component
                 )
 
         # Title is description of platform component, those ends with Sensor, Binary Sensor, Cover, etc.
-        if (
+        elif (
             len(
                 list(
                     filter(
@@ -405,26 +484,45 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             if title_text in PLATFORMS_TITLES:
                 # this omits the name of the component, but we know the platform
                 platform_name = PLATFORMS_TITLES[title_text]
-                component_name = self.path[-1]
-                self.props_section_title = self.path[-1] + " " + title_text
+                if self.path[-1] == "index":
+                    component_name = self.path[-2]
+                else:
+                    component_name = self.path[-1]
+                self.props_section_title = component_name + " " + title_text
             else:
-                # title first word is the component name
-                component_name = title_text.split(" ")[0]
-                # and the rest is the platform
-                platform_name = PLATFORMS_TITLES.get(
-                    title_text[len(component_name) + 1 :]
-                )
+                # # title first word is the component name
+                # component_name = title_text.split(" ")[0]
+                # # and the rest is the platform
+                # platform_name = PLATFORMS_TITLES.get(
+                #     title_text[len(component_name) + 1 :]
+                # )
+                # if not platform_name:
+                #     # Some general title which does not locate a component directly
+                #     return
+                # self.props_section_title = title_text
+
+                for t in PLATFORMS_TITLES:
+                    if title_text.endswith(t):
+                        component_name = title_text[
+                            0 : len(title_text) - len(t) - 1
+                        ].replace(" ", "_")
+                        platform_name = PLATFORMS_TITLES[t]
+
                 if not platform_name:
                     # Some general title which does not locate a component directly
                     return
                 self.props_section_title = title_text
-            c = find_platform_component(
-                self.app.jschema, platform_name, component_name.lower()
-            )
+                if not is_component_file(self.app, component_name):
+                    return
+
+            c = find_platform_component(self.app, platform_name, component_name.lower())
             if c:
                 self.json_platform_component = c
-
-                c["markdownDescription"] = self.getMarkdownParagraph(node.parent)
+                self.set_component_description(
+                    self.getMarkdownParagraph(node.parent),
+                    component_name,
+                    platform_name,
+                )
 
             # Now fill props for the platform element
             try:
@@ -432,34 +530,50 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             except KeyError:
                 raise ValueError("Cannot find platform props")
 
-        if title_text.endswith("Component") or title_text.endswith("Bus"):
+        elif title_text.endswith("Component") or title_text.endswith("Bus"):
             # if len(path) == 3 and path[2] == 'index':
             #     # skip platforms index, e.g. sensors/index
             #     continue
             split_text = title_text.split(" ")
             self.props_section_title = title_text
-            if len(split_text) == 2:
-                # some components are several components in a single platform doc
-                # e.g. ttp229 binary_sensor has two different named components.
-                component_name = split_text[0].lower().replace(".", "")
-                if component_name.lower() == self.platform:
-                    return
-                c = find_component(self.app.jschema, component_name)
-                if c:
-                    self.json_component = c
-                    try:
-                        self.props = self.find_props(self.json_component)
-                        self.multi_component = None
-                    except KeyError:
-                        raise ValueError(
-                            "Cannot find props for component " + component_name
-                        )
-                    return
-                c = find_platform_component(
-                    self.app.jschema, self.path[1], component_name
-                )
-                if c:
-                    self.json_platform_component = c
+
+            # some components are several components in a single platform doc
+            # e.g. ttp229 binary_sensor has two different named components.
+            component_name = (
+                "_".join(split_text[:-1]).lower().replace(".", "").replace("i²c", "i2c")
+            )
+
+            if component_name != self.platform and is_component_file(
+                self.app, component_name
+            ):
+                f = get_component_file(self.app, component_name)
+
+                # Document first paragraph is description of this thing
+                description = self.getMarkdownParagraph(node.parent)
+
+                if component_name in f:
+                    self.set_component_description(description, component_name)
+
+                    c = f[component_name]
+                    if c:
+                        self.json_component = c["schemas"]["CONFIG_SCHEMA"]
+                        try:
+                            self.props = self.find_props(self.json_component)
+                            self.multi_component = None
+                        except KeyError:
+                            raise ValueError(
+                                "Cannot find props for component " + component_name
+                            )
+                        return
+
+                # component which are platforms in doc, used by: stepper and canbus, lcd_pcf8574
+                elif f"{component_name}.{self.path[1]}" in f:
+                    self.set_component_description(
+                        description, component_name, self.path[1]
+                    )
+                    self.json_platform_component = f[
+                        f"{component_name}.{self.path[1]}"
+                    ]["schemas"]["CONFIG_SCHEMA"]
                     try:
                         self.props = self.find_props(self.json_platform_component)
 
@@ -469,7 +583,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                         )
                     return
 
-        if title_text.endswith("Trigger"):
+        elif title_text.endswith("Trigger"):
             # Document first paragraph is description of this thing
             description = self.getMarkdownParagraph(node.parent)
             split_text = title_text.split(" ")
@@ -477,29 +591,26 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 return
             key = split_text[0]
 
-            # handles Time / on_time
-            c = self.json_base_config or self.json_component
-            if c:
-                trigger_schema = self.find_props(c).get(key)
-                if trigger_schema is not None:
-                    self.props = self.find_props(trigger_schema)
+            if (
+                not self.props or not self.props.typed
+            ):  # props are right for typed components so far
+                c = self.json_component
+                if c:
+                    trigger_schema = self.find_props(c).get(key)
+                    if trigger_schema is not None:
+                        self.props = self.find_props(trigger_schema)
             self.props_section_title = title_text
 
-        if title_text == PIN_CONFIGURATION_VARIABLES:
-            self.multi_component = []
-            if self.app.jschema["definitions"].get(f"PIN.INPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.INPUT_{self.path[-1]}")
-            if self.app.jschema["definitions"].get(f"PIN.OUTPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.OUTPUT_{self.path[-1]}")
+        elif title_text == PIN_CONFIGURATION_VARIABLES:
+            self.component = self.find_component(self.path[-1] + ".pin")
+            self.props = self.find_props(self.component)
             self.accept_props = True
-            self.filled_props = False
-            self.props = None
-            if len(self.multi_component) == 0:
+            if not self.component:
                 raise ValueError(
                     f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
                 )
 
-        if title_text.endswith("Action") or title_text.endswith("Condition"):
+        elif title_text.endswith("Action") or title_text.endswith("Condition"):
             # Document first paragraph is description of this thing
             description = self.getMarkdownParagraph(node.parent)
             split_text = title_text.split(" ")
@@ -507,16 +618,24 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 return
             key = split_text[0]
 
-            if self.props:
-                ref = self.props.get(key)
-                if ref:
-                    ref = self.get_ref(ref)
-                    if ref:
-                        self.props = self.find_props(ref)
-                        return
-
-            registry_name = f"automation.{split_text[1].upper()}_REGISTRY"
-            self.find_registry_prop(registry_name, key, description)
+            component_parts = split_text[0].split(".")
+            if len(component_parts) == 3:
+                cv = get_component_file(self.app, component_parts[1])[
+                    component_parts[1] + "." + component_parts[0]
+                ][split_text[1].lower()][component_parts[2]]
+                if cv is not None:
+                    cv["docs"] = description
+                    self.props = self.find_props(cv.get("schema", {}))
+            elif len(component_parts) == 2:
+                registry_name = ".".join(
+                    [component_parts[0], "registry", split_text[1].lower()]
+                )
+                key = component_parts[1]
+                self.find_registry_prop(registry_name, key, description)
+            else:
+                registry_name = f"core.registry.{split_text[1].lower()}"
+                # f"automation.{split_text[1].upper()}_REGISTRY"
+                self.find_registry_prop(registry_name, key, description)
 
         if self.section_level == 3 and self.find_registry:
             name = title_text
@@ -529,31 +648,37 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.find_registry_prop(self.find_registry, key, description)
             self.props_section_title = title_text
 
-        if title_text == PIN_CONFIGURATION_VARIABLES:
-            self.multi_component = []
-            if self.app.jschema["definitions"].get(f"PIN.INPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.INPUT_{self.path[-1]}")
-            if self.app.jschema["definitions"].get(f"PIN.OUTPUT_{self.path[-1]}"):
-                self.multi_component.append(f"definitions/PIN.OUTPUT_{self.path[-1]}")
-            self.accept_props = True
-            self.filled_props = False
-            self.props = None
-            if len(self.multi_component) == 0:
-                raise ValueError(
-                    f'Found a "{PIN_CONFIGURATION_VARIABLES}" entry but could not find pin schema'
-                )
+    def get_component_schema(self, name):
+        parts = name.split(".")
+        schema_file = get_component_file(self.app, parts[0])
+        if parts[1] == "registry":
+            schema = schema_file.get(parts[0], {}).get(parts[2], {})
+        elif len(parts) == 3:
+            schema = (
+                schema_file.get(f"{parts[0]}.{parts[1]}")
+                .get("schemas", {})
+                .get(parts[2], {})
+            )
+        else:
+            schema = schema_file.get(parts[0], {}).get("schemas", {}).get(parts[1], {})
+        return schema
+
+    def get_component_config_var(self, name, key):
+        c = self.get_component_schema(name)
+        if key in c:
+            return c[key]
+        if "config_vars" not in c:
+            return c
+        if key in c["config_vars"]:
+            return c["config_vars"][c]
 
     def find_registry_prop(self, registry_name, key, description):
-        registry = self.app.jschema["definitions"][registry_name]["anyOf"]
-        for item in registry:
-            if "$ref" in item:
-                item = self.get_ref(item)
-            if key in item["properties"]:
-                item["properties"][key]["markdownDescription"] = description
-                self.props = self.find_props(item["properties"][key])
-
-                return
-        raise ValueError(f"Cannot find {registry_name} {key}")
+        c = self.get_component_schema(registry_name)
+        if key in c:
+            cv = c[key]
+            if cv is not None:
+                cv["docs"] = description
+                self.props = self.find_props(cv.get("schema", {}))
 
     def depart_title(self, node):
         if self.filled_props:
@@ -581,12 +706,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
     def visit_Text(self, node):
         if self.multi_component:
             return
-        if node.astext() == CONFIGURATION_VARIABLES:
+        if is_config_vars_title(node.astext()):
             if not self.props:
                 self.find_props_previous_title()
             if not self.props:
                 raise ValueError(
-                    f'Found a "{CONFIGURATION_VARIABLES}" entry for unknown object after {self.previous_title_text}'
+                    f'Found a "{node.astext()}" entry for unknown object after {self.previous_title_text}'
                 )
             self.accept_props = True
 
@@ -596,13 +721,16 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         pass
 
     def visit_paragraph(self, node):
-        if node.astext() == CONFIGURATION_VARIABLES:
+        if is_config_vars_title(node.astext()):
             if not self.props and not self.multi_component:
                 self.find_props_previous_title()
             if not self.props and not self.multi_component:
-                raise ValueError(
-                    f'Found a "{CONFIGURATION_VARIABLES}" entry for unknown object after {self.previous_title_text}'
+                logger.info(
+                    f"In {self.docname} / {self.previous_title_text} found a {node.astext()} title and there are no props."
                 )
+                # raise ValueError(
+                #     f'Found a "{node.astext()}" entry for unknown object after {self.previous_title_text}'
+                # )
             self.accept_props = True
 
         raise nodes.SkipChildren
@@ -611,89 +739,51 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         pass
 
     def visit_bullet_list(self, node):
-        self.props_level = self.props_level + 1
-        if self.current_prop and self.props and self.props_level > 1:
+        self.bullet_list_level = self.bullet_list_level + 1
+        if (
+            self.current_prop
+            and (self.props or self.multi_component)
+            and self.bullet_list_level > 1
+        ):
 
-            # if '$ref' in self.props[self.current_prop]:
-            #     if self.props[self.current_prop]['$ref'].endswith('_SCHEMA'):
-            # nowhere put this props info...
-            # raise nodes.SkipChildren
-
-            # this can be list of values, list of subproperties
-
-            # deep configs
-            # e.g. wifi manual_ip, could also be a enum list
-
-            # if this prop has a reference
-            prop = self.props[self.current_prop]
-            if isinstance(prop, dict):
-                if "$ref" in prop:
-                    ref = self.get_ref(prop)
-                    self.prop_stack.append(self.props)
-                    self.props = self.find_props(ref)
-                    self.accept_props = True
-                elif "properties" in prop:
-                    self.prop_stack.append(self.props)
-                    self.props = prop["properties"]
-                elif (
-                    "anyOf" in prop
-                    and len(prop["anyOf"]) > 0
-                    and isinstance(self.get_ref(prop["anyOf"][0]), dict)
-                    and "$ref" in self.get_ref(prop["anyOf"][0])
-                ):
-                    ref = self.get_ref(prop["anyOf"][0])
-                    self.prop_stack.append(self.props)
-                    self.props = self.find_props(ref)
-                else:
-                    # TODO: if the list items are formatted like:
-                    #   - ``value`` <optional description>
-                    #   - ``other value`` <optional description>
-                    # then we could ensure these are enum values (or populate enum values double check.)
-                    # Currently some enum values are also in the **value** format.
-                    if (
-                        # most likely an enum, the values are most likely retrieved from ESPHome validation schema
-                        "enum" in prop
-                        # or custom components has list of sensors/binary sensors, etc.
-                        or (
-                            prop.get("markdownDescription", "").startswith("**list**")
-                            and self.docname.endswith("/custom")
-                        )
-                    ):
-                        raise nodes.SkipChildren
-                    # nowhere put this props info...
-                    # otherwise inner bullet list will be interpreted as property list
-                    logger = logging.getLogger(__name__)
-                    logger.info(
-                        f"In {self.docname} / {self.previous_title_text} property {self.current_prop} a unknown info sub bullet list."
-                    )
-                    raise nodes.SkipChildren
-            else:
-                # nowhere put this props info...
-                # otherwise inner bullet list will be interpreted as property list
-                raise nodes.SkipChildren
+            self.prop_stack.append((self.current_prop, node))
+            self.accept_props = True
+            return
 
         if not self.props and self.multi_component is None:
             raise nodes.SkipChildren
 
     def depart_bullet_list(self, node):
-        self.props_level = self.props_level - 1
+        self.bullet_list_level = self.bullet_list_level - 1
         if len(self.prop_stack) > 0:
-            self.props = self.prop_stack.pop()
-            self.filled_props = True
+            stack_prop, stack_node = self.prop_stack[-1]
+            if stack_node == node:
+                self.prop_stack.pop()
+                self.filled_props = True
+                self.current_prop = stack_prop
 
     def visit_list_item(self, node):
         if self.accept_props and self.props:
             self.filled_props = True
-            try:
-                self.current_prop = self.update_prop(node, self.props)
-            except Exception as e:
-                raise ValueError(f"In '{self.previous_title_text}' {str(e)}")
+            self.current_prop, found = self.update_prop(node, self.props)
+            if self.current_prop and not found:
+                logger.info(
+                    f"In '{self.docname} {self.previous_title_text} Cannot find property {self.current_prop}"
+                )
 
         elif self.multi_component:
             # update prop for each component
+            found_any = False
+            self.current_prop = None
             for c in self.multi_component:
                 props = self.find_props(self.find_component(c))
-                self.current_prop = self.update_prop(node, props)
+                self.current_prop, found = self.update_prop(node, props)
+                if self.current_prop and found:
+                    found_any = True
+            if self.current_prop and not found_any:
+                logger.info(
+                    f"In '{self.docname} {self.previous_title_text} Cannot find property {self.current_prop}"
+                )
             self.filled_props = True
 
     def depart_list_item(self, node):
@@ -713,7 +803,7 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             self.doctree,
         )
         node.walkabout(t)
-        return t.output
+        return t.output.strip("\n")
 
     def getMarkdownParagraph(self, node):
         paragraph = list(node.traverse(nodes.paragraph))[0]
@@ -744,18 +834,69 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.app.config.html_baseurl,
                 self.docname + ".html#" + title.parent["ids"][0],
             )
-            markdown += f"\n\n*See also: [{self.props_section_title}]({url})*"
+            if (
+                self.props_section_title is not None
+                and self.props_section_title.endswith(title.astext())
+            ):
+                markdown += f"\n\n*See also: [{self.props_section_title}]({url})*"
+            else:
+                markdown += f"\n\n*See also: [{self.getMarkdown(title)}]({url})*"
+
         return markdown
 
     def update_prop(self, node, props):
+
         prop_name = None
+
+        for s_prop, n in self.prop_stack:
+            inner = props.get(s_prop)
+            if inner is not None and "schema" in inner:
+                props = self.Props(self, inner["schema"])
+            elif inner is not None and inner.get("type") == "typed":
+                # this is used in external_components
+                props = self.Props(self, inner)
+            elif inner is not None and inner.get("type") == "enum":
+                enum_raw = self.getMarkdown(node)
+                # the regex allow the format to have either a ":" or a " -" as the value / docs separator, value must be in `back ticks`
+                # also description is optional
+                enum_match = re.search(
+                    r"\* `([^`]*)`((:| -) (.*))*", enum_raw, re.IGNORECASE
+                )
+                if enum_match:
+                    enum_value = enum_match.group(1)
+                    enum_docs = enum_match.group(4)
+                    found = False
+                    for name in inner["values"]:
+                        if enum_value.upper().replace(" ", "_") == str(name).upper():
+                            found = True
+                            if enum_docs:
+                                enum_docs = enum_docs.strip()
+                                if "values_docs" not in inner:
+                                    inner["values_docs"] = {name: enum_docs}
+                                else:
+                                    inner["values_docs"][name] = enum_docs
+                                statistics.props_documented += 1
+                                statistics.enums_good += 1
+                    if not found:
+                        logger.info(
+                            f"In '{self.docname} {self.previous_title_text} Property {s_prop} cannot find enum value {enum_value}"
+                        )
+                else:
+                    statistics.enums_bad += 1
+                    logger.info(
+                        f"In '{self.docname} {self.previous_title_text} Property {s_prop} unexpected enum member description format"
+                    )
+
+            else:
+                # nothing to do?
+                return prop_name, False
 
         raw = node.rawsource  # this has the full raw rst code for this property
 
         if not raw.startswith("**"):
             # not bolded, most likely not a property definition,
             # usually texts like 'All properties from...' etc
-            return None
+            return prop_name, False
 
         markdown = self.getMarkdown(node)
 
@@ -764,7 +905,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
         try:
             name_type = markdown[: markdown.index(": ") + 2]
         except ValueError:
-            raise ValueError(f'Property format error. Missing ": " in {raw}')
+            logger.info(
+                f"In '{self.docname} {self.previous_title_text} Property format error. Missing ': ' in {raw}'"
+            )
+            return prop_name, False
 
         # Example properties formats are:
         # **name** (**Required**, string): Long Description...
@@ -793,11 +937,16 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 prop_name = s3.group(1)
                 param_type = None
             else:
-                raise ValueError(f"Invalid property format: {node.rawsource}")
+                logger.info(
+                    f"In '{self.docname} {self.previous_title_text} Invalid property format: {node.rawsource}"
+                )
+                return prop_name, False
 
         k = str(prop_name)
-        jprop = props.get(k)
-        if not jprop:
+
+        config_var = props.get(k)
+
+        if not config_var:
             # Create docs for common properties when descriptions are overridden
             # in the most specific component.
 
@@ -816,10 +965,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 "effects",
                 "gamma_correct",
                 "default_transition_length",
+                "flash_transition_length",
                 "color_correct",
                 # display
                 "lambda",
-                "dither",
                 "pages",
                 "rotation",
                 # spi
@@ -831,126 +980,122 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # climate
                 "receiver_id",
             ]:
-                jprop = props[k] = {}
+                config_var = props[k] = {}
             else:
-                raise ValueError(f"Cannot find property {k}")
+                if self.path[1] == "esphome" and k in [
+                    # deprecated esphome
+                    "platform",
+                    "board",
+                    "arduino_version",
+                    "esp8266_restore_from_flash",
+                ]:
+                    return prop_name, True
+                return prop_name, False
 
         desc = markdown[markdown.index(": ") + 2 :].strip()
         if param_type:
             desc = "**" + param_type + "**: " + desc
 
-        jprop["markdownDescription"] = desc
-        global props_documented
-        props_documented = props_documented + 1
+        config_var["docs"] = desc
 
-        return prop_name
+        statistics.props_documented += 1
 
-    def get_ref(self, node):
-        ref = node.get("$ref")
-        if ref and ref.startswith("#/definitions/"):
-            return self.app.jschema["definitions"][ref[14:]]
+        return prop_name, True
 
     def find_component(self, component_path):
-        path = component_path.split("/")
-        if path[0] not in ("properties", "definitions"):
-            return None
-        json_component = self.app.jschema[path[0]][path[1]]
+        path = component_path.split(".")
+        file_content = get_component_file(self.app, path[0])
 
-        if len(path) > 2:
-            # a property path
-            props = self.find_props(json_component)
-            if props:
-                json_component = props.get(path[2])
-            else:
-                # a platform sub element
-                json_component = find_platform_component(
-                    self.app.jschema, path[1], path[2]
-                )
-        return json_component
+        if path[1] == "platform":
+            path[2] = f"{path[0]}.{path[2]}"
+            path = path[2:]
+
+        component = file_content
+        for p in path:
+            component = component.get(p, {})
+
+        return component
 
     class Props(MutableMapping):
         """Smarter props dict.
 
         Props are mostly a dict, however some constructs have two issues:
         - An update is intended on an element which does not own a property, but it is based
-        on an schema that does have the property, those cases can be handled
-        - An update is done in a typed schema
+        on an schema that does have the property, those cases are handled by examining the extended
+
         """
 
-        def __init__(self, visitor, component):
+        def __init__(self, visitor, component, fail_silently=False):
             self.visitor = visitor
             self.component = component
-            self.store = self._get_props(component)
+            self.store = self._get_props(component, fail_silently)
             self.parent = None
+            self.typed = self.component.get("type") == "typed"
 
-        def _get_props(self, component):
-            # find properties
-            if "then" in component:
-                component = component["then"]
-            props = component.get("properties")
-            ref = None
-            if not props:
-                arr = component.get("anyOf", component.get("allOf"))
-                if not arr:
-                    if "$ref" in component:
-                        return self._get_props(self.visitor.get_ref(component))
+        def _get_props(self, component, fail_silently):
+            # component is a 'schema' dict which has 'config_vars' and 'extends'
+            if not (
+                "config_vars" in component
+                or "extends" in component
+                or len(component) == 0
+                or component.get("type") == "typed"
+            ):
+                if fail_silently:
                     return None
-                for x in arr:
-                    props = x.get("properties")
-                    if not ref:
-                        ref = self.visitor.get_ref(x)
-                    if props:
-                        break
-            if not props and ref:
-                props = self._get_props(ref)
+                raise ValueError("Unexpected component data to get props")
+
+            props = component.get("config_vars")
             return props
+
+        def _find_extended(self, component, key):
+            for extended in component.get("extends", []):
+                schema = self.visitor.get_component_schema(extended).get("schema", {})
+                for k, cv in schema.get("config_vars", {}).items():
+                    if k == key:
+                        return SetObservable(
+                            cv,
+                            setitem_callback=self._set_extended,
+                            inner_key=key,
+                            original_dict=schema.get("config_vars"),
+                        )
+                ex1 = self._find_extended(schema, key)
+                if ex1:
+                    return ex1
+
+        def _set_extended(self, inner_key, original_dict, key, value):
+            original_dict[inner_key][key] = value
+
+        def _iter_extended(self, component):
+            for extended in component.get("extends", []):
+                schema = self.visitor.get_component_schema(extended).get("schema", {})
+                for s in self._iter_extended(schema):
+                    yield s
+                yield schema
 
         def __getitem__(self, key):
             if self.store and key in self.store:
                 return self.store[key]
 
-            if "then" in self.component:
-                # check if it's typed
-                schemas = self.component["then"].get("allOf")
-                if (
-                    isinstance(schemas, list)
-                    and "properties" in schemas[0]
-                    and "type" in schemas[0]["properties"]
-                ):
-                    for s in schemas:
-                        if "then" in s:
-                            props = self._get_props(s.get("then"))
-                            if key in props:
-                                return SetObservable(
-                                    props[key],
-                                    setitem_callback=self._update_typed,
-                                    inner_key=key,
-                                )
-                    return  # key not found
+            extended = self._find_extended(self.component, key)
+            if extended is not None:
+                return extended
 
-                # check if it's a registry and need to reset store
-                # e.g. remote_receiver binary sensor
-                if "$ref" in self.component["then"]:
-                    ref = self.visitor.get_ref(self.component["then"])
-                    prop_set = ref.get("anyOf")
-                    if isinstance(prop_set, list):
-                        for k in prop_set:
-                            if "$ref" in k:
-                                k = self.visitor.get_ref(k)
-                            if key in k["properties"]:
-                                self.store = k["properties"]
-                                return self.store[key]
+            if self.component.get("type") == "typed":
+                return SetObservable(
+                    {key: {"type": "string"}},
+                    setitem_callback=self._set_typed,
+                    inner_key=key,
+                    original_dict={},
+                )
 
-        def _update_typed(self, inner_key, key, value):
-            # Make sure we update all types
-            if "then" in self.component:
-                schemas = self.component["then"].get("allOf")
-                assert "type" in schemas[0].get("properties")
-                for s in schemas:
-                    if "then" in s:
-                        props = self._get_props(s.get("then"))
-                        if inner_key in props:
-                            props[inner_key][key] = value
+        def _set_typed(self, inner_key, original_dict, key, value):
+            if inner_key == self.component.get("typed_key"):
+                self.component[key] = value
+            else:
+                for tk, tv in self.component["types"].items():
+                    for cv_k, cv_v in tv["config_vars"].items():
+                        if cv_k == inner_key:
+                            cv_v[key] = value
 
         def __setitem__(self, key, value):
             self.store[key] = value
@@ -962,10 +1107,28 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             return iter(self.store)
 
         def __len__(self):
-            return len(self.store) if self.store else 0
+            len_extended = 0
 
-    def find_props(self, component):
-        props = self.Props(self, component)
+            if self.component.get("type"):
+                types = self.component.get("types")
+                for t, tv in types.items():
+                    for s in self._iter_extended(types.get(t, {})):
+                        len_extended += len(s.get("config_vars", {}))
+                    len_extended += len(tv.get("config_vars", {}))
+                return len_extended
+
+            for s in self._iter_extended(self.component):
+                len_extended += len(s.get("config_vars", {}))
+            return len_extended + (len(self.store) if self.store else 0)
+
+    def find_props(self, component, fail_silently=False):
+        if component.get("type") in ["trigger", "schema"]:
+            # can have schema
+            if "schema" not in component:
+                return None
+            component = component.get("schema")
+
+        props = self.Props(self, component, fail_silently)
 
         if props:
             self.filled_props = False
@@ -983,17 +1146,26 @@ def handle_component(app, doctree, docname):
         return
 
     v = SchemaGeneratorVisitor(app, doctree, docname)
-    doctree.walkabout(v)
+    try:
+        doctree.walkabout(v)
+    except Exception as e:
+        err_str = f"In {docname}.rst: {str(e)}"
+        logger.warning(err_str)
+        # print stack
+        # traceback.print_exc()
 
 
 def build_finished(app, exception):
     # TODO: create report of missing descriptions
 
-    f = open(SCHEMA_PATH, "w")
-    f.write(json.dumps(app.jschema))
+    for fname, contents in app.files.items():
+        f = open(SCHEMA_PATH + fname + ".json", "w", newline="\n")
+        if JSON_DUMP_PRETTY:
+            f.write(json.dumps(contents, indent=2))
+        else:
+            f.write(json.dumps(contents, separators=(",", ":")))
 
-    str = f"Documented: {props_documented}"
-    logger = logging.getLogger(__name__)
+    str = f"Documented: {statistics.props_documented} Enums: {statistics.enums_good}/{statistics.enums_bad}"
     logger.info(str)
 
 
@@ -1004,12 +1176,35 @@ class SetObservable(dict):
     MyDict instance was created
     """
 
-    def __init__(self, value, setitem_callback=None, inner_key=None, *args, **kwargs):
+    def __init__(
+        self,
+        value,
+        setitem_callback=None,
+        inner_key=None,
+        original_dict=None,
+        *args,
+        **kwargs,
+    ):
         super(SetObservable, self).__init__(value, *args, **kwargs)
         self._setitem_callback = setitem_callback
         self.inner_key = inner_key
+        self.original_dict = original_dict
 
     def __setitem__(self, key, value):
         if self._setitem_callback:
-            self._setitem_callback(self.inner_key, key, value)
+            self._setitem_callback(self.inner_key, self.original_dict, key, value)
         super(SetObservable, self).__setitem__(key, value)
+
+
+def is_component_file(app: SchemaGeneratorVisitor, component):
+    if component == "core" or component == "automation":
+        component = "esphome"
+    return exists(SCHEMA_PATH + component + ".json")
+
+
+def get_component_file(app: SchemaGeneratorVisitor, component):
+    if component == "core" or component == "automation":
+        component = "esphome"
+    if component not in app.files:
+        app.files[component] = read_file(component)
+    return app.files[component]

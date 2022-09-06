@@ -5,7 +5,7 @@ I²C Bus
 
 .. seo::
     :description: Instructions for setting up the I²C bus to communicate with 2-wire devices in ESPHome
-    :image: i2c.png
+    :image: i2c.svg
     :keywords: i2c, iic, bus
 
 This component sets up the I²C bus for your ESP32 or ESP8266. In order for these components
@@ -36,12 +36,12 @@ Configuration variables:
 - **scan** (*Optional*, boolean): If ESPHome should do a search of the I²C address space on startup.
   Defaults to ``true``.
 - **frequency** (*Optional*, float): Set the frequency the I²C bus should operate on.
-  Defaults to ``50kHz``. Values are ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
+  Defaults to ``50kHz``. Values are ``10kHz``, ``50kHz``, ``100kHz``, ``200kHz``, ... ``800kHz``
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this I²C bus if you need multiple I²C buses.
 
 .. note::
 
-    If the device can support multiple I²C buses (ESP32 has 2) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
+    If the device can support multiple I²C buses (ESP32 has 2, ESP8266 does not support more than one) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
 
     .. code-block:: yaml
 
