@@ -60,7 +60,7 @@ Configuration variables:
 - **temperature** (*Optional*, :ref:`<config-sensor>`): Set the onboard temperature sensor configuration.
   Can't be used together with ``temperature_sensor``.
 - **temperature_compensation** (*Optional*, float): Set the temperature compensation for the EC
-  sensor. Defaults to ``25.0``.
+  sensor. Defaults to ``21.0``.
 - **temperature_coefficient** (*Optional*, float): Set the temperature coefficient for the EC
   sensor. Defaults to ``0.019``.
 - All other options from :ref:`Sensor <config-sensor>`.
