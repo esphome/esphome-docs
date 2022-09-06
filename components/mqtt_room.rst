@@ -3,6 +3,7 @@ MQTT Room Component
 
 .. seo::
     :description: introduction for setting up a MQTT Room component for BLE trackers.
+    :image: room_mqtt.svg
     :keywords: ESP32 BLE MQTT
 
 The MQTT Room Component uses the :doc:`/components/esp32_ble_tracker` and :doc:`/components/sensor/ble_rssi` to track BLE devices and publish that information using MQTT to Home Assistant.
