@@ -28,7 +28,7 @@ be on the same board or external sensor linked to the uFire EC configuration.
             - ufire_ec.calibrate_probe:
               id: ufire_ec_board
               solution: !lambda "return solution;"
-              temperature: !lambda "return id(temperature_sensor).state;"
+              temperature: !lambda "return id(temperature_liquit).state;"
         - service: ec_reset
           then:
             - ufire_ec.reset:
@@ -40,7 +40,7 @@ be on the same board or external sensor linked to the uFire EC configuration.
       - platform: ufire_ec  
         id: ufire_ec_board
         temperature:
-          id: temperature
+          id: temperature_liquit
           name: Temperature
         ec:
           name: EC
