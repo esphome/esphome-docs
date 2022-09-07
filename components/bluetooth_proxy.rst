@@ -14,6 +14,10 @@ If you're looking to create a device that is just a Bluetooth Proxy, see our `Bl
 
 The Bluetooth proxy depends on :doc:`esp32_ble_tracker` so make sure to add that to your configuration.
 
+.. note::
+
+    Bluetooth proxy requires Home Assistant 2022.9 or later.
+
 .. code-block::
 
     bluetooth_proxy:
