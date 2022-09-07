@@ -192,7 +192,7 @@ See Also
 - :doc:`text_sensor/ble_scanner`
 - :doc:`sensor/ble_rssi`
 - :doc:`sensor/b_parasite`
-- :doc:`xiaomi_ble`
+- :doc:`sensor/xiaomi_ble`
 - :doc:`sensor/xiaomi_miscale`
 - :doc:`sensor/inkbird_ibsth1_mini`
 - :doc:`sensor/mopeka_pro_check`
