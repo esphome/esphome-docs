@@ -225,6 +225,7 @@ Bluetooth Low Energy (BLE)
     Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
+    Alpha3, components/pump/alpha3, alpha3.jpg
 
 
 Digital Signals
