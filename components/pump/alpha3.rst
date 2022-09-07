@@ -1,5 +1,5 @@
 Grundfos Alpha3
-======
+===============
 
 .. seo::
     :description: Instructions for monitoring a Grundfos Alpha3 Model B circulator pump.
@@ -20,7 +20,7 @@ address of your Alpha3 pump, or you can find the list of paired MAC addresses in
 the list of paried Bluetooth devices on your smartphone after using the GO Remote app.
 
 Configuration entry
--------------
+-------------------
 
 .. code-block:: yaml
 
