@@ -23,7 +23,7 @@ Configuration entry
 -------------
 
 .. code-block:: yaml
-    
+
     # Example Configuration
     esp32_ble_tracker:
     
