@@ -19,22 +19,6 @@ be on the same board or external sensor linked to the uFire EC configuration.
 .. code-block:: yaml
 
     # Example configuration entry
-    api:
-      services:
-        - service: ec_calibrate_probe
-          variables:
-          solution: float
-          then:
-            - ufire_ec.calibrate_probe:
-              id: ufire_ec_board
-              solution: !lambda "return solution;"
-              temperature: !lambda "return id(temperature_liquit).state;"
-        - service: ec_reset
-          then:
-            - ufire_ec.reset:
-              id: ufire_ec_board
-
-
     sensor:
       - platform: ufire_ec  
         id: ufire_ec_board
@@ -63,6 +47,25 @@ Configuration variables:
 - **temperature_coefficient** (*Optional*, float): Set the temperature coefficient for the EC
   sensor. Defaults to ``0.019``.
 - All other options from :ref:`Sensor <config-sensor>`.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    api:
+      services:
+        - service: ec_calibrate_probe
+          variables:
+          solution: float
+          then:
+            - ufire_ec.calibrate_probe:
+              id: ufire_ec_board
+              solution: !lambda "return solution;"
+              temperature: !lambda "return id(temperature_liquit).state;"
+        - service: ec_reset
+          then:
+            - ufire_ec.reset:
+              id: ufire_ec_board
+
 
 lambda calls
 ------------
