@@ -58,7 +58,7 @@ of the calibration solution.
 
 .. code-block:: yaml
 
-  # Example configuration entry
+    # Example configuration entry
     sensor:
       - platform: ufire_ec
         id: ufire_ec_board
@@ -86,7 +86,7 @@ Reset the current calibration on the sensor.
 
 .. code-block:: yaml
 
-  # Example configuration entry
+    # Example configuration entry
     sensor:
       - platform: ufire_ec
         id: ufire_ec_board
