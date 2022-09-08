@@ -48,33 +48,58 @@ Configuration variables:
   sensor. Defaults to ``0.019``.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. _sensor-ufire_ec-calibrate_probe_action:
+
+``sensor.ufire_ec.calibrate_probe`` Action
+------------------------------------------
+
+The EC probe have to be calibrated. For this you need know the EC reference value and temperature
+of the calibration solution.
+
 .. code-block:: yaml
 
-    # Example configuration entry
-    api:
-      services:
-        - service: ec_calibrate_probe
-          variables:
-          solution: float
-          then:
-            - ufire_ec.calibrate_probe:
-              id: ufire_ec_board
-              solution: !lambda "return solution;"
-              temperature: !lambda "return id(temperature_liquit).state;"
-        - service: ec_reset
-          then:
-            - ufire_ec.reset:
-              id: ufire_ec_board
+  # Example configuration entry
+    sensor:
+      - platform: ufire_ec
+        id: ufire_ec_board
+        # ...
 
+    # in some trigger
+    on_...:
+      - sensor.ufire_ec_board.calibrate_probe:
+          id: ufire_ec_board
+          solution: 0.146
+          temperature: !lambda "return id(temperature_liquit).state;"
 
-lambda calls
-------------
+Configuration options:
 
-From :ref:`lambdas <config-lambda>`, you can calibrate the EC sensor.
+- **id** (**Required**, :ref:`config-id`): The ID of the ufire EC sensor.
+- **solution** (**Required**, float): Solution reference EC value.
+- **temperature** (**Required**, float): Solution current temperature.
 
-- ``calibrate_probe(solution float, temperature float)``: Calibrate the EC sensor.
-- ``reset()``: Reset the calibrate the EC sensor.
+.. _sensor-ufire_ec-reset:
 
+``sensor.ufire_ec.reset`` Action
+------------------------------------------
+
+Reset the current calibration on the sensor.
+
+.. code-block:: yaml
+
+  # Example configuration entry
+    sensor:
+      - platform: ufire_ec
+        id: ufire_ec_board
+        # ...
+
+    # in some trigger
+    on_...:
+      - sensor.ufire_ec_board.reset:
+          id: ufire_ec_board
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the ufire EC sensor.
 
 See Also
 --------
