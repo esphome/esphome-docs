@@ -128,7 +128,7 @@ This development works only with the meters that work with the WISEN app on andr
         - timing:
             - ON for at least 1s
           then:
-            - dxs238xw.meterStateToogle
+            - dxs238xw.meter_state_toggle
           invalid_cooldown: 0ms
 
       - platform: dxs238xw
