@@ -40,7 +40,7 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Midea                                 | ``midea_ir``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
-| Mitsubishi                            | ``mitsubishi``      |                      |
+| :ref:`Mitsubishi<mitsubishi>`         | ``mitsubishi``      | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | TCL112, Fuego                         | ``tcl112``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
@@ -247,6 +247,42 @@ Known working with:
 
 - Delonghi PAC WE 120HP
 
+.. _mitsubishi:
+
+``mitsubishi`` Climate
+------------------------
+
+Additonal configurations available for this platform.
+
+Configuration variables:
+
+- **set_fan_speeds** (*Optional*): Used to set non-default fan speeds. When not used default is **fan_low** = ``fan1``, **fan_medium** = ``fan2``, **fan_hi** = ``fan3``
+
+  - **fan_low** (*Required*, string)
+  - **fan_medium** (*Required*, string)
+  - **fan_hi** (*Required*, string)
+  - Options are ``fan1``, ``fan2``, ``fan3``, ``fan4``, ``fan5``
+- **horizontal_default** (*Optional*, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Default is ``middle``. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``
+- **vertical_default** (*Optional*, string): What to default to when the AC unit's vertical direction is *not* set to swing. Default is ``middle``. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
+
+.. note::
+
+    - Climate Component modes available are ``HEAT``, ``COOL``, ``HEAT_COOL`` and ``DRY``
+
+    - This climate IR component is also known to work with some Stiebel Eltron Units. It has been tested with Stiebel Eltron IR-Remote ``KM07F`` and unit ``ACW 25 i``
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: mitsubishi
+        name: "Heatpump"
+        set_fan_speeds:
+          fan_low: "fan2"
+          fan_medium: "fan3"
+          fan_hi: "fan4"
+        horizontal_default: "left"
+        vertical_default: "down"
 
 .. _toshiba:
 
@@ -278,7 +314,7 @@ Configuration variables:
       ``update_interval`` must be less than seven minutes or the ``RAC-PT1411HWRU`` will revert to using its own
       internal temperature sensor; a value of 30 seconds seems to work well. See :doc:`/components/sensor/index`
       for more information.
-    
+
     - This climate IR component is also known to work with Midea model MAP14HS1TBL and may work with other similar
       models, as well. (Midea acquired Toshiba's product line and re-branded it.)
 
