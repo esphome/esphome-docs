@@ -361,6 +361,7 @@ Miscellaneous
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
+    uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, (EC)
 
 
 Motion
