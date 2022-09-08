@@ -34,7 +34,6 @@ be on the same board or external sensor linked to the uFire EC configuration.
             - ufire_ec.reset:
               id: ufire_ec_board
 
-    i2c:
 
     sensor:
       - platform: ufire_ec  
