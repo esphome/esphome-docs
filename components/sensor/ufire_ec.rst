@@ -80,7 +80,7 @@ Configuration options:
 .. _sensor-ufire_ec-reset:
 
 ``sensor.ufire_ec.reset`` Action
-------------------------------------------
+--------------------------------
 
 Reset the current calibration on the sensor.
 
