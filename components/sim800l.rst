@@ -9,7 +9,7 @@ Sim800L Component
 Component/Hub
 -------------
 
-The ``SIM800L`` Component provides the ability to dial, send and receive SMS text messages. The device must be
+The ``SIM800L`` Component provides the ability to dial, send/receive SMS text messages and send/receive USSD codes. The device must be
 connected via a :doc:`UART bus </components/uart>` supporting both receiving and transmitting line.
 The UART bus must be configured at the same speed of the module which is by default 9600bps.
 The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
@@ -42,6 +42,25 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
         - logger.log:
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
+      on_incoming_call:
+        - logger.log:
+            format: "Incoming call from '%s'"
+            args: ["caller_id.c_str()"]
+        - lambda: |-
+            id(caller_id_text_sensor).publish_state(caller_id);
+        - sim800l.disconnect
+        - homeassistant.event:
+            event: esphome.incoming_call_event
+            data:
+              payload: !lambda 'return id(caller_id_text_sensor).state;'
+        - delay: 5s
+      on_ussd_received:
+        - logger.log:
+            format: "Received ussd msg: '%s'"
+            args: ["ussd.c_str()"]
+        - lambda: |-
+            id(ussd_message).publish_state(ussd);
+  
 
     sensor:
       - platform: sim800l
@@ -52,6 +71,20 @@ The required connection wires are ``+VCC``, ``GND``, ``RX`` and ``TX``.
       - platform: sim800l
         registered:
           name: "Sim800L Registered"
+   
+    text_sensor:
+      - platform: template
+        id: caller_id_text_sensor
+        name: "Caller ID"
+      - platform: template
+        id: sms_sender
+        name: "Sms Sender"
+      - platform: template
+        id: sms_message
+        name: "Sms Message"
+      - platform: template
+        id: ussd_message
+        name: "Ussd Code"
 
     logger:
       baud_rate: 0 # disable uart logger on esp 8266
@@ -89,7 +122,7 @@ Configuration variables:
 .. _sim800l-on_sms_received:
 
 ``on_sms_received`` Trigger
----------------------------
+-----------------------------
 
 With this configuration option you can write complex automations whenever an SMS message
 is received. To use the message content, use a :ref:`lambda <config-lambda>`
@@ -102,6 +135,61 @@ under the variables named ``message`` and ``sender`` respectively.
       - lambda: |-
           id(sms_sender).publish_state(sender);
           id(sms_message).publish_state(message);
+
+
+``on_incoming_call`` Trigger
+------------------------------
+
+With this configuration option you can write complex automations whenever an incoming call
+is received. To use the call content, use a :ref:`lambda <config-lambda>`
+template, the incoming call caller phone number is available inside that lambda
+under the variables named ``caller_id``.
+
+.. code-block:: yaml
+
+    on_incoming_call:
+    - logger.log:
+        format: "Incoming call from '%s'"
+        args: ["caller_id.c_str()"]
+    - lambda: |-
+        id(caller_id_text_sensor).publish_state(caller_id);
+    - sim800l.disconnect
+    - homeassistant.event:
+        event: esphome.incoming_call_event
+        data:
+          payload: !lambda 'return id(caller_id_text_sensor).state;'
+    - delay: 5s
+
+
+``on_call_connected`` Trigger
+------------------------------
+
+With this configuration option you can write complex automations whenever the current incoming call
+is connected. 
+
+.. code-block:: yaml
+
+    on_call_connected:
+      
+``on_call_disconnected`` Trigger
+---------------------------------
+
+With this configuration option you can write complex automations whenever the current incoming call
+is disconnected. 
+
+.. code-block:: yaml
+
+    on_call_disconnected:
+
+``on_ussd_received`` Trigger
+---------------------------------
+
+With this configuration option you can write complex automations whenever the ussd code from network has been received. 
+
+.. code-block:: yaml
+
+    on_ussd_received:
+
 
 
 .. _sim800l-send_sms_action:
@@ -168,6 +256,69 @@ Configuration options:
     .. code-block:: cpp
 
         id(sim800l1).dial("+15551234567");
+    
+``sim800l.connect`` Action
+------------------------------
+
+Connect current call imediately.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sim800l.connect
+
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(sim800l1).connect();
+
+``sim800l.disconnect`` Action
+---------------------------------
+
+Disconnect current call imediately.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sim800l.disconnect
+
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(sim800l1).disconnect();
+
+
+``sim800l.send_ussd`` Action
+---------------------------------
+
+Send ussd code to network imediately.
+
+.. code-block:: yaml
+
+    on_...:
+      then:
+        - sim800l.send_ussd
+
+
+.. note::
+
+    This action can also be written in :ref:`lambdas <config-lambda>`:
+
+    .. code-block:: cpp
+
+        id(sim800l1).send_ussd();
+
+
 
 
 Getting started with Home Assistant
@@ -194,14 +345,28 @@ on Home Assistant and will also setup a service so you can send messages and dia
         then:
         - sim800l.dial:
             recipient: !lambda 'return recipient;'
+      - service: send_ussd
+        variables:
+          ussdCode: string
+        then:
+        - sim800l.send_ussd:
+            ussd: !lambda 'return ussdCode;'
+
+
 
     text_sensor:
-    - platform: template
-      id: sms_sender
-      name: "Sms Sender"
-    - platform: template
-      id: sms_message
-      name: "Sms Message"
+      - platform: template
+        id: caller_id_text_sensor
+        name: "Caller ID"
+      - platform: template
+        id: sms_sender
+        name: "Sms Sender"
+      - platform: template
+        id: sms_message
+        name: "Sms Message"
+      - platform: template
+        id: ussd_message
+        name: "Ussd Code"
 
     uart:
       baud_rate: 9600
