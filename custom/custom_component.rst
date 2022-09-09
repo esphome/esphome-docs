@@ -49,6 +49,9 @@ And in YAML:
     - lambda: |-
         auto my_custom = new MyCustomComponent();
         return {my_custom};
+      components:
+      - id: my_custom_id 
+      
 
 Configuration variables:
 
