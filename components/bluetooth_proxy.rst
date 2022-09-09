@@ -29,4 +29,5 @@ See Also
 
 - :doc:`esp32_ble_tracker`
 - :apiref:`bluetooth_proxy/bluetooth_proxy.h`
+- BTHome `<https://bthome.io/>`__
 - :ghedit:`Edit`
