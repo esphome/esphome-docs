@@ -25,7 +25,7 @@ be on the same board or external sensor linked to the uFire ISE pH configuration
         temperature:
           id: temperature_liquit
           name: Temperature
-        ec:
+        ph:
           name: pH
 
 
@@ -46,7 +46,7 @@ Configuration variables:
 .. _sensor-ufire_ise-calibrate_probe_high_action:
 
 ``sensor.ufire_ise.calibrate_probe_high`` Action
------------------------------------------------
+------------------------------------------------
 
 The pH probe have to be calibrated. For this you need know the pH reference value and temperature
 of the calibration high solution.
@@ -75,7 +75,7 @@ Configuration options:
 .. _sensor-ufire_ise-calibrate_probe_low_action:
 
 ``sensor.ufire_ise.calibrate_probe_low`` Action
-----------------------------------------------
+-----------------------------------------------
 
 The pH probe have to be calibrated. For this you need know the pH reference value and temperature
 of the calibration low solution.
@@ -104,7 +104,7 @@ Configuration options:
 .. _sensor-ufire_ise-reset_action:
 
 ``sensor.ufire_ise.reset`` Action
---------------------------------
+---------------------------------
 
 Reset the current calibration on the sensor.
 
