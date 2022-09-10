@@ -6,7 +6,7 @@ Xiaomi Mijia BLE Sensors
     :image: xiaomi_mijia_logo.jpg
     :keywords: Xiaomi, Mi Home, Mijia, BLE, Bluetooth, HHCCJCY01, GCLS002, HHCCPOT002, LYWSDCGQ, LYWSD02, CGG1, LYWSD03MMC, CGD1, JQJCY01YM, MUE4094RT, WX08ZM, MHO, C401, MHOC401
 
-The ``xiaomi_ble`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the temperature, humidity, moisture, conductivity, illuminance, formaldehyde, mosquito tablet and battery level of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_ble`` listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life.
+The ``xiaomi_ble`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the temperature, humidity, moisture, conductivity, illuminance, formaldehyde, mosquito tablet and battery level of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_ble`` listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life. Thus, if you only use such sensors, you can safely set ``active: false`` in ``esp32_ble_tracker`` configuration, to save from spamming your RF environment with useless scan requests.
 
 Supported Devices
 -----------------
@@ -567,7 +567,7 @@ It can sometimes take some time for the first BLE broadcast to be received. Once
 Obtaining The Bindkey
 ---------------------
 
-To set up an encrypted device such as the LYWSD03MMC (with Xiaomi stock firmware) and CGD1, you first need to obtain the bind key. The ``xiaomi_ble`` sensor component is not able to automatically generate a bind key so other workarounds are necessary.
+To set up an encrypted device such as the LYWSD03MMC (with Xiaomi stock firmware) and CGD1, you first need to obtain the bind key. The ``xiaomi_ble`` sensor component is not able to automatically generate a bindkey so other workarounds are necessary.
 
 LYWSD03MMC/MHO-C401
 *******************
@@ -635,7 +635,11 @@ Avoid placing the ESP node in racks, close to routers/switches or other network 
 Security considerations
 -----------------------
 
-You should at least protect your sensors with a custom pairing PIN code.
+You should at least protect your sensors with a custom pairing PIN code. Choose a method employing bindkey in order to use encrypted communication over the air.
+
+.. note::
+
+    Devices flashed with `PVVX MiThermometer <https://github.com/pvvx/ATC_MiThermometer>`__ custom firmware also support the `BTHome protocol <https://bthome.io/>`__ which can be used in conjunction with ESPHome's :doc:`/components/bluetooth_proxy` component to forward sensor data to Home Assistant.
 
 
 See Also
@@ -645,6 +649,7 @@ See Also
 - :doc:`/components/sensor/index`
 - :apiref:`xiaomi_lywsd03mmc/xiaomi_ble.h`
 - :doc:`/components/ethernet`
+- :doc:`/components/bluetooth_proxy`
 - Passive BLE monitor integration for Home Assistant (ble_monitor custom component) `<https://github.com/custom-components/ble_monitor>`__
   by `@Magalex2x14 <https://github.com/Magalex2x14>`__ and `@Ernst79 <https://github.com/Ernst79>`__
 - Custom firmware (PVVX) for the Xiaomi Thermometer LYWSD03MMC `<https://github.com/pvvx/ATC_MiThermometer>`__
