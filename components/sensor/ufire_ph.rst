@@ -47,7 +47,7 @@ Configuration variables:
 .. _sensor-ufire_ph-calibrate_probe_high_action:
 
 ``sensor.ufire_ph.calibrate_probe_high`` Action
-------------------------------------------
+-----------------------------------------------
 
 The pH probe have to be calibrated. For this you need know the pH reference value and temperature
 of the calibration high solution.
@@ -76,7 +76,7 @@ Configuration options:
 .. _sensor-ufire_ph-calibrate_probe_low_action:
 
 ``sensor.ufire_ph.calibrate_probe_low`` Action
-------------------------------------------
+----------------------------------------------
 
 The pH probe have to be calibrated. For this you need know the pH reference value and temperature
 of the calibration low solution.
