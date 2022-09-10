@@ -1,0 +1,134 @@
+uFire pH sensor
+===================
+
+.. seo::
+    :description: Instructions for setting up uFire pH sensor in esphome
+    :image: ufire_ph.png
+    :keywords: ufire ph sensor temperature esphome
+
+The ``ufire_ec`` sensor platform allows you to use your uFire pH sensor with
+ESPHome. The :ref:`I²C Bus <i2c>` is
+required to be set up in your configuration for this sensor to work.
+It required also to have an temperature sensor in the liquit tank; this can
+be on the same board or external sensor linked to the uFire pH configuration.
+
+.. figure:: images/ufire_ph.png
+    :align: center
+    :width: 100.0%
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: ufire_ph  
+        id: ufire_ph_board
+        temperature:
+          id: temperature_liquit
+          name: Temperature
+        ec:
+          name: pH
+
+
+Configuration variables:
+------------------------
+
+- **address** (**Optional**, int): Specify the I²C address of the sensor. Defaults to ``0x3f``,
+  this address work with the Isolated pH/ISE boards for Mod-pH use ``0x0b``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``60s``.
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+- **temperature_sensor** (*Optional*, :ref:`config-id`): Set the ID of the temperature
+  sensor. Only needed if the onboard temperature sensor is not used.
+- **ph** (*Optional*, :ref:`Sensor <config-sensor>`): Set the pH sensor configuration.
+- **temperature** (*Optional*, :ref:`Sensor <config-sensor>`): Set the onboard temperature sensor configuration.
+  Can't be used together with ``temperature_sensor``.
+- All other options from :ref:`Sensor <config-sensor>`.
+
+.. _sensor-ufire_ph-calibrate_probe_high_action:
+
+``sensor.ufire_ph.calibrate_probe_high`` Action
+------------------------------------------
+
+The pH probe have to be calibrated. For this you need know the pH reference value and temperature
+of the calibration high solution.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: ufire_ph
+        id: ufire_ph_board
+        # ...
+
+    # in some trigger
+    on_...:
+      - sensor.ufire_ph_board.calibrate_probe_high:
+          id: ufire_ph_board
+          solution: 7.0
+          temperature: !lambda "return id(temperature_liquit).state;"
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the ufire pH sensor.
+- **solution** (**Required**, float): Solution reference pH value.
+- **temperature** (**Required**, float): Solution current temperature.
+
+.. _sensor-ufire_ph-calibrate_probe_low_action:
+
+``sensor.ufire_ph.calibrate_probe_low`` Action
+------------------------------------------
+
+The pH probe have to be calibrated. For this you need know the pH reference value and temperature
+of the calibration low solution.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: ufire_ph
+        id: ufire_ph_board
+        # ...
+
+    # in some trigger
+    on_...:
+      - sensor.ufire_ph_board.calibrate_probe_low:
+          id: ufire_ph_board
+          solution: 4.0
+          temperature: !lambda "return id(temperature_liquit).state;"
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the ufire pH sensor.
+- **solution** (**Required**, float): Solution reference pH value.
+- **temperature** (**Required**, float): Solution current temperature.
+
+.. _sensor-ufire_ph-reset_action:
+
+``sensor.ufire_ph.reset`` Action
+--------------------------------
+
+Reset the current calibration on the sensor.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: ufire_ph
+        id: ufire_ph_board
+        # ...
+
+    # in some trigger
+    on_...:
+      - sensor.ufire_ph_board.reset:
+          id: ufire_ph_board
+
+Configuration options:
+
+- **id** (**Required**, :ref:`config-id`): The ID of the ufire pH sensor.
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :apiref:`ufire_ph/ufire_ph.h`
+- :ghedit:`Edit`
