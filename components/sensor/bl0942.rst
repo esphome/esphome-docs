@@ -4,17 +4,10 @@ Belling BL0942 Energy Monitor
 .. seo::
     :description: Instructions for setting up BL0942 power monitors.
     :image: bl0942.png
-    :keywords: BL0942
-
-.. note::
-
-    This page is incomplete and could some work. If you want to contribute, please read the
-    :doc:`contributing guide </guides/contributing>`. This page is missing:
-
-      - Images/screenshots/example configs of this device being used in action.
+    :keywords: BL0942, Aubess, Mini Smart Switch With Energy Monitor
 
 The ``bl0942`` sensor platform allows you to use BL0942 energy monitors sensors with
-ESPHome. These are used in some Tuya-devices (e.g. AUBESS Tuya WiFi MiNi Smart Switch With Energy Monitor)
+ESPHome. These are used in some Tuya-devices (e.g. Aubess Tuya WiFi Mini Smart Switch With Energy Monitor)
 
 The communication with this integration is done over a :ref:`UART bus <uart>`.
 You must therefore have a ``uart:`` entry in your configuration with both the TX and RX pins set
