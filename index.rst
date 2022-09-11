@@ -495,6 +495,7 @@ Switch Components
     Restart Switch, components/switch/restart, restart.svg
     Safe Mode Switch, components/switch/safe_mode, restart-alert.svg
     Shutdown Switch, components/switch/shutdown, power_settings.svg
+    Factory Reset Switch, components/switch/factory_reset, restart-alert.svg
     Generic Output Switch, components/switch/output, upload.svg
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
@@ -515,6 +516,7 @@ Button Components
     Restart Button, components/button/restart, restart.svg
     Safe Mode Button, components/button/safe_mode, restart-alert.svg
     Shutdown Button, components/button/shutdown, power_settings.svg
+    Factory Reset Button, components/button/factory_reset, restart-alert.svg
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
