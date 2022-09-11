@@ -252,7 +252,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
 Multiple sensors
 ----------------------
 
-The following configuration shows how to set up multiple BME680 devices. Devices are currently identified by this component using their I²C address, and the BME680 can only be set to operate on I²C address ``0x76`` or ``0x77``. This effectively limits the component to a maximum of two devices. They can be configured to use the same I²C bus or to use different busses, but the limitation to set up different I²C addresses for each device must still be obeyed.
+The following configuration shows how to set up multiple BME680 devices. They can be configured to use the same I²C bus or to use different busses, but remember that the BME680 can only be set to operate on I²C address ``0x76`` or ``0x77``. There is no limit on the number of BME680 devices that can be connected.
 
 
 .. code-block:: yaml
