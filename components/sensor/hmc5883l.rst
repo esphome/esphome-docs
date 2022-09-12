@@ -95,4 +95,5 @@ See Also
 - :doc:`template`
 - :apiref:`hmc5883l/hmc5883l.h`
 - `HMC5883L Library <https://github.com/jarzebski/Arduino-HMC5883L>`__ by `Korneliusz Jarzębski <https://github.com/jarzebski>`__
+- `Magnetometer calibration with esphome code <https://github.com/nliaudat/magnetometer_calibration>`__
 - :ghedit:`Edit`
