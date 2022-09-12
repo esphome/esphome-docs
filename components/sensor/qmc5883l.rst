@@ -80,4 +80,5 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`template`
 - :apiref:`qmc5883l/qmc5883l.h`
+- `Magnetometer calibration with esphome code <https://github.com/nliaudat/magnetometer_calibration>`__
 - :ghedit:`Edit`
