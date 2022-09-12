@@ -111,7 +111,7 @@ A great way to share your trackers between multiple ESPHome nodes is by using :r
 .. code-block:: yaml
 
     # In config.yaml
-    substritutions:
+    substitutions:
       node_location: Living Room
     
     packages:
