@@ -38,10 +38,9 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - **temperature_sensor** (*Optional*, :ref:`config-id`): Set the ID of the temperature
   sensor. Only needed if the onboard temperature sensor is not used.
-- **ph** (*Optional*, :ref:`Sensor <config-sensor>`): Set the pH sensor configuration.
-- **temperature** (*Optional*, :ref:`Sensor <config-sensor>`): Set the onboard temperature sensor configuration.
+- **ph** (*Optional*, :ref:`Sensor <config-sensor>`): Set the pH sensor configuration. All options from :ref:`Sensor <config-sensor>`.
+- **temperature** (*Optional*, :ref:`Sensor <config-sensor>`): Set the onboard temperature sensor configuration. All options from :ref:`Sensor <config-sensor>`.
   Can't be used together with ``temperature_sensor``.
-- All other options from :ref:`Sensor <config-sensor>`.
 
 .. _sensor-ufire_ise-calibrate_probe_high_action:
 
