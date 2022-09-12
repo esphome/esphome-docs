@@ -14,8 +14,11 @@ Installation
 
 See :doc:`installing_esphome`.
 
-If you're familiar with Docker, you can use that instead! Our image supports
-AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
+If you're familiar with Docker, you can use that instead! 
+Note that on macOS Docker `can not pass USB devices through <https://github.com/moby/hyperkit/issues/149>`__. 
+You will not be able to flash ESP devices through USB on Mac, all other features will work. Flashing with web dashboard is still possible.
+
+Our image supports AMD64, ARM and ARM64 (AARCH64), and can be downloaded with:
 
 .. code-block:: bash
 
@@ -36,6 +39,21 @@ If you want to use `docker-compose` instead, here's a sample file:
         restart: always
         privileged: true
         network_mode: host
+
+The project provides multiple docker tags; please pick the one that suits you
+better:
+
+- ``latest`` and ``stable`` point to the latest stable release available. It's
+  not recommended to automatically update the container based on those tags
+  because of the possible breaking changes between releases.
+- Release-tracking tag ``YEAR.MONTH`` (e.g. ``2022.8``) points to the latest
+  stable patch release available within the required version. There should
+  never be a breaking change when upgrading the containers based on tags like
+  that.
+- ``beta`` points to the latest released beta version, and to the latest stable
+  release when there is no fresh beta release.
+- ``dev`` is the bleeding edge release; built daily based on the latest changes
+  in the ``dev`` branch.
 
 
 Connecting the ESP Device
@@ -111,7 +129,7 @@ new folder with the name of your node. This is a new PlatformIO project
 that you can modify afterwards and play around with.
 
 If you are running docker on Linux you can add ``--device=/dev/ttyUSB0``
-to your docker command to map a local USB device.
+to your docker command to map a local USB device. Docker on Mac will not be able to access host USB devices.
 
 .. code-block:: bash
 

@@ -16,8 +16,12 @@ ESPHome 2022.3.0 - 16th March 2022
     MPU6886, components/sensor/mpu6886, mpu6886.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg
-    Mopeka Pro Check LP, components/sensor/mopeka_ble, mopeka_pro_check.jpg
+    Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg
 
+Python 3.8 Minimum
+------------------
+
+This release sets the minimum Python version to 3.8. Please upgrade your local python if you are unable to update further.
 
 Webserver
 ---------
@@ -32,6 +36,11 @@ Release 2022.3.1 - March 23
 - Webserver utilize Component Iterator to not overload eventstream :esphomepr:`3310` by :ghuser:`jesserockz`
 - Reserve less memory for json :esphomepr:`3289` by :ghuser:`jesserockz`
 - Add small delay before setting up app in safe mode :esphomepr:`3323` by :ghuser:`jesserockz`
+
+Release 2022.3.2 - March 30
+---------------------------
+
+- Actually increase request memory for json parsing :esphomepr:`3331` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------

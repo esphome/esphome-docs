@@ -78,6 +78,27 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_aeha:
+
+``remote_transmitter.transmit_aeha`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_aeha:
+          address: 0x1FEF
+          data: [0x1F, 0x3E, 0x06, 0x5F]
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send the command to, see dumper output for more details.
+- **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+
+AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
@@ -159,7 +180,7 @@ Configuration variables:
 ``remote_transmitter.transmit_magiquest`` Action
 ************************************************
 
-This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter. 
+This :ref:`action <config-action>` sends a MagiQuest wand code to a remote transmitter.
 
 .. code-block:: yaml
 
@@ -200,7 +221,7 @@ This :ref:`action <config-action>` sends an NEC infrared remote code to a remote
 .. note::
 
     In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-    Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+    Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
     For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 .. code-block:: yaml
@@ -224,7 +245,7 @@ This :ref:`action <config-action>` a Nexa RF remote code to a remote transmitter
 .. code-block:: yaml
 
     on_...:
-      - remote_transmitter.nexa:
+      - remote_transmitter.transmit_nexa:
           device: 0x38DDB4A
           state: 1
           group: 0
@@ -356,6 +377,26 @@ Configuration variables:
 
 - **address** (**Required**, int): The address to send, see dumper output for more details.
 - **command** (**Required**, int): The RC5 command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_rc6:
+
+``remote_transmitter.transmit_rc6`` Action
+******************************************
+
+This :ref:`action <config-action>` sends an RC6 infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_rc6:
+          address: 0x1F
+          command: 0x3F
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send, see dumper output for more details.
+- **command** (**Required**, int): The RC6 command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_rc_switch_raw:
@@ -576,6 +617,10 @@ Configuration variables:
 
 This :ref:`action <config-action>` sends a Toshiba AC infrared remote code to a remote transmitter.
 
+.. note::
+
+    This action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+
 .. code-block:: yaml
 
     on_...:
@@ -588,7 +633,7 @@ Configuration variables:
 - **rc_code_1** (**Required**, int): The remote control code to send, see dumper output for more details.
 - **rc_code_2** (*Optional*, int): The secondary remote control code to send; some codes are sent in
   two parts.
-- **Note:** this action transmits codes using the new(er) Toshiba AC protocol and likely will not work with older units.
+
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 

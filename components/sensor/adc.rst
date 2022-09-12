@@ -76,7 +76,7 @@ To simplify this, we provide the setting ``attenuation: auto`` for an automatic/
 Different ESP32-ADC behavior since 2021.11
 ------------------------------------------
 
-The ADC output reads voltage very accurately since 2021.11 where manufacturer calibration was incorporated. Before this every ESP32 would read different voltages and be largely innacurate/nonlinear. Users with a manually calibrated setup are encouraged to check their the installations to ensure proper output.
+The ADC output reads voltage very accurately since 2021.11 where manufacturer calibration was incorporated. Before this every ESP32 would read different voltages and be largely inaccurate/nonlinear. Users with a manually calibrated setup are encouraged to check their installations to ensure proper output.
 For users that don't need a precise voltage reading, the "raw" output option allows to have the raw ADC values (0-4095 for ESP32) prior to manufacturer calibration. It is possible to get the old uncalibrated measurements with a filter multiplier:
 
 .. code-block:: yaml
@@ -119,6 +119,24 @@ Multiple ADC Sensors
 You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see above) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
 
 
+Measuring battery voltage on the Firebeetle ESP32-E
+---------------------------------------------------
+
+This board has a internal voltage divider and the battery voltage can easily be measured like this using 11dB attenuation
+on GPIO34.
+
+.. code-block:: yaml
+
+    - platform: adc
+      name: "Battery voltage"
+      pin: GPIO34
+      accuracy_decimals: 2
+      update_interval: 60s
+      attenuation: 11dB
+      filters:
+        - multiply: 2.0  # The voltage divider requires us to multiply by 2
+
+This works on SKU:DFR0654. For more information see: `manufacturer's website <https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654>`__.
 
 See Also
 --------

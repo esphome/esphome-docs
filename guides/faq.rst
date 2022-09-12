@@ -13,6 +13,41 @@ Tips for using ESPHome
    ``!include`` and ``!secret``. So you can store all your secret WiFi passwords and so on
    in a file called ``secrets.yaml`` within the directory where the configuration file is.
 
+   An enhancement to Home Assistant's ``!include`` accepts a list of variables that can be
+   substituted within the included file.
+
+   .. code-block:: yaml
+
+       binary_sensor:
+         - platform: gpio
+           id: button1
+           pin: GPIO16
+           on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
+         - platform: gpio
+           id: button2
+           pin: GPIO4
+           on_multi_click: !include
+             # multi-line syntax
+             file: on-multi-click.yaml
+             vars:
+               id: 2
+
+   ``on-multi-click.yaml``:
+
+   .. code-block:: yaml
+
+       - timing: !include click-single.yaml 
+         then:
+           - mqtt.publish:
+               topic: ${device_name}/button${id}/status
+               payload: single
+       - timing: !include click-double.yaml
+         then:
+           - mqtt.publish:
+               topic: ${device_name}/button${id}/status
+               payload: double
+
+
    For even more configuration templating, take a look at :ref:`config-substitutions`.
 
 2. If you want to see how ESPHome interprets your configuration, run
@@ -246,6 +281,22 @@ Some steps that can help with the issue:
   although it may also increase power (and possibly battery) usage of other devices also using power
   save mode.
 
+Component states not restored after reboot
+------------------------------------------
+
+If you notice that some components, like ``climate`` or some switches are randomly not restoring their
+state after a reboot, or you get periodic ``ESP_ERR_NVS_NOT_ENOUGH_SPACE`` errors in your debug log,
+it could be that the NVS portion of the flash memory is full due to repeatedly testing multiple
+configurations (usually large) in the same ESP32 board. Try wiping NVS with the following commands:
+
+.. code-block:: bash
+
+    dd if=/dev/zero of=nvs_zero bs=1 count=20480
+    esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash 0x009000 nvs_zero
+
+Change ``/dev/ttyUSB0`` above to your serial port. If you have changed the partition layout, please adjust the
+above offsets and sizes accordingly.
+
 Docker Reference
 ----------------
 
@@ -299,8 +350,13 @@ And a docker compose file looks like this:
           - ./:/config:rw
           # Use local time for logging timestamps
           - /etc/localtime:/etc/localtime:ro
+        devices:
+          # if needed, add esp device(s) as in command line examples above
+          - /dev/ttyUSB0:/dev/ttyUSB0
+          - /dev/ttyACM0:/dev/ttyACM0
         network_mode: host
         restart: always
+        
 
 .. _docker-reference-notes:
 .. note::
@@ -364,7 +420,7 @@ If an external pullup/down changes the configured voltage levels boot failures o
 While the use of them in software is not a problem, if there's something attached to the pins (particularly if they're not floating during the bootup) you may run into problems.
 It's recommended to avoid them unless you have a pressing need to use them and you have reviewed the expected boot voltage levels of these pins from the ESP datasheet.
 
-Note that some boards connect pins such as GPIO0 to a builtin tactile switch. In these cases using the strapping pins is not a problem.
+Some development boards connect GPIO 0 to a button, often labeled "boot". Holding this button while the ESP is turning on will cause it to go into bootloader mode. Once the ESP is fully booted up, this button can be used as a normal input safely. 
 
 How can I test a Pull Request?
 ------------------------------

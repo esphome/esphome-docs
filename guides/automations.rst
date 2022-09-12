@@ -270,6 +270,11 @@ global variables can be used to store the state of a garage door.
         type: int
         restore_value: no
         initial_value: '0'
+      # Example for global string variable
+      - id: my_global_string
+        type: std::string
+        restore_value: no  # Strings cannot be saved/restored
+        initial_value: '"hello world"'
 
    # In an automation
    on_press:
@@ -325,13 +330,13 @@ All Triggers
 - :ref:`light.on_turn_on / light.on_turn_off <light-on_turn_on_off_trigger>`
 - :ref:`logger.on_message <logger-on_message>`
 - :ref:`time.on_time <time-on_time>` / - :ref:`time.on_time_sync <time-on_time_sync>`
-- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>`
+- :ref:`mqtt.on_message <mqtt-on_message>` / :ref:`mqtt.on_json_message <mqtt-on_json_message>` /
+  :ref:`mqtt.on_connect / mqtt.on_disconnect <mqtt-on_connect_disconnect>`
 - :ref:`pn532.on_tag <pn532-on_tag>` / :ref:`rdm6300.on_tag <rdm6300-on_tag>`
 - :ref:`interval.interval <interval>`
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 - :doc:`remote_receiver.on_* </components/remote_receiver>`
 - :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
-- :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
 - :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
@@ -350,6 +355,8 @@ All Actions
 - :ref:`script.execute <script-execute_action>` / :ref:`script.stop <script-stop_action>` / :ref:`script.wait <script-wait_action>`
 - :ref:`logger.log <logger-log_action>`
 - :ref:`homeassistant.service <api-homeassistant_service_action>`
+- :ref:`homeassistant.event <api-homeassistant_event_action>`
+- :ref:`homeassistant.tag_scanned <api-homeassistant_tag_scanned_action>`
 - :ref:`mqtt.publish <mqtt-publish_action>` / :ref:`mqtt.publish_json <mqtt-publish_json_action>`
 - :ref:`switch.toggle <switch-toggle_action>` / :ref:`switch.turn_off <switch-turn_off_action>` / :ref:`switch.turn_on <switch-turn_on_action>`
 - :ref:`light.toggle <light-toggle_action>` / :ref:`light.turn_off <light-turn_off_action>` / :ref:`light.turn_on <light-turn_on_action>`
@@ -359,13 +366,20 @@ All Actions
   :ref:`cover.control <cover-control_action>`
 - :ref:`fan.toggle <fan-toggle_action>` / :ref:`fan.turn_off <fan-turn_off_action>` / :ref:`fan.turn_on <fan-turn_on_action>`
 - :ref:`output.turn_off <output-turn_off_action>` / :ref:`output.turn_on <output-turn_on_action>` / :ref:`output.set_level <output-set_level_action>`
-- :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>`
+- :ref:`deep_sleep.enter <deep_sleep-enter_action>` / :ref:`deep_sleep.prevent <deep_sleep-prevent_action>` / :ref:`deep_sleep.allow <deep_sleep-allow_action>`
 - :ref:`sensor.template.publish <sensor-template-publish_action>` / :ref:`binary_sensor.template.publish <binary_sensor-template-publish_action>`
   / :ref:`cover.template.publish <cover-template-publish_action>` / :ref:`switch.template.publish <switch-template-publish_action>`
   / :ref:`text_sensor.template.publish <text_sensor-template-publish_action>`
 - :ref:`stepper.set_target <stepper-set_target_action>` / :ref:`stepper.report_position <stepper-report_position_action>`
   / :ref:`stepper.set_speed <stepper-set_speed_action>`
 - :ref:`servo.write <servo-write_action>` / :ref:`servo.detach <servo-detach_action>`
+- :ref:`sprinkler.start_full_cycle <sprinkler-controller-action_start_full_cycle>` /   :ref:`sprinkler.start_from_queue <sprinkler-controller-action_start_from_queue>` /
+  :ref:`sprinkler.start_single_valve <sprinkler-controller-action_start_single_valve>` /   :ref:`sprinkler.shutdown <sprinkler-controller-action_shutdown>` /
+  :ref:`sprinkler.next_valve <sprinkler-controller-action_next_valve>` /   :ref:`sprinkler.previous_valve <sprinkler-controller-action_previous_valve>` /
+  :ref:`sprinkler.pause <sprinkler-controller-action_pause>` /   :ref:`sprinkler.resume <sprinkler-controller-action_resume>` /
+  :ref:`sprinkler.resume_or_start_full_cycle <sprinkler-controller-action_resume_or_start_full_cycle>` /   :ref:`sprinkler.queue_valve <sprinkler-controller-action_queue_valve>` /
+  :ref:`sprinkler.clear_queued_valves <sprinkler-controller-action_clear_queued_valves>` /   :ref:`sprinkler.set_multiplier <sprinkler-controller-action_set_multiplier>` /
+  :ref:`sprinkler.set_repeat <sprinkler-controller-action_set_repeat>` /   :ref:`sprinkler.set_valve_run_duration <sprinkler-controller-action_set_valve_run_duration>`
 - :ref:`globals.set <globals-set_action>`
 - :ref:`remote_transmitter.transmit_* <remote_transmitter-transmit_action>`
 - :ref:`climate.control <climate-control_action>`
@@ -382,7 +396,11 @@ All Actions
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
-- :ref:`number.set <number-set_action>`
+- :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
+- :ref:`select.set <select-set_action>` / :ref:`select.set_index <select-set_index_action>` / :ref:`select.first <select-first_action>` / :ref:`select.last <select-last_action>` / :ref:`select.previous <select-previous_action>`  / :ref:`select.next <select-next_action>`  / :ref:`select.operation <select-operation_action>`
+- :ref:`media_player.play <media_player-play>` / :ref:`media_player.pause <media_player-pause>` / :ref:`media_player.stop <media_player-stop>` / :ref:`media_player.toggle <media_player-toggle>`
+  / :ref:`media_player.volume_up <media_player-volume_up>` / :ref:`media_player.volume_down <media_player-volume_down>` / :ref:`media_player.volume_set <media_player-volume_set>`
+- :ref:`ble_client.ble_write <ble_client-ble_write_action>`
 
 .. _config-condition:
 
@@ -602,6 +620,20 @@ a shorthand way of writing a ``while`` action with an empty ``then`` block.)
       - wait_until:
           binary_sensor.is_on: some_binary_sensor
       - logger.log: "Binary sensor is ready"
+
+If you want to use a timeout, the term "condition" is required:
+
+.. code-block:: yaml
+
+    # In a trigger:
+    on_...:
+      - logger.log: "Waiting for binary sensor"
+      - wait_until:
+          condition:
+            binary_sensor.is_on: some_binary_sensor
+          timeout: 8s
+      - logger.log: "Binary sensor might be ready"
+
 
 Configuration variables:
 

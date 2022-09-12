@@ -30,6 +30,7 @@ Configuration variables:
 - **dump** (*Optional*, list): Decode and dump these remote codes in the logs (at log.level=DEBUG).
   Set to ``all`` to dump all available codecs:
 
+  - **aeha**: Decode and dump AEHA infrared codes.
   - **coolix**: Decode and dump Coolix infrared codes.
   - **dish**: Decode and dump Dish infrared codes.
   - **jvc**: Decode and dump JVC infrared codes.
@@ -40,8 +41,10 @@ Configuration variables:
   - **nexa**: Decode and dump Nexa (RF) codes.
   - **panasonic**: Decode and dump Panasonic infrared codes.
   - **pioneer**: Decode and dump Pioneer infrared codes.
-  - **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.
+  - **pronto**: Print remote code in Pronto form. Useful for using arbitrary protocols.
+  - **raw**: Print all remote codes in their raw form. Also useful for using arbitrary protocols.
   - **rc5**: Decode and dump RC5 IR codes.
+  - **rc6**: Decode and dump RC6 IR codes.
   - **rc_switch**: Decode and dump RCSwitch RF codes.
   - **samsung**: Decode and dump Samsung infrared codes.
   - **samsung36**: Decode and dump Samsung36 infrared codes.
@@ -63,6 +66,9 @@ Configuration variables:
 
 Automations:
 
+- **on_aeha** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  AEHA remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::AEHAData`
+  is passed to the automation for use in lambdas.
 - **on_coolix** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   Coolix remote code has been decoded. A variable ``x`` of type :apiclass:`remote_base::CoolixData`
   is passed to the automation for use in lambdas.
@@ -89,7 +95,7 @@ Automations:
   .. note::
 
       In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-      Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+      Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
       For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
 - **on_nexa** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
@@ -101,11 +107,17 @@ Automations:
 - **on_pioneer** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   pioneer remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::PioneerData`
   is passed to the automation for use in lambdas.
+- **on_pronto** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  Pronto remote code has been decoded. A variable ``x`` of type ``std::string``
+  is passed to the automation for use in lambdas.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   raw remote code has been decoded. A variable ``x`` of type ``std::vector<int>``
   is passed to the automation for use in lambdas.
 - **on_rc5** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RC5 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RC5Data`
+  is passed to the automation for use in lambdas.
+- **on_rc6** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  RC6 remote code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RC6Data`
   is passed to the automation for use in lambdas.
 - **on_rc_switch** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
   RCSwitch RF code has been decoded. A variable ``x`` of type :apistruct:`remote_base::RCSwitchData`
@@ -156,6 +168,12 @@ Configuration variables:
 
 Remote code selection (exactly one of these has to be included):
 
+- **aeha**: Trigger on a decoded AEHA remote code with the given data.
+
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
+  - **data** (**Required**, 3-35 bytes list): The code to listen for, see :ref:`remote_transmitter-transmit_aeha`
+    for more info. Usually you only need to copy this directly from the dumper output.
+
 - **coolix**: Trigger on a decoded Coolix remote code with the given data.
 
   - **data** (**Required**, int): The 24-bit Coolix code to trigger on, see dumper output for more info.
@@ -190,7 +208,7 @@ Remote code selection (exactly one of these has to be included):
   .. note::
 
       In version 2021.12, the order of transferring bits was corrected from MSB to LSB in accordance with the NEC standard.
-      Therefore, if the the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
+      Therefore, if the configuration file has come from an earlier version of ESPhome, it is necessary to reverse the order of the address and command bits when moving to 2021.12 or above.
       For example, address: 0x84ED, command: 0x13EC becomes 0xB721 and 0x37C8 respectively.
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
@@ -213,6 +231,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **rc_code_1** (**Required**, int): The remote control code to trigger on, see dumper output for more details.
 
+- **pronto**: Trigger on a Pronto remote code with the given code.
+
+  - **data** (**Required**, string): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
+    for more info. Usually you only need to copy this directly from the dumper output.
+
 - **raw**: Trigger on a raw remote code with the given code.
 
   - **code** (**Required**, list): The code to listen for, see :ref:`remote_transmitter-transmit_raw`
@@ -222,6 +245,11 @@ Remote code selection (exactly one of these has to be included):
 
   - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
   - **command** (**Required**, int): The RC5 command to listen for.
+
+- **rc6**: Trigger on a decoded RC6 remote code with the given data.
+
+  - **address** (**Required**, int): The address to trigger on, see dumper output for more info.
+  - **command** (**Required**, int): The RC6 command to listen for.
 
 - **rc_switch_raw**: Trigger on a decoded RC Switch raw remote code with the given data.
 

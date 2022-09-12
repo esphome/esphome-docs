@@ -190,11 +190,12 @@ Air Quality
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
     RadonEye BLE, components/sensor/radon_eye_ble, radon_eye_logo.png, Radon
     SDS011 Sensor, components/sensor/sds011, sds011.jpg, Particulate
+    SEN5x, components/sensor/sen5x, sen54.jpg, Temperature & Humidity, Volatile organics and NOx
     SenseAir, components/sensor/senseair, senseair_s8.jpg, CO2
     SCD30, components/sensor/scd30, scd30.jpg, CO2 & Temperature & Humidity
     SCD4X, components/sensor/scd4x, scd4x.jpg, CO2 & Temperature & Humidity
     SGP30, components/sensor/sgp30, sgp30.jpg, CO2 & Volatile organics
-    SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
+    SGP4x, components/sensor/sgp4x, sgp40.jpg, Volatile organics and NOx
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
     T6613/15, components/sensor/t6615, t6615.jpg, CO2
@@ -209,7 +210,7 @@ Analogue
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
-    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
+    MCP3204/MCP3208, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
@@ -221,7 +222,7 @@ Bluetooth Low Energy (BLE)
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
-    Mopeka Pro Check LP, components/sensor/mopeka_ble, mopeka_pro_check.jpg, tank level
+    Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
     Xiaomi BLE, components/sensor/xiaomi_ble, xiaomi_mijia_logo.jpg, Various
 
@@ -252,7 +253,9 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
+    BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
@@ -279,7 +282,7 @@ Environmental
 
 .. imgtable::
 
-    AHT10, components/sensor/aht10, aht10.jpg, Temperature & Humidity
+    AHT10 / AHT20 / AHT21 / DHT20, components/sensor/aht10, aht10.jpg, Temperature & Humidity
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Temperature & Humidity & Pressure
     AM2320, components/sensor/am2320, am2320.jpg, Temperature & Humidity
     BME280, components/sensor/bme280, bme280.jpg, Temperature & Humidity & Pressure
@@ -292,12 +295,16 @@ Environmental
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
+    DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
+    ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
+    Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
@@ -309,6 +316,7 @@ Environmental
     SHT3X-D, components/sensor/sht3xd, sht3xd.jpg, Temperature & Humidity
     SHT4X, components/sensor/sht4x, sht4x.jpg, Temperature & Humidity
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
+    SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
@@ -352,8 +360,10 @@ Miscellaneous
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
+    SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
+    uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, (EC)
 
 
 Motion
@@ -373,7 +383,8 @@ Thermocouple
     MAX31855, components/sensor/max31855, max31855.jpg, K-Type
     MAX31856, components/sensor/max31856, max31856.jpg, All types
     MAX31865, components/sensor/max31865, max31865.jpg, Platinum RTD
-    MAX6675, components/sensor/max6675, max6675.jpg, K-Type
+    MAX6675, components/sensor/max6675, max6675.jpg, K-Type,
+    MCP9600, components/sensor/mcp9600, mcp9600.jpg, All types
 
 
 Weight
@@ -401,6 +412,7 @@ Binary Sensor Components
     Analog Threshold, components/binary_sensor/analog_threshold, analog_threshold.svg
     ESP32 BLE Presence, components/binary_sensor/ble_presence, bluetooth.svg
     ESP32 Touch Pad, components/binary_sensor/esp32_touch, touch.svg
+    Hydreon Rain Sensor Binary Sensor, components/binary_sensor/hydreon_rgxx, hydreon_rg9.jpg
     MPR121  Capacitive Touch Sensor, components/binary_sensor/mpr121, mpr121.jpg
     Nextion Binary Sensor, components/binary_sensor/nextion, nextion.jpg
     Template Binary Sensor, components/binary_sensor/template, description.svg
@@ -436,6 +448,7 @@ Output Components
     MCP4725, components/output/mcp4725, mcp4725.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
+    DAC7678, components/output/dac7678, dac7678.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
@@ -463,9 +476,11 @@ Light Components
     Light Partition, components/light/partition, color_lens.svg
 
     Tuya Dimmer, components/light/tuya, tuya.png
+    Shelly Dimmer, components/light/shelly_dimmer, shellydimmer2.jpg
     Custom Light, components/light/custom, language-cpp.svg
 
     H-bridge Light, components/light/hbridge, brightness-medium.svg
+    Sonoff D1 Dimmer, components/light/sonoff_d1, sonoff_d1.jpg
 
 Looking for WS2811 and similar individually addressable lights? Have a look at the
 :doc:`FastLED Light </components/light/fastled>`.
@@ -480,6 +495,7 @@ Switch Components
     Restart Switch, components/switch/restart, restart.svg
     Safe Mode Switch, components/switch/safe_mode, restart-alert.svg
     Shutdown Switch, components/switch/shutdown, power_settings.svg
+    Factory Reset Switch, components/switch/factory_reset, restart-alert.svg
     Generic Output Switch, components/switch/output, upload.svg
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
@@ -500,6 +516,7 @@ Button Components
     Restart Button, components/button/restart, restart.svg
     Safe Mode Button, components/button/safe_mode, restart-alert.svg
     Shutdown Button, components/button/shutdown, power_settings.svg
+    Factory Reset Button, components/button/factory_reset, restart-alert.svg
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
@@ -523,9 +540,11 @@ Display Components
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
+    TM1621, components/display/tm1621, tm1621.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     TM1638, components/display/tm1638, tm1638.jpg
     Nextion, components/display/nextion, nextion.jpg
+    PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
     SSD1322, components/display/ssd1322, ssd1322.jpg
     SSD1325, components/display/ssd1325, ssd1325.jpg
@@ -556,6 +575,7 @@ Cover Components
 
     Cover Core, components/cover/index, folder-open.svg
     Template Cover, components/cover/template, description.svg
+    Feedback Cover, components/cover/feedback, feedback_cover.svg
     Endstop Cover, components/cover/endstop, electric-switch.svg
     Current-Based Cover, components/cover/current_based, flash.svg
     Time-Based Cover, components/cover/time_based, timer.svg
@@ -590,10 +610,11 @@ Climate Components
     Thermostat Controller, components/climate/thermostat, air-conditioner.svg
     Custom Climate, components/climate/custom, language-cpp.svg
     PID Controller, components/climate/pid, function.svg
-    IR Remote Climate, components/climate/ir_climate, air-conditioner-ir.svg
+    IR Remote Climate, components/climate/climate_ir, air-conditioner-ir.svg
     Tuya Climate, components/climate/tuya, tuya.png
     Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
+    BedJet Climate System, components/climate/bedjet, bedjet.png
 
 Number Components
 -----------------
@@ -613,6 +634,7 @@ Select Components
     Select Core, components/select/index, folder-open.svg
     Template Select, components/select/template, description.svg
     Modbus Select, components/select/modbus_controller, modbus.png
+    Tuya Select, components/select/tuya, tuya.png
 
 Lock Components
 -----------------
@@ -622,6 +644,14 @@ Lock Components
     Lock Core, components/lock/index, folder-open.svg
     Generic Output Lock, components/lock/output, upload.svg
     Template Lock, components/lock/template, description.svg
+
+Media Player Components
+-----------------------
+
+.. imgtable::
+
+    Media Player Core, components/media_player/index, folder-open.svg
+    I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
 Misc Components
 ---------------
@@ -641,15 +671,18 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg
     ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    ESP32 Ethernet, components/ethernet, ethernet.svg
 
+    ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
+
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
+    Sprinkler, components/sprinkler, sprinkler-variant.svg
 
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
@@ -672,6 +705,7 @@ Misc Components
     Prometheus, components/prometheus, prometheus.svg
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
+    SML, components/sml, sml.svg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
 

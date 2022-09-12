@@ -24,6 +24,12 @@ in which case this is not needed.
       username: livingroom
       password: !secret mqtt_password
 
+
+.. note::
+
+    Support for esp-idf is still experminental. Please report issues you have with mqtt using the esp-idf framework.
+
+
 Configuration variables:
 ------------------------
 
@@ -58,6 +64,12 @@ Configuration variables:
   ``<APP_NAME>``.
 - **log_topic** (*Optional*, :ref:`mqtt-message`): The topic to send MQTT log
   messages to.
+
+  The ``log_topic`` has an additional configuration option:
+
+  - **level** (*Optional*, string): The log level to use for MQTT logs. See
+    :ref:`logger-log_levels` for options.
+
 - **birth_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   a connection to the broker is established. See :ref:`mqtt-last_will_birth` for more information.
 - **will_message** (*Optional*, :ref:`mqtt-message`): The message to send when
@@ -65,13 +77,22 @@ Configuration variables:
 - **shutdown_message** (*Optional*, :ref:`mqtt-message`): The message to send when
   the node shuts down and the connection is closed cleanly. See :ref:`mqtt-last_will_birth` for more information.
 - **ssl_fingerprints** (*Optional*, list): Only on ESP8266. A list of SHA1 hashes used
-  for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`
+  for verifying SSL connections. See :ref:`mqtt-ssl_fingerprints`.
   for more information.
+- **certificate_authority** (*Optional*, string): Only with ``esp-idf``. CA certificate in PEM format. See :ref:`mqtt-tls-idf` for more information
+- **skip_cert_cn_check** (*Optional*, bool): Only with ``esp-idf``. Don't verify if the common name in the server certificate matches the value of ``broker``.
+- **idf_send_async** (*Optional*, bool): Only with ``esp-idf``. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to ``false``.
+  The advantage of asyncronous publishing is that it doesn't block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out.
+  Set this to true if ypi send large amounts of of data over mqtt.
 - **reboot_timeout** (*Optional*, :ref:`config-time`): The amount of time to wait before rebooting when no
   MQTT connection exists. Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
   WiFi traffic with more pings. Defaults to 15 seconds.
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a connection
+  to the broker is established.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the connection
+  to the broker is dropped.
 - **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a message on a specific MQTT topic is received. See :ref:`mqtt-on_message`.
 - **on_json_message** (*Optional*, :ref:`Automation <automation>`): An action to be
@@ -112,12 +133,6 @@ Configuration options:
    level of the topic. Defaults to 0.
 -  **retain** (*Optional*, boolean): If the published message should
    have a retain flag on or not. Defaults to ``true``.
-
-
-The ``log_topic`` has an additional configuration option:
-
-- **level** (*Optional*, string): The log level to use for MQTT logs. See
-  :ref:`logger-log_levels` for options.
 
 .. _mqtt-using_with_home_assistant:
 
@@ -262,6 +277,56 @@ then run the ``mqtt-fingerprint`` script of ESPHome to get the certificate:
 
 .. _config-mqtt-component:
 
+
+.. _mqtt-tls-idf:
+
+TLS with esp-idf (esp32)
+------------------------
+
+If used with the esp-idf framework a TLS connection to a mqtt broker can be established.
+The servers CA certificate is required to validate the connection.
+
+You have to download the server CA certficiate in PEM format and add it to ``certificate_authority``.
+Usually these are .crt files and you can open them with any text editor.
+Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 8883 for TLS connections.
+
+.. code-block:: yaml
+
+    mqtt:
+      broker: test.mymqtt.local
+      port: 8883
+      discovery: true
+      discovery_prefix: ${mqtt_prefix}/homeassistant
+      log_topic: ${mqtt_prefix}/logs
+      skip_cert_cn_check: true
+      idf_send_async: false
+      certificate_authority: |
+        -----BEGIN CERTIFICATE-----
+        MIIEAzCCAuugAwIBAgIUBY1hlCGvdj4NhBXkZ/uLUZNILAwwDQYJKoZIhvcNAQEL
+        BQAwgZAxCzAJBgNVBAYTAkdCMRcwFQYDVQQIDA5Vbml0ZWQgS2luZ2RvbTEOMAwG
+        A1UEBwwFRGVyYnkxEjAQBgNVBAoMCU1vc3F1aXR0bzELMAkGA1UECwwCQ0ExFjAU
+        BgNVBAMMDW1vc3F1aXR0by5vcmcxHzAdBgkqhkiG9w0BCQEWEHJvZ2VyQGF0Y2hv
+        by5vcmcwHhcNMjAwNjA5MTEwNjM5WhcNMzAwNjA3MTEwNjM5WjCBkDELMAkGA1UE
+        BhMCR0IxFzAVBgNVBAgMDlVuaXRlZCBLaW5nZG9tMQ4wDAYDVQQHDAVEZXJieTES
+        MBAGA1UECgwJTW9zcXVpdHRvMQswCQYDVQQLDAJDQTEWMBQGA1UEAwwNbW9zcXVp
+        dHRvLm9yZzEfMB0GCSqGSIb3DQEJARYQcm9nZXJAYXRjaG9vLm9yZzCCASIwDQYJ
+        KoZIhvcNAQEBBQADggEPADCCAQoCggEBAME0HKmIzfTOwkKLT3THHe+ObdizamPg
+        UZmD64Tf3zJdNeYGYn4CEXbyP6fy3tWc8S2boW6dzrH8SdFf9uo320GJA9B7U1FW
+        Te3xda/Lm3JFfaHjkWw7jBwcauQZjpGINHapHRlpiCZsquAthOgxW9SgDgYlGzEA
+        s06pkEFiMw+qDfLo/sxFKB6vQlFekMeCymjLCbNwPJyqyhFmPWwio/PDMruBTzPH
+        3cioBnrJWKXc3OjXdLGFJOfj7pP0j/dr2LH72eSvv3PQQFl90CZPFhrCUcRHSSxo
+        E6yjGOdnz7f6PveLIB574kQORwt8ePn0yidrTC1ictikED3nHYhMUOUCAwEAAaNT
+        MFEwHQYDVR0OBBYEFPVV6xBUFPiGKDyo5V3+Hbh4N9YSMB8GA1UdIwQYMBaAFPVV
+        6xBUFPiGKDyo5V3+Hbh4N9YSMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQEL
+        BQADggEBAGa9kS21N70ThM6/Hj9D7mbVxKLBjVWe2TPsGfbl3rEDfZ+OKRZ2j6AC
+        6r7jb4TZO3dzF2p6dgbrlU71Y/4K0TdzIjRj3cQ3KSm41JvUQ0hZ/c04iGDg/xWf
+        +pp58nfPAYwuerruPNWmlStWAXf0UTqRtg4hQDWBuUFDJTuWuuBvEXudz74eh/wK
+        sMwfu1HFvjy5Z0iMDU8PUDepjVolOCue9ashlS4EB5IECdSR2TItnAIiIwimx839
+        LdUdRudafMu5T5Xma182OC0/u/xRlEm+tvKGGmfFcN0piqVl8OrSPBgIlb+1IKJE
+        m/XriWr/Cq4h/JfB7NTsezVslgkBaoU=
+        -----END CERTIFICATE-----
+
+
 MQTT Component Base Configuration
 ---------------------------------
 
@@ -306,6 +371,22 @@ Configuration variables:
 
     When changing these options and you're using MQTT discovery, you will need to restart Home Assistant.
     This is because Home Assistant only discovers a device once in every Home Assistant start.
+
+.. _mqtt-on_connect_disconnect:
+
+``on_connect`` / ``on_disconnect`` Trigger
+------------------------------------------
+
+This trigger is activated when a connection to the MQTT broker is established or dropped.
+
+.. code-block:: yaml
+
+    mqtt:
+      # ...
+      on_connect:
+        - switch.turn_on: switch1
+      on_disconnect:
+        - switch.turn_off: switch1
 
 .. _mqtt-on_message:
 

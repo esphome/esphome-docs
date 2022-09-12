@@ -59,7 +59,7 @@ buttons.
         y_max: 100
         page_id: home_page_id
 
-Configuration Variables:
+Configuration variables:
 ************************
 
 - **name** (*Optional*, string): The name for the binary sensor.

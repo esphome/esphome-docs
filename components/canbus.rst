@@ -62,38 +62,39 @@ Configuration variables:
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 bits IDs, *true*: Extended 29 bits ID
 - **bit_rate** (*Optional*, enum): One of the supported bitrates. Defaults to ``125KBPS``.
-  Bitrates marked with * are not supported by the internal ESP32 CAN controller.
 
-    - 5KBPS *
-    - 10KBPS *
-    - 20KBPS *
-    - 31K25BPS *
-    - 33KBPS *
-    - 40KBPS *
-    - 50KBPS
-    - 80KBPS *
-    - 83K3BPS *
-    - 95KBPS *
-    - 100KBPS
-    - 125KBPS
-    - 200KBPS *
-    - 250KBPS
-    - 500KBPS
-    - 1000KBPS
+    - ``5KBPS`` - Not supported by ``esp32_can``
+    - ``10KBPS`` - Not supported by ``esp32_can``
+    - ``20KBPS`` - Not supported by ``esp32_can``
+    - ``31K25BPS`` - Not supported by ``esp32_can``
+    - ``33KBPS`` - Not supported by ``esp32_can``
+    - ``40KBPS`` - Not supported by ``esp32_can``
+    - ``50KBPS``
+    - ``80KBPS`` - Not supported by ``esp32_can``
+    - ``83K3BPS`` - Not supported by ``esp32_can``
+    - ``95KBPS`` - Not supported by ``esp32_can``
+    - ``100KBPS``
+    - ``125KBPS`` - (Default)
+    - ``200KBPS`` - Not supported by ``esp32_can``
+    - ``250KBPS``
+    - ``500KBPS``
+    - ``1000KBPS``
 
 Automations:
 ------------
 
-- **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when ability
-  CAN Frame is received. See :ref:`canbus-on-frame`.
+- **on_frame** (*Optional*, :ref:`Automation <automation>`): An automation to perform when a
+  CAN frame is received. See :ref:`canbus-on-frame`.
 
 .. _canbus-on-frame:
 
-``on_frame``
-************
+``on_frame`` Trigger
+********************
 
-This automation will be triggered when a can frame is  received. A variable ``x`` of type
-``std::vector<uint8_t>`` is passed to the automation for use in lambdas.
+This automation will be triggered when a CAN frame is received. The variables ``x`` (of type
+``std::vector<uint8_t>``) containing the frame data, ``can_id`` (of type ``uint32_t``) containing the actual
+received CAN id and ``remote_transmission_request`` (of type ``bool``) containing the corresponding field
+from the CAN frame are passed to the automation for use in lambdas.
 
 .. note::
 
@@ -111,6 +112,37 @@ This automation will be triggered when a can frame is  received. A variable ``x`
                   lambda: 'return (x.size() > 0) ? x[0] == 0x11 : false;'
                 then:
                   light.toggle: light1
+        - can_id:      0b00000000000000000000001000000
+          can_id_mask: 0b11111000000000011111111000000
+          use_extended_id: true
+          remote_transmission_request: false
+          then:
+            - lambda: |-
+                auto pdo_id = can_id >> 14;
+                switch (pdo_id)
+                {
+                  case 117:
+                    ESP_LOGD("canbus", "exhaust_fan_duty");
+                    break;
+                  case 118:
+                    ESP_LOGD("canbus", "supply_fan_duty");
+                    break;
+                  case 119:
+                    ESP_LOGD("canbus", "supply_fan_flow");
+                    break;
+                  // to be continued...
+                }
+
+
+Configuration variables:
+************************
+
+- **can_id** (**Required**, int): The received CAN id to trigger this automation on.
+- **can_id_mask** (*Optional*, int): The bit mask to apply to the received CAN id before trying to match it
+  with *can_id*, defaults to ``0x1fffffff`` (all bits of received CAN id are compared with *can_id*).
+- **use_extended_id** (*Optional*, boolean): Identifies the type of *can_id* to match on, defaults to *false*.
+- **remote_transmission_request** (*Optional*, boolean): Whether to run for CAN frames with the "remote
+  transmission request" bit set or not set, defaults to not checking, i.e. to run for both cases.
 
 ``canbus.send`` Action
 **********************
@@ -145,6 +177,8 @@ Configuration variables:
   the can bus device.
 - **use_extended_id** (*Optional*, boolean): default *false* identifies the type of *can_id*:
   *false*: Standard 11 Bit IDs, *true*: Extended 29Bit ID
+- **remote_transmission_request** (*Optional*, boolean): Set to send CAN bus frame to request data from another node
+  (defaults to *false*). If a certain data length code needs to be sent, provide as many (dummy) bytes in *data*.
 
 ESP32 CAN Component
 -------------------
@@ -229,9 +263,9 @@ Configuration variables:
   Defaults to ``8MHZ``.
 - **mode** (*Optional*): Operation mode. Default to ``NORMAL``
 
-  - NORMAL: Normal operation
-  - LOOPBACK: Loopback mode can be used to just test you spi connections to the device
-  - LISTENONLY: only receive data
+  - ``NORMAL``: Normal operation
+  - ``LOOPBACK``: Loopback mode can be used to just test you spi connections to the device
+  - ``LISTENONLY``: only receive data
 
 - All other options from :ref:`Canbus <config-canbus>`.
 
