@@ -98,14 +98,14 @@ Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically b
         id: global_brightness
         optimistic: true
         min_value: 0
-        max_value: 100
-        initial_value: 10
+        max_value: 15
+        initial_value: 1
         step: 1
         mode: slider
         on_value:
           - max6956.set_brightness_global:
               id: max6956_1
-              brightness_global: !lambda return x/100;
+              brightness_global: !lambda return x;
         
 
     max6956:
@@ -113,7 +113,7 @@ Any option accepting a :ref:`Pin Schema <config-pin_schema>` can theoretically b
         address: 0x40
         i2c_id: bus_a
         brightness_mode: global
-        brightness_global: 50%
+        brightness_global: 5
 
 
     output:
