@@ -661,13 +661,15 @@ Misc Components
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
+    Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg
     ESP32 BLE Client, components/ble_client, bluetooth.svg
     ESP32 BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     ESP32 BLE Beacon, components/esp32_ble_beacon, bluetooth.svg
-    ESP32 Ethernet, components/ethernet, ethernet.svg
 
+    ESP32 Ethernet, components/ethernet, ethernet.svg
     ESP32 Camera, components/esp32_camera, camera.svg
     ESP32 Camera Web Server, components/esp32_camera_web_server, camera.svg
+
     Stepper, components/stepper/index, stepper.svg
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg
