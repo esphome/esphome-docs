@@ -221,7 +221,6 @@ Bluetooth Low Energy (BLE)
     AM43, components/sensor/am43, am43.jpg, Lux & Battery level
     BLE Client Sensor, components/sensor/ble_client, bluetooth.svg
     BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
-    BLE Tracker, components/esp32_ble_tracker, bluetooth.svg
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     Mopeka Pro Check LP, components/sensor/mopeka_pro_check, mopeka_pro_check.jpg, tank level
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer

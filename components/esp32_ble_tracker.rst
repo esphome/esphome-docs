@@ -91,8 +91,6 @@ Automations:
 - **on_scan_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when
   a BLE scan has completed (the duration of the scan). This works with continuous set to true or false.
   
-Actions:
-- **esp32_ble_tracker.start_scan()**: An action to start a scan when continuous mode is false/disabled.
 
 ESP32 Bluetooth Low Energy Tracker Automation
 ---------------------------------------------
@@ -235,7 +233,7 @@ This should be used with continuous set to false.
 
 Configuration variables:
 
-- None
+- **continuous** (*Optional*, boolean): Whether to start the scan in continuous mode. Defaults to ``false``
 
 .. note::
 
