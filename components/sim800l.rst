@@ -9,7 +9,7 @@ Sim800L Component
 Component/Hub
 -------------
 
-The ``SIM800L`` Component provides the ability to dial, send/receive SMS text messages and
+The ``SIM800L`` Component provides the ability to dial, answer calls, send/receive SMS text messages and
 send/receive USSD codes. The device must be connected via a :doc:`UART bus </components/uart>`
 supporting both receiving and transmitting line. The UART bus must be configured at the same speed
 of the module which is by default 9600bps. The required connection wires are ``+VCC``, ``GND``,
@@ -43,48 +43,6 @@ of the module which is by default 9600bps. The required connection wires are ``+
         - logger.log:
             format: "Received '%s' from %s"
             args: [ 'message.c_str()', 'sender.c_str()' ]
-      on_incoming_call:
-        - logger.log:
-            format: "Incoming call from '%s'"
-            args: ["caller_id.c_str()"]
-        - lambda: |-
-            id(caller_id_text_sensor).publish_state(caller_id);
-        - sim800l.disconnect
-        - homeassistant.event:
-            event: esphome.incoming_call_event
-            data:
-              payload: !lambda 'return id(caller_id_text_sensor).state;'
-        - delay: 5s
-      on_ussd_received:
-        - logger.log:
-            format: "Received ussd msg: '%s'"
-            args: ["ussd.c_str()"]
-        - lambda: |-
-            id(ussd_message).publish_state(ussd);
-
-    sensor:
-      - platform: sim800l
-        rssi:
-          name: "Sim800L RSSI"
-
-    binary_sensor:
-      - platform: sim800l
-        registered:
-          name: "Sim800L Registered"
-
-    text_sensor:
-      - platform: template
-        id: caller_id_text_sensor
-        name: "Caller ID"
-      - platform: template
-        id: sms_sender
-        name: "Sms Sender"
-      - platform: template
-        id: sms_message
-        name: "Sms Message"
-      - platform: template
-        id: ussd_message
-        name: "Ussd Code"
 
     logger:
       baud_rate: 0 # disable uart logger on esp 8266
@@ -95,9 +53,24 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **on_sms_received** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when an SMS is received. See :ref:`sim800l-on_sms_received`.
+- **on_incoming_call** (*Optional*, :ref:`Automation <automation>`): An action to be
+  performed when a call is received. See :ref:`sim800l-on_incoming_call`.
+- **on_call_connected** (*Optional*, :ref:`Automation <automation>`): An action to be
+  performed when a call is connected, either because an outgoing call accepted is
+  accepted or an incoming call answered.
+- **on_call_disconnected** (*Optional*, :ref:`Automation <automation>`): An action to be
+  performed when a call is disconnected.
+
 
 Sensor
 ------
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: sim800l
+        rssi:
+          name: "Sim800L RSSI"
 
 Configuration variables:
 
@@ -110,6 +83,13 @@ Configuration variables:
 
 Binary Sensor
 -------------
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: sim800l
+        registered:
+          name: "Sim800L Registered"
 
 Configuration variables:
 
@@ -136,50 +116,30 @@ under the variables named ``message`` and ``sender`` respectively.
           id(sms_sender).publish_state(sender);
           id(sms_message).publish_state(message);
 
+.. _sim800l-on_incoming_call:
 
 ``on_incoming_call`` Trigger
-------------------------------
+----------------------------
 
-With this configuration option you can write complex automations whenever an incoming call
-is received. To use the call content, use a :ref:`lambda <config-lambda>`
-template, the incoming call caller phone number is available inside that lambda
-under the variables named ``caller_id``.
+This automation triggers every time the SIM800L sends a RING / Caller ID message, this message
+is sent several times per call, presumably every time the phone "RINGs". The automation provides
+a ``caller_id`` string parameter which received information. The phone call is neither accepted
+or rejected.
 
 .. code-block:: yaml
 
     on_incoming_call:
-    - logger.log:
-        format: "Incoming call from '%s'"
-        args: ["caller_id.c_str()"]
-    - lambda: |-
-        id(caller_id_text_sensor).publish_state(caller_id);
-    - sim800l.disconnect
-    - homeassistant.event:
-        event: esphome.incoming_call_event
-        data:
-          payload: !lambda 'return id(caller_id_text_sensor).state;'
-    - delay: 5s
+      - logger.log:
+          format: "Incoming call from '%s'"
+          args: ["caller_id.c_str()"]
+      - lambda: |-
+          id(caller_id_text_sensor).publish_state(caller_id);
+      - sim800l.disconnect
+      - homeassistant.event:
+          event: esphome.incoming_call_event
+          data:
+            payload: !lambda 'return id(caller_id_text_sensor).state;'
 
-
-``on_call_connected`` Trigger
------------------------------
-
-With this configuration option you can write complex automations whenever the current incoming call
-is connected.
-
-.. code-block:: yaml
-
-    on_call_connected:
-
-``on_call_disconnected`` Trigger
---------------------------------
-
-With this configuration option you can write complex automations whenever the current incoming call
-is disconnected.
-
-.. code-block:: yaml
-
-    on_call_disconnected:
 
 ``on_ussd_received`` Trigger
 ----------------------------
@@ -223,18 +183,11 @@ Configuration options:
 - **message** (**Required**, string, :ref:`templatable <config-templatable>`): The message content.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
 
-.. note::
-
-    This action can also be written in :ref:`lambdas <config-lambda>`:
-
-    .. code-block:: cpp
-
-        id(sim800l1).send_sms("+15551234567", "The message content");
 
 .. _sim800l-dial_action:
 
 ``sim800l.dial`` Action
----------------------------
+-----------------------
 
 Dial to a phone recipient using this action in automations.
 
@@ -250,18 +203,11 @@ Configuration options:
 - **recipient** (**Required**, string, :ref:`templatable <config-templatable>`): The number to dial.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID of the SIM800L if you have multiple components.
 
-.. note::
-
-    This action can also be written in :ref:`lambdas <config-lambda>`:
-
-    .. code-block:: cpp
-
-        id(sim800l1).dial("+15551234567");
 
 ``sim800l.connect`` Action
 --------------------------
 
-Connect current call imediately.
+Answers an incoming call.
 
 .. code-block:: yaml
 
@@ -270,18 +216,10 @@ Connect current call imediately.
         - sim800l.connect
 
 
-.. note::
-
-    This action can also be written in :ref:`lambdas <config-lambda>`:
-
-    .. code-block:: cpp
-
-        id(sim800l1).connect();
-
 ``sim800l.disconnect`` Action
 -----------------------------
 
-Disconnect current call imediately.
+Disconnects a call, either dialed in or received.
 
 .. code-block:: yaml
 
@@ -290,34 +228,16 @@ Disconnect current call imediately.
         - sim800l.disconnect
 
 
-.. note::
-
-    This action can also be written in :ref:`lambdas <config-lambda>`:
-
-    .. code-block:: cpp
-
-        id(sim800l1).disconnect();
-
-
 ``sim800l.send_ussd`` Action
 ----------------------------
 
-Send ussd code to network imediately.
+Sends a ussd code to the network.
 
 .. code-block:: yaml
 
     on_...:
       then:
         - sim800l.send_ussd
-
-
-.. note::
-
-    This action can also be written in :ref:`lambdas <config-lambda>`:
-
-    .. code-block:: cpp
-
-        id(sim800l1).send_ussd();
 
 
 Getting started with Home Assistant
@@ -330,40 +250,46 @@ on Home Assistant and will also setup a service so you can send messages and dia
 
     api:
       services:
-      - service: send_sms
-        variables:
-          recipient: string
-          message: string
-        then:
-        - sim800l.send_sms:
-            recipient: !lambda 'return recipient;'
-            message: !lambda 'return message;'
-      - service: dial
-        variables:
-          recipient: string
-        then:
-        - sim800l.dial:
-            recipient: !lambda 'return recipient;'
-      - service: send_ussd
-        variables:
-          ussdCode: string
-        then:
-        - sim800l.send_ussd:
-            ussd: !lambda 'return ussdCode;'
+        - service: send_sms
+          variables:
+            recipient: string
+            message: string
+          then:
+            - sim800l.send_sms:
+                recipient: !lambda 'return recipient;'
+                message: !lambda 'return message;'
+        - service: dial
+          variables:
+            recipient: string
+          then:
+            - sim800l.dial:
+                recipient: !lambda 'return recipient;'
+        - service: connect
+          then:
+            - sim800l.connect
+        - service: disconnect
+          then:
+            - sim800l.disconnect
+        - service: send_ussd
+          variables:
+            ussdCode: string
+          then:
+            - sim800l.send_ussd:
+                ussd: !lambda 'return ussdCode;'
 
     text_sensor:
-    - platform: template
-      id: sms_sender
-      name: "Sms Sender"
-    - platform: template
-      id: sms_message
-      name: "Sms Message"
-    - platform: template
-      id: caller_id_text_sensor
-      name: "Caller ID"
-    - platform: template
-      id: ussd_message
-      name: "Ussd Code"
+      - platform: template
+        id: sms_sender
+        name: "Sms Sender"
+      - platform: template
+        id: sms_message
+        name: "Sms Message"
+      - platform: template
+        id: caller_id_text_sensor
+        name: "Caller ID"
+      - platform: template
+        id: ussd_message
+        name: "Ussd Code"
 
     uart:
       baud_rate: 9600
@@ -372,9 +298,22 @@ on Home Assistant and will also setup a service so you can send messages and dia
 
     sim800l:
       on_sms_received:
-      - lambda: |-
-          id(sms_sender).publish_state(sender);
-          id(sms_message).publish_state(message);
+        - lambda: |-
+            id(sms_sender).publish_state(sender);
+            id(sms_message).publish_state(message);
+      on_incoming_call:
+        - lambda: |-
+            id(caller_id_text_sensor).publish_state(caller_id);
+      on_call_connected:
+        - logger.log:
+            format: Call connected
+      on_call_disconnected:
+        - logger.log:
+            format: Call disconnected
+      on_ussd_received:
+        - lambda: |-
+            id(ussd_message).publish_state(ussd);
+
 
 Now your latest received SMS and sender number will be displayed by the text sensors.
 
@@ -400,10 +339,10 @@ Relay management commands received from an authorized sender:
 
     sim800l:
       on_sms_received:
-      - lambda: |-
-          if ( (id(sms_sender).state == "+79991234567") && ( (id(sms_message).state == "relay_1_on") OR (id(sms_message).state == "Relay_1_on") ) ) {
-            id(relay_1).turn_on();
-          }
+        - lambda: |-
+            if ( (id(sms_sender).state == "+79991234567") && ( (id(sms_message).state == "relay_1_on") OR (id(sms_message).state == "Relay_1_on") ) ) {
+              id(relay_1).turn_on();
+            }
     switch:
       - platform: gpio
         id: relay_1
