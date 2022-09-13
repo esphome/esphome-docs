@@ -393,9 +393,9 @@ These configuration items determine default values the thermostat controller sho
 
 .. note::
 
-  You can specify a ``default_preset`` and set ``on_boot_restore_from`` to ``memory``. In this mode when
-  the settings from last boot cannot be retrieved, for any reason, then the specified ``default_preset``
-  will be applied.
+    You can specify a ``default_preset`` and set ``on_boot_restore_from`` to ``memory``. In this mode when
+    the settings from last boot cannot be retrieved, for any reason, then the specified ``default_preset``
+    will be applied.
 
 .. code-block:: yaml
 
