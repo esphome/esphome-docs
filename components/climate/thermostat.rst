@@ -392,7 +392,7 @@ These configuration items determine default values the thermostat controller sho
     - ``default_preset``: The thermostat will always switch to the presets specified by **default_preset**
 
 .. note::
-  
+
   You can specify a ``default_preset`` and set ``on_boot_restore_from`` to ``memory``. In this mode when
   the settings from last boot cannot be retrieved, for any reason, then the specified ``default_preset``
   will be applied.
