@@ -90,7 +90,7 @@ Automations:
   :ref:`esp32_ble_tracker-on_ble_service_data_advertise`.
 - **on_scan_end** (*Optional*, :ref:`Automation <automation>`): An automation to perform when
   a BLE scan has completed (the duration of the scan). This works with continuous set to true or false.
-  
+
 
 ESP32 Bluetooth Low Energy Tracker Automation
 ---------------------------------------------
@@ -194,7 +194,7 @@ Configuration variables:
 ************************************************
 
 This automation will be triggered when a Bluetooth scanning sequence has completed. If running
-with continuous set to true, this will trigger every time the scan completes (the duration of 
+with continuous set to true, this will trigger every time the scan completes (the duration of
 a scan).
 
 .. code-block:: yaml
@@ -214,8 +214,7 @@ Configuration variables:
 ``esp32_ble_tracker.start_scan`` Action
 ************************************************
 
-Start a single Bluetooth scan. If there is a scan already in progress, then the action is ignored.
-This should be used with continuous set to false.
+Start a Bluetooth scan. If there is a scan already in progress, then the action is ignored.
 
 .. code-block:: yaml
 
@@ -223,13 +222,8 @@ This should be used with continuous set to false.
       scan_parameters:
         continuous: false
 
-    time:
-      - platform: sntp
-        on_time: 
-          - seconds: 1
-            minutes: /1
-            then:
-              - esp32_ble_tracker.start_scan
+    on_...:
+      - esp32_ble_tracker.start_scan:
 
 Configuration variables:
 
@@ -246,6 +240,18 @@ Configuration variables:
 .. code-block:: cpp
 
     id(ble_tracker_id).start_scan()
+
+``esp32_ble_tracker.stop_scan`` Action
+************************************************
+
+Stops the bluetooth scanning. It can be started again with the above start scan action.
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+
+    on_...:
+      - esp32_ble_tracker.stop_scan:
 
 See Also
 --------
