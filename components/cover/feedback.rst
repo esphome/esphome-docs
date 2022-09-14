@@ -68,7 +68,7 @@ Movement Sensors
 
 If movement feedback is available, the cover no longer operates in *optimistic mode* (assuming that movement starts
 as soon as an action is triggered) and can also react to commands issued to cover from an external control and still
-keep states in sync (useful for "smartization" of and existing cover).
+keep states in sync (useful for "smartization" of an existing cover).
 
 When there are no specific endstop sensors, and if the cover has builtin endstops and no external control logic,
 these movement sensors can optionally be use to infer the endstop state. 
