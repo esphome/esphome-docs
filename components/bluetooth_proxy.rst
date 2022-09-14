@@ -18,6 +18,15 @@ The Bluetooth proxy depends on :doc:`esp32_ble_tracker` so make sure to add that
 
     Bluetooth proxy requires Home Assistant 2022.9 or later.
 
+.. note::
+
+    The Bluetooth proxy of ESPHome currently only provides Home Assistant with passive sensor
+    data that is advertised by certain devices. Not all devices are supported and ESPHome does not decode or keep a list.
+    To find out if your device is supported, please search for it in the `Home Assistant Integrations <https://www.home-assistant.io/integrations/>`__ list.
+
+Configuration:
+--------------
+
 .. code-block::
 
     bluetooth_proxy:
