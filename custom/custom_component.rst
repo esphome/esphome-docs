@@ -154,7 +154,7 @@ custom components that communicate using MQTT.
           publish("the/other/topic", 42);
         }
       }
-      void on_json_message(JsonObject &root) {
+      void on_json_message(JsonObject root) {
         if (!root.containsKey("key"))
           return;
 
@@ -162,7 +162,7 @@ custom components that communicate using MQTT.
         // do something with Json Object
 
         // publish JSON using lambda syntax
-        publish_json("the/other/json/topic", [=](JsonObject &root2) {
+        publish_json("the/other/json/topic", [=](JsonObject root2) {
           root2["key"] = "Hello World";
         });
       }
