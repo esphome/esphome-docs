@@ -72,7 +72,8 @@ Configuration variables:
     impact on the device but can be used to debug the BLE stack. Defaults to ``5min``.
   - **active** (*Optional*, boolean): Whether to actively send scan requests to request more data
     after having received an advertising packet. With some devices this is necessary to receive all data,
-    but also drains those devices' power a (tiny) bit more. Defaults to ``true``.
+    but also drains those devices' power a bit more. Some devices don't need this, in that case
+    you can save power and RF pollution by setting it to ``false``. Defaults to ``true``.
   - **continuous** (*Optional*, boolean): Whether to scan continuously (forever) or to only scan when
     asked to start a scan (with start_scan action). Defaults to ``true``.
 
@@ -256,7 +257,16 @@ Stops the bluetooth scanning. It can be started again with the above start scan 
 See Also
 --------
 
-- :doc:`binary_sensor/ble_presence`
+- :doc:`text_sensor/ble_scanner`
+- :doc:`sensor/ble_rssi`
+- :doc:`sensor/b_parasite`
+- :doc:`sensor/xiaomi_ble`
+- :doc:`sensor/xiaomi_miscale`
+- :doc:`sensor/inkbird_ibsth1_mini`
+- :doc:`sensor/mopeka_pro_check`
+- :doc:`sensor/ruuvitag`
+- :doc:`ble_client`
+- :doc:`bluetooth_proxy`
 - :apiref:`esp32_ble_tracker/esp32_ble_tracker.h`
 - `ESP32 BLE for Arduino <https://github.com/nkolban/ESP32_BLE_Arduino>`__ by `Neil Kolban <https://github.com/nkolban>`__.
 - :ghedit:`Edit`
