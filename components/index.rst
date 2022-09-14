@@ -8,6 +8,7 @@ Components
     climate/index
     cover/index
     fan/index
+    humidifier/index
     light/index
     number/index
     output/index

@@ -486,7 +486,6 @@ Hysteresis Values
 .. note::
 
     - While this platform uses the term temperature everywhere, it can also be used to regulate other values.
-      For example, controlling humidity is also possible with this platform.
     - ``min_temperature`` and ``max_temperature`` from the base climate component are used the define the range of 
       adjustability and the defaults will probably not make sense for control of things like humidity. See
       :doc:`/components/climate/index`.

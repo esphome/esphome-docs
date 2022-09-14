@@ -118,7 +118,7 @@ Configuration variables:
   in a specific mode. One of
 
   - ``OFF`` - The device is manually set to off, the device is inactive.
-  - ``AUTO`` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
+  - ``AUTO`` - The device should adjust the temperature dynamically. For example based on a schedule, or learned behavior.
   - ``HEAT`` - The device is set to heat to reach a target temperature.
   - ``COOL`` - The device is set to cool to reach a target temperature.
   - ``HEAT_COOL`` - The device should heat/cool to maintain a target temperature.
