@@ -1,13 +1,13 @@
-uFire EC sensor
-===================
+uFire Isolated EC sensor
+========================
 
 .. seo::
-    :description: Instructions for setting up uFire EC sensor in esphome
+    :description: Instructions for setting up uFire Isolated EC sensor in esphome
     :image: ufire_ec.png
     :keywords: ufire ec sensor temperature esphome
 
-The ``ufire_ec`` sensor platform allows you to use your uFire EC sensor with
-ESPHome. The :ref:`I²C Bus <i2c>` is
+The ``ufire_ec`` sensor platform allows you to use your uFire Isolated EC sensor
+with ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 It required also to have an temperature sensor in the liquit tank; this can
 be on the same board or external sensor linked to the uFire EC configuration.
@@ -32,8 +32,7 @@ be on the same board or external sensor linked to the uFire EC configuration.
 Configuration variables:
 ------------------------
 
-- **address** (**Optional**, int): Specify the I²C address of the sensor. Defaults to ``0x3C``,
-  this address work with the Isolated EC boards for Mod-EC use ``0x0a``.
+- **address** (**Optional**, int): Specify the I²C address of the sensor. Defaults to ``0x3C``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
