@@ -38,6 +38,15 @@ New Components
 - Add support for TM1638 Led and Key component :esphomepr:`3340` by :ghuser:`skykingjwc` (new-integration)
 - Add uFire ISE sensor :esphomepr:`3789` by :ghuser:`pvizeli` (new-integration)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- null initialize total sensor for pulse counter :esphomepr:`3803` by :ghuser:`RoboMagus`
+- Sim800l add calls, multiline sms and ussd :esphomepr:`3630` by :ghuser:`glmnet`
+- Unify 'nullptr' initalization of class members; :esphomepr:`3805` by :ghuser:`RoboMagus`
+- Initialize all child sensors to nullptr :esphomepr:`3808` by :ghuser:`jesserockz`
+- Remove floating point calculation from ac_dimmer ISR :esphomepr:`3770` by :ghuser:`Azimath`
+
 All changes
 ^^^^^^^^^^^
 
@@ -92,6 +101,11 @@ All changes
 - Allow ble tracker to subscribe to ota start and stop the scanning :esphomepr:`3800` by :ghuser:`jesserockz`
 - Add uFire ISE sensor :esphomepr:`3789` by :ghuser:`pvizeli` (new-integration)
 - fix spi timing issues :esphomepr:`3763` by :ghuser:`IgnacioHR`
+- null initialize total sensor for pulse counter :esphomepr:`3803` by :ghuser:`RoboMagus`
+- Sim800l add calls, multiline sms and ussd :esphomepr:`3630` by :ghuser:`glmnet`
+- Unify 'nullptr' initalization of class members; :esphomepr:`3805` by :ghuser:`RoboMagus`
+- Initialize all child sensors to nullptr :esphomepr:`3808` by :ghuser:`jesserockz`
+- Remove floating point calculation from ac_dimmer ISR :esphomepr:`3770` by :ghuser:`Azimath`
 
 Past Changelogs
 ---------------
