@@ -594,6 +594,7 @@ Text Sensor Components
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
+    Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     Template Text Sensor, components/text_sensor/template, description.svg
