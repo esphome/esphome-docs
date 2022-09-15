@@ -1,5 +1,5 @@
 Ethernet Info Text Sensor
-=====================
+=========================
 
 .. seo::
     :description: Instructions for setting up Ethernet info text sensors.
