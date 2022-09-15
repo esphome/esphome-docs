@@ -68,32 +68,6 @@ From :ref:`lambdas <config-lambda>`, you can call methods to do some advanced st
             - lambda: |-
                 id(bedjet_1).upgrade_firmware();
 
-``bedjet`` Climate Platform
----------------------------
-
-The `climate` platform exposes the BedJet's climate-related functionality, including
-setting the mode and target temperature.
-
-.. code-block:: yaml
-
-    climate:
-      - platform: bedjet
-        id: my_bedjet_climate_entity
-        name: "My BedJet"
-        bedjet_id: bedjet_1
-
-Configuration variables:
-************************
-
-- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **name** (**Required**, string): The name of the climate device.
-- **bedjet_id** (**Required**, :ref:`config-id`): The ID of the Bedjet component.
-- **heat_mode** (*Optional*, string): The primary heating mode to use for ``HVACMode.HEAT``:
-    - ``"heat"`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
-    - ``"extended"`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
-    - Whichever is not selected will be made available as a custom preset.
-- All other options from :ref:`Climate <config-climate>`.
-
 - ``.send_local_time``: If `time_id` is set, attempt to sync the clock now.
 
   .. code-block:: yaml
@@ -117,6 +91,61 @@ Configuration variables:
             then:
             - lambda: |-
                 id(my_bedjet_fan).set_clock(22, 10);
+
+
+``bedjet`` Climate
+------------------
+
+The ``climate`` platform exposes the BedJet's climate-related functionality, including
+setting the mode and target temperature.
+
+.. code-block:: yaml
+
+    climate:
+      - platform: bedjet
+        id: my_bedjet_climate_entity
+        name: "My BedJet"
+        bedjet_id: bedjet_1
+
+Configuration variables:
+************************
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **name** (**Required**, string): The name of the climate device.
+- **bedjet_id** (**Required**, :ref:`config-id`): The ID of the Bedjet component.
+- **heat_mode** (*Optional*, string): The primary heating mode to use for ``HVACMode.HEAT``:
+
+    - ``heat`` (Default) - Setting ``hvac_mode=heat`` uses the BedJet "HEAT" mode.
+    - ``extended`` - Setting ``hvac_mode=heat`` uses BedJet "EXT HEAT" mode.
+
+    Whichever is not selected will be made available as a custom preset.
+
+- All other options from :ref:`Climate <config-climate>`.
+
+``bedjet`` Fan
+--------------
+
+The `fan` platform exposes the BedJet's fan-related functionality, including
+on/off and speed control.
+
+When the BedJet is already on, turning the Fan component off will set the BedJet unit's mode to
+``OFF``. If it was not already on, it will be turned on to mode ``FAN_ONLY``.
+
+.. code-block:: yaml
+
+    fan:
+      - platform: bedjet
+        id: my_bedjet_fan_entity
+        name: "My BedJet Fan"
+        bedjet_id: bedjet_1
+
+Configuration variables:
+************************
+
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **name** (**Required**, string): The name of the fan device.
+- **bedjet_id** (**Required**, :ref:`config-id`): The ID of the Bedjet component.
+- Other options from :ref:`Fan <config-fan>`.
 
 Known issues:
 -------------

@@ -25,6 +25,9 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`shutdown`
+- :doc:`safe_mode`
+- :doc:`factory_reset`
 - :doc:`/components/switch/restart`
 - :doc:`template`
 - :apiref:`restart/button/restart_button.h`

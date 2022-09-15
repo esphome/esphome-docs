@@ -350,8 +350,13 @@ And a docker compose file looks like this:
           - ./:/config:rw
           # Use local time for logging timestamps
           - /etc/localtime:/etc/localtime:ro
+        devices:
+          # if needed, add esp device(s) as in command line examples above
+          - /dev/ttyUSB0:/dev/ttyUSB0
+          - /dev/ttyACM0:/dev/ttyACM0
         network_mode: host
         restart: always
+        
 
 .. _docker-reference-notes:
 .. note::
