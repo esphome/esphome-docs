@@ -32,6 +32,8 @@ manually in your browser.
       ap:
         ssid: "Livingroom Fallback Hotspot"
         password: !secret wifi_ap_password
+      # Set to true to preserve captive_portal credentials over OTA updates
+      #keep_user_credentials: true
 
     captive_portal:
 
