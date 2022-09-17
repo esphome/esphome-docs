@@ -197,8 +197,8 @@ through an ``on_boot`` trigger:
 Adding a password:
 ******************
 
-If OTA is already enabled without a password, simply add a `password:` line to the existing
-`ota:` config block.
+If OTA is already enabled without a password, simply add a ``password:`` line to the existing
+``ota:`` config block.
 
 See Also
 --------
