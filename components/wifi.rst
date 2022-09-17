@@ -85,6 +85,7 @@ Configuration variables:
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
 - **keep_user_credentials** (*Optional*, boolean): Do not erase WiFi credentials entered using :doc:`captive_portal` over subsequent OTA updates.
+  Note: WiFi STA credentials cannot be set in YAML when using this.
 
 - **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
 - **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.
