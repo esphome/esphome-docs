@@ -92,7 +92,7 @@ Configuration example:
 LYWSDCGQ
 ********
 
-Hygro thermometer, round body, segment LCD, broadcasts temperature, humidity and battery level.
+Hygro thermometer, round body, segment LCD, broadcasts temperature, humidity and battery level. This device is also known as MJ_HT_V1. In HA's native Xiaomi BLE integration, the device info page shows it as "MJ_HT_V1 (LYWSDCGQ by Xiaomi)".
 
 .. figure:: images/xiaomi_lywsdcgq.jpg
     :align: center
