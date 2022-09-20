@@ -46,6 +46,10 @@ Beta Changes
 - Unify 'nullptr' initalization of class members; :esphomepr:`3805` by :ghuser:`RoboMagus`
 - Initialize all child sensors to nullptr :esphomepr:`3808` by :ghuser:`jesserockz`
 - Remove floating point calculation from ac_dimmer ISR :esphomepr:`3770` by :ghuser:`Azimath`
+- split pronto codes if they are too long :esphomepr:`3812` by :ghuser:`ssieb`
+- [BME280] raise standby time :esphomepr:`3804` by :ghuser:`h3ndrik`
+- Make sprinkler reset_resume() method public :esphomepr:`3824` by :ghuser:`kbx81`
+- Bump dashboard to 20220919.1 :esphomepr:`3828` by :ghuser:`balloob`
 
 All changes
 ^^^^^^^^^^^
@@ -106,6 +110,10 @@ All changes
 - Unify 'nullptr' initalization of class members; :esphomepr:`3805` by :ghuser:`RoboMagus`
 - Initialize all child sensors to nullptr :esphomepr:`3808` by :ghuser:`jesserockz`
 - Remove floating point calculation from ac_dimmer ISR :esphomepr:`3770` by :ghuser:`Azimath`
+- split pronto codes if they are too long :esphomepr:`3812` by :ghuser:`ssieb`
+- [BME280] raise standby time :esphomepr:`3804` by :ghuser:`h3ndrik`
+- Make sprinkler reset_resume() method public :esphomepr:`3824` by :ghuser:`kbx81`
+- Bump dashboard to 20220919.1 :esphomepr:`3828` by :ghuser:`balloob`
 
 Past Changelogs
 ---------------
