@@ -50,6 +50,8 @@ Beta Changes
 - [BME280] raise standby time :esphomepr:`3804` by :ghuser:`h3ndrik`
 - Make sprinkler reset_resume() method public :esphomepr:`3824` by :ghuser:`kbx81`
 - Bump dashboard to 20220919.1 :esphomepr:`3828` by :ghuser:`balloob`
+- Fix-esphome-validation-line-number :esphomepr:`3815` by :ghuser:`glmnet`
+- Bump dashboard to 20220920.0 :esphomepr:`3831` by :ghuser:`balloob`
 
 All changes
 ^^^^^^^^^^^
@@ -114,6 +116,8 @@ All changes
 - [BME280] raise standby time :esphomepr:`3804` by :ghuser:`h3ndrik`
 - Make sprinkler reset_resume() method public :esphomepr:`3824` by :ghuser:`kbx81`
 - Bump dashboard to 20220919.1 :esphomepr:`3828` by :ghuser:`balloob`
+- Fix-esphome-validation-line-number :esphomepr:`3815` by :ghuser:`glmnet`
+- Bump dashboard to 20220920.0 :esphomepr:`3831` by :ghuser:`balloob`
 
 Past Changelogs
 ---------------
