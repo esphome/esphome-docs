@@ -22,6 +22,21 @@ ESPHome 2022.9.0 - 21st September 2022
     BL0942, components/sensor/bl0942, bl0942.png
 
 
+ESPHome Editor
+--------------
+
+The editor used in ESPHome has been swapped out for Monaco thanks to :ghuser:`glmnet`. He has
+been working hard to make the experience of writing your YAML configurations easier and it now
+supports auto completion with popups to show you more information.
+
+Factory Reset
+-------------
+
+A new Factory Reset switch and button has been added this release, allowing resetting of information such
+as counters, restored values, and more importantly, the wifi credentials of a device that has been set up
+using the captive portal such as pre-flashed devices you would have purchased.
+
+
 Full list of changes
 --------------------
 
@@ -45,7 +60,7 @@ Beta Changes
 - Sim800l add calls, multiline sms and ussd :esphomepr:`3630` by :ghuser:`glmnet`
 - Unify 'nullptr' initalization of class members; :esphomepr:`3805` by :ghuser:`RoboMagus`
 - Initialize all child sensors to nullptr :esphomepr:`3808` by :ghuser:`jesserockz`
-- Remove fl- Bump dashboard to 20220920.1 :esphomepr:`3834` by :ghuser:`glmnet`oating point calculation from ac_dimmer ISR :esphomepr:`3770` by :ghuser:`Azimath`
+- Remove floating point calculation from ac_dimmer ISR :esphomepr:`3770` by :ghuser:`Azimath`
 - split pronto codes if they are too long :esphomepr:`3812` by :ghuser:`ssieb`
 - [BME280] raise standby time :esphomepr:`3804` by :ghuser:`h3ndrik`
 - Make sprinkler reset_resume() method public :esphomepr:`3824` by :ghuser:`kbx81`
