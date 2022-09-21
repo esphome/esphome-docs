@@ -66,7 +66,7 @@ author = "ESPHome"
 # built documents.
 #
 # The short X.Y version.
-version = "2022.10"
+version = "2022.9"
 # The full version, including alpha/beta/rc tags.
 release = "2022.9.0"
 
