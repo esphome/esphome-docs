@@ -20,9 +20,14 @@ interface are hosted by esphome.io. If you want to use your own service, use the
 .. _REST API: /web-api/index.html
 
 .. figure:: /components/images/web_server.png
-    :align: center
 
-    Example web server frontend.
+    Example web server frontend (Version 1)
+
+Version 2:
+----------
+.. figure:: /components/images/web_server-v2.png
+
+    Web Components (Version 2)
 
 .. code-block:: yaml
 
@@ -52,8 +57,10 @@ Configuration variables:
 
 - **include_internal** (*Optional*, boolean): Whether ``internal`` entities should be displayed on the
   web interface. Defaults to ``false``.
-- **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Default: `true`
+- **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
+- **version** (*Optional*, string): ``1`` or ``2``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to ``2``.
 
 .. note::
 
@@ -68,20 +75,62 @@ Configuration variables:
             username: admin
             password: !secret web_server_password
 
-    Example web_server configuration with CSS and JS included from esphome-docs.
-    CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
-    Force to turn off OTA function because the missing authentication.
+    Example web_server configuration using version 1 (previous behaviour):
 
     .. code-block:: yaml
 
         # Example configuration entry
         web_server:
           port: 80
-          ota: false
-          css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
-          css_url: ""
-          js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
-          js_url: ""
+          version: 1
+
+    Example web_server configuration using version 2  - no internet/intranet required:
+
+    .. code-block:: yaml
+
+        # Example configuration entry
+        web_server:
+          local: true
+
+
+
+    All of the assets are inlined, compressed and served from flash
+
+Here be Dragons
+===============
+
+The following assume copies of the files with local paths - which are config dependant.
+
+Example web_server version 1 configuration with CSS and JS included from esphome-docs.
+CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
+Force to turn off OTA function because the missing authentication.
+
+.. code-block:: yaml
+
+    # Example configuration entry V1
+    web_server:
+      port: 80
+      ota: false
+      css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
+      js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
+      js_url: ""
+
+Example web_server version 2 configuration with JS included from a local file.
+
+CSS and JS URL's are set to empty value, so no internet access is needed for this device to show it's web interface.
+V2 embeds the css within the js file so is not required, however you could include your own CSS.
+
+.. code-block:: yaml
+
+    # Example configuration entry V2
+    web_server:
+      js_include: "./v2/www.js"
+      js_url: ""
+      version: 2
+
+
+Copy https://oi.esphome.io/v2/www.js to a V2 folder in your yaml folder.
+
 
 See Also
 --------

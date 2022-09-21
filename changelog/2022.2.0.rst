@@ -41,23 +41,12 @@ and everyone should move to the ESPHome repo. It is safe to delete the
 ESPHome addon as your configuration YAML files are stored in the Home
 Assistant configuration folder.
 
-You can add the repository here:
+You can add the ESPHome addon here:
 
 .. raw:: html
 
-    <a href="https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fesphome%2Fhome-assistant-addon"
-       target="_blank">
-        <img src="https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg"
-             alt="Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled." />
-    </a>
-
-And then install the latest ESPHome addon here:
-
-.. raw:: html
-
-    <a href="https://my.home-assistant.io/redirect/supervisor_addon/?addon=5c53de3b_esphome" target="_blank">
-        <img src="https://my.home-assistant.io/badges/supervisor_addon.svg"
-             alt="Open your Home Assistant instance and show the dashboard of a Supervisor add-on." />
+    <a href="https://my.home-assistant.io/redirect/supervisor_addon/?addon=5c53de3b_esphome&repository_url=https%3A%2F%2Fgithub.com%2Fesphome%2Fhome-assistant-addon" target="_blank">
+        <img src="https://my.home-assistant.io/badges/supervisor_addon.svg" alt="Open your Home Assistant instance and show the dashboard of the ESPHome add-on." />
     </a>
 
 Locks
@@ -138,6 +127,11 @@ Release 2022.2.5 - February 23
 
 - Respect ESPHOME_USE_SUBPROCESS in esp32 post_build script :esphomepr:`3246` by :ghuser:`mweinelt`
 - Fix regression caused by TSL2591 auto gain :esphomepr:`3249` by :ghuser:`Azimath`
+
+Release 2022.2.6 - March 2
+--------------------------
+
+- Only get free memory size from internal :esphomepr:`3259` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------

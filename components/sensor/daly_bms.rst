@@ -1,5 +1,5 @@
-Daly BMS
-========
+Daly BMS Sensor
+===============
 
 .. seo::
     :description: Instructions for setting up a Daly Smart BMS
@@ -23,10 +23,10 @@ The BMS communicates via :ref:`UART <uart>`.
       tx_pin: GPIO1
       rx_pin: GPIO3
       baud_rate: 9600
-      
+
     daly_bms:
       update_interval: 20s
-      
+
     sensor:
       - platform: daly_bms
         voltage:
@@ -59,13 +59,21 @@ The BMS communicates via :ref:`UART <uart>`.
           name: "Temperature 1"
         temperature_2:
           name: "Temperature 2"
+        cell_1_voltage:
+          name: "Cell 1 Voltage"
+        cell_2_voltage:
+          name: "Cell 2 Voltage"
+        cell_3_voltage:
+          name: "Cell 3 Voltage"
+        cell_4_voltage:
+          name: "Cell 4 Voltage"
 
     text_sensor:
       - platform: daly_bms
         status:
           name: "BMS Status"
-          
-          
+
+
     binary_sensor:
       - platform: daly_bms
         charging_mos_enabled:
@@ -76,12 +84,15 @@ The BMS communicates via :ref:`UART <uart>`.
 Component/Hub
 -------------
 
-- **update_interval** (*Optional*, :ref:`config-time`): Delay between data requests.
-
 Configuration variables:
 ************************
-Sensor:
--------
+
+- **update_interval** (*Optional*, :ref:`config-time`): Delay between data requests.
+- **address** (*Optional*, int): Address to use, defaults to ``0x80``.
+
+Sensor
+------
+
 A sensor platform to read BMS data
 
 Configuration variables:
@@ -177,8 +188,15 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-Text Sensor:
-------------
+- **cell_1_voltage** (*Optional*): The voltage of cell number 1. Cell number can be from 1 to 16.
+
+  - **name** (**Required**, string): The name for the cell voltage sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+Text Sensor
+-----------
+
 Text sensor that indicates the status of BMS.
 
 Configuration variables:
@@ -190,8 +208,9 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Text Sensor <config-text_sensor>`.
 
-Binary Sensor:
---------------
+Binary Sensor
+-------------
+
 Binary sensor that indicates the status of MOS.
 
 Configuration variables:
@@ -209,8 +228,9 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
-UART Connection:
-----------------
+UART Connection
+---------------
+
 Connect RX from BMS to TX in ESP board and TX from BMS to RX in ESP board
 
 .. figure:: images/daly_bms_pinout.png

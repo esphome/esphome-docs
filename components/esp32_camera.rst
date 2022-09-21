@@ -147,6 +147,13 @@ White Balance Setting:
     - ``office``: White balance office mode
     - ``home``: White balance home mode
 
+Automations:
+
+- **on_stream_start** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a stream starts.
+- **on_stream_stop** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when a stream stops.
+
 Test Setting:
 
 - **test_pattern** (*Optional*, boolean): For tests purposes, it's possible to replace picture get from sensor by a test color pattern. Defaults to ``false``.

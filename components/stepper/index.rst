@@ -240,7 +240,7 @@ This :ref:`Action <config-action>` allows you to set the acceleration of a stepp
     on_...:
       - stepper.set_acceleration:
           id: my_stepper
-          speed: 250 steps/s^2
+          acceleration: 250 steps/s^2
 
 Configuration variables:
 
@@ -260,7 +260,7 @@ This :ref:`Action <config-action>` allows you to set the deceleration of a stepp
     on_...:
       - stepper.set_deceleration:
           id: my_stepper
-          speed: 250 steps/s^2
+          deceleration: 250 steps/s^2
 
 Configuration variables:
 

@@ -1,4 +1,4 @@
-Time-Based Cover
+Time Based Cover
 ================
 
 .. seo::
