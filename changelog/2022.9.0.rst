@@ -36,6 +36,10 @@ A new Factory Reset switch and button has been added this release, allowing rese
 as counters, restored values, and more importantly, the wifi credentials of a device that has been set up
 using the captive portal such as pre-flashed devices you would have purchased.
 
+Release 2022.9.1 - September 22
+-------------------------------
+
+- Revert "fix spi timing issues" :esphomepr:`3838` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
