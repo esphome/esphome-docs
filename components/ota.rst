@@ -177,6 +177,9 @@ enum. These values are:
 Updating the password:
 ----------------------
 
+Changing an existing password:
+******************************
+
 Since the password is used both for compiling and uploading the regular ``esphome <file> run``
 won't work of course. This issue can be worked around by executing the operations separately
 through an ``on_boot`` trigger:
@@ -190,6 +193,12 @@ through an ``on_boot`` trigger:
     ota:
       password: "Old password"
       id: my_ota
+
+Adding a password:
+******************
+
+If OTA is already enabled without a password, simply add a ``password:`` line to the existing
+``ota:`` config block.
 
 See Also
 --------
