@@ -102,7 +102,7 @@ AEHA refers to the Association for Electric Home Appliances in Japan, a format u
 .. _remote_transmitter-transmit_canalsat:
 
 ``remote_transmitter.transmit_canalsat`` Action
-******************************************
+***********************************************
 
 This :ref:`action <config-action>` sends a CanalSat infrared remote code to a remote transmitter.
 
@@ -129,7 +129,7 @@ Configuration variables:
 .. _remote_transmitter-transmit_canalsatld:
 
 ``remote_transmitter.transmit_canalsatld`` Action
-******************************************
+*************************************************
 
 This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a remote transmitter.
 
