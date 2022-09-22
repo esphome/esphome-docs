@@ -99,6 +99,56 @@ Configuration variables:
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
+``remote_transmitter.transmit_canalsat`` Action
+******************************************
+
+This :ref:`action <config-action>` sends a CanalSat infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsat:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+``remote_transmitter.transmit_canalsatld`` Action
+******************************************
+
+This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsatld:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
