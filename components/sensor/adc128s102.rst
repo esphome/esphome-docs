@@ -37,7 +37,7 @@ sensors for your projects.
     sensor:
       - platform: adc128s102           # Attached to pin 0 of the ADC128S102.
         update_interval: 1s
-        adc128s102_id: my_mcp
+        adc128s102_id: my_adc
         id: freezer_temp_source
         channel: 0                     # ADC128S102 channel
 
