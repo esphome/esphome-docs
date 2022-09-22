@@ -99,6 +99,8 @@ Configuration variables:
 
 AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
 
+.. _remote_transmitter-transmit_canalsat:
+
 ``remote_transmitter.transmit_canalsat`` Action
 ******************************************
 
@@ -123,6 +125,8 @@ Configuration variables:
 - **address** (**Optional**, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
 - **command** (**Required**, int): The command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_canalsatld:
 
 ``remote_transmitter.transmit_canalsatld`` Action
 ******************************************
