@@ -1,5 +1,5 @@
 ESPHOME_PATH = ../esphome
-ESPHOME_REF = 2022.9.1
+ESPHOME_REF = dev
 
 .PHONY: html html-strict cleanhtml deploy help live-html Makefile netlify netlify-api api netlify-dependencies svg2png copy-svg2png minify
 
