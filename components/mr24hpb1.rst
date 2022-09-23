@@ -147,8 +147,8 @@ Environment Status
 ------------------
 
 .. list-table::
-  :header-rows: 1
-  :widths: 1 3
+    :header-rows: 1
+    :widths: 1 3
 
     * - Value
       - Meaning
@@ -167,8 +167,8 @@ Movement Rate
 Movement rate is reported as a percentage by the sensor. The table below is taken from the documentation. A movement rate of ``1`` results in the environment status ``STATIONARY``, greater than ``1`` in ``MOVING``.
 
 .. list-table::
-  :header-rows: 1
-  :widths: 1 3 3
+    :header-rows: 1
+    :widths: 1 3 3
 
     * - Value
       - Movement
@@ -194,8 +194,8 @@ Movement Type
 The MR24HPB1 reports different movement types listed in the table below. Documentation for this feature is limited and two additional undocumented values are reported by the sensor. Relying on the movement type data is not advised as the value sometimes changes rapidly with weak definition of the reported values, e.g. between ``FAR_AWAY`` and ``APPROACHING`` even tough the human is moving away from the sensor.
 
 .. list-table::
-  :header-rows: 1
-  :widths: 1 3
+    :header-rows: 1
+    :widths: 1 3
 
     * - Value
       - Meaning
