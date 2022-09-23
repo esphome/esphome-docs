@@ -122,7 +122,7 @@ Configuration variables:
 
 .. note::
 
-  Although the MR24HPB1 features a 3.3V pin the radar only works when supplied with 5V on the 5V pin.
+    Although the MR24HPB1 features a 3.3V pin the radar only works when supplied with 5V on the 5V pin.
 
 .. _mr24hpb1-force-unoccupied-options:
 
@@ -150,14 +150,14 @@ Environment Status
   :header-rows: 1
   :widths: 1 3
 
-  * - Value
-    - Meaning
-  * - UNOCCUPIED
-    - No human in radar field
-  * - STATIONARY
-    - Stationary human in radar field
-  * - MOVING
-    - Human movement in radar field
+    * - Value
+      - Meaning
+    * - UNOCCUPIED
+      - No human in radar field
+    * - STATIONARY
+      - Stationary human in radar field
+    * - MOVING
+      - Human movement in radar field
 
 .. _mr24hpb1-movement-rate:
 
@@ -170,21 +170,21 @@ Movement rate is reported as a percentage by the sensor. The table below is take
   :header-rows: 1
   :widths: 1 3 3
 
-  * - Value
-    - Movement
-    - Meaning
-  * - 1
-    - Stationary
-    - Only breathing without body movement
-  * - 2 - 30
-    - Micro-Movements
-    - Only minor head or limb movements
-  * - 32 - 60
-    - Walking
-    - Slower body movements
-  * - 61 - 100
-    - Running/close range large movements
-    - Rapid body movements
+    * - Value
+      - Movement
+      - Meaning
+    * - 1
+      - Stationary
+      - Only breathing without body movement
+    * - 2 - 30
+      - Micro-Movements
+      - Only minor head or limb movements
+    * - 32 - 60
+      - Walking
+      - Slower body movements
+    * - 61 - 100
+      - Running/close range large movements
+      - Rapid body movements
 
 .. _mr24hpb1-movement-type:
 
@@ -197,18 +197,18 @@ The MR24HPB1 reports different movement types listed in the table below. Documen
   :header-rows: 1
   :widths: 1 3
 
-  * - Value
-    - Meaning
-  * - NONE
-    - No movement
-  * - APPROACHING
-    - Human approaching sensor
-  * - FAR_AWAY
-    - Human movement far away from sensor
-  * - U1
-    - Undocumented value
-  * - U2
-    - Undocumented value
+    * - Value
+      - Meaning
+    * - NONE
+      - No movement
+    * - APPROACHING
+      - Human approaching sensor
+    * - FAR_AWAY
+      - Human movement far away from sensor
+    * - U1
+      - Undocumented value
+    * - U2
+      - Undocumented value
 
 See Also
 --------
