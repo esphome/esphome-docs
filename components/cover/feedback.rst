@@ -198,7 +198,7 @@ Most options can be left untouched, but some modifications are needed:
           id: open_binary_sensor
           sensor_id: open_current_sensor
           threshold: 0.5
-          filter:
+          filters:
             - delayed_off: 0.8s
         - platform: analog_threshold
           id: open_obstacle_binary_sensor

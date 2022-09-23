@@ -834,7 +834,14 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 self.app.config.html_baseurl,
                 self.docname + ".html#" + title.parent["ids"][0],
             )
-            markdown += f"\n\n*See also: [{self.props_section_title}]({url})*"
+            if (
+                self.props_section_title is not None
+                and self.props_section_title.endswith(title.astext())
+            ):
+                markdown += f"\n\n*See also: [{self.props_section_title}]({url})*"
+            else:
+                markdown += f"\n\n*See also: [{self.getMarkdown(title)}]({url})*"
+
         return markdown
 
     def update_prop(self, node, props):
