@@ -6,9 +6,10 @@ Logger Component
     :image: file-document-box.svg
 
 The logger component automatically logs all log messages through the
-serial port and through MQTT topics. By default, all logs with a
-severity higher than ``DEBUG`` will be shown. Decreasing the log level
-can help with the performance of the application and memory size.
+serial port and through MQTT topics (if there is an MQTT client in the
+configuration). By default, all logs with a severity higher than
+``DEBUG`` will be shown. Decreasing the log level can help with the
+performance of the application and memory size.
 
 .. code-block:: yaml
 
