@@ -113,5 +113,6 @@ See Also
 
 - :ref:`sensor-filters`
 - `CCS811 Application Note <https://cdn.sparkfun.com/datasheets/BreakoutBoards/CCS811_Programming_Guide.pdf>`__
+- `Baseline Save and Restore on CCS811 <https://www.sciosense.com/wp-content/uploads/documents/Application-Note-Baseline-Save-and-Restore-on-CCS811.pdf>`
 - :apiref:`ccs811/ccs811.h`
 - :ghedit:`Edit`
