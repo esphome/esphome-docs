@@ -55,7 +55,9 @@ The logger component makes use of platform-specific hardware UARTs for serial lo
 By default, the logger will occupy ``UART0``. The ESP32 has three hardware UARTs, all of
 which can be used for both transmit and receive. The ESP8266 only has two hardware UARTs,
 one of which is transmit-only. The ESP8266 ``UART0`` can also be 'swapped' to TX/RX on the
-CTS/RTS pins, if you need to use GPIO1 and GPIO3 for something else.
+CTS/RTS pins, if you need to use GPIO1 and GPIO3 for something else. Note that the common
+NodeMCU boards have their USB-UART Adapters fixed to the default GPIOs used by ``UART0``,
+so if you use anything else you will not get log messages over the on-board USB.
 
 Possible Hardware UART configurations:
 
