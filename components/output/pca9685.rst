@@ -38,7 +38,7 @@ global ``pca9685`` hub and give it an id, and then define the
     # Example configuration entry with external clock enable and clock source from ESP32
     pca9685:
       - id: pca9685_hub1
-        extclk: true
+        external_clock_input: true
 
     # Individual outputs
     output:
@@ -59,7 +59,7 @@ Configuration variables:
 -  **frequency** (*Optional*, float): The frequency to let the
    component drive all PWM outputs at. Must be in range from 24Hz to
    1525.88Hz. Default ``1000Hz``.
--  **extclk** (*Optional*, bool): Enable external clock input. PRE_SCALE register will by set to 3. Default to ``false``.
+-  **external_clock_input** (*Optional*, bool): Enable external clock input. PRE_SCALE register will by set to 3. Default to ``false``.
 -  **address** (*Optional*, int): The I²C address of the driver.
    Defaults to ``0x40``.
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
