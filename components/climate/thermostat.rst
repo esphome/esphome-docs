@@ -389,7 +389,7 @@ These configuration items determine default values the thermostat controller sho
   it first boots. One of:
 
     - ``memory`` (default): The thermostat will restore any settings from last time it was running.
-    - ``default_preset``: The thermostat will always switch to the presets specified by **default_preset**
+    - ``default_preset``: The thermostat will always switch to the preset specified by **default_preset**
 
 .. note::
 
