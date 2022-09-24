@@ -180,9 +180,9 @@ than ``off``.  If this option is not configured, you'll need to manually change 
 the front end (Home Assistant), an ESPHome action, automation, or from within a lambda elsewhere in your
 device's configuration.
 
-- **default_target_temperature_low** (*Optional*, *Deprecated*, float): The default low target
+- **default_target_temperature_low** (*Optional*, float): The default low target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
-- **default_target_temperature_high** (*Optional*, *Deprecated*, float): The default high target
+- **default_target_temperature_high** (*Optional*, float): The default high target
   temperature for the control algorithm. This can be dynamically set in the frontend later.
 
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
@@ -190,9 +190,9 @@ device's configuration.
 
 .. note::
 
-    **default_mode**, **default_target_temperature_low**, and **default_target_temperature_high** are
-    deprecated and will be removed in a future release. You should migrate your configuration to using
-    a :ref:`preset <thermostat-preset>` which allows for more flexibility and customisation 
+    **default_mode**, **default_target_temperature_low**, and **default_target_temperature_high** are 
+    being removed in a future release. In the future you will need to migrate your configuration to using
+    a :ref:`preset <thermostat-preset>` which will allow for more flexibility and customisation 
 
 Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
 the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
