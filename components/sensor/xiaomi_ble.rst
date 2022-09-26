@@ -647,6 +647,7 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
+- :doc:`/components/display/pvvx_mithermometer`
 - :apiref:`xiaomi_lywsd03mmc/xiaomi_ble.h`
 - :doc:`/components/ethernet`
 - :doc:`/components/bluetooth_proxy`
