@@ -46,6 +46,7 @@ Configuration variables:
   - ``M5STACK``
   - ``TFT 2.4``
   - ``TFT 2.4R``  (ILI9342)
+  - ``ST7796``
 
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
