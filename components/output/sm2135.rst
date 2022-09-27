@@ -62,6 +62,10 @@ Configuration variables:
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
    this ``sm2135`` component. Use this if you have multiple SM2135 chains
    connected at the same time.
+- **cw_current** (*Optional*): The current (in mA) used for the white channel. The values can be set to
+   10 (default), 15, 20, 25, 30, 35, 40, 45, 50, 55 or 60.
+- **rgb_current** (*Optional*): The current (in mA) used for the RGB channel. The values can be set to
+   10, 15, 20 (default), 25, 30, 35, 40, 45, 50, 55, 60.
 
 .. _sm2135-output:
 
@@ -110,12 +114,18 @@ Configuration variables:
 - **sm2135_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
   :ref:`sm2135-component`.
   Use this if you have multiple SM2135 chains you want to use at the same time.
+- **rgb_current** (*Optional*, int): The current in mA used to drive the RGB channel.
+- **cw_current** (*Optional*, int): The current in mA used to drive the CW channel.
 - All other options from :ref:`Output <config-output>`.
 
 .. note::
 
     The white LEDs are much brighter than the color LEDs. To get uniform brightness
     for both color and white you will need to limit the white led power.
+
+.. note::
+
+    Setting to high currents could damage your bulb.
 
 .. note::
 
