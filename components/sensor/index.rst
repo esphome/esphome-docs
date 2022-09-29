@@ -50,7 +50,7 @@ Configuration variables:
   sensor. See https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
   for a list of available options. Set to ``""`` to remove the default state class of a sensor.
 - **icon** (*Optional*, icon): Manually set the icon to use for the sensor in the frontend.
-- **accuracy_decimals** (*Optional*, int): Manually set the accuracy of decimals to use when reporting values.
+- **accuracy_decimals** (*Optional*, int): Manually set the number of decimals to use when reporting values. This does not impact the actual value reported to Home Assistant, it just sets the number of decimals to use when displaying it.
 - **filters** (*Optional*): Specify filters to use for some basic
   transforming of values. See :ref:`Sensor Filters <sensor-filters>` for more information.
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
@@ -558,10 +558,16 @@ So for example ``above: 5`` with no below would mean the range from 5 to positiv
       - platform: dallas
         # ...
         on_value_range:
-          above: 5
-          below: 10
-          then:
-            - switch.turn_on: relay_1
+          - below: 5.0
+            then:
+              - switch.turn_on: relay_1
+          - above: 5.0
+            below: 10.0
+            then:
+              - switch.turn_on: relay_2
+          - above: 10.0
+            then:
+              - switch.turn_on: relay_3
 
 Configuration variables:
 
