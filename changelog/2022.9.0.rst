@@ -41,6 +41,11 @@ Release 2022.9.1 - September 22
 
 - Revert "fix spi timing issues" :esphomepr:`3838` by :ghuser:`jesserockz`
 
+Release 2022.9.2 - September 29
+-------------------------------
+
+- Bump dashboard to 20220925.0 :esphomepr:`3846` by :ghuser:`glmnet`
+
 Full list of changes
 --------------------
 
