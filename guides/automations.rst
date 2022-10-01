@@ -730,6 +730,12 @@ script was already running.
       then:
         - script.execute: my_script
 
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: 'id(my_script).execute();
+
 .. _script-stop_action:
 
 ``script.stop`` Action
@@ -757,6 +763,12 @@ will not be executed.
       then:
         - script.stop: my_script
 
+or as lambda
+
+.. code-block:: yaml   
+
+    lambda: 'id(my_script).stop();'
+
 .. _script-wait_action:
 
 ``script.wait`` Action
@@ -783,6 +795,14 @@ of the script are running in parallel, this will block until all of them have te
         - script.execute: my_script
         - script.wait: my_script
 
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: |-
+        id(my_script).execute();
+        id(my_script).wait();
+
 .. _script-is_running_condition:
 
 ``script.is_running`` Condition
@@ -800,6 +820,15 @@ of the given id is running, not how many.
           - script.is_running: my_script
         then:
           - logger.log: Script is running!
+
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: -|
+        if(id(my_script).is_running() {
+            ESP_LOGI("main", "Script is running!");
+        }
 
 .. _for_condition:
 
