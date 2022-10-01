@@ -32,6 +32,18 @@ Advanced options:
   the BLE receiver doesn't use it. Defaults to ``10167``.
 - **minor** (*Optional*, int): The iBeacon minor identifier of this beacon. Usually used to
   identify beacons within an iBeacon group. Defaults to ``61958``.
+- **min_interval** (*Optional*, int): The iBeacon minimum transmit interval in milliseconds from 20 to 10240.
+  Setting this less than ``max_interval`` gives the BLE hardware a better chance to avoid
+  collisions with other BLE transmissions. Defaults to the iBeacon specification's defined interval: ``100``.
+- **max_interval** (*Optional*, int): The iBeacon maximum transmit interval in milliseconds from 20 to 10240.
+  Setting this greater than ``min_interval`` gives the BLE hardware a better chance to avoid
+  collisions with other BLE transmissions. Defaults to the iBeacon specification's defined interval: ``100``.
+- **measured_power** (*Optional*, int): The power of the iBeacon as measured 1 meter from the device.
+  This is used to calibrate the ranging calculations in iOS. The procedure for setting this value can
+  be found in Apple's `Getting Started with iBeacon PDF <https://developer.apple.com/ibeacon/Getting-Started-with-iBeacon.pdf>`__
+  under the heading *Calibrating iBeacon*. Between -128 to 0. Defaults to ``-59``.
+- **tx_power** (*Optional*, int): The transmission power of the iBeacon in dBm.
+  One of -12, -9, -6, -3, 0, 3, 6, 9. Defaults to ``3``.
 
 Setting Up
 ----------
