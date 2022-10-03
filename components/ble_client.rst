@@ -46,6 +46,12 @@ Configuration variables:
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the BLE device to connect to.
 - **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
+- **rssi** (*Optional*, :ref:`Sensor <config-sensor>`): Enable sensor that polls the RSSI of the device when connected.
+
+  - **name** (**Required**, string): The name for the RSSI sensor.
+  - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+  - **update_interval** (*Optional*, :ref:`config-time`): The interval at which the RSSI value is polled. Defaults to ``1min``.
+  - All other options from :ref:`Sensor <config-sensor>`.
 
 Automations:
 
