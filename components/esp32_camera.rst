@@ -92,7 +92,7 @@ Image Settings:
     - ``1600x1200`` (UXGA)
 
 - **jpeg_quality** (*Optional*, int): The JPEG quality that the camera should encode images with.
-  From 10 (best) to 63 (worst). Defaults to ``10``.
+  From 6 (best) to 63 (worst). Defaults to ``10``.
 - **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
 - **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
 - **contrast** (*Optional*, int): The contrast to apply to the picture, from -2 to 2. Defaults to ``0``.
