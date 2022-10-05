@@ -659,6 +659,7 @@ Time Components
     SNTP, components/time/sntp, clock-outline.svg
     GPS Time, components/time/gps, crosshairs-gps.svg
     DS1307 RTC, components/time/ds1307, clock-outline.svg
+    PCF85063 RTC, components/time/pcf85063, clock-outline.svg
 
 Misc Components
 ---------------
