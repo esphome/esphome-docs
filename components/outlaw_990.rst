@@ -1,10 +1,14 @@
-Outlaw Audio 990 AV Preamp/Processor Custom ESPHome Component
-=============================================================
+Outlaw Audio 990 Surround Processor
+===================================
 
 This custom component will communicate with an Outlaw Audio 990 via
 RS232 serial port (UART) to provide control and status feedback. You can
 use the component in automations, or to create a basic remote control in
 the Dashboard.
+
+You will need to use an appropriate level converter connected to your
+chosen UART pins on the ESP, e.g. MAX3232.  Take care in choosing one that
+operates at 3.3V, as the ESP is not 5V tolerant.
 
 ESPHome Configuration
 ---------------------
