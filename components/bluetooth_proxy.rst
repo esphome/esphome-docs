@@ -34,7 +34,7 @@ Configuration:
 
     bluetooth_proxy:
 
-No configuration variables.
+- **active** (*Optional*, boolean): Enables proxying active connections. Defaults to ``false``. Requires Home Assistant 2022.10 or later.
 
 See Also
 --------
