@@ -14,9 +14,6 @@ pins of the UART as needed):
 
 ::
 
-   external_components:
-     - source: github://tangentaudio/esphome_outlaw990
-
    uart:
      rx_pin: GPIO14
      tx_pin: GPIO13
