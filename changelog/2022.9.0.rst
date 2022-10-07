@@ -57,6 +57,13 @@ Release 2022.9.3 - October 6
 
 - Bluetooth Proxy active connections :esphomepr:`3817` by :ghuser:`jesserockz`
 
+Release 2022.9.4 - October 7
+----------------------------
+
+- Add network type to mdns service message :esphomepr:`3880` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20221007.0 :esphomepr:`3881` by :ghuser:`jesserockz`
+- Dont add wifi block to yaml if discovered device uses ethernet :esphomepr:`3882` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
