@@ -7,7 +7,7 @@ FT63X6 Touchscreen Controller
     :keywords: FT63X6, WT32-SC01
 
 The ``ft63x6`` component allows using the touchscreen controller found in
-`Seeed Studion's WT32-SC01 <https://www.seeedstudio.com/ESP32-Development-board-WT32-SC01-p-4735.html>`
+`Seeed Studio's WT32-SC01 <https://www.seeedstudio.com/ESP32-Development-board-WT32-SC01-p-4735.html>`__
 with ESPHome.
 The :ref:`I²C <i2c>` is required to be set up in your configuration for this sensor to work.
 
