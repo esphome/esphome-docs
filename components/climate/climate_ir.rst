@@ -102,7 +102,7 @@ This platform utilises the library's generic one-size-fits-all API, which might 
 
 Additional configuration must be specified for this platform:
 
-- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``
+- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_aqv12msan``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``
 - **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``
 - **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
 - **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
@@ -251,7 +251,7 @@ Configuration variables:
       ``update_interval`` must be less than seven minutes or the ``RAC-PT1411HWRU`` will revert to using its own
       internal temperature sensor; a value of 30 seconds seems to work well. See :doc:`/components/sensor/index`
       for more information.
-    
+
     - This climate IR component is also known to work with Midea model MAP14HS1TBL and may work with other similar
       models, as well. (Midea acquired Toshiba's product line and re-branded it.)
 
