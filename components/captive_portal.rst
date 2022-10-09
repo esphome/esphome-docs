@@ -16,7 +16,7 @@ After 1 minute of unsuccessful WiFi connection attempts, the ESP will start a Wi
     :width: 70.0%
 
 In this web interface, you can manually override the WiFi settings of the device (please note
-this will be overwritten by any subsequent upload - unless ``keep_user_credentials`` is enabled - so make sure to also update your YAML configuration).
+this will be overwritten by any subsequent upload (unless ``keep_user_credentials`` is enabled) so make sure to also update your YAML configuration).
 
 Additionally, you can upload a new firmware file.
 
