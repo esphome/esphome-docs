@@ -45,13 +45,13 @@ Example configuration
       # Set up a wifi access point
       ap:
         password: "12345678"
-      # Optionally, preserve credentials (entered through
-      # captive_portal) over subsequent OTA updates.
-      keep_user_credentials: true
 
     # In combination with the `ap` this allows the user
     # to provision wifi credentials to the device.
     captive_portal:
+      # Optionally, preserve provisioned credentials
+      # over subsequent OTA updates.
+      keep_user_credentials: true
 
     # Sets up Bluetooth LE (Only on ESP32) to allow the user
     # to provision wifi credentials to the device.
