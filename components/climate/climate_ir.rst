@@ -233,7 +233,7 @@ Additional configuration is available for this platform
 
 Configuration variables:
 
-- **light** (*Optional*, :ref:`boolean`): Enables the status lights on the front panel. Defaults to ``true``
+- **light** (*Optional*, boolean): Enables the status lights on the front panel. Defaults to ``true``
 
 Known working with:
 
