@@ -229,9 +229,15 @@ Known working with:
 
 Currently devices using the kelvinator protocol.
 
+Additional configuration is available for this platform
+
+Configuration variables:
+
+- **light** (*Optional*, :ref:`boolean`): Enables the status lights on the front panel. Defaults to ``true``
+
 Known working with:
 
-- Samsung AR4500 (AR09TSHGAWK/FA and AR12TSHGAWK/FA)
+- Samsung AR4500 (AR09TSHGAWKN and AR12TSHGAWKN) with YB1FA Remote
 
 .. code-block:: yaml
 
