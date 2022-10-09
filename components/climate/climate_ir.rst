@@ -34,6 +34,8 @@ submit a feature request (see FAQ).
 | Hitachi                               | ``hitachi_ac344``   | yes                  |
 |                                       | ``hitachi_ac424``   |                      |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Kelvinator<kelvinator_ir>`      | ``kelvinator_ir``   | yes                  |
++---------------------------------------+---------------------+----------------------+
 | :ref:`LG<climate_ir_lg>`              | ``climate_ir_lg``   | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Midea                                 | ``midea_ir``        | yes                  |
@@ -220,6 +222,28 @@ Known working with:
 
 - Delonghi PAC WE 120HP
 
+.. _kelvinator_ir:
+
+``kelvinator_ir`` Climate
+-------------------------
+
+Currently devices using the kelvinator protocol.
+
+Known working with:
+
+- Samsung AR4500 (AR09TSHGAWK/FA and AR12TSHGAWK/FA)
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    remote_receiver:
+      id: remote_receiver1
+      idle: 50ms # Kelvinator protocol requires a longer idle time to be interpreted correctly
+
+    climate:
+      - platform: kelvinator_ir
+        sensor: room_temperature
+        light: true
 
 .. _toshiba:
 
