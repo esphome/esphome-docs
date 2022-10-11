@@ -85,6 +85,6 @@ See Also
 --------
 
 - :doc:`index`
-- :apiref:`sharp_memory_lcd-full/sharp_memory_lcd-full.h`
+- :apiref:`sharp_memory_lcd/sharp_memory_lcd.h`
 - `Arduino Adafruit Sharp Memory LCD library <https://github.com/adafruit/Adafruit_SHARP_Memory_Display>`__
 - :ghedit:`Edit`
