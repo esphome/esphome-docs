@@ -129,11 +129,13 @@ Full Output Index
 - :doc:`/components/fan/speed`
 - :apiref:`binary_output.h <output/binary_output.h>`,
   :apiref:`float_output.h <output/float_output.h>`
-- :ghedit:`Edit`
 
 .. toctree::
     :maxdepth: 1
     :glob:
 
     *
+
 - :ghedit:`Edit`
+
+
