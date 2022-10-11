@@ -61,7 +61,7 @@ This action turns the output with the given ID on when executed.
 
     on_...:
       then:
-        - output.turn_on: relay_1
+        - output.turn_on: light_1
 
 .. note::
 
@@ -69,7 +69,7 @@ This action turns the output with the given ID on when executed.
 
     .. code-block:: cpp
 
-        id(relay_1).turn_on();
+        id(light_1).turn_on();
 
 .. _output-turn_off_action:
 
@@ -82,7 +82,7 @@ This action turns the output with the given ID off when executed.
 
     on_...:
       then:
-        - output.turn_off: relay_1
+        - output.turn_off: light_1
 
 .. note::
 
@@ -90,7 +90,7 @@ This action turns the output with the given ID off when executed.
 
     .. code-block:: cpp
 
-        id(relay_1).turn_off();
+        id(light_1).turn_off();
 
 .. _output-set_level_action:
 
@@ -98,14 +98,14 @@ This action turns the output with the given ID off when executed.
 ***************************
 
 This action sets the float output to the given level when executed. Note: This only
-works with floating point outputs like ESP8266 PWM or LEDC.
+works with floating point outputs like ESP8266 PWM, LEDC or ``slow_pwm``.
 
 .. code-block:: yaml
 
     on_...:
       then:
         - output.set_level:
-            id: output_1
+            id: light_1
             level: 50%
 
 .. note::
@@ -115,7 +115,7 @@ works with floating point outputs like ESP8266 PWM or LEDC.
     .. code-block:: cpp
 
         // range is 0.0 (off) to 1.0 (on)
-        id(relay_1).set_level(0.5);
+        id(light_1).set_level(0.5);
 
 Full Output Index
 -----------------
@@ -136,3 +136,4 @@ Full Output Index
     :glob:
 
     *
+- :ghedit:`Edit`
