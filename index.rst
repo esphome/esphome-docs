@@ -560,7 +560,7 @@ Display Components
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
     Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
-    Sharp Memory LCD, components/display/sharp_memory_lcd, sharp_memory_lcd.jpg
+    Sharp Memory LCD, components/display/sharp_memory_lcd, sharp_memory_lcd.png
 
 Touchscreen Components
 ----------------------
