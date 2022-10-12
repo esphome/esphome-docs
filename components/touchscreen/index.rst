@@ -80,7 +80,7 @@ See Also
 - :ref:`Binary Sensor Filters <binary_sensor-filters>`
 - :doc:`Inkplate 6 Plus </components/display/inkplate6>`
 - :doc:`EKTF2232 </components/touchscreen/ektf2232>`
-- :doc:`XPT2046 </components/binary_sensor/xpt2046>`
+- :doc:`XPT2046 </components/touchscreen/xpt2046>`
 - :apiref:`touchscreen/touchscreen.h`
 - :apiref:`touchscreen/binary_sensor/touchscreen_binary_sensor.h`
 - :ghedit:`Edit`
