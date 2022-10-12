@@ -6,7 +6,7 @@ SGP40 Volatile Organic Compound Sensor and SGP41 VOC and NOx Sensor
     :image: sgp40.jpg
 
 The ``sgp4x`` sensor platform allows you to use your Sensirion SGP40
-(`datasheet <https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf>`__) or SGP41
+(`datasheet <https://sensirion.com/media/documents/296373BB/6203C5DF/Sensirion_Gas_Sensors_Datasheet_SGP40.pdf>`__) or SGP41
 (`datasheet <https://sensirion.com/media/documents/5FE8673C/61E96F50/Sensirion_Gas_Sensors_Datasheet_SGP41.pdf>`__) with ESPHome.
 The type of sensor used is automatically detected.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work.
@@ -41,7 +41,7 @@ Configuration variables:
 
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-  - **algorithm_tuning** (*Optional*): The VOC algorithm can be customized by tuning 6 different parameters. For more details see `Engineering Guidelines for SEN5x <https://sensirion.com/media/documents/25AB572C/61E961EA/Sensirion_Engineering_Guidelines_SEN5x.pdf>`__
+  - **algorithm_tuning** (*Optional*): The VOC algorithm can be customized by tuning 6 different parameters. For more details see `Engineering Guidelines for SEN5x <https://sensirion.com/media/documents/25AB572C/62B463AA/Sensirion_Engineering_Guidelines_SEN5x.pdf>`__
 
     - **index_offset** (*Optional*): VOC index representing typical (average) conditions. Allowed values are in range 1..250. The default value is 100.
     - **learning_time_offset_hours** (*Optional*): Time constant to estimate the VOC algorithm offset from the history in hours. Past events will be forgotten after about twice the  learning time. Allowed values are in range 1..1000. The default value is 12 hour
@@ -57,7 +57,7 @@ Configuration variables:
 
   - **name** (**Required**, string): The name of the sensor.
   - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-  - **algorithm_tuning** (*Optional*): The NOx algorithm can be customized by tuning 5 different parameters.For more details see `Engineering Guidelines for SEN5x <https://sensirion.com/media/documents/25AB572C/61E961EA/Sensirion_Engineering_Guidelines_SEN5x.pdf>`__
+  - **algorithm_tuning** (*Optional*): The NOx algorithm can be customized by tuning 5 different parameters.For more details see `Engineering Guidelines for SEN5x <https://sensirion.com/media/documents/25AB572C/62B463AA/Sensirion_Engineering_Guidelines_SEN5x.pdf>`__
 
     - **index_offset** (*Optional*): NOx index representing typical (average) conditions. Allowed values are in range 1..250. The default value is 100.
     - **learning_time_offset_hours** (*Optional*): Time constant to estimate the NOx algorithm offset from the history in hours. Past events will be forgotten after about twice the  learning time. Allowed values are in range 1..1000. The default value is 12 hour
