@@ -9,7 +9,7 @@ def setup(app):
     app.connect("build-finished", create_output)
     app.compoents_output = {}
 
-    is_production = os.getenv("PRODUCTION") == "YES"
+    is_production = os.getenv("NETLIFY") == "true"
 
     return {
         "version": "1.0.0",
