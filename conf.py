@@ -39,7 +39,8 @@ sys.path.append(os.path.abspath("."))
 extensions = [
     "github",
     "seo",
-    "sitemap",
+    "components",
+    "sitemap"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
