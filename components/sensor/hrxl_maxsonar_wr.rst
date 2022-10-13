@@ -2,14 +2,15 @@ HRXL MaxSonar WR Series
 =======================
 
 .. seo::
-    :description: Instructions for setting up MaxBotix HRXL MaxSonar WR ultrasonic distance measurement sensors in ESPHome.
+    :description: Instructions for setting up MaxBotix (HR)XL MaxSonar WR ultrasonic distance measurement sensors in ESPHome.
     :image: hrxl_maxsonar_wr.jpg
     :keywords: ultrasonic, maxbotix, maxsonar
 
-This sensor allows you to use HRXL MaxSonar WR series ultrasonic sensors by MaxBotix 
+This sensor allows you to use (HR)XL MaxSonar WR series ultrasonic sensors by MaxBotix
 (`datasheet <https://www.maxbotix.com/documents/HRXL-MaxSonar-WR_Datasheet.pdf>`__)
 with ESPHome to measure distances. Depending on the model, these sensors can measure
-in a range between 30 centimeters and 10 meters.
+in a range between 30 centimeters and 10 meters. The high resolution models (HR) have
+millimeter resolution, whereas the other models have cm resolution.
 
 This sensor platform works with the **TTL versions** of those sensors and expects the
 sensor's TTL pin to be wired to one of the ESP's input pins. Since these sensors read
@@ -30,7 +31,7 @@ multiple times per second, filtering is highly recommended.
       baud_rate: 9600
 
     sensor:
-      - platform: "hrxl_maxsonar_wr"
+      - platform: "hrxl_maxsonar_wr"  # or "xl_maxsonar_wr" for cm resolution models
         name: "Rainwater Tank"
         # Tweak the filters for your application
         filters:
