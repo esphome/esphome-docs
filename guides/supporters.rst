@@ -298,6 +298,7 @@ Contributors
 - `Christian Ferbar (@ferbar) <https://github.com/ferbar>`__
 - `FeuerSturm (@FeuerSturm) <https://github.com/FeuerSturm>`__
 - `Frank Riley (@fhriley) <https://github.com/fhriley>`__
+- `Frédéric Jouault (@fjouault) <https://github.com/fjouault>`__
 - `fkirill (@fkirill) <https://github.com/fkirill>`__
 - `Sean Vig (@flacjacket) <https://github.com/flacjacket>`__
 - `Diego Elio Pettenò (@Flameeyes) <https://github.com/Flameeyes>`__
@@ -453,7 +454,6 @@ Contributors
 - `Javier Peletier (@jpeletier) <https://github.com/jpeletier>`__
 - `jsuanet (@jsuanet) <https://github.com/jsuanet>`__
 - `James Szalay (@jtszalay) <https://github.com/jtszalay>`__
-- `junnikokuki (@junnikokuki) <https://github.com/junnikokuki>`__
 - `Justahobby01 (@Justahobby01) <https://github.com/Justahobby01>`__
 - `Mike Ryan (@justfalter) <https://github.com/justfalter>`__
 - `Justin Gerhardt (@justin-gerhardt) <https://github.com/justin-gerhardt>`__
@@ -465,7 +465,6 @@ Contributors
 - `Kris (@K-r-i-s-t-i-a-n) <https://github.com/K-r-i-s-t-i-a-n>`__
 - `Harald Nagel (@k7hpn) <https://github.com/k7hpn>`__
 - `kaegi (@kaegi) <https://github.com/kaegi>`__
-- `kahrendt (@kahrendt) <https://github.com/kahrendt>`__
 - `Karol Zlot (@karolzlot) <https://github.com/karolzlot>`__
 - `Kattni (@kattni) <https://github.com/kattni>`__
 - `Krasimir Nedelchev (@kaykayehnn) <https://github.com/kaykayehnn>`__
@@ -898,4 +897,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated October 13, 2022.*
+*This page was last updated October 15, 2022.*
