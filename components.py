@@ -21,10 +21,19 @@ def setup(app):
 def add_component_details(app, pagename, templatename, context, doctree):
     """As each page is built, collect page details for the output."""
     if pagename.startswith("components/"):
-        app.compoents_output[pagename] = {
+        page_key = pagename[11:].replace("/", "_")
+        component_name = pagename.split("/")[-1]
+        page_data = {
             "title": context["title"],
-            "url": context["pageurl"]
+            "url": context["pageurl"],
+            "path": context["pagename"],
         }
+        if os.path.exists(os.path.join(app.builder.srcdir, "images", component_name + ".png")):
+            page_data["image"] = app.builder.config.html_baseurl + "/_images/" + component_name + ".png"
+        elif os.path.exists(os.path.join(app.builder.srcdir, "images", component_name + ".jpg")):
+            page_data["image"] = app.builder.config.html_baseurl + "/_images/" + component_name + ".jpg"
+
+        app.compoents_output[page_key] = page_data
 
 
 def create_output(app, exception):
