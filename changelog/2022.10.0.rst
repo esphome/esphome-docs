@@ -44,6 +44,14 @@ Breaking Changes
 - Refactor xpt2046 to be a touchscreen platform :esphomepr:`3793` by :ghuser:`nielsnl68` (breaking-change)
 - Add ble RSSI sensor for connected devices :esphomepr:`3860` by :ghuser:`RoboMagus` (breaking-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- fix never calling preset change trigger :esphomepr:`3864` by :ghuser:`glmnet`
+- Modbus QWORD fix :esphomepr:`3856` by :ghuser:`dudanov`
+- Send true and not RSSI in ble_presence :esphomepr:`3904` by :ghuser:`fjouault`
+- Remove address type map from bluetooth proxy :esphomepr:`3905` by :ghuser:`jesserockz`
+
 All changes
 ^^^^^^^^^^^
 
@@ -74,6 +82,10 @@ All changes
 - Add support for ZHLT01 heatpump IR protocol :esphomepr:`3655` by :ghuser:`cfeenstra1024`
 - Send GATT error events to HA :esphomepr:`3884` by :ghuser:`jesserockz`
 - Do not require CS pin for ST7789V :esphomepr:`3888` by :ghuser:`definitio`
+- fix never calling preset change trigger :esphomepr:`3864` by :ghuser:`glmnet`
+- Modbus QWORD fix :esphomepr:`3856` by :ghuser:`dudanov`
+- Send true and not RSSI in ble_presence :esphomepr:`3904` by :ghuser:`fjouault`
+- Remove address type map from bluetooth proxy :esphomepr:`3905` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
