@@ -12,7 +12,7 @@ Check source code at GitHub: `ohdarling/EasyPower <https://github.com/ohdarling/
 
 .. figure:: images/easypower.jpg
     :align: center
-    :width: 50.0%
+    :width: 50%
 
 Features
 --------
@@ -44,11 +44,13 @@ Firmware
 With the power of ESPHome, we can build and upload firmware to mcu with just one line of command:
 
 .. code-block:: bash
+
     esphome upload easypower.yaml
 
 If you need monitor the data trends, you should set Wi-Fi and MQTT broker information first in secrets.yaml:
 
 .. code-block:: yaml
+
     wifi_ssid: ""
     wifi_password: ""
     mqtt_broker: ""
