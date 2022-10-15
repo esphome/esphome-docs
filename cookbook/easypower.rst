@@ -8,6 +8,8 @@ EasyPower - simple power meter
 
 EasyPower is a simple power meter powered by ESPHome.
 
+Check source code at GitHub: `ohdarling/EasyPower <https://github.com/ohdarling/EasyPower>`
+
 .. figure:: images/easypower.jpg
     :align: center
     :width: 50.0%
@@ -73,6 +75,11 @@ You can use MQTT Explorer to monitor data trends across measurements, just selec
 .. figure:: images/easypower_monitor.jpg
     :align: center
     :width: 50%
+
+Source
+------
+
+GitHub: `ohdarling/EasyPower <https://github.com/ohdarling/EasyPower>`
 
 See Also
 --------
