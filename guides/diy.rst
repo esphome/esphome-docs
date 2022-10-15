@@ -118,3 +118,4 @@ Sample Configurations
 - `ESPHome floor heating controller (proportional valves) <https://github.com/nliaudat/floor-heating-controller>`__ by :ghuser:`nliaudat`
 - `ESPHome Curtain/Cover/Shutter Switch from a noname Tuya switch <https://github.com/ludrao/esphome-shutterswitch>`__ by :ghuser:`ludrao`
 - `ESPHome Free your Thomson Guardian gate controller <https://github.com/ludrao/esphome-guardian>`__ by :ghuser:`ludrao`
+- `Ambient Light Sensor tcs34725 example <https://gist.github.com/RubenKelevra/0d70d6b4c8e4bc9aedc8682865731d65>`__ by :ghuser:`RubenKelevra`

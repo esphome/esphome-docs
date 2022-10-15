@@ -78,12 +78,12 @@ examples that are ready for you to copy and paste!
 Configuration variables:
 ------------------------
 
-- **main_switch** (**Required** with more than one valve, *string*): The name for the sprinkler
+- **main_switch** (*Optional*, *string*): Required with more than one valve. The name for the sprinkler
   controller's main switch as it will appear in the front end. This switch, when turned on, calls the
   ``sprinkler.resume_or_start_full_cycle`` action; when turned off, it calls the ``sprinkler.shutdown``
   action (see below). It will appear to be "on" when any valve on the controller is active. This switch
   will not appear in the front end if the controller is configured with only one valve.
-- **auto_advance_switch** (**Required** with more than one valve, *string*): The name for the
+- **auto_advance_switch** (*Optional*, *string*): Required with more than one valve. The name for the
   sprinkler controller's "auto-advance" switch as it will appear in the front end. When this switch is
   turned on while a valve is active, when the valve's ``run_duration`` is reached, the sprinkler
   controller will automatically advance to the next enabled valve as a part of a "full cycle" of the
@@ -988,7 +988,6 @@ the controller's multiplier value:
         min_value: 0.1
         max_value: 10.0
         step: 0.1
-        initial_value: 1.0
         lambda: "return id(lawn_sprinkler_ctrlr).multiplier();"
         set_action:
           - sprinkler.set_multiplier:

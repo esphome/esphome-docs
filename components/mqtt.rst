@@ -290,6 +290,21 @@ You have to download the server CA certficiate in PEM format and add it to ``cer
 Usually these are .crt files and you can open them with any text editor.
 Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 8883 for TLS connections.
 
+.. warning::
+
+    MbedTLS, the library that handles TLS for the esp-idf, doesn't validate wildcard certificates.
+
+    The Common Name check only works if the CN is explicitly reported in the certificate.
+
+    - \*.example.com -> Fail
+    - mqtt.example.com -> Success
+
+    If a secure connection is necessary for your device, you really want to set:
+    
+    .. code-block:: yaml
+
+        skip_cert_cn_check: false
+
 .. code-block:: yaml
 
     mqtt:
@@ -298,6 +313,7 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
       discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
       log_topic: ${mqtt_prefix}/logs
+      # Evaluate carefully skip_cert_cn_check
       skip_cert_cn_check: true
       idf_send_async: false
       certificate_authority: |
