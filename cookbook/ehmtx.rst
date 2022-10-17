@@ -40,6 +40,4 @@ Sample video:
 
 See Also
 --------
-- :doc:`/components/display`
-- :doc:`/components/light`
 - :ghedit:`Edit`
