@@ -14,7 +14,7 @@ Based on a cheap 8x32 RGB matrix you can build flexible status displays for all 
 
 
 Introduction
-----------
+------------
 
 Based a on a 8x32 RGB flexible matrix it displays a clock, the date and up to 16 other screens provided by home assistant. 
 Each screen (value/text) can be associated with a 8x8 bit RGB icon or gif animation (see installation). 
