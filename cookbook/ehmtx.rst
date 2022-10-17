@@ -1,5 +1,5 @@
-ehmtx a matrix status/text display
-==================================
+ehmtx a matrix status display
+=============================
 
 .. seo::
     :description: A simple DIY status display, build with a flexible 8x32 RGB LED panel.
