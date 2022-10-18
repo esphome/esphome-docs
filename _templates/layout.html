@@ -27,6 +27,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 {% endblock %}
 
+{% block relbar_top %}
+  {% if parents|length > 0 %}
+  <ul class="breadcrumbs">
+    {%- for doc in parents %}
+      <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> ➔</li>
+    {%- endfor %}
+      <li>{{title}}</li>
+  </ul>
+  {% endif %}
+{% endblock %}
+
 {% block footer %}
   <div id="upgrade-footer">
     A new version has been release since you last visited this page: {{ release }} 🎉
