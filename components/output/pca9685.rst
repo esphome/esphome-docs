@@ -84,7 +84,7 @@ Configuration variables:
 
 
 Examples
-----
+--------
 
 This output can be used for different functions. E.g. output for light, ventiator etc.
 
