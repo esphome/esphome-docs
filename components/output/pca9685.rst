@@ -83,7 +83,7 @@ Configuration variables:
 - All other options from :ref:`Output <config-output>`.
 
 
-Note
+Examples
 ----
 
 This output can be used for different functions. E.g. output for light, ventiator etc.
