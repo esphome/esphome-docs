@@ -24,8 +24,8 @@ global ``pca9685`` hub and give it an id, and then define the
 
     # Example configuration entry
     pca9685:
-      frequency: 500
-      id: 'pca9685_hub1'
+      - id: pca9685_hub1
+        frequency: 500
 
     # Individual outputs
     output:
