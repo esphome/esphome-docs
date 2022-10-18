@@ -3,13 +3,21 @@ ESPHome 2022.10.0 - 19th October 2022
 
 .. seo::
     :description: Changelog for ESPHome 2022.10.0.
-    :image: /_static/changelog-2022.9.0.png
+    :image: /_static/changelog-2022.10.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
-This month we have been busy upgrading the Bluetooth Proxy support for Home Assistant,
-and this meant there are many PRs awaiting reviews for new components that were unable to be
-reviewed and merged in time.
+.. imgtable::
+    :columns: 2
+
+    BLE Client RSSI Sensor, components/sensor/ble_client, bluetooth.svg
+    ZHLT01 IR Climate, components/climate/climate_ir, air-conditioner-ir.svg
+
+
+
+This month we have been busy upgrading the Bluetooth Proxy support for Home Assistant.
+This meant there are many PRs awaiting reviews for new components that were unable to be
+reviewed and merged in time. We will be trying to pack the next release.
 
 Python Version 3.9
 ------------------
