@@ -63,6 +63,11 @@ Release 2022.8.2 - September 6
 - Ignore NaN states in the integration component :esphomepr:`3767` by :ghuser:`anatoly-savchenkov`
 - Update modbus_controller.cpp :esphomepr:`3768` by :ghuser:`Avirsaam`
 
+Release 2022.8.3 - September 6
+------------------------------
+
+- Fix HA addon auth using HA credentials :esphomepr:`3758` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 

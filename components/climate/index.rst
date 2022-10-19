@@ -27,9 +27,9 @@ All climate platforms in ESPHome inherit from the climate configuration schema.
     climate:
       - platform: ...
         visual:
-          min_temperature: 18 °C
-          max_temperature: 25 °C
-          temperature_step: 0.1 °C
+          min_temperature: 18
+          max_temperature: 25
+          temperature_step: 0.1
 
 Configuration variables:
 

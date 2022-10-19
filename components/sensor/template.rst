@@ -37,7 +37,7 @@ Configuration variables:
   Lambda to be evaluated every update interval to get the new value of the sensor
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to publish the value of the
   sensor, either the result of the lambda function or if no lambda function the last value
-  published using the publish action. Defaults to ``60s``.
+  published using the publish action. Set to ``never`` to disable updates. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
 

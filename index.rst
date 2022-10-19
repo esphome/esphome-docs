@@ -207,6 +207,7 @@ Analogue
 .. imgtable::
 
     ADC, components/sensor/adc, flash.svg, ESP internal
+    ADC128S102, components/sensor/adc128s102, adc128s102.png , 8-channel ADC
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
@@ -256,6 +257,7 @@ Electricity
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
     BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
+    BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
@@ -304,6 +306,7 @@ Environmental
     Inkbird IBS-TH1 Mini, components/sensor/inkbird_ibsth1_mini, inkbird_isbth1_mini.jpg, Temperature & Humidity
     MCP9808, components/sensor/mcp9808, mcp9808.jpg, Temperature
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MPL3115A2, components/sensor/mpl3115a2, mpl3115a2.jpg, Temperature & Pressure
     MS5611, components/sensor/ms5611, ms5611.jpg, Pressure
     NTC Thermistor, components/sensor/ntc, ntc.jpg, Temperature
     QMP6988, components/sensor/qmp6988, qmp6988_env3.png, Temperature & Pressure
@@ -362,6 +365,8 @@ Miscellaneous
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Tuya Sensor, components/sensor/tuya, tuya.png
     TX20, components/sensor/tx20, tx20.jpg, Wind speed & Wind direction
+    uFire EC sensor, components/sensor/ufire_ec, ufire_ec.png, EC & Temperature
+    uFire ISE sensor, components/sensor/ufire_ise, ufire_ise.png, pH & Temperature
 
 
 Motion
@@ -493,6 +498,7 @@ Switch Components
     Restart Switch, components/switch/restart, restart.svg
     Safe Mode Switch, components/switch/safe_mode, restart-alert.svg
     Shutdown Switch, components/switch/shutdown, power_settings.svg
+    Factory Reset Switch, components/switch/factory_reset, restart-alert.svg
     Generic Output Switch, components/switch/output, upload.svg
     Template Switch, components/switch/template, description.svg
     UART Switch, components/switch/uart, uart.svg
@@ -513,6 +519,7 @@ Button Components
     Restart Button, components/button/restart, restart.svg
     Safe Mode Button, components/button/safe_mode, restart-alert.svg
     Shutdown Button, components/button/shutdown, power_settings.svg
+    Factory Reset Button, components/button/factory_reset, restart-alert.svg
     Wake-on-LAN, components/button/wake_on_lan, power_settings.svg
 
 Fan Components
@@ -536,7 +543,9 @@ Display Components
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
     MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
+    TM1621, components/display/tm1621, tm1621.jpg
     TM1637, components/display/tm1637, tm1637.jpg
+    TM1638, components/display/tm1638, tm1638.jpg
     Nextion, components/display/nextion, nextion.jpg
     PVVX MiThermometer, components/display/pvvx_mithermometer, ../components/sensor/images/xiaomi_lywsd03mmc.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
@@ -587,12 +596,14 @@ Text Sensor Components
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
+    Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
+    WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg
 
 Climate Components
 ------------------
