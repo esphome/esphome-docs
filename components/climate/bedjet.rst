@@ -125,7 +125,7 @@ Configuration variables:
 ``bedjet`` Fan
 --------------
 
-The `fan` platform exposes the BedJet's fan-related functionality, including
+The ``fan`` platform exposes the BedJet's fan-related functionality, including
 on/off and speed control.
 
 When the BedJet is already on, turning the Fan component off will set the BedJet unit's mode to
