@@ -5,7 +5,7 @@ WL-134 Pet Tag Sensor
     :description: Instructions for setting up WL-134 text sensors.
     :image: fingerprint.svg
 
-The ``wl_134`` text sensor platform exposes the last readed pet tag as text sensor.
+The ``wl_134`` text sensor platform exposes the last read pet tag as text sensor.
 
 .. code-block:: yaml
 
@@ -22,7 +22,7 @@ The ``wl_134`` text sensor platform exposes the last readed pet tag as text sens
 Configuration variables:
 ------------------------
 
-- **reset** (*Optional*, boolean): Reset the readed tag immediately after reading. Defaults to ``false``.
+- **reset** (*Optional*, boolean): Reset the text sensor state back to "" 1s after reading a tag. Defaults to ``false``.
 - All options from :ref:`Text Sensor <config-text_sensor>`.
 
 See Also
