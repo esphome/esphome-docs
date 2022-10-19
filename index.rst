@@ -654,14 +654,6 @@ Media Player Components
     Media Player Core, components/media_player/index, folder-open.svg
     I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
-
-A/V Components
---------------
-
-.. imgtable::
-
-    Outlaw 990 Surround Processor, components/outlaw_990, language-cpp.svg
-   
 Misc Components
 ---------------
 
@@ -717,6 +709,7 @@ Misc Components
     SML, components/sml, sml.svg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
+    Outlaw 990 Surround Processor, components/outlaw_990, language-cpp.svg
 
 Additional Custom Components
 ----------------------------
