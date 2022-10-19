@@ -218,7 +218,7 @@ Configuration variables:
 ``daikin_brc`` Climate
 -------------------------
 
-The Daikin BRC remotes are used by the cieling cassette model of Daikin heatpumps.
+The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
 
 
 Configuration variables:
