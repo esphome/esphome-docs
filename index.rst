@@ -600,6 +600,7 @@ Text Sensor Components
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
+    WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg
 
 Climate Components
 ------------------
