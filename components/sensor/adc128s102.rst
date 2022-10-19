@@ -31,7 +31,7 @@ sensors for your projects.
 
     # Example configuration entry
     adc128s102:
-      cs_pin: D8
+      cs_pin: GPIO15
       id: my_adc
 
     sensor:
@@ -55,8 +55,8 @@ sensor platform to create individual sensors that will report the voltage to Hom
 Configuration variables:
 
 - **adc128s102_id** (**Required**, :ref:`config-id`): The id of the parent ADC128S102 component.
-- **number** (**Required**, int): The pin number of the ADC128S102
-- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``1s``.
+- **channel** (**Required**, int): The channel of the ADC128S102 to use.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
 
 See Also
 --------
