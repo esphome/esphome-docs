@@ -114,6 +114,7 @@ Switches:
   All options from :ref:`switch <config-switch>`
 
 .. note::
+
     Usually there is always DHW available on request.
     Enabling DHW might:
     - Indicate DHW "comfort" mode;
