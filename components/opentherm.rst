@@ -120,6 +120,7 @@ Switches:
     - Indicate DHW "comfort" mode;
     - Keeps a (small) amount pre-heated;
     - Heat the DHW circuit at a regular interval to prevent bacteria growth.
+
     Refer to your boiler's manual for more information.
 
 Numbers:
@@ -134,7 +135,9 @@ Numbers:
   - **initial_value** (*Optional*, boolean): If restore is set to `false`, or no previous
     value was stored, this initial value will be used. If not given, the `min_value` will
     be used.
+
   All other options from :ref:`Number <config-number>`
+
 - **dhw_setpoint_temperature** (*Optional*): The DHW setpoint.
 
   - **min_value** (**Required**, float): The minimum value that can be set.
@@ -145,6 +148,7 @@ Numbers:
   - **initial_value** (*Optional*, boolean): If restore is set to `false`, or no previous
     value was stored, this initial value will be used. If not given, the `min_value` will
     be used.
+
   All other options from :ref:`Number <config-number>`
 
 
