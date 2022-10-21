@@ -31,6 +31,17 @@ Configuration variables:
 - **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
   not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
   a ``name`` will implicitly set this to true.
+- **restore_mode** (*Optional*): Control how the switch attempts to restore state on bootup.
+  For restoring on ESP8266s, also see ``restore_from_flash`` in the
+  :doc:`esp8266 section </components/esp8266>`.
+
+    - ``RESTORE_DEFAULT_OFF`` - Attempt to restore state and default to OFF if not possible to restore.
+    - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
+    - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
+    - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
+    - ``ALWAYS_OFF`` - Always initialize the switch as OFF on bootup.
+    - ``ALWAYS_ON`` - Always initialize the switch as ON on bootup.
+  Unless a specific platform defines another default value, the default is ``RESTORE_DEFAULT_OFF``.
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the switch is turned on. See :ref:`switch-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
