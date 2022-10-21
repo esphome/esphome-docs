@@ -78,6 +78,27 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_aeha:
+
+``remote_transmitter.transmit_aeha`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_aeha:
+          address: 0x1FEF
+          data: [0x1F, 0x3E, 0x06, 0x5F]
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send the command to, see dumper output for more details.
+- **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+
+AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
@@ -224,7 +245,7 @@ This :ref:`action <config-action>` a Nexa RF remote code to a remote transmitter
 .. code-block:: yaml
 
     on_...:
-      - remote_transmitter.nexa:
+      - remote_transmitter.transmit_nexa:
           device: 0x38DDB4A
           state: 1
           group: 0
@@ -356,6 +377,26 @@ Configuration variables:
 
 - **address** (**Required**, int): The address to send, see dumper output for more details.
 - **command** (**Required**, int): The RC5 command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_rc6:
+
+``remote_transmitter.transmit_rc6`` Action
+******************************************
+
+This :ref:`action <config-action>` sends an RC6 infrared remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_rc6:
+          address: 0x1F
+          command: 0x3F
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send, see dumper output for more details.
+- **command** (**Required**, int): The RC6 command to send.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_rc_switch_raw:

@@ -89,6 +89,10 @@ Configuration variables:
 - **keepalive** (*Optional*, :ref:`config-time`): The time
   to keep the MQTT socket alive, decreasing this can help with overall stability due to more
   WiFi traffic with more pings. Defaults to 15 seconds.
+- **on_connect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when a connection
+  to the broker is established.
+- **on_disconnect** (*Optional*, :ref:`Automation <automation>`): An action to be performed when the connection
+  to the broker is dropped.
 - **on_message** (*Optional*, :ref:`Automation <automation>`): An action to be
   performed when a message on a specific MQTT topic is received. See :ref:`mqtt-on_message`.
 - **on_json_message** (*Optional*, :ref:`Automation <automation>`): An action to be
@@ -286,6 +290,21 @@ You have to download the server CA certficiate in PEM format and add it to ``cer
 Usually these are .crt files and you can open them with any text editor.
 Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 8883 for TLS connections.
 
+.. warning::
+
+    MbedTLS, the library that handles TLS for the esp-idf, doesn't validate wildcard certificates.
+
+    The Common Name check only works if the CN is explicitly reported in the certificate.
+
+    - \*.example.com -> Fail
+    - mqtt.example.com -> Success
+
+    If a secure connection is necessary for your device, you really want to set:
+    
+    .. code-block:: yaml
+
+        skip_cert_cn_check: false
+
 .. code-block:: yaml
 
     mqtt:
@@ -294,6 +313,7 @@ Also make sure to change the ``port`` of the mqtt broker. Most brokers use port 
       discovery: true
       discovery_prefix: ${mqtt_prefix}/homeassistant
       log_topic: ${mqtt_prefix}/logs
+      # Evaluate carefully skip_cert_cn_check
       skip_cert_cn_check: true
       idf_send_async: false
       certificate_authority: |
@@ -367,6 +387,22 @@ Configuration variables:
 
     When changing these options and you're using MQTT discovery, you will need to restart Home Assistant.
     This is because Home Assistant only discovers a device once in every Home Assistant start.
+
+.. _mqtt-on_connect_disconnect:
+
+``on_connect`` / ``on_disconnect`` Trigger
+------------------------------------------
+
+This trigger is activated when a connection to the MQTT broker is established or dropped.
+
+.. code-block:: yaml
+
+    mqtt:
+      # ...
+      on_connect:
+        - switch.turn_on: switch1
+      on_disconnect:
+        - switch.turn_off: switch1
 
 .. _mqtt-on_message:
 

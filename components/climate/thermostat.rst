@@ -52,8 +52,6 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
-        default_target_temperature_low: 20 °C
-        default_target_temperature_high: 22 °C
         min_cooling_off_time: 300s
         min_cooling_run_time: 300s
         min_heating_off_time: 300s
@@ -66,6 +64,11 @@ modes that Home Assistant offers.
         idle_action:
           - switch.turn_off: air_cond
           - switch.turn_off: heater
+        default_preset: Home
+        preset:
+          - name: Home
+            default_target_temperature_low: 20 °C
+            default_target_temperature_high: 22 °C
 
 .. code-block:: yaml
 
@@ -74,7 +77,6 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
-        default_target_temperature_low: 20 °C
         min_heating_off_time: 300s
         min_heating_run_time: 300s
         min_idle_time: 30s
@@ -82,6 +84,11 @@ modes that Home Assistant offers.
           - switch.turn_on: heater
         idle_action:
           - switch.turn_off: heater
+        default_preset: Home
+        preset:
+          - name: Home
+            default_target_temperature_low: 20 °C
+
 
 .. code-block:: yaml
 
@@ -90,7 +97,6 @@ modes that Home Assistant offers.
       - platform: thermostat
         name: "Thermostat Climate Controller"
         sensor: my_temperature_sensor
-        default_target_temperature_high: 22 °C
         min_cooling_off_time: 300s
         min_cooling_run_time: 300s
         min_idle_time: 30s
@@ -98,6 +104,11 @@ modes that Home Assistant offers.
           - switch.turn_on: air_cond
         idle_action:
           - switch.turn_off: air_cond
+        default_preset: Home
+        preset:
+          - name: Home
+            default_target_temperature_high: 22 °C
+
 
 
 Controller Behavior and Hysteresis
@@ -163,8 +174,8 @@ Default Target Temperatures and Mode
 
 These configuration items determine default values the thermostat controller should use when it starts.
 
-- **default_mode** (*Optional*, climate mode): The default climate mode the controller should use if it 
-  is unable to restore it from memory. One of:
+- **default_mode** (*Optional*, *Deprecated*, climate mode): The default climate mode the controller should
+  use if it is unable to restore it from memory. One of:
 
   - ``off`` (default)
   - ``heat_cool``
@@ -173,7 +184,7 @@ These configuration items determine default values the thermostat controller sho
   - ``dry``
   - ``fan_only``
   - ``auto``
-  
+
 This value is used the first time your device starts after ESPHome is initially installed onto it. Add
 this option into your configuration if you want your thermostat component to start in a climate mode other
 than ``off``.  If this option is not configured, you'll need to manually change the climate mode later via
@@ -187,6 +198,12 @@ device's configuration.
 
 **At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
 **must be specified.**
+
+.. note::
+
+    **default_mode**, **default_target_temperature_low**, and **default_target_temperature_high** are
+    being removed in a future release. In the future you will need to migrate your configuration to using
+    a :ref:`preset <thermostat-preset>` which will allow for more flexibility and customisation
 
 Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
 the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
@@ -309,17 +326,158 @@ Set Point Options/Behavior
 - **supplemental_heating_delta** (*Required with* ``supplemental_heating_action``, float): When the temperature
   difference between the lower set point and the current temperature exceeds this value,
   ``supplemental_heating_action`` will be called immediately.
-- **away_config** (*Optional*): Additionally specify target temperature range settings for away mode.
-  Away mode can be used to have a second set of target temperatures (for example, while the user is
-  away or sleeping/at night).
 
-  - **default_target_temperature_low** (*Optional*, float): The default low target temperature for the control
-    algorithm when Away mode is selected. This can be dynamically set in the frontend later.
-  - **default_target_temperature_high** (*Optional*, float): The default high target temperature for the control
-    algorithm when Away mode is selected. This can be dynamically set in the frontend later.
+.. _thermostat-preset:
 
-**If configured, at least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
-**must be specified in the away mode configuration.**
+Presets
+*******
+
+Presets allow you to define a combination of set points, climate, fan, and swing modes that can be recalled from
+the front end (Home Assistant) as a single operation for quick and easy access. This can simplify the user
+experience and automation.
+
+- **preset**: (*Optional*, list)
+
+  - **name** (*Required*, string): Name of the preset. If this is one of the *standard* presets (``eco``, ``away``,
+    ``boost``, ``comfort``, ``home``, ``sleep``, or ``activity``) it is considered a *standard* preset. Any other
+    string will make the preset a *custom* preset. *Standard* and *custom* presets are functionally equivalent,
+    the only difference is that when switching the mode via :ref:`climate.control Action <climate-control_action>`
+    you will need to use the `preset` or `custom_preset` property as appropriate. The Home Assistant
+    `climate.set_preset_mode` service treats them identically
+  - **default_target_temperature_low** (*Optional*, float): The default low target temperature when switching to
+    this preset
+  - **default_target_temperature_high** (*Optional*, float): The default high target temperature when switching
+    to this preset.
+  - **mode** (*Optional*, climate mode): The mode the thermostat should switch to when this preset is activated.
+    If not specified, the thermostat's mode will remain unchanged when the preset is activated. One of:
+
+    - ``heat_cool``
+    - ``cool``
+    - ``heat``
+    - ``dry``
+    - ``fan_only``
+    - ``auto``
+  - **fan_mode** (*Optional*, climate fan mode): The fan mode the thermostat should switch to when this preset
+    is activated. If not specified, the thermostat's fan mode will remain unchanged when the preset is activated.
+    One of:
+
+    - ``on``
+    - ``off``
+    - ``auto``
+    - ``low``
+    - ``medium``
+    - ``high``
+    - ``middle``
+    - ``focus``
+    - ``diffuse``
+  - **swing_mode** (*Optional*, climate swing mode): The fan swing mode the thermostat should switch to when this
+    preset is activated. If not specified, the thermostat's fan swing mode will remain unchanged when the preset
+    is activated. One of:
+
+    - ``off``
+    - ``both``
+    - ``horizontal``
+    - ``vertical``
+
+.. code-block:: yaml
+
+    # Example climate controller with presets
+    climate:
+      - platform: thermostat
+        name: "Thermostat with Presets"
+        preset:
+          # Standard Preset
+          - name: sleep
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: LOW
+            swing_mode: OFF
+          # Custom preset
+          - name: A custom preset
+            default_target_temperature_low: 21
+            default_target_temperature_high: 23
+            fan_mode: HIGH
+            mode: HEAT_COOL
+
+- **preset_change**: (*Optional*, :ref:`Action <config-action>`): The action to call when the preset is changed. This
+  will be called either when a user changes the mode through the Home Assistant UI or through a call to ``climate.control``
+
+.. code-block:: yaml
+
+    # Example climate controller with preset and change action
+    climate:
+      - platform: thermostat
+        name: "Thermostat with Presets Actions"
+        preset:
+          - name: sleep
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: LOW
+            swing_mode: OFF
+        preset_change:
+          - logger.log: Preset has been changed!
+
+Default Preset
+**************
+
+These configuration items determine default values the thermostat controller should use when it starts.
+
+- **default_preset** (*Optional*, string): The name of the preset to use by default. Must match a preset
+  as per :ref:`preset <thermostat-preset>`.
+- **on_boot_restore_from**: (*Optional*, on_boot_restore_from): Controls what the thermostat will do when
+  it first boots. One of:
+
+    - ``memory`` (default): The thermostat will restore any settings from last time it was running.
+    - ``default_preset``: The thermostat will always switch to the preset specified by **default_preset**
+
+.. note::
+
+    You can specify a ``default_preset`` and set ``on_boot_restore_from`` to ``memory``. In this mode when
+    the settings from last boot cannot be retrieved, for any reason, then the specified ``default_preset``
+    will be applied.
+
+.. code-block:: yaml
+
+    # This climate controller, on first boot, will switch to "My Startup Preset". Subsequent boots would
+    # restore to whatever mode it was in prior to the reboot
+    climate:
+      - platform: thermostat
+        name: "From Memory Thermostat"
+        default_preset: My Startup Preset
+        on_boot_restore_from: memory
+        preset:
+          - name: My Startup Preset
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: OFF
+            swing_mode: OFF
+            mode: OFF
+          # Custom preset
+          - name: A custom preset
+            default_target_temperature_low: 21
+            default_target_temperature_high: 23
+            fan_mode: HIGH
+            mode: HEAT_COOL
+
+    # This climate controller will always switch to "Every Start Preset"
+    climate:
+      - platform: thermostat
+        name: "Default Preset Thermostat"
+        default_preset: Every Start Preset
+        on_boot_restore_from: default_preset
+        preset:
+          - name: Every Start Preset
+            default_target_temperature_low: 17
+            default_target_temperature_high: 26
+            fan_mode: OFF
+            swing_mode: OFF
+            mode: OFF
+          # Custom preset
+          - name: A custom preset
+            default_target_temperature_low: 21
+            default_target_temperature_high: 23
+            fan_mode: HIGH
+            mode: HEAT_COOL
 
 Additional Actions/Behavior
 ***************************
@@ -385,7 +543,7 @@ Hysteresis Values
 
     - While this platform uses the term temperature everywhere, it can also be used to regulate other values.
       For example, controlling humidity is also possible with this platform.
-    - ``min_temperature`` and ``max_temperature`` from the base climate component are used the define the range of 
+    - ``min_temperature`` and ``max_temperature`` from the base climate component are used the define the range of
       adjustability and the defaults will probably not make sense for control of things like humidity. See
       :doc:`/components/climate/index`.
 
