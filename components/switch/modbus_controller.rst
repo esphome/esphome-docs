@@ -14,8 +14,9 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the sensor.
 - **restore_mode** (*Optional*): See :ref:`Switch <config-switch>`, since this configuration variable is inherited.
-  The default value for Modbus Controller Switch's **restore_mode** is ``ALWAYS_OFF``, which effectively disables this feature. Note that
-  this does not turn off the switch on boot, but rather the switch will briefly appear as off until its true state is retrieved from the device.
+  The default value for Modbus Controller Switch's **restore_mode** is ``ALWAYS_OFF`` (recommended), which effectively disables this feature, since
+  usually the state lives in the device and ESPHome does not need to remember it. Note that this default does not turn off the switch on boot, 
+  but rather the switch will briefly appear as off until its true state is retrieved from the device.
 - **register_type** (**Required**): type of the modbus register.
 - **address** (**Required**, int): start address of the first register in a range
 - **offset** (*Optional*, int): not required in most cases
