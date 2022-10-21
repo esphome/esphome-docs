@@ -41,7 +41,9 @@ Configuration variables:
     - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
     - ``ALWAYS_OFF`` - Always initialize the switch as OFF on bootup.
     - ``ALWAYS_ON`` - Always initialize the switch as ON on bootup.
+
   Unless a specific platform defines another default value, the default is ``RESTORE_DEFAULT_OFF``.
+
 - **on_turn_on** (*Optional*, :ref:`Action <config-action>`): An automation to perform
   when the switch is turned on. See :ref:`switch-on_turn_on_off_trigger`.
 - **on_turn_off** (*Optional*, :ref:`Action <config-action>`): An automation to perform
