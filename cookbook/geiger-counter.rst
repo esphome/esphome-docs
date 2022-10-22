@@ -3,7 +3,7 @@ Geiger counter RadiationD v1.1 (CAJOE)
 
 .. seo::
     :description: Instructions for setting up RadiationD v1.1(CAJOE) sensor in ESPHome and calculate the current radation level.
-    :image: radiationD-v-1-cajoe.jpg
+    :image: radiationD-v1-1-cajoe.jpg
     :keywords: BME280 RadiationD Geiger counter
 
 With the help of :doc:`/components/sensor/pulse_counter` and the RadiationD v1.1(CAJOE) you can make your own Geiger counter, which will give you 
@@ -13,7 +13,7 @@ a more or less precise messurement of the current radation level. But it should 
 Assambly:
 ---------
 
-.. figure:: images/radiationD-v-1-cajoe.jpg
+.. figure:: images/radiationD-v1-1-cajoe.jpg
     :align: center
     :width: 75.0%
 
