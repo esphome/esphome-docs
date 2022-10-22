@@ -1,5 +1,5 @@
 Geiger counter RadiationD v1.1 (CAJOE)
-==================
+======================================
 
 .. seo::
     :description: Instructions for setting up RadiationD v1.1(CAJOE) sensor in ESPHome and calculate the current radation level.
