@@ -3,7 +3,7 @@ Geiger counter RadiationD v1.1 (CAJOE)
 
 .. seo::
     :description: Instructions for setting up RadiationD v1.1(CAJOE) sensor in ESPHome and calculate the current radation level.
-    :image: radiationD-v1-1-cajoe.jpg
+    :image: radiationD-v1-1-cajoe_small.jpg
     :keywords: BME280 RadiationD Geiger counter
 
 With the help of :doc:`/components/sensor/pulse_counter` and the RadiationD v1.1(CAJOE) you can make your own Geiger counter, which will give you 
@@ -44,15 +44,15 @@ According to the video of `Andreas Spiess <https://www.youtube.com/watch?v=K28Az
 
 .. note::
 
-   The current version of the pack comes with the J305ß Geiger tube which detectes Beta and Gamma radiation. Specifications:     
-   Manufacturer: North Optic     Radiation Detection: β, γ     Length: 111mm     Diameter: 11mm     Recommended Voltage: 350V     Plateau Voltage: 360-440V     
-   Sensitivy γ (60Co): 65cps/(μR/s)     
-   Sensitivy γ (equivalent Sievert): 108cpm / (μSv/h)     
-   Max cpm: 30000     
-   cps/mR/h: 18     
-   cpm/m/h: 1080     
-   cpm/μSv/h: 123.147092360319     
-   Factor: 0.00812037037037
+    The current version of the pack comes with the J305ß Geiger tube which detectes Beta and Gamma radiation. Specifications:     
+    Manufacturer: North Optic     Radiation Detection: β, γ     Length: 111mm     Diameter: 11mm     Recommended Voltage: 350V     Plateau Voltage: 360-440V     
+    Sensitivy γ (60Co): 65cps/(μR/s)     
+    Sensitivy γ (equivalent Sievert): 108cpm / (μSv/h)     
+    Max cpm: 30000     
+    cps/mR/h: 18     
+    cpm/m/h: 1080     
+    cpm/μSv/h: 123.147092360319     
+    Factor: 0.00812037037037
 
 
 `Source: opengeiger.de/LibeliumDoku.pdf <http://www.opengeiger.de/LibeliumDoku.pdf>`__.
