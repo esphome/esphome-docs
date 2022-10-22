@@ -60,17 +60,17 @@ According to the video of `Andreas Spiess <https://www.youtube.com/watch?v=K28Az
 
 .. code-block:: yaml
 
-sensor:
-  - platform: pulse_counter
-    pin: 34
-    name: "Radiation"
-    unit_of_measurement: 'μSv/h'
-    count_mode:
-     rising_edge: DISABLE
-     falling_edge: INCREMENT
-    filters:
-      - offset: -12.0 # J305ß Geiger Mueller tube background noise 0.2 pulses / sec x 60 sec = 12 CPM (Counts per Minute)
-      - multiply: 0.00812037037037 # Factor: 0.00812037037037
+    sensor:
+      - platform: pulse_counter
+    	pin: 34
+    	name: "Radiation"
+    	unit_of_measurement: 'μSv/h'
+    	count_mode:
+    	 rising_edge: DISABLE
+    	 falling_edge: INCREMENT
+    	filters:
+    	  - offset: -12.0 # J305ß Geiger Mueller tube background noise 0.2 pulses / sec x 60 sec = 12 CPM (Counts per Minute)
+    	  - multiply: 0.00812037037037 # Factor: 0.00812037037037
 
 
 See Also
