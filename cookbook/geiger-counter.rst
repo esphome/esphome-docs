@@ -13,9 +13,9 @@ a more or less precise messurement of the current radation level. But it should 
 Assambly:
 ---------
 
-.. figure:: images/radiationD-v1-1-cajoe.jpg
+.. figure:: images/radiationD-v1-1-cajoe_small.jpg
     :align: center
-    :width: 75.0%
+    :width: 100.0%
 
 The first step is to connect the sensor.
 
