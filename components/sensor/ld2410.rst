@@ -13,9 +13,11 @@ The ``ld2410`` sensor platform allows you to use HI-LINK LD2410 motion and prese
 (`datasheet and user manual <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH>`__) with ESPHome.
 The :ref:`UART <uart>` is required to be set up in your configuration for this sensor to work.
 
-.. figure:: ld2410.jpg
+.. figure:: images/ld2410.jpg
     :align: center
-    :width: 80.0%
+    :width: 50.0%
+
+    LD2410 motion and presence sensor
 
 .. code-block:: yaml
 
