@@ -18,7 +18,7 @@ The :ref:`UART <uart>` is required to be set up in your configuration for this s
     :width: 80.0%
 
 .. code-block:: yaml
-  
+
     # Example configuration entry
     uart:
       id: uart1
@@ -93,39 +93,39 @@ Base Configuration:
 - **gX _still_sensitivity** (*Optional*, int): Sensitivity for the Xth gate for still detection. (X => 0 to 8). Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
 
 .. list-table:: Default values for gate sensitivity
-   :widths: 25 25 25
-   :header-rows: 1
+    :widths: 25 25 25
+    :header-rows: 1
 
-   * - Gate
-     - Default Move sensitivity
-     - Default Sitll Sensitivity
-   * - 0
-     - 50
-     - 0
-   * - 1
-     - 50
-     - 0
-   * - 2
-     - 40
-     - 40
-   * - 3
-     - 40
-     - 40
-   * - 4
-     - 40
-     - 40
-   * - 5
-     - 40
-     - 40
-   * - 6
-     - 30
-     - 15
-   * - 7
-     - 30
-     - 15
-   * - 8
-     - 30
-     - 15
+    * - Gate
+      - Default Move sensitivity
+      - Default Sitll Sensitivity
+    * - 0
+      - 50
+      - 0
+    * - 1
+      - 50
+      - 0
+    * - 2
+      - 40
+      - 40
+    * - 3
+      - 40
+      - 40
+    * - 4
+      - 40
+      - 40
+    * - 5
+      - 40
+      - 40
+    * - 6
+      - 30
+      - 15
+    * - 7
+      - 30
+      - 15
+    * - 8
+      - 30
+      - 15
 
 Sensor
 ------
