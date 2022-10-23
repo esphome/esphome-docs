@@ -199,6 +199,7 @@ See Also
 --------
 
 - :ref:`Sensor <config-sensor>`
-- `Datasheet and user manual <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH>`__
+- `Datasheet and user manual <https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH>`_
+- `Source of inspiration for implementation <https://github.com/rain931215/ESPHome-LD2410>`_
 - :apiref:`ld2410/ld2410.h`
 - :ghedit:`Edit`
