@@ -375,6 +375,7 @@ Motion
     MPU6050, components/sensor/mpu6050, mpu6050.jpg, Accelerometer & Gyroscope
     MPU6886, components/sensor/mpu6886, mpu6886.jpg, Accelerometer & Gyroscope
     RuuviTag, components/sensor/ruuvitag, ruuvitag.jpg, Temperature & Humidity & Accelerometer
+    LD2410, components/sensor/ld2410, ld2410.jpg, Motion & Presence
 
 
 Thermocouple
