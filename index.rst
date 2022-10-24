@@ -360,7 +360,7 @@ Miscellaneous
     Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
-    OpenTherm, components/sensor/opentherm, opentherm.svg
+    OpenTherm, components/sensor/opentherm, opentherm.png
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Tuya Sensor, components/sensor/tuya, tuya.png

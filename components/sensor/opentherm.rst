@@ -3,13 +3,19 @@ OpenTherm
 
 .. seo::
     :description: Instructions for setting up an OpenTherm device
+    :image: opentherm.png
 
-The OpenTherm component allos you to use various OpenTherm shields:
+The OpenTherm component allows you to use various OpenTherm shields and talk with
+a connected boiler. Example boards:
 
-- `DIYLess <https://diyless.com/product/master-opentherm-shield>`__ OpenTherm shield
 - `Ihor Melnyk <http://ihormelnyk.com/opentherm_adapter>`__'s OpenTherm adapter
+- `DIYLess.com <https://diyless.com/product/master-opentherm-shield>`__ OpenTherm shield
 
-It can be connected to for example an ESP32, and after that connected to your boiler.
+  - Includes all headers to mount with a WeMos D1 mini (both ESP8266 or ESP32 versions)
+  - This is the board shown below:
+
+.. figure:: /images/opentherm.png
+    :align: center
 
 What this component does:
 
@@ -33,6 +39,7 @@ Glossary:
 - *CH*: Central Heating
 - *DHW*: Domestic Hot Water
 
+Example:
 
 .. code-block:: yaml
 
