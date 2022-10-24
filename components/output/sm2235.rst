@@ -1,29 +1,26 @@
-SM2335 LED driver
+SM2235 LED driver
 ==================
 
 .. seo::
-    :description: Instructions for setting up SM2335 LED drivers in ESPHome.
-    :keywords: SM2335, SwitchBot Color Bulb W1401400
+    :description: Instructions for setting up SM2235 LED drivers in ESPHome.
+    :keywords: SM2235
 
-.. _sm2335-component:
+.. _sm2235-component:
 
 Component/Hub
 -------------
 
-The SM2335 component represents a SM2335 LED diver chain in
+The SM2235 component represents a SM2235 LED diver chain in
 ESPHome. Communication is done with two GPIO pins (DATA and CLK).
-It is used in some smart light bulbs:
-
-- SwitchBot Color Bulb W1401400
 
 To use the channels of this components, you first need to setup the
-global ``sm2335`` hub and give it an id, and then define the
-:ref:`individual output channels <sm2335-output>`.
+global ``sm2235`` hub and give it an id, and then define the
+:ref:`individual output channels <sm2235-output>`.
 
 .. code-block:: yaml
 
     # Example configuration entry
-    sm2335:
+    sm2235:
       data_pin: GPIO4
       clock_pin: GPIO5
       max_power_color_channels: 9
@@ -31,19 +28,19 @@ global ``sm2335`` hub and give it an id, and then define the
 
     # Individual outputs
     output:
-      - platform: sm2335
+      - platform: sm2235
         id: output_red
         channel: 1
-      - platform: sm2335
+      - platform: sm2235
         id: output_green
         channel: 0
-      - platform: sm2335
+      - platform: sm2235
         id: output_blue
         channel: 2
-      - platform: sm2335
+      - platform: sm2235
         id: output_coldwhite
         channel: 4
-      - platform: sm2335
+      - platform: sm2235
         id: output_warmwhite
         channel: 3
 
@@ -54,12 +51,12 @@ Configuration variables:
 -  **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin which CLK is
    connected to.
 -  **id** (*Optional*, :ref:`config-id`): The id to use for
-   this ``sm2335`` component. Use this if you have multiple SM2335 chains
+   this ``sm2235`` component. Use this if you have multiple SM2235 chains
    connected at the same time.
 -  **max_power_color_channels** (*Optional*, int 0-15): Adjusts the current supplied to the
-   color channels, higher is more power.  Default is 2 per SM2335 datasheet. See table below.
+   color channels, higher is more power.  Default is 2 per SM2235 datasheet. See table below.
 -  **max_power_white_channels** (*Optional*, int 0-15): Adjusts the current supplied to the
-   white channels, higher is more power.  Default is 4 per SM2335 datasheet. See table below.
+   white channels, higher is more power.  Default is 4 per SM2235 datasheet. See table below.
 
 .. note::
 
@@ -140,18 +137,18 @@ Configuration variables:
 | 15                              | 160 mA          |
 +---------------------------------+-----------------+
 
-.. _sm2335-output:
+.. _sm2235-output:
 
 Output
 ------
 
-The SM2335 output component exposes a SM2335 channel of a global
-:ref:`sm2335-component` as a float output.
+The SM2235 output component exposes a SM2235 channel of a global
+:ref:`sm2235-component` as a float output.
 
 .. code-block:: yaml
 
     # Example configuration entry
-    sm2335:
+    sm2235:
       data_pin: GPIO4
       clock_pin: GPIO5
       max_power_color_channels: 9
@@ -159,19 +156,19 @@ The SM2335 output component exposes a SM2335 channel of a global
 
     # Individual outputs
     output:
-      - platform: sm2335
+      - platform: sm2235
         id: output_red
         channel: 1
-      - platform: sm2335
+      - platform: sm2235
         id: output_green
         channel: 0
-      - platform: sm2335
+      - platform: sm2235
         id: output_blue
         channel: 2
-      - platform: sm2335
+      - platform: sm2235
         id: output_coldwhite
         channel: 4
-      - platform: sm2335
+      - platform: sm2235
         id: output_warmwhite
         channel: 3
 
@@ -179,11 +176,11 @@ Configuration variables:
 ************************
 
 - **id** (**Required**, :ref:`config-id`): The id to use for this output component.
-- **channel** (**Required**, int): Chose the channel of the SM2335 chain of
+- **channel** (**Required**, int): Chose the channel of the SM2235 chain of
   this output component.
-- **sm2335_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
-  :ref:`sm2335-component`.
-  Use this if you have multiple SM2335 chains you want to use at the same time.
+- **sm2235_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the
+  :ref:`sm2235-component`.
+  Use this if you have multiple SM2235 chains you want to use at the same time.
 - All other options from :ref:`Output <config-output>`.
 
 .. note::
@@ -198,10 +195,10 @@ See Also
 - :doc:`/components/output/index`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/sm2135`
-- :doc:`/components/output/sm2235`
+- :doc:`/components/output/sm2335`
 - :doc:`/components/light/rgb`
 - :doc:`/components/light/rgbw`
 - :doc:`/components/light/rgbww`
 - :doc:`/components/power_supply`
-- :apiref:`output/sm2335_output_component.h`
+- :apiref:`output/sm2235_output_component.h`
 - :ghedit:`Edit`
