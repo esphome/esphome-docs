@@ -22,8 +22,8 @@ What this component does not:
 - Implement a full featured `climate` component
 
   - Use automations inside ESPHome or Home Assistant
-  - Use other components in ESPHome. For example a combination of :doc:`PID Climate <components/climate/pid>` and
-    :doc:`Template Outputs <components/output/template>`.
+  - Use other components in ESPHome. For example a combination of :doc:`/components/climate/pid`
+    and :doc:`/components/output/template`.
 - Protect your device for misconfiguration
 
   - Please make sure that you know what you're doing
