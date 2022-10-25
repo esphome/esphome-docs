@@ -36,10 +36,33 @@ A new Factory Reset switch and button has been added this release, allowing rese
 as counters, restored values, and more importantly, the wifi credentials of a device that has been set up
 using the captive portal such as pre-flashed devices you would have purchased.
 
+Bluetooth Active Connections
+----------------------------
+
+ESPHome 2022.9.3 adds active connections to the ``bluetooth_proxy`` component allowing Home Assistant
+to connect to and control supported devices.
+
 Release 2022.9.1 - September 22
 -------------------------------
 
 - Revert "fix spi timing issues" :esphomepr:`3838` by :ghuser:`jesserockz`
+
+Release 2022.9.2 - September 29
+-------------------------------
+
+- Bump dashboard to 20220925.0 :esphomepr:`3846` by :ghuser:`glmnet`
+
+Release 2022.9.3 - October 6
+----------------------------
+
+- Bluetooth Proxy active connections :esphomepr:`3817` by :ghuser:`jesserockz`
+
+Release 2022.9.4 - October 7
+----------------------------
+
+- Add network type to mdns service message :esphomepr:`3880` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20221007.0 :esphomepr:`3881` by :ghuser:`jesserockz`
+- Dont add wifi block to yaml if discovered device uses ethernet :esphomepr:`3882` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------

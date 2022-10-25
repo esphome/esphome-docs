@@ -207,6 +207,7 @@ Analogue
 .. imgtable::
 
     ADC, components/sensor/adc, flash.svg, ESP internal
+    ADC128S102, components/sensor/adc128s102, adc128s102.png , 8-channel ADC
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
     CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
@@ -594,12 +595,14 @@ Text Sensor Components
     MQTT Subscribe Text, components/text_sensor/mqtt_subscribe, mqtt.png
     Version, components/text_sensor/version, new-box.svg
     WiFi Info, components/text_sensor/wifi_info, network-wifi.svg
+    Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg
     BLE Scanner, components/text_sensor/ble_scanner, bluetooth.svg
     Modbus Text Sensor, components/text_sensor/modbus_controller, modbus.png
     Template Text Sensor, components/text_sensor/template, description.svg
     Custom Text Sensor, components/text_sensor/custom, language-cpp.svg
     Nextion Text Sensor, components/text_sensor/nextion, nextion.jpg
     Tuya Text Sensor, components/text_sensor/tuya, tuya.png
+    WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg
 
 Climate Components
 ------------------

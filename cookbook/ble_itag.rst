@@ -55,6 +55,7 @@ Configuration example:
     # a notification is received, the corresponding binary_sensor
     # is briefly toggled.
       - platform: ble_client
+        type: characteristic
         ble_client_id: itag_black
         name: "Black iTag btn"
         service_uuid: 'ffe0'
@@ -73,12 +74,18 @@ Configuration example:
     # support this characteristic, you will see 'Unknown' in the
     # HA frontend.
       - platform: ble_client
+        type: characteristic
         ble_client_id: itag_black
         name: "Black iTag Battery"
         service_uuid: '180f'
         characteristic_uuid: '2a19'
         icon: 'mdi:battery'
         unit_of_measurement: '%'
+    # This entry queries polls the RSSI when the tag is connected.
+      - platform: ble_client
+        type: rssi
+        ble_client_id: itag_black
+        name: "Black iTag RSSI"
 
 Explanation
 -----------
