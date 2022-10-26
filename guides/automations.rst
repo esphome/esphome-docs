@@ -734,7 +734,7 @@ or as lambda
 
 .. code-block:: yaml
 
-    lambda: 'id(my_script).execute();
+    lambda: 'id(my_script).execute();'
 
 .. _script-stop_action:
 
@@ -794,13 +794,6 @@ of the script are running in parallel, this will block until all of them have te
       then:
         - script.execute: my_script
         - script.wait: my_script
-
-or as lambda
-
-.. code-block:: yaml
-
-    lambda: |-
-        id(my_script).execute();
 
 .. _script-is_running_condition:
 
