@@ -664,6 +664,7 @@ Misc Components
 
     ESP8266, components/esp8266, esp8266.svg
     ESP32, components/esp32, esp32.svg
+    RP2040, components/rp2040, rp2040.svg
 
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
