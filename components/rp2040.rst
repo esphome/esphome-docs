@@ -1,0 +1,25 @@
+RP2040 Platform
+===============
+
+.. seo::
+    :description: Configuration for the RP2040 platform for ESPHome.
+    :image: rp2040.cvg
+
+This component contains platform-specific options for the RP2040 platform.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    rp2040:
+      board: rpipicow
+
+Configuration variables:
+------------------------
+
+- **board** (*Optional*, string): The board type. Valid options are ``rpipico`` and ``rpipicow``.
+
+See Also
+--------
+
+- :doc:`esphome`
+- :ghedit:`Edit`
