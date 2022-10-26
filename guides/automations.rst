@@ -801,7 +801,6 @@ or as lambda
 
     lambda: |-
         id(my_script).execute();
-        id(my_script).wait();
 
 .. _script-is_running_condition:
 
