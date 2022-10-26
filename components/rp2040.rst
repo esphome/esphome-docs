@@ -3,7 +3,7 @@ RP2040 Platform
 
 .. seo::
     :description: Configuration for the RP2040 platform for ESPHome.
-    :image: rp2040.cvg
+    :image: rp2040.svg
 
 This component contains platform-specific options for the RP2040 platform.
 
