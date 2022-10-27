@@ -99,7 +99,7 @@ Configuration variables:
         |VIO|VIO|1/16    |
         +---+---+--------+
 
-    - There is no physical ``SLEEP`` pin anymore. You need to use the ``ENABLE`` pin, which has an inverted logic. So you should use this block and connect it to the ``ENABLE`` pin of the module:
+    - There is no physical ``SLEEP`` pin anymore. You need to use the ``ENABLE`` pin, which has an inverted logic. So you should use this block and connect it to the ``ENABLE`` pin of the module. So a full config could look like this:
 
     .. code-block:: yaml
 
