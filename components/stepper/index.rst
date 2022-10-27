@@ -105,10 +105,17 @@ Configuration variables:
 
         stepper:
           - platform: a4988
-            # ...
+            id: my_stepper
+            step_pin: D0
+            dir_pin: D1
+            max_speed: 250 steps/s
+
+            # Optional:
             sleep_pin:
-              number: D2
+              number: D2 # connect to enable pin on TMC2208
               inverted: true
+            acceleration: inf
+            deceleration: inf
 
 ULN2003 Component
 -----------------
