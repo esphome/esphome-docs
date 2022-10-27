@@ -113,26 +113,14 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
 
 .. _devices:
 
-Devices
--------
-
-This list contains a bunch of getting started and more advanced guides for using ESPHome.
-Technically, all ESP8266/ESP32 devices are supported by ESPHome.
+Platforms
+---------
 
 .. imgtable::
 
-    Generic ESP8266, devices/esp8266, esp8266.svg
-    Generic ESP32, devices/esp32, esp32.svg
-    NodeMCU ESP8266, devices/nodemcu_esp8266, nodemcu_esp8266.jpg
-
-    NodeMCU ESP32, devices/nodemcu_esp32, nodemcu_esp32.jpg
-    Sonoff S20, devices/sonoff_s20, sonoff_s20.jpg
-    Sonoff 4CH, devices/sonoff_4ch, sonoff_4ch.jpg
-
-    Generic Sonoff, devices/sonoff, sonoff.svg
-    Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
-    Sonoff T1 UK 3 Gang V1.1, devices/sonoff_t1_uk_3gang_v1.1, sonoff_t1_uk_3g_v1.1.jpg
-    Sonoff T3 EU 3 Gang V1.0, devices/sonoff_t3_eu_3gang_v1.0, sonoff_t3_eu_3g_v1.0.jpg
+    ESP8266, components/esp8266, esp8266.svg
+    ESP32, components/esp32, esp32.svg
+    RP2040, components/rp2040, rp2040.svg
 
 Core Components
 ---------------
@@ -661,9 +649,6 @@ Misc Components
 ---------------
 
 .. imgtable::
-
-    ESP8266, components/esp8266, esp8266.svg
-    ESP32, components/esp32, esp32.svg
 
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg

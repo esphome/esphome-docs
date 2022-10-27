@@ -274,7 +274,7 @@ global variables can be used to store the state of a garage door.
       - id: my_global_string
         type: std::string
         restore_value: no  # Strings cannot be saved/restored
-        initial_value: '"hello world"'
+        initial_value: '"Global value is"'
 
    # In an automation
    on_press:
@@ -287,7 +287,7 @@ global variables can be used to store the state of a garage door.
              id(my_global_int) += 10;
            }
 
-           ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
+           ESP_LOGD(TAG, "%s: %d", id(my_global_string), id(my_global_int));
 
 Configuration variables:
 
