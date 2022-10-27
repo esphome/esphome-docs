@@ -34,24 +34,24 @@ The :ref:`UART <uart>` is required to be set up in your configuration for this s
       no_one_duration: 150
       max_move_distance : 8
       max_still_distance: 1
-      g0_move_sensitivity: 10
-      g0_still_sensitivity: 20
-      g1_move_sensitivity: 10
-      g1_still_sensitivity: 20
-      g2_move_sensitivity: 20
-      g2_still_sensitivity: 21
-      g3_move_sensitivity: 30
-      g3_still_sensitivity: 31
-      g4_move_sensitivity: 40
-      g4_still_sensitivity: 41
-      g5_move_sensitivity: 50
-      g5_still_sensitivity: 51
-      g6_move_sensitivity: 60
-      g6_still_sensitivity: 61
-      g7_move_sensitivity: 70
-      g7_still_sensitivity: 71
-      g8_move_sensitivity: 80
-      g8_still_sensitivity: 81
+      g0_move_threshold: 10
+      g0_still_threshold: 20
+      g1_move_threshold: 10
+      g1_still_threshold: 20
+      g2_move_threshold: 20
+      g2_still_threshold: 21
+      g3_move_threshold: 30
+      g3_still_threshold: 31
+      g4_move_threshold: 40
+      g4_still_threshold: 41
+      g5_move_threshold: 50
+      g5_still_threshold: 51
+      g6_move_threshold: 60
+      g6_still_threshold: 61
+      g7_move_threshold: 70
+      g7_still_threshold: 71
+      g8_move_threshold: 80
+      g8_still_threshold: 81
 
     binary_sensor:
       - platform: ld2410
@@ -91,16 +91,16 @@ Base Configuration:
 - **no_one_duration** (*Optional*, int): Time in seconds during which presence state will stay present after leaving. Defaults to ``5`` seconds.
 - **max_move_distance** (*Optional*, int): Maximum distance for movement detection. Value between 0 and 8. Increment representing 0.75cm. Defaults to ``6`` (4.5 m).
 - **max_still_distance** (*Optional*, int): Maximum distance for still detection. Value between 0 and 8. Increment representing 0.75cm. Defaults to ``6`` (4.5 m).
-- **gX_move_sensitivity** (*Optional*, int): Sensitivity for the Xth gate for motion detection (X => 0 to 8). Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
-- **gX _still_sensitivity** (*Optional*, int): Sensitivity for the Xth gate for still detection. (X => 0 to 8). Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
+- **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8). Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
+- **gX _still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8). Above this level for the considered gate (distance), still detection will be triggered. Defaults to ``see table below``.
 
-.. list-table:: Default values for gate sensitivity
+.. list-table:: Default values for gate threshold
     :widths: 25 25 25
     :header-rows: 1
 
     * - Gate
-      - Default Move sensitivity
-      - Default Sitll Sensitivity
+      - Default Move threshold
+      - Default Still threshold
     * - 0
       - 50
       - 0
