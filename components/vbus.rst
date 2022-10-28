@@ -174,6 +174,6 @@ See Also
 --------
 
 - :doc:`/components/uart`
-- `VBUS protocol <https://danielwippermann.github.io/resol-vbus>`
-- `Resol manuals <https://www.resol.de/en/dokumente>`
+- `VBUS protocol <https://danielwippermann.github.io/resol-vbus>`__
+- `Resol manuals <https://www.resol.de/en/dokumente>`__
 - :ghedit:`Edit`
