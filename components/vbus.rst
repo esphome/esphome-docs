@@ -11,7 +11,7 @@ protocol. These devices are mainly produced by Resol, often also found under dif
 Kioto, Wagner etc. The component currently supports natively Resol Deltasol C, DeltaSol CS2 and DeltaSol BS Plus 
 but any device can be added via lambda by knowing `its packet structure <https://danielwippermann.github.io/resol-vbus>`__. 
 
-.. figure:: images/resol_deltasol_bs_plus.jpg
+.. figure:: ../images/resol_deltasol_bs_plus.jpg
     :align: center
 
 The device must be connected via a :doc:`UART bus </components/uart>` supporting the receiving line only. The UART bus 
@@ -26,7 +26,7 @@ To connect to this and read data from the bus a level shifting is needed as the 
 would damage the MCU). Although this is a symmetric connection supporting long wires, for our read-only purposes it's 
 enough to adapt the level appropriately to 3.3V using a circuit like below:
 
-.. figure:: images/resol_vbus_adapter_schematic.png
+.. figure:: ../images/resol_vbus_adapter_schematic.png
     :align: center
 
 Another approach, with PCB design ready to be manufactured `can be found here <https://github.com/FatBeard/vbus-arduino-library/tree/master/pcb>`__.
