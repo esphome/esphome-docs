@@ -4,7 +4,7 @@ VBUS Component
 .. seo::
     :description: Instructions for integrating a solar energy collector controller using VBUS protocol in ESPHome.
     :image: resol_deltasol_bs_plus.jpg
-    :keywords: SMS SIM800L GSM
+    :keywords: VBUS RESOL SOLAR
 
 The ``VBUS`` Component provides status reading connectivity to solar heat energy collector controllers using VBUS 
 protocol. These devices are mainly produced by Resol, often also found under different brand names like Viessmann, 
@@ -30,6 +30,7 @@ enough to adapt the level appropriately to 3.3V using a circuit like below:
 
 .. figure:: images/resol_vbus_adapter_schematic.png
     :align: center
+    :width: 80.0%
 
 Another approach, with PCB design ready to be manufactured `can be found here <https://github.com/FatBeard/vbus-arduino-library/tree/master/pcb>`__.
 
