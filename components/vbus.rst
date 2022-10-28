@@ -13,7 +13,6 @@ but any device can be added via lambda by knowing `its packet structure <https:/
 
 .. figure:: images/resol_deltasol_bs_plus.jpg
     :align: center
-    :width: 60.0%
 
 The device must be connected via a :doc:`UART bus </components/uart>` supporting the receiving line only. The UART bus 
 must be configured at the same speed of the module which is by default 9600bps. The controller outputs data every second. 
@@ -29,7 +28,6 @@ enough to adapt the level appropriately to 3.3V using a circuit like below:
 
 .. figure:: images/resol_vbus_adapter_schematic.png
     :align: center
-    :width: 80.0%
 
 Another approach, with PCB design ready to be manufactured `can be found here <https://github.com/FatBeard/vbus-arduino-library/tree/master/pcb>`__.
 
@@ -127,8 +125,7 @@ Binary Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models
-are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.
+- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.
 
 Supported sensors:
 
