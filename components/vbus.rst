@@ -17,11 +17,6 @@ but any device can be added via lambda by knowing `its packet structure <https:/
 The device must be connected via a :doc:`UART bus </components/uart>` supporting the receiving line only. The UART bus 
 must be configured at the same speed of the module which is by default 9600bps. The controller outputs data every second. 
 
-.. warning::
-
-    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
-    logging with the ``baud_rate: 0`` option.
-
 To connect to this and read data from the bus a level shifting is needed as the voltage is around 8V (direct connection
 would damage the MCU). Although this is a symmetric connection supporting long wires, for our read-only purposes it's 
 enough to adapt the level appropriately to 3.3V using a circuit like below:
@@ -31,7 +26,7 @@ enough to adapt the level appropriately to 3.3V using a circuit like below:
 
 Another approach, with PCB design ready to be manufactured `can be found here <https://github.com/FatBeard/vbus-arduino-library/tree/master/pcb>`__.
 
-.. note::
+.. warning::
 
     Do not connect the GND pin of your module with the ground of Resol unit as that may damage the output port of it. 
     The output of the device is symmetric, meaning that the signal is not referenced to the ground, but rather it's a 
@@ -56,15 +51,20 @@ Component
     logger:
       baud_rate: 0 # disable uart logger on ESP8266
 
+.. warning::
+
+    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    logging with the ``baud_rate: 0`` option.
+
 Configuration variables:
 
 - **uart_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the UART hub used to connect to the device.
 
 .. note::
 
-    Functionality of the sensors are depending on the type of the device and the the scheme arrangement of the hydraulic 
+    Functionality of the sensors depends on the type of the device and the the scheme arrangement of the hydraulic 
     system it controls. Please check the user manual and assess your arrangement to determine the functionality of each 
-    sensor. 
+    sensor. The actual arrangement number set up can be determined from the settings of the device.
 
 
 Sensor
