@@ -15,7 +15,6 @@ but any device can be added via lambda by knowing `its packet structure <https:/
     :align: center
     :width: 60.0%
 
-
 The device must be connected via a :doc:`UART bus </components/uart>` supporting the receiving line only. The UART bus 
 must be configured at the same speed of the module which is by default 9600bps. The controller outputs data every second. 
 
@@ -100,17 +99,19 @@ Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models
-are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.
+- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: 
+``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.
+
 
 Supported sensors:
 
 - for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, 
-``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.
+``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
 - for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, 
-``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.
+``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
 - for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, 
-``pump_speed``, ``operating_hours``, ``heat_quantity``.
+``pump_speed``, ``operating_hours``, ``heat_quantity``.  
+
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
 
@@ -135,9 +136,9 @@ are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.
 
 Supported sensors:
 
-- for **deltasol_bs_plus**: ``relay_1``,  ``relay_2``, ````, ````, ````, ````,  ````, ````, ````, ````.
-- for **deltasol_c**: ````,  ````, ````, ````, ````.
-- for **deltasol_cs2**: ````,  ````, ````, ````, ````.
+- for **deltasol_bs_plus**: ``relay_1``,  ``relay_2``, ````, ````, ````, ````,  ````, ````, ````, ````.  
+- for **deltasol_c**: ````,  ````, ````, ````, ````.  
+- for **deltasol_cs2**: ````,  ````, ````, ````, ````.  
 
 All sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
