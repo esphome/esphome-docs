@@ -99,18 +99,14 @@ Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: 
-``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.  
+- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.  
 
 
 Supported sensors:
 
-- for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, 
-``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
-- for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, 
-``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
-- for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, 
-``pump_speed``, ``operating_hours``, ``heat_quantity``.  
+- for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
+- for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
+- for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, ``pump_speed``, ``operating_hours``, ``heat_quantity``.  
 
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
