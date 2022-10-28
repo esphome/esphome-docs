@@ -129,9 +129,10 @@ Configuration variables:
 
 Supported sensors:
 
-- for **deltasol_bs_plus**: ``relay_1``,  ``relay_2``, ````, ````, ````, ````,  ````, ````, ````, ````.  
-- for **deltasol_c**: ````,  ````, ````, ````, ````.  
-- for **deltasol_cs2**: ````,  ````, ````, ````, ````.  
+- for **deltasol_bs_plus**: ``relay_1``,  ``relay_2``, ``a``, ``b``, ````, ``c``,  ``d``, ``e``, ``f``, ``g``.  
+- for **deltasol_c**: ``a``, ``b``, ````, ``c``,  ``d``, ``e``, ``f``, ``g``.  
+- for **deltasol_cs2**: ``a``, ``b``, ````, ``c``,  ``d``, ``e``, ``f``, ``g``.  
+
 
 All sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
