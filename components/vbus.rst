@@ -6,7 +6,7 @@ VBus Component
     :image: resol_deltasol_bs_plus.jpg
     :keywords: VBUS RESOL SOLAR
 
-The ``VBus`` Component provides status reading connectivity to solar heat energy collector controllers using VBUS 
+The ``VBus`` Component provides status reading connectivity to solar heat energy collector controllers using VBus 
 protocol. These devices are mainly produced by Resol, often also found under different brand names like Viessmann, 
 Kioto, Wagner etc. The component currently supports natively Resol Deltasol C, DeltaSol CS2 and DeltaSol BS Plus 
 but any device can be added via lambda by knowing `its packet structure <https://danielwippermann.github.io/resol-vbus>`__. 
@@ -138,8 +138,8 @@ Supported sensors:
 All sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
-Lambda definition for ``custom`` VBUS sensor
---------------------------------------------
+Lambda definition for ``custom`` VBus sensors
+---------------------------------------------
 
 Devices on a VBus are identified with a source address. There can be multiple devices on the same bus, 
 each device type has a different address. 
@@ -160,11 +160,11 @@ each device type has a different address.
 Configuration variables:
 
 - **model** (*Mandatory*): Set to ``custom``.  
-- **dest** (*Mandatory*): The ``DFA`` value corresponding to your device in the VBus Specification.
-- **source** (*Mandatory*): The address corresponding to ``your device model`` in the VBus Specification.
-- **command** (*Mandatory*): The ``command`` corresponding to your device in the VBus Specification.  
+- **dest** (*Mandatory*): The ``DFA`` value corresponding to your device (see below).
+- **source** (*Mandatory*): The address corresponding to ``your device model`` (see below).
+- **command** (*Mandatory*): The ``command`` corresponding to your device (see below).  
 
-To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the packets table, enter the type of your device. 
+To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device. 
 
 To extract ``float`` values with a lambda, look in the packet structure by clicking the **Bytes** link in the table. Temperatures are stored as ``16``-bit values in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. You can then use the lambda to publish the value to a template sensor.
 
@@ -198,7 +198,7 @@ For example to decode also some extra the sensors of `DeltaSol BS Plus` follow t
         
       - platform: template
         id: scheme
-        name: Arrangemet scheme
+        name: Arrangement scheme
         icon: mdi:pipe-wrench
         accuracy_decimals: 0
         entity_category: diagnostic
