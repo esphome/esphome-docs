@@ -160,13 +160,15 @@ each device type has a different address.
 Configuration variables:
 
 - **model** (*Mandatory*): Set to ``custom``.  
-- **dest** (*Mandatory*): The ``DFA`` value corresponding to your device (see below).
-- **source** (*Mandatory*): The address corresponding to ``your device model`` (see below).
-- **command** (*Mandatory*): The ``command`` corresponding to your device (see below).  
+- **dest** (*Mandatory*): The ``DFA`` value corresponding to your device (see below).  
+- **source** (*Mandatory*): The address corresponding to ``your device model`` (see below).  
+- **command** (*Mandatory*): The ``command`` corresponding to your device (see below). 
+- **lambda** (*Mandatory*, :ref:`lambda <config-lambda>`):
+  Lambda to parse the values from the incoming data packets and publish them to template sensors.
 
 To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device. 
 
-To extract ``float`` values with a lambda, look in the packet structure by clicking the **Bytes** link in the table. Temperatures are stored as ``16``-bit values in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. You can then use the lambda to publish the value to a template sensor.
+To extract ``float`` values with a :ref:`lambda <config-lambda>`, look in the packet structure by clicking the **Bytes** link in the table. Temperatures are stored as ``16``-bit values in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. 
 
 For example to decode also some extra the sensors of `DeltaSol BS Plus` follow this:
 
@@ -221,4 +223,5 @@ See Also
 - `Resol manuals <https://www.resol.de/en/dokumente>`__
 - `VBus protocol <https://danielwippermann.github.io/resol-vbus>`__
 - :doc:`/components/sensor/template`
+- :ref:`lambda <config-lambda>`
 - :ghedit:`Edit`
