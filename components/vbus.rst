@@ -1,12 +1,12 @@
-VBUS Component
+VBus Component
 ==============
 
 .. seo::
-    :description: Instructions for integrating a solar energy collector controller using VBUS protocol in ESPHome.
+    :description: Instructions for integrating a solar energy collector controller using VBus protocol in ESPHome.
     :image: resol_deltasol_bs_plus.jpg
     :keywords: VBUS RESOL SOLAR
 
-The ``VBUS`` Component provides status reading connectivity to solar heat energy collector controllers using VBUS 
+The ``VBus`` Component provides status reading connectivity to solar heat energy collector controllers using VBUS 
 protocol. These devices are mainly produced by Resol, often also found under different brand names like Viessmann, 
 Kioto, Wagner etc. The component currently supports natively Resol Deltasol C, DeltaSol CS2 and DeltaSol BS Plus 
 but any device can be added via lambda by knowing `its packet structure <https://danielwippermann.github.io/resol-vbus>`__. 
@@ -98,7 +98,7 @@ Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.  
+- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``.  
 
 
 Supported sensors:
@@ -126,7 +126,7 @@ Binary Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``custom``.
+- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``.
 
 Supported sensors:
 
@@ -141,40 +141,84 @@ All sensors are *Optional* and support all other options from :ref:`Binary Senso
 Lambda definition for ``custom`` VBUS sensor
 --------------------------------------------
 
-Devices on a VBUS bus are identified with a source address. There can be multiple devices on the same bus, 
-each device type has a different address. The address code can be identified from the 
-`protocol description <https://danielwippermann.github.io/resol-vbus>`__. To decode some of the sensors 
-of DeltaSol BS Plus follow the example below:
+Devices on a VBus are identified with a source address. There can be multiple devices on the same bus, 
+each device type has a different address. 
+
 
 .. code-block:: yaml
-
-    # Example configuration entry
-    sensor:
-      - platform: vbus
-        model: custom
-        command: 0x100
-        source: 0x1234
-        dest: 0x10
-        lambda: |-
-          // the data is in `x`
-        temperature_1:
-          name: Temperature 1
 
     binary_sensor:
       - platform: vbus
         model: custom
-        command: 0x100
-        source: 0x1234
         dest: 0x10
+        source: 0x1234
+        command: 0x100
         lambda: |-
           // the data is in `x`
-        relay_1:
-          name: Pump
+
+
+Configuration variables:
+
+- **model** (*Mandatory*): Set to ``custom``.  
+- **dest** (*Mandatory*): The ``DFA`` value corresponding to your device in the VBus Specification.
+- **source** (*Mandatory*): The address corresponding to ``your device model`` in the VBus Specification.
+- **command** (*Mandatory*): The ``command`` corresponding to your device in the VBus Specification.  
+
+To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the packets table, enter the type of your device. 
+
+To extract ``float`` values with a lambda, look in the packet structure by clicking the **Bytes** link in the table. Temperatures are stored as ``16``-bit values in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. You can then use the lambda to publish the value to a template sensor.
+
+For example to decode also some extra the sensors of `DeltaSol BS Plus` follow this:
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: vbus
+        model: custom
+        dest: 0x10
+        source: 0x1234
+        command: 0x100
+        lambda: |-
+          id(temp1).publish_state(((x[1] << 8) + x[0]) * 0.1f);  // Temperature 1
+          id(temp2).publish_state(((x[3] << 8) + x[2]) * 0.1f);  // Temperature 2
+          id(scheme).publish_state(x[14]);                       // Configured arrangemet scheme
+          id(clk).publish_state((x[13] << 8) + x[12]);           // Device clock, in minutes from midnight
+
+      - platform: template
+        id: temp1
+        name: Temperature 1
+        state_class: measurement
+        unit_of_measurement: "°C"
+        
+      - platform: template
+        id: temp2
+        name: Temperature 2
+        state_class: measurement
+        unit_of_measurement: "°C"
+        
+      - platform: template
+        id: scheme
+        name: Arrangemet scheme
+        icon: mdi:pipe-wrench
+        accuracy_decimals: 0
+        entity_category: diagnostic
+
+      - platform: template
+        id: clk
+        name: Device clock
+        icon: mdi:clock-outline
+        accuracy_decimals: 0
+        unit_of_measurement: "min"
+        device_class: duration
+        entity_category: diagnostic
+
+
 
 See Also
 --------
 
 - :doc:`/components/uart`
-- `VBUS protocol <https://danielwippermann.github.io/resol-vbus>`__
 - `Resol manuals <https://www.resol.de/en/dokumente>`__
+- `VBus protocol <https://danielwippermann.github.io/resol-vbus>`__
+- :doc:`/components/sensor/template`
 - :ghedit:`Edit`
