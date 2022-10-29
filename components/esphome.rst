@@ -52,6 +52,8 @@ Advanced options:
   - **version** (**Required**, string): Version of the project
 - **min_version** (*Optional*, string): The minimum ESPHome version required to compile this configuration.
   See :ref:`esphome-min_version`.
+- **compile_process_limit** (*Optional*, int): The maximum number of simultaneous compile processes to run.
+  Defaults to the number of cores of the CPU which is also the maximum you can set.
 
 Old-style platform options, which have been moved to the platform-specific :doc:`esp32 </components/esp32>` and
 :doc:`esp8266 </components/esp8266>` sections but are still accepted here for compatibility reasons (usage not
