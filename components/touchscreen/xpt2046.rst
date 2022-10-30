@@ -27,7 +27,7 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
     # Example configuration entry
     touchscreen:
       platform: xpt2046
-      id: touchscreen
+      id: my_touchscreen
       cs_pin: 17
       interrupt_pin: 16
       update_interval: 50ms
@@ -103,15 +103,15 @@ values nor ``swap_x_y``.
     # Touchscreen
     touchscreen:
       platform: xpt2046
-      id: touchscreen
+      id: my_touchscreen
       cs_pin: 17
       on_touch:
         - lambda: |-
               ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
-                  id(touchscreen).x,
-                  id(touchscreen).y,
-                  id(touchscreen).x_raw,
-                  id(touchscreen).y_raw
+                  id(my_touchscreen).x,
+                  id(my_touchscreen).y,
+                  id(my_touchscreen).x_raw,
+                  id(my_touchscreen).y_raw
                   );
 
 Get a stylus or a similar object, run the project and touch the corners of the screen at
@@ -176,8 +176,8 @@ using a display lambda similar to the following.
       - platform: ili9341
         lambda: |-
           it.fill(BLACK);
-          if (id(touchscreen).touched)
-            it.filled_circle(id(touchscreen).x, id(touchscreen).y, 10, RED);
+          if (id(my_touchscreen).touched)
+            it.filled_circle(id(my_touchscreen).x, id(my_touchscreen).y, 10, RED);
 
 To be exact, the component does the following
 
