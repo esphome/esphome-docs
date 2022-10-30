@@ -29,7 +29,7 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
       platform: xpt2046
       id: touchscreen
       cs_pin: 17
-      interupt_pin: 16
+      interrupt_pin: 16
       update_interval: 50ms
       report_interval: 1s
       threshold: 400
@@ -51,12 +51,12 @@ Base Configuration:
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The chip select pin.
   Often marked ``T_CS`` on the board.
 
-- **interupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
+- **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
   Often marked ``T_IRQ`` on the board. If not specified the component will use polling
   via SPI. This key is renamed from **irq_pin**
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. If ``interupt_pin`` is specified the touch will be detected nearly instantaneously and this setting 
+  sensor. If ``interrupt_pin`` is specified the touch will be detected nearly instantaneously and this setting 
   will be used only for the release detection. Defaults to ``50ms``.
 
 - **report_interval** (*Optional*, :ref:`config-time`): The interval to periodically
