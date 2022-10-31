@@ -95,6 +95,11 @@ Sensor
           name: Operating Hours 2
         heat_quantity:
           name: Heat Quantity
+        time:
+          name: Device Time
+        version:
+          name: Device firmware version
+
 
 Configuration variables:
 
@@ -103,9 +108,9 @@ Configuration variables:
 
 Supported sensors:
 
-- for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
-- for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``.  
-- for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, ``pump_speed``, ``operating_hours``, ``heat_quantity``.  
+- for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``.  
+- for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``.  
+- for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, ``pump_speed``, ``operating_hours``, ``heat_quantity``, ``version``.  
 
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
@@ -119,10 +124,31 @@ Binary Sensor
     binary_sensor:
       - platform: vbus
         model: deltasol_bs_plus
-        relay_1:
-          name: Pump
-        relay_2:
-          name: 3-way Valve
+        relay1:
+          name: Relay 1 On
+        relay2:
+          name: Relay 2 On
+        sensor1_error:
+          name: Sensor 1 Fault
+        sensor2_error:
+          name: Sensor 2 Fault
+        sensor3_error:
+          name: Sensor 3 Fault
+        sensor4_error:
+          name: Sensor 4 Fault
+        collector_max:
+          name: Option Collector Max
+        collector_min:
+          name: Option Collector Min
+        collector_frost:
+          name: Option Collector Frost
+        tube_collector:
+          name: Option Tube Collector
+        recooling:
+          name: Option Recooling
+        hqm:
+          name: Option Heat Quantity Measurement
+
 
 Configuration variables:
 
@@ -130,9 +156,9 @@ Configuration variables:
 
 Supported sensors:
 
-- for **deltasol_bs_plus**: ``relay_1``,  ``relay_2``, ``a``, ``b``, ``z``, ``c``, ``d``, ``e``, ``f``, ``g``.  
-- for **deltasol_c**: ``a``, ``b``, ``z``, ``c``, ``d``, ``e``, ``f``, ``g``.  
-- for **deltasol_cs2**: ``a``, ``b``, ``z``, ``c``, ``d``, ``e``, ``f``, ``g``.  
+- for **deltasol_bs_plus**: ``relay1``,  ``relay2``, ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``, ``collector_max``, ``collector_min``, ``collector_frost``, ``tube_collector``, ``recooling``, ``hqm``.  
+- for **deltasol_c**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.  
+- for **deltasol_cs2**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.  
 
 
 All sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
@@ -147,7 +173,7 @@ each device type has a different address.
 
 .. code-block:: yaml
 
-    binary_sensor:
+    sensor: # or binary_sensor:
       - platform: vbus
         model: custom
         dest: 0x10
@@ -168,7 +194,9 @@ Configuration variables:
 
 To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device. 
 
-To extract ``float`` values with a :ref:`lambda <config-lambda>`, look in the packet structure by clicking the **Bytes** link in the table. Temperatures are stored as ``16``-bit values in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. 
+To extract the values with a :ref:`lambda <config-lambda>`, look in the packet structure by clicking the **Bytes** link in the table. Each value is is placed at an ``offset`` within the packet.    
+For ``sensor`` ``float`` values, let's look at the temperatures exemple: the value is stored as ``16``-bit values in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. The number within the square brackets is the ``[offset]``.    
+For ``binary_sensor`` values, multiple binary values are stored within a single numeric value encoded with a bitmask. To extract the binary value all you have to do is to multiply the value at the corresponding offset with the ``mask`` shown in the table.
 
 For example to decode also some extra the sensors of `DeltaSol BS Plus` follow this:
 
@@ -181,23 +209,9 @@ For example to decode also some extra the sensors of `DeltaSol BS Plus` follow t
         source: 0x1234
         command: 0x100
         lambda: |-
-          id(temp1).publish_state(((x[1] << 8) + x[0]) * 0.1f);  // Temperature 1
-          id(temp2).publish_state(((x[3] << 8) + x[2]) * 0.1f);  // Temperature 2
           id(scheme).publish_state(x[14]);                       // Configured arrangemet scheme
-          id(clk).publish_state((x[13] << 8) + x[12]);           // Device clock, in minutes from midnight
+          id(temp2).publish_state(((x[3] << 8) + x[2]) * 0.1f);  // Temperature 2
 
-      - platform: template
-        id: temp1
-        name: Temperature 1
-        state_class: measurement
-        unit_of_measurement: "°C"
-        
-      - platform: template
-        id: temp2
-        name: Temperature 2
-        state_class: measurement
-        unit_of_measurement: "°C"
-        
       - platform: template
         id: scheme
         name: Arrangement scheme
@@ -206,14 +220,23 @@ For example to decode also some extra the sensors of `DeltaSol BS Plus` follow t
         entity_category: diagnostic
 
       - platform: template
-        id: clk
-        name: Device clock
-        icon: mdi:clock-outline
-        accuracy_decimals: 0
-        unit_of_measurement: "min"
-        device_class: duration
-        entity_category: diagnostic
+        id: temp2
+        name: Temperature 2
+        state_class: measurement
+        unit_of_measurement: "°C"
 
+    binary_sensor:
+      - platform: vbus
+        model: custom
+        dest: 0x10
+        source: 0x1234
+        command: 0x100
+        lambda: |-
+          id(bin_hqm)->publish_state(x[15] & 0x20);
+
+      - platform: template
+        name: Option Heat Quantity Measurement
+        id: bin_hqm
 
 
 See Also
@@ -223,5 +246,5 @@ See Also
 - `Resol manuals <https://www.resol.de/en/dokumente>`__
 - `VBus protocol <https://danielwippermann.github.io/resol-vbus>`__
 - :doc:`/components/sensor/template`
-- :ref:`lambda <config-lambda>`
+- :ref:`Lambdas <config-lambda>`
 - :ghedit:`Edit`
