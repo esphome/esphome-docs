@@ -26,9 +26,11 @@ Each output platform extends this configuration schema.
       - platform: ...
         id: my_output_id
         power_supply: power_supply_id
-        inverted: false
-        min_power: 0.01
-        max_power: 0.75
+        filters:
+          - range:
+              min_power: 0.01
+              max_power: 0.75
+          - inverted: false
 
 Configuration variables:
 
@@ -37,18 +39,76 @@ Configuration variables:
   supply </components/power_supply>` to connect to
   this output. When the output is enabled, the power supply will
   automatically be switched on too.
-- **inverted** (*Optional*, boolean): If the output should be treated
-  as inverted. Defaults to ``false``.
+- **filters** (*Optional*): Specify filters to use for some basic
+  transforming of values. See :ref:`Output Filters <output-filters>` for more information.
 
-Float outputs only:
+.. _output-filters:
+
+Output Filters
+--------------
+
+ESPHome allows you to do some basic pre-processing of values before they’re sent to the connected
+device. This is for example useful if you want to invert the signal or only allow a specific range.
+
+Filters are processed in the order they are defined in your configuration.
+
+.. code-block:: yaml
+
+    # Example filters:
+    filters:
+      - range:
+          min_power: 0.01
+          max_power: 0.75
+      - inverted: false
+
+``inverted``
+************
+
+This filter will invert the output. It's recommended to use this filter as the last filter on the
+component.
+
+``range``
+*********
+
+The range filter allows you to set the minimum and maximum output value.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    - platform: esp8266_pwm
+      # ...
+      filters:
+        - range:
+            min_power: 0.01
+            max_power: 0.75
+            zero_means_zero: false
+
+Configuration variables:
 
 - **min_power** (*Optional*, float): Sets the minimum output value of this output platform.
-  Must be in range from 0 to max_power. Defaults to ``0``.
+  Must be in range from 0 to max_power. Defaults to 0.
 - **max_power** (*Optional*, float): Sets the maximum output value of this output platform.
-  Must be in range from min_power to 1. Defaults to ``1``.
-- **zero_means_zero** (*Optional*, boolean): Sets the output to use actual 0 instead of ``min_power``.
-  Defaults to ``false``.
+  Must be in range from min_power to 1. Defaults to 1.
+- **zero_means_zero** (*Optional*, boolean): Sets the output to use actual 0 instead of min_power.
+  Defaults to false.
 
+``lambda``
+**********
+
+Perform a simple mathematical operation over the output values. The input value is ``x`` and
+the result of the lambda is used as the output (use ``return``).
+
+.. code-block:: yaml
+
+    filters:
+      - lambda: return pow(x, 2);
+
+
+Make sure to add ``.0`` to all values in the lambda, otherwise divisions of integers will
+result in integers (not floating point values).
+
+Output Automation
+-----------------
 
 .. _output-turn_on_action:
 
