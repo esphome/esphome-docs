@@ -121,6 +121,7 @@ Binary Sensor
 
 .. code-block:: yaml
 
+    # Example configuration entry
     binary_sensor:
       - platform: vbus
         model: deltasol_bs_plus
@@ -194,14 +195,15 @@ Configuration variables:
 
 To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device. 
 
-To extract the values with a :ref:`lambda <config-lambda>`, look in the packet structure by clicking the **Bytes** link in the table. Each value is is placed at an ``offset`` within the packet.    
+To extract the values with a :ref:`lambda <config-lambda>`, look in the packet structure by clicking the **Bytes** link in the table. Each value is placed at an ``offset`` within the packet.    
 For ``sensor`` ``float`` values, let's look at the temperatures exemple: the value is stored as ``16``-bit values in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. The number within the square brackets is the ``[offset]``.    
-For ``binary_sensor`` values, multiple binary values are stored within a single numeric value encoded with a bitmask. To extract the binary value all you have to do is to multiply the value at the corresponding offset with the ``mask`` shown in the table.
+For ``binary_sensor`` values, multiple binary values are stored within a single numeric value encoded with a bitmask. To extract the binary value all you have to do is to apply *bitwise AND* operator ``&`` between the value at the corresponding offset and the ``mask`` shown in the table.
 
-For example to decode also some extra the sensors of `DeltaSol BS Plus` follow this:
+For example to decode some extra the sensors of `DeltaSol BS Plus` via lambdas:
 
 .. code-block:: yaml
 
+    # Example configuration entry
     sensor:
       - platform: vbus
         model: custom
@@ -221,7 +223,7 @@ For example to decode also some extra the sensors of `DeltaSol BS Plus` follow t
 
       - platform: template
         id: temp2
-        name: Temperature 2
+        name: Temperature DHW
         state_class: measurement
         unit_of_measurement: "°C"
 
@@ -232,11 +234,12 @@ For example to decode also some extra the sensors of `DeltaSol BS Plus` follow t
         source: 0x1234
         command: 0x100
         lambda: |-
-          id(bin_hqm)->publish_state(x[15] & 0x20);
+          id(bin_hqm)->publish_state(x[15] & 0x20);             // Option Heat Quantity Measurement enabled
 
       - platform: template
-        name: Option Heat Quantity Measurement
+        name: Heat Quantity Measurement On
         id: bin_hqm
+        icon: mdi:counter
 
 
 See Also
