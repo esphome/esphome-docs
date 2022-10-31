@@ -64,6 +64,7 @@ Configuration variables:
 - **init_with_half_cycle** (*Optional*, boolean): Will send the first full half AC cycle
   Try to use this for dimmable LED lights, it might help turning on at low brightness
   levels. On Halogen lamps it might show at initial flicker. Defaults to ``false``.
+- **min_power** (*Optional*, float): Sets the minimum output value of this output.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Output <config-output>`.
 
