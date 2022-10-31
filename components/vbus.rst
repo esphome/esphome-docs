@@ -208,7 +208,7 @@ For example to decode some extra the sensors of `DeltaSol BS Plus` via lambdas:
       - platform: vbus
         model: custom
         dest: 0x10
-        source: 0x1234
+        source: 0x4221
         command: 0x100
         lambda: |-
           id(scheme).publish_state(x[14]);                       // Configured arrangement scheme
