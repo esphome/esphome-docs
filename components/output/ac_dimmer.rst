@@ -40,6 +40,9 @@ for example the `RobotDyn dimmer
           mode:
             input: true
           inverted: yes
+        filters:
+          - range:
+              min_power: 0.1
 
     light:
       - platform: monochromatic
@@ -64,14 +67,13 @@ Configuration variables:
 - **init_with_half_cycle** (*Optional*, boolean): Will send the first full half AC cycle
   Try to use this for dimmable LED lights, it might help turning on at low brightness
   levels. On Halogen lamps it might show at initial flicker. Defaults to ``false``.
-- **min_power** (*Optional*, float): Sets the minimum output value of this output.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Output <config-output>`.
 
 Dimming lights with phase control can be tricky, the minimum level your light turns on
 might be different from other lights, also the perceived light level might not correlate
 to the percentage output set to the light, to try to minimize these behaviors you can
-tweak the values ``min_power`` from this output component and also ``gamma_correct`` from
+tweak the ``range`` filter on this output component and also ``gamma_correct`` from
 the monochromatic light.
 
 See Also
