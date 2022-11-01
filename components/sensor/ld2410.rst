@@ -69,11 +69,11 @@ The :ref:`UART <uart>` is required to be set up in your configuration for this s
         still_distance:
           name: "Still Distance (cm)"
         moving_energy:
-          name: "Move Energy"
+          name: "Move Energy (%)"
         still_energy:
-          name: "Still Energy"
+          name: "Still Energy (%)"
         detection_distance:
-          name: "Distance Detection"
+          name: "Distance Detection (cm)" 
 
 
 .. note::
@@ -88,7 +88,7 @@ and binary sensors.
 
 Base Configuration:
 
-- **no_one_duration** (*Optional*, int): Time in seconds during which presence state will stay present after leaving. Defaults to ``5`` seconds.
+- **none_duration** (*Optional*, int): Time in seconds during which presence state will stay present after leaving. Defaults to ``5`` seconds.
 - **max_move_distance** (*Optional*, int): Maximum distance for movement detection. Value between 0 and 8. Increment representing 0.75cm. Defaults to ``6`` (4.5 m).
 - **max_still_distance** (*Optional*, int): Maximum distance for still detection. Value between 0 and 8. Increment representing 0.75cm. Defaults to ``6`` (4.5 m).
 - **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8). Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
