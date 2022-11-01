@@ -199,7 +199,7 @@ To extract the values with a :ref:`lambda <config-lambda>`, look in the packet s
 For ``float`` values, let's look at the temperature example: the value is stored as a ``16``-bit value in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. The number within the square brackets is the ``[offset]``.    
 For ``binary`` values, multiple binary values are stored within a single numeric value encoded with a bitmask. To extract the binary value all you have to do is to apply *bitwise AND* operator ``&`` between the value at the corresponding offset and the ``mask`` shown in the table.
 
-For example to decode some extra the sensors of `DeltaSol BS Plus` via lambdas:
+For example to decode some sensors of `DeltaSol BS Plus` via lambdas:
 
 .. code-block:: yaml
 
