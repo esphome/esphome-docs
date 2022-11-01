@@ -246,7 +246,9 @@ Add the following to your configuration to increase the buffer from the default 
 
 .. code-block:: 
 
-    rx_buffer_size: 512
+    uart: 
+      ...
+      rx_buffer_size: 512
 
 
 
