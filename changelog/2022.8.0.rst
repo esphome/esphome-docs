@@ -15,6 +15,19 @@ ESPHome 2022.8.0 - 17th August 2022
     Feedback Cover, components/cover/feedback, feedback_cover.svg
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     Whynter IR Climate, components/climate/climate_ir, air-conditioner-ir.svg
+    Bluetooth Proxy, components/bluetooth_proxy, bluetooth.svg
+
+
+Bluetooth Proxy
+---------------
+
+ESPHome 2022.8.2 brings a new feature that allows you to use your ESP32 devices as Bluetooth Proxies for Home Assistant.
+They will forward the BLE Advertisements to Home Assistant which will then trigger a discovery and allow you to set up
+an integration for the found devices. This allows you to set up multiple ESP32 Bluetooth Proxies around the area to make
+sure all advertisements are received reliably.
+
+We have created a few examples that are ready to flash directly from your browser for some specific devices:
+https://esphome.github.io/bluetooth-proxies/
 
 
 Sprinkler controller
@@ -37,6 +50,23 @@ the :doc:`/components/sensor/integration` and :doc:`/components/sensor/total_dai
 The BedJet climate introduced recently has also undergone a refactoring to allow different
 platforms to extend the functionality available from ESPHome.
 
+Release 2022.8.1 - September 1
+------------------------------
+
+- fix grow password setting :esphomepr:`3722` by :ghuser:`ssieb`
+- Fix SPI HW selection for ESP32 variants :esphomepr:`3728` by :ghuser:`kbx81`
+
+Release 2022.8.2 - September 6
+------------------------------
+
+- Initial bluetooth_proxy support :esphomepr:`3736` by :ghuser:`jesserockz` (new-integration)
+- Ignore NaN states in the integration component :esphomepr:`3767` by :ghuser:`anatoly-savchenkov`
+- Update modbus_controller.cpp :esphomepr:`3768` by :ghuser:`Avirsaam`
+
+Release 2022.8.3 - September 6
+------------------------------
+
+- Fix HA addon auth using HA credentials :esphomepr:`3758` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------

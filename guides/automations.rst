@@ -274,7 +274,7 @@ global variables can be used to store the state of a garage door.
       - id: my_global_string
         type: std::string
         restore_value: no  # Strings cannot be saved/restored
-        initial_value: '"hello world"'
+        initial_value: '"Global value is"'
 
    # In an automation
    on_press:
@@ -287,7 +287,7 @@ global variables can be used to store the state of a garage door.
              id(my_global_int) += 10;
            }
 
-           ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
+           ESP_LOGD(TAG, "%s: %d", id(my_global_string), id(my_global_int));
 
 Configuration variables:
 
@@ -337,7 +337,6 @@ All Triggers
 - :ref:`switch.on_turn_on / switch.on_turn_off <switch-on_turn_on_off_trigger>`
 - :doc:`remote_receiver.on_* </components/remote_receiver>`
 - :doc:`sun.on_sunrise </components/sun>` / :doc:`sun.on_sunset </components/sun>`
-- :ref:`switch.on_turn_on/off <switch-on_turn_on_off_trigger>`
 - :ref:`sim800l.on_sms_received <sim800l-on_sms_received>`
 - :ref:`rf_bridge.on_code_received <rf_bridge-on_code_received>`
 - :ref:`ota.on_begin <ota-on_begin>` / :ref:`ota.on_progress <ota-on_progress>` /
@@ -731,6 +730,12 @@ script was already running.
       then:
         - script.execute: my_script
 
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: 'id(my_script).execute();'
+
 .. _script-stop_action:
 
 ``script.stop`` Action
@@ -758,6 +763,12 @@ will not be executed.
       then:
         - script.stop: my_script
 
+or as lambda
+
+.. code-block:: yaml   
+
+    lambda: 'id(my_script).stop();'
+
 .. _script-wait_action:
 
 ``script.wait`` Action
@@ -784,6 +795,8 @@ of the script are running in parallel, this will block until all of them have te
         - script.execute: my_script
         - script.wait: my_script
 
+This can't be used in a lambda as it would block all functioning of the device.  The script wouldn't even get to run.
+
 .. _script-is_running_condition:
 
 ``script.is_running`` Condition
@@ -801,6 +814,15 @@ of the given id is running, not how many.
           - script.is_running: my_script
         then:
           - logger.log: Script is running!
+
+or as lambda
+
+.. code-block:: yaml
+
+    lambda: -|
+        if(id(my_script).is_running() {
+            ESP_LOGI("main", "Script is running!");
+        }
 
 .. _for_condition:
 

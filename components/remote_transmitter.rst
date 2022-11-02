@@ -78,6 +78,27 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_aeha:
+
+``remote_transmitter.transmit_aeha`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_aeha:
+          address: 0x1FEF
+          data: [0x1F, 0x3E, 0x06, 0x5F]
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send the command to, see dumper output for more details.
+- **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+
+AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
