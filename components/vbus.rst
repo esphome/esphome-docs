@@ -162,7 +162,7 @@ Supported sensors:
 - for **deltasol_cs2**: ``sensor1_error``, ``sensor2_error``, ``sensor3_error``, ``sensor4_error``.  
 
 
-All sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
+All binary sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
 Lambda definition for ``custom`` VBus sensors
