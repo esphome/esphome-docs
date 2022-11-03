@@ -10,9 +10,8 @@ The ``ht16k33_alpha`` display platform allows you to use HT16K33 14-segment disp
 with ESPHome. The 14-segment backpack makes it really easy to add a 4-characters numeric display with decimal 
 points. Please note that this integration is *only* for 14-segment display.
 
-.. figure:: ../images/htk16k33_alpha.jpg
+.. figure:: ../../images/htk16k33_alpha.jpg
     :align: center
-    :width: 75.0%
 
     HT16K33 14-Segment Backpack display
 
