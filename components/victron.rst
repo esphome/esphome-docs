@@ -37,9 +37,9 @@ Please see the Victron papers for the pinout of the JST connector on your Victro
 .. note::
 
     Accordinng to Victron docs (2022.11):
-    - BMV-700: 3v3
-    - MPPT all models: 5v
-    - Newer MPPTs (as now under development) will remain 5V.
+    - BMV-700: 3v3   
+    - MPPT all models: 5v   
+    - Newer MPPTs (as now under development) will remain 5V   
 
 
 Component
