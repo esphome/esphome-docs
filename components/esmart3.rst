@@ -21,17 +21,17 @@ Overview
 
 The eSmart3 has an RS485 port, with the following pinout:
 
-+---+-----------+
-|Pin|Function   |
-+===+===========+
-| 1 |RS-485 A/+ |
-+---+-----------+
-| 2 |RS-485 B/- |
-+---+-----------+
-|5,6|GND        |
-+---+-----------+
-|7,8|+5V out    |
-+---+-----------+
++-----+------------+
+| Pin | Function   |
++=====+============+
+|  1  | RS-485 A/+ |
++-----+------------+
+|  2  | RS-485 B/- |
++-----+------------+
+| 5,6 | GND        |
++-----+------------+
+| 7,8 | +5V Out    |
++-----+------------+
 
 The device communicates at ``9600`` baud ``8N1``. To connect to ESPHome, an RS485 transceiver is needed. Choose a type which does not need a trigger to send and receive data,  for example:
 
@@ -117,6 +117,7 @@ See Also
 --------
 
 - :ref:`uart`
+- :doc:`logger`
 - :ref:`Sensor <config-sensor>`
 - `eSmart3 review <https://skagmo.com/page.php?p=documents/04_esmart3_review>`__
 - `Communication protocol <https://github.com/skagmo/esmart_mppt/files/3401128/esmart3-serial-comm.pdf>`__
