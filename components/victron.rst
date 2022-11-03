@@ -53,7 +53,7 @@ Component
 
 Configuration variables:
 
-- **uart_id** (**Required**): A configured UART to read data from.
+- **uart_id** (*Optional*): A configured UART to read data from. If not specified, takes the first one.
 
 
 Sensor
