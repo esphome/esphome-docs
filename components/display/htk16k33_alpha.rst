@@ -36,6 +36,7 @@ modules to the same bus, as long as each module has a different I²C address set
         lambda: |-
           it.print("ABCD");
 
+
 Configuration variables:
 ------------------------
 
