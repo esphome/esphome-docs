@@ -57,7 +57,9 @@ This powerful automation can be used to run automations at specific intervals at
 specific times of day. The syntax is a subset of the `crontab <https://crontab.guru/>`__ syntax.
 
 There are two ways to specify time intervals: Either with using the ``seconds:``, ``minutes:``, ...
-keys as seen below or using a cron expression like ``* /5 * * * *``.
+keys as seen below or using a cron alike expression like ``* /5 * * * *``. 
+
+Be aware normal cron implementations does not know about seconds like this esphome implementation, therefore you got 6 fields (seconds,minutes,hours,dayofmonth,month,dayofweek).
 
 Basically, the automation engine looks at your configured time schedule every second and
 evaluates if the automation should run.
