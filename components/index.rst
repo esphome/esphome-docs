@@ -21,4 +21,5 @@ Components
     touchscreen/index
     lock/index
     media_player/index
+    keyboard/index
     *

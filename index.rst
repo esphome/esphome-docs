@@ -654,6 +654,14 @@ Media Player Components
     Media Player Core, components/media_player/index, folder-open.svg
     I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
+Keyboard Components
+-------------------
+
+.. imgtable::
+
+    Keyboard Core, components/keyboard/index, folder-open.svg
+    HID Keyboard, components/keyboard/hid_keyboard, keyboard-outline.svg
+
 Misc Components
 ---------------
 
@@ -709,6 +717,8 @@ Misc Components
     SML, components/sml, sml.svg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
+    USB HID, components/usb_hid, keyboard-outline.svg
+    USB Device, components/usb_device, usb-port.svg
 
 Additional Custom Components
 ----------------------------
