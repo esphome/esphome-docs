@@ -55,7 +55,6 @@ Contributors
 - `Alex Iribarren (@alexiri) <https://github.com/alexiri>`__
 - `Alex Mekkering (@AlexMekkering) <https://github.com/AlexMekkering>`__
 - `Alex (@alexyao2015) <https://github.com/alexyao2015>`__
-- `alva (@alva-seal) <https://github.com/alva-seal>`__
 - `Andreas Mandel (@amandel) <https://github.com/amandel>`__
 - `Amish Vishwakarma (@amishv) <https://github.com/amishv>`__
 - `Jason Nader (@ammgws) <https://github.com/ammgws>`__
@@ -101,6 +100,7 @@ Contributors
 - `Paulus Schoutsen (@balloob) <https://github.com/balloob>`__
 - `Andrew Zaborowski (@balrog-kun) <https://github.com/balrog-kun>`__
 - `BarryMar (@BarryMar) <https://github.com/BarryMar>`__
+- `Bascht74 (@Bascht74) <https://github.com/Bascht74>`__
 - `bazuchan (@bazuchan) <https://github.com/bazuchan>`__
 - `Viktr (@BbIKTOP) <https://github.com/BbIKTOP>`__
 - `J. Nick Koston (@bdraco) <https://github.com/bdraco>`__
@@ -118,6 +118,7 @@ Contributors
 - `Bill Church (@billchurch) <https://github.com/billchurch>`__
 - `Brian Kaufman (@bkaufx) <https://github.com/bkaufx>`__
 - `JDavid (@blackhack) <https://github.com/blackhack>`__
+- `blakadder (@blakadder) <https://github.com/blakadder>`__
 - `Branimir Lambov (@blambov) <https://github.com/blambov>`__
 - `Jim Ekman (@blejdfist) <https://github.com/blejdfist>`__
 - `Scott Smith (@blurfl) <https://github.com/blurfl>`__
@@ -127,7 +128,6 @@ Contributors
 - `Mauricio Bonani (@bonanitech) <https://github.com/bonanitech>`__
 - `Casey Olson (@bookcasey) <https://github.com/bookcasey>`__
 - `BoukeHaarsma23 (@BoukeHaarsma23) <https://github.com/BoukeHaarsma23>`__
-- `Patrik Hermansson (@bphermansson) <https://github.com/bphermansson>`__
 - `brambo123 (@brambo123) <https://github.com/brambo123>`__
 - `Bram Kragten (@bramkragten) <https://github.com/bramkragten>`__
 - `Brad Davidson (@brandond) <https://github.com/brandond>`__
@@ -151,6 +151,7 @@ Contributors
 - `Ciprian Constantinescu (@cciprian5) <https://github.com/cciprian5>`__
 - `Marco (@cdrfun) <https://github.com/cdrfun>`__
 - `Cellie (@CelliesProjects) <https://github.com/CelliesProjects>`__
+- `Chris Feenstra (@cfeenstra1024) <https://github.com/cfeenstra1024>`__
 - `Kostas Chatzikokolakis (@chatziko) <https://github.com/chatziko>`__
 - `chris-jennings (@chris-jennings) <https://github.com/chris-jennings>`__
 - `Chris (@chrismaki) <https://github.com/chrismaki>`__
@@ -182,6 +183,7 @@ Contributors
 - `cwitting (@cwitting) <https://github.com/cwitting>`__
 - `Alex Solomaha (@CyanoFresh) <https://github.com/CyanoFresh>`__
 - `Luar Roji (@cyberplant) <https://github.com/cyberplant>`__
+- `Aleš Komárek (@cznewt) <https://github.com/cznewt>`__
 - `d-two (@d-two) <https://github.com/d-two>`__
 - `dab0g (@dab0g) <https://github.com/dab0g>`__
 - `Dale Higgs (@dale3h) <https://github.com/dale3h>`__
@@ -208,14 +210,16 @@ Contributors
 - `Donovan Baarda (@dbaarda) <https://github.com/dbaarda>`__
 - `David Buezas (@dbuezas) <https://github.com/dbuezas>`__
 - `dckiller51 (@dckiller51) <https://github.com/dckiller51>`__
+- `Daniel Correa Lobato (@dclobato) <https://github.com/dclobato>`__
 - `Debashish Sahu (@debsahu) <https://github.com/debsahu>`__
 - `declanshanaghy (@declanshanaghy) <https://github.com/declanshanaghy>`__
+- `Maximilian (@DeerMaximum) <https://github.com/DeerMaximum>`__
 - `definitio (@definitio) <https://github.com/definitio>`__
 - `Christiaan Blom (@Deinara) <https://github.com/Deinara>`__
 - `Mickaël Le Baillif (@demikl) <https://github.com/demikl>`__
 - `Dennis (@dennisvbussel) <https://github.com/dennisvbussel>`__
 - `dentra (@dentra) <https://github.com/dentra>`__
-- `Davide Depau (@Depau) <https://github.com/Depau>`__
+- `Davide Depau (@depau) <https://github.com/depau>`__
 - `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__
 - `Joeri Colman (@depuits) <https://github.com/depuits>`__
 - `Destix (@Destix) <https://github.com/Destix>`__
@@ -266,7 +270,6 @@ Contributors
 - `Eike (@ei-ke) <https://github.com/ei-ke>`__
 - `Elazar Leibovich (@elazarl) <https://github.com/elazarl>`__
 - `Elkropac (@Elkropac) <https://github.com/Elkropac>`__
-- `elyorkhakimov (@elyorkhakimov) <https://github.com/elyorkhakimov>`__
 - `EmbeddedDevver (@EmbeddedDevver) <https://github.com/EmbeddedDevver>`__
 - `EmmanuelLM (@EmmanuelLM) <https://github.com/EmmanuelLM>`__
 - `Emory Dunn (@emorydunn) <https://github.com/emorydunn>`__
@@ -295,12 +298,11 @@ Contributors
 - `Christian Ferbar (@ferbar) <https://github.com/ferbar>`__
 - `FeuerSturm (@FeuerSturm) <https://github.com/FeuerSturm>`__
 - `Frank Riley (@fhriley) <https://github.com/fhriley>`__
-- `fkirill (@fkirill) <https://github.com/fkirill>`__
+- `Frédéric Jouault (@fjouault) <https://github.com/fjouault>`__
 - `Sean Vig (@flacjacket) <https://github.com/flacjacket>`__
 - `Diego Elio Pettenò (@Flameeyes) <https://github.com/Flameeyes>`__
 - `Flaviu Tamas (@flaviut) <https://github.com/flaviut>`__
 - `风飘雨 (@flyrainning) <https://github.com/flyrainning>`__
-- `foxsam21 (@foxsam21) <https://github.com/foxsam21>`__
 - `Fractal147 (@Fractal147) <https://github.com/Fractal147>`__
 - `Francis-labo (@Francis-labo) <https://github.com/Francis-labo>`__
 - `Francisk0 (@Francisk0) <https://github.com/Francisk0>`__
@@ -346,10 +348,12 @@ Contributors
 - `Stefan Grufman (@GruffyPuffy) <https://github.com/GruffyPuffy>`__
 - `gsexton (@gsexton) <https://github.com/gsexton>`__
 - `Gabriel Sieben (@gsieben) <https://github.com/gsieben>`__
+- `Jadson Santos (@gtjadsonsantos) <https://github.com/gtjadsonsantos>`__
 - `Guillaume DELVIT (@guiguid) <https://github.com/guiguid>`__
 - `guillempages (@guillempages) <https://github.com/guillempages>`__
 - `Guyohms (@Guyohms) <https://github.com/Guyohms>`__
 - `Gilles van den Hoven (@gvdhoven) <https://github.com/gvdhoven>`__
+- `h3ndrik (@h3ndrik) <https://github.com/h3ndrik>`__
 - `haade (@haade-administrator) <https://github.com/haade-administrator>`__
 - `Peter van Dijk (@Habbie) <https://github.com/Habbie>`__
 - `Hagai Shatz (@hagai-shatz) <https://github.com/hagai-shatz>`__
@@ -364,6 +368,7 @@ Contributors
 - `HepoH3 (@HepoH3) <https://github.com/HepoH3>`__
 - `Hermann Kraus (@herm) <https://github.com/herm>`__
 - `Hamish Moffatt (@hmoffatt) <https://github.com/hmoffatt>`__
+- `Marcel Hoppe (@hobbypunk90) <https://github.com/hobbypunk90>`__
 - `Sebastian Raff (@hobbyquaker) <https://github.com/hobbyquaker>`__
 - `MoA (@honomoa) <https://github.com/honomoa>`__
 - `Hopperpop (@Hopperpop) <https://github.com/Hopperpop>`__
@@ -372,7 +377,6 @@ Contributors
 - `hreintke (@hreintke) <https://github.com/hreintke>`__
 - `Jan Hubík (@hubikj) <https://github.com/hubikj>`__
 - `Huub Eikens (@huubeikens) <https://github.com/huubeikens>`__
-- `Petr Urbánek (@HyperReap) <https://github.com/HyperReap>`__
 - `Arjan Filius (@iafilius) <https://github.com/iafilius>`__
 - `Adrián Panella (@ianchi) <https://github.com/ianchi>`__
 - `Ian Leeder (@ianleeder) <https://github.com/ianleeder>`__
@@ -386,6 +390,8 @@ Contributors
 - `imgbot[bot] (@imgbot[bot]) <https://github.com/imgbot[bot]>`__
 - `ImSorryButWho (@ImSorryButWho) <https://github.com/ImSorryButWho>`__
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__
+- `Dom (@Ing-Dom) <https://github.com/Ing-Dom>`__
+- `Ingurum (@Ingurum) <https://github.com/Ingurum>`__
 - `Ivo Roefs (@Ironirc) <https://github.com/Ironirc>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
 - `Ingo Theiss (@itn3rd77) <https://github.com/itn3rd77>`__
@@ -397,6 +403,7 @@ Contributors
 - `James Braid (@jamesbraid) <https://github.com/jamesbraid>`__
 - `James Duke (@jamesduke) <https://github.com/jamesduke>`__
 - `James Gao (@jamesgao) <https://github.com/jamesgao>`__
+- `James Lakin (@jamesorlakin) <https://github.com/jamesorlakin>`__
 - `Juraj Andrássy (@JAndrassy) <https://github.com/JAndrassy>`__
 - `Jan Grewe (@jangrewe) <https://github.com/jangrewe>`__
 - `János Rusiczki (@janosrusiczki) <https://github.com/janosrusiczki>`__
@@ -412,7 +419,6 @@ Contributors
 - `Jonathan Burns (@jburns20) <https://github.com/jburns20>`__
 - `James Callaghan (@jcallaghan) <https://github.com/jcallaghan>`__
 - `Josh Willox (@jcwillox) <https://github.com/jcwillox>`__
-- `jddonovan (@jddonovan) <https://github.com/jddonovan>`__
 - `JeeCee1 (@JeeCee1) <https://github.com/JeeCee1>`__
 - `jeff-h (@jeff-h) <https://github.com/jeff-h>`__
 - `Jeffrey Borg (@jeffborg) <https://github.com/jeffborg>`__
@@ -442,14 +448,13 @@ Contributors
 - `Jonathan Adams (@jonathanadams) <https://github.com/jonathanadams>`__
 - `Jonathan Treffler (@JonathanTreffler) <https://github.com/JonathanTreffler>`__
 - `JonnyaiR (@jonnyair) <https://github.com/jonnyair>`__
+- `Jonathan V (@jonofmac) <https://github.com/jonofmac>`__
 - `Joppy (@JoppyFurr) <https://github.com/JoppyFurr>`__
-- `joseph douce (@josephdouce) <https://github.com/josephdouce>`__
 - `Joshua Spence (@joshuaspence) <https://github.com/joshuaspence>`__
 - `Joscha Wagner (@jowgn) <https://github.com/jowgn>`__
 - `Javier Peletier (@jpeletier) <https://github.com/jpeletier>`__
 - `jsuanet (@jsuanet) <https://github.com/jsuanet>`__
 - `James Szalay (@jtszalay) <https://github.com/jtszalay>`__
-- `junnikokuki (@junnikokuki) <https://github.com/junnikokuki>`__
 - `Justahobby01 (@Justahobby01) <https://github.com/Justahobby01>`__
 - `Mike Ryan (@justfalter) <https://github.com/justfalter>`__
 - `Justin Gerhardt (@justin-gerhardt) <https://github.com/justin-gerhardt>`__
@@ -480,10 +485,8 @@ Contributors
 - `Kevin Lewis (@kll) <https://github.com/kll>`__
 - `Koen Vervloesem (@koenvervloesem) <https://github.com/koenvervloesem>`__
 - `Petr Vraník (@konikvranik) <https://github.com/konikvranik>`__
-- `korellas (@korellas) <https://github.com/korellas>`__
 - `Kevin Pelzel (@kpelzel) <https://github.com/kpelzel>`__
 - `Karl Q. (@kquinsland) <https://github.com/kquinsland>`__
-- `krahabb (@krahabb) <https://github.com/krahabb>`__
 - `Kodey Converse (@krconv) <https://github.com/krconv>`__
 - `KristopherMackowiak (@KristopherMackowiak) <https://github.com/KristopherMackowiak>`__
 - `kroimon (@kroimon) <https://github.com/kroimon>`__
@@ -495,7 +498,6 @@ Contributors
 - `Kyle Hendricks (@kylehendricks) <https://github.com/kylehendricks>`__
 - `Kyle Manna (@kylemanna) <https://github.com/kylemanna>`__
 - `Kalashnikov Ilya (@l1bbcsg) <https://github.com/l1bbcsg>`__
-- `la7dja (@la7dja) <https://github.com/la7dja>`__
 - `Limor "Ladyada" Fried (@ladyada) <https://github.com/ladyada>`__
 - `Luca Adrian L (@lal12) <https://github.com/lal12>`__
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__
@@ -512,6 +514,7 @@ Contributors
 - `lingex (@lingex) <https://github.com/lingex>`__
 - `lkomurcu (@lkomurcu) <https://github.com/lkomurcu>`__
 - `Lazar Obradovic (@lobradov) <https://github.com/lobradov>`__
+- `Lode Vermeiren (@lodev) <https://github.com/lodev>`__
 - `Barry Loong (@loongyh) <https://github.com/loongyh>`__
 - `LuBeDa (@lubeda) <https://github.com/lubeda>`__
 - `Joakim Sørensen (@ludeeus) <https://github.com/ludeeus>`__
@@ -540,12 +543,12 @@ Contributors
 - `Marcio Granzotto Rodrigues (@marciogranzotto) <https://github.com/marciogranzotto>`__
 - `Marc Teale (@marcteale) <https://github.com/marcteale>`__
 - `marecabo (@marecabo) <https://github.com/marecabo>`__
+- `Ben Marengo (@marengaz) <https://github.com/marengaz>`__
 - `Marvin Gaube (@margau) <https://github.com/margau>`__
 - `Martynas Griškonis (@Margriko) <https://github.com/Margriko>`__
 - `Mario (@mario-tux) <https://github.com/mario-tux>`__
 - `Marek Marczykowski-Górecki (@marmarek) <https://github.com/marmarek>`__
 - `Matthew Harrold (@marrold) <https://github.com/marrold>`__
-- `marshn (@marshn) <https://github.com/marshn>`__
 - `marsjan155 (@marsjan155) <https://github.com/marsjan155>`__
 - `Martin (@martgras) <https://github.com/martgras>`__
 - `Martin Hjelmare (@MartinHjelmare) <https://github.com/MartinHjelmare>`__
@@ -559,10 +562,10 @@ Contributors
 - `Matteo Franceschini (@matteofranceschini) <https://github.com/matteofranceschini>`__
 - `Matthew Mazzanti (@matthewmazzanti) <https://github.com/matthewmazzanti>`__
 - `matthias882 (@matthias882) <https://github.com/matthias882>`__
+- `Matus Ivanecky (@maty535) <https://github.com/maty535>`__
 - `Maurice Schleußinger (@maurice-schleussinger) <https://github.com/maurice-schleussinger>`__
 - `Maximilian Gerhardt (@maxgerhardt) <https://github.com/maxgerhardt>`__
 - `mbo18 (@mbo18) <https://github.com/mbo18>`__
-- `mckaymatthew (@mckaymatthew) <https://github.com/mckaymatthew>`__
 - `Me No Dev (@me-no-dev) <https://github.com/me-no-dev>`__
 - `Alexandr Zarubkin (@me21) <https://github.com/me21>`__
 - `Joseph Mearman (@Mearman) <https://github.com/Mearman>`__
@@ -576,18 +579,20 @@ Contributors
 - `Marco Lusini (@met67) <https://github.com/met67>`__
 - `Martin Flasskamp (@MFlasskamp) <https://github.com/MFlasskamp>`__
 - `Michael Gorven (@mgorven) <https://github.com/mgorven>`__
-- `mhentschke (@mhentschke) <https://github.com/mhentschke>`__
+- `Michael Haas (@mhaas) <https://github.com/mhaas>`__
 - `Michaël Arnauts (@michaelarnauts) <https://github.com/michaelarnauts>`__
 - `Micha Nordmann (@Michanord) <https://github.com/Michanord>`__
-- `micronen (@micronen) <https://github.com/micronen>`__
+- `Midbin (@Midbin) <https://github.com/Midbin>`__
 - `Pauline Middelink (@middelink) <https://github.com/middelink>`__
 - `Mikko Tervala (@MikkoTervala) <https://github.com/MikkoTervala>`__
 - `MiKuBB (@MiKuBB) <https://github.com/MiKuBB>`__
 - `Minideezel (@minideezel) <https://github.com/minideezel>`__
 - `André Klitzing (@misery) <https://github.com/misery>`__
+- `Tomasz (@Misiu) <https://github.com/Misiu>`__
 - `Matthew Edwards (@mje-nz) <https://github.com/mje-nz>`__
 - `Matthew Garrett (@mjg59) <https://github.com/mjg59>`__
 - `Maarten (@mjkl-gh) <https://github.com/mjkl-gh>`__
+- `Morton Jonuschat (@mjonuschat) <https://github.com/mjonuschat>`__
 - `mjoshd (@mjoshd) <https://github.com/mjoshd>`__
 - `mknjc (@mknjc) <https://github.com/mknjc>`__
 - `Maurice Makaay (@mmakaay) <https://github.com/mmakaay>`__
@@ -659,12 +664,10 @@ Contributors
 - `Otto Winter (@OttoWinter) <https://github.com/OttoWinter>`__
 - `Ben Owen (@owenb321) <https://github.com/owenb321>`__
 - `Oxan van Leeuwen (@oxan) <https://github.com/oxan>`__
-- `Pack3tL0ss (@Pack3tL0ss) <https://github.com/Pack3tL0ss>`__
 - `Pablo Clemente Maseda (@paclema) <https://github.com/paclema>`__
 - `Derrick Lyndon Pallas (@pallas) <https://github.com/pallas>`__
 - `Panuruj Khambanonda (PK) (@panuruj) <https://github.com/panuruj>`__
 - `Pasi Suominen (@pasiz) <https://github.com/pasiz>`__
-- `Patrick Felstead (@patfelst) <https://github.com/patfelst>`__
 - `Patrick van der Leer (@patvdleer) <https://github.com/patvdleer>`__
 - `Paul Deen (@PaulAntonDeen) <https://github.com/PaulAntonDeen>`__
 - `Paul Monigatti (@paulmonigatti) <https://github.com/paulmonigatti>`__
@@ -673,10 +676,8 @@ Contributors
 - `Paul Doidge (@pdoidge) <https://github.com/pdoidge>`__
 - `per1234 (@per1234) <https://github.com/per1234>`__
 - `Peter Valkov (@peter-valkov) <https://github.com/peter-valkov>`__
-- `Peter Foreman (@peterforeman) <https://github.com/peterforeman>`__
 - `Peter Galantha (@peterg79) <https://github.com/peterg79>`__
-- `Peter Remøy Paulsen (@petrepa) <https://github.com/petrepa>`__
-- `Philip Rosenberg-Watt (@PhilRW) <https://github.com/PhilRW>`__
+- `Philippe FOUQUET (@Philippe12) <https://github.com/Philippe12>`__
 - `pieterbrink123 (@pieterbrink123) <https://github.com/pieterbrink123>`__
 - `Tommy van der Vorst (@pixelspark) <https://github.com/pixelspark>`__
 - `Peter Kuehne (@pkuehne) <https://github.com/pkuehne>`__
@@ -688,20 +689,19 @@ Contributors
 - `Iván Povedano (@pove) <https://github.com/pove>`__
 - `probonopd (@probonopd) <https://github.com/probonopd>`__
 - `Mike Lynch (@Prow7) <https://github.com/Prow7>`__
-- `Peter Stuifzand (@pstuifzand) <https://github.com/pstuifzand>`__
 - `Peter Tatrai (@ptatrai) <https://github.com/ptatrai>`__
-- `Patrick Toal (@ptoal) <https://github.com/ptoal>`__
 - `Leandro Puerari (@puerari) <https://github.com/puerari>`__
 - `puuu (@puuu) <https://github.com/puuu>`__
+- `Pascal Vizeli (@pvizeli) <https://github.com/pvizeli>`__
 - `[pʲɵs] (@pyos) <https://github.com/pyos>`__
 - `Qc (@qc24) <https://github.com/qc24>`__
 - `Karol Zlot (@qqgg231) <https://github.com/qqgg231>`__
 - `Tommy Jonsson (@quazzie) <https://github.com/quazzie>`__
+- `Quentin Smith (@quentinmit) <https://github.com/quentinmit>`__
 - `Quinn Hosler (@quinnhosler) <https://github.com/quinnhosler>`__
 - `Johannes Rebling (@r0oland) <https://github.com/r0oland>`__
 - `Richard Kuhnt (@r15ch13) <https://github.com/r15ch13>`__
 - `Richard Miles (@r89m) <https://github.com/r89m>`__
-- `Pär Stålberg (@rabbadab) <https://github.com/rabbadab>`__
 - `Aaron Zhang (@rabbit-aaron) <https://github.com/rabbit-aaron>`__
 - `RadekHvizdos (@RadekHvizdos) <https://github.com/RadekHvizdos>`__
 - `Florian Ragwitz (@rafl) <https://github.com/rafl>`__
@@ -712,7 +712,6 @@ Contributors
 - `Rebbe Pod (@RebbePod) <https://github.com/RebbePod>`__
 - `Alex (@redwngsrul) <https://github.com/redwngsrul>`__
 - `Alex Reid (@reidprojects) <https://github.com/reidprojects>`__
-- `Pavels Veretennikovs (@rfvermut) <https://github.com/rfvermut>`__
 - `Richard Klingler (@richardklingler) <https://github.com/richardklingler>`__
 - `Richard Lewis (@richrd) <https://github.com/richrd>`__
 - `rjlexx (@rjlexx) <https://github.com/rjlexx>`__
@@ -755,12 +754,12 @@ Contributors
 - `sherbang (@sherbang) <https://github.com/sherbang>`__
 - `Shish (@shish) <https://github.com/shish>`__
 - `SiliconAvatar (@SiliconAvatar) <https://github.com/SiliconAvatar>`__
-- `SirSydom (@SirSydom) <https://github.com/SirSydom>`__
 - `Derek Hageman (@Sizurka) <https://github.com/Sizurka>`__
 - `Stephen Tierney (@sjtrny) <https://github.com/sjtrny>`__
 - `Niklas Wagner (@Skaronator) <https://github.com/Skaronator>`__
 - `Rafael Treviño (@skasi7) <https://github.com/skasi7>`__
 - `Brian Slesinsky (@skybrian) <https://github.com/skybrian>`__
+- `Jordan W. Cobb (@skykingjwc) <https://github.com/skykingjwc>`__
 - `Sebastian Lövdahl (@slovdahl) <https://github.com/slovdahl>`__
 - `smischny (@smischny) <https://github.com/smischny>`__
 - `Luca Zimmermann (@soundstorm) <https://github.com/soundstorm>`__
@@ -771,7 +770,6 @@ Contributors
 - `Spegs21 (@Spegs21) <https://github.com/Spegs21>`__
 - `Stephan Peijnik-Steinwender (@speijnik) <https://github.com/speijnik>`__
 - `Eric Lind (@sperly) <https://github.com/sperly>`__
-- `Paul Krischer (@SqyD) <https://github.com/SqyD>`__
 - `Samuel Sieb (@ssieb) <https://github.com/ssieb>`__
 - `Stefan Staub (@sstaub) <https://github.com/sstaub>`__
 - `St4n (@St4n) <https://github.com/St4n>`__
@@ -840,6 +838,7 @@ Contributors
 - `Gediminas Šaltenis (@trylika) <https://github.com/trylika>`__
 - `Tuan (@tuanpmt) <https://github.com/tuanpmt>`__
 - `tubalainen (@tubalainen) <https://github.com/tubalainen>`__
+- `tube0013 (@tube0013) <https://github.com/tube0013>`__
 - `Alexey Vlasov (@turbulator) <https://github.com/turbulator>`__
 - `Seppel Hardt (@tuxBurner) <https://github.com/tuxBurner>`__
 - `TVDLoewe (@TVDLoewe) <https://github.com/TVDLoewe>`__
@@ -873,7 +872,7 @@ Contributors
 - `WJCarpenter (@wjcarpenter) <https://github.com/wjcarpenter>`__
 - `Wouter van der Wal (@wjtje) <https://github.com/wjtje>`__
 - `Artur 'Wodor' Wielogorski (@wodor) <https://github.com/wodor>`__
-- `Rick van Hattem (@WoLpH) <https://github.com/WoLpH>`__
+- `Rick van Hattem (@wolph) <https://github.com/wolph>`__
 - `workingmanrob (@workingmanrob) <https://github.com/workingmanrob>`__
 - `Sven Serlier (@wrt54g) <https://github.com/wrt54g>`__
 - `Wojtek Strzalka (@wstrzalka) <https://github.com/wstrzalka>`__
@@ -891,9 +890,10 @@ Contributors
 - `Zebble (@Zebble) <https://github.com/Zebble>`__
 - `ZJY (@zhangjingye03) <https://github.com/zhangjingye03>`__
 - `San (@zhujunsan) <https://github.com/zhujunsan>`__
+- `Geek_cat (@zhzhzhy) <https://github.com/zhzhzhy>`__
 - `I. Tomita (@ziceva) <https://github.com/ziceva>`__
 - `Michael Labuschke (@zigman79) <https://github.com/zigman79>`__
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated September 6, 2022.*
+*This page was last updated November 1, 2022.*
