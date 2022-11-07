@@ -26,7 +26,7 @@ examples.
 
     # Example configuration entry
     display:
-    - platform: lcd_pcf8574
+      - platform: lcd_pcf8574
         id: my_lcd
         ...
         lambda: |-
