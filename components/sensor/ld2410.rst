@@ -31,7 +31,7 @@ The :ref:`UART <uart>` is required to be set up in your configuration for this s
       stop_bits: 1
 
     ld2410:
-      no_one_duration: 150
+      none_duration: 150
       max_move_distance : 8
       max_still_distance: 1
       g0_move_threshold: 10
@@ -177,19 +177,19 @@ Configuration variables:
 ************************
 
 - **has_target** (*Optional*): If true target detect either still or in movement
-- 
+  
   - **name** (**Required**, string): The name for the binary sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 - **has_moving_target** (*Optional*): If true a moving target is detected.
-- 
+
   - **name** (**Required**, string): The name for the binary sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 - **has_still_target** (*Optional*): If true a still target is detected.
-- 
+
   - **name** (**Required**, string): The name for the binary sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Binary Sensor <config-binary_sensor>`.
