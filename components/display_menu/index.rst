@@ -273,7 +273,7 @@ Number
 
     number:
       - platform: template
-        id: my_number_1
+        id: my_number
         optimistic: true
         min_value: 10.0
         max_value: 20.0
