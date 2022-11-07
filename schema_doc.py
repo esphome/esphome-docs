@@ -13,7 +13,7 @@ from docutils import nodes
 
 # This file is not processed by default as extension unless added.
 # To add this extension from command line use:
-#   -Dextensions=github,seo,sitemap,schema_doc"
+#   -Dextensions=github,seo,sitemap,components,schema_doc"
 
 # also for improve performance running old version
 #   -d_build/.doctrees-schema

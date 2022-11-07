@@ -39,6 +39,7 @@ sys.path.append(os.path.abspath("."))
 extensions = [
     "github",
     "seo",
+    "components",
     "sitemap",
 ]
 

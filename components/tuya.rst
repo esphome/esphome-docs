@@ -107,7 +107,7 @@ The type of ``x`` variable is depending on ``datapoint_type`` configuration vari
           datapoint_type: raw
           then:
             - lambda: |-
-                ESP_LOGD("main", "on_datapoint_update %s", hexencode(x).c_str());
+                ESP_LOGD("main", "on_datapoint_update %s", format_hex_pretty(x).c_str());
                 id(voltage).publish_state((x[0] << 8 | x[1]) * 0.1);
                 id(current).publish_state((x[3] << 8 | x[4]) * 0.001);
                 id(power).publish_state((x[6] << 8 | x[7]) * 0.1);
@@ -126,7 +126,7 @@ The type of ``x`` variable is depending on ``datapoint_type`` configuration vari
           then:
             - lambda: |-
                 if (x.type == tuya::TuyaDatapointType::RAW) {
-                  ESP_LOGD("main", "on_datapoint_update %s", hexencode(x.value_raw).c_str());
+                  ESP_LOGD("main", "on_datapoint_update %s", format_hex_pretty(x.value_raw).c_str());
                 } else {
                   ESP_LOGD("main", "on_datapoint_update %hhu", x.type);
                 }
