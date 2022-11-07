@@ -35,7 +35,7 @@ in your ``i2c`` configuration.
 
     # Example configuration entry
     display:
-    - platform: lcd_pcf8574
+      - platform: lcd_pcf8574
         id: my_lcd
         dimensions: 20x4
         ...
