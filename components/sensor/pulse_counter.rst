@@ -91,7 +91,7 @@ measure the total consumed energy in kWh.
 
     # Example configuration entry
     sensor:
-    - platform: pulse_counter
+      - platform: pulse_counter
         pin: 12
         unit_of_measurement: 'kW'
         name: 'Power Meter House'

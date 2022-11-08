@@ -274,7 +274,7 @@ global variables can be used to store the state of a garage door.
       - id: my_global_string
         type: std::string
         restore_value: no  # Strings cannot be saved/restored
-        initial_value: '"hello world"'
+        initial_value: '"Global value is"'
 
    # In an automation
    on_press:
@@ -287,7 +287,7 @@ global variables can be used to store the state of a garage door.
              id(my_global_int) += 10;
            }
 
-           ESP_LOGD(TAG, "Global value is: %d", id(my_global_int));
+           ESP_LOGD(TAG, "%s: %d", id(my_global_string), id(my_global_int));
 
 Configuration variables:
 
@@ -734,7 +734,7 @@ or as lambda
 
 .. code-block:: yaml
 
-    lambda: 'id(my_script).execute();
+    lambda: 'id(my_script).execute();'
 
 .. _script-stop_action:
 
@@ -795,13 +795,7 @@ of the script are running in parallel, this will block until all of them have te
         - script.execute: my_script
         - script.wait: my_script
 
-or as lambda
-
-.. code-block:: yaml
-
-    lambda: |-
-        id(my_script).execute();
-        id(my_script).wait();
+This can't be used in a lambda as it would block all functioning of the device.  The script wouldn't even get to run.
 
 .. _script-is_running_condition:
 
