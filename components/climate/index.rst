@@ -27,9 +27,9 @@ All climate platforms in ESPHome inherit from the climate configuration schema.
     climate:
       - platform: ...
         visual:
-          min_temperature: 18 °C
-          max_temperature: 25 °C
-          temperature_step: 0.1 °C
+          min_temperature: 18
+          max_temperature: 25
+          temperature_step: 0.1
 
 Configuration variables:
 
@@ -174,6 +174,8 @@ advanced stuff.
       id(my_climate).fan_mode
       // Swing mode, type: SwingMode (enum)
       id(my_climate).swing_mode
+      // Current action (currentl on idle, cooling, heating, etc.), ClimateAction (enum)
+      id(my_climate).action
 
 - ``.make_call``: Control the climate device
 

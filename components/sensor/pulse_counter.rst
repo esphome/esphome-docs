@@ -38,10 +38,13 @@ Configuration variables:
   - **falling_edge** (*Optional*): What to do when a falling edge is
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
+    
+
+- **use_pcnt** (*Optional*, boolean): Use hardware ``PCNT`` pulse counter. Only supported on ESP32. Defaults to ``true``.
 
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
-  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32,
-  this value can not be higher than ``13us``, for the ESP8266 you can use larger intervals too.
+  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32, when using the hardware pulse counter
+  this value can not be higher than ``13us``, for the ESP8266 or with ``use_pcnt: false`` you can use larger intervals too.
   If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
@@ -88,7 +91,7 @@ measure the total consumed energy in kWh.
 
     # Example configuration entry
     sensor:
-    - platform: pulse_counter
+      - platform: pulse_counter
         pin: 12
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
@@ -101,10 +104,37 @@ measure the total consumed energy in kWh.
           filters:
             - multiply: 0.001  # (1/1000 pulses per kWh)
 
+(Re)Setting the total pulse count
+---------------------------------
+
+Using this action, you are able to reset/set the total pulse count. This can be useful
+if you would like the ``total`` sensor to match what you see on your meter you are
+trying to match.
+
+.. code-block:: yaml
+
+    # Set pulse counter total from home assistant using this service call:
+    api:
+      services:
+        - service: set_pulse_total
+          variables:
+            new_pulse_total: int
+          then:
+            - pulse_counter.set_total_pulses:
+                id: pulse_counter_id
+                value: !lambda 'return new_pulse_total;'
+
+.. note::
+
+    This value is the raw count of pulses, and not the value you see after the filters
+    are applied.
+
+
 See Also
 --------
 
 - :ref:`sensor-filters`
+- :doc:`/components/sensor/pulse_meter`
 - :doc:`rotary_encoder`
 - `esp-idf Pulse Counter API <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/pcnt.html>`__.
 - :apiref:`pulse_counter/pulse_counter_sensor.h`

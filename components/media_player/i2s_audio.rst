@@ -23,9 +23,9 @@ via the I2S bus. This platform only works on ESP32 based chips.
 Configuration variables:
 ------------------------
 
-- **dac_type** (**Required**, enum)
+- **dac_type** (**Required**, enum):
 
-  - ``external``: Use an external DAC, for example the NS4168.
+  - ``external``: Use an external DAC, for example the NS4168, or UDA1334A.
   - ``internal``: Use the internal DAC
 
 - All other options from :ref:`Media Player <config-media_player>`
@@ -33,10 +33,12 @@ Configuration variables:
 External DAC
 ************
 
-- **i2s_lrclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S LRCLK signal.
-- **i2s_dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S DOUT signal.
-- **i2s_bclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S BCLK signal.
+- **i2s_lrclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S LRCLK (Word Select or Left/Right Clock) signal.
+- **i2s_dout_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S DOUT (Data Out) signal.
+- **i2s_bclk_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The GPIO pin to use for the I2S BCLK (Bit Clock) signal.
 - **mode** (*Optional*, string): The mode of the I2S bus. Can be ``mono`` or ``stereo``. Defaults to ``mono``.
+
+For best results, keep the wires as short as possible.
 
 Internal DAC
 ************
