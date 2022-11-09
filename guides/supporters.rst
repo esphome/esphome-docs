@@ -175,6 +175,7 @@ Contributors
 - `Dmitry Berezovsky (@corvis) <https://github.com/corvis>`__
 - `Cougar (@Cougar) <https://github.com/Cougar>`__
 - `Connor Prussin (@cprussin) <https://github.com/cprussin>`__
+- `Corey Rice (@crice009) <https://github.com/crice009>`__
 - `cryptelli (@cryptelli) <https://github.com/cryptelli>`__
 - `cstaahl (@cstaahl) <https://github.com/cstaahl>`__
 - `Chris Talkington (@ctalkington) <https://github.com/ctalkington>`__
@@ -499,6 +500,7 @@ Contributors
 - `Kyle Manna (@kylemanna) <https://github.com/kylemanna>`__
 - `Kalashnikov Ilya (@l1bbcsg) <https://github.com/l1bbcsg>`__
 - `Limor "Ladyada" Fried (@ladyada) <https://github.com/ladyada>`__
+- `Lakshantha Dissanayake (@lakshanthad) <https://github.com/lakshanthad>`__
 - `Luca Adrian L (@lal12) <https://github.com/lal12>`__
 - `Fredrik Lindqvist (@Landrash) <https://github.com/Landrash>`__
 - `Laszlo Gazdag (@lazlyhu) <https://github.com/lazlyhu>`__
@@ -652,12 +654,10 @@ Contributors
 - `Ockert Marais (@OckertM) <https://github.com/OckertM>`__
 - `Dave Walker (@oddsockmachine) <https://github.com/oddsockmachine>`__
 - `Andrey Ganzevich (@odya) <https://github.com/odya>`__
-- `Olivér Falvai (@ofalvai) <https://github.com/ofalvai>`__
 - `ogatatsu (@ogatatsu) <https://github.com/ogatatsu>`__
 - `Oğuzhan Başer (@oguzhanbaser) <https://github.com/oguzhanbaser>`__
 - `Omar Ghader (@omarghader) <https://github.com/omarghader>`__
 - `Ömer Şiar Baysal (@omersiar) <https://github.com/omersiar>`__
-- `Oncleben31 (@oncleben31) <https://github.com/oncleben31>`__
 - `Oscar Bolmsten (@oscar-b) <https://github.com/oscar-b>`__
 - `Trammell Hudson (@osresearch) <https://github.com/osresearch>`__
 - `Otamay (@Otamay) <https://github.com/Otamay>`__
@@ -740,6 +740,7 @@ Contributors
 - `Silvio (@s1lvi0) <https://github.com/s1lvi0>`__
 - `Jan Čermák (@sairon) <https://github.com/sairon>`__
 - `sascha lammers (@sascha432) <https://github.com/sascha432>`__
+- `Søren Christian Aarup (@scaarup) <https://github.com/scaarup>`__
 - `Nils Schulte (@Schnilz) <https://github.com/Schnilz>`__
 - `Wolle (@schreibfaul1) <https://github.com/schreibfaul1>`__
 - `Ville Skyttä (@scop) <https://github.com/scop>`__
@@ -896,4 +897,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 1, 2022.*
+*This page was last updated November 9, 2022.*
