@@ -10,7 +10,7 @@ The ``ezo`` sensor platform allows you to use your EZO sensor circuits with
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 All embedded solutions from EZO can be found `here <https://atlas-scientific.com/embedded-solutions/>`__.
-If a certain command is not supported by default, it can be executed with
+If a certain command is not supported directly, it can be executed with the ``send_custom()`` method call.
 
 .. figure:: images/ezo-ph-circuit.png
     :align: center
@@ -45,14 +45,26 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - All other options from :ref:`Sensor <config-sensor>`.
 
+.. _evo_callbacks:
+
+Callbacks
+---------
+
+- **on_led:** : Triggered when the result of ``get_led_state()`` is ready.  The LED state is provided as a boolean variable named ``x``.
+- **on_device_information:** : Triggered when the result of ``get_device_information()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
+- **on_slope:** : Triggered when the result of ``get_slope()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
+- **on_calibration:** : Triggered when the result of ``get_calibration()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
+- **on_t:** : Triggered when the result of ``get_t()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
+- **on_custom:** : Triggered when the result of ``get_custom()`` is ready.  The result is provided as a ``std::string`` variable named ``x``.
+
 .. _evo_lambda_calls:
 
 lambda calls
 ------------
 
-From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in various ways. For any ``get`` command a trigger will be called with the information retrieved from the sensor. See :ref:`evo_callbacks`. For more information on the command specifics, refer to the datasheet.
+From :ref:`lambdas <config-lambda>`, you can interact with the sensor in various ways. For any ``get`` command a trigger will be called with the information retrieved from the sensor. See :ref:`evo_callbacks`. For more information on the command specifics, refer to the datasheet.
 
-- ``set_i2c(uint address)``: Set I2C address of the device, must be an integer between 1 and 127
+- ``set_i2c(uint8_t address)``: Set I2C address of the device, must be an integer between 1 and 127
 
   .. code-block:: cpp
 
@@ -164,25 +176,12 @@ From :ref:`lambdas <config-lambda>`, you can interacte with the sensor in variou
       id(ph_ezo).set_led_state(true);
 
 
-- ``send_custom(const std::string &payload, uint16_t delay_ms = 300, bool response_expected = false)``: Runs a custom command. This sends exactly what is in ``payload``. Optionally you can set a ``delay`` and if a response is expected that should be parsed. Defaults to ``false`` for custom commands.
+- ``send_custom(const std::string &payload, uint16_t delay_ms = 300, bool response_expected = false)``: Runs a custom command. This sends exactly what is in ``payload``. Optionally you can set a ``delay`` and if a response is expected that should be parsed. Defaults to ``false`` for custom commands.  Triggers ``on_custom:`` if there's a response.
 
   .. code-block:: cpp
 
       // Run a custom command to turn on the LED
       id(ph_ezo).send_custom("L,1");
-
-
-.. _evo_callbacks:
-
-Callbacks
----------
-
-- **on_led:** : Triggered when the result of ``get_led_state()`` is ready
-- **on_device_information:** : Triggered when the result of ``get_device_information()`` is ready
-- **on_slope:** : Triggered when the result of ``get_slope()`` is ready
-- **on_calibration:** : Triggered when the result of ``get_calibration()`` is ready
-- **on_t:** : Triggered when the result of ``get_t()`` is ready
-- **on_custom:** : Triggered when the result of ``get_custom()`` is ready
 
 
 See Also
