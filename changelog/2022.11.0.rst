@@ -3,26 +3,73 @@ ESPHome 2022.11.0 - 16th November 2022
 
 .. seo::
     :description: Changelog for ESPHome 2022.11.0.
-    :image: /_static/changelog-2022.10.0.png
+    :image: /_static/changelog-2022.11.0.png
     :author: Jesse Hills
     :author_twitter: @jesserockz
 
 .. imgtable::
-    :columns: 2
+    :columns: 4
+
+    RP2040, components/rp2040, rp2040.svg
+    WL-134 Pet Tag Sensor , components/text_sensor/wl_134, fingerprint.svg
+    Ethernet Info, components/text_sensor/ethernet_info, ethernet.svg
+    Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
+    ADC128S102, components/sensor/adc128s102, adc128s102.png
+    Daikin BRC, components/climate/climate_ir, air-conditioner-ir.svg
+    Display Menu Core, components/display_menu/index, folder-open.svg
+    LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
 
 
 Raspberry Pi Pico-W
 -------------------
 
-To be written...
+What can I say... I (Jesse) started working on making ESPHome run on the original Raspberry Pi
+Pico one random weekend just for fun with no real intention of taking it further myself.
+Little did I know there would be a Raspberry Pi Pico-W released earlier this year which sparked
+up interest in continuing that PR and almost fully implementing RP2040 and the Pico-W as
+a supported platform in ESPHome.
+
+There are things that have not been tested, and most likely things that will not work, so
+please `create or search for an issue <https://github.com/esphome/issues/issues>`__ if this is the case.
+
+Looking forward to seeing peoples projects built on these boards running ESPHome.
 
 Script Parameters
 -----------------
 
-To be written...
+Thanks :ghuser:`jimtng` for taking the time to implement a feature requested by many people over time.
+Parameters on scripts are now a thing.
+
+.. code-block:: yaml
+
+    script:
+      - id: push_button
+        parameters:
+          button: int
+        then:
+          - logger.log:
+              format: "Button %d pressed"
+              args: [ button ]
+
+    on_...:
+      - script.execute:
+          id: push_button
+          button: 1
+
+    on_...:
+      - script.execute:
+          id: push_button
+          button: 2
 
 LCD Menu
 --------
+
+Another great feature added this release is the LCD Menu. This allows a user to build a simple (or complex)
+menu system on an lcd display within ESPHome YAML, with support for switches, numbers, selects etc.
+Thanks :ghuser:`numo68`.
+
+Preserving User WiFi Credentials
+--------------------------------
 
 To be written...
 
@@ -50,6 +97,14 @@ Breaking Changes
 ^^^^^^^^^^^^^^^^
 
 - Don't Use Base Network Manual IP for WiFi AP :esphomepr:`3902` by :ghuser:`bkaufx` (breaking-change)
+
+Beta Changes
+^^^^^^^^^^^^
+
+- Update set-output to use new GITHUB_OUTPUT :esphomepr:`4008` by :ghuser:`jesserockz`
+- Add cover toggle support to current based cover :esphomepr:`3950` by :ghuser:`maringeph`
+- Add option for dashboard command to only generate the project and supporting files :esphomepr:`3981` by :ghuser:`jesserockz`
+- Fix local webserver based on esphome/esphome-webserver#17 :esphomepr:`3958` by :ghuser:`RoboMagus`
 
 All changes
 ^^^^^^^^^^^
@@ -114,3 +169,39 @@ All changes
 - Enable calibration, callbacks and custom commands for EZO sensors :esphomepr:`3910` by :ghuser:`gvdhoven`
 - Bump esphome-dashboard to 20221109.0 :esphomepr:`4006` by :ghuser:`jesserockz`
 - Add support for parameters in scripts :esphomepr:`3538` by :ghuser:`jimtng`
+- Update set-output to use new GITHUB_OUTPUT :esphomepr:`4008` by :ghuser:`jesserockz`
+- Add cover toggle support to current based cover :esphomepr:`3950` by :ghuser:`maringeph`
+- Add option for dashboard command to only generate the project and supporting files :esphomepr:`3981` by :ghuser:`jesserockz`
+- Fix local webserver based on esphome/esphome-webserver#17 :esphomepr:`3958` by :ghuser:`RoboMagus`
+
+Past Changelogs
+---------------
+
+- :doc:`2022.10.0`
+- :doc:`2022.9.0`
+- :doc:`2022.8.0`
+- :doc:`2022.6.0`
+- :doc:`2022.5.0`
+- :doc:`2022.4.0`
+- :doc:`2022.3.0`
+- :doc:`2022.2.0`
+- :doc:`2022.1.0`
+- :doc:`2021.12.0`
+- :doc:`2021.11.0`
+- :doc:`2021.10.0`
+- :doc:`2021.9.0`
+- :doc:`2021.8.0`
+- :doc:`v1.20.0`
+- :doc:`v1.19.0`
+- :doc:`v1.18.0`
+- :doc:`v1.17.0`
+- :doc:`v1.16.0`
+- :doc:`v1.15.0`
+- :doc:`v1.14.0`
+- :doc:`v1.13.0`
+- :doc:`v1.12.0`
+- :doc:`v1.11.0`
+- :doc:`v1.10.0`
+- :doc:`v1.9.0`
+- :doc:`v1.8.0`
+- :doc:`v1.7.0`
