@@ -135,6 +135,7 @@ Contributors
 - `Brett Profitt (@brettp) <https://github.com/brettp>`__
 - `Brian Hanifin (@brianhanifin) <https://github.com/brianhanifin>`__
 - `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__
+- `Ben Brooks (@brooksben11) <https://github.com/brooksben11>`__
 - `buddydvd (@buddydvd) <https://github.com/buddydvd>`__
 - `Jon Little (@burundiocibu) <https://github.com/burundiocibu>`__
 - `buxtronix (@buxtronix) <https://github.com/buxtronix>`__
@@ -897,4 +898,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 10, 2022.*
+*This page was last updated November 11, 2022.*
