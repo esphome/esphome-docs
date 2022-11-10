@@ -105,6 +105,7 @@ Beta Changes
 - Add cover toggle support to current based cover :esphomepr:`3950` by :ghuser:`maringeph`
 - Add option for dashboard command to only generate the project and supporting files :esphomepr:`3981` by :ghuser:`jesserockz`
 - Fix local webserver based on esphome/esphome-webserver#17 :esphomepr:`3958` by :ghuser:`RoboMagus`
+- fix to_lower filter :esphomepr:`4015` by :ghuser:`ssieb`
 
 All changes
 ^^^^^^^^^^^
@@ -173,6 +174,7 @@ All changes
 - Add cover toggle support to current based cover :esphomepr:`3950` by :ghuser:`maringeph`
 - Add option for dashboard command to only generate the project and supporting files :esphomepr:`3981` by :ghuser:`jesserockz`
 - Fix local webserver based on esphome/esphome-webserver#17 :esphomepr:`3958` by :ghuser:`RoboMagus`
+- fix to_lower filter :esphomepr:`4015` by :ghuser:`ssieb`
 
 Past Changelogs
 ---------------
