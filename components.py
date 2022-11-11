@@ -26,7 +26,7 @@ def add_component_details(app, pagename, templatename, context, doctree):
         page_data = {
             "title": context["title"],
             "url": context["pageurl"],
-            "path": context["pagename"],
+            "path": f"components/{component_name}",
         }
         if os.path.exists(os.path.join(app.builder.srcdir, "images", component_name + ".png")):
             page_data["image"] = app.builder.config.html_baseurl + "/_images/" + component_name + ".png"
