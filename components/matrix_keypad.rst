@@ -1,13 +1,13 @@
-Wiegand reader, keypad
-======================
+Matrix keypad
+=============
 
 .. seo::
-    :description: Wiegand-standard key input and card/tag reader panel
+    :description: Matrix key input panel
     :image: matrix_keypad.jpg
 
 The ``matrix_keypad`` component allows you to integrate pads which
 have the keys connected at the intersection points of the rows and columns 
-of a matrix.
+of a matrix. 
 
 .. figure:: ../images/matrix_keypad.jpg
     :align: center
@@ -18,54 +18,71 @@ of a matrix.
     This component also needs the ``key_provider`` component in order to work.
 
 
-Define a `keypad` component then add `binary_sensor`s to handle individual keys.  You need to also import the `key_provider` component.
-If you want automatic handling for multiple keys, e.g. PIN entry, use the `input_builder` component.
-
-The `keys` parameter is optional for the `keypad`, but then you won't be able to check for it in the `binary_sensor`
-and the `input_builder` won't work if you want to use that.
-The optional `has_diodes` parameter is for if the buttons have diodes and the row pins are output only. In that case, set it to true.
-
-For the `binary_sensor`, you need to provide either the `row` and `col` parameters or the `key` parameter.
-
-
-Individual keys can be added to ESPHome as separate ``binary_sensor``s
-
-
-
-
+Component
+---------
 
 .. code-block:: yaml
 
     # Example configuration entry
     key_provider:
-    wiegand:
-      - id: reader
-        d0: 4
-        d1: 5
-        on_tag:
-          - lambda: ESP_LOGD("TEST", "received tag %s", x.c_str());
-        on_key:
-          - lambda: ESP_LOGD("TEST", "received key %d", x);
-
+    keypad:
+      id: mykeypad
+      rows:
+        - pin: 21
+        - pin: 19
+        - pin: 18
+        - pin: 5
+      columns:
+        - pin: 17
+        - pin: 16
+        - pin: 4
+        - pin: 15
+      keys: "123A456B789C*0#D"
+      has_diodes: false
 
 
 Configuration variables:
-------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this device for use in lambdas.
-- **d0** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D0 output 
-  of the Wiegand's interface connects.
-- **d1** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D1 output 
-  of the Wiegand's interface connects.
+- **rows** (*Optional*, list): A list of :ref:`pins <config-pin_schema>` where the horrizontal
+  matrix lines are connected, in order from top to bottom. Required for ``binary_sensor``.
+- **columns** (*Optional*, list): A list of :ref:`pins <config-pin_schema>` where the vertical
+  matrix lines are connected, in order from left to right. Required for ``binary_sensor``.
+- **keys** (*Optional*, string): The keys present on the matrix, from top left to bottom right, 
+  row by row. Required for ``binary_sensor`` and ``key_collect``.
+- **has_diodes** (*Optional*, boolean): For pads where row pins are outputs, and the keys are 
+  connected with diodes. Defaults to ``false``.
 
 
-Automations:
-------------
+Binary Sensors:
+---------------
 
-- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when a card or a tag has been read by the device. The code is placed in variable `x`.
-- **on_key** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when a key has been pressed on the panel. The key is placed in variable `x`.
+Individual keys can be added to ESPHome as separate ``binary_sensor``s.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: keypad
+        keypad_id: mykeypad
+        id: key4
+        row: 1
+        col: 0
+      - platform: keypad
+        id: keyA
+        key: A
+
+Configuration variables:
+
+- **platform** (**Required**, string): The integration platform, which is ``keypad``.
+- **keypad_id** (**Required**, :ref:`config-id`): The ID of the keypad to process keypresses from.
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this key for use in lambdas.
+- **row** (*Optional*, integer): The row where the key can be found.
+- **col** (*Optional*, integer): The column where the key can be found.
+- **key** (*Optional*, string): The key from ``keys`` configuration entry above which has to be detected.
+- All other options from :ref:`Binary Sensor <config-binary_sensor>`.
+
+Either the ``row`` and ``col`` parameters, or the ``key`` parameter has to be provided.
 
 
 .. note::
@@ -79,5 +96,5 @@ See Also
 
 - :doc:`/components/key_collect`
 - :doc:`/components/key_provider`
-- :ref:`automation`
+- :ref:`Binary Sensor <config-binary_sensor>`
 - :ghedit:`Edit`
