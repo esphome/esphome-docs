@@ -103,7 +103,7 @@ Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``.  
+- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.  
 
 
 Supported sensors:
@@ -154,7 +154,7 @@ Binary Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``.
+- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.
 
 Supported sensors:
 
