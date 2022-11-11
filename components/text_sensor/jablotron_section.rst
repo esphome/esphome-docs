@@ -1,5 +1,5 @@
-Jablotron Section
-====================
+Jablotron Section Text Sensor
+=============================
 
 .. seo::
     :description: Instructions for setting up a jablotron_section text sensor.
@@ -17,8 +17,9 @@ The sensor reports these section states from the JA-121T protocol:
 - ``BLOCKED``: Blocked after an alarm
 - ``OFF``: Section disabled
 
-To expose section flags, create appropriate :doc:`jablotron_section_flag` sensors for
-the section.
+To expose section flags, create one or more
+:doc:`Jablotron Section Flag Binary Sensor </components/binary_sensor/jablotron_section_flag>` 
+for the section.
 
 Configuration variables:
 ------------------------
@@ -46,7 +47,8 @@ See Also
 --------
 - :apiclass:`:jablotron_section::SectionSensor`
 - :doc:`/components/jablotron`
-- :doc:`/components/jablotron_section_flag`
+- :doc:`/components/select/jablotron_section`
+- :doc:`/components/binary_sensor/jablotron_section_flag`
 - :doc:`/components/uart`
 - `JA-121 RS-485 Interface <https://jablotron.com.hk/image/data/pdf/manuel/JA-121T.pdf>`__
 - :ghedit:`Edit`

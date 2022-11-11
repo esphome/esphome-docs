@@ -45,7 +45,8 @@ See Also
 --------
 - :apiclass:`:jablotron_section_flag::SectionFlagSensor`
 - :doc:`/components/jablotron`
-- :doc:`/components/jablotron_section`
+- :doc:`/components/select/jablotron_section`
+- :doc:`/components/text_sensor/jablotron_section`
 - :doc:`/components/uart`
 - `JA-121 RS-485 Interface <https://jablotron.com.hk/image/data/pdf/manuel/JA-121T.pdf>`__
 - :ghedit:`Edit`

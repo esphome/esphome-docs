@@ -1,5 +1,5 @@
-Jablotron Info
-====================
+Jablotron Info Text Sensor
+==========================
 
 .. seo::
     :description: Instructions for setting up a jablotron_info text sensor.

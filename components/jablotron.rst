@@ -39,6 +39,9 @@ JA-121T gateway using the :doc:`UART bus </components/uart>`.
 Configuration variables:
 ------------------------
 
+- **access_code** (*Optional*, string): The access code to use for authenticated actions
+  (e.g. arming a section or setting a PG). Individual components can override this.
+
 - **flow_control_pin** (*Optional*, :ref:`config-pin`): The pin used to switch flow control.
   This is useful for RS485 transceivers that do not have automatic flow control switching,
   like the common MAX485.
@@ -50,10 +53,10 @@ See Also
 ---------
 
 - :apiclass:`:jablotron::JablotronComponent`
-- :doc:`/components/jablotron_info`
-- :doc:`/components/jablotron_peripheral`
-- :doc:`/components/jablotron_section`
-- :doc:`/components/jablotron_section_flag`
+- :doc:`/components/binary_sensor/jablotron_peripheral`
+- :doc:`/components/binary_sensor/jablotron_section_flag`
+- :doc:`/components/text_sensor/jablotron_info`
+- :doc:`/components/text_sensor/jablotron_section`
 - :doc:`/components/uart`
 - `JA-121 RS-485 Interface <https://jablotron.com.hk/image/data/pdf/manuel/JA-121T.pdf>`__
 - :ghedit:`Edit`
