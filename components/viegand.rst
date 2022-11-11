@@ -18,6 +18,8 @@ input and card or tag reader panels in Home Assistant.
     This component also needs the ``key_provider`` component in order to work.
 
 
+Component
+---------
 
 .. code-block:: yaml
 
