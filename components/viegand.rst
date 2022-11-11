@@ -36,7 +36,7 @@ input and card or tag reader panels in Home Assistant.
 Configuration variables:
 ------------------------
 
-- **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+- **id** (*Optional*, :ref:`config-id`): Set the ID of this device for use in lambdas.
 - **d0** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D0 output 
   of the Wiegand's interface connects.
 - **d1** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D1 output 
