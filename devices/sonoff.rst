@@ -5,7 +5,7 @@ Generic Sonoff
     :description: Instructions for using generic Sonoff devices with ESPHome.
     :image: sonoff.svg
 
-In principle ESPHome supports all Sonoff devices, but as these devices are quite cheap
+ESPHome supports Sonoff devices with ESP based chips inside, but as these devices are quite cheap
 and shipping from China takes a long time, I've only set up dedicated guides for the
 :doc:`Sonoff S20 <sonoff_s20>` and :doc:`Sonoff 4CH <sonoff_4ch>`.
 
@@ -421,5 +421,5 @@ See Also
 - :doc:`sonoff_s20`
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_basic`
-- :doc:`esp8266`
+- :doc:`/components/esp8266`
 - :ghedit:`Edit`
