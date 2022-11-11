@@ -1,12 +1,12 @@
-AM43 Sensor
-===========
+Wiegand reader, keypad
+======================
 
 .. seo::
-    :description: Wiegand key input and card reader panel
+    :description: Wiegand-standard key input and card/tag reader panel
     :image: wiegand.jpg
 
 The ``wiegand`` component allows you to integrate Wiegand-standard key 
-input and card reader panels in Home Assistant.
+input and card or tag reader panels in Home Assistant.
 
 .. figure:: ../images/wiegand.jpg
     :align: center
@@ -38,23 +38,24 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - **d0** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D0 output 
-  of the Wiegand's interface connects.
+of the Wiegand's interface connects.
 - **d1** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D1 output 
-  of the Wiegand's interface connects.
+of the Wiegand's interface connects.
 
 
 Automations:
 -----------_
-- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a tag has been read by the interface. The code is placed in variable `x`.
-- **on_key** (*Optional*, :ref:`Automation <automation>`): An automation to perform
-  when a key has been pressed on the panel. The key is placed in variable `x`.
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
+when a card or a tag has been read by the device. The code is placed in variable `x`.
+- **on_key** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
+when a key has been pressed on the panel. The key is placed in variable `x`.
 
 
 .. note::
 
-    Automatic handling of multiple keys (e.g. PIN code entry) is possible by using the  use 
+    Automatic handling of multiple keys (e.g. PIN code entry) is possible with the 
     the ``key_collect`` component.
+
 
 See Also
 --------
