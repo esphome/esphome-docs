@@ -53,8 +53,8 @@ Configuration variables:
   connected with diodes. Defaults to ``false``.
 
 
-Binary Sensors:
----------------
+Binary Sensors
+--------------
 
 Individual keys can be added to ESPHome as separate ``binary_sensor``s.
 
