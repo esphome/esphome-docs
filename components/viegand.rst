@@ -38,17 +38,18 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - **d0** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D0 output 
-of the Wiegand's interface connects.
+  of the Wiegand's interface connects.
 - **d1** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D1 output 
-of the Wiegand's interface connects.
+  of the Wiegand's interface connects.
 
 
 Automations:
------------_
+------------
+
 - **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-when a card or a tag has been read by the device. The code is placed in variable `x`.
+  when a card or a tag has been read by the device. The code is placed in variable `x`.
 - **on_key** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-when a key has been pressed on the panel. The key is placed in variable `x`.
+  when a key has been pressed on the panel. The key is placed in variable `x`.
 
 
 .. note::
