@@ -385,7 +385,7 @@ And a docker compose file looks like this:
 
 Notes on disabling mDNS
 ------------------------------------------------------------------------------
-Some of ESPHome's functionalities rely on mDNS, so naturally :doc:`disabling <components/mdns>` it will cause these features to stop working.
+Some of ESPHome's functionalities rely on mDNS, so naturally :doc:`disabling </components/mdns>` it will cause these features to stop working.
 Generally speaking, disabling mDNS without setting a :ref:`static IP address <wifi-manual_ip>` (or a static DHCP lease) is bound to cause problems. This is due to the fact that mDNS is used to find the IP address of each ESPHome nodes.
 
 - You will not be able to use the node's hostname to ping, find it's IP address or connect to it.
