@@ -73,5 +73,6 @@ See Also
 
 - :doc:`/components/matrix_keypad`
 - :doc:`/components/viegand`
+- :doc:`/components/key_provider`
 - :ref:`automation`
 - :ghedit:`Edit`
