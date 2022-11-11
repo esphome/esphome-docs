@@ -22,6 +22,7 @@ input and card or tag reader panels in Home Assistant.
 .. code-block:: yaml
 
     # Example configuration entry
+    key_provider:
     wiegand:
       - id: reader
         d0: 4
