@@ -16,24 +16,44 @@ JA-121T gateway using the :doc:`UART bus </components/uart>`.
       baud_rate: 9600
 
     jablotron:
+      access_code: 1*2345
       flow_control_pin: GPIO15
 
     binary_sensor:
+      # report a motion sensor status
       - platform: jablotron_peripheral
         index: 1
         name: "Entryway motion"
         device_class: motion
+      # report section's entry flag
       - platform: jablotron_section_flag
         index: 1
         flag: ENTRY
         name: "Alarm entry delay"
 
     text_sensor:
+      # report JA-121T version
       - platform: jablotron_info
         name: "Jablotron Info"
+      # report section status
       - platform: jablotron_section
         index: 1
         name: Alarm
+
+    select:
+      # arm or disarm a section
+      - platform: jablotron_section
+        index: 1
+        name: Alarm
+
+    switch:
+      # toggle a PG output
+      - platform: jablotron_pg
+        index: 23
+        name: Sprinkler
+        access_code: 9*8765
+
+
 
 
 Configuration variables:
@@ -57,6 +77,7 @@ See Also
 - :doc:`/components/binary_sensor/jablotron_section_flag`
 - :doc:`/components/text_sensor/jablotron_info`
 - :doc:`/components/text_sensor/jablotron_section`
+- :doc:`/components/switch/jablotron_pg`
 - :doc:`/components/uart`
 - `JA-121 RS-485 Interface <https://jablotron.com.hk/image/data/pdf/manuel/JA-121T.pdf>`__
 - :ghedit:`Edit`

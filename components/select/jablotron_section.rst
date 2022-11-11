@@ -8,7 +8,7 @@ The `jablotron_section` select platform creates a Select for a section
 configured in the Jablotron control panel. The select requires
 :doc:`Jablotron Component </components/jablotron>` to be configured.
 
-You must configre an access code, either on the parent Jablotron component,
+You must configure an access code, either on the parent Jablotron component,
 or on the Select itself.
 
 You can select the following values from the JA-121T protocol:
