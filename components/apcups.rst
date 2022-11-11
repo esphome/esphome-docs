@@ -14,8 +14,8 @@ Overview
 
 Most APC UPSes have a male DB9 connector on their back allowing for monitoring and control 
 via the SmartUPS protocol. This connector is not wired as a standard serial port, pinout 
-corresponds to APC's factory cable `940-024C`. Also, since this port works at standard
-RS232 (5V) levels, it cannot be connected directly to the MCU. A level shifter module 
+corresponds to APC's factory cable ``940-024C``. Also, since this port works at standard
+RS232 (``5V``) levels, it cannot be connected directly to the MCU. A level shifter module 
 has to be used like this one:
 
 .. figure:: ../images/smart-ups_hw-027.jpg
