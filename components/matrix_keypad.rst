@@ -24,7 +24,7 @@ Component
 
     # Example configuration entry
     key_provider:
-    keypad:
+    matrix_keypad:
       id: mykeypad
       rows:
         - pin: 21
@@ -62,7 +62,7 @@ Individual keys can be added to ESPHome as separate ``binary_sensor``s.
 
     # Example configuration entry
     binary_sensor:
-      - platform: keypad
+      - platform: matrix_keypad
         keypad_id: mykeypad
         id: key4
         row: 1
