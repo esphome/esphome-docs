@@ -4,11 +4,11 @@ Key collect component
 .. seo::
     :description: Key collect component
 
-The ``key_collect`` component collects key presses from ``key_provider``s 
-like the ``matrix_keypad`` or ``wiegand`` components. It allows you to process 
+The ``key_collect`` component collects key presses from ``key_provider`` 
+components like ``matrix_keypad`` or ``wiegand``. It allows you to process 
 key sequences and treat them as one, for example to ease up inputting of 
-a PIN code or a passkey. The component outputs the result of the keypresses
-as a variable usable in automations.
+a PIN code or a passkey. The component outputs the result of the keypress
+sequence as a variable usable in automations.
 
 
 Component
@@ -23,10 +23,10 @@ Component
         min_length: 4
         max_length: 4
         end_keys: "#"
-        end_key_required: true   # default is false
+        end_key_required: true
         back_keys: "*"
         clear_keys: "C"
-        allowed_keys: "0123456789"  # if not included, then any otherwise unused keys will be allowed
+        allowed_keys: "0123456789"
         timeout: 5s
         on_progress:
           - logger.log: 
