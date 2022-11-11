@@ -3,7 +3,6 @@ Matrix keypad
 
 .. seo::
     :description: Matrix key input panel
-    :image: matrix_keypad.jpg
 
 The ``matrix_keypad`` component allows you to integrate pads which
 have the keys connected at the intersection points of the rows and columns 
