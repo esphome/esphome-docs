@@ -1,5 +1,5 @@
 Haier Climate
-============
+=============
 
 .. seo::
     :description: Instructions for setting up a Haier climate devices.
@@ -44,30 +44,30 @@ You can use spare male USB cable to connect esphome device directly to the clima
 Other units will not have USB ports, but will still probably have UART exposed somewhere on the main board. 
 
 .. list-table:: Haier UART pinout
-   :header-rows: 1
+    :header-rows: 1
 
-   * - Board
-     - USB
-     - Wire color
-     - ESP8266
-   * - 5V
-     - VCC
-     - red
-     - 5V
-   * - GND
-     - GND
-     - black
-     - GND
-   * - TX
-     - DATA+
-     - green
-     - RX
-   * - RX
-     - DATA-
-     - white
-     - TX
+    * - Board
+      - USB
+      - Wire color
+      - ESP8266
+    * - 5V
+      - VCC
+      - red
+      - 5V
+    * - GND
+      - GND
+      - black
+      - GND
+    * - TX
+      - DATA+
+      - green
+      - RX
+    * - RX
+      - DATA-
+      - white
+      - TX
 
-.. figure:: /images/usb_pinout.png
+.. figure:: images/usb_pinout.png
     :align: center
     :width: 70.0%
 
