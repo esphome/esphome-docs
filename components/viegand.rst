@@ -35,7 +35,6 @@ input and card or tag reader panels in Home Assistant.
 
 
 Configuration variables:
-------------------------
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this device for use in lambdas.
 - **d0** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D0 output 
