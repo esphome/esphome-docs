@@ -82,14 +82,8 @@ A configured UART is required.
 
 Configuration variables:
 
-- **ph**: Measured pH value
-- **temperature**: Measured temperature value
-- **dis1**: Measured DIS 1 value
-- **dis2**: Measured DIS 2 value
-- **redox**: Measured Redox value
-- **ec**: Measured EC value
-- **oci**: Measured OCI value
-
+- **input_voltage**: Input Voltage
+- ...
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
 
@@ -122,6 +116,8 @@ See Also
 - :ref:`uart`
 - :doc:`logger`
 - :ref:`Sensor <config-sensor>`
+- `Pinout for 940-024C cable<https://pinoutguide.com/UPS/apc-rackmount-smartsig_pinout.shtml>`__
+- `Pinout for 940-1525A cable<https://pinoutguide.com/UPS/apc_0625_cable_pinout.shtml>`__
 - `UPS Constants <https://kirbah.github.io/apc-ups/UPS-constants/>`__
 - `APC smart protocol <http://www.apcupsd.org/manual/manual.html#apc-smart-protocol>`__
 - :ghedit:`Edit`
