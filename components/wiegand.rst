@@ -1,5 +1,5 @@
-Wiegand reader, keypad
-======================
+Wiegand keypad and tag reader
+=============================
 
 .. seo::
     :description: Wiegand-standard key input and card/tag reader panel
@@ -33,11 +33,11 @@ Component
         d0: GPIO5
         d1: GPIO4
         on_key:
-          - lambda: ESP_LOGD("KEY", "received key %d", x);
+          - lambda: ESP_LOGI("KEY", "received key %d", x);
         on_tag:
-          - lambda: ESP_LOGD("TAG", "received tag %s", x.c_str());
+          - lambda: ESP_LOGI("TAG", "received tag %s", x.c_str());
         on_raw:
-          - lambda: ESP_LOGD("RAW", "received raw %d", x.c_str());
+          - lambda: ESP_LOGI("RAW", "received raw %d bits, value %llx", bits, value);
 
 
 
@@ -59,7 +59,8 @@ Automations:
   when a Wiegand-compatible card or a tag has been read by the device. The tag code is 
   placed in variable `x`.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when a card or a tag has been read by the device. The key is placed in variable `x`.
+  for any data sent by the device. The value is placed in variable `value`, number of
+  bits is placed in variable `bits`.
 
 
 .. note::
