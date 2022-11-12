@@ -46,8 +46,6 @@ as the color temperature in kelvin will show `0`.
           name: "TCS34725 Illuminance"
         color_temperature:
           name: "TCS34725 Color Temperature"
-        gain: 1x
-        integration_time: 2.4ms
         glass_attenuation_factor: 1.0
         address: 0x29
         update_interval: 60s
