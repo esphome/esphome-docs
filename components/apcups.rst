@@ -16,7 +16,7 @@ Most APC smart UPSes have a male ``DB9`` connector on their back allowing for mo
 via the SmartUPS protocol. This connector is not wired as a standard serial port, pinout 
 corresponds to APC's factory cable ``940-024C``, where ``RX`` is pin ``1``, ``TX`` is pin ``2`` and 
 ``GND`` is pin ``9``. Newer models have an ``RJ50`` connector (similar to ``RJ45`` but with `10` pins) for the
-standard accessory ``AP940-0625A`` or ``AP940-1525A`` cable. This socket accepts both ``RJ50`` 
+factory cable ``AP940-0625A`` or ``AP940-1525A`` cable. This socket accepts both ``RJ50`` 
 and ``RJ45`` plugs. In case of using an ``RJ45``, ``TX`` is pin ``1``, ``RX`` is pin ``7`` and 
 ``GND`` is pin ``6`` (+ chassis ``GND`` is pin ``3``).
 
@@ -29,6 +29,13 @@ A level shifter module has to be used like this one:
     HW-027 level shifter module connections to a smart-compatible UPS
 
 APC UPSes communicate at ``2400`` baud (older models) or ``9200`` baud (newer models).
+
+.. note::
+
+    This component supports only the APC UPS models talking the `smartups` protocol through the serial 
+    port. APC has many other models (like ``RS``, ``XS``) which only have an USB connection and 
+    connect as a ``HID`` device to a host computer, these are not supported by this component.
+
 
 Component
 ---------
