@@ -21,7 +21,7 @@ and ``RJ45`` plugs. In case of using an ``RJ45``, ``TX`` is pin ``1``, ``RX`` is
 ``GND`` is pin ``6`` (+ chassis ``GND`` is pin ``3``).
 
 Since this port works at standard RS232 (``5V``) levels, it cannot be connected directly to the MCU. 
-A level shifter module has to be used like this one: 
+A level shifter module has to be used like ``HW-027``: 
 
 .. figure:: ../images/smart-ups_hw-027.jpg
     :align: center
