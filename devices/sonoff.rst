@@ -358,7 +358,6 @@ Sonoff RE5V
     GPIO0, Button (inverted),
     GPIO12, Relay and Red LED,
     GPIO13, LED,
-    SMD pads below:
     GPIO2, IO2,
     GPIO4, RX,
     GPIO5, TX,
