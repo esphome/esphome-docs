@@ -1,5 +1,5 @@
 BP1658CJ LED driver
-==================
+===================
 
 .. seo::
     :description: Instructions for setting up BP1658CJ LED drivers in ESPHome.
