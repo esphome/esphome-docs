@@ -29,19 +29,16 @@ Component
 
     # Example configuration entry
     wiegand:
-      - id: reader
-        d0: 4
-        d1: 5
-        on_tag:
-          - lambda: ESP_LOGD("TEST", "received tag %s", x.c_str());
+      - id: mykeypad
+        d0: GPIO5
+        d1: GPIO4
         on_key:
-          - lambda: ESP_LOGD("TEST", "received key %d", x);
+          - lambda: ESP_LOGD("KEY", "received key %d", x);
+        on_tag:
+          - lambda: ESP_LOGD("TAG", "received tag %s", x.c_str());
+        on_raw:
+          - lambda: ESP_LOGD("RAW", "received raw %d", x.c_str());
 
-
-.. note::
-
-    This component will automatically load the ``key_provider`` component 
-    in order to work.
 
 
 Configuration variables:
@@ -56,16 +53,22 @@ Configuration variables:
 Automations:
 ------------
 
-- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when a card or a tag has been read by the device. The code is placed in variable `x`.
 - **on_key** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when a key has been pressed on the panel. The key is placed in variable `x`.
+  when a key has been pressed on the pad. The key is placed in variable `x`.
+- **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
+  when a Wiegand-compatible card or a tag has been read by the device. The tag code is 
+  placed in variable `x`.
+- **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
+  when a card or a tag has been read by the device. The key is placed in variable `x`.
 
 
 .. note::
 
     Automatic handling of multiple keys (e.g. PIN code entry) is possible with the 
     the ``key_collect`` component.
+    
+    This component will automatically load the ``key_provider`` component 
+    in order to work.
 
 
 See Also
