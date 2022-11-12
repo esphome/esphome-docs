@@ -2,9 +2,9 @@ APC Smart UPS
 =============
 
 .. seo::
-    :description: Instructions for setting up APC UPS compatible with Smart protocol.
+    :description: Instructions for setting up APC UPS compatible with smartups protocol.
 
-The ``apcups`` component allows you to integrate an APC UPS compatible with Smart 
+The ``apcups`` component allows you to integrate an APC UPS compatible with *smartups* 
 protocol in ESPHome. It uses :ref:`UART <uart>` for communication.
 
 Once configured you can use sensors as described below for your projects.
@@ -13,7 +13,7 @@ Overview
 --------
 
 Most APC smart UPSes have a male ``DB9`` connector on their back allowing for monitoring and control 
-via the SmartUPS protocol. This connector is not wired as a standard serial port, pinout 
+via the *smartups* protocol. This connector is not wired as a standard serial port, pinout 
 corresponds to APC's factory cable ``940-024C``, where ``RX`` is pin ``1``, ``TX`` is pin ``2`` and 
 ``GND`` is pin ``9``. Newer models have an ``RJ50`` connector (similar to ``RJ45`` but with `10` pins) for the
 factory cable ``AP940-0625A`` or ``AP940-1525A`` cable. This socket accepts both ``RJ50`` 
