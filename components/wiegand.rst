@@ -10,12 +10,16 @@ input and card or tag reader panels in Home Assistant.
 
 .. figure:: ../images/wiegand.jpg
     :align: center
-
+    
+    S20-ID keypad and tag reader
 
 
 .. note::
 
-    This component also needs the ``key_provider`` component in order to work.
+    Some keypads are preconfigured by the factory to act as Wiegand input 
+    devices. In order to work with this component, they may need to 
+    be reconfigured to act as *Wiegand 26 output* or *Wiegand 34 output* 
+    devices.
 
 
 Component
@@ -24,7 +28,6 @@ Component
 .. code-block:: yaml
 
     # Example configuration entry
-    key_provider:
     wiegand:
       - id: reader
         d0: 4
@@ -34,6 +37,11 @@ Component
         on_key:
           - lambda: ESP_LOGD("TEST", "received key %d", x);
 
+
+.. note::
+
+    This component will automatically load the ``key_provider`` component 
+    in order to work.
 
 
 Configuration variables:
