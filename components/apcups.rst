@@ -33,7 +33,7 @@ APC UPSes communicate at ``2400`` baud (older models) or ``9200`` baud (newer mo
 .. note::
 
     This component supports only the APC UPS models talking the **smartups** protocol through the serial 
-    port. APC has many other models (like ``RS``, ``XS``) which only have an USB connection and 
+    port. APC has many other models (like ``RS``, ``XS``) which only have an ``RJ50`` USB port and 
     connect as a ``HID`` device to a host computer, these are not supported by this component.
 
 
