@@ -21,7 +21,7 @@ Overview
 
 Kuntze devices have an RS485 (ModBUS RTU) communication port. Please see the 
 Kuntze papers for the pinout of the RS485 connector on your unit. ModBUS line
-has to be terminated properly with a 120 resistance, and since this is likely
+has to be terminated properly (with a ``120Ω`` resistor), and since this is likely
 your only unit connected to ESPHome, you should activate bus termination in the
 Network menu (this component doesn't support multiple Kuntze devices on the same 
 bus). ModBUS address should remain at factory default value.
