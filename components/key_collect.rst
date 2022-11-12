@@ -61,11 +61,11 @@ Automations:
 ------------
 
 - **on_progress** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when keys are pressed. The increasing sequence of the pressed is placed in variable `x`.
-  Useful if you want to have a display showing, or a speaker beeping while keys are being pressed.
+  when keys are pressed. The increasing sequence of the pressed is placed in variable ``x``.
+  Useful if you want to have a display showing, or a speaker beeping when keys are being pressed.
 - **on_result** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
   when the sequence has been finished (eg. ``max_length`` has been reached or one of
-  the ``end_keys`` was pressed). The finalized key sequence is placed in variable `x`.
+  the ``end_keys`` was pressed). The finalized key sequence is placed in variable ``x``.
 
 
 See Also
