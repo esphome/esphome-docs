@@ -44,9 +44,9 @@ Component
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this device for use in lambdas.
-- **d0** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D0 output 
+- **d0** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the ``D0`` output 
   of the Wiegand's interface connects.
-- **d1** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the D1 output 
+- **d1** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin where the ``D1`` output 
   of the Wiegand's interface connects.
 
 
@@ -54,13 +54,13 @@ Automations:
 ------------
 
 - **on_key** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when a key has been pressed on the pad. The key is placed in variable `x`.
+  when a key has been pressed on the pad. The key is placed in variable ``x``.
 - **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
   when a Wiegand-compatible card or a tag has been read by the device. The tag code is 
-  placed in variable `x`.
+  placed in variable ``x``.
 - **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  for any data sent by the device. The value is placed in variable `value`, number of
-  bits is placed in variable `bits`.
+  for any data sent by the device. The value is placed in variable ``value``, number of
+  bits is placed in variable ``bits``.
 
 
 .. note::
