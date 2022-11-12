@@ -203,5 +203,4 @@ See Also
 - :doc:`/components/light/rgbw`
 - :doc:`/components/light/rgbww`
 - :doc:`/components/power_supply`
-- :apiref:`output/sm2335_output_component.h`
 - :ghedit:`Edit`
