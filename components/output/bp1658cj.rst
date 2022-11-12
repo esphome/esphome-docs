@@ -32,20 +32,20 @@ It is used in some smart light bulbs:
     # Individual outputs
     output:
       - platform: bp1658cj
-          id: output_red
-          channel: 1
+        id: output_red
+        channel: 1
       - platform: bp1658cj
-          id: output_green
-          channel: 2
+        id: output_green
+        channel: 2
       - platform: bp1658cj
-          id: output_blue
-          channel: 0
+        id: output_blue
+        channel: 0
       - platform: bp1658cj
-          id: output_coldwhite
-          channel: 3
+        id: output_coldwhite
+        channel: 3
       - platform: bp1658cj
-          id: output_warmwhite
-          channel: 4
+        id: output_warmwhite
+        channel: 4
 
 Configuration variables:
 ************************
@@ -160,20 +160,20 @@ The BP1658CJ output component exposes a BP1658CJ channel of a global
     # Individual outputs
     output:
       - platform: bp1658cj
-          id: output_red
-          channel: 1
+        id: output_red
+        channel: 1
       - platform: bp1658cj
-          id: output_green
-          channel: 2
+        id: output_green
+        channel: 2
       - platform: bp1658cj
-          id: output_blue
-          channel: 0
+        id: output_blue
+        channel: 0
       - platform: bp1658cj
-          id: output_coldwhite
-          channel: 3
+        id: output_coldwhite
+        channel: 3
       - platform: bp1658cj
-          id: output_warmwhite
-          channel: 4
+        id: output_warmwhite
+        channel: 4
 
 Configuration variables:
 ************************
