@@ -65,6 +65,7 @@ Configuration variables:
 - **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 
 - **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high.
+  This value is subtracted from the reading. If the sensor reads 5°C too high, set this to ``5``.
   Defaults to ``0``.
 
 - **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for static applications (e.g. fixed indoor devices).
@@ -174,6 +175,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # Temperature offset
         # ------------------
         # Useful if device is in enclosure and reads too high
+        # For example if it reads 5C too high, set this to 5
         # Default: 0
         temperature_offset: 0
 
