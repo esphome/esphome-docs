@@ -21,7 +21,10 @@ The component can be used as a replacement of a Haier proprietary WiFi modules s
     climate:
         platform: haier
         name: Haier AC
-        supported_swing_mode: vertical
+        supported_swing_modes:
+          - VERTICAL
+          - HORIZONTAL
+          - BOTH
         update_interval: 10s
 
 Configuration variables:
@@ -30,7 +33,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **name** (**Required**, string): The name of the climate device.
 - **update_interval** (*Optional*, :ref:`config-time`): How often device will be polled for status. Defaults to `5s`.
-- **supported_swing_modes** (*Optional*, string): Supported swing modes by AC. Possible values are: ``off``, ``vertical``, ``horizontal``, ``both``. Defaults to ``off``.
+- **supported_swing_modes** (*Optional*, list): List of supported swing modes. Possible values are: ``VERTICAL``, ``HORIZONTAL``, ``BOTH``.
 - All other options from :ref:`Climate <config-climate>`.
 
 Hardware setup
