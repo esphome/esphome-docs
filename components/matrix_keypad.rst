@@ -82,6 +82,7 @@ Either the ``row`` and ``col`` parameters, or the ``key`` parameter has to be pr
 
     Automatic handling of multiple keys (e.g. PIN code entry) is possible with the 
     the ``key_collector`` component.
+    
     This component will automatically load the ``key_provider`` component 
     in order to work.
 
