@@ -73,6 +73,20 @@ Preserving User WiFi Credentials
 
 To be written...
 
+Running ESPHome on lower powered machines
+-----------------------------------------
+
+People have noticed that trying to compile their projects on machine such as the Raspberry Pi 3 would crash either the whole machine
+or the ESPHome add-on, or Home Assistant. This is due to having less RAM and CPU power available to run all of the things at the same time.
+A new config option has been added as per the example below that should help to allow compiling on machines such as Raspberry Pi 3.
+By default ESPHome tries to compile using all of the processor cores, and this allows you to limit it to a lower amount.
+
+.. code-block:: yaml
+
+    esphome:
+      ...
+      compile_process_limit: 1
+
 
 Full list of changes
 --------------------
@@ -106,6 +120,9 @@ Beta Changes
 - Add option for dashboard command to only generate the project and supporting files :esphomepr:`3981` by :ghuser:`jesserockz`
 - Fix local webserver based on esphome/esphome-webserver#17 :esphomepr:`3958` by :ghuser:`RoboMagus`
 - fix to_lower filter :esphomepr:`4015` by :ghuser:`ssieb`
+- Mark webserver and captive portal as not available on rp2040 :esphomepr:`4023` by :ghuser:`jesserockz`
+- Fix time components on rp2040 :esphomepr:`4024` by :ghuser:`jesserockz`
+- Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -175,6 +192,9 @@ All changes
 - Add option for dashboard command to only generate the project and supporting files :esphomepr:`3981` by :ghuser:`jesserockz`
 - Fix local webserver based on esphome/esphome-webserver#17 :esphomepr:`3958` by :ghuser:`RoboMagus`
 - fix to_lower filter :esphomepr:`4015` by :ghuser:`ssieb`
+- Mark webserver and captive portal as not available on rp2040 :esphomepr:`4023` by :ghuser:`jesserockz`
+- Fix time components on rp2040 :esphomepr:`4024` by :ghuser:`jesserockz`
+- Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
