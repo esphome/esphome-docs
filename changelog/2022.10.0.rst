@@ -48,6 +48,11 @@ Release 2022.10.1 - October 26
 - Fixed touch release issue using the interrupt pin :esphomepr:`3925` by :ghuser:`nielsnl68`
 - Add wind_speed sensor device class :esphomepr:`3941` by :ghuser:`frenck`
 
+Release 2022.10.2 - November 1
+------------------------------
+
+- Fix bluetooth_proxy not connecting :esphomepr:`3967` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
