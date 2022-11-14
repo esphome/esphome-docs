@@ -41,14 +41,14 @@ in your ``i2c`` configuration.
         ...
         user_characters:
           - position: 0
-            data:
+            data:  # back arrow
               - 0b00100
-              - 0b01110
-              - 0b10101
-              - 0b00100
-              - 0b00100
-              - 0b00100
-              - 0b11100
+              - 0b01000
+              - 0b11110
+              - 0b01001
+              - 0b00101
+              - 0b00001
+              - 0b11110
               - 0b00000
         lambda: |-
           id(my_lcd_menu).draw();
