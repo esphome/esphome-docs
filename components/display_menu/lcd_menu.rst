@@ -104,7 +104,8 @@ The menu inherits the dimensions of the connected LCD display and uses the whole
 See Also
 --------
 
-- :doc:`i2c`
-- :doc:`rotary_encoder`
+- :ref:`i2c`
+- :ref:`rotary_encoder`
+- :ref:`binary_sensor`
 - :doc:`/components/binary_sensor/index`
 - :apiref:`lcd_menu/lcd_menu.h`
