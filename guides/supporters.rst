@@ -104,6 +104,7 @@ Contributors
 - `Viktr (@BbIKTOP) <https://github.com/BbIKTOP>`__
 - `J. Nick Koston (@bdraco) <https://github.com/bdraco>`__
 - `Maxim Ocheretianko (@bearpawmaxim) <https://github.com/bearpawmaxim>`__
+- `Benjamin Freeman (@Beetix) <https://github.com/Beetix>`__
 - `Benno Pütz (@bennop) <https://github.com/bennop>`__
 - `Benoit3 (@Benoit3) <https://github.com/Benoit3>`__
 - `Ben Suffolk (@bensuffolk) <https://github.com/bensuffolk>`__
@@ -898,4 +899,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 11, 2022.*
+*This page was last updated November 14, 2022.*
