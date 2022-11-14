@@ -66,7 +66,7 @@ Automations:
 .. note::
 
     Automatic handling of multiple keys (e.g. PIN code entry) is possible with the 
-    the ``key_collect`` component.
+    the ``key_collector`` component.
     
     This component will automatically load the ``key_provider`` component 
     in order to work.
@@ -75,7 +75,7 @@ Automations:
 See Also
 --------
 
-- :doc:`/components/key_collect`
+- :doc:`/components/key_collector`
 - :doc:`/components/key_provider`
 - :ref:`automation`
 - :ghedit:`Edit`
