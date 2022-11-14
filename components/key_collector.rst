@@ -1,10 +1,10 @@
-Key collect component
-=====================
+Key collector component
+=======================
 
 .. seo::
     :description: Key collect component
 
-The ``key_collect`` component collects key presses from ``key_provider`` 
+The ``key_collector`` component collects key presses from ``key_provider`` 
 components like ``matrix_keypad`` or ``wiegand``. It allows you to process 
 key sequences and treat them as one, for example to ease up inputting of 
 a PIN code or a passkey. The component outputs the result of the keypress
@@ -17,7 +17,7 @@ Component
 .. code-block:: yaml
 
     # Example configuration entry
-    key_collect:
+    key_collector:
       - id: pincode_reader
         source_id: mykeypad
         min_length: 4
