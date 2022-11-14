@@ -26,7 +26,8 @@ Configuration variables:
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPHome network. May only contain lowercase
-  characters, digits and hyphens, and can be at most 31 characters long.
+  characters, digits and hyphens, and can be at most 24 characters long by default, or 31
+  characters long if ``name_add_mac_suffix`` is ``false``.
   See :ref:`esphome-changing_node_name`.
 
 Advanced options:
