@@ -50,7 +50,7 @@ Configuration variables:
 Binary Sensors
 --------------
 
-Individual keys can be added to ESPHome as separate ``binary_sensor``s.
+Individual keys can be added independently to ESPHome as ``binary_sensor``:
 
 .. code-block:: yaml
 
