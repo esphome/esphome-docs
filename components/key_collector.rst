@@ -2,7 +2,7 @@ Key collector component
 =======================
 
 .. seo::
-    :description: Key collect component
+    :description: Key collector component
 
 The ``key_collector`` component collects key presses from ``key_provider`` 
 components like ``matrix_keypad`` or ``wiegand``. It allows you to process 
