@@ -697,6 +697,7 @@ Misc Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     SML, components/sml, sml.svg
+    Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
 
@@ -746,6 +747,7 @@ Cookbook
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
     AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
+    Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

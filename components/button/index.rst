@@ -7,7 +7,7 @@ Button Component
 
 .. note::
 
-    To attach a physical buttons to ESPHome, see
+    To attach a physical button to ESPHome, see
     :doc:`GPIO Binary Sensor </components/binary_sensor/gpio>`.
 
 ESPHome has support for components to create button entities in Home Assistant. A button entity is
