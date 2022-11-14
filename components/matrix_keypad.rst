@@ -18,7 +18,6 @@ Component
 .. code-block:: yaml
 
     # Example configuration entry
-    key_provider:
     matrix_keypad:
       id: mykeypad
       rows:
@@ -43,7 +42,7 @@ Configuration variables:
 - **columns** (*Optional*, list): A list of :ref:`pins <config-pin_schema>` where the vertical
   matrix lines are connected, in order from left to right. Required for ``binary_sensor``.
 - **keys** (*Optional*, string): The keys present on the matrix, from top left to bottom right, 
-  row by row. Required for ``binary_sensor`` and ``key_collect``.
+  row by row. Required for ``binary_sensor`` and ``key_collector``.
 - **has_diodes** (*Optional*, boolean): For pads where row pins are outputs, and the keys are 
   connected with diodes. Defaults to ``false``.
 
@@ -82,14 +81,14 @@ Either the ``row`` and ``col`` parameters, or the ``key`` parameter has to be pr
 .. note::
 
     Automatic handling of multiple keys (e.g. PIN code entry) is possible with the 
-    the ``key_collect`` component.
+    the ``key_collector`` component.
     This component will automatically load the ``key_provider`` component 
     in order to work.
 
 See Also
 --------
 
-- :doc:`/components/key_collect`
+- :doc:`/components/key_collector`
 - :doc:`/components/key_provider`
 - :ref:`Binary Sensor <config-binary_sensor>`
 - :ghedit:`Edit`
