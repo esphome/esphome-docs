@@ -116,6 +116,12 @@ Supported sensors:
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
 
+.. note::
+
+    Sensors are updated every time a data packet is sent by the device. Some models send data very often, every second. If you want less 
+    granularity to ease on the database, please consider adding a ``throttle`` filter to the sensors.
+
+
 
 Binary Sensor
 -------------
@@ -241,8 +247,9 @@ See Also
 --------
 
 - :doc:`/components/uart`
+- :doc:`/components/sensor/template`
+- :ref:`sensor-filters`
+- :ref:`Lambdas <config-lambda>`
 - `Resol manuals <https://www.resol.de/en/dokumente>`__
 - `VBus protocol <https://danielwippermann.github.io/resol-vbus>`__
-- :doc:`/components/sensor/template`
-- :ref:`Lambdas <config-lambda>`
 - :ghedit:`Edit`
