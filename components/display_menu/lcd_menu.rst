@@ -106,6 +106,6 @@ See Also
 
 - :ref:`i2c`
 - :ref:`Display Menu <display_menu>`
-- :doc:`rotary_encoder`
+- :doc:`/components/sensor/rotary_encoder`
 - :doc:`/components/binary_sensor/index`
 - :apiref:`lcd_menu/lcd_menu.h`
