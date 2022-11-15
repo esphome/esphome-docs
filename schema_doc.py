@@ -620,9 +620,15 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
 
             component_parts = split_text[0].split(".")
             if len(component_parts) == 3:
-                cv = get_component_file(self.app, component_parts[1])[
-                    component_parts[1] + "." + component_parts[0]
-                ][split_text[1].lower()][component_parts[2]]
+                try:
+                    cv = get_component_file(self.app, component_parts[1])[
+                        component_parts[1] + "." + component_parts[0]
+                    ][split_text[1].lower()][component_parts[2]]
+                except KeyError:
+                    logger.warn(
+                        f"In {self.docname} cannot found schema of {title_text}"
+                    )
+                    cv = None
                 if cv is not None:
                     cv["docs"] = description
                     self.props = self.find_props(cv.get("schema", {}))
@@ -934,7 +940,12 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                 # this is e.g. when a property has a list inside, and the list inside are the options.
                 # just validate **prop_name**
                 s3 = re.search(r"\* \*\*(\w*)\*\*:\s", name_type)
-                prop_name = s3.group(1)
+                if s3 is not None:
+                    prop_name = s3.group(1)
+                else:
+                    logger.info(
+                        f"In '{self.docname} {self.previous_title_text} Invalid list format: {node.rawsource}"
+                    )
                 param_type = None
             else:
                 logger.info(
@@ -1150,9 +1161,10 @@ def handle_component(app, doctree, docname):
         doctree.walkabout(v)
     except Exception as e:
         err_str = f"In {docname}.rst: {str(e)}"
-        logger.warning(err_str)
-        # print stack
+        # if you put a breakpoint here get call-stack in the console by entering
+        # import traceback
         # traceback.print_exc()
+        logger.warning(err_str)
 
 
 def build_finished(app, exception):
