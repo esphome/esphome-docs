@@ -25,11 +25,11 @@ with a button or a five-button joystick controller.
 The component needs to be connected to an instance of a character based LCD display, which
 at the moment are :ref:`lcd-pcf8574` or a :ref:`lcd-gpio`. For the best results the GPIO
 connection is recommended; the I²C one running at the speed according to the datasheet
-(usually 100 kHz) or even ESPHome default (50 kHz) will create perceptible delays especially
-when changing a numeric value using the rotary encoder. Most PCF8574 adapters used with
-these displays will happily run at 200 or even 400 kHz though so if you are comfortable
+(usually ``100`` kHz) or even ESPHome default (``50`` kHz) will create perceptible delays especially
+when changing a numeric value using the rotary encoder. Most ``PCF8574`` adapters used with
+these displays will happily run at ``200`` or even ``400`` kHz though so if you are comfortable
 accepting risks from running your hardware out of spec, you might want to try that
-in your ``i2c`` configuration.
+in your :ref:`i2c` configuration.
 
 .. code-block:: yaml
 
@@ -41,14 +41,14 @@ in your ``i2c`` configuration.
         ...
         user_characters:
           - position: 0
-            data:
+            data:  # back arrow
               - 0b00100
-              - 0b01110
-              - 0b10101
-              - 0b00100
-              - 0b00100
-              - 0b00100
-              - 0b11100
+              - 0b01000
+              - 0b11110
+              - 0b01001
+              - 0b00101
+              - 0b00001
+              - 0b11110
               - 0b00000
         lambda: |-
           id(my_lcd_menu).draw();
@@ -104,4 +104,8 @@ The menu inherits the dimensions of the connected LCD display and uses the whole
 See Also
 --------
 
+- :ref:`i2c`
+- :ref:`Display Menu <display_menu>`
+- :doc:`/components/sensor/rotary_encoder`
+- :doc:`/components/binary_sensor/index`
 - :apiref:`lcd_menu/lcd_menu.h`
