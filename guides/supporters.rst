@@ -20,6 +20,7 @@ Contributors
 - `0x0a11c0de (@0x0a11c0de) <https://github.com/0x0a11c0de>`__
 - `Tercio Filho (@0x3333) <https://github.com/0x3333>`__
 - `2016for (@2016for) <https://github.com/2016for>`__
+- `2mikrobi (@2mikrobi) <https://github.com/2mikrobi>`__
 - `Pavel Golovin (@31337Ghost) <https://github.com/31337Ghost>`__
 - `David Martin (@3ative) <https://github.com/3ative>`__
 - `Alessandro Campolo (@a13ssandr0) <https://github.com/a13ssandr0>`__
@@ -104,6 +105,7 @@ Contributors
 - `Viktr (@BbIKTOP) <https://github.com/BbIKTOP>`__
 - `J. Nick Koston (@bdraco) <https://github.com/bdraco>`__
 - `Maxim Ocheretianko (@bearpawmaxim) <https://github.com/bearpawmaxim>`__
+- `Benjamin Freeman (@Beetix) <https://github.com/Beetix>`__
 - `Benno Pütz (@bennop) <https://github.com/bennop>`__
 - `Benoit3 (@Benoit3) <https://github.com/Benoit3>`__
 - `Ben Suffolk (@bensuffolk) <https://github.com/bensuffolk>`__
@@ -135,6 +137,7 @@ Contributors
 - `Brett Profitt (@brettp) <https://github.com/brettp>`__
 - `Brian Hanifin (@brianhanifin) <https://github.com/brianhanifin>`__
 - `brianrjones69 (@brianrjones69) <https://github.com/brianrjones69>`__
+- `Ben Brooks (@brooksben11) <https://github.com/brooksben11>`__
 - `buddydvd (@buddydvd) <https://github.com/buddydvd>`__
 - `Jon Little (@burundiocibu) <https://github.com/burundiocibu>`__
 - `buxtronix (@buxtronix) <https://github.com/buxtronix>`__
@@ -164,7 +167,6 @@ Contributors
 - `Clifford Roche (@cmroche) <https://github.com/cmroche>`__
 - `code-review-doctor (@code-review-doctor) <https://github.com/code-review-doctor>`__
 - `CODeRUS (@CODeRUS) <https://github.com/CODeRUS>`__
-- `Nick (@codewise-nicolas) <https://github.com/codewise-nicolas>`__
 - `Cody James (@codyjamestechnical) <https://github.com/codyjamestechnical>`__
 - `Colin Leroy-Mira (@colinleroy) <https://github.com/colinleroy>`__
 - `Conclusio (@Conclusio) <https://github.com/Conclusio>`__
@@ -182,6 +184,7 @@ Contributors
 - `Chris Talkington (@ctalkington) <https://github.com/ctalkington>`__
 - `Massimo Cetra (@ctrix) <https://github.com/ctrix>`__
 - `cvwillegen (@cvwillegen) <https://github.com/cvwillegen>`__
+- `Christoph Wempe (@CWempe) <https://github.com/CWempe>`__
 - `cwitting (@cwitting) <https://github.com/cwitting>`__
 - `Alex Solomaha (@CyanoFresh) <https://github.com/CyanoFresh>`__
 - `Luar Roji (@cyberplant) <https://github.com/cyberplant>`__
@@ -251,7 +254,6 @@ Contributors
 - `Drew Perttula (@drewp) <https://github.com/drewp>`__
 - `drmpf (@drmpf) <https://github.com/drmpf>`__
 - `DrRob (@DrRob) <https://github.com/DrRob>`__
-- `drug123 (@drug123) <https://github.com/drug123>`__
 - `Daniel Müller (@dtmuller) <https://github.com/dtmuller>`__
 - `dubit0 (@dubit0) <https://github.com/dubit0>`__
 - `Sergey V. DUDANOV (@dudanov) <https://github.com/dudanov>`__
@@ -458,6 +460,7 @@ Contributors
 - `Javier Peletier (@jpeletier) <https://github.com/jpeletier>`__
 - `jsuanet (@jsuanet) <https://github.com/jsuanet>`__
 - `James Szalay (@jtszalay) <https://github.com/jtszalay>`__
+- `Julie Koubová (@juliekoubova) <https://github.com/juliekoubova>`__
 - `Justahobby01 (@Justahobby01) <https://github.com/Justahobby01>`__
 - `Mike Ryan (@justfalter) <https://github.com/justfalter>`__
 - `Justin Gerhardt (@justin-gerhardt) <https://github.com/justin-gerhardt>`__
@@ -897,4 +900,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated November 10, 2022.*
+*This page was last updated November 17, 2022.*
