@@ -123,6 +123,7 @@ Beta Changes
 - Mark webserver and captive portal as not available on rp2040 :esphomepr:`4023` by :ghuser:`jesserockz`
 - Fix time components on rp2040 :esphomepr:`4024` by :ghuser:`jesserockz`
 - Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
+- Update_interval less that 1 second in QMC5883L integration :esphomepr:`4031` by :ghuser:`2mikrobi`
 
 All changes
 ^^^^^^^^^^^
@@ -195,6 +196,7 @@ All changes
 - Mark webserver and captive portal as not available on rp2040 :esphomepr:`4023` by :ghuser:`jesserockz`
 - Fix time components on rp2040 :esphomepr:`4024` by :ghuser:`jesserockz`
 - Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
+- Update_interval less that 1 second in QMC5883L integration :esphomepr:`4031` by :ghuser:`2mikrobi`
 
 Past Changelogs
 ---------------
