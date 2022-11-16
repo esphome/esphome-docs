@@ -110,8 +110,10 @@ Force to turn off OTA function because the missing authentication.
     # Example configuration entry V1
     web_server:
       port: 80
+      version: 1
       ota: false
       css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
+      css_url: ""
       js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
       js_url: ""
 
