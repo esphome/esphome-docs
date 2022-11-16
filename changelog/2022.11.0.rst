@@ -71,7 +71,13 @@ Thanks :ghuser:`numo68`.
 Preserving User WiFi Credentials
 --------------------------------
 
-To be written...
+If you purchase a device, or install ESPHome on a device that does not have Wi-Fi credentials pre-configured from YAML,
+ESPHome will now preserve any credentials entered via the :doc:`/components/captive_portal`, :doc:`/components/improv_serial`
+or :doc:`/components/esp32_improv` components after an OTA update of the firmeware is done. It is possible they can survive
+flashing via serial, but only if the flash was not erased first, which it is in the case of using ESPHome to flash.
+
+Products that use `ESP Web Tools <https://esphome.github.io/esp-web-tools>`__ are able to specify in the manifest that the flash
+should not be erased when installing the firmware and this is a way to provide updates for a device that was sold.
 
 Running ESPHome on lower powered machines
 -----------------------------------------
@@ -124,6 +130,7 @@ Beta Changes
 - Fix time components on rp2040 :esphomepr:`4024` by :ghuser:`jesserockz`
 - Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
 - Update_interval less that 1 second in QMC5883L integration :esphomepr:`4031` by :ghuser:`2mikrobi`
+- Always save user wifi credentials if non in config :esphomepr:`4036` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
@@ -197,6 +204,7 @@ All changes
 - Fix time components on rp2040 :esphomepr:`4024` by :ghuser:`jesserockz`
 - Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
 - Update_interval less that 1 second in QMC5883L integration :esphomepr:`4031` by :ghuser:`2mikrobi`
+- Always save user wifi credentials if non in config :esphomepr:`4036` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
