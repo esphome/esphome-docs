@@ -131,6 +131,7 @@ Beta Changes
 - Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
 - Update_interval less that 1 second in QMC5883L integration :esphomepr:`4031` by :ghuser:`2mikrobi`
 - Always save user wifi credentials if non in config :esphomepr:`4036` by :ghuser:`jesserockz`
+- bump nginx-light 1.18.0-6.1+deb11u2 to 1.18.0-6.1+deb11u3 :esphomepr:`4034` by :ghuser:`johnmoxley`
 
 All changes
 ^^^^^^^^^^^
@@ -205,6 +206,7 @@ All changes
 - Mark mqtt as unavailable on rp2040 :esphomepr:`4025` by :ghuser:`jesserockz`
 - Update_interval less that 1 second in QMC5883L integration :esphomepr:`4031` by :ghuser:`2mikrobi`
 - Always save user wifi credentials if non in config :esphomepr:`4036` by :ghuser:`jesserockz`
+- bump nginx-light 1.18.0-6.1+deb11u2 to 1.18.0-6.1+deb11u3 :esphomepr:`4034` by :ghuser:`johnmoxley`
 
 Past Changelogs
 ---------------
