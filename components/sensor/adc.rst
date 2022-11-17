@@ -116,7 +116,7 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
         pin: VCC
         name: "VCC Voltage"
 
-RP2040 Internal Core temperature
+RP2040 Internal Core Temperature
 --------------------------------
 
 The RP2040 has an internal temperature sensor that can be used to measure the core temperature. This sensor is not available on the GPIO pins, but is available on the internal ADC.
