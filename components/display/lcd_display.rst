@@ -11,13 +11,13 @@ with ESPHome. This integration is only for LCD displays that display individual 
 
 .. note::
 
-    Mltiple versions of the display exist, supporting different character sets: 
+    Multiple versions of the display exist, supporting different character sets: 
     
     - HD44780UA00 English-Japanese which includes katakana characters, some Greek letters and mathematical symbols
     - HD44780UA02 English-European which includes Greek, Cyrillic and Western European characters (with some diacritics)
     - HD44780UBxx custom, manufacturer-specific character sets
     
-    It is possible to add 8 user-defined characters too.
+    It is also possible to add eight user-defined characters.
 
 .. _lcd-pcf8574:
 
@@ -32,7 +32,7 @@ The communication happens via :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`
     :align: center
     :width: 75.0%
 
-    The PCF8574 chip attached to the LCD Display.
+    The PCF8574 chip attached to the LCD Display
 
 .. figure:: images/lcd-hello_world.jpg
     :align: center
@@ -63,6 +63,11 @@ Configuration variables:
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
+.. note::
+
+    If you're not seeing anything on the display, make sure you try turning the contrast potentiometer around on the 
+    PCF8574 board.
+
 .. _lcd-gpio:
 
 lcd_gpio Component
@@ -72,11 +77,11 @@ The ``lcd_gpio`` version of this component addresses the screen directly and doe
 Each of the data pins of the LCD needs a dedicated GPIO pin on the ESP. Connecting the screen this way offers 
 faster refresh, especially in conjunction with an :ref:`LCD menu <lcd_menu>`.
 
-.. figure:: images/lcd-full.jpg
+.. figure:: images/lcd_gpio.svg
     :align: center
     :width: 75.0%
 
-    LCD Display.
+    LCD Display GPIO pinout
 
 .. code-block:: yaml
 
@@ -111,6 +116,12 @@ Configuration variables:
   See :ref:`display-lcd_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+
+.. note::
+
+    If you're not seeing anything on the display, make sure you apply ``3.3V`` to the ``03`` (``VEE``) contrast control 
+    pin of the board. You can use a potentiometer to make it adjustable.
+
 
 .. _display-lcd_lambda:
 
@@ -157,10 +168,6 @@ by default which means the character at the top left.
     - platform: sntp
       id: my_time
 
-.. note::
-
-    If you're not seeing anything on the display, make sure you try turning the contrast potentiometer around.
-
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
 
@@ -203,7 +210,7 @@ defines a dot at the upper left and lower right of the character.
         lambda: |-
           it.print("Hello, world \x08 \x07!");
 
-Try this `custom Character Generator <https://omerk.github.io/lcdchargen/>`__ to design your own sybmols.
+Try this `custom character generator <https://omerk.github.io/lcdchargen/>`__ to design your own sybmols.
 
 
 Backlight Control
@@ -214,9 +221,9 @@ display lambda definition. The jumper on the PCF8574 board needs to be closed fo
 Keep in mind that the display lambda runs for every ``update_interval``, so if the backlight is turned on/off there,
 it cannot be overridden from other parts.
 
-With the ``lcd_gpio``, the backlight is lit by applying ``Vcc`` to the ``A`` pin and connect ``K`` pin to ``GND``.
-The backlight can draw more power than the microcontroller output pins can supply, so it is advisable to use
-a transistor as a switch to control the power for the backlight pins.
+With the ``lcd_gpio``, the backlight is lit by applying ``Vcc`` to the ``15`` (``BLA``) pin and connect ``16`` (``BLK``)
+pin to ``GND``. The backlight can draw more power than the microcontroller output pins can supply, so it is advisable 
+to use a transistor as a switch to control the power for the backlight pins.
 
 Below an example for a typical use-case where the backlight is turned on when a motion sensor activates and
 turns off ``90`` seconds after the last activation of the sensor.
