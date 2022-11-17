@@ -22,7 +22,7 @@ with ESPHome. This integration is only for LCD displays that display individual 
 
 
 ``lcd_pcf8574`` Component
----------------------
+-------------------------
 
 ``lcd_pcf8574`` is for LCD displays with a PCF8574 connected to all the data pins. This has the benefit that you 
 only need to connect two data wires to the ESP instead of the 6 or 10 with the :ref:`lcd-gpio`.
@@ -66,7 +66,7 @@ Configuration variables:
 .. _lcd-gpio:
 
 ``lcd_gpio`` Component
-------------------
+----------------------
 
 The ``lcd_gpio`` version of this component addresses the screen directly and does not employ a PCF8574 module.
 Each of the data pins of the LCD needs a dedicated GPIO pin on the ESP. Connecting the screen this way offers 
@@ -255,7 +255,7 @@ See Also
 - :doc:`index`
 - :doc:`/components/switch/gpio`
 - :doc:`/components/binary_sensor/gpio`
-- :ref:`lcd_menu <lcd_menu>`
+- :ref:`LCD Menu <lcd_menu>`
 - :doc:`/components/pcf8574`
 - `HD44780U (LCD-II) datasheet <https://www.sparkfun.com/datasheets/LCD/HD44780.pdf>`__
 - `Charset cheatsheet <https://user-images.githubusercontent.com/1550668/173113487-9c98e866-8ee4-4a3c-a83f-61fe62057c5f.png>`__
