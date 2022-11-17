@@ -21,8 +21,8 @@ with ESPHome. This integration is only for LCD displays that display individual 
     It is possible to add 8 user-defined characters too.
 
 
-``lcd_pcf8574`` Component
--------------------------
+lcd_pcf8574 Component
+---------------------
 
 ``lcd_pcf8574`` is for LCD displays with a PCF8574 connected to all the data pins. This has the benefit that you 
 only need to connect two data wires to the ESP instead of the 6 or 10 with the :ref:`lcd-gpio`.
@@ -65,8 +65,8 @@ Configuration variables:
 
 .. _lcd-gpio:
 
-``lcd_gpio`` Component
-----------------------
+lcd_gpio Component
+------------------
 
 The ``lcd_gpio`` version of this component addresses the screen directly and does not employ a PCF8574 module.
 Each of the data pins of the LCD needs a dedicated GPIO pin on the ESP. Connecting the screen this way offers 
