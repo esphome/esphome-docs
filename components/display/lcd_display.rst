@@ -5,8 +5,6 @@ Character-Based LCD Display
     :description: Instructions for setting up character-based LCD displays.
     :image: lcd.jpg
 
-.. _lcd-pcf8574:
-
 The ``lcd_pcf8574`` and ``lcd_gpio`` display components allow you to use HD44780-compatible, character-based LCD displays 
 with ESPHome. This integration is only for LCD displays that display individual characters on a screen 
 (usually 16-20 columns and 2-4 rows), and not for LCD displays that can control each pixel individually.
@@ -20,6 +18,7 @@ with ESPHome. This integration is only for LCD displays that display individual 
     
     It is possible to add 8 user-defined characters too.
 
+.. _lcd-pcf8574:
 
 lcd_pcf8574 Component
 ---------------------
