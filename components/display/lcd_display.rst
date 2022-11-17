@@ -13,8 +13,9 @@ with ESPHome. This integration is only for LCD displays that display individual 
 
     Mltiple versions of the display exist, supporting different character sets: 
     
-    - HD44780UA00 English-Japanese which includes katakana characters and some Greek letters and mathematical symbols
+    - HD44780UA00 English-Japanese which includes katakana characters, some Greek letters and mathematical symbols
     - HD44780UA02 English-European which includes Greek, Cyrillic and Western European characters (with some diacritics)
+    - HD44780UBxx custom, manufacturer-specific character sets
     
     It is possible to add 8 user-defined characters too.
 
@@ -23,9 +24,9 @@ with ESPHome. This integration is only for LCD displays that display individual 
 lcd_pcf8574 Component
 ---------------------
 
-``lcd_pcf8574`` is for LCD displays with a PCF8574 connected to all the data pins. This has the benefit that you 
-only need to connect two data wires to the ESP instead of the 6 or 10 with the :ref:`lcd-gpio`.
-As the communication with the :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`` section in your configuration.
+``lcd_pcf8574`` is for LCD displays with a PCF8574 GPIO expander module connected to all the data pins. This has the 
+benefit that you only need to connect two data wires to the ESP instead of the six or ten as with the :ref:`lcd-gpio`.
+The communication happens via :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`` section in your configuration.
 
 .. figure:: images/lcd-pcf8574.jpg
     :align: center
@@ -46,8 +47,8 @@ As the communication with the :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`
 
     display:
       - platform: lcd_pcf8574
-        dimensions: 18x4
-        address: 0x3F
+        dimensions: 20x4
+        address: 0x27
         lambda: |-
           it.print("Hello World!");
 
@@ -82,7 +83,7 @@ faster refresh, especially in conjunction with an :ref:`LCD menu <lcd_menu>`.
     # Example configuration entry
     display:
       - platform: lcd_gpio
-        dimensions: 18x4
+        dimensions: 20x4
         data_pins:
           - D0
           - D1
@@ -163,20 +164,62 @@ by default which means the character at the top left.
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
 :ref:`display-strftime` for an introduction into the ``strftime`` time formatting.
 
+User Defined Characters
+-----------------------
+
+The LCD display has the possibility to define up to eight user defined characters occupying the characters
+``0`` to ``7`` and mirrored at ``8`` to ``15`` (i.e. ``\x08`` can be used instead of the ``\0`` that can
+be problematic in strings). Each character has eight lines of five bits, with the first line on the top
+and the most significant bit on the left, meaning that ``0b10000`` followed by six zeros and a ``0b00001``
+defines a dot at the upper left and lower right of the character. 
+
+.. code-block:: yaml
+
+    display:
+      - platform: lcd_pcf8574
+        id: mydisplay
+        # ...
+        user_characters:
+          - position: 0
+            data:
+              - 0b00000
+              - 0b01010
+              - 0b00000
+              - 0b00100
+              - 0b00100
+              - 0b10001
+              - 0b01110
+              - 0b00000
+          - position: 7
+            data:
+              - 0b00000
+              - 0b01010
+              - 0b00000
+              - 0b00100
+              - 0b00100
+              - 0b00000
+              - 0b01110
+              - 0b10001
+        lambda: |-
+          it.print("Hello, world \x08 \x07!");
+
+Try this `custom Character Generator <https://omerk.github.io/lcdchargen/>`__ to design your own sybmols.
+
+
 Backlight Control
 -----------------
-
-For the GPIO based display, the backlight is lit by applying Vcc to the A pin and K connected to ground.
-The backlight can draw more power than the microcontroller output pins can supply, so it is advisable to use
-a transistor as a switch to control the power for the backlight pins.
 
 With the ``lcd_pcf8574`` the backlight can be turned on by ``it.backlight()`` and off by ``it.no_backlight()`` in the
 display lambda definition. The jumper on the PCF8574 board needs to be closed for the backlight control to work.
 Keep in mind that the display lambda runs for every ``update_interval``, so if the backlight is turned on/off there,
 it cannot be overridden from other parts.
 
-Here is one solution for a typical use-case where the backlight is turned on after a motion sensor activates and
-turns off 90 seconds after the last activation of the sensor.
+With the ``lcd_gpio``, the backlight is lit by applying ``Vcc`` to the ``A`` pin and connect ``K`` pin to ``GND``.
+The backlight can draw more power than the microcontroller output pins can supply, so it is advisable to use
+a transistor as a switch to control the power for the backlight pins.
+
+Below an example for a typical use-case where the backlight is turned on when a motion sensor activates and
+turns off ``90`` seconds after the last activation of the sensor.
 
 .. code-block:: yaml
 
@@ -209,44 +252,6 @@ turns off 90 seconds after the last activation of the sensor.
             - lambda: |-
                 id(mydisplay).no_backlight();
 
-User Defined Characters
------------------------
-
-The LCD display has the possibility to define up to eight user defined characters occupying the characters
-``0`` to ``7`` and mirrored at ``8`` to ``15`` (i.e. ``\x08`` can be used instead of the ``\0`` that can
-be problematic in strings). Each character has eight lines of five bits, with the first line on the top
-and the most significant bit on the left, meaning that ``0b10000`` followed by six zeros and a ``0b00001``
-defines a dot at the upper left and lower right of the character.
-
-.. code-block:: yaml
-
-    display:
-      - platform: lcd_pcf8574
-        id: mydisplay
-        # ...
-        user_characters:
-          - position: 0
-            data:
-              - 0b00000
-              - 0b01010
-              - 0b00000
-              - 0b00100
-              - 0b00100
-              - 0b10001
-              - 0b01110
-              - 0b00000
-          - position: 7
-            data:
-              - 0b00000
-              - 0b01010
-              - 0b00000
-              - 0b00100
-              - 0b00100
-              - 0b00000
-              - 0b01110
-              - 0b10001
-        lambda: |-
-          it.print("Hello, world \x08 \x07!");
 
 See Also
 --------
@@ -258,6 +263,7 @@ See Also
 - :doc:`/components/pcf8574`
 - `HD44780U (LCD-II) datasheet <https://www.sparkfun.com/datasheets/LCD/HD44780.pdf>`__
 - `Charset cheatsheet <https://user-images.githubusercontent.com/1550668/173113487-9c98e866-8ee4-4a3c-a83f-61fe62057c5f.png>`__
+- `Custom Character Generator <https://omerk.github.io/lcdchargen/>`__
 - `Arduino LiquidCrystal Library <https://www.arduino.cc/en/Reference/LiquidCrystal>`__
 - :apiref:`lcd_base/lcd_display.h`
 - :ghedit:`Edit`
