@@ -7,10 +7,10 @@ uFire Isolated EC sensor
     :keywords: ufire ec sensor temperature esphome
 
 The ``ufire_ec`` sensor platform allows you to use your uFire Isolated EC sensor
-with ESPHome. The :ref:`I²C Bus <i2c>` is
-required to be set up in your configuration for this sensor to work.
-It required also to have an temperature sensor in the liquit tank; this can
-be on the same board or external sensor linked to the uFire EC configuration.
+with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your
+configuration for this sensor to work. It requires also to have a temperature
+sensor in the liquid tank; this can be on the same board or an external sensor
+linked to the uFire EC configuration.
 
 .. figure:: images/ufire_ec.png
     :align: center
