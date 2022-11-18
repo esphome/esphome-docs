@@ -91,12 +91,16 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **display_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the LCD display.
-- **mark_back**, **mark_selected**, **mark_editing**, **mark_submenu** (*Optional*, 0-255):
-  Code of the character used to mark menu items going back one level, a selected one,
-  the editing mode and item leading to a submenu. Defaults to ``0x5e`` (``^``), ``0x3e`` (``>``),
-  ``0x2a`` (``*``) and ``0x7e`` (a right arrow). As the character set lacks a good looking
-  up arrow, using a user defined character is advisable (use ``8`` to reference one at
-  position ``0`` to avoid problems with zeros in a string).
+- **mark_back** (*Optional*, 0-255): Code of the character used to mark menu items going back
+  one level. As the character set lacks a good looking up arrow, using a user defined character
+  is advisable (use ``8`` to reference one at  position ``0`` to avoid problems with zeros
+  in a string). Defaults to ``0x5e`` (``^``).
+- **mark_selected** (*Optional*, 0-255): Code of the character used to mark menu item selected.
+  Defaults to ``0x3e`` (``>``).
+- **mark_editing** (*Optional*, 0-255): Code of the character used to mark menu item editing mode.
+  Defaults to ``0x2a`` (``*``).
+- **mark_submenu** (*Optional*, 0-255): Code of the character used to mark menu item leading to a
+  submenu. Defaults to ``0x7e`` (a right arrow).
 
 The rest of the configuration is described in the :ref:`Display Menu <display_menu>` component.
 The menu inherits the dimensions of the connected LCD display and uses the whole area.

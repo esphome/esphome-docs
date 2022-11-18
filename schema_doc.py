@@ -183,6 +183,17 @@ CUSTOM_DOCS = {
     "components/display/ssd1327": {"_LoadSchema": False},
     "components/display/ssd1351": {"_LoadSchema": False},
     "components/copy": {"_LoadSchema": False},
+    "components/display_menu/index": {
+        "Display Menu": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA",
+        "Select": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.select",
+        "Menu": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.menu",
+        "Number": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.number",
+        "Switch": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.switch",
+        "Custom": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.custom",
+    },
+    "components/display_menu/lcd_menu": {
+        "LCD Menu": "lcd_menu.schemas.CONFIG_SCHEMA",
+    },
 }
 
 
@@ -226,6 +237,18 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
                     self.json_component = self.file_schema[self.component]["schemas"][
                         "CONFIG_SCHEMA"
                     ]
+            elif self.path[1] == "display_menu":  # weird folder naming
+                if self.path[2] == "index":
+                    # weird component name mismatch
+                    self.component = "display_menu_base"
+                else:
+                    self.component = self.path[2]
+
+                    self.file_schema = get_component_file(app, self.component)
+                    self.json_component = self.file_schema[self.component]["schemas"][
+                        "CONFIG_SCHEMA"
+                    ]
+
             else:  # sub component, e.g. output/esp8266_pwm
 
                 # components here might have a core / hub, eg. dallas, ads1115
@@ -288,9 +311,10 @@ class SchemaGeneratorVisitor(nodes.NodeVisitor):
             elif componentName in core["platforms"]:
                 core["platforms"][componentName]["docs"] = description
             else:
-                raise ValueError(
-                    "Cannot set description for component " + componentName
-                )
+                if componentName != "display_menu_base":
+                    raise ValueError(
+                        "Cannot set description for component " + componentName
+                    )
 
     def visit_document(self, node):
         # ESPHome page docs follows strict formatting guidelines which allows
@@ -1156,8 +1180,8 @@ def handle_component(app, doctree, docname):
     elif docname not in CUSTOM_DOCS:
         return
 
-    v = SchemaGeneratorVisitor(app, doctree, docname)
     try:
+        v = SchemaGeneratorVisitor(app, doctree, docname)
         doctree.walkabout(v)
     except Exception as e:
         err_str = f"In {docname}.rst: {str(e)}"
