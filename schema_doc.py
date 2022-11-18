@@ -185,11 +185,11 @@ CUSTOM_DOCS = {
     "components/copy": {"_LoadSchema": False},
     "components/display_menu/index": {
         "Display Menu": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA",
-        "Select": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.select",
-        "Menu": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.menu",
-        "Number": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.number",
-        "Switch": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.switch",
-        "Custom": "display_menu_base.schemas.DISPLAY_MENU_BASE_SCHEMA.schema.config_vars.items.types.custom",
+        "Select": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.select",
+        "Menu": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.menu",
+        "Number": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.number",
+        "Switch": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.switch",
+        "Custom": "display_menu_base.schemas.MENU_TYPES.schema.config_vars.items.types.custom",
     },
     "components/display_menu/lcd_menu": {
         "LCD Menu": "lcd_menu.schemas.CONFIG_SCHEMA",
