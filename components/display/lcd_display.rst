@@ -105,9 +105,9 @@ Configuration variables:
 - **dimensions** (**Required**, string): The dimensions of the display with ``COLUMNSxROWS``. If you're not
   sure, power the display on, turn contrast high up and just count them.
 - **data_pins** (**Required**, list of :ref:`pins <config-pin_schema>`): A list of the data pins you
-  have hooked up to the LCD. The list can either be 4 items long (when you have connected all 8 data pins), or
-  8 items long (if you're operating in 4-bit mode with either the first 4 data pins connected or the last 4 data
-  pins connected).
+  have hooked up to the LCD. The list can either be 4 items long (operating in 4-bit mode with 
+  either the first 4 data pins connected or the last 4 data pins connected), or 8 items long (when you have 
+  connected all 8 data pins).
 - **enable_pin** (**Required**, :ref:`pin <config-pin_schema>`): The pin you have ``E`` (``06``) hooked up to.
 - **rs_pin** (**Required**, :ref:`pin <config-pin_schema>`): The pin you have ``RS`` (``04``) hooked up to.
 - **rw_pin** (*Optional*, :ref:`pin <config-pin_schema>`): Optionally set the pin you have ``R/W`` (``05``) hooked up to. You can also just permanently connect that pin to ``GND``.
