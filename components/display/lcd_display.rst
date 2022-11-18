@@ -2,12 +2,16 @@ Character-Based LCD Display
 ===========================
 
 .. seo::
-    :description: Instructions for setting up character-based LCD displays.
+    :description: Instructions for setting up character-based HD44780 LCD displays.
     :image: lcd.jpg
 
 The ``lcd_pcf8574`` and ``lcd_gpio`` display components allow you to use HD44780-compatible, character-based LCD displays 
 with ESPHome. This integration is only for LCD displays that display individual characters on a screen 
-(usually 16-20 columns and 2-4 rows), and not for LCD displays that can control each pixel individually.
+(usually 8-40 columns and 2-4 rows), and not for LCD displays that can control each pixel individually.
+
+.. figure:: images/lcd-hello_world.jpg
+    :align: center
+    :width: 60.0%
 
 .. note::
 
@@ -32,11 +36,7 @@ The communication happens via :ref:`I²C Bus <i2c>`, you need to have an ``i2c:`
     :align: center
     :width: 75.0%
 
-    The PCF8574 chip attached to the LCD Display
-
-.. figure:: images/lcd-hello_world.jpg
-    :align: center
-    :width: 60.0%
+    LCD Display with a PCF8574 board attached on the back
 
 .. code-block:: yaml
 
@@ -65,7 +65,7 @@ Configuration variables:
 
 .. note::
 
-    If you're not seeing anything on the display, make sure you try turning the contrast potentiometer around on the 
+    If you're not seeing anything on the display, try turning the contrast potentiometer around on the 
     PCF8574 board.
 
 .. _lcd-gpio:
@@ -73,9 +73,9 @@ Configuration variables:
 lcd_gpio Component
 ------------------
 
-The ``lcd_gpio`` version of this component addresses the screen directly and does not employ a PCF8574 module.
+The ``lcd_gpio`` version of this component addresses the screen directly and does not employ a GPIO expander module.
 Each of the data pins of the LCD needs a dedicated GPIO pin on the ESP. Connecting the screen this way offers 
-faster refresh, especially in conjunction with an :ref:`LCD menu <lcd_menu>`.
+faster refresh, especially in conjunction with an :ref:`LCD Menu <lcd_menu>`.
 
 .. figure:: images/lcd_gpio.svg
     :align: center
@@ -103,15 +103,14 @@ Configuration variables:
 ************************
 
 - **dimensions** (**Required**, string): The dimensions of the display with ``COLUMNSxROWS``. If you're not
-  sure, power the display up and just count them.
-- **data_pins** (**Required**, list of :ref:`Pin Schemas <config-pin_schema>`): A list of the data pins you
-  have hooked up to the LCD. The list can either be 8 items long (when you have connected all 8 data pins), or
-  4 items long (if you're operating in 4-bit mode with either the first 4 data pins connected or the last 4 data
+  sure, power the display on, turn contrast high up and just count them.
+- **data_pins** (**Required**, list of :ref:`pins <config-pin_schema>`): A list of the data pins you
+  have hooked up to the LCD. The list can either be 4 items long (when you have connected all 8 data pins), or
+  8 items long (if you're operating in 4-bit mode with either the first 4 data pins connected or the last 4 data
   pins connected).
-- **enable_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have ``EN`` hooked up to.
-- **rs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The pin you have ``RS`` hooked up to.
-- **rw_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Optionally set the pin you have ``RW`` hooked up to.
-  You can also just permanently connect that pin to GND.
+- **enable_pin** (**Required**, :ref:`pin <config-pin_schema>`): The pin you have ``E`` (``06``) hooked up to.
+- **rs_pin** (**Required**, :ref:`pin <config-pin_schema>`): The pin you have ``RS`` (``04``) hooked up to.
+- **rw_pin** (*Optional*, :ref:`pin <config-pin_schema>`): Optionally set the pin you have ``R/W`` (``05``) hooked up to. You can also just permanently connect that pin to ``GND``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
   See :ref:`display-lcd_lambda` for more information.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to re-draw the screen. Defaults to ``1s``.
@@ -119,7 +118,7 @@ Configuration variables:
 
 .. note::
 
-    If you're not seeing anything on the display, make sure you apply ``3.3V`` to the ``03`` (``VEE``) contrast control 
+    If you're not seeing anything on the display, make sure you apply ``3.3V`` to the ``VEE`` (``03``) contrast control 
     pin of the board. You can use a potentiometer to make it adjustable.
 
 
@@ -153,7 +152,7 @@ by default which means the character at the top left.
 
           // Let's write a sensor value (let's assume it's 42.1)
           it.printf("%.1f", id(my_sensor).state);
-          // Result: "42.1" (the dot will appear on the "2" segment)
+          // Result: "42.1" (the dot will appear on the segment showing "2")
 
           // Print a right-padded sensor value with 0 digits after the decimal
           it.printf("Sensor value: %8.0f", id(my_sensor).state);
@@ -165,7 +164,7 @@ by default which means the character at the top left.
 
     # (Optional) For displaying time:
     time:
-    - platform: sntp
+    - platform: homeassistant
       id: my_time
 
 Please see :ref:`display-printf` for a quick introduction into the ``printf`` formatting rules and
@@ -221,7 +220,7 @@ display lambda definition. The jumper on the PCF8574 board needs to be closed fo
 Keep in mind that the display lambda runs for every ``update_interval``, so if the backlight is turned on/off there,
 it cannot be overridden from other parts.
 
-With the ``lcd_gpio``, the backlight is lit by applying ``Vcc`` to the ``15`` (``BLA``) pin and connect ``16`` (``BLK``)
+With the ``lcd_gpio``, the backlight is lit by applying ``Vcc`` to the ``BLA`` (``15``) pin and connect ``BLK`` (``16``)
 pin to ``GND``. The backlight can draw more power than the microcontroller output pins can supply, so it is advisable 
 to use a transistor as a switch to control the power for the backlight pins.
 
