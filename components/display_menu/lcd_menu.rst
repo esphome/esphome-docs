@@ -1,3 +1,5 @@
+.. _lcd_menu:
+
 LCD Menu
 ========
 
@@ -6,14 +8,13 @@ LCD Menu
     :image: lcd_menu.png
 
 The component provides an infrastructure for setting up a hierarchical menu
-on the character based LCD displays.
-
+on character based LCD displays. This offers the user an interactive method to display
+labels, control entities like ``switch``, ``select``, ``number``  available locally on the
+ESPHome node, without the requirement of a network connection.
 
 .. figure:: images/lcd_menu.png
     :align: center
-    :width: 50.0%
-
-.. _lcd_menu:
+    :width: 60.0%
 
 Overview
 --------
@@ -23,10 +24,10 @@ a hierarchical menu primarily intended to be controlled either by a rotary encod
 with a button or a five-button joystick controller.
 
 The component needs to be connected to an instance of a character based LCD display, which
-at the moment are :ref:`lcd-pcf8574` or a :ref:`lcd-gpio`. For the best results the GPIO
-connection is recommended; the I²C one running at the speed according to the datasheet
-(usually ``100`` kHz) or even ESPHome default (``50`` kHz) will create perceptible delays especially
-when changing a numeric value using the rotary encoder. Most ``PCF8574`` adapters used with
+like :ref:`lcd-pcf8574` or :ref:`lcd-gpio`. For the best results the GPIO connection is
+recommended; the I²C one running at the speed according to the datasheet (usually ``100``
+kHz) or even ESPHome default (``50`` kHz) will create perceptible delays especially when
+changing a numeric value using the rotary encoder. Most ``PCF8574`` adapters used with
 these displays will happily run at ``200`` or even ``400`` kHz though so if you are comfortable
 accepting risks from running your hardware out of spec, you might want to try that
 in your :ref:`i2c` configuration.
@@ -41,7 +42,7 @@ in your :ref:`i2c` configuration.
         ...
         user_characters:
           - position: 0
-            data:  # back arrow
+            data:  # mark_back symbol
               - 0b00100
               - 0b01000
               - 0b11110
@@ -68,22 +69,24 @@ in your :ref:`i2c` configuration.
       items:
         ...
 
-    # Encoder to provide navigation
+    # Rotary encoder to provide navigation
     sensor:
       - platform: rotary_encoder
         ...
+        filters:
+          debounce: 30ms
         on_anticlockwise:
           - display_menu.up:
         on_clockwise:
           - display_menu.down:
 
-    # A de-bounced GPIO is used to 'click'
+    # A debounced GPIO push button is used to 'click'
     binary_sensor:
       - platform: gpio
         ...
         filters:
-          - delayed_on: 10ms
-          - delayed_off: 10ms
+          - delayed_on: 30ms
+          - delayed_off: 30ms
         on_press:
           - display_menu.enter:
 
@@ -92,7 +95,7 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **display_id** (*Optional*, :ref:`config-id`): Manually specify the ID of the LCD display.
 - **mark_back** (*Optional*, 0-255): Code of the character used to mark menu items going back
-  one level. As the character set lacks a good looking up arrow, using a user defined character
+  one level. As the character set lacks a good looking back arrow, using a user defined character
   is advisable (use ``8`` to reference one at  position ``0`` to avoid problems with zeros
   in a string). Defaults to ``0x5e`` (``^``).
 - **mark_selected** (*Optional*, 0-255): Code of the character used to mark menu item selected.
@@ -103,7 +106,7 @@ Configuration variables:
   submenu. Defaults to ``0x7e`` (a right arrow).
 
 The rest of the configuration is described in the :ref:`Display Menu <display_menu>` component.
-The menu inherits the dimensions of the connected LCD display and uses the whole area.
+The menu inherits the dimensions of the connected LCD display and uses the entire area.
 
 See Also
 --------
