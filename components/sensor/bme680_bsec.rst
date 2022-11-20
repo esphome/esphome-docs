@@ -78,10 +78,14 @@ Configuration variables:
 - **state_save_interval** (*Optional*, :ref:`config-time`): The minimum interval at which to save calibrated BSEC algorithm state to
   flash so that calibration doesn't have to start from zero on device restart. Defaults to ``6h``.
 
+- **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. Use this ID in the sensor section to refer to the correct BME680 if you have more than one device. This will also be used to refer to the calibrated BSEC algorithm state saved to flash.
+
 Sensor
 ------
 
 Configuration variables:
+
+- **bme680_bsec_id** (*Optional*, :ref:`config-id`): Sets the ID of the bme680_bsec component to refer to. Useful when working with multiple devices.
 
 - **temperature** (*Optional*): The information for the temperature sensor.
 
@@ -141,6 +145,8 @@ Accuracy can be reported in text format.
 
 Configuration variables:
 
+- **bme680_bsec_id** (*Optional*, :ref:`config-id`): Sets the ID of the bme680_bsec component to refer to. Useful when working with multiple devices.
+
 - **iaq_accuracy** (*Optional*): The information for the IAQ accuracy sensor. Shows: Stabilizing,
   Uncertain, Calibrating, Calibrated.
 
@@ -163,6 +169,13 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
 .. code-block:: yaml
 
     bme680_bsec:
+        # id
+        # -----------
+        # Identifier for this component, useful when working with multiple devices.
+        # Muse be unique, and can be used in the sensor sections to refer to the correct device.
+        # Default: auto-computed
+        id: bme680_internal
+
         # i2c address
         # -----------
         # Common values are:
@@ -200,6 +213,10 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
 
     sensor:
       - platform: bme680_bsec
+        # ID of the bme680_bsec component to use for the next sensors.
+        # Useful when working with multiple devices
+        bme680_bsec_id: bme680_internal
+
         temperature:
           # Temperature in °C
           name: "BME680 Temperature"
