@@ -183,6 +183,7 @@ Configuration variables:
         use_fahrenheit: true
 
 .. note::
+
     - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
     - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
 
