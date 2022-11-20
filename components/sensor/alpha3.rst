@@ -84,6 +84,7 @@ Notes:
     The Alpha Reader is using a different protocol, so it won't work to connect your Alpha2 with this component. 
 
 .. note::
+
     The ESP needs to be paired with the pump to read the sensors. If the devices are not paried the wireless indicator on the pump will turn on and off again.
     
     For the initial pairing you have to press the 'Connectivity button' (Wireless symbol) on the pump.
