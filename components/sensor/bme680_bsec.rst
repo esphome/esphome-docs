@@ -172,7 +172,7 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # id
         # -----------
         # Identifier for this component, useful when working with multiple devices.
-        # Muse be unique, and can be used in the sensor sections to refer to the correct device.
+        # Must be unique, and can be used in the sensor sections to refer to the correct device.
         # Default: auto-computed
         id: bme680_internal
 
