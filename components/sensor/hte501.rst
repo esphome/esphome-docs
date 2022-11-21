@@ -53,7 +53,7 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`tee501`
-- :doc:`ee8995`
+- :doc:`ee895`
 - :doc:`dht`
 - :doc:`dht12`
 - :apiref:`hte501/hte501.h`
