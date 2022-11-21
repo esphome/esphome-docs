@@ -1,5 +1,5 @@
 TEE501 Temperature Sensor
-========================
+==========================
 
 .. seo::
     :description: Instructions for setting up TEE501 temperature sensors
