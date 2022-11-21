@@ -11,7 +11,7 @@ The ``hte501`` sensor platform Temperature sensor allows you to use your TEE501
 ESPHome. The :ref:`I²C Bus <i2c>` is
 required to be set up in your configuration for this sensor to work.
 
-.. figure:: TEE501.png
+.. figure:: images/TEE501.png
     :align: center
     :width: 80.0%
 

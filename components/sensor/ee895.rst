@@ -10,7 +10,7 @@ The ``ee895`` sensor platform allows you to use your EE895 CO₂
 `E+E TEE501 <https://www.epluse.com/products/co2-measurement/co2-modules-and-probes/ee895/>`__) sensor with ESPHome.
 The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for this sensor to work. We recommend the use of pull up resistors.
 
-.. figure:: EE895.png
+.. figure:: images/EE895.png
     :align: center
     :width: 80.0%
 
