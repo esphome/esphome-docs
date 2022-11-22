@@ -16,7 +16,7 @@ states from your Home Assistant instance using the :doc:`native API </components
         name: "Weather Forecast From Home Assistant"
         entity_id: sensor.weather_forecast
 
-With Home Assistant 2021.6 or newer, entity state attributes can also be imported.
+Entity state attributes can also be imported:
 
 .. code-block:: yaml
 
@@ -34,7 +34,6 @@ Configuration variables:
 - **entity_id** (**Required**, string): The entity ID to import from Home Assistant.
 - **attribute** (*Optional*, string): The name of the state attribute to import from the
   specified entity. The entity state is used when this option is omitted.
-  Requires Home Assistant 2021.6 or newer.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Text Sensor <config-text_sensor>`.
 

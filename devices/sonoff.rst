@@ -421,5 +421,5 @@ See Also
 - :doc:`sonoff_s20`
 - :doc:`sonoff_4ch`
 - :doc:`sonoff_basic`
-- :doc:`esp8266`
+- :doc:`/components/esp8266`
 - :ghedit:`Edit`
