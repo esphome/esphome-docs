@@ -93,6 +93,10 @@ By default ESPHome tries to compile using all of the processor cores, and this a
       ...
       compile_process_limit: 1
 
+Release 2022.11.1 - November 17
+-------------------------------
+
+- Support ADC on RP2040 :esphomepr:`4040` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
