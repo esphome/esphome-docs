@@ -92,8 +92,10 @@ Configuration variables:
           version: "51.6" #<-- set version here
           update: true
     
-    There is no action required by the user to flash the STM32. There is no way to revert to stock firmware on the STM32 at the time of writing.
+    There is no action required by the user to flash the STM32. Once the Shelly has been powered by mains AC the STM32 will be flashed by the ESPHome firmware. There is no way to revert to stock firmware on the STM32 at the time of writing.
 
+    Some users have reported mixed results using CH9xxxF based serial interfaces, but found that FTDI based devices worked well for initial flashing. Be sure to pull GPIO-0 (BOOT) to ground and then tap the reset button when flashing. 
+    
 - All other options from :ref:`Light <config-light>`.
 
 
