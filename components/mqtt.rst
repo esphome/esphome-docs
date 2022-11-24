@@ -49,10 +49,14 @@ Configuration variables:
 - **discovery_prefix** (*Optional*, string): The prefix to use for Home
   Assistant’s MQTT discovery. Should not contain trailing slash.
   Defaults to ``homeassistant``.
-- **publish_component_state** (*Optional*, boolean): If components will automatically
-  publish their state through MQTT. Setting ths to ``false`` is useful if you 
-  already publish state through the ``api:`` component, but want to use 
-  the MQTT client for communicating with other devices through mqtt. Defaults to ``true``.
+- **expose_entities** (*Optional*, boolean): Whether components will be exposed 
+  over mqtt through status update messages or can be controlled through mqtt 
+  control messages. 
+  Setting this to ``false`` means entity state updates will not be published through 
+  mqtt and entities cannot be controlled through mqtt.
+  This is useful if status and control of entities is already available through 
+  the ``api:`` component, but want to use the MQTT client for interact with other 
+  devices. Defaults to ``true``.
 - **discovery_unique_id_generator** (*Optional*, string): The unique_id generator
   to use. Can be one of ``legacy`` or ``mac``. Defaults to ``legacy``, which
   generates unique_id in format ``ESP<component_type><default_object_id>``.
