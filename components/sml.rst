@@ -44,6 +44,10 @@ smart meter. If you see checksum errors in the log try changing the interface pa
       parity: NONE
       stop_bits: 1
 
+    # Make sure logging is not using the serial port
+    logger:
+      baud_rate: 0
+  
     sml:
       id: mysml
       uart_id: uart_bus
