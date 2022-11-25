@@ -152,7 +152,7 @@ From :ref:`lambdas <config-lambda>`, you can interact with the sensor in various
 
   .. code-block:: cpp
 
-      id(ph_ezo).set_calibration_point_low(10.00);
+      id(ph_ezo).set_calibration_point_high(10.00);
 
 
 - ``clear_calibration()``: Clears all calibration points.
