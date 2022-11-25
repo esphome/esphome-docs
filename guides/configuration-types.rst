@@ -179,7 +179,7 @@ by their value. The syntax for a substitution is based on bash and is case-sensi
 Two substitution passes are performed allowing compound replacements.
 
 .. code-block:: yaml
-    
+
     substitutions:
       foo: yellow
       bar_yellow_value: !secret yellow_secret
@@ -235,7 +235,7 @@ Substitute !include variables
 ESPHome's ``!include`` accepts a list of variables that can be substituted within the included file.
 
 .. code-block:: yaml
-       
+
        binary_sensor:
          - platform: gpio
            id: button1
@@ -254,16 +254,16 @@ ESPHome's ``!include`` accepts a list of variables that can be substituted withi
 
 .. code-block:: yaml
 
-       - timing: !include click-single.yaml 
-         then:
-           - mqtt.publish:
-               topic: ${device_name}/button${id}/status
-               payload: single
-       - timing: !include click-double.yaml
-         then:
-           - mqtt.publish:
-               topic: ${device_name}/button${id}/status
-               payload: double
+    - timing: !include click-single.yaml 
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: single
+    - timing: !include click-double.yaml
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: double
 
 .. _command-line-substitutions:
 
