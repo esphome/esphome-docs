@@ -26,7 +26,8 @@ Configuration variables:
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPHome network. May only contain lowercase
-  characters, digits and hyphens, and can be at most 31 characters long.
+  characters, digits and hyphens, and can be at most 24 characters long by default, or 31
+  characters long if ``name_add_mac_suffix`` is ``false``.
   See :ref:`esphome-changing_node_name`.
 
 Advanced options:
@@ -50,6 +51,10 @@ Advanced options:
 
   - **name** (**Required**, string): Name of the project
   - **version** (**Required**, string): Version of the project
+- **min_version** (*Optional*, string): The minimum ESPHome version required to compile this configuration.
+  See :ref:`esphome-min_version`.
+- **compile_process_limit** (*Optional*, int): The maximum number of simultaneous compile processes to run.
+  Defaults to the number of cores of the CPU which is also the maximum you can set.
 
 Old-style platform options, which have been moved to the platform-specific :doc:`esp32 </components/esp32>` and
 :doc:`esp8266 </components/esp8266>` sections but are still accepted here for compatibility reasons (usage not
@@ -129,11 +134,11 @@ too many WiFi/MQTT connection attempts, Over-The-Air updates being applied or th
 Configuration variables:
 
 - **priority** (*Optional*, float): The priority to execute your custom shutdown code. A higher value
-  means a high priority and in case of shutdown triggers that the code is executed **later**. 
+  means a high priority and in case of shutdown triggers that the code is executed **later**.
   Priority is used primarily for the initialization order of components. Shutdowns for these components are handled in *reverse* order, such that e.g. sensors (600) are shutdown before the hardware components (800) they depend on.
-  Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. 
+  Please note this is an ESPHome-internal value and any change will not be marked as a breaking change.
   Defaults to ``600``. For priority values refer to the list in the :ref:`esphome-on_boot` section.
-  
+
 - See :ref:`Automation <automation>`.
 
 .. _esphome-on_loop:
@@ -337,6 +342,14 @@ should be ``author_name.project_name``.
         name: "jesse.leds_party"
         version: "1.0.0"
 
+.. _esphome-min_version:
+
+Minimum ESPHome version
+-----------------------
+
+This allows YAML files to specify the minimum version of ESPHome required to compile.
+This is useful in the case of packages where a published package might use features only
+available in a newer version of ESPHome. This allows for a more friendly error message.
 
 See Also
 --------
