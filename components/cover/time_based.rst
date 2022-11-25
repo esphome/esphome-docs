@@ -64,6 +64,13 @@ Configuration variables:
     The stop button on the UI is always enabled even when the cover is stopped and each press
     on the button will cause the ``stop_action`` to be performed.
 
+.. note::
+
+    The state of the cover can be restored from flash after a node reboot, with 
+    ``esp8266_restore_from_flash: true`` option set. 
+    See :doc:`esp8266_restore_from_flash </components/esphome>` for details.
+
+
 
 See Also
 --------

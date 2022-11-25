@@ -16,7 +16,7 @@ states from your Home Assistant instance using the :doc:`native API </components
         name: "Temperature Sensor From Home Assistant"
         entity_id: sensor.temperature_sensor
 
-With Home Assistant 2021.6 or newer, entity state attributes can also be imported.
+Entity state attributes can also be imported:
 
 .. code-block:: yaml
 
@@ -32,7 +32,7 @@ With Home Assistant 2021.6 or newer, entity state attributes can also be importe
     This component is only for numeral states. If you want to import arbitrary text states
     from Home Assistant, use the :doc:`Home Assistant Text Sensor </components/text_sensor/homeassistant>`.
     
-    Albeit you might not plan to __export__ states from the node and you do not need an entity of the node
+    Albeit you might not plan to *export* states from the node and you do not need an entity of the node
     in Home Assistant, this component still requires you to register the node under Home Assistant. See:
     :doc:`Getting started with Home Assistant </guides/getting_started_hassio>`
 
@@ -46,6 +46,15 @@ Configuration variables:
   Requires Home Assistant 2021.6 or newer.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Sensor <config-sensor>`.
+
+
+.. note::
+
+    The sensors implemented by this component are by default ``internal``, to avoid exporting back them to 
+    Home Assistant. Should you still want to do that (eg. because you use ESPHome's very efficient filters
+    on them) you need to specifically configure ``internal: false``. Also, ``state_class``, ``unit_of_measurement`` 
+    are not inherited from the imported sensor so you need to set them manually.
+
 
 See Also
 --------
