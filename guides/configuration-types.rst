@@ -236,20 +236,20 @@ ESPHome's ``!include`` accepts a list of variables that can be substituted withi
 
 .. code-block:: yaml
 
-       binary_sensor:
-         - platform: gpio
-           id: button1
-           pin: GPIO16
-           on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
-         - platform: gpio
-           id: button2
-           pin: GPIO4
-           on_multi_click: !include
-             # multi-line syntax
-             file: on-multi-click.yaml
-             vars:
-               id: 2
-   
+    binary_sensor:
+      - platform: gpio
+        id: button1
+        pin: GPIO16
+        on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
+      - platform: gpio
+        id: button2
+        pin: GPIO4
+        on_multi_click: !include
+          # multi-line syntax
+          file: on-multi-click.yaml
+          vars:
+            id: 2
+            
 ``on-multi-click.yaml``:
 
 .. code-block:: yaml
