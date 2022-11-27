@@ -56,6 +56,7 @@ Blog Posts & Videos
 - `ESP32 AM312 motion sensor : light automation <https://omarghader.github.io/esp32-am312-pir-motion-sensor/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Little thermostat based on AZ-Touch hardware and esphome <https://github.com/ingbenna/AZ-Touch_esphome_thermostat/>`_ by ingbenna
 - `Converting a Carro Home DC Fan to ESPHome <https://1projectaweek.com/blog/2022/2/8/converting-a-carro-home-dc-fan-to-esp-home>`__ by `Bill Church <https://1projectaweek.com>`__
+- `Automated Coffee Bean Roaster <https://hackaday.io/project/186852-automated-coffee-bean-roaster>`__ by `brooksben11 <https://hackaday.io/brooksben11>`__
 
 Custom Components & Code
 ------------------------
@@ -118,3 +119,4 @@ Sample Configurations
 - `ESPHome floor heating controller (proportional valves) <https://github.com/nliaudat/floor-heating-controller>`__ by :ghuser:`nliaudat`
 - `ESPHome Curtain/Cover/Shutter Switch from a noname Tuya switch <https://github.com/ludrao/esphome-shutterswitch>`__ by :ghuser:`ludrao`
 - `ESPHome Free your Thomson Guardian gate controller <https://github.com/ludrao/esphome-guardian>`__ by :ghuser:`ludrao`
+- `Ambient Light Sensor tcs34725 example <https://gist.github.com/RubenKelevra/0d70d6b4c8e4bc9aedc8682865731d65>`__ by :ghuser:`RubenKelevra`

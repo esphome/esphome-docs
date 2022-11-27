@@ -85,6 +85,9 @@ Configuration variables:
   The downside is that this option connects to the first network the ESP sees, even if that network is very far away and
   better ones are available.
 
+- **enable_btm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11v BSS Transition Management support.
+- **enable_rrm** (*Optional*, bool): Only on ``esp32`` with ``esp-idf``. Enable 802.11k Radio Resource Management support.
+
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 Access Point Mode
@@ -116,6 +119,15 @@ devices name as the ssid with no password.
     wifi:
       ap:
         password: "W1PBGyrokfLz"
+
+User Entered Credentials
+------------------------
+
+Some components such as :doc:`captive_portal`, :doc:`improv_serial` and :doc:`esp32_improv`
+enable the user to send and save Wi-Fi credentials to the device. Beginning in 2022.11.0,
+as long as no credentials are set in the config file, and firmware is uploaded without erasing
+the flash (via OTA), the device will keep the saved credentials.
+
 
 .. _wifi-manual_ip:
 
