@@ -20,17 +20,16 @@ Once configured you can use sensors as described below for your projects.
 Overview
 --------
 
-Victron devices have an RS232 output which can have levels at 5V or 3.3V. ESP mdules are not
-5V tolerant thus special care must be taken when connecting an ESP module to a Victron device.
+Victron devices have an RS232 output which can have levels at 5V or 3.3V. Although ESP mdules are
+5V tolerant, it wouldn't hurt to take some care when connecting an ESP module to a Victron device.
 
-If you have a 5V device you have to use a resistor divider. If you have a 3V device you can 
-connect the VE.Direct TX from the Victron device directly to the input pin of the ESP.
+If you have a 5V device you can use a resistor divider. If you have a 3V device you can 
+connect the *VE.Direct* ``TX`` from the Victron device directly to the input pin of the ESP.
 
 .. figure:: ../images/5v_to_3v3_divider.png
     :align: center
 
     5V to 3.3V divider schematic
-
 
 Please see the Victron papers for the pinout of the JST connector on your Victron device.
 
@@ -40,6 +39,12 @@ Please see the Victron papers for the pinout of the JST connector on your Victro
     - BMV-700: 3v3   
     - MPPT all models: 5v   
     - Newer MPPTs (as now under development) will remain 5V   
+
+
+.. warning::
+
+    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    logging with the ``baud_rate: 0`` option.
 
 
 Component
