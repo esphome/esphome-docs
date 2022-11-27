@@ -125,8 +125,8 @@ See Also
 - :ref:`uart`
 - :doc:`logger`
 - :ref:`Sensor <config-sensor>`
-- `Pinout for 940-024C cable<https://pinoutguide.com/UPS/apc-rackmount-smartsig_pinout.shtml>`__
-- `Pinout for 940-1525A cable<https://pinoutguide.com/UPS/apc_0625_cable_pinout.shtml>`__
+- `Pinout for 940-024C cable <https://pinoutguide.com/UPS/apc-rackmount-smartsig_pinout.shtml>`__
+- `Pinout for 940-1525A cable <https://pinoutguide.com/UPS/apc_0625_cable_pinout.shtml>`__
 - `UPS Constants <https://kirbah.github.io/apc-ups/UPS-constants/>`__
 - `APC smart protocol <http://www.apcupsd.org/manual/manual.html#apc-smart-protocol>`__
 - :ghedit:`Edit`
