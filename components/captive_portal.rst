@@ -16,7 +16,7 @@ After 1 minute of unsuccessful WiFi connection attempts, the ESP will start a Wi
     :width: 70.0%
 
 In this web interface, you can manually override the WiFi settings of the device (please note
-this will be overwritten by any subsequent upload (unless ``keep_user_credentials`` is enabled) so make sure to also update your YAML configuration).
+this will be overwritten by any subsequent upload so make sure to also update your YAML configuration).
 
 Additionally, you can upload a new firmware file.
 
@@ -34,16 +34,10 @@ manually in your browser.
         password: !secret wifi_ap_password
 
     captive_portal:
-      # Set to true to preserve captive_portal credentials over OTA updates
-      # Note that you can't set STA credentials in YAML if you're using this
-      keep_user_credentials: false
 
 
-Configuration variables:
-------------------------
+No configuration variables.
 
-- **keep_user_credentials** (*Optional*, boolean): Do not erase WiFi credentials entered using :doc:`captive_portal` over subsequent OTA updates.
-  Note: WiFi STA credentials cannot be set in YAML when using this.
 
 See Also
 --------
