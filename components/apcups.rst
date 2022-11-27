@@ -7,6 +7,9 @@ APC Smart UPS
 The ``apcups`` component allows you to integrate an APC UPS compatible with *smartups* 
 protocol in ESPHome. It uses :ref:`UART <uart>` for communication.
 
+.. figure:: ../images/apcups.jpg
+    :align: center
+
 Once configured you can use sensors as described below for your projects.
 
 Overview
