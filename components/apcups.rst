@@ -12,6 +12,12 @@ protocol in ESPHome. It uses :ref:`UART <uart>` for communication.
 
 Once configured you can use sensors as described below for your projects.
 
+.. note::
+
+    This component supports only the APC UPS models talking the **smartups** protocol through the serial 
+    port. APC has many other models (like ``RS``, ``XS``) which only have an ``RJ50`` USB port and 
+    connect as a ``HID`` device to a host computer, these are not supported by this component.
+
 Overview
 --------
 
@@ -33,12 +39,10 @@ A level shifter module has to be used like ``HW-027``:
 
 APC UPSes communicate at ``2400`` baud (older models) or ``9200`` baud (newer models).
 
-.. note::
+.. warning::
 
-    This component supports only the APC UPS models talking the **smartups** protocol through the serial 
-    port. APC has many other models (like ``RS``, ``XS``) which only have an ``RJ50`` USB port and 
-    connect as a ``HID`` device to a host computer, these are not supported by this component.
-
+    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    logging with the ``baud_rate: 0`` option.
 
 Component
 ---------
@@ -95,25 +99,6 @@ Configuration variables:
 - **internal_temp**: Internal Temperature
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
-
-.. note::
-
-    If you are using an ESP8266, for best results, hardware serial is recommended. For hardware serial
-    only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``, or
-    ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
-
-    The disadvantage of using the hardware uart is that you can't use serial logging because 
-    the serial logs would be sent to the device and may cause errors.
-
-    Serial logging can be disabled by setting ``baud_rate: 0``.
-
-    .. code-block:: yaml
-
-        logger:
-            level: <level>
-            baud_rate: 0
-
-    See :doc:`logger` for more details
 
 
 See Also
