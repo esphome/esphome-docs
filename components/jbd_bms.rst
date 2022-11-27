@@ -32,12 +32,17 @@ UART for RS485 is an isolated port, and no such measures are necessary, thus thi
 way to connect. Please see the JBD papers for the pinout of the RS485 connector on your JBD BMS board.
 
 The device communicates at ``9600`` baud ``8N1``. To connect to ESPHome, an RS485 transceiver is needed. 
-Choose a type which does not need a trigger to send and receive data,  for example:
+Choose a type which does not need a trigger to send and receive data, for example:
 
 .. figure:: ../images/rs485.jpg
 
 The controller connects to the UART of the MCU. For ESP32 GPIO `16` to `TXD` and `17` to RXD are the 
 default ones but any other pins can be used as well. 3.3V to VCC and GND to GND.
+
+.. warning::
+
+    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    logging with the ``baud_rate: 0`` option.
 
 Component
 ---------
@@ -143,29 +148,6 @@ Configuration variables:
   - **string**:  The number of the string for which to read the balance status. Starts from ``1``
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
-
-.. note::
-
-    If you are using an ESP8266, serial logging may cause problems reading from UART. For best results, 
-    hardware serial is recommended. Software serial may not be able to read all received data if other 
-    components spend a lot of time in the ``loop()``.
-
-    For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``
-    or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
-
-    The disadvantage of using the hardware uart is that you can't use serial logging because the serial 
-    logs would be sent to the modbus device and cause errors.
-
-    Serial logging can be disabled by setting ``baud_rate: 0``.
-
-    See :doc:`logger` for more details.
-
-    .. code-block:: yaml
-
-        logger:
-            level: <level>
-            baud_rate: 0
-
 
 See Also
 --------
