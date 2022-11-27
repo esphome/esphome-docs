@@ -29,7 +29,7 @@ A level shifter module has to be used like ``HW-027``:
 .. figure:: ../images/smart-ups_hw-027.jpg
     :align: center
 
-    HW-027 level shifter module connections to a smart-compatible UPS
+    HW-027 level shifter module connections to a smart-compatible UPS's DB9 connector
 
 APC UPSes communicate at ``2400`` baud (older models) or ``9200`` baud (newer models).
 
@@ -86,7 +86,13 @@ A configured UART is required.
 Configuration variables:
 
 - **input_voltage**: Input Voltage
-- ...
+- **output_voltage**: Output Voltage
+- **power_load**: Power load
+- **line_frequency**: Line Frequency
+- **estimated_runtime**: Estimated Runtime
+- **battery_level**: Battery level
+- **battery_voltage**: Battery Voltage
+- **internal_temp**: Internal Temperature
 
 All sensors are *Optional* and support all other options from :ref:`Sensor <config-sensor>`.
 
