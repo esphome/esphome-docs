@@ -98,25 +98,22 @@ All sensors are *Optional* and support all other options from :ref:`Sensor <conf
 
 .. note::
 
-    If you are using an ESP8266, serial logging may cause problems reading from UART. For best 
-    results, hardware serial is recommended. Software serial may not be able to read all 
-    received data if other components spend a lot of time in the ``loop()``.
-
-    For hardware serial only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and 
-    ``rx_pin: GPIO3``  or ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
+    If you are using an ESP8266, for best results, hardware serial is recommended. For hardware serial
+    only a limited set of pins can be used. Either ``tx_pin: GPIO1`` and ``rx_pin: GPIO3``, or
+    ``tx_pin: GPIO15`` and ``rx_pin: GPIO13``.
 
     The disadvantage of using the hardware uart is that you can't use serial logging because 
-    the serial logs would be sent to the modbus device and cause errors.
+    the serial logs would be sent to the device and may cause errors.
 
     Serial logging can be disabled by setting ``baud_rate: 0``.
-
-    See :doc:`logger` for more details
 
     .. code-block:: yaml
 
         logger:
             level: <level>
             baud_rate: 0
+
+    See :doc:`logger` for more details
 
 
 See Also
