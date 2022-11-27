@@ -61,12 +61,7 @@ Configuration variables:
          address: 0x76
          # ...
 
-       # If a I²C multiplexer is used all I²C devices can be additionally configured like:
-       - platform: bmp280
-         multiplexer:
-           id: multiplex0
-           channel: 0
-         # ...
+For I2C multiplexing see :ref:`TCA9548A I²C multiplexer <tca9548a>`.
 
 See Also
 --------
