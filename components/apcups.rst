@@ -29,13 +29,14 @@ factory cable ``AP940-0625A`` or ``AP940-1525A`` cable. This socket accepts both
 and ``RJ45`` plugs. In case of using an ``RJ45``, ``TX`` is pin ``1``, ``RX`` is pin ``7`` and 
 ``GND`` is pin ``6`` (+ chassis ``GND`` is pin ``3``).
 
-Since this port works at standard RS232 (``5V``) levels, it cannot be connected directly to the MCU. 
-A level shifter module has to be used like ``HW-027``: 
+Since this port works at standard RS232 (``5V``) levels, and communication is bidirectional, level shifter
+module has to be used, for example like ``HW-027``: 
 
 .. figure:: ../images/smart-ups_hw-027.jpg
     :align: center
 
-    HW-027 level shifter module connections to a smart-compatible UPS's DB9 connector
+    HW-027 level shifter module connections to a 
+    smart-compatible UPS's DB9 connector
 
 APC UPSes communicate at ``2400`` baud (older models) or ``9200`` baud (newer models).
 
