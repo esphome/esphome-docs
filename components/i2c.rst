@@ -66,5 +66,6 @@ For I2C multiplexing see :ref:`TCA9548A I²C multiplexer <tca9548a>`.
 See Also
 --------
 
+- :ref:`tca9548a`
 - :apiref:`i2c/i2c.h`
 - :ghedit:`Edit`
