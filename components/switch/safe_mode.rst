@@ -33,6 +33,8 @@ See Also
 
 - :doc:`shutdown`
 - :doc:`restart`
+- :doc:`factory_reset`
+- :doc:`/components/button/safe_mode`
 - :doc:`template`
 - :apiref:`safe_mode/safe_mode_switch.h`
 - :ghedit:`Edit`
