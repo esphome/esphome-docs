@@ -69,11 +69,13 @@ Configuration variables:
 
 .. note::
 
+    The default ``accuracy_decimals`` value of the *humidity* levels is ``0``, as the DHT11 for which this was 
+    originally written does not have a higher resolution. All other DHT sensors have a higher resolution, it's worth 
+    to configure them with ``accuracy_decimals: 1``.
+    
     If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
     DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
     on the DATA pin or too long cables.
-    
-    Also, the default ``accuracy_decimals`` value of the humidity levels is set to 0, as the DHT11 for which this was originally written does not have a higher resolution. All other DHT sensors have a higher resolution, and thus should be configured with ``accuracy_decimals: 1``.
 
 See Also
 --------
