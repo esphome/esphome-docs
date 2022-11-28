@@ -18,8 +18,7 @@ This component supports the following functionality:
 
 This component uses the BLE peripheral on an ESP32, so you also need to enable
 this component. Please see the :doc:`/components/ble_client` docs for how to discover the MAC
-address of your BedJet device, or you can find the list of paired MAC addresses in
-the "DEVICE LIST" section of the BedJet mobile application.
+address of your BedJet device.
 
 Component/Hub
 -------------
