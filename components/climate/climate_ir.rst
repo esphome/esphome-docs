@@ -27,6 +27,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Daikin                                | ``daikin``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Daikin BRC<daikin_brc>`         | ``daikin_brc``      | yes                  |
++---------------------------------------+---------------------+----------------------+
 | :ref:`Delonghi<delonghi_ir>`          | ``delonghi``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Fujitsu General                       | ``fujitsu_general`` | yes                  |
@@ -102,7 +104,7 @@ This platform utilises the library's generic one-size-fits-all API, which might 
 
 Additional configuration must be specified for this platform:
 
-- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``
+- **protocol** (**Required**, string): Choose one of Arduino-HeatpumpIR's supported protcols: ``aux``, ``ballu``, ``carrier_mca``, ``carrier_nqv``, ``daikin_arc417``, ``daikin_arc480``, ``daikin``, ``electroluxyal``, ``fuego``, ``fujitsu_awyz``, ``gree``, ``greeya``, ``greeyac``, ``greeyan``, ``hisense_aud``, ``hitachi``, ``hyundai``, ``ivt``, ``midea``, ``mitsubishi_fa``, ``mitsubishi_fd``, ``mitsubishi_fe``, ``mitsubishi_heavy_fdtc``, ``mitsubishi_heavy_zj``, ``mitsubishi_heavy_zm``, ``mitsubishi_heavy_zmp``, ``mitsubishi_heavy_kj``, ``mitsubishi_msc``, ``mitsubishi_msy``, ``mitsubishi_sez``, ``panasonic_ckp``, ``panasonic_dke``, ``panasonic_jke``, ``panasonic_lke``, ``panasonic_nke``, ``samsung_aqv``, ``samsung_fjm``, ``sharp``, ``toshiba_daiseikai``, ``toshiba``, ``zhlt01``
 - **horizontal_default** (**Required**, string): What to default to when the AC unit's horizontal direction is *not* set to swing. Options are: ``left``, ``mleft``, ``middle``, ``mright``, ``right``, ``auto``
 - **vertical_default** (**Required**, string): What to default to when the AC unit's vertical direction is *not* set to swing. Options are: ``down``, ``mdown``, ``middle``, ``mup``, ``up``, ``auto``
 - **max_temperature** (**Required**, float): The maximum temperature that the AC unit supports being set to.
@@ -119,6 +121,8 @@ Additional configuration must be specified for this platform:
       ``update_interval`` must be less than 10 minutes or the ``greeyac`` device will revert to using its own
       internal temperature sensor; a value of 2 minutes seems to work well. See :doc:`/components/sensor/index`
       for more information.
+
+    - The ``zhlt01`` protocol supports multiple AC brands: Eurom, Chigo, Tristar, Tecnomaster, Elgin, Geant, Tekno, Topair, Proma, Sumikura, JBS, Turbo Air, Nakatomy, Celestial Air, Ager, Blueway, Airlux, etc.
 
 .. _ir-receiver_id:
 
@@ -180,6 +184,7 @@ Configuration variables:
 
 .. note::
 
+    - See :ref:`Transmit Midea<remote_transmitter-transmit_midea>` to send custom commands, including Follow Me mode.
     - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
 
 
@@ -208,6 +213,28 @@ Configuration variables:
         sensor: room_temperature
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
+
+.. _daikin_brc:
+
+``daikin_brc`` Climate
+-------------------------
+
+The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.
+
+
+Configuration variables:
+
+- **use_fahrenheit** (*Optional*, boolean): U.S. models of the Daikin BRC remote send the temperature in Fahrenheit, if your remote shows Fahrenheit and can not be changed to Celsius then set this to true. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: daikin_brc
+        name: "AC"
+        sensor: room_temperature
+        use_fahrenheit: true
+
 
 .. _delonghi_ir:
 

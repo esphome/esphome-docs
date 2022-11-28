@@ -6,7 +6,7 @@ Xiaomi Mijia BLE Sensors
     :image: xiaomi_mijia_logo.jpg
     :keywords: Xiaomi, Mi Home, Mijia, BLE, Bluetooth, HHCCJCY01, GCLS002, HHCCPOT002, LYWSDCGQ, LYWSD02, CGG1, LYWSD03MMC, CGD1, JQJCY01YM, MUE4094RT, WX08ZM, MHO, C401, MHOC401
 
-The ``xiaomi_ble`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the temperature, humidity, moisture, conductivity, illuminance, formaldehyde, mosquito tablet and battery level of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_ble`` listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life. Thus, if you only use such sensors, you can safely set ``active: false`` in ``esp32_ble_tracker`` configuration, to save from spamming your RF environment with useless scan requests.
+The ``xiaomi_ble`` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the :doc:`/components/esp32_ble_tracker`. This component will track, for example, the temperature, humidity, moisture, conductivity, illuminance, formaldehyde, mosquito tablet and battery level of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, ``xiaomi_ble`` listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life. Thus, if you only use such sensors, you can safely set ``scan_parameters.active: false`` in ``esp32_ble_tracker`` configuration, to save from spamming your RF environment with useless scan requests.
 
 Supported Devices
 -----------------
@@ -92,7 +92,7 @@ Configuration example:
 LYWSDCGQ
 ********
 
-Hygro thermometer, round body, segment LCD, broadcasts temperature, humidity and battery level.
+Hygro thermometer, round body, segment LCD, broadcasts temperature, humidity and battery level. This device is also known as MJ_HT_V1. In HA's native Xiaomi BLE integration, the device info page shows it as "MJ_HT_V1 (LYWSDCGQ by Xiaomi)".
 
 .. figure:: images/xiaomi_lywsdcgq.jpg
     :align: center
@@ -647,6 +647,7 @@ See Also
 
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
+- :doc:`/components/display/pvvx_mithermometer`
 - :apiref:`xiaomi_lywsd03mmc/xiaomi_ble.h`
 - :doc:`/components/ethernet`
 - :doc:`/components/bluetooth_proxy`

@@ -38,10 +38,13 @@ Configuration variables:
   - **falling_edge** (*Optional*): What to do when a falling edge is
     detected. One of ``DISABLE``, ``INCREMENT`` and ``DECREMENT``.
     Defaults to ``DISABLE``.
+    
+
+- **use_pcnt** (*Optional*, boolean): Use hardware ``PCNT`` pulse counter. Only supported on ESP32. Defaults to ``true``.
 
 - **internal_filter** (*Optional*, :ref:`config-time`): If a pulse shorter than this
-  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32,
-  this value can not be higher than ``13us``, for the ESP8266 you can use larger intervals too.
+  time is detected, it’s discarded and no pulse is counted. Defaults to ``13us``. On the ESP32, when using the hardware pulse counter
+  this value can not be higher than ``13us``, for the ESP8266 or with ``use_pcnt: false`` you can use larger intervals too.
   If you enable this, set up the ``count_mode`` to increase on the falling edge, not leading edge. For S0 pulse meters that are used to meter power consumption 50-100 ms is a reasonable value.
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the sensor. Defaults to ``60s``.
@@ -88,7 +91,7 @@ measure the total consumed energy in kWh.
 
     # Example configuration entry
     sensor:
-    - platform: pulse_counter
+      - platform: pulse_counter
         pin: 12
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
@@ -126,6 +129,43 @@ trying to match.
     This value is the raw count of pulses, and not the value you see after the filters
     are applied.
 
+Wiring
+------
+
+If you want to count pulses from a simple reed switch, the simplest way is to make
+use of the internal pull-up/pull-down resistors.
+
+You can wire the switch between a GPIO pin and GND; in this case set the pin to input, pullup and inverted:
+
+.. code-block:: yaml
+
+    # Reed switch between GPIO and GND
+    sensor:
+      - platform: pulse_counter
+        pin:
+          number: 12
+          inverted: true
+          mode:
+            input: true
+            pullup: true
+        name: "Pulse Counter"
+
+If you wire it between a GPIO pin and +3.3V, set the pin to input, pulldown:
+
+.. code-block:: yaml
+
+    # Reed switch between GPIO and +3.3V
+    sensor:
+      - platform: pulse_counter
+        pin:
+          number: 12
+          mode:
+            input: true
+            pulldown: true
+        name: "Pulse Counter"
+
+The safest way is to use GPIO + GND, as this avoids the possibility of short
+circuiting the wire by mistake.
 
 See Also
 --------

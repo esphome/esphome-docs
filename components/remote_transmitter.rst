@@ -78,6 +78,27 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_aeha:
+
+``remote_transmitter.transmit_aeha`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_aeha:
+          address: 0x1FEF
+          data: [0x1F, 0x3E, 0x06, 0x5F]
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send the command to, see dumper output for more details.
+- **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+
+AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
@@ -186,10 +207,16 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
     on_...:
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
+    
+    on_...:
+      - remote_transmitter.transmit_midea:
+          code: !lambda |-
+            // Send a FollowMe code with the current temperature.
+            return {0xA4, 0x82, 0x48, 0x7F, (uint8_t)(id(temp_sensor).state + 1)};
 
 Configuration variables:
 
-- **code** (**Required**, list): The 40-bit Midea code to send as a list of hex or integers.
+- **code** (**Required**, list, :ref:`templatable <config-templatable>`): The 40-bit Midea code to send as a list of hex or integers.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nec`` Action

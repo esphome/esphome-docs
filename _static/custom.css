@@ -186,3 +186,7 @@ div.index-shields {
     margin-left: 32px;
   }
 }
+
+.breadcrumbs li {
+  display: inline;
+}
