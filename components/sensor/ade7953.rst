@@ -15,7 +15,7 @@ ADE7953 Power Sensor
 
 The ``ade7953`` sensor platform allows you to use ADE7953 single phase energy metering ICs
 (`datasheet <https://www.analog.com/media/en/technical-documentation/data-sheets/ADE7953.pdf>`__)
-with ESPHome. These are commonly found in **Shelly  2.5** devices.
+with ESPHome. These are commonly found in **Shelly 2.5** devices.
 
 This sensor can measure voltage and has two channels for reading current and active power (A & B).
 
