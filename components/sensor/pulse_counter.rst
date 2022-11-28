@@ -91,7 +91,7 @@ measure the total consumed energy in kWh.
 
     # Example configuration entry
     sensor:
-    - platform: pulse_counter
+      - platform: pulse_counter
         pin: 12
         unit_of_measurement: 'kW'
         name: 'Power Meter House'
@@ -129,6 +129,43 @@ trying to match.
     This value is the raw count of pulses, and not the value you see after the filters
     are applied.
 
+Wiring
+------
+
+If you want to count pulses from a simple reed switch, the simplest way is to make
+use of the internal pull-up/pull-down resistors.
+
+You can wire the switch between a GPIO pin and GND; in this case set the pin to input, pullup and inverted:
+
+.. code-block:: yaml
+
+    # Reed switch between GPIO and GND
+    sensor:
+      - platform: pulse_counter
+        pin:
+          number: 12
+          inverted: true
+          mode:
+            input: true
+            pullup: true
+        name: "Pulse Counter"
+
+If you wire it between a GPIO pin and +3.3V, set the pin to input, pulldown:
+
+.. code-block:: yaml
+
+    # Reed switch between GPIO and +3.3V
+    sensor:
+      - platform: pulse_counter
+        pin:
+          number: 12
+          mode:
+            input: true
+            pulldown: true
+        name: "Pulse Counter"
+
+The safest way is to use GPIO + GND, as this avoids the possibility of short
+circuiting the wire by mistake.
 
 See Also
 --------
