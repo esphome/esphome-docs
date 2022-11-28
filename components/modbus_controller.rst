@@ -56,6 +56,9 @@ Configuration variables:
 - **command_throttle** (*Optional*, int): minimum time in milliseconds between 2 requests to the device. Default is 0ms
   Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.
 
+- **update_interval** (*Optional*, :ref:`config-time`): The interval that the sensors should be checked.
+  Defaults to 60 seconds.
+
 
 Example
 -------

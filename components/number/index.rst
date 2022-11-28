@@ -48,6 +48,9 @@ Configuration variables:
   See https://developers.home-assistant.io/docs/core/entity/number/#properties
   for a list of available options. Requires Home Assistant Core 2021.12 or newer.
   Defaults to ``"auto"``.
+- **device_class** (*Optional*, string): The device class for the number.
+  See https://developers.home-assistant.io/docs/core/entity/number/#available-device-classes
+  for a list of available options.
 
 Automations:
 
@@ -309,8 +312,8 @@ advanced stuff (see the full API Reference for more info).
       call.perform();
 
   Check the API reference for information on the methods that are available for
-  the ``NumberCall`` object. You can for example also use ``call.to_min()``
-  to set the number to its minimum value or ``call.increment(true)`` to increment
+  the ``NumberCall`` object. You can for example also use ``call.number_to_min()``
+  to set the number to its minimum value or ``call.number_increment(true)`` to increment
   the number by its step size with the cycle feature enabled.
 
 - ``.state``: Retrieve the current value of the number. Is ``NAN`` if no value has been read or set.
