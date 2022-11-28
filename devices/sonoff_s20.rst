@@ -320,6 +320,12 @@ plug it into the socket.
 
 Happy hacking!
 
+Additional notes
+--------------------
+
+With Sonoff S26 V2.6 (version may be seen on back of the board when device is open) it is bit more complicated. It has complete different layout. There are no hole soldering points marked as V, Rx, Tx and GND on board, so it may be possible to connect serial adapter, but not using header pins.
+
+
 See Also
 --------
 
