@@ -23,7 +23,7 @@ measured in decibel-milliwatts (dBm). These values are always negative and the c
         name: "WiFi Signal Sensor"
         update_interval: 60s
 
-Note: since this sensor has a static uniqueid reported to Home Assistant, you can only have one sensor of this type in a device. If you want to have another, use the :ref:`_copy_sensor`:
+To additionally display signal strength in percentage use the :ref:`copy-sensor` (it's not possible to add the same sensor twice, because it has a static ``uniqueid`` reported to Home Assistant):
 
 .. code-block:: yaml
 
