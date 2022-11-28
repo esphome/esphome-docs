@@ -64,9 +64,8 @@ Configuration variables:
 
 - **address** (*Optional*, int): Manually specify the I^2C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 
-- **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high. This value is subtracted 
-from the reading (e.g. if the sensor reads 5°C higher than expected, set this to ``5``) and also corrects the relative humidity readings.  
-  Defaults to ``0``.
+- **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high. This value is subtracted
+  from the reading (e.g. if the sensor reads 5°C higher than expected, set this to ``5``) and also corrects the relative humidity readings. Defaults to ``0``.
 
 - **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for static applications (e.g. fixed indoor devices).
   Can be ``mobile`` for mobile applications (e.g. carry-on devices).
