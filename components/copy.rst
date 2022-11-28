@@ -137,7 +137,7 @@ Configuration variables:
 - **name** (**Required**, string): The name of the select.
 - All other options from :ref:`Select <config-select>`.
 
-.. _copy_sensor:
+.. _copy-sensor:
 
 Copy Sensor
 -----------
