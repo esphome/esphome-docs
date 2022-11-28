@@ -250,10 +250,6 @@ variable ``output_component1``.
 
 Kmart also sell a `downlight option <https://www.kmart.com.au/product/mirabella-genio-wi-fi-dimmable-9w-led-downlight/2754331>`__, which works quite well however the PWM method that is used is different to the way the CWWW lights in ESPHome works.
 
-A `project by ssieb <https://github.com/ssieb/custom_components/tree/master/cwww2>`__ resolves this using a custom component.
-
-Note - this is no longer a custom component, please see https://github.com/ssieb/custom_components/issues/13
-
 .. code-block:: yaml
 
     esphome:
