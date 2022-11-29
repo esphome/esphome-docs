@@ -23,6 +23,8 @@ sensor sends out a BLE broadcast.
 
 .. figure:: images/mopeka_pro_check.jpg
     :align: center
+.. figure:: images/mopeka_pro_check_lippert.jpg
+    :align: center
 
     Mopeka Pro Check LP over BLE.
 
