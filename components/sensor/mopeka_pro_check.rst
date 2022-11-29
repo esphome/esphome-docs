@@ -25,7 +25,8 @@ sensor sends out a BLE broadcast.
 
 The original Mopeka Check sensors are not supported.
 
-Mopeka Pro Check LP over BLE.
+Mopeka Pro Check LP over BLE:
+-----------------------------
 
 .. code-block:: yaml
 
