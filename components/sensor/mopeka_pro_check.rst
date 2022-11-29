@@ -22,9 +22,7 @@ sensor sends out a BLE broadcast.
     The original Mopeka Check sensors are not supported.
 
 .. figure:: images/mopeka_pro_check.jpg
-    :align: center
 .. figure:: images/mopeka_pro_check_lippert.jpg
-    :align: center
 
     Mopeka Pro Check LP over BLE.
 
