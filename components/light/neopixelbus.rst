@@ -127,7 +127,7 @@ settings vary by method:
   - **async** (*Optional*, boolean): Use an asynchronous transfer. Defaults to ``false``. If enabled,
     the logger must be disabled even if bus 1 is used.
 
-- **esp32_i2s**: The recommended method for ESP32, but not available on the ESP32-S3 and ESP32-C3.
+- **esp32_i2s**: The recommended method for ESP32, but not available on the ESP32-S3 or ESP32-C3.
   Available on all output pins. Additional options:
 
   - **bus** (*Optional*): The I2S bus to use. The ESP32 has bus 0 or 1 available, but the ESP32-S2 only bus 0.
