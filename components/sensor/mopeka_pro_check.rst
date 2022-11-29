@@ -2,19 +2,23 @@ Mopeka Pro Check BLE Sensor
 ===========================
 
 .. seo::
-    :description: Instructions for setting up Mopeka Pro Check bluetooth-based sensors in ESPHome.
+    :description: Instructions for setting up Lippert Propane Tank Sensor or Mopeka Pro Check bluetooth-based sensors in ESPHome.
     :image: mopeka_pro_check.jpg
-    :keywords: Mopeka, Mopeka Pro Check, Mopeka Pro Plus, BLE, Bluetooth
+    :keywords: Lippert, Lippert Propane, Lippert Propane Sensor, Lippert Propane Tank Sensor, Mopeka, Mopeka Pro Check, Mopeka Pro Plus, BLE, Bluetooth
 
-The ``mopeka_pro_check`` sensor platform lets you track the output of Mopeka
-Pro Check LP and Mopeka Pro Plus Bluetooth Low Energy devices using the 
-:doc:`/components/esp32_ble_tracker`. This component will track the tank level, 
-distance, temperature, and battery percentage of a Mopeka Pro Check LP or Mopeka
-Pro Plus Residential BLE device every time the sensor sends out a BLE broadcast.
+The ``mopeka_pro_check`` sensor platform lets you track the output of Lippert 
+Propane Tank Sensors,  Mopeka Pro Check LP and Mopeka Pro Plus Bluetooth Low
+Energy devices using the :doc:`/components/esp32_ble_tracker`. This component
+will track the tank level, distance, temperature, and battery percentage of a 
+Mopeka Pro Check LP or Mopeka Pro Plus Residential BLE device every time the 
+sensor sends out a BLE broadcast.
 
 .. warning::
 
-    This sensor component only supports the Mopeka Pro Check and Pro Plus devices.
+    This sensor component only supports the following sensors:
+    - Mopeka Pro Check devices
+    - Mopeka Pro Plus devices
+    - Lippert Propane Tank Sensor, part number 2021130655
     The original Mopeka Check sensors are not supported.
 
 .. figure:: images/mopeka_pro_check.jpg
@@ -59,7 +63,7 @@ Pro Plus Residential BLE device every time the sensor sends out a BLE broadcast.
 Configuration variables:
 ------------------------
 
-- **mac_address** (**Required**, MAC Address): The MAC address of the Mopeka
+- **mac_address** (**Required**, MAC Address): The MAC address of the Lippert/Mopeka
   device.
 
 - **tank_type** (**Required**): The tank type the sensor is measuring. See below.
@@ -111,7 +115,7 @@ and the ``mopeka_ble`` component like so:
 
     mopeka_ble:
 
-After uploading, the ESP32 will immediately try to scan for BLE devices.  For Mopeka Pro
+After uploading, the ESP32 will immediately try to scan for BLE devices.  For Lippert/Mopeka Pro
 Check / Pro Plus devices you must press and hold the green sync button for it to be identified.
 For all sensors found the ``mopeka_ble`` component will print a message like this one:
 
@@ -124,7 +128,7 @@ Then just copy the address (``D3:75:F2:DC:16:91``) into a new
 
 .. note::
 
-    The ESPHome Mopeka Pro Check BLE integration listens passively to packets the Mopeka device sends by itself.
+    The ESPHome Mopeka Pro Check BLE integration listens passively to packets the Lippert/Mopeka device sends by itself.
     ESPHome therefore has no impact on the battery life of the device.
 
 See Also
@@ -133,5 +137,6 @@ See Also
 - :doc:`/components/esp32_ble_tracker`
 - :doc:`/components/sensor/index`
 - :apiref:`mopeka_pro_check/mopeka_pro_check.h`
+- `Lippert <https://store.lci1.com/lippert-propane-tank-sensor-2021130655>`__
 - `Mopeka  <https://mopeka.com/product/mopeka-check-pro-lp-sensor/>`__
 - :ghedit:`Edit`
