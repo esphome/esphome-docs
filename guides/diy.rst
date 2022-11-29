@@ -60,7 +60,7 @@ Blog Posts & Videos
 
 Custom Components & Code
 ------------------------
-
+- `Custom esp32 media player <https://www.printables.com/model/327708-esphome-nodemcu-esp32-media-player>`__ by :ghuser:`rananna`
 - `Custom RGBW Light Output emulating color temperature support <https://gist.github.com/madjam002/31cc88640efa370630fed6914fa4eb7f>`__ by :ghuser:`madjam002`
 - `Custom ESPHome native API to influxdb python script <https://gist.github.com/fpletz/d071c72e45d17ba274fd61ca7a465033#file-esphome-sensor-influxdb-py>`__ by :ghuser:`fpletz`
 - `Custom Electra HVAC climate component <https://gist.github.com/liads/c702fd4b8529991af9cd52d03b694814>`__ by :ghuser:`liads`
