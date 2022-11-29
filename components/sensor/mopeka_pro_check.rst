@@ -20,8 +20,8 @@ sensor sends out a BLE broadcast.
       + Mopeka Pro Plus devices
       + Lippert Propane Tank Sensor, part number 2021130655
 
-.. figure:: images/mopeka_pro_check.jpg  
-.. figure:: images/mopeka_pro_check_lippert.jpg  
+(images/mopeka_pro_check.jpg)
+(images/mopeka_pro_check_lippert.jpg)
 
 The original Mopeka Check sensors are not supported.
 
