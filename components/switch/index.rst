@@ -34,6 +34,7 @@ Configuration variables:
 - **restore_mode** (*Optional*): Control how the switch attempts to restore state on bootup.
   **NOTE** : Not all components consider **restore_mode**. Check the documentation of the specific component to understand how
   this feature works for a particular component or device.
+  **NOTE** : In order for this feature to work, the ``preferences`` component must be enabled, see :ref:`preferences-flash_write_interval` (TL;DR: Add "``preferences:``" to your config root).
   For restoring on ESP8266s, also see ``restore_from_flash`` in the
   :doc:`esp8266 section </components/esp8266>`.
 
