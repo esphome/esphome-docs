@@ -63,7 +63,7 @@ Configuration variables:
   - ``Adafruit RR 280x240`` (round-rectangular display -- some pixels are "deleted" from corners to form rounded shape)
   - ``Custom`` (see details below)
 
-- **cs_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
+- **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
 - **height** (*Optional*, int): When ``model`` is set to "Custom", use this to specify the ``height`` of the display

@@ -7,10 +7,10 @@ uFire Isolated EC sensor
     :keywords: ufire ec sensor temperature esphome
 
 The ``ufire_ec`` sensor platform allows you to use your uFire Isolated EC sensor
-with ESPHome. The :ref:`I²C Bus <i2c>` is
-required to be set up in your configuration for this sensor to work.
-It required also to have an temperature sensor in the liquit tank; this can
-be on the same board or external sensor linked to the uFire EC configuration.
+with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your
+configuration for this sensor to work. It requires also to have a temperature
+sensor in the liquid tank; this can be on the same board or an external sensor
+linked to the uFire EC configuration.
 
 .. figure:: images/ufire_ec.png
     :align: center
@@ -38,14 +38,12 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
 - **temperature_sensor** (*Optional*, :ref:`config-id`): Set the ID of the temperature
   sensor. Only needed if the onboard temperature sensor is not used.
-- **ec** (*Optional*, :ref:`Sensor <config-sensor>`): Set the EC sensor configuration.
-- **temperature** (*Optional*, :ref:`Sensor <config-sensor>`): Set the onboard temperature sensor configuration.
-  Can't be used together with ``temperature_sensor``.
+- **ec** (*Optional*, :ref:`Sensor <config-sensor>`): Set the EC sensor configuration. All options from :ref:`Sensor <config-sensor>`.
+- **temperature** (*Optional*, :ref:`Sensor <config-sensor>`): Set the onboard temperature sensor configuration. All options from :ref:`Sensor <config-sensor>`.
 - **temperature_compensation** (*Optional*, float): Set the temperature compensation for the EC
   sensor. Defaults to ``21.0``.
 - **temperature_coefficient** (*Optional*, float): Set the temperature coefficient for the EC
   sensor. Defaults to ``0.019``.
-- All other options from :ref:`Sensor <config-sensor>`.
 
 .. _sensor-ufire_ec-calibrate_probe_action:
 
@@ -76,7 +74,7 @@ Configuration options:
 - **solution** (**Required**, float): Solution reference EC value.
 - **temperature** (**Required**, float): Solution current temperature.
 
-.. _sensor-ufire_ec-reset:
+.. _sensor-ufire_ec-reset_action:
 
 ``sensor.ufire_ec.reset`` Action
 --------------------------------
