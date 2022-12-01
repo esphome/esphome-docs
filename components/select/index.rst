@@ -334,6 +334,30 @@ advanced stuff (see the full API Reference for more info).
       if (id(my_select).has_index(index)) {
         ESP_LOGI("main", "Select has index offset %d", index);
       }
+      
+      
+Examples      
+--------
+
+Bacis usage of Select Component. Setting up three options and set component state to selected option value.
+
+.. code-block:: yaml
+
+    select:
+      - platform: template
+        name: Mode
+        id: mode
+        options: 
+         - "Option1"
+         - "Option2"
+         - "Option3"
+        set_action: 
+          - logger.log:
+              format: "Chosen option: %s"
+              args: ["x.c_str()"]
+          - lambda: |-
+              id(mode).state = x.c_str();
+
 
 See Also
 --------
