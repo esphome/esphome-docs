@@ -442,6 +442,7 @@ Output Components
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
+    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
     Template Output, components/output/template, description.svg
 
 Light Components
