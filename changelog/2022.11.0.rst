@@ -107,6 +107,13 @@ Release 2022.11.2 - November 23
 - Avoid 128bit uuid loop for 16/32 bit uuids :esphomepr:`4068` by :ghuser:`bdraco`
 - Avoid creating a new espbt::ESPBTUUID each loop when registering for notify :esphomepr:`4069` by :ghuser:`bdraco`
 
+Release 2022.11.3 - November 24
+-------------------------------
+
+- fix missing library :esphomepr:`4051` by :ghuser:`ssieb`
+- Fix units for refresh: never :esphomepr:`4048` by :ghuser:`bkaufx`
+- Don't convert climate temperature step :esphomepr:`4082` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
