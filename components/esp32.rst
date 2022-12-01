@@ -27,7 +27,37 @@ Configuration variables:
   ``esp32s2``, ``esp32s3``, ``esp32c3`` and ``esp32h2``. Defaults to the variant that is detected from the board, if
   a board that's unknown to ESPHome is used, this option is mandatory.
 
+.. note::
+
+    Support for the ESP32-S2 and ESP32-C3 is still in development and there could be issues.
+
 .. _esp32-arduino_framework:
+
+GPIO Pin Numbering
+------------------
+
+The ESP32 boards often use the internal GPIO pin numbering on the board, this means that
+you don't have to worry about other kinds of pin numberings, yay!
+
+Some notes about the pins on the ESP32:
+
+- ``GPIO0`` is used to determine the boot mode on startup. It should therefore not be pulled LOW
+  on startup to avoid booting into flash mode. You can, however, still use this as an output pin.
+- ``GPIO34``-``GPIO39`` can not be used as outputs (even though GPIO stands for "general purpose input
+  **output**"...).
+- ``GPIO32``-``GPIO39``: These pins can be used with the :doc:`/components/sensor/adc` to measure
+  voltages.
+- ``GPIO2``: This pin is connected to the blue LED on the board. It also supports
+  the :doc:`touch pad binary sensor </components/binary_sensor/esp32_touch>` like some other
+  pins.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    binary_sensor:
+      - platform: gpio
+        name: "Pin GPIO23"
+        pin: GPIO23
 
 Arduino framework
 -----------------

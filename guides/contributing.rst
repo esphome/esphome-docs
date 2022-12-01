@@ -681,32 +681,6 @@ Standard for the esphome-core codebase:
 
 
 
-ESPHome via Gitpod
-******************
-
-An alternative to a local checkout and build is doing so via `Gitpod <https://www.gitpod.io>`__.
-ESPHome will be installed for you and the dashboard wizard will run on startup.
-
-You can also run the steps manually.
-
-.. code-block:: bash
-
-    python setup.py install
-
-To start a command line wizard, run
-
-.. code-block:: bash
-
-    python esphome my_configuration.yaml wizard
-
-To get the web-based dashboard, use
-
-.. code-block:: bash
-
-    python esphome my_configuration.yaml dashboard
-
-and allow exposing the web app at port 6052.
-
 See Also
 --------
 
