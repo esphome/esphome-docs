@@ -16,6 +16,10 @@ restricting the update rate. A sigma-delta output can be updated during each cyc
 
     Comparison between a PWM with a period of 10s and 1s steps and a sigma-delta output with 1s steps
 
+This component can be used as a drop-in replacement for
+:doc:`/components/output/slow_pwm` by changing the ``platform`` to
+``sigma_delta_output`` and renaming ``period`` to ``update_interval``.
+
 .. code-block:: yaml
 
     # Example configuration entry
@@ -30,5 +34,9 @@ Configuration variables:
 
 - **update_interval** (**Required**, :ref:`Time <config-time>`): The interval
   at which the output is recalculated.
-- **output** (**Required**, :ref:`config-id`): The ID of an :doc:`/components/output/index`.
+- **output** (*Optional*, :ref:`config-id`): The ID of an :doc:`/components/output/index`.
+- **pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin to pulse.
+- **state_change_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is switched. If a lambda is used the boolean ``state`` parameter holds the new status.
+- **turn_on_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned on. Can be used to control for example a switch or output component.
+- **turn_off_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned off. ``turn_on_action`` and ``turn_off_action`` must be configured together.
 - All options from :ref:`Output <config-output>`.
