@@ -69,6 +69,8 @@ Configuration example:
           name: "WavePlus CO2"
         tvoc:
           name: "WavePlus VOC"
+        illuminance:
+          name: "WavePlus Illuminance"
 
     ble_client:
       - mac_address: 01:02:03:04:05:06
