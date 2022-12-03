@@ -27,7 +27,7 @@ The :ref:`I²C Bus <i2c>` is required to be set up in your configuration for thi
 
     # Example configuration entry
     sensor:
-    - platform: sgp4x
+      - platform: sgp4x
         voc:
           name: "VOC Index"
         nox:
