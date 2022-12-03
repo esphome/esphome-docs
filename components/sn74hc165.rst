@@ -1,0 +1,55 @@
+SN74HC165 I/O Expander (shift register)
+=======================================
+
+.. seo::
+    :description: Instructions for setting up SN74HC165 shift registers as digital port expanders in ESPHome.
+
+The SN74HC165 component allows you to use SN74HC165 shift registers as I/O expanders (Input only, use SN74HC595 for outputs)
+(`datasheet <https://www.ti.com/lit/ds/symlink/sn74hc165.pdf>`__) in ESPHome. It uses 3 wires for communication.
+
+Once configured, you can use any of the 8 pins for your projects. Up-to 4 shift registers can be daisy-chained
+to provide more pins, without using more GPIO pins on the controller.
+
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sn74hc165:
+      - id: 'sn74hc165_hub'
+        data_pin: D5
+        clock_pin: D8
+        latch_pin: D7
+        sr_count: 2
+        scan_rate: 10
+
+    # Individual inputs
+    binary_sensor:
+      - platform: sn74hc165
+        name: "SN74HC165 Pin #0"
+        pin: 0
+
+Configuration variables:
+************************
+
+- **id** (**Required**, :ref:`config-id`): The id to use for this SN74HC165 component.
+- **data_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 SER (SD) input.
+- **clock_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 SRCLK (SH_CP) pin
+- **latch_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): Pin connected to SN74HC165 RCLK (ST_CP) pin
+- **sr_count** (*Optional*, int): Number of daisy-chained shift registers, up-to 4. Defaults to ``1``.
+- **scan_rate** (*Optional*): Rate the SN74HC165 is scanned. Defaults to 100 mS
+
+
+Pin configuration variables:
+****************************
+
+- **SN74HC165** (**Required**, :ref:`config-id`): The id of the SN74HC165 component of the pin.
+- **pin** (**Required**, int): The pin number.
+
+
+See Also
+--------
+
+
+- :ref:`sensor-filters`
+- :apiref:`SN74HC165/SN74HC165.h`
+- :ghedit:`Edit`
