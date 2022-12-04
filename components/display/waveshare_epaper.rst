@@ -79,6 +79,7 @@ Configuration variables:
   - ``1.54in``
   - ``1.54inv2``
   - ``2.13in`` - not tested
+  - ``2.13in-mhet-tricolor`` - MH-ET Live 2.13 B/W/R and B/W/Y
   - ``2.13in-ttgo`` - T5_V2.3 tested. Also works for Wemos D1 Mini ePaper Shield 2.13 1.0.0 "LOLIN"
   - ``2.13in-ttgo-b73`` - T5_V2.3 with B73 display tested
   - ``2.13in-ttgo-b74`` - T5_V2.3.1 with B74 display tested
