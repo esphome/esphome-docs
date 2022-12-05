@@ -114,6 +114,13 @@ Release 2022.11.3 - November 24
 - Fix units for refresh: never :esphomepr:`4048` by :ghuser:`bkaufx`
 - Don't convert climate temperature step :esphomepr:`4082` by :ghuser:`jesserockz`
 
+Release 2022.11.4 - December 1
+------------------------------
+
+- current-based cover fix copy paste mistake :esphomepr:`4124` by :ghuser:`jesserockz`
+- Dashboard fix relative url after login :esphomepr:`4103` by :ghuser:`ngraziano`
+- Fix queuing scripts not compiling :esphomepr:`4077` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
