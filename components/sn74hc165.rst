@@ -8,7 +8,8 @@ The SN74HC165 component allows you to use SN74HC165 shift registers as I/O expan
 (`datasheet <https://www.ti.com/lit/ds/symlink/sn74hc165.pdf>`__) in ESPHome. It uses 3 wires (optionally 4) for communication.
 
 Once configured, you can use any of the 8 pins for your projects. Up-to 256 shift registers can be daisy-chained
-to provide more pins, without using more GPIO pins on the controller.
+to provide more pins, without using more GPIO pins on the controller. They are linked by connecting pin Q of the closer
+shift register to the pin QH of the next shift register.
 
 
 .. code-block:: yaml
