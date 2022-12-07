@@ -191,11 +191,11 @@ Configuration variables:
   - **run_duration_number** (*Optional*, *string*): The name of the number component that should be presented to the
     front end (Home Assistant) to enable control of the valve's ``run_duration`` value. May not be used with
     ``run_duration``. See also :ref:`config-number`.
-  - **run_duration** (**Required**, :ref:`config-time`): The duration in seconds this valve should
-    remain on/open after it is activated. When a given valve is activated, the controller's multiplier value
-    is multiplied by this value to determine the actual run duration for the valve, thus allowing the run
-    duration for all valves/zones to be proportionally increased or decreased as desired. May not be used with
-    ``run_duration_number``.
+  - **run_duration** (*Optional*, :ref:`config-time`): Required when ``run_duration_number`` is not provided. The
+    duration in seconds this valve should remain on/open after it is activated. When a given valve is activated, the
+    controller's multiplier value is multiplied by this value to determine the actual run duration for the valve, thus
+    allowing the run duration for all valves/zones to be proportionally increased or decreased as desired. May not be
+    used with ``run_duration_number``.
   - **valve_switch_id** (**Required**, :ref:`Switch <config-switch>`): This is the :ref:`switch <config-switch>`
     component to be used to control the valve that operates the given section or zone of the sprinkler
     system. Typically this would be a :doc:`GPIO switch <switch/gpio>` wired to control a relay
