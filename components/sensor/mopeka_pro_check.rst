@@ -65,7 +65,7 @@ Mopeka Pro Check LP over BLE:
 Configuration variables:
 ------------------------
 
-- **mac_address** (**Required**, MAC Address): The MAC address of the Lippert/Mopeka
+- **mac_address** (**Required**, MAC Address): The MAC address of the Mopeka/Lippert
   device.
 
 - **tank_type** (**Required**): The tank type the sensor is measuring. See below.
