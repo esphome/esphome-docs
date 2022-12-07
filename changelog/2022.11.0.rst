@@ -93,6 +93,38 @@ By default ESPHome tries to compile using all of the processor cores, and this a
       ...
       compile_process_limit: 1
 
+Release 2022.11.1 - November 17
+-------------------------------
+
+- Support ADC on RP2040 :esphomepr:`4040` by :ghuser:`jesserockz`
+
+Release 2022.11.2 - November 23
+-------------------------------
+
+- Fix rp2040 pwm to use pico-sdk, not mbed :esphomepr:`4059` by :ghuser:`jesserockz`
+- Update web_server index :esphomepr:`4060` by :ghuser:`jesserockz`
+- rp2040_pwm frequency is per pair of pins :esphomepr:`4061` by :ghuser:`jesserockz`
+- Avoid 128bit uuid loop for 16/32 bit uuids :esphomepr:`4068` by :ghuser:`bdraco`
+- Avoid creating a new espbt::ESPBTUUID each loop when registering for notify :esphomepr:`4069` by :ghuser:`bdraco`
+
+Release 2022.11.3 - November 24
+-------------------------------
+
+- fix missing library :esphomepr:`4051` by :ghuser:`ssieb`
+- Fix units for refresh: never :esphomepr:`4048` by :ghuser:`bkaufx`
+- Don't convert climate temperature step :esphomepr:`4082` by :ghuser:`jesserockz`
+
+Release 2022.11.4 - December 1
+------------------------------
+
+- current-based cover fix copy paste mistake :esphomepr:`4124` by :ghuser:`jesserockz`
+- Dashboard fix relative url after login :esphomepr:`4103` by :ghuser:`ngraziano`
+- Fix queuing scripts not compiling :esphomepr:`4077` by :ghuser:`jesserockz`
+
+Release 2022.11.5 - December 6
+------------------------------
+
+- Fix board pin alias lookup :esphomepr:`4147` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
