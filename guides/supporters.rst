@@ -397,7 +397,7 @@ Contributors
 - `Lorenzo Ortiz (@Infinitte) <https://github.com/Infinitte>`__
 - `Dom (@Ing-Dom) <https://github.com/Ing-Dom>`__
 - `Ingurum (@Ingurum) <https://github.com/Ingurum>`__
-- `Ivo Roefs (@Ironirc) <https://github.com/Ironirc>`__
+- `Ivo Roefs (@ironirc) <https://github.com/ironirc>`__
 - `irtimaled (@irtimaled) <https://github.com/irtimaled>`__
 - `Ingo Theiss (@itn3rd77) <https://github.com/itn3rd77>`__
 - `Ivan Shvedunov (@ivan4th) <https://github.com/ivan4th>`__
@@ -903,4 +903,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 1, 2022.*
+*This page was last updated December 6, 2022.*
