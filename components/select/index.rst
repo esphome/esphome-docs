@@ -299,7 +299,7 @@ advanced stuff (see the full API Reference for more info).
 
       auto index = id(my_select).active_index();
       if (index.has_value()) {
-        ESP_LOGI("main", "Option at index %d is active", index);
+        ESP_LOGI("main", "Option at index %d is active", index.value());
       } else {
         ESP_LOGI("main", "No option is active");
       }

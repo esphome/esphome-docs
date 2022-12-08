@@ -3,3 +3,6 @@
 # Moved components
 # e.g: /components/sensors/abc.html /components/sensors/xyz.html 301
 /components/sensor/sgp40.html /components/sensor/sgp4x.html 301
+/components/binary_sensor/xpt2046.html /components/touchscreen/xpt2046.html 301
+/devices/esp8266.html /components/esp8266.html
+/devices/esp32.html /components/esp32.html
