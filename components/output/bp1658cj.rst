@@ -131,6 +131,7 @@ The BP1658CJ output component exposes a BP1658CJ channel of a global
 :ref:`bp1658cj-component` as a float output.
 
 .. code-block:: yaml
+
     # Individual outputs
     output:
       - platform: bp1658cj
