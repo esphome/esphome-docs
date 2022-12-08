@@ -128,6 +128,7 @@ The SM2235 output component exposes a SM2235 channel of a global
 :ref:`sm2235-component` as a float output.
 
 .. code-block:: yaml
+
     # Individual outputs
     output:
       - platform: sm2235
