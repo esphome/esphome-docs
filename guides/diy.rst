@@ -56,6 +56,7 @@ Blog Posts & Videos
 - `ESP32 AM312 motion sensor : light automation <https://omarghader.github.io/esp32-am312-pir-motion-sensor/>`__ by `Omar GHADER <https://omarghader.github.io/post>`__
 - `Little thermostat based on AZ-Touch hardware and esphome <https://github.com/ingbenna/AZ-Touch_esphome_thermostat/>`_ by ingbenna
 - `Converting a Carro Home DC Fan to ESPHome <https://1projectaweek.com/blog/2022/2/8/converting-a-carro-home-dc-fan-to-esp-home>`__ by `Bill Church <https://1projectaweek.com>`__
+- `Automated Coffee Bean Roaster <https://hackaday.io/project/186852-automated-coffee-bean-roaster>`__ by `brooksben11 <https://hackaday.io/brooksben11>`__
 
 Custom Components & Code
 ------------------------
@@ -87,6 +88,7 @@ Custom Components & Code
 - `ADEMCO/VISTA/Honeywell alarm system custom component <https://github.com/Dilbert66/esphome-vistaECP>`__ by :ghuser:`Dilbert66`
 - `Winsen ZE08-CH2O (Formaldehyde sensor) custom component <https://gist.github.com/cretep/f96606dc6a4eae0d85993d6085959220>`__ by :ghuser:`cretep`
 - `ZclMqttBridge custom component <https://github.com/HyperReap/zcl_mqtt_bridge>`__ by :ghuser:`HyperReap`
+- `Custom esp32 media player and notifier <https://www.printables.com/model/327708-esphome-nodemcu-esp32-media-player>`__ by :ghuser:`rananna`
 
 Sample Configurations
 ---------------------
