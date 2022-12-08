@@ -26,24 +26,6 @@ global ``sm2235`` hub and give it an id, and then define the
       max_power_color_channels: 9
       max_power_white_channels: 9
 
-    # Individual outputs
-    output:
-      - platform: sm2235
-        id: output_red
-        channel: 1
-      - platform: sm2235
-        id: output_green
-        channel: 0
-      - platform: sm2235
-        id: output_blue
-        channel: 2
-      - platform: sm2235
-        id: output_coldwhite
-        channel: 4
-      - platform: sm2235
-        id: output_warmwhite
-        channel: 3
-
 Configuration variables:
 ************************
 
@@ -146,31 +128,11 @@ The SM2235 output component exposes a SM2235 channel of a global
 :ref:`sm2235-component` as a float output.
 
 .. code-block:: yaml
-
-    # Example configuration entry
-    sm2235:
-      data_pin: GPIO4
-      clock_pin: GPIO5
-      max_power_color_channels: 9
-      max_power_white_channels: 9
-
     # Individual outputs
     output:
       - platform: sm2235
         id: output_red
         channel: 1
-      - platform: sm2235
-        id: output_green
-        channel: 0
-      - platform: sm2235
-        id: output_blue
-        channel: 2
-      - platform: sm2235
-        id: output_coldwhite
-        channel: 4
-      - platform: sm2235
-        id: output_warmwhite
-        channel: 3
 
 Configuration variables:
 ************************
