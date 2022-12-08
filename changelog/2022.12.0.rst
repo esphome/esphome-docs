@@ -46,6 +46,11 @@ Notable Changes
 - Update esp32 arduino and platform versions :esphomepr:`3564` by :ghuser:`jesserockz` (notable-change) (breaking-change)
 - Update ESP-IDF and platform version :esphomepr:`3565` by :ghuser:`jesserockz` (notable-change)
 
+Beta Changes
+^^^^^^^^^^^^
+
+- Fix ble parsing with zero padded advertisements :esphomepr:`4162` by :ghuser:`jesserockz`
+
 All changes
 ^^^^^^^^^^^
 
