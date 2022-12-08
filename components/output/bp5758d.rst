@@ -86,7 +86,6 @@ See Also
 - :doc:`/components/output/index`
 - :doc:`/components/output/esp8266_pwm`
 - :doc:`/components/output/sm2135`
-- :doc:`/components/output/sm2335`
 - :doc:`/components/light/rgb`
 - :doc:`/components/light/rgbw`
 - :doc:`/components/light/rgbww`
