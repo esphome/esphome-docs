@@ -27,28 +27,6 @@ It is used in some smart light bulbs:
       data_pin: GPIO3
       clock_pin: GPIO5
 
-    # Individual outputs
-    output:
-      - platform: bp5758d
-        id: output_red
-        channel: 2 # Valid values 1-5 to match OUT1-OUT5
-        current: 10 # In mA, valid values 0-90, default 10
-      - platform: bp5758d
-        id: output_green
-        channel: 3 # Valid values 1-5 to match OUT1-OUT5
-        current: 10 # In mA, valid values 0-90, default 10
-      - platform: bp5758d
-        id: output_blue
-        channel: 1 # Valid values 1-5 to match OUT1-OUT5
-        current: 10 # In mA, valid values 0-90, default 10
-      - platform: bp5758d
-        id: output_coldwhite
-        channel: 5 # Valid values 1-5 to match OUT1-OUT5
-        current: 10 # In mA, valid values 0-90, default 10
-      - platform: bp5758d
-        id: output_warmwhite
-        channel: 4 # Valid values 1-5 to match OUT1-OUT5
-        current: 10 # In mA, valid values 0-90, default 10
 
 Configuration variables:
 ************************
