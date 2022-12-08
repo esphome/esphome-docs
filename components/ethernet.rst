@@ -152,7 +152,7 @@ Configuration for OpenHacks LAN8720
     you are monitoring the serial output and reboot the device several times to see if it boots into the 
     program properly.
 
-Configuration for wESP32 board (up to rev.6)
+Configuration for wESP32 board (up to rev 5)
 --------------------------------------------
 
 .. code-block:: yaml
@@ -166,9 +166,24 @@ Configuration for wESP32 board (up to rev.6)
 
 .. note::
 
-    Revision 7 and upwards of the wESP32 board does not have a LAN8720 chip. Until support for the 
-    replacement RTL8201 is included in ESPHome, the wESP board rev.7 will not work with the above configuration.
+    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY.
 
+Configuration for wESP32 board (rev 7 and upwards)
+--------------------------------------------------
+
+.. code-block:: yaml
+
+    ethernet:
+      type: RTL8201
+      mdc_pin: GPIO16
+      mdio_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+
+.. note::
+
+    Revision 7 and upwards of the wESP32 board use the RTL8201 Ethernet PHY.  Support for the RTL8201 is available from ESPHome version 2022.12 upwards.
+    
 Configuration for ESP32-Ethernet-Kit board
 ------------------------------------------
 
