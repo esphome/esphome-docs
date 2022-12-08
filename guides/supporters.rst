@@ -191,7 +191,6 @@ Contributors
 - `Luar Roji (@cyberplant) <https://github.com/cyberplant>`__
 - `Aleš Komárek (@cznewt) <https://github.com/cznewt>`__
 - `d-two (@d-two) <https://github.com/d-two>`__
-- `dab0g (@dab0g) <https://github.com/dab0g>`__
 - `Dale Higgs (@dale3h) <https://github.com/dale3h>`__
 - `damanti-me (@damanti-me) <https://github.com/damanti-me>`__
 - `Daniel Bjørnbakk (@danibjor) <https://github.com/danibjor>`__
@@ -447,6 +446,7 @@ Contributors
 - `Joe Gross (@joegross) <https://github.com/joegross>`__
 - `Johan van der Kuijl (@johanvanderkuijl) <https://github.com/johanvanderkuijl>`__
 - `Johboh (@Johboh) <https://github.com/Johboh>`__
+- `John Britton (@johndbritton) <https://github.com/johndbritton>`__
 - `John Erik Halse (@johnerikhalse) <https://github.com/johnerikhalse>`__
 - `John Moxley (@johnmoxley) <https://github.com/johnmoxley>`__
 - `JonasEr (@JonasEr) <https://github.com/JonasEr>`__
@@ -904,4 +904,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 7, 2022.*
+*This page was last updated December 8, 2022.*
