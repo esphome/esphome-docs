@@ -51,8 +51,8 @@ It reaches even further, however, offering several more advanced features, as we
     :align: center
     :width: 60.0%
 
-    Example Sprinkler Controller UI -- Note that this example leverages :ref:`number <config-number>` components
-    for setting run durations, repeat and multiplier values.
+    Example Sprinkler Controller UI -- Note that this example leverages :doc:`number </components/number/index>`
+    components for setting run durations, repeat and multiplier values.
     :ref:`More details below. <sprinkler-controller-sprinkler_controller_numbers>`
 
 .. code-block:: yaml
@@ -144,18 +144,20 @@ Configuration variables:
   used in ESPHome). Typically this is expected to provide a resolution of approximately 16 milliseconds, however
   this may vary somewhat depending on your exact configuration. Regardless, it should provide more-than-sufficient
   precision to operate any such valve.
-- **multiplier_number** (*Optional*, *string*): The name of the :ref:`number <config-number>` component that should be
-  presented to the front end (Home Assistant) to enable control of the sprinkler controller's ``multiplier`` value.
-- **repeat_number** (*Optional*, *string*): The name of the :ref:`number <config-number>` component that should be
-  presented to the front end (Home Assistant) to enable control of the sprinkler controller's ``repeat`` value. May not
-  be used with ``repeat``.
+- **multiplier_number** (*Optional*, *string*): The name of the :doc:`number </components/number/index>` component that
+  should be presented to the front end (Home Assistant) to enable control of the sprinkler controller's ``multiplier``
+  value.
+- **repeat_number** (*Optional*, *string*): The name of the :doc:`number </components/number/index>` component that
+  should be presented to the front end (Home Assistant) to enable control of the sprinkler controller's ``repeat``
+  value. May not be used with ``repeat``.
 - **repeat** (*Optional*, int): The number of times a full cycle should be repeated. Defaults to 0. May not be used
   with ``repeat_number``.
-- **next_prev_ignore_disabled** (*Optional*, boolean): Set to ``true`` to cause the actions
+- **next_prev_ignore_disabled** (*Optional*, boolean): Set to ``true`` to cause
   :ref:`sprinkler-controller-action_next_valve` and :ref:`sprinkler-controller-action_previous_valve` to skip
   over valves that are not enabled. Defaults to ``false``.
-- **numbers_use_minutes** (*Optional*, boolean): Set to ``true`` to cause the :ref:`number <config-number>` components
-  configured for valve run durations to use time in minutes (as opposed to seconds). Defaults to ``false`` (seconds).
+- **numbers_use_minutes** (*Optional*, boolean): Set to ``true`` to cause the :doc:`number </components/number/index>`
+  components configured for valve run durations to use time in minutes (as opposed to seconds). Defaults to ``false``
+  (seconds).
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
   this is necessary to identify the controller instance (particularly in cases where more than one is
   defined) when calling controller actions (see below) such as ``start_full_cycle`` or ``shutdown``.
@@ -188,9 +190,9 @@ Configuration variables:
     would *switch on* the respective pump/valve. *It is not recommended to expose this switch to the front end; please
     see* :ref:`sprinkler-controller-an_important_note_about_gpio_switches_and_control` *below for more detail.*
     May not be specified with *pump_switch_id*.
-  - **run_duration_number** (*Optional*, *string*): The name of the :ref:`number <config-number>` component that should
-    be presented to the front end (Home Assistant) to enable control of the valve's ``run_duration`` value. May not be
-    used with ``run_duration``.
+  - **run_duration_number** (*Optional*, *string*): The name of the :doc:`number </components/number/index>` component
+    that should be presented to the front end (Home Assistant) to enable control of the valve's ``run_duration`` value.
+    May not be used with ``run_duration``.
   - **run_duration** (*Optional*, :ref:`config-time`): Required when ``run_duration_number`` is not provided. The
     duration in seconds this valve should remain on/open after it is activated. When a given valve is activated, the
     controller's multiplier value is multiplied by this value to determine the actual run duration for the valve, thus
@@ -945,8 +947,8 @@ valves, each of which are shared between the two controllers:
 Using the Sprinkler Controller's Numbers
 ****************************************
 
-The sprinkler controller can leverage ESPHome's/Home Assistant's :ref:`number <config-number>` component to make valve
-run durations easily adjustable from the front end (Home Assistant).
+The sprinkler controller can leverage ESPHome's/Home Assistant's :doc:`number </components/number/index>` component to
+make valve run durations easily adjustable from the front end (Home Assistant).
 
 .. code-block:: yaml
 
@@ -956,13 +958,14 @@ run durations easily adjustable from the front end (Home Assistant).
         repeat_number: "Lawn Sprinkler Repeat"
         ...
 
-An added benefit of using :ref:`number <config-number>` components is that modified valve run durations, multiplier and
-repeat values can persist across resets/reboots of the ESP device. If this is your desired behavior, you should
-configure the :ref:`number <config-number>` components within your sprinkler controller configuration.
+An added benefit of using :doc:`number </components/number/index>` components is that modified valve run durations,
+multiplier and repeat values can persist across resets/reboots of the ESP device. If this is your desired behavior, you
+should configure the :doc:`number </components/number/index>` components within your sprinkler controller configuration.
 
-The sprinkler controller's implementation of the :ref:`number <config-number>` component is based on ESPHome's
-:doc:`/components/number/index`, supporting all of its :ref:`configuration variables <config-number>` in addition to a
-subset of the :doc:`Template Number Component's </components/number/template>` configuration variables, including:
+The sprinkler controller's implementation of the :doc:`number </components/number/index>` component is based on
+ESPHome's :doc:`/components/number/index`, supporting all of its :ref:`configuration variables <config-number>` in
+addition to a subset of the :doc:`Template Number Component's </components/number/template>` configuration variables,
+including:
 
 - ``initial_value`` (Defaults to 900 for valves, 1 for multiplier, 0 for repeat)
 - ``max_value`` (Defaults to 86400 for valves, 10 for multiplier and repeat)
