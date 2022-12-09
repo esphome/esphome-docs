@@ -108,6 +108,39 @@ Configuration example:
 
     esp32_ble_tracker:
 
+Airthings Wave Radon Sensor
+***************************
+
+AirThings Wave Radon tracks radon (24h and long term), temperature, and humidity.
+
+.. figure:: images/airthings_wave_radon.jpg
+    :align: center
+    :width: 60.0%
+
+Configuration example:
+**********************
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: airthings_wave_radon
+        ble_client_id: airthingsradon
+        update_interval: 5min #default
+        temperature:
+          name: "WaveRadon Temperature"
+        radon:
+          name: "WaveRadon Radon"
+        radon_long_term:
+          name: "WaveRadon Radon Long Term"
+        humidity:
+          name: "WaveRadon Humidity"
+
+    ble_client:
+      - mac_address: 01:02:03:04:05:06
+        id: airthingsradon
+
+    esp32_ble_tracker:
+
 .. note::
 
     The sensor uses active polling of devices every 5 minutes as per the device reported internal refresh timeout.
