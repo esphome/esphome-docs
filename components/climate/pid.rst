@@ -138,7 +138,7 @@ is automatically calculated. To do this, it needs to observe at least 3 oscillat
 
 .. note::
 
-    This means you **have to set the setpoint** of the climate controller to a value the
+    You **have to set the setpoint** of the climate controller to a value the
     device can reach. For example if the temperature of a room is to be controlled, the setpoint needs
     to be above the ambient temperature. If the ambient temperature is 20°C, the setpoint of the
     climate device should be set to at least ~24°C so that an oscillation can be induced.
@@ -147,7 +147,7 @@ is automatically calculated. To do this, it needs to observe at least 3 oscillat
     outdoor weather like sun, if it starts to warm up the room in parallel with the heating
     autotune will likely fail or give false results.
 
-4. Set an appropriate setpoint (see above).
+4. Set an appropriate setpoint (see note above) and turn on the climate controller (Heat, Cool or Auto).
 
 5. Click the *PID Climate Autotune* button and look at the the logs of the device.
 
@@ -165,7 +165,7 @@ is automatically calculated. To do this, it needs to observe at least 3 oscillat
 
 .. note::
 
-    For example, in the output above, the autotuner is driving the heating output at 100% and trying to reach 24.25 °C.
+    In the output above, the autotuner is driving the heating output at 100% and trying to reach 24.25 °C.
     
     This will continue for some time until data for 3 phases (6 crossings of the setpoint; or a bit more, depending on
     the data quality) have been acquired.
