@@ -12,6 +12,20 @@ PID controllers are good at modulating an output signal to get a sensor reading 
 setpoint. For example, it can be used to modulate the power of a heating unit to get the
 temperature to a user-specified setpoint.
 
+.. note::
+
+    PID is like cruise control in the cars: it keeps the car's speed constant by continuously
+    adjusting the fuel quantity, based on load measurements. Eg when the car has to go up on a hill, 
+    the system notices the load increase thus immediately gives more fuel to the engine; and when it
+    goes down on the other side of the hill, it notices the load decrease thus reduces or cuts off fuel
+    completely so that car speed remains as constant as possible. The calculation takes in consideration
+    constants like car weight, wind resistance etc. 
+    
+    This kind of math can be used for a heating or cooling system too, and an auto-tuning algorithm can help
+    determining such constants, which mainly describe the heat loss of the room or building. Goal is to
+    keep the temperature as constant as possible, and smooth out oscillations otherwise produced by
+    classic thermostats.
+
 Explaining how PID controllers work in detail is out of scope of this documentation entry,
 but there's a nice article explaining the function principle `here <https://blog.opticontrols.com/archives/344>`__.
 
@@ -73,7 +87,7 @@ To set up a PID climate controller, you need a couple of components:
 .. note::
 
     The sensor should have a short update interval. The PID update frequency is tied to the update
-    interval of the sensor. Set a short ``update_interval`` like ``1s`` on the sensor.
+    interval of the sensor. Set a short ``update_interval`` like ``5s`` on the sensor.
 
 .. _pid-autotune:
 
@@ -103,33 +117,39 @@ To autotune the control parameters:
             ki: 0.0
             kd: 0.0
 
-2. Create a :doc:`template switch </components/switch/template>` to start autotuning later:
+2. Create a :doc:`template button </components/button/template>` to start autotuning later:
 
   .. code-block:: yaml
 
-      switch:
+      button:
         - platform: template
           name: "PID Climate Autotune"
-          turn_on_action:
+          on_press:
             - climate.pid.autotune: pid_climate
 
 3. Compile & Upload the new firmware.
 
-Now you should have a climate entity called "PID Climate Controller" and a switch called
-"PID Climate Autotune" visible in your frontend of choice.
+Now you should have a climate entity called *PID Climate Controller* and a button called
+*PID Climate Autotune* visible in your frontend of choice.
 
 The autotune algorithm works by repeatedly switching the heat/cool output to full power and off.
-This induced an oscillation of the observed temperature and the measured period and amplitude
-is automatically calculated.
+This induces an oscillation of the observed temperature and the measured period and amplitude
+is automatically calculated. To do this, it needs to observe at least 3 oscillation cycles.
 
-But this also means you **have to set the setpoint** of the climate controller to a value the
-device can reach. For example if the temperature of a room is to be controlled, the setpoint needs
-to be above the ambient temperature. If the ambient temperature is 20°C, the setpoint of the
-climate device should be set to at least ~24°C so that an oscillation can be induced.
+.. note::
 
-4. Set an appropriate setpoint (see above).
+    You **have to set the setpoint** of the climate controller to a value the
+    device can reach. For example if the temperature of a room is to be controlled, the setpoint needs
+    to be above the ambient temperature. If the ambient temperature is 20°C, the setpoint of the
+    climate device should be set to at least ~24°C so that an oscillation can be induced.
+    
+    Also take care of external influences, like for example when room temperature is severely affected by
+    outdoor weather like sun, if it starts to warm up the room in parallel with the heating
+    autotune will likely fail or give false results.
 
-5. Click on the "PID Climate Autotune" and view the logs of the device.
+4. Set an appropriate setpoint (see note above) and turn on the climate controller (Heat, Cool or Auto).
+
+5. Click the *PID Climate Autotune* button and look at the the logs of the device.
 
    You should see output like
 
@@ -143,11 +163,15 @@ climate device should be set to at least ~24°C so that an oscillation can be in
            Detected 5 zero-crossings
            # ...
 
-    For example, in the output above, the autotuner is driving the heating output at 100%
-    and trying to reach 24.25 °C.
+.. note::
 
-    This will continue for some time until data for 6 phases (or a bit more, depending on the data
-    quality) have been acquired.
+    In the output above, the autotuner is driving the heating output at 100% and trying to reach 24.25 °C.
+    
+    This will continue for some time until data for 3 phases (6 crossings of the setpoint; or a bit more, depending on
+    the data quality) have been acquired.
+    
+    The autotune algorithm may take a long time to complete, it depends on the time needed to reproduce the
+    heating up and cooling down oscillations the required number of times.
 
 6. When the PID autotuner has succeeded, output like the one below can be seen:
 
@@ -157,7 +181,6 @@ climate device should be set to at least ~24°C so that an oscillation can be in
          State: Succeeded!
          All checks passed!
          Calculated PID parameters ("Ziegler-Nichols PID" rule):
-         Calculated PID parameters ("Ziegler-Nichols PID" rule):
 
          control_parameters:
            kp: 0.49460
@@ -165,9 +188,11 @@ climate device should be set to at least ~24°C so that an oscillation can be in
            kd: 12.56301
 
          Please copy these values into your YAML configuration! They will reset on the next reboot.
-         # ...
 
-   Copy the values in ``control_parameters`` into your configuration.
+As soon as the the autotune procedure finishes, the climate starts to work with the calculated parameters
+so that expected operation can be immediately verified.
+   
+If satisfied, copy the values in ``control_parameters`` into your configuration:
 
    .. code-block:: yaml
 
@@ -179,10 +204,14 @@ climate device should be set to at least ~24°C so that an oscillation can be in
              ki: 0.00487
              kd: 12.56301
 
+The *PID Climate Autotune* button can be removed from the config, if the results are satisfactory,
+it's not needed anymore.
+
 7. Complete, compile & upload the updated firmware.
 
-   If the calculated PID parameters are not good, you can try some of the alternative parameters
-   printed below the main control parameters in the log output.
+If the calculated PID parameters are not good, you can try some of the alternative parameters
+printed below the main control parameters in the log output.
+
 
 ``climate.pid.autotune`` Action
 -------------------------------
@@ -209,8 +238,13 @@ Configuration variables:
   of the PID controller must be able to reach this value. Defaults to ``0.25``.
 - **positive_output** (*Optional*, float): The positive output power to drive the heat output at.
   Defaults to ``1.0``.
-- **negative_output** (*Optional*, float): The positive output power to drive the cool output at.
+- **negative_output** (*Optional*, float): The negative output power to drive the cool output at.
   Defaults to ``-1.0``.
+
+The ``positive_output`` and ``negative_output`` parameters can be used to compensate the heating or the
+cooling process during the autotune, in the cases when they are not changing the temperature at the 
+same rate, resulting in a not symmetrical oscillation. The autotune result will print a message when
+it's recommended to repeat the entire procedure with such parameters configured.
 
 ``climate.pid.set_control_parameters`` Action
 ---------------------------------------------
@@ -295,6 +329,7 @@ See Also
   Proceedings of IFAC 9th World Congress, Budapest, 1867-1872
 - :doc:`/components/climate/index`
 - :doc:`/components/output/slow_pwm`
+- `Principles of PID <https://blog.opticontrols.com/archives/344>`__
 - :apiref:`pid/pid_climate.h`
-- :apiref:`PID Autotuner <pid/pid_autotune.h>`
+- :apiref:`PID Autotuner <pid/pid_autotuner.h>`
 - :ghedit:`Edit`
