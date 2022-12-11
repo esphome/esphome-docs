@@ -16,15 +16,15 @@ PWM period of 10 seconds, for reasonably frequent updates, with :doc:`/component
 there are only 10 possible levels, and for higher precision a longer update interval is needed,
 restricting the update rate. 
 
-A sigma-delta PWM output is updated during each cycle, thus a higher precision can be achieved, without
+A *sigma-delta* output is updated during each cycle, thus a higher precision can be achieved, without
 being constrained by a calculation timeframe (=period).
 
 So instead of having to define a ``period`` where the width of the pulse determines the output level, here you
 choose an ``update_interval`` which acts lile a clock signal from where the pulse density determines the output level. 
 
 This component can be used as a drop-in replacement for :doc:`/components/output/slow_pwm` by changing the ``platform`` to
-``sigma_delta_output`` and changing ``period`` to ``update_interval`` (you usually want to set the sigma-delta PWM's
-``update_interval`` as a fraction of Slow PWM's ``period`` for similar results)
+``sigma_delta_output`` and changing ``period`` to ``update_interval`` (you usually want to set the *sigma-delta*'s
+``update_interval`` as a fraction of *Slow PWM*'s ``period`` for similar results)
 
 .. code-block:: yaml
 
