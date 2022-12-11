@@ -32,15 +32,34 @@ This component can be used as a drop-in replacement for :doc:`/components/output
     output:
       - platform: sigma_delta_output
         update_interval: 10s
-        output: heater_relay
         id: sd_heater_output
 
+        # Output to a pin
+        pin: 15
+
+        # Use the same pin, but through the output defined below
+        output: heater_relay
+
+        # Use the same output, but through automations
+        turn_on_action:
+          then:
+            - output.turn_on: heater_relay
+        turn_off_action:
+          then:
+            - output.turn_off: heater_relay
+    
+      - platform: gpio
+        pin: 15
+        id: heater_relay
 
 Configuration variables:
 
 - **update_interval** (**Required**, :ref:`Time <config-time>`): The cycle interval at which the output is recalculated.
-- **output** (*Optional*, :ref:`config-id`): The ID of an :doc:`/components/output/index`.
 - **pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin to pulse.
+- **output** (*Optional*, :ref:`config-id`): The ID of a binary
+  :doc:`/components/output/index`. This can be used when the output is not an
+  actual pin, or to keep the pin definition separate from the output (for
+  example in an included package).
 - **state_change_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is switched. If a lambda is used the boolean ``state`` parameter holds the new status.
 - **turn_on_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned on. Can be used to control for example a switch or output component.
 - **turn_off_action** (*Optional*, :ref:`Automation <automation>`): An automation to perform when the load is turned off. ``turn_on_action`` and ``turn_off_action`` must be configured together.
@@ -48,7 +67,8 @@ Configuration variables:
 
 .. note::
 
-    - If ``pin`` is defined the GPIO pin state is writen before any action is executed.
+    - If ``pin`` is defined, the GPIO pin state is writen before any action is executed.
+    - If ``output`` is defined, it is written after the pin, but before the actions.
     - ``state_change_action`` and ``turn_on_action``/``turn_off_action`` can be used togther. ``state_change_action`` is called before ``turn_on_action``/``turn_off_action``. It's recommended to use either ``state_change_action`` or ``turn_on_action``/``turn_off_action`` to change the state of an output. Using both automations together is only recommended for monitoring.
 
 
