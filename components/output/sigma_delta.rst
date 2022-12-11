@@ -7,7 +7,7 @@ it is possible to update the output value with each update cycle, not just at th
 
 .. figure:: images/sigma-delta-example.png
     :align: center
-    :width: 40.0%
+    :width: 65.0%
 
     Comparison between a PWM with a period of 10s and 1s steps and a sigma-delta output with 1s steps
 
