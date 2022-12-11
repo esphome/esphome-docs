@@ -52,10 +52,18 @@ Configuration variables:
     - ``state_change_action`` and ``turn_on_action``/``turn_off_action`` can be used togther. ``state_change_action`` is called before ``turn_on_action``/``turn_off_action``. It's recommended to use either ``state_change_action`` or ``turn_on_action``/``turn_off_action`` to change the state of an output. Using both automations together is only recommended for monitoring.
 
 
+.. note::
+
+    If the output must not be active for more than some fixed time before it has
+    to be off for a while to e.g. cool down, :doc:`/components/output/slow_pwm`
+    should be used with a ``max_power`` setting to better control the duty
+    cycle.
+
 See Also
 --------
 
 - :doc:`/components/output/index`
 - `Sigma-Delta <https://en.wikipedia.org/wiki/Delta-sigma_modulation>`__
 - :doc:`/components/output/slow_pwm`
+- :apiref:`sigma_delta_output/sigma_delta_output.h`
 - :ghedit:`Edit`
