@@ -9,7 +9,7 @@ it is possible to update the output value with each update cycle, not just at th
     :align: center
     :width: 65.0%
 
-    Comparison between a PWM with a period of 10s and 1s steps and a sigma-delta output with 1s steps
+    Comparison between a *Slow PWM* with a period of 100s and a *sigma-delta output* with an update interval of 1s
 
 For example, if you choose to toggle the output at most once every 1 second and decide on a
 PWM period of 10 seconds, for reasonably frequent updates, with :doc:`/components/output/slow_pwm`
