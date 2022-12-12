@@ -190,7 +190,6 @@ Contributors
 - `Alex Solomaha (@CyanoFresh) <https://github.com/CyanoFresh>`__
 - `Luar Roji (@cyberplant) <https://github.com/cyberplant>`__
 - `Aleš Komárek (@cznewt) <https://github.com/cznewt>`__
-- `d-two (@d-two) <https://github.com/d-two>`__
 - `Dale Higgs (@dale3h) <https://github.com/dale3h>`__
 - `damanti-me (@damanti-me) <https://github.com/damanti-me>`__
 - `Daniel Bjørnbakk (@danibjor) <https://github.com/danibjor>`__
@@ -608,6 +607,7 @@ Contributors
 - `mnltake (@mnltake) <https://github.com/mnltake>`__
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__
 - `Moritz Glöckl (@moritzgloeckl) <https://github.com/moritzgloeckl>`__
+- `Chris Laplante (@mostthingsweb) <https://github.com/mostthingsweb>`__
 - `Matthew Pettitt (@mpettitt) <https://github.com/mpettitt>`__
 - `Sam Hughes (@MrEditor97) <https://github.com/MrEditor97>`__
 - `Mariusz Kryński (@mrk-its) <https://github.com/mrk-its>`__
@@ -887,13 +887,13 @@ Contributors
 - `Wolfgang Tremmel (@wtremmel) <https://github.com/wtremmel>`__
 - `Wumpf (@Wumpf) <https://github.com/Wumpf>`__
 - `wysiwyng (@wysiwyng) <https://github.com/wysiwyng>`__
-- `Mike (@xsnoopy) <https://github.com/xsnoopy>`__
 - `Yaroslav (@Yarikx) <https://github.com/Yarikx>`__
 - `Marcin Jaworski (@yawor) <https://github.com/yawor>`__
 - `Pavel (@yekm) <https://github.com/yekm>`__
 - `Atsuko Ito (@yottatsa) <https://github.com/yottatsa>`__
 - `Nico B (@youknow0) <https://github.com/youknow0>`__
 - `Yuval Aboulafia (@yuvalabou) <https://github.com/yuvalabou>`__
+- `Björn Stenberg (@zagor) <https://github.com/zagor>`__
 - `david reid (@zathras777) <https://github.com/zathras777>`__
 - `Zebble (@Zebble) <https://github.com/Zebble>`__
 - `ZJY (@zhangjingye03) <https://github.com/zhangjingye03>`__
@@ -904,4 +904,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated December 8, 2022.*
+*This page was last updated December 12, 2022.*
