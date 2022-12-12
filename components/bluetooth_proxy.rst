@@ -34,6 +34,8 @@ Configuration:
 
 - **active** (*Optional*, boolean): Enables proxying active connections. Defaults to ``false``. Requires Home Assistant 2022.10 or later.
 
+- **cache_services** (*Optional*, boolean): Enables caching services in NVS flash storage which significantly speeds up active connections. Defaults to ``true`` when using the ESP-IDF framework.
+
 The Bluetooth proxy depends on :doc:`esp32_ble_tracker` so make sure to add that to your configuration.
 
 .. note::
