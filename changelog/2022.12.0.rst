@@ -50,6 +50,7 @@ Beta Changes
 ^^^^^^^^^^^^
 
 - Fix ble parsing with zero padded advertisements :esphomepr:`4162` by :ghuser:`jesserockz`
+- Increase watchdog timeout when starting OTA :esphomepr:`4172` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
