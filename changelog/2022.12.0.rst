@@ -54,6 +54,8 @@ Beta Changes
 - Bump esphome-dashboard to 20221213.0 :esphomepr:`4176` by :ghuser:`jesserockz`
 - Remove internal pin restriction from cd74hc4067 :esphomepr:`4179` by :ghuser:`jesserockz`
 - Speed up bluetooth proxy connections when using esp-idf :esphomepr:`4171` by :ghuser:`bdraco` (notable-change)
+- Remove warnings when falling through switch cases on purpose :esphomepr:`4181` by :ghuser:`jesserockz`
+- Revert camera config change for esp-idf :esphomepr:`4182` by :ghuser:`jesserockz`
 
 All changes
 ^^^^^^^^^^^
