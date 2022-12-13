@@ -31,6 +31,9 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 -  … can not have special characters except the underscore (“_“).
 -  … must not be a keyword.
 
+Note: ID is used only within ESPHome and is not translated to Home Assistant 
+Entity ID. 
+
 .. _config-pin:
 
 Pin
