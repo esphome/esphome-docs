@@ -544,6 +544,11 @@ Optional with **name**, **id** (:ref:`config-id`) and all other options from :re
 - **formaldehyde**
 - **battery_level**
 
+
+.. _obtaining_the_mac_address:
+
+Obtaining The MAC Address
+---------------------
 To find the MAC Address so that ESPHome can identify the device, you can create a simple configuration without any sensor entries:
 
 .. code-block:: yaml
