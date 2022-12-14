@@ -19,6 +19,7 @@ binary sensor or GPIO switch.
 The 7 bit I2C device address ranges are:
 
 .. list-table:: I2C Device Addresses
+
    :widths: auto
    :header-rows: 1
    :align: left
