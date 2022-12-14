@@ -1,10 +1,6 @@
 PCA9554 I/O Expander
 ====================
 
-.. seo::
-    :description: Instructions for setting up PCA9554 digital port expanders in ESPHome.
-    :image: pca9554.jpg
-
 The PCA9554 component allows you to use PCA9554, PCA9554A or PCA9536 I/O expanders
 (`PCA9554 datasheet <https://www.ti.com/lit/ds/symlink/pca9554.pdf>`__, 
 `PCA9554A datasheet <https://www.ti.com/lit/ds/symlink/pca9554a.pdf>`__, 
