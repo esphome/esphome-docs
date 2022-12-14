@@ -168,6 +168,7 @@ Configurations
 **wESP32 board (rev.7 and upwards)**
 
 .. code-block:: yaml
+
     ethernet:
       type: RTL8201
       mdc_pin: GPIO16
