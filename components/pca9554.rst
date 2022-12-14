@@ -1,4 +1,4 @@
-PCF8574 I/O Expander
+PCA9554 I/O Expander
 ====================
 
 .. seo::
