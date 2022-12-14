@@ -73,8 +73,8 @@ Configuration variables:
     clock signal that will not travel reliably over these types of connections. For more
     information and wiring details refer to the link in the *See also* section.
 
-Configurations
---------------
+Configuration examples
+----------------------
 
 **Olimex ESP32-POE**
 
@@ -134,7 +134,32 @@ Configurations
       phy_addr: 1
       power_pin: GPIO16
 
-**OpenHacks LAN8720**
+**ESP32-Ethernet-Kit**
+
+.. code-block:: yaml
+
+    ethernet:
+      type: IP101
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 1
+      power_pin: GPIO5
+      
+
+**M5Stack PoESP32 Unit**
+
+.. code-block:: yaml
+
+    ethernet:
+      type: IP101
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 1
+      power_pin: GPIO5
+
+**AIThinker ESP32-G Gateway Unit**
 
 .. code-block:: yaml
 
@@ -142,13 +167,9 @@ Configurations
       type: LAN8720
       mdc_pin: GPIO23
       mdio_pin: GPIO18
+      clk_mode: GPIO17_OUT
       phy_addr: 1
-
-.. note::
-
-    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure 
-    you are monitoring the serial output and reboot the device several times to see if it boots into the 
-    program properly.
+      power_pin: GPIO5
 
 **wESP32 board (up to rev.5)**
 
@@ -180,34 +201,7 @@ Configurations
 
     Revision 7 and newer of the wESP32 board use the RTL8201 Ethernet PHY. Support for the RTL8201 is available from ESPHome version 2022.12 upwards.
 
-
-**ESP32-Ethernet-Kit**
-
-.. code-block:: yaml
-
-    ethernet:
-      type: IP101
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
-      clk_mode: GPIO0_IN
-      phy_addr: 1
-      power_pin: GPIO5
-      
-
-**M5Stack PoESP32 Unit**
-
-.. code-block:: yaml
-
-    ethernet:
-      type: IP101
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
-      clk_mode: GPIO0_IN
-      phy_addr: 1
-      power_pin: GPIO5
-
-
-**AIThinker ESP32-G Gateway Unit**
+**OpenHacks LAN8720**
 
 .. code-block:: yaml
 
@@ -215,9 +209,14 @@ Configurations
       type: LAN8720
       mdc_pin: GPIO23
       mdio_pin: GPIO18
-      clk_mode: GPIO17_OUT
       phy_addr: 1
-      power_pin: GPIO5
+
+.. note::
+
+    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure 
+    you are monitoring the serial output and reboot the device several times to see if it boots into the 
+    program properly.
+
 
 
 See Also
