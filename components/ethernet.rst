@@ -76,6 +76,18 @@ Configuration variables:
 Configuration examples
 ----------------------
 
+**SMLIGHT SLZB-06 POE ESP32 Zigbee USB adapter**
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 1
+      power_pin: GPIO16
+
 **Olimex ESP32-POE**
 
 .. code-block:: yaml
