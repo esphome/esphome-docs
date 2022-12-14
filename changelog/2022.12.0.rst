@@ -18,9 +18,22 @@ The festive holidays are coming early and bring you an ESPHome release 1 week ea
 This release does not bring a bunch of new components like most releases, but instead the focus
 has been on upgrading the core Arduino and ESP-IDF versions used for the ESP32 based devices.
 
+Ethernet
+--------
+
+Because these core upgrade have aligned the version of ESP-IDF under the hood, ``ethernet``
+is now able to be used when specifying ESP-IDF as your framework of choice.
+
+Bluetooth Proxy
+---------------
+
 The Bluetooth Proxy has also had a whole lot of work done by :ghuser:`bdraco` under the hood to
 improve the stability, speed and reliability between Home Assistant and the bluetooth devices
-that get proxied through.
+that get proxied through. Along with some of these bluetooth changes is a change to the
+underlying flash partition table that ESPHome uses. OTA will work, but to fully take advantage
+of the performance increases for bluetooth, it is best to at least one serial flash with ESPHome
+2022.12.0 or later.
+
 
 Full list of changes
 --------------------
@@ -40,12 +53,6 @@ Breaking Changes
 
 - Update esp32 arduino and platform versions :esphomepr:`3564` by :ghuser:`jesserockz` (notable-change) (breaking-change)
 
-Notable Changes
-^^^^^^^^^^^^^^^
-
-- Update esp32 arduino and platform versions :esphomepr:`3564` by :ghuser:`jesserockz` (notable-change) (breaking-change)
-- Update ESP-IDF and platform version :esphomepr:`3565` by :ghuser:`jesserockz` (notable-change)
-
 Beta Changes
 ^^^^^^^^^^^^
 
@@ -57,6 +64,13 @@ Beta Changes
 - Remove warnings when falling through switch cases on purpose :esphomepr:`4181` by :ghuser:`jesserockz`
 - Revert camera config change for esp-idf :esphomepr:`4182` by :ghuser:`jesserockz`
 
+Notable Changes
+^^^^^^^^^^^^^^^
+
+- Update esp32 arduino and platform versions :esphomepr:`3564` by :ghuser:`jesserockz` (notable-change) (breaking-change)
+- Update ESP-IDF and platform version :esphomepr:`3565` by :ghuser:`jesserockz` (notable-change)
+- Speed up bluetooth proxy connections when using esp-idf :esphomepr:`4171` by :ghuser:`bdraco` (notable-change)
+
 All changes
 ^^^^^^^^^^^
 
@@ -66,7 +80,7 @@ All changes
 - Move CONF_INTERRUPT_PIN to const.py :esphomepr:`4014` by :ghuser:`jesserockz`
 - Bump pyupgrade from 3.2.0 to 3.2.2 :esphomepr:`4017` by :ghuser:`dependabot[bot]`
 - Add reset_reason text sensor to debug component :esphomepr:`3814` by :ghuser:`kuba2k2`
-- remove unused variable last_save in total_daily_energy :esphomepr:`4039` by :ghuser:`bkaufx`
+- remove unused variable last_save_ in total_daily_energy :esphomepr:`4039` by :ghuser:`bkaufx`
 - Bump base image versions to latest :esphomepr:`4016` by :ghuser:`jesserockz`
 - Add number device class support :esphomepr:`4042` by :ghuser:`frenck`
 - Update esp32 arduino and platform versions :esphomepr:`3564` by :ghuser:`jesserockz` (notable-change) (breaking-change)
@@ -139,6 +153,13 @@ All changes
 - Bump dessant/lock-threads from 3 to 4 :esphomepr:`4150` by :ghuser:`dependabot[bot]`
 - Bump aioesphomeapi from 12.2.1 to 13.0.1 :esphomepr:`4149` by :ghuser:`dependabot[bot]`
 - Bump esphome-dashboard to 20221207.0 :esphomepr:`4156` by :ghuser:`jesserockz`
+- Fix ble parsing with zero padded advertisements :esphomepr:`4162` by :ghuser:`jesserockz`
+- Increase watchdog timeout when starting OTA :esphomepr:`4172` by :ghuser:`jesserockz`
+- Bump esphome-dashboard to 20221213.0 :esphomepr:`4176` by :ghuser:`jesserockz`
+- Remove internal pin restriction from cd74hc4067 :esphomepr:`4179` by :ghuser:`jesserockz`
+- Speed up bluetooth proxy connections when using esp-idf :esphomepr:`4171` by :ghuser:`bdraco` (notable-change)
+- Remove warnings when falling through switch cases on purpose :esphomepr:`4181` by :ghuser:`jesserockz`
+- Revert camera config change for esp-idf :esphomepr:`4182` by :ghuser:`jesserockz`
 
 Past Changelogs
 ---------------
