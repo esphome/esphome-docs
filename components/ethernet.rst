@@ -32,7 +32,7 @@ Configuration variables:
 ------------------------
 
 - **type** (**Required**, string): The type of LAN chipset/phy. Must be one of
-  ``LAN8720``, ``TLK110`` or ``IP101`` (see datasheet for more details).
+  ``LAN8720``, ``RTL8201``, ``DP83848`` or ``IP101``.
 - **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
 - **mdio_pin** (**Required**, :ref:`config-pin`): The MDIO pin of the board.
@@ -171,10 +171,11 @@ Configuration examples
       phy_addr: 1
       power_pin: GPIO5
 
-**wESP32 board (up to rev.5)**
+**wESP32 board**
 
 .. code-block:: yaml
 
+    # for board up to rev.5
     ethernet:
       type: LAN8720
       mdc_pin: GPIO16
@@ -182,14 +183,7 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 0
 
-.. note::
-
-    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY.
-
-**wESP32 board (rev.7 and upwards)**
-
-.. code-block:: yaml
-
+    # for board rev.7 and up
     ethernet:
       type: RTL8201
       mdc_pin: GPIO16
@@ -199,7 +193,7 @@ Configuration examples
 
 .. note::
 
-    Revision 7 and newer of the wESP32 board use the RTL8201 Ethernet PHY. Support for the RTL8201 is available from ESPHome version 2022.12 upwards.
+    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
 
 **OpenHacks LAN8720**
 
@@ -213,8 +207,8 @@ Configuration examples
 
 .. note::
 
-    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure 
-    you are monitoring the serial output and reboot the device several times to see if it boots into the 
+    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure
+    you are monitoring the serial output and reboot the device several times to see if it boots into the
     program properly.
 
 
