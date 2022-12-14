@@ -18,20 +18,20 @@ binary sensor or GPIO switch.
 
 The 7 bit I2C device address ranges are:
 
-.. list-table:: I2C Device Addresses
+..  list-table:: I2C Device Addresses
 
-   :widths: auto
-   :header-rows: 1
-   :align: left
+    :widths: auto
+    :header-rows: 1
+    :align: left
    
-   * - Part
-     - Device Addresses
-   * - PCA9554
-     - 0x20 to 0x27
-   * - PCA9554A
-     - 0x38 to 0x3F
-   * - PCA9536
-     - 0x41
+    * - Part
+      - Device Addresses
+    * - PCA9554
+      - 0x20 to 0x27
+    * - PCA9554A
+      - 0x38 to 0x3F
+    * - PCA9536
+      - 0x41
 
 For the PCA9554 and PCA9554A, the actual choice of the I2C device address depends on state of the 3 address pins.
 Please refer to the individual datasheets for further details.
