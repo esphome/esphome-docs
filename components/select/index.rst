@@ -336,10 +336,10 @@ advanced stuff (see the full API Reference for more info).
       }
       
       
-Examples      
---------
+Example
+-------
 
-Bacis usage of Select Component. Setting up three options and set component state to selected option value.
+Setting up three options and set component state to selected option value.
 
 .. code-block:: yaml
 
