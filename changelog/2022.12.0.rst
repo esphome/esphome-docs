@@ -80,7 +80,7 @@ All changes
 - Move CONF_INTERRUPT_PIN to const.py :esphomepr:`4014` by :ghuser:`jesserockz`
 - Bump pyupgrade from 3.2.0 to 3.2.2 :esphomepr:`4017` by :ghuser:`dependabot[bot]`
 - Add reset_reason text sensor to debug component :esphomepr:`3814` by :ghuser:`kuba2k2`
-- remove unused variable last_save_ in total_daily_energy :esphomepr:`4039` by :ghuser:`bkaufx`
+- remove unused variable last_save in total_daily_energy :esphomepr:`4039` by :ghuser:`bkaufx`
 - Bump base image versions to latest :esphomepr:`4016` by :ghuser:`jesserockz`
 - Add number device class support :esphomepr:`4042` by :ghuser:`frenck`
 - Update esp32 arduino and platform versions :esphomepr:`3564` by :ghuser:`jesserockz` (notable-change) (breaking-change)
