@@ -23,7 +23,7 @@ our `Bluetooth Proxy installer <https://esphome.github.io/bluetooth-proxies/>`__
     separately from these, and is not limited to a specific number.
     
     When using active connections, the :doc:`web_server` component should be disabled as the device is likely
-    to run of memory and malfunction when both components are enabled simultaneously.
+    to run out of memory and will malfunction when both components are enabled simultaneously.
     
     Not all devices are supported and ESPHome does not decode or keep a list. To find out if your device is supported,
     please search for it in the `Home Assistant Integrations <https://www.home-assistant.io/integrations/>`__ list.
