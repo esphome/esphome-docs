@@ -14,9 +14,7 @@ and Home Assistant.
 If you're looking to create an ESPHome node that is just a Bluetooth Proxy, see
 our `Bluetooth Proxy installer <https://esphome.github.io/bluetooth-proxies/>`__ website.
 
-.. warning::
-
-    Active connections
+.. warning:: Active connections
 
     The Bluetooth proxy of ESPHome provides Home Assistant with a maximum number of 3 simultaneous active connections.
     Devices which maintain a *continuous active* connection will consume one of these constantly, whilst devices which
