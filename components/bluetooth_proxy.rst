@@ -49,7 +49,7 @@ The Bluetooth proxy depends on :doc:`esp32_ble_tracker` so make sure to add that
 
 .. note::
 
-    Bluetooth proxy requires Home Assistant 2022.9 or later.
+    Bluetooth proxy requires Home Assistant 2022.9 or later. ESPHome 2022.12.0 and Home Assistant 2022.12.6 or later is recommended.
 
 Improving reception performance
 -------------------------------
