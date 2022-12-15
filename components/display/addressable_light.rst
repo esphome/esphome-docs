@@ -140,10 +140,10 @@ It's possible to use two 8x32 LED matrices in a 16x32 configuration (one above t
 
     display:
       - platform: addressable_light
-        id: led_matrix_32x8_display
-        addressable_light_id: led_matrix_32x8
+        id: led_matrix_32x16_display
+        addressable_light_id: led_matrix_32x16
         width: 32
-        height: 8
+        height: 16
         pixel_mapper: |-
           int iMatrixOffset = y >= 8 ? 256 : 0;
           if (x % 2 == 0) {
