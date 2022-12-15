@@ -6,7 +6,8 @@ MAX31856 Thermocouple Temperature Sensor
     :image: max31856.jpg
 
 The ``MAX31856`` temperature sensor allows you to use your MAX31856 Thermocouple
-temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf>`__) with ESPHome
+temperature sensor (`datasheet <https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf>`__) with ESPHome.
+Although the chip supports multiple thermocouple types, this component only implements the ``K`` type.
 
 .. figure:: images/max31856-full.jpg
     :align: center
@@ -20,14 +21,14 @@ As the communication with the MAX31856 is done using SPI, you need
 to have an :ref:`spi bus <spi>` in your configuration with both **miso_pin** and **mosi_pin** set.
 
 - ``VIN`` connects to 5V (``3V3`` will output 3.3V), or directly connect ``3V3`` to 3.3V
-- ``3Vo`` is not used by ESPHome
+- ``3Vo`` not used by ESPHome
 - ``GND`` connects to ground
 - ``CLK`` connects to the SPI **clk_pin**
 - ``SDO`` connects to the SPI **miso_pin**
 - ``SDI`` connects to the SPI **mosi_pin**
 - ``CS`` connects to a free GPIO pin
-- ``FLT`` is not used by ESPHome
-- ``DRDY`` is not used by ESPHome
+- ``FLT`` not used by ESPHome
+- ``DRDY`` not used by ESPHome
 
 .. code:: yaml
 
