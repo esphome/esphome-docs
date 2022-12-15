@@ -72,11 +72,11 @@ Complete sample recommended configuration
 
 Below is a complete sample recommended configuration for a Bluetooth proxy.
 
-This configuration is for a Olimex ESP32-PoE-ISO board with an Ethernet connection to the network.
+This configuration is for an Olimex ESP32-PoE-ISO board with an Ethernet connection to the network.
 
-If you are using a different board, you will need to change the ``board`` substitution to match your board.
+If you use a different board, you must change the ``board`` substitution to match your board.
 
-If you experience issues your proxy, try reducing your configuration to be as similar to this as possible.
+If you experience issues with your proxy, try reducing your configuration to be as similar to this as possible.
 
 .. code-block:: yaml
 
