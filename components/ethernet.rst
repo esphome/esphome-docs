@@ -101,6 +101,7 @@ Configuration examples
       phy_addr: 0
 
 **Olimex ESP32-GATEWAY**:
+
 **LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
 
 .. code-block:: yaml
@@ -113,7 +114,8 @@ Configuration examples
       phy_addr: 0
 
 **Wireless Tag WT32-ETH01**:
-**SMLIGHT SLZB-06**:
+
+**SMLIGHT SLZB-06 PoE Zigbee**:
 
 .. code-block:: yaml
 
@@ -126,6 +128,7 @@ Configuration examples
       power_pin: GPIO16
 
 **M5Stack PoESP32**:
+
 **ESP32-Ethernet-Kit**:
 
 .. code-block:: yaml
