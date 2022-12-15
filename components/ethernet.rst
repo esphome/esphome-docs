@@ -101,16 +101,6 @@ Configuration examples
       phy_addr: 0
 
 **Olimex ESP32-GATEWAY**:
-
-.. code-block:: yaml
-
-    ethernet:
-      type: LAN8720
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
-      clk_mode: GPIO17_OUT
-      phy_addr: 0
-
 **LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
 
 .. code-block:: yaml
@@ -122,7 +112,8 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 0
 
-**Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06**:
+**Wireless Tag WT32-ETH01**:
+**SMLIGHT SLZB-06**:
 
 .. code-block:: yaml
 
@@ -134,7 +125,8 @@ Configuration examples
       phy_addr: 1
       power_pin: GPIO16
 
-**M5Stack PoESP32** and **ESP32-Ethernet-Kit**:
+**M5Stack PoESP32**:
+**ESP32-Ethernet-Kit**:
 
 .. code-block:: yaml
 
@@ -146,7 +138,7 @@ Configuration examples
       phy_addr: 1
       power_pin: GPIO5
       
-**AIThinker ESP32-G Gateway**:
+**AiThinker ESP32-G Gateway**:
 
 .. code-block:: yaml
 
