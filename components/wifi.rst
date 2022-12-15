@@ -292,5 +292,6 @@ See Also
 - :doc:`text_sensor/wifi_info`
 - :doc:`sensor/wifi_signal`
 - :doc:`network`
+- :doc:`/components/ethernet`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`
