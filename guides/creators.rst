@@ -40,6 +40,7 @@ Example configuration
     # This should point to the public location of this yaml file.
     dashboard_import:
       package_import_url: github://esphome/esphome-project-template/project-template-esp32.yaml@v6
+      import_full_config: false # or true
 
     wifi:
       # Set up a wifi access point
@@ -72,9 +73,11 @@ Relevant Documentation
 - ``wifi`` -> ``ap`` allows you to flash a device that will not contain any
   credentials and they must be set by the user via either the ``ap`` + ``captive_portal`` or
   the ``esp32_improv`` / ``improv_serial`` components.
-- ``dashboard_import`` -> ``package_import_url`` - This should point to the public repository containing
+- ``dashboard_import``
+  -  ``package_import_url`` - This should point to the public repository containing
   the configuration for the device so that the user's ESPHome dashboard can autodetect this device and
   create a minimal YAML using :ref:`config-git_packages`.
+  - ``import_full_config`` - This signals if ESPHome should download the entire YAML file as the user's config YAML instead of referencing the package. Set this to `true` if you are creating a tutorial to let users easily tweak the whole configuration or be able to uncomment follow-up tutorial steps.
 - ``improv_serial`` - :doc:`/components/improv_serial`
 
 See Also
