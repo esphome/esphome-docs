@@ -69,13 +69,9 @@ Avoid placing the ESP node in racks, close to routers/switches or other network 
 Complete sample recommended configuration
 -----------------------------------------
 
-Below is a complete sample recommended configuration for a Bluetooth proxy.
+Below is a complete sample recommended configuration for a Bluetooth proxy. If you experience issues with your proxy, try reducing your configuration to be as similar to this as possible.
 
-This configuration is for an Olimex ESP32-PoE-ISO board with an Ethernet connection to the network.
-
-If you use a different board, you must change the ``board`` substitution to match your board.
-
-If you experience issues with your proxy, try reducing your configuration to be as similar to this as possible.
+This configuration is for an Olimex ESP32-PoE-ISO board with an Ethernet connection to the network. If you use a different board, you must change the ``board`` substitution to match your board.
 
 .. code-block:: yaml
 
