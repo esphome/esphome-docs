@@ -617,6 +617,7 @@ Number Components
     Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg
     Tuya Number, components/number/tuya, tuya.png
+    X9C Potentiometer, components/number/x9c, x9c.jpg
 
 Select Components
 -----------------
