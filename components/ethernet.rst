@@ -76,7 +76,7 @@ Configuration variables:
 Configuration examples
 ----------------------
 
-**Olimex ESP32-POE**
+**Olimex ESP32-POE**:
 
 .. code-block:: yaml
 
@@ -89,7 +89,7 @@ Configuration examples
       power_pin: GPIO12
 
 
-**Olimex ESP32-EVB**
+**Olimex ESP32-EVB**:
 
 .. code-block:: yaml
 
@@ -100,7 +100,7 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 0
 
-**Olimex ESP32-GATEWAY**
+**Olimex ESP32-GATEWAY**:
 
 .. code-block:: yaml
 
@@ -111,7 +111,7 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 0
 
-**LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**
+**LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
 
 .. code-block:: yaml
 
@@ -122,7 +122,7 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 0
 
-**Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06**
+**Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06**:
 
 .. code-block:: yaml
 
@@ -134,7 +134,7 @@ Configuration examples
       phy_addr: 1
       power_pin: GPIO16
 
-**ESP32-Ethernet-Kit**
+**M5Stack PoESP32** and **ESP32-Ethernet-Kit**:
 
 .. code-block:: yaml
 
@@ -146,20 +146,7 @@ Configuration examples
       phy_addr: 1
       power_pin: GPIO5
       
-
-**M5Stack PoESP32 Unit**
-
-.. code-block:: yaml
-
-    ethernet:
-      type: IP101
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
-      clk_mode: GPIO0_IN
-      phy_addr: 1
-      power_pin: GPIO5
-
-**AIThinker ESP32-G Gateway Unit**
+**AIThinker ESP32-G Gateway**:
 
 .. code-block:: yaml
 
@@ -171,7 +158,7 @@ Configuration examples
       phy_addr: 1
       power_pin: GPIO5
 
-**wESP32 board**
+**wESP32**:
 
 .. code-block:: yaml
 
@@ -195,7 +182,7 @@ Configuration examples
 
     Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
 
-**OpenHacks LAN8720**
+**OpenHacks LAN8720**:
 
 .. code-block:: yaml
 
