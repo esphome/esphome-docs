@@ -100,9 +100,7 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 0
 
-**Olimex ESP32-GATEWAY**:
-
-**LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
+**Olimex ESP32-GATEWAY** and **LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
 
 .. code-block:: yaml
 
@@ -113,9 +111,7 @@ Configuration examples
       clk_mode: GPIO17_OUT
       phy_addr: 0
 
-**Wireless Tag WT32-ETH01**:
-
-**SMLIGHT SLZB-06 PoE Zigbee**:
+**Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06 PoE Zigbee**:
 
 .. code-block:: yaml
 
@@ -127,9 +123,7 @@ Configuration examples
       phy_addr: 1
       power_pin: GPIO16
 
-**M5Stack PoESP32**:
-
-**ESP32-Ethernet-Kit**:
+**M5Stack PoESP32** and **ESP32-Ethernet-Kit**:
 
 .. code-block:: yaml
 
