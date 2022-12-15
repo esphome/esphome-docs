@@ -289,6 +289,8 @@ See Also
 --------
 
 - :doc:`captive_portal`
+- :doc:`text_sensor/wifi_info`
+- :doc:`sensor/wifi_signal`
 - :doc:`network`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`
