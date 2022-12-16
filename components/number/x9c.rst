@@ -5,11 +5,22 @@ X9C Potentiometer Number
     :description: Instructions for setting up a X9C digital potentiometer with ESPHome.
     :image: description.svg
 
-The ``x9c`` number platform allows you to create a number that controls an `X9C digital potentiometer <https://4donline.ihs.com/images/VipMasterIC/IC/RNCC/RNCC-S-A0010771724/RNCC-S-A0010813887-1.pdf?hkey=6D3A4C79FDBF58556ACFDE234799DDF0>`__.
+The ``x9c`` number platform allows you to create a number that controls a `X9C digital potentiometer <https://www.renesas.com/us/en/document/dst/x9c102-x9c103-x9c104-x9c503-datasheet>`__.
 
 .. figure:: images/x9c.jpg
     :align: center
     :width: 70.0%
+    
+The X9C family of digital potentiometers are available in different resistance values.
+
+.. code-block:: text
+
+    X9C102 = 1k
+    X9C103 = 10k
+    X9C503 = 50k
+    X9C104 = 100k
+
+All chips are controlled by a three wire interface and feature 100 possible wiper positions (1 to 100).
 
 .. code-block:: yaml
 
