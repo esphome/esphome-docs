@@ -10,15 +10,20 @@ The ``x9c`` number platform allows you to create a number that controls a `X9C d
 .. figure:: images/x9c.jpg
     :align: center
     :width: 70.0%
-    
+
+    X9C digital potentiometer
+
 The X9C family of digital potentiometers are available in different resistance values.
 
-.. code-block:: text
-
-    X9C102 = 1k
-    X9C103 = 10k
-    X9C503 = 50k
-    X9C104 = 100k
+==================== ===================== 
+``X9C102``           ``1kΩ``
+-------------------- ---------------------
+``X9C103``           ``10kΩ``
+-------------------- ---------------------
+``X9C503``           ``50kΩ``
+-------------------- ---------------------
+``X9C104``           ``100kΩ``
+==================== =====================
 
 All chips are controlled by a three wire interface and feature 100 possible wiper positions (1 to 100).
 
