@@ -34,6 +34,12 @@ underlying flash partition table that ESPHome uses. OTA will work, but to fully 
 of the performance increases for bluetooth, it is best to at least one serial flash with ESPHome
 2022.12.0 or later.
 
+Release 2022.12.1 - December 16
+-------------------------------
+
+- Support non-multiarch toolchains on 32-bit ARM :esphomepr:`4191` by :ghuser:`agners`
+- Mark ESP32-S2 as not having Bluetooth :esphomepr:`4194` by :ghuser:`jesserockz`
+- Fix i2s_audio media_player compiling for esp32-s2 :esphomepr:`4195` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------
