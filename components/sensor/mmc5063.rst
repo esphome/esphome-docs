@@ -1,4 +1,4 @@
-.. _hmc5883l:
+.. _mmc5603:
 
 MMC5603 Magnetometer
 =====================
@@ -34,7 +34,7 @@ for this sensor to work.
         field_strength_z:
           name: "MMC5603 Field Strength Z"
         heading:
-          name: "MMC5603 HMC5883L Heading"
+          name: "MMC5603 Heading"
         update_interval: 60s
 
 Configuration variables:
