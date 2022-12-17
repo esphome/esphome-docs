@@ -14,7 +14,7 @@ can be used to monitor both AC line voltages.
 
 The (`Gelidus Split Single Phase Power Meter <https://www.gelidus.ca/product/esphome-power-meter-1/>`__) is ideal for most home power distributions in North America.
 
-.. figure:: /images/atm90e32-pm1.jpg
+.. figure:: images/atm90e32-pm1.jpg
     :align: center
     :width: 50.0%
 
