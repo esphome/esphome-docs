@@ -83,8 +83,8 @@ Configuration variables:
 - **update_interval** (*Optional*): The polling interval.
   When not provided a default value of 60 seconds is used.
 
-.. note:: 
-  
+.. note::
+
     - The uart baudrate has to be set to 1200 baud and the stop bits to 2. 
       It is recommended to use pins associated with a hardware UART.
       For more information regarding uart configuration, refer to :ref:`UART <uart>`.
