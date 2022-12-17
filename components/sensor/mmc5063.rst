@@ -13,7 +13,7 @@ The ``mmc5603`` allows you to use your MMC5603 triple-axis magnetometers
 `Adafruit`_) with ESPHome. The :ref:`I²C Bus <i2c>` is required to be set up in your configuration
 for this sensor to work.
 
-.. figure:: ../../images/mm5603.jpg
+.. figure:: ../../images/mmc5603.jpg
     :align: center
     :width: 30.0%
 
