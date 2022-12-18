@@ -417,6 +417,14 @@ Binary Sensor Components
     Touchscreen, components/touchscreen/index, touch.svg
     Custom Binary Sensor, components/binary_sensor/custom, language-cpp.svg
 
+
+Presence Detection
+******************
+.. imgtable::
+
+    DFRobot mmWave Radar, components/binary_sensor/dfrobot_mmwave, dfrobot_mmwave_radar.jpg
+
+
 Output Components
 -----------------
 
