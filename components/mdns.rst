@@ -22,7 +22,33 @@ It is recommended to leave mDNS enabled.
 
 .. _mdns-configuration_variables:
 
+
+Services:
+---------
+
+Additional mdns services can be added as exposed by the esphome node.
+
+.. code-block:: yaml
+
+    # Example configuration entry with additional service
+    mdns:
+      services:
+        - service: "_custom_service"
+          protocol: "_tcp"
+          port: 8080
+          txt:
+            txt_key_1: txt_value_1
+
+.. _mdns-custom_services:
+
+
 Configuration variables:
 ------------------------
 
 - **disabled** (*Optional*, boolean): Set to true to disable mDNS usage. Defaults to false.
+- **services** (*Optional*, list): List of additional services to expose.
+
+  - **service** (*Required*, string): Name of extra service
+  - **protocol** (*Required*, string): Protcol of service (_udp or _tcp)
+  - **port** (*Optional*, int): Port number of extra service
+  - **txt** (*Optional*, mapping): Additional text records to add to service
