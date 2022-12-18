@@ -231,6 +231,7 @@ appropriate lines of C code in the lambda to hide or show the image or text as y
 
     display:
       - platform: st7789v
+        model: TTGO TDisplay 135x240
         backlight_pin: GPIO4
         cs_pin: GPIO5
         dc_pin: GPIO16
