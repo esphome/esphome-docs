@@ -351,12 +351,12 @@ Setting up three options and set component state to selected option value.
          - "Option1"
          - "Option2"
          - "Option3"
+        initial_option: "OFF"
+        optimistic: true
         set_action: 
           - logger.log:
               format: "Chosen option: %s"
               args: ["x.c_str()"]
-          - lambda: |-
-              id(mode).state = x.c_str();
 
 
 See Also
