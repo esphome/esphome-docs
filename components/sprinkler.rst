@@ -1111,6 +1111,168 @@ and/or trigger sprinkler controller actions using automations.
           then:
             - sprinkler.shutdown: lawn_sprinkler_ctrlr
 
+.. _sprinkler-controller-sprinkler_controller_understanding_state:
+
+Understanding the Sprinkler Controller's State
+----------------------------------------------
+
+A number of people have asked about how to determine the sprinkler controller's state. This section aims to outline how
+to use the sprinkler controller's :apiref:`API <sprinkler/sprinkler.h>` to determine what it is doing, generally with
+the goal of indicating this on some form of :doc:`display </components/display/index>` hardware. Note that this
+discussion largely revolves around C++ code (as is used in ESPHome lambdas).
+
+Many of the methods used to determine the sprinkler controller's state return a type of value known as an ``optional``.
+If you are curious, a general reference for the ``optional`` type may be found
+`here <https://en.cppreference.com/w/cpp/utility/optional>`__, but what is important for now is:
+
+- The ``optional`` type *may* or *may not* contain a value
+
+  - The method ``has_value()`` is used to determine if a value is present. For example:
+    ``id(lawn_sprinkler_ctrlr).active_valve().has_value()``
+  - The method ``value()`` is used to determine the value, *if* it is determined that a value is present. For example:
+    ``auto running_valve = id(lawn_sprinkler_ctrlr).active_valve().value()``
+
+- The ``optional`` type can contain a value of any C++ type (``bool``, ``int``, ``float``, etc.) (In C++ terms, it is a
+  template.)
+
+The examples that follow illustrate use of the the sprinkler controller's methods within a
+:doc:`display </components/display/index>` lambda. The examples are intended to illustrate a pattern and (for sake of
+brevity) *are not complete*; at very least you'll need to fill out the :doc:`display </components/display/index>`
+component's specific configuration details before you can use them.
+
+With these points in mind, let's discuss some of the methods which indicate the state of the sprinkler controller.
+We'll approach this from the angle of *"how do I..."*
+
+.. _sprinkler-controller-sprinkler_controller_understanding_state_how_do_i:
+
+How Do I...
+***********
+
+- **...determine if the sprinkler controller is running?**
+  
+  Use the method ``optional<size_t> active_valve()`` to check if there is an active valve. If the ``optional`` returned
+  ``has_value()``, the sprinkler controller is running and you may use the ``value()`` method to check which specific
+  valve is active.
+
+  *Example:*
+
+  .. code-block:: yaml
+
+      display:
+        - platform: ...
+          # ...display configuration...
+          lambda: |-
+            if (id(lawn_sprinkler_ctrlr).active_valve().has_value()) {
+              // the controller is running, get the active valve into running_valve and print it
+              auto running_valve = id(lawn_sprinkler_ctrlr).active_valve().value();
+              it.printf(0, 0, "Sprinkler controller is running valve %u", running_valve);
+            } else {
+              // the controller is NOT running
+              it.print(0, 0, "Sprinkler controller is idle");
+            }
+
+- **...determine if the sprinkler controller is paused and, if so, which valve is paused?**
+
+  Use the method ``optional<size_t> paused_valve()`` to check if there is a paused valve. If the ``optional`` returned
+  ``has_value()``, the sprinkler controller is paused and you may use the ``value()`` method to check which specific
+  valve is paused. In general, this follows the same pattern as the
+  :ref:`active_valve() example above <sprinkler-controller-sprinkler_controller_understanding_state_how_do_i>`.
+
+- **...determine the sprinkler controller's current mode?**
+
+  If by this you mean, "is auto-advance/the queue/reverse/standby enabled?", you are in the right spot. Methods exist
+  for just this purpose:
+
+  - ``bool auto_advance()``
+  - ``bool queue_enabled()``
+  - ``bool reverse()``
+  - ``bool standby()``
+
+  Each will return ``true`` if the respective "mode" is enabled.
+
+  *Examples:*
+
+  .. code-block:: yaml
+
+      display:
+        - platform: ...
+          # ...display configuration...
+          lambda: |-
+            if (id(lawn_sprinkler_ctrlr).auto_advance()) {
+              // auto-advance is enabled
+              it.print(0, 0, "Sprinkler controller auto-advance is enabled");
+            } else {
+              // auto-advance is NOT enabled
+              it.print(0, 0, "Sprinkler controller auto-advance is enabled");
+            }
+            if (id(lawn_sprinkler_ctrlr).queue_enabled()) {
+              // queue is enabled
+              it.print(0, 10, "Sprinkler controller queue is enabled");
+            } else {
+              // queue is NOT enabled
+              it.print(0, 10, "Sprinkler controller queue is disabled");
+            }
+
+- **...determine the sprinkler controller's multiplier/repeat values?**
+  
+  Methods of interest in this case are:
+
+  - ``float multiplier()``
+  - ``optional<uint32_t> repeat()``
+  - ``optional<uint32_t> repeat_count()``
+
+  Note again that each of the ``repeat`` methods returns an ``optional`` type; if the ``optional`` returned
+  ``has_value()``, repeating is enabled and you can get the repeat target (``repeat()``) or current repeat
+  count (``repeat_count()``) with ``optional``'s ``value()`` method.
+
+  The ``multiplier()`` method returns a ``float`` type and, as such, it always has a value.
+
+  *Examples:*
+
+  .. code-block:: yaml
+
+      display:
+        - platform: ...
+          # ...display configuration...
+          lambda: |-
+            it.printf(0, 0, "Sprinkler controller multiplier: %f", id(lawn_sprinkler_ctrlr).multiplier());
+
+            if (id(lawn_sprinkler_ctrlr).repeat().has_value()) {
+              // the controller is repeating, print the repeat target value
+              it.printf(0, 10, "Sprinkler controller repeat target: %u", id(lawn_sprinkler_ctrlr).repeat().value());
+            }
+
+- **...determine how much time is left/required?**
+
+  Several methods are available for this purpose:
+
+  - ``uint32_t total_cycle_time_all_valves()``
+  - ``uint32_t total_cycle_time_enabled_valves()``
+  - ``uint32_t total_cycle_time_enabled_incomplete_valves()``
+  - ``uint32_t total_queue_time()``
+  - ``optional<uint32_t> time_remaining_active_valve()``
+  - ``optional<uint32_t> time_remaining_current_operation()``
+
+  Note that, as with several of the earlier examples, the ``time_remaining_...`` methods each return an ``optional``
+  type. If the ``optional`` returned ``has_value()``, a valve is active/running; if it does not ``has_value()``, no
+  valve is active, meaning the controller is idle.
+
+  *Example:*
+
+  .. code-block:: yaml
+
+      display:
+        - platform: ...
+          # ...display configuration...
+          lambda: |-
+            if (id(lawn_sprinkler_ctrlr).time_remaining_active_valve().has_value()) {
+              // the controller is running, print the number of seconds remaining
+              it.printf(0, 0, "Sprinkler controller active valve time remaining: %u seconds", id(lawn_sprinkler_ctrlr).time_remaining_active_valve().value());
+            } else {
+              // the controller is NOT running
+              it.print(0, 0, "Sprinkler controller is idle");
+            }
+
 See Also
 --------
 
