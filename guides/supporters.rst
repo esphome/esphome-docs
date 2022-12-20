@@ -167,6 +167,7 @@ Contributors
 - `Chris Debenham (@cjd) <https://github.com/cjd>`__
 - `Clifford Roche (@cmroche) <https://github.com/cmroche>`__
 - `code-review-doctor (@code-review-doctor) <https://github.com/code-review-doctor>`__
+- `Casey Burnett (@codeangler) <https://github.com/codeangler>`__
 - `CODeRUS (@CODeRUS) <https://github.com/CODeRUS>`__
 - `Cody James (@codyjamestechnical) <https://github.com/codyjamestechnical>`__
 - `Colin Leroy-Mira (@colinleroy) <https://github.com/colinleroy>`__
@@ -186,7 +187,6 @@ Contributors
 - `Massimo Cetra (@ctrix) <https://github.com/ctrix>`__
 - `cvwillegen (@cvwillegen) <https://github.com/cvwillegen>`__
 - `Christoph Wempe (@CWempe) <https://github.com/CWempe>`__
-- `cwitting (@cwitting) <https://github.com/cwitting>`__
 - `Alex Solomaha (@CyanoFresh) <https://github.com/CyanoFresh>`__
 - `Luar Roji (@cyberplant) <https://github.com/cyberplant>`__
 - `Aleš Komárek (@cznewt) <https://github.com/cznewt>`__
@@ -225,6 +225,7 @@ Contributors
 - `dependabot[bot] (@dependabot[bot]) <https://github.com/dependabot[bot]>`__
 - `Joeri Colman (@depuits) <https://github.com/depuits>`__
 - `Destix (@Destix) <https://github.com/Destix>`__
+- `Deun Lee (@deunlee) <https://github.com/deunlee>`__
 - `Develo (@devyte) <https://github.com/devyte>`__
 - `Dezorian (@Dezorian) <https://github.com/Dezorian>`__
 - `Dan Halbert (@dhalbert) <https://github.com/dhalbert>`__

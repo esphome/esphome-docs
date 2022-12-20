@@ -47,6 +47,11 @@ Release 2022.12.2 - December 20
 - Fix import_full_config for adoption configs :esphomepr:`4197` by :ghuser:`jesserockz`
 - Handle zero padding anywhere in the combined adv data :esphomepr:`4208` by :ghuser:`bdraco`
 
+Release 2022.12.3 - December 20
+-------------------------------
+
+- Fix ESP32 GPIO when using INPUT PULLUP mode :esphomepr:`4213` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
