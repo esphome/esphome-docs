@@ -653,6 +653,8 @@ Misc Components
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
+    Display Menu Core, components/display_menu/index, folder-open.svg
+    LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
@@ -678,6 +680,7 @@ Misc Components
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
+    SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
@@ -695,6 +698,7 @@ Misc Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     SML, components/sml, sml.svg
+    Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
 
@@ -744,6 +748,7 @@ Cookbook
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
     AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
+    Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.
