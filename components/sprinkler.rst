@@ -1165,10 +1165,10 @@ How Do I...
             if (id(lawn_sprinkler_ctrlr).active_valve().has_value()) {
               // the controller is running, get the active valve into running_valve and print it
               auto running_valve = id(lawn_sprinkler_ctrlr).active_valve().value();
-              it.printf(0, 0, "Sprinkler controller is running valve %u", running_valve);
+              it.printf(0, 0, "Valve %u active", running_valve);
             } else {
               // the controller is NOT running
-              it.print(0, 0, "Sprinkler controller is idle");
+              it.print(0, 0, "Idle");
             }
 
 - **...determine if the sprinkler controller is paused and, if so, which valve is paused?**
@@ -1200,17 +1200,17 @@ How Do I...
           lambda: |-
             if (id(lawn_sprinkler_ctrlr).auto_advance()) {
               // auto-advance is enabled
-              it.print(0, 0, "Sprinkler controller auto-advance is enabled");
+              it.print(0, 0, "Auto-advance is enabled");
             } else {
               // auto-advance is NOT enabled
-              it.print(0, 0, "Sprinkler controller auto-advance is enabled");
+              it.print(0, 0, "Auto-advance is enabled");
             }
             if (id(lawn_sprinkler_ctrlr).queue_enabled()) {
               // queue is enabled
-              it.print(0, 10, "Sprinkler controller queue is enabled");
+              it.print(0, 10, "Queue is enabled");
             } else {
               // queue is NOT enabled
-              it.print(0, 10, "Sprinkler controller queue is disabled");
+              it.print(0, 10, "Queue is disabled");
             }
 
 - **...determine the sprinkler controller's multiplier/repeat values?**
@@ -1235,11 +1235,11 @@ How Do I...
         - platform: ...
           # ...display configuration...
           lambda: |-
-            it.printf(0, 0, "Sprinkler controller multiplier: %f", id(lawn_sprinkler_ctrlr).multiplier());
+            it.printf(0, 0, "Multiplier: %f", id(lawn_sprinkler_ctrlr).multiplier());
 
             if (id(lawn_sprinkler_ctrlr).repeat().has_value()) {
               // the controller is repeating, print the repeat target value
-              it.printf(0, 10, "Sprinkler controller repeat target: %u", id(lawn_sprinkler_ctrlr).repeat().value());
+              it.printf(0, 10, "Repeat %u times", id(lawn_sprinkler_ctrlr).repeat().value());
             }
 
 - **...determine how much time is left/required?**
@@ -1267,10 +1267,10 @@ How Do I...
           lambda: |-
             if (id(lawn_sprinkler_ctrlr).time_remaining_active_valve().has_value()) {
               // the controller is running, print the number of seconds remaining
-              it.printf(0, 0, "Sprinkler controller active valve time remaining: %u seconds", id(lawn_sprinkler_ctrlr).time_remaining_active_valve().value());
+              it.printf(0, 0, "Time left: %u sec.", id(lawn_sprinkler_ctrlr).time_remaining_active_valve().value());
             } else {
               // the controller is NOT running
-              it.print(0, 0, "Sprinkler controller is idle");
+              it.print(0, 0, "Idle");
             }
 
 See Also
