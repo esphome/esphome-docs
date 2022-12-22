@@ -443,6 +443,7 @@ Output Components
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
+    BP5758D, components/output/bp5758d, bp5758d.svg
 
 Light Components
 ----------------
