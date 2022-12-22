@@ -20,7 +20,7 @@ Configuration variables
 .. _pcf85063-write_time_action:
 
 ``pcf85063.write_time`` Action
-----------------------------
+------------------------------
 
 This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
 
@@ -41,7 +41,7 @@ This :ref:`Action <config-action>` triggers a synchronization of the current sys
 .. _pcf85063-read_time_action:
 
 ``pcf85063.read_time`` Action
----------------------------
+-----------------------------
 
 This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
 
