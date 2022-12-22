@@ -113,26 +113,14 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
 
 .. _devices:
 
-Devices
--------
-
-This list contains a bunch of getting started and more advanced guides for using ESPHome.
-Technically, all ESP8266/ESP32 devices are supported by ESPHome.
+Platforms
+---------
 
 .. imgtable::
 
-    Generic ESP8266, devices/esp8266, esp8266.svg
-    Generic ESP32, devices/esp32, esp32.svg
-    NodeMCU ESP8266, devices/nodemcu_esp8266, nodemcu_esp8266.jpg
-
-    NodeMCU ESP32, devices/nodemcu_esp32, nodemcu_esp32.jpg
-    Sonoff S20, devices/sonoff_s20, sonoff_s20.jpg
-    Sonoff 4CH, devices/sonoff_4ch, sonoff_4ch.jpg
-
-    Generic Sonoff, devices/sonoff, sonoff.svg
-    Sonoff Basic, devices/sonoff_basic, sonoff_basic.jpg
-    Sonoff T1 UK 3 Gang V1.1, devices/sonoff_t1_uk_3gang_v1.1, sonoff_t1_uk_3g_v1.1.jpg
-    Sonoff T3 EU 3 Gang V1.0, devices/sonoff_t3_eu_3gang_v1.0, sonoff_t3_eu_3g_v1.0.jpg
+    ESP8266, components/esp8266, esp8266.svg
+    ESP32, components/esp32, esp32.svg
+    RP2040, components/rp2040, rp2040.svg
 
 Core Components
 ---------------
@@ -447,6 +435,8 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
+    SM2235, components/output/sm2235, sm2235.svg
+    SM2335, components/output/sm2335, sm2335.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
@@ -455,6 +445,8 @@ Output Components
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
+    BP1658CJ, components/output/bp1658cj, bp1658cj.svg
+    BP5758D, components/output/bp5758d, bp5758d.svg
 
 Light Components
 ----------------
@@ -662,12 +654,11 @@ Misc Components
 
 .. imgtable::
 
-    ESP8266, components/esp8266, esp8266.svg
-    ESP32, components/esp32, esp32.svg
-
     Remote Receiver, components/remote_receiver, remote.svg
     Remote Transmitter, components/remote_transmitter, remote.svg
     Status LED, components/status_led, led-on.svg
+    Display Menu Core, components/display_menu/index, folder-open.svg
+    LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
@@ -688,11 +679,13 @@ Misc Components
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg
 
+    PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
+    SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg
@@ -711,6 +704,7 @@ Misc Components
     PipSolar - compatible PV Inverter, components/pipsolar, pipsolar.jpg
     Grow Fingerprint Reader, components/fingerprint_grow, fingerprint.svg
     SML, components/sml, sml.svg
+    Atlas Scientific Peristaltic Pump, components/ezo_pmp, ezo-pmp.jpg
     Demo, components/demo, description.svg
     Copy, components/copy, content-copy.svg
 
@@ -760,6 +754,7 @@ Cookbook
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
     AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
+    Geiger Counter, cookbook/geiger-counter, radiationD-v1-1-cajoe_small.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

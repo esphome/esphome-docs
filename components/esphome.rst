@@ -26,7 +26,8 @@ Configuration variables:
 
 - **name** (**Required**, string): This is the name of the node. It
   should always be unique in your ESPHome network. May only contain lowercase
-  characters, digits and hyphens, and can be at most 31 characters long.
+  characters, digits and hyphens, and can be at most 24 characters long by default, or 31
+  characters long if ``name_add_mac_suffix`` is ``false``.
   See :ref:`esphome-changing_node_name`.
 
 Advanced options:
@@ -52,6 +53,8 @@ Advanced options:
   - **version** (**Required**, string): Version of the project
 - **min_version** (*Optional*, string): The minimum ESPHome version required to compile this configuration.
   See :ref:`esphome-min_version`.
+- **compile_process_limit** (*Optional*, int): The maximum number of simultaneous compile processes to run.
+  Defaults to the number of cores of the CPU which is also the maximum you can set.
 
 Old-style platform options, which have been moved to the platform-specific :doc:`esp32 </components/esp32>` and
 :doc:`esp8266 </components/esp8266>` sections but are still accepted here for compatibility reasons (usage not
