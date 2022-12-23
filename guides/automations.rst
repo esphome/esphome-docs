@@ -394,6 +394,7 @@ All Actions
 - :ref:`rf_bridge.send_code <rf_bridge-send_code_action>`
 - :ref:`rf_bridge.learn <rf_bridge-learn_action>`
 - :ref:`ds1307.read_time <ds1307-read_time_action>` / :ref:`ds1307.write_time <ds1307-write_time_action>`
+- :ref:`pcf85063.read_time <pcf85063-read_time_action>` / :ref:`pcf85063.write_time <pcf85063-write_time_action>`
 - :ref:`cs5460a.restart <cs5460a-restart_action>`
 - :ref:`pzemac.reset_energy <pzemac-reset_energy_action>`
 - :ref:`number.set <number-set_action>` / :ref:`number.to_min <number-to-min_action>` / :ref:`number.to_max <number-to-max_action>` / :ref:`number.decrement <number-decrement_action>` / :ref:`number.increment <number-increment_action>` / :ref:`number.operation <number-operation_action>`
@@ -712,8 +713,8 @@ Configuration variables:
 
 - **max_runs** (*Optional*, int): Allows limiting the maxiumun number of runs when using script
   modes ``queued`` and ``parallel``, use value ``0`` for unlimited runs. Defaults to ``0``.
-- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one 
-  or more parameters that must be provided in order to execute. All parameters defined here are 
+- **parameters** (*Optional*, :ref:`Script Parameters <script-parameters>`): A script can define one
+  or more parameters that must be provided in order to execute. All parameters defined here are
   mandatory and must be given when calling the script.
 - **then** (**Required**, :ref:`Action <config-action>`): The action to perform.
 
@@ -723,7 +724,7 @@ Configuration variables:
 ``Script Parameters``
 ---------------------
 
-Scripts can be defined with parameters. The arguments given when calling the script can be used within 
+Scripts can be defined with parameters. The arguments given when calling the script can be used within
 the script's lambda actions. To define the parameters, add the parameter names under `parameters:` key
 and specify the data type for that parameter.
 
@@ -765,7 +766,7 @@ script was already running.
     on_...:
       then:
         - script.execute: my_script
-        
+
         # Calling a non-parameterised script in a lambda
         - lambda: id(my_script).execute();
 
@@ -806,7 +807,7 @@ will not be executed.
 
 or as lambda
 
-.. code-block:: yaml   
+.. code-block:: yaml
 
     lambda: 'id(my_script).stop();'
 
@@ -861,7 +862,7 @@ or as lambda
 .. code-block:: yaml
 
     lambda: -|
-        if(id(my_script).is_running() {
+        if (id(my_script).is_running()) {
             ESP_LOGI("main", "Script is running!");
         }
 
