@@ -1156,7 +1156,7 @@ How Do I...
 
   *Example:*
 
-  .. code-block:: yaml
+  .. code-block:: c++
 
       display:
         - platform: ...
@@ -1192,7 +1192,7 @@ How Do I...
 
   *Examples:*
 
-  .. code-block:: yaml
+  .. code-block:: c++
 
       display:
         - platform: ...
@@ -1200,17 +1200,17 @@ How Do I...
           lambda: |-
             if (id(lawn_sprinkler_ctrlr).auto_advance()) {
               // auto-advance is enabled
-              it.print(0, 0, "Auto-advance is enabled");
+              it.print(0, 0, "Auto-advance enabled");
             } else {
               // auto-advance is NOT enabled
-              it.print(0, 0, "Auto-advance is enabled");
+              it.print(0, 0, "Auto-advance disabled");
             }
             if (id(lawn_sprinkler_ctrlr).queue_enabled()) {
               // queue is enabled
-              it.print(0, 10, "Queue is enabled");
+              it.print(0, 10, "Queue enabled");
             } else {
               // queue is NOT enabled
-              it.print(0, 10, "Queue is disabled");
+              it.print(0, 10, "Queue disabled");
             }
 
 - **...determine the sprinkler controller's multiplier/repeat values?**
@@ -1229,7 +1229,7 @@ How Do I...
 
   *Examples:*
 
-  .. code-block:: yaml
+  .. code-block:: c++
 
       display:
         - platform: ...
@@ -1259,7 +1259,7 @@ How Do I...
 
   *Example:*
 
-  .. code-block:: yaml
+  .. code-block:: c++
 
       display:
         - platform: ...
