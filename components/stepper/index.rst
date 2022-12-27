@@ -83,7 +83,7 @@ Configuration variables:
               
 .. note::
 
-    If you want to replace the A4988 with a TMC2208 module, there are some minor changes to do:
+    It's possible to use an A4988 instead of TMC2208 with a few minor changes:
     
     - The TMC2208 only has two microstepping pins (MS1, MS2). The configuration is slightly counter-intuitive:
 
