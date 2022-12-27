@@ -40,6 +40,18 @@ The ``xpt2046`` touchscreen component has been updated to be a platform of ``tou
 top level component. This requires a small change to your configuration, see :doc:`/components/touchscreen/xpt2046`
 for the new way to configure.
 
+Release 2022.10.1 - October 26
+------------------------------
+
+- Update bluetooth proxy limit as soon as connection requested :esphomepr:`3935` by :ghuser:`jesserockz`
+- Add water & precipitation_intensity sensor device classes :esphomepr:`3940` by :ghuser:`frenck`
+- Fixed touch release issue using the interrupt pin :esphomepr:`3925` by :ghuser:`nielsnl68`
+- Add wind_speed sensor device class :esphomepr:`3941` by :ghuser:`frenck`
+
+Release 2022.10.2 - November 1
+------------------------------
+
+- Fix bluetooth_proxy not connecting :esphomepr:`3967` by :ghuser:`jesserockz`
 
 Full list of changes
 --------------------

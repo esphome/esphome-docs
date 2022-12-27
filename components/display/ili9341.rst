@@ -65,6 +65,8 @@ Configuration variables:
   
   - ``NONE`` (default)
   - ``GRAYSCALE``
+  - ``IMAGE_ADAPTIVE``
+- **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
 
 Configuration examples
 **********************
@@ -125,6 +127,32 @@ To configure a dimmable backlight:
         name: "ILI9341 Display Backlight"
         id: back_light
         restore_mode: ALWAYS_ON
+
+To configure an image adaptive color pallet to show greater than 8 bit color depth with a RAM limited screen buffer:
+
+.. code-block:: yaml
+
+    image:
+      - file: "sample_100x100.png"
+        id: myimage
+        resize: 100x100
+        type: RGB24
+
+    display:
+      - platform: ili9341
+        model: TFT 2.4
+        cs_pin: 5
+        dc_pin: 4
+        led_pin: 15
+        reset_pin: 22
+        rotation: 90
+        id: tft_ha
+        color_palette: IMAGE_ADAPTIVE
+        color_palette_images:
+          - "sample_100x100.png"
+          - "display_design.png"
+        lambda: |-
+          it.image(0, 0, id(myimage));
 
 See Also
 --------

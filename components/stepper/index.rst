@@ -309,82 +309,22 @@ Configuration variables:
 Home Assistant Configuration
 ----------------------------
 
-This component will not show up in the Home Assistant front-end (Overview) automatically because
-Home Assistant does not support steppers natively.
-
-You can add the stepper component code below to your Home Assistant configuration (``configuration.yaml``) to
-be able to control the stepper from the front-end.
+The easiest way to control your stepper from Home Assistant is to add a ``number`` to your ESPHome 
+configuration. See :ref:`Number <config-number>` for more information.
 
 .. code-block:: yaml
 
-    # Add a slider control to Home Assistant to set an integer value
-    input_number:
-      stepper_control:
+    number:
+      - platform: template
         name: Stepper Control
-        initial: 0
-        min: -1000
-        max: 1000
+        min_value: -100
+        max_value: 100
         step: 1
-        mode: slider
-
-    # Do something when the slider changes
-    automation:
-      - alias: Write Stepper Value to ESP
-        trigger:
-          platform: state
-          entity_id: input_number.stepper_control
-        action:
-          # Replace livingroom with the name you gave the ESP
-          - service: esphome.livingroom_control_stepper
-            data_template:
-              target: '{{ trigger.to_state.state | int }}'
-
-In the above code, "stepper_control" is the ID of a numeric input field. It must be unique and it is
-used in the automation section as a reference name. The display name for this field is in
-stepper_control's ``name`` key.
-
-If you want your user interface to give you more control over your stepper controller, such as
-setting the acceleration, deceleration, etc, then you can add more input fields after ``stepper_control``
-but before ``automation``. They can be a simple number-entry field (mode: box) or a slider like this.
-Each of these extra input fields needs an associated input parameter defined on the ESPHome device's
-API service.
-
-The automation section tells Home Assistant what to do when the slider changes. It needs a trigger
-(state of the ``stepper_control`` slider) and an action. In the trigger section, ``entity_id`` must refer
-back to the configuration ID that triggers the automation. For us, that is the ``stepper_control``
-field in the ``input_number`` item. That's why the value is ``input_number.stepper_control``.
-
-In the action section, the service name is vital to get right: it's the glue that connects Home Automation's
-front-end to the ESPHome device configuration. While you might expect the syntax to be ``esphome.<your_device>.<api_service>``,
-the correct syntax is to join the device ID to the API service ID with an underscore,
-as in ``esphome.livingroom_control_stepper`` where "Livingroom" is a device in ESPHome and "control_stepper" is an
-API service for that device.
-
-The template string is used to get the "state" value from the ``target`` field (defined in the target section) on the
-``input_number`` component of the Home Assistant front-end. This value is then passed to the API service as defined in
-the ESPHome device's configuration. The ``data_template`` section lists one value for each of the input parameters on
-the service being called by the automation. In our case, the ESPHome device has an API service with a single parameter,
-"target". If you called this "my_target", then the last line above should be ``my_target: '{{ trigger.to_state.state | int }}'``.
-Getting this linkage right is very important.
-
-The following code needs to go in the ESPHome configuration file for this device. Above, we mention "API service"
-a lot. This code is where that is defined. You may have already added it (or something similar). Note
-that the input variable for the ``control_stepper`` service is called ``target``. That's what matches with the
-automation configuration above. Also note that the variable ``target`` is defined as an integer. That means it
-must be an integer number, not a string.
-
-.. code-block:: yaml
-
-    # ESPHome configuration
-    api:
-      services:
-        - service: control_stepper
-          variables:
-            target: int
+        set_action:
           then:
             - stepper.set_target:
                 id: my_stepper
-                target: !lambda 'return target;'
+                target: !lambda 'return x;'
 
     stepper:
       - platform: ...
