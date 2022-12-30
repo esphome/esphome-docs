@@ -89,7 +89,7 @@ Configuration variables:
 - **index** (**Required**, int): The index of the sensor starting with 0.
   So the first sensor will for example have index 0. :ref:`It’s recommended
   to use address instead <dallas-getting-ids>`.
-- **resolution** (*Optional*, int): An optional resolution from 8 to
+- **resolution** (*Optional*, int): An optional resolution from 9 to
   12. Higher means more accurate. Defaults to the maximum for most Dallas temperature sensors: 12.
 - **dallas_id** (*Optional*, :ref:`config-id`): The ID of the :ref:`dallas hub <dallas-component>`.
   Use this if you have multiple dallas hubs.
