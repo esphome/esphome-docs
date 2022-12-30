@@ -1,0 +1,63 @@
+ENS160 Sensor
+===========================================
+
+.. seo::
+    :description: Instructions for setting up ENS160 air-quality sensors
+    :keywords: ENS160
+
+The ``ens160`` sensor platform allows you to use your ENS160
+(`datasheet <https://www.sciosense.com/wp-content/uploads/documents/SC-001224-DS-7-ENS160-Datasheet.pdf>`__,
+`Sciosense`_) air-quality sensors with ESPHome. The :ref:`I²C <i2c>` is
+required to be set up in your configuration for this sensor to work.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    sensor:
+      - platform: ens160
+        eco2:
+          name: "ENS160 eCO2"
+        tvoc:
+          name: "ENS160 Total Volatile Organic Compounds"
+        aqi:
+          name: "ENS160 Air Quality Index"
+        address: 0x53
+        update_interval: 10s
+
+Configuration variables:
+------------------------
+
+- **eco2** (**Required**): The information for the eCO2.
+  sensor
+
+  - **name** (**Required**, string): The name for the eCO2
+    sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **tvoc** (**Required**): The information for the TVOC sensor.
+
+  - **name** (**Required**, string): The name for the TVOC sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **aqi** (*Optional*): The information for the air quality index sensor.
+
+  - **name** (**Required**, string): The name for the AQI sensor.
+  - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **address** (*Optional*, int): Manually specify the I²C address of
+  the sensor. Defaults to ``0x53``. Another address can be ``0x52``.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
+  sensor. Defaults to ``60s``.
+
+.. _bme280-oversampling:
+
+See Also
+--------
+
+- :ref:`sensor-filters`
+- :doc:`ccs811`
+- :apiref:`ens160/ens160.h`
+- :ghedit:`Edit`
