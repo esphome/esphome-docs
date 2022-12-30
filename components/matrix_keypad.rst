@@ -86,6 +86,6 @@ Either the ``row`` and ``col`` parameters, or the ``key`` parameter has to be pr
 See Also
 --------
 
-- :doc:`/components/key_collector`
+.. - :doc:`/components/key_collector`
 - :ref:`Binary Sensor <config-binary_sensor>`
 - :ghedit:`Edit`
