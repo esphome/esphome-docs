@@ -146,10 +146,11 @@ Configuration variables:
   precision to operate any such valve.
 - **multiplier_number** (*Optional*, *string*): The name of the :doc:`number </components/number/index>` component that
   should be presented to the front end (Home Assistant) to enable control of the sprinkler controller's ``multiplier``
-  value.
+  value. See :ref:`sprinkler-controller-sprinkler_controller_numbers` below for more detail.
 - **repeat_number** (*Optional*, *string*): The name of the :doc:`number </components/number/index>` component that
   should be presented to the front end (Home Assistant) to enable control of the sprinkler controller's ``repeat``
-  value. May not be used with ``repeat``.
+  value. May not be used with ``repeat``. See :ref:`sprinkler-controller-sprinkler_controller_numbers` below for more
+  detail.
 - **repeat** (*Optional*, int): The number of times a full cycle should be repeated. Defaults to 0. May not be used
   with ``repeat_number``.
 - **next_prev_ignore_disabled** (*Optional*, boolean): Set to ``true`` to cause
@@ -157,7 +158,7 @@ Configuration variables:
   over valves that are not enabled. Defaults to ``false``.
 - **numbers_use_minutes** (*Optional*, boolean): Set to ``true`` to cause the :doc:`number </components/number/index>`
   components configured for valve run durations to use time in minutes (as opposed to seconds). Defaults to ``false``
-  (seconds).
+  (seconds). See :ref:`sprinkler-controller-sprinkler_controller_numbers` below for more detail.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation. While optional,
   this is necessary to identify the controller instance (particularly in cases where more than one is
   defined) when calling controller actions (see below) such as ``start_full_cycle`` or ``shutdown``.
@@ -192,7 +193,8 @@ Configuration variables:
     May not be specified with *pump_switch_id*.
   - **run_duration_number** (*Optional*, *string*): The name of the :doc:`number </components/number/index>` component
     that should be presented to the front end (Home Assistant) to enable control of the valve's ``run_duration`` value.
-    May not be used with ``run_duration``.
+    May not be used with ``run_duration``. See :ref:`sprinkler-controller-sprinkler_controller_numbers` below for more
+    detail.
   - **run_duration** (*Optional*, :ref:`config-time`): Required when ``run_duration_number`` is not provided. The
     duration in seconds this valve should remain on/open after it is activated. When a given valve is activated, the
     controller's multiplier value is multiplied by this value to determine the actual run duration for the valve, thus
@@ -336,8 +338,7 @@ appear in the sprinkler controller's configuration starting at zero (0).
 ``sprinkler.shutdown`` action
 *****************************
 
-Immediately (begins to) turns off all valves, effectively shutting down the system, respecting any
-configured pump or valve stop delays.
+Initiates a shutdown of all valves/the system, respecting any configured pump or valve stop delays.
 
 .. code-block:: yaml
 
@@ -973,6 +974,10 @@ including:
 - ``step`` (Defaults to 1 for valves and repeat, 0.1 for multiplier)
 - ``restore_value`` (Defaults to ``true``; set to ``false`` to always restore ``initial_value`` at boot)
 - ``set_action``
+
+In addition, you can set the ``numbers_use_minutes`` flag to ``true`` to configure the controller so that the
+:doc:`number </components/number/index>` component values represent minutes instead of seconds (the default) for
+valve run durations.
 
 Here's a brief example:
 
