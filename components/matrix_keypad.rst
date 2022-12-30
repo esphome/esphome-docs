@@ -8,7 +8,7 @@ The ``matrix_keypad`` component allows you to integrate pads which
 have the keys connected at the intersection points of the rows and columns 
 of a matrix. 
 
-.. figure:: images/matrix_keypad.jpg
+.. figure:: matrix_keypad.jpg
     :align: center
 
 
