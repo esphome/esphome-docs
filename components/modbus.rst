@@ -31,6 +31,8 @@ Configuration variables:
   If multiple modbus devices are attached increasing this value can help avoiding to to overlapping reads.
   When 2 devices are sending a command at the same the response read from uart can't be assigned to the proper design.
   This value defines the maximum queuing time for a command before it is send anyways.
+  
+- **disable_crc** (*Optional*, boolean): Ignores a bad CRC if set to ``true``. Defaults to ``false``
 
 
 See Also
