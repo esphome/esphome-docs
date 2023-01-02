@@ -41,6 +41,17 @@ Release 2022.12.1 - December 16
 - Mark ESP32-S2 as not having Bluetooth :esphomepr:`4194` by :ghuser:`jesserockz`
 - Fix i2s_audio media_player compiling for esp32-s2 :esphomepr:`4195` by :ghuser:`jesserockz`
 
+Release 2022.12.2 - December 20
+-------------------------------
+
+- Fix import_full_config for adoption configs :esphomepr:`4197` by :ghuser:`jesserockz`
+- Handle zero padding anywhere in the combined adv data :esphomepr:`4208` by :ghuser:`bdraco`
+
+Release 2022.12.3 - December 20
+-------------------------------
+
+- Fix ESP32 GPIO when using INPUT PULLUP mode :esphomepr:`4213` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
