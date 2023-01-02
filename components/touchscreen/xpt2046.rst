@@ -27,9 +27,9 @@ The :ref:`SPI <spi>` is required to be set up in your configuration for this sen
     # Example configuration entry
     touchscreen:
       platform: xpt2046
-      id: touchscreen
+      id: my_touchscreen
       cs_pin: 17
-      interupt_pin: 16
+      interrupt_pin: 16
       update_interval: 50ms
       report_interval: 1s
       threshold: 400
@@ -51,12 +51,12 @@ Base Configuration:
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The chip select pin.
   Often marked ``T_CS`` on the board.
 
-- **interupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
+- **interrupt_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The touch detection pin.
   Often marked ``T_IRQ`` on the board. If not specified the component will use polling
   via SPI. This key is renamed from **irq_pin**
 
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
-  sensor. If ``interupt_pin`` is specified the touch will be detected nearly instantaneously and this setting 
+  sensor. If ``interrupt_pin`` is specified the touch will be detected nearly instantaneously and this setting 
   will be used only for the release detection. Defaults to ``50ms``.
 
 - **report_interval** (*Optional*, :ref:`config-time`): The interval to periodically
@@ -103,15 +103,15 @@ values nor ``swap_x_y``.
     # Touchscreen
     touchscreen:
       platform: xpt2046
-      id: touchscreen
+      id: my_touchscreen
       cs_pin: 17
       on_touch:
         - lambda: |-
               ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
-                  id(touchscreen).x,
-                  id(touchscreen).y,
-                  id(touchscreen).x_raw,
-                  id(touchscreen).y_raw
+                  id(my_touchscreen).x,
+                  id(my_touchscreen).y,
+                  id(my_touchscreen).x_raw,
+                  id(my_touchscreen).y_raw
                   );
 
 Get a stylus or a similar object, run the project and touch the corners of the screen at
@@ -176,8 +176,8 @@ using a display lambda similar to the following.
       - platform: ili9341
         lambda: |-
           it.fill(BLACK);
-          if (id(touchscreen).touched)
-            it.filled_circle(id(touchscreen).x, id(touchscreen).y, 10, RED);
+          if (id(my_touchscreen).touched)
+            it.filled_circle(id(my_touchscreen).x, id(my_touchscreen).y, 10, RED);
 
 To be exact, the component does the following
 
