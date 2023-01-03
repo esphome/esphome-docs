@@ -142,6 +142,7 @@ Additionally, you have access to two helper methods which will fetch the width a
 You can view the full API documentation for the rendering engine in the "API Reference" in the See Also section.
 
 .. _display-static_text:
+.. _display-fonts:
 
 Fonts
 *****

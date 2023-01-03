@@ -671,6 +671,7 @@ Misc Components
     Status LED, components/status_led, led-on.svg
     Display Menu Core, components/display_menu/index, folder-open.svg
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    Graphical Display Menu, components/display_menu/graphical_display_menu, lcd_menu.png
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
