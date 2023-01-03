@@ -112,6 +112,7 @@ controlled via the `menu_item_value` parameter.
         return label;
 
 .. note::
+  
     Ensure that all characters you use in the menu_item_value are available glyphs for your :ref:`font <display-fonts>`
 
 
