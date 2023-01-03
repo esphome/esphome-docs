@@ -6,9 +6,12 @@ Analog To Digital Sensor
     :image: flash.svg
 
 The Analog To Digital (``adc``) Sensor allows you to use the built-in
-ADC in your device to measure a voltage on certain pins. On the ESP8266
-only pin A0 (GPIO17) supports this. On the ESP32 pins GPIO32 through
-GPIO39 can be used.
+ADC in your device to measure a voltage on certain pins.
+
+- ESP8266: Only pin A0 (GPIO17) can be used.
+- ESP32: GPIO32 through GPIO39 can be used.
+- RP2040: GPIO26 through GPIO29 can be used.
+
 
 .. figure:: images/adc-ui.png
     :align: center
@@ -105,7 +108,7 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
 .. note::
 
     To avoid confusion: It measures the voltage at the chip, and not at the VCC pin of the board. It should usually be around 3.3V.
-    
+
 .. code-block:: yaml
 
     sensor:
@@ -113,12 +116,46 @@ To measure the VCC voltage, set ``pin:`` to ``VCC`` and make sure nothing is con
         pin: VCC
         name: "VCC Voltage"
 
+RP2040 Internal Core Temperature
+--------------------------------
+
+The RP2040 has an internal temperature sensor that can be used to measure the core temperature. This sensor is not available on the GPIO pins, but is available on the internal ADC.
+The below code is how you can access the temperature and expose as a sensor. The filter values are taken from the RP2040 datasheet to calculate Voltage to Celcius.
+
+.. code-block:: yaml
+
+    sensor:
+      - platform: adc
+        pin: TEMPERATURE
+        name: "Core Temperature"
+        unit_of_measurement: "°C"
+        filters:
+          - lambda: return 27 - (x - 0.706f) / 0.001721f;
+
 Multiple ADC Sensors
 ---------------------
 
 You can only use as many ADC sensors as your device can support. The ESP8266 only has one ADC and can only handle one sensor at a time. For example, on the ESP8266, you can measure the value of an analog pin (A0 on ESP8266) or VCC (see above) but NOT both simultaneously. Using both at the same time will result in incorrect sensor values.
 
 
+Measuring battery voltage on the Firebeetle ESP32-E
+---------------------------------------------------
+
+This board has a internal voltage divider and the battery voltage can easily be measured like this using 11dB attenuation
+on GPIO34.
+
+.. code-block:: yaml
+
+    - platform: adc
+      name: "Battery voltage"
+      pin: GPIO34
+      accuracy_decimals: 2
+      update_interval: 60s
+      attenuation: 11dB
+      filters:
+        - multiply: 2.0  # The voltage divider requires us to multiply by 2
+
+This works on SKU:DFR0654. For more information see: `manufacturer's website <https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654>`__.
 
 See Also
 --------

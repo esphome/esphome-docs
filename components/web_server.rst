@@ -59,6 +59,7 @@ Configuration variables:
   web interface. Defaults to ``false``.
 - **ota** (*Optional*, boolean): Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to ``true``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **local** (*Optional*, boolean): Include supporting javascript locally allowing it to work without internet access. Defaults to ``false``.
 - **version** (*Optional*, string): ``1`` or ``2``. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to ``2``.
 
 .. note::
@@ -109,8 +110,10 @@ Force to turn off OTA function because the missing authentication.
     # Example configuration entry V1
     web_server:
       port: 80
+      version: 1
       ota: false
       css_include: "../../../esphome-docs/_static/webserver-v1.min.css"
+      css_url: ""
       js_include: "../../../esphome-docs/_static/webserver-v1.min.js"
       js_url: ""
 

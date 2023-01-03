@@ -41,7 +41,7 @@ Configuration variables:
 
 .. note::
 
-    If the device can support multiple I²C buses (ESP32 has 2) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
+    If the device can support multiple I²C buses (ESP32 has 2, ESP8266 does not support more than one) these buses need to be defined as below and sensors need to be setup specifying the correct bus:
 
     .. code-block:: yaml
 
@@ -61,15 +61,11 @@ Configuration variables:
          address: 0x76
          # ...
 
-       # If a I²C multiplexer is used all I²C devices can be additionally configured like:
-       - platform: bmp280
-         multiplexer:
-           id: multiplex0
-           channel: 0
-         # ...
+For I2C multiplexing see :doc:`/components/tca9548a`.
 
 See Also
 --------
 
+- :doc:`/components/tca9548a`
 - :apiref:`i2c/i2c.h`
 - :ghedit:`Edit`

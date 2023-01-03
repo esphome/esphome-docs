@@ -1,7 +1,5 @@
-.. _time:
-
-Time
-====
+Time Component
+==============
 
 .. seo::
     :description: Instructions for setting up real time clock sources in ESPHome like network based time.
@@ -57,7 +55,9 @@ This powerful automation can be used to run automations at specific intervals at
 specific times of day. The syntax is a subset of the `crontab <https://crontab.guru/>`__ syntax.
 
 There are two ways to specify time intervals: Either with using the ``seconds:``, ``minutes:``, ...
-keys as seen below or using a cron expression like ``* /5 * * * *``.
+keys as seen below or using a cron alike expression like ``* /5 * * * *``.
+
+Be aware normal cron implementations does not know about seconds like this esphome implementation, therefore you got 6 fields (seconds,minutes,hours,dayofmonth,month,dayofweek).
 
 Basically, the automation engine looks at your configured time schedule every second and
 evaluates if the automation should run.
@@ -104,7 +104,7 @@ Configuration variables:
   Defaults to ``*`` (all days). The names SUN to SAT are automatically substituted.
   Range is from 1 (Sunday) to 7 (Saturday).
 - **cron** (*Optional*, string): Alternatively, you can specify a whole cron expression like
-  ``* /5 * * * *``. Please note years and some special characters like ``L``, ``#`` are currently not supported.
+  ``* /5 * * * *``. Please note that years and some special characters like ``L``, ``#`` are currently not supported. Also, the day of week field is interpreted like the **days_of_week** variable (range from 1 (Sunday) to 7 (Saturday)) and not like other cron implementations would do it (range from 0 (Sunday) to 7 (Sunday)).
 
 - See :ref:`Automation <automation>`.
 
@@ -197,156 +197,10 @@ to an external hardware real time clock chip.
     the system time. Some (such as SNTP) could even trigger when another real time component is responsible for the
     change in time.
 
-Home Assistant Time Source
---------------------------
 
-The preferred way to get time in ESPHome is using Home Assistant.
-With the ``homeassistant`` time platform, the :doc:`native API </components/api>` connection
-to Home Assistant will be used to periodically synchronize the current time.
 
-.. code-block:: yaml
 
-    # Example configuration entry
-    time:
-      - platform: homeassistant
-        id: homeassistant_time
 
-Configuration variables:
-
-- All other from :ref:`base_time_config`.
-
-SNTP Time Source
-----------------
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    time:
-      - platform: sntp
-        id: sntp_time
-
-Configuration variables:
-
-- **servers** (*Optional*, list of strings): Choose up to 3 NTP servers that are used for the clock source.
-  Defaults to ``0.pool.ntp.org``, ``1.pool.ntp.org`` and ``2.pool.ntp.org``
-- All other options from :ref:`base_time_config`.
-
-.. note::
-
-    If your are using :ref:`wifi-manual_ip` make sure to configure a DNS Server (dns1, dns2) or use only IP addresses for the NTP servers.
-
-.. warning::
-
-    Due to limitations of the SNTP implementation, this component will trigger ``on_time_sync`` only once when it detects that the
-    system clock has been set, even if the update was not done by the SNTP implementation!
-    This must be taken into consideration when SNTP is used together with other real time components, where another time source could
-    update the time before SNTP synchronizes.
-
-GPS Time Source
----------------
-
-You first need to set up the :doc:`GPS </components/gps>` component.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    time:
-      - platform: gps
-        id: gps_time
-
-Configuration variables:
-
-- All other from :ref:`base_time_config`.
-
-DS1307 Time Source
-------------------
-
-You first need to set up the :doc:`I2C </components/i2c>` component.
-
-.. code-block:: yaml
-
-    # Example configuration entry
-    time:
-      - platform: ds1307
-        id: ds1307_time
-
-Configuration variables:
-
-- **address** (*Optional*, int): Manually specify the I²C address of the RTC. Defaults to ``0x68``.
-- All other options from :ref:`base_time_config`.
-
-.. _ds1307-write_time_action:
-
-``ds1307.write_time`` Action
-****************************
-
-This :ref:`Action <config-action>` triggers a synchronization of the current system time to the RTC hardware.
-
-.. note::
-
-    The DS1307 component will *not* write the RTC clock if not triggered *explicitly* by this action.
-
-.. code-block:: yaml
-
-    on_...:
-      - ds1307.write_time
-
-      # in case you need to specify the DS1307 id
-      - ds1307.write_time:
-          id: ds1307_time
-
-.. _ds1307-read_time_action:
-
-``ds1307.read_time`` Action
-***************************
-
-This :ref:`Action <config-action>` triggers a synchronization of the current system time from the RTC hardware.
-
-.. note::
-
-    The DS1307 component will automatically read the RTC clock every 15 minutes by default and synchronize the
-    system clock when a valid timestamp was read from the RTC. (The ``update_interval`` can be changed.)
-    This action can be used to trigger *additional* synchronizations.
-
-.. code-block:: yaml
-
-    on_...:
-      - ds1307.read_time
-
-      # in case you need to specify the DS1307 id
-      - ds1307.read_time:
-          id: ds1307_time
-
-.. _ds1307-config_example:
-
-Configuration Example
-*********************
-
-In a typical setup, you will have at least one additional time source to synchronize the RTC with. Such an
-external time source might not always be available e.g. due to a limited network connection.
-In order to have a valid, reliable system time, the system should read the RTC once at start and then try to
-synchronize with an external reliable time source.
-When a synchronization to another time source was successful, the RTC can be resynchronized.
-
-.. code-block:: yaml
-
-    esphome:
-      on_boot:
-        then:
-          # read the RTC time once when the system boots
-          ds1307.read_time:
-
-    time:
-      - platform: ds1307
-        # repeated synchronization is not necessary unless the external RTC
-        # is much more accurate than the internal clock
-        update_interval: never
-      - platform: homeassistant
-        # instead try to synchronize via network repeatedly ...
-        on_time_sync:
-          then:
-            # ... and update the RTC when the synchronization was successful
-            ds1307.write_time:
 
 Use In Lambdas
 --------------
@@ -473,3 +327,9 @@ See Also
 
 - :apiref:`time/real_time_clock.h`
 - :ghedit:`Edit`
+
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    *

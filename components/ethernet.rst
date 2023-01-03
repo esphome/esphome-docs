@@ -6,9 +6,11 @@ Ethernet Component
     :image: ethernet.svg
     :keywords: Ethernet, ESP32
 
-This core ESPHome component sets up ethernet connections for ESP32s.
+This ESPHome component enables *wired* Ethernet connections for ESP32s.
+
 Ethernet for ESP8266 is not supported.
-This component can't be used in same time than Wifi one, even if your ESP32 has both wired.
+
+This component and the Wi-Fi component may **not** be used simultaneously, even if both are physically available.
 
 .. code-block:: yaml
 
@@ -29,24 +31,23 @@ This component can't be used in same time than Wifi one, even if your ESP32 has
 Configuration variables:
 ------------------------
 
-- **type** (**Required**, string): The type of LAN chipset. Must be one of
-  ``LAN8720`` or ``TLK110`` (see datasheet for more details).
+- **type** (**Required**, string): The type of LAN chipset/phy. Must be one of
+  ``LAN8720``, ``RTL8201``, ``DP83848`` or ``IP101``.
 - **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
 - **mdio_pin** (**Required**, :ref:`config-pin`): The MDIO pin of the board.
   Usually this is ``GPIO18``.
-- **clk_mode** (*Optional*, string): The clock mode of the data lines, this must be one
-  of these values: (see datasheet of your board for more details)
+- **clk_mode** (*Optional*, string): The clock mode of the data lines. See your board's
+  datasheet for more details. Must be one of the following values:
 
   - ``GPIO0_IN`` (Default) - External clock
   - ``GPIO0_OUT`` - Internal clock
   - ``GPIO16_OUT`` - Internal clock
   - ``GPIO17_OUT`` - Internal clock
 
-- **phy_addr** (*Optional*, int): The PHY addr type of the ethernet controller. Defaults to 0.
-- **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin with which
-  to control the power of the board. Leave unspecified for no power pin (default)
-
+- **phy_addr** (*Optional*, int): The PHY addr type of the Ethernet controller. Defaults to 0.
+- **power_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The pin controlling the
+  power/reset status of the Ethernet controller. Leave unspecified for no power pin (default).
 - **manual_ip** (*Optional*): Manually configure the static IP of the node.
 
   - **static_ip** (**Required**, IPv4 address): The static IP of your node.
@@ -66,25 +67,16 @@ Configuration variables:
 
 .. note::
 
-    If your ethernet board is not designed with an ESP32 built in, chances are that you are going
-    to use flying leads, dupont wires, etc. to connect the ethernet to the ESP32. This is
-    probably to fail as the ethernet interface uses a high frequency clock signal. For more
+    If your Ethernet board is not designed with an ESP32 built in, it's common to attempt
+    to use flying leads, dupont wires, etc. to connect the Ethernet controller to the ESP32.
+    This approach is likely to fail, however, as the Ethernet interface uses a high frequency
+    clock signal that will not travel reliably over these types of connections. For more
     information and wiring details refer to the link in the *See also* section.
 
-Configuration for wESP32 board
-------------------------------
+Configuration examples
+----------------------
 
-.. code-block:: yaml
-
-    ethernet:
-      type: LAN8720
-      mdc_pin: GPIO16
-      mdio_pin: GPIO17
-      clk_mode: GPIO0_IN
-      phy_addr: 0
-
-Configuration for Olimex ESP32-POE
-----------------------------------
+**Olimex ESP32-POE**:
 
 .. code-block:: yaml
 
@@ -96,8 +88,8 @@ Configuration for Olimex ESP32-POE
       phy_addr: 0
       power_pin: GPIO12
 
-Configuration for Olimex ESP32-EVB
-----------------------------------
+
+**Olimex ESP32-EVB**:
 
 .. code-block:: yaml
 
@@ -108,8 +100,7 @@ Configuration for Olimex ESP32-EVB
       clk_mode: GPIO0_IN
       phy_addr: 0
 
-Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
-----------------------------------------------------------------------
+**Olimex ESP32-GATEWAY** and **LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
 
 .. code-block:: yaml
 
@@ -120,22 +111,7 @@ Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
       clk_mode: GPIO17_OUT
       phy_addr: 0
 
-Configuration for OpenHacks LAN8720
------------------------------------
-
-.. code-block:: yaml
-
-    ethernet:
-      type: LAN8720
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
-      phy_addr: 1
-
-Note: This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure you are monitoring the
-serial output and reboot the device several times to see if it boots into the program properly.
-
-Configuration for Wireless Tag WT32-ETH01
------------------------------------------
+**Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06 PoE Zigbee**:
 
 .. code-block:: yaml
 
@@ -147,10 +123,77 @@ Configuration for Wireless Tag WT32-ETH01
       phy_addr: 1
       power_pin: GPIO16
 
+**M5Stack PoESP32** and **ESP32-Ethernet-Kit**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: IP101
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_IN
+      phy_addr: 1
+      power_pin: GPIO5
+      
+**AiThinker ESP32-G Gateway**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO17_OUT
+      phy_addr: 1
+      power_pin: GPIO5
+
+**wESP32**:
+
+.. code-block:: yaml
+
+    # for board up to rev.5
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO16
+      mdio_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+
+    # for board rev.7 and up
+    ethernet:
+      type: RTL8201
+      mdc_pin: GPIO16
+      mdio_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+
+.. note::
+
+    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
+
+**OpenHacks LAN8720**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      phy_addr: 1
+
+.. note::
+
+    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure
+    you are monitoring the serial output and reboot the device several times to see if it boots into the
+    program properly.
+
+
+
 See Also
 --------
 
 - :doc:`network`
+- :doc:`text_sensor/ethernet_info`
 - :apiref:`ethernet/ethernet_component.h`
 - `ESP32 Ethernet PHY connection info <https://pcbartists.com/design/embedded/esp32-ethernet-phy-schematic-design/>`__
 - :ghedit:`Edit`

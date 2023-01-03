@@ -23,6 +23,26 @@ measured in decibel-milliwatts (dBm). These values are always negative and the c
         name: "WiFi Signal Sensor"
         update_interval: 60s
 
+To additionally display signal strength in percentage use the :ref:`copy-sensor` (it's not possible to add the same sensor twice, because it has a static ``uniqueid`` reported to Home Assistant):
+
+.. code-block:: yaml
+
+    # Example configuration entry with 2 sensors and filter
+    sensor:
+      - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+        name: "WiFi Signal dB"
+        id: wifi_signal_db
+        update_interval: 60s
+        entity_category: "diagnostic"
+        
+      - platform: copy # Reports the WiFi signal strength in %
+        source_id: wifi_signal_db
+        name: "WiFi Signal Percent"
+        filters:
+          - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+        unit_of_measurement: "Signal %"
+        entity_category: "diagnostic"
+
 Configuration variables:
 ------------------------
 
@@ -42,5 +62,6 @@ See Also
 
 - :ref:`sensor-filters`
 - :doc:`/components/wifi`
+- :doc:`/components/text_sensor/wifi_info`
 - :apiref:`wifi_signal/wifi_signal_sensor.h`
 - :ghedit:`Edit`

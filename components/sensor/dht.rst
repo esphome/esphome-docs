@@ -4,19 +4,16 @@ DHT Temperature+Humidity Sensor
 .. seo::
     :description: Instructions for setting up DHT11 and DHT22 temperature and humidity sensors.
     :image: dht.jpg
-    :keywords: DHT11, DHT22, AM2302, RHT03, SI7021
+    :keywords: DHT11, DHT21, DHT22, AMS2301, AM2302, RHT03, SI7021
 
-The DHT Temperature+Humidity sensor allows you to use your DHT11
-(`datasheet <https://akizukidenshi.com/download/ds/aosong/DHT11.pdf>`__,
-`Adafruit <https://www.adafruit.com/product/386>`__), DHT22
-(`datasheet <https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf>`__,
-`Adafruit <https://www.adafruit.com/product/385>`__), AM2302
-(`datasheet <https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf>`__,
-`Adafruit <https://www.adafruit.com/product/393>`__), RHT03
-(`datasheet <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__,
-`SparkFun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__) and SI7021 (one wire Sonoff version)
-(`datasheet <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__,
-`SparkFun <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__)
+The DHT Temperature+Humidity sensor allows you to use your 
+
+- DHT11 (`datasheet <https://akizukidenshi.com/download/ds/aosong/DHT11.pdf>`__, `Adafruit <https://www.adafruit.com/product/386>`__), 
+- DHT21/DHT22 (`datasheet <https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf>`__, `Adafruit <https://www.adafruit.com/product/385>`__), 
+- AMS2301/AM2302 (`datasheet <https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf>`__, `Adafruit <https://www.adafruit.com/product/393>`__), 
+- RHT03 (`datasheet <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__, `SparkFun <https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf>`__) and 
+- SI7021 (one wire Sonoff version) (`datasheet <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__, `SparkFun <https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf>`__)
+
 sensors with ESPHome.
 
 .. figure:: images/dht-full.jpg
@@ -62,6 +59,7 @@ Configuration variables:
   - **name** (**Required**, string): The name for the humidity sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
+  
 
 - **model** (*Optional*, int): Manually specify the DHT model, can be
   one of ``AUTO_DETECT``, ``DHT11``, ``DHT22``, ``DHT22_TYPE2``, ``AM2302``, ``RHT03``, ``SI7021``
@@ -71,6 +69,10 @@ Configuration variables:
 
 .. note::
 
+    The default ``accuracy_decimals`` value of the *humidity* levels is ``0``, as the DHT11 for which this was 
+    originally written does not have a higher resolution. All other DHT sensors have a higher resolution, it's worth 
+    to configure them with ``accuracy_decimals: 1``.
+    
     If you're seeing lots of invalid temperature/humidity warnings in the logs, try manually setting the
     DHT model with the ``model:`` configuration variable. Other problems could be wrong pull-up resistor values
     on the DATA pin or too long cables.
