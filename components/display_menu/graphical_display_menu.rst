@@ -112,9 +112,8 @@ controlled via the `menu_item_value` parameter.
         return label;
 
 .. note::
-  
-    Ensure that all characters you use in the menu_item_value are available glyphs for your :ref:`font <display-fonts>`
 
+    Ensure that all characters you use in the menu_item_value are available glyphs for your :ref:`font <display-fonts>`
 
 The rest of the configuration is described in the :ref:`Display Menu <display_menu>` component.
 The menu inherits the dimensions of the connected display and uses the entire area. It creates its
