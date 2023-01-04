@@ -112,7 +112,7 @@ to the newly set internal value.
           value: 10
 
       # Templated
-      - sensor.my_rotary_encoder.publish:
+      - sensor.rotary_encoder.set_value:
           id: my_rotary_encoder
           value: !lambda 'return -1;'
 
