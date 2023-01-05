@@ -213,6 +213,14 @@ single configuration file.
 
     If set, opens the dashboard UI in a browser once the server is up and running.
 
+.. option:: --cert
+
+    The optional path to the full chain pem file to use for HTTPS.
+
+.. option:: --cert
+
+    The path to the private key pem file to use for HTTPS.
+
 ``logs`` Command
 ---------------------
 
