@@ -52,12 +52,18 @@ Configuration variables:
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
   - All other options from :ref:`Sensor <config-sensor>`.
 
-- **address** (*Optional*, int): Manually specify the I²C address of
-  the sensor. Defaults to ``0x53``. Another address can be ``0x52``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 
-.. _bme280-oversampling:
+Advanced:
+
+- **address** (*Optional*, int): Manually specify the I²C address of
+  the sensor. Defaults to ``0x53``. Another address can be ``0x52``.
+ 
+- **temperature** (*Optional*, :ref:`config-id`): Give an external temperature sensor ID
+  here. This can improve the sensor's internal calculations.
+- **humidity** (*Optional*, :ref:`config-id`): Give an external humidity sensor ID
+  here. This can improve the sensor's internal calculations.
 
 See Also
 --------
