@@ -1,5 +1,5 @@
 Haier Climate Device
-=====================
+====================
 
 .. seo::
     :description: Instructions for setting up a Haier climate device
@@ -55,7 +55,7 @@ Automations
 -----------
 
 ``climate.haier.display_on`` Action
-****************************
+***********************************
 
 This action turns the AC display on
 
@@ -66,7 +66,7 @@ This action turns the AC display on
         climate.haier.display_on: device_id
 
 ``climate.haier.display_off`` Action
-****************************
+************************************
 
 This action turns the AC display off
 
@@ -77,7 +77,7 @@ This action turns the AC display off
         climate.haier.display_off: device_id
 
 ``climate.haier.beeper_on`` Action
-****************************
+**********************************
 
 This action enables beep feedback on every command sent to AC
 
@@ -89,7 +89,7 @@ This action enables beep feedback on every command sent to AC
 
 
 ``climate.haier.beeper_off`` Action
-****************************
+***********************************
 
 This action disables beep feedback on every command sent to AC (keep in mind that this will not work for IR remote commands)
 
@@ -101,7 +101,7 @@ This action disables beep feedback on every command sent to AC (keep in mind tha
 
 
 ``climate.haier.set_vertical_airflow`` Action
-****************************
+*********************************************
 
 Set direction for vertical airflow if the vertical swing is disabled. Possible values: Up, Center, Down.
 
@@ -115,7 +115,7 @@ Set direction for vertical airflow if the vertical swing is disabled. Possible v
 
 
 ``climate.haier.set_horizontal_airflow`` Action
-****************************
+***********************************************
 
 Set direction for horizontal airflow if the horizontal swing is disabled. Possible values: Left, Center, Right.
 
