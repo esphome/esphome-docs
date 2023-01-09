@@ -607,6 +607,7 @@ Climate Components
     Midea, components/climate/midea, midea.svg
     Anova Cooker, components/climate/anova, anova.png
     BedJet Climate System, components/climate/bedjet, bedjet.png
+    Haier, components/climate/haier, air-conditioner.svg
 
 Number Components
 -----------------
