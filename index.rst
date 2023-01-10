@@ -443,6 +443,7 @@ Output Components
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
     Template Output, components/output/template, description.svg
+    X9C Potentiometer, components/output/x9c, x9c.jpg
 
 Light Components
 ----------------
@@ -617,7 +618,6 @@ Number Components
     Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg
     Tuya Number, components/number/tuya, tuya.png
-    X9C Potentiometer, components/number/x9c, x9c.jpg
 
 Select Components
 -----------------
