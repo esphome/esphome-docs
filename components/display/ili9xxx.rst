@@ -154,6 +154,7 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
           - "display_design.png"
         lambda: |-
           it.image(0, 0, id(myimage));
+
 See Also
 --------
 
