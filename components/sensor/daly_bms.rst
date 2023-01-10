@@ -310,7 +310,7 @@ Also you can add select to change battery level
           - 25%
           - 0%
         initial_option: 100%
-        on_value:
+        set_action:
           then:
             - if:
                 condition:
