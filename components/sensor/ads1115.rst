@@ -2,9 +2,9 @@ ADS1115 Sensor
 ==============
 
 .. seo::
-    :description: Instructions for setting up ADS1115 multiplexed analog voltage sensors.
+    :description: Instructions for setting up ADS1115/ADS1015 multiplexed analog voltage sensors.
     :image: ads1115.jpg
-    :keywords: ADS1115
+    :keywords: ADS1115 ADS1015
 
 .. _ads1115-component:
 
@@ -21,7 +21,9 @@ To use this hub, first setup the :ref:`I²C Bus <i2c>` and connect the sensor to
 
     ADS1115 16-Bit ADC.
 
-.. _Adafruit: https://www.adafruit.com/product/1085
+.. _Adafruit_ADS1115: https://www.adafruit.com/product/1085
+
+.. _Adafruit_ADS1015: https://www.adafruit.com/product/1083
 
 .. code-block:: yaml
 
@@ -59,7 +61,7 @@ Sensor
 ------
 
 The ``ads1115`` sensor allows you to use your ADS1115 sigma-delta ADC
-sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit`_) with ESPHome.
+sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1115.pdf>`__, `Adafruit_ADS1115`_) or your ADS1015 sigma-delta ADC sensors (`datasheet <http://www.ti.com/lit/ds/symlink/ads1015.pdf>`__, `Adafruit_ADS1015`_) with ESPHome.
 First, setup an :ref:`ADS1115 Hub <ads1115-component>` for your ADS1115 sensor and then use this
 sensor platform to create individual sensors that will report the
 voltage to Home Assistant.
@@ -92,6 +94,9 @@ Configuration variables:
 -  **update_interval** (*Optional*, :ref:`config-time`): The interval
    to check the sensor. Defaults to ``60s``.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+-  **resolution** (*Optional*, string): the resolution of this sensor.
+   Defaults to ``16_BITS``
+
 
 Multiplexer and Gain
 --------------------
@@ -121,7 +126,11 @@ Additionally, the ADS1115 has a Programmable Gain Amplifier (PGA) that can help 
  - ``1.024`` (measures up to 1.024V)
  - ``0.512`` (measures up to 0.512V)
  - ``0.256`` (measures up to 0.256V)
-
+ 
+The ADS1115 can be used with defaults settings.
+When using an ADS1015, the resolution has to be specified and should be defined to ``12_BITS``
+(or equivalent notations like ``12 BITS`` or ``12 bits``).
+ 
 See Also
 --------
 
