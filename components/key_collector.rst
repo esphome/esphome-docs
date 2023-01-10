@@ -6,9 +6,9 @@ Key collector component
 .. seo::
     :description: Key collector component
 
-The ``key_collector`` component collects key presses from ``key_provider`` 
-components like ``matrix_keypad`` or ``wiegand``. It allows you to process 
-key sequences and treat them as one, for example to ease up inputting of 
+The ``key_collector`` component collects key presses from
+components like :ref:`matrix_keypad` or ``wiegand``. It allows you to process
+key sequences and treat them as one, for example to allow inputting of 
 a PIN code or a passkey. The component outputs the result of the keypress
 sequence as a variable usable in automations.
 
@@ -48,7 +48,7 @@ Component
 Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this entry for use in lambdas.
-- **source_id** (*Optional*, :ref:`config-id`): The ID of the key input device (relying on ``key_provider`` component).
+- **source_id** (*Optional*, :ref:`config-id`): The ID of the key input device.
 - **min_length** (*Optional*, integer): The minimal length of the desired key sequence. Below
   this, ``on_result`` automation will not trigger even if any of the ``end_keys`` was pressed.
 - **max_length** (*Optional*, integer): The maximum length of the desired key sequence, after 
