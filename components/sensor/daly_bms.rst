@@ -235,7 +235,8 @@ At this moment Daly sensor platform don't suppport controlling you BMS, but you 
 
 First you need to setup binary sensors for charging and disharging MOS  
   
-.. code-block:: yaml
+.. code-block:: yaml  
+
   
     binary_sensor:
       - platform: daly_bms
@@ -250,7 +251,8 @@ First you need to setup binary sensors for charging and disharging MOS
 
 Then you can add switches  
   
-.. code-block:: yaml
+.. code-block:: yaml  
+
   
     switch:
       - platform: template
@@ -295,6 +297,7 @@ Then you can add switches
 Also you can add select to change battery level
   
 .. code-block:: yaml  
+
   
     select:
       - platform: template
