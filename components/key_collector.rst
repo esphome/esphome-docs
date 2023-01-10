@@ -83,6 +83,7 @@ See Also
 --------
 
 - :doc:`/components/matrix_keypad`
+
 .. - :doc:`/components/wiegand`
 
 - :ghedit:`Edit`
