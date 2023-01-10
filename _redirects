@@ -6,3 +6,4 @@
 /components/binary_sensor/xpt2046.html /components/touchscreen/xpt2046.html 301
 /devices/esp8266.html /components/esp8266.html
 /devices/esp32.html /components/esp32.html
+/components/display/ili9341.html /components/display/ili9xxx.html 301

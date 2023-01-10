@@ -1,20 +1,24 @@
-ILI9341 TFT LCD
-===============
+
+ILI9xxx TFT LCD Series
+======================
 
 .. seo::
-    :description: Instructions for setting up ILI9341 TFT LCD display drivers.
+    :description: Instructions for setting up ILI9xxx TFT LCD display drivers.
     :image: ili9341.jpg
 
-.. _ili9341:
+.. _ili9xxx:
 
 Usage
 -----
+This component is the successor of the ILI9341 component allowing to control more display drivers and use 16bit colors when enough free ram.
 
-The ``ili9341`` display platform allows you to use
+The ``ILI9xxx`` display platform allows you to use
 ILI9341 (`datasheet <https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf>`__,
-`Aliexpress <https://www.aliexpress.com/af/Ili9341.html>`__)
-displays with ESPHome. As this is a somewhat higher resolution display and may require pins
+`Aliexpress <https://www.aliexpress.com/af/Ili9341.html>`__) and other
+displays from the same chip family with ESPHome. As this is a somewhat higher resolution display and may require pins
 beyond the typical SPI connections, it is better suited for use with the ESP32.
+
+**Note:** To use 16bit instead of 8bit colors use a esp32 with enough PSRAM the display.
 
 .. figure:: images/ili9341-full.jpg
     :align: center
@@ -27,13 +31,12 @@ beyond the typical SPI connections, it is better suited for use with the ESP32.
 
     # Example minimal configuration entry
     display:
-      - platform: ili9341
-        model: TFT 2.4
+      - platform: ili9xxx
+        model: ili9341
         cs_pin: 14
         dc_pin: 27
-        led_pin: 32  ### see note below ###
         reset_pin: 33
-
+        backlight_pin: 32
         lambda: |-
           it.fill(COLOR_BLACK);
           it.print(0, 0, id(my_font), id(my_red), TextAlign::TOP_LEFT, "Hello World!");
@@ -43,15 +46,12 @@ Configuration variables:
 
 - **model** (**Required**): The model of the display. Options are:
 
-  - ``M5STACK``
-  - ``TFT 2.4``
-  - ``TFT 2.4R``  (ILI9342)
+  - ``M5STACK``, ``TFT 2.4``, ``TFT 2.4R`` 
+  - ``ILI9341``, ``ILI9342``, ``ILI9481``, ``ILI9486``, ``ILI9488``, ``ST7796``
 
 - **cs_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The CS pin.
 - **dc_pin** (**Required**, :ref:`Pin Schema <config-pin_schema>`): The DC pin.
 - **reset_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The RESET pin.
-- **led_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): The display's backlight pin. **Note:** Connect to a
-  PWM-capable pin to switch/dim the display's backlight **or** save a pin by connecting it through a 3.3K resistor to the +3V supply.
 - **rotation** (*Optional*): Set the rotation of the display. Everything drawn in the ``lambda:`` will be rotated
   per this option. One of ``0°`` (default), ``90°``, ``180°``, or ``270°``.
 - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for rendering the content on the display.
@@ -62,11 +62,12 @@ Configuration variables:
 - **pages** (*Optional*, list): Show pages instead of a single lambda. See :ref:`display-pages`.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **color_palette** (*Optional*): The type of color pallet that will be used in the ESP's internal 8-bits-per-pixel buffer.  This can be used to improve color depth quality of the image.  For example if you know that the display will only be showing grayscale images, the clarity of the display can be improved by targeting the available colors to monochrome only.  Options are:
-  
+
   - ``NONE`` (default)
   - ``GRAYSCALE``
   - ``IMAGE_ADAPTIVE``
 - **color_palette_images** (*Optional*): A list of image files that will be used to generate the color pallet for the display.  This should only be used in conjunction with ``-color_palette: IMAGE_ADAPTIVE`` above.  The images will be analysed at compile time and a custom color pallet will be created based on the most commonly occuring colors.  A typical setting would be a sample image that represented the fully populated display.  This can significantly improve the quality of displayed images.  Note that these images are not stored on the ESP device, just the 256byte color pallet created from them.
+- **backlight_pin** (*Optional*,  :ref:`Pin Schema <config-pin_schema>`): The display’s backlight pin. Note: Connect to a PWM-capable pin to switch/dim the display’s backlight or save a pin by connecting it through a 3.3K resistor to the +3V supply.
 
 Configuration examples
 **********************
@@ -124,7 +125,7 @@ To configure a dimmable backlight:
     light:
       - platform: monochromatic
         output: gpio_32_backlight_pwm
-        name: "ILI9341 Display Backlight"
+        name: "Display Backlight"
         id: back_light
         restore_mode: ALWAYS_ON
 
@@ -139,8 +140,8 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
         type: RGB24
 
     display:
-      - platform: ili9341
-        model: TFT 2.4
+      - platform: ili9xxx
+        model: ili9341
         cs_pin: 5
         dc_pin: 4
         led_pin: 15
@@ -153,10 +154,9 @@ To configure an image adaptive color pallet to show greater than 8 bit color dep
           - "display_design.png"
         lambda: |-
           it.image(0, 0, id(myimage));
-
 See Also
 --------
 
 - :doc:`index`
-- :apiref:`ili9341/ili9341_display.h`
+- :apiref:`ili9xxx/ili9xxx_display.h`
 - :ghedit:`Edit`
