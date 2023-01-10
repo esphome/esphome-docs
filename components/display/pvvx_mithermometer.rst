@@ -48,7 +48,7 @@ Configuration variables:
 ------------------------
 
 - **ble_client_id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
-- **time_id** (*Optional*, :ref:`config-id`): ID of a :doc:`/components/time` component. If set, the time will be synchronized with every connection.
+- **time_id** (*Optional*, :ref:`config-id`): ID of a :doc:`/components/time/index`. If set, the time will be synchronized with every connection.
 - **disconnect_delay** (*Optional*, :ref:`config-time`): The amount of time the BLE connection is maintained before being disconnected again. Defaults to ``5s``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to transmit the display data. Defaults to ``60s``.
 - **validity_period** (*Optional*, :ref:`config-time`): The time periode for which the pvvx device should display the information. Defaults to ``5min``.

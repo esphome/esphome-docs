@@ -66,7 +66,7 @@ Configuration variables:
 ------------------------
 
 - **time_id** (*Optional*, :ref:`config-id`): Some Tuya devices support obtaining local time from ESPHome.
-  Specify the ID of the :ref:`Time Component <time>` which will be used.
+  Specify the ID of the :doc:`time/index` which will be used.
 
 - **status_pin** (*Optional*, :ref:`Pin Schema <config-pin_schema>`): Some Tuya devices support WiFi status reporting ONLY through gpio pin.
   Specify the pin reported in the config dump or leave empty otherwise.
