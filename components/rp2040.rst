@@ -22,13 +22,13 @@ This component contains platform-specific options for the RP2040 platform.
 
     For now, you need the following added to the config or you will get compile errors and board not found:
 
+.. code-block:: yaml
+
     # Example configuration entry
     rp2040:
       board: rpipicow
       framework:
         platform_version: https://github.com/maxgerhardt/platform-raspberrypi.git
-
-.. code-block:: yaml
 
 
 Configuration variables:
