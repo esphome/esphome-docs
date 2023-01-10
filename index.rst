@@ -309,6 +309,7 @@ Environmental
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
+    HYT271, components/sensor/hyt271, hyt271.jpg, Temperature
 
 
 Light
