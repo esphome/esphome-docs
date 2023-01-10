@@ -31,13 +31,18 @@ Component
         allowed_keys: "0123456789"
         timeout: 5s
         on_progress:
-          - logger.log: 
-              format: "input progress: '%s'"
-              args: [ 'x.c_str()' ]
+          - logger.log:
+              format: "input progress: '%s', started by '%c'"
+              args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
         on_result:
           - logger.log: 
-              format: "input result: '%s'"
-              args: [ 'x.c_str()' ]
+              format: "input result: '%s', started by '%c', ended by '%c'"
+              args: [ 'x.c_str()', "(start == 0 ? '~' : start)", "(end == 0 ? '~' : end)" ]
+        on_timeout:
+          - logger.log:
+              format: "input timeout: '%s', started by '%c'"
+              args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]
+
 
 
 Configuration variables:
