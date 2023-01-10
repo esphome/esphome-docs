@@ -67,7 +67,6 @@ Individual keys can be added independently to ESPHome as ``binary_sensor``:
 
 Configuration variables:
 
-- **platform** (**Required**, string): The integration platform, which is ``keypad``.
 - **keypad_id** (*Optional*, :ref:`config-id`): The ID of the keypad to process keypresses from.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this key for use in lambdas.
 - **row** (*Optional*, integer): The row of the key.
