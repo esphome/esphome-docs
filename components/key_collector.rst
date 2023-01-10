@@ -1,3 +1,5 @@
+.. _key_collector:
+
 Key collector component
 =======================
 
@@ -55,24 +57,32 @@ Configuration variables:
   unused keys will be allowed.
 - **timeout** (*Optional*, :ref:`config-time`): Timeout after which to cancel building the sequence and delete all the keys.
 
-At least ``end_keys`` or ``max_length`` have to be specified. The rest are optional.
+At least one of ``end_keys`` or ``max_length`` have to be specified. The rest are optional.
+If both ``end_keys`` and ``max_length`` are specified, then once ``max_length`` keys are collected, no more will be
+accepted until an end key is pressed.
 
 Automations:
 ------------
 
-- **on_progress** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when keys are pressed. The increasing sequence of the pressed is placed in variable ``x``.
-  Useful if you want to have a display showing, or a speaker beeping when keys are being pressed.
+- **on_progress** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  when keys are pressed. The current sequence of pressed keys is placed in a ``vector<uint8_t>`` variable ``x``
+  and ``start`` holds the start key that activated this sequence or else ``0``.
+  Useful if you want to have a display showing the current value or number of key presses,
+  or a speaker beeping when keys are being pressed.
 - **on_result** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
   when the sequence has been finished (eg. ``max_length`` has been reached or one of
-  the ``end_keys`` was pressed). The finalized key sequence is placed in variable ``x``.
+  the ``end_keys`` was pressed). The finalized key sequence is placed in a ``vector<uint8_t>`` variable ``x``,
+  ``start`` holds the start key that activated this sequence or else ``0``, and
+  ``end`` holds the end key that terminated this sequence or else ``0``.
+- **on_timeout** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  if the timeout happens. The current sequence of pressed keys is placed in a ``vector<uint8_t>`` variable ``x``
+  and ``start`` holds the start key that activated this sequence or else ``0``.
 
 
 See Also
 --------
 
 - :doc:`/components/matrix_keypad`
-- :doc:`/components/viegand`
-- :doc:`/components/key_provider`
-- :ref:`automation`
+.. - :doc:`/components/wiegand`
+
 - :ghedit:`Edit`
