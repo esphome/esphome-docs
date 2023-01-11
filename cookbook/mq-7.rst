@@ -1,28 +1,53 @@
 MQ-7 Carbon Monoxide Sensor
 ===========================
 
+.. seo::
+    :description: Instructions for setting up MQ-7 carbon monoxide sensors in ESPHome and adding circuitry to control the sensor's internal heater.
+    :image: mq-7.png
+    :keywords: MQ-7 MQ7 carbon monoxide sensor CO ppm heater
+
 .. figure:: images/mq-7.png
     :align: center
-    :width: 75.0%
+    :width: 50.0%
+
+The MQ-7 sensor can be used for detecting carbon monoxide (CO) gas. This is done by cycling the sensor's internal heater between 5V for 60 seconds and 1.5V for 90 seconds. Most MQ-7 boards don't include a circuit to control the heater and need to be modified.
 
 Heater Mod
 ----------
 
+This will remove the digital output of the sensor and replace it with a digital input to control the heater of the MQ-7
+
 What you need:
 
     - MQ-7 sensor board
-    - Soldering iron
+    - Soldering iron / hot air station
     - 75Ω Resistor (>160mW)
     - 470Ω Resistor
     - N-channel MOSFET (`example <https://www.lcsc.com/product-detail/MOSFETs_Slkor-SLKORMICRO-Elec-SL2310_C400798.html>`__)
     - Wires
 
-.. figure:: images/MQ-7_heater_mod.svg
+Steps:
+
+    - De-solder the potentiometer and the dual op-amp
+    - De-solder the D0-LED (bottom)
+    - Cut the PCB traces in 2 locations (see picture below)
+    - Scratch off the solder mask in the marked location to provide a path to ground for the MOSFET
+    - Replace the 5Ω resistor on the left with a 75Ω resistor. This will provide 1.5V to the heater when the MOSFET is turned off
+    - Remove the 1kΩ resistor on the left and move it to its new position
+    - Remove the capacitor above the dual op-amp and move it to its new position
+    - Solder the MOSFET to the bottom center pin of the sensor and the ground pad you created
+    - Add the 470Ω resistor and the wires (see picture below)
+    - Optional: Add the D0-LED you removed earlier, but with reversed polarity. It will show the status of the heater
+    - Check the resistance between VCC and GND. It should be ~100Ω
+
+.. figure:: images/mq-7_heater_mod.svg
     :align: center
     :width: 100.0%
 
-Config
-------
+ESPHome Config
+--------------
+
+This config includes calibration and temperature / humidity compensation
 
 .. code-block:: yaml
     substitutions:
@@ -160,6 +185,12 @@ Config
           auto ratio_ln = log(id(${mq7_id}_ratio).state / 100.0);
           return exp(-0.685204 - 2.67936 * ratio_ln - 0.488075 * ratio_ln * ratio_ln - 0.07818 * ratio_ln * ratio_ln * ratio_ln);
         update_interval: never
+
+Calibration
+-----------
+
+After long-time storage the manufacturer recommends running the sensor for 48-168h to let the readings stabilize.
+Then it can be calibrated by placing it in clean air (outdoors) to determine the highest possible resistance. This resistance value can be added to the ESPHome config.
 
 .. figure:: images/mq-7_sensors.png
     :align: center
