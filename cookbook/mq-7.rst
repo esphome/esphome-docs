@@ -49,7 +49,12 @@ ESPHome Config
 
 This config includes calibration and temperature / humidity compensation
 
+.. note::
+
+    The full heating cycle of the sensor takes 150 seconds. It can take a while until the first carbon monoxide reading appears after booting the ESP
+
 .. code-block:: yaml
+
     substitutions:
       mq7_name: "MQ7"
       mq7_id: "mq7"
@@ -188,9 +193,11 @@ This config includes calibration and temperature / humidity compensation
 
 Calibration
 -----------
+.. note::
 
-After long-time storage the manufacturer recommends running the sensor for 48-168h to let the readings stabilize.
-Then it can be calibrated by placing it in clean air (outdoors) to determine the highest possible resistance. This resistance value can be added to the ESPHome config.
+    After long-time storage the manufacturer recommends running the sensor for 48-168h to let the readings stabilize
+
+Then it can be calibrated by placing it in clean air (outdoors) to determine the highest possible resistance. This resistance value can be added to the ESPHome config
 
 .. figure:: images/mq-7_sensors.png
     :align: center
