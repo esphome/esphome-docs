@@ -69,7 +69,7 @@ Do note that the actions are only called when the current temperature leaves the
 Configuration variables:
 ------------------------
 
-- **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
+- **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature (must be in `°C`).
 - **default_target_temperature_low** (**Required**, float): The default low target temperature for
   the control algorithm. This can be dynamically set in the frontend later.
 - **default_target_temperature_high** (**Required**, float): The default high target temperature for
