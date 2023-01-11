@@ -448,6 +448,7 @@ Output Components
     Template Output, components/output/template, description.svg
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
+    X9C Potentiometer, components/output/x9c, x9c.jpg
 
 Light Components
 ----------------
@@ -660,6 +661,7 @@ Time Components
     SNTP, components/time/sntp, clock-outline.svg
     GPS Time, components/time/gps, crosshairs-gps.svg
     DS1307 RTC, components/time/ds1307, clock-outline.svg
+    PCF85063 RTC, components/time/pcf85063, clock-outline.svg
 
 Misc Components
 ---------------
@@ -671,6 +673,7 @@ Misc Components
     Status LED, components/status_led, led-on.svg
     Display Menu Core, components/display_menu/index, folder-open.svg
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
