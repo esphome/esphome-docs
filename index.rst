@@ -409,6 +409,7 @@ Binary Sensor Components
     PN532, components/binary_sensor/pn532, pn532.jpg
     RC522, components/binary_sensor/rc522, rc522.jpg
     RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
+    Touch GUI, components/binary_sensor/touch_gui, touch-gui.svg
     TTP229, components/binary_sensor/ttp229, ttp229.jpg
     Tuya Binary Sensor, components/binary_sensor/tuya, tuya.png
     Modbus Binary Sensor, components/binary_sensor/modbus_controller, modbus.png
