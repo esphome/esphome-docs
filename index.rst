@@ -447,6 +447,7 @@ Output Components
     Template Output, components/output/template, description.svg
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
+    X9C Potentiometer, components/output/x9c, x9c.jpg
 
 Light Components
 ----------------
