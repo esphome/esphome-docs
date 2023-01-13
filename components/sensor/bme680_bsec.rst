@@ -50,6 +50,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
           name: "BME680 Humidity"
         iaq:
           name: "BME680 IAQ"
+          id: iaq
         co2_equivalent:
           name: "BME680 CO2 Equivalent"
         breath_voc_equivalent:
@@ -59,6 +60,35 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
       - platform: bme680_bsec
         iaq_accuracy:
           name: "BME680 IAQ Accuracy"
+ 
+     - platform: template
+        name: "BME680 IAQ Class"
+        icon: "mdi:checkbox-marked-circle-outline"
+        lambda: |-
+          if ( int(id(iaq).state) <= 50) {
+            return {"Excellent"};
+          }
+          else if (int(id(iaq).state) >=51 && int(id(iaq).state) < 100) {
+            return {"Good"};
+          }
+          else if (int(id(iaq).state) >=101 && int(id(iaq).state) < 150) {
+            return {"Lightly polluted"};
+          }
+          else if (int(id(iaq).state) >=151 && int(id(iaq).state) < 200) {
+            return {"Moderately pulluted"};
+          }
+          else if (int(id(iaq).state) >=201 && int(id(iaq).state) < 250) {
+            return {"Heavily Pulluted"};
+          }
+          else if (int(id(iaq).state) >=251 && int(id(iaq).state) < 350) {
+            return {"Severely pulluted"};
+          }
+          else if (int(id(iaq).state) > 351) {
+            return {"Extremely pulluted"};
+          }
+          else {
+            return {"error"};
+          }
 
 Configuration variables:
 
