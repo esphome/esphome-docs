@@ -39,6 +39,31 @@ required to be set up in your configuration for this sensor to work.
         max_current: 3.2A
         update_interval: 60s
 
+
+Since "power" is always positive, even if the value could go below zero like measuring a shunt across a battery being charged and discharged. To modify it to go negative a lambda filter like this example from github issue can be used https://github.com/esphome/issues/issues/2949
+
+.. code-block:: yaml
+
+    - platform: ina226
+        address: 0x40
+        shunt_resistance: 0.00025 ohm
+        current:
+          name: "Battery Shunt Current"
+        power:
+          name: "Battery Total Power"
+          filters:
+            - lambda: "return id(shunt_voltage).state > 0 ?  x  : -x;"
+        bus_voltage:
+          name: "Bus Voltage"
+        shunt_voltage:
+          name: "Shunt Voltage"
+          id: shunt_voltage
+          unit_of_measurement: "mV"
+          filters:
+            - multiply: 1000
+        max_current: 300A
+
+
 Configuration variables:
 ------------------------
 
