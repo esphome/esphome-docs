@@ -98,7 +98,7 @@ A sensor platform to read BMS data
 Configuration variables:
 ************************
 
-- **voltage** (*Optional*): Voltage of the battery pack connected to Daly BMS.
+- **voltage** (*Optional*): Voltage of the battery pack connected to Chargery BMS.
 
   - **name** (**Required**, string): The name for the voltage sensor.
   - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
