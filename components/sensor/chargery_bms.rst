@@ -232,7 +232,7 @@ UART Connection
 
 Connect TX from BMS to RX in ESP board through RS232->TTL level shifter.
 
-.. figure:: images/chargery_BMS24_connection.png
+.. figure:: images/chargery_BMS24T_connection.png
     :align: center
     :width: 100.0%
 
