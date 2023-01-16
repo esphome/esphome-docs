@@ -1,5 +1,5 @@
 Chargery BMS Sensor
-===============
+===================
 
 .. seo::
     :description: Instructions for setting up a Chargery BMS8T, BMS16T and BMS24T
