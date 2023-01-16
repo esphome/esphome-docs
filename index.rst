@@ -245,6 +245,7 @@ Electricity
     BL0939, components/sensor/bl0939, bl0939.png, Voltage & Current & Power & Energy
     BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     BL0942, components/sensor/bl0942, bl0942.png, Voltage & Current & Power
+    Chargery BMS8T BMS16T and BMS24T, components/sensor/chargery_bms, chargery_BMS24DT.jpg, Voltage & Current & Power 
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
