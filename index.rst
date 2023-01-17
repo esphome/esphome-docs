@@ -673,6 +673,7 @@ Misc Components
     Display Menu Core, components/display_menu/index, folder-open.svg
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
+    Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 

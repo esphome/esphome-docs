@@ -55,28 +55,24 @@ Automations:
 ------------
 
 - **on_key** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  when a key has been pressed on the pad. The key is placed in variable ``x``.
+  when a key has been pressed on the pad. The key is in a variable called ``x``.
 - **on_tag** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
   when a Wiegand-compatible card or a tag has been read by the device. The tag code is 
-  placed in variable ``x``.
-- **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform 
-  for any data sent by the device. The value is placed in variable ``value``, number of
-  bits is placed in variable ``bits``.
+  in a variable called ``x``.
+- **on_raw** (*Optional*, :ref:`Automation <automation>`): An automation to perform
+  for any data sent by the device. The value is in a variable called ``value``, the number of
+  bits is in a variable called ``bits``.  Note that this will include parity bits as well and
+  no parity checking is done.
 
 
 .. note::
 
     Automatic handling of multiple keys (e.g. PIN code entry) is possible with the 
-    the ``key_collector`` component.
-    
-    This component will automatically load the ``key_provider`` component 
-    in order to work.
+    the :ref:`Key Collector <key_collector>` component.
 
 
 See Also
 --------
 
 - :doc:`/components/key_collector`
-- :doc:`/components/key_provider`
-- :ref:`automation`
 - :ghedit:`Edit`
