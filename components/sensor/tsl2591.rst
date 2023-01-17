@@ -59,6 +59,10 @@ Since those are two different physical infrared sensor readings, there is the po
   If you are not happy with that built-in calculation, you have the raw data you need to do your own.
   The manufacturer, AMS, has a few application notes that discuss this topic.
   See the references.
+- **actual_gain**: The actual gain value being used for values reported. Updates whenever ``gain`` is changed,
+  which is especially useful when the sensor is set to ``gain: auto`` to help denote relative brightness when
+  extreme changes in brightness are encountered.
+
 
 Values reported are said to be in units of ``lux``, but there are some things to understand about that.
 
@@ -85,6 +89,7 @@ Values reported are said to be in units of ``lux``, but there are some things to
         id: "my_tls2591"
         address: 0x29
         update_interval: 60s
+        gain: auto
         device_factor: 53
         glass_attenuation_factor: 14.4
         visible:
@@ -96,6 +101,9 @@ Values reported are said to be in units of ``lux``, but there are some things to
         calculated_lux:
           id: i_lux
           name: "TSL2591 Lux"
+        actual_gain:
+          id: "actual_gain"
+          name: "TSL2591 actual gain"
 
 Configuration variables:
 ------------------------
@@ -160,6 +168,11 @@ Each configured sensor is reported separately on each ``update_interval``.
   - All other options from :ref:`Sensor <config-sensor>`.
 
 - **calculated_lux** (*Optional*): The value of the calculated lux.
+
+  - **name** (**Required**, string): The name for the sensor.
+  - All other options from :ref:`Sensor <config-sensor>`.
+
+- **actual_gain** (*Optional*): The value of gain used for reported values. Particularly useful when gain is set to "auto".
 
   - **name** (**Required**, string): The name for the sensor.
   - All other options from :ref:`Sensor <config-sensor>`.
