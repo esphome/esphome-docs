@@ -57,6 +57,7 @@ Blog Posts & Videos
 - `Little thermostat based on AZ-Touch hardware and esphome <https://github.com/ingbenna/AZ-Touch_esphome_thermostat/>`_ by ingbenna
 - `Converting a Carro Home DC Fan to ESPHome <https://1projectaweek.com/blog/2022/2/8/converting-a-carro-home-dc-fan-to-esp-home>`__ by `Bill Church <https://1projectaweek.com>`__
 - `Automated Coffee Bean Roaster <https://hackaday.io/project/186852-automated-coffee-bean-roaster>`__ by `brooksben11 <https://hackaday.io/brooksben11>`__
+- `Making a Tuya Smart Pellet Stove local and actually smart <https://github.com/jazzmonger/wood-stove-with-TYWE1S-Tuya-chip>`__ by `JazzMonger <https://github.com/jazzmonger/>`__
 
 Custom Components & Code
 ------------------------
