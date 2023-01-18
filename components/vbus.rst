@@ -6,19 +6,19 @@ VBus Component
     :image: resol_deltasol_bs_plus.jpg
     :keywords: VBUS RESOL SOLAR
 
-The ``VBus`` Component provides status reading connectivity to solar heat energy collector controllers using VBus 
-protocol. These devices are mainly produced by Resol, often also found under different brand names like Viessmann, 
+The ``VBus`` Component provides status reading connectivity to solar heat energy collector controllers using VBus
+protocol. These devices are mainly produced by Resol, often also found under different brand names like Viessmann,
 Kioto, Wagner etc. The component currently supports natively Resol DeltaSol C, DeltaSol CS2, DeltaSol CS Plus, and DeltaSol BS Plus
 but any device can be added via lambda by knowing `its packet structure <https://danielwippermann.github.io/resol-vbus>`__.
 
 .. figure:: ../images/resol_deltasol_bs_plus.jpg
     :align: center
 
-The device must be connected via a :doc:`UART bus </components/uart>` supporting the receiving line only. The UART bus 
-must be configured at the same speed of the module which is by default 9600bps. The controller outputs data every second. 
+The device must be connected via a :doc:`UART bus </components/uart>` supporting the receiving line only. The UART bus
+must be configured at the same speed of the module which is by default 9600bps. The controller outputs data every second.
 
 To connect to this and read data from the bus a level shifting is needed as the voltage is around 8V (direct connection
-would damage the MCU). Although this is a symmetric connection supporting long wires, for our read-only purposes it's 
+would damage the MCU). Although this is a symmetric connection supporting long wires, for our read-only purposes it's
 enough to adapt the level appropriately to 3.3V using a circuit like below:
 
 .. figure:: ../images/resol_vbus_adapter_schematic.png
@@ -28,8 +28,8 @@ Another approach, with PCB design ready to be manufactured `can be found here <h
 
 .. warning::
 
-    Do not connect the GND pin of your module with the ground of Resol unit as that may damage the output port of it. 
-    The output of the device is symmetric, meaning that the signal is not referenced to the ground, but rather it's a 
+    Do not connect the GND pin of your module with the ground of Resol unit as that may damage the output port of it.
+    The output of the device is symmetric, meaning that the signal is not referenced to the ground, but rather it's a
     differential signal between the two wires. However, the MCU references the signal against the ground, so the two
     grounds are not supposed to be connected to each other as can be seen in the circuit depicted above.
 
@@ -53,7 +53,7 @@ Component
 
 .. warning::
 
-    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART 
+    If you are using the :doc:`logger` make sure you are not using the same pins for it or otherwise disable the UART
     logging with the ``baud_rate: 0`` option.
 
 Configuration variables:
@@ -62,10 +62,10 @@ Configuration variables:
 
 .. note::
 
-    Functionality of the sensors depends on the type of the device and the the scheme arrangement of the hydraulic 
-    system it controls. The actual arrangement number set up can be determined from the settings of the device. Please 
+    Functionality of the sensors depends on the type of the device and the the scheme arrangement of the hydraulic
+    system it controls. The actual arrangement number set up can be determined from the settings of the device. Please
     check the user manual and assess your arrangement to determine the functionality of each sensor and name them
-    accordingly. 
+    accordingly.
 
 
 Sensor
@@ -103,14 +103,14 @@ Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.  
+- **model** (**Required**): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.
 
 
 Supported sensors:
 
-- for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``.  
-- for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``.  
-- for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``,  ``pump_speed``, ``operating_hours``, ``heat_quantity``, ``version``.  
+- for **deltasol_bs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``.
+- for **deltasol_c**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``.
+- for **deltasol_cs2**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``,  ``pump_speed``, ``operating_hours``, ``heat_quantity``, ``version``.
 - for **deltasol_cs_plus**: ``temperature_1``,  ``temperature_2``, ``temperature_3``, ``temperature_4``, ``temperature_5``, ``pump_speed_1``, ``pump_speed_2``, ``operating_hours_1``, ``operating_hours_2``, ``heat_quantity``, ``time``, ``version``, ``flow_rate``.
 
 
@@ -118,7 +118,7 @@ All sensors are *Optional* and support all other options from :ref:`Sensor <conf
 
 .. note::
 
-    Sensors are updated every time a data packet is sent by the device. Some models send data very often, every second. If you want less 
+    Sensors are updated every time a data packet is sent by the device. Some models send data very often, every second. If you want less
     granularity to ease on the database, please consider adding a ``throttle`` filter to the sensors.
 
 
@@ -160,7 +160,7 @@ Binary Sensor
 
 Configuration variables:
 
-- **model** (*Mandatory*): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.
+- **model** (**Required**): Specify the model of the connected controller. Currently supported models are: ``deltasol_bs_plus``, ``deltasol_c``, ``deltasol_cs2``, ``deltasol_cs_plus``.
 
 Supported sensors:
 
@@ -173,8 +173,8 @@ Supported sensors:
 All binary sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
-Lambda definition for ``custom`` VBus sensors
----------------------------------------------
+Definition for ``custom`` VBus sensors
+--------------------------------------
 
 Devices on a VBus are identified with a source address. There can be multiple devices on the same bus, 
 each device type has a different address. 
@@ -182,29 +182,48 @@ each device type has a different address.
 
 .. code-block:: yaml
 
-    sensor: # or binary_sensor:
+    sensor:
       - platform: vbus
         model: custom
         dest: 0x10
         source: 0x1234
         command: 0x100
-        lambda: |-
-          // the data is in `x`
+        sensors:
+          - id: temp1
+            name: Temp 1
+            lambda: return ((x[1] << 8) + x[0]) / 10.0;
 
 
 Configuration variables:
 
-- **model** (*Mandatory*): Set to ``custom``.  
-- **dest** (*Mandatory*): The ``DFA`` value corresponding to your device (see below).  
-- **source** (*Mandatory*): The address corresponding to ``your device model`` (see below).  
-- **command** (*Mandatory*): The ``command`` corresponding to your device (see below). 
-- **lambda** (*Mandatory*, :ref:`lambda <config-lambda>`):
-  Lambda to parse the values from the incoming data packets and publish them to template sensors.
+- **model** (**Required**): Set to ``custom``.
+- **dest** (**Required**): The ``DFA`` value corresponding to your device (see below).
+- **source** (**Required**): The address corresponding to ``your device model`` (see below).
+- **command** (**Required**): The ``command`` corresponding to your device (see below).
+- **sensors** (**Required**): A list of :ref:`Sensor <config-sensor>` definitions that include a ``lambda`` to do the decoding and return a ``float`` value.
 
-To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device. 
+- **lambda** (**Required**, :ref:`lambda <config-lambda>`): Code to parse a value from the incoming data packets and return it.
+  The data packet is in a `std::vector<uint8_t>` called `x`.
 
-To extract the values with a :ref:`lambda <config-lambda>`, look in the packet structure by clicking the **Bytes** link in the table. Each value is placed at an ``offset`` within the packet.    
-For ``float`` values, let's look at the temperature example: the value is stored as a ``16``-bit value in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. The number within the square brackets is the ``[offset]``.    
+
+Definition for ``custom`` VBus binary sensors
+---------------------------------------------
+
+Configuration variables:
+
+- **model** (**Required**): Set to ``custom``.
+- **dest** (**Required**): The ``DFA`` value corresponding to your device (see below).
+- **source** (**Required**): The address corresponding to ``your device model`` (see below).
+- **command** (**Required**): The ``command`` corresponding to your device (see below).
+- **binary_sensors** (**Required**): A list of :ref:`Binary Sensor <config-binary_sensor>` definitions that include a ``lambda`` to do the decoding and return a ``bool`` value.
+
+- **lambda** (**Required**, :ref:`lambda <config-lambda>`): Code to parse a value from the incoming data packets and return it.
+  The data packet is in a `std::vector<uint8_t>` called `x`.
+
+To determine the correct values for the parameters above, visit `packet definitions list <http://danielwippermann.github.io/resol-vbus/#/vsf>`__. In the search field of the **Packets** table, enter the name of your device.
+
+To extract the values with a :ref:`lambda <config-lambda>`, look in the packet structure by clicking the **Bytes** link in the table. Each value is placed at an ``offset`` within the packet.
+For ``float`` values, let's look at the temperature example: the value is stored as a ``16``-bit value in ``2`` bytes little-endian format. Since it's always the second byte containing the upper byte, it needs to be shifted by ``8`` bits (multiplied by ``256``) (e.g. ``0x34, 0x12 -> 0x1234``). The result needs to be multiplied by the factor, which is ``0.1``, to obtain the correct values: ``((x[1] << 8) + x[0]) * 0.1f)``. The number within the square brackets is the ``[offset]``.
 For ``binary`` values, multiple binary values are stored within a single numeric value encoded with a bitmask. To extract the binary value all you have to do is to apply *bitwise AND* operator ``&`` between the value at the corresponding offset and the ``mask`` shown in the table.
 
 For example to decode some sensors of `DeltaSol BS Plus` via lambdas:
@@ -218,38 +237,38 @@ For example to decode some sensors of `DeltaSol BS Plus` via lambdas:
         dest: 0x10
         source: 0x4221
         command: 0x100
-        lambda: |-
-          id(scheme).publish_state(x[14]);                       // Configured arrangement scheme
-          id(temp2).publish_state(((x[3] << 8) + x[2]) * 0.1f);  // Temperature 2
-          id(bin_hqm).publish_state(x[15] & 0x20);               // Option Heat Quantity Measurement enabled
-
-      - platform: template
-        id: scheme
-        name: Arrangement scheme
-        icon: mdi:pipe-wrench
-        accuracy_decimals: 0
-        entity_category: diagnostic
-
-      - platform: template
-        id: temp2
-        name: Temperature DHW
-        state_class: measurement
-        unit_of_measurement: "°C"
+        sensors:
+          - id: scheme
+            name: Arrangement scheme
+            icon: mdi:pipe-wrench
+            accuracy_decimals: 0
+            entity_category: diagnostic
+            lambda: return x[14];  // Configured arrangement scheme
+          - id: temp2
+            name: Temperature DHW
+            state_class: measurement
+            unit_of_measurement: "°C"
+            lambda: return ((x[3] << 8) + x[2]) * 0.1f;  // Temperature 2
 
     binary_sensor:
-      - platform: template
-        name: Heat Quantity Measurement On
-        id: bin_hqm
-        icon: mdi:counter
+      - platform: vbus
+        model: custom
+        dest: 0x10
+        source: 0x4221
+        command: 0x100
+        binary_sensors:
+          - name: Heat Quantity Measurement On
+            id: bin_hqm
+            icon: mdi:counter
+            lambda: return x[15] & 0x20; // Option Heat Quantity Measurement enabled
 
 
 See Also
 --------
 
 - :doc:`/components/uart`
-- :doc:`/components/sensor/template`
-- :ref:`sensor-filters`
-- :ref:`Lambdas <config-lambda>`
+- :doc:`/components/binary_sensor/index`
+- :doc:`/components/sensor/index`
 - `Resol manuals <https://www.resol.de/en/dokumente>`__
 - `VBus protocol <https://danielwippermann.github.io/resol-vbus>`__
 - :ghedit:`Edit`
