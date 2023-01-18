@@ -18,8 +18,7 @@ This component supports the following functionality:
 
 This component uses the BLE peripheral on an ESP32, so you also need to enable
 this component. Please see the :doc:`/components/ble_client` docs for how to discover the MAC
-address of your BedJet device, or you can find the list of paired MAC addresses in
-the "DEVICE LIST" section of the BedJet mobile application.
+address of your BedJet device.
 
 Component/Hub
 -------------
@@ -44,7 +43,7 @@ Configuration variables:
 
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - **ble_client_id** (**Required**, :ref:`config-id`): The ID of the BLE Client.
-- **time_id** (*Optional*, :ref:`config-id`): The ID of a :ref:`Time Component <time>` which
+- **time_id** (*Optional*, :ref:`config-id`): The ID of a :doc:`/components/time/index` which
   can be used to set the time on the BedJet device.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to dispatch status
   changes to child components. Defaults to ``5s``. Each child component can decide whether to

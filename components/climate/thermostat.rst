@@ -6,10 +6,10 @@ Thermostat Climate Controller
     :image: air-conditioner.svg
 
 The ``thermostat`` climate platform allows you to control a climate control system in much the same manner as a
-physical thermostat. Its operation is similar to the :doc:`bang-bang <bang_bang>` controller; a sensor measures a value
+physical thermostat. Its operation is similar to the :doc:`Bang-Bang <bang_bang>` controller; a sensor measures a value
 (the air temperature) and the controller will try to keep this value within a range defined by the set point(s). To do this,
 the controller can activate devices like a heating unit and/or a cooling unit to change the value observed by the sensor.
-When configured for both heating and cooling, it is essentially two :doc:`bang-bang <bang_bang>` controllers in one; it
+When configured for both heating and cooling, it is essentially two :doc:`Bang-Bang <bang_bang>` controllers in one; it
 differs, however, in that interaction with the thermostat component is nearly identical to that of a real thermostat.
 
 This component can operate in one of two ways:
@@ -168,45 +168,6 @@ Configuration Variables:
 The thermostat controller uses the sensor to determine whether it should heat or cool.
 
 - **sensor** (**Required**, :ref:`config-id`): The sensor that is used to measure the current temperature.
-
-Default Target Temperatures and Mode
-************************************
-
-These configuration items determine default values the thermostat controller should use when it starts.
-
-- **default_mode** (*Optional*, *Deprecated*, climate mode): The default climate mode the controller should
-  use if it is unable to restore it from memory. One of:
-
-  - ``off`` (default)
-  - ``heat_cool``
-  - ``cool``
-  - ``heat``
-  - ``dry``
-  - ``fan_only``
-  - ``auto``
-
-This value is used the first time your device starts after ESPHome is initially installed onto it. Add
-this option into your configuration if you want your thermostat component to start in a climate mode other
-than ``off``.  If this option is not configured, you'll need to manually change the climate mode later via
-the front end (Home Assistant), an ESPHome action, automation, or from within a lambda elsewhere in your
-device's configuration.
-
-- **default_target_temperature_low** (*Optional*, float): The default low target
-  temperature for the control algorithm. This can be dynamically set in the frontend later.
-- **default_target_temperature_high** (*Optional*, float): The default high target
-  temperature for the control algorithm. This can be dynamically set in the frontend later.
-
-**At least one of** ``default_target_temperature_low`` **and** ``default_target_temperature_high``
-**must be specified.**
-
-.. note::
-
-    **default_mode**, **default_target_temperature_low**, and **default_target_temperature_high** are
-    being removed in a future release. In the future you will need to migrate your configuration to using
-    a :ref:`preset <thermostat-preset>` which will allow for more flexibility and customisation
-
-Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
-the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
 
 Heating and Cooling Actions
 ***************************
@@ -527,6 +488,9 @@ Additional Actions/Behavior
 - **min_fan_mode_switching_time** (*Required with any* ``fan_mode`` *action*, :ref:`config-time`): Minimum duration
   any given fan mode must be active before it may be changed.
 
+Note that ``min_temperature`` and ``max_temperature`` from the base climate component are used to define
+the range of allowed temperature values in the thermostat component. See :doc:`/components/climate/index`.
+
 Hysteresis Values
 *****************
 
@@ -547,15 +511,16 @@ Hysteresis Values
       adjustability and the defaults will probably not make sense for control of things like humidity. See
       :doc:`/components/climate/index`.
 
-Bang-bang vs. Thermostat
+Bang-Bang vs. Thermostat
 ------------------------
 
-Please see the :doc:`Bang-bang <bang_bang>` component's documentation for a detailed comparison of these two components.
+Please see the :doc:`Bang-Bang <bang_bang>` component's documentation for a detailed comparison of these two components.
 
 See Also
 --------
 
 - :doc:`/components/climate/index`
 - :doc:`/components/sensor/index`
+- :doc:`Bang-Bang <bang_bang>`
 - :ref:`config-action`
 - :ghedit:`Edit`
