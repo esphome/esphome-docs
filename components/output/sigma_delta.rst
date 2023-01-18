@@ -20,7 +20,7 @@ A *sigma-delta* output is updated during each cycle, thus a higher precision can
 being constrained by a calculation timeframe (=period).
 
 So instead of having to define a ``period`` where the width of the pulse determines the output level, here you
-choose an ``update_interval`` which acts lile a clock signal from where the pulse density determines the output level. 
+choose an ``update_interval`` which acts like a clock signal from where the pulse density determines the output level. 
 
 This component can be used as a drop-in replacement for :doc:`/components/output/slow_pwm` by changing the ``platform`` to
 ``sigma_delta_output`` and changing ``period`` to ``update_interval`` (you usually want to set the *sigma-delta*'s
