@@ -98,17 +98,23 @@ controlled via the `menu_item_value` parameter.
 
 - **menu_item_value** (*Optional*, :ref:`config-lambda`): Specifies how to render values for
   menu items that have values (eg. Selects, numbers). Defaults to rendering the value as 
-  "(value here)". Receives the menu item as the parameter `it`.
+  "(value here)". Receives a MenuItemValueArguments as the argument`it`.
 
 .. code-block:: yaml
 
     graphical_display_menu:
       menu_item_value: !lambda |-
-        // Will render your menu item value as "My menu label ~my value here~""
-        std::string label = " ~";
-        label.append(it->get_value_text());
-        label.append("~");
-    
+        // Will render your menu item value as "My menu label ~my value here~"" normally and "My menu label *my value here*" when in edit mode
+        std::string label = " ";
+        if (it->is_item_selected && it->is_menu_editing) {
+          label.append("*");
+          label.append(it->item->get_value_text());
+          label.append("*");
+        } else {
+          label.append("~");
+          label.append(it->item->get_value_text());
+          label.append("~");
+        }
         return label;
 
 .. note::
