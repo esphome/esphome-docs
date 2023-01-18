@@ -118,8 +118,8 @@ All sensors are *Optional* and support all other options from :ref:`Sensor <conf
 
 .. note::
 
-    Sensors are updated every time a data packet is sent by the device. Some models send data very often, every second. If you want less
-    granularity to ease on the database, please consider adding a ``throttle`` filter to the sensors.
+    Sensors are updated every time a data packet is sent by the device. Some models send data very often, possibly every second. If you are
+    concerned about the load on the receiving database, you can add a ``throttle`` filter to the sensors.
 
 
 
@@ -173,8 +173,8 @@ Supported sensors:
 All binary sensors are *Optional* and support all other options from :ref:`Binary Sensor <config-binary_sensor>`.
 
 
-Definition for ``custom`` VBus sensors
---------------------------------------
+``Custom`` VBus sensors
+-----------------------
 
 Devices on a VBus are identified with a source address. There can be multiple devices on the same bus, 
 each device type has a different address. 
@@ -206,8 +206,8 @@ Configuration variables:
   The data packet is in a `std::vector<uint8_t>` called `x`.
 
 
-Definition for ``custom`` VBus binary sensors
----------------------------------------------
+``custom`` VBus binary sensors
+------------------------------
 
 Configuration variables:
 
