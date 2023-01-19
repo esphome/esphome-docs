@@ -171,6 +171,7 @@ Air Quality
 
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
+    EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
@@ -287,6 +288,7 @@ Environmental
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
+    HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
@@ -307,6 +309,7 @@ Environmental
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
+    TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
 
@@ -438,6 +441,8 @@ Output Components
     MY9231/MY9291, components/output/my9231, my9231.svg
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
+    SM2235, components/output/sm2235, sm2235.svg
+    SM2335, components/output/sm2335, sm2335.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
     MCP4728, components/output/mcp4728, mcp4728.jpg
     MCP47A1, components/output/mcp47a1, mcp47a1.svg
@@ -445,7 +450,11 @@ Output Components
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
+    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
     Template Output, components/output/template, description.svg
+    BP1658CJ, components/output/bp1658cj, bp1658cj.svg
+    BP5758D, components/output/bp5758d, bp5758d.svg
+    X9C Potentiometer, components/output/x9c, x9c.jpg
 
 Light Components
 ----------------
@@ -652,6 +661,18 @@ Media Player Components
     Media Player Core, components/media_player/index, folder-open.svg
     I2S Audio, components/media_player/i2s_audio, i2s_audio.svg
 
+Time Components
+---------------
+
+.. imgtable::
+
+    Time Core, components/time/index, clock-outline.svg
+    Home Assistant Time, components/time/homeassistant, home-assistant.svg
+    SNTP, components/time/sntp, clock-outline.svg
+    GPS Time, components/time/gps, crosshairs-gps.svg
+    DS1307 RTC, components/time/ds1307, clock-outline.svg
+    PCF85063 RTC, components/time/pcf85063, clock-outline.svg
+
 Misc Components
 ---------------
 
@@ -662,10 +683,11 @@ Misc Components
     Status LED, components/status_led, led-on.svg
     Display Menu Core, components/display_menu/index, folder-open.svg
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
+    Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
+    Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
-    Time, components/time, clock-outline.svg
     Sun, components/sun, weather-sunny.svg
     GPS, components/gps, crosshairs-gps.svg
 
@@ -682,11 +704,13 @@ Misc Components
     Servo, components/servo, servo.svg
     Sprinkler, components/sprinkler, sprinkler-variant.svg
 
+    PCA9554 I/O Expander, components/pca9554, pca9554a.jpg
     PCF8574 I/O Expander, components/pcf8574, pcf8574.jpg
     MCP230XX I/O Expander - I²C Bus, components/mcp230xx, mcp230xx.svg
     TCA9548A I²C Multiplexer, components/tca9548a, tca9548a.jpg
     MCP23SXX I/O Expander - SPI Bus, components/mcp23Sxx, mcp230xx.svg
     SX1509 I/O Expander, components/sx1509, sx1509.jpg
+    SN74HC165 I/O Expander, components/sn74hc165, sn74hc595.jpg
     SN74HC595 I/O Expander, components/sn74hc595, sn74hc595.jpg
     SIM800L, components/sim800l, sim800l.jpg
     DFPlayer, components/dfplayer, dfplayer.svg

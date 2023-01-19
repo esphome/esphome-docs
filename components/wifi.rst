@@ -120,6 +120,15 @@ devices name as the ssid with no password.
       ap:
         password: "W1PBGyrokfLz"
 
+User Entered Credentials
+------------------------
+
+Some components such as :doc:`captive_portal`, :doc:`improv_serial` and :doc:`esp32_improv`
+enable the user to send and save Wi-Fi credentials to the device. Beginning in 2022.11.0,
+as long as no credentials are set in the config file, and firmware is uploaded without erasing
+the flash (via OTA), the device will keep the saved credentials.
+
+
 .. _wifi-manual_ip:
 
 Manual IPs
@@ -280,6 +289,9 @@ See Also
 --------
 
 - :doc:`captive_portal`
+- :doc:`text_sensor/wifi_info`
+- :doc:`sensor/wifi_signal`
 - :doc:`network`
+- :doc:`/components/ethernet`
 - :apiref:`wifi/wifi_component.h`
 - :ghedit:`Edit`
