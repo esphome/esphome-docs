@@ -62,7 +62,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
           name: "BME680 IAQ Accuracy"
  
       - platform: template
-        name: "BME680 IAQ Class"
+        name: "BME680 IAQ Classification"
         icon: "mdi:checkbox-marked-circle-outline"
         lambda: |-
           if ( int(id(iaq).state) <= 50) {
@@ -310,6 +310,7 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`bme680`
 - :apiref:`bme680_bsec/bme680_bsec.h`
+- `BME680 VOC classification <https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/BME680-VOC-classification/td-p/26154>`__
 - `BSEC Arduino Library <https://github.com/BoschSensortec/BSEC-Arduino-library>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
 - `Bosch Sensortec Community <https://community.bosch-sensortec.com/>`__
 - :ghedit:`Edit`
