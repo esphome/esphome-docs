@@ -6,8 +6,7 @@ Motion Blinds Cover
 
 The ``motion_blinds`` cover platform allows you to control a motion blinds
 based BLE cover motor (see `MotionBlinds <https://motionblinds.com/>`__). The platform connects to the device over the
-ESP32's BLE peripheral and both controls and fetches the position
-and state of the motor.
+ESP32's BLE peripheral and both controls and fetches the position and state of the motor.
 
 .. note::
 
@@ -18,6 +17,10 @@ and state of the motor.
 
     # Example configuration entry
 
+    time:
+      - platform: homeassistant
+        id: homeassistant_time
+
     ble_client:
       - mac_address: AA:BB:CC:DD:EE:FF
         id: motion_blinds_kitchen
@@ -26,6 +29,7 @@ and state of the motor.
       - platform: motion_blinds
         name: "Kitchen blinds"
         ble_client_id: motion_blinds_kitchen
+        time_id: homeassistant_time
 
 Setup
 -----
@@ -44,6 +48,7 @@ Configuration variables:
 
 - **name** (**Required**, string): The name of the cover.
 - **ble_client_id** (**Required**, :ref:`config-id`): The id of the ``ble_client`` entry associated with the device.
+- **time_id** (**Required**): The id of the ``time`` entry associated with the device.
 - **invert_position** (*Optional*, boolean): Inverts the position value to and from the device. Set if ESPHome is swapping around the open/close state of the cover.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 - All other options from :ref:`Cover <config-cover>`.
