@@ -75,16 +75,16 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
             return {"Lightly polluted"};
           }
           else if (int(id(iaq).state) >= 151 && int(id(iaq).state) <= 200) {
-            return {"Moderately pulluted"};
+            return {"Moderately polluted"};
           }
           else if (int(id(iaq).state) >= 201 && int(id(iaq).state) <= 250) {
-            return {"Heavily Pulluted"};
+            return {"Heavily polluted"};
           }
           else if (int(id(iaq).state) >= 251 && int(id(iaq).state) <= 350) {
-            return {"Severely pulluted"};
+            return {"Severely polluted"};
           }
           else if (int(id(iaq).state) >= 351) {
-            return {"Extremely pulluted"};
+            return {"Extremely polluted"};
           }
           else {
             return {"error"};
