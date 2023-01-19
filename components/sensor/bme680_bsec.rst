@@ -61,7 +61,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
         iaq_accuracy:
           name: "BME680 IAQ Accuracy"
  
-     - platform: template
+      - platform: template
         name: "BME680 IAQ Class"
         icon: "mdi:checkbox-marked-circle-outline"
         lambda: |-
