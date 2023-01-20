@@ -58,7 +58,7 @@ Configuration variables:
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the BLE device to connect to.
 - **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
-- **pin_code** (*Optional*, PIN code): The fixed 6 digit PIN code used for secure connection. Defaults to ``0``.
+- **pin_code** (*Optional*, int): The fixed 6 digit PIN code used for secure connection. Defaults to ``0``.
 
 Automations:
 
