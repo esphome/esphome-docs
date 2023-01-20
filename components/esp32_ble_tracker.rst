@@ -77,7 +77,9 @@ Configuration variables:
   - **continuous** (*Optional*, boolean): Whether to scan continuously (forever) or to only scan when
     asked to start a scan (with start_scan action). Defaults to ``true``.
 
+- **io_capability** (*Optional*): The IO capability of this ESP32, used for securely connecting to discovered BLE devices. Set this to ``keyboard_only`` if some your BLE devices require a PIN code. Defaults to ``none``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
+
 
 Automations:
 
