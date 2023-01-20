@@ -21,8 +21,8 @@ but merely manages connections to them for use by other components.
     ESP32 BLE stack. If you wish to connect more devices, use additional
     ESP32 boards.
 
-    This component does not (yet) support devices that require
-    security settings (eg connecting with a PIN).
+    This component supports devices that require a fixed 6 digit PIN code
+    to connect. Other secure connection methods are not (yet) supported.
 
     Currently, devices connected with the client cannot be
     supported by other components based on :doc:`/components/esp32_ble_tracker`
@@ -41,11 +41,24 @@ client devices.
       - mac_address: FF:FF:20:00:0F:15
         id: itag_black
 
+When using a fixed PIN code you need to set the ``esp32_ble_tracker``'s IO capability to ``keyboard_only``.
+
+.. code-block:: yaml
+
+    esp32_ble_tracker:
+      io_capability: keyboard_only
+
+    ble_client:
+    - mac_address: A4:C1:38:B1:CD:7F
+      id: pvvx_ble_display
+      pin_code: 123456
+
 Configuration variables:
 ------------------------
 
 - **mac_address** (**Required**, MAC Address): The MAC address of the BLE device to connect to.
 - **id** (**Required**, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
+- **pin_code** (*Optional*, PIN code): The fixed 6 digit PIN code used for secure connection. Defaults to ``0``.
 
 Automations:
 
@@ -186,9 +199,8 @@ characteristics and descriptors also provide a small 2-byte
 Setting Up Devices
 ------------------
 
-Whilst the component can connect to most BLE devices (that do not
-require authentication/pin), useful functionality is only obtained
-through dependent components, such as :doc:`/components/sensor/ble_client`.
+Whilst the component can connect to most BLE devices, useful functionality
+is only obtained through dependent components, such as :doc:`/components/sensor/ble_client`.
 See the documentation for these components for details on setting up
 specific devices.
 
