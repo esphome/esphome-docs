@@ -239,4 +239,6 @@ The ``esphome logs <CONFIG>`` command validates the configuration and shows all 
 .. option:: --device SERIAL_PORT
 
     Manually specify a serial port/IP to use. For example ``/dev/cu.SLAB_USBtoUART``.
+    To use wifi explicitly, ``esphome logs devicename.yaml  --device OTA``
+
 
