@@ -50,6 +50,7 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
           name: "BME680 Humidity"
         iaq:
           name: "BME680 IAQ"
+          id: iaq
         co2_equivalent:
           name: "BME680 CO2 Equivalent"
         breath_voc_equivalent:
@@ -59,13 +60,42 @@ The :ref:`I²C <i2c>` is required to be set up in your configuration for this se
       - platform: bme680_bsec
         iaq_accuracy:
           name: "BME680 IAQ Accuracy"
+ 
+      - platform: template
+        name: "BME680 IAQ Classification"
+        icon: "mdi:checkbox-marked-circle-outline"
+        lambda: |-
+          if ( int(id(iaq).state) <= 50) {
+            return {"Excellent"};
+          }
+          else if (int(id(iaq).state) >= 51 && int(id(iaq).state) <= 100) {
+            return {"Good"};
+          }
+          else if (int(id(iaq).state) >= 101 && int(id(iaq).state) <= 150) {
+            return {"Lightly polluted"};
+          }
+          else if (int(id(iaq).state) >= 151 && int(id(iaq).state) <= 200) {
+            return {"Moderately polluted"};
+          }
+          else if (int(id(iaq).state) >= 201 && int(id(iaq).state) <= 250) {
+            return {"Heavily polluted"};
+          }
+          else if (int(id(iaq).state) >= 251 && int(id(iaq).state) <= 350) {
+            return {"Severely polluted"};
+          }
+          else if (int(id(iaq).state) >= 351) {
+            return {"Extremely polluted"};
+          }
+          else {
+            return {"error"};
+          }
 
 Configuration variables:
 
 - **address** (*Optional*, int): Manually specify the I²C address of the sensor. Defaults to ``0x76``. Another address can be ``0x77``.
 
-- **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high.
-  Defaults to ``0``.
+- **temperature_offset** (*Optional*, float): Temperature offset if device is in enclosure and reads too high. This value is subtracted
+  from the reading (e.g. if the sensor reads 5°C higher than expected, set this to ``5``) and also corrects the relative humidity readings. Defaults to ``0``.
 
 - **iaq_mode** (*Optional*, string): IAQ calculation mode. Default is ``static`` for static applications (e.g. fixed indoor devices).
   Can be ``mobile`` for mobile applications (e.g. carry-on devices).
@@ -187,6 +217,8 @@ For each sensor all other options from :ref:`Sensor <config-sensor>` and :ref:`T
         # Temperature offset
         # ------------------
         # Useful if device is in enclosure and reads too high
+        # For example if it reads 5C too high, set this to 5
+        # This also corrects the relative humidity readings
         # Default: 0
         temperature_offset: 0
 
@@ -366,6 +398,7 @@ See Also
 - :ref:`sensor-filters`
 - :doc:`bme680`
 - :apiref:`bme680_bsec/bme680_bsec.h`
+- `BME680 VOC classification <https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/BME680-VOC-classification/td-p/26154>`__
 - `BSEC Arduino Library <https://github.com/BoschSensortec/BSEC-Arduino-library>`__ by `Bosch Sensortec <https://www.bosch-sensortec.com/>`__
 - `Bosch Sensortec Community <https://community.bosch-sensortec.com/>`__
 - :ghedit:`Edit`
