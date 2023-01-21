@@ -117,3 +117,14 @@ magnets.
 .. figure:: images/kamstrup_mc40x_holder.svg
 
     Magnet arrangement
+
+See also
+An example of a PCB and housing can be found [here](https://github.com/cfeenstra1024/kamstrup-multical-hardware#readme).
+
+
+See Also
+--------
+
+- :ref:`config-sensor`
+- `DIY hardware with housing <https://github.com/cfeenstra1024/kamstrup-multical-hardware#readme>`__ by `Chris Feenstra <https://github.com/cfeenstra1024>`__
+- :ghedit:`Edit`
