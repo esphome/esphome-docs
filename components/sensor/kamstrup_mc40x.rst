@@ -118,10 +118,6 @@ magnets.
 
     Magnet arrangement
 
-See also
-An example of a PCB and housing can be found [here](https://github.com/cfeenstra1024/kamstrup-multical-hardware#readme).
-
-
 See Also
 --------
 
