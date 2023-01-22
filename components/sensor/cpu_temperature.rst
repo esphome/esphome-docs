@@ -1,5 +1,5 @@
 CPU Temperature Sensor
-=================
+======================
 
 .. seo::
     :description: Instructions for setting up the integrated temperature sensor of the ESP32 and RP2040.
@@ -16,7 +16,7 @@ temperature sensor of the ESP32 and RP2040 chip.
 
 .. figure:: images/cpu_temperature-ui.png
     :align: center
-    :width: 50.0%
+    :width: 70.0%
 
 .. code-block:: yaml
 
