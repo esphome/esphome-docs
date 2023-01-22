@@ -3,15 +3,20 @@ CPU Temperature Sensor
 
 .. seo::
     :description: Instructions for setting up the integrated temperature sensor of the ESP32 and RP2040.
-    :image: magnet.svg
+    :image: thermometer.svg
     :keywords: esp32, rp2040, cpu, internal, temperature
 
 The ``cpu_temperature`` sensor platform allows you to use the integrated
 temperature sensor of the ESP32 and RP2040 chip.
 
+.. note::
+
+    Some ESP32 variants return a large amount of invalid temperature
+    values. Invalid measurements are ignored by this component.
+
 .. figure:: images/cpu_temperature-ui.png
     :align: center
-    :width: 80.0%
+    :width: 50.0%
 
 .. code-block:: yaml
 
