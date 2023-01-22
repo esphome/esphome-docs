@@ -282,6 +282,7 @@ Environmental
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
     BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
+    CPU Temperature, components/sensor/cpu_temperature, thermometer.svg, Temperature
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
     DHT12, components/sensor/dht12, dht12.jpg, Temperature & Humidity
