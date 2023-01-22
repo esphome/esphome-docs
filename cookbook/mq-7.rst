@@ -40,7 +40,7 @@ Steps:
     - Optional: Add the D0-LED you removed earlier, but with reversed polarity. It will show the status of the heater
     - Check the resistance between VCC and GND. It should be ~100Ω
 
-.. figure:: images/mq-7_heater_mod.svg
+.. figure:: images/mq-7_heater_mod.png
     :align: center
     :width: 100.0%
 
@@ -201,11 +201,11 @@ Then it can be calibrated by placing it in clean air (outdoors) to determine the
 
 .. figure:: images/mq-7_sensors.png
     :align: center
-    :width: 75.0%
+    :width: 50.0%
 
 .. figure:: images/mq-7_graph.png
     :align: center
-    :width: 75.0%
+    :width: 100.0%
 
 See Also
 --------
