@@ -31,6 +31,12 @@ names <https://venus.cs.qc.cuny.edu/~krishna/cs111/lectures/D3_C++_Variables.pdf
 -  … can not have special characters except the underscore (“_“).
 -  … must not be a keyword.
 
+
+.. note::
+
+    These IDs are used only within ESPHome and are not translated to Home Assistant's Entity ID. 
+
+
 .. _config-pin:
 
 Pin
@@ -176,7 +182,24 @@ validating your configuration, ESPHome will automatically replace all occurrence
 by their value. The syntax for a substitution is based on bash and is case-sensitive: ``$substitution_key`` or
 ``${substitution_key}`` (same).
 
-Additionally, you can use the YAML ``<<`` syntax to create a single YAML file from which a number
+Two substitution passes are performed allowing compound replacements.
+
+.. code-block:: yaml
+
+    substitutions:
+      foo: yellow
+      bar_yellow_value: !secret yellow_secret
+      bar_green_value: !secret green_secret
+    
+    something:
+      test: ${bar_${foo}_value}
+
+.. _YAML-insertion-operator:
+
+YAML insertion operator
+***********************
+
+Additionally, you can use the YAML insertion operator ``<<`` syntax to create a single YAML file from which a number
 of nodes inherit:
 
 .. code-block:: yaml
@@ -209,6 +232,44 @@ of nodes inherit:
 
     - Place them in a subdirectory (dashboard only shows files in top-level directory)
     - Prepend a dot to the filename, like ``.base.yaml``
+
+.. _substitute-include-variables:
+
+Substitute !include variables
+*****************************
+
+ESPHome's ``!include`` accepts a list of variables that can be substituted within the included file.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: gpio
+        id: button1
+        pin: GPIO16
+        on_multi_click: !include { file: on-multi-click.yaml, vars: { id: 1 } } # inline syntax
+      - platform: gpio
+        id: button2
+        pin: GPIO4
+        on_multi_click: !include
+          # multi-line syntax
+          file: on-multi-click.yaml
+          vars:
+            id: 2
+            
+``on-multi-click.yaml``:
+
+.. code-block:: yaml
+
+    - timing: !include click-single.yaml 
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: single
+    - timing: !include click-double.yaml
+      then:
+        - mqtt.publish:
+            topic: ${device_name}/button${id}/status
+            payload: double
 
 .. _command-line-substitutions:
 
