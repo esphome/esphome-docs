@@ -58,6 +58,11 @@ Release 2022.12.4 - January 20
 - Fix gpio pin mode for ISR pins :esphomepr:`4216` by :ghuser:`jesserockz`
 - Always send the MTU request for BLE v3 cached connections :esphomepr:`4322` by :ghuser:`bdraco`
 
+Release 2022.12.5 - January 23
+------------------------------
+
+- Bump nano version in lint docker image :esphomepr:`4218` by :ghuser:`jesserockz`
+
 Full list of changes
 --------------------
 
