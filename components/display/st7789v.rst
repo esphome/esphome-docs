@@ -55,7 +55,7 @@ to an ESP module.
 
 .. note::
 
-    For more information about the font options see: :ref:`fonds <components/display/index>`
+    For more information about the font options see: :doc:`fonts <components/display/index>`
 
 .. warning::
 
@@ -267,6 +267,6 @@ See Also
 --------
 
 - :doc:`index`
-- :doc:`components\display\index`
+- :doc:`components/display/index`
 - :apiref:`st7789v_base/st7789v_base.h`
 - :ghedit:`Edit`
