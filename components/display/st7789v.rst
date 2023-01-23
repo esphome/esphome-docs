@@ -48,6 +48,14 @@ to an ESP module.
         lambda: |-
           it.print(0, 0, id(font), "Hello World!");
 
+    font:
+      - file: "gfonts://Roboto"
+        id: font
+        size: 20
+
+.. note::
+    For more information about the font options see: :ref:`fonds <components/display/index>`
+
 .. warning::
 
     When using the TTGO T-Display module, the GPIO pin numbers above *cannot be changed* as they are
@@ -258,5 +266,6 @@ See Also
 --------
 
 - :doc:`index`
+- :doc:`components\display\index`
 - :apiref:`st7789v_base/st7789v_base.h`
 - :ghedit:`Edit`
