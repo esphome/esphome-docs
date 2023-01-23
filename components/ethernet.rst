@@ -100,6 +100,18 @@ Configuration examples
       clk_mode: GPIO0_IN
       phy_addr: 0
 
+**LILYGO TTGO T-Internet ESP32-WROVER-E LAN8270**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      clk_mode: GPIO0_OUT
+      phy_addr: 0
+      power_pin: GPIO04
+      
 **Olimex ESP32-GATEWAY** and **LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
 
 .. code-block:: yaml
