@@ -32,7 +32,7 @@ even Over The Air updates.
 
 .. note::
 
-    On ESPs that have onboard USB chips one the chip's control lines is connected to the RST pin so that the flasher can reboot the ESP when necessary. On some devices this may interfere with deep sleep and prevent the ESP from waking. This can happen when your ESP is powered through the onboard USB connector, even if you are only using a USB power supply. Powering the ESP from a separate 3.3V source connected to the 3.3V pin and GND will solve this issue. 
+    On ESP8622's that have an onboard USB chip one the chips' control lines is connected to the RST pin so that the flasher can reboot the ESP when necessary. On some devices this may interfere with deep sleep and prevent the ESP from waking. This can happen when your ESP is powered through the onboard USB connector, even if you are only using a USB power supply. Powering the ESP from a separate 3.3V source connected to the 3.3V pin and GND will solve this issue. 
     
 Configuration variables:
 ------------------------
