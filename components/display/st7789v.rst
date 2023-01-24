@@ -55,7 +55,7 @@ to an ESP module.
 
 .. note::
 
-    For more information about the font options see: :ref:`display-static_text`
+    For more information about the font options see: :ref:`display-fonts`.
 
 .. warning::
 
@@ -267,6 +267,5 @@ See Also
 --------
 
 - :doc:`index`
-- :doc:`/components/display/index`
 - :apiref:`st7789v_base/st7789v_base.h`
 - :ghedit:`Edit`
