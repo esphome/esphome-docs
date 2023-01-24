@@ -28,6 +28,7 @@ Contributors
 - `Adam Liddell (@aaliddell) <https://github.com/aaliddell>`__
 - `Abel Matser (@abelmatser) <https://github.com/abelmatser>`__
 - `Abílio Costa (@abmantis) <https://github.com/abmantis>`__
+- `Antonio (@acarvajalperez) <https://github.com/acarvajalperez>`__
 - `Zhenyu Wu (@Adam5Wu) <https://github.com/Adam5Wu>`__
 - `Chris Byrne (@adapt0) <https://github.com/adapt0>`__
 - `Attila Darazs (@adarazs) <https://github.com/adarazs>`__
@@ -608,7 +609,6 @@ Contributors
 - `Matt N. (@mnoorenberghe) <https://github.com/mnoorenberghe>`__
 - `Moritz Glöckl (@moritzgloeckl) <https://github.com/moritzgloeckl>`__
 - `Chris Laplante (@mostthingsweb) <https://github.com/mostthingsweb>`__
-- `Matthew Pettitt (@mpettitt) <https://github.com/mpettitt>`__
 - `Sam Hughes (@MrEditor97) <https://github.com/MrEditor97>`__
 - `Mariusz Kryński (@mrk-its) <https://github.com/mrk-its>`__
 - `Michael Davidson (@MrMDavidson) <https://github.com/MrMDavidson>`__
@@ -908,4 +908,4 @@ Contributors
 - `Zack Barett (@zsarnett) <https://github.com/zsarnett>`__
 - `Christian Zufferey (@zuzu59) <https://github.com/zuzu59>`__
 
-*This page was last updated January 23, 2023.*
+*This page was last updated January 24, 2023.*
