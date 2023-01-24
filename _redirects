@@ -7,4 +7,4 @@
 /devices/esp8266.html /components/esp8266.html
 /devices/esp32.html /components/esp32.html
 
-/changelog/:year.:month.:patch.html /changelog/:year.:month.0.html 301
+/changelog/2022.12.4.html /changelog/2022.12.0.html 301
