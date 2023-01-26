@@ -1,5 +1,5 @@
 Mopeka Standard Check BLE Sensor
-===========================
+================================
 
 .. seo::
     :description: Instructions for setting up Mopeka Standard Check bluetooth-based sensors in ESPHome.
