@@ -171,8 +171,10 @@ Air Quality
 
     AirThings BLE, components/sensor/airthings_ble, airthings_logo.png, Radon, CO2, Volatile organics
     CCS811, components/sensor/ccs811, ccs811.jpg, CO2 & Volatile organics
+    EE895, components/sensor/ee895, EE895.png,  CO2 & Temperature & Pressure
     HM3301, components/sensor/hm3301, hm3301.jpg, Particulate
     MH-Z19, components/sensor/mhz19, mhz19.jpg, CO2 & Temperature
+    MiCS-4514, components/sensor/mics_4514, mics_4514.jpg, Gas concentration
     PM1006 Sensor, components/sensor/pm1006, pm1006.jpg, Particulate
     PMSA003I, components/sensor/pmsa003i, pmsa003i.jpg, Particulate
     PMSX003, components/sensor/pmsx003, pmsx003.svg, Particulate
@@ -287,6 +289,7 @@ Environmental
     DPS310, components/sensor/dps310, dps310.jpg, Temperature & Pressure
     ENS210, components/sensor/ens210, ens210.jpg, Temperature & Humidity
     HDC1080, components/sensor/hdc1080, hdc1080.jpg, Temperature & Humidity
+    HTE501, components/sensor/hte501, HTE501.png, Temperature & Humidity
     Honeywell ABP, components/sensor/honeywellabp, honeywellabp.jpg, Pressure & Temperature
     HTU21D / Si7021 / SHT21, components/sensor/htu21d, htu21d.jpg, Temperature & Humidity
     Hydreon Rain Sensor, components/sensor/hydreon_rgxx, hydreon_rg9.jpg, Rain
@@ -307,6 +310,7 @@ Environmental
     SHTCx, components/sensor/shtcx, shtc3.jpg, Temperature & Humidity
     SMT100, components/sensor/smt100, smt100.jpg, Moisture & Temperature
     STS3X, components/sensor/sts3x, sts3x.jpg, Temperature
+    TEE501, components/sensor/tee501, TEE501.png, Temperature
     TMP102, components/sensor/tmp102, tmp102.jpg, Temperature
     TMP117, components/sensor/tmp117, tmp117.jpg, Temperature
 
@@ -444,6 +448,7 @@ Output Components
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
+    Sigma-Delta Output, components/output/sigma_delta, sigma-delta.svg
     Template Output, components/output/template, description.svg
     BP1658CJ, components/output/bp1658cj, bp1658cj.svg
     BP5758D, components/output/bp5758d, bp5758d.svg
@@ -673,6 +678,7 @@ Misc Components
     Display Menu Core, components/display_menu/index, folder-open.svg
     LCD Menu, components/display_menu/lcd_menu, lcd_menu.png
     Matrix Keypad, components/matrix_keypad, matrix_keypad.jpg
+    Wiegand Reader, components/wiegand, wiegand.jpg
     HTTP Request, components/http_request, connection.svg
     mDNS, components/mdns, radio-tower.svg
 
