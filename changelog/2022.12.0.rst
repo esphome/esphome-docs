@@ -94,6 +94,14 @@ Release 2022.12.7 - January 26
 - Fix BME280 initialization before wifi setup :esphomepr:`4190` by :ghuser:`pxe-la`
 - Add a soft reset in setup() for bmp280 :esphomepr:`4329` by :ghuser:`melyux`
 
+Release 2022.12.8 - January 27
+------------------------------
+
+- Upgrades add-on base image to 6.2.0 :esphomepr:`4310` by :ghuser:`frenck`
+- Migrate old-style S6 scripts to s6-rc.d :esphomepr:`4311` by :ghuser:`frenck`
+- Refactor NGINX configuration of Home Assistant Add-on :esphomepr:`4312` by :ghuser:`frenck`
+- Add Home Assistant integration discovery :esphomepr:`4328` by :ghuser:`frenck`
+
 Full list of changes
 --------------------
 
