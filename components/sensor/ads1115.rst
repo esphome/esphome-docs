@@ -94,8 +94,10 @@ Configuration variables:
 -  **update_interval** (*Optional*, :ref:`config-time`): The interval
    to check the sensor. Defaults to ``60s``.
 -  **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
--  **resolution** (*Optional*, string): the resolution of this sensor.
-   Defaults to ``16_BITS``
+-  **resolution** (*Optional*, string): the resolution of this sensor. Defaults to ``16 bits``.
+
+  - **16 bits**
+  - **12 bits**
 
 
 Multiplexer and Gain
