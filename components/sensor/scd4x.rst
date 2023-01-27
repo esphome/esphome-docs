@@ -129,7 +129,7 @@ This :ref:`action <config-action>` triggers a factory reset of the sensor. Calib
       then:
         - scd4x.factory_reset: my_scd41
 
-Automation
+Pressure compensation
 -----------------
 
 Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
@@ -139,24 +139,50 @@ Ambient pressure compensation compensation can be changed from :ref:`lambdas <co
 
 
 
-Example
+Example with a local sensor
 *******
 
 Note: remember your pressure sensor needs to output in hPa
 
 .. code-block:: yaml
-sensor:
-  - platform: bme280
-    pressure:
-      name: "Ambient Pressure"
-      id: bme_pressure
 
-  - platform: scd4x
-    measurement_mode: low_power_periodic
-    ambient_pressure_compensation_source: bme_pressure
-    temperature_offset: 0
-    co2:
-      name: "CO2 level"
+    sensor:
+      - platform: bme280
+        pressure:
+          name: "Ambient Pressure"
+          id: bme_pressure
+
+      - platform: scd4x
+        measurement_mode: low_power_periodic
+        ambient_pressure_compensation_source: bme_pressure
+        temperature_offset: 0
+        co2:
+          name: "CO2 level"
+
+Example updating pressure from Home Assistant
+*******
+
+This example creates a service `set_ambient_pressure` that can be called from Home Assistant:
+
+.. code-block:: yaml
+
+    api:
+      services:
+        - service: set_ambient_pressure
+          variables:
+            my_pressure: int
+          then:
+            - lambda: "id(my_scd41)->set_ambient_pressure_compensation(my_pressure);"
+
+    sensor:
+      - platform: scd4x
+        id: my_scd41
+        measurement_mode: low_power_periodic
+        ambient_pressure_compensation: 908hPa
+        temperature_offset: 0
+        co2:
+          name: "CO2 level"
+
 
 See Also
 --------
