@@ -7,7 +7,7 @@ Climate Component
 
 ESPHome has support for climate devices. Climate devices can represent different types of
 hardware, but the defining factor is that climate devices have a settable target temperature
-and can be put in different modes like HEAT, COOL, HEAT_COOL or OFF.
+and can be put in different modes like ``HEAT``, ``COOL``, ``HEAT_COOL`` or ``OFF``.
 
 .. figure:: images/climate-ui.png
     :align: center
@@ -57,42 +57,6 @@ Advanced options:
   See https://developers.home-assistant.io/docs/core/entity/#generic-properties
   for a list of available options. Requires Home Assistant 2021.11 or newer.
   Set to ``""`` to remove the default entity category.
-
-MQTT options:
-
-- **action_state_topic** (*Optional*, string): The topic to publish
-  climate device action changes to.
-- **away_state_topic** (*Optional*, string): The topic to publish
-  away mode changes on.
-- **away_command_topic** (*Optional*, string): The topic to receive
-  away mode commands on.
-- **current_temperature_state_topic** (*Optional*, string): The topic to publish
-  current temperature changes to.
-- **fan_mode_state_topic** (*Optional*, string): The topic to publish
-  fan mode changes to.
-- **fan_mode_command_topic** (*Optional*, string): The topic to receive
-  fan mode commands on.
-- **mode_state_topic** (*Optional*, string): The topic to publish
-  climate device mode changes to.
-- **mode_command_topic** (*Optional*, string): The topic to receive
-  climate device mode commands on.
-- **swing_mode_state_topic** (*Optional*, string): The topic to publish
-  swing mode changes to.
-- **swing_mode_command_topic** (*Optional*, string): The topic to receive
-  swing mode commands on.
-- **target_temperature_state_topic** (*Optional*, string): The topic to publish
-  target temperature changes to.
-- **target_temperature_command_topic** (*Optional*, string): The topic to receive
-  target temperature commands on.
-- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
-  higher target temperature changes to.
-- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
-  higher target temperature commands on.
-- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
-  lower target temperature changes to.
-- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
-  lower target temperature commands on.
-- All other options from :ref:`MQTT Component <config-mqtt-component>`.
 
 Climate Automation
 ------------------
@@ -189,7 +153,7 @@ advanced stuff.
 .. _climate-on_state_trigger:
 
 ``climate.on_state`` Trigger
-******************************************************
+****************************
 
 This trigger is activated each time the state of the climate device is updated 
 (for example, if the current temperature measurement or the mode set by the users changes).
@@ -201,6 +165,43 @@ This trigger is activated each time the state of the climate device is updated
         # ...
         on_state:
         - logger.log: "State updated!"
+
+MQTT options:
+
+- **action_state_topic** (*Optional*, string): The topic to publish
+  climate device action changes to.
+- **away_state_topic** (*Optional*, string): The topic to publish
+  away mode changes on.
+- **away_command_topic** (*Optional*, string): The topic to receive
+  away mode commands on.
+- **current_temperature_state_topic** (*Optional*, string): The topic to publish
+  current temperature changes to.
+- **fan_mode_state_topic** (*Optional*, string): The topic to publish
+  fan mode changes to.
+- **fan_mode_command_topic** (*Optional*, string): The topic to receive
+  fan mode commands on.
+- **mode_state_topic** (*Optional*, string): The topic to publish
+  climate device mode changes to.
+- **mode_command_topic** (*Optional*, string): The topic to receive
+  climate device mode commands on.
+- **swing_mode_state_topic** (*Optional*, string): The topic to publish
+  swing mode changes to.
+- **swing_mode_command_topic** (*Optional*, string): The topic to receive
+  swing mode commands on.
+- **target_temperature_state_topic** (*Optional*, string): The topic to publish
+  target temperature changes to.
+- **target_temperature_command_topic** (*Optional*, string): The topic to receive
+  target temperature commands on.
+- **target_temperature_high_state_topic** (*Optional*, string): The topic to publish
+  higher target temperature changes to.
+- **target_temperature_high_command_topic** (*Optional*, string): The topic to receive
+  higher target temperature commands on.
+- **target_temperature_low_state_topic** (*Optional*, string): The topic to publish
+  lower target temperature changes to.
+- **target_temperature_low_command_topic** (*Optional*, string): The topic to receive
+  lower target temperature commands on.
+- All other options from :ref:`MQTT Component <config-mqtt-component>`.
+
 
 See Also
 --------
