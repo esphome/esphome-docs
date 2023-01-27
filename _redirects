@@ -6,3 +6,5 @@
 /components/binary_sensor/xpt2046.html /components/touchscreen/xpt2046.html 301
 /devices/esp8266.html /components/esp8266.html
 /devices/esp32.html /components/esp32.html
+
+/changelog/2022.12.4.html /changelog/2022.12.0.html 301

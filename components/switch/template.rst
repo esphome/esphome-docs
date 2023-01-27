@@ -89,7 +89,7 @@ Configuration options:
 
 .. note::
 
-    This action can also be written in lambdas, the parameter of the `public_state` method denotes if
+    This action can also be written in lambdas, the parameter of the `publish_state` method denotes if
     the switch is currently on or off:
 
     .. code-block:: cpp

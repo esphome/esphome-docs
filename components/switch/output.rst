@@ -29,16 +29,6 @@ Configuration variables:
 - **output** (**Required**, :ref:`config-id`): The ID of the output component to use.
 - **name** (**Required**, string): The name for the switch.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
-- **restore_mode** (*Optional*): Control how the switch attempts to restore state on bootup.
-  For restoring on ESP8266s, also see ``esp8266_restore_from_flash`` in the
-  :doc:`esphome section </components/esphome>`.
-
-    - ``RESTORE_DEFAULT_OFF`` (Default) - Attempt to restore state and default to OFF if not possible to restore.
-    - ``RESTORE_DEFAULT_ON`` - Attempt to restore state and default to ON.
-    - ``RESTORE_INVERTED_DEFAULT_OFF`` - Attempt to restore state inverted from the previous state and default to OFF.
-    - ``RESTORE_INVERTED_DEFAULT_ON`` - Attempt to restore state inverted from the previous state and default to ON.
-    - ``ALWAYS_OFF`` - Always initialize the pin as OFF on bootup.
-    - ``ALWAYS_ON`` - Always initialize the pin as ON on bootup.
 
 - All other options from :ref:`Switch <config-switch>`.
 

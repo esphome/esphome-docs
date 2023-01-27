@@ -20,7 +20,7 @@ be on the same board or external sensor linked to the uFire ISE pH configuration
 
     # Example configuration entry
     sensor:
-      - platform: ufire_ise  
+      - platform: ufire_ise
         id: ufire_ise_board
         temperature:
           id: temperature_liquit
@@ -32,7 +32,7 @@ be on the same board or external sensor linked to the uFire ISE pH configuration
 Configuration variables:
 ------------------------
 
-- **address** (**Optional**, int): Specify the I²C address of the sensor. Defaults to ``0x3f``.
+- **address** (*Optional*, int): Specify the I²C address of the sensor. Defaults to ``0x3f``.
 - **update_interval** (*Optional*, :ref:`config-time`): The interval to check the
   sensor. Defaults to ``60s``.
 - **id** (*Optional*, :ref:`config-id`): Set the ID of this sensor for use in lambdas.
@@ -44,8 +44,8 @@ Configuration variables:
 
 .. _sensor-ufire_ise-calibrate_probe_high_action:
 
-``sensor.ufire_ise.calibrate_probe_high`` Action
-------------------------------------------------
+``ufire_ise.calibrate_probe_high`` Action
+-----------------------------------------
 
 The pH probe have to be calibrated. For this you need know the pH reference value and temperature
 of the calibration high solution.
@@ -69,12 +69,11 @@ Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the ufire pH sensor.
 - **solution** (**Required**, float): Solution reference pH value.
-- **temperature** (**Required**, float): Solution current temperature.
 
 .. _sensor-ufire_ise-calibrate_probe_low_action:
 
-``sensor.ufire_ise.calibrate_probe_low`` Action
------------------------------------------------
+``ufire_ise.calibrate_probe_low`` Action
+----------------------------------------
 
 The pH probe have to be calibrated. For this you need know the pH reference value and temperature
 of the calibration low solution.
@@ -98,12 +97,11 @@ Configuration options:
 
 - **id** (**Required**, :ref:`config-id`): The ID of the ufire pH sensor.
 - **solution** (**Required**, float): Solution reference pH value.
-- **temperature** (**Required**, float): Solution current temperature.
 
 .. _sensor-ufire_ise-reset_action:
 
-``sensor.ufire_ise.reset`` Action
----------------------------------
+``ufire_ise.reset`` Action
+--------------------------
 
 Reset the current calibration on the sensor.
 
