@@ -134,6 +134,24 @@ Below is a definition that includes a pixel_mapper suitable for these 8x32 matri
         rotation: 0°
         update_interval: 16ms
 
+It's possible to use two 8x32 LED matrices in a 16x32 configuration (one above the other) by using the following definition:
+
+.. code-block:: yaml
+
+    display:
+      - platform: addressable_light
+        id: led_matrix_32x16_display
+        addressable_light_id: led_matrix_32x16
+        width: 32
+        height: 16
+        pixel_mapper: |-
+          int iMatrixOffset = y >= 8 ? 256 : 0;
+          if (x % 2 == 0) {
+            return (x * 8) + (y % 8) + iMatrixOffset;
+          }
+          return (x * 8) + iMatrixOffset + (7 - (y % 8));
+        rotation: 0°
+        update_interval: 16ms
 
 See Also
 --------

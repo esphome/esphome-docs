@@ -142,7 +142,7 @@ Other notable changes:
   ``esphomeyaml.includes`` and ``esphomeyaml.platformio_options`` (:doc:`/components/esphome`)
 - Saved a lot of flash space on ESP8266 boards. Previously, platformio would allocate about 1/4 of flash for SPIFFS,
   but esphomelib doesn't use that so now you have that as extra storage. Thanks `@brandond <http://github.com/brandond>`
-- You can now use Home Assistant to get time in ESPHome, so no more need for SNTP. See :ref:`time`.
+- You can now use Home Assistant to get time in ESPHome, so no more need for SNTP. See :doc:`/components/time/index`.
 
 Release 1.10.1 - January 13
 ---------------------------

@@ -32,7 +32,7 @@ Configuration variables:
 ------------------------
 
 - **type** (**Required**, string): The type of LAN chipset/phy. Must be one of
-  ``LAN8720``, ``TLK110`` or ``IP101`` (see datasheet for more details).
+  ``LAN8720``, ``RTL8201``, ``DP83848`` or ``IP101``.
 - **mdc_pin** (**Required**, :ref:`config-pin`): The MDC pin of the board.
   Usually this is ``GPIO23``.
 - **mdio_pin** (**Required**, :ref:`config-pin`): The MDIO pin of the board.
@@ -73,8 +73,10 @@ Configuration variables:
     clock signal that will not travel reliably over these types of connections. For more
     information and wiring details refer to the link in the *See also* section.
 
-Configuration for Olimex ESP32-POE
-----------------------------------
+Configuration examples
+----------------------
+
+**Olimex ESP32-POE**:
 
 .. code-block:: yaml
 
@@ -86,8 +88,8 @@ Configuration for Olimex ESP32-POE
       phy_addr: 0
       power_pin: GPIO12
 
-Configuration for Olimex ESP32-EVB
-----------------------------------
+
+**Olimex ESP32-EVB**:
 
 .. code-block:: yaml
 
@@ -98,8 +100,7 @@ Configuration for Olimex ESP32-EVB
       clk_mode: GPIO0_IN
       phy_addr: 0
 
-Configuration for Olimex ESP32-GATEWAY
---------------------------------------
+**Olimex ESP32-GATEWAY** and **LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A**:
 
 .. code-block:: yaml
 
@@ -110,8 +111,7 @@ Configuration for Olimex ESP32-GATEWAY
       clk_mode: GPIO17_OUT
       phy_addr: 0
 
-Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
-----------------------------------------------------------------------
+**LILYGO TTGO T-Internet ESP32-WROVER-E LAN8270**:
 
 .. code-block:: yaml
 
@@ -119,11 +119,11 @@ Configuration for LILYGO TTGO T-Internet-POE ESP32-WROOM LAN8270A Chip
       type: LAN8720
       mdc_pin: GPIO23
       mdio_pin: GPIO18
-      clk_mode: GPIO17_OUT
+      clk_mode: GPIO0_OUT
       phy_addr: 0
-
-Configuration for Wireless Tag WT32-ETH01
------------------------------------------
+      power_pin: GPIO04
+      
+**Wireless Tag WT32-ETH01** and **SMLIGHT SLZB-06 PoE Zigbee**:
 
 .. code-block:: yaml
 
@@ -135,42 +135,7 @@ Configuration for Wireless Tag WT32-ETH01
       phy_addr: 1
       power_pin: GPIO16
 
-Configuration for OpenHacks LAN8720
------------------------------------
-
-.. code-block:: yaml
-
-    ethernet:
-      type: LAN8720
-      mdc_pin: GPIO23
-      mdio_pin: GPIO18
-      phy_addr: 1
-
-.. note::
-
-    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure 
-    you are monitoring the serial output and reboot the device several times to see if it boots into the 
-    program properly.
-
-Configuration for wESP32 board (up to rev.6)
---------------------------------------------
-
-.. code-block:: yaml
-
-    ethernet:
-      type: LAN8720
-      mdc_pin: GPIO16
-      mdio_pin: GPIO17
-      clk_mode: GPIO0_IN
-      phy_addr: 0
-
-.. note::
-
-    Revision 7 and upwards of the wESP32 board does not have a LAN8720 chip. Until support for the 
-    replacement RTL8201 is included in ESPHome, the wESP board rev.7 will not work with the above configuration.
-
-Configuration for ESP32-Ethernet-Kit board
-------------------------------------------
+**M5Stack PoESP32** and **ESP32-Ethernet-Kit**:
 
 .. code-block:: yaml
 
@@ -182,25 +147,65 @@ Configuration for ESP32-Ethernet-Kit board
       phy_addr: 1
       power_pin: GPIO5
       
-
-Configuration for M5Stack PoESP32 Unit
---------------------------------------
+**AiThinker ESP32-G Gateway**:
 
 .. code-block:: yaml
 
     ethernet:
-      type: IP101
+      type: LAN8720
       mdc_pin: GPIO23
       mdio_pin: GPIO18
-      clk_mode: GPIO0_IN
+      clk_mode: GPIO17_OUT
       phy_addr: 1
       power_pin: GPIO5
+
+**wESP32**:
+
+.. code-block:: yaml
+
+    # for board up to rev.5
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO16
+      mdio_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+
+    # for board rev.7 and up
+    ethernet:
+      type: RTL8201
+      mdc_pin: GPIO16
+      mdio_pin: GPIO17
+      clk_mode: GPIO0_IN
+      phy_addr: 0
+
+.. note::
+
+    Revision 5 and below of the wESP32 board use the LAN8720 Ethernet PHY. Revision 7 and newer of it use the RTL8201 Ethernet PHY. Support for RTL8201 is available from ESPHome version 2022.12 upwards.
+
+**OpenHacks LAN8720**:
+
+.. code-block:: yaml
+
+    ethernet:
+      type: LAN8720
+      mdc_pin: GPIO23
+      mdio_pin: GPIO18
+      phy_addr: 1
+
+.. note::
+
+    This board has an issue that might cause the ESP32 to boot in program mode. When testing, make sure
+    you are monitoring the serial output and reboot the device several times to see if it boots into the
+    program properly.
+
 
 
 See Also
 --------
 
 - :doc:`network`
+- :doc:`text_sensor/ethernet_info`
 - :apiref:`ethernet/ethernet_component.h`
 - `ESP32 Ethernet PHY connection info <https://pcbartists.com/design/embedded/esp32-ethernet-phy-schematic-design/>`__
 - :ghedit:`Edit`
