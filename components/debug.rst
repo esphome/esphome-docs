@@ -7,7 +7,7 @@ Debug Component
 
 The ``debug`` component can be used to debug problems with ESPHome. At startup, it prints
 a bunch of useful information like reset reason, free heap size, ESPHome version and so on.
-It also allows you get the same information as a text sensor, and to monitor the state of the
+It also allows you to get the same information as a text sensor, and to monitor the state of the
 ESP heap memory (free space, maximum free block size and fragmentation level) and the main-loop timing.
 
 .. figure:: images/debug.png

@@ -26,5 +26,6 @@ Configuration variables:
 See Also
 --------
 
+- :doc:`/components/ethernet`
 - :apiref:`ethernet_info/ethernet_info_text_sensor.h`
 - :ghedit:`Edit`

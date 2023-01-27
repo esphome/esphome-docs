@@ -39,24 +39,24 @@ Configuration variables:
 
 - **type** (**Required**): One of ``rssi``, ``characteristic``.
 
-  rssi options:
+rssi options:
 
-  - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
+- All other options from :ref:`Sensor <config-sensor>`.
 
-  characteristic options:
+characteristic options:
 
-  - **ble_client_id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
-  - **service_uuid** (**Required**, UUID): UUID of the service on the device.
-  - **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
-  - **descriptor_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
-  - **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
-  - **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for converting a raw data
-    reading to a sensor value. See :ref:`ble-sensor-lambda` for more information.
-  - **notify** (*Optional*, boolean): Instruct the server to send notifications for this
-    characteristic.
-  - **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
-  - All other options from :ref:`Sensor <config-sensor>`.
+- **ble_client_id** (**Required**, :ref:`config-id`): ID of the associated BLE client.
+- **service_uuid** (**Required**, UUID): UUID of the service on the device.
+- **characteristic_uuid** (**Required**, UUID): UUID of the service's characteristic to query.
+- **descriptor_uuid** (*Optional*, UUID): UUID of the characteristic's descriptor to query.
+- **id** (*Optional*, :ref:`config-id`): The ID to use for code generation, and for reference by dependent components.
+- **lambda** (*Optional*, :ref:`lambda <config-lambda>`): The lambda to use for converting a raw data
+  reading to a sensor value. See :ref:`ble-sensor-lambda` for more information.
+- **notify** (*Optional*, boolean): Instruct the server to send notifications for this
+  characteristic.
+- **update_interval** (*Optional*, :ref:`config-time`): The interval to poll the device.
+- All other options from :ref:`Sensor <config-sensor>`.
 
 Automations:
 
