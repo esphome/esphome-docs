@@ -130,7 +130,7 @@ This :ref:`action <config-action>` triggers a factory reset of the sensor. Calib
         - scd4x.factory_reset: my_scd41
 
 Pressure compensation
------------------
+---------------------
 
 Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
 
@@ -140,7 +140,7 @@ Ambient pressure compensation compensation can be changed from :ref:`lambdas <co
 
 
 Example with a local sensor
-*******
+***************************
 
 Note: remember your pressure sensor needs to output in mBar
 
@@ -159,8 +159,8 @@ Note: remember your pressure sensor needs to output in mBar
         co2:
           name: "CO2 level"
 
-Example updating pressure from Home Assistant
-*******
+Example with a remote sensor
+****************************
 
 This example creates a service `set_ambient_pressure` that can be called from Home Assistant:
 
