@@ -58,7 +58,7 @@ Configuration variables:
   automatic self calibration (ASC). Defaults to ``true``.
 
 - **ambient_pressure_compensation** (*Optional*, int): Enable compensation
-  of measured CO₂ values based on given ambient pressure in hPa.
+  of measured CO₂ values based on given ambient pressure in mBar.
 
 - **altitude_compensation** (*Optional*, int): Enable compensating
   deviations due to current altitude (in metres). Notice: setting
@@ -142,7 +142,7 @@ Ambient pressure compensation compensation can be changed from :ref:`lambdas <co
 Example with a local sensor
 *******
 
-Note: remember your pressure sensor needs to output in hPa
+Note: remember your pressure sensor needs to output in mBar
 
 .. code-block:: yaml
 
@@ -178,7 +178,7 @@ This example creates a service `set_ambient_pressure` that can be called from Ho
       - platform: scd4x
         id: my_scd41
         measurement_mode: low_power_periodic
-        ambient_pressure_compensation: 908hPa
+        ambient_pressure_compensation: 908mBar
         temperature_offset: 0
         co2:
           name: "CO2 level"
