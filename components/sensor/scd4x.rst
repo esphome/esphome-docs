@@ -57,8 +57,8 @@ Configuration variables:
 - **automatic_self_calibration** (*Optional*, boolean): Whether to enable
   automatic self calibration (ASC). Defaults to ``true``.
 
-- **ambient_pressure_compensation** (*Optional*, float): Enable compensation
-  of measured CO₂ values based on given ambient pressure in bar.
+- **ambient_pressure_compensation** (*Optional*, int): Enable compensation
+  of measured CO₂ values based on given ambient pressure in hPa.
 
 - **altitude_compensation** (*Optional*, int): Enable compensating
   deviations due to current altitude (in metres). Notice: setting
@@ -135,34 +135,28 @@ Automation
 Ambient pressure compensation compensation can be changed from :ref:`lambdas <config-lambda>`
 
 
-``set_ambient_pressure_compensation(  <pressure in bar)``
+``set_ambient_pressure_compensation( <pressure in hPa> )``
 
 
 
 Example
 *******
 
-Note: that the pressure from bme280 is in hPa and must be converted to bar.
+Note: remember your pressure sensor needs to output in hPa
 
 .. code-block:: yaml
+sensor:
+  - platform: bme280
+    pressure:
+      name: "Ambient Pressure"
+      id: bme_pressure
 
-    sensor:
-      - platform: scd4x
-        id: scd41
-        i2c_id: bus_a
-        co2:
-            name: co2
-            id: co2
-
-        - platform: bme280
-          pressure:
-            name: "BME280-Pressure"
-            id: bme280_pressure
-            oversampling: 1x
-          on_value:
-            then:
-                - lambda: "id(scd41)->set_ambient_pressure_compensation(x / 1000.0);"
-
+  - platform: scd4x
+    measurement_mode: low_power_periodic
+    ambient_pressure_compensation_source: bme_pressure
+    temperature_offset: 0
+    co2:
+      name: "CO2 level"
 
 See Also
 --------
