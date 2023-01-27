@@ -77,14 +77,6 @@ Configuration variables:
   - **continuous** (*Optional*, boolean): Whether to scan continuously (forever) or to only scan when
     asked to start a scan (with start_scan action). Defaults to ``true``.
 
-- **io_capability** (*Optional*, enum): The IO capability of this ESP32, used for securely connecting to discovered BLE devices. Set this to ``keyboard_only`` if some your BLE devices require a PIN code. Defaults to ``none``.
-
-    - ``none`` - No IO capability (Connections that require PIN code authentication will fail)
-    - ``keyboard_only`` - Only a keyboard to enter PIN codes (or a fixed PIN code)
-    - ``display_only`` - Only a display to show PIN codes
-    - ``keyboard_display`` - A keyboard and a display
-    - ``display_yes_no`` - A display to show PIN codes and buttons to confirm or deny the connection
-
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID for this ESP32 BLE Hub.
 
 Automations:
