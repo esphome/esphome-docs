@@ -1,5 +1,5 @@
 XENSIV™ PAS CO₂ sensor - disruptive CO2 sensor based on photoacoustic spectroscopy (PAS)
-===================================================
+========================================================================================
 
 .. seo::
     :description: Instructions for setting up XENSIV™ PAS CO₂ Sensor
