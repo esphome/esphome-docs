@@ -37,6 +37,11 @@ of the performance increases for bluetooth, it is best to at least one serial fl
 Container images
 ----------------
 
+.. note::
+
+    This breaking change only affects you if you use docker containers directly and specify the suffix
+    in your image.
+
 2022.12.6 changes the way the container images are built and published. This is due to something
 breaking somewhere that we could not explain. It has to do with the ``docker manifest`` command
 which has been around for a while but always been marked as ``experimental`` so we cannot really
@@ -79,6 +84,23 @@ Release 2022.12.6 - January 24
 ------------------------------
 
 - Move from docker manifest command to buildx with platforms :esphomepr:`4320` by :ghuser:`jesserockz` (breaking-change)
+
+Release 2022.12.7 - January 26
+------------------------------
+
+- Add "content" to deploy-ha-addon-repo dispatch :esphomepr:`4349` by :ghuser:`ludeeus`
+- fix stepper jump back with small steps :esphomepr:`4339` by :ghuser:`0xDRRB`
+- rename esp32 CAN to TWAI, so it compiles again :esphomepr:`4334` by :ghuser:`designer2k2`
+- Fix BME280 initialization before wifi setup :esphomepr:`4190` by :ghuser:`pxe-la`
+- Add a soft reset in setup() for bmp280 :esphomepr:`4329` by :ghuser:`melyux`
+
+Release 2022.12.8 - January 27
+------------------------------
+
+- Upgrades add-on base image to 6.2.0 :esphomepr:`4310` by :ghuser:`frenck`
+- Migrate old-style S6 scripts to s6-rc.d :esphomepr:`4311` by :ghuser:`frenck`
+- Refactor NGINX configuration of Home Assistant Add-on :esphomepr:`4312` by :ghuser:`frenck`
+- Add Home Assistant integration discovery :esphomepr:`4328` by :ghuser:`frenck`
 
 Full list of changes
 --------------------
