@@ -170,15 +170,14 @@ This example creates a service `set_ambient_pressure` that can be called from Ho
       services:
         - service: set_ambient_pressure
           variables:
-            my_pressure: int
+            pressure_mbar: int
           then:
-            - lambda: "id(my_scd41)->set_ambient_pressure_compensation(my_pressure);"
+            - lambda: "id(my_scd41)->set_ambient_pressure_compensation(pressure_mbar);"
 
     sensor:
       - platform: scd4x
         id: my_scd41
         measurement_mode: low_power_periodic
-        ambient_pressure_compensation: 908mBar
         temperature_offset: 0
         co2:
           name: "CO2 level"
