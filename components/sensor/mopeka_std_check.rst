@@ -15,7 +15,7 @@ device every time the sensor sends out a BLE broadcast.
 .. warning::
 
     This sensor component only supports the Mopeka Standard Check devices.
-    See :doc:`/components/mopeka_pro_check` for Mopeka Pro Check sensors support.
+    See :doc:`/components/sensor/mopeka_pro_check` for Mopeka Pro Check sensors support.
 
 .. figure:: images/mopeka_std_check.jpg
     :align: center
