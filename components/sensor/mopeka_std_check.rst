@@ -46,7 +46,7 @@ device every time the sensor sends out a BLE broadcast.
         tank_type: CUSTOM
         custom_distance_full: 40cm
         custom_distance_empty: 32mm
-        propane_butane_mix: 0.2
+        propane_butane_mix: 20%
         temperature:
             name: "Propane c test temp"
         level:
@@ -73,13 +73,13 @@ Configuration variables:
 
 - **propane_butane_mix** (*Optional*): Mixture of propane and butane.
 
-  - 1.0 - (*default*) 100% Propane
+  - 100% - (*default*) 100% Propane
 
-  - 0.8 - 80% Propane and 20% Butane
+  - 80% - 80% Propane and 20% Butane
 
-  - 0.2 - 20% Propane and 80% Butane
+  - 20% - 20% Propane and 80% Butane
 
-  - 0.0 - 100% Butane
+  - 0% - 100% Butane
 
 - **level** (*Optional*): The percentage of full for the tank sensor
 
