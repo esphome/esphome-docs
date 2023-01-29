@@ -633,7 +633,7 @@ From :ref:`lambdas <config-lambda>`, you can call several methods on all sensors
 advanced stuff (see the full API Reference for more info).
 
 - ``publish_state()``: Manually cause the sensor to push out a value. It will then
-  be processed by the sensor filters, and once done be published to MQTT.
+  be processed by the sensor filters, and once filtered will propagate though ESPHome and though the API to Home Assistant or out via MQTT if configured. 
 
   .. code-block:: cpp
 

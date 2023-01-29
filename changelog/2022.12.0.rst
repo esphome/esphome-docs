@@ -34,6 +34,23 @@ underlying flash partition table that ESPHome uses. OTA will work, but to fully 
 of the performance increases for bluetooth, it is best to at least one serial flash with ESPHome
 2022.12.0 or later.
 
+Container images
+----------------
+
+.. note::
+
+    This breaking change only affects you if you use docker containers directly and specify the suffix
+    in your image.
+
+2022.12.6 changes the way the container images are built and published. This is due to something
+breaking somewhere that we could not explain. It has to do with the ``docker manifest`` command
+which has been around for a while but always been marked as ``experimental`` so we cannot really
+complain.
+
+From now on there will be no builds with tags for the ``-armv7`` / ``-amd64`` / ``aarch64`` suffixes,
+but the main images (``ghcr.io/esphome/esphome:<version>``) will be multi-arch capable and work on the
+3 supported architectures.
+
 Release 2022.12.1 - December 16
 -------------------------------
 
@@ -46,6 +63,36 @@ Release 2022.12.2 - December 20
 
 - Fix import_full_config for adoption configs :esphomepr:`4197` by :ghuser:`jesserockz`
 - Handle zero padding anywhere in the combined adv data :esphomepr:`4208` by :ghuser:`bdraco`
+
+Release 2022.12.3 - December 20
+-------------------------------
+
+- Fix ESP32 GPIO when using INPUT PULLUP mode :esphomepr:`4213` by :ghuser:`jesserockz`
+
+Release 2022.12.4 - January 20
+------------------------------
+
+- Fix gpio pin mode for ISR pins :esphomepr:`4216` by :ghuser:`jesserockz`
+- Always send the MTU request for BLE v3 cached connections :esphomepr:`4322` by :ghuser:`bdraco`
+
+Release 2022.12.5 - January 23
+------------------------------
+
+- Bump nano version in lint docker image :esphomepr:`4218` by :ghuser:`jesserockz`
+
+Release 2022.12.6 - January 24
+------------------------------
+
+- Move from docker manifest command to buildx with platforms :esphomepr:`4320` by :ghuser:`jesserockz` (breaking-change)
+
+Release 2022.12.7 - January 26
+------------------------------
+
+- Add "content" to deploy-ha-addon-repo dispatch :esphomepr:`4349` by :ghuser:`ludeeus`
+- fix stepper jump back with small steps :esphomepr:`4339` by :ghuser:`0xDRRB`
+- rename esp32 CAN to TWAI, so it compiles again :esphomepr:`4334` by :ghuser:`designer2k2`
+- Fix BME280 initialization before wifi setup :esphomepr:`4190` by :ghuser:`pxe-la`
+- Add a soft reset in setup() for bmp280 :esphomepr:`4329` by :ghuser:`melyux`
 
 Full list of changes
 --------------------
