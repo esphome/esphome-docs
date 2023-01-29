@@ -15,7 +15,7 @@ Pro Plus Residential BLE device every time the sensor sends out a BLE broadcast.
 .. warning::
 
     This sensor component only supports the Mopeka Pro Check and Pro Plus devices.
-    The original Mopeka Check sensors are not supported.
+    See :doc:`/components/mopeka_std_check` for original Mopeka Check sensors support.
 
 .. figure:: images/mopeka_pro_check.jpg
     :align: center
