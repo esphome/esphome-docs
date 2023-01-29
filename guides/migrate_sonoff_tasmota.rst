@@ -58,7 +58,7 @@ Happy Hacking!
 
 .. note::
 
-    If you are using Tasmota 8+ and get an error after uploading the firmware, go to the console and type ```SetOption78 1```, then restart the device and try the firmware again.
+    If you are using Tasmota 8+ and get an error after uploading the firmware, first upload the tasmota-minimal.bin.gz from Tasmota repository, next upload firmware generated from ESPHome.
 
 See Also
 --------
