@@ -170,6 +170,13 @@ Next, create a ``font:`` section in your configuration:
         id: roboto
         size: 20
 
+      - file:
+          type: gfonts
+          family: Roboto
+          weight: 900
+        id: font2
+        size: 16
+
       - file: "fonts/tom-thumb.bdf"
         id: tomthumb
 
