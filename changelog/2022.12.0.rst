@@ -85,6 +85,15 @@ Release 2022.12.6 - January 24
 
 - Move from docker manifest command to buildx with platforms :esphomepr:`4320` by :ghuser:`jesserockz` (breaking-change)
 
+Release 2022.12.7 - January 26
+------------------------------
+
+- Add "content" to deploy-ha-addon-repo dispatch :esphomepr:`4349` by :ghuser:`ludeeus`
+- fix stepper jump back with small steps :esphomepr:`4339` by :ghuser:`0xDRRB`
+- rename esp32 CAN to TWAI, so it compiles again :esphomepr:`4334` by :ghuser:`designer2k2`
+- Fix BME280 initialization before wifi setup :esphomepr:`4190` by :ghuser:`pxe-la`
+- Add a soft reset in setup() for bmp280 :esphomepr:`4329` by :ghuser:`melyux`
+
 Full list of changes
 --------------------
 
