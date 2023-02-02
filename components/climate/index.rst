@@ -183,14 +183,14 @@ MQTT options:
   climate device mode changes to.
 - **mode_command_topic** (*Optional*, string): The topic to receive
   climate device mode commands on.
-- **swing_mode_state_topic** (*Optional*, string): The topic to publish
-  swing mode changes to.
-- **swing_mode_command_topic** (*Optional*, string): The topic to receive
-  swing mode commands on.
 - **preset_state_topic** (*Optional*, string): The topic to publish
   preset changes to.
 - **preset_command_topic** (*Optional*, string): The topic to receive
   preset commands on.
+- **swing_mode_state_topic** (*Optional*, string): The topic to publish
+  swing mode changes to.
+- **swing_mode_command_topic** (*Optional*, string): The topic to receive
+  swing mode commands on.
 - **target_temperature_state_topic** (*Optional*, string): The topic to publish
   target temperature changes to.
 - **target_temperature_command_topic** (*Optional*, string): The topic to receive
