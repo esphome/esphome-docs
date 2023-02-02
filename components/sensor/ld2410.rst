@@ -55,28 +55,6 @@ Use of hardware UART pins is highly recommended, in order to support the out-of-
       g8_move_threshold: 80
       g8_still_threshold: 81
 
-    binary_sensor:
-      - platform: ld2410
-        has_target:
-          name : "presence"
-        has_moving_target:
-          name : "movement"
-        has_still_target:
-          name: "still"
-
-    sensor:
-      - platform: ld2410
-        moving_distance:
-          name : "Moving distance (cm)"
-        still_distance:
-          name: "Still Distance (cm)"
-        moving_energy:
-          name: "Move Energy (%)"
-        still_energy:
-          name: "Still Energy (%)"
-        detection_distance:
-          name: "Distance Detection (cm)"
-
 
 .. note::
 
@@ -95,7 +73,7 @@ and binary sensors.
 - **max_move_distance** (*Optional*, int): Maximum distance for movement detection.
   Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
 - **max_still_distance** (*Optional*, int): Maximum distance for still detection.
-  VValue between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
+  Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
 - **gX_move_threshold** (*Optional*, int): Threshold for the Xth gate for motion detection (X => 0 to 8).
   Above this level for the considered gate (distance), movement detection will be triggered. Defaults to ``see table below``.
 - **gX _still_threshold** (*Optional*, int): Threshold for the Xth gate for still detection. (X => 0 to 8).
@@ -142,8 +120,24 @@ Sensor
 The ``ld2410`` sensor allows you to use your :doc:`ld2410` to perform different
 measurements.
 
+.. code-block:: yaml
+
+    sensor:
+      - platform: ld2410
+        moving_distance:
+          name : Moving Distance
+        still_distance:
+          name: Still Distance
+        moving_energy:
+          name: Move Energy
+        still_energy:
+          name: Still Energy
+        detection_distance:
+          name: Detection Distance
+
 Configuration variables:
 ************************
+
 - **moving_distance** (*Optional*): Distance of detected moving target.
   All options from :ref:`Sensor <config-sensor>`.
 - **still_distance** (*Optional*): Distance of detected still target.
@@ -160,6 +154,17 @@ Binary Sensor
 
 The ``ld2410`` binary sensor allows you to use your :doc:`ld2410` to perform different
 measurements.
+
+.. code-block:: yaml
+
+    binary_sensor:
+      - platform: ld2410
+        has_target:
+          name: Presence
+        has_moving_target:
+          name: Moving Target
+        has_still_target:
+          name: Still Target
 
 Configuration variables:
 ************************
