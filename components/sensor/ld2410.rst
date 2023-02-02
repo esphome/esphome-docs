@@ -90,7 +90,7 @@ Configuration variables:
 The configuration is made up of three parts: The central component, individual sensors,
 and binary sensors.
 
-- **none_duration** (*Optional*, int): Time in seconds during which presence state will stay present
+- **timeout** (*Optional*, int): Time in seconds during which presence state will stay present
   after leaving. Defaults to ``5s``.
 - **max_move_distance** (*Optional*, int): Maximum distance for movement detection.
   Value between ``0.75m`` and ``6m`` inclusive. Defaults to ``4.5m``.
