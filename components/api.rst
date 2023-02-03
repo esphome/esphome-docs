@@ -23,13 +23,11 @@ A Python library that implements this protocol is `aioesphomeapi <https://github
 
     # Example configuration entry
     api:
-      password: !secret api_password
 
 Configuration variables:
 ------------------------
 
 - **port** (*Optional*, int): The port to run the API Server on. Defaults to ``6053``.
-- **password** (*Optional*, string): The password to protect the API Server with. Defaults to no password.
 - **encryption** (*Optional*): Enable transport encryption of the API layer.
 
   - **key** (**Required**, string): The pre-shared key for the encryption. This is a 32-byte base64 encoded string.
@@ -68,6 +66,8 @@ Configuration variables:
   the ESP is connected to the network, when in fact it is not - only a full reboot fixes it.
   Can be disabled by setting this to ``0s``. Defaults to ``15min``.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
+- **password** (*Optional*, **Deprecated**, string): The password to protect the API Server with. Defaults to no password.
+  It is recommended to use the ``encryption`` -> ``key`` above instead of the the ``password``.
 
 .. _api-homeassistant_service_action:
 
