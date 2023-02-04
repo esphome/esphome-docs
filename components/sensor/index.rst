@@ -433,7 +433,7 @@ An average over the ``specified time period``, potentially throttling incoming v
 
 For example a ``throttle_average: 60s`` will push out a value every 60 seconds, in case at least one sensor value is received within these 60 seconds.
 
-In comparison to the ``throttle`` filter it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
+In comparison to the ``throttle`` filter, it won't discard any values. In comparison to the ``sliding_window_moving_average`` filter, it supports variable sensor reporting rates without influencing the filter reporting interval (except for the first edge case).
 
 ``heartbeat``
 *************

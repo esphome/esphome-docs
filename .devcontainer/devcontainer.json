@@ -1,10 +1,10 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.183.0/containers/python-3
 {
     "name": "ESPHome - docs",
-    "image": "mcr.microsoft.com/vscode/devcontainers/python:0-3.6",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:0-3.10",
     "postCreateCommand": "pip3 install -r requirements.txt -r requirements_test.txt",
     "forwardPorts": [8000],
-    "settings": { 
+    "settings": {
         "python.pythonPath": "/usr/local/bin/python",
         "python.languageServer": "Pylance",
         "python.linting.enabled": true,
